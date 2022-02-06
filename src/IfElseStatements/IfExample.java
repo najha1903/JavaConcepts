@@ -35,7 +35,7 @@ package IfElseStatements;
 
 // For Operator precedence table reference link :- cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html
 
-public class IfElseExample {
+public class IfExample {
 
     public static void main(String[] args) {
 
