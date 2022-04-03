@@ -73,7 +73,7 @@ package MethodsInJava.CodingChallenge;
 //
 //        NOTE: 1 mile per hour is 1.609 kilometers per hour
 
-public class SpeedConverterCodingExercise {
+public class SpeedConverterCodingChallenge {
 
     public static void main(String[] args) {
 
