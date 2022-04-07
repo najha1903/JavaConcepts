@@ -6,6 +6,7 @@ public class MethodOverLoadingChallenge {
 
         calcFeetAndInchesToCentimeters(5,7);
 
+       // calcFeetAndInchesToCentimeters(67);
 
         calcFeetAndInchesToCentimeters(171);
 
@@ -49,15 +50,42 @@ public class MethodOverLoadingChallenge {
 
             feet = (int) (totalInches / 12);
 
-            double feetInInches = feet * 12;
+           // double feetInInches = feet * 12;
 
-             inches = Math.round(totalInches - feetInInches);
+            // inches = Math.round(totalInches - feetInInches);
+
+            inches = Math.round(totalInches % 12);
 
             System.out.println(centimeters + " cm = " + feet + " ft " + inches + " inch ");
 
 
         }
     }
+
+
+//        public static void calcFeetAndInchesToCentimeters(double inches){
+//
+//        int feet;
+//        double remaining_inches;
+//
+//        if(inches < 0){
+//
+//            System.out.println("Invalid value");
+//
+//        }else{
+//
+//             feet = (int) (inches / 12);
+//
+//         //    remaining_inches = inches - feet * 12;
+//
+//             remaining_inches = inches % 12;
+//
+//             calcFeetAndInchesToCentimeters(feet,remaining_inches);
+//
+//
+//        }
+//    }
+
 
 }
 
