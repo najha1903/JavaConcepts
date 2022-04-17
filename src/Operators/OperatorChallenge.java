@@ -16,7 +16,6 @@ OPERATOR CHALLENGE
 */
 
 public class OperatorChallenge {
-
     public static void main(String[] args) {
 
         double myFirstValue = 20.00D;
