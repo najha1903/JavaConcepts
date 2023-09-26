@@ -4,6 +4,9 @@ package SwitchStatements;
 // The if statement is a little more flexible.
 // Each time we do a test, we don't have to use the same test criteria.
 
+// Switch can be used with 4 primitive types :- byte, short, char and int.
+// Switch can also be used with string [should be using jdk version 7]
+
 public class SwitchStatementInJava {
 
     public static void main(String[] args) {
@@ -73,8 +76,8 @@ public class SwitchStatementInJava {
     // We should always use break statements, after the case statements.
     // If break statements are not used, it will result to unpredictable behaviour.
 
-    // For example, in below method, if value is provided as 1, the case matches with the 1, it will execute all statements mentioned in case 1.
-    // Since, there is no break statement, it will execute all statements of case 2, case 3, case 4, case 5 as neither of them have break statement.
+    // For example, in below method, in the worst case scenario if value is provided as 1, the case matches with the 1, it will execute all statements mentioned in case 1.
+    // Since, there is no break statement, it will execute all statements of case 2, case 3, case 4, case 5 and the default case as neither of them have break statement.
 
     public static void switchCaseWithoutUsingBreak(int value){
         switch (value){
@@ -88,5 +91,6 @@ public class SwitchStatementInJava {
                 System.out.println("Neither numbers are provided");
         }
     }
+
 
 }
