@@ -67,10 +67,6 @@ public class MethodOverloadingSecondAndMinutesChallenge {
 
             int remainingSeconds = seconds % 60;
 
-            System.out.println(minutes);
-
-            System.out.println(remainingSeconds);
-
             duration = getDurationString(minutes,remainingSeconds);
 
         }else{

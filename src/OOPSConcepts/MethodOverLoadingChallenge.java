@@ -15,7 +15,7 @@ public class MethodOverLoadingChallenge {
 
     public static void calcFeetAndInchesToCentimeters(double feet, double inches){
 
-        double centiMetersvalue;
+        double centimetersValue;
 
         if(feet >=0 && (inches >=0 && inches <= 12)){
 
@@ -23,9 +23,9 @@ public class MethodOverLoadingChallenge {
 
             double totalInches = feetIntoInches + inches;
 
-            centiMetersvalue = Math.round(totalInches * 2.54);
+            centimetersValue = Math.round(totalInches * 2.54);
 
-            System.out.println(feet + " ft " + inches + " inch = " + centiMetersvalue + " cm ");
+            System.out.println(feet + " ft " + inches + " inch = " + centimetersValue + " cm ");
 
         }else {
 

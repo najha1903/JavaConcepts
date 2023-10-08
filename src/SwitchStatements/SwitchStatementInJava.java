@@ -14,8 +14,17 @@ public class SwitchStatementInJava {
 //        ifElseExample(3);
 //        switchCase(2);
 
-        switchCaseWithoutUsingBreak(1);
-        
+//        switchCaseWithoutUsingBreak(1);
+
+        String month = "NOVEMBER";
+
+        String quarterValue = getQuarter(month);
+
+        if(quarterValue.equals("INVALID MONTH")){
+            System.out.println(quarterValue);
+        }else {
+            System.out.println(month + " is in " + quarterValue);
+        }
     }
 
     // Program in if - else statement
@@ -92,5 +101,23 @@ public class SwitchStatementInJava {
         }
     }
 
+    // Program in switch case that returns a value
+    public static String getQuarter(String month){
+
+        //Traditional Switch Case Statement
+
+        switch (month){
+            case "JANUARY": case "FEBRUARY": case "MARCH":
+                return "1st Quarter"; // Return statement acts like break, since the code wil exit both out of switch statement and the method
+            case "APRIL": case "MAY": case "JUNE":
+                return "2nd Quarter";
+            case "JULY": case "AUGUST": case "SEPTEMBER":
+                return "3rd Quarter";
+            case "OCTOBER": case "NOVEMBER": case "DECEMBER":
+                return "4th Quarter";
+        }
+
+        return "INVALID MONTH"; // We also don't need the default statement, as if the value is not found, the code will fall through the last statement and this value is returned.
+    }
 
 }
