@@ -6,6 +6,42 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 
 // An expression is formed by combining variables,literals,method return values and operators.
 
+/*
+*  Summary of Operators
+*
+* 1) Operator --> (+) plus operator
+*  For Numeric types --> Addition
+*  For char          --> Addition
+*  For boolean       --> Not Applicable
+*  For String        --> Concatenation
+*
+* 2) Operator --> (-) Subtraction
+*  For Numeric types --> Subtraction
+*  For char          --> Subtraction
+*  For boolean       --> Not Applicable
+*  For String        --> Not Applicable
+*
+* 3) Operator --> (*) Multiplication
+*  For Numeric Types  --> Multiplication
+*  For char           --> Multiplication
+*  For boolean        --> Not Applicable
+*  For String         --> Not Applicable
+*
+* 4) Operator --> ( / ) Division
+*  For Numeric Types --> Division
+*  For char          --> Division
+*  For boolean       --> Not Applicable
+*  For String        --> Not Applicable
+*
+* 5) Operator --> ( % ) Modulus also known as Modulus
+*  For Numeric Types --> Remainder (Modulus)
+*  For char          --> Remainder (Modulus)
+*  For boolean       --> Not Applicable
+*  FOr String        --> not Applicable
+*
+*
+* */
+
 public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {

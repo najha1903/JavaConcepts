@@ -5,6 +5,8 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
   A local variable is called local because it is available for use by the code block in which it was declared.
   It is also available to code blocks that are contained by a declaring block.
 
+  Local Variables are a way to store and manipulate temporary data
+
   Scope - 1) Scope describes the accessibility of a variable.
           2) "In scope" means the variable can be used by an executing block or any nested blocks.
           3) "Out of scope" means the variable is no longer available and cannot be used
