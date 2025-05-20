@@ -1,6 +1,6 @@
 package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_3_While_Do_While_Loop_CodingChallenge;
 
-public class FactorPrinterCodingChallenge {
+public class  FactorPrinterCodingChallenge {
 
     public static void main(String[] args) {
 

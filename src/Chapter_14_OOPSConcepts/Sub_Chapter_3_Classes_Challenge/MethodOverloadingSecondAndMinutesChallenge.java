@@ -1,4 +1,4 @@
-package OOPSConcepts;
+package Chapter_14_OOPSConcepts.Sub_Chapter_3_Classes_Challenge;
 
 //        Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.
 //
