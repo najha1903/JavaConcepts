@@ -1,4 +1,4 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_10_Constructors_Coding_Chalenge;
+package Chapter_14_OOPSConcepts.Sub_Chapter_10_Constructors_Coding_Challenge;
 
 
 /*

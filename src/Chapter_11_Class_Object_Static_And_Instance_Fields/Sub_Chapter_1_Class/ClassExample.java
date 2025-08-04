@@ -28,9 +28,9 @@ package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 *    because of the values used to fill in the data.
 *    The data being collected each time is determined by the class or the form, in this analogy.
 *
-*    An Object is called an instance of a particular class.
+*    An Main is called an instance of a particular class.
 *    Creation of the object can be called as instantiation or instantiating a class
-*    Object and instance can be used interchangeably
+*    Main and instance can be used interchangeably
 *    There is no limit on number of object one can create from a class
 *
 *    The most common way to create an object is to use the new keyword.

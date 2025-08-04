@@ -13,7 +13,7 @@ public class Main {
 
         /* Output :- 0-Door null null null
          *
-         * Null :- null is a special keyword in Java, meaning, the variable or attribute has a type but no reference to an Object.
+         * Null :- null is a special keyword in Java, meaning, the variable or attribute has a type but no reference to an Main.
          *
          * This means that no instance or object is assigned to the variable or field.
          *

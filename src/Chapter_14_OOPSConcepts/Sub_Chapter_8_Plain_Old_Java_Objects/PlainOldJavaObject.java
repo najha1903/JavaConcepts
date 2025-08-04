@@ -12,7 +12,7 @@ package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects;
                   ii)  A JavaBean is just a POJO with some extra rules applied to it.
                   iii) These rules are in place so that Java frameworks have a standard way to manipulate and manage these objects.
                   iv)  A POJO is sometimes called an Entity because it mirrors database entities.
-                  v)   Another acronym is DTO for Data Transfer Object. It's a description of an object that can be modeled as just data.
+                  v)   Another acronym is DTO for Data Transfer Main. It's a description of an object that can be modeled as just data.
 
 
 
