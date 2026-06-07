@@ -97,19 +97,6 @@ public class Inheritance {
         Fish goldie = new Fish("GoldFish",0.25,2,5);
         doAnimalStuff(goldie,"fast");
 
-//        Map<String,String> newMap = new HashMap<>();
-//
-//        newMap.put("Hello", "Navneet");
-//        newMap.put("Hola","Pritam");
-//        newMap.put("Bonjour","Sonu");
-//
-//        Iterator<Map.Entry<String,String>> iterator = newMap.entrySet().iterator();
-//
-//        while(iterator.hasNext()){
-//            Map.Entry<String,String> values = iterator.next();
-//            System.out.println(values.getKey() + " " + values.getValue());
-//        }
-
 
     }
 
