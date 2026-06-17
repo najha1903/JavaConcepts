@@ -989,6 +989,164 @@ function buildStarterQuestions(chapterName, topics) {
 }
 
 // ==========================================================================
+// Build practice challenges from *Challenge*.java files
+// ==========================================================================
+function buildPracticeChallenges(parsedData) {
+  const challenges = [];
+
+  for (const topic of parsedData) {
+    if (!topic.fileName.toLowerCase().includes('challenge')) continue;
+
+    const code = topic.code;
+    const fileName = topic.fileName.replace('.java', '');
+
+    // Slugify
+    const slug = fileName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+    // Human-readable title
+    const title = fileName
+      .replace(/CodingChallenge$/, '')
+      .replace(/Challenge$/, '')
+      .replace(/([A-Z])/g, ' $1')
+      .trim()
+      .replace(/\s+/g, ' ');
+
+    // Difficulty based on chapter number
+    const chNum = parseInt(topic.chapter.match(/Chapter\s+(\d+)/)?.[1] || '5', 10);
+    const difficulty = chNum <= 7 ? 'Easy' : chNum <= 10 ? 'Medium' : 'Hard';
+
+    // Problem description from header comments
+    const descLines = topic.headerComments.flatMap(b => b.lines);
+    const descHtml = descLines.length > 0
+      ? '<p>' + descLines.join('</p><p>') + '</p>'
+      : `<p>Implement the method in <code>${topic.fileName}</code>. Read the source code for details.</p>`;
+
+    // Find first non-main public static method
+    const methodRegex = /public\s+static\s+(\w[\w<>\[\]]*)\s+(\w+)\s*\(([^)]*)\)\s*(?:throws\s+[\w,\s]+)?\s*\{/g;
+    let methodMatch = null;
+    let m;
+    while ((m = methodRegex.exec(code)) !== null) {
+      if (m[2] !== 'main') { methodMatch = m; break; }
+    }
+
+    if (!methodMatch) continue; // Skip if no suitable method found
+
+    const returnType = methodMatch[1];
+    const methodName = methodMatch[2];
+    const params = methodMatch[3];
+
+    // Default return value
+    let defaultReturn = '';
+    if (returnType === 'boolean') defaultReturn = 'return false;';
+    else if (['int', 'long', 'double', 'float', 'short', 'byte'].includes(returnType)) defaultReturn = 'return 0;';
+    else if (returnType === 'String') defaultReturn = 'return "";';
+    else if (returnType !== 'void') defaultReturn = 'return null;';
+
+    // Parse param names
+    const paramList = params.split(',').map(p => p.trim()).filter(Boolean);
+    const paramNames = paramList.map(p => {
+      const parts = p.split(/\s+/);
+      return parts[parts.length - 1];
+    });
+
+    // Template
+    const paramStr = paramList.join(', ');
+    const returnLine = defaultReturn ? `\n        ${defaultReturn}` : '';
+    const template = `public class PracticeWorkspace {\n    public static ${returnType} ${methodName}(${paramStr}) {\n        // Write your code here${returnLine}\n    }\n}`;
+
+    // Extract test cases from comments
+    const testCases = [];
+    const commentText = topic.headerComments.flatMap(b => b.lines).join('\n');
+    const rawCode = code;
+
+    // Pattern: methodName(args) → should return value X  OR  → X
+    const testPattern = new RegExp(
+      methodName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+      '\\s*\\(([^)]+)\\)[^\\n→\\-]*[→\\->]+[^\\n]*?(-?[\\d.]+|true|false|"[^"]*")',
+      'g'
+    );
+    let tm;
+    while ((tm = testPattern.exec(commentText)) !== null && testCases.length < 4) {
+      try {
+        const rawArgs = tm[1].split(',').map(a => {
+          const v = a.trim();
+          if (v === 'true') return true;
+          if (v === 'false') return false;
+          if (/^-?\d+\.\d+$/.test(v)) return parseFloat(v);
+          if (/^-?\d+$/.test(v)) return parseInt(v, 10);
+          return v.replace(/^["']|["']$/g, '');
+        });
+        let rawExpected = tm[2].trim();
+        let expected;
+        if (rawExpected === 'true') expected = true;
+        else if (rawExpected === 'false') expected = false;
+        else if (/^-?\d+$/.test(rawExpected)) expected = parseInt(rawExpected, 10);
+        else if (/^-?\d+\.\d+$/.test(rawExpected)) expected = parseFloat(rawExpected);
+        else expected = rawExpected.replace(/^["']|["']$/g, '');
+        testCases.push({ args: rawArgs, expected });
+      } catch (e) { /* skip malformed */ }
+    }
+
+    // Fallback: extract from System.out.println(methodName(...)) calls in main()
+    if (testCases.length === 0 && returnType !== 'void') {
+      const printPattern = new RegExp(
+        'System\\.out\\.println\\(\\s*' +
+        methodName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+        '\\(([^)]+)\\)\\s*\\)',
+        'g'
+      );
+      let pm;
+      while ((pm = printPattern.exec(rawCode)) !== null && testCases.length < 3) {
+        try {
+          const rawArgs = pm[1].split(',').map(a => {
+            const v = a.trim();
+            if (v === 'true') return true;
+            if (v === 'false') return false;
+            if (/^-?\d+\.\d+$/.test(v)) return parseFloat(v);
+            if (/^-?\d+$/.test(v)) return parseInt(v, 10);
+            return v.replace(/^["']|["']$/g, '');
+          });
+          testCases.push({ args: rawArgs, expected: null });
+        } catch (e) { /* skip */ }
+      }
+    }
+
+    const selfCheck = returnType === 'void' || testCases.length === 0 ||
+      testCases.every(tc => tc.expected === null);
+
+    // Build verifyFn string (evaluated in browser context)
+    let verifyFnStr = null;
+    if (!selfCheck && paramNames.length > 0) {
+      const argAccess = paramNames.map((_, i) => `testCase.args[${i}]`).join(', ');
+      const paramQuoted = paramNames.map(p => `"${p}"`).join(', ');
+      verifyFnStr = `function(userCode, testCase) {
+        try {
+          const body = extractMethodBody(userCode, "${methodName}");
+          const fn = new Function(${paramQuoted}, body);
+          const result = fn(${argAccess});
+          return result === testCase.expected;
+        } catch(e) { return false; }
+      }`;
+    }
+
+    challenges.push({
+      id: slug,
+      title: title.trim(),
+      difficulty,
+      chapter: topic.chapter,
+      description: descHtml,
+      template,
+      testCases: selfCheck ? [{ args: [], expected: null }] : testCases,
+      selfCheck,
+      methodName,
+      verifyFnStr: verifyFnStr || null
+    });
+  }
+
+  return challenges;
+}
+
+// ==========================================================================
 // Main pipeline
 // ==========================================================================
 function main() {
@@ -1076,6 +1234,22 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
 
   fs.writeFileSync(questionsFile, questionsOutput, 'utf8');
   console.log(`✅ questions.js updated successfully.\n`);
+
+  // ── Step 5: Write practice.js ─────────────────────────────────────────────
+  const challengesList = buildPracticeChallenges(parsedData);
+  const practiceFile = path.join(dashboardDir, 'practice.js');
+
+  const practiceItems = challengesList.map(ch => {
+    const { verifyFnStr, ...rest } = ch;
+    return { ...rest, hasVerify: !!verifyFnStr, verifyFnStr: verifyFnStr || null };
+  });
+
+  fs.writeFileSync(
+    practiceFile,
+    `// Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.\nconst GENERATED_PRACTICE_CHALLENGES = ${JSON.stringify(practiceItems, null, 2)};\n`,
+    'utf8'
+  );
+  console.log(`✅ practice.js regenerated with ${challengesList.length} challenges.`);
 }
 
 main();

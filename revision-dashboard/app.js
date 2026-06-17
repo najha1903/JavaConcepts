@@ -391,11 +391,23 @@ function openQuizRevisit(scope) {
 }
 
 function getScopedPracticeChallenges() {
+  // Merge generated challenges (from practice.js) with the hardcoded ones.
+  // Attach verify functions to generated challenges that have verifyFnStr.
+  const generated = (typeof GENERATED_PRACTICE_CHALLENGES !== 'undefined' ? GENERATED_PRACTICE_CHALLENGES : [])
+    .map(ch => {
+      if (ch.verifyFnStr && !ch.verify) {
+        try { ch.verify = eval('(' + ch.verifyFnStr + ')'); } catch (e) { ch.selfCheck = true; }
+      }
+      return ch;
+    });
+
+  const allChallenges = [...PRACTICE_CHALLENGES, ...generated];
+
   if (!currentPracticeScope.chapterName) {
-    return PRACTICE_CHALLENGES;
+    return allChallenges;
   }
-  const scoped = PRACTICE_CHALLENGES.filter(ch => ch.chapter === currentPracticeScope.chapterName);
-  return scoped.length > 0 ? scoped : PRACTICE_CHALLENGES;
+  const scoped = allChallenges.filter(ch => ch.chapter === currentPracticeScope.chapterName);
+  return scoped.length > 0 ? scoped : allChallenges;
 }
 
 function setupEventListeners() {
@@ -2300,23 +2312,36 @@ function selectChallenge(index) {
   // Render test cases grid
   const casesContainer = document.getElementById('test-cases-grid');
   casesContainer.innerHTML = '';
-  
-  challenge.testCases.forEach((tc, idx) => {
-    const card = document.createElement('div');
-    card.className = 'test-case-card';
-    card.id = `test-case-card-${idx}`;
-    
-    let argsText = tc.args.length > 0 ? tc.args.map(a => typeof a === 'string' ? `"${a}"` : a).join(', ') : 'None';
-    
-    card.innerHTML = `
-      <div class="test-case-info">
-        <span class="test-case-args">Input: (${argsText})</span>
-        <span class="test-case-expected">Expected: ${tc.expected}</span>
-      </div>
-      <div class="test-case-status pending" id="test-case-status-${idx}"></div>
-    `;
-    casesContainer.appendChild(card);
-  });
+
+  if (challenge.selfCheck) {
+    // Self-check mode: show examples and a "Mark as Completed" button
+    const noteDiv = document.createElement('div');
+    noteDiv.className = 'test-case-card self-check-card';
+    noteDiv.innerHTML = '<p class="self-check-note">📋 Self-check: Implement the method, run it in your IDE and verify the output matches the examples in the description, then mark as completed.</p>';
+    casesContainer.appendChild(noteDiv);
+    const markBtn = document.createElement('button');
+    markBtn.className = 'btn btn-success btn-small';
+    markBtn.innerText = '✓ Mark as Completed';
+    markBtn.onclick = () => { saveChallengePassed(challenge.id); };
+    casesContainer.appendChild(markBtn);
+  } else {
+    challenge.testCases.forEach((tc, idx) => {
+      const card = document.createElement('div');
+      card.className = 'test-case-card';
+      card.id = `test-case-card-${idx}`;
+
+      let argsText = tc.args.length > 0 ? tc.args.map(a => typeof a === 'string' ? `"${a}"` : a).join(', ') : 'None';
+
+      card.innerHTML = `
+        <div class="test-case-info">
+          <span class="test-case-args">Input: (${argsText})</span>
+          <span class="test-case-expected">Expected: ${tc.expected}</span>
+        </div>
+        <div class="test-case-status pending" id="test-case-status-${idx}"></div>
+      `;
+      casesContainer.appendChild(card);
+    });
+  }
   
   logToConsole(`SYSTEM READY: Loaded challenge "${challenge.title}". Click Compile & Run to verify your solution.`);
 }
@@ -2445,7 +2470,20 @@ function runPracticeChallenge() {
   }
   
   logToConsole("COMPILING PracticeWorkspace.java...", "clear");
-  
+
+  // For self-check challenges, just compile and notify the user
+  if (challenge.selfCheck) {
+    const compileErrors = compileJavaCode(code, challenge.id);
+    if (compileErrors.length > 0) {
+      compileErrors.forEach(err => logToConsole(err, "error"));
+      logToConsole(`COMPILATION FAILED: ${compileErrors.length} error(s) found.`, "error");
+    } else {
+      logToConsole("COMPILATION SUCCESSFUL.");
+      logToConsole("This is a self-check challenge. Run your code in an IDE and verify the output, then click 'Mark as Completed'.");
+    }
+    return;
+  }
+
   // 1. Run simulated compiler
   const compileErrors = compileJavaCode(code, challenge.id);
   if (compileErrors.length > 0) {
