@@ -166,6 +166,43 @@ const QUESTIONS_BANK = {
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
     {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "question": "What does it mean that Strings are immutable in Java?",
+      "modelAnswer": "Once a String is created, its value cannot be changed. Any modification creates a new String object. The original String is discarded and becomes eligible for garbage collection.",
+      "keyPoints": [
+        "Once a String is created, its value cannot be changed. Any modification creates a new String object.",
+        "The original String is discarded and becomes eligible for garbage collection."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "question": "What is the difference between a char and a String in Java?",
+      "modelAnswer": "char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\").",
+      "keyPoints": [
+        "char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\")."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "question": "When should you use StringBuilder instead of String concatenation?",
+      "modelAnswer": "When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.",
+      "keyPoints": [
+        "When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
       "type": "scq",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",

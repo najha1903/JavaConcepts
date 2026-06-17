@@ -101,7 +101,28 @@ Use them intentionally:
 
 ---
 
-## Adding a new topic — step by step
+## Adding custom quiz questions with @quiz / @answer
+
+You can write your own quiz questions directly in any Java source file.
+They appear in the quiz bank alongside the 5 auto-generated questions.
+
+```java
+// @quiz What does "immutable" mean for Strings in Java?
+// @answer A String cannot be changed after creation. Any modification creates a new String object.
+
+// @quiz What is the difference between == and .equals() for Strings?
+// @answer == compares object references in memory; .equals() compares the actual character content.
+// @answer Always use .equals() when comparing String values — == will fail for non-literal Strings.
+```
+
+**Rules:**
+- `// @quiz <your question>` — one line, starts the question
+- `// @answer <answer text>` — one or more lines immediately follow
+- Multiple `@answer` lines are joined as key points in the model answer checklist
+- You can add as many `@quiz`/`@answer` pairs as you want per file
+- `@quiz`/`@answer` lines are **excluded** from Notes/Key Takeaways — they only appear in the Quiz
+
+---
 
 1. Create a new `.java` file under `src/Chapter_N_.../(Sub_Chapter_N_.../)`
 2. Write overview comments (as `//` lines or `/* */` block) BEFORE the class declaration

@@ -200,10 +200,37 @@ function parseJavaFile(filePath, rootDir) {
   const inlineGroups = [];
   let currentGroup = null;
 
+  // ---- parse @quiz / @answer markers -----------------------------------------
+  // Syntax:  // @quiz  <question text>
+  //          // @answer <answer line>   (one or more lines)
+  // These are excluded from Key Takeaway bullets and added to the quiz bank.
+  const customQuizzes = [];
+  let currentQuiz = null;
+  for (const rawLine of allSourceLines) {
+    const trimmed = rawLine.trim();
+    if (/^\/\/\s*@quiz\s+/.test(trimmed)) {
+      if (currentQuiz && currentQuiz.answers.length > 0) customQuizzes.push(currentQuiz);
+      currentQuiz = { question: trimmed.replace(/^\/\/\s*@quiz\s+/, '').trim(), answers: [] };
+    } else if (/^\/\/\s*@answer\s+/.test(trimmed) && currentQuiz) {
+      currentQuiz.answers.push(trimmed.replace(/^\/\/\s*@answer\s+/, '').trim());
+    } else if (currentQuiz && currentQuiz.answers.length > 0 && !/^\/\//.test(trimmed) && trimmed !== '') {
+      // Non-comment, non-blank line after answers closes the quiz entry
+      customQuizzes.push(currentQuiz);
+      currentQuiz = null;
+    }
+  }
+  if (currentQuiz && currentQuiz.answers.length > 0) customQuizzes.push(currentQuiz);
+
   allSourceLines.forEach((rawLine, lineIdx) => {
     const trimmed = rawLine.trim();
 
     if (trimmed.startsWith('//')) {
+      // Skip @quiz / @answer marker lines — they belong to the quiz bank, not notes
+      if (/^\/\/\s*@(quiz|answer)\b/.test(trimmed)) {
+        if (currentGroup) { inlineGroups.push(currentGroup); currentGroup = null; }
+        return;
+      }
+
       // Standalone // comment line
       let text = trimmed.replace(/^\/\/\s*/, '').replace(/^\/\/\s*/, '').trim();
 
@@ -286,7 +313,7 @@ function parseJavaFile(filePath, rootDir) {
     headerComments.push({ type: 'generated', lines: generated });
   }
 
-  return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments, code: content };
+  return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments, customQuizzes, code: content };
 }
 
 // ==========================================================================
@@ -466,6 +493,20 @@ function buildStarterQuestions(chapterName, topics) {
         ...(quickRevision.gotchas.slice(0, 1))
       ],
       explanation: `Use the source comments and code structure to summarize the topic clearly.`
+    });
+
+    // ---- @quiz / @answer custom questions from Java source comments -----------
+    (topic.customQuizzes || []).forEach(q => {
+      questions.push({
+        type: 'interview',
+        difficulty: 'medium',
+        chapter: chapterName,
+        topic: topicLabel,
+        question: q.question,
+        modelAnswer: q.answers.join(' '),
+        keyPoints: q.answers,
+        explanation: `This question was authored directly in the source file using @quiz/@answer markers.`
+      });
     });
   });
 

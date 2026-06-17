@@ -11,6 +11,16 @@
 // Unicode in Strings: you can embed Unicode escape sequences in String literals.
 // Example: "\u00A9" = copyright symbol. Unicode lets Strings contain characters from any language.
 // Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.
+
+// @quiz What does it mean that Strings are immutable in Java?
+// @answer Once a String is created, its value cannot be changed. Any modification creates a new String object.
+// @answer The original String is discarded and becomes eligible for garbage collection.
+
+// @quiz What is the difference between a char and a String in Java?
+// @answer char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes ("Hello").
+
+// @quiz When should you use StringBuilder instead of String concatenation?
+// @answer When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.
 public class StringExample {
 
     public static void main(String[] args) {
