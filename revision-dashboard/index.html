@@ -339,6 +339,16 @@
             <h2 id="quiz-start-title">Chapter Revision Quiz</h2>
             <p id="quiz-start-desc" class="quiz-description">This quiz covers core concepts, operators, and control flows found in this chapter. It consists of multiple choice questions and code snippets.</p>
             
+            <div class="quiz-difficulty-filter" id="quiz-difficulty-filter">
+              <label class="filter-label">Difficulty:</label>
+              <div class="difficulty-pills">
+                <button class="diff-pill active" data-diff="all" onclick="setQuizDifficulty('all', this)">Mixed</button>
+                <button class="diff-pill" data-diff="easy" onclick="setQuizDifficulty('easy', this)">Easy</button>
+                <button class="diff-pill" data-diff="medium" onclick="setQuizDifficulty('medium', this)">Medium</button>
+                <button class="diff-pill" data-diff="hard" onclick="setQuizDifficulty('hard', this)">Hard</button>
+              </div>
+            </div>
+
             <div class="quiz-meta-info">
               <div class="meta-item">
                 <span class="meta-label">Questions:</span>

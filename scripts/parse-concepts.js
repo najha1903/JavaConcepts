@@ -377,6 +377,23 @@ function buildQuickRevisionEntry(chapterName, topics) {
 }
 
 // ==========================================================================
+// Helper: Stable question ID generator
+// ==========================================================================
+function makeQid(chapter, topic, type, index) {
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return `${slug(chapter)}_${slug(topic)}_${type}_${index}`;
+}
+
+function shuffleArr(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+// ==========================================================================
 // Auto-generate starter QUESTIONS_BANK entries from current chapter topics
 // ==========================================================================
 function buildStarterQuestions(chapterName, topics) {
@@ -385,10 +402,19 @@ function buildStarterQuestions(chapterName, topics) {
   const questions = [];
   const quickRevision = buildQuickRevisionEntry(chapterName, topics);
 
+  // Pre-collect all header comment lines per topic (index == topics array index)
+  const allTopicNoteLines = topics.map(t => t.headerComments.flatMap(b => b.lines));
+
+  const stopWords = new Set(['this', 'that', 'these', 'those', 'their', 'which', 'where', 'there', 'would', 'could', 'should', 'about', 'after', 'every', 'other', 'first', 'being', 'using']);
+  const gotchaKeywords = ['important', 'note', 'pitfall', 'warning', 'caution', 'remember', 'avoid', 'careful', 'never', 'always'];
+
   topics.forEach((topic, topicIndex) => {
     const topicLabel = topic.topicName || topic.fileName.replace('.java', '');
     const difficulty = topicIndex === 0 ? 'easy' : (topicIndex === topics.length - 1 ? 'hard' : 'medium');
     const lines = topic.code.split('\n');
+    const topicNotes = allTopicNoteLines[topicIndex] || [];
+
+    // ---- Existing 5 question types (qid added) ----------------------------------------
 
     let keywordLine = null;
     let keyword = null;
@@ -414,6 +440,7 @@ function buildStarterQuestions(chapterName, topics) {
 
     questions.push({
       type: 'scq',
+      qid: makeQid(chapterName, topicLabel, 'scq', 0),
       difficulty: 'easy',
       chapter: chapterName,
       topic: topicLabel,
@@ -432,6 +459,7 @@ function buildStarterQuestions(chapterName, topics) {
 
     questions.push({
       type: 'mcq',
+      qid: makeQid(chapterName, topicLabel, 'mcq', 1),
       difficulty: 'medium',
       chapter: chapterName,
       topic: topicLabel,
@@ -444,6 +472,7 @@ function buildStarterQuestions(chapterName, topics) {
     const codeFillAnswer = keyword || 'class';
     questions.push({
       type: 'codefill',
+      qid: makeQid(chapterName, topicLabel, 'codefill', 2),
       difficulty: difficulty,
       chapter: chapterName,
       topic: topicLabel,
@@ -469,6 +498,7 @@ function buildStarterQuestions(chapterName, topics) {
 
     questions.push({
       type: 'predict',
+      qid: makeQid(chapterName, topicLabel, 'predict', 3),
       difficulty: difficulty,
       chapter: chapterName,
       topic: topicLabel,
@@ -480,6 +510,7 @@ function buildStarterQuestions(chapterName, topics) {
 
     questions.push({
       type: 'interview',
+      qid: makeQid(chapterName, topicLabel, 'interview', 4),
       difficulty: 'hard',
       chapter: chapterName,
       topic: topicLabel,
@@ -508,6 +539,254 @@ function buildStarterQuestions(chapterName, topics) {
         explanation: `This question was authored directly in the source file using @quiz/@answer markers.`
       });
     });
+
+    // ---- New question types A–F ------------------------------------------------
+
+    // A. Concept SCQ from notes
+    const currentFirstBullet = topicNotes[0];
+    if (currentFirstBullet && currentFirstBullet.length > 10) {
+      const otherBullets = [];
+      for (let i = 0; i < topics.length; i++) {
+        if (i === topicIndex) continue;
+        const otLines = allTopicNoteLines[i] || [];
+        if (otLines.length > 0 && otLines[0] && otLines[0].length > 10 && otLines[0] !== currentFirstBullet) {
+          otherBullets.push(otLines[0]);
+        }
+        if (otherBullets.length >= 3) break;
+      }
+      const genericDistr = ['Object', 'null', 'void', 'int'];
+      let gdi = 0;
+      while (otherBullets.length < 3 && gdi < genericDistr.length) {
+        if (!otherBullets.includes(genericDistr[gdi])) otherBullets.push(genericDistr[gdi]);
+        gdi++;
+      }
+      const conceptOptions = shuffleArr([currentFirstBullet, ...otherBullets.slice(0, 3)]);
+      const conceptAnswer = conceptOptions.indexOf(currentFirstBullet);
+      if (conceptAnswer >= 0) {
+        questions.push({
+          type: 'scq',
+          qid: makeQid(chapterName, topicLabel, 'concept-scq', 5),
+          difficulty: 'easy',
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `Which statement best describes ${topicLabel}?`,
+          options: conceptOptions,
+          answer: conceptAnswer,
+          explanation: `This is drawn directly from the notes for ${topicLabel}.`
+        });
+      }
+    }
+
+    // B. Multi-select True/False MCQ
+    const trueOptions = topicNotes.slice(0, 3).filter(l => l && l.length > 10);
+    const falseOptions = [];
+    for (let i = 0; i < topics.length; i++) {
+      if (i === topicIndex) continue;
+      const otLines = allTopicNoteLines[i] || [];
+      if (otLines.length > 0 && otLines[0] && otLines[0].length > 10) {
+        falseOptions.push(otLines[0]);
+        if (falseOptions.length >= 2) break;
+      }
+    }
+    if (trueOptions.length >= 2 && falseOptions.length >= 1) {
+      const selectedTrue = trueOptions.slice(0, Math.min(3, trueOptions.length));
+      const selectedFalse = falseOptions.slice(0, Math.min(2, falseOptions.length));
+      const allOpts = [...selectedTrue, ...selectedFalse];
+      const shuffledOpts = shuffleArr(allOpts);
+      const correctIndices = shuffledOpts
+        .map((opt, idx) => selectedTrue.includes(opt) ? idx : -1)
+        .filter(idx => idx >= 0);
+      if (correctIndices.length > 0) {
+        questions.push({
+          type: 'mcq',
+          qid: makeQid(chapterName, topicLabel, 'true-false-mcq', 5),
+          difficulty: 'medium',
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `Which of the following are TRUE about ${topicLabel}? Select all that apply.`,
+          options: shuffledOpts,
+          answer: correctIndices,
+          explanation: `The true statements are taken directly from the notes for ${topicLabel}.`
+        });
+      }
+    }
+
+    // C. Note fill-blank SCQ
+    let fillBlankGenerated = false;
+    for (const noteLine of topicNotes) {
+      if (fillBlankGenerated) break;
+      if (!noteLine || noteLine.length < 15) continue;
+      const words = noteLine.split(/\s+/);
+      let fillWord = null;
+      for (const w of words) {
+        const clean = w.replace(/[^a-zA-Z]/g, '');
+        if (clean.length >= 5 && !stopWords.has(clean.toLowerCase())) {
+          fillWord = clean;
+          break;
+        }
+      }
+      if (!fillWord) continue;
+      const blanked = noteLine.replace(new RegExp(`\\b${fillWord}\\b`), '___');
+      if (blanked === noteLine) continue;
+
+      const fillDistractors = [];
+      outer: for (let i = 0; i < topics.length; i++) {
+        if (i === topicIndex) continue;
+        const otLines = allTopicNoteLines[i] || [];
+        for (const ol of otLines) {
+          if (!ol) continue;
+          const otWords = ol.split(/\s+/);
+          for (const ow of otWords) {
+            const cleanOw = ow.replace(/[^a-zA-Z]/g, '');
+            if (cleanOw.length >= 5 && !stopWords.has(cleanOw.toLowerCase()) && cleanOw !== fillWord && !fillDistractors.includes(cleanOw)) {
+              fillDistractors.push(cleanOw);
+              break;
+            }
+          }
+          if (fillDistractors.length >= 3) break outer;
+        }
+      }
+      const genFillDistr = ['Object', 'String', 'Integer', 'Array', 'Class', 'Method'];
+      let gfi = 0;
+      while (fillDistractors.length < 3 && gfi < genFillDistr.length) {
+        if (!fillDistractors.includes(genFillDistr[gfi]) && genFillDistr[gfi] !== fillWord) {
+          fillDistractors.push(genFillDistr[gfi]);
+        }
+        gfi++;
+      }
+      const fillOptions = shuffleArr([fillWord, ...fillDistractors.slice(0, 3)]);
+      const fillAnswer = fillOptions.indexOf(fillWord);
+      if (fillAnswer >= 0) {
+        questions.push({
+          type: 'scq',
+          qid: makeQid(chapterName, topicLabel, 'fill-blank', 5),
+          difficulty: 'medium',
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `Complete the blank: "${blanked}"`,
+          options: fillOptions,
+          answer: fillAnswer,
+          explanation: `The missing word is '${fillWord}', from the notes for ${topicLabel}.`
+        });
+        fillBlankGenerated = true;
+      }
+    }
+
+    // D. Gotcha SCQ
+    const gotchaLine = topicNotes.find(l => l && gotchaKeywords.some(kw => l.toLowerCase().includes(kw)));
+    if (gotchaLine) {
+      const gotchaDistractors = [];
+      for (let i = 0; i < topics.length; i++) {
+        if (i === topicIndex) continue;
+        const otLines = allTopicNoteLines[i] || [];
+        for (const ol of otLines) {
+          if (ol && ol !== gotchaLine && ol.length > 10 && !gotchaDistractors.includes(ol)) {
+            gotchaDistractors.push(ol);
+            break;
+          }
+        }
+        if (gotchaDistractors.length >= 3) break;
+      }
+      const fallbacks = ['Always initialize variables before use.', 'Be careful with null references.', 'Avoid using raw types in generics.'];
+      let fi = 0;
+      while (gotchaDistractors.length < 3 && fi < fallbacks.length) {
+        if (!gotchaDistractors.includes(fallbacks[fi])) gotchaDistractors.push(fallbacks[fi]);
+        fi++;
+      }
+      const gotchaOptions = shuffleArr([gotchaLine, ...gotchaDistractors.slice(0, 3)]);
+      const gotchaAnswer = gotchaOptions.indexOf(gotchaLine);
+      if (gotchaAnswer >= 0) {
+        questions.push({
+          type: 'scq',
+          qid: makeQid(chapterName, topicLabel, 'gotcha-scq', 5),
+          difficulty: 'hard',
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `What is an important consideration when working with ${topicLabel}?`,
+          options: gotchaOptions,
+          answer: gotchaAnswer,
+          explanation: `This is a key gotcha or note taken directly from the source for ${topicLabel}.`
+        });
+      }
+    }
+
+    // E. Method return type SCQ
+    const methodRegex = /\b(public|private|protected)\s+(?:static\s+)?([A-Za-z_][\w<>\[\]]*)\s+(\w+)\s*\([^)]*\)\s*(?:throws\s+[\w,\s]+)?\s*\{/g;
+    let methodMatch;
+    while ((methodMatch = methodRegex.exec(topic.code)) !== null) {
+      const returnType = methodMatch[2].trim();
+      const methodName = methodMatch[3];
+      if (returnType === 'void') continue;
+      if (['if', 'while', 'for', 'switch', 'catch', 'class'].includes(methodName)) continue;
+      // Skip constructors (name matches class file name)
+      if (methodName === topic.fileName.replace('.java', '')) continue;
+
+      const rtDistractors = ['void', 'int', 'String', 'boolean'].filter(d => d !== returnType).slice(0, 3);
+      const rtOptions = shuffleArr([returnType, ...rtDistractors]);
+      const rtAnswer = rtOptions.indexOf(returnType);
+      if (rtAnswer >= 0) {
+        questions.push({
+          type: 'scq',
+          qid: makeQid(chapterName, topicLabel, 'return-type', 5),
+          difficulty: 'medium',
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `In ${topic.fileName}, what does the method ${methodName}() return?`,
+          options: rtOptions,
+          answer: rtAnswer,
+          explanation: `The method ${methodName}() is declared with return type '${returnType}' in ${topic.fileName}.`
+        });
+      }
+      break; // one per topic
+    }
+
+    // F. Class relation SCQ
+    const extendsMatch = topic.code.match(/\bclass\s+(\w+)\s+extends\s+(\w+)/);
+    const implementsMatch = !extendsMatch && topic.code.match(/\bclass\s+(\w+)\s+implements\s+(\w+)/);
+
+    if (extendsMatch) {
+      const className = extendsMatch[1];
+      const parentName = extendsMatch[2];
+      const crBase = [parentName, 'Object', 'Comparable', 'Runnable'].filter((v, i, a) => a.indexOf(v) === i);
+      const crPadded = crBase.length >= 4 ? crBase.slice(0, 4)
+        : [...crBase, ...['Serializable', 'Cloneable'].filter(d => !crBase.includes(d))].slice(0, 4);
+      const crOptions = shuffleArr(crPadded);
+      const crAnswer = crOptions.indexOf(parentName);
+      if (crAnswer >= 0) {
+        questions.push({
+          type: 'scq',
+          qid: makeQid(chapterName, topicLabel, 'class-relation', 5),
+          difficulty: 'hard',
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `What does class ${className} extend?`,
+          options: crOptions,
+          answer: crAnswer,
+          explanation: `${className} extends ${parentName} as declared in ${topic.fileName}.`
+        });
+      }
+    } else if (implementsMatch) {
+      const className = implementsMatch[1];
+      const interfaceName = implementsMatch[2].trim();
+      const crBase = [interfaceName, 'Object', 'Comparable', 'Runnable'].filter((v, i, a) => a.indexOf(v) === i);
+      const crPadded = crBase.length >= 4 ? crBase.slice(0, 4)
+        : [...crBase, ...['Serializable', 'Cloneable'].filter(d => !crBase.includes(d))].slice(0, 4);
+      const crOptions = shuffleArr(crPadded);
+      const crAnswer = crOptions.indexOf(interfaceName);
+      if (crAnswer >= 0) {
+        questions.push({
+          type: 'scq',
+          qid: makeQid(chapterName, topicLabel, 'class-relation', 5),
+          difficulty: 'hard',
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `What interface does class ${className} implement?`,
+          options: crOptions,
+          answer: crAnswer,
+          explanation: `${className} implements ${interfaceName} as declared in ${topic.fileName}.`
+        });
+      }
+    }
   });
 
   return questions;

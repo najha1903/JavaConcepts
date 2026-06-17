@@ -20,6 +20,7 @@ let currentChallengeIndex = 0; // currently selected practice challenge
 let currentNotesTopicPath = null;
 let currentPracticeScope = { chapterName: null, subChapterName: null };
 let currentQuizScope = { chapterName: null, subChapterName: null };
+let currentDifficultyFilter = 'all'; // 'all', 'easy', 'medium', 'hard'
 
 
 // LocalStorage helpers
@@ -27,6 +28,7 @@ const STORAGE_REVISED_KEY = 'javarev_revised_topics';
 const STORAGE_QUIZ_KEY = 'javarev_quiz_history';
 const STORAGE_PRACTICE_KEY = 'javarev_practice_status';
 const STORAGE_NOTES_KEY = 'javarev_notes';
+const STORAGE_QHISTORY_KEY = 'javarev_question_history';
 
 function getRevisedTopics() {
   const data = localStorage.getItem(STORAGE_REVISED_KEY);
@@ -76,6 +78,31 @@ function getNotesState() {
 
 function saveNotesState(notes) {
   localStorage.setItem(STORAGE_NOTES_KEY, JSON.stringify(notes));
+}
+
+function getQuestionHistory() {
+  const data = localStorage.getItem(STORAGE_QHISTORY_KEY);
+  return data ? JSON.parse(data) : {};
+}
+
+function recordQuestionResult(qid, isCorrect) {
+  if (!qid) return;
+  const hist = getQuestionHistory();
+  if (!hist[qid]) hist[qid] = { seen: 0, correct: 0, wrong: 0, lastSeenMs: 0 };
+  hist[qid].seen++;
+  hist[qid].lastSeenMs = Date.now();
+  if (isCorrect) hist[qid].correct++; else hist[qid].wrong++;
+  localStorage.setItem(STORAGE_QHISTORY_KEY, JSON.stringify(hist));
+}
+
+function getQuestionWeight(qid, history) {
+  if (!qid || !history[qid]) return 10; // never seen — highest priority
+  const h = history[qid];
+  const daysSince = (Date.now() - h.lastSeenMs) / (1000 * 60 * 60 * 24);
+  if (h.wrong > h.correct && daysSince < 7) return 8;  // recently wrong
+  if (h.wrong > h.correct) return 5;                    // wrong (older)
+  if (daysSince > 14) return 3;                          // not seen in 2 weeks
+  return 1;                                              // recently correct
 }
 
 function getProjectNotes() {
@@ -251,6 +278,52 @@ function pickRandomQuestions(pool, count) {
     return shuffled;
   }
   return shuffled.slice(0, count);
+}
+
+function pickSmartQuestions(pool, count, difficultyFilter) {
+  const history = getQuestionHistory();
+  let filtered = [...pool];
+
+  if (difficultyFilter && difficultyFilter !== 'all') {
+    const filtered2 = filtered.filter(q => (q.difficulty || 'easy') === difficultyFilter);
+    if (filtered2.length >= Math.min(count, 5)) filtered = filtered2;
+  }
+
+  const weighted = filtered.map(q => ({ q, w: getQuestionWeight(q.qid, history) }));
+
+  const selected = [];
+  const usedIndices = new Set();
+
+  for (let pick = 0; pick < count && usedIndices.size < weighted.length; pick++) {
+    const available = weighted.filter((_, i) => !usedIndices.has(i));
+    if (available.length === 0) break;
+
+    const totalWeight = available.reduce((s, item) => s + item.w, 0);
+    let rand = Math.random() * totalWeight;
+    let chosenIdx = -1;
+    for (let i = 0; i < available.length; i++) {
+      rand -= available[i].w;
+      if (rand <= 0) { chosenIdx = i; break; }
+    }
+    if (chosenIdx === -1) chosenIdx = available.length - 1;
+
+    selected.push(available[chosenIdx].q);
+    let count2 = 0;
+    for (let i = 0; i < weighted.length; i++) {
+      if (!usedIndices.has(i)) {
+        if (count2 === chosenIdx) { usedIndices.add(i); break; }
+        count2++;
+      }
+    }
+  }
+
+  return selected;
+}
+
+function setQuizDifficulty(level, btn) {
+  currentDifficultyFilter = level;
+  document.querySelectorAll('.diff-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
 }
 
 function getQuestionsForScope(chapterName, subChapterName) {
@@ -1277,7 +1350,7 @@ function startChapterQuiz(chapterName, subChapterName) {
     });
     
     // Shuffle from the full pool every time; no answered-question filtering.
-    questions = pickRandomQuestions(allQuestions, 40);
+    questions = pickSmartQuestions(allQuestions, 40, currentDifficultyFilter);
     
     // Generate 6 random dynamic questions across chapters to keep it fresh
     const allChapters = Object.keys(QUESTIONS_BANK);
@@ -1298,7 +1371,7 @@ function startChapterQuiz(chapterName, subChapterName) {
     const chapterLabel = subChapterName ? `${chapterName} > ${subChapterName}` : chapterName;
     
     // Shuffle from the full scoped pool every time; no tracking of previously answered items.
-    questions = pickRandomQuestions([...staticQs, ...dynamicQs], 20);
+    questions = pickSmartQuestions([...staticQs, ...dynamicQs], 20, currentDifficultyFilter);
     
     document.getElementById('quiz-start-title').innerText = `${chapterLabel} Revision Quiz`;
     document.getElementById('quiz-start-desc').innerText = `Review the core concepts in ${chapterLabel} through dynamic logic tracking, multiple-choice questions, and conceptual mock interviews.`;
@@ -1539,6 +1612,7 @@ function submitQuizAnswer() {
         isCorrect,
         scope: revisitScope
       });
+      recordQuestionResult(question.qid, isCorrect);
       
       if (isCorrect) {
         feedback.innerText = `✓ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
@@ -1582,6 +1656,7 @@ function submitQuizAnswer() {
         isCorrect,
         scope: revisitScope
       });
+      recordQuestionResult(question.qid, isCorrect);
     } else if (question.type === 'mcq') {
       const sortedCorrect = question.answer.slice().sort();
       const sortedUser = selectedOptionIndices.slice().sort();
@@ -1606,6 +1681,7 @@ function submitQuizAnswer() {
         isCorrect,
         scope: revisitScope
       });
+      recordQuestionResult(question.qid, isCorrect);
     } else if (question.type === 'predict' || question.type === 'codefill') {
       const predictInput = document.getElementById('quiz-predict-input');
       predictInput.disabled = true;
@@ -1625,6 +1701,7 @@ function submitQuizAnswer() {
         isCorrect,
         scope: revisitScope
       });
+      recordQuestionResult(question.qid, isCorrect);
     }
     
     if (isCorrect) {
