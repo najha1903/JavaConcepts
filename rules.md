@@ -239,10 +239,72 @@ Format that channels these books:
    - OCJP-style tricky questions (for matching chapter types)
    - Your custom `@quiz` questions
    - Inline concept review when you get answers wrong
+   - Practice Lab entry (if filename has "Challenge")
 
 ---
 
-## Folder naming convention
+## Adding a custom deep coding challenge with @challenge
+
+For large programming problems (OOP design, algorithm challenges, multi-class systems):
+
+```java
+// @challenge Implement a Stack using an Array
+// @desc Create a generic stack with: push(int value), pop() → int, peek() → int, isEmpty() → boolean
+// @desc Stack should throw RuntimeException("Stack is empty") on pop/peek when empty
+// @hint Use an int[] array and an int top pointer (index of last pushed element, starts at -1)
+// @hint push: increment top, then assign. pop: return array[top], then decrement top
+// @testcase push(5), push(3), peek() → 3 (stack unchanged)
+// @testcase push(5), push(3), pop() → 3, then pop() → 5
+// @testcase pop() on empty stack → RuntimeException
+
+public class StackImplementation {
+    ...
+}
+```
+
+**Rules:**
+- `// @challenge <title>` — one line, names the challenge
+- `// @desc <line>` — one or more description lines (problem statement)
+- `// @hint <line>` — optional implementation hints
+- `// @testcase <input> → <expected>` — test cases shown in the Deep Problems panel
+- All `@challenge` lines are excluded from Notes — only appear in the Deep Problems tab
+- Deep challenges appear under the 🏆 Deep Problems tab in the Practice Lab
+
+---
+
+## Tag/Label system (quiz filters)
+
+Every quiz question is automatically tagged. Use the filter pills in the quiz start screen:
+
+| Tag | What it contains |
+|---|---|
+| 🎓 **OCJP** | 31+ OCJP exam-style questions — click to drill only these |
+| 💼 **Interview** | 200+ open-ended technical questions |
+| ⚡ **Tricky** | Gotcha/pitfall questions — edge cases that trip people up |
+| 📚 **Concept** | Pure concept understanding (fill-blank, true/false) |
+| 🔮 **Predict** | Predict the output questions |
+
+**Combine with difficulty:** `OCJP` + `Hard` = only hard OCJP questions.
+
+Each question also shows its tags as colour-coded badges during the quiz.
+
+---
+
+## Practice Lab overview
+
+The Practice Lab has two tabs:
+
+### ⌨ Coding Challenges
+- 6 handcrafted challenges + 40 auto-generated from `*Challenge.java` files = 46 total
+- Auto-verify: test cases run automatically in the browser (boolean/numeric return types)
+- Self-check: void methods → you run in your IDE, then click "Mark as Completed"
+- **Grows automatically**: every new `*Challenge.java` file → new coding challenge
+
+### 🏆 Deep Problems
+- 16 auto-generated large programming problems per chapter type
+- Topics: BankAccount OOP, Shape Polymorphism, Custom Exceptions, Loop Algorithms, String Mastery, etc.
+- Always self-check: implement in your IDE, verify test cases, mark done
+- **Grows with `@challenge` annotations**: write a `// @challenge` in any Java file → appears here
 
 ```
 src/
