@@ -393,6 +393,202 @@ function shuffleArr(arr) {
   return a;
 }
 
+// Helper: create a simple slug for qid
+function slugify(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
+// ==========================================================================
+// OCJP-style tricky questions per chapter type
+// ==========================================================================
+function buildOCJPQuestions(chapterName, topics) {
+  const label = chapterName.toLowerCase();
+  const questions = [];
+
+  // ── String / Primitives ──────────────────────────────────────────────────
+  if (label.includes('primitive') || label.includes('string')) {
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-string-pool-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output of this code? (OCJP)',
+      code: 'String a = "hello";\nString b = "hello";\nSystem.out.println(a == b);',
+      answer: ['true'],
+      explanation: 'String literals are stored in the String Pool. "hello" is the same pooled reference, so == returns true. This is a classic OCJP trap — always use .equals() for value comparison.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-string-pool-2`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output of this code? (OCJP)',
+      code: 'String a = new String("hello");\nString b = new String("hello");\nSystem.out.println(a == b);',
+      answer: ['false'],
+      explanation: 'new String() always creates a new heap object. a and b point to different objects, so == compares references and returns false. Always use .equals() to compare String values.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-string-concat-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'String s = "Java";\ns.concat(" is fun");\nSystem.out.println(s);',
+      answer: ['Java'],
+      explanation: 'Strings are immutable. concat() returns a NEW String but does not modify s. Since the return value is ignored, s still holds "Java". This is a top OCJP gotcha.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-int-cast-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'int x = 5;\ndouble y = x / 2;\nSystem.out.println(y);',
+      answer: ['2.0'],
+      explanation: 'x and 2 are both int — integer division gives 2 (truncated). Then 2 is widened to 2.0 when assigned to double. To get 2.5, you need (double)x / 2.'
+    });
+  }
+
+  // ── Operators ───────────────────────────────────────────────────────────
+  if (label.includes('operator')) {
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-prefix-postfix-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'int a = 5;\nint b = a++ + ++a;\nSystem.out.println(b);',
+      answer: ['12'],
+      explanation: 'a++ uses a (5) then increments to 6. ++a increments a to 7 then uses 7. So b = 5 + 7 = 12. Post-increment vs pre-increment is a classic OCJP trap.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-short-circuit-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'int x = 0;\nboolean r = (x != 0) && (10/x > 1);\nSystem.out.println(r);',
+      answer: ['false'],
+      explanation: 'Short-circuit evaluation: since (x != 0) is false, the right side (10/x) is never evaluated — no ArithmeticException. The result is false. This is a key OCJP concept.'
+    });
+  }
+
+  // ── OOP / Inheritance ───────────────────────────────────────────────────
+  if (label.includes('oop') || label.includes('inherit') || label.includes('class')) {
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-polymorphism-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'class Animal {\n  String type = "Animal";\n  void speak() { System.out.println("Animal"); }\n}\nclass Dog extends Animal {\n  String type = "Dog";\n  void speak() { System.out.println("Dog"); }\n}\nAnimal a = new Dog();\nSystem.out.println(a.type + " " );\na.speak();',
+      answer: ['Animal \nDog'],
+      explanation: 'Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal\'s type. This is a critical OCJP polymorphism trap.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-constructor-chain-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'class A {\n  A() { System.out.println("A"); }\n}\nclass B extends A {\n  B() { System.out.println("B"); }\n}\nclass C extends B {\n  C() { System.out.println("C"); }\n}\nnew C();',
+      answer: ['A\nB\nC'],
+      explanation: 'Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-override-overload-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'Which is true about method overriding in Java? (OCJP)',
+      options: [
+        'Overriding is resolved at compile time based on the reference type',
+        'Overriding is resolved at runtime based on the actual object type (dynamic dispatch)',
+        'A private method can be overridden in a subclass',
+        'A static method can be overridden to behave polymorphically'
+      ],
+      answer: 1,
+      explanation: 'Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-final-keyword-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What does marking a method as final mean in Java? (OCJP)',
+      options: [
+        'The method cannot be called more than once',
+        'The method cannot be overridden by any subclass',
+        'The method must return a non-null value',
+        'The method is automatically made static'
+      ],
+      answer: 1,
+      explanation: 'final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once.'
+    });
+  }
+
+  // ── Exception Handling ──────────────────────────────────────────────────
+  if (label.includes('exception')) {
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-finally-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'try {\n  System.out.println("try");\n  return;\n} finally {\n  System.out.println("finally");\n}',
+      answer: ['try\nfinally'],
+      explanation: 'finally ALWAYS executes — even after a return statement. The method only actually returns after finally completes. This is a top OCJP gotcha.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-checked-unchecked-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'Which of these is an UNCHECKED exception in Java? (OCJP)',
+      options: [
+        'IOException',
+        'SQLException',
+        'NullPointerException',
+        'FileNotFoundException'
+      ],
+      answer: 2,
+      explanation: 'NullPointerException extends RuntimeException → unchecked (compiler does not force you to handle it). IOException, SQLException, FileNotFoundException extend Exception directly → checked (must be caught or declared).'
+    });
+  }
+
+  // ── Switch / Control Flow ───────────────────────────────────────────────
+  if (label.includes('switch') || label.includes('statement') || label.includes('if')) {
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-switch-fallthrough-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'int x = 2;\nswitch(x) {\n  case 1: System.out.println("one");\n  case 2: System.out.println("two");\n  case 3: System.out.println("three");\n  default: System.out.println("default");\n}',
+      answer: ['two\nthree\ndefault'],
+      explanation: 'Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional.'
+    });
+  }
+
+  // ── Loops ────────────────────────────────────────────────────────────────
+  if (label.includes('loop') || label.includes('while') || label.includes('for')) {
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-for-scope-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'Which statement about for-loop variable scope is correct? (OCJP)',
+      options: [
+        'The loop variable (int i) is accessible after the loop ends',
+        'The loop variable (int i) declared in for() is scoped only to the loop block',
+        'You can reuse the same variable name in two nested for-loops',
+        'The loop variable persists between method calls'
+      ],
+      answer: 1,
+      explanation: 'A variable declared in the for-loop initializer (for(int i=0;...)) is scoped to that loop only. It cannot be accessed after the loop. You CANNOT reuse the same name in an inner nested loop — that would shadow it and cause a compile error.'
+    });
+  }
+
+  // ── Methods ──────────────────────────────────────────────────────────────
+  if (label.includes('method')) {
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-pass-by-value-1`,
+      type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What is the output? (OCJP)',
+      code: 'static void change(int x) { x = 99; }\nint a = 5;\nchange(a);\nSystem.out.println(a);',
+      answer: ['5'],
+      explanation: 'Java is ALWAYS pass-by-value. The method gets a copy of a. Changing x inside the method has no effect on a. This is one of the most common OCJP traps.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-overload-resolution-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'When does method overloading resolution happen in Java? (OCJP)',
+      options: [
+        'At runtime, based on the actual argument type',
+        'At compile time, based on the declared (reference) type of arguments',
+        'At runtime, based on the method name only',
+        'At compile time, based on return type'
+      ],
+      answer: 1,
+      explanation: 'Overloading is resolved at COMPILE time based on the reference type of arguments (not actual type). Overriding is resolved at RUNTIME. This distinction is essential for OCJP.'
+    });
+  }
+
+  return questions;
+}
+
 // ==========================================================================
 // Auto-generate starter QUESTIONS_BANK entries from current chapter topics
 // ==========================================================================
@@ -844,8 +1040,10 @@ function main() {
   chaptersList.forEach(chapter => {
     const chName = chapter.name;
     sortedQRBank[chName] = buildQuickRevisionEntry(chName, chapter.topics);
-    sortedQBank[chName] = buildStarterQuestions(chName, chapter.topics);
-    console.log(`  🃏 Regenerated Quick Revision and question sets for: ${chName}`);
+    const starterQs = buildStarterQuestions(chName, chapter.topics);
+    const ocjpQs = buildOCJPQuestions(chName, chapter.topics);
+    sortedQBank[chName] = [...starterQs, ...ocjpQs];
+    console.log(`  🃏 Regenerated Quick Revision and question sets for: ${chName} (${sortedQBank[chName].length} questions, ${ocjpQs.length} OCJP)`);
   });
 
   console.log(`\n📝 Summary: ${chaptersList.length} regenerated chapter question set(s), ${chaptersList.length} regenerated quick revision entry/entries.`);

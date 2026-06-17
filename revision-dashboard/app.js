@@ -1410,6 +1410,7 @@ function renderQuizQuestion() {
   const question = activeQuizQuestions[currentQuizQuestionIndex];
   
   // Progress Header
+  hideConceptReview();
   const total = activeQuizQuestions.length;
   const currentIdx = currentQuizQuestionIndex + 1;
   document.getElementById('current-q-index').innerText = currentIdx;
@@ -1545,6 +1546,48 @@ function renderQuizQuestion() {
   }
 }
 
+function getNotesForQuestion(question) {
+  if (!question || !question.chapter || !question.topic) return null;
+  const chapter = CONCEPTS_DATA.find(c => c.name === question.chapter);
+  if (!chapter) return null;
+  let topic = chapter.topics.find(t => t.topicName === question.topic);
+  if (!topic) topic = chapter.topics.find(t => t.topicName && t.topicName.toLowerCase().includes(question.topic.toLowerCase().substring(0, 10)));
+  if (!topic) return null;
+  const overviewLines = (topic.headerComments || []).flatMap(b => b.lines || []);
+  const inlineLines = (topic.inlineComments || []).slice(0, 5);
+  return { topicName: topic.topicName, overview: overviewLines, inline: inlineLines };
+}
+
+function showConceptReview(question) {
+  const panel = document.getElementById('quiz-concept-review');
+  const topicNameEl = document.getElementById('review-topic-name');
+  const bulletsEl = document.getElementById('review-bullets');
+  if (!panel || !bulletsEl) return;
+
+  const notes = getNotesForQuestion(question);
+  if (!notes || (notes.overview.length === 0 && notes.inline.length === 0)) {
+    panel.style.display = 'none';
+    return;
+  }
+
+  topicNameEl.textContent = notes.topicName || question.topic;
+  bulletsEl.innerHTML = '';
+
+  const lines = notes.overview.length > 0 ? notes.overview.slice(0, 5) : notes.inline.slice(0, 5);
+  lines.forEach(line => {
+    const li = document.createElement('li');
+    li.textContent = line;
+    bulletsEl.appendChild(li);
+  });
+
+  panel.style.display = 'block';
+}
+
+function hideConceptReview() {
+  const panel = document.getElementById('quiz-concept-review');
+  if (panel) panel.style.display = 'none';
+}
+
 function submitQuizAnswer() {
   const question = activeQuizQuestions[currentQuizQuestionIndex];
   const submitBtn = document.getElementById('btn-submit-answer');
@@ -1624,6 +1667,7 @@ function submitQuizAnswer() {
         if (revisitBtn && revisitScope.chapterName) {
           revisitBtn.addEventListener('click', () => openQuizRevisit(revisitScope));
         }
+        showConceptReview(question);
       }
       
       // Toggle buttons
@@ -1719,6 +1763,7 @@ function submitQuizAnswer() {
       if (revisitBtn && revisitScope.chapterName) {
         revisitBtn.addEventListener('click', () => openQuizRevisit(revisitScope));
       }
+      showConceptReview(question);
     }
     
     // Toggle buttons
