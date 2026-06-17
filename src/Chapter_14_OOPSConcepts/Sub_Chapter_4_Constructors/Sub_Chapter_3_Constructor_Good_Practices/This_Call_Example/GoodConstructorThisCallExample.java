@@ -1,5 +1,9 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_3_Constructor_Good_Practices.This_Call_Example;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_3_Constructor_Good_Practices.This_Call_Example;
+// GOOD PRACTICE — Constructor chaining with this():
+// The no-arg constructor calls the 2-arg constructor. The 2-arg constructor calls the 4-arg constructor.
+// The "master" constructor (4-arg) does all the actual field assignment.
+// Only ONE place in the code initialises the fields — changes are made once, not everywhere.
+// This is the "constructor chain" pattern — a clean, DRY (Don't Repeat Yourself) approach to constructors.
 /*
 * Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor,
 * and then the 3rd constructor actually initializes the instance variables.

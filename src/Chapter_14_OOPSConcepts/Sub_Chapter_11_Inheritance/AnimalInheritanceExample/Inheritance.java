@@ -1,5 +1,17 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
+// Inheritance is a mechanism for code reuse — a child class inherits all accessible fields and methods from its parent.
+// In Java, a class can only extend ONE direct parent (single inheritance), but inherits all the way up the hierarchy.
+// The 'extends' keyword establishes the parent-child relationship: class Dog extends Animal
+// "IS-A" relationship: Dog IS-A Animal. This means a Dog object can be used ANYWHERE an Animal is expected.
+// When a Dog object is passed to a method expecting an Animal, Java accepts it — because Dog is a type of Animal.
+// Java uses DYNAMIC DISPATCH (polymorphism at runtime) to call the correct overridden method.
+//   Example: doAnimalStuff(dog, "fast") — even though the parameter type is Animal, Java calls Dog's makeNoise() and move() methods.
+// Every class in Java implicitly extends Object if no other class is specified. Object is the root of the class hierarchy.
+// Inheritance hierarchy example:
+//   Object (root of all classes)
+//     +-- Animal
+//           +-- Dog
+//           +-- Fish
 /*
   Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child
   hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.

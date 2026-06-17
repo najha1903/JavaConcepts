@@ -134,8 +134,6 @@ function highlightJava(code) {
     return id;
   });
   
-  html = html.replace(/@\w+/g, '<span class="code-annotation">$&</span>');
-  
   const keywords = /\b(public|protected|private|static|final|class|interface|record|enum|extends|implements|package|import|new|return|if|else|for|while|do|switch|case|default|break|continue|try|catch|throw|throws|finally|this|super|instanceof)\b/g;
   html = html.replace(keywords, '<span class="code-keyword">$1</span>');
   
@@ -143,6 +141,9 @@ function highlightJava(code) {
   html = html.replace(types, '<span class="code-type">$1</span>');
   
   html = html.replace(/\b(\d+(\.\d+)?[dfL]?)\b/g, '<span class="code-number">$1</span>');
+  
+  // Annotations MUST come after keywords/types so 'class' inside generated span attributes is not re-processed
+  html = html.replace(/@\w+/g, '<span class="code-annotation">$&</span>');
   
   strings.forEach(item => {
     html = html.replace(item.id, item.text);
@@ -769,8 +770,14 @@ function selectTopic(chIdx, tpIdx) {
       commentBlock.lines.forEach(line => {
         const li = document.createElement('li');
         
-        // Simple formatting helper to highlight inline code blocks
-        let formattedLine = line.replace(/`([^`]+)`/g, '<code>$1</code>');
+        // Escape HTML entities first, then apply safe markup
+        const escaped = line
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        
+        // Apply backtick → <code> and bold label formatting
+        let formattedLine = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
         if (formattedLine.endsWith(':-') || formattedLine.endsWith(':')) {
           formattedLine = `<strong>${formattedLine}</strong>`;
         }
@@ -941,7 +948,8 @@ function renderQuickRevision(topic) {
           const lowerLine = line.toLowerCase();
           const isGotcha = gotchasKeywords.some(keyword => lowerLine.includes(keyword));
           
-          let formatted = line.replace(/`([^`]+)`/g, '<code>$1</code>');
+          const escapedLine = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          let formatted = escapedLine.replace(/`([^`]+)`/g, '<code>$1</code>');
           if (isGotcha) {
             gotchas.push(formatted);
           } else {

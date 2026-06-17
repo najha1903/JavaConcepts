@@ -1,22 +1,33 @@
-package Chapter_13_Exception_Handling;
-
+﻿package Chapter_13_Exception_Handling;
+// An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution.
+// Common causes: null references (NullPointerException), dividing by zero (ArithmeticException), invalid array index (ArrayIndexOutOfBoundsException), invalid string-to-number parsing (NumberFormatException).
+// Without exception handling, an unhandled exception crashes your program and prints a stack trace.
+// Java uses try-catch blocks to handle exceptions gracefully, keeping the program running even when errors occur.
+// The try block contains the "risky" code — code that might throw an exception.
+// The catch block catches the exception and lets you handle it (log it, show a user-friendly message, recover, etc.).
+// Keep try blocks small — only put the specific risky statements inside try, not your entire method.
+// The catch parameter specifies WHICH type of exception to catch. 'Exception' is the most general (catches anything).
+// Useful methods on the exception object: e.getMessage() -> the error message, e.printStackTrace() -> full call stack.
+// You can have multiple catch blocks for different exception types, ordered from most specific to most general.
+// The NullPointerException (NPE) occurs when you try to call a method or access a field on a variable that is null (has no object).
 /*
    Exception
 
 *  An exception is an abnormal condition that disrupts the normal flow of the program.
+*  Exceptions can occur due to invalid input, null references, division by zero, file not found, etc.
 *
    Catching an exception
 
-   An exception is caught first by creating a code block around the code that gets the error.
-   This is done with the try statement code block
-
-   // The try statement
+   An exception is caught by wrapping the risky code inside a try-catch block.
+   The code that might throw an exception goes inside the 'try' block.
 
    The try statement has 2 code blocks.
 
-   The first is declared directly after the try keyword, and this code block end, and is followed by declaration of the catch keyword
+   The first block is declared directly after the try keyword and contains the risky code.
+   The catch keyword follows the try block and includes a parameter that specifies the type of exception to catch.
 
-    The catch keyword includes the declaration of variables, in parentheses, and then has its own code block.
+   The catch block contains the code that runs when an exception of the specified type is thrown.
+   You can access the exception message with e.getMessage() or print the full trace with e.printStackTrace().
 *
 *
 * */
@@ -25,15 +36,15 @@ package Chapter_13_Exception_Handling;
 public class ExceptionHandlingInJava {
     public static void main(String[] args) {
 
-        try{ // After try keyword, the code block starts
-            // statements that might give errors
-        } // The code block end here
-        catch (Exception e){  // After the end of first code block, it is followed by keyword "catch" and parentheses, where a declaration is required.
-                              // The declaration includes the type of the exception and a variable name.
-                              // The second code block inside catch contains code to handle the exception
+        try{ // The try block wraps any code that might throw an exception at runtime.
+            // Place only the risky code here — keep try blocks as small as possible.
+        } // The try block ends here; the catch block immediately follows.
+        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.
+                              // The variable 'e' holds information about the exception, including its message and stack trace.
+                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.
         }
 
-       // String value = null; -- removed (see working example below)
+       // The String 'value' is intentionally set to null below to demonstrate a NullPointerException being caught.
 
     /*    try {
             if (value != null) {

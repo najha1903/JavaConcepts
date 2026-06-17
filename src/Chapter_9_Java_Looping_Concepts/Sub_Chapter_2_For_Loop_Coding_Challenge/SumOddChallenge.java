@@ -1,5 +1,8 @@
-package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
-
+﻿package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
+// CODING CHALLENGE — For Loop with Method Decomposition
+// This challenge decomposes the problem into two methods: isOdd() checks a single number, sumOdd() uses a for loop to accumulate the sum.
+// Method decomposition: breaking a complex problem into smaller, single-purpose methods is a fundamental good programming practice.
+// Guard clauses: checking invalid input at the start of a method and returning early (-1) to signal invalid input.
 /*
 
 Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.

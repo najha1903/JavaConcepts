@@ -1,8 +1,15 @@
-package Chapter_7_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
-
-// To avoid duplication of code, and reduce efforts, it is advisable to create method.
-// We can create method once, and use the code time and time again.
-
+﻿package Chapter_7_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
+// A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.
+// Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.
+// Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }
+// The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.
+// If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.
+// Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.
+// You can call a method with literal values: calculateScore(true, 800, 5, 100)
+// Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.
+// Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.
+// A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.
+// This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method.
 public class MethodsInJava {
 
     public static void main(String[] args) {

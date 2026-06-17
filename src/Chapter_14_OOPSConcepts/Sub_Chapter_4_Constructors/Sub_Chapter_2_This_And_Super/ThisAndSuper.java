@@ -1,5 +1,13 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_And_Super;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_And_Super;
+// 'this' and 'super' are two special Java keywords that refer to objects in the class hierarchy.
+// 'this' refers to the CURRENT object — the instance the method/constructor is currently executing in.
+// 'super' refers to the PARENT class (superclass) of the current class.
+// 'this.fieldName' — accesses an instance field on the current object. Needed when a parameter shadows a field (same name).
+// 'super.methodName()' — calls the parent class's version of a method (used in method overriding).
+// 'this()' — calls another constructor in the SAME class. Must be the FIRST statement in the constructor. Used for constructor chaining.
+// 'super()' — calls the parent class constructor. Must be the FIRST statement in the constructor. Java inserts a no-arg super() call automatically if you don't write one.
+// You can use EITHER this() OR super() in a constructor, but NEVER BOTH — each must be the first statement, and there can only be one first statement.
+// Neither this() nor super() can be used inside static methods — they require an object instance.
 /*
 * super keyword :-
 *

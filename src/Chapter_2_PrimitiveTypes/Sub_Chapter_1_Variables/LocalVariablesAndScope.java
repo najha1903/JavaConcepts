@@ -1,88 +1,66 @@
 ﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
+// A local variable is one declared inside a method, constructor, or block. It only exists (is "in scope") within that block.
+// Scope describes the region of code where a variable is accessible. 'In scope' = accessible. 'Out of scope' = the variable no longer exists and cannot be used.
+// Best practice: Declare and initialise a variable in the same place if possible. Declare variables in the narrowest scope possible.
+// Rule: Inner (nested) blocks CAN access variables from their outer block. But outer blocks CANNOT access variables declared inside an inner block.
+// For loop scope: the counter variable declared in 'for(int i = ...)' is LOCAL to the loop — it does not exist outside the loop.
+// If statement scope: a variable declared inside an if block is NOT accessible in the else block or outside the if structure.
+// Switch scope is different: a variable declared in one case IS accessible in later cases (cases further down), but NOT in cases that come before it, and NOT outside the switch.
 
 /*
+  LOCAL VARIABLE SCOPE EXAMPLES
 
-  A local variable is called local because it is available for use by the code block in which it was declared.
-  It is also available to code blocks that are contained by a declaring block.
+  --- FOR LOOP SCOPE ---
+  Variables declared inside the for loop init section are local to the loop only.
 
-  Local Variables are a way to store and manipulate temporary data
-
-  Scope - 1) Scope describes the accessibility of a variable.
-          2) "In scope" means the variable can be used by an executing block or any nested blocks.
-          3) "Out of scope" means the variable is no longer available and cannot be used
-
-   Scope best practice
-
-   1) It is considered best practice to declare and initialise variable in the same place, if possible.
-   2) It is also advised to declare variables in the narrowest scope possible.
-
-Local variables and for statement:
-
-The variable i that is declared, isn't accessible outside the loop.
-This is because any variables declared in the init section are local to the loop, meaning, they exist
-and are accessible in memory only while the loop is executing, and only to the loop code block.
-
-   {  // Starts on outer block = for example a method block
-
-    for (int i = 1; i <=5 ; i++){   // declaration and initialisation of the i variable in for loop declaration
-      The variable i is accessible inside the for loop scope (e.g. System.out.println(i) works here)
+  {  // outer block (e.g., a method)
+    for (int i = 1; i <= 5; i++) {
+      System.out.println(i);   // OK: i is accessible inside the loop
     }
-    System.out.println(i);    // ERROR|! is is out of the scope
-   }
+    System.out.println(i);     // ERROR: i is out of scope here — it only existed during the loop
+  }
 
-Local variables and if statement:
+  --- IF STATEMENT SCOPE ---
+  Variables declared inside an if block are NOT accessible in else or outside the if.
 
-Local variables declared in an if statement block are not accessible outside of that block.
-This also includes other parts of the if statement, like the else if block or the else block.
+  public static void aMethod(int counter) {
+    if (counter > 0) {
+      int i = 10;                 // i is in scope only inside this if block
+    } else {
+      System.out.println(i);     // ERROR: i is out of scope here
+    }
+    System.out.println(i);       // ERROR: i is out of scope here too
+  }
 
-     public static void aMethod(int counter) {
+  --- SWITCH SCOPE (special rule!) ---
+  In a switch, a variable declared in one case IS accessible to later cases (cases that come after),
+  but NOT to earlier cases, and NOT outside the switch.
 
-     if(counter > 0) {
-     int i = 10;                // The variable i is only in scope for the block declared in the first part of the if statement.
-     }
-     else{
-     System.out.println(i);   // ERROR : i is out of scope
-     }
-     System.out.println(i); // ERROR : i is out of scope
-     }
-
-Declaring variables in a switch statement block:
-
-The switch statement is different from the if-then-else statement block.
-The case block has different access for local variables than the if-else block.
-In the switch statement, a variable declared in one case label code block can be accessed in another case label code block,
-but only if that block is after the declaration and initialisation of the variable.
-
-       public static void aMethod(int counter){
-
-       switch(value) { // Curly braces are optional in switch statement
-
-       case 1:        // Start of code block for case 1
-       int i = 10;    // Variable i declared in case 1 is accessible in the default block, as default comes after case 1's declaration
-       break;         // End of code block for case 1
-
-       case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3)
-       System.out.println(j); // ERROR, j is out of scope of case 2, as variable j is declared in case 3, which is after case 2, hence case 2 cannot access variables declared in case 3
-       break;
-
-       case 3: -- j is declared here, accessible from this point in the switch block
-       int j = 10;
-       System.out.println(j);
-       break;
-
-       default: -- can access i (case 1) and j (case 3) since both are declared before this block
-        i = value;              // this is ok  // the i variable, even though is declared in case 1, can be accessed by default block as default block is after case 1
-        System.out.println(i);  // this is ok
-        System.out.println(j);  // as variable j is declared in case 2, hence it can be accessed by default block as default block is after case 2
+  public static void aMethod(int value) {
+    switch (value) {
+      case 1:
+        int i = 10;               // i declared here, accessible from this point downwards in the switch
         break;
 
-       }
-       System.out.println(i);  // ERROR: i is out of the scope outside the switch
-       System.out.println(j);  // ERROR: j is out of the scope outside the switch
-       }
+      case 2:
+        System.out.println(j);   // ERROR: j is declared in case 3 (later), so case 2 cannot see it
+        break;
 
- */
+      case 3:
+        int j = 10;               // j declared here
+        System.out.println(j);   // OK: j is accessible from this point
+        break;
 
+      default:
+        i = value;                // OK: i was declared in case 1 (before default)
+        System.out.println(i);   // OK: accessible
+        System.out.println(j);   // OK: j was declared in case 3 (before default)
+        break;
+    }
+    System.out.println(i);        // ERROR: i is out of scope outside the switch
+    System.out.println(j);        // ERROR: j is out of scope outside the switch
+  }
+*/
 public class LocalVariablesAndScope {
 
     /*

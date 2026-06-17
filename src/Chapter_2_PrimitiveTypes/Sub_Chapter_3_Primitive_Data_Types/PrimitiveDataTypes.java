@@ -1,55 +1,45 @@
-package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
-
-//The eight primitive data types in Java are boolean,byte,char,short,int,long,float,double.
-
-//When we start using a literal string, we use a + operator and whatever follows the plus operator is converted to the string and gets outputted.
-
-//Java uses wrapper classes for all eight primitive types (for example, int -> Integer).
-//Wrapper classes let us use helpful utility methods and constants like MAX_VALUE and MIN_VALUE.
-
-//A byte occupies 8 bits. A byte has a width of 8
-
-//A short occupies 16 bits.A Short has a width of 16
-
-//An int occupies 32 bits.An int has a width of 32
-
-//A long occupies 64 bit.A long has a width of 64
-
-//Floating point numbers have fractional parts that we express with decimal point. For ex :- 3.141
-
-//Floating point numbers are also known as real numbers.
-
-//Float and double primitive types are the two primitive data types for expressing floating type numbers.Float is a single precision number and double is double precision number
-
-//Precision refers to the format and amount of space occupied by the type.
-
-//Single precision(float) occupies 32 bits(width 32) and double precision occupies 64 bits(width 64)
-
-//In general, float and double are great for general floating options but are not great to use when precise calculations are required because of the limitations of how floating points are stored.
-//Java has a class called BigDecimal that overcomes this. But for general calculations float and double are fine.
-//When precise calculations are necessary for ex :- Currency Calculations, floating type should not be used.
-
-//Casting in Java :- Casting means to treat or convert from one dataType to another.
-
-// In Java, there are two types of casting:
+﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
+// Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.
+// Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.
 //
-//        Widening Casting (automatically) - converting a smaller type to a larger type size
-//        byte -> short -> char -> int -> long -> float -> double
+// The 8 Primitive Types:
+// Type     | Width  | Range / Notes
+// ---------|--------|--------------------------------------------------------------
+// boolean  | 1 bit  | Only two values: true or false
+// byte     | 8 bits | -128 to 127
+// short    | 16 bits| -32,768 to 32,767
+// char     | 16 bits| A single Unicode character — written in single quotes: 'A'
+// int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)
+// long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L
+// float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)
+// double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d
 //
-//        Narrowing Casting (manually) - converting a larger type to a smaller size type
-//        double -> float -> long -> int -> char -> short -> byte
-
-
-//Char DataType can store only one character in a single char variable. Char values are defined under single quotes.
-
-//A Char occupies two bytes of memory, or 16 bits, and thus has width of 16.
-
-//Char allows us to store Unicode characters. A unicode is an international encoding standard for use with different languages and scripts, by which each letter, digit or symbol is assigned a unique numerical value that applies across different platforms and programs.
-
-// Unicode website for reference :-  https://unicode-table.com/en/
-
-// A boolean value allows for two choices 'True' or 'False', 'Yes' or 'No', 1 or 0. In Java terms, we have a boolean primitive type and it can be set to two values only. true or false.
-
+// Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).
+// These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.
+//
+// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around (overflow).
+// If you go below the minimum, it wraps to the maximum (underflow).
+// Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)
+//
+// Casting: Converting from one type to another.
+// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double
+// Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte
+// Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.
+//
+// Integer division: when both operands are int, the result is also int — the decimal part is DROPPED.
+// Example: 5/2 = 2 (not 2.5). Use 5.0/2.0 or 5d/2d to get 2.5.
+//
+// Precision: double has more decimal places than float.
+// 5f/3f = 1.6666666 (7 significant digits)
+// 5d/3d = 1.6666666666666667 (15+ significant digits)
+// For currency or financial calculations, use BigDecimal instead of float/double.
+//
+// char and Unicode: char holds a single character, uses single quotes: char c = 'D';
+// You can also use Unicode escape sequences: char d = '\u0044'; (both give 'D')
+// Unicode is an international encoding standard — every character in every language has a unique code point.
+// Reference: https://unicode-table.com/en/
+//
+// boolean: can only be true or false. It is the result of any comparison or logical expression.
 public class PrimitiveDataTypes {
 
     public static void main(String[] args) {

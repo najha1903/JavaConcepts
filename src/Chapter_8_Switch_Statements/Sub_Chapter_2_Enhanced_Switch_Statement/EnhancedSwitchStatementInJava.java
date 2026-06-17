@@ -1,12 +1,22 @@
-package Chapter_8_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
-
+﻿package Chapter_8_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
+// The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.
+// It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.
+// Traditional switch: case 1: ... break;   Enhanced switch: case 1 -> ...
+// Multiple values can be grouped with comma-separated lists: case 3, 4, 5 -> ... (instead of stacking three case labels)
+// The enhanced switch can be used as an EXPRESSION — it can return a value directly. This makes code concise and readable.
+// Syntax for switch expression: return switch(variable) { case X -> "value"; default -> "fallback"; };
+// When used as a switch expression, the 'default' case is mandatory to ensure all possible values are covered.
+// The 'yield' keyword is used inside a case block { } when you need multiple statements before returning a value.
+// yield is to a switch expression what return is to a method — it provides the value for that case.
+// Example: default -> { String msg = "INVALID"; yield msg; }
+// Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.
 public class EnhancedSwitchStatementInJava {
 
     public static void main(String[] args) {
 
         int value = 3;
 
-        // Traditional (old) way to write switch statement
+        // Traditional switch: uses colon (:) after each case and requires break to prevent fall-through.
         switch (value) {  // Similar to if statement
             case 1: // Similar to else if statement
                 System.out.println("Value is 1");
@@ -23,7 +33,7 @@ public class EnhancedSwitchStatementInJava {
                 System.out.println("Neither numbers are provided");
         }
 
-        // Enhanced (new) way to write switch statement
+        // Enhanced switch: uses arrow (->) syntax. No break needed — each case automatically ends after its expression.
         switch (value) {
             case 1 -> // Double colon(:) which was part of traditional switch statement is replaced by arrow(->) in the enhanced switch statement
                     System.out.println("Value is 1");
@@ -47,10 +57,10 @@ public class EnhancedSwitchStatementInJava {
         }
     }
 
-    // Program in enhanced switch case that returns a value
+    // Enhanced switch as a return expression: the switch can directly return a value when used with the 'return' keyword before 'switch'.
     public static String getQuarter(String month){
 
-        //Enhanced Switch Case Statement which returns a value
+        // Each arrow case maps directly to a return value — concise and no fall-through risk.
 
         return switch (month) { // return keyword is used before the switch keyword
             case "JANUARY", "FEBRUARY", "MARCH" -> "1st Quarter";
@@ -60,10 +70,10 @@ public class EnhancedSwitchStatementInJava {
         };
     }
 
-    // Program in enhanced switch case that returns a value
+    // Using yield: when a case block has multiple statements, use 'yield' to return the value from inside a block body.
     public static String getQuarterUsingYieldKeyword(String month){
 
-        //Enhanced Switch Case Statement which returns a value
+        // yield is needed when the case body is a block { } rather than a simple expression.
 
         return switch (month) { // return keyword is used before the switch keyword
             case "JANUARY", "FEBRUARY", "MARCH" -> "1st Quarter";

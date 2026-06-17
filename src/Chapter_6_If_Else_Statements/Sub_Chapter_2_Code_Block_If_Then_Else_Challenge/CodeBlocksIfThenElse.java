@@ -1,28 +1,15 @@
-package Chapter_6_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Challenge;
-
-// The if statement identifies which statement or code block to run based on the value of an expression. In other words based on a specific condition.
-
-// Inside the code block defined by curly braces. we can have one or multiple statements
-
-// We can use the else statement after the if. In that case, when the condition is false, the else block will get executed.
-
-// We can also add else if, to test multiple conditions.
-
-// In an if, else if and else block, firstly if condition is checked, if the (if condition) is matched, the code inside the if block gets executed.
-// If the (if condition) gets executed, the (else if) and (else condition) gets skipped.
-// If the (if condition) fails, the control is transferred to else if condition, and if the (else if) condition matches, the code inside the else if block gets executed and the else condition is skipped.
-// If the (if condition and else if condition) both fails, the control is transferred to else condition, the code inside the else condition gets executed.
-
-// If there is a code block, inside another code block, the inside code block can access the variables created in outside code block.
-
-// If there is a code block, inside another code block, the outside code block cannot access the variables created in inside code block.
-
-// The concept of variables inside a code block is called scope.
-
-// If you have created a variable in a code block, you can't access that variable you have created outside that code block.
-
-//As soon as the code block is finished, Java will delete the variables.
-
+﻿package Chapter_6_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Challenge;
+// An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.
+// Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }
+// The 'else' block is the fallback — it runs only when ALL preceding conditions are false.
+// Once one branch executes, ALL other branches are skipped — even if their conditions would also be true.
+// Code blocks (curly braces {}) create a new scope. Variables declared INSIDE an if/else block are local to that block.
+// A variable declared inside an if block IS accessible by inner nested blocks, but NOT by the outer block or sibling else blocks.
+// Scope example: if(gameOver) { int finalScore = ...; } — finalScore is only accessible inside the if block.
+// Trying to use finalScore outside that if block would cause a compile error: "Cannot resolve symbol 'finalScore'".
+// Once a code block ends, Java removes the variables declared inside it from memory. This is why you can re-declare finalScore in a second if(gameOver) block — Java treats it as a fresh variable.
+// Inner blocks CAN access variables from their containing outer block (e.g., score, levelCompleted, bonus are in the outer method block and accessible inside the if block).
+// The concept of where a variable is accessible is called its SCOPE. Narrowing scope is a best practice — declare variables as close to where they are used as possible.
 public class CodeBlocksIfThenElse {
 
     public static void main(String[] args) {

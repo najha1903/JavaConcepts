@@ -1,5 +1,14 @@
-package Chapter_9_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
-
+﻿package Chapter_9_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
+// Loops let your program execute a block of code multiple times, without writing it multiple times.
+// Java supports three main loops: for (best when you know the count), while (condition-based), and do-while (always runs at least once).
+// The for loop is the most common when iterating over a range or a fixed number of times.
+// For loop syntax: for(initialisation; condition; update) { body }
+// Initialisation: runs once before the loop starts. Usually declares a loop counter variable.
+// Condition: checked BEFORE each iteration. If false, the loop ends. If never false, it loops forever (infinite loop).
+// Update: runs AFTER each iteration body. Usually increments or decrements the counter.
+// The counter variable declared in 'for(int i = ...)' is LOCAL to the loop — it does not exist outside the loop.
+// The 'break' statement immediately exits the loop, regardless of the condition.
+// The 'continue' statement skips the rest of the current iteration and moves to the update step, then checks the condition again.
 /* Looping :- Looping let us execute the code multiple number of times
 * Java supports several statements for looping, or executing code repetitively
 *

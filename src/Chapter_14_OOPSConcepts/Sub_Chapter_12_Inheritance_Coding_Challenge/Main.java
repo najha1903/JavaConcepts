@@ -1,5 +1,11 @@
 package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
 
+// This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.
+// Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.
+// Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.
+// Constructor chaining (super()) passes data up through the hierarchy — HourlyEmployee → Employee → Worker.
+// This demonstrates polymorphism: calling collectPay() on an Employee reference calls the correct subclass implementation.
+
 public class Main {
 
     public static void main(String[] args) {

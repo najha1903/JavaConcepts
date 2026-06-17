@@ -1,6 +1,12 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_9_JavaRecords;
-
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_9_JavaRecords;
+// Java Records (introduced in Java 14 as preview, standard in Java 16) are a concise way to create immutable data carrier classes.
+// Instead of writing a class with fields, constructor, getters, and toString — a record generates ALL of that automatically.
+// 'record' keyword replaces 'class'. The fields are declared in the record header (parentheses after the name).
+// ALL fields in a record are automatically: private and final (cannot be changed after construction).
+// Java auto-generates for every record: a canonical constructor, accessor methods (field name only, no 'get' prefix), equals(), hashCode(), and toString().
+// Accessor method naming: for a field 'name', the accessor is name() NOT getName() — this differs from POJO convention.
+// Records have NO setter methods — they are immutable by design. You cannot change a record's data after creation.
+// Use records when you need a simple, immutable data container. Use a POJO/class when you need to modify the data later.
 /*
     The Record Type
 

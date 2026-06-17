@@ -1,5 +1,6 @@
-package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_3_While_Do_While_Loop_CodingChallenge;
-
+﻿package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_3_While_Do_While_Loop_CodingChallenge;
+// CODING CHALLENGE — While Loop Basics
+// This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations.
 /*
 * Create a method called
 

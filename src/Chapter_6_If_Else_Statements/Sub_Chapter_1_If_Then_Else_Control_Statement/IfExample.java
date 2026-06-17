@@ -1,24 +1,17 @@
-package Chapter_6_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statement;
-
-// The if-then(else) statement tells the program to execute a certain section of code only if a particular tests evaluate to true also known as conditional logic.
-
-// Conditional logic uses specific statements in Java to allow us to check a condition and execute certain code based on whether that condition(the expression) is true or false.
-
-// After if statement, no semicolon should be added, as semicolon means end of the statement
-
-// Logical AND operator checks multiple conditions, and if multiple conditions are true, then only it executes the if code inside code block. If any one condition is false, then it will not execute code inside code block.
-
-// Logical OR operator checks multiple conditions, and if only one condition is true, it executes the code inside the if code block.
-
-// = represents assignment operator , == represents equal to operator. To assign value(s) we should use assignment(=) operator. To compare value(s) we should use equalTo(==) operator.
-
-// The NOT(!) operator aka Logical Complement Operator. For use with booleans, it tests the alternate value, by adding a NOT(!) operator before the value.
-
-// Ternary Operator takes three operands. First operand is the condition we are testing which should evaluate as all conditions to true or false.Second operand is the value to assign to variable if the first condition is true. Third operand is the value to assign to variable if the second condition is false.
-
-// Ternary operator is a shortcut to assigning one of two values to a variables depending on a given condition.
-
- /*
+﻿package Chapter_6_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statement;
+// Conditional logic (also called control flow) lets your program make decisions: execute different code depending on whether a condition is true or false.
+// The if statement evaluates a boolean expression. If the expression is true, the code block runs. If false, it is skipped.
+// IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.
+// Always use curly braces { } with if — even for single-line bodies. It prevents bugs when you add more code later.
+// Comparison operators for conditions: == (equal to), != (not equal to), > (greater than), < (less than), >= (greater or equal), <= (less or equal).
+// Logical AND (&&): both conditions must be true. Example: (score >= 50) && (score < 100)
+// Logical OR (||): at least one condition must be true. Example: (score < 10) || (score > 90)
+// The NOT operator (!): inverts a boolean. !true = false. !false = true. Example: if(!isAlien) means "if isAlien is false".
+// The assignment operator (=) assigns a value. The equality operator (==) compares values. Never use = inside a condition — use == instead.
+// Ternary Operator: a compact if-else in a single expression. Syntax: condition ? valueIfTrue : valueIfFalse
+// Example from code below: boolean wasCar = isCar ? true : false; — if isCar is true, wasCar = true; else wasCar = false.
+// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html
+/*
     Ternary Operator Example :-
 
     int ageOfClient = 20;
@@ -32,9 +25,6 @@ package Chapter_6_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
     Operand three - false. is the value to be assigned to the variable isEighteenOrOver if the condition above is false.
 
  */
-
-// For Operator precedence table reference link :- cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html
-
 public class IfExample {
 
     public static void main(String[] args) {

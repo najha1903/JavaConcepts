@@ -1,5 +1,11 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_7_Static_And_Instance_Methods;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_7_Static_And_Instance_Methods;
+// Java methods are either STATIC (belong to the class) or INSTANCE (belong to individual objects).
+// Deciding which to use: does the method need to access any instance fields or instance methods? If YES -> instance method. If NO -> static method.
+// Static methods are called on the class: ClassName.methodName() or just methodName() if called from within the same class.
+// Instance methods require an object: first create the object, then call the method on it.
+// Static methods CANNOT access instance fields or call instance methods directly (no 'this' in static context).
+// Instance methods CAN freely access both static and instance fields/methods.
+// The main() method is static — it runs without any object being created. That's why you can't use 'this' in main.
 /*
 *    Static Methods
 *    1) Static methods are declared using a static modifier and they belong to Class

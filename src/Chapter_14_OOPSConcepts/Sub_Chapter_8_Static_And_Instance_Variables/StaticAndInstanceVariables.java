@@ -1,6 +1,11 @@
 ﻿package Chapter_14_OOPSConcepts.Sub_Chapter_8_Static_And_Instance_Variables;
-
-
+// Understanding the difference between static and instance variables is crucial in OOP.
+// STATIC variable: one shared copy for the ENTIRE class. If any object changes it, ALL objects see the new value.
+// INSTANCE variable: each object has its OWN private copy. Changes to one object's instance variable don't affect other objects.
+// Typical uses for static variables: counters (counting how many objects were created), constants (Math.PI), shared resources.
+// Best practice: access static variables via the CLASS name, not via an object reference. Clarity: StaticAndInstanceVariables.name not obj.name.
+// This file demonstrates: two instances share the same static 'name' field — when the last one sets it to "Fluffy", BOTH print "Fluffy".
+// By contrast, instance variables 'instanceName' and 'age' are unique per object — obj1 can be "Rex/4" and obj2 can be "Fluffy/2" simultaneously.
 /*
 Static Variables
 

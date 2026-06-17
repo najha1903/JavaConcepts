@@ -1,5 +1,17 @@
-package Chapter_12_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And_Reading_input;
-
+﻿package Chapter_12_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And_Reading_input;
+// When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.
+// You cannot do arithmetic on Strings — "100" - "50" is a compile error because - is not defined for Strings.
+// You also cannot use + for addition on Strings — "100" + "50" = "10050" (concatenation, not addition).
+// To convert a String to a number, use the wrapper class's parse method:
+//   Integer.parseInt("42")  -> int 42
+//   Double.parseDouble("3.14") -> double 3.14
+//   Long.parseLong("1000000") -> long 1000000
+// If the String cannot be parsed (e.g., "abc"), a NumberFormatException is thrown at runtime.
+// The Scanner class (java.util.Scanner) is the standard way to read keyboard input in Java.
+// To use Scanner: import java.util.Scanner;   Scanner sc = new Scanner(System.in);
+// Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.
+// Always close the Scanner when done: sc.close(); (or use try-with-resources).
+// The import statement lets you use classes defined in Java's standard library or other packages.
 /*
 *  When we read data in from either a file or from user input, it's common for the data
 *  to be initially stored as a String, which we'll need to convert to a numeric value.

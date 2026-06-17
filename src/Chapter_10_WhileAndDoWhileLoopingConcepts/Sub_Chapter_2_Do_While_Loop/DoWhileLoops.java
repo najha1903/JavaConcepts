@@ -1,5 +1,14 @@
-package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
-
+﻿package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
+// The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.
+// In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.
+// This makes do-while ideal for situations like "ask the user for input at least once, then keep asking if the input is invalid."
+// Syntax:
+//   do {
+//       // body — executes first, at least once
+//   } while (condition);  // NOTE: semicolon required after the closing parenthesis!
+// The semicolon after while(condition); is MANDATORY — forgetting it is a syntax error.
+// continue and break work the same way in do-while: continue jumps to the condition check; break exits the loop.
+// When using loops: always check for infinite loops (condition never becomes false) and never-executing loops (condition false from the very start — can't happen in do-while, but watch for it in while and for loops).
 public class DoWhileLoops {
 
         /*   do while always executes at least once, and then the condition is checked.
@@ -20,17 +29,17 @@ public class DoWhileLoops {
 
     */
 
-    // do while statement format
+    // do while statement format: the do block runs first, then the while condition is evaluated. A semicolon is required after the while condition.
         /*
         do {
-            // block of statements
+            // Code to execute at least once, and again if the while condition is true.
         } while(expression); // semicolon required
          */
 
 
     public static void main(String[] args) {
 
-        // do while example
+        // do while example: demonstrates that the loop body always executes at least once, even when the exit condition is already set up.
 
         int j = 1;
         boolean isReady = true;
@@ -44,7 +53,7 @@ public class DoWhileLoops {
         while (isReady);
 
 
- // Do while program with break and continue condition
+ // do while with break and continue: 'continue' skips remaining code in the current iteration and rechecks the while condition. 'break' exits the loop immediately.
 
  /*       int number = 0; // Variable is initialised
 

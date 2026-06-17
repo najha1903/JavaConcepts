@@ -1,12 +1,14 @@
-package Chapter_8_Switch_Statements.Sub_Chapter_1_Switch_Statement;
-
-// Both switch statement and if statement can achieve the same thing.
-// The if statement is a little more flexible.
-// Each time we do a test, we don't have to use the same test criteria.
-
-// Switch can be used with 4 primitive types :- byte, short, char and int.
-// Switch can also be used with string [should be using jdk version 7]
-
+﻿package Chapter_8_Switch_Statements.Sub_Chapter_1_Switch_Statement;
+// The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.
+// Switch is cleaner and more readable than nested if-else when you have many possible values to test.
+// switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.
+// Structure: switch(variable) { case value1: code; break; case value2: code; break; default: code; }
+// The 'break' statement is critical — without it, execution "falls through" to the next case and continues running (even if that case's value doesn't match).
+// Fall-through can sometimes be useful (grouping multiple cases together), but is mostly a source of bugs if not intended.
+// The 'default' case is like the 'else' in an if-else — it runs when no case matches. It is optional but recommended.
+// A return statement inside a switch also acts like a break — it exits both the switch AND the method.
+// Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println("1, 2 or 3");
+// The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through.
 public class SwitchStatementInJava {
 
     public static void main(String[] args) {
@@ -27,7 +29,7 @@ public class SwitchStatementInJava {
         }
     }
 
-    // Program in if - else statement
+    // The same logic can be written using if-else; switch is cleaner when testing one variable against many values.
 
     public static void ifElseExample(int value){
         if(value == 1){
@@ -40,7 +42,7 @@ public class SwitchStatementInJava {
 
     }
 
-     // Program in switch case
+     // The switch expression is matched against each case label. When a match is found, its code block executes. Without break, execution 'falls through' to the next case.
 
     // The condition is provided as parameter to switch statement, which is then matched to the case statement.
     // If the condition provided in the switch statement, matches the condition provided in case statement,
@@ -62,7 +64,7 @@ public class SwitchStatementInJava {
         }
     }
 
-    // Program in switch case with multiple cases together
+    // Multiple case labels can share the same code block. If any of the listed values match, the shared code block executes.
 
     public static void switchCaseMultipleCasesTogether(int value){
         switch (value){  // Similar to if statement
@@ -101,10 +103,10 @@ public class SwitchStatementInJava {
         }
     }
 
-    // Program in switch case that returns a value
+    // Returning a value from a switch: instead of printing inside the switch, the switch can return a String result. A return statement acts like a break — it exits both the switch and the method.
     public static String getQuarter(String month){
 
-        //Traditional Switch Case Statement
+        // The traditional switch uses colon after each case and requires an explicit break statement to stop fall-through.
 
         switch (month){
             case "JANUARY": case "FEBRUARY": case "MARCH":

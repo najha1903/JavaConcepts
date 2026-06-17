@@ -1,11 +1,13 @@
-package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
-
-// Operators in Java are special symbols that perform specific operations on multiple operations and then return a result.
-
-// Operand is a term used to describe any object that is manipulated by an operator. Variables used instead of literals are also operands.
-
-// An expression is formed by combining variables,literals,method return values and operators.
-
+﻿package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
+// Operators in Java are special symbols that perform specific operations on one or more values (operands) and produce a result.
+// An operand is any value, variable, or expression that an operator acts upon. Example: in '15 + 12', 15 and 12 are operands, + is the operator.
+// An expression is a combination of variables, literals, operators, and method calls that evaluates to a single value.
+// Java supports arithmetic, comparison (relational), logical, bitwise, assignment, and other operators.
+// Shorthand (compound assignment) operators combine an operation with assignment: += (add and assign), -= (subtract and assign), *= (multiply and assign), /= (divide and assign).
+// Increment (++) adds 1 to a variable: myVar++ is equivalent to myVar = myVar + 1.
+// Decrement (--) subtracts 1 from a variable: myVar-- is equivalent to myVar = myVar - 1.
+// Operator precedence determines the order in which operators are evaluated in an expression (like BODMAS/PEMDAS in maths). Use parentheses to override precedence.
+// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html
 /*
 *  Summary of Operators
 *

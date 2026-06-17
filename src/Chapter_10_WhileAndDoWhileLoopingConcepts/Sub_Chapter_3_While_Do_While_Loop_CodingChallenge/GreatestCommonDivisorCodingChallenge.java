@@ -1,5 +1,11 @@
 package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_3_While_Do_While_Loop_CodingChallenge;
 
+// Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.
+// For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.
+// The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.
+// Both numbers must be >= 10; otherwise -1 is returned to indicate invalid input.
+// The approach uses nested while loops to compare factors of both numbers, tracking the largest common one found.
+
 public class GreatestCommonDivisorCodingChallenge {
 
     public static void main(String[] args) {

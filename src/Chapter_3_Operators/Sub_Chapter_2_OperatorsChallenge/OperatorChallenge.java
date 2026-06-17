@@ -1,5 +1,9 @@
-package Chapter_3_Operators.Sub_Chapter_2_OperatorsChallenge;
-
+﻿package Chapter_3_Operators.Sub_Chapter_2_OperatorsChallenge;
+// CODING CHALLENGE — Operators Practice
+// This challenge demonstrates practical use of arithmetic operators, the modulus (remainder) operator, boolean logic, and the ternary operator.
+// Key concept: the modulus operator (%) gives the REMAINDER of division. If a % b == 0, then a is perfectly divisible by b with no remainder.
+// The ternary operator syntax: condition ? valueIfTrue : valueIfFalse — a compact way to assign one of two values based on a condition.
+// The NOT operator (!) inverts a boolean: if checkRemainder is true, !checkRemainder is false, and vice versa.
 /*
 
 OPERATOR CHALLENGE

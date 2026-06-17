@@ -43,7 +43,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to Java Introduction.",
         "Its source file is HelloWorld.java.",
-        "This topic has 2 inline annotations.",
+        "This topic has 0 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -71,9 +71,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
       "question": "What does this code print?",
-      "code": "        System.out.println(\"Hello World\");\r",
+      "code": "System.out.println(\"Java Introduction - Hello World\");",
       "answer": [
-        "Hello World"
+        "Java Introduction - Hello World"
       ],
       "explanation": "The output comes directly from the string literal in the println call."
     },
@@ -83,11 +83,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
       "question": "Explain the main ideas in Hello World.",
-      "modelAnswer": "JAVA and other programming languages have keywords. Each keyword has a specific meaning and sometimes they need to be in specific orders We write JAVA programs with specific set of rules, using a combination of these keywords and other things which collectively forms a JAVA program. Note :- Keywords are case sensitive",
+      "modelAnswer": "Java is a compiled and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform. This \"write once, run anywhere\" principle is one of Java's greatest strengths. Always be aware of scope, type constraints, and compiler rules in this area.",
       "keyPoints": [
-        "JAVA and other programming languages have keywords. Each keyword has a specific meaning and sometimes they need to be in specific orders",
-        "We write JAVA programs with specific set of rules, using a combination of these keywords and other things which collectively forms a JAVA program.",
-        "Note :- Keywords are case sensitive"
+        "Java is a compiled and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform.",
+        "This \"write once, run anywhere\" principle is one of Java's greatest strengths.",
+        "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -157,11 +157,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
       "question": "Explain the main ideas in String Example.",
-      "modelAnswer": "The string is a datatype in Java. It's not a primitive type, but a Class. A String is a sequence of characters. String can contain large number of characters. case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block",
+      "modelAnswer": "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment. A String is a sequence of characters of any length — from empty \"\" to thousands of characters long. Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
       "keyPoints": [
-        "The string is a datatype in Java. It's not a primitive type, but a Class.",
-        "A String is a sequence of characters. String can contain large number of characters.",
-        "case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block"
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
+        "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -189,7 +189,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to Primitive Types.",
         "Its source file is LocalVariablesAndScope.java.",
-        "This topic has 5 inline annotations.",
+        "This topic has 20 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -205,7 +205,7 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Local Variables And Scope",
       "question": "Complete the missing keyword in this snippet from \"LocalVariablesAndScope.java\".",
-      "code": "     public ___ void aMethod(int counter) {\r",
+      "code": "  public ___ void aMethod(int counter) {",
       "answer": [
         "static"
       ],
@@ -229,11 +229,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Local Variables And Scope",
       "question": "Explain the main ideas in Local Variables And Scope.",
-      "modelAnswer": "A local variable is called local because it is available for use by the code block in which it was declared. It is also available to code blocks that are contained by a declaring block. case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block",
+      "modelAnswer": "LOCAL VARIABLE SCOPE EXAMPLES --- FOR LOOP SCOPE --- Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
       "keyPoints": [
-        "A local variable is called local because it is available for use by the code block in which it was declared.",
-        "It is also available to code blocks that are contained by a declaring block.",
-        "case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block"
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "--- FOR LOOP SCOPE ---",
+        "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -301,11 +301,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
       "question": "Explain the main ideas in Variables.",
-      "modelAnswer": "Variables are a way to store information in our computer. Variables that we define in a program can be accessed by a name we give them A variable, as the name suggests can be changed, i.e it's contents are variable. case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block",
+      "modelAnswer": "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program. As the name suggests, a variable's value can vary — it can be updated or reassigned after it is first set. Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
       "keyPoints": [
-        "Variables are a way to store information in our computer. Variables that we define in a program can be accessed by a name we give them",
-        "A variable, as the name suggests can be changed, i.e it's contents are variable.",
-        "case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block"
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "As the name suggests, a variable's value can vary — it can be updated or reassigned after it is first set.",
+        "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -373,9 +373,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
       "question": "Explain the main ideas in Key Words And Expressions In Java.",
-      "modelAnswer": "case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block",
+      "modelAnswer": "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier. Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null. Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
       "keyPoints": [
-        "case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block"
+        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
+        "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.",
+        "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -403,7 +405,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to Primitive Types.",
         "Its source file is PrimitiveDataTypes.java.",
-        "This topic has 2 inline annotations.",
+        "This topic has 4 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -443,11 +445,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
       "question": "Explain the main ideas in Primitive Data Types.",
-      "modelAnswer": "The eight primitive data types in Java are boolean,byte,char,short,int,long,float,double. When we start using a literal string, we use a + operator and whatever follows the plus operator is converted to the string and gets outputted. case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block",
+      "modelAnswer": "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data. Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient. Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
       "keyPoints": [
-        "The eight primitive data types in Java are boolean,byte,char,short,int,long,float,double.",
-        "When we start using a literal string, we use a + operator and whatever follows the plus operator is converted to the string and gets outputted.",
-        "case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block"
+        "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
+        "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.",
+        "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -623,7 +625,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to Statements And Indentations.",
         "Its source file is StatementsWhiteSpaceAndIndentation.java.",
-        "This topic has 4 inline annotations.",
+        "This topic has 0 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -651,9 +653,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 5: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
       "question": "What does this code print?",
-      "code": "        System.out.println(\"This is a test\"); // This also represents complete statement.\r",
+      "code": "// Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.",
       "answer": [
-        "This is a test"
+        "hi"
       ],
       "explanation": "The output comes directly from the string literal in the println call."
     },
@@ -663,8 +665,10 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 5: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
       "question": "Explain the main ideas in Statements White Space And Indentation.",
-      "modelAnswer": "Always be aware of scope, type constraints, and compiler rules in this area.",
+      "modelAnswer": "A Java statement is a complete unit of execution. Most statements end with a semicolon (;). Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more. Always be aware of scope, type constraints, and compiler rules in this area.",
       "keyPoints": [
+        "A Java statement is a complete unit of execution. Most statements end with a semicolon (;).",
+        "Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
@@ -735,11 +739,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 6: If Else Statements",
       "topic": "If Example",
       "question": "Explain the main ideas in If Example.",
-      "modelAnswer": "Ternary Operator Example :- Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false. Always be aware of scope, type constraints, and compiler rules in this area.",
+      "modelAnswer": "Ternary Operator Example :- Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false. IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.",
       "keyPoints": [
         "Ternary Operator Example :-",
         "Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.",
-        "Always be aware of scope, type constraints, and compiler rules in this area."
+        "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -807,11 +811,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 6: If Else Statements",
       "topic": "Code Blocks If Then Else",
       "question": "Explain the main ideas in Code Blocks If Then Else.",
-      "modelAnswer": "The if statement identifies which statement or code block to run based on the value of an expression. In other words based on a specific condition. Inside the code block defined by curly braces. we can have one or multiple statements Always be aware of scope, type constraints, and compiler rules in this area.",
+      "modelAnswer": "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch. Structure: if(condition1) { ... } else if(condition2) { ... } else { ... } IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.",
       "keyPoints": [
-        "The if statement identifies which statement or code block to run based on the value of an expression. In other words based on a specific condition.",
-        "Inside the code block defined by curly braces. we can have one or multiple statements",
-        "Always be aware of scope, type constraints, and compiler rules in this area."
+        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
+        "Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }",
+        "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -881,11 +885,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Methods In Java",
       "question": "Explain the main ideas in Methods In Java.",
-      "modelAnswer": "To avoid duplication of code, and reduce efforts, it is advisable to create method. We can create method once, and use the code time and time again. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed. Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method.",
-        "We can create method once, and use the code time and time again.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.",
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -953,11 +957,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Area Calculator Coding Challenge",
       "question": "Explain the main ideas in Area Calculator Coding Challenge.",
-      "modelAnswer": "Write a method named area with one double parameter named radius. The method needs to return a double value that represents the area of a circle. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method named area with one double parameter named radius. The method needs to return a double value that represents the area of a circle. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method named area with one double parameter named radius.",
         "The method needs to return a double value that represents the area of a circle.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1025,11 +1029,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Barking Dog Coding Challenge",
       "question": "Explain the main ideas in Barking Dog Coding Challenge.",
-      "modelAnswer": "We have a dog that likes to bark.  We need to wake up if the dog is barking at night! Write a method shouldWakeUp that has 2 parameters. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "We have a dog that likes to bark.  We need to wake up if the dog is barking at night! Write a method shouldWakeUp that has 2 parameters. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method shouldWakeUp that has 2 parameters.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1097,11 +1101,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Decimal Comparator Coding Challenge",
       "question": "Explain the main ideas in Decimal Comparator Coding Challenge.",
-      "modelAnswer": "Write a method areEqualByThreeDecimalPlaces with two parameters of type double. The method should return boolean and it needs to return true if two double numbers are the same up to three decimal places. Otherwise, return false. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method areEqualByThreeDecimalPlaces with two parameters of type double. The method should return boolean and it needs to return true if two double numbers are the same up to three decimal places. Otherwise, return false. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
         "The method should return boolean and it needs to return true if two double numbers are the same up to three decimal places. Otherwise, return false.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1169,11 +1173,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Equality Printer Coding Challenge",
       "question": "Explain the main ideas in Equality Printer Coding Challenge.",
-      "modelAnswer": "Write a method printEqual with 3 parameters of type int. The method should not return anything (void). If one of the parameters is less than 0, print text \"Invalid Value\". To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method printEqual with 3 parameters of type int. The method should not return anything (void). If one of the parameters is less than 0, print text \"Invalid Value\". NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method printEqual with 3 parameters of type int. The method should not return anything (void).",
         "If one of the parameters is less than 0, print text \"Invalid Value\".",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1241,11 +1245,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "Explain the main ideas in Equal Sum Checker Coding Challenge.",
-      "modelAnswer": "Write a method hasEqualSum with 3 parameters of type int. The method should return boolean and it needs to return true if the sum of the first and second parameter is equal to the third parameter. Otherwise, return false. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method hasEqualSum with 3 parameters of type int. The method should return boolean and it needs to return true if the sum of the first and second parameter is equal to the third parameter. Otherwise, return false. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method hasEqualSum with 3 parameters of type int.",
         "The method should return boolean and it needs to return true if the sum of the first and second parameter is equal to the third parameter. Otherwise, return false.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1313,11 +1317,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Explain the main ideas in Leap Year Calculator Coding Challenge.",
-      "modelAnswer": "Write a method isLeapYear with a parameter of type int named year. The parameter needs to be greater than or equal to 1 and less than or equal to 9999. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method isLeapYear with a parameter of type int named year. The parameter needs to be greater than or equal to 1 and less than or equal to 9999. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method isLeapYear with a parameter of type int named year.",
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1385,11 +1389,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "Explain the main ideas in Mega Bytes Converter Coding Challenge.",
-      "modelAnswer": "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes. The method should not return anything (void) and it needs to calculate the megabytes and remaining kilobytes from the kilobytes parameter. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes. The method should not return anything (void) and it needs to calculate the megabytes and remaining kilobytes from the kilobytes parameter. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes.",
         "The method should not return anything (void) and it needs to calculate the megabytes and remaining kilobytes from the kilobytes parameter.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1457,11 +1461,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Methods Challenge Problem",
       "question": "Explain the main ideas in Methods Challenge Problem.",
-      "modelAnswer": "Create a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table. You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Create a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table. You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Create a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table.",
         "You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1529,11 +1533,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Minutes To Years And Days Calculator Coding Challenge",
       "question": "Explain the main ideas in Minutes To Years And Days Calculator Coding Challenge.",
-      "modelAnswer": "Write a method printYearsAndDays with parameter of type long named minutes. The method should not return anything (void) and it needs to calculate the years and days from the minutes parameter. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method printYearsAndDays with parameter of type long named minutes. The method should not return anything (void) and it needs to calculate the years and days from the minutes parameter. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method printYearsAndDays with parameter of type long named minutes.",
         "The method should not return anything (void) and it needs to calculate the years and days from the minutes parameter.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1601,11 +1605,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Playing Cat Coding Challenge",
       "question": "Explain the main ideas in Playing Cat Coding Challenge.",
-      "modelAnswer": "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35. Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35. Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35.",
         "Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1673,11 +1677,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Positive Negative Zero Coding Challenge",
       "question": "Explain the main ideas in Positive Negative Zero Coding Challenge.",
-      "modelAnswer": "Positive, Negative or Zero Write a method called checkNumber with an int parameter named number. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Positive, Negative or Zero Write a method called checkNumber with an int parameter named number. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Positive, Negative or Zero",
         "Write a method called checkNumber with an int parameter named number.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1745,11 +1749,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Speed Converter Coding Challenge",
       "question": "Explain the main ideas in Speed Converter Coding Challenge.",
-      "modelAnswer": "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long. If the parameter kilometersPerHour is less than 0, the method toMilesPerHour needs to return -1 to indicate an invalid value. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long. If the parameter kilometersPerHour is less than 0, the method toMilesPerHour needs to return -1 to indicate an invalid value. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long.",
         "If the parameter kilometersPerHour is less than 0, the method toMilesPerHour needs to return -1 to indicate an invalid value.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1817,11 +1821,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 7: Methods In Java",
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Explain the main ideas in Teen Number Checker Coding Challenge.",
-      "modelAnswer": "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive). Write a method named hasTeen with 3 parameters of type int. To avoid duplication of code, and reduce efforts, it is advisable to create method.",
+      "modelAnswer": "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive). Write a method named hasTeen with 3 parameters of type int. NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "keyPoints": [
         "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
         "Write a method named hasTeen with 3 parameters of type int.",
-        "To avoid duplication of code, and reduce efforts, it is advisable to create method."
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -1879,9 +1883,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Switch Statement In Java",
       "question": "What does this code print?",
-      "code": "System.out.println(\"Switch Statements - Switch Statement In Java\");",
+      "code": "// Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println(\"1, 2 or 3\");",
       "answer": [
-        "Switch Statements - Switch Statement In Java"
+        "1, 2 or 3"
       ],
       "explanation": "The output comes directly from the string literal in the println call."
     },
@@ -1891,11 +1895,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Switch Statement In Java",
       "question": "Explain the main ideas in Switch Statement In Java.",
-      "modelAnswer": "Both switch statement and if statement can achieve the same thing. The if statement is a little more flexible. NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+      "modelAnswer": "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values. Switch is cleaner and more readable than nested if-else when you have many possible values to test. Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "keyPoints": [
-        "Both switch statement and if statement can achieve the same thing.",
-        "The if statement is a little more flexible.",
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
+        "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -1923,7 +1927,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to Switch Statements.",
         "Its source file is EnhancedSwitchStatementInJava.java.",
-        "This topic has 5 inline annotations.",
+        "This topic has 7 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -1963,9 +1967,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
       "question": "Explain the main ideas in Enhanced Switch Statement In Java.",
-      "modelAnswer": "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+      "modelAnswer": "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14. It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed. Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "keyPoints": [
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
+        "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2033,11 +2039,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "Explain the main ideas in Number Of Days In A Month Coding Challenge.",
-      "modelAnswer": "Write a method isLeapYear with a parameter of type int named year. The parameter needs to be greater than or equal to 1 and less than or equal to 9999. NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+      "modelAnswer": "Write a method isLeapYear with a parameter of type int named year. The parameter needs to be greater than or equal to 1 and less than or equal to 9999. Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "keyPoints": [
         "Write a method isLeapYear with a parameter of type int named year.",
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish."
+        "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2105,11 +2111,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Print Number In A World Coding Challenge",
       "question": "Explain the main ideas in Print Number In A World Coding Challenge.",
-      "modelAnswer": "Write a method called printNumberInWord. The method has one parameter number which is the whole number. NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+      "modelAnswer": "Write a method called printNumberInWord. The method has one parameter number which is the whole number. Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "keyPoints": [
         "Write a method called printNumberInWord.",
         "The method has one parameter number which is the whole number.",
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish."
+        "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2177,11 +2183,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Switch Statement Challenge",
       "question": "Explain the main ideas in Switch Statement Challenge.",
-      "modelAnswer": "Create a new switch statement using char instead of int. Create a new char variable NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+      "modelAnswer": "Create a new switch statement using char instead of int. Create a new char variable Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "keyPoints": [
         "Create a new switch statement using char instead of int.",
         "Create a new char variable",
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish."
+        "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2249,11 +2255,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Switch Statement Challenge Return Day Of The Week",
       "question": "Explain the main ideas in Switch Statement Challenge Return Day Of The Week.",
-      "modelAnswer": "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7. Challenge NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+      "modelAnswer": "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7. Challenge Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "keyPoints": [
         "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.",
         "Challenge",
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish."
+        "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2321,11 +2327,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 8: Switch Statements",
       "topic": "Switch Statement N A T O Challenge",
       "question": "Explain the main ideas in Switch Statement N A T O Challenge.",
-      "modelAnswer": "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter. 1) Create a new char variable. Use the traditional switch statement (with a colon in case labels)  that tests the value in the variable from Step 1. NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+      "modelAnswer": "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter. 1) Create a new char variable. Use the traditional switch statement (with a colon in case labels)  that tests the value in the variable from Step 1. Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "keyPoints": [
         "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
         "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels)  that tests the value in the variable from Step 1.",
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish."
+        "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -2626,15 +2632,15 @@ const QUESTIONS_BANK = {
       "difficulty": "easy",
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "While Loops",
-      "question": "Which Java keyword correctly fills in the blank in this code from \"WhileLoops.java\"?\n\nThe continue statement starts a ___ iteration but continues to iterate through the loop.",
+      "question": "Which Java keyword correctly fills in the blank in this code from \"WhileLoops.java\"?\n\n___ class WhileLoops {",
       "options": [
-        "new",
+        "public",
         "static",
         "void",
-        "public"
+        "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'new'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
     },
     {
       "type": "mcq",
@@ -2645,7 +2651,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to While And Do While Looping Concepts.",
         "Its source file is WhileLoops.java.",
-        "This topic has 3 inline annotations.",
+        "This topic has 9 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -2661,11 +2667,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "While Loops",
       "question": "Complete the missing keyword in this snippet from \"WhileLoops.java\".",
-      "code": " The continue statement starts a ___ iteration but continues to iterate through the loop.\r",
+      "code": "___ class WhileLoops {\r",
       "answer": [
-        "new"
+        "public"
       ],
-      "explanation": "The missing keyword is 'new', taken from the parsed source for WhileLoops.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for WhileLoops.java."
     },
     {
       "type": "predict",
@@ -2685,11 +2691,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "While Loops",
       "question": "Explain the main ideas in While Loops.",
-      "modelAnswer": "Java has 2 types of while loops While --> Continue executing code block until the loop expression becomes false Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "WHILE LOOPS The while loop repeatedly executes its body as long as a condition remains true. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
-        "Java has 2 types of while loops",
-        "While --> Continue executing code block until the loop expression becomes false",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "WHILE LOOPS",
+        "The while loop repeatedly executes its body as long as a condition remains true.",
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2717,7 +2723,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to While And Do While Looping Concepts.",
         "Its source file is DoWhileLoops.java.",
-        "This topic has 4 inline annotations.",
+        "This topic has 5 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -2757,11 +2763,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Do While Loops",
       "question": "Explain the main ideas in Do While Loops.",
-      "modelAnswer": "do while always executes at least once, and then the condition is checked. If the expression is evaluated to true, the execution continues, otherwise the loop will not iterate Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once. In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
-        "do while always executes at least once, and then the condition is checked.",
-        "If the expression is evaluated to true, the execution continues, otherwise the loop will not iterate",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.",
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2829,11 +2835,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "Explain the main ideas in Check Number Palindrome Coding Challenge.",
-      "modelAnswer": "Number Palindrome Write a method called isPalindrome with one int parameter called number. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Number Palindrome Write a method called isPalindrome with one int parameter called number. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Number Palindrome",
         "Write a method called isPalindrome with one int parameter called number.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2901,11 +2907,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Digit Sum Coding Challenge",
       "question": "Explain the main ideas in Digit Sum Coding Challenge.",
-      "modelAnswer": "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int. The method should only take a number that is a positive number. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int. The method should only take a number that is a positive number. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
         "The method should only take a number that is a positive number.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -2973,11 +2979,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Even Digit Sum Coding Challenge",
       "question": "Explain the main ideas in Even Digit Sum Coding Challenge.",
-      "modelAnswer": "Even Digit Sum Write a method named getEvenDigitSum with one parameter of type int called number. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Even Digit Sum Write a method named getEvenDigitSum with one parameter of type int called number. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Even Digit Sum",
         "Write a method named getEvenDigitSum with one parameter of type int called number.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3045,11 +3051,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Factor Printer Coding Challenge",
       "question": "Explain the main ideas in Factor Printer Coding Challenge.",
-      "modelAnswer": "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge. Review the class FactorPrinterCodingChallenge and understand its key responsibilities. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder. For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
-        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "Review the class FactorPrinterCodingChallenge and understand its key responsibilities.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.",
+        "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3117,11 +3123,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "First And Last Digit Sum Coding Challenge",
       "question": "Explain the main ideas in First And Last Digit Sum Coding Challenge.",
-      "modelAnswer": "First And Last Digit Sum Write a method named sumFirstAndLastDigit with one parameter of type int called number. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "First And Last Digit Sum Write a method named sumFirstAndLastDigit with one parameter of type int called number. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "First And Last Digit Sum",
         "Write a method named sumFirstAndLastDigit with one parameter of type int called number.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3189,11 +3195,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "Explain the main ideas in Floor Pack Problem Coding Challenge.",
-      "modelAnswer": "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal. The parameter bigCount represents the count of big flour bags (5 kilos each). Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal. The parameter bigCount represents the count of big flour bags (5 kilos each). IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.",
         "The parameter bigCount represents the count of big flour bags (5 kilos each).",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3261,11 +3267,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Greatest Common Divisor Coding Challenge",
       "question": "Explain the main ideas in Greatest Common Divisor Coding Challenge.",
-      "modelAnswer": "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge. Review the class GreatestCommonDivisorCodingChallenge and understand its key responsibilities. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder. For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
-        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "Review the class GreatestCommonDivisorCodingChallenge and understand its key responsibilities.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.",
+        "For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.",
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3333,11 +3339,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Explain the main ideas in Largest Prime Factor Coding Challenge.",
-      "modelAnswer": "Write a method named getLargestPrime with one parameter of type int named number. If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Write a method named getLargestPrime with one parameter of type int named number. If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Write a method named getLargestPrime with one parameter of type int named number.",
         "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3405,11 +3411,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Explain the main ideas in Last Digit Checker Coding Challenge.",
-      "modelAnswer": "Last Digit Checker Write a method named hasSameLastDigit with three parameters of type int. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Last Digit Checker Write a method named hasSameLastDigit with three parameters of type int. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Last Digit Checker",
         "Write a method named hasSameLastDigit with three parameters of type int.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3477,11 +3483,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Number To Words Coding Challenge",
       "question": "Explain the main ideas in Number To Words Coding Challenge.",
-      "modelAnswer": "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge. Review the class NumberToWordsCodingChallenge and understand its key responsibilities. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge. Review the class NumberToWordsCodingChallenge and understand its key responsibilities. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
         "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3549,11 +3555,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Perfect Number Coding Challenge",
       "question": "Explain the main ideas in Perfect Number Coding Challenge.",
-      "modelAnswer": "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge. Review the class PerfectNumberCodingChallenge and understand its key responsibilities. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge. Review the class PerfectNumberCodingChallenge and understand its key responsibilities. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
         "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3621,11 +3627,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "Shared Digit Coding Challenge",
       "question": "Explain the main ideas in Shared Digit Coding Challenge.",
-      "modelAnswer": "Shared Digit Write a method named hasSharedDigit with two parameters of type int. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Shared Digit Write a method named hasSharedDigit with two parameters of type int. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Shared Digit",
         "Write a method named hasSharedDigit with two parameters of type int.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3693,11 +3699,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "While Loop Coding Challenge",
       "question": "Explain the main ideas in While Loop Coding Challenge.",
-      "modelAnswer": "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int. The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int. The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.",
         "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -3765,10 +3771,10 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 10: While And Do While Looping Concepts",
       "topic": "While Loop Coding Challenge Part2",
       "question": "Explain the main ideas in While Loop Coding Challenge Part2.",
-      "modelAnswer": "Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers. Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
+      "modelAnswer": "Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers. IMPORTANT: Always check your loop condition carefully.",
       "keyPoints": [
         "Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.",
-        "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops."
+        "IMPORTANT: Always check your loop condition carefully."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -3984,11 +3990,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 12: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
       "question": "Explain the main ideas in Parsing Values Reading Input.",
-      "modelAnswer": "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value. Reading Data From Console NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
+      "modelAnswer": "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value. Reading Data From Console You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
       "keyPoints": [
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "Reading Data From Console",
-        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long."
+        "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4056,11 +4062,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 12: Parsing Values Reading Input",
       "topic": "Input Calculator Challenge",
       "question": "Explain the main ideas in Input Calculator Challenge.",
-      "modelAnswer": "Input Calculator Write a method called inputThenPrintSumAndAverage that does not have any parameters. NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
+      "modelAnswer": "Input Calculator Write a method called inputThenPrintSumAndAverage that does not have any parameters. You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
       "keyPoints": [
         "Input Calculator",
         "Write a method called inputThenPrintSumAndAverage that does not have any parameters.",
-        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long."
+        "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4128,11 +4134,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 12: Parsing Values Reading Input",
       "topic": "Min Max Coding Challenge",
       "question": "Explain the main ideas in Min Max Coding Challenge.",
-      "modelAnswer": "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered. If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number. NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
+      "modelAnswer": "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered. If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number. You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
       "keyPoints": [
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.",
-        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long."
+        "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4200,11 +4206,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 12: Parsing Values Reading Input",
       "topic": "Paint Job Challenge",
       "question": "Explain the main ideas in Paint Job Challenge.",
-      "modelAnswer": "This topic belongs to Chapter 12: Parsing Values Reading Input → Parsing Values Coding Challenge. Review the class PaintJobChallenge and understand its key responsibilities. NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
+      "modelAnswer": "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area. The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket). You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
       "keyPoints": [
-        "This topic belongs to Chapter 12: Parsing Values Reading Input → Parsing Values Coding Challenge.",
-        "Review the class PaintJobChallenge and understand its key responsibilities.",
-        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long."
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
+        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).",
+        "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4272,11 +4278,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 12: Parsing Values Reading Input",
       "topic": "Reading User Input Challenge",
       "question": "Explain the main ideas in Reading User Input Challenge.",
-      "modelAnswer": "Reading User Input Challenge. In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
+      "modelAnswer": "Reading User Input Challenge. In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
       "keyPoints": [
         "Reading User Input Challenge.",
         "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message",
-        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long."
+        "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -4287,7 +4293,7 @@ const QUESTIONS_BANK = {
       "difficulty": "easy",
       "chapter": "Chapter 13: Exception Handling",
       "topic": "Exception Handling In Java",
-      "question": "Which Java keyword correctly fills in the blank in this code from \"ExceptionHandlingInJava.java\"?\n\nThis is done with the ___ statement code block",
+      "question": "Which Java keyword correctly fills in the blank in this code from \"ExceptionHandlingInJava.java\"?\n\nAn exception is caught by wrapping the risky code inside a ___-catch block.",
       "options": [
         "try",
         "static",
@@ -4306,7 +4312,7 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to Exception Handling.",
         "Its source file is ExceptionHandlingInJava.java.",
-        "This topic has 11 inline annotations.",
+        "This topic has 10 inline annotations.",
         "This topic has no Java source code."
       ],
       "answer": [
@@ -4322,7 +4328,7 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 13: Exception Handling",
       "topic": "Exception Handling In Java",
       "question": "Complete the missing keyword in this snippet from \"ExceptionHandlingInJava.java\".",
-      "code": "   This is done with the ___ statement code block\r",
+      "code": "   An exception is caught by wrapping the risky code inside a ___-catch block.\r",
       "answer": [
         "try"
       ],
@@ -4346,11 +4352,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 13: Exception Handling",
       "topic": "Exception Handling In Java",
       "question": "Explain the main ideas in Exception Handling In Java.",
-      "modelAnswer": "Exception An exception is an abnormal condition that disrupts the normal flow of the program. An exception is caught first by creating a code block around the code that gets the error.",
+      "modelAnswer": "Exception An exception is an abnormal condition that disrupts the normal flow of the program. An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution.",
       "keyPoints": [
         "Exception",
         "An exception is an abnormal condition that disrupts the normal flow of the program.",
-        "An exception is caught first by creating a code block around the code that gets the error."
+        "An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -4420,11 +4426,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Point Class Distance Calculation",
       "question": "Explain the main ideas in Point Class Distance Calculation.",
-      "modelAnswer": "Point Class and Distance Calculation You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Point Class and Distance Calculation You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Point Class and Distance Calculation",
         "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4492,11 +4498,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Wall Area Computation",
       "question": "Explain the main ideas in Wall Area Computation.",
-      "modelAnswer": "Wall Area Computation Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Wall Area Computation Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Wall Area Computation",
         "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4564,11 +4570,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Animal",
       "question": "Explain the main ideas in Animal.",
-      "modelAnswer": "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has. Also, the super class will have all the behaviour that animals have in common. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has. Also, the super class will have all the behaviour that animals have in common. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Also, the super class will have all the behaviour that animals have in common.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4636,11 +4642,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Dog",
       "question": "Explain the main ideas in Dog.",
-      "modelAnswer": "Dog inherits from Animal Dog \"IS A\" a type of Animal NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Dog inherits from Animal Dog \"IS A\" a type of Animal Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Dog inherits from Animal",
         "Dog \"IS A\" a type of Animal",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4708,9 +4714,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Fish",
       "question": "Explain the main ideas in Fish.",
-      "modelAnswer": "NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4778,11 +4784,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Inheritance",
       "question": "Explain the main ideas in Inheritance.",
-      "modelAnswer": "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent. Animal (Base Class) NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent. Animal (Base Class) Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
         "Animal (Base Class)",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4850,11 +4856,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Main",
       "question": "Explain the main ideas in Main.",
-      "modelAnswer": "Every class created in Java extends a special Java class. That class is named Object, and it's in the java.lang package. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Every class created in Java extends a special Java class. That class is named Object, and it's in the java.lang package. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Every class created in Java extends a special Java class.",
         "That class is named Object, and it's in the java.lang package.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4922,10 +4928,10 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Employee",
       "question": "Explain the main ideas in Employee.",
-      "modelAnswer": "Employee Class Extends the Worker Class NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Employee Class Extends the Worker Class Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Employee Class Extends the Worker Class",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -4993,10 +4999,10 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Hourly Employee",
       "question": "Explain the main ideas in Hourly Employee.",
-      "modelAnswer": "The HourlyEmployee Class extends the Employee Class NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "The HourlyEmployee Class extends the Employee Class Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "The HourlyEmployee Class extends the Employee Class",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5064,11 +5070,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Main",
       "question": "Explain the main ideas in Main.",
-      "modelAnswer": "This topic belongs to Chapter 14: OOP Concepts → Inheritance Coding Challenge. Review the class Main and understand its key responsibilities. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy. Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
-        "This topic belongs to Chapter 14: OOP Concepts → Inheritance Coding Challenge.",
-        "Review the class Main and understand its key responsibilities.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
+        "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.",
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5136,10 +5142,10 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Salaried Employee",
       "question": "Explain the main ideas in Salaried Employee.",
-      "modelAnswer": "The salaried employee class, extends the Employee Class NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "The salaried employee class, extends the Employee Class Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "The salaried employee class, extends the Employee Class",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5207,11 +5213,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Worker",
       "question": "Explain the main ideas in Worker.",
-      "modelAnswer": "Inheritance Challenge Problem Create Worker Class -> This should be on top of the Hierarchy NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Inheritance Challenge Problem Create Worker Class -> This should be on top of the Hierarchy Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Inheritance Challenge Problem",
         "Create Worker Class -> This should be on top of the Hierarchy",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5279,11 +5285,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Classes And Inheritance",
       "question": "Explain the main ideas in Classes And Inheritance.",
-      "modelAnswer": "Object-oriented programming is a way to model real world objects as software objects which contain both data and code OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Object-oriented programming is a way to model real world objects as software objects which contain both data and code OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5351,11 +5357,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Car",
       "question": "Explain the main ideas in Car.",
-      "modelAnswer": "Unlike local variables, class variables should have some type of access modifier declared for it. If no access modifier is declared explicitly, Java declares the default one (package private), implicitly. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Unlike local variables, class variables should have some type of access modifier declared for it. If no access modifier is declared explicitly, Java declares the default one (package private), implicitly. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5423,11 +5429,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Main",
       "question": "Explain the main ideas in Main.",
-      "modelAnswer": "Output :- 0-Door null null null Null :- null is a special keyword in Java, meaning, the variable or attribute has a type but no reference to an object. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods. Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
-        "Output :- 0-Door null null null",
-        "Null :- null is a special keyword in Java, meaning, the variable or attribute has a type but no reference to an object.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
+        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5495,11 +5501,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Bank Account",
       "question": "Explain the main ideas in Bank Account.",
-      "modelAnswer": "Create a new class for a bank account. Create fields for account characteristics like: NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Create a new class for a bank account. Create fields for account characteristics like: Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Create a new class for a bank account.",
         "Create fields for account characteristics like:",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5567,11 +5573,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Main",
       "question": "Explain the main ideas in Main.",
-      "modelAnswer": "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge. Review the class Main and understand its key responsibilities. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge. Review the class Main and understand its key responsibilities. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge.",
         "Review the class Main and understand its key responsibilities.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5639,11 +5645,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Method Over Loading Challenge",
       "question": "Explain the main ideas in Method Over Loading Challenge.",
-      "modelAnswer": "Create two methods with the  same name: convertToCentimeters The first method has one parameter of type int,  which represents the entire height in inches. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Create two methods with the  same name: convertToCentimeters The first method has one parameter of type int,  which represents the entire height in inches. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Create two methods with the  same name: convertToCentimeters",
         "The first method has one parameter of type int,  which represents the entire height in inches.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5711,9 +5717,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Method Overloading In Java",
       "question": "Explain the main ideas in Method Overloading In Java.",
-      "modelAnswer": "NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5781,11 +5787,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "Explain the main ideas in Method Overloading Second And Minutes Challenge.",
-      "modelAnswer": "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds. You should validate that the first parameter minutes is >= 0. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds. You should validate that the first parameter minutes is >= 0. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.",
         "You should validate that the first parameter minutes is >= 0.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5853,11 +5859,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Person Age Validation",
       "question": "Explain the main ideas in Person Age Validation.",
-      "modelAnswer": "Person Class and Age Validation Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Person Class and Age Validation Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Person Class and Age Validation",
         "Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5925,11 +5931,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Explain the main ideas in Sum Calculator Implementation Challenge.",
-      "modelAnswer": "Sum Calculator Implementation Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Sum Calculator Implementation Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Sum Calculator Implementation",
         "Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -5997,11 +6003,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Constructor Concept",
       "question": "Explain the main ideas in Constructor Concept.",
-      "modelAnswer": "A constructor is used in the creation of an object. It is a special type of code block that has a specific name and parameters, much like a method. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "A constructor is used in the creation of an object. It is a special type of code block that has a specific name and parameters, much like a method. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "A constructor is used in the creation of an object.",
         "It is a special type of code block that has a specific name and parameters, much like a method.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6069,10 +6075,10 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Super Keyword Use Example",
       "question": "Explain the main ideas in Super Keyword Use Example.",
-      "modelAnswer": "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6140,11 +6146,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "This And Super",
       "question": "Explain the main ideas in This And Super.",
-      "modelAnswer": "super keyword :- 1) The keyword super is used to access or call the parent class members (both variables and methods). NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "super keyword :- 1) The keyword super is used to access or call the parent class members (both variables and methods). Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "super keyword :-",
         "1) The keyword super is used to access or call the parent class members (both variables and methods).",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6212,11 +6218,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "This Key Word Use Example",
       "question": "Explain the main ideas in This Key Word Use Example.",
-      "modelAnswer": "The keyword this is commonly used within constructors and setters and is optionally used within getters. In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "The keyword this is commonly used within constructors and setters and is optionally used within getters. In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
         "In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6284,11 +6290,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Good Constructor Super Call Example",
       "question": "Explain the main ideas in Good Constructor Super Call Example.",
-      "modelAnswer": "The 1st constructor is calling the 2nd constructor. The 2nd constructor calls the parent constructor with parameters x and y. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "The 1st constructor is calling the 2nd constructor. The 2nd constructor calls the parent constructor with parameters x and y. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "The 1st constructor is calling the 2nd constructor.",
         "The 2nd constructor calls the parent constructor with parameters x and y.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6356,11 +6362,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Bad Constructor This Call Example",
       "question": "Explain the main ideas in Bad Constructor This Call Example.",
-      "modelAnswer": "Here, there are three constructors. All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Here, there are three constructors. All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Here, there are three constructors.",
         "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6428,11 +6434,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Good Constructor This Call Example",
       "question": "Explain the main ideas in Good Constructor This Call Example.",
-      "modelAnswer": "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables. In other words, The 3rd constructor does all the work. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables. In other words, The 3rd constructor does all the work. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.",
         "In other words, The 3rd constructor does all the work.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6500,11 +6506,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Customer",
       "question": "Explain the main ideas in Customer.",
-      "modelAnswer": "Create a new class, called Customer, with three fields: name. credit limit. and email address. Create the getter methods only for each field. You don't need to create the setters. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Create a new class, called Customer, with three fields: name. credit limit. and email address. Create the getter methods only for each field. You don't need to create the setters. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Create a new class, called Customer, with three fields: name. credit limit. and email address.",
         "Create the getter methods only for each field. You don't need to create the setters.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6572,11 +6578,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "House",
       "question": "Explain the main ideas in House.",
-      "modelAnswer": "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance. Review the class House and understand its key responsibilities. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance. Review the class House and understand its key responsibilities. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance.",
         "Review the class House and understand its key responsibilities.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6644,9 +6650,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Main",
       "question": "Explain the main ideas in Main.",
-      "modelAnswer": "NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6714,11 +6720,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Reference Objects Instance Class",
       "question": "Explain the main ideas in Reference Objects Instance Class.",
-      "modelAnswer": "A Class is like a blueprint Using blueprint, we can create as many objects that we want NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "A Class is like a blueprint Using blueprint, we can create as many objects that we want Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "A Class is like a blueprint",
         "Using blueprint, we can create as many objects that we want",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6786,11 +6792,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Static And Instance Methods",
       "question": "Explain the main ideas in Static And Instance Methods.",
-      "modelAnswer": "Static Methods 1) Static methods are declared using a static modifier and they belong to Class NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Static Methods 1) Static methods are declared using a static modifier and they belong to Class Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Static Methods",
         "1) Static methods are declared using a static modifier and they belong to Class",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6858,11 +6864,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Plain Old Java Object",
       "question": "Explain the main ideas in Plain Old Java Object.",
-      "modelAnswer": "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes. iii) It usually has no other, or very few methods, other than getters and setters for the instance fields. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes. iii) It usually has no other, or very few methods, other than getters and setters for the instance fields. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes.",
         "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -6930,11 +6936,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Main",
       "question": "Explain the main ideas in Main.",
-      "modelAnswer": "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass] StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass] NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass] StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass] Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]",
         "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -7002,11 +7008,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Student",
       "question": "Explain the main ideas in Student.",
-      "modelAnswer": "The toString() method is a special method in Java. The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "The toString() method is a special method in Java. The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "The toString() method is a special method in Java.",
         "The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -7074,11 +7080,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Static And Instance Variables",
       "question": "Explain the main ideas in Static And Instance Variables.",
-      "modelAnswer": "Static Variables 1) A static variable is Declared by using the keyword static. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "Static Variables 1) A static variable is Declared by using the keyword static. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "Static Variables",
         "1) A static variable is Declared by using the keyword static.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     },
@@ -7146,11 +7152,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 14: OOP Concepts",
       "topic": "Student Record",
       "question": "Explain the main ideas in Student Record.",
-      "modelAnswer": "The Record Type 1) The record was introduced in JDK 14 and became officially part of Java in JDK 16. NOTE: All methods should be defined as public NOT public static.",
+      "modelAnswer": "The Record Type 1) The record was introduced in JDK 14 and became officially part of Java in JDK 16. Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
       "keyPoints": [
         "The Record Type",
         "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly."
     }
@@ -7160,15 +7166,15 @@ const QUESTIONS_BANK = {
 const QUICK_REVISION_BANK = {
   "Chapter 1: Java Introduction": {
     "takeaways": [
-      "JAVA and other programming languages have keywords. Each keyword has a specific meaning and sometimes they need to be in specific orders",
-      "We write JAVA programs with specific set of rules, using a combination of these keywords and other things which collectively forms a JAVA program.",
-      "The public JAVA keyword is an access modifier. An access modifier allows us to define the scope or how other parts of code can access this code.",
-      "The class keyword is used to define a class with the name following the keyword static and void are another keywords in JAVA",
-      "A method is a collection of statements that performs an operation.",
-      "Main method is the entry point of the program/JAVA code."
+      "Java is a compiled and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform.",
+      "This \"write once, run anywhere\" principle is one of Java's greatest strengths.",
+      "Java programs start execution from the main method — it is the entry point that the JVM looks for when running a program.",
+      "Keywords are reserved words in Java with predefined meanings. They are case-sensitive — 'class' is valid, 'Class' is not.",
+      "The public keyword is an access modifier — it determines who can see/use this piece of code. 'public' means unrestricted access.",
+      "The class keyword defines a class (a blueprint or template). The class name immediately follows. By convention, class names start with a capital letter."
     ],
     "gotchas": [
-      "Note :- Keywords are case sensitive"
+      "Always be aware of scope, type constraints, and compiler rules in this area."
     ],
     "syntax": "public class HelloWorld {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Hello World\");\r\n    }\r\n\r\n}",
     "badges": [
@@ -7177,15 +7183,18 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 2: Primitive Types": {
     "takeaways": [
-      "The string is a datatype in Java. It's not a primitive type, but a Class.",
-      "A String is a sequence of characters. String can contain large number of characters.",
-      "A char contains a single character only(regular character or Unicode character)",
-      "+(plus) operator is used to concatenate string literals",
-      "Strings in Java are immutable, which means a String cannot be changed after it is created. Instead, a new String object is created.",
-      "If we append another data type to String, the entire thing is still configured and set up as a String."
+      "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+      "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
+      "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").",
+      "String immutability: once a String object is created, its value CANNOT be changed.",
+      "When you \"modify\" a String (e.g., add to it), Java actually creates a brand NEW String object in memory.",
+      "The original String object is discarded — it becomes eligible for garbage collection."
     ],
     "gotchas": [
-      "case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3) case 3: -- j is declared here, accessible from this point in the switch block default: -- can access i (case 1) and j (case 3) since both are declared before this block"
+      "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
+      "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.",
+      "Type     | Width  | Range / Notes boolean  | 1 bit  | Only two values: true or false byte     | 8 bits | -128 to 127 short    | 16 bits| -32,768 to 32,767 char     | 16 bits| A single Unicode character — written in single quotes: 'A' int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
+      "Overflow and Underflow: If you exceed the maximum value of a type, it wraps around (overflow)."
     ],
     "syntax": "public class StringExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String myString = \"This is a string\";\r\n        System.out.println(\"MyString is equal to \" + myString);\r\n        myString = myString  + \", and this is more.\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n        myString = myString + \" \\u00A9 2022\";\r\n        System.out.println(\"myString is equal to \" + myString);",
     "badges": [
@@ -7212,13 +7221,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 5: Statements And Indentations": {
     "takeaways": [
-      "Study the Chapter 5: Statements And Indentations concepts and their practical applications.",
-      "Review variable declarations, method signatures, and access modifiers."
+      "A Java statement is a complete unit of execution. Most statements end with a semicolon (;).",
+      "Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.",
+      "A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.",
+      "Example: String s = \"Hello\" + \" World\" + \"!\"; — this is one statement split across multiple lines. It's still valid.",
+      "Multiple statements CAN be placed on a single line, though it reduces readability.",
+      "Whitespace (spaces, tabs, blank lines) between tokens is completely ignored by the Java compiler. It is for human readability only."
     ],
     "gotchas": [
       "Always be aware of scope, type constraints, and compiler rules in this area."
     ],
-    "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n// Java Statements can be assignment expressions. Java statements don't have to be necessarily in one line. You can have multiple statements in one line\r\n\r\n// Whitespace is the space between expressions, operators and so forth. Whether we have 1 space or multiple space, java compiles the syntax.\r\n\r\n// Concept of indenting is to make it easy for us to understand logical flow of the code.\r\n\r\n// In Intellij Ide, navigate to code, and click on Reformat Code.",
+    "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +\r\n                \" another\" +",
     "badges": [
       "main"
     ]
@@ -7229,11 +7242,12 @@ const QUICK_REVISION_BANK = {
       "Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.",
       "Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true.",
       "Operand three - false. is the value to be assigned to the variable isEighteenOrOver if the condition above is false.",
-      "The if-then(else) statement tells the program to execute a certain section of code only if a particular tests evaluate to true also known as conditional logic.",
-      "Conditional logic uses specific statements in Java to allow us to check a condition and execute certain code based on whether that condition(the expression) is true or false."
+      "Conditional logic (also called control flow) lets your program make decisions: execute different code depending on whether a condition is true or false.",
+      "The if statement evaluates a boolean expression. If the expression is true, the code block runs. If false, it is skipped."
     ],
     "gotchas": [
-      "Always be aware of scope, type constraints, and compiler rules in this area."
+      "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.",
+      "Trying to use finalScore outside that if block would cause a compile error: \"Cannot resolve symbol 'finalScore'\"."
     ],
     "syntax": "public class IfExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        boolean isAlien = false;\r\n\r\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\r\n        if(isAlien == false){ // condition check\r\n            System.out.println(\"It is not an alien!\");\r\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.",
     "badges": [
@@ -7242,38 +7256,39 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 7: Methods In Java": {
     "takeaways": [
-      "We can create method once, and use the code time and time again.",
-      "Write a method named area with one double parameter named radius.",
-      "The method needs to return a double value that represents the area of a circle.",
-      "If the parameter radius is negative then return -1.0 to represent an invalid value.",
-      "Write another overloaded method with 2 parameters x and y (both doubles), where x and y represent the sides of a rectangle.",
-      "The method needs to return an area of a rectangle."
+      "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+      "Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.",
+      "Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }",
+      "The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.",
+      "If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.",
+      "Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns."
     ],
     "gotchas": [
-      "To avoid duplication of code, and reduce efforts, it is advisable to create method.",
       "NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
       "NOTE: Do not add a main method to your solution code!",
-      "NOTE: The shouldWakeUp method  needs to be defined as public static like we have been doing so far in the course."
+      "NOTE: The shouldWakeUp method  needs to be defined as public static like we have been doing so far in the course.",
+      "NOTE: Do not add a  main method to solution code."
     ],
     "syntax": "public class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);",
     "badges": [
+      "methodName",
       "main",
       "calculateScore",
       "area",
-      "shouldWakeUp",
-      "areEqualByThreeDecimalPlaces"
+      "shouldWakeUp"
     ]
   },
   "Chapter 8: Switch Statements": {
     "takeaways": [
-      "Both switch statement and if statement can achieve the same thing.",
-      "The if statement is a little more flexible.",
-      "Each time we do a test, we don't have to use the same test criteria.",
-      "Switch can be used with 4 primitive types :- byte, short, char and int.",
-      "Switch can also be used with string [should be using jdk version 7]",
-      "Write a method isLeapYear with a parameter of type int named year."
+      "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+      "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
+      "switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.",
+      "Structure: switch(variable) { case value1: code; break; case value2: code; break; default: code; }",
+      "The 'break' statement is critical — without it, execution \"falls through\" to the next case and continues running (even if that case's value doesn't match).",
+      "Fall-through can sometimes be useful (grouping multiple cases together), but is mostly a source of bugs if not intended."
     ],
     "gotchas": [
+      "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
       "This method needs to return the number of days in the month. Be careful about leap years they have 29 days in month 2 (February)."
     ],
@@ -7309,18 +7324,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 10: While And Do While Looping Concepts": {
     "takeaways": [
-      "Java has 2 types of while loops",
-      "While --> Continue executing code block until the loop expression becomes false",
-      "While loop checks the condition at the start, before executing the block",
-      "Do While --> Executes the code block once, then continue executing until the loop condition becomes false",
-      "In while loop, the initialisation of the variable happens outside the while block",
-      "In while loop, the iteration happens inside the while block"
+      "WHILE LOOPS",
+      "The while loop repeatedly executes its body as long as a condition remains true.",
+      "Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.",
+      "You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body.",
+      "Key difference from for loop:",
+      "- for loop: initialisation, condition, and update are all in one line — ideal when you know the count upfront."
     ],
     "gotchas": [
-      "Point to note :- When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
-      "So, be careful with conditions because it's very easy to end up with an endless loop",
-      "When using loops, you want to carefully examine the conditions for terminating or continuing a loop. Check for endless or infinite loops.",
-      "So, be careful with conditions because it's very easy to end up with an endless loop."
+      "IMPORTANT: Always check your loop condition carefully.",
+      "} while (condition);  // NOTE: semicolon required after the closing parenthesis!",
+      "The semicolon after while(condition); is MANDATORY — forgetting it is a syntax error."
     ],
     "syntax": "public class WhileLoops {\r\n\r\n    /* while loop simply has expression\r\n\r\n    While loop code format :-\r\n\r\n    while(expression)  {\r\n    // block of statements\r\n\r\n    } */",
     "badges": [
@@ -7358,10 +7372,10 @@ const QUICK_REVISION_BANK = {
       "Command Line Arguments | This is calling the Java program and specifying data in the call"
     ],
     "gotchas": [
+      "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
       "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
       "NOTE: Be mindful of spaces in the printed message.",
-      "NOTE: Be mindful of users who may type an invalid input right away (see example above).",
-      "NOTE: The method inputThenPrintSumAndAverage should be defined as public static like we have been doing so far in the course."
+      "NOTE: Be mindful of users who may type an invalid input right away (see example above)."
     ],
     "syntax": "public class ParsingValuesReadingInput {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String currentYear = \"2024\";\r\n\r\n        String userDateOfBirth = \"1999\";\r\n\r\n        // System.out.println(\"Age = \" + (currentYear - userDateOfBirth));",
     "badges": [
@@ -7375,16 +7389,18 @@ const QUICK_REVISION_BANK = {
   "Chapter 13: Exception Handling": {
     "takeaways": [
       "An exception is an abnormal condition that disrupts the normal flow of the program.",
+      "Exceptions can occur due to invalid input, null references, division by zero, file not found, etc.",
       "Catching an exception",
-      "This is done with the try statement code block",
-      "The try statement has 2 code blocks.",
-      "The first is declared directly after the try keyword, and this code block end, and is followed by declaration of the catch keyword",
-      "The catch keyword includes the declaration of variables, in parentheses, and then has its own code block."
+      "An exception is caught by wrapping the risky code inside a try-catch block.",
+      "The code that might throw an exception goes inside the 'try' block.",
+      "The try statement has 2 code blocks."
     ],
     "gotchas": [
-      "An exception is caught first by creating a code block around the code that gets the error."
+      "An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution.",
+      "Java uses try-catch blocks to handle exceptions gracefully, keeping the program running even when errors occur.",
+      "Useful methods on the exception object: e.getMessage() -> the error message, e.printStackTrace() -> full call stack."
     ],
-    "syntax": "public class ExceptionHandlingInJava {\r\n    public static void main(String[] args) {\r\n\r\n        try{ // After try keyword, the code block starts\r\n            // statements that might give errors\r\n        } // The code block end here\r\n        catch (Exception e){  // After the end of first code block, it is followed by keyword \"catch\" and parentheses, where a declaration is required.\r\n                              // The declaration includes the type of the exception and a variable name.\r\n                              // The second code block inside catch contains code to handle the exception\r\n        }",
+    "syntax": "public class ExceptionHandlingInJava {\r\n    public static void main(String[] args) {\r\n\r\n        try{ // The try block wraps any code that might throw an exception at runtime.\r\n            // Place only the risky code here — keep try blocks as small as possible.\r\n        } // The try block ends here; the catch block immediately follows.\r\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\r\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\r\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\r\n        }",
     "badges": [
       "main"
     ]
@@ -7399,10 +7415,10 @@ const QUICK_REVISION_BANK = {
       "Method named getY without any parameters, it needs to return the value of y field."
     ],
     "gotchas": [
+      "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
+      "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
       "NOTE: All methods should be defined as public NOT public static.",
-      "NOTE: In total, you have to write 8 methods.",
-      "NOTE: Do not add the main method to the solution code.",
-      "NOTE: All methods should be defined as public NOT public static."
+      "NOTE: In total, you have to write 8 methods."
     ],
     "syntax": "public class PointClassDistanceCalculation {\r\n\r\n    private int x;\r\n\r\n    private int y;\r\n\r\n    public PointClassDistanceCalculation(){\r\n\r\n    }",
     "badges": [

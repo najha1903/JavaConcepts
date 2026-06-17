@@ -1,5 +1,8 @@
-package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
-
+﻿package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
+// CODING CHALLENGE — For Loop Accumulator Pattern
+// This challenge practices: for loops, the modulus operator (%), accumulating a running sum, and breaking early.
+// The modulus operator: if i % 3 == 0, then i is divisible by 3 with no remainder.
+// Combined condition: (i % 3 == 0) && (i % 5 == 0) means the number must be divisible by BOTH 3 and 5 (i.e., divisible by 15).
 /* * This is the sum 3 and 5 challenge. So the challenge is to create a for statement,
 
     using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers,

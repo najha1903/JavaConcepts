@@ -1,5 +1,12 @@
-package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
-
+﻿package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
+// A CLASS is the most fundamental building block of Object-Oriented Programming (OOP) in Java.
+// A class is a blueprint or template that defines: (1) what data (fields/attributes) an object will hold, and (2) what behaviour (methods) it will have.
+// Think of a class like a blank form template — it defines what fields exist. An OBJECT is a filled-in copy of that form.
+// Creating an object from a class is called instantiation. Each object is an instance of its class.
+// A class can describe a real-world concept: a Car class has fields like colour, make, model; a Person class has name, age, etc.
+// Objects are created using the 'new' keyword: ClassName obj = new ClassName();
+// Each object has its own copy of the class's instance fields, so different objects can have different values.
+// There is no limit on how many objects you can create from a single class.
 /*
 *   A class can be described as :-
 *

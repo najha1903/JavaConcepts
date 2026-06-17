@@ -1,14 +1,14 @@
-package Chapter_5_Statements_And_Indentations;
-
+﻿package Chapter_5_Statements_And_Indentations;
+// A Java statement is a complete unit of execution. Most statements end with a semicolon (;).
+// Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println("hi");), and more.
+// A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.
+// Example: String s = "Hello" + " World" + "!"; — this is one statement split across multiple lines. It's still valid.
+// Multiple statements CAN be placed on a single line, though it reduces readability.
+// Whitespace (spaces, tabs, blank lines) between tokens is completely ignored by the Java compiler. It is for human readability only.
+// Indentation is not required by Java — code will compile and run with any (or no) indentation. BUT proper indentation is essential for readability and shows the logical nesting of code blocks.
+// In IntelliJ IDEA: Code -> Reformat Code (Ctrl+Alt+L) will auto-indent and format your code.
+// Best practice: one statement per line, consistent indentation (usually 4 spaces or 1 tab per level).
 public class StatementsWhiteSpaceAndIndentation {
-
-// Java Statements can be assignment expressions. Java statements don't have to be necessarily in one line. You can have multiple statements in one line
-
-// Whitespace is the space between expressions, operators and so forth. Whether we have 1 space or multiple space, java compiles the syntax.
-
-// Concept of indenting is to make it easy for us to understand logical flow of the code.
-
-// In Intellij Ide, navigate to code, and click on Reformat Code.
 
     public static void main(String[] args) {
 

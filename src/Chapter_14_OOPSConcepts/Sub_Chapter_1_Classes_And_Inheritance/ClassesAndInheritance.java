@@ -1,5 +1,10 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
+// Object-Oriented Programming (OOP) is a programming paradigm that models real-world entities as software objects.
+// In OOP, everything revolves around CLASSES (blueprints) and OBJECTS (instances of those blueprints).
+// OOP is built on four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.
+// A class defines FIELDS (data/state) and METHODS (behaviour). Together these are called class members.
+// A static field has one copy shared by all instances. An instance field has one copy per object.
+// A static method cannot use instance data. An instance method can use both static and instance data.
 /*
 *  Object-oriented programming is a way to model real world objects as software objects which contain both data and code
 *

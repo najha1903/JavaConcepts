@@ -1,5 +1,12 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
+// This is the superclass (parent class) of the Animal inheritance hierarchy.
+// Inheritance allows a child class to reuse (inherit) fields and methods from a parent class, adding or customising as needed.
+// Method Overriding: a subclass can provide its own implementation of a method defined in the superclass.
+// The method signature (name + parameter types) must match exactly for overriding to work.
+// Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.
+// Polymorphism ("many forms"): an Animal reference can point to a Dog or Fish object. When you call animal.makeNoise(), Java calls the Dog's or Fish's version — not Animal's. This is runtime (dynamic) dispatch.
+// Three things an overriding method can do: (1) completely replace the parent's behaviour, (2) call the parent's method and do nothing else (redundant), or (3) call the parent's method AND add extra logic (extension).
+// The super.methodName() syntax calls the PARENT class's version of the method from within the overriding method.
 /*
 * This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.
 *

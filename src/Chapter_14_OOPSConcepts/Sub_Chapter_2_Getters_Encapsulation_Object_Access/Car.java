@@ -1,5 +1,14 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Access;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Access;
+// Encapsulation is one of the four pillars of OOP. It means hiding the internal state of an object and only allowing access through controlled methods (getters and setters).
+// All instance fields in this class are declared 'private' — they cannot be accessed directly from outside the class.
+// Getters and setters provide controlled access: a getter READS a field value; a setter WRITES (updates) a field value.
+// Naming convention: getter = getFieldName() or isFieldName() for booleans. Setter = setFieldName(value).
+// Setters can VALIDATE data before assigning it. Example: setMake() only accepts "holden", "porsche", or "tesla" — anything else becomes "Unsupported".
+// This is the power of encapsulation — the Car class enforces its own rules about valid data. Outside code cannot bypass these rules.
+// The 'this' keyword inside a method or constructor refers to the CURRENT object (the instance the method is being called on).
+// 'this.make = make' — the left side is the instance field; the right side is the parameter. Without 'this.', both sides refer to the local parameter (self-assignment, no effect).
+// 'null' is a special keyword meaning "no object". A reference variable set to null points to nothing. Calling any method on null causes a NullPointerException at runtime.
+// Default field values: Java auto-assigns defaults when a field is not explicitly initialised. Strings -> null, int -> 0, boolean -> false, double -> 0.0.
 /*
 *
 

@@ -1,5 +1,13 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_1_ConstructorConcept;
-
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_1_ConstructorConcept;
+// A constructor is a special method used to initialise a new object. It runs ONCE when the object is created with 'new'.
+// Constructors have the SAME name as the class and NO return type (not even void).
+// If you don't define any constructors, Java provides a default no-args constructor implicitly.
+// If you define ANY constructor explicitly, Java does NOT provide the default constructor — you must define it yourself if needed.
+// Constructor overloading: you can define multiple constructors with different parameter lists — Java picks the right one based on arguments passed.
+// Constructor chaining: one constructor calls another using 'this(args...)'. The this() call MUST be the FIRST statement in the constructor.
+// A class can have both 'this()' chaining (calls another constructor in same class) and 'super()' chaining (calls parent constructor), but never BOTH in the same constructor.
+// Best practice: do all initialisation in ONE "master" constructor and have other constructors chain to it using this(). This avoids duplicating initialisation code.
+// Best practice: don't call setter methods from constructors — assign field values directly to guarantee correctness.
 /*
 * A constructor is used in the creation of an object.
 

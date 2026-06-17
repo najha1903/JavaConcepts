@@ -1,6 +1,12 @@
 ﻿package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects;
-
-
+// A POJO (Plain Old Java Object) is a simple class whose primary purpose is to hold data.
+// POJOs are the workhorses of Java data modelling — databases, APIs, and frameworks use them extensively.
+// A POJO typically has: private fields, a constructor, getters, setters, and often a toString() method.
+// The toString() method is overridden to return a human-readable representation of the object's state — useful for debugging and logging.
+// The @Override annotation tells the compiler this method intentionally overrides a parent class method. The compiler checks the signature matches.
+// Annotations (@Override, @SuppressWarnings, etc.) are metadata — they provide information to the compiler or tools. They do not change runtime behaviour.
+// POJOs are sometimes called: JavaBeans (with stricter rules), Entity (matching a database table), or DTO (Data Transfer Object for passing data between layers).
+// Compare POJO with Record (Java 16+): POJO is mutable (you can change its fields via setters). A Record is immutable (no setters, fields are final).
 /*
    POJO CONCEPTS
 

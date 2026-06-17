@@ -1,5 +1,12 @@
-package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_Field_On_Classes;
-
+﻿package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_Field_On_Classes;
+// Java classes have two types of fields (variables declared at the class level, outside any method):
+// STATIC FIELDS: declared with 'static'. There is exactly ONE copy in memory, shared by ALL objects of that class. Accessed via ClassName.fieldName.
+// INSTANCE FIELDS: declared without 'static'. Each object gets its OWN separate copy. Accessed via objectVariable.fieldName.
+// The same distinction applies to methods: static methods belong to the class; instance methods belong to individual objects.
+// Static field example: Integer.MAX_VALUE — you access this without creating an Integer object.
+// Instance field example: String greet = "hello"; greet.toUpperCase() — you call toUpperCase() on the specific greet object.
+// Rule: a static method CANNOT directly access instance (non-static) fields or call instance methods — because static methods run without an object, so there is no 'this' to refer to.
+// Instance methods CAN access both static and instance fields/methods freely.
 /*
 *   There are 2 ways to create fields on classes.
 *

@@ -1,34 +1,42 @@
-package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
-
+﻿package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
 /*
-Java has 2 types of while loops
+  WHILE LOOPS
 
-While --> Continue executing code block until the loop expression becomes false
+  The while loop repeatedly executes its body as long as a condition remains true.
+  Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.
+  You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body.
 
-While loop checks the condition at the start, before executing the block
+  Syntax:
+    while (condition) {
+        // body
+        // must update loop variable here, or you get an infinite loop!
+    }
 
-Do While --> Executes the code block once, then continue executing until the loop condition becomes false
+  Key difference from for loop:
+  - for loop: initialisation, condition, and update are all in one line — ideal when you know the count upfront.
+  - while loop: only the condition is in the declaration — ideal when you don't know upfront how many times to loop.
 
-In while loop, the initialisation of the variable happens outside the while block
+  EXAMPLE 1 — Basic counting with while:
+    int j = 1;           // initialisation happens OUTSIDE the while
+    while (j <= 5) {     // condition
+        System.out.println(j);
+        j++;             // update happens INSIDE the while
+    }
 
-In while loop, the iteration happens inside the while block
+  EXAMPLE 2 — while(true) with break (common pattern for "loop until done"):
+    while (true) {       // infinite loop — will loop forever unless break is used
+        if (j > 5) {
+            break;       // exits the loop when j exceeds 5
+        }
+    }
 
-Point to note :- When using loops, you want to carefully examine the conditions
+  CONTINUE and BREAK:
+  - continue: skips the REMAINING code in the current iteration and starts the next iteration immediately.
+  - break: exits the loop entirely at the point it is executed. No further iterations run.
 
-for terminating or continuing a loop. Check for endless or infinite loops.
-
-Check for conditions where a loop will never execute.
-
-So, be careful with conditions because it's very easy to end up with an endless loop
-
-Continue and Break
-
- The continue and break statements both interrupt normal loop processing.
-
- The continue statement starts a new iteration but continues to iterate through the loop.
-
- The break statement exits the loop at the point it's executed, and no longer completes any code in the loop, and won't continue iterating any longer.
-
+  IMPORTANT: Always check your loop condition carefully.
+  - An infinite loop (condition never becomes false, no break) will freeze or crash your program.
+  - A never-executing loop (condition is false from the start) will silently skip all the loop code.
 */
 
 public class WhileLoops {
@@ -84,10 +92,9 @@ Unlike the for loop, there is no place for the declaration of a temporary variab
 
     }
 
-// while statement with continue and break
+// while statement with continue and break: 'continue' skips to the next iteration, 'break' exits the loop entirely.
 
 
 
-}
 
 
