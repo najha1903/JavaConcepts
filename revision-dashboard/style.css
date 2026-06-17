@@ -2295,3 +2295,86 @@ h1, h2, h3, h4, .logo span {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ==========================================================================
+   Tag / Label System for Quiz Questions
+   ========================================================================== */
+.quiz-tag-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 16px 0;
+}
+.tag-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tag-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-color, #333);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tag-pill:hover { border-color: var(--accent-blue, #4fc3f7); color: var(--accent-blue, #4fc3f7); }
+.tag-pill.active { background: var(--accent-blue, #4fc3f7); border-color: var(--accent-blue, #4fc3f7); color: #000; font-weight: 600; }
+.tag-pill.ocjp-pill { border-color: #ff9800; color: #ff9800; }
+.tag-pill.ocjp-pill.active { background: #ff9800; color: #000; }
+
+.question-tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 12px 0; }
+.question-tag { padding: 2px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; }
+.tag-ocjp { background: rgba(255, 152, 0, 0.15); color: #ff9800; border: 1px solid rgba(255, 152, 0, 0.3); }
+.tag-interview { background: rgba(103, 58, 183, 0.15); color: #ce93d8; border: 1px solid rgba(103, 58, 183, 0.3); }
+.tag-tricky { background: rgba(244, 67, 54, 0.15); color: #ef9a9a; border: 1px solid rgba(244, 67, 54, 0.3); }
+.tag-concept { background: rgba(33, 150, 243, 0.15); color: #90caf9; border: 1px solid rgba(33, 150, 243, 0.3); }
+.tag-predict { background: rgba(76, 175, 80, 0.15); color: #a5d6a7; border: 1px solid rgba(76, 175, 80, 0.3); }
+.tag-codefill { background: rgba(0, 188, 212, 0.15); color: #80deea; border: 1px solid rgba(0, 188, 212, 0.3); }
+.tag-deep { background: rgba(156, 39, 176, 0.15); color: #ce93d8; border: 1px solid rgba(156, 39, 176, 0.3); }
+.tag-coding { background: rgba(33, 150, 243, 0.15); color: #90caf9; border: 1px solid rgba(33, 150, 243, 0.3); }
+.tag-oop { background: rgba(0, 150, 136, 0.15); color: #80cbc4; border: 1px solid rgba(0, 150, 136, 0.3); }
+.tag-methods { background: rgba(255, 193, 7, 0.15); color: #ffe082; border: 1px solid rgba(255, 193, 7, 0.3); }
+.tag-loops { background: rgba(76, 175, 80, 0.15); color: #a5d6a7; border: 1px solid rgba(76, 175, 80, 0.3); }
+.tag-exceptions { background: rgba(244, 67, 54, 0.15); color: #ef9a9a; border: 1px solid rgba(244, 67, 54, 0.3); }
+.tag-strings { background: rgba(0, 188, 212, 0.15); color: #80deea; border: 1px solid rgba(0, 188, 212, 0.3); }
+
+/* ==========================================================================
+   Practice Lab Tab Bar
+   ========================================================================== */
+.practice-tab-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border-color, #333);
+  padding-bottom: 0;
+  grid-column: 1 / -1;
+}
+.practice-tab {
+  padding: 8px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+.practice-tab:hover { color: var(--text-primary); }
+.practice-tab.active { color: var(--accent-blue, #4fc3f7); border-bottom-color: var(--accent-blue, #4fc3f7); font-weight: 700; }
+
+/* ==========================================================================
+   Deep Challenge Styles
+   ========================================================================== */
+.deep-challenge-body { line-height: 1.7; margin: 12px 0; font-size: 0.88rem; }
+.deep-hints, .deep-testcases { margin: 12px 0; padding: 12px 16px; border-radius: 6px; }
+.deep-hints { background: rgba(255, 193, 7, 0.07); border-left: 3px solid #ffc107; }
+.deep-testcases { background: rgba(76, 175, 80, 0.07); border-left: 3px solid #4caf50; }
+.deep-hints ul, .deep-testcases ul { margin: 6px 0 0 0; padding-left: 18px; }
+.deep-hints li, .deep-testcases li { font-size: 0.82rem; line-height: 1.6; margin-bottom: 3px; }
+.deep-self-check { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border-color, #333); }
+.deep-challenge-header { margin-bottom: 8px; }

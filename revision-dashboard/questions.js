@@ -33,7 +33,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -53,7 +54,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for HelloWorld.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for HelloWorld.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -66,7 +68,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for HelloWorld.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for HelloWorld.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -79,7 +84,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Java Introduction - Hello World"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -94,7 +102,10 @@ const QUESTIONS_BANK = {
         "This \"write once, run anywhere\" principle is one of Java's greatest strengths.",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -104,13 +115,14 @@ const QUESTIONS_BANK = {
       "topic": "Hello World",
       "question": "Which statement best describes Hello World?",
       "options": [
+        "void",
         "Java is a compiled and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform.",
-        "null",
         "Object",
-        "void"
+        "null"
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Hello World."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Hello World.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -120,13 +132,14 @@ const QUESTIONS_BANK = {
       "topic": "Hello World",
       "question": "Complete the blank: \"Java is a ___ and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform.\"",
       "options": [
-        "compiled",
+        "Integer",
         "String",
         "Object",
-        "Integer"
+        "compiled"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'compiled', from the notes for Hello World."
+      "answer": 3,
+      "explanation": "The missing word is 'compiled', from the notes for Hello World.",
+      "tags": []
     }
   ],
   "Chapter 2: Primitive Types": [
@@ -144,7 +157,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -164,7 +178,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for StringExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for StringExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -177,7 +192,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for StringExample.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for StringExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -190,7 +208,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "MyString is equal to "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -205,13 +226,19 @@ const QUESTIONS_BANK = {
         "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
         "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "interview",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
+      "tags": [
+        "interview"
+      ],
       "question": "What does it mean that Strings are immutable in Java?",
       "modelAnswer": "Once a String is created, its value cannot be changed. Any modification creates a new String object. The original String is discarded and becomes eligible for garbage collection.",
       "keyPoints": [
@@ -225,6 +252,9 @@ const QUESTIONS_BANK = {
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
+      "tags": [
+        "interview"
+      ],
       "question": "What is the difference between a char and a String in Java?",
       "modelAnswer": "char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\").",
       "keyPoints": [
@@ -237,6 +267,9 @@ const QUESTIONS_BANK = {
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
+      "tags": [
+        "interview"
+      ],
       "question": "When should you use StringBuilder instead of String concatenation?",
       "modelAnswer": "When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.",
       "keyPoints": [
@@ -252,13 +285,14 @@ const QUESTIONS_BANK = {
       "topic": "String Example",
       "question": "Which statement best describes String Example?",
       "options": [
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
-        "LOCAL VARIABLE SCOPE EXAMPLES",
-        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier."
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for String Example."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for String Example.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -268,18 +302,19 @@ const QUESTIONS_BANK = {
       "topic": "String Example",
       "question": "Which of the following are TRUE about String Example? Select all that apply.",
       "options": [
-        "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "LOCAL VARIABLE SCOPE EXAMPLES",
-        "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\")."
+        "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
-        0,
         1,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for String Example."
+      "explanation": "The true statements are taken directly from the notes for String Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -289,13 +324,14 @@ const QUESTIONS_BANK = {
       "topic": "String Example",
       "question": "Complete the blank: \"___ is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.\"",
       "options": [
-        "String",
-        "LOCAL",
+        "SCOPE",
         "Variables",
-        "SCOPE"
+        "LOCAL",
+        "String"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'String', from the notes for String Example."
+      "answer": 3,
+      "explanation": "The missing word is 'String', from the notes for String Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -307,11 +343,12 @@ const QUESTIONS_BANK = {
       "options": [
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
-        "LOCAL VARIABLE SCOPE EXAMPLES"
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for String Example."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for String Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -327,7 +364,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'static'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'static'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -347,7 +385,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for LocalVariablesAndScope.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for LocalVariablesAndScope.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -360,7 +399,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "static"
       ],
-      "explanation": "The missing keyword is 'static', taken from the parsed source for LocalVariablesAndScope.java."
+      "explanation": "The missing keyword is 'static', taken from the parsed source for LocalVariablesAndScope.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -373,7 +415,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Primitive Types - Local Variables And Scope"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -388,7 +433,10 @@ const QUESTIONS_BANK = {
         "--- FOR LOOP SCOPE ---",
         "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -398,13 +446,14 @@ const QUESTIONS_BANK = {
       "topic": "Local Variables And Scope",
       "question": "Which statement best describes Local Variables And Scope?",
       "options": [
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Local Variables And Scope."
+      "explanation": "This is drawn directly from the notes for Local Variables And Scope.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -414,18 +463,19 @@ const QUESTIONS_BANK = {
       "topic": "Local Variables And Scope",
       "question": "Which of the following are TRUE about Local Variables And Scope? Select all that apply.",
       "options": [
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
-        "Variables declared inside the for loop init section are local to the loop only.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "--- FOR LOOP SCOPE ---",
-        "LOCAL VARIABLE SCOPE EXAMPLES"
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "Variables declared inside the for loop init section are local to the loop only.",
+        "--- FOR LOOP SCOPE ---"
       ],
       "answer": [
-        1,
+        2,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Local Variables And Scope."
+      "explanation": "The true statements are taken directly from the notes for Local Variables And Scope.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -437,11 +487,12 @@ const QUESTIONS_BANK = {
       "options": [
         "sequence",
         "LOCAL",
-        "Contrast",
-        "String"
+        "String",
+        "Contrast"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'LOCAL', from the notes for Local Variables And Scope."
+      "explanation": "The missing word is 'LOCAL', from the notes for Local Variables And Scope.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -457,7 +508,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -477,7 +529,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Variables.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Variables.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -490,7 +543,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Variables.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Variables.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -503,7 +559,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Primitive Types - Variables"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -518,7 +577,10 @@ const QUESTIONS_BANK = {
         "As the name suggests, a variable's value can vary — it can be updated or reassigned after it is first set.",
         "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -529,12 +591,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Variables?",
       "options": [
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "LOCAL VARIABLE SCOPE EXAMPLES",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "LOCAL VARIABLE SCOPE EXAMPLES",
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Variables."
+      "explanation": "This is drawn directly from the notes for Variables.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -544,18 +607,19 @@ const QUESTIONS_BANK = {
       "topic": "Variables",
       "question": "Which of the following are TRUE about Variables? Select all that apply.",
       "options": [
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
-        "As the name suggests, a variable's value can vary — it can be updated or reassigned after it is first set.",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "LOCAL VARIABLE SCOPE EXAMPLES",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "To declare a variable in Java, you must specify: (1) the data type, (2) a name (identifier), and optionally (3) an initial value.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
+        "As the name suggests, a variable's value can vary — it can be updated or reassigned after it is first set."
       ],
       "answer": [
-        0,
-        1,
-        3
+        2,
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Variables."
+      "explanation": "The true statements are taken directly from the notes for Variables.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -566,12 +630,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"A ___ is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.\"",
       "options": [
         "sequence",
-        "String",
         "variable",
-        "Contrast"
+        "Contrast",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'variable', from the notes for Variables."
+      "answer": 1,
+      "explanation": "The missing word is 'variable', from the notes for Variables.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -587,7 +652,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -607,7 +673,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for KeyWordsAndExpressionsInJava.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for KeyWordsAndExpressionsInJava.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -620,7 +687,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for KeyWordsAndExpressionsInJava.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for KeyWordsAndExpressionsInJava.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -633,7 +703,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "You got the high score!"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -648,7 +721,10 @@ const QUESTIONS_BANK = {
         "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.",
         "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -658,13 +734,14 @@ const QUESTIONS_BANK = {
       "topic": "Key Words And Expressions In Java",
       "question": "Which statement best describes Key Words And Expressions In Java?",
       "options": [
-        "LOCAL VARIABLE SCOPE EXAMPLES",
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Key Words And Expressions In Java."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Key Words And Expressions In Java.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -675,17 +752,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Key Words And Expressions In Java? Select all that apply.",
       "options": [
         "An expression in Java is any combination of variables, literals, operators, and method calls that evaluates to a single value.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "LOCAL VARIABLE SCOPE EXAMPLES",
         "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.",
-        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier."
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
+        "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
       "answer": [
         0,
-        3,
-        4
+        1,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Key Words And Expressions In Java."
+      "explanation": "The true statements are taken directly from the notes for Key Words And Expressions In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -695,13 +773,14 @@ const QUESTIONS_BANK = {
       "topic": "Key Words And Expressions In Java",
       "question": "Complete the blank: \"___ are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.\"",
       "options": [
-        "Contrast",
-        "String",
         "Keywords",
-        "sequence"
+        "sequence",
+        "String",
+        "Contrast"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Keywords', from the notes for Key Words And Expressions In Java."
+      "answer": 0,
+      "explanation": "The missing word is 'Keywords', from the notes for Key Words And Expressions In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -711,13 +790,14 @@ const QUESTIONS_BANK = {
       "topic": "Key Words And Expressions In Java",
       "question": "What is an important consideration when working with Key Words And Expressions In Java?",
       "options": [
-        "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "LOCAL VARIABLE SCOPE EXAMPLES",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.",
+        "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
-      "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for Key Words And Expressions In Java."
+      "answer": 2,
+      "explanation": "This is a key gotcha or note taken directly from the source for Key Words And Expressions In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -733,7 +813,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -753,7 +834,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PrimitiveDataTypes.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PrimitiveDataTypes.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -766,7 +848,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for PrimitiveDataTypes.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for PrimitiveDataTypes.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -779,7 +864,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "The max Value of the integer is = "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -794,7 +882,10 @@ const QUESTIONS_BANK = {
         "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.",
         "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -805,12 +896,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Primitive Data Types?",
       "options": [
         "LOCAL VARIABLE SCOPE EXAMPLES",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for Primitive Data Types."
+      "explanation": "This is drawn directly from the notes for Primitive Data Types.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -821,17 +913,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Primitive Data Types? Select all that apply.",
       "options": [
         "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
-        "The 8 Primitive Types:",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "LOCAL VARIABLE SCOPE EXAMPLES",
+        "The 8 Primitive Types:",
         "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient."
       ],
       "answer": [
         0,
-        1,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Primitive Data Types."
+      "explanation": "The true statements are taken directly from the notes for Primitive Data Types.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -841,13 +934,14 @@ const QUESTIONS_BANK = {
       "topic": "Primitive Data Types",
       "question": "Complete the blank: \"Java has ___ 8 primitive data types — these are the most fundamental building blocks for storing data.\"",
       "options": [
-        "exactly",
-        "Contrast",
         "sequence",
-        "String"
+        "String",
+        "Contrast",
+        "exactly"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'exactly', from the notes for Primitive Data Types."
+      "answer": 3,
+      "explanation": "The missing word is 'exactly', from the notes for Primitive Data Types.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -858,12 +952,13 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Primitive Data Types?",
       "options": [
         "Type     | Width  | Range / Notes boolean  | 1 bit  | Only two values: true or false byte     | 8 bits | -128 to 127 short    | 16 bits| -32,768 to 32,767 char     | 16 bits| A single Unicode character — written in single quotes: 'A' int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "LOCAL VARIABLE SCOPE EXAMPLES"
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
       ],
       "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for Primitive Data Types."
+      "explanation": "This is a key gotcha or note taken directly from the source for Primitive Data Types.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-string-pool-1",
@@ -876,7 +971,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "true"
       ],
-      "explanation": "String literals are stored in the String Pool. \"hello\" is the same pooled reference, so == returns true. This is a classic OCJP trap — always use .equals() for value comparison."
+      "explanation": "String literals are stored in the String Pool. \"hello\" is the same pooled reference, so == returns true. This is a classic OCJP trap — always use .equals() for value comparison.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-string-pool-2",
@@ -889,7 +989,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "false"
       ],
-      "explanation": "new String() always creates a new heap object. a and b point to different objects, so == compares references and returns false. Always use .equals() to compare String values."
+      "explanation": "new String() always creates a new heap object. a and b point to different objects, so == compares references and returns false. Always use .equals() to compare String values.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-string-concat-1",
@@ -902,7 +1007,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "Java"
       ],
-      "explanation": "Strings are immutable. concat() returns a NEW String but does not modify s. Since the return value is ignored, s still holds \"Java\". This is a top OCJP gotcha."
+      "explanation": "Strings are immutable. concat() returns a NEW String but does not modify s. Since the return value is ignored, s still holds \"Java\". This is a top OCJP gotcha.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-int-cast-1",
@@ -915,7 +1025,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "2.0"
       ],
-      "explanation": "x and 2 are both int — integer division gives 2 (truncated). Then 2 is widened to 2.0 when assigned to double. To get 2.5, you need (double)x / 2."
+      "explanation": "x and 2 are both int — integer division gives 2 (truncated). Then 2 is widened to 2.0 when assigned to double. To get 2.5, you need (double)x / 2.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     }
   ],
   "Chapter 3: Operators": [
@@ -933,7 +1048,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -953,7 +1069,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for OperatorsOperandsExpressions.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for OperatorsOperandsExpressions.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -966,7 +1083,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for OperatorsOperandsExpressions.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for OperatorsOperandsExpressions.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -979,7 +1099,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Operators - Operators Operands Expressions"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -994,7 +1117,10 @@ const QUESTIONS_BANK = {
         "1) Operator --> (+) plus operator",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -1004,13 +1130,14 @@ const QUESTIONS_BANK = {
       "topic": "Operators Operands Expressions",
       "question": "Which statement best describes Operators Operands Expressions?",
       "options": [
+        "Summary of Operators",
         "null",
         "OPERATOR CHALLENGE",
-        "Object",
-        "Summary of Operators"
+        "Object"
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Operators Operands Expressions."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Operators Operands Expressions.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1020,8 +1147,8 @@ const QUESTIONS_BANK = {
       "topic": "Operators Operands Expressions",
       "question": "Which of the following are TRUE about Operators Operands Expressions? Select all that apply.",
       "options": [
-        "For Numeric types --> Addition",
         "1) Operator --> (+) plus operator",
+        "For Numeric types --> Addition",
         "Summary of Operators",
         "OPERATOR CHALLENGE"
       ],
@@ -1030,7 +1157,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The true statements are taken directly from the notes for Operators Operands Expressions."
+      "explanation": "The true statements are taken directly from the notes for Operators Operands Expressions.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1040,13 +1168,14 @@ const QUESTIONS_BANK = {
       "topic": "Operators Operands Expressions",
       "question": "Complete the blank: \"___ of Operators\"",
       "options": [
-        "Create",
+        "OPERATOR",
         "Summary",
         "second",
-        "OPERATOR"
+        "Create"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'Summary', from the notes for Operators Operands Expressions."
+      "explanation": "The missing word is 'Summary', from the notes for Operators Operands Expressions.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1062,7 +1191,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1082,7 +1212,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for OperatorChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for OperatorChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -1095,7 +1226,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for OperatorChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for OperatorChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -1108,7 +1242,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Remainder check is :-  "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -1123,7 +1260,10 @@ const QUESTIONS_BANK = {
         "1. Create a double variable with a value of 20.00",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -1139,7 +1279,8 @@ const QUESTIONS_BANK = {
         "null"
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for Operator Challenge."
+      "explanation": "This is drawn directly from the notes for Operator Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1149,17 +1290,18 @@ const QUESTIONS_BANK = {
       "topic": "Operator Challenge",
       "question": "Which of the following are TRUE about Operator Challenge? Select all that apply.",
       "options": [
-        "1. Create a double variable with a value of 20.00",
         "Summary of Operators",
-        "OPERATOR CHALLENGE",
-        "2. Create a second variable of type double with the value 80.00"
+        "1. Create a double variable with a value of 20.00",
+        "2. Create a second variable of type double with the value 80.00",
+        "OPERATOR CHALLENGE"
       ],
       "answer": [
-        0,
+        1,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Operator Challenge."
+      "explanation": "The true statements are taken directly from the notes for Operator Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1169,13 +1311,14 @@ const QUESTIONS_BANK = {
       "topic": "Operator Challenge",
       "question": "Complete the blank: \"___ CHALLENGE\"",
       "options": [
-        "Numeric",
-        "OPERATOR",
         "Operator",
+        "OPERATOR",
+        "Numeric",
         "Summary"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'OPERATOR', from the notes for Operator Challenge."
+      "explanation": "The missing word is 'OPERATOR', from the notes for Operator Challenge.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-3-operators-prefix-postfix-1",
@@ -1188,7 +1331,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "12"
       ],
-      "explanation": "a++ uses a (5) then increments to 6. ++a increments a to 7 then uses 7. So b = 5 + 7 = 12. Post-increment vs pre-increment is a classic OCJP trap."
+      "explanation": "a++ uses a (5) then increments to 6. ++a increments a to 7 then uses 7. So b = 5 + 7 = 12. Post-increment vs pre-increment is a classic OCJP trap.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-3-operators-short-circuit-1",
@@ -1201,7 +1349,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "false"
       ],
-      "explanation": "Short-circuit evaluation: since (x != 0) is false, the right side (10/x) is never evaluated — no ArithmeticException. The result is false. This is a key OCJP concept."
+      "explanation": "Short-circuit evaluation: since (x != 0) is false, the right side (10/x) is never evaluated — no ArithmeticException. The result is false. This is a key OCJP concept.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     }
   ],
   "Chapter 5: Statements And Indentations": [
@@ -1219,7 +1372,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1239,7 +1393,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for StatementsWhiteSpaceAndIndentation.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for StatementsWhiteSpaceAndIndentation.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -1252,7 +1407,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for StatementsWhiteSpaceAndIndentation.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for StatementsWhiteSpaceAndIndentation.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -1265,7 +1423,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "hi"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -1280,7 +1441,10 @@ const QUESTIONS_BANK = {
         "Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -1292,11 +1456,12 @@ const QUESTIONS_BANK = {
       "options": [
         "void",
         "A Java statement is a complete unit of execution. Most statements end with a semicolon (;).",
-        "null",
-        "Object"
+        "Object",
+        "null"
       ],
       "answer": 1,
-      "explanation": "This is drawn directly from the notes for Statements White Space And Indentation."
+      "explanation": "This is drawn directly from the notes for Statements White Space And Indentation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1306,13 +1471,14 @@ const QUESTIONS_BANK = {
       "topic": "Statements White Space And Indentation",
       "question": "Complete the blank: \"A Java ___ is a complete unit of execution. Most statements end with a semicolon (;).\"",
       "options": [
-        "String",
         "Object",
         "statement",
-        "Integer"
+        "Integer",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'statement', from the notes for Statements White Space And Indentation."
+      "answer": 1,
+      "explanation": "The missing word is 'statement', from the notes for Statements White Space And Indentation.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-5-statements-and-indentations-switch-fallthrough-1",
@@ -1325,7 +1491,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "two\nthree\ndefault"
       ],
-      "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional."
+      "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     }
   ],
   "Chapter 6: If Else Statements": [
@@ -1343,7 +1514,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1363,7 +1535,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for IfExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for IfExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -1376,7 +1549,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "this"
       ],
-      "explanation": "The missing keyword is 'this', taken from the parsed source for IfExample.java."
+      "explanation": "The missing keyword is 'this', taken from the parsed source for IfExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -1389,7 +1565,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "It is not an alien!"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -1404,7 +1583,10 @@ const QUESTIONS_BANK = {
         "Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.",
         "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -1414,13 +1596,14 @@ const QUESTIONS_BANK = {
       "topic": "If Example",
       "question": "Which statement best describes If Example?",
       "options": [
+        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
         "Object",
-        "null",
         "Ternary Operator Example :-",
-        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch."
+        "null"
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for If Example."
+      "explanation": "This is drawn directly from the notes for If Example.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1440,7 +1623,8 @@ const QUESTIONS_BANK = {
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for If Example."
+      "explanation": "The true statements are taken directly from the notes for If Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1450,13 +1634,14 @@ const QUESTIONS_BANK = {
       "topic": "If Example",
       "question": "Complete the blank: \"___ Operator Example :-\"",
       "options": [
-        "Ternary",
-        "Structure",
         "ifelse",
-        "block"
+        "Structure",
+        "block",
+        "Ternary"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Ternary', from the notes for If Example."
+      "answer": 3,
+      "explanation": "The missing word is 'Ternary', from the notes for If Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1466,13 +1651,14 @@ const QUESTIONS_BANK = {
       "topic": "If Example",
       "question": "What is an important consideration when working with If Example?",
       "options": [
-        "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.",
         "Always initialize variables before use.",
         "Be careful with null references.",
-        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch."
+        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
+        "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if."
       ],
-      "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for If Example."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for If Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1488,7 +1674,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1508,7 +1695,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for CodeBlocksIfThenElse.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for CodeBlocksIfThenElse.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -1521,7 +1709,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for CodeBlocksIfThenElse.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for CodeBlocksIfThenElse.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -1534,7 +1725,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Your score was less than 5000 but greater than 1000"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -1549,7 +1743,10 @@ const QUESTIONS_BANK = {
         "Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }",
         "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -1559,13 +1756,14 @@ const QUESTIONS_BANK = {
       "topic": "Code Blocks If Then Else",
       "question": "Which statement best describes Code Blocks If Then Else?",
       "options": [
-        "null",
-        "Ternary Operator Example :-",
         "Object",
+        "Ternary Operator Example :-",
+        "null",
         "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch."
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Code Blocks If Then Else."
+      "explanation": "This is drawn directly from the notes for Code Blocks If Then Else.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1576,16 +1774,17 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Code Blocks If Then Else? Select all that apply.",
       "options": [
         "The 'else' block is the fallback — it runs only when ALL preceding conditions are false.",
+        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
         "Ternary Operator Example :-",
-        "Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }",
-        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch."
+        "Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }"
       ],
       "answer": [
         0,
-        2,
+        1,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Code Blocks If Then Else."
+      "explanation": "The true statements are taken directly from the notes for Code Blocks If Then Else.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1596,12 +1795,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___: if(condition1) { ... } else if(condition2) { ... } else { ... }\"",
       "options": [
         "value",
+        "Structure",
         "Ternary",
-        "Operand",
-        "Structure"
+        "Operand"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Structure', from the notes for Code Blocks If Then Else."
+      "answer": 1,
+      "explanation": "The missing word is 'Structure', from the notes for Code Blocks If Then Else.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-6-if-else-statements-switch-fallthrough-1",
@@ -1614,7 +1814,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "two\nthree\ndefault"
       ],
-      "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional."
+      "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     }
   ],
   "Chapter 7: Methods In Java": [
@@ -1632,7 +1837,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1652,7 +1858,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MethodsInJava.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MethodsInJava.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -1665,7 +1872,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodsInJava.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodsInJava.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -1678,7 +1888,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Your final score was "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -1693,7 +1906,10 @@ const QUESTIONS_BANK = {
         "Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -1703,13 +1919,14 @@ const QUESTIONS_BANK = {
       "topic": "Methods In Java",
       "question": "Which statement best describes Methods In Java?",
       "options": [
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
-        "Write a method named area with one double parameter named radius.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius.",
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Methods In Java."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Methods In Java.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1719,18 +1936,19 @@ const QUESTIONS_BANK = {
       "topic": "Methods In Java",
       "question": "Which of the following are TRUE about Methods In Java? Select all that apply.",
       "options": [
+        "Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }",
         "Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "Write a method named area with one double parameter named radius.",
-        "Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }"
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius."
       ],
       "answer": [
         0,
         1,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Methods In Java."
+      "explanation": "The true statements are taken directly from the notes for Methods In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1740,13 +1958,14 @@ const QUESTIONS_BANK = {
       "topic": "Methods In Java",
       "question": "Complete the blank: \"A ___ is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.\"",
       "options": [
-        "Write",
         "parameter",
+        "method",
         "needs",
-        "method"
+        "Write"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'method', from the notes for Methods In Java."
+      "answer": 1,
+      "explanation": "The missing word is 'method', from the notes for Methods In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1756,13 +1975,14 @@ const QUESTIONS_BANK = {
       "topic": "Methods In Java",
       "question": "In MethodsInJava.java, what does the method calculateScore() return?",
       "options": [
+        "void",
         "boolean",
         "String",
-        "void",
         "int"
       ],
       "answer": 3,
-      "explanation": "The method calculateScore() is declared with return type 'int' in MethodsInJava.java."
+      "explanation": "The method calculateScore() is declared with return type 'int' in MethodsInJava.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1778,7 +1998,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1798,7 +2019,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for AreaCalculatorCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for AreaCalculatorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -1811,7 +2033,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for AreaCalculatorCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for AreaCalculatorCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -1824,7 +2049,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Methods In Java - Area Calculator Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -1839,7 +2067,10 @@ const QUESTIONS_BANK = {
         "The method needs to return a double value that represents the area of a circle.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -1850,12 +2081,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Area Calculator Coding Challenge?",
       "options": [
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius.",
         "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
-        "Write a method named area with one double parameter named radius."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Area Calculator Coding Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Area Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1865,18 +2097,19 @@ const QUESTIONS_BANK = {
       "topic": "Area Calculator Coding Challenge",
       "question": "Which of the following are TRUE about Area Calculator Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method named area with one double parameter named radius.",
-        "If the parameter radius is negative then return -1.0 to represent an invalid value.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "The method needs to return a double value that represents the area of a circle."
+        "The method needs to return a double value that represents the area of a circle.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "If the parameter radius is negative then return -1.0 to represent an invalid value.",
+        "Write a method named area with one double parameter named radius."
       ],
       "answer": [
-        0,
         1,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Area Calculator Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Area Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1892,7 +2125,8 @@ const QUESTIONS_BANK = {
         "Methods"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'Write', from the notes for Area Calculator Coding Challenge."
+      "explanation": "The missing word is 'Write', from the notes for Area Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1902,13 +2136,14 @@ const QUESTIONS_BANK = {
       "topic": "Area Calculator Coding Challenge",
       "question": "What is an important consideration when working with Area Calculator Coding Challenge?",
       "options": [
-        "NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for Area Calculator Coding Challenge."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for Area Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1918,13 +2153,14 @@ const QUESTIONS_BANK = {
       "topic": "Area Calculator Coding Challenge",
       "question": "In AreaCalculatorCodingChallenge.java, what does the method area() return?",
       "options": [
-        "String",
-        "double",
         "void",
-        "int"
+        "int",
+        "String",
+        "double"
       ],
-      "answer": 1,
-      "explanation": "The method area() is declared with return type 'double' in AreaCalculatorCodingChallenge.java."
+      "answer": 3,
+      "explanation": "The method area() is declared with return type 'double' in AreaCalculatorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -1940,7 +2176,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -1960,7 +2197,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for BarkingDogCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for BarkingDogCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -1973,7 +2211,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for BarkingDogCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for BarkingDogCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -1986,7 +2227,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Methods In Java - Barking Dog Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -2001,7 +2245,10 @@ const QUESTIONS_BANK = {
         "Write a method shouldWakeUp that has 2 parameters.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -2011,13 +2258,14 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "Which statement best describes Barking Dog Coding Challenge?",
       "options": [
-        "Write a method named area with one double parameter named radius.",
         "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Barking Dog Coding Challenge."
+      "explanation": "This is drawn directly from the notes for Barking Dog Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2027,18 +2275,19 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "Which of the following are TRUE about Barking Dog Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method shouldWakeUp that has 2 parameters.",
         "Write a method named area with one double parameter named radius.",
-        "1st parameter should be of type boolean and be named barking it represents if our dog is currently barking.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "1st parameter should be of type boolean and be named barking it represents if our dog is currently barking.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method shouldWakeUp that has 2 parameters."
       ],
       "answer": [
-        0,
+        1,
         2,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Barking Dog Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Barking Dog Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2048,13 +2297,14 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "Complete the blank: \"We have a dog that ___ to bark.  We need to wake up if the dog is barking at night!\"",
       "options": [
-        "Method",
-        "likes",
         "method",
-        "Methods"
+        "Methods",
+        "likes",
+        "Method"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'likes', from the notes for Barking Dog Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'likes', from the notes for Barking Dog Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2066,11 +2316,12 @@ const QUESTIONS_BANK = {
       "options": [
         "NOTE: The shouldWakeUp method  needs to be defined as public static like we have been doing so far in the course.",
         "Write a method named area with one double parameter named radius.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double."
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
       "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for Barking Dog Coding Challenge."
+      "explanation": "This is a key gotcha or note taken directly from the source for Barking Dog Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2081,12 +2332,13 @@ const QUESTIONS_BANK = {
       "question": "In BarkingDogCodingChallenge.java, what does the method shouldWakeUp() return?",
       "options": [
         "void",
+        "int",
         "boolean",
-        "String",
-        "int"
+        "String"
       ],
-      "answer": 1,
-      "explanation": "The method shouldWakeUp() is declared with return type 'boolean' in BarkingDogCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method shouldWakeUp() is declared with return type 'boolean' in BarkingDogCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2102,7 +2354,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2122,7 +2375,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for DecimalComparatorCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for DecimalComparatorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -2135,7 +2389,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for DecimalComparatorCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for DecimalComparatorCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -2148,7 +2405,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Methods In Java - Decimal Comparator Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -2163,7 +2423,10 @@ const QUESTIONS_BANK = {
         "The method should return boolean and it needs to return true if two double numbers are the same up to three decimal places. Otherwise, return false.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -2174,12 +2437,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Decimal Comparator Coding Challenge?",
       "options": [
         "Write a method named area with one double parameter named radius.",
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Decimal Comparator Coding Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Decimal Comparator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2189,18 +2453,19 @@ const QUESTIONS_BANK = {
       "topic": "Decimal Comparator Coding Challenge",
       "question": "Which of the following are TRUE about Decimal Comparator Coding Challenge? Select all that apply.",
       "options": [
-        "EXAMPLES OF INPUT/OUTPUT:",
-        "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "The method should return boolean and it needs to return true if two double numbers are the same up to three decimal places. Otherwise, return false.",
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double."
+        "Write a method named area with one double parameter named radius.",
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
+        "EXAMPLES OF INPUT/OUTPUT:"
       ],
       "answer": [
-        0,
+        1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Decimal Comparator Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Decimal Comparator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2211,12 +2476,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ a method areEqualByThreeDecimalPlaces with two parameters of type double.\"",
       "options": [
         "Method",
-        "method",
         "Methods",
+        "method",
         "Write"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'Write', from the notes for Decimal Comparator Coding Challenge."
+      "explanation": "The missing word is 'Write', from the notes for Decimal Comparator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2226,13 +2492,14 @@ const QUESTIONS_BANK = {
       "topic": "Decimal Comparator Coding Challenge",
       "question": "What is an important consideration when working with Decimal Comparator Coding Challenge?",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "NOTE: The areEqualByThreeDecimalPlaces method  needs to be defined as public static like we have been doing so far in the course.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "Write a method named area with one double parameter named radius."
+        "NOTE: The areEqualByThreeDecimalPlaces method  needs to be defined as public static like we have been doing so far in the course.",
+        "Write a method named area with one double parameter named radius.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
       "answer": 1,
-      "explanation": "This is a key gotcha or note taken directly from the source for Decimal Comparator Coding Challenge."
+      "explanation": "This is a key gotcha or note taken directly from the source for Decimal Comparator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2242,13 +2509,14 @@ const QUESTIONS_BANK = {
       "topic": "Decimal Comparator Coding Challenge",
       "question": "In DecimalComparatorCodingChallenge.java, what does the method areEqualByThreeDecimalPlaces() return?",
       "options": [
-        "void",
-        "String",
         "boolean",
-        "int"
+        "int",
+        "void",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The method areEqualByThreeDecimalPlaces() is declared with return type 'boolean' in DecimalComparatorCodingChallenge.java."
+      "answer": 0,
+      "explanation": "The method areEqualByThreeDecimalPlaces() is declared with return type 'boolean' in DecimalComparatorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2264,7 +2532,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2284,7 +2553,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for EqualityPrinterCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for EqualityPrinterCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -2297,7 +2567,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for EqualityPrinterCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for EqualityPrinterCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -2310,7 +2583,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Invalid Value"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -2325,7 +2601,10 @@ const QUESTIONS_BANK = {
         "If one of the parameters is less than 0, print text \"Invalid Value\".",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -2336,12 +2615,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Equality Printer Coding Challenge?",
       "options": [
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "Write a method printEqual with 3 parameters of type int. The method should not return anything (void).",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method named area with one double parameter named radius."
+        "Write a method named area with one double parameter named radius.",
+        "Write a method printEqual with 3 parameters of type int. The method should not return anything (void)."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Equality Printer Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Equality Printer Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2351,18 +2631,19 @@ const QUESTIONS_BANK = {
       "topic": "Equality Printer Coding Challenge",
       "question": "Which of the following are TRUE about Equality Printer Coding Challenge? Select all that apply.",
       "options": [
+        "If one of the parameters is less than 0, print text \"Invalid Value\".",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method printEqual with 3 parameters of type int. The method should not return anything (void).",
-        "If one of the parameters is less than 0, print text \"Invalid Value\".",
         "If all numbers are equal print text \"All numbers are equal\"",
         "Write a method named area with one double parameter named radius."
       ],
       "answer": [
-        1,
+        0,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Equality Printer Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Equality Printer Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2378,7 +2659,8 @@ const QUESTIONS_BANK = {
         "Write"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'Write', from the notes for Equality Printer Coding Challenge."
+      "explanation": "The missing word is 'Write', from the notes for Equality Printer Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2388,13 +2670,14 @@ const QUESTIONS_BANK = {
       "topic": "Equality Printer Coding Challenge",
       "question": "What is an important consideration when working with Equality Printer Coding Challenge?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method named area with one double parameter named radius.",
         "TIP: Be extremely careful about spaces in the printed message."
       ],
       "answer": 3,
-      "explanation": "This is a key gotcha or note taken directly from the source for Equality Printer Coding Challenge."
+      "explanation": "This is a key gotcha or note taken directly from the source for Equality Printer Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2410,7 +2693,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2430,7 +2714,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for EqualSumCheckerCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for EqualSumCheckerCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -2443,7 +2728,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for EqualSumCheckerCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for EqualSumCheckerCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -2456,7 +2744,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Methods In Java - Equal Sum Checker Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -2471,7 +2762,10 @@ const QUESTIONS_BANK = {
         "The method should return boolean and it needs to return true if the sum of the first and second parameter is equal to the third parameter. Otherwise, return false.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -2482,12 +2776,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Equal Sum Checker Coding Challenge?",
       "options": [
         "Write a method named area with one double parameter named radius.",
+        "Write a method hasEqualSum with 3 parameters of type int.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method hasEqualSum with 3 parameters of type int."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Equal Sum Checker Coding Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Equal Sum Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2498,17 +2793,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Equal Sum Checker Coding Challenge? Select all that apply.",
       "options": [
         "The method should return boolean and it needs to return true if the sum of the first and second parameter is equal to the third parameter. Otherwise, return false.",
-        "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method hasEqualSum with 3 parameters of type int.",
-        "EXAMPLES OF INPUT/OUTPUT:"
+        "Write a method named area with one double parameter named radius.",
+        "EXAMPLES OF INPUT/OUTPUT:",
+        "Write a method hasEqualSum with 3 parameters of type int."
       ],
       "answer": [
         0,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Equal Sum Checker Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Equal Sum Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2518,13 +2814,14 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "Complete the blank: \"___ a method hasEqualSum with 3 parameters of type int.\"",
       "options": [
-        "Methods",
         "method",
-        "Write",
-        "Method"
+        "Method",
+        "Methods",
+        "Write"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Write', from the notes for Equal Sum Checker Coding Challenge."
+      "answer": 3,
+      "explanation": "The missing word is 'Write', from the notes for Equal Sum Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2535,12 +2832,13 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Equal Sum Checker Coding Challenge?",
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "NOTE: The hasEqualSum method  needs to be defined as public static like we have been doing so far in the course.",
-        "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
+        "Write a method named area with one double parameter named radius."
       ],
-      "answer": 1,
-      "explanation": "This is a key gotcha or note taken directly from the source for Equal Sum Checker Coding Challenge."
+      "answer": 2,
+      "explanation": "This is a key gotcha or note taken directly from the source for Equal Sum Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2550,13 +2848,14 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "In EqualSumCheckerCodingChallenge.java, what does the method hasEqualSum() return?",
       "options": [
-        "int",
-        "boolean",
+        "void",
         "String",
-        "void"
+        "boolean",
+        "int"
       ],
-      "answer": 1,
-      "explanation": "The method hasEqualSum() is declared with return type 'boolean' in EqualSumCheckerCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method hasEqualSum() is declared with return type 'boolean' in EqualSumCheckerCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2572,7 +2871,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2592,7 +2892,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for LeapYearCalculatorCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for LeapYearCalculatorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -2605,7 +2906,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for LeapYearCalculatorCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for LeapYearCalculatorCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -2618,7 +2922,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Methods In Java - Leap Year Calculator Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -2633,7 +2940,10 @@ const QUESTIONS_BANK = {
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -2643,13 +2953,14 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Which statement best describes Leap Year Calculator Coding Challenge?",
       "options": [
-        "Write a method isLeapYear with a parameter of type int named year.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method isLeapYear with a parameter of type int named year."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Leap Year Calculator Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Leap Year Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2659,18 +2970,19 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Which of the following are TRUE about Leap Year Calculator Coding Challenge? Select all that apply.",
       "options": [
-        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "If the parameter is not in that range return false.",
+        "Write a method isLeapYear with a parameter of type int named year.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "Write a method named area with one double parameter named radius.",
-        "Write a method isLeapYear with a parameter of type int named year."
+        "If the parameter is not in that range return false."
       ],
       "answer": [
         0,
-        1,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Leap Year Calculator Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Leap Year Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2680,13 +2992,14 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Complete the blank: \"___ a method isLeapYear with a parameter of type int named year.\"",
       "options": [
-        "Write",
-        "method",
+        "Methods",
         "Method",
-        "Methods"
+        "method",
+        "Write"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Write', from the notes for Leap Year Calculator Coding Challenge."
+      "answer": 3,
+      "explanation": "The missing word is 'Write', from the notes for Leap Year Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2696,13 +3009,14 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "What is an important consideration when working with Leap Year Calculator Coding Challenge?",
       "options": [
-        "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "NOTE: The method isLeapYear needs to be defined as public static like we have been doing so far in the course."
+        "NOTE: The method isLeapYear needs to be defined as public static like we have been doing so far in the course.",
+        "Write a method named area with one double parameter named radius.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 3,
-      "explanation": "This is a key gotcha or note taken directly from the source for Leap Year Calculator Coding Challenge."
+      "answer": 1,
+      "explanation": "This is a key gotcha or note taken directly from the source for Leap Year Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2712,13 +3026,14 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "In LeapYearCalculatorCodingChallenge.java, what does the method isLeapYear() return?",
       "options": [
-        "boolean",
-        "String",
+        "int",
         "void",
-        "int"
+        "boolean",
+        "String"
       ],
-      "answer": 0,
-      "explanation": "The method isLeapYear() is declared with return type 'boolean' in LeapYearCalculatorCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method isLeapYear() is declared with return type 'boolean' in LeapYearCalculatorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2734,7 +3049,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2754,7 +3070,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MegaBytesConverterCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MegaBytesConverterCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -2767,7 +3084,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for MegaBytesConverterCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for MegaBytesConverterCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -2780,7 +3100,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Invalid Value"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -2795,7 +3118,10 @@ const QUESTIONS_BANK = {
         "The method should not return anything (void) and it needs to calculate the megabytes and remaining kilobytes from the kilobytes parameter.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -2805,13 +3131,14 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "Which statement best describes Mega Bytes Converter Coding Challenge?",
       "options": [
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes."
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Mega Bytes Converter Coding Challenge."
+      "explanation": "This is drawn directly from the notes for Mega Bytes Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2821,18 +3148,19 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "Which of the following are TRUE about Mega Bytes Converter Coding Challenge? Select all that apply.",
       "options": [
-        "Then it needs to print a message in the format \"XX KB = YY MB and ZZ KB\".",
         "Write a method named area with one double parameter named radius.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes.",
         "The method should not return anything (void) and it needs to calculate the megabytes and remaining kilobytes from the kilobytes parameter.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "Then it needs to print a message in the format \"XX KB = YY MB and ZZ KB\"."
       ],
       "answer": [
-        0,
         2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Mega Bytes Converter Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Mega Bytes Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2842,13 +3170,14 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "Complete the blank: \"___ a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes.\"",
       "options": [
-        "Write",
-        "Method",
         "Methods",
+        "Method",
+        "Write",
         "method"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Write', from the notes for Mega Bytes Converter Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'Write', from the notes for Mega Bytes Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2858,13 +3187,14 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "What is an important consideration when working with Mega Bytes Converter Coding Challenge?",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "TIP: Be extremely careful about spaces in the printed message.",
-        "Write a method named area with one double parameter named radius."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for Mega Bytes Converter Coding Challenge."
+      "answer": 0,
+      "explanation": "This is a key gotcha or note taken directly from the source for Mega Bytes Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2880,7 +3210,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2900,7 +3231,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MethodsChallengeProblem.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MethodsChallengeProblem.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -2913,7 +3245,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodsChallengeProblem.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodsChallengeProblem.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -2926,7 +3261,10 @@ const QUESTIONS_BANK = {
       "answer": [
         " managed to get into position "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -2941,7 +3279,10 @@ const QUESTIONS_BANK = {
         "You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -2951,13 +3292,14 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "Which statement best describes Methods Challenge Problem?",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Create a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table.",
-        "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method named area with one double parameter named radius."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Methods Challenge Problem."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Methods Challenge Problem.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -2967,18 +3309,19 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "Which of the following are TRUE about Methods Challenge Problem? Select all that apply.",
       "options": [
-        "You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message",
-        "\" on the high score table \".",
         "Write a method named area with one double parameter named radius.",
+        "You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Create a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "\" on the high score table \"."
       ],
       "answer": [
-        0,
         1,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Methods Challenge Problem."
+      "explanation": "The true statements are taken directly from the notes for Methods Challenge Problem.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -2988,13 +3331,14 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "Complete the blank: \"___ a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table.\"",
       "options": [
-        "Method",
         "Methods",
+        "Method",
         "Create",
         "method"
       ],
       "answer": 2,
-      "explanation": "The missing word is 'Create', from the notes for Methods Challenge Problem."
+      "explanation": "The missing word is 'Create', from the notes for Methods Challenge Problem.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3004,13 +3348,14 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "In MethodsChallengeProblem.java, what does the method calculateHighScorePosition() return?",
       "options": [
-        "String",
-        "void",
         "int",
-        "boolean"
+        "boolean",
+        "void",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The method calculateHighScorePosition() is declared with return type 'int' in MethodsChallengeProblem.java."
+      "answer": 0,
+      "explanation": "The method calculateHighScorePosition() is declared with return type 'int' in MethodsChallengeProblem.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3026,7 +3371,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3046,7 +3392,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MinutesToYearsAndDaysCalculatorCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MinutesToYearsAndDaysCalculatorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -3059,7 +3406,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for MinutesToYearsAndDaysCalculatorCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for MinutesToYearsAndDaysCalculatorCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -3072,7 +3422,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Invalid value"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -3087,7 +3440,10 @@ const QUESTIONS_BANK = {
         "The method should not return anything (void) and it needs to calculate the years and days from the minutes parameter.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -3097,13 +3453,14 @@ const QUESTIONS_BANK = {
       "topic": "Minutes To Years And Days Calculator Coding Challenge",
       "question": "Which statement best describes Minutes To Years And Days Calculator Coding Challenge?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method named area with one double parameter named radius.",
-        "Write a method printYearsAndDays with parameter of type long named minutes.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method printYearsAndDays with parameter of type long named minutes."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Minutes To Years And Days Calculator Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Minutes To Years And Days Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3115,16 +3472,17 @@ const QUESTIONS_BANK = {
       "options": [
         "Write a method printYearsAndDays with parameter of type long named minutes.",
         "The method should not return anything (void) and it needs to calculate the years and days from the minutes parameter.",
-        "If the parameter is less than 0, print text \"Invalid Value\".",
         "Write a method named area with one double parameter named radius.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "If the parameter is less than 0, print text \"Invalid Value\"."
       ],
       "answer": [
         0,
         1,
-        2
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Minutes To Years And Days Calculator Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Minutes To Years And Days Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3134,13 +3492,14 @@ const QUESTIONS_BANK = {
       "topic": "Minutes To Years And Days Calculator Coding Challenge",
       "question": "Complete the blank: \"___ a method printYearsAndDays with parameter of type long named minutes.\"",
       "options": [
-        "method",
         "Methods",
-        "Write",
-        "Method"
+        "Method",
+        "method",
+        "Write"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Write', from the notes for Minutes To Years And Days Calculator Coding Challenge."
+      "answer": 3,
+      "explanation": "The missing word is 'Write', from the notes for Minutes To Years And Days Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3150,13 +3509,14 @@ const QUESTIONS_BANK = {
       "topic": "Minutes To Years And Days Calculator Coding Challenge",
       "question": "What is an important consideration when working with Minutes To Years And Days Calculator Coding Challenge?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "* Be extra careful about spaces in the printed message.",
-        "Write a method named area with one double parameter named radius."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "* Be extra careful about spaces in the printed message."
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for Minutes To Years And Days Calculator Coding Challenge."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for Minutes To Years And Days Calculator Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3172,7 +3532,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3192,7 +3553,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PlayingCatCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PlayingCatCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -3205,7 +3567,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for PlayingCatCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for PlayingCatCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -3218,7 +3583,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Methods In Java - Playing Cat Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -3233,7 +3601,10 @@ const QUESTIONS_BANK = {
         "Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -3244,12 +3615,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Playing Cat Coding Challenge?",
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method named area with one double parameter named radius.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method named area with one double parameter named radius.",
         "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35."
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Playing Cat Coding Challenge."
+      "explanation": "This is drawn directly from the notes for Playing Cat Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3259,18 +3631,19 @@ const QUESTIONS_BANK = {
       "topic": "Playing Cat Coding Challenge",
       "question": "Which of the following are TRUE about Playing Cat Coding Challenge? Select all that apply.",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "1st parameter should be of type boolean and be named summer it represents if it is summer.",
-        "Write a method named area with one double parameter named radius.",
+        "Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false",
         "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35.",
-        "Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false"
+        "1st parameter should be of type boolean and be named summer it represents if it is summer.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius."
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Playing Cat Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Playing Cat Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3281,12 +3654,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"The cats ___ most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35.\"",
       "options": [
         "Methods",
-        "Method",
         "method",
-        "spend"
+        "spend",
+        "Method"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'spend', from the notes for Playing Cat Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'spend', from the notes for Playing Cat Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3296,13 +3670,14 @@ const QUESTIONS_BANK = {
       "topic": "Playing Cat Coding Challenge",
       "question": "What is an important consideration when working with Playing Cat Coding Challenge?",
       "options": [
-        "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "NOTES",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "NOTES"
+        "Write a method named area with one double parameter named radius."
       ],
-      "answer": 3,
-      "explanation": "This is a key gotcha or note taken directly from the source for Playing Cat Coding Challenge."
+      "answer": 1,
+      "explanation": "This is a key gotcha or note taken directly from the source for Playing Cat Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3314,11 +3689,12 @@ const QUESTIONS_BANK = {
       "options": [
         "boolean",
         "void",
-        "int",
-        "String"
+        "String",
+        "int"
       ],
       "answer": 0,
-      "explanation": "The method isCatPlaying() is declared with return type 'boolean' in PlayingCatCodingChallenge.java."
+      "explanation": "The method isCatPlaying() is declared with return type 'boolean' in PlayingCatCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3334,7 +3710,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3354,7 +3731,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PositiveNegativeZeroCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PositiveNegativeZeroCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -3367,7 +3745,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for PositiveNegativeZeroCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for PositiveNegativeZeroCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -3380,7 +3761,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "positive"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -3395,7 +3779,10 @@ const QUESTIONS_BANK = {
         "Write a method called checkNumber with an int parameter named number.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -3406,12 +3793,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Positive Negative Zero Coding Challenge?",
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method named area with one double parameter named radius.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Positive, Negative or Zero",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
+        "Write a method named area with one double parameter named radius."
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for Positive Negative Zero Coding Challenge."
+      "explanation": "This is drawn directly from the notes for Positive Negative Zero Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3421,18 +3809,19 @@ const QUESTIONS_BANK = {
       "topic": "Positive Negative Zero Coding Challenge",
       "question": "Which of the following are TRUE about Positive Negative Zero Coding Challenge? Select all that apply.",
       "options": [
-        "The method should not return any value, and it needs to print out:",
         "Write a method called checkNumber with an int parameter named number.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Positive, Negative or Zero",
         "Write a method named area with one double parameter named radius.",
-        "Positive, Negative or Zero"
+        "The method should not return any value, and it needs to print out:",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
       "answer": [
         0,
         1,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Positive Negative Zero Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Positive Negative Zero Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3442,13 +3831,14 @@ const QUESTIONS_BANK = {
       "topic": "Positive Negative Zero Coding Challenge",
       "question": "Complete the blank: \"___, Negative or Zero\"",
       "options": [
-        "Positive",
         "Methods",
         "Method",
-        "method"
+        "method",
+        "Positive"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Positive', from the notes for Positive Negative Zero Coding Challenge."
+      "answer": 3,
+      "explanation": "The missing word is 'Positive', from the notes for Positive Negative Zero Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3464,7 +3854,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3484,7 +3875,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SpeedConverterCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SpeedConverterCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -3497,7 +3889,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for SpeedConverterCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for SpeedConverterCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -3510,7 +3905,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Invalid Value"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -3525,7 +3923,10 @@ const QUESTIONS_BANK = {
         "If the parameter kilometersPerHour is less than 0, the method toMilesPerHour needs to return -1 to indicate an invalid value.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -3535,13 +3936,14 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "Which statement best describes Speed Converter Coding Challenge?",
       "options": [
-        "Write a method named area with one double parameter named radius.",
-        "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method named area with one double parameter named radius.",
+        "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Speed Converter Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Speed Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3551,18 +3953,19 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "Which of the following are TRUE about Speed Converter Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method named area with one double parameter named radius.",
-        "Otherwise, if it is positive, calculate the value of miles per hour, round it and return it. For conversion and rounding, check the notes in the text below.",
+        "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long.",
         "If the parameter kilometersPerHour is less than 0, the method toMilesPerHour needs to return -1 to indicate an invalid value.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long."
+        "Otherwise, if it is positive, calculate the value of miles per hour, round it and return it. For conversion and rounding, check the notes in the text below.",
+        "Write a method named area with one double parameter named radius."
       ],
       "answer": [
+        0,
         1,
-        2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Speed Converter Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Speed Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3572,13 +3975,14 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "Complete the blank: \"___ a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long.\"",
       "options": [
-        "method",
-        "Method",
         "Write",
-        "Methods"
+        "method",
+        "Methods",
+        "Method"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Write', from the notes for Speed Converter Coding Challenge."
+      "answer": 0,
+      "explanation": "The missing word is 'Write', from the notes for Speed Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3588,13 +3992,14 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "What is an important consideration when working with Speed Converter Coding Challenge?",
       "options": [
-        "Otherwise, if it is positive, calculate the value of miles per hour, round it and return it. For conversion and rounding, check the notes in the text below.",
-        "Write a method named area with one double parameter named radius.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "Otherwise, if it is positive, calculate the value of miles per hour, round it and return it. For conversion and rounding, check the notes in the text below.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius."
       ],
-      "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for Speed Converter Coding Challenge."
+      "answer": 1,
+      "explanation": "This is a key gotcha or note taken directly from the source for Speed Converter Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3604,13 +4009,14 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "In SpeedConverterCodingChallenge.java, what does the method toMilesPerHour() return?",
       "options": [
+        "void",
         "int",
         "long",
-        "String",
-        "void"
+        "String"
       ],
-      "answer": 1,
-      "explanation": "The method toMilesPerHour() is declared with return type 'long' in SpeedConverterCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method toMilesPerHour() is declared with return type 'long' in SpeedConverterCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3626,7 +4032,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3646,7 +4053,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for TeenNumberCheckerCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for TeenNumberCheckerCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -3659,7 +4067,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for TeenNumberCheckerCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for TeenNumberCheckerCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -3672,7 +4083,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Methods In Java - Teen Number Checker Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -3687,7 +4101,10 @@ const QUESTIONS_BANK = {
         "Write a method named hasTeen with 3 parameters of type int.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -3697,13 +4114,14 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Which statement best describes Teen Number Checker Coding Challenge?",
       "options": [
-        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "Write a method named area with one double parameter named radius."
+        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
+        "Write a method named area with one double parameter named radius.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Teen Number Checker Coding Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Teen Number Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3713,18 +4131,19 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Which of the following are TRUE about Teen Number Checker Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method named hasTeen with 3 parameters of type int.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
         "The method should return boolean and it needs to return true if one of the parameters is in range 13(inclusive) - 19 (inclusive). Otherwise return false.",
         "Write a method named area with one double parameter named radius.",
-        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive)."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named hasTeen with 3 parameters of type int."
       ],
       "answer": [
         0,
-        2,
+        1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Teen Number Checker Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Teen Number Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3734,13 +4153,14 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Complete the blank: \"We'll say that a ___ is \"teen\" if it is in the range 13 -19 (inclusive).\"",
       "options": [
+        "method",
         "Method",
-        "Methods",
         "number",
-        "method"
+        "Methods"
       ],
       "answer": 2,
-      "explanation": "The missing word is 'number', from the notes for Teen Number Checker Coding Challenge."
+      "explanation": "The missing word is 'number', from the notes for Teen Number Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3750,13 +4170,14 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "What is an important consideration when working with Teen Number Checker Coding Challenge?",
       "options": [
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method named area with one double parameter named radius.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
       ],
       "answer": 3,
-      "explanation": "This is a key gotcha or note taken directly from the source for Teen Number Checker Coding Challenge."
+      "explanation": "This is a key gotcha or note taken directly from the source for Teen Number Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3766,13 +4187,14 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "In TeenNumberCheckerCodingChallenge.java, what does the method hasTeen() return?",
       "options": [
-        "void",
         "boolean",
         "String",
+        "void",
         "int"
       ],
-      "answer": 1,
-      "explanation": "The method hasTeen() is declared with return type 'boolean' in TeenNumberCheckerCodingChallenge.java."
+      "answer": 0,
+      "explanation": "The method hasTeen() is declared with return type 'boolean' in TeenNumberCheckerCodingChallenge.java.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-7-methods-in-java-pass-by-value-1",
@@ -3785,7 +4207,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "5"
       ],
-      "explanation": "Java is ALWAYS pass-by-value. The method gets a copy of a. Changing x inside the method has no effect on a. This is one of the most common OCJP traps."
+      "explanation": "Java is ALWAYS pass-by-value. The method gets a copy of a. Changing x inside the method has no effect on a. This is one of the most common OCJP traps.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-7-methods-in-java-overload-resolution-1",
@@ -3801,7 +4228,11 @@ const QUESTIONS_BANK = {
         "At compile time, based on return type"
       ],
       "answer": 1,
-      "explanation": "Overloading is resolved at COMPILE time based on the reference type of arguments (not actual type). Overriding is resolved at RUNTIME. This distinction is essential for OCJP."
+      "explanation": "Overloading is resolved at COMPILE time based on the reference type of arguments (not actual type). Overriding is resolved at RUNTIME. This distinction is essential for OCJP.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     }
   ],
   "Chapter 8: Switch Statements": [
@@ -3819,7 +4250,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3839,7 +4271,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementInJava.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementInJava.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -3852,7 +4285,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for SwitchStatementInJava.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for SwitchStatementInJava.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -3865,7 +4301,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "1, 2 or 3"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -3880,7 +4319,10 @@ const QUESTIONS_BANK = {
         "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
         "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -3890,13 +4332,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Which statement best describes Switch Statement In Java?",
       "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Write a method called printNumberInWord.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "Write a method isLeapYear with a parameter of type int named year."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Write a method isLeapYear with a parameter of type int named year.",
+        "Write a method called printNumberInWord."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Switch Statement In Java."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Switch Statement In Java.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3906,18 +4349,19 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Which of the following are TRUE about Switch Statement In Java? Select all that apply.",
       "options": [
-        "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
         "Write a method isLeapYear with a parameter of type int named year.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types."
+        "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
+        "switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": [
-        0,
+        2,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Switch Statement In Java."
+      "explanation": "The true statements are taken directly from the notes for Switch Statement In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3927,13 +4371,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Complete the blank: \"The ___ statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.\"",
       "options": [
+        "switch",
         "enhanced",
-        "arrow",
         "Traditional",
-        "switch"
+        "arrow"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'switch', from the notes for Switch Statement In Java."
+      "answer": 0,
+      "explanation": "The missing word is 'switch', from the notes for Switch Statement In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3943,13 +4388,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "In SwitchStatementInJava.java, what does the method getQuarter() return?",
       "options": [
-        "int",
         "void",
-        "String",
-        "boolean"
+        "int",
+        "boolean",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The method getQuarter() is declared with return type 'String' in SwitchStatementInJava.java."
+      "answer": 3,
+      "explanation": "The method getQuarter() is declared with return type 'String' in SwitchStatementInJava.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -3965,7 +4411,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -3985,7 +4432,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for EnhancedSwitchStatementInJava.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for EnhancedSwitchStatementInJava.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -3998,7 +4446,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for EnhancedSwitchStatementInJava.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for EnhancedSwitchStatementInJava.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -4011,7 +4462,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Value is 1"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -4026,7 +4480,10 @@ const QUESTIONS_BANK = {
         "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
         "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -4036,13 +4493,14 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "Which statement best describes Enhanced Switch Statement In Java?",
       "options": [
-        "Write a method called printNumberInWord.",
-        "Write a method isLeapYear with a parameter of type int named year.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Write a method isLeapYear with a parameter of type int named year.",
+        "Write a method called printNumberInWord."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Enhanced Switch Statement In Java."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Enhanced Switch Statement In Java.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4052,18 +4510,19 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "Which of the following are TRUE about Enhanced Switch Statement In Java? Select all that apply.",
       "options": [
+        "Traditional switch: case 1: ... break;   Enhanced switch: case 1 -> ...",
+        "Write a method isLeapYear with a parameter of type int named year.",
         "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Traditional switch: case 1: ... break;   Enhanced switch: case 1 -> ...",
-        "Write a method isLeapYear with a parameter of type int named year."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
       "answer": [
         0,
         2,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Enhanced Switch Statement In Java."
+      "explanation": "The true statements are taken directly from the notes for Enhanced Switch Statement In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4075,11 +4534,12 @@ const QUESTIONS_BANK = {
       "options": [
         "Switch",
         "short",
-        "enhanced",
-        "switch"
+        "switch",
+        "enhanced"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'enhanced', from the notes for Enhanced Switch Statement In Java."
+      "answer": 3,
+      "explanation": "The missing word is 'enhanced', from the notes for Enhanced Switch Statement In Java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4089,13 +4549,14 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "In EnhancedSwitchStatementInJava.java, what does the method getQuarter() return?",
       "options": [
-        "int",
         "void",
-        "boolean",
-        "String"
+        "int",
+        "String",
+        "boolean"
       ],
-      "answer": 3,
-      "explanation": "The method getQuarter() is declared with return type 'String' in EnhancedSwitchStatementInJava.java."
+      "answer": 2,
+      "explanation": "The method getQuarter() is declared with return type 'String' in EnhancedSwitchStatementInJava.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4111,7 +4572,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4131,7 +4593,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for NumberOfDaysInAMonthCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for NumberOfDaysInAMonthCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -4144,7 +4607,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for NumberOfDaysInAMonthCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for NumberOfDaysInAMonthCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -4157,7 +4623,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Switch Statements - Number Of Days In A Month Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -4172,7 +4641,10 @@ const QUESTIONS_BANK = {
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -4182,13 +4654,14 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "Which statement best describes Number Of Days In A Month Coding Challenge?",
       "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "Write a method isLeapYear with a parameter of type int named year.",
-        "Write a method called printNumberInWord.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "Write a method called printNumberInWord."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Number Of Days In A Month Coding Challenge."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Number Of Days In A Month Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4198,18 +4671,19 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "Which of the following are TRUE about Number Of Days In A Month Coding Challenge? Select all that apply.",
       "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Write a method isLeapYear with a parameter of type int named year.",
+        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "If the parameter is not in that range return false.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Write a method isLeapYear with a parameter of type int named year."
       ],
       "answer": [
+        0,
         1,
-        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Number Of Days In A Month Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Number Of Days In A Month Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4219,13 +4693,14 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "Complete the blank: \"___ a method isLeapYear with a parameter of type int named year.\"",
       "options": [
-        "Write",
-        "Switch",
         "short",
-        "switch"
+        "switch",
+        "Write",
+        "Switch"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Write', from the notes for Number Of Days In A Month Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'Write', from the notes for Number Of Days In A Month Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4235,13 +4710,14 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "What is an important consideration when working with Number Of Days In A Month Coding Challenge?",
       "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "Write a method called printNumberInWord.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
-      "answer": 1,
-      "explanation": "This is a key gotcha or note taken directly from the source for Number Of Days In A Month Coding Challenge."
+      "answer": 2,
+      "explanation": "This is a key gotcha or note taken directly from the source for Number Of Days In A Month Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4252,12 +4728,13 @@ const QUESTIONS_BANK = {
       "question": "In NumberOfDaysInAMonthCodingChallenge.java, what does the method isLeapYear() return?",
       "options": [
         "boolean",
+        "String",
         "void",
-        "int",
-        "String"
+        "int"
       ],
       "answer": 0,
-      "explanation": "The method isLeapYear() is declared with return type 'boolean' in NumberOfDaysInAMonthCodingChallenge.java."
+      "explanation": "The method isLeapYear() is declared with return type 'boolean' in NumberOfDaysInAMonthCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4273,7 +4750,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4293,7 +4771,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PrintNumberInAWorldCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PrintNumberInAWorldCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -4306,7 +4785,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for PrintNumberInAWorldCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for PrintNumberInAWorldCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -4319,7 +4801,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Switch Statements - Print Number In A World Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -4334,7 +4819,10 @@ const QUESTIONS_BANK = {
         "The method has one parameter number which is the whole number.",
         "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -4344,13 +4832,14 @@ const QUESTIONS_BANK = {
       "topic": "Print Number In A World Coding Challenge",
       "question": "Which statement best describes Print Number In A World Coding Challenge?",
       "options": [
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "Write a method called printNumberInWord.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "Write a method isLeapYear with a parameter of type int named year."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Print Number In A World Coding Challenge."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Print Number In A World Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4360,18 +4849,19 @@ const QUESTIONS_BANK = {
       "topic": "Print Number In A World Coding Challenge",
       "question": "Which of the following are TRUE about Print Number In A World Coding Challenge? Select all that apply.",
       "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "The method needs to print \"ZERO\", \"ONE\", \"TWO\", ... \"NINE\", \"OTHER\" if the int parameter number is 0, 1, 2, .... 9 or other for any other number including negative numbers.",
         "Write a method called printNumberInWord.",
-        "The method has one parameter number which is the whole number.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "The method has one parameter number which is the whole number."
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Print Number In A World Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Print Number In A World Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4381,13 +4871,14 @@ const QUESTIONS_BANK = {
       "topic": "Print Number In A World Coding Challenge",
       "question": "Complete the blank: \"___ a method called printNumberInWord.\"",
       "options": [
-        "short",
-        "Write",
         "Switch",
-        "switch"
+        "switch",
+        "Write",
+        "short"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'Write', from the notes for Print Number In A World Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'Write', from the notes for Print Number In A World Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4397,13 +4888,14 @@ const QUESTIONS_BANK = {
       "topic": "Print Number In A World Coding Challenge",
       "question": "In PrintNumberInAWorldCodingChallenge.java, what does the method returnNumberInAWordUsingTraditionalSwitch() return?",
       "options": [
-        "void",
         "String",
         "boolean",
-        "int"
+        "int",
+        "void"
       ],
-      "answer": 1,
-      "explanation": "The method returnNumberInAWordUsingTraditionalSwitch() is declared with return type 'String' in PrintNumberInAWorldCodingChallenge.java."
+      "answer": 0,
+      "explanation": "The method returnNumberInAWordUsingTraditionalSwitch() is declared with return type 'String' in PrintNumberInAWorldCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4419,7 +4911,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4439,7 +4932,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -4452,7 +4946,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for SwitchStatementChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for SwitchStatementChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -4465,7 +4962,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "A is found"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -4480,7 +4980,10 @@ const QUESTIONS_BANK = {
         "Create a new char variable",
         "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -4490,13 +4993,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge",
       "question": "Which statement best describes Switch Statement Challenge?",
       "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Create a new switch statement using char instead of int.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "Write a method isLeapYear with a parameter of type int named year."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Write a method isLeapYear with a parameter of type int named year.",
+        "Create a new switch statement using char instead of int."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Switch Statement Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Switch Statement Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4506,18 +5010,19 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge",
       "question": "Which of the following are TRUE about Switch Statement Challenge? Select all that apply.",
       "options": [
-        "Create a new char variable",
+        "Create a new switch statement using char instead of int.",
         "Create a switch statement testing for",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "Create a new switch statement using char instead of int."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Create a new char variable"
       ],
       "answer": [
         0,
         1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Switch Statement Challenge."
+      "explanation": "The true statements are taken directly from the notes for Switch Statement Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4527,13 +5032,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge",
       "question": "Complete the blank: \"___ a new switch statement using char instead of int.\"",
       "options": [
-        "switch",
-        "short",
         "Create",
+        "short",
+        "switch",
         "Switch"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Create', from the notes for Switch Statement Challenge."
+      "answer": 0,
+      "explanation": "The missing word is 'Create', from the notes for Switch Statement Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4549,7 +5055,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4569,7 +5076,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementChallengeReturnDayOfTheWeek.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementChallengeReturnDayOfTheWeek.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -4582,7 +5090,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "this"
       ],
-      "explanation": "The missing keyword is 'this', taken from the parsed source for SwitchStatementChallengeReturnDayOfTheWeek.java."
+      "explanation": "The missing keyword is 'this', taken from the parsed source for SwitchStatementChallengeReturnDayOfTheWeek.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -4595,7 +5106,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Switch Statements - Switch Statement Challenge Return Day Of The Week"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -4610,7 +5124,10 @@ const QUESTIONS_BANK = {
         "Challenge",
         "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -4621,12 +5138,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Switch Statement Challenge Return Day Of The Week?",
       "options": [
         "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "Write a method isLeapYear with a parameter of type int named year.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for Switch Statement Challenge Return Day Of The Week."
+      "explanation": "This is drawn directly from the notes for Switch Statement Challenge Return Day Of The Week.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4636,16 +5154,17 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge Return Day Of The Week",
       "question": "Which of the following are TRUE about Switch Statement Challenge Return Day Of The Week? Select all that apply.",
       "options": [
-        "1. Create a method called printDaysOfWeek, that takes an int parameter called day, but doesn't return any value",
         "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "1. Create a method called printDaysOfWeek, that takes an int parameter called day, but doesn't return any value",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": [
         0,
-        1
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Switch Statement Challenge Return Day Of The Week."
+      "explanation": "The true statements are taken directly from the notes for Switch Statement Challenge Return Day Of The Week.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4655,13 +5174,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge Return Day Of The Week",
       "question": "Complete the blank: \"Use the ___ switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.\"",
       "options": [
-        "short",
+        "enhanced",
         "Switch",
         "switch",
-        "enhanced"
+        "short"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'enhanced', from the notes for Switch Statement Challenge Return Day Of The Week."
+      "answer": 0,
+      "explanation": "The missing word is 'enhanced', from the notes for Switch Statement Challenge Return Day Of The Week.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4672,12 +5192,13 @@ const QUESTIONS_BANK = {
       "question": "In SwitchStatementChallengeReturnDayOfTheWeek.java, what does the method returnDayOfWeek() return?",
       "options": [
         "int",
-        "boolean",
+        "String",
         "void",
-        "String"
+        "boolean"
       ],
-      "answer": 3,
-      "explanation": "The method returnDayOfWeek() is declared with return type 'String' in SwitchStatementChallengeReturnDayOfTheWeek.java."
+      "answer": 1,
+      "explanation": "The method returnDayOfWeek() is declared with return type 'String' in SwitchStatementChallengeReturnDayOfTheWeek.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4693,7 +5214,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4713,7 +5235,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementNATOChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SwitchStatementNATOChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -4726,7 +5249,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for SwitchStatementNATOChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for SwitchStatementNATOChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -4739,7 +5265,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "A is Able"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -4754,7 +5283,10 @@ const QUESTIONS_BANK = {
         "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels)  that tests the value in the variable from Step 1.",
         "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -4764,13 +5296,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement N A T O Challenge",
       "question": "Which statement best describes Switch Statement N A T O Challenge?",
       "options": [
-        "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
         "Write a method isLeapYear with a parameter of type int named year.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Switch Statement N A T O Challenge."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Switch Statement N A T O Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4780,18 +5313,19 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement N A T O Challenge",
       "question": "Which of the following are TRUE about Switch Statement N A T O Challenge? Select all that apply.",
       "options": [
-        "2) Create cases for the characters, A, B, C, D, and E. Display a message in each case block,with the letter and the NATO word, then break.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "2) Create cases for the characters, A, B, C, D, and E. Display a message in each case block,with the letter and the NATO word, then break.",
+        "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels)  that tests the value in the variable from Step 1.",
         "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
-        "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels)  that tests the value in the variable from Step 1."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": [
-        0,
-        3,
-        4
+        1,
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Switch Statement N A T O Challenge."
+      "explanation": "The true statements are taken directly from the notes for Switch Statement N A T O Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4801,13 +5335,14 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement N A T O Challenge",
       "question": "Complete the blank: \"In this ___, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.\"",
       "options": [
-        "short",
-        "challenge",
         "switch",
-        "Switch"
+        "Switch",
+        "challenge",
+        "short"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'challenge', from the notes for Switch Statement N A T O Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'challenge', from the notes for Switch Statement N A T O Challenge.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-8-switch-statements-switch-fallthrough-1",
@@ -4820,7 +5355,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "two\nthree\ndefault"
       ],
-      "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional."
+      "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     }
   ],
   "Chapter 9: Java Looping Concepts": [
@@ -4838,7 +5378,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'new'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'new'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4858,7 +5399,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ForStatement.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ForStatement.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -4871,7 +5413,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "new"
       ],
-      "explanation": "The missing keyword is 'new', taken from the parsed source for ForStatement.java."
+      "explanation": "The missing keyword is 'new', taken from the parsed source for ForStatement.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -4884,7 +5429,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Java Looping Concepts - For Statement"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -4899,7 +5447,10 @@ const QUESTIONS_BANK = {
         "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -4909,13 +5460,14 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "Which statement best describes For Statement?",
       "options": [
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "Looping :- Looping let us execute the code multiple number of times"
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
+        "Looping :- Looping let us execute the code multiple number of times",
+        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for For Statement."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for For Statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -4925,9 +5477,9 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "Which of the following are TRUE about For Statement? Select all that apply.",
       "options": [
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
+        "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
+        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "Looping :- Looping let us execute the code multiple number of times",
         "The for statement is often referred to as the for loop"
       ],
@@ -4936,7 +5488,8 @@ const QUESTIONS_BANK = {
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for For Statement."
+      "explanation": "The true statements are taken directly from the notes for For Statement.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4952,7 +5505,8 @@ const QUESTIONS_BANK = {
         "Create"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'Looping', from the notes for For Statement."
+      "explanation": "The missing word is 'Looping', from the notes for For Statement.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4962,13 +5516,14 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "What is an important consideration when working with For Statement?",
       "options": [
+        "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
         "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for For Statement."
+      "answer": 0,
+      "explanation": "This is a key gotcha or note taken directly from the source for For Statement.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -4979,12 +5534,13 @@ const QUESTIONS_BANK = {
       "question": "In ForStatement.java, what does the method calculateInterest() return?",
       "options": [
         "int",
-        "String",
         "double",
-        "void"
+        "void",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The method calculateInterest() is declared with return type 'double' in ForStatement.java."
+      "answer": 1,
+      "explanation": "The method calculateInterest() is declared with return type 'double' in ForStatement.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5000,7 +5556,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5020,7 +5577,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ForLoopPrimeNumberChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ForLoopPrimeNumberChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -5033,7 +5591,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ForLoopPrimeNumberChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ForLoopPrimeNumberChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -5046,7 +5607,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Java Looping Concepts - For Loop Prime Number Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -5061,7 +5625,10 @@ const QUESTIONS_BANK = {
         "Create a for statement, using any range of numbers, where the maximum number is <= 1000.",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -5072,12 +5639,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes For Loop Prime Number Challenge?",
       "options": [
         "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
-        "Looping :- Looping let us execute the code multiple number of times",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
+        "Looping :- Looping let us execute the code multiple number of times",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for For Loop Prime Number Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for For Loop Prime Number Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5087,18 +5655,19 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Prime Number Challenge",
       "question": "Which of the following are TRUE about For Loop Prime Number Challenge? Select all that apply.",
       "options": [
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
-        "Create a for statement, using any range of numbers, where the maximum number is <= 1000.",
-        "Looping :- Looping let us execute the code multiple number of times",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
+        "Looping :- Looping let us execute the code multiple number of times",
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
+        "Create a for statement, using any range of numbers, where the maximum number is <= 1000."
       ],
       "answer": [
         0,
         1,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for For Loop Prime Number Challenge."
+      "explanation": "The true statements are taken directly from the notes for For Loop Prime Number Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5108,13 +5677,14 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Prime Number Challenge",
       "question": "Complete the blank: \"___ a prime number counter variable, that will keep count of how many prime numbers were found.\"",
       "options": [
-        "supports",
         "statement",
-        "Looping",
-        "Create"
+        "supports",
+        "Create",
+        "Looping"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Create', from the notes for For Loop Prime Number Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'Create', from the notes for For Loop Prime Number Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5125,12 +5695,13 @@ const QUESTIONS_BANK = {
       "question": "In ForLoopPrimeNumberChallenge.java, what does the method isPrime() return?",
       "options": [
         "String",
-        "boolean",
+        "void",
         "int",
-        "void"
+        "boolean"
       ],
-      "answer": 1,
-      "explanation": "The method isPrime() is declared with return type 'boolean' in ForLoopPrimeNumberChallenge.java."
+      "answer": 3,
+      "explanation": "The method isPrime() is declared with return type 'boolean' in ForLoopPrimeNumberChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5146,7 +5717,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5166,7 +5738,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ForLoopSum3and5Challenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ForLoopSum3and5Challenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -5179,7 +5752,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ForLoopSum3and5Challenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ForLoopSum3and5Challenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -5192,7 +5768,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Java Looping Concepts - For Loop Sum3and5 Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -5207,7 +5786,10 @@ const QUESTIONS_BANK = {
         "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -5217,13 +5799,14 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Sum3and5 Challenge",
       "question": "Which statement best describes For Loop Sum3and5 Challenge?",
       "options": [
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "Looping :- Looping let us execute the code multiple number of times",
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean."
+        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
+        "Create a prime number counter variable, that will keep count of how many prime numbers were found."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for For Loop Sum3and5 Challenge."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for For Loop Sum3and5 Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5233,18 +5816,19 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Sum3and5 Challenge",
       "question": "Which of the following are TRUE about For Loop Sum3and5 Challenge? Select all that apply.",
       "options": [
+        "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "Looping :- Looping let us execute the code multiple number of times",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
         "You also want to break out of the loop, once you find five numbers, that meet those above conditions."
       ],
       "answer": [
-        2,
-        3,
+        0,
+        1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for For Loop Sum3and5 Challenge."
+      "explanation": "The true statements are taken directly from the notes for For Loop Sum3and5 Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5254,13 +5838,14 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Sum3and5 Challenge",
       "question": "Complete the blank: \"This is the sum 3 and 5 ___. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.\"",
       "options": [
-        "supports",
         "Looping",
-        "statement",
-        "challenge"
+        "supports",
+        "challenge",
+        "statement"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'challenge', from the notes for For Loop Sum3and5 Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'challenge', from the notes for For Loop Sum3and5 Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5276,7 +5861,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5296,7 +5882,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SumOddChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SumOddChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -5309,7 +5896,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for SumOddChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for SumOddChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -5322,7 +5912,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Java Looping Concepts - Sum Odd Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -5337,7 +5930,10 @@ const QUESTIONS_BANK = {
         "Check that number is > 0, if it is not return false.",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -5353,7 +5949,8 @@ const QUESTIONS_BANK = {
         "Create a prime number counter variable, that will keep count of how many prime numbers were found."
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for Sum Odd Challenge."
+      "explanation": "This is drawn directly from the notes for Sum Odd Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5363,18 +5960,19 @@ const QUESTIONS_BANK = {
       "topic": "Sum Odd Challenge",
       "question": "Which of the following are TRUE about Sum Odd Challenge? Select all that apply.",
       "options": [
-        "Looping :- Looping let us execute the code multiple number of times",
         "If number is odd return true, otherwise return false.",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
+        "Looping :- Looping let us execute the code multiple number of times",
         "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
         "Check that number is > 0, if it is not return false."
       ],
       "answer": [
-        1,
+        0,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Sum Odd Challenge."
+      "explanation": "The true statements are taken directly from the notes for Sum Odd Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5384,13 +5982,14 @@ const QUESTIONS_BANK = {
       "topic": "Sum Odd Challenge",
       "question": "Complete the blank: \"___ a method called isOdd with an int parameter and call it number. The method needs to return a boolean.\"",
       "options": [
-        "Looping",
         "statement",
         "supports",
+        "Looping",
         "Write"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'Write', from the notes for Sum Odd Challenge."
+      "explanation": "The missing word is 'Write', from the notes for Sum Odd Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5401,12 +6000,13 @@ const QUESTIONS_BANK = {
       "question": "In SumOddChallenge.java, what does the method isOdd() return?",
       "options": [
         "boolean",
-        "String",
         "int",
-        "void"
+        "void",
+        "String"
       ],
       "answer": 0,
-      "explanation": "The method isOdd() is declared with return type 'boolean' in SumOddChallenge.java."
+      "explanation": "The method isOdd() is declared with return type 'boolean' in SumOddChallenge.java.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-9-java-looping-concepts-polymorphism-1",
@@ -5419,7 +6019,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "Animal \nDog"
       ],
-      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap."
+      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-9-java-looping-concepts-constructor-chain-1",
@@ -5432,7 +6037,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "A\nB\nC"
       ],
-      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy."
+      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-9-java-looping-concepts-override-overload-1",
@@ -5448,7 +6058,11 @@ const QUESTIONS_BANK = {
         "A static method can be overridden to behave polymorphically"
       ],
       "answer": 1,
-      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden."
+      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     },
     {
       "qid": "ocjp-chapter-9-java-looping-concepts-final-keyword-1",
@@ -5464,7 +6078,11 @@ const QUESTIONS_BANK = {
         "The method is automatically made static"
       ],
       "answer": 1,
-      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once."
+      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     },
     {
       "qid": "ocjp-chapter-9-java-looping-concepts-for-scope-1",
@@ -5480,7 +6098,11 @@ const QUESTIONS_BANK = {
         "The loop variable persists between method calls"
       ],
       "answer": 1,
-      "explanation": "A variable declared in the for-loop initializer (for(int i=0;...)) is scoped to that loop only. It cannot be accessed after the loop. You CANNOT reuse the same name in an inner nested loop — that would shadow it and cause a compile error."
+      "explanation": "A variable declared in the for-loop initializer (for(int i=0;...)) is scoped to that loop only. It cannot be accessed after the loop. You CANNOT reuse the same name in an inner nested loop — that would shadow it and cause a compile error.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     }
   ],
   "Chapter 10: While And Do While Looping Concepts": [
@@ -5498,7 +6120,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5518,7 +6141,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for WhileLoops.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for WhileLoops.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -5531,7 +6155,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for WhileLoops.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for WhileLoops.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -5544,7 +6171,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - While Loops"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -5559,7 +6189,10 @@ const QUESTIONS_BANK = {
         "The while loop repeatedly executes its body as long as a condition remains true.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -5575,7 +6208,8 @@ const QUESTIONS_BANK = {
         "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for While Loops."
+      "explanation": "This is drawn directly from the notes for While Loops.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5596,7 +6230,8 @@ const QUESTIONS_BANK = {
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for While Loops."
+      "explanation": "The true statements are taken directly from the notes for While Loops.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5606,13 +6241,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loops",
       "question": "Complete the blank: \"The ___ loop repeatedly executes its body as long as a condition remains true.\"",
       "options": [
-        "while",
         "makes",
-        "regular",
-        "dowhile"
+        "dowhile",
+        "while",
+        "regular"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'while', from the notes for While Loops."
+      "answer": 2,
+      "explanation": "The missing word is 'while', from the notes for While Loops.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5622,13 +6258,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loops",
       "question": "What is an important consideration when working with While Loops?",
       "options": [
-        "IMPORTANT: Always check your loop condition carefully.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "Number Palindrome"
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Number Palindrome",
+        "IMPORTANT: Always check your loop condition carefully."
       ],
-      "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for While Loops."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for While Loops.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5644,7 +6281,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5664,7 +6302,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for DoWhileLoops.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for DoWhileLoops.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -5677,7 +6316,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for DoWhileLoops.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for DoWhileLoops.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -5690,7 +6332,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Do While Loops"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -5705,7 +6350,10 @@ const QUESTIONS_BANK = {
         "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -5715,13 +6363,14 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "Which statement best describes Do While Loops?",
       "options": [
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
         "WHILE LOOPS",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "Number Palindrome",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
+        "Number Palindrome"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Do While Loops."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Do While Loops.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5732,17 +6381,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Do While Loops? Select all that apply.",
       "options": [
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\"",
-        "WHILE LOOPS",
+        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.",
         "Number Palindrome",
-        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked."
+        "WHILE LOOPS",
+        "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\""
       ],
       "answer": [
         0,
         1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Do While Loops."
+      "explanation": "The true statements are taken directly from the notes for Do While Loops.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5752,13 +6402,14 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "Complete the blank: \"In a ___ while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.\"",
       "options": [
+        "while",
         "WHILE",
         "Unlike",
-        "while",
         "regular"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'regular', from the notes for Do While Loops."
+      "explanation": "The missing word is 'regular', from the notes for Do While Loops.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5769,12 +6420,13 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Do While Loops?",
       "options": [
         "Number Palindrome",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "WHILE LOOPS"
       ],
-      "answer": 3,
-      "explanation": "This is a key gotcha or note taken directly from the source for Do While Loops."
+      "answer": 1,
+      "explanation": "This is a key gotcha or note taken directly from the source for Do While Loops.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5790,7 +6442,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5810,7 +6463,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for CheckNumberPalindromeCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for CheckNumberPalindromeCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -5823,7 +6477,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for CheckNumberPalindromeCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for CheckNumberPalindromeCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -5836,7 +6493,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Check Number Palindrome Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -5851,7 +6511,10 @@ const QUESTIONS_BANK = {
         "Write a method called isPalindrome with one int parameter called number.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -5861,13 +6524,14 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "Which statement best describes Check Number Palindrome Coding Challenge?",
       "options": [
-        "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Number Palindrome",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
+        "WHILE LOOPS"
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Check Number Palindrome Coding Challenge."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Check Number Palindrome Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5878,17 +6542,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Check Number Palindrome Coding Challenge? Select all that apply.",
       "options": [
         "WHILE LOOPS",
-        "Number Palindrome",
-        "The method needs to return a boolean.",
         "Write a method called isPalindrome with one int parameter called number.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Number Palindrome",
+        "The method needs to return a boolean."
       ],
       "answer": [
         1,
-        2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Check Number Palindrome Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Check Number Palindrome Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5898,13 +6563,14 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "Complete the blank: \"___ Palindrome\"",
       "options": [
-        "Number",
         "Unlike",
-        "WHILE",
-        "while"
+        "while",
+        "Number",
+        "WHILE"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Number', from the notes for Check Number Palindrome Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'Number', from the notes for Check Number Palindrome Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5914,13 +6580,14 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "In CheckNumberPalindromeCodingChallenge.java, what does the method checkIfNumberIsPalindrome() return?",
       "options": [
-        "void",
-        "int",
+        "String",
         "boolean",
-        "String"
+        "void",
+        "int"
       ],
-      "answer": 2,
-      "explanation": "The method checkIfNumberIsPalindrome() is declared with return type 'boolean' in CheckNumberPalindromeCodingChallenge.java."
+      "answer": 1,
+      "explanation": "The method checkIfNumberIsPalindrome() is declared with return type 'boolean' in CheckNumberPalindromeCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -5936,7 +6603,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -5956,7 +6624,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for DigitSumCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for DigitSumCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -5969,7 +6638,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for DigitSumCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for DigitSumCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -5982,7 +6654,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Digit Sum Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -5997,7 +6672,10 @@ const QUESTIONS_BANK = {
         "The method should only take a number that is a positive number.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -6013,7 +6691,8 @@ const QUESTIONS_BANK = {
         "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Digit Sum Coding Challenge."
+      "explanation": "This is drawn directly from the notes for Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6024,17 +6703,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Digit Sum Coding Challenge? Select all that apply.",
       "options": [
         "WHILE LOOPS",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "If a negative number is passed, it should return -1, meaning, an invalid value was passed.",
-        "The method should only take a number that is a positive number.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
+        "The method should only take a number that is a positive number."
       ],
       "answer": [
-        1,
         2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Digit Sum Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6044,13 +6724,14 @@ const QUESTIONS_BANK = {
       "topic": "Digit Sum Coding Challenge",
       "question": "Complete the blank: \"In this ___, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.\"",
       "options": [
-        "Unlike",
-        "while",
+        "challenge",
         "WHILE",
-        "challenge"
+        "Unlike",
+        "while"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'challenge', from the notes for Digit Sum Coding Challenge."
+      "answer": 0,
+      "explanation": "The missing word is 'challenge', from the notes for Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6060,13 +6741,14 @@ const QUESTIONS_BANK = {
       "topic": "Digit Sum Coding Challenge",
       "question": "In DigitSumCodingChallenge.java, what does the method sumDigits() return?",
       "options": [
-        "void",
+        "String",
         "boolean",
-        "int",
-        "String"
+        "void",
+        "int"
       ],
-      "answer": 2,
-      "explanation": "The method sumDigits() is declared with return type 'int' in DigitSumCodingChallenge.java."
+      "answer": 3,
+      "explanation": "The method sumDigits() is declared with return type 'int' in DigitSumCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6082,7 +6764,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6102,7 +6785,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for EvenDigitSumCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for EvenDigitSumCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -6115,7 +6799,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for EvenDigitSumCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for EvenDigitSumCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -6128,7 +6815,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Even Digit Sum Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -6143,7 +6833,10 @@ const QUESTIONS_BANK = {
         "Write a method named getEvenDigitSum with one parameter of type int called number.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -6153,13 +6846,14 @@ const QUESTIONS_BANK = {
       "topic": "Even Digit Sum Coding Challenge",
       "question": "Which statement best describes Even Digit Sum Coding Challenge?",
       "options": [
-        "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Even Digit Sum",
-        "Number Palindrome"
+        "Number Palindrome",
+        "WHILE LOOPS",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Even Digit Sum Coding Challenge."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Even Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6170,17 +6864,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Even Digit Sum Coding Challenge? Select all that apply.",
       "options": [
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method should return the sum of the even digits within the number.",
         "WHILE LOOPS",
-        "Write a method named getEvenDigitSum with one parameter of type int called number.",
         "Even Digit Sum",
-        "The method should return the sum of the even digits within the number."
+        "Write a method named getEvenDigitSum with one parameter of type int called number."
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Even Digit Sum Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Even Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6190,13 +6885,14 @@ const QUESTIONS_BANK = {
       "topic": "Even Digit Sum Coding Challenge",
       "question": "Complete the blank: \"___ a method named getEvenDigitSum with one parameter of type int called number.\"",
       "options": [
-        "Write",
         "while",
-        "WHILE",
-        "Unlike"
+        "Write",
+        "Unlike",
+        "WHILE"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Write', from the notes for Even Digit Sum Coding Challenge."
+      "answer": 1,
+      "explanation": "The missing word is 'Write', from the notes for Even Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6206,13 +6902,14 @@ const QUESTIONS_BANK = {
       "topic": "Even Digit Sum Coding Challenge",
       "question": "In EvenDigitSumCodingChallenge.java, what does the method getEvenDigitSum() return?",
       "options": [
+        "String",
         "boolean",
         "int",
-        "void",
-        "String"
+        "void"
       ],
-      "answer": 1,
-      "explanation": "The method getEvenDigitSum() is declared with return type 'int' in EvenDigitSumCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method getEvenDigitSum() is declared with return type 'int' in EvenDigitSumCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6228,7 +6925,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6248,7 +6946,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for FactorPrinterCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for FactorPrinterCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -6261,7 +6960,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for FactorPrinterCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for FactorPrinterCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -6274,7 +6976,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Factor Printer Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -6289,7 +6994,10 @@ const QUESTIONS_BANK = {
         "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -6299,13 +7007,14 @@ const QUESTIONS_BANK = {
       "topic": "Factor Printer Coding Challenge",
       "question": "Which statement best describes Factor Printer Coding Challenge?",
       "options": [
-        "WHILE LOOPS",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Number Palindrome",
-        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder."
+        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.",
+        "WHILE LOOPS"
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Factor Printer Coding Challenge."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Factor Printer Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6315,18 +7024,19 @@ const QUESTIONS_BANK = {
       "topic": "Factor Printer Coding Challenge",
       "question": "Which of the following are TRUE about Factor Printer Coding Challenge? Select all that apply.",
       "options": [
-        "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
+        "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).",
         "WHILE LOOPS",
         "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder."
       ],
       "answer": [
-        0,
+        1,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Factor Printer Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Factor Printer Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6342,7 +7052,8 @@ const QUESTIONS_BANK = {
         "while"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'Factor', from the notes for Factor Printer Coding Challenge."
+      "explanation": "The missing word is 'Factor', from the notes for Factor Printer Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6358,7 +7069,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6378,7 +7090,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for FirstAndLastDigitSumCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for FirstAndLastDigitSumCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -6391,7 +7104,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for FirstAndLastDigitSumCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for FirstAndLastDigitSumCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -6404,7 +7120,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - First And Last Digit Sum Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -6419,7 +7138,10 @@ const QUESTIONS_BANK = {
         "Write a method named sumFirstAndLastDigit with one parameter of type int called number.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -6435,7 +7157,8 @@ const QUESTIONS_BANK = {
         "First And Last Digit Sum"
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for First And Last Digit Sum Coding Challenge."
+      "explanation": "This is drawn directly from the notes for First And Last Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6446,17 +7169,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about First And Last Digit Sum Coding Challenge? Select all that apply.",
       "options": [
         "Write a method named sumFirstAndLastDigit with one parameter of type int called number.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number.",
         "WHILE LOOPS",
         "First And Last Digit Sum",
-        "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
         0,
-        3,
-        4
+        1,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for First And Last Digit Sum Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for First And Last Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6468,11 +7192,12 @@ const QUESTIONS_BANK = {
       "options": [
         "Digit",
         "while",
-        "WHILE",
-        "Unlike"
+        "Unlike",
+        "WHILE"
       ],
       "answer": 0,
-      "explanation": "The missing word is 'Digit', from the notes for First And Last Digit Sum Coding Challenge."
+      "explanation": "The missing word is 'Digit', from the notes for First And Last Digit Sum Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6482,13 +7207,14 @@ const QUESTIONS_BANK = {
       "topic": "First And Last Digit Sum Coding Challenge",
       "question": "In FirstAndLastDigitSumCodingChallenge.java, what does the method sumFirstAndLastDigit() return?",
       "options": [
-        "int",
-        "void",
         "boolean",
+        "void",
+        "int",
         "String"
       ],
-      "answer": 0,
-      "explanation": "The method sumFirstAndLastDigit() is declared with return type 'int' in FirstAndLastDigitSumCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method sumFirstAndLastDigit() is declared with return type 'int' in FirstAndLastDigitSumCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6504,7 +7230,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6524,7 +7251,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for FloorPackProblemCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for FloorPackProblemCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -6537,7 +7265,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for FloorPackProblemCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for FloorPackProblemCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -6550,7 +7281,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Floor Pack Problem Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -6565,7 +7299,10 @@ const QUESTIONS_BANK = {
         "The parameter bigCount represents the count of big flour bags (5 kilos each).",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -6575,13 +7312,14 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "Which statement best describes Floor Pack Problem Coding Challenge?",
       "options": [
-        "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.",
         "Number Palindrome",
         "WHILE LOOPS"
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Floor Pack Problem Coding Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Floor Pack Problem Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6591,18 +7329,19 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "Which of the following are TRUE about Floor Pack Problem Coding Challenge? Select all that apply.",
       "options": [
-        "The parameter bigCount represents the count of big flour bags (5 kilos each).",
-        "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.",
-        "The parameter smallCount represents the count of small flour bags (1 kilo each)."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS",
+        "The parameter smallCount represents the count of small flour bags (1 kilo each).",
+        "The parameter bigCount represents the count of big flour bags (5 kilos each)."
       ],
       "answer": [
         0,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Floor Pack Problem Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Floor Pack Problem Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6612,13 +7351,14 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "Complete the blank: \"___ a method named canPack with three parameters of type int named bigCount, smallCount, and goal.\"",
       "options": [
-        "while",
+        "Unlike",
         "Write",
-        "WHILE",
-        "Unlike"
+        "while",
+        "WHILE"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'Write', from the notes for Floor Pack Problem Coding Challenge."
+      "explanation": "The missing word is 'Write', from the notes for Floor Pack Problem Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6628,13 +7368,14 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "In FloorPackProblemCodingChallenge.java, what does the method canPack() return?",
       "options": [
-        "boolean",
         "int",
         "String",
+        "boolean",
         "void"
       ],
-      "answer": 0,
-      "explanation": "The method canPack() is declared with return type 'boolean' in FloorPackProblemCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method canPack() is declared with return type 'boolean' in FloorPackProblemCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6650,7 +7391,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6670,7 +7412,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for GreatestCommonDivisorCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for GreatestCommonDivisorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -6683,7 +7426,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for GreatestCommonDivisorCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for GreatestCommonDivisorCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -6696,7 +7442,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Greatest Common Divisor Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -6711,7 +7460,10 @@ const QUESTIONS_BANK = {
         "For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -6721,13 +7473,14 @@ const QUESTIONS_BANK = {
       "topic": "Greatest Common Divisor Coding Challenge",
       "question": "Which statement best describes Greatest Common Divisor Coding Challenge?",
       "options": [
-        "Number Palindrome",
         "WHILE LOOPS",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "Number Palindrome"
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for Greatest Common Divisor Coding Challenge."
+      "explanation": "This is drawn directly from the notes for Greatest Common Divisor Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6737,18 +7490,19 @@ const QUESTIONS_BANK = {
       "topic": "Greatest Common Divisor Coding Challenge",
       "question": "Which of the following are TRUE about Greatest Common Divisor Coding Challenge? Select all that apply.",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.",
-        "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.",
         "For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.",
-        "WHILE LOOPS"
+        "The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS",
+        "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder."
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Greatest Common Divisor Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Greatest Common Divisor Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6758,13 +7512,14 @@ const QUESTIONS_BANK = {
       "topic": "Greatest Common Divisor Coding Challenge",
       "question": "Complete the blank: \"___ Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.\"",
       "options": [
+        "Greatest",
         "while",
-        "Unlike",
         "WHILE",
-        "Greatest"
+        "Unlike"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Greatest', from the notes for Greatest Common Divisor Coding Challenge."
+      "answer": 0,
+      "explanation": "The missing word is 'Greatest', from the notes for Greatest Common Divisor Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6780,7 +7535,8 @@ const QUESTIONS_BANK = {
         "String"
       ],
       "answer": 1,
-      "explanation": "The method getGreatestCommonDivisor() is declared with return type 'int' in GreatestCommonDivisorCodingChallenge.java."
+      "explanation": "The method getGreatestCommonDivisor() is declared with return type 'int' in GreatestCommonDivisorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6796,7 +7552,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6816,7 +7573,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for LargestPrimeFactorCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for LargestPrimeFactorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -6829,7 +7587,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for LargestPrimeFactorCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for LargestPrimeFactorCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -6842,7 +7603,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Largest Prime Factor Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -6857,7 +7621,10 @@ const QUESTIONS_BANK = {
         "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -6868,12 +7635,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Largest Prime Factor Coding Challenge?",
       "options": [
         "WHILE LOOPS",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Number Palindrome",
-        "Write a method named getLargestPrime with one parameter of type int named number.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "Write a method named getLargestPrime with one parameter of type int named number."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Largest Prime Factor Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Largest Prime Factor Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6883,18 +7651,19 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Which of the following are TRUE about Largest Prime Factor Coding Challenge? Select all that apply.",
       "options": [
-        "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.",
         "WHILE LOOPS",
+        "Write a method named getLargestPrime with one parameter of type int named number.",
+        "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.",
         "The method should calculate the largest prime factor of a given number and return it.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "Write a method named getLargestPrime with one parameter of type int named number."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
-        0,
+        1,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Largest Prime Factor Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Largest Prime Factor Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6904,13 +7673,14 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Complete the blank: \"___ a method named getLargestPrime with one parameter of type int named number.\"",
       "options": [
-        "while",
-        "WHILE",
+        "Write",
         "Unlike",
-        "Write"
+        "WHILE",
+        "while"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Write', from the notes for Largest Prime Factor Coding Challenge."
+      "answer": 0,
+      "explanation": "The missing word is 'Write', from the notes for Largest Prime Factor Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6921,12 +7691,13 @@ const QUESTIONS_BANK = {
       "question": "In LargestPrimeFactorCodingChallenge.java, what does the method getLargestPrime() return?",
       "options": [
         "boolean",
-        "int",
         "String",
-        "void"
+        "void",
+        "int"
       ],
-      "answer": 1,
-      "explanation": "The method getLargestPrime() is declared with return type 'int' in LargestPrimeFactorCodingChallenge.java."
+      "answer": 3,
+      "explanation": "The method getLargestPrime() is declared with return type 'int' in LargestPrimeFactorCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -6942,7 +7713,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -6962,7 +7734,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for LastDigitCheckerCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for LastDigitCheckerCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -6975,7 +7748,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for LastDigitCheckerCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for LastDigitCheckerCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -6988,7 +7764,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Last Digit Checker Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -7003,7 +7782,10 @@ const QUESTIONS_BANK = {
         "Write a method named hasSameLastDigit with three parameters of type int.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -7013,13 +7795,14 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Which statement best describes Last Digit Checker Coding Challenge?",
       "options": [
-        "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Number Palindrome",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS",
         "Last Digit Checker"
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Last Digit Checker Coding Challenge."
+      "explanation": "This is drawn directly from the notes for Last Digit Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7029,18 +7812,19 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Which of the following are TRUE about Last Digit Checker Coding Challenge? Select all that apply.",
       "options": [
-        "WHILE LOOPS",
-        "Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.",
         "Write a method named hasSameLastDigit with three parameters of type int.",
+        "WHILE LOOPS",
         "Last Digit Checker"
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Last Digit Checker Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Last Digit Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7050,13 +7834,14 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Complete the blank: \"Last ___ Checker\"",
       "options": [
-        "Digit",
-        "while",
         "WHILE",
-        "Unlike"
+        "while",
+        "Unlike",
+        "Digit"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Digit', from the notes for Last Digit Checker Coding Challenge."
+      "answer": 3,
+      "explanation": "The missing word is 'Digit', from the notes for Last Digit Checker Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7066,13 +7851,14 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "In LastDigitCheckerCodingChallenge.java, what does the method isValid() return?",
       "options": [
-        "int",
         "String",
         "boolean",
+        "int",
         "void"
       ],
-      "answer": 2,
-      "explanation": "The method isValid() is declared with return type 'boolean' in LastDigitCheckerCodingChallenge.java."
+      "answer": 1,
+      "explanation": "The method isValid() is declared with return type 'boolean' in LastDigitCheckerCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7088,7 +7874,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7108,7 +7895,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for NumberToWordsCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for NumberToWordsCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -7121,7 +7909,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for NumberToWordsCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for NumberToWordsCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -7134,7 +7925,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Invalid Value"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -7149,7 +7943,10 @@ const QUESTIONS_BANK = {
         "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -7159,13 +7956,14 @@ const QUESTIONS_BANK = {
       "topic": "Number To Words Coding Challenge",
       "question": "Which statement best describes Number To Words Coding Challenge?",
       "options": [
-        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
         "Number Palindrome",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Number To Words Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Number To Words Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7175,18 +7973,19 @@ const QUESTIONS_BANK = {
       "topic": "Number To Words Coding Challenge",
       "question": "Which of the following are TRUE about Number To Words Coding Challenge? Select all that apply.",
       "options": [
-        "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "This example defines 3 methods; trace method behavior step by step.",
         "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "WHILE LOOPS"
+        "WHILE LOOPS",
+        "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
         0,
-        2,
+        1,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Number To Words Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Number To Words Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7197,12 +7996,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"This ___ belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.\"",
       "options": [
         "Unlike",
-        "while",
         "topic",
+        "while",
         "WHILE"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'topic', from the notes for Number To Words Coding Challenge."
+      "answer": 1,
+      "explanation": "The missing word is 'topic', from the notes for Number To Words Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7212,13 +8012,14 @@ const QUESTIONS_BANK = {
       "topic": "Number To Words Coding Challenge",
       "question": "In NumberToWordsCodingChallenge.java, what does the method getDigitCount() return?",
       "options": [
-        "boolean",
         "void",
         "int",
+        "boolean",
         "String"
       ],
-      "answer": 2,
-      "explanation": "The method getDigitCount() is declared with return type 'int' in NumberToWordsCodingChallenge.java."
+      "answer": 1,
+      "explanation": "The method getDigitCount() is declared with return type 'int' in NumberToWordsCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7234,7 +8035,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7254,7 +8056,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PerfectNumberCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PerfectNumberCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -7267,7 +8070,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for PerfectNumberCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for PerfectNumberCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -7280,7 +8086,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Perfect Number Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -7295,7 +8104,10 @@ const QUESTIONS_BANK = {
         "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -7305,13 +8117,14 @@ const QUESTIONS_BANK = {
       "topic": "Perfect Number Coding Challenge",
       "question": "Which statement best describes Perfect Number Coding Challenge?",
       "options": [
-        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Number Palindrome",
-        "WHILE LOOPS"
+        "WHILE LOOPS",
+        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Perfect Number Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Perfect Number Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7321,18 +8134,19 @@ const QUESTIONS_BANK = {
       "topic": "Perfect Number Coding Challenge",
       "question": "Which of the following are TRUE about Perfect Number Coding Challenge? Select all that apply.",
       "options": [
+        "WHILE LOOPS",
         "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
         "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
-        "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "This example defines 2 methods; trace method behavior step by step."
+        "This example defines 2 methods; trace method behavior step by step.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
-        0,
         1,
-        4
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Perfect Number Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Perfect Number Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7343,12 +8157,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"This ___ belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.\"",
       "options": [
         "WHILE",
-        "topic",
         "Unlike",
+        "topic",
         "while"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'topic', from the notes for Perfect Number Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'topic', from the notes for Perfect Number Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7358,13 +8173,14 @@ const QUESTIONS_BANK = {
       "topic": "Perfect Number Coding Challenge",
       "question": "In PerfectNumberCodingChallenge.java, what does the method isPerfectNumber() return?",
       "options": [
-        "int",
         "boolean",
+        "int",
         "void",
         "String"
       ],
-      "answer": 1,
-      "explanation": "The method isPerfectNumber() is declared with return type 'boolean' in PerfectNumberCodingChallenge.java."
+      "answer": 0,
+      "explanation": "The method isPerfectNumber() is declared with return type 'boolean' in PerfectNumberCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7380,7 +8196,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7400,7 +8217,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SharedDigitCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SharedDigitCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -7413,7 +8231,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for SharedDigitCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for SharedDigitCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -7426,7 +8247,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - Shared Digit Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -7441,7 +8265,10 @@ const QUESTIONS_BANK = {
         "Write a method named hasSharedDigit with two parameters of type int.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -7451,13 +8278,14 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "Which statement best describes Shared Digit Coding Challenge?",
       "options": [
-        "Shared Digit",
         "WHILE LOOPS",
-        "Number Palindrome",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "Shared Digit",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Number Palindrome"
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Shared Digit Coding Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Shared Digit Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7467,18 +8295,19 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "Which of the following are TRUE about Shared Digit Coding Challenge? Select all that apply.",
       "options": [
+        "Shared Digit",
         "WHILE LOOPS",
-        "Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.",
         "Write a method named hasSharedDigit with two parameters of type int.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "Shared Digit"
+        "Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Shared Digit Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Shared Digit Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7488,13 +8317,14 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "Complete the blank: \"___ a method named hasSharedDigit with two parameters of type int.\"",
       "options": [
-        "while",
-        "WHILE",
         "Write",
-        "Unlike"
+        "Unlike",
+        "while",
+        "WHILE"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Write', from the notes for Shared Digit Coding Challenge."
+      "answer": 0,
+      "explanation": "The missing word is 'Write', from the notes for Shared Digit Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7504,13 +8334,14 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "In SharedDigitCodingChallenge.java, what does the method hasSharedDigit() return?",
       "options": [
+        "boolean",
         "void",
-        "String",
         "int",
-        "boolean"
+        "String"
       ],
-      "answer": 3,
-      "explanation": "The method hasSharedDigit() is declared with return type 'boolean' in SharedDigitCodingChallenge.java."
+      "answer": 0,
+      "explanation": "The method hasSharedDigit() is declared with return type 'boolean' in SharedDigitCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7526,7 +8357,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'return'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7546,7 +8378,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for WhileLoopCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for WhileLoopCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -7559,7 +8392,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "return"
       ],
-      "explanation": "The missing keyword is 'return', taken from the parsed source for WhileLoopCodingChallenge.java."
+      "explanation": "The missing keyword is 'return', taken from the parsed source for WhileLoopCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -7572,7 +8408,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - While Loop Coding Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -7587,7 +8426,10 @@ const QUESTIONS_BANK = {
         "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -7597,13 +8439,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge",
       "question": "Which statement best describes While Loop Coding Challenge?",
       "options": [
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS",
         "Number Palindrome",
-        "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for While Loop Coding Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for While Loop Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7613,18 +8456,19 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge",
       "question": "Which of the following are TRUE about While Loop Coding Challenge? Select all that apply.",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "If it's an even number, return true, otherwise, return false.",
         "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.",
-        "WHILE LOOPS",
-        "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int."
+        "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS"
       ],
       "answer": [
+        0,
         1,
-        2,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for While Loop Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for While Loop Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7634,13 +8478,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge",
       "question": "Complete the blank: \"___ a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.\"",
       "options": [
-        "Create",
         "WHILE",
-        "Unlike",
-        "while"
+        "while",
+        "Create",
+        "Unlike"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Create', from the notes for While Loop Coding Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'Create', from the notes for While Loop Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7650,13 +8495,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge",
       "question": "In WhileLoopCodingChallenge.java, what does the method isEvenNumber() return?",
       "options": [
-        "void",
+        "String",
         "int",
         "boolean",
-        "String"
+        "void"
       ],
       "answer": 2,
-      "explanation": "The method isEvenNumber() is declared with return type 'boolean' in WhileLoopCodingChallenge.java."
+      "explanation": "The method isEvenNumber() is declared with return type 'boolean' in WhileLoopCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7672,7 +8518,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7692,7 +8539,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for WhileLoopCodingChallengePart2.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for WhileLoopCodingChallengePart2.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -7705,7 +8553,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for WhileLoopCodingChallengePart2.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for WhileLoopCodingChallengePart2.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -7718,7 +8569,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "While And Do While Looping Concepts - While Loop Coding Challenge Part2"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -7732,7 +8586,10 @@ const QUESTIONS_BANK = {
         "Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.",
         "IMPORTANT: Always check your loop condition carefully."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -7742,13 +8599,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge Part2",
       "question": "Which statement best describes While Loop Coding Challenge Part2?",
       "options": [
-        "Number Palindrome",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.",
-        "WHILE LOOPS"
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS",
+        "Number Palindrome"
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for While Loop Coding Challenge Part2."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for While Loop Coding Challenge Part2.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7758,13 +8616,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge Part2",
       "question": "Complete the blank: \"Step 2 is to ___ the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.\"",
       "options": [
-        "modify",
         "WHILE",
+        "modify",
         "while",
         "Unlike"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'modify', from the notes for While Loop Coding Challenge Part2."
+      "answer": 1,
+      "explanation": "The missing word is 'modify', from the notes for While Loop Coding Challenge Part2.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7774,13 +8633,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge Part2",
       "question": "In WhileLoopCodingChallengePart2.java, what does the method isEvenNumber() return?",
       "options": [
-        "boolean",
-        "void",
         "int",
+        "void",
+        "boolean",
         "String"
       ],
-      "answer": 0,
-      "explanation": "The method isEvenNumber() is declared with return type 'boolean' in WhileLoopCodingChallengePart2.java."
+      "answer": 2,
+      "explanation": "The method isEvenNumber() is declared with return type 'boolean' in WhileLoopCodingChallengePart2.java.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-10-while-and-do-while-looping-concepts-polymorphism-1",
@@ -7793,7 +8653,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "Animal \nDog"
       ],
-      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap."
+      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-10-while-and-do-while-looping-concepts-constructor-chain-1",
@@ -7806,7 +8671,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "A\nB\nC"
       ],
-      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy."
+      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-10-while-and-do-while-looping-concepts-override-overload-1",
@@ -7822,7 +8692,11 @@ const QUESTIONS_BANK = {
         "A static method can be overridden to behave polymorphically"
       ],
       "answer": 1,
-      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden."
+      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     },
     {
       "qid": "ocjp-chapter-10-while-and-do-while-looping-concepts-final-keyword-1",
@@ -7838,7 +8712,11 @@ const QUESTIONS_BANK = {
         "The method is automatically made static"
       ],
       "answer": 1,
-      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once."
+      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     },
     {
       "qid": "ocjp-chapter-10-while-and-do-while-looping-concepts-for-scope-1",
@@ -7854,7 +8732,11 @@ const QUESTIONS_BANK = {
         "The loop variable persists between method calls"
       ],
       "answer": 1,
-      "explanation": "A variable declared in the for-loop initializer (for(int i=0;...)) is scoped to that loop only. It cannot be accessed after the loop. You CANNOT reuse the same name in an inner nested loop — that would shadow it and cause a compile error."
+      "explanation": "A variable declared in the for-loop initializer (for(int i=0;...)) is scoped to that loop only. It cannot be accessed after the loop. You CANNOT reuse the same name in an inner nested loop — that would shadow it and cause a compile error.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     }
   ],
   "Chapter 11: Class Object Static And Instance Fields": [
@@ -7872,7 +8754,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7892,7 +8775,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ClassExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ClassExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -7905,7 +8789,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ClassExample.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ClassExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -7918,7 +8805,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Class Object Static And Instance Fields - Class Example"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -7933,7 +8823,10 @@ const QUESTIONS_BANK = {
         "1) A custom data type --> For Ex :- String",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -7944,12 +8837,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Class Example?",
       "options": [
         "Object",
-        "null",
         "There are 2 ways to create fields on classes.",
-        "A class can be described as :-"
+        "A class can be described as :-",
+        "null"
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Class Example."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Class Example.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -7959,17 +8853,18 @@ const QUESTIONS_BANK = {
       "topic": "Class Example",
       "question": "Which of the following are TRUE about Class Example? Select all that apply.",
       "options": [
-        "A class can be described as :-",
         "2) A special code block that contains methods",
         "There are 2 ways to create fields on classes.",
+        "A class can be described as :-",
         "1) A custom data type --> For Ex :- String"
       ],
       "answer": [
         0,
-        1,
+        2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Class Example."
+      "explanation": "The true statements are taken directly from the notes for Class Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -7979,13 +8874,14 @@ const QUESTIONS_BANK = {
       "topic": "Class Example",
       "question": "Complete the blank: \"A ___ can be described as :-\"",
       "options": [
-        "class",
         "static",
         "create",
+        "class",
         "Without"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'class', from the notes for Class Example."
+      "answer": 2,
+      "explanation": "The missing word is 'class', from the notes for Class Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8001,7 +8897,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8021,7 +8918,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for CreateFieldOnClasses.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for CreateFieldOnClasses.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -8034,7 +8932,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for CreateFieldOnClasses.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for CreateFieldOnClasses.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -8047,7 +8948,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "hello"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -8062,7 +8966,10 @@ const QUESTIONS_BANK = {
         "1) With static keyword",
         "Always be aware of scope, type constraints, and compiler rules in this area."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -8073,12 +8980,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Create Field On Classes?",
       "options": [
         "There are 2 ways to create fields on classes.",
+        "null",
         "A class can be described as :-",
-        "Object",
-        "null"
+        "Object"
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for Create Field On Classes."
+      "explanation": "This is drawn directly from the notes for Create Field On Classes.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8089,8 +8997,8 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Create Field On Classes? Select all that apply.",
       "options": [
         "A class can be described as :-",
-        "1) With static keyword",
         "2) Without static keyword",
+        "1) With static keyword",
         "There are 2 ways to create fields on classes."
       ],
       "answer": [
@@ -8098,7 +9006,8 @@ const QUESTIONS_BANK = {
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Create Field On Classes."
+      "explanation": "The true statements are taken directly from the notes for Create Field On Classes.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8109,12 +9018,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"There are 2 ways to ___ fields on classes.\"",
       "options": [
         "custom",
-        "special",
         "class",
+        "special",
         "create"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'create', from the notes for Create Field On Classes."
+      "explanation": "The missing word is 'create', from the notes for Create Field On Classes.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8124,13 +9034,14 @@ const QUESTIONS_BANK = {
       "topic": "Create Field On Classes",
       "question": "What is an important consideration when working with Create Field On Classes?",
       "options": [
-        "A class can be described as :-",
-        "Be careful with null references.",
         "Value of the field always stays with the class iii) Value is accessed by ClassName.fieldname",
-        "Always initialize variables before use."
+        "Always initialize variables before use.",
+        "Be careful with null references.",
+        "A class can be described as :-"
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for Create Field On Classes."
+      "answer": 0,
+      "explanation": "This is a key gotcha or note taken directly from the source for Create Field On Classes.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-11-class-object-static-and-instance-fields-polymorphism-1",
@@ -8143,7 +9054,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "Animal \nDog"
       ],
-      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap."
+      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-11-class-object-static-and-instance-fields-constructor-chain-1",
@@ -8156,7 +9072,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "A\nB\nC"
       ],
-      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy."
+      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-11-class-object-static-and-instance-fields-override-overload-1",
@@ -8172,7 +9093,11 @@ const QUESTIONS_BANK = {
         "A static method can be overridden to behave polymorphically"
       ],
       "answer": 1,
-      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden."
+      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     },
     {
       "qid": "ocjp-chapter-11-class-object-static-and-instance-fields-final-keyword-1",
@@ -8188,7 +9113,11 @@ const QUESTIONS_BANK = {
         "The method is automatically made static"
       ],
       "answer": 1,
-      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once."
+      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     }
   ],
   "Chapter 12: Parsing Values Reading Input": [
@@ -8206,7 +9135,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8226,7 +9156,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ParsingValuesReadingInput.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ParsingValuesReadingInput.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -8239,7 +9170,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ParsingValuesReadingInput.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ParsingValuesReadingInput.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -8252,7 +9186,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Age = "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -8267,7 +9204,10 @@ const QUESTIONS_BANK = {
         "Reading Data From Console",
         "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -8277,13 +9217,14 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Which statement best describes Parsing Values Reading Input?",
       "options": [
-        "Input Calculator",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "Input Calculator"
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Parsing Values Reading Input."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Parsing Values Reading Input.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8293,18 +9234,19 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Which of the following are TRUE about Parsing Values Reading Input? Select all that apply.",
       "options": [
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Input Calculator",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "Technique              | Description",
-        "Reading Data From Console"
+        "Reading Data From Console",
+        "Input Calculator",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
       "answer": [
-        2,
-        3,
-        4
+        0,
+        1,
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Parsing Values Reading Input."
+      "explanation": "The true statements are taken directly from the notes for Parsing Values Reading Input.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8314,13 +9256,14 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Complete the blank: \"When we read data in from ___ a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.\"",
       "options": [
-        "method",
-        "Input",
+        "either",
         "Write",
-        "either"
+        "Input",
+        "method"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'either', from the notes for Parsing Values Reading Input."
+      "answer": 0,
+      "explanation": "The missing word is 'either', from the notes for Parsing Values Reading Input.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8330,13 +9273,14 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "What is an important consideration when working with Parsing Values Reading Input?",
       "options": [
-        "Input Calculator",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "Always close the Scanner when done: sc.close(); (or use try-with-resources).",
         "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
+        "Input Calculator"
       ],
       "answer": 1,
-      "explanation": "This is a key gotcha or note taken directly from the source for Parsing Values Reading Input."
+      "explanation": "This is a key gotcha or note taken directly from the source for Parsing Values Reading Input.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8347,12 +9291,13 @@ const QUESTIONS_BANK = {
       "question": "In ParsingValuesReadingInput.java, what does the method getInputFromConsole() return?",
       "options": [
         "String",
-        "int",
         "void",
+        "int",
         "boolean"
       ],
       "answer": 0,
-      "explanation": "The method getInputFromConsole() is declared with return type 'String' in ParsingValuesReadingInput.java."
+      "explanation": "The method getInputFromConsole() is declared with return type 'String' in ParsingValuesReadingInput.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8368,7 +9313,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'void'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'void'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8388,7 +9334,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for InputCalculatorChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for InputCalculatorChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -8401,7 +9348,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "void"
       ],
-      "explanation": "The missing keyword is 'void', taken from the parsed source for InputCalculatorChallenge.java."
+      "explanation": "The missing keyword is 'void', taken from the parsed source for InputCalculatorChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -8414,7 +9364,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "SUM = "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -8429,7 +9382,10 @@ const QUESTIONS_BANK = {
         "Write a method called inputThenPrintSumAndAverage that does not have any parameters.",
         "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -8445,7 +9401,8 @@ const QUESTIONS_BANK = {
         "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for Input Calculator Challenge."
+      "explanation": "This is drawn directly from the notes for Input Calculator Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8466,7 +9423,8 @@ const QUESTIONS_BANK = {
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Input Calculator Challenge."
+      "explanation": "The true statements are taken directly from the notes for Input Calculator Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8476,13 +9434,14 @@ const QUESTIONS_BANK = {
       "topic": "Input Calculator Challenge",
       "question": "Complete the blank: \"___ Calculator\"",
       "options": [
-        "Technique",
-        "either",
         "Reading",
-        "Input"
+        "Input",
+        "either",
+        "Technique"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Input', from the notes for Input Calculator Challenge."
+      "answer": 1,
+      "explanation": "The missing word is 'Input', from the notes for Input Calculator Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8492,13 +9451,14 @@ const QUESTIONS_BANK = {
       "topic": "Input Calculator Challenge",
       "question": "What is an important consideration when working with Input Calculator Challenge?",
       "options": [
-        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
+        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
       ],
-      "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for Input Calculator Challenge."
+      "answer": 1,
+      "explanation": "This is a key gotcha or note taken directly from the source for Input Calculator Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8514,7 +9474,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8534,7 +9495,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MinMaxCodingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MinMaxCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -8547,7 +9509,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for MinMaxCodingChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for MinMaxCodingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -8560,7 +9525,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Enter any number of your choice. To quit, press any character"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -8575,7 +9543,10 @@ const QUESTIONS_BANK = {
         "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.",
         "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -8585,13 +9556,14 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "Which statement best describes Min Max Coding Challenge?",
       "options": [
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "Input Calculator",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "Input Calculator"
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Min Max Coding Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Min Max Coding Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8601,18 +9573,19 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "Which of the following are TRUE about Min Max Coding Challenge? Select all that apply.",
       "options": [
-        "Input Calculator",
         "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.",
+        "Input Calculator",
         "You can decide if you want the user to enter integers or decimal numbers.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Min Max Coding Challenge."
+      "explanation": "The true statements are taken directly from the notes for Min Max Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8622,13 +9595,14 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "Complete the blank: \"If the user has ___ entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.\"",
       "options": [
-        "Technique",
+        "either",
         "previously",
         "Reading",
-        "either"
+        "Technique"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'previously', from the notes for Min Max Coding Challenge."
+      "explanation": "The missing word is 'previously', from the notes for Min Max Coding Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8638,13 +9612,14 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "In MinMaxCodingChallenge.java, what does the method checkIfUserInputIsNumber() return?",
       "options": [
-        "boolean",
-        "int",
         "void",
-        "String"
+        "String",
+        "boolean",
+        "int"
       ],
-      "answer": 0,
-      "explanation": "The method checkIfUserInputIsNumber() is declared with return type 'boolean' in MinMaxCodingChallenge.java."
+      "answer": 2,
+      "explanation": "The method checkIfUserInputIsNumber() is declared with return type 'boolean' in MinMaxCodingChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8660,7 +9635,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8680,7 +9656,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PaintJobChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PaintJobChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -8693,7 +9670,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for PaintJobChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for PaintJobChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -8706,7 +9686,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Parsing Values Reading Input - Paint Job Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -8721,7 +9704,10 @@ const QUESTIONS_BANK = {
         "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).",
         "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -8733,11 +9719,12 @@ const QUESTIONS_BANK = {
       "options": [
         "Input Calculator",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Paint Job Challenge."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Paint Job Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8747,18 +9734,19 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "Which of the following are TRUE about Paint Job Challenge? Select all that apply.",
       "options": [
-        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
         "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "Input Calculator"
+        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).",
+        "Input Calculator",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "Math.ceil() is used to round up — you always need whole buckets, never a fraction."
       ],
       "answer": [
         0,
-        2,
-        3
+        1,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Paint Job Challenge."
+      "explanation": "The true statements are taken directly from the notes for Paint Job Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8768,13 +9756,14 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "Complete the blank: \"___ Job Challenge: calculates how many paint buckets are required to cover a wall area.\"",
       "options": [
-        "Reading",
-        "Technique",
+        "Paint",
         "either",
-        "Paint"
+        "Reading",
+        "Technique"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Paint', from the notes for Paint Job Challenge."
+      "answer": 0,
+      "explanation": "The missing word is 'Paint', from the notes for Paint Job Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8785,12 +9774,13 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Paint Job Challenge?",
       "options": [
         "Input Calculator",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
+        "Math.ceil() is used to round up — you always need whole buckets, never a fraction."
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for Paint Job Challenge."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for Paint Job Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8800,13 +9790,14 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "In PaintJobChallenge.java, what does the method getBucketCount() return?",
       "options": [
-        "void",
-        "int",
         "boolean",
-        "String"
+        "String",
+        "void",
+        "int"
       ],
-      "answer": 1,
-      "explanation": "The method getBucketCount() is declared with return type 'int' in PaintJobChallenge.java."
+      "answer": 3,
+      "explanation": "The method getBucketCount() is declared with return type 'int' in PaintJobChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8822,7 +9813,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8842,7 +9834,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ReadingUserInputChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ReadingUserInputChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -8855,7 +9848,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "this"
       ],
-      "explanation": "The missing keyword is 'this', taken from the parsed source for ReadingUserInputChallenge.java."
+      "explanation": "The missing keyword is 'this', taken from the parsed source for ReadingUserInputChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -8868,7 +9864,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Parsing Values Reading Input - Reading User Input Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -8883,7 +9882,10 @@ const QUESTIONS_BANK = {
         "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message",
         "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -8893,13 +9895,14 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "Which statement best describes Reading User Input Challenge?",
       "options": [
-        "Input Calculator",
         "Reading User Input Challenge.",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
+        "Input Calculator"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Reading User Input Challenge."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Reading User Input Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8910,17 +9913,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Reading User Input Challenge? Select all that apply.",
       "options": [
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Input Calculator",
         "\"Invalid number\" to the console, but continue looping until you do have 5 valid numbers.",
-        "Reading User Input Challenge.",
-        "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message"
+        "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message",
+        "Input Calculator",
+        "Reading User Input Challenge."
       ],
       "answer": [
+        1,
         2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Reading User Input Challenge."
+      "explanation": "The true statements are taken directly from the notes for Reading User Input Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8930,13 +9934,14 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "Complete the blank: \"___ User Input Challenge.\"",
       "options": [
-        "either",
-        "Console",
         "Technique",
+        "Console",
+        "either",
         "Reading"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'Reading', from the notes for Reading User Input Challenge."
+      "explanation": "The missing word is 'Reading', from the notes for Reading User Input Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -8946,13 +9951,14 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "In ReadingUserInputChallenge.java, what does the method printSumOfNumbersEnteredByUserUsingWhileLoop() return?",
       "options": [
-        "String",
         "boolean",
         "int",
-        "void"
+        "void",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The method printSumOfNumbersEnteredByUserUsingWhileLoop() is declared with return type 'int' in ReadingUserInputChallenge.java."
+      "answer": 1,
+      "explanation": "The method printSumOfNumbersEnteredByUserUsingWhileLoop() is declared with return type 'int' in ReadingUserInputChallenge.java.",
+      "tags": []
     }
   ],
   "Chapter 13: Exception Handling": [
@@ -8970,7 +9976,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'try'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'try'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -8990,7 +9997,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ExceptionHandlingInJava.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ExceptionHandlingInJava.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9003,7 +10011,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "try"
       ],
-      "explanation": "The missing keyword is 'try', taken from the parsed source for ExceptionHandlingInJava.java."
+      "explanation": "The missing keyword is 'try', taken from the parsed source for ExceptionHandlingInJava.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9016,7 +10027,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Exception Handling - Exception Handling In Java"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -9031,7 +10045,10 @@ const QUESTIONS_BANK = {
         "An exception is an abnormal condition that disrupts the normal flow of the program.",
         "An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -9041,13 +10058,14 @@ const QUESTIONS_BANK = {
       "topic": "Exception Handling In Java",
       "question": "Complete the blank: \"An ___ is an abnormal condition that disrupts the normal flow of the program.\"",
       "options": [
-        "String",
         "exception",
+        "Integer",
         "Object",
-        "Integer"
+        "String"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'exception', from the notes for Exception Handling In Java."
+      "answer": 0,
+      "explanation": "The missing word is 'exception', from the notes for Exception Handling In Java.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-13-exception-handling-finally-1",
@@ -9060,7 +10078,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "try\nfinally"
       ],
-      "explanation": "finally ALWAYS executes — even after a return statement. The method only actually returns after finally completes. This is a top OCJP gotcha."
+      "explanation": "finally ALWAYS executes — even after a return statement. The method only actually returns after finally completes. This is a top OCJP gotcha.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-13-exception-handling-checked-unchecked-1",
@@ -9076,7 +10099,11 @@ const QUESTIONS_BANK = {
         "FileNotFoundException"
       ],
       "answer": 2,
-      "explanation": "NullPointerException extends RuntimeException → unchecked (compiler does not force you to handle it). IOException, SQLException, FileNotFoundException extend Exception directly → checked (must be caught or declared)."
+      "explanation": "NullPointerException extends RuntimeException → unchecked (compiler does not force you to handle it). IOException, SQLException, FileNotFoundException extend Exception directly → checked (must be caught or declared).",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     }
   ],
   "Chapter 14: OOP Concepts": [
@@ -9094,7 +10121,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9114,7 +10142,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PointClassDistanceCalculation.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PointClassDistanceCalculation.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9127,7 +10156,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for PointClassDistanceCalculation.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for PointClassDistanceCalculation.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9140,7 +10172,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Point Class Distance Calculation"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -9155,7 +10190,10 @@ const QUESTIONS_BANK = {
         "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -9165,13 +10203,14 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "Which statement best describes Point Class Distance Calculation?",
       "options": [
-        "Dog inherits from Animal",
+        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation"
+        "Dog inherits from Animal",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Point Class Distance Calculation."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Point Class Distance Calculation.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9181,18 +10220,19 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "Which of the following are TRUE about Point Class Distance Calculation? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
+        "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.",
+        "Wall Area Computation",
         "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.",
-        "Wall Area Computation"
+        "Point Class and Distance Calculation"
       ],
       "answer": [
         0,
-        1,
-        3
+        2,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Point Class Distance Calculation."
+      "explanation": "The true statements are taken directly from the notes for Point Class Distance Calculation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9202,13 +10242,14 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "Complete the blank: \"___ Class and Distance Calculation\"",
       "options": [
-        "class",
         "Write",
+        "class",
         "Computation",
         "Point"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'Point', from the notes for Point Class Distance Calculation."
+      "explanation": "The missing word is 'Point', from the notes for Point Class Distance Calculation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9218,13 +10259,14 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "In PointClassDistanceCalculation.java, what does the method getX() return?",
       "options": [
-        "void",
-        "String",
         "int",
-        "boolean"
+        "void",
+        "boolean",
+        "String"
       ],
-      "answer": 2,
-      "explanation": "The method getX() is declared with return type 'int' in PointClassDistanceCalculation.java."
+      "answer": 0,
+      "explanation": "The method getX() is declared with return type 'int' in PointClassDistanceCalculation.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9240,7 +10282,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9260,7 +10303,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for WallAreaComputation.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for WallAreaComputation.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9273,7 +10317,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for WallAreaComputation.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for WallAreaComputation.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9286,7 +10333,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Wall Area Computation"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -9301,7 +10351,10 @@ const QUESTIONS_BANK = {
         "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -9317,7 +10370,8 @@ const QUESTIONS_BANK = {
         "Dog inherits from Animal"
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for Wall Area Computation."
+      "explanation": "This is drawn directly from the notes for Wall Area Computation.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9327,18 +10381,19 @@ const QUESTIONS_BANK = {
       "topic": "Wall Area Computation",
       "question": "Which of the following are TRUE about Wall Area Computation? Select all that apply.",
       "options": [
+        "The class needs to have two constructors:",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
         "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.",
-        "Wall Area Computation",
-        "The class needs to have two constructors:"
+        "Point Class and Distance Calculation",
+        "Wall Area Computation"
       ],
       "answer": [
+        0,
         2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Wall Area Computation."
+      "explanation": "The true statements are taken directly from the notes for Wall Area Computation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9349,12 +10404,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"Wall Area ___\"",
       "options": [
         "Point",
+        "class",
         "represent",
-        "Computation",
-        "class"
+        "Computation"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Computation', from the notes for Wall Area Computation."
+      "answer": 3,
+      "explanation": "The missing word is 'Computation', from the notes for Wall Area Computation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9364,13 +10420,14 @@ const QUESTIONS_BANK = {
       "topic": "Wall Area Computation",
       "question": "In WallAreaComputation.java, what does the method getWidth() return?",
       "options": [
-        "int",
-        "String",
         "void",
+        "String",
+        "int",
         "double"
       ],
       "answer": 3,
-      "explanation": "The method getWidth() is declared with return type 'double' in WallAreaComputation.java."
+      "explanation": "The method getWidth() is declared with return type 'double' in WallAreaComputation.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9386,7 +10443,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9406,7 +10464,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Animal.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Animal.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9419,7 +10478,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Animal.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Animal.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9432,7 +10494,10 @@ const QUESTIONS_BANK = {
       "answer": [
         " moves "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -9447,7 +10512,10 @@ const QUESTIONS_BANK = {
         "Also, the super class will have all the behaviour that animals have in common.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -9459,11 +10527,12 @@ const QUESTIONS_BANK = {
       "options": [
         "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Dog inherits from Animal",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "Dog inherits from Animal"
       ],
       "answer": 1,
-      "explanation": "This is drawn directly from the notes for Animal."
+      "explanation": "This is drawn directly from the notes for Animal.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9473,18 +10542,19 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "Which of the following are TRUE about Animal? Select all that apply.",
       "options": [
+        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "Method Overriding",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Also, the super class will have all the behaviour that animals have in common.",
-        "Point Class and Distance Calculation"
+        "Method Overriding"
       ],
       "answer": [
-        1,
         2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Animal."
+      "explanation": "The true statements are taken directly from the notes for Animal.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9494,13 +10564,14 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "Complete the blank: \"This is a ___ class, aka top parent class. This class will contain all the attributes that all types of animal has.\"",
       "options": [
-        "represent",
-        "Point",
+        "class",
         "super",
-        "class"
+        "Point",
+        "represent"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'super', from the notes for Animal."
+      "answer": 1,
+      "explanation": "The missing word is 'super', from the notes for Animal.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9510,13 +10581,14 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "In Animal.java, what does the method toString() return?",
       "options": [
-        "int",
         "void",
+        "boolean",
         "String",
-        "boolean"
+        "int"
       ],
       "answer": 2,
-      "explanation": "The method toString() is declared with return type 'String' in Animal.java."
+      "explanation": "The method toString() is declared with return type 'String' in Animal.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9532,7 +10604,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9552,7 +10625,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Dog.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Dog.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9565,7 +10639,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Dog.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Dog.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9578,7 +10655,10 @@ const QUESTIONS_BANK = {
       "answer": [
         " makes some noise"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -9593,7 +10673,10 @@ const QUESTIONS_BANK = {
         "Dog \"IS A\" a type of Animal",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -9604,12 +10687,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Dog?",
       "options": [
         "Point Class and Distance Calculation",
-        "Dog inherits from Animal",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Dog inherits from Animal",
         "Wall Area Computation"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Dog."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Dog.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9619,18 +10703,19 @@ const QUESTIONS_BANK = {
       "topic": "Dog",
       "question": "Which of the following are TRUE about Dog? Select all that apply.",
       "options": [
-        "Dog inherits from Animal",
-        "Dog is a subclass or child class of Animal",
+        "Wall Area Computation",
         "Point Class and Distance Calculation",
         "Dog \"IS A\" a type of Animal",
-        "Wall Area Computation"
+        "Dog inherits from Animal",
+        "Dog is a subclass or child class of Animal"
       ],
       "answer": [
-        0,
-        1,
-        3
+        2,
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Dog."
+      "explanation": "The true statements are taken directly from the notes for Dog.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9641,12 +10726,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"Dog ___ from Animal\"",
       "options": [
         "inherits",
-        "class",
         "Point",
+        "class",
         "represent"
       ],
       "answer": 0,
-      "explanation": "The missing word is 'inherits', from the notes for Dog."
+      "explanation": "The missing word is 'inherits', from the notes for Dog.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9656,13 +10742,14 @@ const QUESTIONS_BANK = {
       "topic": "Dog",
       "question": "In Dog.java, what does the method toString() return?",
       "options": [
+        "boolean",
         "String",
-        "void",
         "int",
-        "boolean"
+        "void"
       ],
-      "answer": 0,
-      "explanation": "The method toString() is declared with return type 'String' in Dog.java."
+      "answer": 1,
+      "explanation": "The method toString() is declared with return type 'String' in Dog.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9672,13 +10759,14 @@ const QUESTIONS_BANK = {
       "topic": "Dog",
       "question": "What does class Dog extend?",
       "options": [
-        "Comparable",
+        "Animal",
         "Runnable",
-        "Object",
-        "Animal"
+        "Comparable",
+        "Object"
       ],
-      "answer": 3,
-      "explanation": "Dog extends Animal as declared in Dog.java."
+      "answer": 0,
+      "explanation": "Dog extends Animal as declared in Dog.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9694,7 +10782,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9714,7 +10803,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Fish.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Fish.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9727,7 +10817,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Fish.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Fish.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9740,7 +10833,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "muscle moving "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -9753,7 +10849,10 @@ const QUESTIONS_BANK = {
       "keyPoints": [
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -9763,13 +10862,14 @@ const QUESTIONS_BANK = {
       "topic": "Fish",
       "question": "In Fish.java, what does the method toString() return?",
       "options": [
-        "String",
-        "void",
         "int",
-        "boolean"
+        "boolean",
+        "String",
+        "void"
       ],
-      "answer": 0,
-      "explanation": "The method toString() is declared with return type 'String' in Fish.java."
+      "answer": 2,
+      "explanation": "The method toString() is declared with return type 'String' in Fish.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9781,11 +10881,12 @@ const QUESTIONS_BANK = {
       "options": [
         "Runnable",
         "Object",
-        "Comparable",
-        "Animal"
+        "Animal",
+        "Comparable"
       ],
-      "answer": 3,
-      "explanation": "Fish extends Animal as declared in Fish.java."
+      "answer": 2,
+      "explanation": "Fish extends Animal as declared in Fish.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9801,7 +10902,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9821,7 +10923,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Inheritance.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Inheritance.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9834,7 +10937,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Inheritance.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Inheritance.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9847,7 +10953,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Inheritance"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -9862,7 +10971,10 @@ const QUESTIONS_BANK = {
         "Animal (Base Class)",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -9872,13 +10984,14 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "Which statement best describes Inheritance?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
         "Wall Area Computation",
-        "Point Class and Distance Calculation",
-        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Inheritance."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Inheritance.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9888,18 +11001,19 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "Which of the following are TRUE about Inheritance? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
-        "Wall Area Computation",
         "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
         "Animal (Base Class)",
-        "Vertebrates (Sub Class of Animal)"
+        "Point Class and Distance Calculation",
+        "Vertebrates (Sub Class of Animal)",
+        "Wall Area Computation"
       ],
       "answer": [
-        2,
-        3,
-        4
+        0,
+        1,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Inheritance."
+      "explanation": "The true statements are taken directly from the notes for Inheritance.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9909,13 +11023,14 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "Complete the blank: \"___ is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.\"",
       "options": [
-        "Inheritance",
         "Point",
+        "class",
         "represent",
-        "class"
+        "Inheritance"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Inheritance', from the notes for Inheritance."
+      "answer": 3,
+      "explanation": "The missing word is 'Inheritance', from the notes for Inheritance.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9925,13 +11040,14 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "What does class Dog extend?",
       "options": [
+        "Animal",
         "Runnable",
         "Object",
-        "Animal",
         "Comparable"
       ],
-      "answer": 2,
-      "explanation": "Dog extends Animal as declared in Inheritance.java."
+      "answer": 0,
+      "explanation": "Dog extends Animal as declared in Inheritance.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -9947,7 +11063,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -9967,7 +11084,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Main.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Main.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -9980,7 +11098,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "this"
       ],
-      "explanation": "The missing keyword is 'this', taken from the parsed source for Main.java."
+      "explanation": "The missing keyword is 'this', taken from the parsed source for Main.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -9993,7 +11114,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Main"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10008,7 +11132,10 @@ const QUESTIONS_BANK = {
         "That class is named Object, and it's in the java.lang package.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -10018,13 +11145,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which statement best describes Main?",
       "options": [
-        "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Every class created in Java extends a special Java class.",
         "Wall Area Computation",
-        "Every class created in Java extends a special Java class."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Main."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10035,17 +11163,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
         "Every class created in Java extends a special Java class.",
-        "That class is named Object, and it's in the java.lang package.",
-        "Wall Area Computation",
         "Point Class and Distance Calculation",
-        "Class Object is the root of the class hierarchy."
+        "Wall Area Computation",
+        "Class Object is the root of the class hierarchy.",
+        "That class is named Object, and it's in the java.lang package."
       ],
       "answer": [
         0,
-        1,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Main."
+      "explanation": "The true statements are taken directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10055,13 +11184,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Complete the blank: \"Every ___ created in Java extends a special Java class.\"",
       "options": [
-        "class",
         "Point",
         "needs",
+        "class",
         "represent"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'class', from the notes for Main."
+      "answer": 2,
+      "explanation": "The missing word is 'class', from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10071,13 +11201,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "In Main.java, what does the method toString() return?",
       "options": [
-        "String",
-        "void",
         "boolean",
+        "void",
+        "String",
         "int"
       ],
-      "answer": 0,
-      "explanation": "The method toString() is declared with return type 'String' in Main.java."
+      "answer": 2,
+      "explanation": "The method toString() is declared with return type 'String' in Main.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10087,13 +11218,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "What does class Main extend?",
       "options": [
-        "Serializable",
         "Runnable",
+        "Serializable",
         "Comparable",
         "Object"
       ],
       "answer": 3,
-      "explanation": "Main extends Object as declared in Main.java."
+      "explanation": "Main extends Object as declared in Main.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10109,7 +11241,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10129,7 +11262,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Employee.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Employee.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -10142,7 +11276,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Employee.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Employee.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -10155,7 +11292,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Employee"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10169,7 +11309,10 @@ const QUESTIONS_BANK = {
         "Employee Class Extends the Worker Class",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -10180,12 +11323,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Employee?",
       "options": [
         "Wall Area Computation",
+        "Employee Class Extends the Worker Class",
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Employee Class Extends the Worker Class"
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Employee."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Employee.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10196,12 +11340,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ Class Extends the Worker Class\"",
       "options": [
         "Point",
+        "Employee",
         "class",
-        "represent",
-        "Employee"
+        "represent"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Employee', from the notes for Employee."
+      "answer": 1,
+      "explanation": "The missing word is 'Employee', from the notes for Employee.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10211,13 +11356,14 @@ const QUESTIONS_BANK = {
       "topic": "Employee",
       "question": "In Employee.java, what does the method toString() return?",
       "options": [
-        "void",
+        "String",
         "int",
-        "boolean",
-        "String"
+        "void",
+        "boolean"
       ],
-      "answer": 3,
-      "explanation": "The method toString() is declared with return type 'String' in Employee.java."
+      "answer": 0,
+      "explanation": "The method toString() is declared with return type 'String' in Employee.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10227,13 +11373,14 @@ const QUESTIONS_BANK = {
       "topic": "Employee",
       "question": "What does class Employee extend?",
       "options": [
-        "Object",
         "Worker",
-        "Runnable",
-        "Comparable"
+        "Object",
+        "Comparable",
+        "Runnable"
       ],
-      "answer": 1,
-      "explanation": "Employee extends Worker as declared in Employee.java."
+      "answer": 0,
+      "explanation": "Employee extends Worker as declared in Employee.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10249,7 +11396,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10269,7 +11417,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for HourlyEmployee.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for HourlyEmployee.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -10282,7 +11431,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for HourlyEmployee.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for HourlyEmployee.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -10295,7 +11447,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Hourly Employee"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10309,7 +11464,10 @@ const QUESTIONS_BANK = {
         "The HourlyEmployee Class extends the Employee Class",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -10319,13 +11477,14 @@ const QUESTIONS_BANK = {
       "topic": "Hourly Employee",
       "question": "Which statement best describes Hourly Employee?",
       "options": [
-        "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
-        "The HourlyEmployee Class extends the Employee Class",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Point Class and Distance Calculation",
+        "The HourlyEmployee Class extends the Employee Class"
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Hourly Employee."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Hourly Employee.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10336,12 +11495,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"The ___ Class extends the Employee Class\"",
       "options": [
         "represent",
+        "class",
         "Point",
-        "HourlyEmployee",
-        "class"
+        "HourlyEmployee"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'HourlyEmployee', from the notes for Hourly Employee."
+      "answer": 3,
+      "explanation": "The missing word is 'HourlyEmployee', from the notes for Hourly Employee.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10351,13 +11511,14 @@ const QUESTIONS_BANK = {
       "topic": "Hourly Employee",
       "question": "In HourlyEmployee.java, what does the method collectPay() return?",
       "options": [
+        "String",
         "double",
         "void",
-        "int",
-        "String"
+        "int"
       ],
-      "answer": 0,
-      "explanation": "The method collectPay() is declared with return type 'double' in HourlyEmployee.java."
+      "answer": 1,
+      "explanation": "The method collectPay() is declared with return type 'double' in HourlyEmployee.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10369,11 +11530,12 @@ const QUESTIONS_BANK = {
       "options": [
         "Object",
         "Comparable",
-        "Runnable",
-        "Employee"
+        "Employee",
+        "Runnable"
       ],
-      "answer": 3,
-      "explanation": "HourlyEmployee extends Employee as declared in HourlyEmployee.java."
+      "answer": 2,
+      "explanation": "HourlyEmployee extends Employee as declared in HourlyEmployee.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10389,7 +11551,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10409,7 +11572,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Main.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Main.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -10422,7 +11586,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -10435,7 +11602,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Main"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10450,7 +11620,10 @@ const QUESTIONS_BANK = {
         "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -10460,13 +11633,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which statement best describes Main?",
       "options": [
-        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "Point Class and Distance Calculation",
+        "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy."
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for Main."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10476,18 +11650,19 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
-        "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.",
         "Wall Area Computation",
         "Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.",
-        "Point Class and Distance Calculation",
-        "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy."
+        "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.",
+        "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
-        0,
+        1,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Main."
+      "explanation": "The true statements are taken directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10497,13 +11672,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Complete the blank: \"This is the ___ Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.\"",
       "options": [
-        "Point",
+        "class",
         "represent",
         "Inheritance",
-        "class"
+        "Point"
       ],
       "answer": 2,
-      "explanation": "The missing word is 'Inheritance', from the notes for Main."
+      "explanation": "The missing word is 'Inheritance', from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10519,7 +11695,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10539,7 +11716,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SalariedEmployee.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SalariedEmployee.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -10552,7 +11730,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for SalariedEmployee.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for SalariedEmployee.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -10565,7 +11746,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Salaried Employee"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10579,7 +11763,10 @@ const QUESTIONS_BANK = {
         "The salaried employee class, extends the Employee Class",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -10589,13 +11776,14 @@ const QUESTIONS_BANK = {
       "topic": "Salaried Employee",
       "question": "Which statement best describes Salaried Employee?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "The salaried employee class, extends the Employee Class",
         "Wall Area Computation",
-        "Point Class and Distance Calculation"
+        "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "The salaried employee class, extends the Employee Class"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Salaried Employee."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Salaried Employee.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10605,13 +11793,14 @@ const QUESTIONS_BANK = {
       "topic": "Salaried Employee",
       "question": "Complete the blank: \"The ___ employee class, extends the Employee Class\"",
       "options": [
-        "salaried",
-        "represent",
         "Point",
-        "class"
+        "represent",
+        "class",
+        "salaried"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'salaried', from the notes for Salaried Employee."
+      "answer": 3,
+      "explanation": "The missing word is 'salaried', from the notes for Salaried Employee.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10621,13 +11810,14 @@ const QUESTIONS_BANK = {
       "topic": "Salaried Employee",
       "question": "In SalariedEmployee.java, what does the method collectPay() return?",
       "options": [
+        "double",
         "String",
-        "void",
         "int",
-        "double"
+        "void"
       ],
-      "answer": 3,
-      "explanation": "The method collectPay() is declared with return type 'double' in SalariedEmployee.java."
+      "answer": 0,
+      "explanation": "The method collectPay() is declared with return type 'double' in SalariedEmployee.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10637,13 +11827,14 @@ const QUESTIONS_BANK = {
       "topic": "Salaried Employee",
       "question": "What does class SalariedEmployee extend?",
       "options": [
-        "Runnable",
         "Object",
-        "Employee",
-        "Comparable"
+        "Comparable",
+        "Runnable",
+        "Employee"
       ],
-      "answer": 2,
-      "explanation": "SalariedEmployee extends Employee as declared in SalariedEmployee.java."
+      "answer": 3,
+      "explanation": "SalariedEmployee extends Employee as declared in SalariedEmployee.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10659,7 +11850,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'extends'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'extends'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10679,7 +11871,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Worker.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Worker.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -10692,7 +11885,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "extends"
       ],
-      "explanation": "The missing keyword is 'extends', taken from the parsed source for Worker.java."
+      "explanation": "The missing keyword is 'extends', taken from the parsed source for Worker.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -10705,7 +11901,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Worker"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10720,7 +11919,10 @@ const QUESTIONS_BANK = {
         "Create Worker Class -> This should be on top of the Hierarchy",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -10730,13 +11932,14 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "Which statement best describes Worker?",
       "options": [
-        "Inheritance Challenge Problem",
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Inheritance Challenge Problem",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation"
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Worker."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Worker.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10746,18 +11949,19 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "Which of the following are TRUE about Worker? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "Inheritance Challenge Problem",
         "Create Worker Class -> This should be on top of the Hierarchy",
+        "Point Class and Distance Calculation",
+        "Inheritance Challenge Problem",
         "Create attributes :-"
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Worker."
+      "explanation": "The true statements are taken directly from the notes for Worker.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10767,13 +11971,14 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "Complete the blank: \"___ Challenge Problem\"",
       "options": [
-        "Inheritance",
         "class",
-        "represent",
-        "Point"
+        "Inheritance",
+        "Point",
+        "represent"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Inheritance', from the notes for Worker."
+      "answer": 1,
+      "explanation": "The missing word is 'Inheritance', from the notes for Worker.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10783,13 +11988,14 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "In Worker.java, what does the method getAge() return?",
       "options": [
-        "int",
         "boolean",
         "String",
+        "int",
         "void"
       ],
-      "answer": 0,
-      "explanation": "The method getAge() is declared with return type 'int' in Worker.java."
+      "answer": 2,
+      "explanation": "The method getAge() is declared with return type 'int' in Worker.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10805,7 +12011,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10825,7 +12032,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ClassesAndInheritance.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ClassesAndInheritance.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -10838,7 +12046,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ClassesAndInheritance.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ClassesAndInheritance.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -10851,7 +12062,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Classes And Inheritance"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10866,7 +12080,10 @@ const QUESTIONS_BANK = {
         "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -10876,13 +12093,14 @@ const QUESTIONS_BANK = {
       "topic": "Classes And Inheritance",
       "question": "Which statement best describes Classes And Inheritance?",
       "options": [
+        "Point Class and Distance Calculation",
         "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Classes And Inheritance."
+      "explanation": "This is drawn directly from the notes for Classes And Inheritance.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10892,18 +12110,19 @@ const QUESTIONS_BANK = {
       "topic": "Classes And Inheritance",
       "question": "Which of the following are TRUE about Classes And Inheritance? Select all that apply.",
       "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Wall Area Computation",
+        "Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.",
         "Point Class and Distance Calculation",
-        "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects",
-        "Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming."
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects"
       ],
       "answer": [
-        0,
+        1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Classes And Inheritance."
+      "explanation": "The true statements are taken directly from the notes for Classes And Inheritance.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10913,13 +12132,14 @@ const QUESTIONS_BANK = {
       "topic": "Classes And Inheritance",
       "question": "Complete the blank: \"OOP is ___ called class-based programming. Class-based programming starts with classes which, become the blueprints for objects\"",
       "options": [
-        "Point",
+        "class",
         "sometimes",
-        "represent",
-        "class"
+        "Point",
+        "represent"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'sometimes', from the notes for Classes And Inheritance."
+      "explanation": "The missing word is 'sometimes', from the notes for Classes And Inheritance.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -10935,7 +12155,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -10955,7 +12176,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Car.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Car.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -10968,7 +12190,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for Car.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for Car.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -10981,7 +12206,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "-Door "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -10996,7 +12224,10 @@ const QUESTIONS_BANK = {
         "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11012,7 +12243,8 @@ const QUESTIONS_BANK = {
         "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Car."
+      "explanation": "This is drawn directly from the notes for Car.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11022,18 +12254,19 @@ const QUESTIONS_BANK = {
       "topic": "Car",
       "question": "Which of the following are TRUE about Car? Select all that apply.",
       "options": [
-        "Wall Area Computation",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly.",
+        "When writing methods that use non-static fields, your method can't be declared static.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Point Class and Distance Calculation",
-        "When writing methods that use non-static fields, your method can't be declared static."
+        "Wall Area Computation"
       ],
       "answer": [
+        0,
         1,
-        2,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Car."
+      "explanation": "The true statements are taken directly from the notes for Car.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11043,13 +12276,14 @@ const QUESTIONS_BANK = {
       "topic": "Car",
       "question": "Complete the blank: \"___ local variables, class variables should have some type of access modifier declared for it.\"",
       "options": [
-        "Unlike",
         "class",
         "represent",
-        "Point"
+        "Point",
+        "Unlike"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Unlike', from the notes for Car."
+      "answer": 3,
+      "explanation": "The missing word is 'Unlike', from the notes for Car.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11059,13 +12293,14 @@ const QUESTIONS_BANK = {
       "topic": "Car",
       "question": "In Car.java, what does the method isConvertible() return?",
       "options": [
-        "String",
         "boolean",
-        "int",
-        "void"
+        "String",
+        "void",
+        "int"
       ],
-      "answer": 1,
-      "explanation": "The method isConvertible() is declared with return type 'boolean' in Car.java."
+      "answer": 0,
+      "explanation": "The method isConvertible() is declared with return type 'boolean' in Car.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11081,7 +12316,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11101,7 +12337,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Main.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Main.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -11114,7 +12351,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -11127,7 +12367,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "make = "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -11142,7 +12385,10 @@ const QUESTIONS_BANK = {
         "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11153,12 +12399,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Main?",
       "options": [
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Wall Area Computation"
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for Main."
+      "explanation": "This is drawn directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11169,17 +12416,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
         "When you create a class instance (Car car = new Car()), Java sets all un-initialised fields to their default values: Strings -> null, int -> 0, boolean -> false.",
-        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
         "Wall Area Computation",
         "Point Class and Distance Calculation",
+        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods."
       ],
       "answer": [
         0,
-        1,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Main."
+      "explanation": "The true statements are taken directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11189,13 +12437,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Complete the blank: \"This ___ demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.\"",
       "options": [
-        "represent",
         "class",
+        "needs",
         "Point",
-        "needs"
+        "represent"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'class', from the notes for Main."
+      "answer": 0,
+      "explanation": "The missing word is 'class', from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11211,7 +12460,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11231,7 +12481,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for BankAccount.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for BankAccount.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -11244,7 +12495,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for BankAccount.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for BankAccount.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -11257,7 +12511,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Deposit of $"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -11272,7 +12529,10 @@ const QUESTIONS_BANK = {
         "Create fields for account characteristics like:",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11283,12 +12543,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Bank Account?",
       "options": [
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
-        "Create a new class for a bank account."
+        "Create a new class for a bank account.",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Bank Account."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Bank Account.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11298,18 +12559,19 @@ const QUESTIONS_BANK = {
       "topic": "Bank Account",
       "question": "Which of the following are TRUE about Bank Account? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "Create fields for account characteristics like:",
         "Create a new class for a bank account.",
-        "account number. account balance. customer name. email. and phone number."
+        "account number. account balance. customer name. email. and phone number.",
+        "Create fields for account characteristics like:",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
+        1,
         2,
-        3,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Bank Account."
+      "explanation": "The true statements are taken directly from the notes for Bank Account.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11319,13 +12581,14 @@ const QUESTIONS_BANK = {
       "topic": "Bank Account",
       "question": "Complete the blank: \"___ a new class for a bank account.\"",
       "options": [
+        "class",
         "represent",
-        "Create",
         "Point",
-        "class"
+        "Create"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'Create', from the notes for Bank Account."
+      "answer": 3,
+      "explanation": "The missing word is 'Create', from the notes for Bank Account.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11335,13 +12598,14 @@ const QUESTIONS_BANK = {
       "topic": "Bank Account",
       "question": "In BankAccount.java, what does the method getAccountNumber() return?",
       "options": [
+        "String",
         "void",
         "boolean",
-        "int",
-        "String"
+        "int"
       ],
-      "answer": 3,
-      "explanation": "The method getAccountNumber() is declared with return type 'String' in BankAccount.java."
+      "answer": 0,
+      "explanation": "The method getAccountNumber() is declared with return type 'String' in BankAccount.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11357,7 +12621,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11377,7 +12642,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Main.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Main.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -11390,7 +12656,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -11403,7 +12672,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Main"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -11418,7 +12690,10 @@ const QUESTIONS_BANK = {
         "Review the class Main and understand its key responsibilities.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11428,13 +12703,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which statement best describes Main?",
       "options": [
-        "Wall Area Computation",
-        "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge.",
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge.",
+        "Wall Area Computation"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Main."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11446,16 +12722,17 @@ const QUESTIONS_BANK = {
       "options": [
         "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge.",
         "This example defines 1 method; trace method behavior step by step.",
-        "Point Class and Distance Calculation",
         "Review the class Main and understand its key responsibilities.",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
         0,
         1,
-        3
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Main."
+      "explanation": "The true statements are taken directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11465,13 +12742,14 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Complete the blank: \"This ___ belongs to Chapter 14: OOP Concepts → Classes Challenge.\"",
       "options": [
-        "represent",
-        "Point",
         "class",
-        "topic"
+        "topic",
+        "Point",
+        "represent"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'topic', from the notes for Main."
+      "answer": 1,
+      "explanation": "The missing word is 'topic', from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11487,7 +12765,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'this'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11507,7 +12786,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MethodOverLoadingChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MethodOverLoadingChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -11520,7 +12800,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "this"
       ],
-      "explanation": "The missing keyword is 'this', taken from the parsed source for MethodOverLoadingChallenge.java."
+      "explanation": "The missing keyword is 'this', taken from the parsed source for MethodOverLoadingChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -11533,7 +12816,10 @@ const QUESTIONS_BANK = {
       "answer": [
         " ft "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -11548,7 +12834,10 @@ const QUESTIONS_BANK = {
         "The first method has one parameter of type int,  which represents the entire height in inches.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11558,13 +12847,14 @@ const QUESTIONS_BANK = {
       "topic": "Method Over Loading Challenge",
       "question": "Which statement best describes Method Over Loading Challenge?",
       "options": [
-        "Wall Area Computation",
-        "Create two methods with the  same name: convertToCentimeters",
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Create two methods with the  same name: convertToCentimeters",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation"
       ],
       "answer": 1,
-      "explanation": "This is drawn directly from the notes for Method Over Loading Challenge."
+      "explanation": "This is drawn directly from the notes for Method Over Loading Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11574,18 +12864,19 @@ const QUESTIONS_BANK = {
       "topic": "Method Over Loading Challenge",
       "question": "Which of the following are TRUE about Method Over Loading Challenge? Select all that apply.",
       "options": [
-        "Wall Area Computation",
-        "You'll convert inches to centimeters, in this  method, and pass back the number of centimeters, as a double. The second method has two parameters  of type int, one to represent height in feet, and one to represent the remaining height  in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for  inches would be passed to this method.",
         "Create two methods with the  same name: convertToCentimeters",
-        "Point Class and Distance Calculation",
-        "The first method has one parameter of type int,  which represents the entire height in inches."
+        "Wall Area Computation",
+        "The first method has one parameter of type int,  which represents the entire height in inches.",
+        "You'll convert inches to centimeters, in this  method, and pass back the number of centimeters, as a double. The second method has two parameters  of type int, one to represent height in feet, and one to represent the remaining height  in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for  inches would be passed to this method.",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Method Over Loading Challenge."
+      "explanation": "The true statements are taken directly from the notes for Method Over Loading Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11595,13 +12886,14 @@ const QUESTIONS_BANK = {
       "topic": "Method Over Loading Challenge",
       "question": "Complete the blank: \"___ two methods with the  same name: convertToCentimeters\"",
       "options": [
+        "represent",
         "Point",
         "Create",
-        "represent",
         "class"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'Create', from the notes for Method Over Loading Challenge."
+      "answer": 2,
+      "explanation": "The missing word is 'Create', from the notes for Method Over Loading Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11617,7 +12909,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11637,7 +12930,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MethodOverloadingInJava.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MethodOverloadingInJava.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -11650,7 +12944,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodOverloadingInJava.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodOverloadingInJava.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -11663,7 +12960,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "New Score is "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -11676,7 +12976,10 @@ const QUESTIONS_BANK = {
       "keyPoints": [
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11686,13 +12989,14 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading In Java",
       "question": "In MethodOverloadingInJava.java, what does the method calculateScore() return?",
       "options": [
-        "int",
         "boolean",
+        "int",
         "String",
         "void"
       ],
-      "answer": 0,
-      "explanation": "The method calculateScore() is declared with return type 'int' in MethodOverloadingInJava.java."
+      "answer": 1,
+      "explanation": "The method calculateScore() is declared with return type 'int' in MethodOverloadingInJava.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11708,7 +13012,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11728,7 +13033,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for MethodOverloadingSecondAndMinutesChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for MethodOverloadingSecondAndMinutesChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -11741,7 +13047,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodOverloadingSecondAndMinutesChallenge.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for MethodOverloadingSecondAndMinutesChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -11754,7 +13063,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Method Overloading Second And Minutes Challenge"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -11769,7 +13081,10 @@ const QUESTIONS_BANK = {
         "You should validate that the first parameter minutes is >= 0.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11781,11 +13096,12 @@ const QUESTIONS_BANK = {
       "options": [
         "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.",
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for Method Overloading Second And Minutes Challenge."
+      "explanation": "This is drawn directly from the notes for Method Overloading Second And Minutes Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11795,18 +13111,19 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "Which of the following are TRUE about Method Overloading Second And Minutes Challenge? Select all that apply.",
       "options": [
-        "You should validate that the first parameter minutes is >= 0.",
+        "Wall Area Computation",
         "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.",
+        "You should validate that the first parameter minutes is >= 0.",
         "You should validate that the 2nd parameter seconds is >= 0 and <= 59.",
-        "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "Point Class and Distance Calculation"
       ],
       "answer": [
-        0,
         1,
-        2
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Method Overloading Second And Minutes Challenge."
+      "explanation": "The true statements are taken directly from the notes for Method Overloading Second And Minutes Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11816,13 +13133,14 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "Complete the blank: \"___ a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.\"",
       "options": [
+        "Point",
         "Create",
-        "class",
         "represent",
-        "Point"
+        "class"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'Create', from the notes for Method Overloading Second And Minutes Challenge."
+      "answer": 1,
+      "explanation": "The missing word is 'Create', from the notes for Method Overloading Second And Minutes Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11832,13 +13150,14 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "In MethodOverloadingSecondAndMinutesChallenge.java, what does the method getDurationString() return?",
       "options": [
-        "void",
         "String",
         "boolean",
-        "int"
+        "int",
+        "void"
       ],
-      "answer": 1,
-      "explanation": "The method getDurationString() is declared with return type 'String' in MethodOverloadingSecondAndMinutesChallenge.java."
+      "answer": 0,
+      "explanation": "The method getDurationString() is declared with return type 'String' in MethodOverloadingSecondAndMinutesChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11854,7 +13173,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11874,7 +13194,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PersonAgeValidation.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PersonAgeValidation.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -11887,7 +13208,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for PersonAgeValidation.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for PersonAgeValidation.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -11900,7 +13224,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "fullName= "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -11915,7 +13242,10 @@ const QUESTIONS_BANK = {
         "Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -11926,12 +13256,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Person Age Validation?",
       "options": [
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation",
         "Person Class and Age Validation",
-        "Wall Area Computation"
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for Person Age Validation."
+      "explanation": "This is drawn directly from the notes for Person Age Validation.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -11941,18 +13272,19 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "Which of the following are TRUE about Person Age Validation? Select all that apply.",
       "options": [
-        "Write the following methods (instance methods):",
-        "Wall Area Computation",
-        "Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int.",
         "Point Class and Distance Calculation",
+        "Wall Area Computation",
+        "Write the following methods (instance methods):",
+        "Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int.",
         "Person Class and Age Validation"
       ],
       "answer": [
-        0,
         2,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Person Age Validation."
+      "explanation": "The true statements are taken directly from the notes for Person Age Validation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11962,13 +13294,14 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "Complete the blank: \"___ Class and Age Validation\"",
       "options": [
-        "class",
         "Point",
-        "represent",
-        "Person"
+        "Person",
+        "class",
+        "represent"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Person', from the notes for Person Age Validation."
+      "answer": 1,
+      "explanation": "The missing word is 'Person', from the notes for Person Age Validation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11978,13 +13311,14 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "What is an important consideration when working with Person Age Validation?",
       "options": [
-        "Point Class and Distance Calculation",
         "NOTE: All methods should be defined as public NOT public static.",
-        "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation"
       ],
-      "answer": 1,
-      "explanation": "This is a key gotcha or note taken directly from the source for Person Age Validation."
+      "answer": 0,
+      "explanation": "This is a key gotcha or note taken directly from the source for Person Age Validation.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -11996,11 +13330,12 @@ const QUESTIONS_BANK = {
       "options": [
         "boolean",
         "String",
-        "void",
-        "int"
+        "int",
+        "void"
       ],
       "answer": 1,
-      "explanation": "The method getFirstName() is declared with return type 'String' in PersonAgeValidation.java."
+      "explanation": "The method getFirstName() is declared with return type 'String' in PersonAgeValidation.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12016,7 +13351,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12036,7 +13372,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SumCalculatorImplementationChallenge.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SumCalculatorImplementationChallenge.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -12049,7 +13386,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for SumCalculatorImplementationChallenge.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for SumCalculatorImplementationChallenge.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -12062,7 +13402,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "add= "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -12077,7 +13420,10 @@ const QUESTIONS_BANK = {
         "Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -12087,13 +13433,14 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Which statement best describes Sum Calculator Implementation Challenge?",
       "options": [
-        "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
-        "Sum Calculator Implementation"
+        "Sum Calculator Implementation",
+        "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Sum Calculator Implementation Challenge."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Sum Calculator Implementation Challenge.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12103,18 +13450,19 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Which of the following are TRUE about Sum Calculator Implementation Challenge? Select all that apply.",
       "options": [
-        "Wall Area Computation",
-        "Write the following methods (instance methods):",
-        "Point Class and Distance Calculation",
         "Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double.",
+        "Point Class and Distance Calculation",
+        "Write the following methods (instance methods):",
+        "Wall Area Computation",
         "Sum Calculator Implementation"
       ],
       "answer": [
-        1,
-        3,
+        0,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Sum Calculator Implementation Challenge."
+      "explanation": "The true statements are taken directly from the notes for Sum Calculator Implementation Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12124,13 +13472,14 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Complete the blank: \"Sum ___ Implementation\"",
       "options": [
-        "class",
-        "Point",
         "represent",
-        "Calculator"
+        "Calculator",
+        "class",
+        "Point"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Calculator', from the notes for Sum Calculator Implementation Challenge."
+      "answer": 1,
+      "explanation": "The missing word is 'Calculator', from the notes for Sum Calculator Implementation Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12140,13 +13489,14 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "What is an important consideration when working with Sum Calculator Implementation Challenge?",
       "options": [
+        "NOTE: All methods should be defined as public NOT public static.",
         "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
-        "NOTE: All methods should be defined as public NOT public static."
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
-      "explanation": "This is a key gotcha or note taken directly from the source for Sum Calculator Implementation Challenge."
+      "answer": 0,
+      "explanation": "This is a key gotcha or note taken directly from the source for Sum Calculator Implementation Challenge.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12156,13 +13506,14 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "In SumCalculatorImplementationChallenge.java, what does the method getFirstNumber() return?",
       "options": [
-        "String",
-        "int",
+        "double",
         "void",
-        "double"
+        "int",
+        "String"
       ],
-      "answer": 3,
-      "explanation": "The method getFirstNumber() is declared with return type 'double' in SumCalculatorImplementationChallenge.java."
+      "answer": 0,
+      "explanation": "The method getFirstNumber() is declared with return type 'double' in SumCalculatorImplementationChallenge.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12178,7 +13529,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12198,7 +13550,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ConstructorConcept.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ConstructorConcept.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -12211,7 +13564,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for ConstructorConcept.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for ConstructorConcept.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -12224,7 +13580,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Constructor with 5 arguments is called"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -12239,7 +13598,10 @@ const QUESTIONS_BANK = {
         "It is a special type of code block that has a specific name and parameters, much like a method.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -12249,13 +13611,14 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "Which statement best describes Constructor Concept?",
       "options": [
-        "A constructor is used in the creation of an object.",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "A constructor is used in the creation of an object."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Constructor Concept."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Constructor Concept.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12265,18 +13628,19 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "Which of the following are TRUE about Constructor Concept? Select all that apply.",
       "options": [
-        "It has the same name as the class itself, and it doesn't return any values.",
-        "A constructor is used in the creation of an object.",
-        "It is a special type of code block that has a specific name and parameters, much like a method.",
         "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "A constructor is used in the creation of an object.",
+        "Wall Area Computation",
+        "It has the same name as the class itself, and it doesn't return any values.",
+        "It is a special type of code block that has a specific name and parameters, much like a method."
       ],
       "answer": [
-        0,
         1,
-        2
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Constructor Concept."
+      "explanation": "The true statements are taken directly from the notes for Constructor Concept.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12286,13 +13650,14 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "Complete the blank: \"A ___ is used in the creation of an object.\"",
       "options": [
-        "Point",
         "represent",
         "constructor",
+        "Point",
         "class"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'constructor', from the notes for Constructor Concept."
+      "answer": 1,
+      "explanation": "The missing word is 'constructor', from the notes for Constructor Concept.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12303,12 +13668,13 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Constructor Concept?",
       "options": [
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation",
         "Point Class and Distance Calculation",
-        "It should never include a return type from a constructor, not even void.",
-        "Wall Area Computation"
+        "It should never include a return type from a constructor, not even void."
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for Constructor Concept."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for Constructor Concept.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12318,13 +13684,14 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "In ConstructorConcept.java, what does the method getAccountNumber() return?",
       "options": [
-        "String",
-        "void",
         "boolean",
-        "int"
+        "int",
+        "String",
+        "void"
       ],
-      "answer": 0,
-      "explanation": "The method getAccountNumber() is declared with return type 'String' in ConstructorConcept.java."
+      "answer": 2,
+      "explanation": "The method getAccountNumber() is declared with return type 'String' in ConstructorConcept.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12340,7 +13707,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12360,7 +13728,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for SuperKeywordUseExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for SuperKeywordUseExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -12373,7 +13742,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for SuperKeywordUseExample.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for SuperKeywordUseExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -12386,7 +13758,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Printed in SuperClass."
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -12400,7 +13775,10 @@ const QUESTIONS_BANK = {
         "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -12410,13 +13788,14 @@ const QUESTIONS_BANK = {
       "topic": "Super Keyword Use Example",
       "question": "Which statement best describes Super Keyword Use Example?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation",
         "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class.",
         "Wall Area Computation",
-        "Point Class and Distance Calculation"
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
       "answer": 1,
-      "explanation": "This is drawn directly from the notes for Super Keyword Use Example."
+      "explanation": "This is drawn directly from the notes for Super Keyword Use Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12426,13 +13805,14 @@ const QUESTIONS_BANK = {
       "topic": "Super Keyword Use Example",
       "question": "Complete the blank: \"The ___ super is commonly used with method overriding when we call a method with the same name from the parent class.\"",
       "options": [
-        "keyword",
         "class",
-        "represent",
-        "Point"
+        "Point",
+        "keyword",
+        "represent"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'keyword', from the notes for Super Keyword Use Example."
+      "answer": 2,
+      "explanation": "The missing word is 'keyword', from the notes for Super Keyword Use Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12442,13 +13822,14 @@ const QUESTIONS_BANK = {
       "topic": "Super Keyword Use Example",
       "question": "What does class SubClass extend?",
       "options": [
-        "SuperKeywordUseExample",
         "Object",
-        "Runnable",
-        "Comparable"
+        "Comparable",
+        "SuperKeywordUseExample",
+        "Runnable"
       ],
-      "answer": 0,
-      "explanation": "SubClass extends SuperKeywordUseExample as declared in SuperKeywordUseExample.java."
+      "answer": 2,
+      "explanation": "SubClass extends SuperKeywordUseExample as declared in SuperKeywordUseExample.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12464,7 +13845,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12484,7 +13866,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ThisAndSuper.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ThisAndSuper.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -12497,7 +13880,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ThisAndSuper.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ThisAndSuper.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -12510,7 +13896,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - This And Super"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -12525,7 +13914,10 @@ const QUESTIONS_BANK = {
         "1) The keyword super is used to access or call the parent class members (both variables and methods).",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -12535,13 +13927,14 @@ const QUESTIONS_BANK = {
       "topic": "This And Super",
       "question": "Which statement best describes This And Super?",
       "options": [
-        "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation",
         "super keyword :-"
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for This And Super."
+      "explanation": "This is drawn directly from the notes for This And Super.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12552,17 +13945,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about This And Super? Select all that apply.",
       "options": [
         "Wall Area Computation",
-        "1) The keyword super is used to access or call the parent class members (both variables and methods).",
+        "this keyword :-",
         "Point Class and Distance Calculation",
         "super keyword :-",
-        "this keyword :-"
+        "1) The keyword super is used to access or call the parent class members (both variables and methods)."
       ],
       "answer": [
         1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for This And Super."
+      "explanation": "The true statements are taken directly from the notes for This And Super.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12573,12 +13967,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ keyword :-\"",
       "options": [
         "Point",
-        "super",
+        "class",
         "represent",
-        "class"
+        "super"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'super', from the notes for This And Super."
+      "answer": 3,
+      "explanation": "The missing word is 'super', from the notes for This And Super.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12588,13 +13983,14 @@ const QUESTIONS_BANK = {
       "topic": "This And Super",
       "question": "What is an important consideration when working with This And Super?",
       "options": [
-        "NOTE: Both the keywords can be used anywhere in a class except for static elements such as a static method.",
         "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "NOTE: Both the keywords can be used anywhere in a class except for static elements such as a static method."
       ],
-      "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for This And Super."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for This And Super.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12610,7 +14006,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12630,7 +14027,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ThisKeyWordUseExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ThisKeyWordUseExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -12643,7 +14041,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ThisKeyWordUseExample.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ThisKeyWordUseExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -12656,7 +14057,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - This Key Word Use Example"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -12671,7 +14075,10 @@ const QUESTIONS_BANK = {
         "In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -12681,13 +14088,14 @@ const QUESTIONS_BANK = {
       "topic": "This Key Word Use Example",
       "question": "Which statement best describes This Key Word Use Example?",
       "options": [
+        "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
-        "The keyword this is commonly used within constructors and setters and is optionally used within getters."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for This Key Word Use Example."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for This Key Word Use Example.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12697,16 +14105,17 @@ const QUESTIONS_BANK = {
       "topic": "This Key Word Use Example",
       "question": "Which of the following are TRUE about This Key Word Use Example? Select all that apply.",
       "options": [
-        "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
         "In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there.",
-        "Wall Area Computation",
-        "Point Class and Distance Calculation"
+        "Point Class and Distance Calculation",
+        "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
+        "Wall Area Computation"
       ],
       "answer": [
         0,
-        1
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for This Key Word Use Example."
+      "explanation": "The true statements are taken directly from the notes for This Key Word Use Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12716,13 +14125,14 @@ const QUESTIONS_BANK = {
       "topic": "This Key Word Use Example",
       "question": "Complete the blank: \"The ___ this is commonly used within constructors and setters and is optionally used within getters.\"",
       "options": [
-        "keyword",
+        "class",
         "represent",
-        "Point",
-        "class"
+        "keyword",
+        "Point"
       ],
-      "answer": 0,
-      "explanation": "The missing word is 'keyword', from the notes for This Key Word Use Example."
+      "answer": 2,
+      "explanation": "The missing word is 'keyword', from the notes for This Key Word Use Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12732,13 +14142,14 @@ const QUESTIONS_BANK = {
       "topic": "This Key Word Use Example",
       "question": "In ThisKeyWordUseExample.java, what does the method getColor() return?",
       "options": [
-        "void",
-        "int",
+        "String",
         "boolean",
-        "String"
+        "void",
+        "int"
       ],
-      "answer": 3,
-      "explanation": "The method getColor() is declared with return type 'String' in ThisKeyWordUseExample.java."
+      "answer": 0,
+      "explanation": "The method getColor() is declared with return type 'String' in ThisKeyWordUseExample.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12754,7 +14165,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12774,7 +14186,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for GoodConstructorSuperCallExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for GoodConstructorSuperCallExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -12787,7 +14200,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for GoodConstructorSuperCallExample.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for GoodConstructorSuperCallExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -12800,7 +14216,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Good Constructor Super Call Example"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -12815,7 +14234,10 @@ const QUESTIONS_BANK = {
         "The 2nd constructor calls the parent constructor with parameters x and y.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -12825,13 +14247,14 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor Super Call Example",
       "question": "Which statement best describes Good Constructor Super Call Example?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "The 1st constructor is calling the 2nd constructor.",
         "Wall Area Computation",
-        "Point Class and Distance Calculation"
+        "Point Class and Distance Calculation",
+        "The 1st constructor is calling the 2nd constructor.",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Good Constructor Super Call Example."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Good Constructor Super Call Example.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12841,18 +14264,19 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor Super Call Example",
       "question": "Which of the following are TRUE about Good Constructor Super Call Example? Select all that apply.",
       "options": [
-        "The 1st constructor is calling the 2nd constructor.",
-        "Wall Area Computation",
         "The parent constructor will initialize the x and y variables, while the 2nd Rectangle constructor will initialize the width and height variables. Here, as you can see in this code, Both the super() and this() calls are made, but in different constructors.",
+        "Point Class and Distance Calculation",
+        "The 1st constructor is calling the 2nd constructor.",
         "The 2nd constructor calls the parent constructor with parameters x and y.",
-        "Point Class and Distance Calculation"
+        "Wall Area Computation"
       ],
       "answer": [
         0,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Good Constructor Super Call Example."
+      "explanation": "The true statements are taken directly from the notes for Good Constructor Super Call Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12862,13 +14286,14 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor Super Call Example",
       "question": "Complete the blank: \"The 1st ___ is calling the 2nd constructor.\"",
       "options": [
-        "class",
         "Point",
+        "class",
         "represent",
         "constructor"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'constructor', from the notes for Good Constructor Super Call Example."
+      "explanation": "The missing word is 'constructor', from the notes for Good Constructor Super Call Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12878,13 +14303,14 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor Super Call Example",
       "question": "What does class AnotherGoodConstructorSuperCallExample extend?",
       "options": [
-        "Comparable",
         "Runnable",
+        "Comparable",
         "Object",
         "GoodConstructorSuperCallExample"
       ],
       "answer": 3,
-      "explanation": "AnotherGoodConstructorSuperCallExample extends GoodConstructorSuperCallExample as declared in GoodConstructorSuperCallExample.java."
+      "explanation": "AnotherGoodConstructorSuperCallExample extends GoodConstructorSuperCallExample as declared in GoodConstructorSuperCallExample.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -12900,7 +14326,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12920,7 +14347,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for BadConstructorThisCallExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for BadConstructorThisCallExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -12933,7 +14361,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for BadConstructorThisCallExample.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for BadConstructorThisCallExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -12946,7 +14377,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Bad Constructor This Call Example"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -12961,7 +14395,10 @@ const QUESTIONS_BANK = {
         "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -12977,7 +14414,8 @@ const QUESTIONS_BANK = {
         "Here, there are three constructors."
       ],
       "answer": 3,
-      "explanation": "This is drawn directly from the notes for Bad Constructor This Call Example."
+      "explanation": "This is drawn directly from the notes for Bad Constructor This Call Example.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -12987,18 +14425,19 @@ const QUESTIONS_BANK = {
       "topic": "Bad Constructor This Call Example",
       "question": "Which of the following are TRUE about Bad Constructor This Call Example? Select all that apply.",
       "options": [
+        "Here, there are three constructors.",
+        "Wall Area Computation",
         "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values.",
         "This is a bad way to write constructors like this.",
-        "Here, there are three constructors.",
-        "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "Point Class and Distance Calculation"
       ],
       "answer": [
         0,
-        1,
-        2
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Bad Constructor This Call Example."
+      "explanation": "The true statements are taken directly from the notes for Bad Constructor This Call Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13009,12 +14448,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"Here, there are ___ constructors.\"",
       "options": [
         "three",
-        "Point",
         "represent",
-        "class"
+        "class",
+        "Point"
       ],
       "answer": 0,
-      "explanation": "The missing word is 'three', from the notes for Bad Constructor This Call Example."
+      "explanation": "The missing word is 'three', from the notes for Bad Constructor This Call Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13030,7 +14470,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13050,7 +14491,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for GoodConstructorThisCallExample.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for GoodConstructorThisCallExample.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13063,7 +14505,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for GoodConstructorThisCallExample.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for GoodConstructorThisCallExample.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -13076,7 +14521,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Good Constructor This Call Example"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -13091,7 +14539,10 @@ const QUESTIONS_BANK = {
         "In other words, The 3rd constructor does all the work.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -13101,13 +14552,14 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "Which statement best describes Good Constructor This Call Example?",
       "options": [
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
         "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Wall Area Computation"
       ],
       "answer": 2,
-      "explanation": "This is drawn directly from the notes for Good Constructor This Call Example."
+      "explanation": "This is drawn directly from the notes for Good Constructor This Call Example.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13117,18 +14569,19 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "Which of the following are TRUE about Good Constructor This Call Example? Select all that apply.",
       "options": [
-        "In other words, The 3rd constructor does all the work.",
-        "The variables will always be initialized in the 3rd constructor, and only there.",
-        "Wall Area Computation",
         "Point Class and Distance Calculation",
-        "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables."
+        "In other words, The 3rd constructor does all the work.",
+        "Wall Area Computation",
+        "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.",
+        "The variables will always be initialized in the 3rd constructor, and only there."
       ],
       "answer": [
-        0,
         1,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Good Constructor This Call Example."
+      "explanation": "The true statements are taken directly from the notes for Good Constructor This Call Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13138,13 +14591,14 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "Complete the blank: \"Here, the 1st ___ calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.\"",
       "options": [
-        "class",
         "Point",
-        "represent",
-        "constructor"
+        "class",
+        "constructor",
+        "represent"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'constructor', from the notes for Good Constructor This Call Example."
+      "answer": 2,
+      "explanation": "The missing word is 'constructor', from the notes for Good Constructor This Call Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13154,13 +14608,14 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "What is an important consideration when working with Good Constructor This Call Example?",
       "options": [
-        "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
-        "The variables will always be initialized in the 3rd constructor, and only there.",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Point Class and Distance Calculation",
+        "The variables will always be initialized in the 3rd constructor, and only there."
       ],
-      "answer": 2,
-      "explanation": "This is a key gotcha or note taken directly from the source for Good Constructor This Call Example."
+      "answer": 3,
+      "explanation": "This is a key gotcha or note taken directly from the source for Good Constructor This Call Example.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13176,7 +14631,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'new'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'new'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13196,7 +14652,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Customer.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Customer.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13209,7 +14666,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "new"
       ],
-      "explanation": "The missing keyword is 'new', taken from the parsed source for Customer.java."
+      "explanation": "The missing keyword is 'new', taken from the parsed source for Customer.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -13222,7 +14682,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Customer"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -13237,7 +14700,10 @@ const QUESTIONS_BANK = {
         "Create the getter methods only for each field. You don't need to create the setters.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -13247,13 +14713,14 @@ const QUESTIONS_BANK = {
       "topic": "Customer",
       "question": "Which statement best describes Customer?",
       "options": [
-        "Create a new class, called Customer, with three fields: name. credit limit. and email address.",
         "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "Create a new class, called Customer, with three fields: name. credit limit. and email address."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Customer."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Customer.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13263,18 +14730,19 @@ const QUESTIONS_BANK = {
       "topic": "Customer",
       "question": "Which of the following are TRUE about Customer? Select all that apply.",
       "options": [
-        "Wall Area Computation",
+        "Create the getter methods only for each field. You don't need to create the setters.",
         "Point Class and Distance Calculation",
-        "Create three constructors for this class: First, create a constructor for all three fields which should assign the arguments directly to the instance fields. Second, create a no-args constructor that calls another constructor, passing some literal values for each argument. And lastly, create a constructor with just the name and email parameters, which also calls another constructor.",
         "Create a new class, called Customer, with three fields: name. credit limit. and email address.",
-        "Create the getter methods only for each field. You don't need to create the setters."
+        "Wall Area Computation",
+        "Create three constructors for this class: First, create a constructor for all three fields which should assign the arguments directly to the instance fields. Second, create a no-args constructor that calls another constructor, passing some literal values for each argument. And lastly, create a constructor with just the name and email parameters, which also calls another constructor."
       ],
       "answer": [
+        0,
         2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Customer."
+      "explanation": "The true statements are taken directly from the notes for Customer.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13284,13 +14752,14 @@ const QUESTIONS_BANK = {
       "topic": "Customer",
       "question": "Complete the blank: \"___ a new class, called Customer, with three fields: name. credit limit. and email address.\"",
       "options": [
-        "class",
-        "Point",
+        "Create",
         "represent",
-        "Create"
+        "Point",
+        "class"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Create', from the notes for Customer."
+      "answer": 0,
+      "explanation": "The missing word is 'Create', from the notes for Customer.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13300,13 +14769,14 @@ const QUESTIONS_BANK = {
       "topic": "Customer",
       "question": "In Customer.java, what does the method getName() return?",
       "options": [
-        "int",
         "void",
         "String",
+        "int",
         "boolean"
       ],
-      "answer": 2,
-      "explanation": "The method getName() is declared with return type 'String' in Customer.java."
+      "answer": 1,
+      "explanation": "The method getName() is declared with return type 'String' in Customer.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13322,7 +14792,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13342,7 +14813,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for House.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for House.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13355,7 +14827,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for House.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for House.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -13368,7 +14843,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - House"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -13383,7 +14861,10 @@ const QUESTIONS_BANK = {
         "Review the class House and understand its key responsibilities.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -13393,13 +14874,14 @@ const QUESTIONS_BANK = {
       "topic": "House",
       "question": "Which statement best describes House?",
       "options": [
-        "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance.",
-        "Point Class and Distance Calculation"
+        "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation"
       ],
-      "answer": 2,
-      "explanation": "This is drawn directly from the notes for House."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for House.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13409,18 +14891,19 @@ const QUESTIONS_BANK = {
       "topic": "House",
       "question": "Which of the following are TRUE about House? Select all that apply.",
       "options": [
-        "This example defines 2 methods; trace method behavior step by step.",
-        "Point Class and Distance Calculation",
+        "Review the class House and understand its key responsibilities.",
         "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance.",
+        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "Review the class House and understand its key responsibilities."
+        "This example defines 2 methods; trace method behavior step by step."
       ],
       "answer": [
         0,
-        2,
+        1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for House."
+      "explanation": "The true statements are taken directly from the notes for House.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13431,12 +14914,13 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"This ___ belongs to Chapter 14: OOP Concepts → Reference Object Instance.\"",
       "options": [
         "Point",
-        "topic",
         "class",
+        "topic",
         "represent"
       ],
-      "answer": 1,
-      "explanation": "The missing word is 'topic', from the notes for House."
+      "answer": 2,
+      "explanation": "The missing word is 'topic', from the notes for House.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13446,13 +14930,14 @@ const QUESTIONS_BANK = {
       "topic": "House",
       "question": "In House.java, what does the method getColor() return?",
       "options": [
+        "void",
         "int",
         "String",
-        "boolean",
-        "void"
+        "boolean"
       ],
-      "answer": 1,
-      "explanation": "The method getColor() is declared with return type 'String' in House.java."
+      "answer": 2,
+      "explanation": "The method getColor() is declared with return type 'String' in House.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13468,7 +14953,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13488,7 +14974,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Main.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Main.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13501,7 +14988,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -13514,7 +15004,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Main"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -13527,7 +15020,10 @@ const QUESTIONS_BANK = {
       "keyPoints": [
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -13543,7 +15039,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13563,7 +15060,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for ReferenceObjectsInstanceClass.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for ReferenceObjectsInstanceClass.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13576,7 +15074,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for ReferenceObjectsInstanceClass.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for ReferenceObjectsInstanceClass.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -13589,7 +15090,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Reference Objects Instance Class"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -13604,7 +15108,10 @@ const QUESTIONS_BANK = {
         "Using blueprint, we can create as many objects that we want",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -13614,13 +15121,14 @@ const QUESTIONS_BANK = {
       "topic": "Reference Objects Instance Class",
       "question": "Which statement best describes Reference Objects Instance Class?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "A Class is like a blueprint",
         "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Reference Objects Instance Class."
+      "answer": 0,
+      "explanation": "This is drawn directly from the notes for Reference Objects Instance Class.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13630,18 +15138,19 @@ const QUESTIONS_BANK = {
       "topic": "Reference Objects Instance Class",
       "question": "Which of the following are TRUE about Reference Objects Instance Class? Select all that apply.",
       "options": [
-        "Wall Area Computation",
-        "Using blueprint, we can create as many objects that we want",
-        "This object can also be known as an instance.",
         "A Class is like a blueprint",
-        "Point Class and Distance Calculation"
+        "Using blueprint, we can create as many objects that we want",
+        "Point Class and Distance Calculation",
+        "This object can also be known as an instance.",
+        "Wall Area Computation"
       ],
       "answer": [
+        0,
         1,
-        2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Reference Objects Instance Class."
+      "explanation": "The true statements are taken directly from the notes for Reference Objects Instance Class.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13651,13 +15160,14 @@ const QUESTIONS_BANK = {
       "topic": "Reference Objects Instance Class",
       "question": "Complete the blank: \"A ___ is like a blueprint\"",
       "options": [
-        "represent",
-        "class",
+        "Class",
         "Point",
-        "Class"
+        "class",
+        "represent"
       ],
-      "answer": 3,
-      "explanation": "The missing word is 'Class', from the notes for Reference Objects Instance Class."
+      "answer": 0,
+      "explanation": "The missing word is 'Class', from the notes for Reference Objects Instance Class.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13673,7 +15183,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13693,7 +15204,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for StaticAndInstanceMethods.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for StaticAndInstanceMethods.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13706,7 +15218,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for StaticAndInstanceMethods.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for StaticAndInstanceMethods.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -13719,7 +15234,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "Hello"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -13734,7 +15252,10 @@ const QUESTIONS_BANK = {
         "1) Static methods are declared using a static modifier and they belong to Class",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -13744,13 +15265,14 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Methods",
       "question": "Which statement best describes Static And Instance Methods?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Static Methods",
         "Wall Area Computation",
-        "Point Class and Distance Calculation"
+        "Point Class and Distance Calculation",
+        "Static Methods",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Static And Instance Methods."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Static And Instance Methods.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13760,18 +15282,19 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Methods",
       "question": "Which of the following are TRUE about Static And Instance Methods? Select all that apply.",
       "options": [
-        "Static Methods",
+        "Point Class and Distance Calculation",
         "2) Static methods can't access instance methods and instance variables directly.",
-        "1) Static methods are declared using a static modifier and they belong to Class",
         "Wall Area Computation",
-        "Point Class and Distance Calculation"
+        "1) Static methods are declared using a static modifier and they belong to Class",
+        "Static Methods"
       ],
       "answer": [
-        0,
         1,
-        2
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Static And Instance Methods."
+      "explanation": "The true statements are taken directly from the notes for Static And Instance Methods.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13781,13 +15304,14 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Methods",
       "question": "Complete the blank: \"1) ___ methods are declared using a static modifier and they belong to Class\"",
       "options": [
-        "represent",
         "Point",
         "Static",
-        "class"
+        "class",
+        "represent"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Static', from the notes for Static And Instance Methods."
+      "answer": 1,
+      "explanation": "The missing word is 'Static', from the notes for Static And Instance Methods.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13797,13 +15321,14 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Methods",
       "question": "What is an important consideration when working with Static And Instance Methods?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
-        "Point Class and Distance Calculation",
-        "5)  Whenever a method that doesn't use instance variables is declared, that method should probably be declared as a static method."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "5)  Whenever a method that doesn't use instance variables is declared, that method should probably be declared as a static method.",
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
-      "explanation": "This is a key gotcha or note taken directly from the source for Static And Instance Methods."
+      "answer": 2,
+      "explanation": "This is a key gotcha or note taken directly from the source for Static And Instance Methods.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13819,7 +15344,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13839,7 +15365,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for PlainOldJavaObject.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for PlainOldJavaObject.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13852,7 +15379,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for PlainOldJavaObject.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for PlainOldJavaObject.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -13865,7 +15395,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Plain Old Java Object"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -13880,7 +15413,10 @@ const QUESTIONS_BANK = {
         "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -13891,12 +15427,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Plain Old Java Object?",
       "options": [
         "Wall Area Computation",
+        "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes.",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
-        "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes."
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
-      "explanation": "This is drawn directly from the notes for Plain Old Java Object."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Plain Old Java Object.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13906,18 +15443,19 @@ const QUESTIONS_BANK = {
       "topic": "Plain Old Java Object",
       "question": "Which of the following are TRUE about Plain Old Java Object? Select all that apply.",
       "options": [
-        "iv)  Many database frameworks use POJO's to read data from, or to write data to databases,files or streams.",
         "Point Class and Distance Calculation",
-        "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
+        "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes.",
         "Wall Area Computation",
-        "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes."
+        "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
+        "iv)  Many database frameworks use POJO's to read data from, or to write data to databases,files or streams."
       ],
       "answer": [
-        0,
-        2,
+        1,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Plain Old Java Object."
+      "explanation": "The true statements are taken directly from the notes for Plain Old Java Object.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13927,13 +15465,14 @@ const QUESTIONS_BANK = {
       "topic": "Plain Old Java Object",
       "question": "Complete the blank: \"POJO ___ i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes.\"",
       "options": [
-        "represent",
+        "class",
         "CONCEPTS",
-        "Point",
-        "class"
+        "represent",
+        "Point"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'CONCEPTS', from the notes for Plain Old Java Object."
+      "explanation": "The missing word is 'CONCEPTS', from the notes for Plain Old Java Object.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13944,12 +15483,13 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Plain Old Java Object?",
       "options": [
         "Annotations (@Override, @SuppressWarnings, etc.) are metadata — they provide information to the compiler or tools. They do not change runtime behaviour.",
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation"
       ],
       "answer": 0,
-      "explanation": "This is a key gotcha or note taken directly from the source for Plain Old Java Object."
+      "explanation": "This is a key gotcha or note taken directly from the source for Plain Old Java Object.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -13965,7 +15505,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -13985,7 +15526,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Main.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Main.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -13998,7 +15540,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Main.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -14011,7 +15556,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "*****************************************"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -14026,7 +15574,10 @@ const QUESTIONS_BANK = {
         "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -14037,12 +15588,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Main?",
       "options": [
         "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]",
-        "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Point Class and Distance Calculation"
       ],
-      "answer": 1,
-      "explanation": "This is drawn directly from the notes for Main."
+      "answer": 2,
+      "explanation": "This is drawn directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -14052,18 +15604,19 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
-        "Wall Area Computation",
         "StudentRecord[id=1, name=Navi, dateOfBirth=21/05/1996, classList=Python MasterClass]",
-        "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]",
         "Point Class and Distance Calculation",
-        "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]"
+        "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]",
+        "Wall Area Computation",
+        "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]"
       ],
       "answer": [
-        1,
+        0,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Main."
+      "explanation": "The true statements are taken directly from the notes for Main.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -14079,7 +15632,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'public'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -14099,7 +15653,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for Student.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for Student.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -14112,7 +15667,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "public"
       ],
-      "explanation": "The missing keyword is 'public', taken from the parsed source for Student.java."
+      "explanation": "The missing keyword is 'public', taken from the parsed source for Student.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -14125,7 +15683,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Student"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -14140,7 +15701,10 @@ const QUESTIONS_BANK = {
         "The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -14150,13 +15714,14 @@ const QUESTIONS_BANK = {
       "topic": "Student",
       "question": "Which statement best describes Student?",
       "options": [
-        "The toString() method is a special method in Java.",
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation",
+        "The toString() method is a special method in Java."
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Student."
+      "answer": 3,
+      "explanation": "This is drawn directly from the notes for Student.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -14177,7 +15742,8 @@ const QUESTIONS_BANK = {
         1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Student."
+      "explanation": "The true statements are taken directly from the notes for Student.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -14193,7 +15759,8 @@ const QUESTIONS_BANK = {
         "class"
       ],
       "answer": 1,
-      "explanation": "The missing word is 'toString', from the notes for Student."
+      "explanation": "The missing word is 'toString', from the notes for Student.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -14204,12 +15771,13 @@ const QUESTIONS_BANK = {
       "question": "In Student.java, what does the method getId() return?",
       "options": [
         "int",
-        "String",
         "boolean",
+        "String",
         "void"
       ],
-      "answer": 1,
-      "explanation": "The method getId() is declared with return type 'String' in Student.java."
+      "answer": 2,
+      "explanation": "The method getId() is declared with return type 'String' in Student.java.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -14225,7 +15793,8 @@ const QUESTIONS_BANK = {
         "extends"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'static'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'static'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -14245,7 +15814,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for StaticAndInstanceVariables.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for StaticAndInstanceVariables.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -14258,7 +15828,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "static"
       ],
-      "explanation": "The missing keyword is 'static', taken from the parsed source for StaticAndInstanceVariables.java."
+      "explanation": "The missing keyword is 'static', taken from the parsed source for StaticAndInstanceVariables.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -14271,7 +15844,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "name = "
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -14286,7 +15862,10 @@ const QUESTIONS_BANK = {
         "1) A static variable is Declared by using the keyword static.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -14296,13 +15875,14 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Variables",
       "question": "Which statement best describes Static And Instance Variables?",
       "options": [
+        "Point Class and Distance Calculation",
         "Static Variables",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
         "Wall Area Computation"
       ],
-      "answer": 0,
-      "explanation": "This is drawn directly from the notes for Static And Instance Variables."
+      "answer": 1,
+      "explanation": "This is drawn directly from the notes for Static And Instance Variables.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -14312,18 +15892,19 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Variables",
       "question": "Which of the following are TRUE about Static And Instance Variables? Select all that apply.",
       "options": [
-        "2) Static variables are also known as static member variables. They belong to the class, not the instance",
-        "Static Variables",
         "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "1) A static variable is Declared by using the keyword static."
+        "1) A static variable is Declared by using the keyword static.",
+        "Static Variables",
+        "2) Static variables are also known as static member variables. They belong to the class, not the instance"
       ],
       "answer": [
-        0,
-        1,
+        2,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Static And Instance Variables."
+      "explanation": "The true statements are taken directly from the notes for Static And Instance Variables.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -14333,13 +15914,14 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Variables",
       "question": "Complete the blank: \"___ Variables\"",
       "options": [
-        "class",
-        "represent",
         "Static",
-        "Point"
+        "Point",
+        "class",
+        "represent"
       ],
-      "answer": 2,
-      "explanation": "The missing word is 'Static', from the notes for Static And Instance Variables."
+      "answer": 0,
+      "explanation": "The missing word is 'Static', from the notes for Static And Instance Variables.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -14355,7 +15937,8 @@ const QUESTIONS_BANK = {
         "public"
       ],
       "answer": 0,
-      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement."
+      "explanation": "The correct keyword is 'class'. It fits the syntax and semantics of this Java statement.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -14375,7 +15958,8 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The correct statements come directly from the parsed source metadata for StudentRecord.java."
+      "explanation": "The correct statements come directly from the parsed source metadata for StudentRecord.java.",
+      "tags": []
     },
     {
       "type": "codefill",
@@ -14388,7 +15972,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "class"
       ],
-      "explanation": "The missing keyword is 'class', taken from the parsed source for StudentRecord.java."
+      "explanation": "The missing keyword is 'class', taken from the parsed source for StudentRecord.java.",
+      "tags": [
+        "codefill"
+      ]
     },
     {
       "type": "predict",
@@ -14401,7 +15988,10 @@ const QUESTIONS_BANK = {
       "answer": [
         "OOP Concepts - Student Record"
       ],
-      "explanation": "The output comes directly from the string literal in the println call."
+      "explanation": "The output comes directly from the string literal in the println call.",
+      "tags": [
+        "predict"
+      ]
     },
     {
       "type": "interview",
@@ -14416,7 +16006,10 @@ const QUESTIONS_BANK = {
         "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.",
         "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match."
       ],
-      "explanation": "Use the source comments and code structure to summarize the topic clearly."
+      "explanation": "Use the source comments and code structure to summarize the topic clearly.",
+      "tags": [
+        "interview"
+      ]
     },
     {
       "type": "scq",
@@ -14427,12 +16020,13 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Student Record?",
       "options": [
         "The Record Type",
+        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "Point Class and Distance Calculation"
       ],
       "answer": 0,
-      "explanation": "This is drawn directly from the notes for Student Record."
+      "explanation": "This is drawn directly from the notes for Student Record.",
+      "tags": []
     },
     {
       "type": "mcq",
@@ -14442,18 +16036,19 @@ const QUESTIONS_BANK = {
       "topic": "Student Record",
       "question": "Which of the following are TRUE about Student Record? Select all that apply.",
       "options": [
+        "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.",
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
         "2) It's purpose is to replace the boilerplate code of the POJO but to be more restrictive.",
         "The Record Type",
-        "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16."
+        "Wall Area Computation"
       ],
       "answer": [
+        0,
         2,
-        3,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Student Record."
+      "explanation": "The true statements are taken directly from the notes for Student Record.",
+      "tags": []
     },
     {
       "type": "scq",
@@ -14463,13 +16058,14 @@ const QUESTIONS_BANK = {
       "topic": "Student Record",
       "question": "Complete the blank: \"The ___ Type\"",
       "options": [
-        "class",
         "represent",
+        "class",
         "Point",
         "Record"
       ],
       "answer": 3,
-      "explanation": "The missing word is 'Record', from the notes for Student Record."
+      "explanation": "The missing word is 'Record', from the notes for Student Record.",
+      "tags": []
     },
     {
       "qid": "ocjp-chapter-14-oop-concepts-polymorphism-1",
@@ -14482,7 +16078,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "Animal \nDog"
       ],
-      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap."
+      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-14-oop-concepts-constructor-chain-1",
@@ -14495,7 +16096,12 @@ const QUESTIONS_BANK = {
       "answer": [
         "A\nB\nC"
       ],
-      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy."
+      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy.",
+      "tags": [
+        "ocjp",
+        "tricky",
+        "predict"
+      ]
     },
     {
       "qid": "ocjp-chapter-14-oop-concepts-override-overload-1",
@@ -14511,7 +16117,11 @@ const QUESTIONS_BANK = {
         "A static method can be overridden to behave polymorphically"
       ],
       "answer": 1,
-      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden."
+      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     },
     {
       "qid": "ocjp-chapter-14-oop-concepts-final-keyword-1",
@@ -14527,7 +16137,11 @@ const QUESTIONS_BANK = {
         "The method is automatically made static"
       ],
       "answer": 1,
-      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once."
+      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once.",
+      "tags": [
+        "ocjp",
+        "tricky"
+      ]
     }
   ]
 };

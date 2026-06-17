@@ -221,12 +221,43 @@ function parseJavaFile(filePath, rootDir) {
   }
   if (currentQuiz && currentQuiz.answers.length > 0) customQuizzes.push(currentQuiz);
 
+  // ---- parse @challenge annotations for deep coding problems -----------------
+  // Syntax:
+  //   // @challenge <title>
+  //   // @desc <description line> (one or more)
+  //   // @hint <hint text>
+  //   // @testcase <input> → <expected output>   (one or more)
+  const deepChallenges = [];
+  let currentChallenge = null;
+  for (const rawLine of allSourceLines) {
+    const trimmed2 = rawLine.trim();
+    if (/^\/\/\s*@challenge\s+/.test(trimmed2)) {
+      if (currentChallenge) deepChallenges.push(currentChallenge);
+      currentChallenge = {
+        title: trimmed2.replace(/^\/\/\s*@challenge\s+/, '').trim(),
+        desc: [],
+        hints: [],
+        testcases: []
+      };
+    } else if (/^\/\/\s*@desc\s+/.test(trimmed2) && currentChallenge) {
+      currentChallenge.desc.push(trimmed2.replace(/^\/\/\s*@desc\s+/, '').trim());
+    } else if (/^\/\/\s*@hint\s+/.test(trimmed2) && currentChallenge) {
+      currentChallenge.hints.push(trimmed2.replace(/^\/\/\s*@hint\s+/, '').trim());
+    } else if (/^\/\/\s*@testcase\s+/.test(trimmed2) && currentChallenge) {
+      currentChallenge.testcases.push(trimmed2.replace(/^\/\/\s*@testcase\s+/, '').trim());
+    } else if (currentChallenge && !/^\/\//.test(trimmed2) && trimmed2 !== '') {
+      deepChallenges.push(currentChallenge);
+      currentChallenge = null;
+    }
+  }
+  if (currentChallenge) deepChallenges.push(currentChallenge);
+
   allSourceLines.forEach((rawLine, lineIdx) => {
     const trimmed = rawLine.trim();
 
     if (trimmed.startsWith('//')) {
-      // Skip @quiz / @answer marker lines — they belong to the quiz bank, not notes
-      if (/^\/\/\s*@(quiz|answer)\b/.test(trimmed)) {
+      // Skip @quiz / @answer / @challenge / @desc / @hint / @testcase marker lines
+      if (/^\/\/\s*@(quiz|answer|challenge|desc|hint|testcase)\b/.test(trimmed)) {
         if (currentGroup) { inlineGroups.push(currentGroup); currentGroup = null; }
         return;
       }
@@ -313,7 +344,7 @@ function parseJavaFile(filePath, rootDir) {
     headerComments.push({ type: 'generated', lines: generated });
   }
 
-  return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments, customQuizzes, code: content };
+  return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments, customQuizzes, deepChallenges, code: content };
 }
 
 // ==========================================================================
@@ -396,6 +427,24 @@ function shuffleArr(arr) {
 // Helper: create a simple slug for qid
 function slugify(s) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
+// ==========================================================================
+// Tag assignment for quiz questions
+// ==========================================================================
+function assignTags(q) {
+  const tags = [...(q.tags || [])];
+  if (q.type === 'interview') tags.push('interview');
+  if (q.type === 'predict') tags.push('predict');
+  if (q.type === 'codefill') tags.push('codefill');
+  if (['concept-scq', 'true-false-mcq', 'fill-blank'].includes(q.type)) tags.push('concept');
+  if (q.type === 'gotcha-scq') tags.push('tricky');
+  const qText = (q.question || '').toLowerCase();
+  if (qText.includes('pitfall') || qText.includes('gotcha') || qText.includes('trap') ||
+      qText.includes('caution') || qText.includes('warning')) tags.push('tricky');
+  if (qText.includes('ocjp')) tags.push('ocjp');
+  q.tags = [...new Set(tags)];
+  return q;
 }
 
 // ==========================================================================
@@ -586,7 +635,11 @@ function buildOCJPQuestions(chapterName, topics) {
     });
   }
 
-  return questions;
+  return questions.map(q => {
+    if (!q.tags) q.tags = ['ocjp', 'tricky'];
+    else { q.tags.push('ocjp', 'tricky'); }
+    return assignTags(q);
+  });
 }
 
 // ==========================================================================
@@ -729,6 +782,7 @@ function buildStarterQuestions(chapterName, topics) {
         difficulty: 'medium',
         chapter: chapterName,
         topic: topicLabel,
+        tags: ['interview'],
         question: q.question,
         modelAnswer: q.answers.join(' '),
         keyPoints: q.answers,
@@ -985,7 +1039,7 @@ function buildStarterQuestions(chapterName, topics) {
     }
   });
 
-  return questions;
+  return questions.map(q => assignTags(q));
 }
 
 // ==========================================================================
@@ -1147,6 +1201,133 @@ function buildPracticeChallenges(parsedData) {
 }
 
 // ==========================================================================
+// Build deep coding challenge problems per chapter
+// ==========================================================================
+function buildDeepChallenges(chapterName, topics) {
+  const challenges = [];
+  const label = chapterName.toLowerCase();
+
+  // --- User-authored @challenge annotations ---
+  topics.forEach(topic => {
+    (topic.deepChallenges || []).forEach(dc => {
+      challenges.push({
+        id: `deep-${slugify(chapterName)}-${slugify(dc.title)}`,
+        title: dc.title,
+        chapter: chapterName,
+        topic: topic.topicName,
+        difficulty: 'Hard',
+        tags: ['deep', 'coding'],
+        source: 'custom',
+        description: dc.desc.join('\n'),
+        hints: dc.hints,
+        testcases: dc.testcases,
+        selfCheck: true
+      });
+    });
+  });
+
+  // --- Auto-generated deep challenges per chapter type ---
+
+  if (label.includes('method')) {
+    challenges.push({
+      id: `deep-${slugify(chapterName)}-calculator`,
+      title: 'Build a Multi-Operation Calculator',
+      chapter: chapterName, topic: 'Methods Deep Challenge',
+      difficulty: 'Medium', tags: ['deep', 'coding', 'methods'],
+      source: 'auto',
+      description: `Create a Calculator class with static methods:\n- add(double a, double b) → returns sum\n- subtract(double a, double b) → returns difference\n- multiply(double a, double b) → returns product\n- divide(double a, double b) → returns quotient; throws ArithmeticException if b is 0\n- power(double base, int exp) → returns base^exp (do NOT use Math.pow)\n\nAll methods must be public static. Handle edge cases: negative numbers, zero division.`,
+      hints: ['Use a loop for power()', 'Return special value -1 for invalid divide input if not throwing exception'],
+      testcases: ['add(3.5, 2.5) → 6.0', 'divide(10, 0) → ArithmeticException', 'power(2, 8) → 256.0'],
+      selfCheck: true
+    });
+  }
+
+  if (label.includes('oop') || label.includes('class') || label.includes('inherit')) {
+    challenges.push({
+      id: `deep-${slugify(chapterName)}-bank`,
+      title: 'Design a BankAccount System (OOP)',
+      chapter: chapterName, topic: 'OOP Deep Challenge',
+      difficulty: 'Hard', tags: ['deep', 'coding', 'oop', 'interview'],
+      source: 'auto',
+      description: `Design three classes:\n\n1. BankAccount (base class)\n   - Fields: accountNumber (String), balance (double), ownerName (String)\n   - Constructor: BankAccount(String accountNumber, String ownerName)\n   - Methods: deposit(double amount), withdraw(double amount) throws InsufficientFundsException, getBalance(), toString()\n\n2. SavingsAccount extends BankAccount\n   - Extra field: interestRate (double)\n   - Method: applyInterest() — adds balance * interestRate to balance\n\n3. CurrentAccount extends BankAccount\n   - Extra field: overdraftLimit (double)\n   - Override withdraw() to allow overdraft up to overdraftLimit\n\nThis tests: inheritance, method overriding, constructors, exceptions, encapsulation.`,
+      hints: ['Call super(accountNumber, ownerName) in subclass constructors', 'In CurrentAccount.withdraw(), check balance + overdraftLimit >= amount', 'Use private fields with public getters'],
+      testcases: ['new SavingsAccount("S001", "Alice").deposit(1000) → balance=1000', 'applyInterest() at 5% on 1000 → balance=1050', 'new CurrentAccount("C001", "Bob", 500.0).withdraw(600) on empty account → throws if > overdraftLimit'],
+      selfCheck: true
+    });
+
+    challenges.push({
+      id: `deep-${slugify(chapterName)}-shape`,
+      title: 'Polymorphism: Shape Area Calculator',
+      chapter: chapterName, topic: 'Polymorphism Deep Challenge',
+      difficulty: 'Hard', tags: ['deep', 'coding', 'oop', 'ocjp'],
+      source: 'auto',
+      description: `Create an abstract class Shape with:\n- abstract double area()\n- abstract double perimeter()\n- toString() returns "ShapeType: area=X, perimeter=Y"\n\nImplement:\n- Circle(double radius) — area = π*r², perimeter = 2*π*r\n- Rectangle(double width, double height)\n- Triangle(double a, double b, double c) — use Heron's formula for area\n\nStore shapes in a Shape[] array and print each. Demonstrate runtime polymorphism.\n\nOCJP focus: abstract classes, method overriding, runtime dispatch, array of parent type.`,
+      hints: ['Math.PI for π, Math.sqrt() for Heron formula', 'Shape[] shapes = {new Circle(5), new Rectangle(4,3)}; — runtime dispatch', 'Abstract class cannot be instantiated directly'],
+      testcases: ['new Circle(5).area() → ~78.54', 'new Rectangle(4,3).perimeter() → 14.0', 'Heron Triangle(3,4,5) → area = 6.0'],
+      selfCheck: true
+    });
+  }
+
+  if (label.includes('exception')) {
+    challenges.push({
+      id: `deep-${slugify(chapterName)}-validation`,
+      title: 'Custom Exception Hierarchy & Input Validation',
+      chapter: chapterName, topic: 'Exception Handling Deep Challenge',
+      difficulty: 'Hard', tags: ['deep', 'coding', 'exceptions', 'interview'],
+      source: 'auto',
+      description: `Build a user registration validator:\n\n1. Create custom exceptions:\n   - ValidationException extends Exception (checked)\n   - InvalidAgeException extends ValidationException\n   - InvalidEmailException extends ValidationException\n\n2. Create UserValidator class with:\n   - validateAge(int age) throws InvalidAgeException — valid range: 18-120\n   - validateEmail(String email) throws InvalidEmailException — must contain @ and .\n   - validateUser(String email, int age) throws ValidationException — calls both\n\n3. In main(), demonstrate try-catch-finally with multiple catch blocks.\n\nFocus: checked exceptions, custom exception hierarchy, multi-catch, finally.`,
+      hints: ['Checked exceptions must be declared with throws or caught', 'multi-catch: catch (InvalidAgeException | InvalidEmailException e)', 'finally runs even when exception is thrown'],
+      testcases: ['validateAge(17) → InvalidAgeException', 'validateEmail("notanemail") → InvalidEmailException', 'finally block always executes'],
+      selfCheck: true
+    });
+  }
+
+  if (label.includes('loop') || label.includes('while') || label.includes('for')) {
+    challenges.push({
+      id: `deep-${slugify(chapterName)}-patterns`,
+      title: 'Number Patterns & Algorithm Challenges',
+      chapter: chapterName, topic: 'Loops Deep Challenge',
+      difficulty: 'Medium', tags: ['deep', 'coding', 'loops'],
+      source: 'auto',
+      description: `Implement these loop-based methods:\n\n1. isPrime(int n) → boolean — return true if n is prime\n2. fibonacci(int n) → int — return the nth Fibonacci number (0-indexed)\n3. sumDigits(int n) → int — return sum of all digits of n\n4. reverseNumber(int n) → int — reverse the digits of n\n5. printPyramid(int rows) — print a right-angled star pyramid\n\nAll without converting to String. Use only loops.\n\nThis tests: loop logic, integer math (%, /), algorithm thinking.`,
+      hints: ['isPrime: check divisors from 2 to Math.sqrt(n)', 'fibonacci(0)=0, fibonacci(1)=1, fibonacci(n)=f(n-1)+f(n-2)', 'sumDigits: use % 10 to get last digit, / 10 to remove it'],
+      testcases: ['isPrime(7) → true', 'fibonacci(6) → 8', 'sumDigits(123) → 6', 'reverseNumber(1234) → 4321'],
+      selfCheck: true
+    });
+  }
+
+  if (label.includes('switch') || label.includes('if') || label.includes('statement')) {
+    challenges.push({
+      id: `deep-${slugify(chapterName)}-grading`,
+      title: 'Grade & Decision Engine',
+      chapter: chapterName, topic: 'Control Flow Deep Challenge',
+      difficulty: 'Easy', tags: ['deep', 'coding'],
+      source: 'auto',
+      description: `Build a student grade calculator:\n\n1. getGrade(int score) → String\n   - 90-100: "A"\n   - 80-89: "B"\n   - 70-79: "C"\n   - 60-69: "D"\n   - Below 60: "F"\n   - Outside 0-100: "Invalid"\n\n2. getDayType(String day) → String\n   - "Monday"..."Friday" → "Weekday"\n   - "Saturday", "Sunday" → "Weekend"\n   - anything else → "Unknown"\n   - Use switch statement (not if-else)\n\n3. getFizzBuzz(int n) → String\n   - Multiple of 15: "FizzBuzz"\n   - Multiple of 3: "Fizz"\n   - Multiple of 5: "Buzz"\n   - Otherwise: String.valueOf(n)`,
+      hints: ['Use enhanced switch for getDayType()', 'FizzBuzz: check 15 FIRST (before 3 and 5)', 'int score → score / 10 gives you the tens digit'],
+      testcases: ['getGrade(85) → "B"', 'getDayType("Saturday") → "Weekend"', 'getFizzBuzz(15) → "FizzBuzz"'],
+      selfCheck: true
+    });
+  }
+
+  if (label.includes('primitive') || label.includes('string')) {
+    challenges.push({
+      id: `deep-${slugify(chapterName)}-string-ops`,
+      title: 'String Manipulation Mastery',
+      chapter: chapterName, topic: 'Strings Deep Challenge',
+      difficulty: 'Medium', tags: ['deep', 'coding', 'strings', 'ocjp'],
+      source: 'auto',
+      description: `Implement these String utility methods WITHOUT using external libraries:\n\n1. isPalindrome(String s) → boolean — ignore case and spaces\n2. countVowels(String s) → int\n3. reverseWords(String sentence) → String — reverse word order, not characters\n4. titleCase(String sentence) → String — capitalize first letter of each word\n5. countOccurrences(String text, String word) → int — count non-overlapping occurrences\n\nOCJP focus: String immutability, .equals() vs ==, StringBuilder for efficiency, String methods: .split(), .trim(), .toLowerCase(), .charAt(), .length().`,
+      hints: ['Use StringBuilder for reverseWords() for efficiency', 'Split on "\\\\s+" to handle multiple spaces', 'isPalindrome: strip spaces, toLowerCase, then compare char by char'],
+      testcases: ['isPalindrome("A man a plan a canal Panama") → true', 'countVowels("Hello World") → 3', 'reverseWords("Hello World") → "World Hello"'],
+      selfCheck: true
+    });
+  }
+
+  return challenges;
+}
+
+// ==========================================================================
 // Main pipeline
 // ==========================================================================
 function main() {
@@ -1250,6 +1431,20 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
     'utf8'
   );
   console.log(`✅ practice.js regenerated with ${challengesList.length} challenges.`);
+
+  // ── Step 6: Write deep-challenges.js ──────────────────────────────────────
+  const allDeepChallenges = [];
+  chaptersList.forEach(chapter => {
+    const deepQs = buildDeepChallenges(chapter.name, chapter.topics);
+    allDeepChallenges.push(...deepQs);
+  });
+  const deepFile = path.join(dashboardDir, 'deep-challenges.js');
+  fs.writeFileSync(deepFile,
+    `// Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.\n` +
+    `const DEEP_CHALLENGES = ${JSON.stringify(allDeepChallenges, null, 2)};\n`,
+    'utf8'
+  );
+  console.log(`✅ deep-challenges.js regenerated with ${allDeepChallenges.length} deep challenges.`);
 }
 
 main();

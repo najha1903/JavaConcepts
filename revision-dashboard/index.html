@@ -349,6 +349,18 @@
               </div>
             </div>
 
+            <div class="quiz-tag-filter" id="quiz-tag-filter">
+              <label class="filter-label">Filter:</label>
+              <div class="tag-pills">
+                <button class="tag-pill active" data-tag="all" onclick="setQuizTag('all', this)">All Types</button>
+                <button class="tag-pill ocjp-pill" data-tag="ocjp" onclick="setQuizTag('ocjp', this)">🎓 OCJP</button>
+                <button class="tag-pill" data-tag="interview" onclick="setQuizTag('interview', this)">💼 Interview</button>
+                <button class="tag-pill" data-tag="tricky" onclick="setQuizTag('tricky', this)">⚡ Tricky</button>
+                <button class="tag-pill" data-tag="concept" onclick="setQuizTag('concept', this)">📚 Concept</button>
+                <button class="tag-pill" data-tag="predict" onclick="setQuizTag('predict', this)">🔮 Predict</button>
+              </div>
+            </div>
+
             <div class="quiz-meta-info">
               <div class="meta-item">
                 <span class="meta-label">Questions:</span>
@@ -375,13 +387,15 @@
 
           <div class="card-body">
             <!-- Question Header with Type Badge -->
-            <div class="quiz-question-header-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px;">
+            <div class="quiz-question-header-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; gap: 12px;">
               <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
                 <span id="quiz-question-type-badge" class="question-type-badge">Single Choice</span>
                 <span id="quiz-question-difficulty-badge" class="difficulty-badge easy">Easy</span>
               </div>
               <span id="quiz-mcq-indicator" class="mcq-select-all-indicator" style="display:none;">☑ Select ALL correct answers</span>
             </div>
+
+            <div id="quiz-question-tags" class="question-tags-row"></div>
 
             <!-- Question Text -->
             <div class="question-container">
@@ -502,6 +516,12 @@
         </div>
 
         <div class="practice-container">
+          <!-- Practice Tab Bar -->
+          <div class="practice-tab-bar" id="practice-tab-bar">
+            <button class="practice-tab active" id="tab-coding" onclick="switchPracticeTab('coding', this)">⌨ Coding Challenges</button>
+            <button class="practice-tab" id="tab-deep" onclick="switchPracticeTab('deep', this)">🏆 Deep Problems</button>
+          </div>
+
           <!-- Split Layout: Left side challenges selector & info -->
           <div class="practice-sidebar-card card">
             <div class="card-header">
@@ -640,6 +660,8 @@
   <script src="questions.js"></script>
   <!-- Load Generated Practice Challenges -->
   <script src="practice.js"></script>
+  <!-- Load Deep Coding Challenges -->
+  <script src="deep-challenges.js"></script>
   <!-- Load App Script -->
   <script src="app.js"></script>
 </body>

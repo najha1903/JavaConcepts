@@ -21,6 +21,8 @@ let currentNotesTopicPath = null;
 let currentPracticeScope = { chapterName: null, subChapterName: null };
 let currentQuizScope = { chapterName: null, subChapterName: null };
 let currentDifficultyFilter = 'all'; // 'all', 'easy', 'medium', 'hard'
+let currentTagFilter = 'all'; // 'all', 'ocjp', 'interview', 'tricky', 'predict', 'concept', 'codefill'
+let currentPracticeTab = 'coding'; // 'coding' or 'deep'
 
 
 // LocalStorage helpers
@@ -280,13 +282,18 @@ function pickRandomQuestions(pool, count) {
   return shuffled.slice(0, count);
 }
 
-function pickSmartQuestions(pool, count, difficultyFilter) {
+function pickSmartQuestions(pool, count, difficultyFilter, tagFilter) {
   const history = getQuestionHistory();
   let filtered = [...pool];
 
   if (difficultyFilter && difficultyFilter !== 'all') {
     const filtered2 = filtered.filter(q => (q.difficulty || 'easy') === difficultyFilter);
     if (filtered2.length >= Math.min(count, 5)) filtered = filtered2;
+  }
+
+  if (tagFilter && tagFilter !== 'all') {
+    const filtered3 = filtered.filter(q => q.tags && q.tags.includes(tagFilter));
+    if (filtered3.length >= Math.min(count, 3)) filtered = filtered3;
   }
 
   const weighted = filtered.map(q => ({ q, w: getQuestionWeight(q.qid, history) }));
@@ -323,6 +330,12 @@ function pickSmartQuestions(pool, count, difficultyFilter) {
 function setQuizDifficulty(level, btn) {
   currentDifficultyFilter = level;
   document.querySelectorAll('.diff-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function setQuizTag(tag, btn) {
+  currentTagFilter = tag;
+  document.querySelectorAll('.tag-pill').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
 }
 
@@ -1362,7 +1375,7 @@ function startChapterQuiz(chapterName, subChapterName) {
     });
     
     // Shuffle from the full pool every time; no answered-question filtering.
-    questions = pickSmartQuestions(allQuestions, 40, currentDifficultyFilter);
+    questions = pickSmartQuestions(allQuestions, 40, currentDifficultyFilter, currentTagFilter);
     
     // Generate 6 random dynamic questions across chapters to keep it fresh
     const allChapters = Object.keys(QUESTIONS_BANK);
@@ -1383,7 +1396,7 @@ function startChapterQuiz(chapterName, subChapterName) {
     const chapterLabel = subChapterName ? `${chapterName} > ${subChapterName}` : chapterName;
     
     // Shuffle from the full scoped pool every time; no tracking of previously answered items.
-    questions = pickSmartQuestions([...staticQs, ...dynamicQs], 20, currentDifficultyFilter);
+    questions = pickSmartQuestions([...staticQs, ...dynamicQs], 20, currentDifficultyFilter, currentTagFilter);
     
     document.getElementById('quiz-start-title').innerText = `${chapterLabel} Revision Quiz`;
     document.getElementById('quiz-start-desc').innerText = `Review the core concepts in ${chapterLabel} through dynamic logic tracking, multiple-choice questions, and conceptual mock interviews.`;
@@ -1455,6 +1468,19 @@ function renderQuizQuestion() {
   const difficulty = (question.difficulty || 'easy').toLowerCase();
   difficultyBadge.innerText = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
   difficultyBadge.className = `difficulty-badge ${difficulty}`;
+
+  // Show tags on the question
+  const tagsContainer = document.getElementById('quiz-question-tags');
+  if (tagsContainer) {
+    tagsContainer.innerHTML = '';
+    (question.tags || []).forEach(tag => {
+      const span = document.createElement('span');
+      span.className = `question-tag tag-${tag}`;
+      const tagLabels = { ocjp: '🎓 OCJP', interview: '💼 Interview', tricky: '⚡ Tricky', concept: '📚 Concept', predict: '🔮 Predict', codefill: '⌨ Code Fill' };
+      span.textContent = tagLabels[tag] || tag;
+      tagsContainer.appendChild(span);
+    });
+  }
   
   // Reset selected choices / input states
   selectedOptionIndex = null;
@@ -2192,6 +2218,102 @@ const PRACTICE_CHALLENGES = [
     }
   }
 ];
+
+function switchPracticeTab(tab, btn) {
+  currentPracticeTab = tab;
+  document.querySelectorAll('.practice-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  if (tab === 'deep') {
+    renderDeepChallengesList();
+  } else {
+    renderChallengesList();
+    selectChallenge(currentChallengeIndex);
+  }
+}
+
+function renderDeepChallengesList() {
+  const container = document.getElementById('challenge-list');
+  if (!container) return;
+
+  const allDeep = typeof DEEP_CHALLENGES !== 'undefined' ? DEEP_CHALLENGES : [];
+  const scoped = currentPracticeScope.chapterName
+    ? allDeep.filter(c => c.chapter === currentPracticeScope.chapterName)
+    : allDeep;
+
+  const toShow = scoped.length > 0 ? scoped : allDeep;
+
+  container.innerHTML = '';
+
+  toShow.forEach((challenge) => {
+    const item = document.createElement('button');
+    item.className = 'challenge-item';
+    const tagHtml = (challenge.tags || []).map(t => `<span class="question-tag tag-${t}">${t}</span>`).join('');
+    item.innerHTML = `
+      <span class="challenge-item-title">${challenge.title}</span>
+      <div class="challenge-item-meta">
+        <span class="difficulty-badge ${(challenge.difficulty || 'medium').toLowerCase()}">${challenge.difficulty || 'Medium'}</span>
+        ${tagHtml}
+      </div>
+    `;
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.challenge-item').forEach(b => b.classList.remove('active'));
+      item.classList.add('active');
+      selectDeepChallenge(challenge);
+    });
+    container.appendChild(item);
+  });
+
+  if (toShow.length > 0) selectDeepChallenge(toShow[0]);
+}
+
+function selectDeepChallenge(challenge) {
+  document.getElementById('practice-title').textContent = challenge.title;
+  const diffBadge = document.getElementById('practice-difficulty');
+  if (diffBadge) {
+    diffBadge.innerText = challenge.difficulty || 'Hard';
+    diffBadge.className = `difficulty-badge ${(challenge.difficulty || 'hard').toLowerCase()}`;
+  }
+
+  const tagHtml = (challenge.tags || []).map(t => `<span class="question-tag tag-${t}">${t}</span>`).join('');
+  const hintsHtml = challenge.hints && challenge.hints.length > 0
+    ? '<div class="deep-hints"><strong>💡 Hints:</strong><ul>' + challenge.hints.map(h => `<li>${h}</li>`).join('') + '</ul></div>'
+    : '';
+  const testcasesHtml = challenge.testcases && challenge.testcases.length > 0
+    ? '<div class="deep-testcases"><strong>🧪 Test Cases:</strong><ul>' + challenge.testcases.map(t => `<li><code>${t}</code></li>`).join('') + '</ul></div>'
+    : '';
+
+  const descEl = document.getElementById('practice-instructions');
+  if (descEl) descEl.innerHTML = `
+    <div class="deep-challenge-header">${tagHtml}</div>
+    <div class="deep-challenge-body">${challenge.description.replace(/\n/g, '<br>')}</div>
+    ${hintsHtml}
+    ${testcasesHtml}
+    <div class="deep-self-check">
+      <p>✍ Implement this in your IDE or below, then mark as complete when done.</p>
+      <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">✓ Mark as Completed</button>
+    </div>
+  `;
+
+  const codeArea = document.getElementById('practice-code-textarea');
+  if (codeArea) {
+    codeArea.value = `// Deep Challenge: ${challenge.title}\n// Implement your solution here\n\npublic class Solution {\n    // Your code here\n}`;
+    syncLineNumbers();
+  }
+
+  const casesContainer = document.getElementById('test-cases-grid');
+  if (casesContainer) {
+    casesContainer.innerHTML = '<p class="self-check-note">📋 This is a self-check challenge. Implement in your IDE, verify your test cases, then mark as completed.</p>';
+  }
+
+  logToConsole(`SYSTEM READY: Loaded deep challenge "${challenge.title}". Implement in your IDE, then mark as completed.`);
+}
+
+function markDeepChallengeDone(id) {
+  saveChallengePassed(id);
+  const btn = document.querySelector(`button[onclick="markDeepChallengeDone('${id}')"]`);
+  if (btn) { btn.textContent = '✓ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
+}
 
 function initPracticeLab() {
   const textarea = document.getElementById('practice-code-textarea');
