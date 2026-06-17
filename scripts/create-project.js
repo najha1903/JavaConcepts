@@ -373,12 +373,33 @@ JavaConcepts SDET revision template — see rules.md for full authoring guide.
 // ==========================================================================
 // Main entry point
 // ==========================================================================
+function printUsage() {
+  console.log('');
+  console.log('Usage:');
+  console.log('');
+  console.log('  NEW project (created as sibling of JavaConcepts):');
+  console.log('    node scripts/create-project.js <ProjectName> <technology>');
+  console.log('');
+  console.log('  NEW project at a SPECIFIC path:');
+  console.log('    node scripts/create-project.js <ProjectName> <technology> --target "D:\\path\\to\\folder"');
+  console.log('');
+  console.log('  EXISTING project (add dashboard only, keep your existing src/):');
+  console.log('    node scripts/create-project.js <ProjectName> <technology> --target "D:\\path\\to\\existing" --dashboard-only');
+  console.log('');
+  console.log('Technologies: javascript, typescript, cypress, playwright, selenium');
+  console.log('');
+  console.log('Examples:');
+  console.log('  node scripts/create-project.js CypressConcepts cypress');
+  console.log('  node scripts/create-project.js MyTests cypress --target "D:\\Work\\MyTests"');
+  console.log('  node scripts/create-project.js MyTests cypress --target "D:\\Work\\MyTests" --dashboard-only');
+}
+
 function main() {
   const args = process.argv.slice(2);
-  if (args.length < 2) {
-    console.log('Usage: node scripts/create-project.js <ProjectName> <technology>');
-    console.log('Technologies: javascript, typescript, cypress, playwright, selenium');
-    process.exit(1);
+
+  if (args.length < 2 || args.includes('--help') || args.includes('-h')) {
+    printUsage();
+    process.exit(args.length < 2 ? 1 : 0);
   }
 
   const projectName = args[0];
@@ -386,46 +407,92 @@ function main() {
   const config = TECH_CONFIG[tech];
 
   if (!config) {
-    console.error(`Unknown technology: ${tech}`);
-    console.error('Supported: javascript, typescript, cypress, playwright, selenium');
+    console.error(`\n❌ Unknown technology: "${tech}"`);
+    console.error('Supported: javascript, typescript, cypress, playwright, selenium\n');
     process.exit(1);
   }
+
+  // Parse flags
+  const targetIdx = args.indexOf('--target');
+  const dashboardOnly = args.includes('--dashboard-only');
 
   const srcDir = path.resolve(__dirname, '..');
-  const destDir = path.resolve(__dirname, '..', '..', projectName);
 
-  if (fs.existsSync(destDir)) {
-    console.error(`Directory already exists: ${destDir}`);
-    process.exit(1);
+  let destDir;
+  if (targetIdx !== -1 && args[targetIdx + 1]) {
+    // --target path provided: use it directly
+    destDir = path.resolve(args[targetIdx + 1]);
+  } else {
+    // Default: sibling of JavaConcepts
+    destDir = path.resolve(__dirname, '..', '..', projectName);
   }
 
-  console.log(`\n🚀 Creating ${projectName} (${config.label}) at ${destDir}...\n`);
+  const mode = dashboardOnly ? 'dashboard-only (existing project)' : 'full new project';
+  console.log(`\n🚀 Setting up ${projectName} (${config.label})`);
+  console.log(`   Mode    : ${mode}`);
+  console.log(`   Location: ${destDir}\n`);
 
-  fs.mkdirSync(destDir, { recursive: true });
+  if (!fs.existsSync(destDir)) {
+    if (dashboardOnly) {
+      console.error(`❌ --dashboard-only requires the folder to already exist: ${destDir}`);
+      process.exit(1);
+    }
+    fs.mkdirSync(destDir, { recursive: true });
+  } else if (!dashboardOnly) {
+    // Full project mode but folder exists — warn and continue (allows re-running)
+    console.log(`⚠️  Folder already exists — updating dashboard files only (src/ untouched)\n`);
+    // Treat as dashboard-only to avoid overwriting user's work
+  }
 
   copyDashboard(srcDir, destDir, tech, config);
-  console.log('✅ Dashboard copied');
+  console.log('✅ Dashboard copied/updated');
 
   createParser(srcDir, destDir, tech, config);
   console.log('✅ Parser adapted for ' + config.label);
 
-  createSrcExample(destDir, tech, config);
-  console.log('✅ Example source file created');
+  if (!dashboardOnly && !fs.existsSync(path.join(destDir, 'src'))) {
+    createSrcExample(destDir, tech, config);
+    console.log('✅ Example source file created in src/');
+  } else if (dashboardOnly) {
+    console.log('ℹ️  src/ left untouched (--dashboard-only mode)');
+  }
 
-  createPackageJson(destDir, projectName, tech);
-  console.log('✅ package.json created');
+  // Only create package.json if it doesn't already exist
+  const pkgPath = path.join(destDir, 'package.json');
+  if (!fs.existsSync(pkgPath)) {
+    createPackageJson(destDir, projectName, tech);
+    console.log('✅ package.json created');
+  } else {
+    // Add/update the revise script in existing package.json
+    try {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+      if (!pkg.scripts) pkg.scripts = {};
+      pkg.scripts.revise = 'node scripts/parse-concepts.js && start revision-dashboard/index.html';
+      fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), 'utf8');
+      console.log('✅ package.json updated (added "revise" script)');
+    } catch (e) {
+      console.log('⚠️  Could not update package.json — add manually: "revise": "node scripts/parse-concepts.js"');
+    }
+  }
 
   createRules(destDir, tech, config);
-  console.log('✅ rules.md created');
+  console.log('✅ rules.md created/updated');
 
-  createReadme(destDir, projectName, tech, config);
-  console.log('✅ README.md created');
+  if (!fs.existsSync(path.join(destDir, 'README.md'))) {
+    createReadme(destDir, projectName, tech, config);
+    console.log('✅ README.md created');
+  }
 
-  console.log(`\n🎉 Project created successfully!`);
+  console.log(`\n🎉 Done!`);
   console.log(`\nNext steps:`);
-  console.log(`  cd ..\\${projectName}`);
-  console.log(`  npm run revise`);
-  console.log(`\nAdd more topics to src/ following the rules in rules.md`);
+  console.log(`  1. cd "${destDir}"`);
+  if (!dashboardOnly) {
+    console.log(`  2. Add concept files to src/ (see rules.md for format)`);
+    console.log(`  3. npm run revise`);
+  } else {
+    console.log(`  2. npm run revise`);
+  }
+  console.log(`  Open revision-dashboard\\index.html to study\n`);
 }
 
 main();
