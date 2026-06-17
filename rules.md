@@ -376,6 +376,31 @@ public class OperatorsInJava {
 }
 ```
 
+---
+
+## Extending to other SDET projects
+
+This entire system is plug-and-play. Use `scripts/create-project.js` to create a
+mirror of this dashboard for Playwright, Cypress, JavaScript, TypeScript, or Selenium.
+
+```bash
+# New project (auto-placed as sibling of JavaConcepts):
+node scripts/create-project.js PlaywrightConcepts playwright
+
+# New project at any specific path:
+node scripts/create-project.js PlaywrightConcepts playwright --target "D:\Work\PlaywrightConcepts"
+
+# Add dashboard to an existing project (leaves src/ untouched):
+node scripts/create-project.js MyProject playwright --target "D:\Work\MyProject" --dashboard-only
+
+# See all options:
+node scripts/create-project.js --help
+```
+
+Supported technologies: `javascript`, `typescript`, `cypress`, `playwright`, `selenium`
+
+See `TEMPLATE.md` for the full bootstrap guide and technology-specific comment patterns.
+
 These become **Key Takeaways & Annotations** bullets.
 
 ---
