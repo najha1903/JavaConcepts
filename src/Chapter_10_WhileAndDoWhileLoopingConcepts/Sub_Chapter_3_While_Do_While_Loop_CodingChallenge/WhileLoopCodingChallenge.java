@@ -37,14 +37,6 @@ public class WhileLoopCodingChallenge {
         int countOfEvenNumbers = 0;
 
 
-//        while(startingNumberRange <= endNumberRange){
-//            if(isEvenNumber(startingNumberRange)){
-//                System.out.print(startingNumberRange + " ");
-//            }
-//            startingNumberRange++;
-//        }
-
-
         while(startingNumberRange  <= endNumberRange) {
             startingNumberRange++;
             if(!isEvenNumber(startingNumberRange)){

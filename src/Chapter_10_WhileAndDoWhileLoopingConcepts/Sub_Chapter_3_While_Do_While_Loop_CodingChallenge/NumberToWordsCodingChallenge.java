@@ -2,8 +2,6 @@ package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_3_While_Do_While_L
 
 public class NumberToWordsCodingChallenge {
 
-    // write code here
-
 
     public static int getDigitCount(int number){
 

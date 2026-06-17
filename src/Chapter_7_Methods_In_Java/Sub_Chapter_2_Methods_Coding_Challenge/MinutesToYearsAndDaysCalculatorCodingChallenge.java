@@ -71,8 +71,6 @@ public class MinutesToYearsAndDaysCalculatorCodingChallenge {
 
             noOfYears = noOfDays / 365;
 
-            // remainingDays = noOfDays - noOfYears * 365;
-
             remainingDays = noOfDays % 365;
 
             System.out.println(minutes + " min = " + noOfYears + " y and " + remainingDays + " d");

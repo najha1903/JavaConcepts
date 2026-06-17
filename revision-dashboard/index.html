@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Concepts Revision Dashboard</title>
+  <!-- Google Fonts: Outfit and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="m16 16 3-8 3 8c-.87.5-1.93.5-2.8 0l-.2-.1a2 2 0 0 0-2 0l-.2.1c-.87.5-1.93.5-2.8 0z"/><path d="m2 16 3-8 3 8c-.87.5-1.93.5-2.8 0l-.2-.1a2 2 0 0 0-2 0l-.2.1c-.87.5-1.93.5-2.8 0z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
+          <span>JavaRevise</span>
+        </div>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+          <!-- Moon Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon moon-icon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <!-- Sun Icon (Hidden by default) -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon sun-icon" style="display: none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        </button>
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="search-input" placeholder="Search concepts or code...">
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu">
+        <div class="nav-section">
+          <button id="nav-dashboard-btn" class="nav-item active">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            <span>Overview</span>
+          </button>
+          <button id="nav-quiz-menu-btn" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Revision Quizzes</span>
+          </button>
+          <button id="nav-practice-btn" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+            <span>Practice Lab</span>
+          </button>
+          <button id="nav-notes-btn" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M4 19.5V5a2 2 0 0 1 2-2h10l4 4v12.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v4h4"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
+            <span>Notes</span>
+          </button>
+        </div>
+
+        <div class="nav-divider"></div>
+        <div class="nav-title">Java Chapters</div>
+        
+        <!-- Dynamic Chapter List -->
+        <div id="chapters-list" class="chapters-list">
+          <!-- JS populated -->
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- DASHBOARD VIEW -->
+      <section id="dashboard-view" class="view-section active">
+        <div class="view-header">
+          <h1>Welcome to Java Revision Dashboard</h1>
+          <p class="subtitle">Track your progress, study core concepts, and quiz yourself to mastery.</p>
+        </div>
+
+        <!-- Progress Overview Grid -->
+        <div class="stats-grid">
+          <div class="stat-card progress-card">
+            <div class="stat-info">
+              <span class="stat-label">Overall Revision Progress</span>
+              <span class="stat-value" id="overall-progress-text">0%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="overall-progress-bar" style="width: 0%;"></div>
+            </div>
+            <span class="stat-subtext" id="overall-progress-sub">0 of 0 topics completed</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper purple">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-value" id="total-chapters-val">13</span>
+              <span class="stat-label">Total Chapters</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper blue">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-value" id="quiz-taken-val">0</span>
+              <span class="stat-label">Quizzes Completed</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrapper green">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"/><path d="M12 2a4 4 0 0 0-4 4v7a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"/></svg>
+            </div>
+            <div class="stat-details">
+              <span class="stat-value" id="avg-score-val">0%</span>
+              <span class="stat-label">Average Score</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Recent Chapters / Resume studying -->
+          <div class="dashboard-panel">
+            <h2>Resume Studying</h2>
+            <div class="resume-list" id="resume-chapters-list">
+              <!-- JS populated -->
+            </div>
+          </div>
+
+          <!-- Quick Quiz & Help -->
+          <div class="dashboard-panel">
+            <h2>Revision Quick Actions</h2>
+            <div class="quick-actions">
+              <div class="action-card">
+                <h3>Grand Java Quiz</h3>
+                <p>Test your knowledge across all 13 chapters in one comprehensive quiz.</p>
+                <button class="btn btn-primary" id="btn-grand-quiz">Start Grand Quiz</button>
+              </div>
+              <div class="action-card">
+                <h3>Reset All Progress</h3>
+                <p>Clear all checked revision items and quiz history to start fresh.</p>
+                <button class="btn btn-danger-outline" id="btn-reset-data">Reset Progress</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDY / FLASHCARDS VIEW -->
+      <section id="study-view" class="view-section">
+        <div class="study-header-bar">
+          <div class="breadcrumbs">
+            <span id="breadcrumb-chapter">Chapter</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="breadcrumb-arrow"><path d="m9 18 6-6-6-6"/></svg>
+            <span id="breadcrumb-topic" class="active">Topic</span>
+          </div>
+          
+          <!-- Sliding Toggle for Study Mode -->
+          <div class="study-mode-toggle">
+            <button id="btn-depth-detailed" class="mode-toggle-btn active">Detailed Study</button>
+            <button id="btn-depth-quick" class="mode-toggle-btn">Quick Revision</button>
+          </div>
+          
+          <div class="study-actions">
+            <button id="btn-mark-revised" class="btn btn-outline btn-mark-revised">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="check-icon"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Mark as Revised</span>
+            </button>
+            <button id="btn-quiz-this-chapter" class="btn btn-primary-outline">
+              Quiz This Chapter
+            </button>
+            <button id="btn-practice-this-section" class="btn btn-outline">
+              Practice This Chapter
+            </button>
+            <button id="btn-open-notes" class="btn btn-outline">
+              Notes
+            </button>
+          </div>
+        </div>
+
+        <div class="study-grid">
+          <!-- Left side: Explanations / Notes -->
+          <div class="study-notes-panel">
+            <div class="card concept-card">
+              <div class="card-header">
+                <h2 id="concept-title">Concept Title</h2>
+              </div>
+              <div class="card-body">
+                <div id="concept-explanations" class="explanations-content">
+                  <!-- Parsed paragraphs -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Inline Explanations Accordion if present -->
+            <div class="card inline-comments-card" id="inline-comments-panel" style="display:none;">
+              <div class="card-header">
+                <h3>Key Takeaways & Annotations</h3>
+              </div>
+              <div class="card-body">
+                <ul id="inline-comments-list" class="bullet-list">
+                  <!-- JS populated -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: Code view -->
+          <div class="study-code-panel">
+            <div class="card code-card">
+              <div class="card-header">
+                <div class="code-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="code-icon"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                  <span id="code-filename">CodeExample.java</span>
+                </div>
+                <button id="btn-copy-code" class="icon-btn" title="Copy Code">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  <span class="tooltip" id="copy-tooltip">Copied!</span>
+                </button>
+              </div>
+              <div class="code-wrapper">
+                <pre><code id="code-content" class="language-java">
+// Code goes here
+                </code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Revision View (Hidden by default) -->
+        <div id="quick-revision-panel" style="display: none;">
+          <!-- 3D Flip Flashcard -->
+          <div class="flashcard-scene" onclick="this.querySelector('.flashcard').classList.toggle('is-flipped')">
+            <div class="flashcard" id="quick-flashcard">
+              <!-- Front Face -->
+              <div class="flashcard-face flashcard-front">
+                <div class="flashcard-chip">Click to Flip ↻</div>
+                <div class="flashcard-front-content">
+                  <div class="flashcard-chapter-label" id="fc-chapter-label">Chapter</div>
+                  <h2 class="flashcard-topic-name" id="fc-topic-name">Topic Name</h2>
+                  <p class="flashcard-hint">Think about the core rule, common gotchas, and how you'd explain this in an interview.</p>
+                </div>
+                <div class="flashcard-front-footer">
+                  <span class="flashcard-tag">Quick Revision</span>
+                </div>
+              </div>
+              <!-- Back Face -->
+              <div class="flashcard-face flashcard-back">
+                <div class="flashcard-chip flashcard-chip-back">Definition & Tips ✓</div>
+                <div class="flashcard-back-content">
+                  <div class="flashcard-back-section">
+                    <div class="flashcard-back-label">🔑 Core Rule</div>
+                    <div id="fc-core-rule" class="flashcard-back-text">Loading...</div>
+                  </div>
+                  <div class="flashcard-back-section">
+                    <div class="flashcard-back-label">💡 Interview Pro-Tip</div>
+                    <div id="fc-pro-tip" class="flashcard-back-text">Loading...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grid Cards below flashcard -->
+          <div class="quick-revision-grid">
+            <!-- Left: Key takeaway cards & gotchas -->
+            <div class="quick-cards-column">
+              <div class="card quick-notes-card">
+                <div class="card-header">
+                  <h3>🔑 Core Rules &amp; Key Concepts</h3>
+                </div>
+                <div class="card-body">
+                  <ul id="quick-bullet-points" class="bullet-list">
+                    <!-- Dynamic -->
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="card gotchas-card danger-alert">
+                <div class="card-header">
+                  <h3>⚠️ Tricky Gotchas &amp; Pitfalls</h3>
+                </div>
+                <div class="card-body">
+                  <ul id="quick-gotchas-list" class="bullet-list">
+                    <!-- Dynamic -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right: Syntax Template Card -->
+            <div class="quick-syntax-column">
+              <div class="card syntax-template-card">
+                <div class="card-header">
+                  <h3>📋 Class &amp; Method Signature Templates</h3>
+                </div>
+                <div class="card-body">
+                  <div class="syntax-badge-container" id="quick-syntax-badges">
+                    <!-- Dynamically parsed signatures -->
+                  </div>
+                  <div class="syntax-code-wrapper">
+                    <pre><code id="quick-syntax-code" class="language-java">// Extracted templates</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="study-footer-nav">
+          <button id="btn-prev-topic" class="btn btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-arrow"><path d="m15 18-6-6 6-6"/></svg>
+            <span>Previous</span>
+          </button>
+          <span id="topic-pagination">1 of 5</span>
+          <button id="btn-next-topic" class="btn btn-outline">
+            <span>Next</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-arrow"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- QUIZZES VIEW -->
+      <section id="quiz-view" class="view-section">
+        <div class="view-header">
+          <h1>Java Concept Quizzes</h1>
+          <p class="subtitle" id="quiz-subtitle">Test your retention of the material from this chapter.</p>
+        </div>
+
+        <!-- Quiz Select / Start Page -->
+        <div id="quiz-start-container" class="quiz-panel card">
+          <div class="card-body centered-content">
+            <div class="quiz-icon-large">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h2 id="quiz-start-title">Chapter Revision Quiz</h2>
+            <p id="quiz-start-desc" class="quiz-description">This quiz covers core concepts, operators, and control flows found in this chapter. It consists of multiple choice questions and code snippets.</p>
+            
+            <div class="quiz-meta-info">
+              <div class="meta-item">
+                <span class="meta-label">Questions:</span>
+                <span class="meta-value" id="quiz-question-count">5 Questions</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Est. Time:</span>
+                <span class="meta-value" id="quiz-est-time">5 Mins</span>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-large" id="btn-start-quiz-now">Start Quiz Now</button>
+          </div>
+        </div>
+
+        <!-- Active Quiz Question -->
+        <div id="quiz-active-container" class="quiz-panel card" style="display:none;">
+          <div class="quiz-progress-header">
+            <div class="quiz-progress-text">Question <span id="current-q-index">1</span> of <span id="total-q-index">5</span></div>
+            <div class="quiz-progress-bar-wrapper">
+              <div class="quiz-progress-bar-fill" id="quiz-q-progress" style="width: 20%;"></div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <!-- Question Header with Type Badge -->
+            <div class="quiz-question-header-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px;">
+              <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                <span id="quiz-question-type-badge" class="question-type-badge">Single Choice</span>
+                <span id="quiz-question-difficulty-badge" class="difficulty-badge easy">Easy</span>
+              </div>
+              <span id="quiz-mcq-indicator" class="mcq-select-all-indicator" style="display:none;">☑ Select ALL correct answers</span>
+            </div>
+
+            <!-- Question Text -->
+            <div class="question-container">
+              <h3 id="quiz-question-text">What is the output of the following Java expression?</h3>
+            </div>
+
+            <!-- Optional Code block in Question -->
+            <div class="question-code-block" id="quiz-question-code-wrapper" style="display:none;">
+              <pre><code id="quiz-question-code" class="language-java">
+// Code snippet
+              </code></pre>
+            </div>
+
+            <!-- Options Grid (SCQ and MCQ) -->
+            <div class="options-grid" id="quiz-options-container">
+              <!-- JS Populated options -->
+            </div>
+
+            <!-- Text Input Container (for Predict Output type) -->
+            <div id="quiz-input-container" style="display:none; margin-bottom: 24px;">
+              <div class="input-label" style="font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Your Predicted Output:</div>
+              <input type="text" id="quiz-predict-input" class="quiz-text-input" placeholder="Type the exact output here...">
+            </div>
+
+            <!-- Conceptual Technical Interview Container (for Interview type) -->
+            <div id="quiz-interview-container" style="display:none; margin-bottom: 24px;">
+              <div class="input-label" style="font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Your Interview Response:</div>
+              <textarea id="quiz-interview-textarea" class="quiz-textarea" placeholder="Explain the concept in detail, mimicking a technical interview response..."></textarea>
+              
+              <!-- Hidden Self-Evaluation Checklist & Model Answer Card -->
+              <div id="quiz-interview-eval-wrapper" style="display:none; margin-top: 24px;" class="interview-eval-card">
+                <h4 class="eval-title">Model Answer</h4>
+                <div id="quiz-model-answer" class="model-answer-box">
+                  <!-- Model answer goes here -->
+                </div>
+                
+                <h4 class="eval-title" style="margin-top: 16px;">Interview Self-Grading Checklist</h4>
+                <p class="eval-subtitle">Did you cover these key points in your explanation? Check all that apply:</p>
+                <div id="quiz-interview-checklist" class="eval-checklist">
+                  <!-- Checkbox items dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+            <div class="quiz-actions-footer">
+              <span class="answer-feedback" id="quiz-feedback-text"></span>
+              <button class="btn btn-primary" id="btn-submit-answer">Submit Answer</button>
+              <button class="btn btn-primary" id="btn-next-question" style="display:none;">Next Question</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Results -->
+        <div id="quiz-result-container" class="quiz-panel card" style="display:none;">
+          <div class="card-body centered-content">
+            <div class="score-radial-wrapper">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path class="circle-bg"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path class="circle"
+                  id="result-radial-fill"
+                  stroke-dasharray="0, 100"
+                  d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <text x="18" y="20.35" class="percentage" id="result-score-text">0%</text>
+              </svg>
+            </div>
+
+            <h2 id="result-title">Quiz Completed!</h2>
+            <p id="result-desc" class="quiz-description">Great job revising these concepts. Here's a breakdown of your score.</p>
+            
+            <div class="score-details-box">
+              <div class="score-row">
+                <span>Correct Answers:</span>
+                <span id="result-correct-count" class="bold text-success">0</span>
+              </div>
+              <div class="score-row">
+                <span>Incorrect Answers:</span>
+                <span id="result-incorrect-count" class="bold text-danger">0</span>
+              </div>
+              <div class="score-row">
+                <span>Topic Covered:</span>
+                <span id="result-topic-name" class="bold">Chapter Revision</span>
+              </div>
+            </div>
+
+            <!-- Detailed Answers Review -->
+            <div id="quiz-results-breakdown" style="width: 100%; text-align: left; margin-top: 16px; display: flex; flex-direction: column; gap: 14px; max-height: 250px; overflow-y: auto; padding-right: 4px; margin-bottom: 20px;">
+              <!-- JS populated review list -->
+            </div>
+
+            <div class="quiz-result-actions">
+              <button class="btn btn-primary" id="btn-retry-quiz">Retry Quiz</button>
+              <button class="btn btn-outline" id="btn-return-dashboard">Back to Overview</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRACTICE VIEW -->
+      <section id="practice-view" class="view-section">
+        <div class="view-header">
+          <h1>Java Code Practice Lab</h1>
+          <p class="subtitle">Write Java code, compile, and run it client-side against tricky test suites.</p>
+        </div>
+
+        <div class="practice-container">
+          <!-- Split Layout: Left side challenges selector & info -->
+          <div class="practice-sidebar-card card">
+            <div class="card-header">
+              <h3>Coding Practice Challenges</h3>
+              <span class="notes-meta" id="practice-scope-label">All chapters</span>
+            </div>
+            <div class="card-body no-padding">
+              <div id="challenge-list" class="challenge-list">
+                <!-- JS Populated list of challenges -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side workspace: Instruction and Editor -->
+          <div class="practice-workspace">
+            <div class="workspace-left">
+              <div class="card instruction-card">
+                <div class="card-header">
+                  <h2 id="practice-title">Challenge Title</h2>
+                  <span class="difficulty-badge" id="practice-difficulty">Medium</span>
+                </div>
+                <div class="card-body">
+                  <div id="practice-instructions" class="instructions-content">
+                    <!-- Dynamic details -->
+                  </div>
+                  <div class="test-cases-section">
+                    <h3>Verification Test Cases</h3>
+                    <div id="test-cases-grid" class="test-cases-grid">
+                      <!-- JS Populated -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="workspace-right">
+              <div class="card practice-editor-card">
+                <div class="card-header">
+                  <div class="editor-header-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="code-icon"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                    <span id="practice-filename">PracticeWorkspace.java</span>
+                  </div>
+                  <div class="editor-actions">
+                    <button class="btn btn-outline btn-small" id="btn-reset-practice">Reset Template</button>
+                    <button class="btn btn-primary btn-small" id="btn-run-practice">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="run-icon"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                      Compile & Run
+                    </button>
+                  </div>
+                </div>
+                <div class="editor-container">
+                  <div class="editor-line-numbers" id="editor-line-numbers">
+                    <!-- Line numbers -->
+                  </div>
+                  <textarea id="practice-code-textarea" class="code-textarea" spellcheck="false" wrap="off"></textarea>
+                </div>
+              </div>
+
+              <!-- Terminal console output -->
+              <div class="card terminal-card">
+                <div class="card-header">
+                  <span class="console-label">Console Compiler Output</span>
+                  <button id="btn-clear-console" class="clear-btn-link">Clear Console</button>
+                </div>
+                <div class="terminal-body">
+                  <pre id="console-output">SYSTEM READY. Select a challenge to begin.</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOTES VIEW -->
+      <section id="notes-view" class="view-section">
+        <div class="view-header">
+          <h1>My Notes</h1>
+          <p class="subtitle">Write revision notes for the full project or for each topic.</p>
+        </div>
+
+        <div class="notes-layout">
+          <div class="card notes-index-card">
+            <div class="card-header">
+              <h3>Topic Notes</h3>
+            </div>
+            <div class="card-body no-padding">
+              <div id="notes-topic-list" class="notes-topic-list"></div>
+            </div>
+          </div>
+
+          <div class="notes-workspace">
+            <div class="card notes-project-card">
+              <div class="card-header">
+                <h3>Project Notes</h3>
+                <span class="notes-meta" id="project-notes-meta">Autosaved locally</span>
+              </div>
+              <div class="card-body">
+                <textarea id="project-notes-textarea" class="notes-textarea" placeholder="Capture overall Java revision notes, framework ideas, interview reminders, and project-level takeaways..."></textarea>
+              </div>
+            </div>
+
+            <div class="card notes-topic-card">
+              <div class="card-header">
+                <h3 id="notes-topic-title">Topic Notes</h3>
+                <div class="notes-topic-actions">
+                  <span class="notes-meta" id="topic-notes-meta">Autosaved locally</span>
+                  <button id="btn-open-selected-topic" class="btn btn-outline btn-small">Open Topic</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <textarea id="topic-notes-textarea" class="notes-textarea" placeholder="Write your notes for the selected topic..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEARCH RESULTS VIEW -->
+      <section id="search-view" class="view-section">
+        <div class="view-header">
+          <h1>Search Results</h1>
+          <p class="subtitle" id="search-summary">Found 0 matches matching your query.</p>
+        </div>
+        
+        <div class="search-results-list" id="search-results-container">
+          <!-- JS populated -->
+        </div>
+      </section>
+      
+    </main>
+  </div>
+
+  <!-- Load Auto-generated Data -->
+  <script src="data.js"></script>
+  <!-- Load Questions Bank -->
+  <script src="questions.js"></script>
+  <!-- Load App Script -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -26,14 +26,14 @@ public class ExceptionHandlingInJava {
     public static void main(String[] args) {
 
         try{ // After try keyword, the code block starts
-            // statements that might giver errors
+            // statements that might give errors
         } // The code block end here
         catch (Exception e){  // After the end of first code block, it is followed by keyword "catch" and parentheses, where a declaration is required.
                               // The declaration includes the type of the exception and a variable name.
                               // The second code block inside catch contains code to handle the exception
         }
 
-       // String value = null;
+       // String value = null; -- removed (see working example below)
 
     /*    try {
             if (value != null) {

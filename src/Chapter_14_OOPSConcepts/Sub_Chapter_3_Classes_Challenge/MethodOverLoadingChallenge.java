@@ -72,10 +72,6 @@ public class MethodOverLoadingChallenge {
 
             feet = (int) (totalInches / 12);
 
-           // double feetInInches = feet * 12;
-
-            // inches = Math.round(totalInches - feetInInches);
-
             inches = Math.round(totalInches % 12);
 
             System.out.println(centimeters + " cm = " + feet + " ft " + inches + " inch ");
@@ -97,8 +93,6 @@ public class MethodOverLoadingChallenge {
         }else{
 
              feet = (int) (inches / 12);
-
-         //  remaining_inches = inches - feet * 12;
 
              remaining_inches = inches % 12;
 

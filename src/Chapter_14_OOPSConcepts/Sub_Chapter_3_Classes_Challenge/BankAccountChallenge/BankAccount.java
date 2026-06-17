@@ -16,9 +16,7 @@ package Chapter_14_OOPSConcepts.Sub_Chapter_3_Classes_Challenge.BankAccountChall
 //
 //You'll create an instance of an Account class and then test your withdrawal and deposit methods.
 //
-//You'll print information to the console that confirms what the
-//
-//balance is after the methods are called. So, pause the video and try that out,
+//You'll print information to the console that confirms the account balance after the methods are called.
 
 public class BankAccount {
 

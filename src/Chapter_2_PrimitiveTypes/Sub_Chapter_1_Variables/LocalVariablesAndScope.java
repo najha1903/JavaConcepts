@@ -1,4 +1,4 @@
-package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
+﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 
 /*
 
@@ -16,7 +16,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
    1) It is considered best practice to declare and initialise variable in the same place, if possible.
    2) It is also advised to declare variables in the narrowest scope possible.
 
-********* Local variables and for statement ************
+Local variables and for statement:
 
 The variable i that is declared, isn't accessible outside the loop.
 This is because any variables declared in the init section are local to the loop, meaning, they exist
@@ -25,12 +25,12 @@ and are accessible in memory only while the loop is executing, and only to the l
    {  // Starts on outer block = for example a method block
 
     for (int i = 1; i <=5 ; i++){   // declaration and initialisation of the i variable in for loop declaration
-      System.out.println(i);  The variable i is accessible inside the for loop scope
+      The variable i is accessible inside the for loop scope (e.g. System.out.println(i) works here)
     }
     System.out.println(i);    // ERROR|! is is out of the scope
    }
 
-*********** Local variables and if statement ************
+Local variables and if statement:
 
 Local variables declared in an if statement block are not accessible outside of that block.
 This also includes other parts of the if statement, like the else if block or the else block.
@@ -46,7 +46,7 @@ This also includes other parts of the if statement, like the else if block or th
      System.out.println(i); // ERROR : i is out of scope
      }
 
-*********** Declaring variables in a switch statement block **********
+Declaring variables in a switch statement block:
 
 The switch statement is different from the if-then-else statement block.
 The case block has different access for local variables than the if-else block.
@@ -58,20 +58,19 @@ but only if that block is after the declaration and initialisation of the variab
        switch(value) { // Curly braces are optional in switch statement
 
        case 1:        // Start of code block for case 1
-       int i = 10;    // The variable declared in case 1 is accessible in default block, as the default block
-                      // is after the declaration and initialisation of the variable
+       int i = 10;    // Variable i declared in case 1 is accessible in the default block, as default comes after case 1's declaration
        break;         // End of code block for case 1
 
-       case 2:
+       case 2: -- accessing j here causes a compile ERROR (j is declared later in case 3)
        System.out.println(j); // ERROR, j is out of scope of case 2, as variable j is declared in case 3, which is after case 2, hence case 2 cannot access variables declared in case 3
        break;
 
-       case 3:
+       case 3: -- j is declared here, accessible from this point in the switch block
        int j = 10;
        System.out.println(j);
        break;
 
-       default:
+       default: -- can access i (case 1) and j (case 3) since both are declared before this block
         i = value;              // this is ok  // the i variable, even though is declared in case 1, can be accessed by default block as default block is after case 1
         System.out.println(i);  // this is ok
         System.out.println(j);  // as variable j is declared in case 2, hence it can be accessed by default block as default block is after case 2

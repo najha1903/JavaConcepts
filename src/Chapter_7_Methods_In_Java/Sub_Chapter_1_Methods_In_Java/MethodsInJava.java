@@ -7,7 +7,7 @@ public class MethodsInJava {
 
     public static void main(String[] args) {
      calculateScore(); //method without any parameter
-    // calculateScore(true,800,5,100); // method with parameters.
+     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters
         // The parameters should be passed in the same order as it is defined in the method.
 
         int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.
@@ -39,18 +39,20 @@ public class MethodsInJava {
 
     }
 
+/*
 //    public static void calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){
-//
-//        // When we define parameters,Java will automatically create variables with appropriate data types, and it gets deleted, once process goes back to the line where method is called.
-//        // void means don't send any value back.If we don 't the method to return any information, we use void as a return type of method.
 
-//        if(gameOver){
-//            int finalScore = score + (levelCompleted * bonus);
-//            finalScore += 1000;
-//            System.out.println("Your final score was " + finalScore);
-//        }
-//
+        // When we define parameters,Java will automatically create variables with appropriate data types, and it gets deleted, once process goes back to the line where method is called.
+        // void means don't send any value back.If we don 't the method to return any information, we use void as a return type of method.
+
+        if(gameOver){
+            int finalScore = score + (levelCompleted * bonus);
+            finalScore += 1000;
+            System.out.println("Your final score was " + finalScore);
+        }
+
 //    }
+*/
 
     public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){
 

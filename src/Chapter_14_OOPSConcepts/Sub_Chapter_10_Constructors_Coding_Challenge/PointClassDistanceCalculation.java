@@ -38,8 +38,6 @@ import java.awt.*;
 
 public class PointClassDistanceCalculation {
 
-    // write code here
-
     private int x;
 
     private int y;

@@ -2,7 +2,7 @@ package Chapter_6_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 
 // The if-then(else) statement tells the program to execute a certain section of code only if a particular tests evaluate to true also known as conditional logic.
 
-// Conditional logic uses specific statements in Java to allow usd to check a condition and execute certain code based on whether that condition(the expression) is true or false.
+// Conditional logic uses specific statements in Java to allow us to check a condition and execute certain code based on whether that condition(the expression) is true or false.
 
 // After if statement, no semicolon should be added, as semicolon means end of the statement
 
@@ -25,7 +25,7 @@ package Chapter_6_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 
     boolean isEighteenOrOver = (ageOfClient == 20) ? true : false;
 
-    Operand one - ageOfClient === 20, in this case we are checking the condition. It will return either true or false.
+    Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.
 
     Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true.
 

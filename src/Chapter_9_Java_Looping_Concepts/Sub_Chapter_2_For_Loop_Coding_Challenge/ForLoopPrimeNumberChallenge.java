@@ -29,12 +29,6 @@ public class ForLoopPrimeNumberChallenge {
 
     public static void main(String[] args) {
 
-//        for(int i = 10; i <= 20;i++){
-//            if(isPrime(i)){
-//                System.out.println(i);
-//            }
-//        }
-
         int count = 0;
                 for(int i = 10; i <= 20;i++){
             if(isPrime(i)){

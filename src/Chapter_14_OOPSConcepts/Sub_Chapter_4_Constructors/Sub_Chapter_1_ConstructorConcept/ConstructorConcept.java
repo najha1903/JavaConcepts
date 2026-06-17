@@ -92,10 +92,6 @@ public class ConstructorConcept {
     Access modifier :- public has also been defined for the constructor
     * Explicit constructor without any parameters or arguments
     * */
-//    public ConstructorConcept(){
-//        System.out.println("Empty Constructor Called");
-//    }
-    
     public ConstructorConcept(String accountNumber,double accountBalance, String customerName, String email, String phoneNumber){
         System.out.println("Constructor with 5 arguments is called");
         this.accountNumber = accountNumber;
@@ -195,26 +191,27 @@ public class ConstructorConcept {
    /* This code is actually calling that special constructor that creates the class. Its purpose is to create the object from the class.*/
 
 
-//        ConstructorConcept constructorConcept = new ConstructorConcept();
-//
-//        constructorConcept.setAccountNumber("123456789");
-//        constructorConcept.setAccountBalance(1000.0);
-//        constructorConcept.setCustomerName("Navneet Jha");
-//        constructorConcept.setEmail("navneet.jha500@gmail.com");
-//        constructorConcept.setPhoneNumber("(+91) 8093958396");
-//
-//        constructorConcept.printBankAccountHolderDetails();
-//
-//        constructorConcept.withdrawFunds(100.0);
-//        constructorConcept.depositFunds(250.00);
-//        constructorConcept.withdrawFunds(50.00);
-//
-//        constructorConcept.withdrawFunds(200.00);
-//
-//        constructorConcept.depositFunds(100.00);
-//        constructorConcept.withdrawFunds(45.55);
-//        constructorConcept.withdrawFunds(54.46);
+/*
+        ConstructorConcept constructorConcept = new ConstructorConcept();
 
+        constructorConcept.setAccountNumber("123456789");
+        constructorConcept.setAccountBalance(1000.0);
+        constructorConcept.setCustomerName("Navneet Jha");
+        constructorConcept.setEmail("navneet.jha500@gmail.com");
+        constructorConcept.setPhoneNumber("(+91) 8093958396");
+
+        constructorConcept.printBankAccountHolderDetails();
+
+        constructorConcept.withdrawFunds(100.0);
+        constructorConcept.depositFunds(250.00);
+        constructorConcept.withdrawFunds(50.00);
+
+        constructorConcept.withdrawFunds(200.00);
+
+        constructorConcept.depositFunds(100.00);
+        constructorConcept.withdrawFunds(45.55);
+        constructorConcept.withdrawFunds(54.46);
+*/
 
         // Explicit constructor with parameters is called
      //   ConstructorConcept constructorConcept1 = new ConstructorConcept("123456789",1000.0,"Navneet Jha","navneet.jha500@gmail.com","(+91) 8093958396");
@@ -225,19 +222,21 @@ public class ConstructorConcept {
         // As per the below code. the behaviour will be :-
         // As this() should always be the first line in the constructor, when the no - args constructor is called, then as per the flow, it then calls, the args constructor using this() and once the args constructor code block is executed, the controls then comes back to the no-args constructor
 
-//        ConstructorConcept constructorConcept1 = new ConstructorConcept();
-//
-//        constructorConcept1.printBankAccountHolderDetails();
-//
-//        constructorConcept1.withdrawFunds(100.0);
-//        constructorConcept1.depositFunds(250.00);
-//        constructorConcept1.withdrawFunds(50.00);
-//
-//        constructorConcept1.withdrawFunds(200.00);
-//
-//        constructorConcept1.depositFunds(100.00);
-//        constructorConcept1.withdrawFunds(45.55);
-//        constructorConcept1.withdrawFunds(54.46);
+/*
+        ConstructorConcept constructorConcept1 = new ConstructorConcept();
+
+        constructorConcept1.printBankAccountHolderDetails();
+
+        constructorConcept1.withdrawFunds(100.0);
+        constructorConcept1.depositFunds(250.00);
+        constructorConcept1.withdrawFunds(50.00);
+
+        constructorConcept1.withdrawFunds(200.00);
+
+        constructorConcept1.depositFunds(100.00);
+        constructorConcept1.withdrawFunds(45.55);
+        constructorConcept1.withdrawFunds(54.46);
+*/
 
 
         // As per the below code. the behaviour will be :-

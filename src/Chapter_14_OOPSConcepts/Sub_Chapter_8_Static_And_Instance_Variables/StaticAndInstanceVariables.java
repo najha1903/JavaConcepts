@@ -1,4 +1,4 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_8_Static_And_Instance_Variables;
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_8_Static_And_Instance_Variables;
 
 
 /*
@@ -81,7 +81,7 @@ public class StaticAndInstanceVariables {
 
         // When the first parameterised constructor is called, the value of static String name is set to "Rex"
         StaticAndInstanceVariables staticAndInstanceVariables1 = new StaticAndInstanceVariables("Rex");
-        // When the second parameterised constructor is called, the value os static String name is now set to "Fluffy"
+        // When the second parameterised constructor is called, the value of static String name is now set to "Fluffy"
 
         // Since, the static members are shared between the instances,once the changes are made to the static variable all instances will see the change that has been made.
         StaticAndInstanceVariables staticAndInstanceVariables2 = new StaticAndInstanceVariables("Fluffy");
@@ -95,13 +95,7 @@ public class StaticAndInstanceVariables {
         // Because instance variables are used, every object instance variables has its own value for the name field.
         // It's not shared like it was before, when a static variable was used.
         StaticAndInstanceVariables staticAndInstanceVariables3 = new StaticAndInstanceVariables("Rex",4); // Creates a new object, and update the instance variables values of that object [instanceName = "Rex" , age = 4]
-        StaticAndInstanceVariables staticAndInstanceVariables4 = new StaticAndInstanceVariables("Fluffy", 2); // Creates a new object, and update the instance variables values of that object [instanceName = "Fluffy" , age = 2]
-
-        staticAndInstanceVariables3.printDogNameAndAge(); // Output :- name = Rex
-                                                          //  age = 4
-
-        staticAndInstanceVariables4.printDogNameAndAge(); // name = Fluffy
-                                                          // age = 2
+        StaticAndInstanceVariables staticAndInstanceVariables4 = new StaticAndInstanceVariables("Fluffy", 2); // Creates a new object, and update the instance variables values of that object [instanceName = "Fluffy" , age = 2]        staticAndInstanceVariables3.printDogNameAndAge(); // Output :- name = Rex, age = 4        staticAndInstanceVariables4.printDogNameAndAge(); // Output :- name = Fluffy, age = 2
 
     }
 }

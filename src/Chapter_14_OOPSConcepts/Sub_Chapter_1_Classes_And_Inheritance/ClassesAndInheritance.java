@@ -1,15 +1,15 @@
 package Chapter_14_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
 
 /*
-*  Main-oriented programming is a wa to model real world objects as software objects which contain both data and code
+*  Object-oriented programming is a way to model real world objects as software objects which contain both data and code
 *
 *  OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects
 *
-*  Modelling real-world objects, as software objects is a fundamental part of Main-Oriented Programming.
+*  Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.
 *
 * A software object stores its state in fields, which can also be called variables or attributes.
 *
-* Objects expose their behavior with methods/
+* Objects expose their behavior with methods.
 *
 * Class is basically a template or a blueprint for creating objects.
 *

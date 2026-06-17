@@ -3,7 +3,7 @@ package Chapter_14_OOPSConcepts.Sub_Chapter_7_Static_And_Instance_Methods;
 /*
 *    Static Methods
 *    1) Static methods are declared using a static modifier and they belong to Class
-*    2) Static methods can't access instance methods and instant variables directly.
+*    2) Static methods can't access instance methods and instance variables directly.
 *    3) They're usually used for operations that don't require any data from an instance of the class (from this)
 *    4) Inside a static method, we can't use this keyword
 *    5)  Whenever a method that doesn't use instance variables is declared, that method should probably be declared as a static method.

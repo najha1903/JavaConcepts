@@ -8,7 +8,7 @@ package Chapter_2_PrimitiveTypes.Strings;
 
 // +(plus) operator is used to concatenate string literals
 
-//Chapter_2_PrimitiveTypes.Strings in java are immutable, which means String cannot be changed after it's created. Instead, a new String is created.
+//Strings in Java are immutable, which means a String cannot be changed after it is created. Instead, a new String object is created.
 
 //If we append another data type to String, the entire thing is still configured and set up as a String.
 

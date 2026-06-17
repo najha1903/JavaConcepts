@@ -33,11 +33,11 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 *  For boolean       --> Not Applicable
 *  For String        --> Not Applicable
 *
-* 5) Operator --> ( % ) Modulus also known as Modulus
+* 5) Operator --> ( % ) Modulus (Remainder)
 *  For Numeric Types --> Remainder (Modulus)
 *  For char          --> Remainder (Modulus)
 *  For boolean       --> Not Applicable
-*  FOr String        --> not Applicable
+*  For String        --> Not Applicable
 *
 *
 * */
@@ -46,32 +46,32 @@ public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {
 
-        int myVar = 15 + 12; // 15 and 12 are the operands. +(plus) is the operator.
+        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.
         double hoursWorked = 9.5d;
         double hourlyRate = 5d;
-        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands. *(Multiplication) is the operator.
+        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.
 
-        //myVar = myVar + 1;
+        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).
         myVar++;
         System.out.println(myVar);
 
-        //myVar = myVar - 1;
+        // myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).
         myVar--;
         System.out.println(myVar);
 
-        //myVar = myVar + 2;
+        // myVar = myVar + 2 is equivalent to myVar += 2.
         myVar += 2;
         System.out.println(myVar);
 
-        //myVar = myVar - 2;
+        // myVar = myVar - 2 is equivalent to myVar -= 2.
         myVar -= 2;
         System.out.println(myVar);
 
-        //myVar = myVar * 10;
+        // myVar = myVar * 10 is equivalent to myVar *= 10.
         myVar *= 10;
         System.out.println(myVar);
 
-        //myVar = myVar / 10;
+        // myVar = myVar / 10 is equivalent to myVar /= 10.
         myVar /= 10;
         System.out.println(myVar);
 

@@ -12,7 +12,7 @@ public class DoWhileLoops {
 
       When using loops, you want to carefully examine the conditions
 
-      or terminating or continuing a loop. Check for endless or infinite loops.
+      for terminating or continuing a loop. Check for endless or infinite loops.
 
       Check for conditions where a loop will never execute.
 

@@ -37,7 +37,6 @@ Method named getArea without any parameters, it needs to return the area of the 
 
 public class WallAreaComputation {
 
-    // write code here
     private double width;
 
     private double height;

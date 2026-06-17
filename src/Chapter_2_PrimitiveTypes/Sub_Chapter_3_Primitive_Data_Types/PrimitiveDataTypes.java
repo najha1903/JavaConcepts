@@ -4,7 +4,8 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 
 //When we start using a literal string, we use a + operator and whatever follows the plus operator is converted to the string and gets outputted.
 
-//Java used the concept of Wrapper class for all eight primitive types
+//Java uses wrapper classes for all eight primitive types (for example, int -> Integer).
+//Wrapper classes let us use helpful utility methods and constants like MAX_VALUE and MIN_VALUE.
 
 //A byte occupies 8 bits. A byte has a width of 8
 
@@ -55,7 +56,7 @@ public class PrimitiveDataTypes {
 
         // int myValue = 10000; // A variable named myValue is created which is of datatype int and the value initialised = 10000;
 
-        int intMaxValue = Integer.MAX_VALUE; //int is primitive dataType and Integer is wrapper
+        int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.
 
         int intMinValue = Integer.MIN_VALUE; //By specifying wrapper class Integer, it allows us to perform different operations on int.
 

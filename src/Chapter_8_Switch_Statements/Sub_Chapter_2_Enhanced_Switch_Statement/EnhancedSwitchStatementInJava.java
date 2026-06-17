@@ -38,8 +38,6 @@ public class EnhancedSwitchStatementInJava {
 
         String month = "NOVEMBER";
 
-       // String quarterValue = getQuarter(month);
-
         String quarterValue = getQuarterUsingYieldKeyword(month);
 
         if(quarterValue.equals("INVALID MONTH")){

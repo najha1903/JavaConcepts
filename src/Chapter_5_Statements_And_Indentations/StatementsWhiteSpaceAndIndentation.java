@@ -6,7 +6,7 @@ public class StatementsWhiteSpaceAndIndentation {
 
 // Whitespace is the space between expressions, operators and so forth. Whether we have 1 space or multiple space, java compiles the syntax.
 
-// Concept of indenting is make it easy for us to understand logical flow of the code.
+// Concept of indenting is to make it easy for us to understand logical flow of the code.
 
 // In Intellij Ide, navigate to code, and click on Reformat Code.
 

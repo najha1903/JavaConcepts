@@ -18,12 +18,7 @@ public class SuperKeywordUseExample { // parent class also known as super class
         public void printMethod() {
             super.printMethod(); // calls the method in the SuperClass (parent)
             // Without adding the keyword super in this case, it would end up being a recursive call.
-            //
-            //What that means is that the method would call itself forever, or actually until
-            //
-            //memory is fully used on your computer. That's why we need the super keyword,
-            //
-            //so that we can call a method with the same name from a parent class.
+            // What that means is that the method would call itself forever, or until memory is fully used, crashing the program. That's why we need the super keyword - so that we can call a method with the same name from a parent class.
             System.out.println("Printed in SubClass.");
         }
     }

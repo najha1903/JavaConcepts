@@ -41,32 +41,6 @@ package Chapter_7_Methods_In_Java.Sub_Chapter_2_Methods_Coding_Challenge;
 //
 //        The Math.round() is a built-in math method which returns the closest long to the argument. The result is rounded to an integer by adding 1/2, taking the floor of the result after adding 1/2, and typecasting the result to type long. The method returns the value of the argument rounded to the nearest int value.
 //
-//        USAGE EXAMPLE:
-//
-//        double number = 1.5;
-//        long rounded = Math.round(number);
-//        System.out.println("rounded= " + rounded);
-//        System.out.println("with 3.9= " + Math.round(3.9));
-//        System.out.println("with 4.5= " + Math.round(4.5));
-//        int sum = 45;
-//        int count = 10;
-//        typecasting so result is double e.g. double / int -> double
-//        double average = (double) sum / count;
-//        long roundedAverage = Math.round(average);
-//        System.out.println("average= " + average);
-//        System.out.println("roundedAverage= " + roundedAverage);
-//
-//
-//        OUTPUT:
-//
-//        rounded= 2
-//        with 3.9= 4
-//        with 4.5= 5
-//        average= 4.5
-//        roundedAverage= 5
-//
-//
-//
 //        TIP: In the method printConversion, call the method toMilesPerHour instead of duplicating the code.
 //
 //        NOTE: All methods should be defined as public static like we have been doing so far in the course.

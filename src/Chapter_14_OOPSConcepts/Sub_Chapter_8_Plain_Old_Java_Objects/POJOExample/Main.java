@@ -1,4 +1,4 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects.POJOExample;
+﻿package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects.POJOExample;
 
 import Chapter_14_OOPSConcepts.Sub_Chapter_9_JavaRecords.StudentRecord;
 
@@ -160,15 +160,15 @@ public class Main {
         *
         *
         *      List<Student> s = new LinkedList<>();
-//        s.add(s1);
-//        s.add(s2);
-//        s.add(s3);
-//        s.add(s4);
-//        s.add(s5);
+        s.add(s1);
+        s.add(s2);
+        s.add(s3);
+        s.add(s4);
+        s.add(s5);
 //
-//        for(int i = 0; i <= 4; i++){
-//            System.out.println(s.get(i));
-//        }
+        for(int i = 0; i <= 4; i++){
+            System.out.println(s.get(i));
+        }
 *
 *
 * */

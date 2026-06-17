@@ -1,14 +1,8 @@
 package Chapter_12_Parsing_Values_Reading_Input.Sub_Chapter_2_Parsing_Values_Coding_Challenge;
 
 public class PaintJobChallenge {
-    // write code here
 
     public static void main(String[] args) {
-
-
-      // int totalNofBucketsRequired = getBucketCount(2.75, 3.25, 2.5, 1);
-
-    //    int totalNofBucketsRequired =  getBucketCount(7.25, 4.3, 2.35);
 
         int totalNofBucketsRequired =   getBucketCount(3.26, 0.75);
        

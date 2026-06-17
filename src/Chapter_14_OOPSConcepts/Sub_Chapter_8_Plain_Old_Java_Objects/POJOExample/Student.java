@@ -69,7 +69,7 @@ public class Student {
      */
 
 
-    // The mose common annotation in java which is used
+    // The most common annotation in Java, commonly used
     // It tells the compiler that this a special type of method in Java, an overridden method
 
     @Override
