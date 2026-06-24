@@ -65,7 +65,96 @@ const CONCEPTS_DATA = [
               "@quiz What is the difference between a char and a String in Java?",
               "@answer char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\").",
               "@quiz When should you use StringBuilder instead of String concatenation?",
-              "@answer When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place."
+              "@answer When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.",
+              "@quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(a + b + c);",
+              "@answer Output: 30Navneet",
+              "@answer Java evaluates + left to right: (a + b) is done first (both ints) giving 30, then 30 + \"Navneet\" triggers String concatenation giving \"30Navneet\".",
+              "@answer KEY RULE: if both operands of + are numeric, it is arithmetic. Once one operand is a String, + becomes concatenation for the rest of the expression.",
+              "@quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(c + a + b);",
+              "@answer Output: Navneet1020",
+              "@answer Java evaluates + left to right: c+\"Navneet\" + a=10 gives \"Navneet10\", then \"Navneet10\" + b=20 gives \"Navneet1020\".",
+              "@answer Once the first operand is a String, ALL subsequent + operations become string concatenation — even int + int after it.",
+              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Result: \" + 1 + 2);",
+              "@answer Output: Result: 12 (NOT Result: 3)",
+              "@answer Because + is left-to-right: \"Result: \" + 1 = \"Result: 1\", then \"Result: 1\" + 2 = \"Result: 12\". Both additions become concatenation once a String is involved.",
+              "@answer To get \"Result: 3\", use parentheses: \"Result: \" + (1 + 2). Parentheses force arithmetic first.",
+              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(1 + 2 + \"Result\");",
+              "@answer Output: 3Result",
+              "@answer Java evaluates left to right: 1 + 2 = 3 (both ints, arithmetic), then 3 + \"Result\" = \"3Result\" (String concat).",
+              "@answer Contrast: \"Result\" + 1 + 2 = \"Result12\". Order matters!",
+              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Value: \" + (10 + 20) + \" done\");",
+              "@answer Output: Value: 30 done",
+              "@answer Parentheses (10 + 20) are evaluated first as arithmetic giving 30. Then \"Value: \" + 30 = \"Value: 30\", then + \" done\" = \"Value: 30 done\".",
+              "@quiz (INTERVIEW TRAP) What is the output of: char ch = 'A'; System.out.println(ch + 1);",
+              "@answer Output: 66 (NOT A1)",
+              "@answer char in arithmetic context is treated as its Unicode/ASCII integer value. 'A' = 65. 65 + 1 = 66. Result is int 66, not a String.",
+              "@answer To get \"A1\", use: \"\" + ch + 1 OR String.valueOf(ch) + 1. Adding an empty String \"\" forces concatenation.",
+              "@quiz (INTERVIEW) How do you find the length of a String WITHOUT using the built-in .length() method?",
+              "@answer Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length.",
+              "@answer Another approach: convert to char array and use array.length — but that internally calls length anyway.",
+              "@answer Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally.",
+              "@quiz (INTERVIEW) What is the output of: String s = \"Java\"; s.concat(\" is fun\"); System.out.println(s);",
+              "@answer Output: Java",
+              "@answer Strings are immutable. concat() returns a NEW String but does NOT modify s. Since the return value is ignored, s is still \"Java\".",
+              "@answer Fix: s = s.concat(\" is fun\"); — you must assign the result back.",
+              "@quiz (INTERVIEW TRAP) int a=5; What is the output of: System.out.println(\"\" + a + a);",
+              "@answer Output: 55 (NOT 10)",
+              "@answer \"\" is an empty String. \"\" + a = \"5\" (String), then \"5\" + a = \"55\". Not arithmetic because the first operand is a String.",
+              "@answer To add them arithmetically: System.out.println(a + a + \"\") = \"10\"",
+              "─── WITHOUT BUILT-IN METHOD — Classic Interview Series ────────────────────",
+              "@quiz (INTERVIEW) How do you REVERSE a String WITHOUT using StringBuilder.reverse() or any library?",
+              "@answer Iterate from the last index to 0 and build a new String: String rev = \"\"; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }",
+              "@answer Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr).",
+              "@answer Key insight: Strings are immutable so you can't modify in place — you must build a new result.",
+              "@quiz (INTERVIEW) How do you check if a String is a PALINDROME without using any built-in reverse method?",
+              "@answer Use two pointers — one at the start, one at the end, move inward and compare: boolean isPalin = true; int l=0, r=str.length()-1; while(l<r){ if(str.charAt(l)!=str.charAt(r)){isPalin=false; break;} l++; r--; }",
+              "@answer Key insight: a palindrome reads the same forwards and backwards. \"madam\", \"racecar\", \"level\" are palindromes.",
+              "@answer You DON'T need to reverse the whole string — just compare from both ends. This is O(n/2) = O(n).",
+              "@quiz (INTERVIEW) How do you count occurrences of a specific character in a String WITHOUT using regex or library?",
+              "@answer Loop through each character and compare: int count = 0; for (int i = 0; i < str.length(); i++) { if (str.charAt(i) == target) count++; }",
+              "@answer Or with for-each: for (char ch : str.toCharArray()) { if (ch == target) count++; }",
+              "@quiz (INTERVIEW) How do you check if a String CONTAINS a substring WITHOUT using contains() or indexOf()?",
+              "@answer Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true.",
+              "@answer Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm.",
+              "@quiz (INTERVIEW) How do you convert a String to UPPERCASE WITHOUT using toUpperCase()?",
+              "@answer Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);",
+              "@answer Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }",
+              "@quiz (INTERVIEW) How do you COUNT VOWELS in a String WITHOUT using regex?",
+              "@answer Loop through each char and check if it's in the set {a,e,i,o,u,A,E,I,O,U}: int count=0; for(char ch: str.toCharArray()){ String v=\"aeiouAEIOU\"; if(v.indexOf(ch)!=-1) count++; }",
+              "@answer Simpler: use a switch or if-else chain: if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') count++;",
+              "@quiz (INTERVIEW) How do you check if two Strings are ANAGRAMS WITHOUT using sort()?",
+              "@answer Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0.",
+              "@answer If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach.",
+              "@answer Example: \"listen\" and \"silent\" are anagrams — same characters, different order.",
+              "@quiz (INTERVIEW) How do you REMOVE ALL SPACES from a String WITHOUT using replace() or replaceAll()?",
+              "@answer Loop and skip spaces: StringBuilder sb = new StringBuilder(); for(char ch: str.toCharArray()){ if(ch!=' ') sb.append(ch); }",
+              "@answer This builds a new String containing only non-space characters.",
+              "@quiz (INTERVIEW) How do you COUNT WORDS in a String WITHOUT using split()?",
+              "@answer Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }",
+              "@answer Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it.",
+              "@quiz (INTERVIEW) How do you find the FIRST NON-REPEATING CHARACTER in a String WITHOUT library methods?",
+              "@answer Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1.",
+              "@answer int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;",
+              "@quiz (INTERVIEW) How do you REMOVE DUPLICATE CHARACTERS from a String WITHOUT using Set or distinct()?",
+              "@answer Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true.",
+              "@answer Example: \"programming\" → \"progamin\" (each character kept only on first occurrence).",
+              "@quiz (INTERVIEW) How do you check if a String is NUMERIC (all digits) WITHOUT using parseInt() or regex?",
+              "@answer Loop through each char and check ch >= '0' && ch <= '9': boolean isNum=true; for(char ch:str.toCharArray()){ if(ch<'0'||ch>'9'){isNum=false;break;} }",
+              "@answer Handle edge cases: empty string should return false. Negative sign ('-' at index 0) may or may not count depending on requirement.",
+              "@challenge Implement a StringUtils class with methods that do NOT use any built-in String methods except charAt() and length()",
+              "@desc Implement: reverse(String s), isPalindrome(String s), countChar(String s, char target), toUpperCase(String s), countVowels(String s), removeSpaces(String s)",
+              "@hint For reverse: use two pointers on a char array. For palindrome: compare from both ends. For toUpperCase: use ASCII arithmetic (subtract 32 from lowercase chars).",
+              "@testcase reverse(\"hello\") → \"olleh\", isPalindrome(\"racecar\") → true, isPalindrome(\"java\") → false, countVowels(\"Hello World\") → 3",
+              "@quiz (INTERVIEW) What is the difference between == and .equals() when comparing Strings in Java?",
+              "@answer == compares references, meaning whether both variables point to the exact same String object in memory.",
+              "@answer .equals() compares String content, so it checks whether the characters are the same.",
+              "@answer Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because both usually point to the same pooled literal object, but new String(\"hello\") compared with another new String(\"hello\") gives == as false because they are different heap objects.",
+              "@answer Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects.",
+              "@quiz (INTERVIEW TRAP) What is the output of: Integer a = 127; Integer b = 127; System.out.println(a == b); then Integer x = 128; Integer y = 128; System.out.println(x == y);",
+              "@answer Output: true on the first line and false on the second line.",
+              "@answer Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.",
+              "@answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.",
+              "@answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality."
             ]
           }
         ],
@@ -89,10 +178,199 @@ const CONCEPTS_DATA = [
             "answers": [
               "When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place."
             ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(a + b + c);",
+            "answers": [
+              "Output: 30Navneet",
+              "Java evaluates + left to right: (a + b) is done first (both ints) giving 30, then 30 + \"Navneet\" triggers String concatenation giving \"30Navneet\".",
+              "KEY RULE: if both operands of + are numeric, it is arithmetic. Once one operand is a String, + becomes concatenation for the rest of the expression."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(c + a + b);",
+            "answers": [
+              "Output: Navneet1020",
+              "Java evaluates + left to right: c+\"Navneet\" + a=10 gives \"Navneet10\", then \"Navneet10\" + b=20 gives \"Navneet1020\".",
+              "Once the first operand is a String, ALL subsequent + operations become string concatenation — even int + int after it."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Result: \" + 1 + 2);",
+            "answers": [
+              "Output: Result: 12 (NOT Result: 3)",
+              "Because + is left-to-right: \"Result: \" + 1 = \"Result: 1\", then \"Result: 1\" + 2 = \"Result: 12\". Both additions become concatenation once a String is involved.",
+              "To get \"Result: 3\", use parentheses: \"Result: \" + (1 + 2). Parentheses force arithmetic first."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: System.out.println(1 + 2 + \"Result\");",
+            "answers": [
+              "Output: 3Result",
+              "Java evaluates left to right: 1 + 2 = 3 (both ints, arithmetic), then 3 + \"Result\" = \"3Result\" (String concat).",
+              "Contrast: \"Result\" + 1 + 2 = \"Result12\". Order matters!"
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Value: \" + (10 + 20) + \" done\");",
+            "answers": [
+              "Output: Value: 30 done",
+              "Parentheses (10 + 20) are evaluated first as arithmetic giving 30. Then \"Value: \" + 30 = \"Value: 30\", then + \" done\" = \"Value: 30 done\"."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: char ch = 'A'; System.out.println(ch + 1);",
+            "answers": [
+              "Output: 66 (NOT A1)",
+              "char in arithmetic context is treated as its Unicode/ASCII integer value. 'A' = 65. 65 + 1 = 66. Result is int 66, not a String.",
+              "To get \"A1\", use: \"\" + ch + 1 OR String.valueOf(ch) + 1. Adding an empty String \"\" forces concatenation."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you find the length of a String WITHOUT using the built-in .length() method?",
+            "answers": [
+              "Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length.",
+              "Another approach: convert to char array and use array.length — but that internally calls length anyway.",
+              "Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the output of: String s = \"Java\"; s.concat(\" is fun\"); System.out.println(s);",
+            "answers": [
+              "Output: Java",
+              "Strings are immutable. concat() returns a NEW String but does NOT modify s. Since the return value is ignored, s is still \"Java\".",
+              "Fix: s = s.concat(\" is fun\"); — you must assign the result back."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) int a=5; What is the output of: System.out.println(\"\" + a + a);",
+            "answers": [
+              "Output: 55 (NOT 10)",
+              "\"\" is an empty String. \"\" + a = \"5\" (String), then \"5\" + a = \"55\". Not arithmetic because the first operand is a String.",
+              "To add them arithmetically: System.out.println(a + a + \"\") = \"10\""
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you REVERSE a String WITHOUT using StringBuilder.reverse() or any library?",
+            "answers": [
+              "Iterate from the last index to 0 and build a new String: String rev = \"\"; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }",
+              "Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr).",
+              "Key insight: Strings are immutable so you can't modify in place — you must build a new result."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you check if a String is a PALINDROME without using any built-in reverse method?",
+            "answers": [
+              "Use two pointers — one at the start, one at the end, move inward and compare: boolean isPalin = true; int l=0, r=str.length()-1; while(l<r){ if(str.charAt(l)!=str.charAt(r)){isPalin=false; break;} l++; r--; }",
+              "Key insight: a palindrome reads the same forwards and backwards. \"madam\", \"racecar\", \"level\" are palindromes.",
+              "You DON'T need to reverse the whole string — just compare from both ends. This is O(n/2) = O(n)."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you count occurrences of a specific character in a String WITHOUT using regex or library?",
+            "answers": [
+              "Loop through each character and compare: int count = 0; for (int i = 0; i < str.length(); i++) { if (str.charAt(i) == target) count++; }",
+              "Or with for-each: for (char ch : str.toCharArray()) { if (ch == target) count++; }"
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you check if a String CONTAINS a substring WITHOUT using contains() or indexOf()?",
+            "answers": [
+              "Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true.",
+              "Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you convert a String to UPPERCASE WITHOUT using toUpperCase()?",
+            "answers": [
+              "Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);",
+              "Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }"
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you COUNT VOWELS in a String WITHOUT using regex?",
+            "answers": [
+              "Loop through each char and check if it's in the set {a,e,i,o,u,A,E,I,O,U}: int count=0; for(char ch: str.toCharArray()){ String v=\"aeiouAEIOU\"; if(v.indexOf(ch)!=-1) count++; }",
+              "Simpler: use a switch or if-else chain: if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') count++;"
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you check if two Strings are ANAGRAMS WITHOUT using sort()?",
+            "answers": [
+              "Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0.",
+              "If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach.",
+              "Example: \"listen\" and \"silent\" are anagrams — same characters, different order."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you REMOVE ALL SPACES from a String WITHOUT using replace() or replaceAll()?",
+            "answers": [
+              "Loop and skip spaces: StringBuilder sb = new StringBuilder(); for(char ch: str.toCharArray()){ if(ch!=' ') sb.append(ch); }",
+              "This builds a new String containing only non-space characters."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you COUNT WORDS in a String WITHOUT using split()?",
+            "answers": [
+              "Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }",
+              "Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you find the FIRST NON-REPEATING CHARACTER in a String WITHOUT library methods?",
+            "answers": [
+              "Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1.",
+              "int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;"
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you REMOVE DUPLICATE CHARACTERS from a String WITHOUT using Set or distinct()?",
+            "answers": [
+              "Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true.",
+              "Example: \"programming\" → \"progamin\" (each character kept only on first occurrence)."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How do you check if a String is NUMERIC (all digits) WITHOUT using parseInt() or regex?",
+            "answers": [
+              "Loop through each char and check ch >= '0' && ch <= '9': boolean isNum=true; for(char ch:str.toCharArray()){ if(ch<'0'||ch>'9'){isNum=false;break;} }",
+              "Handle edge cases: empty string should return false. Negative sign ('-' at index 0) may or may not count depending on requirement."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between == and .equals() when comparing Strings in Java?",
+            "answers": [
+              "== compares references, meaning whether both variables point to the exact same String object in memory.",
+              ".equals() compares String content, so it checks whether the characters are the same.",
+              "Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because both usually point to the same pooled literal object, but new String(\"hello\") compared with another new String(\"hello\") gives == as false because they are different heap objects.",
+              "Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: Integer a = 127; Integer b = 127; System.out.println(a == b); then Integer x = 128; Integer y = 128; System.out.println(x == y);",
+            "answers": [
+              "Output: true on the first line and false on the second line.",
+              "Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.",
+              "128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.",
+              "Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality."
+            ]
           }
         ],
-        "deepChallenges": [],
-        "code": "﻿package Chapter_2_PrimitiveTypes.Strings;\r\n// String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.\n// A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.\n// Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").\n// String immutability: once a String object is created, its value CANNOT be changed.\n// When you \"modify\" a String (e.g., add to it), Java actually creates a brand NEW String object in memory.\n// The original String object is discarded — it becomes eligible for garbage collection.\n// Example: myString = myString + \", more text\";  — this does NOT change the original String; it creates a new one and assigns the reference to myString.\n// The + operator is used to concatenate (join) String values. You can join any data type to a String using +:\n// Example: \"Score: \" + 100 -> \"Score: 100\" (the integer 100 is automatically converted to its String representation)\n// Unicode in Strings: you can embed Unicode escape sequences in String literals.\n// Example: \"\\u00A9\" = copyright symbol. Unicode lets Strings contain characters from any language.\n// Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.\n\n// @quiz What does it mean that Strings are immutable in Java?\n// @answer Once a String is created, its value cannot be changed. Any modification creates a new String object.\n// @answer The original String is discarded and becomes eligible for garbage collection.\n\n// @quiz What is the difference between a char and a String in Java?\n// @answer char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\").\n\n// @quiz When should you use StringBuilder instead of String concatenation?\n// @answer When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.\npublic class StringExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String myString = \"This is a string\";\r\n        System.out.println(\"MyString is equal to \" + myString);\r\n        myString = myString  + \", and this is more.\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n        myString = myString + \" \\u00A9 2022\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n\r\n\r\n\r\n    }\r\n}\r\n"
+        "deepChallenges": [
+          {
+            "title": "Implement a StringUtils class with methods that do NOT use any built-in String methods except charAt() and length()",
+            "desc": [
+              "Implement: reverse(String s), isPalindrome(String s), countChar(String s, char target), toUpperCase(String s), countVowels(String s), removeSpaces(String s)"
+            ],
+            "hints": [
+              "For reverse: use two pointers on a char array. For palindrome: compare from both ends. For toUpperCase: use ASCII arithmetic (subtract 32 from lowercase chars)."
+            ],
+            "testcases": [
+              "reverse(\"hello\") → \"olleh\", isPalindrome(\"racecar\") → true, isPalindrome(\"java\") → false, countVowels(\"Hello World\") → 3"
+            ]
+          }
+        ],
+        "code": "﻿package Chapter_2_PrimitiveTypes.Strings;\r\n// String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.\n// A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.\n// Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").\n// String immutability: once a String object is created, its value CANNOT be changed.\n// When you \"modify\" a String (e.g., add to it), Java actually creates a brand NEW String object in memory.\n// The original String object is discarded — it becomes eligible for garbage collection.\n// Example: myString = myString + \", more text\";  — this does NOT change the original String; it creates a new one and assigns the reference to myString.\n// The + operator is used to concatenate (join) String values. You can join any data type to a String using +:\n// Example: \"Score: \" + 100 -> \"Score: 100\" (the integer 100 is automatically converted to its String representation)\n// Unicode in Strings: you can embed Unicode escape sequences in String literals.\n// Example: \"\\u00A9\" = copyright symbol. Unicode lets Strings contain characters from any language.\n// Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.\n\n// @quiz What does it mean that Strings are immutable in Java?\n// @answer Once a String is created, its value cannot be changed. Any modification creates a new String object.\n// @answer The original String is discarded and becomes eligible for garbage collection.\n\n// @quiz What is the difference between a char and a String in Java?\n// @answer char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\").\n\n// @quiz When should you use StringBuilder instead of String concatenation?\n// @answer When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.\n\n// @quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(a + b + c);\n// @answer Output: 30Navneet\n// @answer Java evaluates + left to right: (a + b) is done first (both ints) giving 30, then 30 + \"Navneet\" triggers String concatenation giving \"30Navneet\".\n// @answer KEY RULE: if both operands of + are numeric, it is arithmetic. Once one operand is a String, + becomes concatenation for the rest of the expression.\n\n// @quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(c + a + b);\n// @answer Output: Navneet1020\n// @answer Java evaluates + left to right: c+\"Navneet\" + a=10 gives \"Navneet10\", then \"Navneet10\" + b=20 gives \"Navneet1020\".\n// @answer Once the first operand is a String, ALL subsequent + operations become string concatenation — even int + int after it.\n\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Result: \" + 1 + 2);\n// @answer Output: Result: 12 (NOT Result: 3)\n// @answer Because + is left-to-right: \"Result: \" + 1 = \"Result: 1\", then \"Result: 1\" + 2 = \"Result: 12\". Both additions become concatenation once a String is involved.\n// @answer To get \"Result: 3\", use parentheses: \"Result: \" + (1 + 2). Parentheses force arithmetic first.\n\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(1 + 2 + \"Result\");\n// @answer Output: 3Result\n// @answer Java evaluates left to right: 1 + 2 = 3 (both ints, arithmetic), then 3 + \"Result\" = \"3Result\" (String concat).\n// @answer Contrast: \"Result\" + 1 + 2 = \"Result12\". Order matters!\n\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Value: \" + (10 + 20) + \" done\");\n// @answer Output: Value: 30 done\n// @answer Parentheses (10 + 20) are evaluated first as arithmetic giving 30. Then \"Value: \" + 30 = \"Value: 30\", then + \" done\" = \"Value: 30 done\".\n\n// @quiz (INTERVIEW TRAP) What is the output of: char ch = 'A'; System.out.println(ch + 1);\n// @answer Output: 66 (NOT A1)\n// @answer char in arithmetic context is treated as its Unicode/ASCII integer value. 'A' = 65. 65 + 1 = 66. Result is int 66, not a String.\n// @answer To get \"A1\", use: \"\" + ch + 1 OR String.valueOf(ch) + 1. Adding an empty String \"\" forces concatenation.\n\n// @quiz (INTERVIEW) How do you find the length of a String WITHOUT using the built-in .length() method?\n// @answer Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length.\n// @answer Another approach: convert to char array and use array.length — but that internally calls length anyway.\n// @answer Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally.\n\n// @quiz (INTERVIEW) What is the output of: String s = \"Java\"; s.concat(\" is fun\"); System.out.println(s);\n// @answer Output: Java\n// @answer Strings are immutable. concat() returns a NEW String but does NOT modify s. Since the return value is ignored, s is still \"Java\".\n// @answer Fix: s = s.concat(\" is fun\"); — you must assign the result back.\n\n// @quiz (INTERVIEW TRAP) int a=5; What is the output of: System.out.println(\"\" + a + a);\n// @answer Output: 55 (NOT 10)\n// @answer \"\" is an empty String. \"\" + a = \"5\" (String), then \"5\" + a = \"55\". Not arithmetic because the first operand is a String.\n// @answer To add them arithmetically: System.out.println(a + a + \"\") = \"10\"\n\n// ─── WITHOUT BUILT-IN METHOD — Classic Interview Series ────────────────────\n\n// @quiz (INTERVIEW) How do you REVERSE a String WITHOUT using StringBuilder.reverse() or any library?\n// @answer Iterate from the last index to 0 and build a new String: String rev = \"\"; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }\n// @answer Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr).\n// @answer Key insight: Strings are immutable so you can't modify in place — you must build a new result.\n\n// @quiz (INTERVIEW) How do you check if a String is a PALINDROME without using any built-in reverse method?\n// @answer Use two pointers — one at the start, one at the end, move inward and compare: boolean isPalin = true; int l=0, r=str.length()-1; while(l<r){ if(str.charAt(l)!=str.charAt(r)){isPalin=false; break;} l++; r--; }\n// @answer Key insight: a palindrome reads the same forwards and backwards. \"madam\", \"racecar\", \"level\" are palindromes.\n// @answer You DON'T need to reverse the whole string — just compare from both ends. This is O(n/2) = O(n).\n\n// @quiz (INTERVIEW) How do you count occurrences of a specific character in a String WITHOUT using regex or library?\n// @answer Loop through each character and compare: int count = 0; for (int i = 0; i < str.length(); i++) { if (str.charAt(i) == target) count++; }\n// @answer Or with for-each: for (char ch : str.toCharArray()) { if (ch == target) count++; }\n\n// @quiz (INTERVIEW) How do you check if a String CONTAINS a substring WITHOUT using contains() or indexOf()?\n// @answer Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true.\n// @answer Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm.\n\n// @quiz (INTERVIEW) How do you convert a String to UPPERCASE WITHOUT using toUpperCase()?\n// @answer Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);\n// @answer Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }\n\n// @quiz (INTERVIEW) How do you COUNT VOWELS in a String WITHOUT using regex?\n// @answer Loop through each char and check if it's in the set {a,e,i,o,u,A,E,I,O,U}: int count=0; for(char ch: str.toCharArray()){ String v=\"aeiouAEIOU\"; if(v.indexOf(ch)!=-1) count++; }\n// @answer Simpler: use a switch or if-else chain: if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') count++;\n\n// @quiz (INTERVIEW) How do you check if two Strings are ANAGRAMS WITHOUT using sort()?\n// @answer Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0.\n// @answer If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach.\n// @answer Example: \"listen\" and \"silent\" are anagrams — same characters, different order.\n\n// @quiz (INTERVIEW) How do you REMOVE ALL SPACES from a String WITHOUT using replace() or replaceAll()?\n// @answer Loop and skip spaces: StringBuilder sb = new StringBuilder(); for(char ch: str.toCharArray()){ if(ch!=' ') sb.append(ch); }\n// @answer This builds a new String containing only non-space characters.\n\n// @quiz (INTERVIEW) How do you COUNT WORDS in a String WITHOUT using split()?\n// @answer Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }\n// @answer Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it.\n\n// @quiz (INTERVIEW) How do you find the FIRST NON-REPEATING CHARACTER in a String WITHOUT library methods?\n// @answer Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1.\n// @answer int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;\n\n// @quiz (INTERVIEW) How do you REMOVE DUPLICATE CHARACTERS from a String WITHOUT using Set or distinct()?\n// @answer Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true.\n// @answer Example: \"programming\" → \"progamin\" (each character kept only on first occurrence).\n\n// @quiz (INTERVIEW) How do you check if a String is NUMERIC (all digits) WITHOUT using parseInt() or regex?\n// @answer Loop through each char and check ch >= '0' && ch <= '9': boolean isNum=true; for(char ch:str.toCharArray()){ if(ch<'0'||ch>'9'){isNum=false;break;} }\n// @answer Handle edge cases: empty string should return false. Negative sign ('-' at index 0) may or may not count depending on requirement.\n\n// @challenge Implement a StringUtils class with methods that do NOT use any built-in String methods except charAt() and length()\n// @desc Implement: reverse(String s), isPalindrome(String s), countChar(String s, char target), toUpperCase(String s), countVowels(String s), removeSpaces(String s)\n// @hint For reverse: use two pointers on a char array. For palindrome: compare from both ends. For toUpperCase: use ASCII arithmetic (subtract 32 from lowercase chars).\n// @testcase reverse(\"hello\") → \"olleh\", isPalindrome(\"racecar\") → true, isPalindrome(\"java\") → false, countVowels(\"Hello World\") → 3\n\n// @quiz (INTERVIEW) What is the difference between == and .equals() when comparing Strings in Java?\n// @answer == compares references, meaning whether both variables point to the exact same String object in memory.\n// @answer .equals() compares String content, so it checks whether the characters are the same.\n// @answer Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because both usually point to the same pooled literal object, but new String(\"hello\") compared with another new String(\"hello\") gives == as false because they are different heap objects.\n// @answer Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects.\n\n// @quiz (INTERVIEW TRAP) What is the output of: Integer a = 127; Integer b = 127; System.out.println(a == b); then Integer x = 128; Integer y = 128; System.out.println(x == y);\n// @answer Output: true on the first line and false on the second line.\n// @answer Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.\n// @answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.\n// @answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.\npublic class StringExample {\n\r\n    public static void main(String[] args) {\r\n\r\n        String myString = \"This is a string\";\r\n        System.out.println(\"MyString is equal to \" + myString);\r\n        myString = myString  + \", and this is more.\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n        myString = myString + \" \\u00A9 2022\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n\r\n\r\n\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
@@ -245,7 +523,23 @@ const CONCEPTS_DATA = [
               "char and Unicode: char holds a single character, uses single quotes: char c = 'D';",
               "You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')",
               "Unicode is an international encoding standard — every character in every language has a unique code point.",
-              "boolean: can only be true or false. It is the result of any comparison or logical expression."
+              "boolean: can only be true or false. It is the result of any comparison or logical expression.",
+              "@quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?",
+              "@answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.",
+              "@answer Reference type fields default to null because they store no object reference yet.",
+              "@answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.",
+              "@quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?",
+              "@answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.",
+              "@answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.",
+              "@answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.",
+              "@quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?",
+              "@answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.",
+              "@answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.",
+              "@answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.",
+              "@quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?",
+              "@answer Yes, it is valid in Java 7 and later, and the value is still one million.",
+              "@answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.",
+              "@answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F."
             ]
           }
         ],
@@ -255,9 +549,42 @@ const CONCEPTS_DATA = [
           "A variable named myValue is created which is of datatype int and the value initialised = 10000;",
           "If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java, then we will get an Overflow in the case of the maximum value and underflow in the case of minimum"
         ],
-        "customQuizzes": [],
+        "customQuizzes": [
+          {
+            "question": "(INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?",
+            "answers": [
+              "Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.",
+              "Reference type fields default to null because they store no object reference yet.",
+              "Local variables are different: Java does NOT give them default values, so you must initialize them before use."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?",
+            "answers": [
+              "Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.",
+              "int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.",
+              "Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?",
+            "answers": [
+              "Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.",
+              "Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.",
+              "Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?",
+            "answers": [
+              "Yes, it is valid in Java 7 and later, and the value is still one million.",
+              "Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.",
+              "They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F."
+            ]
+          }
+        ],
         "deepChallenges": [],
-        "code": "﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;\r\n// Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.\n// Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.\n//\n// The 8 Primitive Types:\n// Type     | Width  | Range / Notes\n// ---------|--------|--------------------------------------------------------------\n// boolean  | 1 bit  | Only two values: true or false\n// byte     | 8 bits | -128 to 127\n// short    | 16 bits| -32,768 to 32,767\n// char     | 16 bits| A single Unicode character — written in single quotes: 'A'\n// int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)\n// long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L\n// float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)\n// double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d\n//\n// Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).\n// These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.\n//\n// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around (overflow).\n// If you go below the minimum, it wraps to the maximum (underflow).\n// Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)\n//\n// Casting: Converting from one type to another.\n// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double\n// Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte\n// Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.\n//\n// Integer division: when both operands are int, the result is also int — the decimal part is DROPPED.\n// Example: 5/2 = 2 (not 2.5). Use 5.0/2.0 or 5d/2d to get 2.5.\n//\n// Precision: double has more decimal places than float.\n// 5f/3f = 1.6666666 (7 significant digits)\n// 5d/3d = 1.6666666666666667 (15+ significant digits)\n// For currency or financial calculations, use BigDecimal instead of float/double.\n//\n// char and Unicode: char holds a single character, uses single quotes: char c = 'D';\n// You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')\n// Unicode is an international encoding standard — every character in every language has a unique code point.\n// Reference: https://unicode-table.com/en/\n//\n// boolean: can only be true or false. It is the result of any comparison or logical expression.\r\npublic class PrimitiveDataTypes {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        // int myValue = 10000; // A variable named myValue is created which is of datatype int and the value initialised = 10000;\r\n\r\n        int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.\r\n\r\n        int intMinValue = Integer.MIN_VALUE; //By specifying wrapper class Integer, it allows us to perform different operations on int.\r\n\r\n        System.out.println(\"The max Value of the integer is = \" + intMaxValue); //The max Value of the integer is = 2147483647\r\n        System.out.println(\"The min Value of the integer is = \" + intMinValue); //The min Value of the integer is = -2147483648\r\n\r\n        //If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java,\r\n        // then we will get an Overflow in the case of the maximum value and underflow in the case of minimum\r\n\r\n        System.out.println(\"The overflow value of int is  = \" + (intMaxValue + 1)); //The overflow value of int is  = -2147483648\r\n        System.out.println(\"The underflow value of int is = \" + (intMinValue - 1)); //The underflow value of int is = 2147483647\r\n\r\n        byte myMaxByteValue = Byte.MAX_VALUE;\r\n        byte myMinByteValue = Byte.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of the Byte is = \" + myMaxByteValue); //The max Value of the Byte is = 127\r\n        System.out.println(\"The min Value of the Byte is = \" + myMinByteValue); //The min Value of the Byte is = -128\r\n\r\n        short myShortMaxValue = Short.MAX_VALUE;\r\n        short myShortMinValue = Short.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Short is = \" + myShortMaxValue); //The max Value of Short is = 32767\r\n        System.out.println(\"The min Value of Short is = \" + myShortMinValue); //The min Value of Short is = -32768\r\n\r\n        long myLongValue = 100L; //We need to put letter L in the end to make it as long value.\r\n\r\n        long myLongMaxValue = Long.MAX_VALUE;\r\n        long myLongMinValue = Long.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Long is = \" + myLongMaxValue); //The max Value of Long is = 9223372036854775807\r\n        System.out.println(\"The min Value of Long is = \" + myLongMinValue); //The min Value of Long is = -9223372036854775808\r\n\r\n        byte myNewByteValue = (byte) (intMinValue / 2); //By Casting, we tell/instruct java to treat the int value as byte\r\n\r\n        float myMaxFloatValue = Float.MAX_VALUE;\r\n        float myMinFloatValue = Float.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Float is = \" + myMaxFloatValue); //The max Value of Float is = 3.4028235E38\r\n        System.out.println(\"The min Value of Float is = \" + myMinFloatValue); //The min Value of Float is = 1.4E-45\r\n\r\n        double myMaxDoubleValue = Double.MAX_VALUE;\r\n        double myMinDoubleValue = Double.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Double is = \" + myMaxDoubleValue); //The max Value of Double is = 1.7976931348623157E308\r\n        System.out.println(\"The min Value of Double is = \" + myMinDoubleValue); //The min Value of Double is = 4.9E-324\r\n\r\n        int myIntValue = 5;          // For whole numbers int is considered as default\r\n        float myFloatValue = 5.3f;   // To declare float, it is best practice adding f after declaring number at the end of expression\r\n        double myDoubleValue = 5.4d; // For floating point numbers, double is accepted as default. To declare double, it is best practice adding d after declaring number at the end of the declaration\r\n\r\n        int intValue = (5 / 2);\r\n        float floatValue = (5f / 2f);\r\n        double doubleValue = (5d / 2d);\r\n\r\n        System.out.println(\"Int value is = \" + intValue);       //Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor\r\n        System.out.println(\"Float value is = \" + floatValue);   //Float value is = 2.5\r\n        System.out.println(\"Double value is = \" + doubleValue); //Double value is = 2.5\r\n\r\n        int intValuePrecision = (5 / 3);\r\n        float floatValuePrecision = (5f / 3f);\r\n\r\n        double doubleValuePrecision = (5d / 3d);\r\n\r\n        System.out.println(\"Int precision value is = \" + intValuePrecision);       //Int precision value is = 1\r\n        System.out.println(\"Float precision value is = \" + floatValuePrecision);   //Float precision value is = 1.6666666\r\n        System.out.println(\"Double precision value is = \" + doubleValuePrecision); //Double precision value is = 1.6666666666666667\r\n\r\n        char myChar = 'D';\r\n        char myUnicodeChar = '\\u0044';\r\n\r\n        System.out.println(\"myChar value is \" + myChar);\r\n        System.out.println(\"myUnicodeChar value is \" + myUnicodeChar);\r\n\r\n        boolean myTrueBooleanValue = true;\r\n       boolean myFalseBooleanValue = false;\r\n\r\n\r\n    }\r\n\r\n}\r\n"
+        "code": "﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;\r\n// Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.\n// Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.\n//\n// The 8 Primitive Types:\n// Type     | Width  | Range / Notes\n// ---------|--------|--------------------------------------------------------------\n// boolean  | 1 bit  | Only two values: true or false\n// byte     | 8 bits | -128 to 127\n// short    | 16 bits| -32,768 to 32,767\n// char     | 16 bits| A single Unicode character — written in single quotes: 'A'\n// int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)\n// long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L\n// float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)\n// double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d\n//\n// Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).\n// These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.\n//\n// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around (overflow).\n// If you go below the minimum, it wraps to the maximum (underflow).\n// Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)\n//\n// Casting: Converting from one type to another.\n// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double\n// Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte\n// Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.\n//\n// Integer division: when both operands are int, the result is also int — the decimal part is DROPPED.\n// Example: 5/2 = 2 (not 2.5). Use 5.0/2.0 or 5d/2d to get 2.5.\n//\n// Precision: double has more decimal places than float.\n// 5f/3f = 1.6666666 (7 significant digits)\n// 5d/3d = 1.6666666666666667 (15+ significant digits)\n// For currency or financial calculations, use BigDecimal instead of float/double.\n//\n// char and Unicode: char holds a single character, uses single quotes: char c = 'D';\n// You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')\n// Unicode is an international encoding standard — every character in every language has a unique code point.\n// Reference: https://unicode-table.com/en/\n//\n// boolean: can only be true or false. It is the result of any comparison or logical expression.\n\n// @quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?\n// @answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.\n// @answer Reference type fields default to null because they store no object reference yet.\n// @answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.\n\n// @quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?\n// @answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.\n// @answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.\n// @answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.\n\n// @quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?\n// @answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.\n// @answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.\n// @answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.\n\n// @quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?\n// @answer Yes, it is valid in Java 7 and later, and the value is still one million.\n// @answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.\n// @answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F.\npublic class PrimitiveDataTypes {\n\r\n    public static void main(String[] args) {\r\n\r\n        // int myValue = 10000; // A variable named myValue is created which is of datatype int and the value initialised = 10000;\r\n\r\n        int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.\r\n\r\n        int intMinValue = Integer.MIN_VALUE; //By specifying wrapper class Integer, it allows us to perform different operations on int.\r\n\r\n        System.out.println(\"The max Value of the integer is = \" + intMaxValue); //The max Value of the integer is = 2147483647\r\n        System.out.println(\"The min Value of the integer is = \" + intMinValue); //The min Value of the integer is = -2147483648\r\n\r\n        //If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java,\r\n        // then we will get an Overflow in the case of the maximum value and underflow in the case of minimum\r\n\r\n        System.out.println(\"The overflow value of int is  = \" + (intMaxValue + 1)); //The overflow value of int is  = -2147483648\r\n        System.out.println(\"The underflow value of int is = \" + (intMinValue - 1)); //The underflow value of int is = 2147483647\r\n\r\n        byte myMaxByteValue = Byte.MAX_VALUE;\r\n        byte myMinByteValue = Byte.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of the Byte is = \" + myMaxByteValue); //The max Value of the Byte is = 127\r\n        System.out.println(\"The min Value of the Byte is = \" + myMinByteValue); //The min Value of the Byte is = -128\r\n\r\n        short myShortMaxValue = Short.MAX_VALUE;\r\n        short myShortMinValue = Short.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Short is = \" + myShortMaxValue); //The max Value of Short is = 32767\r\n        System.out.println(\"The min Value of Short is = \" + myShortMinValue); //The min Value of Short is = -32768\r\n\r\n        long myLongValue = 100L; //We need to put letter L in the end to make it as long value.\r\n\r\n        long myLongMaxValue = Long.MAX_VALUE;\r\n        long myLongMinValue = Long.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Long is = \" + myLongMaxValue); //The max Value of Long is = 9223372036854775807\r\n        System.out.println(\"The min Value of Long is = \" + myLongMinValue); //The min Value of Long is = -9223372036854775808\r\n\r\n        byte myNewByteValue = (byte) (intMinValue / 2); //By Casting, we tell/instruct java to treat the int value as byte\r\n\r\n        float myMaxFloatValue = Float.MAX_VALUE;\r\n        float myMinFloatValue = Float.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Float is = \" + myMaxFloatValue); //The max Value of Float is = 3.4028235E38\r\n        System.out.println(\"The min Value of Float is = \" + myMinFloatValue); //The min Value of Float is = 1.4E-45\r\n\r\n        double myMaxDoubleValue = Double.MAX_VALUE;\r\n        double myMinDoubleValue = Double.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Double is = \" + myMaxDoubleValue); //The max Value of Double is = 1.7976931348623157E308\r\n        System.out.println(\"The min Value of Double is = \" + myMinDoubleValue); //The min Value of Double is = 4.9E-324\r\n\r\n        int myIntValue = 5;          // For whole numbers int is considered as default\r\n        float myFloatValue = 5.3f;   // To declare float, it is best practice adding f after declaring number at the end of expression\r\n        double myDoubleValue = 5.4d; // For floating point numbers, double is accepted as default. To declare double, it is best practice adding d after declaring number at the end of the declaration\r\n\r\n        int intValue = (5 / 2);\r\n        float floatValue = (5f / 2f);\r\n        double doubleValue = (5d / 2d);\r\n\r\n        System.out.println(\"Int value is = \" + intValue);       //Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor\r\n        System.out.println(\"Float value is = \" + floatValue);   //Float value is = 2.5\r\n        System.out.println(\"Double value is = \" + doubleValue); //Double value is = 2.5\r\n\r\n        int intValuePrecision = (5 / 3);\r\n        float floatValuePrecision = (5f / 3f);\r\n\r\n        double doubleValuePrecision = (5d / 3d);\r\n\r\n        System.out.println(\"Int precision value is = \" + intValuePrecision);       //Int precision value is = 1\r\n        System.out.println(\"Float precision value is = \" + floatValuePrecision);   //Float precision value is = 1.6666666\r\n        System.out.println(\"Double precision value is = \" + doubleValuePrecision); //Double precision value is = 1.6666666666666667\r\n\r\n        char myChar = 'D';\r\n        char myUnicodeChar = '\\u0044';\r\n\r\n        System.out.println(\"myChar value is \" + myChar);\r\n        System.out.println(\"myUnicodeChar value is \" + myUnicodeChar);\r\n\r\n        boolean myTrueBooleanValue = true;\r\n       boolean myFalseBooleanValue = false;\r\n\r\n\r\n    }\r\n\r\n}\r\n"
       }
     ]
   },
@@ -313,7 +640,35 @@ const CONCEPTS_DATA = [
               "Increment (++) adds 1 to a variable: myVar++ is equivalent to myVar = myVar + 1.",
               "Decrement (--) subtracts 1 from a variable: myVar-- is equivalent to myVar = myVar - 1.",
               "Operator precedence determines the order in which operators are evaluated in an expression (like BODMAS/PEMDAS in maths). Use parentheses to override precedence.",
-              "Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html"
+              "Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html",
+              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
+              "@answer Output: 30Java",
+              "@answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).",
+              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);",
+              "@answer Output: Java1020 (NOT Java30)",
+              "@answer \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.",
+              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));",
+              "@answer Output: Java30",
+              "@answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".",
+              "@answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.",
+              "@quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?",
+              "@answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.",
+              "@answer Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.",
+              "@quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?",
+              "@answer = is the assignment operator, while == is the equality comparison operator.",
+              "@answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.",
+              "@answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.",
+              "@quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);",
+              "@answer Output: big",
+              "@answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\".",
+              "@quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?",
+              "@answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.",
+              "@answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.",
+              "@answer After b += 5, the value of b becomes 15.",
+              "@quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?",
+              "@answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.",
+              "@answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.",
+              "@answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady()."
             ]
           }
         ],
@@ -325,9 +680,70 @@ const CONCEPTS_DATA = [
           "myVar = myVar * 10 is equivalent to myVar *= 10.",
           "myVar = myVar / 10 is equivalent to myVar /= 10."
         ],
-        "customQuizzes": [],
+        "customQuizzes": [
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
+            "answers": [
+              "Output: 30Java",
+              "+ is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat)."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);",
+            "answers": [
+              "Output: Java1020 (NOT Java30)",
+              "\"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));",
+            "answers": [
+              "Output: Java30",
+              "Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".",
+              "This is the FIX when you want arithmetic inside a String expression: wrap with parentheses."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?",
+            "answers": [
+              "Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.",
+              "Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?",
+            "answers": [
+              "= is the assignment operator, while == is the equality comparison operator.",
+              "With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.",
+              "The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5."
+            ]
+          },
+          {
+            "question": "(INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);",
+            "answers": [
+              "Output: big",
+              "The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\"."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?",
+            "answers": [
+              "b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.",
+              "b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.",
+              "After b += 5, the value of b becomes 15."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between & and && when used with boolean expressions?",
+            "answers": [
+              "&& is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.",
+              "& on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.",
+              "This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady()."
+            ]
+          }
+        ],
         "deepChallenges": [],
-        "code": "﻿package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;\n// Operators in Java are special symbols that perform specific operations on one or more values (operands) and produce a result.\n// An operand is any value, variable, or expression that an operator acts upon. Example: in '15 + 12', 15 and 12 are operands, + is the operator.\n// An expression is a combination of variables, literals, operators, and method calls that evaluates to a single value.\n// Java supports arithmetic, comparison (relational), logical, bitwise, assignment, and other operators.\n// Shorthand (compound assignment) operators combine an operation with assignment: += (add and assign), -= (subtract and assign), *= (multiply and assign), /= (divide and assign).\n// Increment (++) adds 1 to a variable: myVar++ is equivalent to myVar = myVar + 1.\n// Decrement (--) subtracts 1 from a variable: myVar-- is equivalent to myVar = myVar - 1.\n// Operator precedence determines the order in which operators are evaluated in an expression (like BODMAS/PEMDAS in maths). Use parentheses to override precedence.\n// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html\n/*\r\n*  Summary of Operators\r\n*\r\n* 1) Operator --> (+) plus operator\r\n*  For Numeric types --> Addition\r\n*  For char          --> Addition\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Concatenation\r\n*\r\n* 2) Operator --> (-) Subtraction\r\n*  For Numeric types --> Subtraction\r\n*  For char          --> Subtraction\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Not Applicable\r\n*\r\n* 3) Operator --> (*) Multiplication\r\n*  For Numeric Types  --> Multiplication\r\n*  For char           --> Multiplication\r\n*  For boolean        --> Not Applicable\r\n*  For String         --> Not Applicable\r\n*\r\n* 4) Operator --> ( / ) Division\r\n*  For Numeric Types --> Division\r\n*  For char          --> Division\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Not Applicable\r\n*\r\n* 5) Operator --> ( % ) Modulus (Remainder)\r\n*  For Numeric Types --> Remainder (Modulus)\r\n*  For char          --> Remainder (Modulus)\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Not Applicable\r\n*\r\n*\r\n* */\r\n\r\npublic class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n\r\n        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).\r\n        myVar++;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).\r\n        myVar--;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar + 2 is equivalent to myVar += 2.\r\n        myVar += 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 2 is equivalent to myVar -= 2.\r\n        myVar -= 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar * 10 is equivalent to myVar *= 10.\r\n        myVar *= 10;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar / 10 is equivalent to myVar /= 10.\r\n        myVar /= 10;\r\n        System.out.println(myVar);\r\n\r\n    }\r\n}\r\n"
+        "code": "﻿package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;\n// Operators in Java are special symbols that perform specific operations on one or more values (operands) and produce a result.\n// An operand is any value, variable, or expression that an operator acts upon. Example: in '15 + 12', 15 and 12 are operands, + is the operator.\n// An expression is a combination of variables, literals, operators, and method calls that evaluates to a single value.\n// Java supports arithmetic, comparison (relational), logical, bitwise, assignment, and other operators.\n// Shorthand (compound assignment) operators combine an operation with assignment: += (add and assign), -= (subtract and assign), *= (multiply and assign), /= (divide and assign).\n// Increment (++) adds 1 to a variable: myVar++ is equivalent to myVar = myVar + 1.\n// Decrement (--) subtracts 1 from a variable: myVar-- is equivalent to myVar = myVar - 1.\n// Operator precedence determines the order in which operators are evaluated in an expression (like BODMAS/PEMDAS in maths). Use parentheses to override precedence.\n// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html\n/*\r\n*  Summary of Operators\r\n*\r\n* 1) Operator --> (+) plus operator\r\n*  For Numeric types --> Addition\r\n*  For char          --> Addition\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Concatenation\r\n*\r\n* 2) Operator --> (-) Subtraction\r\n*  For Numeric types --> Subtraction\r\n*  For char          --> Subtraction\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Not Applicable\r\n*\r\n* 3) Operator --> (*) Multiplication\r\n*  For Numeric Types  --> Multiplication\r\n*  For char           --> Multiplication\r\n*  For boolean        --> Not Applicable\r\n*  For String         --> Not Applicable\r\n*\r\n* 4) Operator --> ( / ) Division\r\n*  For Numeric Types --> Division\r\n*  For char          --> Division\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Not Applicable\r\n*\r\n* 5) Operator --> ( % ) Modulus (Remainder)\r\n*  For Numeric Types --> Remainder (Modulus)\r\n*  For char          --> Remainder (Modulus)\r\n*  For boolean       --> Not Applicable\r\n*  For String        --> Not Applicable\r\n*\r\n*\r\n* */\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");\n// @answer Output: 30Java\n// @answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).\n\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);\n// @answer Output: Java1020 (NOT Java30)\n// @answer \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.\n\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));\n// @answer Output: Java30\n// @answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".\n// @answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.\n\n// @quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?\n// @answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.\n// @answer Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.\n\n// @quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?\n// @answer = is the assignment operator, while == is the equality comparison operator.\n// @answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.\n// @answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.\n\n// @quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);\n// @answer Output: big\n// @answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\".\n\n// @quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?\n// @answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.\n// @answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.\n// @answer After b += 5, the value of b becomes 15.\n\n// @quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?\n// @answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.\n// @answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.\n// @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().\n\npublic class OperatorsOperandsExpressions {\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n\r\n        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).\r\n        myVar++;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).\r\n        myVar--;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar + 2 is equivalent to myVar += 2.\r\n        myVar += 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 2 is equivalent to myVar -= 2.\r\n        myVar -= 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar * 10 is equivalent to myVar *= 10.\r\n        myVar *= 10;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar / 10 is equivalent to myVar /= 10.\r\n        myVar /= 10;\r\n        System.out.println(myVar);\r\n\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_3_Operators/Sub_Chapter_2_OperatorsChallenge/OperatorChallenge.java",
@@ -500,7 +916,24 @@ const CONCEPTS_DATA = [
               "Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.",
               "Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.",
               "A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.",
-              "This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method."
+              "This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method.",
+              "@quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?",
+              "@answer Java is ALWAYS pass-by-value.",
+              "@answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.",
+              "@answer For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.",
+              "@answer Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped.",
+              "@quiz (INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?",
+              "@answer Java resolves overloads at compile time and chooses the most specific applicable method.",
+              "@answer Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.",
+              "@answer If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order.",
+              "@quiz (INTERVIEW) What is the difference between a void method and a method with a return type?",
+              "@answer A void method performs work but does not return a value to the caller.",
+              "@answer A method with a return type must return a value of that declared type on every valid execution path.",
+              "@answer You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use.",
+              "@quiz (INTERVIEW) What is the difference between a static method and an instance method in Java?",
+              "@answer A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().",
+              "@answer An instance method belongs to a specific object and is called on an object reference.",
+              "@answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members."
             ]
           }
         ],
@@ -513,9 +946,43 @@ const CONCEPTS_DATA = [
           "Here, the data return type is int, which means method is returning a value of type int.",
           "If we have to return any information, and send the value(result) back to the method call, we can use the method with return type option"
         ],
-        "customQuizzes": [],
+        "customQuizzes": [
+          {
+            "question": "(INTERVIEW) Is Java pass-by-value or pass-by-reference?",
+            "answers": [
+              "Java is ALWAYS pass-by-value.",
+              "For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.",
+              "For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.",
+              "Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?",
+            "answers": [
+              "Java resolves overloads at compile time and chooses the most specific applicable method.",
+              "Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.",
+              "If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between a void method and a method with a return type?",
+            "answers": [
+              "A void method performs work but does not return a value to the caller.",
+              "A method with a return type must return a value of that declared type on every valid execution path.",
+              "You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between a static method and an instance method in Java?",
+            "answers": [
+              "A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().",
+              "An instance method belongs to a specific object and is called on an object reference.",
+              "Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members."
+            ]
+          }
+        ],
         "deepChallenges": [],
-        "code": "﻿package Chapter_7_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;\r\n// A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.\n// Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.\n// Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }\n// The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.\n// If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.\n// Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.\n// You can call a method with literal values: calculateScore(true, 800, 5, 100)\n// Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.\n// Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.\n// A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.\n// This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method.\r\npublic class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);\r\n\r\n        // We can also pass the values to the method using variables\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        int highScoreValue = calculateScore(gameOver,score,levelCompleted,bonus); // Here, the value supplied to the method is in the form of variables, which is also valid input to the method.\r\n        System.out.println(\"Your final score was \" + highScoreValue);\r\n    }\r\n\r\n    public static void calculateScore(){\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n    }\r\n\r\n/*\r\n//    public static void calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // When we define parameters,Java will automatically create variables with appropriate data types, and it gets deleted, once process goes back to the line where method is called.\r\n        // void means don't send any value back.If we don 't the method to return any information, we use void as a return type of method.\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n//    }\r\n*/\r\n\r\n    public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // Here, the data return type is int, which means method is returning a value of type int.\r\n        // If we have to return any information, and send the value(result) back to the method call, we can use the method with return type option\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            return finalScore;\r\n        }\r\n      /*  else{\r\n            return -1;\r\n        }*/\r\n\r\n        return -1; // In programming terms, negative value indicates programming error.\r\n    }\r\n}\r\n"
+        "code": "﻿package Chapter_7_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;\r\n// A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.\n// Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.\n// Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }\n// The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.\n// If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.\n// Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.\n// You can call a method with literal values: calculateScore(true, 800, 5, 100)\n// Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.\n// Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.\n// A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.\n// This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method.\n\n// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?\n// @answer Java is ALWAYS pass-by-value.\n// @answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.\n// @answer For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.\n// @answer Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped.\n\n// @quiz (INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?\n// @answer Java resolves overloads at compile time and chooses the most specific applicable method.\n// @answer Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.\n// @answer If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order.\n\n// @quiz (INTERVIEW) What is the difference between a void method and a method with a return type?\n// @answer A void method performs work but does not return a value to the caller.\n// @answer A method with a return type must return a value of that declared type on every valid execution path.\n// @answer You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use.\n\n// @quiz (INTERVIEW) What is the difference between a static method and an instance method in Java?\n// @answer A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().\n// @answer An instance method belongs to a specific object and is called on an object reference.\n// @answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members.\npublic class MethodsInJava {\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);\r\n\r\n        // We can also pass the values to the method using variables\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        int highScoreValue = calculateScore(gameOver,score,levelCompleted,bonus); // Here, the value supplied to the method is in the form of variables, which is also valid input to the method.\r\n        System.out.println(\"Your final score was \" + highScoreValue);\r\n    }\r\n\r\n    public static void calculateScore(){\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n    }\r\n\r\n/*\r\n//    public static void calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // When we define parameters,Java will automatically create variables with appropriate data types, and it gets deleted, once process goes back to the line where method is called.\r\n        // void means don't send any value back.If we don 't the method to return any information, we use void as a return type of method.\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n//    }\r\n*/\r\n\r\n    public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // Here, the data return type is int, which means method is returning a value of type int.\r\n        // If we have to return any information, and send the value(result) back to the method call, we can use the method with return type option\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            return finalScore;\r\n        }\r\n      /*  else{\r\n            return -1;\r\n        }*/\r\n\r\n        return -1; // In programming terms, negative value indicates programming error.\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_7_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/AreaCalculatorCodingChallenge.java",
@@ -2082,7 +2549,32 @@ const CONCEPTS_DATA = [
               "The catch parameter specifies WHICH type of exception to catch. 'Exception' is the most general (catches anything).",
               "Useful methods on the exception object: e.getMessage() -> the error message, e.printStackTrace() -> full call stack.",
               "You can have multiple catch blocks for different exception types, ordered from most specific to most general.",
-              "The NullPointerException (NPE) occurs when you try to call a method or access a field on a variable that is null (has no object)."
+              "The NullPointerException (NPE) occurs when you try to call a method or access a field on a variable that is null (has no object).",
+              "@quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?",
+              "@answer Yes. The finally block runs even when try or catch executes a return statement.",
+              "@answer Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.",
+              "@answer The main practical exception is System.exit(), which terminates the JVM before finally can run.",
+              "@quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?",
+              "@answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.",
+              "@answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.",
+              "@answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.",
+              "@quiz (INTERVIEW) What is the basic exception hierarchy in Java?",
+              "@answer At the top is Throwable.",
+              "@answer Throwable has two major branches: Error and Exception.",
+              "@answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.",
+              "@answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.",
+              "@quiz (INTERVIEW) What is multi-catch in Java?",
+              "@answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).",
+              "@answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.",
+              "@answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.",
+              "@quiz (INTERVIEW) What is the difference between throw and throws in Java?",
+              "@answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").",
+              "@answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.",
+              "@answer Think of throw as the action and throws as the declaration.",
+              "@quiz (INTERVIEW) What is a NullPointerException and when does it occur?",
+              "@answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.",
+              "@answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.",
+              "@answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization."
             ]
           }
         ],
@@ -2098,9 +2590,59 @@ const CONCEPTS_DATA = [
           "the catch block, will catch that exception and handle it.",
           "Since, the code inside the try block will throw null pointer, in the catch parameter, we need to pass the parameter of the exception type, in this case we have passed NullPointerException"
         ],
-        "customQuizzes": [],
+        "customQuizzes": [
+          {
+            "question": "(INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?",
+            "answers": [
+              "Yes. The finally block runs even when try or catch executes a return statement.",
+              "Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.",
+              "The main practical exception is System.exit(), which terminates the JVM before finally can run."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between checked and unchecked exceptions in Java?",
+            "answers": [
+              "Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.",
+              "Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.",
+              "Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the basic exception hierarchy in Java?",
+            "answers": [
+              "At the top is Throwable.",
+              "Throwable has two major branches: Error and Exception.",
+              "Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.",
+              "Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is multi-catch in Java?",
+            "answers": [
+              "Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).",
+              "It was added in Java 7 and is useful when the handling logic is the same for several exception types.",
+              "The caught exception variable is effectively final, so you cannot reassign e inside that catch block."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between throw and throws in Java?",
+            "answers": [
+              "throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").",
+              "throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.",
+              "Think of throw as the action and throws as the declaration."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is a NullPointerException and when does it occur?",
+            "answers": [
+              "A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.",
+              "Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.",
+              "It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization."
+            ]
+          }
+        ],
         "deepChallenges": [],
-        "code": "﻿package Chapter_13_Exception_Handling;\r\n// An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution.\n// Common causes: null references (NullPointerException), dividing by zero (ArithmeticException), invalid array index (ArrayIndexOutOfBoundsException), invalid string-to-number parsing (NumberFormatException).\n// Without exception handling, an unhandled exception crashes your program and prints a stack trace.\n// Java uses try-catch blocks to handle exceptions gracefully, keeping the program running even when errors occur.\n// The try block contains the \"risky\" code — code that might throw an exception.\n// The catch block catches the exception and lets you handle it (log it, show a user-friendly message, recover, etc.).\n// Keep try blocks small — only put the specific risky statements inside try, not your entire method.\n// The catch parameter specifies WHICH type of exception to catch. 'Exception' is the most general (catches anything).\n// Useful methods on the exception object: e.getMessage() -> the error message, e.printStackTrace() -> full call stack.\n// You can have multiple catch blocks for different exception types, ordered from most specific to most general.\n// The NullPointerException (NPE) occurs when you try to call a method or access a field on a variable that is null (has no object).\r\n/*\r\n   Exception\r\n\r\n*  An exception is an abnormal condition that disrupts the normal flow of the program.\r\n*  Exceptions can occur due to invalid input, null references, division by zero, file not found, etc.\r\n*\r\n   Catching an exception\r\n\r\n   An exception is caught by wrapping the risky code inside a try-catch block.\r\n   The code that might throw an exception goes inside the 'try' block.\r\n\r\n   The try statement has 2 code blocks.\r\n\r\n   The first block is declared directly after the try keyword and contains the risky code.\r\n   The catch keyword follows the try block and includes a parameter that specifies the type of exception to catch.\r\n\r\n   The catch block contains the code that runs when an exception of the specified type is thrown.\r\n   You can access the exception message with e.getMessage() or print the full trace with e.printStackTrace().\r\n*\r\n*\r\n* */\r\n\r\n\r\npublic class ExceptionHandlingInJava {\r\n    public static void main(String[] args) {\r\n\r\n        try{ // The try block wraps any code that might throw an exception at runtime.\r\n            // Place only the risky code here — keep try blocks as small as possible.\r\n        } // The try block ends here; the catch block immediately follows.\r\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\r\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\r\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\r\n        }\r\n\r\n       // The String 'value' is intentionally set to null below to demonstrate a NullPointerException being caught.\r\n\r\n    /*    try {\r\n            if (value != null) {\r\n                System.out.println(value.toUpperCase());\r\n            } else {\r\n                throw new NullPointerException(\"Value is null\");\r\n            }\r\n        } catch (NullPointerException e) {\r\n            System.out.println(e.getMessage());\r\n            // Uncomment the next line if you want to see the stack trace\r\n            // e.printStackTrace();\r\n        }\r\n\r\n*/\r\n        String value = null;\r\n\r\n        try {\r\n            System.out.println(value.toUpperCase()); // Since String value is null,\r\n                                                     // and we are trying to access the null value\r\n                                                     // and trying to convert the null value(which doesn't exist) into uppercase\r\n                                                     // the program will throw a null pointer exception.\r\n                                                     // But, since the code is wrapped around a try catch block,\r\n                                                     // the exception will be handled.\r\n                                                     // The code, which may create problem is to be written inside the try block.\r\n\r\n            }catch (NullPointerException e){         // Since, the code written inside the try block will lead to null pointer exception,\r\n                                                     // the catch block, will catch that exception and handle it.\r\n                                                     // Since, the code inside the try block will throw null pointer, in the catch parameter,\r\n                                                     // we need to pass the parameter of the exception type, in this case we have passed NullPointerException\r\n\r\n            System.out.println(\"You are trying to access a null value\");\r\n        }\r\n\r\n    }\r\n}\r\n"
+        "code": "﻿package Chapter_13_Exception_Handling;\r\n// An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution.\n// Common causes: null references (NullPointerException), dividing by zero (ArithmeticException), invalid array index (ArrayIndexOutOfBoundsException), invalid string-to-number parsing (NumberFormatException).\n// Without exception handling, an unhandled exception crashes your program and prints a stack trace.\n// Java uses try-catch blocks to handle exceptions gracefully, keeping the program running even when errors occur.\n// The try block contains the \"risky\" code — code that might throw an exception.\n// The catch block catches the exception and lets you handle it (log it, show a user-friendly message, recover, etc.).\n// Keep try blocks small — only put the specific risky statements inside try, not your entire method.\n// The catch parameter specifies WHICH type of exception to catch. 'Exception' is the most general (catches anything).\n// Useful methods on the exception object: e.getMessage() -> the error message, e.printStackTrace() -> full call stack.\n// You can have multiple catch blocks for different exception types, ordered from most specific to most general.\n// The NullPointerException (NPE) occurs when you try to call a method or access a field on a variable that is null (has no object).\r\n/*\n   Exception\n\n*  An exception is an abnormal condition that disrupts the normal flow of the program.\n*  Exceptions can occur due to invalid input, null references, division by zero, file not found, etc.\n*\n   Catching an exception\n\n   An exception is caught by wrapping the risky code inside a try-catch block.\n   The code that might throw an exception goes inside the 'try' block.\n\n   The try statement has 2 code blocks.\n\n   The first block is declared directly after the try keyword and contains the risky code.\n   The catch keyword follows the try block and includes a parameter that specifies the type of exception to catch.\n\n   The catch block contains the code that runs when an exception of the specified type is thrown.\n   You can access the exception message with e.getMessage() or print the full trace with e.printStackTrace().\n*\n*\n* */\n\n// @quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?\n// @answer Yes. The finally block runs even when try or catch executes a return statement.\n// @answer Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.\n// @answer The main practical exception is System.exit(), which terminates the JVM before finally can run.\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?\n// @answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.\n// @answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.\n// @answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.\n\n// @quiz (INTERVIEW) What is the basic exception hierarchy in Java?\n// @answer At the top is Throwable.\n// @answer Throwable has two major branches: Error and Exception.\n// @answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.\n// @answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.\n\n// @quiz (INTERVIEW) What is multi-catch in Java?\n// @answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).\n// @answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.\n// @answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.\n\n// @quiz (INTERVIEW) What is the difference between throw and throws in Java?\n// @answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").\n// @answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.\n// @answer Think of throw as the action and throws as the declaration.\n\n// @quiz (INTERVIEW) What is a NullPointerException and when does it occur?\n// @answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.\n// @answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.\n// @answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization.\n\npublic class ExceptionHandlingInJava {\n    public static void main(String[] args) {\r\n\r\n        try{ // The try block wraps any code that might throw an exception at runtime.\r\n            // Place only the risky code here — keep try blocks as small as possible.\r\n        } // The try block ends here; the catch block immediately follows.\r\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\r\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\r\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\r\n        }\r\n\r\n       // The String 'value' is intentionally set to null below to demonstrate a NullPointerException being caught.\r\n\r\n    /*    try {\r\n            if (value != null) {\r\n                System.out.println(value.toUpperCase());\r\n            } else {\r\n                throw new NullPointerException(\"Value is null\");\r\n            }\r\n        } catch (NullPointerException e) {\r\n            System.out.println(e.getMessage());\r\n            // Uncomment the next line if you want to see the stack trace\r\n            // e.printStackTrace();\r\n        }\r\n\r\n*/\r\n        String value = null;\r\n\r\n        try {\r\n            System.out.println(value.toUpperCase()); // Since String value is null,\r\n                                                     // and we are trying to access the null value\r\n                                                     // and trying to convert the null value(which doesn't exist) into uppercase\r\n                                                     // the program will throw a null pointer exception.\r\n                                                     // But, since the code is wrapped around a try catch block,\r\n                                                     // the exception will be handled.\r\n                                                     // The code, which may create problem is to be written inside the try block.\r\n\r\n            }catch (NullPointerException e){         // Since, the code written inside the try block will lead to null pointer exception,\r\n                                                     // the catch block, will catch that exception and handle it.\r\n                                                     // Since, the code inside the try block will throw null pointer, in the catch parameter,\r\n                                                     // we need to pass the parameter of the exception type, in this case we have passed NullPointerException\r\n\r\n            System.out.println(\"You are trying to access a null value\");\r\n        }\r\n\r\n    }\r\n}\r\n"
       }
     ]
   },
@@ -2554,14 +3096,81 @@ const CONCEPTS_DATA = [
               "OOP is built on four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.",
               "A class defines FIELDS (data/state) and METHODS (behaviour). Together these are called class members.",
               "A static field has one copy shared by all instances. An instance field has one copy per object.",
-              "A static method cannot use instance data. An instance method can use both static and instance data."
+              "A static method cannot use instance data. An instance method can use both static and instance data.",
+              "@quiz (INTERVIEW) What is the difference between an abstract class and an interface in Java?",
+              "@answer An abstract class can have constructors, instance fields, concrete methods, and abstract methods, so it is useful for sharing common state and behavior in a base class.",
+              "@answer An interface represents a contract or capability. It has no constructors and no instance state for objects, though Java 8+ allows default and static methods.",
+              "@answer A class can extend only ONE abstract class, but it can implement MULTIPLE interfaces.",
+              "@answer Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable.",
+              "@quiz (INTERVIEW) What are the three common uses of the final keyword in Java?",
+              "@answer A final variable can be assigned only once after initialization, so its reference or primitive value cannot be reassigned.",
+              "@answer A final method cannot be overridden by subclasses.",
+              "@answer A final class cannot be extended, which is why classes like String and Integer cannot be subclassed.",
+              "@quiz (INTERVIEW) What is the order of Java access modifiers from most restrictive to least restrictive?",
+              "@answer Order: private, default (package-private), protected, public.",
+              "@answer private means only inside the same class.",
+              "@answer default means only classes in the same package.",
+              "@answer protected means same package plus subclasses in other packages.",
+              "@answer public means accessible from everywhere.",
+              "@quiz (INTERVIEW) What is the difference between this and super in Java?",
+              "@answer this refers to the current object and is used to access current class fields, methods, or another constructor in the same class through this().",
+              "@answer super refers to the parent-class part of the current object and is used to call the parent constructor with super() or access overridden parent methods and hidden parent fields.",
+              "@answer this resolves current-object context, while super explicitly moves one level up the inheritance chain.",
+              "@quiz (INTERVIEW) What is polymorphism in Java, and what is the difference between compile-time and runtime polymorphism?",
+              "@answer Compile-time polymorphism usually means method overloading, where the compiler decides which overloaded method signature matches the arguments.",
+              "@answer Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.",
+              "@answer Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch."
             ]
           }
         ],
         "inlineComments": [],
-        "customQuizzes": [],
+        "customQuizzes": [
+          {
+            "question": "(INTERVIEW) What is the difference between an abstract class and an interface in Java?",
+            "answers": [
+              "An abstract class can have constructors, instance fields, concrete methods, and abstract methods, so it is useful for sharing common state and behavior in a base class.",
+              "An interface represents a contract or capability. It has no constructors and no instance state for objects, though Java 8+ allows default and static methods.",
+              "A class can extend only ONE abstract class, but it can implement MULTIPLE interfaces.",
+              "Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What are the three common uses of the final keyword in Java?",
+            "answers": [
+              "A final variable can be assigned only once after initialization, so its reference or primitive value cannot be reassigned.",
+              "A final method cannot be overridden by subclasses.",
+              "A final class cannot be extended, which is why classes like String and Integer cannot be subclassed."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the order of Java access modifiers from most restrictive to least restrictive?",
+            "answers": [
+              "Order: private, default (package-private), protected, public.",
+              "private means only inside the same class.",
+              "default means only classes in the same package.",
+              "protected means same package plus subclasses in other packages.",
+              "public means accessible from everywhere."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between this and super in Java?",
+            "answers": [
+              "this refers to the current object and is used to access current class fields, methods, or another constructor in the same class through this().",
+              "super refers to the parent-class part of the current object and is used to call the parent constructor with super() or access overridden parent methods and hidden parent fields.",
+              "this resolves current-object context, while super explicitly moves one level up the inheritance chain."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is polymorphism in Java, and what is the difference between compile-time and runtime polymorphism?",
+            "answers": [
+              "Compile-time polymorphism usually means method overloading, where the compiler decides which overloaded method signature matches the arguments.",
+              "Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.",
+              "Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch."
+            ]
+          }
+        ],
         "deepChallenges": [],
-        "code": "﻿package Chapter_14_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;\r\n// Object-Oriented Programming (OOP) is a programming paradigm that models real-world entities as software objects.\n// In OOP, everything revolves around CLASSES (blueprints) and OBJECTS (instances of those blueprints).\n// OOP is built on four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.\n// A class defines FIELDS (data/state) and METHODS (behaviour). Together these are called class members.\n// A static field has one copy shared by all instances. An instance field has one copy per object.\n// A static method cannot use instance data. An instance method can use both static and instance data.\r\n/*\r\n*  Object-oriented programming is a way to model real world objects as software objects which contain both data and code\r\n*\r\n*  OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects\r\n*\r\n*  Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.\r\n*\r\n* A software object stores its state in fields, which can also be called variables or attributes.\r\n*\r\n* Objects expose their behavior with methods.\r\n*\r\n* Class is basically a template or a blueprint for creating objects.\r\n*\r\n* The class describes the data (fields), and the behavior (methods), that are relevant to the real-world object we want to describe. These are called class members.\r\n*\r\n* A class member can be a field or a method, or some other type of dependent element.\r\n*\r\n* If a field is static, there is only one copy in memory, and this value is associated with the class or template itself.\r\n*\r\n* If a field is not static, it's called an instance field, and each object may have a different value stored for this field.\r\n*\r\n* A static method can't be dependent on any one object's state, so it can't reference any instance members.\r\n*\r\n* Any method that operates on instance fields needs to be non-static. These class or member fields can be thought of as variables, though it's more common to call them fields or attributes.\r\n*\r\n*/\r\n\r\n\r\n/*\r\n* The public keyword is an access modifier. This lets us determine what access others will have to this new class that we're creating.\r\n*\r\n* Classes can be organized into logical groupings which are called packages.\r\n*\r\n* You declare a package name in the class using the package statement.\r\n*\r\n* If you don't declare a package, the class implicitly belongs to the default package.\r\n*\r\n* A class is said to be a top-level class if it is defined in the source code file\r\n*\r\n* and not enclosed in the code block of another class, type, or method.\r\n*\r\n* A top-level class has only two valid access modifier options: public or none.\r\n*\r\n* The word public gives unrestricted access to a class.\r\n*\r\n* When there is no modifier specified at all, Java, by default, implicitly allows package-private access.\r\n*\r\n* This means that classes grouped into the same package can access the class.\r\n* */\r\n\r\n\r\n/*\r\n* An access modifier at the member level allows granular control over class members.\r\n*\r\n* Access Keyword :- public\r\n* Description :- public means any other class in any package can access this class.\r\n*\r\n* Access Keyword :- protected\r\n* Description :- protected allows classes in the same package, and any subclass in other packages to have access to the member\r\n*\r\n* Access Keyword :- None ( No access keyword specified)\r\n* Description :- When the modifier is omitted, this has special meaning, called package access, meaning the member is accessible only to classes in the same package\r\n*\r\n* Access Keyword :- private\r\n* Description :- private means that no other class can access this member\r\n*\r\n* */\r\n\r\npublic class ClassesAndInheritance {\r\n\r\n\r\n\r\n}\r\n"
+        "code": "﻿package Chapter_14_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;\r\n// Object-Oriented Programming (OOP) is a programming paradigm that models real-world entities as software objects.\n// In OOP, everything revolves around CLASSES (blueprints) and OBJECTS (instances of those blueprints).\n// OOP is built on four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.\n// A class defines FIELDS (data/state) and METHODS (behaviour). Together these are called class members.\n// A static field has one copy shared by all instances. An instance field has one copy per object.\n// A static method cannot use instance data. An instance method can use both static and instance data.\r\n/*\r\n*  Object-oriented programming is a way to model real world objects as software objects which contain both data and code\r\n*\r\n*  OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects\r\n*\r\n*  Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.\r\n*\r\n* A software object stores its state in fields, which can also be called variables or attributes.\r\n*\r\n* Objects expose their behavior with methods.\r\n*\r\n* Class is basically a template or a blueprint for creating objects.\r\n*\r\n* The class describes the data (fields), and the behavior (methods), that are relevant to the real-world object we want to describe. These are called class members.\r\n*\r\n* A class member can be a field or a method, or some other type of dependent element.\r\n*\r\n* If a field is static, there is only one copy in memory, and this value is associated with the class or template itself.\r\n*\r\n* If a field is not static, it's called an instance field, and each object may have a different value stored for this field.\r\n*\r\n* A static method can't be dependent on any one object's state, so it can't reference any instance members.\r\n*\r\n* Any method that operates on instance fields needs to be non-static. These class or member fields can be thought of as variables, though it's more common to call them fields or attributes.\r\n*\r\n*/\r\n\r\n\r\n/*\r\n* The public keyword is an access modifier. This lets us determine what access others will have to this new class that we're creating.\r\n*\r\n* Classes can be organized into logical groupings which are called packages.\r\n*\r\n* You declare a package name in the class using the package statement.\r\n*\r\n* If you don't declare a package, the class implicitly belongs to the default package.\r\n*\r\n* A class is said to be a top-level class if it is defined in the source code file\r\n*\r\n* and not enclosed in the code block of another class, type, or method.\r\n*\r\n* A top-level class has only two valid access modifier options: public or none.\r\n*\r\n* The word public gives unrestricted access to a class.\r\n*\r\n* When there is no modifier specified at all, Java, by default, implicitly allows package-private access.\r\n*\r\n* This means that classes grouped into the same package can access the class.\r\n* */\r\n\r\n\r\n/*\n* An access modifier at the member level allows granular control over class members.\n*\n* Access Keyword :- public\n* Description :- public means any other class in any package can access this class.\n*\n* Access Keyword :- protected\n* Description :- protected allows classes in the same package, and any subclass in other packages to have access to the member\n*\n* Access Keyword :- None ( No access keyword specified)\n* Description :- When the modifier is omitted, this has special meaning, called package access, meaning the member is accessible only to classes in the same package\n*\n* Access Keyword :- private\n* Description :- private means that no other class can access this member\n*\n* */\n\n// @quiz (INTERVIEW) What is the difference between an abstract class and an interface in Java?\n// @answer An abstract class can have constructors, instance fields, concrete methods, and abstract methods, so it is useful for sharing common state and behavior in a base class.\n// @answer An interface represents a contract or capability. It has no constructors and no instance state for objects, though Java 8+ allows default and static methods.\n// @answer A class can extend only ONE abstract class, but it can implement MULTIPLE interfaces.\n// @answer Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable.\n\n// @quiz (INTERVIEW) What are the three common uses of the final keyword in Java?\n// @answer A final variable can be assigned only once after initialization, so its reference or primitive value cannot be reassigned.\n// @answer A final method cannot be overridden by subclasses.\n// @answer A final class cannot be extended, which is why classes like String and Integer cannot be subclassed.\n\n// @quiz (INTERVIEW) What is the order of Java access modifiers from most restrictive to least restrictive?\n// @answer Order: private, default (package-private), protected, public.\n// @answer private means only inside the same class.\n// @answer default means only classes in the same package.\n// @answer protected means same package plus subclasses in other packages.\n// @answer public means accessible from everywhere.\n\n// @quiz (INTERVIEW) What is the difference between this and super in Java?\n// @answer this refers to the current object and is used to access current class fields, methods, or another constructor in the same class through this().\n// @answer super refers to the parent-class part of the current object and is used to call the parent constructor with super() or access overridden parent methods and hidden parent fields.\n// @answer this resolves current-object context, while super explicitly moves one level up the inheritance chain.\n\n// @quiz (INTERVIEW) What is polymorphism in Java, and what is the difference between compile-time and runtime polymorphism?\n// @answer Compile-time polymorphism usually means method overloading, where the compiler decides which overloaded method signature matches the arguments.\n// @answer Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.\n// @answer Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch.\n\npublic class ClassesAndInheritance {\n\r\n\r\n\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",

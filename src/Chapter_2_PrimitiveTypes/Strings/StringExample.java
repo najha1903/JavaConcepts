@@ -123,6 +123,18 @@
 // @desc Implement: reverse(String s), isPalindrome(String s), countChar(String s, char target), toUpperCase(String s), countVowels(String s), removeSpaces(String s)
 // @hint For reverse: use two pointers on a char array. For palindrome: compare from both ends. For toUpperCase: use ASCII arithmetic (subtract 32 from lowercase chars).
 // @testcase reverse("hello") → "olleh", isPalindrome("racecar") → true, isPalindrome("java") → false, countVowels("Hello World") → 3
+
+// @quiz (INTERVIEW) What is the difference between == and .equals() when comparing Strings in Java?
+// @answer == compares references, meaning whether both variables point to the exact same String object in memory.
+// @answer .equals() compares String content, so it checks whether the characters are the same.
+// @answer Example: String a = "hello"; String b = "hello"; gives a == b as true because both usually point to the same pooled literal object, but new String("hello") compared with another new String("hello") gives == as false because they are different heap objects.
+// @answer Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects.
+
+// @quiz (INTERVIEW TRAP) What is the output of: Integer a = 127; Integer b = 127; System.out.println(a == b); then Integer x = 128; Integer y = 128; System.out.println(x == y);
+// @answer Output: true on the first line and false on the second line.
+// @answer Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.
+// @answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.
+// @answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.
 public class StringExample {
 
     public static void main(String[] args) {

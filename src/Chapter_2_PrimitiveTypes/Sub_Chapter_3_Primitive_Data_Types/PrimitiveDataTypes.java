@@ -40,6 +40,26 @@
 // Reference: https://unicode-table.com/en/
 //
 // boolean: can only be true or false. It is the result of any comparison or logical expression.
+
+// @quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?
+// @answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\u0000' which is the Unicode null character.
+// @answer Reference type fields default to null because they store no object reference yet.
+// @answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.
+
+// @quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?
+// @answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.
+// @answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.
+// @answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.
+
+// @quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?
+// @answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.
+// @answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.
+// @answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.
+
+// @quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?
+// @answer Yes, it is valid in Java 7 and later, and the value is still one million.
+// @answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.
+// @answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F.
 public class PrimitiveDataTypes {
 
     public static void main(String[] args) {

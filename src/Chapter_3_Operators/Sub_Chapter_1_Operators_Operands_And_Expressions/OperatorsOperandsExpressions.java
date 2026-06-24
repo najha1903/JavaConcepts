@@ -61,6 +61,25 @@
 // @answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.
 // @answer Use parentheses to control evaluation order: "Score: " + (a + b) gives arithmetic sum. "Score: " + a + b gives two separate concatenations.
 
+// @quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?
+// @answer = is the assignment operator, while == is the equality comparison operator.
+// @answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.
+// @answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.
+
+// @quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? "big" : "small"; System.out.println(result);
+// @answer Output: big
+// @answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is "big".
+
+// @quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?
+// @answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.
+// @answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.
+// @answer After b += 5, the value of b becomes 15.
+
+// @quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?
+// @answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.
+// @answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.
+// @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().
+
 public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {

@@ -73,6 +73,34 @@
 *
 * */
 
+// @quiz (INTERVIEW) What is the difference between an abstract class and an interface in Java?
+// @answer An abstract class can have constructors, instance fields, concrete methods, and abstract methods, so it is useful for sharing common state and behavior in a base class.
+// @answer An interface represents a contract or capability. It has no constructors and no instance state for objects, though Java 8+ allows default and static methods.
+// @answer A class can extend only ONE abstract class, but it can implement MULTIPLE interfaces.
+// @answer Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable.
+
+// @quiz (INTERVIEW) What are the three common uses of the final keyword in Java?
+// @answer A final variable can be assigned only once after initialization, so its reference or primitive value cannot be reassigned.
+// @answer A final method cannot be overridden by subclasses.
+// @answer A final class cannot be extended, which is why classes like String and Integer cannot be subclassed.
+
+// @quiz (INTERVIEW) What is the order of Java access modifiers from most restrictive to least restrictive?
+// @answer Order: private, default (package-private), protected, public.
+// @answer private means only inside the same class.
+// @answer default means only classes in the same package.
+// @answer protected means same package plus subclasses in other packages.
+// @answer public means accessible from everywhere.
+
+// @quiz (INTERVIEW) What is the difference between this and super in Java?
+// @answer this refers to the current object and is used to access current class fields, methods, or another constructor in the same class through this().
+// @answer super refers to the parent-class part of the current object and is used to call the parent constructor with super() or access overridden parent methods and hidden parent fields.
+// @answer this resolves current-object context, while super explicitly moves one level up the inheritance chain.
+
+// @quiz (INTERVIEW) What is polymorphism in Java, and what is the difference between compile-time and runtime polymorphism?
+// @answer Compile-time polymorphism usually means method overloading, where the compiler decides which overloaded method signature matches the arguments.
+// @answer Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.
+// @answer Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch.
+
 public class ClassesAndInheritance {
 
 

@@ -32,6 +32,36 @@
 *
 * */
 
+// @quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?
+// @answer Yes. The finally block runs even when try or catch executes a return statement.
+// @answer Example: try { return 1; } finally { System.out.println("finally"); } prints finally first and then returns 1.
+// @answer The main practical exception is System.exit(), which terminates the JVM before finally can run.
+
+// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?
+// @answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.
+// @answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.
+// @answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.
+
+// @quiz (INTERVIEW) What is the basic exception hierarchy in Java?
+// @answer At the top is Throwable.
+// @answer Throwable has two major branches: Error and Exception.
+// @answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.
+// @answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.
+
+// @quiz (INTERVIEW) What is multi-catch in Java?
+// @answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).
+// @answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.
+// @answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.
+
+// @quiz (INTERVIEW) What is the difference between throw and throws in Java?
+// @answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException("bad input").
+// @answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.
+// @answer Think of throw as the action and throws as the declaration.
+
+// @quiz (INTERVIEW) What is a NullPointerException and when does it occur?
+// @answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.
+// @answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.
+// @answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization.
 
 public class ExceptionHandlingInJava {
     public static void main(String[] args) {

@@ -10,6 +10,27 @@
 // Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.
 // A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.
 // This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method.
+
+// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?
+// @answer Java is ALWAYS pass-by-value.
+// @answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.
+// @answer For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.
+// @answer Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped.
+
+// @quiz (INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?
+// @answer Java resolves overloads at compile time and chooses the most specific applicable method.
+// @answer Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.
+// @answer If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order.
+
+// @quiz (INTERVIEW) What is the difference between a void method and a method with a return type?
+// @answer A void method performs work but does not return a value to the caller.
+// @answer A method with a return type must return a value of that declared type on every valid execution path.
+// @answer You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use.
+
+// @quiz (INTERVIEW) What is the difference between a static method and an instance method in Java?
+// @answer A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().
+// @answer An instance method belongs to a specific object and is called on an object reference.
+// @answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members.
 public class MethodsInJava {
 
     public static void main(String[] args) {
