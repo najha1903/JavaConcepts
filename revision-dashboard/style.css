@@ -2368,68 +2368,93 @@ h1, h2, h3, h4, .logo span {
 .practice-tab.active { color: var(--accent-blue, #4fc3f7); border-bottom-color: var(--accent-blue, #4fc3f7); font-weight: 700; }
 
 /* ==========================================================================
-   Deep Challenge Styles
+   Deep Challenge Styles — Collapsible Accordion
    ========================================================================== */
-.deep-challenge-header { margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.deep-challenge-header { margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 
+/* Each accordion section */
+.dc-section {
+  margin-bottom: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+
+/* Toggle button (the clickable header bar) */
+.dc-section-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary, #e0e0e0);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  transition: background 0.15s;
+}
+.dc-section-toggle:hover { background: rgba(255,255,255,0.05); }
+
+.dc-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.dc-chevron {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  transition: transform 0.25s ease;
+  transform: rotate(-90deg); /* collapsed by default */
+}
+.dc-open .dc-chevron { transform: rotate(0deg); } /* expanded */
+
+/* Collapsible body — hidden when not .dc-open */
+.dc-section-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 18px;
+}
+.dc-open .dc-section-body {
+  max-height: 600px;
+  padding: 4px 18px 18px 18px;
+}
+
+/* Description text inside body */
 .deep-challenge-body {
   line-height: 1.8;
-  margin: 0 0 16px 0;
-  font-size: 0.9rem;
+  font-size: 0.89rem;
   color: var(--text-secondary, #ccc);
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px;
-  padding: 18px 20px;
+  padding: 4px 0 2px 0;
 }
 
-.deep-hints, .deep-testcases {
-  margin: 12px 0;
-  padding: 18px 22px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
+/* Hints section — amber accent */
+#dc-hints { border-color: rgba(255, 193, 7, 0.2); }
+#dc-hints .dc-section-toggle { color: #ffc107; }
+#dc-hints .dc-count { background: rgba(255,193,7,0.15); color: #ffc107; }
+#dc-hints ul { margin: 4px 0 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+#dc-hints li { font-size: 0.875rem; line-height: 1.65; color: var(--text-secondary, #ccc); }
 
-.deep-hints {
-  background: rgba(255, 193, 7, 0.06);
-  border-color: rgba(255, 193, 7, 0.25);
-  border-left: 4px solid #ffc107;
-}
-
-.deep-testcases {
-  background: rgba(76, 175, 80, 0.06);
-  border-color: rgba(76, 175, 80, 0.25);
-  border-left: 4px solid #4caf50;
-}
-
-.deep-hints strong, .deep-testcases strong {
-  display: block;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 12px;
-  opacity: 0.85;
-}
-
-.deep-hints strong { color: #ffc107; }
-.deep-testcases strong { color: #4caf50; }
-
-.deep-hints ul, .deep-testcases ul {
-  margin: 0;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.deep-hints li, .deep-testcases li {
-  font-size: 0.875rem;
-  line-height: 1.65;
-  color: var(--text-secondary, #ccc);
-}
-
-.deep-testcases li code {
-  background: rgba(76, 175, 80, 0.12);
+/* Test cases section — green accent */
+#dc-testcases { border-color: rgba(76, 175, 80, 0.2); }
+#dc-testcases .dc-section-toggle { color: #4caf50; }
+#dc-testcases .dc-count { background: rgba(76,175,80,0.15); color: #4caf50; }
+#dc-testcases ul { margin: 4px 0 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+#dc-testcases li { font-size: 0.875rem; line-height: 1.65; }
+#dc-testcases code {
+  background: rgba(76, 175, 80, 0.1);
   border: 1px solid rgba(76, 175, 80, 0.2);
   padding: 2px 8px;
   border-radius: 4px;
@@ -2437,21 +2462,16 @@ h1, h2, h3, h4, .logo span {
   color: #a5d6a7;
 }
 
+/* Submit section */
+#dc-submit { border-color: rgba(79, 195, 247, 0.2); }
+#dc-submit .dc-section-toggle { color: #4fc3f7; }
+
 .deep-self-check {
-  margin-top: 20px;
-  padding: 16px 20px;
-  border-radius: 10px;
-  background: rgba(79, 195, 247, 0.05);
-  border: 1px solid rgba(79, 195, 247, 0.15);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
+  padding: 4px 0 2px 0;
 }
-
-.deep-self-check p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--text-secondary, #aaa);
-}
+.deep-self-check p { margin: 0; font-size: 0.875rem; color: var(--text-secondary, #aaa); }

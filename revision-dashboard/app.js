@@ -2276,22 +2276,59 @@ function selectDeepChallenge(challenge) {
   }
 
   const tagHtml = (challenge.tags || []).map(t => `<span class="question-tag tag-${t}">${t}</span>`).join('');
+
   const hintsHtml = challenge.hints && challenge.hints.length > 0
-    ? '<div class="deep-hints"><strong>💡 Hints:</strong><ul>' + challenge.hints.map(h => `<li>${h}</li>`).join('') + '</ul></div>'
+    ? `<div class="dc-section" id="dc-hints">
+        <button class="dc-section-toggle" onclick="toggleDcSection('dc-hints')">
+          <span>💡 Hints <span class="dc-count">${challenge.hints.length}</span></span>
+          <span class="dc-chevron">▼</span>
+        </button>
+        <div class="dc-section-body">
+          <ul>${challenge.hints.map(h => `<li>${h}</li>`).join('')}</ul>
+        </div>
+      </div>`
     : '';
+
   const testcasesHtml = challenge.testcases && challenge.testcases.length > 0
-    ? '<div class="deep-testcases"><strong>🧪 Test Cases:</strong><ul>' + challenge.testcases.map(t => `<li><code>${t}</code></li>`).join('') + '</ul></div>'
+    ? `<div class="dc-section" id="dc-testcases">
+        <button class="dc-section-toggle" onclick="toggleDcSection('dc-testcases')">
+          <span>🧪 Test Cases <span class="dc-count">${challenge.testcases.length}</span></span>
+          <span class="dc-chevron">▼</span>
+        </button>
+        <div class="dc-section-body">
+          <ul>${challenge.testcases.map(t => `<li><code>${t}</code></li>`).join('')}</ul>
+        </div>
+      </div>`
     : '';
 
   const descEl = document.getElementById('practice-instructions');
   if (descEl) descEl.innerHTML = `
     <div class="deep-challenge-header">${tagHtml}</div>
-    <div class="deep-challenge-body">${challenge.description.replace(/\n/g, '<br>')}</div>
+
+    <div class="dc-section dc-open" id="dc-desc">
+      <button class="dc-section-toggle" onclick="toggleDcSection('dc-desc')">
+        <span>📋 Problem Description</span>
+        <span class="dc-chevron">▼</span>
+      </button>
+      <div class="dc-section-body">
+        <div class="deep-challenge-body">${challenge.description.replace(/\n/g, '<br>')}</div>
+      </div>
+    </div>
+
     ${hintsHtml}
     ${testcasesHtml}
-    <div class="deep-self-check">
-      <p>✍ Implement this in your IDE or below, then mark as complete when done.</p>
-      <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">✓ Mark as Completed</button>
+
+    <div class="dc-section dc-open" id="dc-submit">
+      <button class="dc-section-toggle" onclick="toggleDcSection('dc-submit')">
+        <span>✍ Submit</span>
+        <span class="dc-chevron">▼</span>
+      </button>
+      <div class="dc-section-body">
+        <div class="deep-self-check">
+          <p>Implement this in your IDE or in the editor below, then mark as complete when done.</p>
+          <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">✓ Mark as Completed</button>
+        </div>
+      </div>
     </div>
   `;
 
@@ -2313,6 +2350,15 @@ function markDeepChallengeDone(id) {
   saveChallengePassed(id);
   const btn = document.querySelector(`button[onclick="markDeepChallengeDone('${id}')"]`);
   if (btn) { btn.textContent = '✓ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
+}
+
+function toggleDcSection(id) {
+  const section = document.getElementById(id);
+  if (!section) return;
+  const isOpen = section.classList.contains('dc-open');
+  section.classList.toggle('dc-open', !isOpen);
+  const chevron = section.querySelector('.dc-chevron');
+  if (chevron) chevron.style.transform = isOpen ? 'rotate(-90deg)' : 'rotate(0deg)';
 }
 
 function initPracticeLab() {
