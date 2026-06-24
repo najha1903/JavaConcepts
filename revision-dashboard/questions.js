@@ -115,12 +115,12 @@ const QUESTIONS_BANK = {
       "topic": "Hello World",
       "question": "Which statement best describes Hello World?",
       "options": [
-        "void",
-        "Java is a compiled and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform.",
+        "null",
         "Object",
-        "null"
+        "Java is a compiled and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform.",
+        "void"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Hello World.",
       "tags": []
     },
@@ -132,12 +132,12 @@ const QUESTIONS_BANK = {
       "topic": "Hello World",
       "question": "Complete the blank: \"Java is a ___ and interpreted language. You write source code (.java), the compiler turns it into bytecode (.class), and the JVM (Java Virtual Machine) runs the bytecode on any platform.\"",
       "options": [
-        "Integer",
-        "String",
         "Object",
-        "compiled"
+        "compiled",
+        "String",
+        "Integer"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "The missing word is 'compiled', from the notes for Hello World.",
       "tags": []
     }
@@ -204,9 +204,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
       "question": "What does this code print?",
-      "code": "        System.out.println(\"MyString is equal to \" + myString);\r",
+      "code": "// @quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(a + b + c);",
       "answer": [
-        "MyString is equal to "
+        "Navneet"
       ],
       "explanation": "The output comes directly from the string literal in the println call.",
       "tags": [
@@ -278,6 +278,165 @@ const QUESTIONS_BANK = {
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
     },
     {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(a + b + c);",
+      "modelAnswer": "Output: 30Navneet Java evaluates + left to right: (a + b) is done first (both ints) giving 30, then 30 + \"Navneet\" triggers String concatenation giving \"30Navneet\". KEY RULE: if both operands of + are numeric, it is arithmetic. Once one operand is a String, + becomes concatenation for the rest of the expression.",
+      "keyPoints": [
+        "Output: 30Navneet",
+        "Java evaluates + left to right: (a + b) is done first (both ints) giving 30, then 30 + \"Navneet\" triggers String concatenation giving \"30Navneet\".",
+        "KEY RULE: if both operands of + are numeric, it is arithmetic. Once one operand is a String, + becomes concatenation for the rest of the expression."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(c + a + b);",
+      "modelAnswer": "Output: Navneet1020 Java evaluates + left to right: c+\"Navneet\" + a=10 gives \"Navneet10\", then \"Navneet10\" + b=20 gives \"Navneet1020\". Once the first operand is a String, ALL subsequent + operations become string concatenation — even int + int after it.",
+      "keyPoints": [
+        "Output: Navneet1020",
+        "Java evaluates + left to right: c+\"Navneet\" + a=10 gives \"Navneet10\", then \"Navneet10\" + b=20 gives \"Navneet1020\".",
+        "Once the first operand is a String, ALL subsequent + operations become string concatenation — even int + int after it."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Result: \" + 1 + 2);",
+      "modelAnswer": "Output: Result: 12 (NOT Result: 3) Because + is left-to-right: \"Result: \" + 1 = \"Result: 1\", then \"Result: 1\" + 2 = \"Result: 12\". Both additions become concatenation once a String is involved. To get \"Result: 3\", use parentheses: \"Result: \" + (1 + 2). Parentheses force arithmetic first.",
+      "keyPoints": [
+        "Output: Result: 12 (NOT Result: 3)",
+        "Because + is left-to-right: \"Result: \" + 1 = \"Result: 1\", then \"Result: 1\" + 2 = \"Result: 12\". Both additions become concatenation once a String is involved.",
+        "To get \"Result: 3\", use parentheses: \"Result: \" + (1 + 2). Parentheses force arithmetic first."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) What is the output of: System.out.println(1 + 2 + \"Result\");",
+      "modelAnswer": "Output: 3Result Java evaluates left to right: 1 + 2 = 3 (both ints, arithmetic), then 3 + \"Result\" = \"3Result\" (String concat). Contrast: \"Result\" + 1 + 2 = \"Result12\". Order matters!",
+      "keyPoints": [
+        "Output: 3Result",
+        "Java evaluates left to right: 1 + 2 = 3 (both ints, arithmetic), then 3 + \"Result\" = \"3Result\" (String concat).",
+        "Contrast: \"Result\" + 1 + 2 = \"Result12\". Order matters!"
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Value: \" + (10 + 20) + \" done\");",
+      "modelAnswer": "Output: Value: 30 done Parentheses (10 + 20) are evaluated first as arithmetic giving 30. Then \"Value: \" + 30 = \"Value: 30\", then + \" done\" = \"Value: 30 done\".",
+      "keyPoints": [
+        "Output: Value: 30 done",
+        "Parentheses (10 + 20) are evaluated first as arithmetic giving 30. Then \"Value: \" + 30 = \"Value: 30\", then + \" done\" = \"Value: 30 done\"."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) What is the output of: char ch = 'A'; System.out.println(ch + 1);",
+      "modelAnswer": "Output: 66 (NOT A1) char in arithmetic context is treated as its Unicode/ASCII integer value. 'A' = 65. 65 + 1 = 66. Result is int 66, not a String. To get \"A1\", use: \"\" + ch + 1 OR String.valueOf(ch) + 1. Adding an empty String \"\" forces concatenation.",
+      "keyPoints": [
+        "Output: 66 (NOT A1)",
+        "char in arithmetic context is treated as its Unicode/ASCII integer value. 'A' = 65. 65 + 1 = 66. Result is int 66, not a String.",
+        "To get \"A1\", use: \"\" + ch + 1 OR String.valueOf(ch) + 1. Adding an empty String \"\" forces concatenation."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview"
+      ],
+      "question": "(INTERVIEW) How do you find the length of a String WITHOUT using the built-in .length() method?",
+      "modelAnswer": "Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length. Another approach: convert to char array and use array.length — but that internally calls length anyway. Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally.",
+      "keyPoints": [
+        "Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length.",
+        "Another approach: convert to char array and use array.length — but that internally calls length anyway.",
+        "Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview"
+      ],
+      "question": "(INTERVIEW) What is the output of: String s = \"Java\"; s.concat(\" is fun\"); System.out.println(s);",
+      "modelAnswer": "Output: Java Strings are immutable. concat() returns a NEW String but does NOT modify s. Since the return value is ignored, s is still \"Java\". Fix: s = s.concat(\" is fun\"); — you must assign the result back.",
+      "keyPoints": [
+        "Output: Java",
+        "Strings are immutable. concat() returns a NEW String but does NOT modify s. Since the return value is ignored, s is still \"Java\".",
+        "Fix: s = s.concat(\" is fun\"); — you must assign the result back."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "String Example",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) int a=5; What is the output of: System.out.println(\"\" + a + a);",
+      "modelAnswer": "Output: 55 (NOT 10) \"\" is an empty String. \"\" + a = \"5\" (String), then \"5\" + a = \"55\". Not arithmetic because the first operand is a String. To add them arithmetically: System.out.println(a + a + \"\") = \"10\"",
+      "keyPoints": [
+        "Output: 55 (NOT 10)",
+        "\"\" is an empty String. \"\" + a = \"5\" (String), then \"5\" + a = \"55\". Not arithmetic because the first operand is a String.",
+        "To add them arithmetically: System.out.println(a + a + \"\") = \"10\""
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
       "type": "scq",
       "qid": "chapter-2-primitive-types_string-example_concept-scq_5",
       "difficulty": "easy",
@@ -286,11 +445,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes String Example?",
       "options": [
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "LOCAL VARIABLE SCOPE EXAMPLES"
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for String Example.",
       "tags": []
     },
@@ -302,16 +461,16 @@ const QUESTIONS_BANK = {
       "topic": "String Example",
       "question": "Which of the following are TRUE about String Example? Select all that apply.",
       "options": [
-        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
         "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").",
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
-        "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
+        "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for String Example.",
       "tags": []
@@ -325,8 +484,8 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.\"",
       "options": [
         "SCOPE",
-        "Variables",
         "LOCAL",
+        "Variables",
         "String"
       ],
       "answer": 3,
@@ -341,9 +500,9 @@ const QUESTIONS_BANK = {
       "topic": "String Example",
       "question": "What is an important consideration when working with String Example?",
       "options": [
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
         "LOCAL VARIABLE SCOPE EXAMPLES",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects."
       ],
       "answer": 3,
@@ -446,9 +605,9 @@ const QUESTIONS_BANK = {
       "topic": "Local Variables And Scope",
       "question": "Which statement best describes Local Variables And Scope?",
       "options": [
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
       "answer": 3,
@@ -463,16 +622,16 @@ const QUESTIONS_BANK = {
       "topic": "Local Variables And Scope",
       "question": "Which of the following are TRUE about Local Variables And Scope? Select all that apply.",
       "options": [
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
-        "LOCAL VARIABLE SCOPE EXAMPLES",
         "Variables declared inside the for loop init section are local to the loop only.",
-        "--- FOR LOOP SCOPE ---"
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "--- FOR LOOP SCOPE ---",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
+        1,
         2,
-        3,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Local Variables And Scope.",
       "tags": []
@@ -485,10 +644,10 @@ const QUESTIONS_BANK = {
       "topic": "Local Variables And Scope",
       "question": "Complete the blank: \"___ VARIABLE SCOPE EXAMPLES\"",
       "options": [
-        "sequence",
+        "Contrast",
         "LOCAL",
-        "String",
-        "Contrast"
+        "sequence",
+        "String"
       ],
       "answer": 1,
       "explanation": "The missing word is 'LOCAL', from the notes for Local Variables And Scope.",
@@ -590,12 +749,12 @@ const QUESTIONS_BANK = {
       "topic": "Variables",
       "question": "Which statement best describes Variables?",
       "options": [
-        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "LOCAL VARIABLE SCOPE EXAMPLES",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
+        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Variables.",
       "tags": []
     },
@@ -608,15 +767,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Variables? Select all that apply.",
       "options": [
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "LOCAL VARIABLE SCOPE EXAMPLES",
         "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "As the name suggests, a variable's value can vary — it can be updated or reassigned after it is first set.",
         "To declare a variable in Java, you must specify: (1) the data type, (2) a name (identifier), and optionally (3) an initial value.",
-        "As the name suggests, a variable's value can vary — it can be updated or reassigned after it is first set."
+        "LOCAL VARIABLE SCOPE EXAMPLES"
       ],
       "answer": [
+        1,
         2,
-        3,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Variables.",
       "tags": []
@@ -630,11 +789,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"A ___ is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.\"",
       "options": [
         "sequence",
-        "variable",
         "Contrast",
+        "variable",
         "String"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'variable', from the notes for Variables.",
       "tags": []
     },
@@ -734,12 +893,12 @@ const QUESTIONS_BANK = {
       "topic": "Key Words And Expressions In Java",
       "question": "Which statement best describes Key Words And Expressions In Java?",
       "options": [
-        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "LOCAL VARIABLE SCOPE EXAMPLES",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "LOCAL VARIABLE SCOPE EXAMPLES"
+        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Key Words And Expressions In Java.",
       "tags": []
     },
@@ -752,15 +911,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Key Words And Expressions In Java? Select all that apply.",
       "options": [
         "An expression in Java is any combination of variables, literals, operators, and method calls that evaluates to a single value.",
-        "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "LOCAL VARIABLE SCOPE EXAMPLES"
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null."
       ],
       "answer": [
         0,
         1,
-        3
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Key Words And Expressions In Java.",
       "tags": []
@@ -773,12 +932,12 @@ const QUESTIONS_BANK = {
       "topic": "Key Words And Expressions In Java",
       "question": "Complete the blank: \"___ are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.\"",
       "options": [
-        "Keywords",
-        "sequence",
+        "Contrast",
         "String",
-        "Contrast"
+        "Keywords",
+        "sequence"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'Keywords', from the notes for Key Words And Expressions In Java.",
       "tags": []
     },
@@ -790,12 +949,12 @@ const QUESTIONS_BANK = {
       "topic": "Key Words And Expressions In Java",
       "question": "What is an important consideration when working with Key Words And Expressions In Java?",
       "options": [
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.",
-        "LOCAL VARIABLE SCOPE EXAMPLES"
+        "LOCAL VARIABLE SCOPE EXAMPLES",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "This is a key gotcha or note taken directly from the source for Key Words And Expressions In Java.",
       "tags": []
     },
@@ -895,10 +1054,10 @@ const QUESTIONS_BANK = {
       "topic": "Primitive Data Types",
       "question": "Which statement best describes Primitive Data Types?",
       "options": [
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "LOCAL VARIABLE SCOPE EXAMPLES",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": 2,
       "explanation": "This is drawn directly from the notes for Primitive Data Types.",
@@ -912,10 +1071,10 @@ const QUESTIONS_BANK = {
       "topic": "Primitive Data Types",
       "question": "Which of the following are TRUE about Primitive Data Types? Select all that apply.",
       "options": [
-        "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
+        "The 8 Primitive Types:",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "LOCAL VARIABLE SCOPE EXAMPLES",
-        "The 8 Primitive Types:",
+        "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
         "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient."
       ],
       "answer": [
@@ -934,9 +1093,9 @@ const QUESTIONS_BANK = {
       "topic": "Primitive Data Types",
       "question": "Complete the blank: \"Java has ___ 8 primitive data types — these are the most fundamental building blocks for storing data.\"",
       "options": [
-        "sequence",
-        "String",
         "Contrast",
+        "String",
+        "sequence",
         "exactly"
       ],
       "answer": 3,
@@ -951,12 +1110,12 @@ const QUESTIONS_BANK = {
       "topic": "Primitive Data Types",
       "question": "What is an important consideration when working with Primitive Data Types?",
       "options": [
-        "Type     | Width  | Range / Notes boolean  | 1 bit  | Only two values: true or false byte     | 8 bits | -128 to 127 short    | 16 bits| -32,768 to 32,767 char     | 16 bits| A single Unicode character — written in single quotes: 'A' int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
+        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "LOCAL VARIABLE SCOPE EXAMPLES",
-        "A variable is a named storage location in your computer's memory that holds a value. You give it a name so you can refer to and change that value throughout your program."
+        "Type     | Width  | Range / Notes boolean  | 1 bit  | Only two values: true or false byte     | 8 bits | -128 to 127 short    | 16 bits| -32,768 to 32,767 char     | 16 bits| A single Unicode character — written in single quotes: 'A' int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "This is a key gotcha or note taken directly from the source for Primitive Data Types.",
       "tags": []
     },
@@ -1095,9 +1254,9 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
       "question": "What does this code print?",
-      "code": "System.out.println(\"Operators - Operators Operands Expressions\");",
+      "code": "// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
       "answer": [
-        "Operators - Operators Operands Expressions"
+        "Java"
       ],
       "explanation": "The output comes directly from the string literal in the println call.",
       "tags": [
@@ -1111,16 +1270,84 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
       "question": "Explain the main ideas in Operators Operands Expressions.",
-      "modelAnswer": "Summary of Operators 1) Operator --> (+) plus operator Always be aware of scope, type constraints, and compiler rules in this area.",
+      "modelAnswer": "Summary of Operators 1) Operator --> (+) plus operator @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
       "keyPoints": [
         "Summary of Operators",
         "1) Operator --> (+) plus operator",
-        "Always be aware of scope, type constraints, and compiler rules in this area."
+        "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");"
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly.",
       "tags": [
         "interview"
       ]
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
+      "modelAnswer": "Output: 30Java + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).",
+      "keyPoints": [
+        "Output: 30Java",
+        "+ is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat)."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);",
+      "modelAnswer": "Output: Java1020 (NOT Java30) \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.",
+      "keyPoints": [
+        "Output: Java1020 (NOT Java30)",
+        "\"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "interview",
+        "tricky"
+      ],
+      "question": "(INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));",
+      "modelAnswer": "Output: Java30 Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\". This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.",
+      "keyPoints": [
+        "Output: Java30",
+        "Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".",
+        "This is the FIX when you want arithmetic inside a String expression: wrap with parentheses."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
+    },
+    {
+      "type": "interview",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "interview"
+      ],
+      "question": "(INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?",
+      "modelAnswer": "Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression. Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.",
+      "keyPoints": [
+        "Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.",
+        "Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations."
+      ],
+      "explanation": "This question was authored directly in the source file using @quiz/@answer markers."
     },
     {
       "type": "scq",
@@ -1131,9 +1358,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Operators Operands Expressions?",
       "options": [
         "Summary of Operators",
+        "Object",
         "null",
-        "OPERATOR CHALLENGE",
-        "Object"
+        "OPERATOR CHALLENGE"
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Operators Operands Expressions.",
@@ -1148,14 +1375,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Operators Operands Expressions? Select all that apply.",
       "options": [
         "1) Operator --> (+) plus operator",
-        "For Numeric types --> Addition",
         "Summary of Operators",
-        "OPERATOR CHALLENGE"
+        "OPERATOR CHALLENGE",
+        "For Numeric types --> Addition"
       ],
       "answer": [
         0,
         1,
-        2
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Operators Operands Expressions.",
       "tags": []
@@ -1168,12 +1395,12 @@ const QUESTIONS_BANK = {
       "topic": "Operators Operands Expressions",
       "question": "Complete the blank: \"___ of Operators\"",
       "options": [
+        "Create",
         "OPERATOR",
-        "Summary",
         "second",
-        "Create"
+        "Summary"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Summary', from the notes for Operators Operands Expressions.",
       "tags": []
     },
@@ -1254,11 +1481,11 @@ const QUESTIONS_BANK = {
       "chapter": "Chapter 3: Operators",
       "topic": "Operator Challenge",
       "question": "Explain the main ideas in Operator Challenge.",
-      "modelAnswer": "OPERATOR CHALLENGE 1. Create a double variable with a value of 20.00 Always be aware of scope, type constraints, and compiler rules in this area.",
+      "modelAnswer": "OPERATOR CHALLENGE 1. Create a double variable with a value of 20.00 @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
       "keyPoints": [
         "OPERATOR CHALLENGE",
         "1. Create a double variable with a value of 20.00",
-        "Always be aware of scope, type constraints, and compiler rules in this area."
+        "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");"
       ],
       "explanation": "Use the source comments and code structure to summarize the topic clearly.",
       "tags": [
@@ -1274,9 +1501,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Operator Challenge?",
       "options": [
         "OPERATOR CHALLENGE",
-        "Object",
         "Summary of Operators",
-        "null"
+        "null",
+        "Object"
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Operator Challenge.",
@@ -1290,14 +1517,14 @@ const QUESTIONS_BANK = {
       "topic": "Operator Challenge",
       "question": "Which of the following are TRUE about Operator Challenge? Select all that apply.",
       "options": [
-        "Summary of Operators",
         "1. Create a double variable with a value of 20.00",
         "2. Create a second variable of type double with the value 80.00",
+        "Summary of Operators",
         "OPERATOR CHALLENGE"
       ],
       "answer": [
+        0,
         1,
-        2,
         3
       ],
       "explanation": "The true statements are taken directly from the notes for Operator Challenge.",
@@ -1312,11 +1539,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ CHALLENGE\"",
       "options": [
         "Operator",
-        "OPERATOR",
         "Numeric",
-        "Summary"
+        "Summary",
+        "OPERATOR"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'OPERATOR', from the notes for Operator Challenge.",
       "tags": []
     },
@@ -1454,10 +1681,10 @@ const QUESTIONS_BANK = {
       "topic": "Statements White Space And Indentation",
       "question": "Which statement best describes Statements White Space And Indentation?",
       "options": [
-        "void",
-        "A Java statement is a complete unit of execution. Most statements end with a semicolon (;).",
         "Object",
-        "null"
+        "A Java statement is a complete unit of execution. Most statements end with a semicolon (;).",
+        "null",
+        "void"
       ],
       "answer": 1,
       "explanation": "This is drawn directly from the notes for Statements White Space And Indentation.",
@@ -1471,12 +1698,12 @@ const QUESTIONS_BANK = {
       "topic": "Statements White Space And Indentation",
       "question": "Complete the blank: \"A Java ___ is a complete unit of execution. Most statements end with a semicolon (;).\"",
       "options": [
-        "Object",
         "statement",
         "Integer",
-        "String"
+        "String",
+        "Object"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The missing word is 'statement', from the notes for Statements White Space And Indentation.",
       "tags": []
     },
@@ -1596,12 +1823,12 @@ const QUESTIONS_BANK = {
       "topic": "If Example",
       "question": "Which statement best describes If Example?",
       "options": [
-        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
         "Object",
-        "Ternary Operator Example :-",
-        "null"
+        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
+        "null",
+        "Ternary Operator Example :-"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for If Example.",
       "tags": []
     },
@@ -1613,13 +1840,13 @@ const QUESTIONS_BANK = {
       "topic": "If Example",
       "question": "Which of the following are TRUE about If Example? Select all that apply.",
       "options": [
+        "Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true.",
         "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
-        "Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.",
         "Ternary Operator Example :-",
-        "Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true."
+        "Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false."
       ],
       "answer": [
-        1,
+        0,
         2,
         3
       ],
@@ -1634,9 +1861,9 @@ const QUESTIONS_BANK = {
       "topic": "If Example",
       "question": "Complete the blank: \"___ Operator Example :-\"",
       "options": [
-        "ifelse",
         "Structure",
         "block",
+        "ifelse",
         "Ternary"
       ],
       "answer": 3,
@@ -1653,10 +1880,10 @@ const QUESTIONS_BANK = {
       "options": [
         "Always initialize variables before use.",
         "Be careful with null references.",
-        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
-        "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if."
+        "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.",
+        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch."
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for If Example.",
       "tags": []
     },
@@ -1757,8 +1984,8 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Code Blocks If Then Else?",
       "options": [
         "Object",
-        "Ternary Operator Example :-",
         "null",
+        "Ternary Operator Example :-",
         "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch."
       ],
       "answer": 3,
@@ -1773,14 +2000,14 @@ const QUESTIONS_BANK = {
       "topic": "Code Blocks If Then Else",
       "question": "Which of the following are TRUE about Code Blocks If Then Else? Select all that apply.",
       "options": [
-        "The 'else' block is the fallback — it runs only when ALL preceding conditions are false.",
-        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
+        "Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }",
         "Ternary Operator Example :-",
-        "Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }"
+        "The 'else' block is the fallback — it runs only when ALL preceding conditions are false.",
+        "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch."
       ],
       "answer": [
         0,
-        1,
+        2,
         3
       ],
       "explanation": "The true statements are taken directly from the notes for Code Blocks If Then Else.",
@@ -1794,12 +2021,12 @@ const QUESTIONS_BANK = {
       "topic": "Code Blocks If Then Else",
       "question": "Complete the blank: \"___: if(condition1) { ... } else if(condition2) { ... } else { ... }\"",
       "options": [
-        "value",
         "Structure",
         "Ternary",
-        "Operand"
+        "Operand",
+        "value"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The missing word is 'Structure', from the notes for Code Blocks If Then Else.",
       "tags": []
     },
@@ -1919,10 +2146,10 @@ const QUESTIONS_BANK = {
       "topic": "Methods In Java",
       "question": "Which statement best describes Methods In Java?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method named area with one double parameter named radius.",
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method named area with one double parameter named radius."
       ],
       "answer": 1,
       "explanation": "This is drawn directly from the notes for Methods In Java.",
@@ -1937,14 +2164,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Methods In Java? Select all that apply.",
       "options": [
         "Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }",
+        "Write a method named area with one double parameter named radius.",
         "Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method named area with one double parameter named radius."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
       "answer": [
         0,
-        1,
+        2,
         3
       ],
       "explanation": "The true statements are taken directly from the notes for Methods In Java.",
@@ -1958,12 +2185,12 @@ const QUESTIONS_BANK = {
       "topic": "Methods In Java",
       "question": "Complete the blank: \"A ___ is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.\"",
       "options": [
-        "parameter",
         "method",
+        "Write",
         "needs",
-        "Write"
+        "parameter"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The missing word is 'method', from the notes for Methods In Java.",
       "tags": []
     },
@@ -2082,8 +2309,8 @@ const QUESTIONS_BANK = {
       "options": [
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method named area with one double parameter named radius.",
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double."
       ],
       "answer": 1,
       "explanation": "This is drawn directly from the notes for Area Calculator Coding Challenge.",
@@ -2097,16 +2324,16 @@ const QUESTIONS_BANK = {
       "topic": "Area Calculator Coding Challenge",
       "question": "Which of the following are TRUE about Area Calculator Coding Challenge? Select all that apply.",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "If the parameter radius is negative then return -1.0 to represent an invalid value.",
         "The method needs to return a double value that represents the area of a circle.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "If the parameter radius is negative then return -1.0 to represent an invalid value.",
-        "Write a method named area with one double parameter named radius."
+        "Write a method named area with one double parameter named radius.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Area Calculator Coding Challenge.",
       "tags": []
@@ -2120,11 +2347,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ a method named area with one double parameter named radius.\"",
       "options": [
         "Method",
-        "Write",
         "method",
-        "Methods"
+        "Methods",
+        "Write"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Write', from the notes for Area Calculator Coding Challenge.",
       "tags": []
     },
@@ -2153,9 +2380,9 @@ const QUESTIONS_BANK = {
       "topic": "Area Calculator Coding Challenge",
       "question": "In AreaCalculatorCodingChallenge.java, what does the method area() return?",
       "options": [
-        "void",
         "int",
         "String",
+        "void",
         "double"
       ],
       "answer": 3,
@@ -2258,12 +2485,12 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "Which statement best describes Barking Dog Coding Challenge?",
       "options": [
-        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method areEqualByThreeDecimalPlaces with two parameters of type double."
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Barking Dog Coding Challenge.",
       "tags": []
     },
@@ -2275,16 +2502,16 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "Which of the following are TRUE about Barking Dog Coding Challenge? Select all that apply.",
       "options": [
+        "Write a method shouldWakeUp that has 2 parameters.",
         "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "1st parameter should be of type boolean and be named barking it represents if our dog is currently barking.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method shouldWakeUp that has 2 parameters."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Barking Dog Coding Challenge.",
       "tags": []
@@ -2298,11 +2525,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"We have a dog that ___ to bark.  We need to wake up if the dog is barking at night!\"",
       "options": [
         "method",
-        "Methods",
         "likes",
+        "Methods",
         "Method"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The missing word is 'likes', from the notes for Barking Dog Coding Challenge.",
       "tags": []
     },
@@ -2314,12 +2541,12 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "What is an important consideration when working with Barking Dog Coding Challenge?",
       "options": [
-        "NOTE: The shouldWakeUp method  needs to be defined as public static like we have been doing so far in the course.",
         "Write a method named area with one double parameter named radius.",
         "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
+        "NOTE: The shouldWakeUp method  needs to be defined as public static like we have been doing so far in the course.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Barking Dog Coding Challenge.",
       "tags": []
     },
@@ -2331,12 +2558,12 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "In BarkingDogCodingChallenge.java, what does the method shouldWakeUp() return?",
       "options": [
-        "void",
+        "String",
         "int",
-        "boolean",
-        "String"
+        "void",
+        "boolean"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The method shouldWakeUp() is declared with return type 'boolean' in BarkingDogCodingChallenge.java.",
       "tags": []
     },
@@ -2454,10 +2681,10 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Decimal Comparator Coding Challenge? Select all that apply.",
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "The method should return boolean and it needs to return true if two double numbers are the same up to three decimal places. Otherwise, return false.",
-        "Write a method named area with one double parameter named radius.",
         "Write a method areEqualByThreeDecimalPlaces with two parameters of type double.",
-        "EXAMPLES OF INPUT/OUTPUT:"
+        "Write a method named area with one double parameter named radius.",
+        "EXAMPLES OF INPUT/OUTPUT:",
+        "The method should return boolean and it needs to return true if two double numbers are the same up to three decimal places. Otherwise, return false."
       ],
       "answer": [
         1,
@@ -2475,12 +2702,12 @@ const QUESTIONS_BANK = {
       "topic": "Decimal Comparator Coding Challenge",
       "question": "Complete the blank: \"___ a method areEqualByThreeDecimalPlaces with two parameters of type double.\"",
       "options": [
+        "Write",
         "Method",
-        "Methods",
         "method",
-        "Write"
+        "Methods"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'Write', from the notes for Decimal Comparator Coding Challenge.",
       "tags": []
     },
@@ -2492,10 +2719,10 @@ const QUESTIONS_BANK = {
       "topic": "Decimal Comparator Coding Challenge",
       "question": "What is an important consideration when working with Decimal Comparator Coding Challenge?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "NOTE: The areEqualByThreeDecimalPlaces method  needs to be defined as public static like we have been doing so far in the course.",
         "Write a method named area with one double parameter named radius.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
       "answer": 1,
       "explanation": "This is a key gotcha or note taken directly from the source for Decimal Comparator Coding Challenge.",
@@ -2509,12 +2736,12 @@ const QUESTIONS_BANK = {
       "topic": "Decimal Comparator Coding Challenge",
       "question": "In DecimalComparatorCodingChallenge.java, what does the method areEqualByThreeDecimalPlaces() return?",
       "options": [
-        "boolean",
-        "int",
+        "String",
         "void",
-        "String"
+        "boolean",
+        "int"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The method areEqualByThreeDecimalPlaces() is declared with return type 'boolean' in DecimalComparatorCodingChallenge.java.",
       "tags": []
     },
@@ -2631,16 +2858,16 @@ const QUESTIONS_BANK = {
       "topic": "Equality Printer Coding Challenge",
       "question": "Which of the following are TRUE about Equality Printer Coding Challenge? Select all that apply.",
       "options": [
-        "If one of the parameters is less than 0, print text \"Invalid Value\".",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method printEqual with 3 parameters of type int. The method should not return anything (void).",
         "If all numbers are equal print text \"All numbers are equal\"",
-        "Write a method named area with one double parameter named radius."
+        "If one of the parameters is less than 0, print text \"Invalid Value\".",
+        "Write a method named area with one double parameter named radius.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method printEqual with 3 parameters of type int. The method should not return anything (void)."
       ],
       "answer": [
         0,
-        2,
-        3
+        1,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Equality Printer Coding Challenge.",
       "tags": []
@@ -2653,12 +2880,12 @@ const QUESTIONS_BANK = {
       "topic": "Equality Printer Coding Challenge",
       "question": "Complete the blank: \"___ a method printEqual with 3 parameters of type int. The method should not return anything (void).\"",
       "options": [
+        "Write",
         "Method",
         "Methods",
-        "method",
-        "Write"
+        "method"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'Write', from the notes for Equality Printer Coding Challenge.",
       "tags": []
     },
@@ -2672,10 +2899,10 @@ const QUESTIONS_BANK = {
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "Write a method named area with one double parameter named radius.",
-        "TIP: Be extremely careful about spaces in the printed message."
+        "TIP: Be extremely careful about spaces in the printed message.",
+        "Write a method named area with one double parameter named radius."
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Equality Printer Coding Challenge.",
       "tags": []
     },
@@ -2775,12 +3002,12 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "Which statement best describes Equal Sum Checker Coding Challenge?",
       "options": [
-        "Write a method named area with one double parameter named radius.",
         "Write a method hasEqualSum with 3 parameters of type int.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Equal Sum Checker Coding Challenge.",
       "tags": []
     },
@@ -2792,11 +3019,11 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "Which of the following are TRUE about Equal Sum Checker Coding Challenge? Select all that apply.",
       "options": [
-        "The method should return boolean and it needs to return true if the sum of the first and second parameter is equal to the third parameter. Otherwise, return false.",
+        "Write a method hasEqualSum with 3 parameters of type int.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method named area with one double parameter named radius.",
-        "EXAMPLES OF INPUT/OUTPUT:",
-        "Write a method hasEqualSum with 3 parameters of type int."
+        "The method should return boolean and it needs to return true if the sum of the first and second parameter is equal to the third parameter. Otherwise, return false.",
+        "EXAMPLES OF INPUT/OUTPUT:"
       ],
       "answer": [
         0,
@@ -2814,8 +3041,8 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "Complete the blank: \"___ a method hasEqualSum with 3 parameters of type int.\"",
       "options": [
-        "method",
         "Method",
+        "method",
         "Methods",
         "Write"
       ],
@@ -2831,12 +3058,12 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "What is an important consideration when working with Equal Sum Checker Coding Challenge?",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "NOTE: The hasEqualSum method  needs to be defined as public static like we have been doing so far in the course.",
-        "Write a method named area with one double parameter named radius."
+        "Write a method named area with one double parameter named radius.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "NOTE: The hasEqualSum method  needs to be defined as public static like we have been doing so far in the course."
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "This is a key gotcha or note taken directly from the source for Equal Sum Checker Coding Challenge.",
       "tags": []
     },
@@ -2848,12 +3075,12 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "In EqualSumCheckerCodingChallenge.java, what does the method hasEqualSum() return?",
       "options": [
+        "int",
         "void",
         "String",
-        "boolean",
-        "int"
+        "boolean"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The method hasEqualSum() is declared with return type 'boolean' in EqualSumCheckerCodingChallenge.java.",
       "tags": []
     },
@@ -2953,9 +3180,9 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Which statement best describes Leap Year Calculator Coding Challenge?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method isLeapYear with a parameter of type int named year."
       ],
       "answer": 3,
@@ -2970,15 +3197,15 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Which of the following are TRUE about Leap Year Calculator Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method isLeapYear with a parameter of type int named year.",
+        "If the parameter is not in that range return false.",
+        "Write a method named area with one double parameter named radius.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "Write a method named area with one double parameter named radius.",
-        "If the parameter is not in that range return false."
+        "Write a method isLeapYear with a parameter of type int named year."
       ],
       "answer": [
         0,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Leap Year Calculator Coding Challenge.",
@@ -2992,12 +3219,12 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Complete the blank: \"___ a method isLeapYear with a parameter of type int named year.\"",
       "options": [
-        "Methods",
-        "Method",
         "method",
-        "Write"
+        "Write",
+        "Method",
+        "Methods"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "The missing word is 'Write', from the notes for Leap Year Calculator Coding Challenge.",
       "tags": []
     },
@@ -3009,12 +3236,12 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "What is an important consideration when working with Leap Year Calculator Coding Challenge?",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "NOTE: The method isLeapYear needs to be defined as public static like we have been doing so far in the course.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method named area with one double parameter named radius.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "This is a key gotcha or note taken directly from the source for Leap Year Calculator Coding Challenge.",
       "tags": []
     },
@@ -3026,12 +3253,12 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "In LeapYearCalculatorCodingChallenge.java, what does the method isLeapYear() return?",
       "options": [
-        "int",
+        "String",
         "void",
-        "boolean",
-        "String"
+        "int",
+        "boolean"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The method isLeapYear() is declared with return type 'boolean' in LeapYearCalculatorCodingChallenge.java.",
       "tags": []
     },
@@ -3131,12 +3358,12 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "Which statement best describes Mega Bytes Converter Coding Challenge?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Write a method named area with one double parameter named radius.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Mega Bytes Converter Coding Challenge.",
       "tags": []
     },
@@ -3148,15 +3375,15 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "Which of the following are TRUE about Mega Bytes Converter Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method named area with one double parameter named radius.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Then it needs to print a message in the format \"XX KB = YY MB and ZZ KB\".",
         "Write a method called printMegaBytesAndKiloBytes that has 1 parameter of type int with the name kiloBytes.",
-        "The method should not return anything (void) and it needs to calculate the megabytes and remaining kilobytes from the kilobytes parameter.",
-        "Then it needs to print a message in the format \"XX KB = YY MB and ZZ KB\"."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method named area with one double parameter named radius.",
+        "The method should not return anything (void) and it needs to calculate the megabytes and remaining kilobytes from the kilobytes parameter."
       ],
       "answer": [
-        2,
-        3,
+        0,
+        1,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Mega Bytes Converter Coding Challenge.",
@@ -3172,10 +3399,10 @@ const QUESTIONS_BANK = {
       "options": [
         "Methods",
         "Method",
-        "Write",
-        "method"
+        "method",
+        "Write"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The missing word is 'Write', from the notes for Mega Bytes Converter Coding Challenge.",
       "tags": []
     },
@@ -3187,12 +3414,12 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "What is an important consideration when working with Mega Bytes Converter Coding Challenge?",
       "options": [
-        "TIP: Be extremely careful about spaces in the printed message.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "TIP: Be extremely careful about spaces in the printed message.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Mega Bytes Converter Coding Challenge.",
       "tags": []
     },
@@ -3309,10 +3536,10 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "Which of the following are TRUE about Methods Challenge Problem? Select all that apply.",
       "options": [
-        "Write a method named area with one double parameter named radius.",
-        "You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Create a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table.",
+        "Write a method named area with one double parameter named radius.",
+        "You should display the players name along with a message like \" managed to get into position \" and the position they got and a further message",
         "\" on the high score table \"."
       ],
       "answer": [
@@ -3331,10 +3558,10 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "Complete the blank: \"___ a method called displayHighScorePosition. It should have player's name as a parameter, and a 2nd parameter as a position in the high score table.\"",
       "options": [
-        "Methods",
         "Method",
+        "method",
         "Create",
-        "method"
+        "Methods"
       ],
       "answer": 2,
       "explanation": "The missing word is 'Create', from the notes for Methods Challenge Problem.",
@@ -3348,12 +3575,12 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "In MethodsChallengeProblem.java, what does the method calculateHighScorePosition() return?",
       "options": [
-        "int",
-        "boolean",
         "void",
-        "String"
+        "String",
+        "int",
+        "boolean"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The method calculateHighScorePosition() is declared with return type 'int' in MethodsChallengeProblem.java.",
       "tags": []
     },
@@ -3454,11 +3681,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Minutes To Years And Days Calculator Coding Challenge?",
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method printYearsAndDays with parameter of type long named minutes.",
         "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "Write a method printYearsAndDays with parameter of type long named minutes."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Minutes To Years And Days Calculator Coding Challenge.",
       "tags": []
     },
@@ -3471,15 +3698,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Minutes To Years And Days Calculator Coding Challenge? Select all that apply.",
       "options": [
         "Write a method printYearsAndDays with parameter of type long named minutes.",
-        "The method should not return anything (void) and it needs to calculate the years and days from the minutes parameter.",
-        "Write a method named area with one double parameter named radius.",
+        "If the parameter is less than 0, print text \"Invalid Value\".",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "If the parameter is less than 0, print text \"Invalid Value\"."
+        "The method should not return anything (void) and it needs to calculate the years and days from the minutes parameter.",
+        "Write a method named area with one double parameter named radius."
       ],
       "answer": [
         0,
         1,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Minutes To Years And Days Calculator Coding Challenge.",
       "tags": []
@@ -3492,12 +3719,12 @@ const QUESTIONS_BANK = {
       "topic": "Minutes To Years And Days Calculator Coding Challenge",
       "question": "Complete the blank: \"___ a method printYearsAndDays with parameter of type long named minutes.\"",
       "options": [
-        "Methods",
+        "Write",
         "Method",
-        "method",
-        "Write"
+        "Methods",
+        "method"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'Write', from the notes for Minutes To Years And Days Calculator Coding Challenge.",
       "tags": []
     },
@@ -3510,11 +3737,11 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Minutes To Years And Days Calculator Coding Challenge?",
       "options": [
         "Write a method named area with one double parameter named radius.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "* Be extra careful about spaces in the printed message.",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "* Be extra careful about spaces in the printed message."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "This is a key gotcha or note taken directly from the source for Minutes To Years And Days Calculator Coding Challenge.",
       "tags": []
     },
@@ -3615,11 +3842,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Playing Cat Coding Challenge?",
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35.",
         "Write a method named area with one double parameter named radius.",
-        "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35."
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Playing Cat Coding Challenge.",
       "tags": []
     },
@@ -3631,16 +3858,16 @@ const QUESTIONS_BANK = {
       "topic": "Playing Cat Coding Challenge",
       "question": "Which of the following are TRUE about Playing Cat Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false",
-        "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35.",
+        "Write a method named area with one double parameter named radius.",
         "1st parameter should be of type boolean and be named summer it represents if it is summer.",
+        "The cats spend most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method named area with one double parameter named radius."
+        "Write a method isCatPlaying that has 2 parameters. Method needs to return true if the cat is playing, otherwise return false"
       ],
       "answer": [
-        0,
         1,
-        2
+        2,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Playing Cat Coding Challenge.",
       "tags": []
@@ -3653,10 +3880,10 @@ const QUESTIONS_BANK = {
       "topic": "Playing Cat Coding Challenge",
       "question": "Complete the blank: \"The cats ___ most of the day playing. In particular, they play if the temperature is between 25 and 35 (inclusive). Unless it is summer, then the upper limit is 45 (inclusive) instead of 35.\"",
       "options": [
-        "Methods",
         "method",
+        "Method",
         "spend",
-        "Method"
+        "Methods"
       ],
       "answer": 2,
       "explanation": "The missing word is 'spend', from the notes for Playing Cat Coding Challenge.",
@@ -3671,11 +3898,11 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Playing Cat Coding Challenge?",
       "options": [
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "NOTES",
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "NOTES",
         "Write a method named area with one double parameter named radius."
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Playing Cat Coding Challenge.",
       "tags": []
     },
@@ -3687,12 +3914,12 @@ const QUESTIONS_BANK = {
       "topic": "Playing Cat Coding Challenge",
       "question": "In PlayingCatCodingChallenge.java, what does the method isCatPlaying() return?",
       "options": [
-        "boolean",
         "void",
         "String",
+        "boolean",
         "int"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The method isCatPlaying() is declared with return type 'boolean' in PlayingCatCodingChallenge.java.",
       "tags": []
     },
@@ -3792,12 +4019,12 @@ const QUESTIONS_BANK = {
       "topic": "Positive Negative Zero Coding Challenge",
       "question": "Which statement best describes Positive Negative Zero Coding Challenge?",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
         "Positive, Negative or Zero",
-        "Write a method named area with one double parameter named radius."
+        "Write a method named area with one double parameter named radius.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Positive Negative Zero Coding Challenge.",
       "tags": []
     },
@@ -3809,16 +4036,16 @@ const QUESTIONS_BANK = {
       "topic": "Positive Negative Zero Coding Challenge",
       "question": "Which of the following are TRUE about Positive Negative Zero Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method called checkNumber with an int parameter named number.",
-        "Positive, Negative or Zero",
-        "Write a method named area with one double parameter named radius.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "The method should not return any value, and it needs to print out:",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "Write a method named area with one double parameter named radius.",
+        "Positive, Negative or Zero",
+        "Write a method called checkNumber with an int parameter named number."
       ],
       "answer": [
-        0,
         1,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Positive Negative Zero Coding Challenge.",
       "tags": []
@@ -3832,8 +4059,8 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___, Negative or Zero\"",
       "options": [
         "Methods",
-        "Method",
         "method",
+        "Method",
         "Positive"
       ],
       "answer": 3,
@@ -3953,16 +4180,16 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "Which of the following are TRUE about Speed Converter Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long.",
+        "Write a method named area with one double parameter named radius.",
         "If the parameter kilometersPerHour is less than 0, the method toMilesPerHour needs to return -1 to indicate an invalid value.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Otherwise, if it is positive, calculate the value of miles per hour, round it and return it. For conversion and rounding, check the notes in the text below.",
-        "Write a method named area with one double parameter named radius."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "Write a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long."
       ],
       "answer": [
-        0,
         1,
-        3
+        2,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Speed Converter Coding Challenge.",
       "tags": []
@@ -3975,12 +4202,12 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "Complete the blank: \"___ a method called toMilesPerHour that has 1 parameter of type double with the name kilometersPerHour. This method needs to return the rounded value of the calculation of type long.\"",
       "options": [
-        "Write",
+        "Method",
         "method",
         "Methods",
-        "Method"
+        "Write"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "The missing word is 'Write', from the notes for Speed Converter Coding Challenge.",
       "tags": []
     },
@@ -3993,11 +4220,11 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Speed Converter Coding Challenge?",
       "options": [
         "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
+        "Write a method named area with one double parameter named radius.",
         "Otherwise, if it is positive, calculate the value of miles per hour, round it and return it. For conversion and rounding, check the notes in the text below.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Write a method named area with one double parameter named radius."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Speed Converter Coding Challenge.",
       "tags": []
     },
@@ -4009,12 +4236,12 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "In SpeedConverterCodingChallenge.java, what does the method toMilesPerHour() return?",
       "options": [
-        "void",
         "int",
-        "long",
-        "String"
+        "String",
+        "void",
+        "long"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The method toMilesPerHour() is declared with return type 'long' in SpeedConverterCodingChallenge.java.",
       "tags": []
     },
@@ -4114,12 +4341,12 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Which statement best describes Teen Number Checker Coding Challenge?",
       "options": [
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
         "Write a method named area with one double parameter named radius.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Teen Number Checker Coding Challenge.",
       "tags": []
     },
@@ -4131,15 +4358,15 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Which of the following are TRUE about Teen Number Checker Coding Challenge? Select all that apply.",
       "options": [
-        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
         "The method should return boolean and it needs to return true if one of the parameters is in range 13(inclusive) - 19 (inclusive). Otherwise return false.",
         "Write a method named area with one double parameter named radius.",
+        "We'll say that a number is \"teen\" if it is in the range 13 -19 (inclusive).",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "Write a method named hasTeen with 3 parameters of type int."
       ],
       "answer": [
         0,
-        1,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Teen Number Checker Coding Challenge.",
@@ -4153,8 +4380,8 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Complete the blank: \"We'll say that a ___ is \"teen\" if it is in the range 13 -19 (inclusive).\"",
       "options": [
-        "method",
         "Method",
+        "method",
         "number",
         "Methods"
       ],
@@ -4170,12 +4397,12 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "What is an important consideration when working with Teen Number Checker Coding Challenge?",
       "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "NOTE: All methods need to be defined as public static like we have been doing so far in the course.",
         "Write a method named area with one double parameter named radius.",
-        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!",
-        "NOTE: All methods need to be defined as public static like we have been doing so far in the course."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "We have a dog that likes to bark.  We need to wake up if the dog is barking at night!"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "This is a key gotcha or note taken directly from the source for Teen Number Checker Coding Challenge.",
       "tags": []
     },
@@ -4189,8 +4416,8 @@ const QUESTIONS_BANK = {
       "options": [
         "boolean",
         "String",
-        "void",
-        "int"
+        "int",
+        "void"
       ],
       "answer": 0,
       "explanation": "The method hasTeen() is declared with return type 'boolean' in TeenNumberCheckerCodingChallenge.java.",
@@ -4332,12 +4559,12 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Which statement best describes Switch Statement In Java?",
       "options": [
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Write a method called printNumberInWord.",
         "Write a method isLeapYear with a parameter of type int named year.",
-        "Write a method called printNumberInWord."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Switch Statement In Java.",
       "tags": []
     },
@@ -4349,16 +4576,16 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Which of the following are TRUE about Switch Statement In Java? Select all that apply.",
       "options": [
-        "Write a method isLeapYear with a parameter of type int named year.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "Write a method isLeapYear with a parameter of type int named year."
       ],
       "answer": [
-        2,
-        3,
-        4
+        0,
+        1,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Switch Statement In Java.",
       "tags": []
@@ -4371,12 +4598,12 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Complete the blank: \"The ___ statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.\"",
       "options": [
-        "switch",
-        "enhanced",
         "Traditional",
-        "arrow"
+        "switch",
+        "arrow",
+        "enhanced"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "The missing word is 'switch', from the notes for Switch Statement In Java.",
       "tags": []
     },
@@ -4388,12 +4615,12 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "In SwitchStatementInJava.java, what does the method getQuarter() return?",
       "options": [
+        "String",
         "void",
         "int",
-        "boolean",
-        "String"
+        "boolean"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The method getQuarter() is declared with return type 'String' in SwitchStatementInJava.java.",
       "tags": []
     },
@@ -4493,12 +4720,12 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "Which statement best describes Enhanced Switch Statement In Java?",
       "options": [
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Write a method isLeapYear with a parameter of type int named year.",
-        "Write a method called printNumberInWord."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "Write a method called printNumberInWord.",
+        "Write a method isLeapYear with a parameter of type int named year."
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Enhanced Switch Statement In Java.",
       "tags": []
     },
@@ -4510,15 +4737,15 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "Which of the following are TRUE about Enhanced Switch Statement In Java? Select all that apply.",
       "options": [
-        "Traditional switch: case 1: ... break;   Enhanced switch: case 1 -> ...",
-        "Write a method isLeapYear with a parameter of type int named year.",
-        "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
+        "Write a method isLeapYear with a parameter of type int named year.",
+        "Traditional switch: case 1: ... break;   Enhanced switch: case 1 -> ...",
+        "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed."
       ],
       "answer": [
         0,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Enhanced Switch Statement In Java.",
@@ -4532,12 +4759,12 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "Complete the blank: \"The ___ (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.\"",
       "options": [
+        "enhanced",
         "Switch",
         "short",
-        "switch",
-        "enhanced"
+        "switch"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'enhanced', from the notes for Enhanced Switch Statement In Java.",
       "tags": []
     },
@@ -4549,10 +4776,10 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "In EnhancedSwitchStatementInJava.java, what does the method getQuarter() return?",
       "options": [
-        "void",
         "int",
+        "boolean",
         "String",
-        "boolean"
+        "void"
       ],
       "answer": 2,
       "explanation": "The method getQuarter() is declared with return type 'String' in EnhancedSwitchStatementInJava.java.",
@@ -4656,8 +4883,8 @@ const QUESTIONS_BANK = {
       "options": [
         "Write a method isLeapYear with a parameter of type int named year.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "Write a method called printNumberInWord."
+        "Write a method called printNumberInWord.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Number Of Days In A Month Coding Challenge.",
@@ -4672,15 +4899,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Number Of Days In A Month Coding Challenge? Select all that apply.",
       "options": [
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "If the parameter is not in that range return false.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Write a method isLeapYear with a parameter of type int named year."
+        "If the parameter is not in that range return false.",
+        "Write a method isLeapYear with a parameter of type int named year.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": [
         0,
-        1,
-        4
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Number Of Days In A Month Coding Challenge.",
       "tags": []
@@ -4693,12 +4920,12 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "Complete the blank: \"___ a method isLeapYear with a parameter of type int named year.\"",
       "options": [
-        "short",
         "switch",
-        "Write",
-        "Switch"
+        "Switch",
+        "short",
+        "Write"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The missing word is 'Write', from the notes for Number Of Days In A Month Coding Challenge.",
       "tags": []
     },
@@ -4710,12 +4937,12 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "What is an important consideration when working with Number Of Days In A Month Coding Challenge?",
       "options": [
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
         "Write a method called printNumberInWord.",
         "NOTE:  The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "This is a key gotcha or note taken directly from the source for Number Of Days In A Month Coding Challenge.",
       "tags": []
     },
@@ -4834,8 +5061,8 @@ const QUESTIONS_BANK = {
       "options": [
         "Write a method called printNumberInWord.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "Write a method isLeapYear with a parameter of type int named year."
+        "Write a method isLeapYear with a parameter of type int named year.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Print Number In A World Coding Challenge.",
@@ -4849,16 +5076,16 @@ const QUESTIONS_BANK = {
       "topic": "Print Number In A World Coding Challenge",
       "question": "Which of the following are TRUE about Print Number In A World Coding Challenge? Select all that apply.",
       "options": [
-        "The method needs to print \"ZERO\", \"ONE\", \"TWO\", ... \"NINE\", \"OTHER\" if the int parameter number is 0, 1, 2, .... 9 or other for any other number including negative numbers.",
         "Write a method called printNumberInWord.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The method has one parameter number which is the whole number."
+        "The method has one parameter number which is the whole number.",
+        "The method needs to print \"ZERO\", \"ONE\", \"TWO\", ... \"NINE\", \"OTHER\" if the int parameter number is 0, 1, 2, .... 9 or other for any other number including negative numbers.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
       "answer": [
         0,
-        1,
-        4
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Print Number In A World Coding Challenge.",
       "tags": []
@@ -4871,10 +5098,10 @@ const QUESTIONS_BANK = {
       "topic": "Print Number In A World Coding Challenge",
       "question": "Complete the blank: \"___ a method called printNumberInWord.\"",
       "options": [
+        "short",
         "Switch",
-        "switch",
         "Write",
-        "short"
+        "switch"
       ],
       "answer": 2,
       "explanation": "The missing word is 'Write', from the notes for Print Number In A World Coding Challenge.",
@@ -4888,12 +5115,12 @@ const QUESTIONS_BANK = {
       "topic": "Print Number In A World Coding Challenge",
       "question": "In PrintNumberInAWorldCodingChallenge.java, what does the method returnNumberInAWordUsingTraditionalSwitch() return?",
       "options": [
-        "String",
-        "boolean",
         "int",
-        "void"
+        "String",
+        "void",
+        "boolean"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "The method returnNumberInAWordUsingTraditionalSwitch() is declared with return type 'String' in PrintNumberInAWorldCodingChallenge.java.",
       "tags": []
     },
@@ -4993,12 +5220,12 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge",
       "question": "Which statement best describes Switch Statement Challenge?",
       "options": [
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "Write a method isLeapYear with a parameter of type int named year.",
-        "Create a new switch statement using char instead of int."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "Create a new switch statement using char instead of int.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Switch Statement Challenge.",
       "tags": []
     },
@@ -5010,16 +5237,16 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge",
       "question": "Which of the following are TRUE about Switch Statement Challenge? Select all that apply.",
       "options": [
-        "Create a new switch statement using char instead of int.",
+        "Create a new char variable",
         "Create a switch statement testing for",
+        "Create a new switch statement using char instead of int.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Create a new char variable"
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
       "answer": [
         0,
         1,
-        4
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Switch Statement Challenge.",
       "tags": []
@@ -5139,8 +5366,8 @@ const QUESTIONS_BANK = {
       "options": [
         "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "Write a method isLeapYear with a parameter of type int named year.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Write a method isLeapYear with a parameter of type int named year."
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Switch Statement Challenge Return Day Of The Week.",
@@ -5154,13 +5381,13 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge Return Day Of The Week",
       "question": "Which of the following are TRUE about Switch Statement Challenge Return Day Of The Week? Select all that apply.",
       "options": [
-        "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.",
         "1. Create a method called printDaysOfWeek, that takes an int parameter called day, but doesn't return any value",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": [
-        0,
+        1,
         2
       ],
       "explanation": "The true statements are taken directly from the notes for Switch Statement Challenge Return Day Of The Week.",
@@ -5174,12 +5401,12 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge Return Day Of The Week",
       "question": "Complete the blank: \"Use the ___ switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable  and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.\"",
       "options": [
-        "enhanced",
-        "Switch",
+        "short",
         "switch",
-        "short"
+        "enhanced",
+        "Switch"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'enhanced', from the notes for Switch Statement Challenge Return Day Of The Week.",
       "tags": []
     },
@@ -5191,12 +5418,12 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement Challenge Return Day Of The Week",
       "question": "In SwitchStatementChallengeReturnDayOfTheWeek.java, what does the method returnDayOfWeek() return?",
       "options": [
-        "int",
-        "String",
         "void",
-        "boolean"
+        "int",
+        "boolean",
+        "String"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The method returnDayOfWeek() is declared with return type 'String' in SwitchStatementChallengeReturnDayOfTheWeek.java.",
       "tags": []
     },
@@ -5297,9 +5524,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Switch Statement N A T O Challenge?",
       "options": [
         "Write a method isLeapYear with a parameter of type int named year.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": 2,
       "explanation": "This is drawn directly from the notes for Switch Statement N A T O Challenge.",
@@ -5314,15 +5541,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Switch Statement N A T O Challenge? Select all that apply.",
       "options": [
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "2) Create cases for the characters, A, B, C, D, and E. Display a message in each case block,with the letter and the NATO word, then break.",
         "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels)  that tests the value in the variable from Step 1.",
-        "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "2) Create cases for the characters, A, B, C, D, and E. Display a message in each case block,with the letter and the NATO word, then break.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter."
       ],
       "answer": [
         1,
         2,
-        3
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Switch Statement N A T O Challenge.",
       "tags": []
@@ -5335,12 +5562,12 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement N A T O Challenge",
       "question": "Complete the blank: \"In this ___, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.\"",
       "options": [
-        "switch",
-        "Switch",
+        "short",
         "challenge",
-        "short"
+        "Switch",
+        "switch"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The missing word is 'challenge', from the notes for Switch Statement N A T O Challenge.",
       "tags": []
     },
@@ -5460,12 +5687,12 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "Which statement best describes For Statement?",
       "options": [
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "Looping :- Looping let us execute the code multiple number of times",
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean."
+        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
+        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for For Statement.",
       "tags": []
     },
@@ -5477,14 +5704,14 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "Which of the following are TRUE about For Statement? Select all that apply.",
       "options": [
+        "The for statement is often referred to as the for loop",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "Looping :- Looping let us execute the code multiple number of times",
-        "The for statement is often referred to as the for loop"
+        "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
+        "Looping :- Looping let us execute the code multiple number of times"
       ],
       "answer": [
-        1,
+        0,
         3,
         4
       ],
@@ -5499,12 +5726,12 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "Complete the blank: \"___ :- Looping let us execute the code multiple number of times\"",
       "options": [
-        "number",
         "Looping",
-        "statement",
-        "Create"
+        "Create",
+        "number",
+        "statement"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The missing word is 'Looping', from the notes for For Statement.",
       "tags": []
     },
@@ -5517,8 +5744,8 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with For Statement?",
       "options": [
         "Java supports several statements for looping, or executing code repetitively for -->   The for loop is more complex to set up but is commonly used when you are iterating over set of values while --> The while loop executes until a specified condition becomes false do while --> The do while loop always executes at least one and continues until specified condition becomes false",
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
+        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
       "answer": 0,
@@ -5533,12 +5760,12 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "In ForStatement.java, what does the method calculateInterest() return?",
       "options": [
-        "int",
-        "double",
         "void",
-        "String"
+        "int",
+        "String",
+        "double"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The method calculateInterest() is declared with return type 'double' in ForStatement.java.",
       "tags": []
     },
@@ -5638,9 +5865,9 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Prime Number Challenge",
       "question": "Which statement best describes For Loop Prime Number Challenge?",
       "options": [
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "Looping :- Looping let us execute the code multiple number of times",
+        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
+        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
       "answer": 1,
@@ -5656,15 +5883,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about For Loop Prime Number Challenge? Select all that apply.",
       "options": [
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
         "Looping :- Looping let us execute the code multiple number of times",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Create a for statement, using any range of numbers, where the maximum number is <= 1000."
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
+        "Create a for statement, using any range of numbers, where the maximum number is <= 1000.",
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
       "answer": [
         0,
-        1,
-        4
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for For Loop Prime Number Challenge.",
       "tags": []
@@ -5677,12 +5904,12 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Prime Number Challenge",
       "question": "Complete the blank: \"___ a prime number counter variable, that will keep count of how many prime numbers were found.\"",
       "options": [
-        "statement",
+        "Looping",
         "supports",
-        "Create",
-        "Looping"
+        "statement",
+        "Create"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The missing word is 'Create', from the notes for For Loop Prime Number Challenge.",
       "tags": []
     },
@@ -5694,12 +5921,12 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Prime Number Challenge",
       "question": "In ForLoopPrimeNumberChallenge.java, what does the method isPrime() return?",
       "options": [
-        "String",
         "void",
         "int",
-        "boolean"
+        "boolean",
+        "String"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "The method isPrime() is declared with return type 'boolean' in ForLoopPrimeNumberChallenge.java.",
       "tags": []
     },
@@ -5799,12 +6026,12 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Sum3and5 Challenge",
       "question": "Which statement best describes For Loop Sum3and5 Challenge?",
       "options": [
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Looping :- Looping let us execute the code multiple number of times",
+        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found."
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
+        "Looping :- Looping let us execute the code multiple number of times"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for For Loop Sum3and5 Challenge.",
       "tags": []
     },
@@ -5816,15 +6043,15 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Sum3and5 Challenge",
       "question": "Which of the following are TRUE about For Loop Sum3and5 Challenge? Select all that apply.",
       "options": [
-        "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "Looping :- Looping let us execute the code multiple number of times",
-        "You also want to break out of the loop, once you find five numbers, that meet those above conditions."
+        "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
+        "You also want to break out of the loop, once you find five numbers, that meet those above conditions.",
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
       "answer": [
-        0,
-        1,
+        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for For Loop Sum3and5 Challenge.",
@@ -5838,10 +6065,10 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Sum3and5 Challenge",
       "question": "Complete the blank: \"This is the sum 3 and 5 ___. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.\"",
       "options": [
-        "Looping",
         "supports",
+        "statement",
         "challenge",
-        "statement"
+        "Looping"
       ],
       "answer": 2,
       "explanation": "The missing word is 'challenge', from the notes for For Loop Sum3and5 Challenge.",
@@ -5943,12 +6170,12 @@ const QUESTIONS_BANK = {
       "topic": "Sum Odd Challenge",
       "question": "Which statement best describes Sum Odd Challenge?",
       "options": [
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
+        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "Looping :- Looping let us execute the code multiple number of times",
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found."
+        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean."
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Sum Odd Challenge.",
       "tags": []
     },
@@ -5960,15 +6187,15 @@ const QUESTIONS_BANK = {
       "topic": "Sum Odd Challenge",
       "question": "Which of the following are TRUE about Sum Odd Challenge? Select all that apply.",
       "options": [
+        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
         "If number is odd return true, otherwise return false.",
         "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "Looping :- Looping let us execute the code multiple number of times",
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
         "Check that number is > 0, if it is not return false."
       ],
       "answer": [
         0,
-        3,
+        1,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Sum Odd Challenge.",
@@ -5982,12 +6209,12 @@ const QUESTIONS_BANK = {
       "topic": "Sum Odd Challenge",
       "question": "Complete the blank: \"___ a method called isOdd with an int parameter and call it number. The method needs to return a boolean.\"",
       "options": [
-        "statement",
-        "supports",
         "Looping",
-        "Write"
+        "statement",
+        "Write",
+        "supports"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "The missing word is 'Write', from the notes for Sum Odd Challenge.",
       "tags": []
     },
@@ -6000,9 +6227,9 @@ const QUESTIONS_BANK = {
       "question": "In SumOddChallenge.java, what does the method isOdd() return?",
       "options": [
         "boolean",
-        "int",
         "void",
-        "String"
+        "String",
+        "int"
       ],
       "answer": 0,
       "explanation": "The method isOdd() is declared with return type 'boolean' in SumOddChallenge.java.",
@@ -6203,9 +6430,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes While Loops?",
       "options": [
         "WHILE LOOPS",
-        "Number Palindrome",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
+        "Number Palindrome"
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for While Loops.",
@@ -6219,14 +6446,14 @@ const QUESTIONS_BANK = {
       "topic": "While Loops",
       "question": "Which of the following are TRUE about While Loops? Select all that apply.",
       "options": [
-        "Number Palindrome",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "WHILE LOOPS",
         "Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.",
+        "Number Palindrome",
+        "WHILE LOOPS",
         "The while loop repeatedly executes its body as long as a condition remains true."
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
@@ -6241,12 +6468,12 @@ const QUESTIONS_BANK = {
       "topic": "While Loops",
       "question": "Complete the blank: \"The ___ loop repeatedly executes its body as long as a condition remains true.\"",
       "options": [
-        "makes",
-        "dowhile",
         "while",
-        "regular"
+        "regular",
+        "dowhile",
+        "makes"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "The missing word is 'while', from the notes for While Loops.",
       "tags": []
     },
@@ -6258,12 +6485,12 @@ const QUESTIONS_BANK = {
       "topic": "While Loops",
       "question": "What is an important consideration when working with While Loops?",
       "options": [
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "IMPORTANT: Always check your loop condition carefully.",
         "Number Palindrome",
-        "IMPORTANT: Always check your loop condition carefully."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "This is a key gotcha or note taken directly from the source for While Loops.",
       "tags": []
     },
@@ -6363,12 +6590,12 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "Which statement best describes Do While Loops?",
       "options": [
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "WHILE LOOPS",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS",
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
         "Number Palindrome"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Do While Loops.",
       "tags": []
     },
@@ -6380,15 +6607,15 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "Which of the following are TRUE about Do While Loops? Select all that apply.",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.",
-        "Number Palindrome",
         "WHILE LOOPS",
-        "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\""
+        "Number Palindrome",
+        "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\"",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked."
       ],
       "answer": [
-        0,
-        1,
+        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Do While Loops.",
@@ -6402,12 +6629,12 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "Complete the blank: \"In a ___ while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.\"",
       "options": [
-        "while",
         "WHILE",
-        "Unlike",
-        "regular"
+        "while",
+        "regular",
+        "Unlike"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "The missing word is 'regular', from the notes for Do While Loops.",
       "tags": []
     },
@@ -6419,12 +6646,12 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "What is an important consideration when working with Do While Loops?",
       "options": [
-        "Number Palindrome",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "WHILE LOOPS"
+        "Number Palindrome",
+        "WHILE LOOPS",
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "This is a key gotcha or note taken directly from the source for Do While Loops.",
       "tags": []
     },
@@ -6524,12 +6751,12 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "Which statement best describes Check Number Palindrome Coding Challenge?",
       "options": [
+        "WHILE LOOPS",
         "Number Palindrome",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "WHILE LOOPS"
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Check Number Palindrome Coding Challenge.",
       "tags": []
     },
@@ -6541,11 +6768,11 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "Which of the following are TRUE about Check Number Palindrome Coding Challenge? Select all that apply.",
       "options": [
-        "WHILE LOOPS",
-        "Write a method called isPalindrome with one int parameter called number.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method needs to return a boolean.",
+        "WHILE LOOPS",
         "Number Palindrome",
-        "The method needs to return a boolean."
+        "Write a method called isPalindrome with one int parameter called number."
       ],
       "answer": [
         1,
@@ -6563,12 +6790,12 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "Complete the blank: \"___ Palindrome\"",
       "options": [
-        "Unlike",
-        "while",
         "Number",
-        "WHILE"
+        "while",
+        "WHILE",
+        "Unlike"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "The missing word is 'Number', from the notes for Check Number Palindrome Coding Challenge.",
       "tags": []
     },
@@ -6580,12 +6807,12 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "In CheckNumberPalindromeCodingChallenge.java, what does the method checkIfNumberIsPalindrome() return?",
       "options": [
-        "String",
         "boolean",
-        "void",
-        "int"
+        "int",
+        "String",
+        "void"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The method checkIfNumberIsPalindrome() is declared with return type 'boolean' in CheckNumberPalindromeCodingChallenge.java.",
       "tags": []
     },
@@ -6687,10 +6914,10 @@ const QUESTIONS_BANK = {
       "options": [
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS",
-        "Number Palindrome",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
+        "Number Palindrome"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Digit Sum Coding Challenge.",
       "tags": []
     },
@@ -6703,14 +6930,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Digit Sum Coding Challenge? Select all that apply.",
       "options": [
         "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method should only take a number that is a positive number.",
         "If a negative number is passed, it should return -1, meaning, an invalid value was passed.",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "The method should only take a number that is a positive number."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int."
       ],
       "answer": [
+        1,
         2,
-        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Digit Sum Coding Challenge.",
@@ -6724,12 +6951,12 @@ const QUESTIONS_BANK = {
       "topic": "Digit Sum Coding Challenge",
       "question": "Complete the blank: \"In this ___, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.\"",
       "options": [
-        "challenge",
-        "WHILE",
         "Unlike",
-        "while"
+        "while",
+        "challenge",
+        "WHILE"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'challenge', from the notes for Digit Sum Coding Challenge.",
       "tags": []
     },
@@ -6741,9 +6968,9 @@ const QUESTIONS_BANK = {
       "topic": "Digit Sum Coding Challenge",
       "question": "In DigitSumCodingChallenge.java, what does the method sumDigits() return?",
       "options": [
-        "String",
-        "boolean",
         "void",
+        "boolean",
+        "String",
         "int"
       ],
       "answer": 3,
@@ -6847,9 +7074,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Even Digit Sum Coding Challenge?",
       "options": [
         "Even Digit Sum",
-        "Number Palindrome",
         "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Number Palindrome"
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Even Digit Sum Coding Challenge.",
@@ -6864,13 +7091,13 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Even Digit Sum Coding Challenge? Select all that apply.",
       "options": [
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method should return the sum of the even digits within the number.",
         "WHILE LOOPS",
-        "Even Digit Sum",
-        "Write a method named getEvenDigitSum with one parameter of type int called number."
+        "The method should return the sum of the even digits within the number.",
+        "Write a method named getEvenDigitSum with one parameter of type int called number.",
+        "Even Digit Sum"
       ],
       "answer": [
-        1,
+        2,
         3,
         4
       ],
@@ -6885,12 +7112,12 @@ const QUESTIONS_BANK = {
       "topic": "Even Digit Sum Coding Challenge",
       "question": "Complete the blank: \"___ a method named getEvenDigitSum with one parameter of type int called number.\"",
       "options": [
-        "while",
-        "Write",
         "Unlike",
-        "WHILE"
+        "WHILE",
+        "while",
+        "Write"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Write', from the notes for Even Digit Sum Coding Challenge.",
       "tags": []
     },
@@ -6902,10 +7129,10 @@ const QUESTIONS_BANK = {
       "topic": "Even Digit Sum Coding Challenge",
       "question": "In EvenDigitSumCodingChallenge.java, what does the method getEvenDigitSum() return?",
       "options": [
+        "void",
         "String",
-        "boolean",
         "int",
-        "void"
+        "boolean"
       ],
       "answer": 2,
       "explanation": "The method getEvenDigitSum() is declared with return type 'int' in EvenDigitSumCodingChallenge.java.",
@@ -7007,12 +7234,12 @@ const QUESTIONS_BANK = {
       "topic": "Factor Printer Coding Challenge",
       "question": "Which statement best describes Factor Printer Coding Challenge?",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS",
         "Number Palindrome",
-        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.",
-        "WHILE LOOPS"
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder."
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Factor Printer Coding Challenge.",
       "tags": []
     },
@@ -7024,15 +7251,15 @@ const QUESTIONS_BANK = {
       "topic": "Factor Printer Coding Challenge",
       "question": "Which of the following are TRUE about Factor Printer Coding Challenge? Select all that apply.",
       "options": [
+        "WHILE LOOPS",
+        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
-        "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).",
-        "WHILE LOOPS",
-        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder."
+        "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder)."
       ],
       "answer": [
         1,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Factor Printer Coding Challenge.",
@@ -7047,11 +7274,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ Printer Challenge: A factor of a number N is any integer that divides N with no remainder.\"",
       "options": [
         "Unlike",
-        "Factor",
         "WHILE",
-        "while"
+        "while",
+        "Factor"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Factor', from the notes for Factor Printer Coding Challenge.",
       "tags": []
     },
@@ -7152,11 +7379,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes First And Last Digit Sum Coding Challenge?",
       "options": [
         "Number Palindrome",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "First And Last Digit Sum",
         "WHILE LOOPS",
-        "First And Last Digit Sum"
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for First And Last Digit Sum Coding Challenge.",
       "tags": []
     },
@@ -7168,16 +7395,16 @@ const QUESTIONS_BANK = {
       "topic": "First And Last Digit Sum Coding Challenge",
       "question": "Which of the following are TRUE about First And Last Digit Sum Coding Challenge? Select all that apply.",
       "options": [
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Write a method named sumFirstAndLastDigit with one parameter of type int called number.",
         "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number.",
         "WHILE LOOPS",
-        "First And Last Digit Sum",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "First And Last Digit Sum"
       ],
       "answer": [
-        0,
         1,
-        3
+        2,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for First And Last Digit Sum Coding Challenge.",
       "tags": []
@@ -7190,12 +7417,12 @@ const QUESTIONS_BANK = {
       "topic": "First And Last Digit Sum Coding Challenge",
       "question": "Complete the blank: \"First And Last ___ Sum\"",
       "options": [
-        "Digit",
-        "while",
         "Unlike",
+        "while",
+        "Digit",
         "WHILE"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'Digit', from the notes for First And Last Digit Sum Coding Challenge.",
       "tags": []
     },
@@ -7207,12 +7434,12 @@ const QUESTIONS_BANK = {
       "topic": "First And Last Digit Sum Coding Challenge",
       "question": "In FirstAndLastDigitSumCodingChallenge.java, what does the method sumFirstAndLastDigit() return?",
       "options": [
-        "boolean",
-        "void",
         "int",
-        "String"
+        "String",
+        "void",
+        "boolean"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "The method sumFirstAndLastDigit() is declared with return type 'int' in FirstAndLastDigitSumCodingChallenge.java.",
       "tags": []
     },
@@ -7313,11 +7540,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Floor Pack Problem Coding Challenge?",
       "options": [
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.",
         "Number Palindrome",
-        "WHILE LOOPS"
+        "WHILE LOOPS",
+        "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal."
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Floor Pack Problem Coding Challenge.",
       "tags": []
     },
@@ -7329,14 +7556,14 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "Which of the following are TRUE about Floor Pack Problem Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS",
+        "The parameter bigCount represents the count of big flour bags (5 kilos each).",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The parameter smallCount represents the count of small flour bags (1 kilo each).",
-        "The parameter bigCount represents the count of big flour bags (5 kilos each)."
+        "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal."
       ],
       "answer": [
-        0,
+        1,
         3,
         4
       ],
@@ -7352,11 +7579,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ a method named canPack with three parameters of type int named bigCount, smallCount, and goal.\"",
       "options": [
         "Unlike",
+        "WHILE",
         "Write",
-        "while",
-        "WHILE"
+        "while"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'Write', from the notes for Floor Pack Problem Coding Challenge.",
       "tags": []
     },
@@ -7368,12 +7595,12 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "In FloorPackProblemCodingChallenge.java, what does the method canPack() return?",
       "options": [
-        "int",
         "String",
         "boolean",
-        "void"
+        "void",
+        "int"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The method canPack() is declared with return type 'boolean' in FloorPackProblemCodingChallenge.java.",
       "tags": []
     },
@@ -7473,12 +7700,12 @@ const QUESTIONS_BANK = {
       "topic": "Greatest Common Divisor Coding Challenge",
       "question": "Which statement best describes Greatest Common Divisor Coding Challenge?",
       "options": [
-        "WHILE LOOPS",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Number Palindrome",
         "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.",
-        "Number Palindrome"
+        "WHILE LOOPS",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Greatest Common Divisor Coding Challenge.",
       "tags": []
     },
@@ -7490,15 +7717,15 @@ const QUESTIONS_BANK = {
       "topic": "Greatest Common Divisor Coding Challenge",
       "question": "Which of the following are TRUE about Greatest Common Divisor Coding Challenge? Select all that apply.",
       "options": [
-        "For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.",
-        "The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.",
         "WHILE LOOPS",
-        "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder."
+        "For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.",
+        "The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD."
       ],
       "answer": [
-        0,
         1,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Greatest Common Divisor Coding Challenge.",
@@ -7513,9 +7740,9 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.\"",
       "options": [
         "Greatest",
+        "Unlike",
         "while",
-        "WHILE",
-        "Unlike"
+        "WHILE"
       ],
       "answer": 0,
       "explanation": "The missing word is 'Greatest', from the notes for Greatest Common Divisor Coding Challenge.",
@@ -7529,12 +7756,12 @@ const QUESTIONS_BANK = {
       "topic": "Greatest Common Divisor Coding Challenge",
       "question": "In GreatestCommonDivisorCodingChallenge.java, what does the method getGreatestCommonDivisor() return?",
       "options": [
-        "void",
-        "int",
         "boolean",
-        "String"
+        "String",
+        "int",
+        "void"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The method getGreatestCommonDivisor() is declared with return type 'int' in GreatestCommonDivisorCodingChallenge.java.",
       "tags": []
     },
@@ -7634,9 +7861,9 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Which statement best describes Largest Prime Factor Coding Challenge?",
       "options": [
+        "Number Palindrome",
         "WHILE LOOPS",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "Number Palindrome",
         "Write a method named getLargestPrime with one parameter of type int named number."
       ],
       "answer": 3,
@@ -7651,16 +7878,16 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Which of the following are TRUE about Largest Prime Factor Coding Challenge? Select all that apply.",
       "options": [
-        "WHILE LOOPS",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Write a method named getLargestPrime with one parameter of type int named number.",
+        "WHILE LOOPS",
         "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.",
-        "The method should calculate the largest prime factor of a given number and return it.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "The method should calculate the largest prime factor of a given number and return it."
       ],
       "answer": [
         1,
-        2,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Largest Prime Factor Coding Challenge.",
       "tags": []
@@ -7673,12 +7900,12 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Complete the blank: \"___ a method named getLargestPrime with one parameter of type int named number.\"",
       "options": [
-        "Write",
-        "Unlike",
+        "while",
         "WHILE",
-        "while"
+        "Write",
+        "Unlike"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'Write', from the notes for Largest Prime Factor Coding Challenge.",
       "tags": []
     },
@@ -7690,12 +7917,12 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "In LargestPrimeFactorCodingChallenge.java, what does the method getLargestPrime() return?",
       "options": [
-        "boolean",
         "String",
         "void",
-        "int"
+        "int",
+        "boolean"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "The method getLargestPrime() is declared with return type 'int' in LargestPrimeFactorCodingChallenge.java.",
       "tags": []
     },
@@ -7795,9 +8022,9 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Which statement best describes Last Digit Checker Coding Challenge?",
       "options": [
+        "WHILE LOOPS",
         "Number Palindrome",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "WHILE LOOPS",
         "Last Digit Checker"
       ],
       "answer": 3,
@@ -7812,16 +8039,16 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Which of the following are TRUE about Last Digit Checker Coding Challenge? Select all that apply.",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Write a method named hasSameLastDigit with three parameters of type int.",
-        "WHILE LOOPS",
-        "Last Digit Checker"
+        "Last Digit Checker",
+        "WHILE LOOPS"
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Last Digit Checker Coding Challenge.",
       "tags": []
@@ -7834,12 +8061,12 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Complete the blank: \"Last ___ Checker\"",
       "options": [
-        "WHILE",
         "while",
-        "Unlike",
-        "Digit"
+        "Digit",
+        "WHILE",
+        "Unlike"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "The missing word is 'Digit', from the notes for Last Digit Checker Coding Challenge.",
       "tags": []
     },
@@ -7851,10 +8078,10 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "In LastDigitCheckerCodingChallenge.java, what does the method isValid() return?",
       "options": [
-        "String",
+        "void",
         "boolean",
         "int",
-        "void"
+        "String"
       ],
       "answer": 1,
       "explanation": "The method isValid() is declared with return type 'boolean' in LastDigitCheckerCodingChallenge.java.",
@@ -7956,12 +8183,12 @@ const QUESTIONS_BANK = {
       "topic": "Number To Words Coding Challenge",
       "question": "Which statement best describes Number To Words Coding Challenge?",
       "options": [
-        "Number Palindrome",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS",
-        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+        "Number Palindrome"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Number To Words Coding Challenge.",
       "tags": []
     },
@@ -7973,16 +8200,16 @@ const QUESTIONS_BANK = {
       "topic": "Number To Words Coding Challenge",
       "question": "Which of the following are TRUE about Number To Words Coding Challenge? Select all that apply.",
       "options": [
-        "This example defines 3 methods; trace method behavior step by step.",
-        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "WHILE LOOPS",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "WHILE LOOPS",
+        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+        "This example defines 3 methods; trace method behavior step by step."
       ],
       "answer": [
-        0,
         1,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Number To Words Coding Challenge.",
       "tags": []
@@ -7995,12 +8222,12 @@ const QUESTIONS_BANK = {
       "topic": "Number To Words Coding Challenge",
       "question": "Complete the blank: \"This ___ belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.\"",
       "options": [
-        "Unlike",
-        "topic",
         "while",
-        "WHILE"
+        "Unlike",
+        "WHILE",
+        "topic"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'topic', from the notes for Number To Words Coding Challenge.",
       "tags": []
     },
@@ -8013,11 +8240,11 @@ const QUESTIONS_BANK = {
       "question": "In NumberToWordsCodingChallenge.java, what does the method getDigitCount() return?",
       "options": [
         "void",
-        "int",
         "boolean",
+        "int",
         "String"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The method getDigitCount() is declared with return type 'int' in NumberToWordsCodingChallenge.java.",
       "tags": []
     },
@@ -8117,9 +8344,9 @@ const QUESTIONS_BANK = {
       "topic": "Perfect Number Coding Challenge",
       "question": "Which statement best describes Perfect Number Coding Challenge?",
       "options": [
+        "WHILE LOOPS",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Number Palindrome",
-        "WHILE LOOPS",
         "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge."
       ],
       "answer": 3,
@@ -8134,16 +8361,16 @@ const QUESTIONS_BANK = {
       "topic": "Perfect Number Coding Challenge",
       "question": "Which of the following are TRUE about Perfect Number Coding Challenge? Select all that apply.",
       "options": [
-        "WHILE LOOPS",
-        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
         "This example defines 2 methods; trace method behavior step by step.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+        "WHILE LOOPS",
+        "Review the class PerfectNumberCodingChallenge and understand its key responsibilities."
       ],
       "answer": [
-        1,
+        0,
         2,
-        3
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Perfect Number Coding Challenge.",
       "tags": []
@@ -8157,11 +8384,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"This ___ belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.\"",
       "options": [
         "WHILE",
-        "Unlike",
         "topic",
+        "Unlike",
         "while"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The missing word is 'topic', from the notes for Perfect Number Coding Challenge.",
       "tags": []
     },
@@ -8173,12 +8400,12 @@ const QUESTIONS_BANK = {
       "topic": "Perfect Number Coding Challenge",
       "question": "In PerfectNumberCodingChallenge.java, what does the method isPerfectNumber() return?",
       "options": [
-        "boolean",
-        "int",
+        "String",
         "void",
-        "String"
+        "int",
+        "boolean"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "The method isPerfectNumber() is declared with return type 'boolean' in PerfectNumberCodingChallenge.java.",
       "tags": []
     },
@@ -8278,12 +8505,12 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "Which statement best describes Shared Digit Coding Challenge?",
       "options": [
-        "WHILE LOOPS",
         "Shared Digit",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "WHILE LOOPS",
         "Number Palindrome"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Shared Digit Coding Challenge.",
       "tags": []
     },
@@ -8295,16 +8522,16 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "Which of the following are TRUE about Shared Digit Coding Challenge? Select all that apply.",
       "options": [
-        "Shared Digit",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS",
-        "Write a method named hasSharedDigit with two parameters of type int.",
         "Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
+        "Shared Digit",
+        "Write a method named hasSharedDigit with two parameters of type int."
       ],
       "answer": [
-        0,
         2,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Shared Digit Coding Challenge.",
       "tags": []
@@ -8317,12 +8544,12 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "Complete the blank: \"___ a method named hasSharedDigit with two parameters of type int.\"",
       "options": [
-        "Write",
         "Unlike",
-        "while",
-        "WHILE"
+        "WHILE",
+        "Write",
+        "while"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'Write', from the notes for Shared Digit Coding Challenge.",
       "tags": []
     },
@@ -8334,12 +8561,12 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "In SharedDigitCodingChallenge.java, what does the method hasSharedDigit() return?",
       "options": [
-        "boolean",
         "void",
         "int",
-        "String"
+        "String",
+        "boolean"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "The method hasSharedDigit() is declared with return type 'boolean' in SharedDigitCodingChallenge.java.",
       "tags": []
     },
@@ -8440,11 +8667,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes While Loop Coding Challenge?",
       "options": [
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.",
         "WHILE LOOPS",
-        "Number Palindrome",
-        "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int."
+        "Number Palindrome"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for While Loop Coding Challenge.",
       "tags": []
     },
@@ -8456,9 +8683,9 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge",
       "question": "Which of the following are TRUE about While Loop Coding Challenge? Select all that apply.",
       "options": [
-        "If it's an even number, return true, otherwise, return false.",
         "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.",
         "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.",
+        "If it's an even number, return true, otherwise, return false.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS"
       ],
@@ -8479,11 +8706,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.\"",
       "options": [
         "WHILE",
-        "while",
         "Create",
-        "Unlike"
+        "Unlike",
+        "while"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The missing word is 'Create', from the notes for While Loop Coding Challenge.",
       "tags": []
     },
@@ -8496,11 +8723,11 @@ const QUESTIONS_BANK = {
       "question": "In WhileLoopCodingChallenge.java, what does the method isEvenNumber() return?",
       "options": [
         "String",
+        "void",
         "int",
-        "boolean",
-        "void"
+        "boolean"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The method isEvenNumber() is declared with return type 'boolean' in WhileLoopCodingChallenge.java.",
       "tags": []
     },
@@ -8600,8 +8827,8 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes While Loop Coding Challenge Part2?",
       "options": [
         "Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "WHILE LOOPS",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Number Palindrome"
       ],
       "answer": 0,
@@ -8616,12 +8843,12 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge Part2",
       "question": "Complete the blank: \"Step 2 is to ___ the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.\"",
       "options": [
-        "WHILE",
-        "modify",
+        "Unlike",
         "while",
-        "Unlike"
+        "modify",
+        "WHILE"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'modify', from the notes for While Loop Coding Challenge Part2.",
       "tags": []
     },
@@ -8633,12 +8860,12 @@ const QUESTIONS_BANK = {
       "topic": "While Loop Coding Challenge Part2",
       "question": "In WhileLoopCodingChallengePart2.java, what does the method isEvenNumber() return?",
       "options": [
-        "int",
-        "void",
+        "String",
         "boolean",
-        "String"
+        "int",
+        "void"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The method isEvenNumber() is declared with return type 'boolean' in WhileLoopCodingChallengePart2.java.",
       "tags": []
     },
@@ -8837,11 +9064,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Class Example?",
       "options": [
         "Object",
-        "There are 2 ways to create fields on classes.",
         "A class can be described as :-",
-        "null"
+        "null",
+        "There are 2 ways to create fields on classes."
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Class Example.",
       "tags": []
     },
@@ -8853,13 +9080,13 @@ const QUESTIONS_BANK = {
       "topic": "Class Example",
       "question": "Which of the following are TRUE about Class Example? Select all that apply.",
       "options": [
-        "2) A special code block that contains methods",
         "There are 2 ways to create fields on classes.",
+        "1) A custom data type --> For Ex :- String",
         "A class can be described as :-",
-        "1) A custom data type --> For Ex :- String"
+        "2) A special code block that contains methods"
       ],
       "answer": [
-        0,
+        1,
         2,
         3
       ],
@@ -8874,12 +9101,12 @@ const QUESTIONS_BANK = {
       "topic": "Class Example",
       "question": "Complete the blank: \"A ___ can be described as :-\"",
       "options": [
-        "static",
         "create",
-        "class",
-        "Without"
+        "Without",
+        "static",
+        "class"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The missing word is 'class', from the notes for Class Example.",
       "tags": []
     },
@@ -8980,9 +9207,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Create Field On Classes?",
       "options": [
         "There are 2 ways to create fields on classes.",
-        "null",
+        "Object",
         "A class can be described as :-",
-        "Object"
+        "null"
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Create Field On Classes.",
@@ -8997,9 +9224,9 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Create Field On Classes? Select all that apply.",
       "options": [
         "A class can be described as :-",
+        "There are 2 ways to create fields on classes.",
         "2) Without static keyword",
-        "1) With static keyword",
-        "There are 2 ways to create fields on classes."
+        "1) With static keyword"
       ],
       "answer": [
         1,
@@ -9017,12 +9244,12 @@ const QUESTIONS_BANK = {
       "topic": "Create Field On Classes",
       "question": "Complete the blank: \"There are 2 ways to ___ fields on classes.\"",
       "options": [
+        "create",
         "custom",
         "class",
-        "special",
-        "create"
+        "special"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'create', from the notes for Create Field On Classes.",
       "tags": []
     },
@@ -9034,12 +9261,12 @@ const QUESTIONS_BANK = {
       "topic": "Create Field On Classes",
       "question": "What is an important consideration when working with Create Field On Classes?",
       "options": [
+        "Be careful with null references.",
         "Value of the field always stays with the class iii) Value is accessed by ClassName.fieldname",
         "Always initialize variables before use.",
-        "Be careful with null references.",
         "A class can be described as :-"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "This is a key gotcha or note taken directly from the source for Create Field On Classes.",
       "tags": []
     },
@@ -9217,12 +9444,12 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Which statement best describes Parsing Values Reading Input?",
       "options": [
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Input Calculator"
+        "Input Calculator",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Parsing Values Reading Input.",
       "tags": []
     },
@@ -9234,16 +9461,16 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Which of the following are TRUE about Parsing Values Reading Input? Select all that apply.",
       "options": [
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "Reading Data From Console",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "Technique              | Description",
-        "Reading Data From Console",
-        "Input Calculator",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
+        "Input Calculator"
       ],
       "answer": [
-        0,
         1,
-        2
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Parsing Values Reading Input.",
       "tags": []
@@ -9256,12 +9483,12 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Complete the blank: \"When we read data in from ___ a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.\"",
       "options": [
-        "either",
-        "Write",
+        "method",
         "Input",
-        "method"
+        "either",
+        "Write"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'either', from the notes for Parsing Values Reading Input.",
       "tags": []
     },
@@ -9273,12 +9500,12 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "What is an important consideration when working with Parsing Values Reading Input?",
       "options": [
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Always close the Scanner when done: sc.close(); (or use try-with-resources).",
         "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "Input Calculator"
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "Input Calculator",
+        "Always close the Scanner when done: sc.close(); (or use try-with-resources)."
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "This is a key gotcha or note taken directly from the source for Parsing Values Reading Input.",
       "tags": []
     },
@@ -9290,12 +9517,12 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "In ParsingValuesReadingInput.java, what does the method getInputFromConsole() return?",
       "options": [
-        "String",
-        "void",
+        "boolean",
         "int",
-        "boolean"
+        "String",
+        "void"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The method getInputFromConsole() is declared with return type 'String' in ParsingValuesReadingInput.java.",
       "tags": []
     },
@@ -9396,11 +9623,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Input Calculator Challenge?",
       "options": [
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Input Calculator",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
+        "Input Calculator"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Input Calculator Challenge.",
       "tags": []
     },
@@ -9413,14 +9640,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Input Calculator Challenge? Select all that apply.",
       "options": [
         "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Input Calculator",
         "Write a method called inputThenPrintSumAndAverage that does not have any parameters.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "Input Calculator",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
       "answer": [
         0,
-        2,
+        1,
         3
       ],
       "explanation": "The true statements are taken directly from the notes for Input Calculator Challenge.",
@@ -9434,12 +9661,12 @@ const QUESTIONS_BANK = {
       "topic": "Input Calculator Challenge",
       "question": "Complete the blank: \"___ Calculator\"",
       "options": [
+        "either",
         "Reading",
         "Input",
-        "either",
         "Technique"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'Input', from the notes for Input Calculator Challenge.",
       "tags": []
     },
@@ -9451,12 +9678,12 @@ const QUESTIONS_BANK = {
       "topic": "Input Calculator Challenge",
       "question": "What is an important consideration when working with Input Calculator Challenge?",
       "options": [
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
         "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Input Calculator Challenge.",
       "tags": []
     },
@@ -9556,12 +9783,12 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "Which statement best describes Min Max Coding Challenge?",
       "options": [
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Input Calculator"
+        "Input Calculator",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Min Max Coding Challenge.",
       "tags": []
     },
@@ -9573,14 +9800,14 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "Which of the following are TRUE about Min Max Coding Challenge? Select all that apply.",
       "options": [
-        "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.",
         "Input Calculator",
+        "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.",
         "You can decide if you want the user to enter integers or decimal numbers.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
       ],
       "answer": [
-        0,
+        1,
         2,
         3
       ],
@@ -9595,12 +9822,12 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "Complete the blank: \"If the user has ___ entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.\"",
       "options": [
-        "either",
         "previously",
         "Reading",
+        "either",
         "Technique"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The missing word is 'previously', from the notes for Min Max Coding Challenge.",
       "tags": []
     },
@@ -9612,12 +9839,12 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "In MinMaxCodingChallenge.java, what does the method checkIfUserInputIsNumber() return?",
       "options": [
+        "boolean",
         "void",
         "String",
-        "boolean",
         "int"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "The method checkIfUserInputIsNumber() is declared with return type 'boolean' in MinMaxCodingChallenge.java.",
       "tags": []
     },
@@ -9717,12 +9944,12 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "Which statement best describes Paint Job Challenge?",
       "options": [
-        "Input Calculator",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
+        "Input Calculator",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Paint Job Challenge.",
       "tags": []
     },
@@ -9734,15 +9961,15 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "Which of the following are TRUE about Paint Job Challenge? Select all that apply.",
       "options": [
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).",
-        "Input Calculator",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Math.ceil() is used to round up — you always need whole buckets, never a fraction."
+        "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
+        "Input Calculator",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
+        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket)."
       ],
       "answer": [
-        0,
         1,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Paint Job Challenge.",
@@ -9756,12 +9983,12 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "Complete the blank: \"___ Job Challenge: calculates how many paint buckets are required to cover a wall area.\"",
       "options": [
-        "Paint",
+        "Technique",
         "either",
         "Reading",
-        "Technique"
+        "Paint"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "The missing word is 'Paint', from the notes for Paint Job Challenge.",
       "tags": []
     },
@@ -9774,11 +10001,11 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Paint Job Challenge?",
       "options": [
         "Input Calculator",
+        "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Math.ceil() is used to round up — you always need whole buckets, never a fraction."
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "This is a key gotcha or note taken directly from the source for Paint Job Challenge.",
       "tags": []
     },
@@ -9790,12 +10017,12 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "In PaintJobChallenge.java, what does the method getBucketCount() return?",
       "options": [
-        "boolean",
         "String",
+        "int",
         "void",
-        "int"
+        "boolean"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "The method getBucketCount() is declared with return type 'int' in PaintJobChallenge.java.",
       "tags": []
     },
@@ -9895,12 +10122,12 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "Which statement best describes Reading User Input Challenge?",
       "options": [
-        "Reading User Input Challenge.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Input Calculator"
+        "Reading User Input Challenge.",
+        "Input Calculator",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Reading User Input Challenge.",
       "tags": []
     },
@@ -9912,16 +10139,16 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "Which of the following are TRUE about Reading User Input Challenge? Select all that apply.",
       "options": [
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "Input Calculator",
         "\"Invalid number\" to the console, but continue looping until you do have 5 valid numbers.",
         "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message",
-        "Input Calculator",
-        "Reading User Input Challenge."
+        "Reading User Input Challenge.",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
       ],
       "answer": [
         1,
         2,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Reading User Input Challenge.",
       "tags": []
@@ -9934,12 +10161,12 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "Complete the blank: \"___ User Input Challenge.\"",
       "options": [
+        "Reading",
         "Technique",
-        "Console",
         "either",
-        "Reading"
+        "Console"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'Reading', from the notes for Reading User Input Challenge.",
       "tags": []
     },
@@ -9951,9 +10178,9 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "In ReadingUserInputChallenge.java, what does the method printSumOfNumbersEnteredByUserUsingWhileLoop() return?",
       "options": [
-        "boolean",
-        "int",
         "void",
+        "int",
+        "boolean",
         "String"
       ],
       "answer": 1,
@@ -10058,12 +10285,12 @@ const QUESTIONS_BANK = {
       "topic": "Exception Handling In Java",
       "question": "Complete the blank: \"An ___ is an abnormal condition that disrupts the normal flow of the program.\"",
       "options": [
-        "exception",
-        "Integer",
         "Object",
+        "Integer",
+        "exception",
         "String"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'exception', from the notes for Exception Handling In Java.",
       "tags": []
     },
@@ -10204,8 +10431,8 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Point Class Distance Calculation?",
       "options": [
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
         "Dog inherits from Animal",
+        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
       "answer": 0,
@@ -10220,11 +10447,11 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "Which of the following are TRUE about Point Class Distance Calculation? Select all that apply.",
       "options": [
-        "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.",
-        "Wall Area Computation",
-        "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
+        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation"
+        "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
+        "Wall Area Computation",
+        "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields."
       ],
       "answer": [
         0,
@@ -10242,12 +10469,12 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "Complete the blank: \"___ Class and Distance Calculation\"",
       "options": [
-        "Write",
-        "class",
         "Computation",
-        "Point"
+        "Point",
+        "class",
+        "Write"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "The missing word is 'Point', from the notes for Point Class Distance Calculation.",
       "tags": []
     },
@@ -10259,12 +10486,12 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "In PointClassDistanceCalculation.java, what does the method getX() return?",
       "options": [
-        "int",
+        "String",
         "void",
-        "boolean",
-        "String"
+        "int",
+        "boolean"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The method getX() is declared with return type 'int' in PointClassDistanceCalculation.java.",
       "tags": []
     },
@@ -10364,12 +10591,12 @@ const QUESTIONS_BANK = {
       "topic": "Wall Area Computation",
       "question": "Which statement best describes Wall Area Computation?",
       "options": [
-        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation",
-        "Dog inherits from Animal"
+        "Dog inherits from Animal",
+        "Point Class and Distance Calculation",
+        "Wall Area Computation"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Wall Area Computation.",
       "tags": []
     },
@@ -10381,11 +10608,11 @@ const QUESTIONS_BANK = {
       "topic": "Wall Area Computation",
       "question": "Which of the following are TRUE about Wall Area Computation? Select all that apply.",
       "options": [
+        "Wall Area Computation",
+        "Point Class and Distance Calculation",
         "The class needs to have two constructors:",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.",
-        "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double."
       ],
       "answer": [
         0,
@@ -10403,12 +10630,12 @@ const QUESTIONS_BANK = {
       "topic": "Wall Area Computation",
       "question": "Complete the blank: \"Wall Area ___\"",
       "options": [
-        "Point",
-        "class",
+        "Computation",
         "represent",
-        "Computation"
+        "Point",
+        "class"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'Computation', from the notes for Wall Area Computation.",
       "tags": []
     },
@@ -10420,12 +10647,12 @@ const QUESTIONS_BANK = {
       "topic": "Wall Area Computation",
       "question": "In WallAreaComputation.java, what does the method getWidth() return?",
       "options": [
-        "void",
         "String",
         "int",
-        "double"
+        "double",
+        "void"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "The method getWidth() is declared with return type 'double' in WallAreaComputation.java.",
       "tags": []
     },
@@ -10525,12 +10752,12 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "Which statement best describes Animal?",
       "options": [
-        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Dog inherits from Animal",
         "Wall Area Computation",
-        "Dog inherits from Animal"
+        "Point Class and Distance Calculation"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Animal.",
       "tags": []
     },
@@ -10542,16 +10769,16 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "Which of the following are TRUE about Animal? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
-        "Wall Area Computation",
+        "Method Overriding",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Also, the super class will have all the behaviour that animals have in common.",
-        "Method Overriding"
+        "Point Class and Distance Calculation",
+        "Wall Area Computation"
       ],
       "answer": [
-        2,
-        3,
-        4
+        0,
+        1,
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Animal.",
       "tags": []
@@ -10564,12 +10791,12 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "Complete the blank: \"This is a ___ class, aka top parent class. This class will contain all the attributes that all types of animal has.\"",
       "options": [
-        "class",
         "super",
+        "class",
         "Point",
         "represent"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The missing word is 'super', from the notes for Animal.",
       "tags": []
     },
@@ -10581,12 +10808,12 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "In Animal.java, what does the method toString() return?",
       "options": [
-        "void",
-        "boolean",
+        "int",
         "String",
-        "int"
+        "boolean",
+        "void"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The method toString() is declared with return type 'String' in Animal.java.",
       "tags": []
     },
@@ -10687,9 +10914,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Dog?",
       "options": [
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation",
         "Dog inherits from Animal",
-        "Wall Area Computation"
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
       "answer": 2,
       "explanation": "This is drawn directly from the notes for Dog.",
@@ -10703,16 +10930,16 @@ const QUESTIONS_BANK = {
       "topic": "Dog",
       "question": "Which of the following are TRUE about Dog? Select all that apply.",
       "options": [
-        "Wall Area Computation",
-        "Point Class and Distance Calculation",
-        "Dog \"IS A\" a type of Animal",
+        "Dog is a subclass or child class of Animal",
         "Dog inherits from Animal",
-        "Dog is a subclass or child class of Animal"
+        "Dog \"IS A\" a type of Animal",
+        "Wall Area Computation",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
-        2,
-        3,
-        4
+        0,
+        1,
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Dog.",
       "tags": []
@@ -10725,12 +10952,12 @@ const QUESTIONS_BANK = {
       "topic": "Dog",
       "question": "Complete the blank: \"Dog ___ from Animal\"",
       "options": [
-        "inherits",
-        "Point",
         "class",
-        "represent"
+        "represent",
+        "inherits",
+        "Point"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'inherits', from the notes for Dog.",
       "tags": []
     },
@@ -10742,12 +10969,12 @@ const QUESTIONS_BANK = {
       "topic": "Dog",
       "question": "In Dog.java, what does the method toString() return?",
       "options": [
-        "boolean",
         "String",
-        "int",
-        "void"
+        "void",
+        "boolean",
+        "int"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The method toString() is declared with return type 'String' in Dog.java.",
       "tags": []
     },
@@ -10760,9 +10987,9 @@ const QUESTIONS_BANK = {
       "question": "What does class Dog extend?",
       "options": [
         "Animal",
-        "Runnable",
         "Comparable",
-        "Object"
+        "Object",
+        "Runnable"
       ],
       "answer": 0,
       "explanation": "Dog extends Animal as declared in Dog.java.",
@@ -10862,12 +11089,12 @@ const QUESTIONS_BANK = {
       "topic": "Fish",
       "question": "In Fish.java, what does the method toString() return?",
       "options": [
+        "void",
         "int",
         "boolean",
-        "String",
-        "void"
+        "String"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The method toString() is declared with return type 'String' in Fish.java.",
       "tags": []
     },
@@ -10879,12 +11106,12 @@ const QUESTIONS_BANK = {
       "topic": "Fish",
       "question": "What does class Fish extend?",
       "options": [
+        "Comparable",
         "Runnable",
         "Object",
-        "Animal",
-        "Comparable"
+        "Animal"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "Fish extends Animal as declared in Fish.java.",
       "tags": []
     },
@@ -10984,12 +11211,12 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "Which statement best describes Inheritance?",
       "options": [
+        "Point Class and Distance Calculation",
         "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
-        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation"
+        "Wall Area Computation"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Inheritance.",
       "tags": []
     },
@@ -11001,16 +11228,16 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "Which of the following are TRUE about Inheritance? Select all that apply.",
       "options": [
-        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
-        "Animal (Base Class)",
         "Point Class and Distance Calculation",
-        "Vertebrates (Sub Class of Animal)",
-        "Wall Area Computation"
+        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
+        "Wall Area Computation",
+        "Animal (Base Class)",
+        "Vertebrates (Sub Class of Animal)"
       ],
       "answer": [
-        0,
         1,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Inheritance.",
       "tags": []
@@ -11023,12 +11250,12 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "Complete the blank: \"___ is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.\"",
       "options": [
+        "Inheritance",
         "Point",
         "class",
-        "represent",
-        "Inheritance"
+        "represent"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'Inheritance', from the notes for Inheritance.",
       "tags": []
     },
@@ -11040,12 +11267,12 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "What does class Dog extend?",
       "options": [
-        "Animal",
-        "Runnable",
         "Object",
-        "Comparable"
+        "Runnable",
+        "Comparable",
+        "Animal"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "Dog extends Animal as declared in Inheritance.java.",
       "tags": []
     },
@@ -11145,12 +11372,12 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which statement best describes Main?",
       "options": [
-        "Every class created in Java extends a special Java class.",
         "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Every class created in Java extends a special Java class.",
         "Point Class and Distance Calculation"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Main.",
       "tags": []
     },
@@ -11162,16 +11389,16 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
-        "Every class created in Java extends a special Java class.",
-        "Point Class and Distance Calculation",
-        "Wall Area Computation",
         "Class Object is the root of the class hierarchy.",
-        "That class is named Object, and it's in the java.lang package."
+        "That class is named Object, and it's in the java.lang package.",
+        "Point Class and Distance Calculation",
+        "Every class created in Java extends a special Java class.",
+        "Wall Area Computation"
       ],
       "answer": [
         0,
-        3,
-        4
+        1,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Main.",
       "tags": []
@@ -11201,8 +11428,8 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "In Main.java, what does the method toString() return?",
       "options": [
-        "boolean",
         "void",
+        "boolean",
         "String",
         "int"
       ],
@@ -11218,12 +11445,12 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "What does class Main extend?",
       "options": [
+        "Object",
         "Runnable",
         "Serializable",
-        "Comparable",
-        "Object"
+        "Comparable"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "Main extends Object as declared in Main.java.",
       "tags": []
     },
@@ -11322,10 +11549,10 @@ const QUESTIONS_BANK = {
       "topic": "Employee",
       "question": "Which statement best describes Employee?",
       "options": [
-        "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Employee Class Extends the Worker Class",
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Wall Area Computation"
       ],
       "answer": 1,
       "explanation": "This is drawn directly from the notes for Employee.",
@@ -11339,12 +11566,12 @@ const QUESTIONS_BANK = {
       "topic": "Employee",
       "question": "Complete the blank: \"___ Class Extends the Worker Class\"",
       "options": [
+        "represent",
         "Point",
-        "Employee",
         "class",
-        "represent"
+        "Employee"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Employee', from the notes for Employee.",
       "tags": []
     },
@@ -11357,9 +11584,9 @@ const QUESTIONS_BANK = {
       "question": "In Employee.java, what does the method toString() return?",
       "options": [
         "String",
+        "boolean",
         "int",
-        "void",
-        "boolean"
+        "void"
       ],
       "answer": 0,
       "explanation": "The method toString() is declared with return type 'String' in Employee.java.",
@@ -11373,12 +11600,12 @@ const QUESTIONS_BANK = {
       "topic": "Employee",
       "question": "What does class Employee extend?",
       "options": [
-        "Worker",
         "Object",
         "Comparable",
-        "Runnable"
+        "Runnable",
+        "Worker"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "Employee extends Worker as declared in Employee.java.",
       "tags": []
     },
@@ -11477,9 +11704,9 @@ const QUESTIONS_BANK = {
       "topic": "Hourly Employee",
       "question": "Which statement best describes Hourly Employee?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation",
         "Point Class and Distance Calculation",
+        "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "The HourlyEmployee Class extends the Employee Class"
       ],
       "answer": 3,
@@ -11494,8 +11721,8 @@ const QUESTIONS_BANK = {
       "topic": "Hourly Employee",
       "question": "Complete the blank: \"The ___ Class extends the Employee Class\"",
       "options": [
-        "represent",
         "class",
+        "represent",
         "Point",
         "HourlyEmployee"
       ],
@@ -11511,12 +11738,12 @@ const QUESTIONS_BANK = {
       "topic": "Hourly Employee",
       "question": "In HourlyEmployee.java, what does the method collectPay() return?",
       "options": [
-        "String",
-        "double",
+        "int",
         "void",
-        "int"
+        "String",
+        "double"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The method collectPay() is declared with return type 'double' in HourlyEmployee.java.",
       "tags": []
     },
@@ -11528,8 +11755,8 @@ const QUESTIONS_BANK = {
       "topic": "Hourly Employee",
       "question": "What does class HourlyEmployee extend?",
       "options": [
-        "Object",
         "Comparable",
+        "Object",
         "Employee",
         "Runnable"
       ],
@@ -11633,9 +11860,9 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which statement best describes Main?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
         "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy."
       ],
       "answer": 3,
@@ -11650,16 +11877,16 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
+        "Point Class and Distance Calculation",
         "Wall Area Computation",
         "Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.",
-        "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.",
         "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
-        "Point Class and Distance Calculation"
+        "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee."
       ],
       "answer": [
-        1,
         2,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Main.",
       "tags": []
@@ -11672,12 +11899,12 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Complete the blank: \"This is the ___ Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.\"",
       "options": [
-        "class",
-        "represent",
         "Inheritance",
-        "Point"
+        "represent",
+        "Point",
+        "class"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "The missing word is 'Inheritance', from the notes for Main.",
       "tags": []
     },
@@ -11776,12 +12003,12 @@ const QUESTIONS_BANK = {
       "topic": "Salaried Employee",
       "question": "Which statement best describes Salaried Employee?",
       "options": [
-        "Wall Area Computation",
-        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "The salaried employee class, extends the Employee Class"
+        "The salaried employee class, extends the Employee Class",
+        "Point Class and Distance Calculation",
+        "Wall Area Computation"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Salaried Employee.",
       "tags": []
     },
@@ -11793,12 +12020,12 @@ const QUESTIONS_BANK = {
       "topic": "Salaried Employee",
       "question": "Complete the blank: \"The ___ employee class, extends the Employee Class\"",
       "options": [
-        "Point",
         "represent",
-        "class",
-        "salaried"
+        "Point",
+        "salaried",
+        "class"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "The missing word is 'salaried', from the notes for Salaried Employee.",
       "tags": []
     },
@@ -11811,9 +12038,9 @@ const QUESTIONS_BANK = {
       "question": "In SalariedEmployee.java, what does the method collectPay() return?",
       "options": [
         "double",
+        "void",
         "String",
-        "int",
-        "void"
+        "int"
       ],
       "answer": 0,
       "explanation": "The method collectPay() is declared with return type 'double' in SalariedEmployee.java.",
@@ -11828,11 +12055,11 @@ const QUESTIONS_BANK = {
       "question": "What does class SalariedEmployee extend?",
       "options": [
         "Object",
-        "Comparable",
+        "Employee",
         "Runnable",
-        "Employee"
+        "Comparable"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "SalariedEmployee extends Employee as declared in SalariedEmployee.java.",
       "tags": []
     },
@@ -11933,11 +12160,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Worker?",
       "options": [
         "Point Class and Distance Calculation",
-        "Inheritance Challenge Problem",
+        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation"
+        "Inheritance Challenge Problem"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Worker.",
       "tags": []
     },
@@ -11949,15 +12176,15 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "Which of the following are TRUE about Worker? Select all that apply.",
       "options": [
+        "Create attributes :-",
         "Wall Area Computation",
-        "Create Worker Class -> This should be on top of the Hierarchy",
-        "Point Class and Distance Calculation",
         "Inheritance Challenge Problem",
-        "Create attributes :-"
+        "Point Class and Distance Calculation",
+        "Create Worker Class -> This should be on top of the Hierarchy"
       ],
       "answer": [
-        1,
-        3,
+        0,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Worker.",
@@ -11971,12 +12198,12 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "Complete the blank: \"___ Challenge Problem\"",
       "options": [
-        "class",
-        "Inheritance",
         "Point",
-        "represent"
+        "represent",
+        "class",
+        "Inheritance"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Inheritance', from the notes for Worker.",
       "tags": []
     },
@@ -11988,12 +12215,12 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "In Worker.java, what does the method getAge() return?",
       "options": [
-        "boolean",
-        "String",
         "int",
+        "String",
+        "boolean",
         "void"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "The method getAge() is declared with return type 'int' in Worker.java.",
       "tags": []
     },
@@ -12094,11 +12321,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Classes And Inheritance?",
       "options": [
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Wall Area Computation"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Classes And Inheritance.",
       "tags": []
     },
@@ -12110,16 +12337,16 @@ const QUESTIONS_BANK = {
       "topic": "Classes And Inheritance",
       "question": "Which of the following are TRUE about Classes And Inheritance? Select all that apply.",
       "options": [
-        "Wall Area Computation",
-        "Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.",
-        "Point Class and Distance Calculation",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects"
+        "Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.",
+        "Wall Area Computation",
+        "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Classes And Inheritance.",
       "tags": []
@@ -12132,12 +12359,12 @@ const QUESTIONS_BANK = {
       "topic": "Classes And Inheritance",
       "question": "Complete the blank: \"OOP is ___ called class-based programming. Class-based programming starts with classes which, become the blueprints for objects\"",
       "options": [
-        "class",
-        "sometimes",
         "Point",
-        "represent"
+        "class",
+        "represent",
+        "sometimes"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'sometimes', from the notes for Classes And Inheritance.",
       "tags": []
     },
@@ -12237,12 +12464,12 @@ const QUESTIONS_BANK = {
       "topic": "Car",
       "question": "Which statement best describes Car?",
       "options": [
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
-        "Unlike local variables, class variables should have some type of access modifier declared for it."
+        "Wall Area Computation"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Car.",
       "tags": []
     },
@@ -12255,15 +12482,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Car? Select all that apply.",
       "options": [
         "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly.",
-        "When writing methods that use non-static fields, your method can't be declared static.",
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Wall Area Computation",
         "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "When writing methods that use non-static fields, your method can't be declared static."
       ],
       "answer": [
         0,
         1,
-        2
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Car.",
       "tags": []
@@ -12276,12 +12503,12 @@ const QUESTIONS_BANK = {
       "topic": "Car",
       "question": "Complete the blank: \"___ local variables, class variables should have some type of access modifier declared for it.\"",
       "options": [
-        "class",
-        "represent",
+        "Unlike",
         "Point",
-        "Unlike"
+        "represent",
+        "class"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "The missing word is 'Unlike', from the notes for Car.",
       "tags": []
     },
@@ -12293,12 +12520,12 @@ const QUESTIONS_BANK = {
       "topic": "Car",
       "question": "In Car.java, what does the method isConvertible() return?",
       "options": [
-        "boolean",
         "String",
-        "void",
-        "int"
+        "boolean",
+        "int",
+        "void"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "The method isConvertible() is declared with return type 'boolean' in Car.java.",
       "tags": []
     },
@@ -12399,9 +12626,9 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Main?",
       "options": [
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
       "answer": 0,
       "explanation": "This is drawn directly from the notes for Main.",
@@ -12415,16 +12642,16 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
-        "When you create a class instance (Car car = new Car()), Java sets all un-initialised fields to their default values: Strings -> null, int -> 0, boolean -> false.",
-        "Wall Area Computation",
-        "Point Class and Distance Calculation",
         "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
-        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods."
+        "When you create a class instance (Car car = new Car()), Java sets all un-initialised fields to their default values: Strings -> null, int -> 0, boolean -> false.",
+        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
+        "Point Class and Distance Calculation",
+        "Wall Area Computation"
       ],
       "answer": [
         0,
-        3,
-        4
+        1,
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Main.",
       "tags": []
@@ -12437,12 +12664,12 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Complete the blank: \"This ___ demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.\"",
       "options": [
-        "class",
         "needs",
         "Point",
-        "represent"
+        "represent",
+        "class"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "The missing word is 'class', from the notes for Main.",
       "tags": []
     },
@@ -12542,12 +12769,12 @@ const QUESTIONS_BANK = {
       "topic": "Bank Account",
       "question": "Which statement best describes Bank Account?",
       "options": [
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "Create a new class for a bank account.",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation",
+        "Create a new class for a bank account."
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Bank Account.",
       "tags": []
     },
@@ -12559,16 +12786,16 @@ const QUESTIONS_BANK = {
       "topic": "Bank Account",
       "question": "Which of the following are TRUE about Bank Account? Select all that apply.",
       "options": [
-        "Wall Area Computation",
-        "Create a new class for a bank account.",
         "account number. account balance. customer name. email. and phone number.",
+        "Create a new class for a bank account.",
         "Create fields for account characteristics like:",
+        "Wall Area Computation",
         "Point Class and Distance Calculation"
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Bank Account.",
       "tags": []
@@ -12599,9 +12826,9 @@ const QUESTIONS_BANK = {
       "question": "In BankAccount.java, what does the method getAccountNumber() return?",
       "options": [
         "String",
+        "int",
         "void",
-        "boolean",
-        "int"
+        "boolean"
       ],
       "answer": 0,
       "explanation": "The method getAccountNumber() is declared with return type 'String' in BankAccount.java.",
@@ -12703,12 +12930,12 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which statement best describes Main?",
       "options": [
-        "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge.",
-        "Wall Area Computation"
+        "Point Class and Distance Calculation",
+        "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Main.",
       "tags": []
     },
@@ -12720,16 +12947,16 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
+        "Review the class Main and understand its key responsibilities.",
+        "Point Class and Distance Calculation",
         "This topic belongs to Chapter 14: OOP Concepts → Classes Challenge.",
         "This example defines 1 method; trace method behavior step by step.",
-        "Review the class Main and understand its key responsibilities.",
-        "Wall Area Computation",
-        "Point Class and Distance Calculation"
+        "Wall Area Computation"
       ],
       "answer": [
         0,
-        1,
-        2
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Main.",
       "tags": []
@@ -12743,11 +12970,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"This ___ belongs to Chapter 14: OOP Concepts → Classes Challenge.\"",
       "options": [
         "class",
-        "topic",
         "Point",
+        "topic",
         "represent"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'topic', from the notes for Main.",
       "tags": []
     },
@@ -12847,12 +13074,12 @@ const QUESTIONS_BANK = {
       "topic": "Method Over Loading Challenge",
       "question": "Which statement best describes Method Over Loading Challenge?",
       "options": [
-        "Point Class and Distance Calculation",
-        "Create two methods with the  same name: convertToCentimeters",
+        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation"
+        "Point Class and Distance Calculation",
+        "Create two methods with the  same name: convertToCentimeters"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Method Over Loading Challenge.",
       "tags": []
     },
@@ -12864,14 +13091,14 @@ const QUESTIONS_BANK = {
       "topic": "Method Over Loading Challenge",
       "question": "Which of the following are TRUE about Method Over Loading Challenge? Select all that apply.",
       "options": [
-        "Create two methods with the  same name: convertToCentimeters",
-        "Wall Area Computation",
-        "The first method has one parameter of type int,  which represents the entire height in inches.",
+        "Point Class and Distance Calculation",
         "You'll convert inches to centimeters, in this  method, and pass back the number of centimeters, as a double. The second method has two parameters  of type int, one to represent height in feet, and one to represent the remaining height  in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for  inches would be passed to this method.",
-        "Point Class and Distance Calculation"
+        "Create two methods with the  same name: convertToCentimeters",
+        "The first method has one parameter of type int,  which represents the entire height in inches.",
+        "Wall Area Computation"
       ],
       "answer": [
-        0,
+        1,
         2,
         3
       ],
@@ -12886,12 +13113,12 @@ const QUESTIONS_BANK = {
       "topic": "Method Over Loading Challenge",
       "question": "Complete the blank: \"___ two methods with the  same name: convertToCentimeters\"",
       "options": [
-        "represent",
+        "class",
         "Point",
-        "Create",
-        "class"
+        "represent",
+        "Create"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The missing word is 'Create', from the notes for Method Over Loading Challenge.",
       "tags": []
     },
@@ -12989,10 +13216,10 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading In Java",
       "question": "In MethodOverloadingInJava.java, what does the method calculateScore() return?",
       "options": [
-        "boolean",
-        "int",
         "String",
-        "void"
+        "int",
+        "void",
+        "boolean"
       ],
       "answer": 1,
       "explanation": "The method calculateScore() is declared with return type 'int' in MethodOverloadingInJava.java.",
@@ -13094,12 +13321,12 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "Which statement best describes Method Overloading Second And Minutes Challenge?",
       "options": [
-        "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.",
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
+        "Point Class and Distance Calculation",
+        "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Method Overloading Second And Minutes Challenge.",
       "tags": []
     },
@@ -13111,16 +13338,16 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "Which of the following are TRUE about Method Overloading Second And Minutes Challenge? Select all that apply.",
       "options": [
+        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.",
         "You should validate that the first parameter minutes is >= 0.",
         "You should validate that the 2nd parameter seconds is >= 0 and <= 59.",
-        "Point Class and Distance Calculation"
+        "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds."
       ],
       "answer": [
-        1,
         2,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Method Overloading Second And Minutes Challenge.",
       "tags": []
@@ -13133,12 +13360,12 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "Complete the blank: \"___ a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.\"",
       "options": [
-        "Point",
-        "Create",
         "represent",
-        "class"
+        "class",
+        "Create",
+        "Point"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'Create', from the notes for Method Overloading Second And Minutes Challenge.",
       "tags": []
     },
@@ -13151,9 +13378,9 @@ const QUESTIONS_BANK = {
       "question": "In MethodOverloadingSecondAndMinutesChallenge.java, what does the method getDurationString() return?",
       "options": [
         "String",
-        "boolean",
+        "void",
         "int",
-        "void"
+        "boolean"
       ],
       "answer": 0,
       "explanation": "The method getDurationString() is declared with return type 'String' in MethodOverloadingSecondAndMinutesChallenge.java.",
@@ -13255,12 +13482,12 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "Which statement best describes Person Age Validation?",
       "options": [
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "Person Class and Age Validation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "Person Class and Age Validation"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Person Age Validation.",
       "tags": []
     },
@@ -13272,8 +13499,8 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "Which of the following are TRUE about Person Age Validation? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
+        "Point Class and Distance Calculation",
         "Write the following methods (instance methods):",
         "Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int.",
         "Person Class and Age Validation"
@@ -13294,12 +13521,12 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "Complete the blank: \"___ Class and Age Validation\"",
       "options": [
-        "Point",
-        "Person",
         "class",
-        "represent"
+        "Point",
+        "represent",
+        "Person"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Person', from the notes for Person Age Validation.",
       "tags": []
     },
@@ -13311,12 +13538,12 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "What is an important consideration when working with Person Age Validation?",
       "options": [
-        "NOTE: All methods should be defined as public NOT public static.",
         "Point Class and Distance Calculation",
+        "NOTE: All methods should be defined as public NOT public static.",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "This is a key gotcha or note taken directly from the source for Person Age Validation.",
       "tags": []
     },
@@ -13328,12 +13555,12 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "In PersonAgeValidation.java, what does the method getFirstName() return?",
       "options": [
-        "boolean",
         "String",
-        "int",
-        "void"
+        "boolean",
+        "void",
+        "int"
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "The method getFirstName() is declared with return type 'String' in PersonAgeValidation.java.",
       "tags": []
     },
@@ -13433,12 +13660,12 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Which statement best describes Sum Calculator Implementation Challenge?",
       "options": [
-        "Wall Area Computation",
         "Sum Calculator Implementation",
         "Point Class and Distance Calculation",
+        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 1,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Sum Calculator Implementation Challenge.",
       "tags": []
     },
@@ -13450,15 +13677,15 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Which of the following are TRUE about Sum Calculator Implementation Challenge? Select all that apply.",
       "options": [
-        "Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double.",
-        "Point Class and Distance Calculation",
-        "Write the following methods (instance methods):",
         "Wall Area Computation",
-        "Sum Calculator Implementation"
+        "Point Class and Distance Calculation",
+        "Sum Calculator Implementation",
+        "Write the following methods (instance methods):",
+        "Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double."
       ],
       "answer": [
-        0,
         2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Sum Calculator Implementation Challenge.",
@@ -13472,12 +13699,12 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Complete the blank: \"Sum ___ Implementation\"",
       "options": [
-        "represent",
-        "Calculator",
         "class",
-        "Point"
+        "Point",
+        "represent",
+        "Calculator"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "The missing word is 'Calculator', from the notes for Sum Calculator Implementation Challenge.",
       "tags": []
     },
@@ -13489,12 +13716,12 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "What is an important consideration when working with Sum Calculator Implementation Challenge?",
       "options": [
-        "NOTE: All methods should be defined as public NOT public static.",
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation"
+        "Point Class and Distance Calculation",
+        "NOTE: All methods should be defined as public NOT public static.",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Sum Calculator Implementation Challenge.",
       "tags": []
     },
@@ -13506,12 +13733,12 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "In SumCalculatorImplementationChallenge.java, what does the method getFirstNumber() return?",
       "options": [
-        "double",
         "void",
         "int",
-        "String"
+        "String",
+        "double"
       ],
-      "answer": 0,
+      "answer": 3,
       "explanation": "The method getFirstNumber() is declared with return type 'double' in SumCalculatorImplementationChallenge.java.",
       "tags": []
     },
@@ -13611,8 +13838,8 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "Which statement best describes Constructor Concept?",
       "options": [
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
+        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "A constructor is used in the creation of an object."
       ],
@@ -13628,15 +13855,15 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "Which of the following are TRUE about Constructor Concept? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
         "A constructor is used in the creation of an object.",
-        "Wall Area Computation",
+        "Point Class and Distance Calculation",
         "It has the same name as the class itself, and it doesn't return any values.",
+        "Wall Area Computation",
         "It is a special type of code block that has a specific name and parameters, much like a method."
       ],
       "answer": [
-        1,
-        3,
+        0,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Constructor Concept.",
@@ -13650,12 +13877,12 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "Complete the blank: \"A ___ is used in the creation of an object.\"",
       "options": [
+        "Point",
         "represent",
         "constructor",
-        "Point",
         "class"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'constructor', from the notes for Constructor Concept.",
       "tags": []
     },
@@ -13667,12 +13894,12 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "What is an important consideration when working with Constructor Concept?",
       "options": [
+        "It should never include a return type from a constructor, not even void.",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
-        "Point Class and Distance Calculation",
-        "It should never include a return type from a constructor, not even void."
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "This is a key gotcha or note taken directly from the source for Constructor Concept.",
       "tags": []
     },
@@ -13684,12 +13911,12 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "In ConstructorConcept.java, what does the method getAccountNumber() return?",
       "options": [
-        "boolean",
-        "int",
+        "void",
         "String",
-        "void"
+        "int",
+        "boolean"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The method getAccountNumber() is declared with return type 'String' in ConstructorConcept.java.",
       "tags": []
     },
@@ -13789,11 +14016,11 @@ const QUESTIONS_BANK = {
       "question": "Which statement best describes Super Keyword Use Example?",
       "options": [
         "Point Class and Distance Calculation",
-        "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class.",
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class."
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Super Keyword Use Example.",
       "tags": []
     },
@@ -13805,12 +14032,12 @@ const QUESTIONS_BANK = {
       "topic": "Super Keyword Use Example",
       "question": "Complete the blank: \"The ___ super is commonly used with method overriding when we call a method with the same name from the parent class.\"",
       "options": [
-        "class",
-        "Point",
         "keyword",
-        "represent"
+        "represent",
+        "class",
+        "Point"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "The missing word is 'keyword', from the notes for Super Keyword Use Example.",
       "tags": []
     },
@@ -13822,12 +14049,12 @@ const QUESTIONS_BANK = {
       "topic": "Super Keyword Use Example",
       "question": "What does class SubClass extend?",
       "options": [
-        "Object",
+        "Runnable",
         "Comparable",
-        "SuperKeywordUseExample",
-        "Runnable"
+        "Object",
+        "SuperKeywordUseExample"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "SubClass extends SuperKeywordUseExample as declared in SuperKeywordUseExample.java.",
       "tags": []
     },
@@ -13927,9 +14154,9 @@ const QUESTIONS_BANK = {
       "topic": "This And Super",
       "question": "Which statement best describes This And Super?",
       "options": [
-        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
+        "Point Class and Distance Calculation",
         "super keyword :-"
       ],
       "answer": 3,
@@ -13944,16 +14171,16 @@ const QUESTIONS_BANK = {
       "topic": "This And Super",
       "question": "Which of the following are TRUE about This And Super? Select all that apply.",
       "options": [
-        "Wall Area Computation",
+        "1) The keyword super is used to access or call the parent class members (both variables and methods).",
         "this keyword :-",
-        "Point Class and Distance Calculation",
+        "Wall Area Computation",
         "super keyword :-",
-        "1) The keyword super is used to access or call the parent class members (both variables and methods)."
+        "Point Class and Distance Calculation"
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for This And Super.",
       "tags": []
@@ -13966,8 +14193,8 @@ const QUESTIONS_BANK = {
       "topic": "This And Super",
       "question": "Complete the blank: \"___ keyword :-\"",
       "options": [
-        "Point",
         "class",
+        "Point",
         "represent",
         "super"
       ],
@@ -13983,12 +14210,12 @@ const QUESTIONS_BANK = {
       "topic": "This And Super",
       "question": "What is an important consideration when working with This And Super?",
       "options": [
-        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
-        "NOTE: Both the keywords can be used anywhere in a class except for static elements such as a static method."
+        "Wall Area Computation",
+        "NOTE: Both the keywords can be used anywhere in a class except for static elements such as a static method.",
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for This And Super.",
       "tags": []
     },
@@ -14088,12 +14315,12 @@ const QUESTIONS_BANK = {
       "topic": "This Key Word Use Example",
       "question": "Which statement best describes This Key Word Use Example?",
       "options": [
-        "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
-        "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
+        "Point Class and Distance Calculation"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for This Key Word Use Example.",
       "tags": []
     },
@@ -14105,10 +14332,10 @@ const QUESTIONS_BANK = {
       "topic": "This Key Word Use Example",
       "question": "Which of the following are TRUE about This Key Word Use Example? Select all that apply.",
       "options": [
-        "In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there.",
-        "Point Class and Distance Calculation",
         "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
-        "Wall Area Computation"
+        "Wall Area Computation",
+        "In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there.",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
         0,
@@ -14126,11 +14353,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"The ___ this is commonly used within constructors and setters and is optionally used within getters.\"",
       "options": [
         "class",
-        "represent",
         "keyword",
-        "Point"
+        "Point",
+        "represent"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The missing word is 'keyword', from the notes for This Key Word Use Example.",
       "tags": []
     },
@@ -14142,12 +14369,12 @@ const QUESTIONS_BANK = {
       "topic": "This Key Word Use Example",
       "question": "In ThisKeyWordUseExample.java, what does the method getColor() return?",
       "options": [
-        "String",
         "boolean",
-        "void",
-        "int"
+        "int",
+        "String",
+        "void"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The method getColor() is declared with return type 'String' in ThisKeyWordUseExample.java.",
       "tags": []
     },
@@ -14247,12 +14474,12 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor Super Call Example",
       "question": "Which statement best describes Good Constructor Super Call Example?",
       "options": [
-        "Wall Area Computation",
-        "Point Class and Distance Calculation",
         "The 1st constructor is calling the 2nd constructor.",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Wall Area Computation",
+        "Point Class and Distance Calculation"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Good Constructor Super Call Example.",
       "tags": []
     },
@@ -14264,14 +14491,14 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor Super Call Example",
       "question": "Which of the following are TRUE about Good Constructor Super Call Example? Select all that apply.",
       "options": [
+        "Wall Area Computation",
         "The parent constructor will initialize the x and y variables, while the 2nd Rectangle constructor will initialize the width and height variables. Here, as you can see in this code, Both the super() and this() calls are made, but in different constructors.",
-        "Point Class and Distance Calculation",
         "The 1st constructor is calling the 2nd constructor.",
         "The 2nd constructor calls the parent constructor with parameters x and y.",
-        "Wall Area Computation"
+        "Point Class and Distance Calculation"
       ],
       "answer": [
-        0,
+        1,
         2,
         3
       ],
@@ -14286,9 +14513,9 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor Super Call Example",
       "question": "Complete the blank: \"The 1st ___ is calling the 2nd constructor.\"",
       "options": [
-        "Point",
         "class",
         "represent",
+        "Point",
         "constructor"
       ],
       "answer": 3,
@@ -14304,11 +14531,11 @@ const QUESTIONS_BANK = {
       "question": "What does class AnotherGoodConstructorSuperCallExample extend?",
       "options": [
         "Runnable",
+        "GoodConstructorSuperCallExample",
         "Comparable",
-        "Object",
-        "GoodConstructorSuperCallExample"
+        "Object"
       ],
-      "answer": 3,
+      "answer": 1,
       "explanation": "AnotherGoodConstructorSuperCallExample extends GoodConstructorSuperCallExample as declared in GoodConstructorSuperCallExample.java.",
       "tags": []
     },
@@ -14425,16 +14652,16 @@ const QUESTIONS_BANK = {
       "topic": "Bad Constructor This Call Example",
       "question": "Which of the following are TRUE about Bad Constructor This Call Example? Select all that apply.",
       "options": [
-        "Here, there are three constructors.",
         "Wall Area Computation",
-        "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values.",
         "This is a bad way to write constructors like this.",
-        "Point Class and Distance Calculation"
+        "Here, there are three constructors.",
+        "Point Class and Distance Calculation",
+        "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values."
       ],
       "answer": [
-        0,
+        1,
         2,
-        3
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Bad Constructor This Call Example.",
       "tags": []
@@ -14447,12 +14674,12 @@ const QUESTIONS_BANK = {
       "topic": "Bad Constructor This Call Example",
       "question": "Complete the blank: \"Here, there are ___ constructors.\"",
       "options": [
+        "class",
         "three",
         "represent",
-        "class",
         "Point"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "The missing word is 'three', from the notes for Bad Constructor This Call Example.",
       "tags": []
     },
@@ -14552,12 +14779,12 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "Which statement best describes Good Constructor This Call Example?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
         "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.",
+        "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation"
       ],
-      "answer": 2,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Good Constructor This Call Example.",
       "tags": []
     },
@@ -14569,16 +14796,16 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "Which of the following are TRUE about Good Constructor This Call Example? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
-        "In other words, The 3rd constructor does all the work.",
-        "Wall Area Computation",
         "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.",
-        "The variables will always be initialized in the 3rd constructor, and only there."
+        "The variables will always be initialized in the 3rd constructor, and only there.",
+        "Wall Area Computation",
+        "In other words, The 3rd constructor does all the work.",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Good Constructor This Call Example.",
       "tags": []
@@ -14591,10 +14818,10 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "Complete the blank: \"Here, the 1st ___ calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.\"",
       "options": [
-        "Point",
         "class",
+        "represent",
         "constructor",
-        "represent"
+        "Point"
       ],
       "answer": 2,
       "explanation": "The missing word is 'constructor', from the notes for Good Constructor This Call Example.",
@@ -14608,9 +14835,9 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "What is an important consideration when working with Good Constructor This Call Example?",
       "options": [
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "Wall Area Computation",
         "Point Class and Distance Calculation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "The variables will always be initialized in the 3rd constructor, and only there."
       ],
       "answer": 3,
@@ -14713,12 +14940,12 @@ const QUESTIONS_BANK = {
       "topic": "Customer",
       "question": "Which statement best describes Customer?",
       "options": [
+        "Create a new class, called Customer, with three fields: name. credit limit. and email address.",
         "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation",
-        "Create a new class, called Customer, with three fields: name. credit limit. and email address."
+        "Wall Area Computation"
       ],
-      "answer": 3,
+      "answer": 0,
       "explanation": "This is drawn directly from the notes for Customer.",
       "tags": []
     },
@@ -14732,13 +14959,13 @@ const QUESTIONS_BANK = {
       "options": [
         "Create the getter methods only for each field. You don't need to create the setters.",
         "Point Class and Distance Calculation",
-        "Create a new class, called Customer, with three fields: name. credit limit. and email address.",
         "Wall Area Computation",
-        "Create three constructors for this class: First, create a constructor for all three fields which should assign the arguments directly to the instance fields. Second, create a no-args constructor that calls another constructor, passing some literal values for each argument. And lastly, create a constructor with just the name and email parameters, which also calls another constructor."
+        "Create three constructors for this class: First, create a constructor for all three fields which should assign the arguments directly to the instance fields. Second, create a no-args constructor that calls another constructor, passing some literal values for each argument. And lastly, create a constructor with just the name and email parameters, which also calls another constructor.",
+        "Create a new class, called Customer, with three fields: name. credit limit. and email address."
       ],
       "answer": [
         0,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Customer.",
@@ -14753,9 +14980,9 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"___ a new class, called Customer, with three fields: name. credit limit. and email address.\"",
       "options": [
         "Create",
-        "represent",
+        "class",
         "Point",
-        "class"
+        "represent"
       ],
       "answer": 0,
       "explanation": "The missing word is 'Create', from the notes for Customer.",
@@ -14769,12 +14996,12 @@ const QUESTIONS_BANK = {
       "topic": "Customer",
       "question": "In Customer.java, what does the method getName() return?",
       "options": [
+        "int",
         "void",
         "String",
-        "int",
         "boolean"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The method getName() is declared with return type 'String' in Customer.java.",
       "tags": []
     },
@@ -14874,12 +15101,12 @@ const QUESTIONS_BANK = {
       "topic": "House",
       "question": "Which statement best describes House?",
       "options": [
-        "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance.",
-        "Point Class and Distance Calculation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation",
+        "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance.",
         "Wall Area Computation"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for House.",
       "tags": []
     },
@@ -14891,15 +15118,15 @@ const QUESTIONS_BANK = {
       "topic": "House",
       "question": "Which of the following are TRUE about House? Select all that apply.",
       "options": [
+        "Point Class and Distance Calculation",
         "Review the class House and understand its key responsibilities.",
         "This topic belongs to Chapter 14: OOP Concepts → Reference Object Instance.",
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
         "This example defines 2 methods; trace method behavior step by step."
       ],
       "answer": [
-        0,
         1,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for House.",
@@ -14913,12 +15140,12 @@ const QUESTIONS_BANK = {
       "topic": "House",
       "question": "Complete the blank: \"This ___ belongs to Chapter 14: OOP Concepts → Reference Object Instance.\"",
       "options": [
+        "represent",
         "Point",
         "class",
-        "topic",
-        "represent"
+        "topic"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The missing word is 'topic', from the notes for House.",
       "tags": []
     },
@@ -14931,11 +15158,11 @@ const QUESTIONS_BANK = {
       "question": "In House.java, what does the method getColor() return?",
       "options": [
         "void",
+        "boolean",
         "int",
-        "String",
-        "boolean"
+        "String"
       ],
-      "answer": 2,
+      "answer": 3,
       "explanation": "The method getColor() is declared with return type 'String' in House.java.",
       "tags": []
     },
@@ -15121,12 +15348,12 @@ const QUESTIONS_BANK = {
       "topic": "Reference Objects Instance Class",
       "question": "Which statement best describes Reference Objects Instance Class?",
       "options": [
-        "A Class is like a blueprint",
         "Point Class and Distance Calculation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation"
+        "A Class is like a blueprint",
+        "Wall Area Computation",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Reference Objects Instance Class.",
       "tags": []
     },
@@ -15138,16 +15365,16 @@ const QUESTIONS_BANK = {
       "topic": "Reference Objects Instance Class",
       "question": "Which of the following are TRUE about Reference Objects Instance Class? Select all that apply.",
       "options": [
-        "A Class is like a blueprint",
         "Using blueprint, we can create as many objects that we want",
+        "Wall Area Computation",
         "Point Class and Distance Calculation",
-        "This object can also be known as an instance.",
-        "Wall Area Computation"
+        "A Class is like a blueprint",
+        "This object can also be known as an instance."
       ],
       "answer": [
         0,
-        1,
-        3
+        3,
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Reference Objects Instance Class.",
       "tags": []
@@ -15160,12 +15387,12 @@ const QUESTIONS_BANK = {
       "topic": "Reference Objects Instance Class",
       "question": "Complete the blank: \"A ___ is like a blueprint\"",
       "options": [
-        "Class",
-        "Point",
+        "represent",
         "class",
-        "represent"
+        "Class",
+        "Point"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'Class', from the notes for Reference Objects Instance Class.",
       "tags": []
     },
@@ -15265,12 +15492,12 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Methods",
       "question": "Which statement best describes Static And Instance Methods?",
       "options": [
-        "Wall Area Computation",
         "Point Class and Distance Calculation",
         "Static Methods",
+        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Static And Instance Methods.",
       "tags": []
     },
@@ -15282,14 +15509,14 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Methods",
       "question": "Which of the following are TRUE about Static And Instance Methods? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
-        "2) Static methods can't access instance methods and instance variables directly.",
         "Wall Area Computation",
+        "Point Class and Distance Calculation",
         "1) Static methods are declared using a static modifier and they belong to Class",
+        "2) Static methods can't access instance methods and instance variables directly.",
         "Static Methods"
       ],
       "answer": [
-        1,
+        2,
         3,
         4
       ],
@@ -15305,11 +15532,11 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"1) ___ methods are declared using a static modifier and they belong to Class\"",
       "options": [
         "Point",
+        "represent",
         "Static",
-        "class",
-        "represent"
+        "class"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'Static', from the notes for Static And Instance Methods.",
       "tags": []
     },
@@ -15322,9 +15549,9 @@ const QUESTIONS_BANK = {
       "question": "What is an important consideration when working with Static And Instance Methods?",
       "options": [
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+        "Point Class and Distance Calculation",
         "5)  Whenever a method that doesn't use instance variables is declared, that method should probably be declared as a static method.",
-        "Point Class and Distance Calculation"
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
       "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Static And Instance Methods.",
@@ -15443,16 +15670,16 @@ const QUESTIONS_BANK = {
       "topic": "Plain Old Java Object",
       "question": "Which of the following are TRUE about Plain Old Java Object? Select all that apply.",
       "options": [
-        "Point Class and Distance Calculation",
         "POJO CONCEPTS i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes.",
-        "Wall Area Computation",
         "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
-        "iv)  Many database frameworks use POJO's to read data from, or to write data to databases,files or streams."
+        "iv)  Many database frameworks use POJO's to read data from, or to write data to databases,files or streams.",
+        "Point Class and Distance Calculation",
+        "Wall Area Computation"
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Plain Old Java Object.",
       "tags": []
@@ -15465,12 +15692,12 @@ const QUESTIONS_BANK = {
       "topic": "Plain Old Java Object",
       "question": "Complete the blank: \"POJO ___ i)   A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii)  It's used to house data and pass data between functional classes.\"",
       "options": [
-        "class",
-        "CONCEPTS",
+        "Point",
         "represent",
-        "Point"
+        "CONCEPTS",
+        "class"
       ],
-      "answer": 1,
+      "answer": 2,
       "explanation": "The missing word is 'CONCEPTS', from the notes for Plain Old Java Object.",
       "tags": []
     },
@@ -15482,12 +15709,12 @@ const QUESTIONS_BANK = {
       "topic": "Plain Old Java Object",
       "question": "What is an important consideration when working with Plain Old Java Object?",
       "options": [
-        "Annotations (@Override, @SuppressWarnings, etc.) are metadata — they provide information to the compiler or tools. They do not change runtime behaviour.",
         "Wall Area Computation",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation"
+        "Point Class and Distance Calculation",
+        "Annotations (@Override, @SuppressWarnings, etc.) are metadata — they provide information to the compiler or tools. They do not change runtime behaviour.",
+        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has."
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "This is a key gotcha or note taken directly from the source for Plain Old Java Object.",
       "tags": []
     },
@@ -15587,12 +15814,12 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which statement best describes Main?",
       "options": [
-        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
         "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]",
+        "Wall Area Computation",
         "Point Class and Distance Calculation"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Main.",
       "tags": []
     },
@@ -15604,15 +15831,15 @@ const QUESTIONS_BANK = {
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
-        "StudentRecord[id=1, name=Navi, dateOfBirth=21/05/1996, classList=Python MasterClass]",
+        "Wall Area Computation",
+        "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]",
         "Point Class and Distance Calculation",
         "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]",
-        "Wall Area Computation",
-        "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]"
+        "StudentRecord[id=1, name=Navi, dateOfBirth=21/05/1996, classList=Python MasterClass]"
       ],
       "answer": [
-        0,
-        2,
+        1,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Main.",
@@ -15714,12 +15941,12 @@ const QUESTIONS_BANK = {
       "topic": "Student",
       "question": "Which statement best describes Student?",
       "options": [
-        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation",
-        "The toString() method is a special method in Java."
+        "Wall Area Computation",
+        "The toString() method is a special method in Java.",
+        "Point Class and Distance Calculation"
       ],
-      "answer": 3,
+      "answer": 2,
       "explanation": "This is drawn directly from the notes for Student.",
       "tags": []
     },
@@ -15731,16 +15958,16 @@ const QUESTIONS_BANK = {
       "topic": "Student",
       "question": "Which of the following are TRUE about Student? Select all that apply.",
       "options": [
-        "The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way.",
-        "The toString() method is a special method in Java.",
-        "Point Class and Distance Calculation",
         "Wall Area Computation",
-        "The toString() method can be implemented in any class, and doing this helps to print out the current state of the object."
+        "The toString() method can be implemented in any class, and doing this helps to print out the current state of the object.",
+        "The toString() method is a special method in Java.",
+        "The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way.",
+        "Point Class and Distance Calculation"
       ],
       "answer": [
-        0,
         1,
-        4
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Student.",
       "tags": []
@@ -15753,10 +15980,10 @@ const QUESTIONS_BANK = {
       "topic": "Student",
       "question": "Complete the blank: \"The ___() method is a special method in Java.\"",
       "options": [
-        "represent",
-        "toString",
         "Point",
-        "class"
+        "toString",
+        "class",
+        "represent"
       ],
       "answer": 1,
       "explanation": "The missing word is 'toString', from the notes for Student.",
@@ -15770,12 +15997,12 @@ const QUESTIONS_BANK = {
       "topic": "Student",
       "question": "In Student.java, what does the method getId() return?",
       "options": [
-        "int",
-        "boolean",
+        "void",
         "String",
-        "void"
+        "int",
+        "boolean"
       ],
-      "answer": 2,
+      "answer": 1,
       "explanation": "The method getId() is declared with return type 'String' in Student.java.",
       "tags": []
     },
@@ -15875,12 +16102,12 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Variables",
       "question": "Which statement best describes Static And Instance Variables?",
       "options": [
+        "Wall Area Computation",
         "Point Class and Distance Calculation",
-        "Static Variables",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Wall Area Computation"
+        "Static Variables"
       ],
-      "answer": 1,
+      "answer": 3,
       "explanation": "This is drawn directly from the notes for Static And Instance Variables.",
       "tags": []
     },
@@ -15893,13 +16120,13 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Static And Instance Variables? Select all that apply.",
       "options": [
         "Point Class and Distance Calculation",
-        "Wall Area Computation",
         "1) A static variable is Declared by using the keyword static.",
-        "Static Variables",
-        "2) Static variables are also known as static member variables. They belong to the class, not the instance"
+        "Wall Area Computation",
+        "2) Static variables are also known as static member variables. They belong to the class, not the instance",
+        "Static Variables"
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
@@ -15914,12 +16141,12 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Variables",
       "question": "Complete the blank: \"___ Variables\"",
       "options": [
-        "Static",
-        "Point",
         "class",
+        "Point",
+        "Static",
         "represent"
       ],
-      "answer": 0,
+      "answer": 2,
       "explanation": "The missing word is 'Static', from the notes for Static And Instance Variables.",
       "tags": []
     },
@@ -16019,12 +16246,12 @@ const QUESTIONS_BANK = {
       "topic": "Student Record",
       "question": "Which statement best describes Student Record?",
       "options": [
-        "The Record Type",
-        "Wall Area Computation",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Point Class and Distance Calculation"
+        "The Record Type",
+        "Point Class and Distance Calculation",
+        "Wall Area Computation"
       ],
-      "answer": 0,
+      "answer": 1,
       "explanation": "This is drawn directly from the notes for Student Record.",
       "tags": []
     },
@@ -16036,16 +16263,16 @@ const QUESTIONS_BANK = {
       "topic": "Student Record",
       "question": "Which of the following are TRUE about Student Record? Select all that apply.",
       "options": [
-        "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.",
-        "Point Class and Distance Calculation",
-        "2) It's purpose is to replace the boilerplate code of the POJO but to be more restrictive.",
         "The Record Type",
+        "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.",
+        "2) It's purpose is to replace the boilerplate code of the POJO but to be more restrictive.",
+        "Point Class and Distance Calculation",
         "Wall Area Computation"
       ],
       "answer": [
         0,
-        2,
-        3
+        1,
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Student Record.",
       "tags": []
@@ -16059,8 +16286,8 @@ const QUESTIONS_BANK = {
       "question": "Complete the blank: \"The ___ Type\"",
       "options": [
         "represent",
-        "class",
         "Point",
+        "class",
         "Record"
       ],
       "answer": 3,
@@ -16175,9 +16402,9 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
-      "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.",
-      "Type     | Width  | Range / Notes boolean  | 1 bit  | Only two values: true or false byte     | 8 bits | -128 to 127 short    | 16 bits| -32,768 to 32,767 char     | 16 bits| A single Unicode character — written in single quotes: 'A' int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
-      "Overflow and Underflow: If you exceed the maximum value of a type, it wraps around (overflow)."
+      "@quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(a + b + c);",
+      "@quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(c + a + b);",
+      "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Result: \" + 1 + 2);"
     ],
     "syntax": "public class StringExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String myString = \"This is a string\";\r\n        System.out.println(\"MyString is equal to \" + myString);\r\n        myString = myString  + \", and this is more.\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n        myString = myString + \" \\u00A9 2022\";\r\n        System.out.println(\"myString is equal to \" + myString);",
     "badges": [
@@ -16195,7 +16422,9 @@ const QUICK_REVISION_BANK = {
       "For String        --> Concatenation"
     ],
     "gotchas": [
-      "Always be aware of scope, type constraints, and compiler rules in this area."
+      "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
+      "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);",
+      "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));"
     ],
     "syntax": "public class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n\r\n        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).",
     "badges": [

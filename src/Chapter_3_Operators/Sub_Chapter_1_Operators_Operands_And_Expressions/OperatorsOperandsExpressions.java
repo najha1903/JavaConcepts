@@ -44,6 +44,23 @@
 *
 * */
 
+// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + "Java");
+// @answer Output: 30Java
+// @answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + "Java" = "30Java" (String concat).
+
+// @quiz (INTERVIEW TRAP) What is the output of: System.out.println("Java" + 10 + 20);
+// @answer Output: Java1020 (NOT Java30)
+// @answer "Java" + 10 = "Java10" (String concat), then "Java10" + 20 = "Java1020". Once a String is the left operand, all + after it are concatenation.
+
+// @quiz (INTERVIEW TRAP) What is the output of: System.out.println("Java" + (10 + 20));
+// @answer Output: Java30
+// @answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then "Java" + 30 = "Java30".
+// @answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.
+
+// @quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?
+// @answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.
+// @answer Use parentheses to control evaluation order: "Score: " + (a + b) gives arithmetic sum. "Score: " + a + b gives two separate concatenations.
+
 public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {
