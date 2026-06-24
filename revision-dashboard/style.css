@@ -2370,11 +2370,88 @@ h1, h2, h3, h4, .logo span {
 /* ==========================================================================
    Deep Challenge Styles
    ========================================================================== */
-.deep-challenge-body { line-height: 1.7; margin: 12px 0; font-size: 0.88rem; }
-.deep-hints, .deep-testcases { margin: 12px 0; padding: 12px 16px; border-radius: 6px; }
-.deep-hints { background: rgba(255, 193, 7, 0.07); border-left: 3px solid #ffc107; }
-.deep-testcases { background: rgba(76, 175, 80, 0.07); border-left: 3px solid #4caf50; }
-.deep-hints ul, .deep-testcases ul { margin: 6px 0 0 0; padding-left: 18px; }
-.deep-hints li, .deep-testcases li { font-size: 0.82rem; line-height: 1.6; margin-bottom: 3px; }
-.deep-self-check { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border-color, #333); }
-.deep-challenge-header { margin-bottom: 8px; }
+.deep-challenge-header { margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+.deep-challenge-body {
+  line-height: 1.8;
+  margin: 0 0 16px 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #ccc);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.deep-hints, .deep-testcases {
+  margin: 12px 0;
+  padding: 18px 22px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.deep-hints {
+  background: rgba(255, 193, 7, 0.06);
+  border-color: rgba(255, 193, 7, 0.25);
+  border-left: 4px solid #ffc107;
+}
+
+.deep-testcases {
+  background: rgba(76, 175, 80, 0.06);
+  border-color: rgba(76, 175, 80, 0.25);
+  border-left: 4px solid #4caf50;
+}
+
+.deep-hints strong, .deep-testcases strong {
+  display: block;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+
+.deep-hints strong { color: #ffc107; }
+.deep-testcases strong { color: #4caf50; }
+
+.deep-hints ul, .deep-testcases ul {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deep-hints li, .deep-testcases li {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-secondary, #ccc);
+}
+
+.deep-testcases li code {
+  background: rgba(76, 175, 80, 0.12);
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.84rem;
+  color: #a5d6a7;
+}
+
+.deep-self-check {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: rgba(79, 195, 247, 0.05);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.deep-self-check p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #aaa);
+}
