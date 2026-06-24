@@ -100,6 +100,11 @@ button {
   font-family: inherit;
 }
 
+/* SVGs inside buttons should never intercept clicks — pass through to the button */
+button svg, button .nav-icon, button .chevron-icon {
+  pointer-events: none;
+}
+
 h1, h2, h3, h4, .logo span {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
@@ -267,6 +272,8 @@ h1, h2, h3, h4, .logo span {
 .nav-icon {
   width: 18px;
   height: 18px;
+  pointer-events: none; /* clicks pass through to the button, not the SVG */
+  flex-shrink: 0;
 }
 
 .nav-divider {
@@ -332,6 +339,8 @@ h1, h2, h3, h4, .logo span {
   height: 14px;
   color: var(--text-muted);
   transition: transform 0.2s ease;
+  pointer-events: none; /* clicks pass through to chapter-trigger button */
+  flex-shrink: 0;
 }
 .chapter-accordion.open .chevron-icon {
   transform: rotate(90deg);
