@@ -1,6 +1,26 @@
 // Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.
 const DEEP_CHALLENGES = [
   {
+    "id": "deep-chapter-2-primitive-types-implement-a-stringutils-class-with-methods-that-do-not-use-any-built-in-string-methods-except-charat-and-length",
+    "title": "Implement a StringUtils class with methods that do NOT use any built-in String methods except charAt() and length()",
+    "chapter": "Chapter 2: Primitive Types",
+    "topic": "String Example",
+    "difficulty": "Hard",
+    "tags": [
+      "deep",
+      "coding"
+    ],
+    "source": "custom",
+    "description": "Implement: reverse(String s), isPalindrome(String s), countChar(String s, char target), toUpperCase(String s), countVowels(String s), removeSpaces(String s)",
+    "hints": [
+      "For reverse: use two pointers on a char array. For palindrome: compare from both ends. For toUpperCase: use ASCII arithmetic (subtract 32 from lowercase chars)."
+    ],
+    "testcases": [
+      "reverse(\"hello\") → \"olleh\", isPalindrome(\"racecar\") → true, isPalindrome(\"java\") → false, countVowels(\"Hello World\") → 3"
+    ],
+    "selfCheck": true
+  },
+  {
     "id": "deep-chapter-2-primitive-types-string-ops",
     "title": "String Manipulation Mastery",
     "chapter": "Chapter 2: Primitive Types",

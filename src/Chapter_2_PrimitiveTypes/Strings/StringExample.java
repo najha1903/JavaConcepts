@@ -65,6 +65,64 @@
 // @answer Output: 55 (NOT 10)
 // @answer "" is an empty String. "" + a = "5" (String), then "5" + a = "55". Not arithmetic because the first operand is a String.
 // @answer To add them arithmetically: System.out.println(a + a + "") = "10"
+
+// ─── WITHOUT BUILT-IN METHOD — Classic Interview Series ────────────────────
+
+// @quiz (INTERVIEW) How do you REVERSE a String WITHOUT using StringBuilder.reverse() or any library?
+// @answer Iterate from the last index to 0 and build a new String: String rev = ""; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }
+// @answer Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr).
+// @answer Key insight: Strings are immutable so you can't modify in place — you must build a new result.
+
+// @quiz (INTERVIEW) How do you check if a String is a PALINDROME without using any built-in reverse method?
+// @answer Use two pointers — one at the start, one at the end, move inward and compare: boolean isPalin = true; int l=0, r=str.length()-1; while(l<r){ if(str.charAt(l)!=str.charAt(r)){isPalin=false; break;} l++; r--; }
+// @answer Key insight: a palindrome reads the same forwards and backwards. "madam", "racecar", "level" are palindromes.
+// @answer You DON'T need to reverse the whole string — just compare from both ends. This is O(n/2) = O(n).
+
+// @quiz (INTERVIEW) How do you count occurrences of a specific character in a String WITHOUT using regex or library?
+// @answer Loop through each character and compare: int count = 0; for (int i = 0; i < str.length(); i++) { if (str.charAt(i) == target) count++; }
+// @answer Or with for-each: for (char ch : str.toCharArray()) { if (ch == target) count++; }
+
+// @quiz (INTERVIEW) How do you check if a String CONTAINS a substring WITHOUT using contains() or indexOf()?
+// @answer Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true.
+// @answer Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm.
+
+// @quiz (INTERVIEW) How do you convert a String to UPPERCASE WITHOUT using toUpperCase()?
+// @answer Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);
+// @answer Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }
+
+// @quiz (INTERVIEW) How do you COUNT VOWELS in a String WITHOUT using regex?
+// @answer Loop through each char and check if it's in the set {a,e,i,o,u,A,E,I,O,U}: int count=0; for(char ch: str.toCharArray()){ String v="aeiouAEIOU"; if(v.indexOf(ch)!=-1) count++; }
+// @answer Simpler: use a switch or if-else chain: if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') count++;
+
+// @quiz (INTERVIEW) How do you check if two Strings are ANAGRAMS WITHOUT using sort()?
+// @answer Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0.
+// @answer If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach.
+// @answer Example: "listen" and "silent" are anagrams — same characters, different order.
+
+// @quiz (INTERVIEW) How do you REMOVE ALL SPACES from a String WITHOUT using replace() or replaceAll()?
+// @answer Loop and skip spaces: StringBuilder sb = new StringBuilder(); for(char ch: str.toCharArray()){ if(ch!=' ') sb.append(ch); }
+// @answer This builds a new String containing only non-space characters.
+
+// @quiz (INTERVIEW) How do you COUNT WORDS in a String WITHOUT using split()?
+// @answer Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }
+// @answer Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it.
+
+// @quiz (INTERVIEW) How do you find the FIRST NON-REPEATING CHARACTER in a String WITHOUT library methods?
+// @answer Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1.
+// @answer int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;
+
+// @quiz (INTERVIEW) How do you REMOVE DUPLICATE CHARACTERS from a String WITHOUT using Set or distinct()?
+// @answer Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true.
+// @answer Example: "programming" → "progamin" (each character kept only on first occurrence).
+
+// @quiz (INTERVIEW) How do you check if a String is NUMERIC (all digits) WITHOUT using parseInt() or regex?
+// @answer Loop through each char and check ch >= '0' && ch <= '9': boolean isNum=true; for(char ch:str.toCharArray()){ if(ch<'0'||ch>'9'){isNum=false;break;} }
+// @answer Handle edge cases: empty string should return false. Negative sign ('-' at index 0) may or may not count depending on requirement.
+
+// @challenge Implement a StringUtils class with methods that do NOT use any built-in String methods except charAt() and length()
+// @desc Implement: reverse(String s), isPalindrome(String s), countChar(String s, char target), toUpperCase(String s), countVowels(String s), removeSpaces(String s)
+// @hint For reverse: use two pointers on a char array. For palindrome: compare from both ends. For toUpperCase: use ASCII arithmetic (subtract 32 from lowercase chars).
+// @testcase reverse("hello") → "olleh", isPalindrome("racecar") → true, isPalindrome("java") → false, countVowels("Hello World") → 3
 public class StringExample {
 
     public static void main(String[] args) {
