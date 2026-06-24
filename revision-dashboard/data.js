@@ -4135,12 +4135,203 @@ const CONCEPTS_DATA = [
               "6) And Methods that are final also cannot be overridden.",
               "7) A subclass can use super.methodName() to call the superclass version of an overridden method."
             ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@quiz (INTERVIEW) What is method overriding in Java?",
+              "@answer Defining a method in a child class with the SAME name, SAME parameters, and compatible return type as a method in the parent class.",
+              "@answer The child's version replaces the parent's version when called on a child object — this is Runtime Polymorphism (Dynamic Method Dispatch).",
+              "@answer The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type.",
+              "@quiz (INTERVIEW) What is the difference between method overloading and method overriding?",
+              "@answer Overloading: SAME class, SAME name, DIFFERENT parameters. Resolved at COMPILE TIME (static polymorphism).",
+              "@answer Overriding: CHILD class, SAME name, SAME parameters. Resolved at RUNTIME (dynamic polymorphism).",
+              "@answer Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical.",
+              "@quiz (INTERVIEW) What are the rules for method overriding in Java?",
+              "@answer 1) Same method name and same parameters (signature must match exactly).",
+              "@answer 2) Return type must be the same OR a subclass (covariant return type — Java 5+).",
+              "@answer 3) Access modifier cannot be MORE restrictive (public > protected > default > private). Can be less restrictive.",
+              "@answer 4) Only inherited (non-private, non-static, non-final) methods can be overridden.",
+              "@answer 5) Constructors and private methods CANNOT be overridden.",
+              "@answer 6) final methods CANNOT be overridden — compiler error.",
+              "@answer 7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden.",
+              "@quiz (OCJP TRAP) What is the output? class Animal { void speak(){ System.out.println(\"Animal\"); } } class Dog extends Animal { void speak(){ System.out.println(\"Dog\"); } } Animal a = new Dog(); a.speak();",
+              "@answer Output: Dog",
+              "@answer Even though the reference type is Animal, the ACTUAL object is Dog. Java uses dynamic dispatch — the JVM calls Dog's speak() at runtime. This is the core of runtime polymorphism.",
+              "@answer TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method.",
+              "@quiz (OCJP TRAP) Can you override a static method in Java?",
+              "@answer NO. Static methods belong to the class, not the object. You can declare a static method with the same name in a subclass, but this is called METHOD HIDING, not overriding.",
+              "@answer With hiding: the method called depends on the REFERENCE type (compile-time). With overriding: it depends on the OBJECT type (runtime). This is the key difference.",
+              "@answer @Override annotation on a static method causes a COMPILE ERROR.",
+              "@quiz (OCJP TRAP) What is the output? class Parent { String name = \"Parent\"; void show() { System.out.println(\"Parent show\"); } } class Child extends Parent { String name = \"Child\"; void show() { System.out.println(\"Child show\"); } } Parent p = new Child(); System.out.println(p.name); p.show();",
+              "@answer Output: Parent (then) Child show",
+              "@answer Fields are resolved at COMPILE TIME based on reference type → p.name uses Parent's name field.",
+              "@answer Methods are resolved at RUNTIME based on object type → p.show() calls Child's show().",
+              "@answer CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object).",
+              "@quiz (INTERVIEW) What is covariant return type in method overriding?",
+              "@answer Java 5+ allows the overriding method to return a subtype of the parent method's return type.",
+              "@answer Example: Parent returns Animal, Child can override to return Dog (Dog IS-A Animal). This is valid.",
+              "@answer Why useful: allows more specific return types without breaking the contract.",
+              "@quiz (INTERVIEW) What is the purpose of the @Override annotation?",
+              "@answer It tells the compiler you INTEND to override a method. If the signatures don't match (e.g., you made a typo), the compiler gives an error instead of silently creating an overloaded method.",
+              "@answer Best practice: ALWAYS use @Override when overriding — it's a safety net against bugs.",
+              "@answer Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't.",
+              "@quiz (INTERVIEW) Can a private method be overridden?",
+              "@answer NO. Private methods are not inherited — the child class cannot see them. If you define a method with the same name in the child class, it's a completely NEW method, not an override.",
+              "@answer @Override on a \"private method override\" will cause a compile error.",
+              "@quiz (INTERVIEW) What happens when you call super.methodName() inside an overriding method?",
+              "@answer It explicitly calls the PARENT class's version of the method. This is used to extend (not replace) the parent's behaviour.",
+              "@answer Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields.",
+              "@quiz (INTERVIEW) Can a constructor be overridden?",
+              "@answer NO. Constructors are not inherited — they cannot be overridden. Each class has its own constructor(s).",
+              "@answer Constructors can be OVERLOADED (same class, different parameters) but not overridden.",
+              "@challenge Design a Shape hierarchy demonstrating method overriding",
+              "@desc Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each.",
+              "@hint area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w).",
+              "@testcase Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each",
+              "@challenge Demonstrate the field hiding vs method overriding trap",
+              "@desc Create a Parent class with a String field name=\"Parent\" and void display(). Create Child extending Parent with name=\"Child\" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why.",
+              "@hint Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps.",
+              "@testcase Parent p = new Child(); p.name should be \"Parent\". p.display() should call Child's version.",
+              "@challenge Implement a polymorphic payment system using method overriding",
+              "@desc Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically.",
+              "@hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.",
+              "@testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);"
+            ]
           }
         ],
         "inlineComments": [],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_method_Overriding;\r\n\r\n/*\r\n*    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In\r\n*    other words, the same name, and same parameters).\r\n*\r\n*    By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.\r\n*\r\n*    Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.\r\n*\r\n*    When we override a method, it's recommended to put @Override immediately above the method definition.\r\n*    The @Override statement is not required, but it's a way to get the compiler to flag\r\n*    an error if you don't actually properly override this method.\r\n*    We'll get an error if we don't follow the overriding rules correctly for that method.\r\n*\r\n*     We can't override static methods,only instance methods can be overridden.\r\n*\r\n*     Method overriding rules\r\n*\r\n*     A method will be considered overridden if we follow these rules.\r\n*\r\n*     1) Firstly, It must have the same name and same arguments.\r\n*     2) The return type can be a subclass of the return type in the parent class.\r\n*     3) It can't have a lower access modifier. In other words, it\r\n*     can't have more restrictive access privileges. For example, if the parent's method is protected, then\r\n*     using private in the child's overridden method is not allowed. However, using public for the child's\r\n*     method would be allowed, in this example.\r\n*     4) Only inherited methods can be overridden, in other words, methods can be overridden only in child classes.\r\n*     5) Constructors and private methods cannot be overridden.\r\n*     6) And Methods that are final also cannot be overridden.\r\n*     7) A subclass can use super.methodName() to call the superclass version of an overridden method.\r\n*\r\n*\r\n*\r\n* */\r\n\r\n\r\npublic class MethodOverridingInJava {\r\n}\r\n"
+        "customQuizzes": [
+          {
+            "question": "(INTERVIEW) What is method overriding in Java?",
+            "answers": [
+              "Defining a method in a child class with the SAME name, SAME parameters, and compatible return type as a method in the parent class.",
+              "The child's version replaces the parent's version when called on a child object — this is Runtime Polymorphism (Dynamic Method Dispatch).",
+              "The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the difference between method overloading and method overriding?",
+            "answers": [
+              "Overloading: SAME class, SAME name, DIFFERENT parameters. Resolved at COMPILE TIME (static polymorphism).",
+              "Overriding: CHILD class, SAME name, SAME parameters. Resolved at RUNTIME (dynamic polymorphism).",
+              "Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What are the rules for method overriding in Java?",
+            "answers": [
+              "1) Same method name and same parameters (signature must match exactly).",
+              "2) Return type must be the same OR a subclass (covariant return type — Java 5+).",
+              "3) Access modifier cannot be MORE restrictive (public > protected > default > private). Can be less restrictive.",
+              "4) Only inherited (non-private, non-static, non-final) methods can be overridden.",
+              "5) Constructors and private methods CANNOT be overridden.",
+              "6) final methods CANNOT be overridden — compiler error.",
+              "7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden."
+            ]
+          },
+          {
+            "question": "(OCJP TRAP) What is the output? class Animal { void speak(){ System.out.println(\"Animal\"); } } class Dog extends Animal { void speak(){ System.out.println(\"Dog\"); } } Animal a = new Dog(); a.speak();",
+            "answers": [
+              "Output: Dog",
+              "Even though the reference type is Animal, the ACTUAL object is Dog. Java uses dynamic dispatch — the JVM calls Dog's speak() at runtime. This is the core of runtime polymorphism.",
+              "TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method."
+            ]
+          },
+          {
+            "question": "(OCJP TRAP) Can you override a static method in Java?",
+            "answers": [
+              "NO. Static methods belong to the class, not the object. You can declare a static method with the same name in a subclass, but this is called METHOD HIDING, not overriding.",
+              "With hiding: the method called depends on the REFERENCE type (compile-time). With overriding: it depends on the OBJECT type (runtime). This is the key difference.",
+              "@Override annotation on a static method causes a COMPILE ERROR."
+            ]
+          },
+          {
+            "question": "(OCJP TRAP) What is the output? class Parent { String name = \"Parent\"; void show() { System.out.println(\"Parent show\"); } } class Child extends Parent { String name = \"Child\"; void show() { System.out.println(\"Child show\"); } } Parent p = new Child(); System.out.println(p.name); p.show();",
+            "answers": [
+              "Output: Parent (then) Child show",
+              "Fields are resolved at COMPILE TIME based on reference type → p.name uses Parent's name field.",
+              "Methods are resolved at RUNTIME based on object type → p.show() calls Child's show().",
+              "CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object)."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is covariant return type in method overriding?",
+            "answers": [
+              "Java 5+ allows the overriding method to return a subtype of the parent method's return type.",
+              "Example: Parent returns Animal, Child can override to return Dog (Dog IS-A Animal). This is valid.",
+              "Why useful: allows more specific return types without breaking the contract."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What is the purpose of the @Override annotation?",
+            "answers": [
+              "It tells the compiler you INTEND to override a method. If the signatures don't match (e.g., you made a typo), the compiler gives an error instead of silently creating an overloaded method.",
+              "Best practice: ALWAYS use @Override when overriding — it's a safety net against bugs.",
+              "Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) Can a private method be overridden?",
+            "answers": [
+              "NO. Private methods are not inherited — the child class cannot see them. If you define a method with the same name in the child class, it's a completely NEW method, not an override.",
+              "@Override on a \"private method override\" will cause a compile error."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) What happens when you call super.methodName() inside an overriding method?",
+            "answers": [
+              "It explicitly calls the PARENT class's version of the method. This is used to extend (not replace) the parent's behaviour.",
+              "Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields."
+            ]
+          },
+          {
+            "question": "(INTERVIEW) Can a constructor be overridden?",
+            "answers": [
+              "NO. Constructors are not inherited — they cannot be overridden. Each class has its own constructor(s).",
+              "Constructors can be OVERLOADED (same class, different parameters) but not overridden."
+            ]
+          }
+        ],
+        "deepChallenges": [
+          {
+            "title": "Design a Shape hierarchy demonstrating method overriding",
+            "desc": [
+              "Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each."
+            ],
+            "hints": [
+              "area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w)."
+            ],
+            "testcases": [
+              "Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each"
+            ]
+          },
+          {
+            "title": "Demonstrate the field hiding vs method overriding trap",
+            "desc": [
+              "Create a Parent class with a String field name=\"Parent\" and void display(). Create Child extending Parent with name=\"Child\" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why."
+            ],
+            "hints": [
+              "Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps."
+            ],
+            "testcases": [
+              "Parent p = new Child(); p.name should be \"Parent\". p.display() should call Child's version."
+            ]
+          },
+          {
+            "title": "Implement a polymorphic payment system using method overriding",
+            "desc": [
+              "Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically."
+            ],
+            "hints": [
+              "Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism."
+            ],
+            "testcases": [
+              "payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);"
+            ]
+          }
+        ],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_method_Overriding;\r\n\r\n/*\r\n*    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In\r\n*    other words, the same name, and same parameters).\r\n*\r\n*    By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.\r\n*\r\n*    Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.\r\n*\r\n*    When we override a method, it's recommended to put @Override immediately above the method definition.\r\n*    The @Override statement is not required, but it's a way to get the compiler to flag\r\n*    an error if you don't actually properly override this method.\r\n*    We'll get an error if we don't follow the overriding rules correctly for that method.\r\n*\r\n*     We can't override static methods,only instance methods can be overridden.\r\n*\r\n*     Method overriding rules\r\n*\r\n*     A method will be considered overridden if we follow these rules.\r\n*\r\n*     1) Firstly, It must have the same name and same arguments.\r\n*     2) The return type can be a subclass of the return type in the parent class.\r\n*     3) It can't have a lower access modifier. In other words, it\r\n*     can't have more restrictive access privileges. For example, if the parent's method is protected, then\r\n*     using private in the child's overridden method is not allowed. However, using public for the child's\r\n*     method would be allowed, in this example.\r\n*     4) Only inherited methods can be overridden, in other words, methods can be overridden only in child classes.\r\n*     5) Constructors and private methods cannot be overridden.\r\n*     6) And Methods that are final also cannot be overridden.\r\n*     7) A subclass can use super.methodName() to call the superclass version of an overridden method.\r\n*\r\n*\r\n*\r\n* */\r\n\r\n// @quiz (INTERVIEW) What is method overriding in Java?\r\n// @answer Defining a method in a child class with the SAME name, SAME parameters, and compatible return type as a method in the parent class.\r\n// @answer The child's version replaces the parent's version when called on a child object — this is Runtime Polymorphism (Dynamic Method Dispatch).\r\n// @answer The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type.\r\n\r\n// @quiz (INTERVIEW) What is the difference between method overloading and method overriding?\r\n// @answer Overloading: SAME class, SAME name, DIFFERENT parameters. Resolved at COMPILE TIME (static polymorphism).\r\n// @answer Overriding: CHILD class, SAME name, SAME parameters. Resolved at RUNTIME (dynamic polymorphism).\r\n// @answer Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical.\r\n\r\n// @quiz (INTERVIEW) What are the rules for method overriding in Java?\r\n// @answer 1) Same method name and same parameters (signature must match exactly).\r\n// @answer 2) Return type must be the same OR a subclass (covariant return type — Java 5+).\r\n// @answer 3) Access modifier cannot be MORE restrictive (public > protected > default > private). Can be less restrictive.\r\n// @answer 4) Only inherited (non-private, non-static, non-final) methods can be overridden.\r\n// @answer 5) Constructors and private methods CANNOT be overridden.\r\n// @answer 6) final methods CANNOT be overridden — compiler error.\r\n// @answer 7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden.\r\n\r\n// @quiz (OCJP TRAP) What is the output? class Animal { void speak(){ System.out.println(\"Animal\"); } } class Dog extends Animal { void speak(){ System.out.println(\"Dog\"); } } Animal a = new Dog(); a.speak();\r\n// @answer Output: Dog\r\n// @answer Even though the reference type is Animal, the ACTUAL object is Dog. Java uses dynamic dispatch — the JVM calls Dog's speak() at runtime. This is the core of runtime polymorphism.\r\n// @answer TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method.\r\n\r\n// @quiz (OCJP TRAP) Can you override a static method in Java?\r\n// @answer NO. Static methods belong to the class, not the object. You can declare a static method with the same name in a subclass, but this is called METHOD HIDING, not overriding.\r\n// @answer With hiding: the method called depends on the REFERENCE type (compile-time). With overriding: it depends on the OBJECT type (runtime). This is the key difference.\r\n// @answer @Override annotation on a static method causes a COMPILE ERROR.\r\n\r\n// @quiz (OCJP TRAP) What is the output? class Parent { String name = \"Parent\"; void show() { System.out.println(\"Parent show\"); } } class Child extends Parent { String name = \"Child\"; void show() { System.out.println(\"Child show\"); } } Parent p = new Child(); System.out.println(p.name); p.show();\r\n// @answer Output: Parent (then) Child show\r\n// @answer Fields are resolved at COMPILE TIME based on reference type → p.name uses Parent's name field.\r\n// @answer Methods are resolved at RUNTIME based on object type → p.show() calls Child's show().\r\n// @answer CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object).\r\n\r\n// @quiz (INTERVIEW) What is covariant return type in method overriding?\r\n// @answer Java 5+ allows the overriding method to return a subtype of the parent method's return type.\r\n// @answer Example: Parent returns Animal, Child can override to return Dog (Dog IS-A Animal). This is valid.\r\n// @answer Why useful: allows more specific return types without breaking the contract.\r\n\r\n// @quiz (INTERVIEW) What is the purpose of the @Override annotation?\r\n// @answer It tells the compiler you INTEND to override a method. If the signatures don't match (e.g., you made a typo), the compiler gives an error instead of silently creating an overloaded method.\r\n// @answer Best practice: ALWAYS use @Override when overriding — it's a safety net against bugs.\r\n// @answer Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't.\r\n\r\n// @quiz (INTERVIEW) Can a private method be overridden?\r\n// @answer NO. Private methods are not inherited — the child class cannot see them. If you define a method with the same name in the child class, it's a completely NEW method, not an override.\r\n// @answer @Override on a \"private method override\" will cause a compile error.\r\n\r\n// @quiz (INTERVIEW) What happens when you call super.methodName() inside an overriding method?\r\n// @answer It explicitly calls the PARENT class's version of the method. This is used to extend (not replace) the parent's behaviour.\r\n// @answer Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields.\r\n\r\n// @quiz (INTERVIEW) Can a constructor be overridden?\r\n// @answer NO. Constructors are not inherited — they cannot be overridden. Each class has its own constructor(s).\r\n// @answer Constructors can be OVERLOADED (same class, different parameters) but not overridden.\r\n\r\n// @challenge Design a Shape hierarchy demonstrating method overriding\r\n// @desc Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each.\r\n// @hint area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w).\r\n// @testcase Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each\r\n\r\n// @challenge Demonstrate the field hiding vs method overriding trap\r\n// @desc Create a Parent class with a String field name=\"Parent\" and void display(). Create Child extending Parent with name=\"Child\" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why.\r\n// @hint Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps.\r\n// @testcase Parent p = new Child(); p.name should be \"Parent\". p.display() should call Child's version.\r\n\r\n// @challenge Implement a polymorphic payment system using method overriding\r\n// @desc Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically.\r\n// @hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.\r\n// @testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);\r\n\r\npublic class MethodOverridingInJava {\r\n}\r\n"
       }
     ]
   }

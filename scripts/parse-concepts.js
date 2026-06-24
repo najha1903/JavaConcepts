@@ -517,13 +517,13 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── OOP / Inheritance ───────────────────────────────────────────────────
-  if (label.includes('oop') || label.includes('inherit') || label.includes('class')) {
+  if (label.includes('oop') || label.includes('inherit') || label.includes('class') || label.includes('override') || label.includes('overload')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-polymorphism-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
       question: 'What is the output? (OCJP)',
-      code: 'class Animal {\n  String type = "Animal";\n  void speak() { System.out.println("Animal"); }\n}\nclass Dog extends Animal {\n  String type = "Dog";\n  void speak() { System.out.println("Dog"); }\n}\nAnimal a = new Dog();\nSystem.out.println(a.type + " " );\na.speak();',
-      answer: ['Animal \nDog'],
+      code: 'class Animal {\n  String type = "Animal";\n  void speak() { System.out.println("Animal"); }\n}\nclass Dog extends Animal {\n  String type = "Dog";\n  void speak() { System.out.println("Dog"); }\n}\nAnimal a = new Dog();\nSystem.out.println(a.type);\na.speak();',
+      answer: ['Animal\nDog'],
       explanation: 'Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal\'s type. This is a critical OCJP polymorphism trap.'
     });
     questions.push({
@@ -559,6 +559,45 @@ function buildOCJPQuestions(chapterName, topics) {
       ],
       answer: 1,
       explanation: 'final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-static-hiding-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'What happens when you define a static method with the same name in a subclass? (OCJP)',
+      options: [
+        'It overrides the parent static method — dynamic dispatch applies',
+        'It hides the parent static method — method called depends on reference type, not object type',
+        'It causes a compile-time error',
+        'It calls both parent and child static methods'
+      ],
+      answer: 1,
+      explanation: 'Static methods are HIDDEN, not overridden. With hiding, which method is called depends on the REFERENCE type at compile time. With overriding, it depends on the OBJECT type at runtime. @Override on a static method causes a compile error.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-covariant-return-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'Which return type change is VALID when overriding a method that returns Animal? (OCJP)',
+      options: [
+        'Return Object (supertype of Animal)',
+        'Return Dog (subtype of Animal — covariant return)',
+        'Return String (unrelated type)',
+        'Return void'
+      ],
+      answer: 1,
+      explanation: 'Covariant return type (Java 5+): the overriding method can return a subtype of the declared return type. Dog IS-A Animal, so returning Dog is valid. Returning a supertype (Object) or unrelated type is NOT valid.'
+    });
+    questions.push({
+      qid: `ocjp-${slugify(chapterName)}-access-modifier-override-1`,
+      type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
+      question: 'Parent has: protected void show(). Which access modifier is INVALID in the overriding method? (OCJP)',
+      options: [
+        'public void show() — more accessible, allowed',
+        'protected void show() — same, allowed',
+        'private void show() — more restrictive, NOT allowed',
+        'default (package) void show() — less accessible than protected in some cases'
+      ],
+      answer: 2,
+      explanation: 'Overriding cannot make the method MORE restrictive. protected → private is not allowed (private is more restrictive). protected → public is fine (more accessible). This is rule 3 of method overriding.'
     });
   }
 

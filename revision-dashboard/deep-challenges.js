@@ -377,6 +377,66 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
+    "id": "deep-chapter-14-oop-concepts-design-a-shape-hierarchy-demonstrating-method-overriding",
+    "title": "Design a Shape hierarchy demonstrating method overriding",
+    "chapter": "Chapter 14: OOP Concepts",
+    "topic": "Method Overriding In Java",
+    "difficulty": "Hard",
+    "tags": [
+      "deep",
+      "coding"
+    ],
+    "source": "custom",
+    "description": "Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each.",
+    "hints": [
+      "area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w)."
+    ],
+    "testcases": [
+      "Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each"
+    ],
+    "selfCheck": true
+  },
+  {
+    "id": "deep-chapter-14-oop-concepts-demonstrate-the-field-hiding-vs-method-overriding-trap",
+    "title": "Demonstrate the field hiding vs method overriding trap",
+    "chapter": "Chapter 14: OOP Concepts",
+    "topic": "Method Overriding In Java",
+    "difficulty": "Hard",
+    "tags": [
+      "deep",
+      "coding"
+    ],
+    "source": "custom",
+    "description": "Create a Parent class with a String field name=\"Parent\" and void display(). Create Child extending Parent with name=\"Child\" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why.",
+    "hints": [
+      "Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps."
+    ],
+    "testcases": [
+      "Parent p = new Child(); p.name should be \"Parent\". p.display() should call Child's version."
+    ],
+    "selfCheck": true
+  },
+  {
+    "id": "deep-chapter-14-oop-concepts-implement-a-polymorphic-payment-system-using-method-overriding",
+    "title": "Implement a polymorphic payment system using method overriding",
+    "chapter": "Chapter 14: OOP Concepts",
+    "topic": "Method Overriding In Java",
+    "difficulty": "Hard",
+    "tags": [
+      "deep",
+      "coding"
+    ],
+    "source": "custom",
+    "description": "Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically.",
+    "hints": [
+      "Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism."
+    ],
+    "testcases": [
+      "payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);"
+    ],
+    "selfCheck": true
+  },
+  {
     "id": "deep-chapter-14-oop-concepts-bank",
     "title": "Design a BankAccount System (OOP)",
     "chapter": "Chapter 14: OOP Concepts",
