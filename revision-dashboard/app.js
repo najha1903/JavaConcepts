@@ -563,8 +563,14 @@ function renderSidebar() {
       renderTopicItem(topic, content, chIdx, topic.originalIdx, revised);
     });
     
-    // Render sub-chapters
-    Object.keys(subChaptersMap).forEach(subChapterName => {
+    // Render sub-chapters — sorted numerically by Sub_Chapter_N from filePath
+    const sortedSubChapterNames = Object.keys(subChaptersMap).sort((a, b) => {
+      const aNum = parseInt((subChaptersMap[a][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
+      const bNum = parseInt((subChaptersMap[b][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
+      return aNum - bNum;
+    });
+
+    sortedSubChapterNames.forEach(subChapterName => {
       const subChWrapper = document.createElement('div');
       subChWrapper.className = 'sidebar-subchapter';
       
@@ -808,7 +814,14 @@ function renderNotesTopicList() {
     const topicList = document.createElement('div');
     topicList.className = 'notes-chapter-topics';
 
-    chapter.topics.forEach(topic => {
+    // Sort topics by sub-chapter number before rendering
+    const sortedTopics = chapter.topics.slice().sort((a, b) => {
+      const aNum = parseInt((a.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
+      const bNum = parseInt((b.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
+      return aNum - bNum;
+    });
+
+    sortedTopics.forEach(topic => {
       const item = document.createElement('button');
       const hasNote = (notes.topics[topic.filePath] || '').trim().length > 0;
       const isActive = topic.filePath === currentNotesTopicPath;
