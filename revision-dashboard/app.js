@@ -591,6 +591,8 @@ function renderSidebar() {
       document.querySelectorAll('.chapter-accordion').forEach(a => a.classList.remove('open'));
       if (!isOpen) {
         accordion.classList.add('open');
+        // Auto-select first topic so one click navigates directly — no second click needed
+        selectTopic(chIdx, 0);
       }
     });
     
@@ -838,6 +840,11 @@ function selectTopic(chIdx, tpIdx) {
   const chapter = CONCEPTS_DATA[chIdx];
   const topic = chapter.topics[tpIdx];
   currentNotesTopicPath = topic.filePath;
+
+  // Open the correct chapter accordion in the sidebar (single click navigation)
+  document.querySelectorAll('.chapter-accordion').forEach((acc, idx) => {
+    acc.classList.toggle('open', idx === chIdx);
+  });
   
   // Highlight in sidebar
   document.querySelectorAll('.subtopic-item').forEach(item => {
