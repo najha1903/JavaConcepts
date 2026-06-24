@@ -1,439 +1,6 @@
 // Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.
 const GENERATED_PRACTICE_CHALLENGES = [
   {
-    "id": "checknumberpalindromecodingchallenge",
-    "title": "Check Number Palindrome",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Number Palindrome</p><p>Write a method called isPalindrome with one int parameter called number.</p><p>The method needs to return a boolean.</p><p>It should return true if the number is a palindrome number otherwise it should return false.</p><p>Check the tips below for more info about palindromes.</p><p>Example Input/Output isPalindrome(-1221); → should return true isPalindrome(707); → should return true isPalindrome(11212); → should return false because reverse is 21211 and that is not equal to 11212.</p><p>Tip: What is a Palindrome number?  A palindrome number is a number which when reversed is equal to the original number. For example: 121, 12321, 1001 etc.</p><p>Tip: Logic to check a palindrome number</p><p>Find the the reverse of the given number. Store it in some variable say reverse. Compare the number with reverse.</p><p>If both are the the same then the number is a palindrome otherwise it is not.</p><p>Tip: Logic to reverse a number</p><p>Declare and initialize another variable to store the reverse of a number, for example reverse = 0.</p><p>Extract the last digit of the given number by performing the modulo division (remainder).</p><p>Store the last digit to some variable say lastDigit = num % 10.</p><p>Increase the place value of reverse by one.</p><p>To increase place value multiply the reverse variable by 10 e.g. reverse = reverse * 10.</p><p>Add lastDigit to reverse.</p><p>Since the last digit of the number is processed, remove the last digit of num. To remove the last digit divide number by 10.</p><p>Repeat steps until number is not equal to (or greater than) zero.</p><p>A while loop would be good for this coding exercise.</p><p>CODING CHALLENGE — While Loop with Number Reversal</p><p>A palindrome number reads the same forwards and backwards: 121, 1001, 707.</p><p>Technique: reverse the number using arithmetic. Extract the last digit with (number % 10), add it to the reversed number (reversed * 10 + digit), then remove the last digit (number / 10). Compare reversed == original.</p>",
-    "template": "public class PracticeWorkspace {\n    public static boolean checkIfNumberIsPalindrome(int number) {\n        // Write your code here\n        return false;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "checkIfNumberIsPalindrome",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "digitsumcodingchallenge",
-    "title": "Digit Sum",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.</p><p>The method should only take a number that is a positive number.</p><p>If a negative number is passed, it should return -1, meaning, an invalid value was passed.</p><p>The method should parse out each digit from the number and sum the digits up.</p><p>So, if 125 is the value passed to the method, the code should sum each digit, in this case, 1 + 2 + 5, and return 8, as a value. And another example, if the value is 1000, the code should sum each digit, 1 + 0 + 0 + 0, and return 1 as a value.</p><p>If the number is a single digit number, simply return the number itself as the result.</p>",
-    "template": "public class PracticeWorkspace {\n    public static int sumDigits(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "sumDigits",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "evendigitsumcodingchallenge",
-    "title": "Even Digit Sum",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Even Digit Sum</p><p>Write a method named getEvenDigitSum with one parameter of type int called number.</p><p>The method should return the sum of the even digits within the number.</p><p>If the number is negative, the method should return -1 to indicate an invalid value.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20 getEvenDigitSum(252); → should return 4 since 2 + 2 = 4 getEvenDigitSum(-22); → should return -1 since the number is negative</p>",
-    "template": "public class PracticeWorkspace {\n    public static int getEvenDigitSum(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [
-          123456789
-        ],
-        "expected": 20
-      },
-      {
-        "args": [
-          252
-        ],
-        "expected": 4
-      },
-      {
-        "args": [
-          -22
-        ],
-        "expected": -1
-      }
-    ],
-    "selfCheck": false,
-    "methodName": "getEvenDigitSum",
-    "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getEvenDigitSum\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
-  },
-  {
-    "id": "factorprintercodingchallenge",
-    "title": "Factor Printer",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.</p><p>For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.</p><p>The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).</p><p>If the number is less than 1, the method returns -1 to indicate invalid input.</p>",
-    "template": "public class PracticeWorkspace {\n    public static void printFactors(int number) {\n        // Write your code here\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "printFactors",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "firstandlastdigitsumcodingchallenge",
-    "title": "First And Last Digit Sum",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>First And Last Digit Sum</p><p>Write a method named sumFirstAndLastDigit with one parameter of type int called number.</p><p>The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number.</p><p>If the number is negative then the method needs to return -1 to indicate an invalid value.</p><p>Example input/output sumFirstAndLastDigit(252); → should return 4, the first digit is 2 and the last is 2 which gives us 2+2 and the sum is 4.</p><p>sumFirstAndLastDigit(257); → should return 9, the first digit is 2 and the last is 7 which gives us 2+7 and the sum is 9.</p><p>sumFirstAndLastDigit(0); → should return 0, the first digit and the last digit is 0 since we only have 1 digit, which gives us 0+0 and the sum is 0.</p><p>sumFirstAndLastDigit(5); → should return 10, the first digit and the last digit is 5 since we only have 1 digit, which gives us 5+5 and the sum is 10.</p><p>sumFirstAndLastDigit(-10); → should return -1, since the parameter is negative and needs to be positive.</p>",
-    "template": "public class PracticeWorkspace {\n    public static int sumFirstAndLastDigit(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [
-          252
-        ],
-        "expected": 4
-      },
-      {
-        "args": [
-          257
-        ],
-        "expected": 9
-      },
-      {
-        "args": [
-          0
-        ],
-        "expected": 0
-      },
-      {
-        "args": [
-          5
-        ],
-        "expected": 10
-      }
-    ],
-    "selfCheck": false,
-    "methodName": "sumFirstAndLastDigit",
-    "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumFirstAndLastDigit\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
-  },
-  {
-    "id": "floorpackproblemcodingchallenge",
-    "title": "Floor Pack Problem",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.</p><p>The parameter bigCount represents the count of big flour bags (5 kilos each).</p><p>The parameter smallCount represents the count of small flour bags (1 kilo each).</p><p>The parameter goal represents the goal amount of kilos of flour needed to assemble a package.</p><p>Therefore, the sum of the kilos of bigCount and smallCount must be at least equal to the value of goal. The method should return true if it is possible to make a package with goal kilos of flour.</p><p>If the sum is greater than goal, ensure that only full bags are used towards the goal amount. For example, if goal = 9, bigCount = 2, and smallCount = 0, the method should return false since each big bag is 5 kilos and cannot be divided. However, if goal = 9, bigCount = 1, and smallCount = 5, the method should return true because of 1 full bigCount bag and 4 full smallCount bags equal goal, and it's okay if there are additional bags left over.</p><p>If any of the parameters are negative, return false.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>canPack (1, 0, 4); should return false since bigCount is 1 (big bag of 5 kilos) and goal is 4 kilos.</p><p>canPack (1, 0, 5); should return true since bigCount is 1 (big bag of 5 kilos) and goal is 5 kilos.</p><p>canPack (0, 5, 4); should return true since smallCount is 5 (small bags of 1 kilo) and goal is 4 kilos, and we have 1 bag left which is ok as mentioned above.</p><p>canPack (2, 2, 11); should return true since bigCount is 2 (big bags 5 kilos each) and smallCount is 2 (small bags of 1 kilo), makes in total 12 kilos and goal is 11 kilos.</p><p>canPack (-3, 2, 12); should return false since bigCount is negative.</p>",
-    "template": "public class PracticeWorkspace {\n    public static boolean canPack(int bigCount, int smallCount, int goal) {\n        // Write your code here\n        return false;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "canPack",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "greatestcommondivisorcodingchallenge",
-    "title": "Greatest Common Divisor",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.</p><p>For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.</p><p>The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.</p><p>Both numbers must be >= 10; otherwise -1 is returned to indicate invalid input.</p><p>The approach uses nested while loops to compare factors of both numbers, tracking the largest common one found.</p>",
-    "template": "public class PracticeWorkspace {\n    public static int getGreatestCommonDivisor(int number1, int number2) {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "getGreatestCommonDivisor",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "largestprimefactorcodingchallenge",
-    "title": "Largest Prime Factor",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Write a method named getLargestPrime with one parameter of type int named number.</p><p>If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.</p><p>The method should calculate the largest prime factor of a given number and return it.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21) getLargestPrime (217); should return 31 since 31 is the largest prime (7 * 31 = 217) getLargestPrime (0); should return -1 since 0 does not have any prime numbers getLargestPrime (45); should return 5 since 5 is the largest prime (3 * 3 * 5 = 45) getLargestPrime (-1); should return -1 since the parameter is negative</p>",
-    "template": "public class PracticeWorkspace {\n    public static int getLargestPrime(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [
-          21
-        ],
-        "expected": 1
-      },
-      {
-        "args": [
-          45
-        ],
-        "expected": 1
-      }
-    ],
-    "selfCheck": false,
-    "methodName": "getLargestPrime",
-    "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getLargestPrime\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
-  },
-  {
-    "id": "lastdigitcheckercodingchallenge",
-    "title": "Last Digit Checker",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Last Digit Checker</p><p>Write a method named hasSameLastDigit with three parameters of type int.</p><p>Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.</p><p>The method should return true if at least two of the numbers share the same rightmost digit; otherwise, it should return false.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>hasSameLastDigit (41, 22, 71); → should return true since 1 is the rightmost digit in numbers 41 and 71 hasSameLastDigit (23, 32, 42); → should return true since 2 is the rightmost digit in numbers 32 and 42 hasSameLastDigit (9, 99, 999); → should return false since 9 is not within the range of 10-1000</p><p>Write another method named isValid with one parameter of type int.</p><p>The method needs to return true if the number parameter is in range of 10(inclusive) - 1000(inclusive), otherwise return false.</p><p>EXAMPLE INPUT/OUTPUT isValid(10); → should return true since 10 is within the range of 10-1000 isValid(468); → should return true since 468 is within the range of 10-1000 isValid(1051); → should return false since 1051 is not within the range of 10-1000</p>",
-    "template": "public class PracticeWorkspace {\n    public static boolean isValid(int number) {\n        // Write your code here\n        return false;\n    }\n}",
-    "testCases": [
-      {
-        "args": [
-          10
-        ],
-        "expected": true
-      },
-      {
-        "args": [
-          468
-        ],
-        "expected": true
-      },
-      {
-        "args": [
-          1051
-        ],
-        "expected": false
-      }
-    ],
-    "selfCheck": false,
-    "methodName": "isValid",
-    "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValid\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
-  },
-  {
-    "id": "numbertowordscodingchallenge",
-    "title": "Number To Words",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.</p><p>Review the class NumberToWordsCodingChallenge and understand its key responsibilities.</p><p>This example defines 3 methods; trace method behavior step by step.</p>",
-    "template": "public class PracticeWorkspace {\n    public static int getDigitCount(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "getDigitCount",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "perfectnumbercodingchallenge",
-    "title": "Perfect Number",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.</p><p>Review the class PerfectNumberCodingChallenge and understand its key responsibilities.</p><p>This example defines 2 methods; trace method behavior step by step.</p><p>Run through the main method flow to understand execution order and output.</p>",
-    "template": "public class PracticeWorkspace {\n    public static boolean isPerfectNumber(int number) {\n        // Write your code here\n        return false;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "isPerfectNumber",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "shareddigitcodingchallenge",
-    "title": "Shared Digit",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Shared Digit</p><p>Write a method named hasSharedDigit with two parameters of type int.</p><p>Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.</p><p>The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>hasSharedDigit(12, 23); → should return true since the digit 2 appears in both numbers hasSharedDigit(9, 99); → should return false since 9 is not within the range of 10-99 hasSharedDigit(15, 55); → should return true since the digit 5 appears in both numbers</p>",
-    "template": "public class PracticeWorkspace {\n    public static boolean hasSharedDigit(int number1, int number2) {\n        // Write your code here\n        return false;\n    }\n}",
-    "testCases": [
-      {
-        "args": [
-          12,
-          23
-        ],
-        "expected": true
-      },
-      {
-        "args": [
-          9,
-          99
-        ],
-        "expected": false
-      },
-      {
-        "args": [
-          15,
-          55
-        ],
-        "expected": true
-      }
-    ],
-    "selfCheck": false,
-    "methodName": "hasSharedDigit",
-    "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasSharedDigit\");\n          const fn = new Function(\"number1\", \"number2\", body);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
-  },
-  {
-    "id": "whileloopcodingchallenge",
-    "title": "While Loop",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.</p><p>The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.</p><p>If it's an even number, return true, otherwise, return false.</p><p>CODING CHALLENGE — While Loop Basics</p><p>This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations.</p>",
-    "template": "public class PracticeWorkspace {\n    public static boolean isEvenNumber(int number) {\n        // Write your code here\n        return false;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "isEvenNumber",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "whileloopcodingchallengepart2",
-    "title": "While Loop Coding Challenge Part2",
-    "difficulty": "Medium",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "description": "<p>Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.</p>",
-    "template": "public class PracticeWorkspace {\n    public static boolean isEvenNumber(int number) {\n        // Write your code here\n        return false;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "isEvenNumber",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "inputcalculatorchallenge",
-    "title": "Input Calculator",
-    "difficulty": "Hard",
-    "chapter": "Chapter 12: Parsing Values Reading Input",
-    "description": "<p>Input Calculator</p><p>Write a method called inputThenPrintSumAndAverage that does not have any parameters.</p><p>The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.</p><p>When the user enters something that is not an int then it needs to print a message in the format \"SUM = XX AVG = YY\".</p><p>XX represents the sum of all entered numbers of type int.</p><p>YY represents the calculated average of all numbers of type long.</p><p>EXAMPLES OF INPUT/OUTPUT:</p><p>EXAMPLE 1:</p><p>INPUT:</p><p>OUTPUT</p><p>SUM = 15 AVG = 3</p><p>EXAMPLE 2:</p><p>INPUT:</p><p>hello</p><p>OUTPUT:</p><p>SUM = 0 AVG = 0</p><p>TIP: Use Scanner to read an input from the user.</p><p>TIP: Use casting when calling the round method since it needs double as a parameter.</p><p>NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.</p><p>NOTE: Be mindful of spaces in the printed message.</p><p>NOTE: Be mindful of users who may type an invalid input right away (see example above).</p><p>NOTE: The method inputThenPrintSumAndAverage should be defined as public static like we have been doing so far in the course.</p>",
-    "template": "public class PracticeWorkspace {\n    public static void inputThenPrintSumAndAverage() {\n        // Write your code here\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "inputThenPrintSumAndAverage",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "minmaxcodingchallenge",
-    "title": "Min Max",
-    "difficulty": "Hard",
-    "chapter": "Chapter 12: Parsing Values Reading Input",
-    "description": "<p>You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.</p><p>If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.</p><p>You can decide if you want the user to enter integers or decimal numbers.</p><p>If the user entered a valid number, you'll want to see if it is less than what you have for a minimum number, and if it is, you'll set that to the current number.</p><p>You'll do the same check for maximum number. For example, after one valid numeric entry, minimum and maximum numbers should be the same number.</p>",
-    "template": "public class PracticeWorkspace {\n    public static void printMinAndMaxFromUserInputs() {\n        // Write your code here\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "printMinAndMaxFromUserInputs",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "paintjobchallenge",
-    "title": "Paint Job",
-    "difficulty": "Hard",
-    "chapter": "Chapter 12: Parsing Values Reading Input",
-    "description": "<p>Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.</p><p>The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).</p><p>Math.ceil() is used to round up — you always need whole buckets, never a fraction.</p><p>The method is overloaded with 3 versions: (area, areaPerBucket), (width, height, areaPerBucket), and (width, height, areaPerBucket, extraBuckets) to handle different input scenarios.</p><p>If any parameter is invalid (negative or zero), the method returns -1.</p>",
-    "template": "public class PracticeWorkspace {\n    public static int getBucketCount(double width, double height, double areaOfBucket, int extraBuckets) {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "getBucketCount",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "readinguserinputchallenge",
-    "title": "Reading User Input",
-    "difficulty": "Hard",
-    "chapter": "Chapter 12: Parsing Values Reading Input",
-    "description": "<p>Reading User Input Challenge.</p><p>In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message</p><p>\"Invalid number\" to the console, but continue looping until you do have 5 valid numbers.</p><p>Before the user enters each number, prompt them with the message, \"Enter number #x:\", where x represents the count 1, 2, 3, etc. As an example, the first message would look something like, \"Enter number #1:\", the next, \"Enter number #2:\", and so on.</p><p>Some hints for completing this are, firstly, use a while loop or a do while loop.</p><p>Use a scanner object and the next line method to read input as a string.</p><p>Use integer dot parse int, as we did in the previous videos.</p><p>You'll need some local variables to keep track of the count of valid integers, as well as the sum of the integers.</p>",
-    "template": "public class PracticeWorkspace {\n    public static int printSumOfNumbersEnteredByUserUsingWhileLoop() {\n        // Write your code here\n        return 0;\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "printSumOfNumbersEnteredByUserUsingWhileLoop",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "methodoverloadingchallenge",
-    "title": "Method Over Loading",
-    "difficulty": "Hard",
-    "chapter": "Chapter 14: OOP Concepts",
-    "description": "<p>Create two methods with the  same name: convertToCentimeters</p><p>The first method has one parameter of type int,  which represents the entire height in inches.</p><p>You'll convert inches to centimeters, in this  method, and pass back the number of centimeters, as a double. The second method has two parameters  of type int, one to represent height in feet, and one to represent the remaining height  in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for  inches would be passed to this method.</p><p>This method will convert feet and inches to just  inches, then call the first method, to get the number of centimeters, also returning the value as  a double. Both methods should return a real number or decimal value for total height in centimeters.  Call both methods, and print out the results.</p>",
-    "template": "public class PracticeWorkspace {\n    public static void calcFeetAndInchesToCentimeters(double feet, double inches) {\n        // Write your code here\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "calcFeetAndInchesToCentimeters",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
-    "id": "methodoverloadingsecondandminuteschallenge",
-    "title": "Method Overloading Second And Minutes",
-    "difficulty": "Hard",
-    "chapter": "Chapter 14: OOP Concepts",
-    "description": "<p>Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.</p><p>You should validate that the first parameter minutes is >= 0.</p><p>You should validate that the 2nd parameter seconds is >= 0 and <= 59.</p><p>The method should return Invalid value in the method if either of the above are not true.</p><p>If the parameters are valid then calculate how many hours minutes and seconds equal the minutes and seconds passed to this method and return that value as string in format gXXh YYm ZZsh where XX represents a number of hours, YY the minutes and ZZ the seconds.</p><p>Create a 2nd method of the same name but with only one parameter seconds.</p><p>Validate that it is >= 0, and return Invalid value ife it is not true.</p><p>If it is valid, then calculate how many minutes are in the seconds value and then call the other overloaded method passing the correct minutes and seconds calculated so that it can calculate correctly.</p><p>Call both methods to print values to the console.</p><p>Tips:</p><p>Use int or long for your number data types is probably a good idea.</p><p>1 minute = 60 seconds and 1 hour = 60 minutes or 3600 seconds.</p><p>Methods should be static as we have used previously.</p><p>Bonus:</p><p>For the input 61 minutes output should be 01h 01m 00s, but it is ok if it is 1h 1m 0s (Tip: use if-else)</p><p>Create a new console project and call it SecondsAndMinutesChallenge</p>",
-    "template": "public class PracticeWorkspace {\n    public static String getDurationString(int minutes, int seconds) {\n        // Write your code here\n        return \"\";\n    }\n}",
-    "testCases": [
-      {
-        "args": [],
-        "expected": null
-      }
-    ],
-    "selfCheck": true,
-    "methodName": "getDurationString",
-    "hasVerify": false,
-    "verifyFnStr": null
-  },
-  {
     "id": "areacalculatorcodingchallenge",
     "title": "Area Calculator",
     "difficulty": "Easy",
@@ -948,6 +515,439 @@ const GENERATED_PRACTICE_CHALLENGES = [
     ],
     "selfCheck": true,
     "methodName": "isOdd",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "checknumberpalindromecodingchallenge",
+    "title": "Check Number Palindrome",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Number Palindrome</p><p>Write a method called isPalindrome with one int parameter called number.</p><p>The method needs to return a boolean.</p><p>It should return true if the number is a palindrome number otherwise it should return false.</p><p>Check the tips below for more info about palindromes.</p><p>Example Input/Output isPalindrome(-1221); → should return true isPalindrome(707); → should return true isPalindrome(11212); → should return false because reverse is 21211 and that is not equal to 11212.</p><p>Tip: What is a Palindrome number?  A palindrome number is a number which when reversed is equal to the original number. For example: 121, 12321, 1001 etc.</p><p>Tip: Logic to check a palindrome number</p><p>Find the the reverse of the given number. Store it in some variable say reverse. Compare the number with reverse.</p><p>If both are the the same then the number is a palindrome otherwise it is not.</p><p>Tip: Logic to reverse a number</p><p>Declare and initialize another variable to store the reverse of a number, for example reverse = 0.</p><p>Extract the last digit of the given number by performing the modulo division (remainder).</p><p>Store the last digit to some variable say lastDigit = num % 10.</p><p>Increase the place value of reverse by one.</p><p>To increase place value multiply the reverse variable by 10 e.g. reverse = reverse * 10.</p><p>Add lastDigit to reverse.</p><p>Since the last digit of the number is processed, remove the last digit of num. To remove the last digit divide number by 10.</p><p>Repeat steps until number is not equal to (or greater than) zero.</p><p>A while loop would be good for this coding exercise.</p><p>CODING CHALLENGE — While Loop with Number Reversal</p><p>A palindrome number reads the same forwards and backwards: 121, 1001, 707.</p><p>Technique: reverse the number using arithmetic. Extract the last digit with (number % 10), add it to the reversed number (reversed * 10 + digit), then remove the last digit (number / 10). Compare reversed == original.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean checkIfNumberIsPalindrome(int number) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "checkIfNumberIsPalindrome",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "digitsumcodingchallenge",
+    "title": "Digit Sum",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.</p><p>The method should only take a number that is a positive number.</p><p>If a negative number is passed, it should return -1, meaning, an invalid value was passed.</p><p>The method should parse out each digit from the number and sum the digits up.</p><p>So, if 125 is the value passed to the method, the code should sum each digit, in this case, 1 + 2 + 5, and return 8, as a value. And another example, if the value is 1000, the code should sum each digit, 1 + 0 + 0 + 0, and return 1 as a value.</p><p>If the number is a single digit number, simply return the number itself as the result.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int sumDigits(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "sumDigits",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "evendigitsumcodingchallenge",
+    "title": "Even Digit Sum",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Even Digit Sum</p><p>Write a method named getEvenDigitSum with one parameter of type int called number.</p><p>The method should return the sum of the even digits within the number.</p><p>If the number is negative, the method should return -1 to indicate an invalid value.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20 getEvenDigitSum(252); → should return 4 since 2 + 2 = 4 getEvenDigitSum(-22); → should return -1 since the number is negative</p>",
+    "template": "public class PracticeWorkspace {\n    public static int getEvenDigitSum(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          123456789
+        ],
+        "expected": 20
+      },
+      {
+        "args": [
+          252
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          -22
+        ],
+        "expected": -1
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "getEvenDigitSum",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getEvenDigitSum\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
+  },
+  {
+    "id": "factorprintercodingchallenge",
+    "title": "Factor Printer",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.</p><p>For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.</p><p>The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).</p><p>If the number is less than 1, the method returns -1 to indicate invalid input.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void printFactors(int number) {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "printFactors",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "firstandlastdigitsumcodingchallenge",
+    "title": "First And Last Digit Sum",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>First And Last Digit Sum</p><p>Write a method named sumFirstAndLastDigit with one parameter of type int called number.</p><p>The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number.</p><p>If the number is negative then the method needs to return -1 to indicate an invalid value.</p><p>Example input/output sumFirstAndLastDigit(252); → should return 4, the first digit is 2 and the last is 2 which gives us 2+2 and the sum is 4.</p><p>sumFirstAndLastDigit(257); → should return 9, the first digit is 2 and the last is 7 which gives us 2+7 and the sum is 9.</p><p>sumFirstAndLastDigit(0); → should return 0, the first digit and the last digit is 0 since we only have 1 digit, which gives us 0+0 and the sum is 0.</p><p>sumFirstAndLastDigit(5); → should return 10, the first digit and the last digit is 5 since we only have 1 digit, which gives us 5+5 and the sum is 10.</p><p>sumFirstAndLastDigit(-10); → should return -1, since the parameter is negative and needs to be positive.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int sumFirstAndLastDigit(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          252
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          257
+        ],
+        "expected": 9
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": 10
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "sumFirstAndLastDigit",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumFirstAndLastDigit\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
+  },
+  {
+    "id": "floorpackproblemcodingchallenge",
+    "title": "Floor Pack Problem",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.</p><p>The parameter bigCount represents the count of big flour bags (5 kilos each).</p><p>The parameter smallCount represents the count of small flour bags (1 kilo each).</p><p>The parameter goal represents the goal amount of kilos of flour needed to assemble a package.</p><p>Therefore, the sum of the kilos of bigCount and smallCount must be at least equal to the value of goal. The method should return true if it is possible to make a package with goal kilos of flour.</p><p>If the sum is greater than goal, ensure that only full bags are used towards the goal amount. For example, if goal = 9, bigCount = 2, and smallCount = 0, the method should return false since each big bag is 5 kilos and cannot be divided. However, if goal = 9, bigCount = 1, and smallCount = 5, the method should return true because of 1 full bigCount bag and 4 full smallCount bags equal goal, and it's okay if there are additional bags left over.</p><p>If any of the parameters are negative, return false.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>canPack (1, 0, 4); should return false since bigCount is 1 (big bag of 5 kilos) and goal is 4 kilos.</p><p>canPack (1, 0, 5); should return true since bigCount is 1 (big bag of 5 kilos) and goal is 5 kilos.</p><p>canPack (0, 5, 4); should return true since smallCount is 5 (small bags of 1 kilo) and goal is 4 kilos, and we have 1 bag left which is ok as mentioned above.</p><p>canPack (2, 2, 11); should return true since bigCount is 2 (big bags 5 kilos each) and smallCount is 2 (small bags of 1 kilo), makes in total 12 kilos and goal is 11 kilos.</p><p>canPack (-3, 2, 12); should return false since bigCount is negative.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean canPack(int bigCount, int smallCount, int goal) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "canPack",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "greatestcommondivisorcodingchallenge",
+    "title": "Greatest Common Divisor",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.</p><p>For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.</p><p>The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.</p><p>Both numbers must be >= 10; otherwise -1 is returned to indicate invalid input.</p><p>The approach uses nested while loops to compare factors of both numbers, tracking the largest common one found.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int getGreatestCommonDivisor(int number1, int number2) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "getGreatestCommonDivisor",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "largestprimefactorcodingchallenge",
+    "title": "Largest Prime Factor",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Write a method named getLargestPrime with one parameter of type int named number.</p><p>If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.</p><p>The method should calculate the largest prime factor of a given number and return it.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21) getLargestPrime (217); should return 31 since 31 is the largest prime (7 * 31 = 217) getLargestPrime (0); should return -1 since 0 does not have any prime numbers getLargestPrime (45); should return 5 since 5 is the largest prime (3 * 3 * 5 = 45) getLargestPrime (-1); should return -1 since the parameter is negative</p>",
+    "template": "public class PracticeWorkspace {\n    public static int getLargestPrime(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          21
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          45
+        ],
+        "expected": 1
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "getLargestPrime",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getLargestPrime\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
+  },
+  {
+    "id": "lastdigitcheckercodingchallenge",
+    "title": "Last Digit Checker",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Last Digit Checker</p><p>Write a method named hasSameLastDigit with three parameters of type int.</p><p>Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.</p><p>The method should return true if at least two of the numbers share the same rightmost digit; otherwise, it should return false.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>hasSameLastDigit (41, 22, 71); → should return true since 1 is the rightmost digit in numbers 41 and 71 hasSameLastDigit (23, 32, 42); → should return true since 2 is the rightmost digit in numbers 32 and 42 hasSameLastDigit (9, 99, 999); → should return false since 9 is not within the range of 10-1000</p><p>Write another method named isValid with one parameter of type int.</p><p>The method needs to return true if the number parameter is in range of 10(inclusive) - 1000(inclusive), otherwise return false.</p><p>EXAMPLE INPUT/OUTPUT isValid(10); → should return true since 10 is within the range of 10-1000 isValid(468); → should return true since 468 is within the range of 10-1000 isValid(1051); → should return false since 1051 is not within the range of 10-1000</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean isValid(int number) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          10
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          468
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          1051
+        ],
+        "expected": false
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "isValid",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValid\");\n          const fn = new Function(\"number\", body);\n          const result = fn(testCase.args[0]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
+  },
+  {
+    "id": "numbertowordscodingchallenge",
+    "title": "Number To Words",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.</p><p>Review the class NumberToWordsCodingChallenge and understand its key responsibilities.</p><p>This example defines 3 methods; trace method behavior step by step.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int getDigitCount(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "getDigitCount",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "perfectnumbercodingchallenge",
+    "title": "Perfect Number",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>This topic belongs to Chapter 10: While And Do While Looping Concepts → While Do While Loop Coding Challenge.</p><p>Review the class PerfectNumberCodingChallenge and understand its key responsibilities.</p><p>This example defines 2 methods; trace method behavior step by step.</p><p>Run through the main method flow to understand execution order and output.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean isPerfectNumber(int number) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "isPerfectNumber",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "shareddigitcodingchallenge",
+    "title": "Shared Digit",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Shared Digit</p><p>Write a method named hasSharedDigit with two parameters of type int.</p><p>Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.</p><p>The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false.</p><p>EXAMPLE INPUT/OUTPUT:</p><p>hasSharedDigit(12, 23); → should return true since the digit 2 appears in both numbers hasSharedDigit(9, 99); → should return false since 9 is not within the range of 10-99 hasSharedDigit(15, 55); → should return true since the digit 5 appears in both numbers</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean hasSharedDigit(int number1, int number2) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          12,
+          23
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          9,
+          99
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          15,
+          55
+        ],
+        "expected": true
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "hasSharedDigit",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasSharedDigit\");\n          const fn = new Function(\"number1\", \"number2\", body);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          return result === testCase.expected;\n        } catch(e) { return false; }\n      }"
+  },
+  {
+    "id": "whileloopcodingchallenge",
+    "title": "While Loop",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.</p><p>The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.</p><p>If it's an even number, return true, otherwise, return false.</p><p>CODING CHALLENGE — While Loop Basics</p><p>This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean isEvenNumber(int number) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "isEvenNumber",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "whileloopcodingchallengepart2",
+    "title": "While Loop Coding Challenge Part2",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "description": "<p>Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean isEvenNumber(int number) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "isEvenNumber",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "inputcalculatorchallenge",
+    "title": "Input Calculator",
+    "difficulty": "Hard",
+    "chapter": "Chapter 12: Parsing Values Reading Input",
+    "description": "<p>Input Calculator</p><p>Write a method called inputThenPrintSumAndAverage that does not have any parameters.</p><p>The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.</p><p>When the user enters something that is not an int then it needs to print a message in the format \"SUM = XX AVG = YY\".</p><p>XX represents the sum of all entered numbers of type int.</p><p>YY represents the calculated average of all numbers of type long.</p><p>EXAMPLES OF INPUT/OUTPUT:</p><p>EXAMPLE 1:</p><p>INPUT:</p><p>OUTPUT</p><p>SUM = 15 AVG = 3</p><p>EXAMPLE 2:</p><p>INPUT:</p><p>hello</p><p>OUTPUT:</p><p>SUM = 0 AVG = 0</p><p>TIP: Use Scanner to read an input from the user.</p><p>TIP: Use casting when calling the round method since it needs double as a parameter.</p><p>NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.</p><p>NOTE: Be mindful of spaces in the printed message.</p><p>NOTE: Be mindful of users who may type an invalid input right away (see example above).</p><p>NOTE: The method inputThenPrintSumAndAverage should be defined as public static like we have been doing so far in the course.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void inputThenPrintSumAndAverage() {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "inputThenPrintSumAndAverage",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "minmaxcodingchallenge",
+    "title": "Min Max",
+    "difficulty": "Hard",
+    "chapter": "Chapter 12: Parsing Values Reading Input",
+    "description": "<p>You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.</p><p>If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.</p><p>You can decide if you want the user to enter integers or decimal numbers.</p><p>If the user entered a valid number, you'll want to see if it is less than what you have for a minimum number, and if it is, you'll set that to the current number.</p><p>You'll do the same check for maximum number. For example, after one valid numeric entry, minimum and maximum numbers should be the same number.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void printMinAndMaxFromUserInputs() {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "printMinAndMaxFromUserInputs",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "paintjobchallenge",
+    "title": "Paint Job",
+    "difficulty": "Hard",
+    "chapter": "Chapter 12: Parsing Values Reading Input",
+    "description": "<p>Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.</p><p>The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).</p><p>Math.ceil() is used to round up — you always need whole buckets, never a fraction.</p><p>The method is overloaded with 3 versions: (area, areaPerBucket), (width, height, areaPerBucket), and (width, height, areaPerBucket, extraBuckets) to handle different input scenarios.</p><p>If any parameter is invalid (negative or zero), the method returns -1.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int getBucketCount(double width, double height, double areaOfBucket, int extraBuckets) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "getBucketCount",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "readinguserinputchallenge",
+    "title": "Reading User Input",
+    "difficulty": "Hard",
+    "chapter": "Chapter 12: Parsing Values Reading Input",
+    "description": "<p>Reading User Input Challenge.</p><p>In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those ten numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message</p><p>\"Invalid number\" to the console, but continue looping until you do have 5 valid numbers.</p><p>Before the user enters each number, prompt them with the message, \"Enter number #x:\", where x represents the count 1, 2, 3, etc. As an example, the first message would look something like, \"Enter number #1:\", the next, \"Enter number #2:\", and so on.</p><p>Some hints for completing this are, firstly, use a while loop or a do while loop.</p><p>Use a scanner object and the next line method to read input as a string.</p><p>Use integer dot parse int, as we did in the previous videos.</p><p>You'll need some local variables to keep track of the count of valid integers, as well as the sum of the integers.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int printSumOfNumbersEnteredByUserUsingWhileLoop() {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "printSumOfNumbersEnteredByUserUsingWhileLoop",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "methodoverloadingchallenge",
+    "title": "Method Over Loading",
+    "difficulty": "Hard",
+    "chapter": "Chapter 14: OOP Concepts",
+    "description": "<p>Create two methods with the  same name: convertToCentimeters</p><p>The first method has one parameter of type int,  which represents the entire height in inches.</p><p>You'll convert inches to centimeters, in this  method, and pass back the number of centimeters, as a double. The second method has two parameters  of type int, one to represent height in feet, and one to represent the remaining height  in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for  inches would be passed to this method.</p><p>This method will convert feet and inches to just  inches, then call the first method, to get the number of centimeters, also returning the value as  a double. Both methods should return a real number or decimal value for total height in centimeters.  Call both methods, and print out the results.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void calcFeetAndInchesToCentimeters(double feet, double inches) {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "calcFeetAndInchesToCentimeters",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "methodoverloadingsecondandminuteschallenge",
+    "title": "Method Overloading Second And Minutes",
+    "difficulty": "Hard",
+    "chapter": "Chapter 14: OOP Concepts",
+    "description": "<p>Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.</p><p>You should validate that the first parameter minutes is >= 0.</p><p>You should validate that the 2nd parameter seconds is >= 0 and <= 59.</p><p>The method should return Invalid value in the method if either of the above are not true.</p><p>If the parameters are valid then calculate how many hours minutes and seconds equal the minutes and seconds passed to this method and return that value as string in format gXXh YYm ZZsh where XX represents a number of hours, YY the minutes and ZZ the seconds.</p><p>Create a 2nd method of the same name but with only one parameter seconds.</p><p>Validate that it is >= 0, and return Invalid value ife it is not true.</p><p>If it is valid, then calculate how many minutes are in the seconds value and then call the other overloaded method passing the correct minutes and seconds calculated so that it can calculate correctly.</p><p>Call both methods to print values to the console.</p><p>Tips:</p><p>Use int or long for your number data types is probably a good idea.</p><p>1 minute = 60 seconds and 1 hour = 60 minutes or 3600 seconds.</p><p>Methods should be static as we have used previously.</p><p>Bonus:</p><p>For the input 61 minutes output should be 01h 01m 00s, but it is ok if it is 1h 1m 0s (Tip: use if-else)</p><p>Create a new console project and call it SecondsAndMinutesChallenge</p>",
+    "template": "public class PracticeWorkspace {\n    public static String getDurationString(int minutes, int seconds) {\n        // Write your code here\n        return \"\";\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "getDurationString",
     "hasVerify": false,
     "verifyFnStr": null
   }

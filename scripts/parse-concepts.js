@@ -5,7 +5,13 @@ const path = require('path');
 // Helper: Recursively list all .java files
 // ==========================================================================
 function getJavaFiles(dir, fileList = []) {
-  const files = fs.readdirSync(dir);
+  // Sort entries numerically so Sub_Chapter_10 comes after Sub_Chapter_9, not before Sub_Chapter_2
+  const files = fs.readdirSync(dir).sort((a, b) => {
+    const aNum = parseInt(a.match(/^(?:Chapter|Sub_Chapter)_(\d+)/)?.[1] || '0', 10);
+    const bNum = parseInt(b.match(/^(?:Chapter|Sub_Chapter)_(\d+)/)?.[1] || '0', 10);
+    if (aNum !== bNum) return aNum - bNum;
+    return a.localeCompare(b);
+  });
   for (const file of files) {
     const filePath = path.join(dir, file);
     if (fs.statSync(filePath).isDirectory()) {
@@ -1361,6 +1367,16 @@ function main() {
     const aNum = parseInt(a.name.match(/Chapter\s+(\d+)/)?.[1] || '999', 10);
     const bNum = parseInt(b.name.match(/Chapter\s+(\d+)/)?.[1] || '999', 10);
     return aNum - bNum;
+  });
+
+  // Sort topics within each chapter by sub-chapter number extracted from filePath
+  chaptersList.forEach(chapter => {
+    chapter.topics.sort((a, b) => {
+      const subNumA = parseInt(a.filePath.match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
+      const subNumB = parseInt(b.filePath.match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
+      if (subNumA !== subNumB) return subNumA - subNumB;
+      return a.filePath.localeCompare(b.filePath);
+    });
   });
 
   // ── Step 2: Write data.js ──────────────────────────────────────────────────

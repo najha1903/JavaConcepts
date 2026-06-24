@@ -2650,393 +2650,6 @@ const CONCEPTS_DATA = [
     "name": "Chapter 14: OOP Concepts",
     "topics": [
       {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
-        "fileName": "PointClassDistanceCalculation.java",
-        "topicName": "Point Class Distance Calculation",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Constructors Coding Challenge",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "Point Class and Distance Calculation",
-              "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
-              "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.",
-              "Write the following methods (instance methods):",
-              "Method named getX without any parameters, it needs to return the value of x field.",
-              "Method named getY without any parameters, it needs to return the value of y field.",
-              "Method named setX with one parameter of type int, it needs to set the value of the x field.",
-              "Method named setY with one parameter of type int, it needs to set the value of the y field.",
-              "Method named distance without any parameters, it needs to return the distance between this Point and Point (0, 0) as a double.",
-              "Method named distance with parameter of type Point, it needs to return the distance between this Point and the parameter Point as a double.",
-              "Method named distance with two parameters x, y both of type int, it needs to return the distance between this Point and Point x, y as a double.",
-              "How to find the distance between two points?",
-              "To find a distance between points A(xA,yA) and B(xB,yB), we use the formula:",
-              "d(A,B)=√ (xB − xA) * (xB - xA) + (yB − yA) * (yB - yA)",
-              "Where √ represents square root."
-            ]
-          }
-        ],
-        "inlineComments": [],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_10_Constructors_Coding_Challenge;\r\n\r\n\r\n/*\r\n* Point Class and Distance Calculation\r\nYou have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.\r\n\r\nThe class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.\r\n\r\nWrite the following methods (instance methods):\r\n\r\nMethod named getX without any parameters, it needs to return the value of x field.\r\n\r\nMethod named getY without any parameters, it needs to return the value of y field.\r\n\r\nMethod named setX with one parameter of type int, it needs to set the value of the x field.\r\n\r\nMethod named setY with one parameter of type int, it needs to set the value of the y field.\r\n\r\nMethod named distance without any parameters, it needs to return the distance between this Point and Point (0, 0) as a double.\r\n\r\nMethod named distance with parameter of type Point, it needs to return the distance between this Point and the parameter Point as a double.\r\n\r\nMethod named distance with two parameters x, y both of type int, it needs to return the distance between this Point and Point x, y as a double.\r\n\r\n\r\n\r\nHow to find the distance between two points?\r\nTo find a distance between points A(xA,yA) and B(xB,yB), we use the formula:\r\n\r\nd(A,B)=√ (xB − xA) * (xB - xA) + (yB − yA) * (yB - yA)\r\n\r\nWhere √ represents square root.\r\n*\r\n* */\r\n\r\nimport java.awt.*;\r\n\r\npublic class PointClassDistanceCalculation {\r\n\r\n    private int x;\r\n\r\n    private int y;\r\n\r\n    public PointClassDistanceCalculation(){\r\n\r\n    }\r\n\r\n    public PointClassDistanceCalculation(int x, int y){\r\n        this.x = x;\r\n        this.y = y;\r\n    }\r\n\r\n    public int getX(){\r\n        return x;\r\n    }\r\n\r\n    public int getY(){\r\n        return y;\r\n    }\r\n\r\n    public void setX(int x){\r\n        this.x = x;\r\n    }\r\n\r\n    public void setY(int y){\r\n        this.y = y;\r\n    }\r\n\r\n    public double distance(){\r\n        double distance = Math.sqrt(((getX() - 0) * (getX() - 0)) + ((getY() - 0) * (getY() - 0)));\r\n        return distance;\r\n    }\r\n\r\n    public double distance(int a, int b){\r\n        double distance = Math.sqrt(((getX() - a) * (getX() - a)) + ((getY() - b) * (getY() - b)));\r\n        return distance;\r\n    }\r\n\r\n    public double distance(Point a){\r\n        double distance =  Math.sqrt(((getX() - a.getX()) * (getX() - a.getX())) + ((getY() - a.getY()) * (getY() - a.getY())));;\r\n        return distance;\r\n    }\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
-        "fileName": "WallAreaComputation.java",
-        "topicName": "Wall Area Computation",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Constructors Coding Challenge",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "Wall Area Computation",
-              "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.",
-              "The class needs to have two constructors:",
-              "The first constructor does not have any parameters (no-args constructor).",
-              "The second constructor has parameters width and height of type double and it needs to initialize the fields.",
-              "In case the width parameter is less than 0 it needs to set the width field value to 0.",
-              "In case the height parameter is less than 0 it needs to set the height field value to 0.",
-              "Write the following methods (instance methods):",
-              "Method named getWidth without any parameters, it needs to return the value of width field.",
-              "Method named getHeight without any parameters, it needs to return the value of height field.",
-              "Method named setWidth with one parameter of type double, it needs to set the value of the width field. If the parameter is less than 0 it needs to set the width field value to 0.",
-              "Method named setHeight with one parameter of type double, it needs to set the value of the height field. If the parameter is less than 0 it needs to set the height field value to 0.",
-              "Method named getArea without any parameters, it needs to return the area of the wall."
-            ]
-          }
-        ],
-        "inlineComments": [],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_10_Constructors_Coding_Challenge;\r\n\r\n\r\n/*\r\n* Wall Area Computation\r\nWrite a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.\r\n\r\n\r\n\r\nThe class needs to have two constructors:\r\n\r\nThe first constructor does not have any parameters (no-args constructor).\r\n\r\nThe second constructor has parameters width and height of type double and it needs to initialize the fields.\r\n\r\nIn case the width parameter is less than 0 it needs to set the width field value to 0.\r\n\r\nIn case the height parameter is less than 0 it needs to set the height field value to 0.\r\n\r\n\r\n\r\nWrite the following methods (instance methods):\r\n\r\nMethod named getWidth without any parameters, it needs to return the value of width field.\r\n\r\nMethod named getHeight without any parameters, it needs to return the value of height field.\r\n\r\nMethod named setWidth with one parameter of type double, it needs to set the value of the width field. If the parameter is less than 0 it needs to set the width field value to 0.\r\n\r\nMethod named setHeight with one parameter of type double, it needs to set the value of the height field. If the parameter is less than 0 it needs to set the height field value to 0.\r\n\r\nMethod named getArea without any parameters, it needs to return the area of the wall.\r\n\r\n\r\n*\r\n* */\r\n\r\npublic class WallAreaComputation {\r\n\r\n    private double width;\r\n\r\n    private double height;\r\n\r\n    public WallAreaComputation(){\r\n\r\n    }\r\n\r\n    public WallAreaComputation(double width, double height){\r\n        if(height < 0){\r\n            this.height = 0;\r\n        }else{\r\n            this.height = height;\r\n        }\r\n        if(width < 0){\r\n            this.width = 0;\r\n        }else{\r\n            this.width = width;\r\n        }\r\n    }\r\n\r\n    public double getWidth(){\r\n        return width;\r\n    }\r\n\r\n    public double getHeight(){\r\n        return height;\r\n    }\r\n\r\n    public void setWidth(double width){\r\n        if(width < 0){\r\n            this.width = 0;\r\n        }else if(width >=0){\r\n            this.width = width;\r\n        }\r\n    }\r\n\r\n    public void setHeight(double height){\r\n        if(height < 0){\r\n            this.height = 0;\r\n        }else if(height >=0){\r\n            this.height = height;\r\n        }\r\n    }\r\n\r\n\r\n    public double getArea(){\r\n        double area = getWidth() * getHeight();\r\n        return area;\r\n    }\r\n\r\n}\r\n\r\n\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
-        "fileName": "Animal.java",
-        "topicName": "Animal",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-              "Also, the super class will have all the behaviour that animals have in common.",
-              "Method Overriding",
-              "Overriding a method is when you create a method on a subclass, which has the same signature as a method on a super class.",
-              "A method signature consists of the method name and the number and types of parameters.",
-              "A parent class method is overridden when we want the child class to show different behavior for that method.",
-              "The overridden method can do one of three things: It can implement completely different behavior, overriding the behavior of the parent. It can simply call the parent class's method, which is somewhat redundant to do. This is the default behavior of an inherited method.",
-              "Or the method can call the parent class's method and include other code to run so it can extend the functionality for the Dog",
-              "Polymorphism",
-              "Polymorphism simply means \"many forms\"",
-              "Advantages :-",
-              "1) It makes code simpler",
-              "2) It encourages code extensibility"
-            ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "This is the superclass (parent class) of the Animal inheritance hierarchy.",
-              "Inheritance allows a child class to reuse (inherit) fields and methods from a parent class, adding or customising as needed.",
-              "Method Overriding: a subclass can provide its own implementation of a method defined in the superclass.",
-              "The method signature (name + parameter types) must match exactly for overriding to work.",
-              "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
-              "Polymorphism (\"many forms\"): an Animal reference can point to a Dog or Fish object. When you call animal.makeNoise(), Java calls the Dog's or Fish's version — not Animal's. This is runtime (dynamic) dispatch.",
-              "Three things an overriding method can do: (1) completely replace the parent's behaviour, (2) call the parent's method and do nothing else (redundant), or (3) call the parent's method AND add extra logic (extension).",
-              "The super.methodName() syntax calls the PARENT class's version of the method from within the overriding method."
-            ]
-          }
-        ],
-        "inlineComments": [
-          "This method has overridden the Object toString method",
-          "It got override by the toString method of Dog Class and Fish Class",
-          "This method got override by the Fish Class and the Animal Class",
-          "This method got override by the Animal Class"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n// This is the superclass (parent class) of the Animal inheritance hierarchy.\n// Inheritance allows a child class to reuse (inherit) fields and methods from a parent class, adding or customising as needed.\n// Method Overriding: a subclass can provide its own implementation of a method defined in the superclass.\n// The method signature (name + parameter types) must match exactly for overriding to work.\n// Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.\n// Polymorphism (\"many forms\"): an Animal reference can point to a Dog or Fish object. When you call animal.makeNoise(), Java calls the Dog's or Fish's version — not Animal's. This is runtime (dynamic) dispatch.\n// Three things an overriding method can do: (1) completely replace the parent's behaviour, (2) call the parent's method and do nothing else (redundant), or (3) call the parent's method AND add extra logic (extension).\n// The super.methodName() syntax calls the PARENT class's version of the method from within the overriding method.\r\n/*\r\n* This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.\r\n*\r\n* Also, the super class will have all the behaviour that animals have in common.\r\n*\r\n* Method Overriding\r\n*\r\n* Overriding a method is when you create a method on a subclass, which has the same\r\n* signature as a method on a super class.\r\n*\r\n* A method signature consists\r\n* of the method name and the number and types of parameters.\r\n*\r\n* A parent class method is overridden when we want the child class to show different\r\n* behavior for that method.\r\n*\r\n* The overridden method can do one of three things: It can implement completely different behavior,\r\n* overriding the behavior of the parent. It can simply call the parent class's method,\r\n* which is somewhat redundant to do. This is the default behavior of an inherited method.\r\n* Or the method can call the parent class's method and include other code to run so it can extend the\r\n* functionality for the Dog\r\n*\r\n* Polymorphism\r\n*\r\n* Polymorphism simply means \"many forms\"\r\n*\r\n* Advantages :-\r\n*\r\n* 1) It makes code simpler\r\n*\r\n* 2) It encourages code extensibility\r\n* */\r\n\r\npublic class Animal {\r\n\r\n    private String type;\r\n    private String size;\r\n    private double weight;\r\n\r\n    public Animal(){\r\n\r\n    }\r\n\r\n    public Animal(String type, String size, double weight) {\r\n        this.type = type;\r\n        this.size = size;\r\n        this.weight = weight;\r\n    }\r\n\r\n    public Animal(String type, double weight){\r\n        String size = (weight < 15 ? \"small\" : (weight < 35 ? \"medium\" : \"large\"));\r\n        this.size = size;\r\n        this.type = type;\r\n    }\r\n\r\n\r\n    // This method has overridden the Object toString method\r\n    // It got override by the toString method of Dog Class and Fish Class\r\n    @Override\r\n    public String toString() {\r\n        return \"Animal{\" +\r\n                \"type='\" + type + '\\'' +\r\n                \", size='\" + size + '\\'' +\r\n                \", weight=\" + weight +\r\n                '}';\r\n    }\r\n\r\n    // This method got override by the Fish Class and the Animal Class\r\n    public void move(String speed){\r\n        System.out.println(type + \" moves \" + speed);\r\n    }\r\n\r\n   // This method got override by the Animal Class\r\n    public void makeNoise(){\r\n        System.out.println(type + \" makes noise\");\r\n    }\r\n\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
-        "fileName": "Dog.java",
-        "topicName": "Dog",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "Dog inherits from Animal",
-              "Dog \"IS A\" a type of Animal",
-              "Dog is a subclass or child class of Animal",
-              "Animal is a parent or super class of Dog",
-              "When a Dog object gets created, it will inherit Animal's attributes (type, size and weight).",
-              "This is also true for Animal's methods. Dog will inherit these as well.",
-              "Dog class can be specialised with its own fields and behaviour."
-            ]
-          }
-        ],
-        "inlineComments": [
-          "Most Important Point :- A class can specify one and only one class in it's extends clause.",
-          "Java creates a default constructor implicitly, if we don't explicitly declare 1",
-          "Since we created a 2 parameter constructor in the parent class, the default constructor was not created automatically for the parent class by Java.",
-          "This will call the no argument constructor of the parent class, if no constructors are defined in the parent's class, java will implicitly create one.",
-          "Similarly, if no constructors are defined in the child class, java will implicitly create one for parent class too, and super() will also be implicitly defined (called) in the child class constructor, which in turn will call the implicitly defined constructor of parent class.",
-          "But, let us suppose, an argument constructor is explicitly defined in the parent class, the child class will throw an error, as the implicitly defined super call to the parent constructor will fail as the implicitly defined super() call in the implicitly defined child constructor doesn't have any arguments.",
-          "To resolve this, either the parent class should have an explicit no argument constructor defined, or the child class should explicitly call the parent class constructor using super(args1,args2) with arguments.",
-          "This method overrides the toString method of the parent Animal Class",
-          "This method overrides the makeNoise method of the parent Animal class",
-          "This method overrides the move method of the parent Animal Class",
-          "the parent class's method is called and include other code to run so it can extend the functionality for the Dog"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n\r\n/*\r\n* Dog inherits from Animal\r\n*\r\n* Dog \"IS A\" a type of Animal\r\n*\r\n* Dog is a subclass or child class of Animal\r\n*\r\n* Animal is a parent or super class of Dog\r\n*\r\n*\r\n* When a Dog object gets created, it will inherit Animal's attributes (type, size and weight).\r\n*\r\n* This is also true for Animal's methods. Dog will inherit these as well.\r\n*\r\n* Dog class can be specialised with its own fields and behaviour.\r\n*\r\n*\r\n*/\r\n\r\npublic class Dog extends Animal { // Using extends specifies the superclass ( or the parent class ) of the class that has been declatred\r\n\r\n    private String earShape;\r\n\r\n    private String tailShape;\r\n\r\n    private String type;\r\n\r\n// Most Important Point :- A class can specify one and only one class in it's extends clause.\r\n\r\n// Java creates a default constructor implicitly, if we don't explicitly declare 1\r\n   public Dog(){\r\n    // Since we created a 2 parameter constructor in the parent class, the default constructor was not created automatically for the parent class by Java.\r\n\r\n //   super(); // This will call the no argument constructor of the parent class, if no constructors are defined in the parent's class, java will implicitly create one.\r\n    // Similarly, if no constructors are defined in the child class, java will implicitly create one for parent class too, and super() will also be implicitly defined (called) in the child class constructor, which in turn will call the implicitly defined constructor of parent class.\r\n\r\n    // But, let us suppose, an argument constructor is explicitly defined in the parent class, the child class will throw an error, as the implicitly defined super call to the parent constructor will fail as the implicitly defined super() call in the implicitly defined child constructor doesn't have any arguments.\r\n\r\n    // To resolve this, either the parent class should have an explicit no argument constructor defined, or the child class should explicitly call the parent class constructor using super(args1,args2) with arguments.\r\n\r\n    \r\n/* super() is a lot like this()\r\n\r\nIt's a way to call a constructor on the super class directly from the sub class's constructor.\r\n\r\nLike this(), it has to be the first statement of the constructor.\r\n\r\nBecause of that rule, this() and super() can never be called from the same constructor.\r\n\r\nIf no explicit call is made to the super(),\r\nthen Java handles it using super's default constructor.\r\n\r\nIf the super class doesn't have a default constructor, then explicitly call to\r\nsuper() should be made in all child constructors, passing the right arguments to that constructor.\r\n*/\r\n\r\n    super(\"Mutt\",\"Big\", 50);\r\n    this.type = \"Mutt\";\r\n\r\n    }\r\n\r\n    public Dog(String type, double weight, String earShape, String tailShape) {\r\n        super(type, weight); // It calls the Animal Constructor that accepts two parameter :- type and weight\r\n        this.earShape = earShape;\r\n        this.tailShape = tailShape;\r\n        this.type = type;\r\n\r\n    }\r\n\r\n    public Dog(String type, double weight){\r\n       this(type,weight,\"Perky\",\"Curled\"); // It calls the Dog constructor that accepts 4 parameters :- type, weight, earShape, tailShape\r\n\r\n    }\r\n\r\n    // This method overrides the toString method of the parent Animal Class\r\n    @Override\r\n    public String toString() {\r\n        return \"Dog{\" +\r\n                \"earShape='\" + earShape + '\\'' +\r\n                \", tailShape='\" + tailShape + '\\'' +\r\n                '}' + super.toString();\r\n\r\n        /*\r\n        * The super keyword used above is different than the super parentheses call.\r\n        * It's a lot like using the this keyword with the dot notation to access a field on the current instance. This code lets us call a super class's method.\r\n        *\r\n        * If we want to call a method of a superclass we need to call super.methodName();\r\n        *\r\n        * */\r\n\r\n    }\r\n\r\n\r\n    /*\r\n     * Here, below, the makeNoise method is overridden method of the parent Animal Class makeNoise method\r\n     * For all the dog objects(instances) the overridden method will be called, and since nothing is implemented,\r\n     * the makeNoise will not do anything\r\n     *\r\n     * */\r\n\r\n\r\n    // This method overrides the makeNoise method of the parent Animal class\r\n    public void makeNoise(){\r\n      //  System.out.println(type + \" makes some noise\");\r\n      //  super.makeNoise();\r\n        bark();\r\n    }\r\n\r\n\r\n    // This method overrides the move method of the parent Animal Class\r\n    public void move(String speed){\r\n     //   System.out.println(type + \" moves fast\");\r\n        // super.move(speed);\r\n        // System.out.println(\"Animals move very quickly\");\r\n\r\n        // the parent class's method is called and include other code to run so it can extend the functionality for the Dog\r\n        if(speed == \"slow\"){\r\n            walk();\r\n            wagTail();\r\n        } else{\r\n            run();\r\n          //  bark();\r\n        }\r\n    }\r\n\r\n    private void bark() {\r\n        System.out.println(\"Woof! \");\r\n    }\r\n\r\n    private void run() {\r\n        System.out.println(type + \" Running\");\r\n    }\r\n\r\n    private void walk(){\r\n        System.out.println(type + \" Walking\");\r\n    }\r\n\r\n    private void wagTail(){\r\n        System.out.println(\"Tail Wagging\");\r\n    }\r\n\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
-        "fileName": "Fish.java",
-        "topicName": "Fish",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance",
-        "headerComments": [],
-        "inlineComments": [
-          "This method overrides the toString method of the parent Animal Class",
-          "This method overrides the move method of the parent Animal Class"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n\r\npublic class Fish extends Animal{\r\n\r\n    private int gills;\r\n    private int fins;\r\n\r\n    public Fish(String type,double weight,int gills, int fins){\r\n        super(type,\"small\",weight); // The constructor of animal class is called, using constructor chaining\r\n        this.gills = gills;\r\n        this.fins = fins;\r\n    }\r\n\r\n    // This method overrides the toString method of the parent Animal Class\r\n    @Override\r\n    public String toString() { // The toString() method of Fish class is called, as it overrides the animal class toString() method\r\n        return \"Fish{\" +\r\n                \"gills=\" + gills +\r\n                \", fins=\" + fins +\r\n                \"} \" + super.toString(); // With the help of super.toString() the animal class toString() method is called\r\n    }\r\n\r\n    private void moveMuscles(){\r\n        System.out.println(\"muscle moving \");\r\n    }\r\n\r\n    private void moveBackFin(){\r\n        System.out.println(\"backfin moving \");\r\n    }\r\n\r\n    // This method overrides the move method of the parent Animal Class\r\n    public void move(String speed){\r\n        super.move(speed);\r\n        moveMuscles();\r\n        if(speed == \"fast\"){\r\n            moveBackFin();\r\n        }\r\n    }\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
-        "fileName": "Inheritance.java",
-        "topicName": "Inheritance",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent."
-            ]
-          },
-          {
-            "type": "block",
-            "lines": [
-              "Animal (Base Class)",
-              "Vertebrates (Sub Class of Animal)",
-              "Warm Blooded                   Cold Blooded",
-              "Mammal              Bird       Fish             Reptiles",
-              "Dog                  Cat      Salmon              GoldFish",
-              "Each box on this diagram represents a Class",
-              "The most generic, or base class, starts at the top of the hierarchy.",
-              "Every class below it is a subclass.",
-              "A baseclass or parent class can have multiple children.",
-              "A child can only have one direct parent in Java, but it will inherit from its parents class's parents and so on.",
-              "All subclasses can execute methods even though the code is declared on the parent class.",
-              "The code doesn't have to be duplicated in each subclass.",
-              "We can use code from the parent. Or we can change that code for the subclass."
-            ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "Inheritance is a mechanism for code reuse — a child class inherits all accessible fields and methods from its parent.",
-              "In Java, a class can only extend ONE direct parent (single inheritance), but inherits all the way up the hierarchy.",
-              "The 'extends' keyword establishes the parent-child relationship: class Dog extends Animal",
-              "\"IS-A\" relationship: Dog IS-A Animal. This means a Dog object can be used ANYWHERE an Animal is expected.",
-              "When a Dog object is passed to a method expecting an Animal, Java accepts it — because Dog is a type of Animal.",
-              "Java uses DYNAMIC DISPATCH (polymorphism at runtime) to call the correct overridden method.",
-              "Example: doAnimalStuff(dog, \"fast\") — even though the parameter type is Animal, Java calls Dog's makeNoise() and move() methods.",
-              "Every class in Java implicitly extends Object if no other class is specified. Object is the root of the class hierarchy.",
-              "Inheritance hierarchy example:",
-              "Object (root of all classes)",
-              "+-- Animal",
-              "+-- Dog",
-              "+-- Fish"
-            ]
-          }
-        ],
-        "inlineComments": [
-          "Since Dog inherits from animal.",
-          "A dog object can be used as the method argument even though the type was declared as an animal.",
-          "It works because dog inherits from animal, it's a type of animal",
-          "A dog instance can be passed to any method that takes an animal",
-          "Java checks the actual object type and uses its toString() method. If that class doesn't have toString(), it uses the parent class's version."
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n// Inheritance is a mechanism for code reuse — a child class inherits all accessible fields and methods from its parent.\n// In Java, a class can only extend ONE direct parent (single inheritance), but inherits all the way up the hierarchy.\n// The 'extends' keyword establishes the parent-child relationship: class Dog extends Animal\n// \"IS-A\" relationship: Dog IS-A Animal. This means a Dog object can be used ANYWHERE an Animal is expected.\n// When a Dog object is passed to a method expecting an Animal, Java accepts it — because Dog is a type of Animal.\n// Java uses DYNAMIC DISPATCH (polymorphism at runtime) to call the correct overridden method.\n//   Example: doAnimalStuff(dog, \"fast\") — even though the parameter type is Animal, Java calls Dog's makeNoise() and move() methods.\n// Every class in Java implicitly extends Object if no other class is specified. Object is the root of the class hierarchy.\n// Inheritance hierarchy example:\n//   Object (root of all classes)\n//     +-- Animal\n//           +-- Dog\n//           +-- Fish\r\n/*\r\n  Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child\r\n  hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.\r\n*\r\n*\r\n* */\r\n\r\n/*\r\n*                                      Animal (Base Class)\r\n*                                        |\r\n*                                        |\r\n*                                    Vertebrates (Sub Class of Animal)\r\n*                                        |\r\n*                         _______________|_______________\r\n*                         |                             |\r\n*                         |                             |\r\n*                    Warm Blooded                   Cold Blooded\r\n*                         |                             |\r\n*                _________|__________          _________|__________\r\n*                |                  |          |                  |\r\n*                |                  |          |                  |\r\n*              Mammal              Bird       Fish             Reptiles\r\n*                |                             |\r\n*     ___________|__________         __________|__________\r\n*     |                    |         |                   |\r\n*     |                    |         |                   |\r\n*    Dog                  Cat      Salmon              GoldFish\r\n*\r\n* Each box on this diagram represents a Class\r\n*\r\n* The most generic, or base class, starts at the top of the hierarchy.\r\n*\r\n* Every class below it is a subclass.\r\n*\r\n* A baseclass or parent class can have multiple children.\r\n*\r\n* A child can only have one direct parent in Java, but it will inherit from its parents class's parents and so on.\r\n*\r\n* All subclasses can execute methods even though the code is declared on the parent class.\r\n*\r\n* The code doesn't have to be duplicated in each subclass.\r\n*\r\n* We can use code from the parent. Or we can change that code for the subclass.\r\n*\r\n*\r\n */\r\n\r\n\r\npublic class Inheritance {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        Animal animal = new Animal(\"Generic Animal\", \"Huge\", 400);\r\n       doAnimalStuff(animal,\"slow\");\r\n\r\n\r\n       Dog dog = new Dog();\r\n       // Since Dog inherits from animal,\r\n\r\n        // A dog object can be used as the method argument even though the type was declared as an animal.\r\n        // It works because dog inherits from animal, it's a type of animal\r\n        // A dog instance can be passed to any method that takes an animal\r\n\r\n       doAnimalStuff(dog,\"fast\");\r\n\r\n\r\n       /*\r\n\r\n       If only super() is called from the Dog() constructor then :-\r\n\r\n          Output :-\r\n       *  null makes some kind of noise\r\n       *  null moves fast\r\n       *  Since Dog() constructor called the super() with no arguments passed,\r\n       *  so nothing got set on the Animal Class\r\n       *  but dog has inherited all of animal's attributes.\r\n       *  The values have the default values for their type because there is no way,\r\n       *  to pass any data to these fields on dog\r\n       *\r\n       * */\r\n\r\n/*        If super(\"Mutt\",\"Big\", 50) is called from the Dog() constructor then :-\r\n\r\n          Output :-\r\n       *  Mutt makes some kind of noise\r\n       *  Mutt moves fast\r\n       *  Since the Dog constructor calls the parameterized Animal constructor,\r\n          all values are stored in the Animal class fields.\r\n       *\r\n*/\r\n\r\n        Dog dog1 = new Dog(\"Yorkie\",15);  // Constructor chaining is used in this object creation\r\n        doAnimalStuff(dog1,\"Fast\");\r\n\r\n        Fish goldie = new Fish(\"GoldFish\",0.25,2,5);\r\n        doAnimalStuff(goldie,\"fast\");\r\n\r\n\r\n    }\r\n\r\n    public static void doAnimalStuff(Animal animal, String speed){\r\n        animal.makeNoise();\r\n        animal.move(speed);\r\n        System.out.println(animal);\r\n        System.out.println(\"*************************************************************************************\");\r\n        // Java checks the actual object type and uses its toString() method. If that class doesn't have toString(), it uses the parent class's version.\r\n\r\n\r\n    }\r\n\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
-        "fileName": "Main.java",
-        "topicName": "Main",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "Every class created in Java extends a special Java class.",
-              "That class is named Object, and it's in the java.lang package.",
-              "Class Object is the root of the class hierarchy.",
-              "All classes, which do not explicitly extend another class will implicitly extend a class named object",
-              "Every class has Object as a superclass. All objects, including arrays, implement the methods of this class.",
-              "Java only supports 1 class in the extends class"
-            ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "Since, every class in java, implicitly extend object, there is no need to explicitly extend the Object class"
-            ]
-          }
-        ],
-        "inlineComments": [
-          "Since the toString method, is explicitly called by an object, there is no need to make an explicit call to toString method from an object",
-          "Output :- Here, the toString method is actually the parent class toString method, which in this case is Object Class",
-          "This override is redundant, as it is simply calling the parent class toString() method, and hence, will give the same output, when the toString() method was called without overriding",
-          "The parent class toString() method is implicitly called, when super.toString() is explicitly called"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample.ObjectClass;\r\n\r\n/*\r\n* Every class created in Java extends a special Java class.\r\n*\r\n* That class is named Object, and it's in the java.lang package.\r\n*\r\n* Class Object is the root of the class hierarchy.\r\n*\r\n* All classes, which do not explicitly extend another class will implicitly extend a class named object\r\n*\r\n* Every class has Object as a superclass. All objects, including arrays,\r\n  implement the methods of this class.\r\n*\r\n* Java only supports 1 class in the extends class\r\n*\r\n*\r\n* */\r\n\r\n\r\n// Since, every class in java, implicitly extend object, there is no need to explicitly extend the Object class\r\npublic class Main extends Object{\r\n\r\n    public static void main(String[] args) {\r\n\r\n        Student s = new Student(\"Navneet\", 21);\r\n      //  System.out.println(s.toString());\r\n        // Since the toString method, is explicitly called by an object,\r\n        // there is no need to make an explicit call to toString method from an object\r\n        System.out.println(s);\r\n        // Output :- Here, the toString method is actually the parent class toString method, which in this case is Object Class\r\n\r\n        PrimarySchoolStudent primarySchoolStudent = new PrimarySchoolStudent(\"Navneet\", 21,\"Puttu\");\r\n        System.out.println(primarySchoolStudent.toString());\r\n    }\r\n\r\n}\r\n\r\nclass Student {\r\n\r\n    private String name;\r\n    private int age;\r\n\r\n    Student(String name, int age){\r\n        this.name = name;\r\n        this.age = age;\r\n    }\r\n\r\n//    @Override\r\n//    public String toString() {\r\n//        return super.toString(); // This override is redundant, as it is simply calling the parent class toString() method, and hence, will give the same output, when the toString() method was called without overriding\r\n//        // The parent class toString() method is implicitly called, when super.toString() is explicitly called\r\n//    }\r\n\r\n\r\n        @Override\r\n    public String toString() {\r\n        return \"Student{\" +\r\n                \"name='\" + name + '\\'' +\r\n                \", age=\" + age +\r\n                '}';\r\n    }\r\n\r\n}\r\n\r\nclass PrimarySchoolStudent extends Student { //,Object // Class cannot extend multiple class {\r\n\r\n    private String parentName;\r\n\r\n    PrimarySchoolStudent(String name, int age, String parentName){\r\n        super(name,age); // Call to parent constructor is been made\r\n        this.parentName = parentName;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"PrimarySchoolStudent{\" +\r\n                \"parentName='\" + parentName + '\\'' +\r\n                \"} \" + super.toString();\r\n    }\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
-        "fileName": "Employee.java",
-        "topicName": "Employee",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance Coding Challenge",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "Employee Class Extends the Worker Class"
-            ]
-          }
-        ],
-        "inlineComments": [
-          "Here the employeeNumber is taken as static, hence, whenever a new employee gets created, the employeeId gets incremented by 1",
-          "An Employee constructor is created, that accepts name, birthDate and hireDate as the parameters",
-          "The name and birthDate information gets set in the worker class using constructor chaining using super keyword, whenever the Employee constructor is called"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n/* Employee Class Extends the Worker Class */\r\npublic class Employee extends Worker {\r\n\r\n    /*\r\n    * Two new fields are introduced for Employee class, employeeId, hireDate\r\n    * */\r\n    private int employeeId;\r\n    private String hireDate;\r\n\r\n    // Here the employeeNumber is taken as static, hence, whenever a new employee gets created, the employeeId gets incremented by 1\r\n    private static int employeeNumber = 1;\r\n\r\n\r\n    // An Employee constructor is created, that accepts name, birthDate and hireDate as the parameters\r\n    public Employee(String name, String birthDate,  String hireDate) {\r\n        super(name, birthDate); // With the help of super keyword, the Worker constructor is called, through constructor chaining\r\n        // The name and birthDate information gets set in the worker class using constructor chaining using super keyword, whenever the Employee constructor is called\r\n        this.employeeId = Employee.employeeNumber++;\r\n        this.hireDate = hireDate;\r\n    }\r\n\r\n    /* Here, the toString() method of the Worker Class is overridden, and with the help of super.toString(),\r\n       the toString() method of Worker class is called   */\r\n    @Override\r\n    public String toString() {\r\n        return \"Employee{\" +\r\n                \"employeeId=\" + employeeId +\r\n                \", hireDate='\" + hireDate + '\\'' +\r\n                \"} \" + super.toString(); // Worker class toString() method is called\r\n    }\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
-        "fileName": "HourlyEmployee.java",
-        "topicName": "Hourly Employee",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance Coding Challenge",
-        "headerComments": [
-          {
-            "type": "lines",
-            "lines": [
-              "The HourlyEmployee Class extends the Employee Class"
-            ]
-          }
-        ],
-        "inlineComments": [
-          "The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)",
-          "The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n// The HourlyEmployee Class extends the Employee Class\r\npublic class HourlyEmployee extends Employee {\r\n\r\n    /*\r\n     * Here, 1 new field is introduced for HourlyEmployee Class, namely hourlyRate\r\n     * */\r\n    private double hourlyRate;\r\n\r\n    /*\r\n     * An Hourly employee constructor is created, that accepts name, birthDate, hireDate and hourlyRate as the parameters\r\n     * */\r\n\r\n    public HourlyEmployee(String name, String birthDate, String hireDate, double hourlyRate) {\r\n        super(name, birthDate, hireDate); // With the help of super keyword, the Employee constructor is called, through constructor chaining\r\n        // The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)\r\n        // The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called\r\n        this.hourlyRate = hourlyRate;\r\n    }\r\n\r\n    /*\r\n     * The Worker class collectPay() method is being overridden in the SalariedEmployeeClass\r\n     * */\r\n    @Override\r\n    public double collectPay() {\r\n        return 40 * hourlyRate;\r\n    }\r\n\r\n    public double getDoublePay(){\r\n        return 2 * collectPay();\r\n    }\r\n\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
-        "fileName": "Main.java",
-        "topicName": "Main",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance Coding Challenge",
-        "headerComments": [
-          {
-            "type": "lines",
-            "lines": [
-              "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
-              "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.",
-              "Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.",
-              "Constructor chaining (super()) passes data up through the hierarchy — HourlyEmployee → Employee → Worker.",
-              "This demonstrates polymorphism: calling collectPay() on an Employee reference calls the correct subclass implementation."
-            ]
-          }
-        ],
-        "inlineComments": [],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n// This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.\r\n// Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.\r\n// Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.\r\n// Constructor chaining (super()) passes data up through the hierarchy — HourlyEmployee → Employee → Worker.\r\n// This demonstrates polymorphism: calling collectPay() on an Employee reference calls the correct subclass implementation.\r\n\r\npublic class Main {\r\n\r\n    public static void main(String[] args) {\r\n        Employee tim = new Employee(\"Tim\",\"11/11/1985\",\"01/01/2010\");\r\n        System.out.println(tim);\r\n        System.out.println(\"Age = \" + tim.getAge());\r\n        System.out.println(\"Pay = \" + tim.collectPay());\r\n\r\n        SalariedEmployee joe = new SalariedEmployee(\"Joe\",\"11/11/1990\",\"03/03/2020\",35000);\r\n        System.out.println(joe);\r\n        System.out.println(\"Joe's paycheck = $\" + (int)joe.collectPay());\r\n        joe.retire();\r\n        System.out.println(\"Joe's retirement pension paycheck = $\" + (int)joe.collectPay());\r\n\r\n\r\n        HourlyEmployee mary = new HourlyEmployee(\"Mary\",\"05/05/1984\",\"05/06/2009\",20);\r\n        System.out.println(mary);\r\n        System.out.println(\"Mary's paycheck = $\" + (int)mary.collectPay());\r\n        System.out.println(\"Mary's Holiday Pay = $\" + (int)mary.getDoublePay());\r\n\r\n    }\r\n\r\n\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
-        "fileName": "SalariedEmployee.java",
-        "topicName": "Salaried Employee",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance Coding Challenge",
-        "headerComments": [
-          {
-            "type": "lines",
-            "lines": [
-              "The salaried employee class, extends the Employee Class"
-            ]
-          }
-        ],
-        "inlineComments": [
-          "The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)",
-          "The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called",
-          "The terminate(String endDate parameter) method of the Worker Class is called"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n// The salaried employee class, extends the Employee Class\r\npublic class SalariedEmployee extends Employee {\r\n\r\n    /*\r\n    * Here, 2 new fields are introduced for SalariedEmployee Class, namely annualSalary, isRetired\r\n    * */\r\n    private double annualSalary;\r\n    private boolean isRetired;\r\n\r\n\r\n    /*\r\n    * A Salaried employee constructor is created, that accepts name, birthDate, hireDate and annualSalary as the parameters\r\n    * */\r\n\r\n    public SalariedEmployee(String name, String birthDate, String hireDate, double annualSalary) {\r\n        super(name, birthDate, hireDate); // With the help of super keyword, the Employee constructor is called, through constructor chaining\r\n        // The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)\r\n        // The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called\r\n        this.annualSalary = annualSalary;\r\n    }\r\n\r\n\r\n    public void retire(){\r\n        // The terminate(String endDate parameter) method of the Worker Class is called\r\n       terminate(\"12/12/2025\");\r\n       isRetired = true;\r\n    }\r\n\r\n\r\n    /*\r\n     * The Worker class collectPay() method is being overridden in the SalariedEmployeeClass\r\n     * */\r\n\r\n    @Override\r\n    public double collectPay() {\r\n\r\n        double salary = annualSalary / 26;\r\n\r\n        double adjustedPay = (isRetired) ? 0.9 * salary : salary;\r\n\r\n        return adjustedPay;\r\n    }\r\n\r\n}\r\n"
-      },
-      {
-        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
-        "fileName": "Worker.java",
-        "topicName": "Worker",
-        "chapter": "Chapter 14: OOP Concepts",
-        "subChapter": "Inheritance Coding Challenge",
-        "headerComments": [
-          {
-            "type": "block",
-            "lines": [
-              "Inheritance Challenge Problem",
-              "Create Worker Class -> This should be on top of the Hierarchy",
-              "Create attributes :-",
-              "name      : String birthDate : String endDate   : String intGetAge() double collectPay() terminate(String endDate)",
-              "Below the Worker Class, introduce another Class named Employee which extends the Worker Class",
-              "Create Attributes :-",
-              "employeeId : long hireDate   : String",
-              "Create Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee",
-              "For SalariedEmployee, Create Attributes :-",
-              "annualSalary : double isRetired    : boolean retire()",
-              "For HourlyEmployee, Create Attributes :-",
-              "hourlyPayRate : double getDoublePay()"
-            ]
-          }
-        ],
-        "inlineComments": [
-          "Since name and birthDate are supposed to be used only by the worker class, it makes sense to make it private",
-          "Since, endDate value might get set either by this class, or subclass, it would make sense to make it protected",
-          "In real world scenario, it would be highly unlikely that we would be knowing a worker's end date, hence in the arg constructor, it would make sense, that we should only include two variables namely name and birthDate",
-          "Adding a no argument constructor can also provide more flexibility, hence adding 1 no arg constructor to this class"
-        ],
-        "customQuizzes": [],
-        "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n\r\n/*  Inheritance Challenge Problem\r\n\r\nCreate Worker Class -> This should be on top of the Hierarchy\r\n\r\nCreate attributes :-\r\nname      : String\r\nbirthDate : String\r\nendDate   : String\r\nintGetAge()\r\ndouble collectPay()\r\nterminate(String endDate)\r\n\r\nBelow the Worker Class, introduce another Class named Employee which extends the Worker Class\r\n\r\nCreate Attributes :-\r\nemployeeId : long\r\nhireDate   : String\r\n\r\nCreate Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee\r\n\r\nFor SalariedEmployee, Create Attributes :-\r\nannualSalary : double\r\nisRetired    : boolean\r\nretire()\r\n\r\nFor HourlyEmployee, Create Attributes :-\r\nhourlyPayRate : double\r\ngetDoublePay()\r\n\r\n*\r\n* */\r\npublic class Worker {\r\n\r\n// Since name and birthDate are supposed to be used only by the worker class, it makes sense to make it private\r\n\r\n// Since, endDate value might get set either by this class, or subclass, it would make sense to make it protected\r\n    private String name;\r\n    private String birthDate;\r\n    protected String endDate;\r\n\r\n// In real world scenario, it would be highly unlikely that we would be knowing a worker's end date, hence in the arg constructor,\r\n// it would make sense, that we should only include two variables namely name and birthDate\r\n\r\n    public Worker(String name, String birthDate) {\r\n        this.name = name;\r\n        this.birthDate = birthDate;\r\n    }\r\n\r\n// Adding a no argument constructor can also provide more flexibility, hence adding 1 no arg constructor to this class\r\n\r\n    public Worker(){\r\n\r\n    }\r\n\r\n\r\n\r\n    public int getAge(){\r\n        int currentYear = 2025;\r\n        int birthYear = Integer.parseInt(birthDate.substring(6));\r\n\r\n        return (currentYear - birthYear);\r\n    }\r\n\r\n\r\n/* The idea is to override the collectPay and terminate method by the subclasses so that specific implementation\r\n   can be processed by the sub class */\r\n\r\n    public double collectPay(){\r\n        return 0.0;\r\n    }\r\n\r\n    public void terminate(String endDate){\r\n        this.endDate = endDate;\r\n    }\r\n\r\n/*\r\n* Here, the toString method is overridden, which overrides the toString method of the Object Class\r\n* */\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Worker{\" +\r\n                \"name='\" + name + '\\'' +\r\n                \", birthDate='\" + birthDate + '\\'' +\r\n                \", endDate='\" + endDate + '\\'' +\r\n                '}';\r\n    }\r\n}\r\n"
-      },
-      {
         "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
         "fileName": "ClassesAndInheritance.java",
         "topicName": "Classes And Inheritance",
@@ -3317,9 +2930,22 @@ const CONCEPTS_DATA = [
         "topicName": "Method Overloading In Java",
         "chapter": "Chapter 14: OOP Concepts",
         "subChapter": "Classes Challenge",
-        "headerComments": [],
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "To the code calling an overloaded method, it looks like a single method can be called with different sets of arguments. In actuality, each call that's made with a different set of arguments is calling a separate method.",
+              "Java developers often refer to method overloading, as compile-time polymorphism.",
+              "This means the compiler is determining the right method to call, based on the method name and argument list. Usually overloading happens within a single class.",
+              "But methods can also be overloaded by subclasses. That's because a subclass inherits one version of the method from the parent class, and then the subclass can have another overloaded version of that method."
+            ]
+          }
+        ],
         "inlineComments": [
           "If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.",
+          "Method return type may or may not be different, and that allows us to reuse the same method name",
+          "Overriding is very handy, it reduces duplicated code, and we don't have to remember multiple method names.",
+          "We can overload, static or instance methods",
           "There are two ways to overload the method in java",
           "By changing number of arguments",
           "By changing the data type",
@@ -3337,7 +2963,7 @@ const CONCEPTS_DATA = [
         ],
         "customQuizzes": [],
         "deepChallenges": [],
-        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_3_Classes_Challenge;\r\n\r\npublic class MethodOverloadingInJava {\r\n\r\n//    If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.\r\n\r\n//    There are two ways to overload the method in java\r\n\r\n//    By changing number of arguments\r\n//    By changing the data type\r\n\r\n//    Method Overloading and Type Promotion*\r\n\r\n//    One type is promoted to another implicitly if no matching datatype is found.\r\n//    byte can be promoted to short, int, long, float or double. The short datatype can be promoted to int, long, float or double.\r\n//    The char datatype can be promoted to int,long,float or double and so on.\r\n\r\n//    If there are matching type arguments in the method, type promotion is not performed.\r\n\r\n//    If there are no matching type arguments in the method, and each method promotes similar number of arguments, there will be ambiguity.\r\n\r\n    public static void main(String[] args) {\r\n        int score = calculateScore(\"Navneet\", 1000);\r\n        System.out.println(\"New Score is \" + score);\r\n        score = calculateScore(75);\r\n        System.out.println(\"Second new Score is \" + score);\r\n        score = calculateScore(\"Navneet\",1000);\r\n        System.out.println(\"Second new Score is \" + score);\r\n\r\n        sum(1,2); //The b parameter is promoted to long\r\n        sum(1,2,4);\r\n\r\n        performingSumAgain(20,20); // Type promotion will not happen since there are matching arguments\r\n\r\n       // performingSum(1,3); // Since there are no matching type arguments, and each method promotes similar number of arguments, there will be ambiguity.\r\n\r\n    }\r\n\r\n    public static int calculateScore(String playerName, int score){\r\n        System.out.println(\"Player \" + playerName + \" scored \" + score + \" points \");\r\n        return score * 1000;\r\n    }\r\n\r\n    public static int calculateScore(int score){ // Example of method overloading. Number of arguments are changed\r\n        System.out.println(\"Unnamed player scored \" + score + \" points\");\r\n        return score * 1000;\r\n    }\r\n\r\n//        public static long calculateScore(String playerName, int score){ // Just by changing the return type of the method is not sufficient, as it may lead to ambiguity.\r\n//        System.out.println(\"Player \" + playerName + \" scored \" + score + \" points \");\r\n//        return score * 1000L;\r\n//    }\r\n\r\n    // Example of Method Overloading with TypePromotion\r\n\r\n    public static void sum(int a, long b){\r\n        System.out.println(a + b);\r\n    }\r\n\r\n    public static void sum(int a,int b,int c){\r\n        System.out.println(a+b+c);\r\n    }\r\n\r\n    // Example of Method Overloading with Type Promotion in case of ambiguity\r\n\r\n    public static void performingSum(int a,long b){\r\n        System.out.println(\"a method invoked\");\r\n    }\r\n\r\n    public static void performingSum(long a,int b){\r\n        System.out.println(\"b method invoked\");\r\n    }\r\n\r\n\r\n    // Example of Method Overloading with Type Promotion if matching found\r\n\r\n    public static void performingSumAgain(int a, int b){\r\n        System.out.println(\"Int argument is invoked\");\r\n    }\r\n\r\n    public static void performingSumAgain(long a,long b){\r\n        System.out.println(\"Long Argument is invoked\");\r\n    }\r\n\r\n}\r\n"
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_3_Classes_Challenge;\r\n\r\npublic class MethodOverloadingInJava {\r\n\r\n//    If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.\r\n\r\n//    Method return type may or may not be different, and that allows us to reuse the same method name\r\n\r\n//    Overriding is very handy, it reduces duplicated code, and we don't have to remember multiple method names.\r\n\r\n//    We can overload, static or instance methods\r\n\r\n/*    To the code calling an overloaded method, it looks like a single method can be\r\n      called with different sets of arguments. In actuality, each call that's made with\r\n      a different set of arguments is calling a separate method.\r\n\r\n      Java developers often refer to method overloading, as compile-time polymorphism.\r\n\r\n      This means the compiler is determining the right method to call, based on the method name and argument list. Usually overloading happens within a single class.\r\n\r\n      But methods can also be overloaded by subclasses. That's because a subclass inherits one version of the method from the parent class, and then the subclass can have\r\n      another overloaded version of that method. */\r\n\r\n//    There are two ways to overload the method in java\r\n\r\n//    By changing number of arguments\r\n//    By changing the data type\r\n\r\n\r\n//    Method Overloading and Type Promotion*\r\n\r\n//    One type is promoted to another implicitly if no matching datatype is found.\r\n//    byte can be promoted to short, int, long, float or double. The short datatype can be promoted to int, long, float or double.\r\n//    The char datatype can be promoted to int,long,float or double and so on.\r\n\r\n//    If there are matching type arguments in the method, type promotion is not performed.\r\n\r\n//    If there are no matching type arguments in the method, and each method promotes similar number of arguments, there will be ambiguity.\r\n\r\n    public static void main(String[] args) {\r\n        int score = calculateScore(\"Navneet\", 1000);\r\n        System.out.println(\"New Score is \" + score);\r\n        score = calculateScore(75);\r\n        System.out.println(\"Second new Score is \" + score);\r\n        score = calculateScore(\"Navneet\",1000);\r\n        System.out.println(\"Second new Score is \" + score);\r\n\r\n        sum(1,2); //The b parameter is promoted to long\r\n        sum(1,2,4);\r\n\r\n        performingSumAgain(20,20); // Type promotion will not happen since there are matching arguments\r\n\r\n       // performingSum(1,3); // Since there are no matching type arguments, and each method promotes similar number of arguments, there will be ambiguity.\r\n\r\n    }\r\n\r\n    public static int calculateScore(String playerName, int score){\r\n        System.out.println(\"Player \" + playerName + \" scored \" + score + \" points \");\r\n        return score * 1000;\r\n    }\r\n\r\n    public static int calculateScore(int score){ // Example of method overloading. Number of arguments are changed\r\n        System.out.println(\"Unnamed player scored \" + score + \" points\");\r\n        return score * 1000;\r\n    }\r\n\r\n//        public static long calculateScore(String playerName, int score){ // Just by changing the return type of the method is not sufficient, as it may lead to ambiguity.\r\n//        System.out.println(\"Player \" + playerName + \" scored \" + score + \" points \");\r\n//        return score * 1000L;\r\n//    }\r\n\r\n    // Example of Method Overloading with TypePromotion\r\n\r\n    public static void sum(int a, long b){\r\n        System.out.println(a + b);\r\n    }\r\n\r\n    public static void sum(int a,int b,int c){\r\n        System.out.println(a+b+c);\r\n    }\r\n\r\n    // Example of Method Overloading with Type Promotion in case of ambiguity\r\n\r\n    public static void performingSum(int a,long b){\r\n        System.out.println(\"a method invoked\");\r\n    }\r\n\r\n    public static void performingSum(long a,int b){\r\n        System.out.println(\"b method invoked\");\r\n    }\r\n\r\n\r\n    // Example of Method Overloading with Type Promotion if matching found\r\n\r\n    public static void performingSumAgain(int a, int b){\r\n        System.out.println(\"Int argument is invoked\");\r\n    }\r\n\r\n    public static void performingSumAgain(long a,long b){\r\n        System.out.println(\"Long Argument is invoked\");\r\n    }\r\n\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverloadingSecondAndMinutesChallenge.java",
@@ -4094,6 +3720,427 @@ const CONCEPTS_DATA = [
         "customQuizzes": [],
         "deepChallenges": [],
         "code": "﻿package Chapter_14_OOPSConcepts.Sub_Chapter_9_JavaRecords;\r\n// Java Records (introduced in Java 14 as preview, standard in Java 16) are a concise way to create immutable data carrier classes.\n// Instead of writing a class with fields, constructor, getters, and toString — a record generates ALL of that automatically.\n// 'record' keyword replaces 'class'. The fields are declared in the record header (parentheses after the name).\n// ALL fields in a record are automatically: private and final (cannot be changed after construction).\n// Java auto-generates for every record: a canonical constructor, accessor methods (field name only, no 'get' prefix), equals(), hashCode(), and toString().\n// Accessor method naming: for a field 'name', the accessor is name() NOT getName() — this differs from POJO convention.\n// Records have NO setter methods — they are immutable by design. You cannot change a record's data after creation.\n// Use records when you need a simple, immutable data container. Use a POJO/class when you need to modify the data later.\r\n/*\r\n    The Record Type\r\n\r\n  1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.\r\n  2) It's purpose is to replace the boilerplate code of the POJO but to be more restrictive.\r\n     Java calls them \"plain data carriers\".\r\n  3) The record is a special class that contains data that's not meant to be altered.\r\n  4) In other words, it seeks to achieve immutability for the data in its members.\r\n  5) It contains only the most fundamental methods, such as constructors and accessors (or getters).\r\n     The developers don't have to write or generate any of this code.\r\n  6) The record Class doesn't have or support setter methods, but the other functionality,\r\n     calling the constructor with four parameters and printing the data out,\r\n     is implicitly part of the record.\r\n\r\n*/\r\n\r\n\r\n\r\n/*\r\n  1) A Record Class looks a lot like a normal Class, it also starts with a public access modifier,\r\n     but instead of the class keyword, it's using the record keyword.\r\n  2) But different to a class, in the below code, there are a set of parentheses\r\n     after the name of Record class Name.\r\n  3) The part that's in parentheses, is called the record header.\r\n  4) Similar to a constructor, we can set up some parameters within those parentheses.\r\n  5) After setting up the required necessary parameters within the parentheses of the Record type class, we don't have to do anything.\r\n     Everything else is handled internally.\r\n  6) The part that's in parentheses, is called the record header.\r\n     i)   The record header consists of record components, a comma-delimited list of components.\r\n     ii)  For each component in the header, Java generates: A field with the same name and declared type\r\n          as the record component. It sets up fields for us as we have them in the parentheses.\r\n     iii) These become the fields of the record. The field is declared private and final.\r\n     iv)  Simply put, it means the field can't be modified.\r\n     v)   The field is sometimes referred to as a component field. Java generates a toString method that prints\r\n          out each attribute in a formatted String.\r\n     vi)  In addition to creating a private final field for each component, Java generates a public accessor method for each component.\r\n          This method has the same name and type of the component, but it doesn't have any kind of special\r\n          prefix like get or is.\r\n\r\n */\r\n\r\n\r\n/*  POJO vs Record\r\n\r\n    i) If the objective is to modify data on the class, record is not intended and suited for this purpose.\r\n       The code generation options for the POJO works well for the above mentioned objective.\r\n    ii) But if the objective is reading a whole lot of records from a database or file source and simply passing this\r\n        data around, then the record type Class serves the objective.\r\n\r\n\r\n\r\n\r\n*/\r\n\r\npublic record StudentRecord(String id, String name, String dateOfBirth, String classList) {\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
+        "fileName": "PointClassDistanceCalculation.java",
+        "topicName": "Point Class Distance Calculation",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Constructors Coding Challenge",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Point Class and Distance Calculation",
+              "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
+              "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.",
+              "Write the following methods (instance methods):",
+              "Method named getX without any parameters, it needs to return the value of x field.",
+              "Method named getY without any parameters, it needs to return the value of y field.",
+              "Method named setX with one parameter of type int, it needs to set the value of the x field.",
+              "Method named setY with one parameter of type int, it needs to set the value of the y field.",
+              "Method named distance without any parameters, it needs to return the distance between this Point and Point (0, 0) as a double.",
+              "Method named distance with parameter of type Point, it needs to return the distance between this Point and the parameter Point as a double.",
+              "Method named distance with two parameters x, y both of type int, it needs to return the distance between this Point and Point x, y as a double.",
+              "How to find the distance between two points?",
+              "To find a distance between points A(xA,yA) and B(xB,yB), we use the formula:",
+              "d(A,B)=√ (xB − xA) * (xB - xA) + (yB − yA) * (yB - yA)",
+              "Where √ represents square root."
+            ]
+          }
+        ],
+        "inlineComments": [],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_10_Constructors_Coding_Challenge;\r\n\r\n\r\n/*\r\n* Point Class and Distance Calculation\r\nYou have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.\r\n\r\nThe class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.\r\n\r\nWrite the following methods (instance methods):\r\n\r\nMethod named getX without any parameters, it needs to return the value of x field.\r\n\r\nMethod named getY without any parameters, it needs to return the value of y field.\r\n\r\nMethod named setX with one parameter of type int, it needs to set the value of the x field.\r\n\r\nMethod named setY with one parameter of type int, it needs to set the value of the y field.\r\n\r\nMethod named distance without any parameters, it needs to return the distance between this Point and Point (0, 0) as a double.\r\n\r\nMethod named distance with parameter of type Point, it needs to return the distance between this Point and the parameter Point as a double.\r\n\r\nMethod named distance with two parameters x, y both of type int, it needs to return the distance between this Point and Point x, y as a double.\r\n\r\n\r\n\r\nHow to find the distance between two points?\r\nTo find a distance between points A(xA,yA) and B(xB,yB), we use the formula:\r\n\r\nd(A,B)=√ (xB − xA) * (xB - xA) + (yB − yA) * (yB - yA)\r\n\r\nWhere √ represents square root.\r\n*\r\n* */\r\n\r\nimport java.awt.*;\r\n\r\npublic class PointClassDistanceCalculation {\r\n\r\n    private int x;\r\n\r\n    private int y;\r\n\r\n    public PointClassDistanceCalculation(){\r\n\r\n    }\r\n\r\n    public PointClassDistanceCalculation(int x, int y){\r\n        this.x = x;\r\n        this.y = y;\r\n    }\r\n\r\n    public int getX(){\r\n        return x;\r\n    }\r\n\r\n    public int getY(){\r\n        return y;\r\n    }\r\n\r\n    public void setX(int x){\r\n        this.x = x;\r\n    }\r\n\r\n    public void setY(int y){\r\n        this.y = y;\r\n    }\r\n\r\n    public double distance(){\r\n        double distance = Math.sqrt(((getX() - 0) * (getX() - 0)) + ((getY() - 0) * (getY() - 0)));\r\n        return distance;\r\n    }\r\n\r\n    public double distance(int a, int b){\r\n        double distance = Math.sqrt(((getX() - a) * (getX() - a)) + ((getY() - b) * (getY() - b)));\r\n        return distance;\r\n    }\r\n\r\n    public double distance(Point a){\r\n        double distance =  Math.sqrt(((getX() - a.getX()) * (getX() - a.getX())) + ((getY() - a.getY()) * (getY() - a.getY())));;\r\n        return distance;\r\n    }\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
+        "fileName": "WallAreaComputation.java",
+        "topicName": "Wall Area Computation",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Constructors Coding Challenge",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Wall Area Computation",
+              "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.",
+              "The class needs to have two constructors:",
+              "The first constructor does not have any parameters (no-args constructor).",
+              "The second constructor has parameters width and height of type double and it needs to initialize the fields.",
+              "In case the width parameter is less than 0 it needs to set the width field value to 0.",
+              "In case the height parameter is less than 0 it needs to set the height field value to 0.",
+              "Write the following methods (instance methods):",
+              "Method named getWidth without any parameters, it needs to return the value of width field.",
+              "Method named getHeight without any parameters, it needs to return the value of height field.",
+              "Method named setWidth with one parameter of type double, it needs to set the value of the width field. If the parameter is less than 0 it needs to set the width field value to 0.",
+              "Method named setHeight with one parameter of type double, it needs to set the value of the height field. If the parameter is less than 0 it needs to set the height field value to 0.",
+              "Method named getArea without any parameters, it needs to return the area of the wall."
+            ]
+          }
+        ],
+        "inlineComments": [],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_10_Constructors_Coding_Challenge;\r\n\r\n\r\n/*\r\n* Wall Area Computation\r\nWrite a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.\r\n\r\n\r\n\r\nThe class needs to have two constructors:\r\n\r\nThe first constructor does not have any parameters (no-args constructor).\r\n\r\nThe second constructor has parameters width and height of type double and it needs to initialize the fields.\r\n\r\nIn case the width parameter is less than 0 it needs to set the width field value to 0.\r\n\r\nIn case the height parameter is less than 0 it needs to set the height field value to 0.\r\n\r\n\r\n\r\nWrite the following methods (instance methods):\r\n\r\nMethod named getWidth without any parameters, it needs to return the value of width field.\r\n\r\nMethod named getHeight without any parameters, it needs to return the value of height field.\r\n\r\nMethod named setWidth with one parameter of type double, it needs to set the value of the width field. If the parameter is less than 0 it needs to set the width field value to 0.\r\n\r\nMethod named setHeight with one parameter of type double, it needs to set the value of the height field. If the parameter is less than 0 it needs to set the height field value to 0.\r\n\r\nMethod named getArea without any parameters, it needs to return the area of the wall.\r\n\r\n\r\n*\r\n* */\r\n\r\npublic class WallAreaComputation {\r\n\r\n    private double width;\r\n\r\n    private double height;\r\n\r\n    public WallAreaComputation(){\r\n\r\n    }\r\n\r\n    public WallAreaComputation(double width, double height){\r\n        if(height < 0){\r\n            this.height = 0;\r\n        }else{\r\n            this.height = height;\r\n        }\r\n        if(width < 0){\r\n            this.width = 0;\r\n        }else{\r\n            this.width = width;\r\n        }\r\n    }\r\n\r\n    public double getWidth(){\r\n        return width;\r\n    }\r\n\r\n    public double getHeight(){\r\n        return height;\r\n    }\r\n\r\n    public void setWidth(double width){\r\n        if(width < 0){\r\n            this.width = 0;\r\n        }else if(width >=0){\r\n            this.width = width;\r\n        }\r\n    }\r\n\r\n    public void setHeight(double height){\r\n        if(height < 0){\r\n            this.height = 0;\r\n        }else if(height >=0){\r\n            this.height = height;\r\n        }\r\n    }\r\n\r\n\r\n    public double getArea(){\r\n        double area = getWidth() * getHeight();\r\n        return area;\r\n    }\r\n\r\n}\r\n\r\n\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
+        "fileName": "Animal.java",
+        "topicName": "Animal",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
+              "Also, the super class will have all the behaviour that animals have in common.",
+              "Method Overriding",
+              "Overriding a method is when you create a method on a subclass, which has the same signature as a method on a super class.",
+              "A method signature consists of the method name and the number and types of parameters.",
+              "A parent class method is overridden when we want the child class to show different behavior for that method.",
+              "The overridden method can do one of three things: It can implement completely different behavior, overriding the behavior of the parent. It can simply call the parent class's method, which is somewhat redundant to do. This is the default behavior of an inherited method.",
+              "Or the method can call the parent class's method and include other code to run so it can extend the functionality for the Dog",
+              "Polymorphism",
+              "Polymorphism simply means \"many forms\"",
+              "Advantages :-",
+              "1) It makes code simpler",
+              "2) It encourages code extensibility"
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "This is the superclass (parent class) of the Animal inheritance hierarchy.",
+              "Inheritance allows a child class to reuse (inherit) fields and methods from a parent class, adding or customising as needed.",
+              "Method Overriding: a subclass can provide its own implementation of a method defined in the superclass.",
+              "The method signature (name + parameter types) must match exactly for overriding to work.",
+              "Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.",
+              "Polymorphism (\"many forms\"): an Animal reference can point to a Dog or Fish object. When you call animal.makeNoise(), Java calls the Dog's or Fish's version — not Animal's. This is runtime (dynamic) dispatch.",
+              "Three things an overriding method can do: (1) completely replace the parent's behaviour, (2) call the parent's method and do nothing else (redundant), or (3) call the parent's method AND add extra logic (extension).",
+              "The super.methodName() syntax calls the PARENT class's version of the method from within the overriding method."
+            ]
+          }
+        ],
+        "inlineComments": [
+          "This method has overridden the Object toString method",
+          "It got override by the toString method of Dog Class and Fish Class",
+          "This method got override by the Fish Class and the Animal Class",
+          "This method got override by the Animal Class"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n// This is the superclass (parent class) of the Animal inheritance hierarchy.\n// Inheritance allows a child class to reuse (inherit) fields and methods from a parent class, adding or customising as needed.\n// Method Overriding: a subclass can provide its own implementation of a method defined in the superclass.\n// The method signature (name + parameter types) must match exactly for overriding to work.\n// Use @Override annotation to tell the compiler you intend to override — it will give an error if the signatures don't match.\n// Polymorphism (\"many forms\"): an Animal reference can point to a Dog or Fish object. When you call animal.makeNoise(), Java calls the Dog's or Fish's version — not Animal's. This is runtime (dynamic) dispatch.\n// Three things an overriding method can do: (1) completely replace the parent's behaviour, (2) call the parent's method and do nothing else (redundant), or (3) call the parent's method AND add extra logic (extension).\n// The super.methodName() syntax calls the PARENT class's version of the method from within the overriding method.\r\n/*\r\n* This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.\r\n*\r\n* Also, the super class will have all the behaviour that animals have in common.\r\n*\r\n* Method Overriding\r\n*\r\n* Overriding a method is when you create a method on a subclass, which has the same\r\n* signature as a method on a super class.\r\n*\r\n* A method signature consists\r\n* of the method name and the number and types of parameters.\r\n*\r\n* A parent class method is overridden when we want the child class to show different\r\n* behavior for that method.\r\n*\r\n* The overridden method can do one of three things: It can implement completely different behavior,\r\n* overriding the behavior of the parent. It can simply call the parent class's method,\r\n* which is somewhat redundant to do. This is the default behavior of an inherited method.\r\n* Or the method can call the parent class's method and include other code to run so it can extend the\r\n* functionality for the Dog\r\n*\r\n* Polymorphism\r\n*\r\n* Polymorphism simply means \"many forms\"\r\n*\r\n* Advantages :-\r\n*\r\n* 1) It makes code simpler\r\n*\r\n* 2) It encourages code extensibility\r\n* */\r\n\r\npublic class Animal {\r\n\r\n    private String type;\r\n    private String size;\r\n    private double weight;\r\n\r\n    public Animal(){\r\n\r\n    }\r\n\r\n    public Animal(String type, String size, double weight) {\r\n        this.type = type;\r\n        this.size = size;\r\n        this.weight = weight;\r\n    }\r\n\r\n    public Animal(String type, double weight){\r\n        String size = (weight < 15 ? \"small\" : (weight < 35 ? \"medium\" : \"large\"));\r\n        this.size = size;\r\n        this.type = type;\r\n    }\r\n\r\n\r\n    // This method has overridden the Object toString method\r\n    // It got override by the toString method of Dog Class and Fish Class\r\n    @Override\r\n    public String toString() {\r\n        return \"Animal{\" +\r\n                \"type='\" + type + '\\'' +\r\n                \", size='\" + size + '\\'' +\r\n                \", weight=\" + weight +\r\n                '}';\r\n    }\r\n\r\n    // This method got override by the Fish Class and the Animal Class\r\n    public void move(String speed){\r\n        System.out.println(type + \" moves \" + speed);\r\n    }\r\n\r\n   // This method got override by the Animal Class\r\n    public void makeNoise(){\r\n        System.out.println(type + \" makes noise\");\r\n    }\r\n\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+        "fileName": "Dog.java",
+        "topicName": "Dog",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Dog inherits from Animal",
+              "Dog \"IS A\" a type of Animal",
+              "Dog is a subclass or child class of Animal",
+              "Animal is a parent or super class of Dog",
+              "When a Dog object gets created, it will inherit Animal's attributes (type, size and weight).",
+              "This is also true for Animal's methods. Dog will inherit these as well.",
+              "Dog class can be specialised with its own fields and behaviour."
+            ]
+          }
+        ],
+        "inlineComments": [
+          "Most Important Point :- A class can specify one and only one class in it's extends clause.",
+          "Java creates a default constructor implicitly, if we don't explicitly declare 1",
+          "Since we created a 2 parameter constructor in the parent class, the default constructor was not created automatically for the parent class by Java.",
+          "This will call the no argument constructor of the parent class, if no constructors are defined in the parent's class, java will implicitly create one.",
+          "Similarly, if no constructors are defined in the child class, java will implicitly create one for parent class too, and super() will also be implicitly defined (called) in the child class constructor, which in turn will call the implicitly defined constructor of parent class.",
+          "But, let us suppose, an argument constructor is explicitly defined in the parent class, the child class will throw an error, as the implicitly defined super call to the parent constructor will fail as the implicitly defined super() call in the implicitly defined child constructor doesn't have any arguments.",
+          "To resolve this, either the parent class should have an explicit no argument constructor defined, or the child class should explicitly call the parent class constructor using super(args1,args2) with arguments.",
+          "This method overrides the toString method of the parent Animal Class",
+          "This method overrides the makeNoise method of the parent Animal class",
+          "This method overrides the move method of the parent Animal Class",
+          "the parent class's method is called and include other code to run so it can extend the functionality for the Dog"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n\r\n/*\r\n* Dog inherits from Animal\r\n*\r\n* Dog \"IS A\" a type of Animal\r\n*\r\n* Dog is a subclass or child class of Animal\r\n*\r\n* Animal is a parent or super class of Dog\r\n*\r\n*\r\n* When a Dog object gets created, it will inherit Animal's attributes (type, size and weight).\r\n*\r\n* This is also true for Animal's methods. Dog will inherit these as well.\r\n*\r\n* Dog class can be specialised with its own fields and behaviour.\r\n*\r\n*\r\n*/\r\n\r\npublic class Dog extends Animal { // Using extends specifies the superclass ( or the parent class ) of the class that has been declatred\r\n\r\n    private String earShape;\r\n\r\n    private String tailShape;\r\n\r\n    private String type;\r\n\r\n// Most Important Point :- A class can specify one and only one class in it's extends clause.\r\n\r\n// Java creates a default constructor implicitly, if we don't explicitly declare 1\r\n   public Dog(){\r\n    // Since we created a 2 parameter constructor in the parent class, the default constructor was not created automatically for the parent class by Java.\r\n\r\n //   super(); // This will call the no argument constructor of the parent class, if no constructors are defined in the parent's class, java will implicitly create one.\r\n    // Similarly, if no constructors are defined in the child class, java will implicitly create one for parent class too, and super() will also be implicitly defined (called) in the child class constructor, which in turn will call the implicitly defined constructor of parent class.\r\n\r\n    // But, let us suppose, an argument constructor is explicitly defined in the parent class, the child class will throw an error, as the implicitly defined super call to the parent constructor will fail as the implicitly defined super() call in the implicitly defined child constructor doesn't have any arguments.\r\n\r\n    // To resolve this, either the parent class should have an explicit no argument constructor defined, or the child class should explicitly call the parent class constructor using super(args1,args2) with arguments.\r\n\r\n    \r\n/* super() is a lot like this()\r\n\r\nIt's a way to call a constructor on the super class directly from the sub class's constructor.\r\n\r\nLike this(), it has to be the first statement of the constructor.\r\n\r\nBecause of that rule, this() and super() can never be called from the same constructor.\r\n\r\nIf no explicit call is made to the super(),\r\nthen Java handles it using super's default constructor.\r\n\r\nIf the super class doesn't have a default constructor, then explicitly call to\r\nsuper() should be made in all child constructors, passing the right arguments to that constructor.\r\n*/\r\n\r\n    super(\"Mutt\",\"Big\", 50);\r\n    this.type = \"Mutt\";\r\n\r\n    }\r\n\r\n    public Dog(String type, double weight, String earShape, String tailShape) {\r\n        super(type, weight); // It calls the Animal Constructor that accepts two parameter :- type and weight\r\n        this.earShape = earShape;\r\n        this.tailShape = tailShape;\r\n        this.type = type;\r\n\r\n    }\r\n\r\n    public Dog(String type, double weight){\r\n       this(type,weight,\"Perky\",\"Curled\"); // It calls the Dog constructor that accepts 4 parameters :- type, weight, earShape, tailShape\r\n\r\n    }\r\n\r\n    // This method overrides the toString method of the parent Animal Class\r\n    @Override\r\n    public String toString() {\r\n        return \"Dog{\" +\r\n                \"earShape='\" + earShape + '\\'' +\r\n                \", tailShape='\" + tailShape + '\\'' +\r\n                '}' + super.toString();\r\n\r\n        /*\r\n        * The super keyword used above is different than the super parentheses call.\r\n        * It's a lot like using the this keyword with the dot notation to access a field on the current instance. This code lets us call a super class's method.\r\n        *\r\n        * If we want to call a method of a superclass we need to call super.methodName();\r\n        *\r\n        * */\r\n\r\n    }\r\n\r\n\r\n    /*\r\n     * Here, below, the makeNoise method is overridden method of the parent Animal Class makeNoise method\r\n     * For all the dog objects(instances) the overridden method will be called, and since nothing is implemented,\r\n     * the makeNoise will not do anything\r\n     *\r\n     * */\r\n\r\n\r\n    // This method overrides the makeNoise method of the parent Animal class\r\n    public void makeNoise(){\r\n      //  System.out.println(type + \" makes some noise\");\r\n      //  super.makeNoise();\r\n        bark();\r\n    }\r\n\r\n\r\n    // This method overrides the move method of the parent Animal Class\r\n    public void move(String speed){\r\n     //   System.out.println(type + \" moves fast\");\r\n        // super.move(speed);\r\n        // System.out.println(\"Animals move very quickly\");\r\n\r\n        // the parent class's method is called and include other code to run so it can extend the functionality for the Dog\r\n        if(speed == \"slow\"){\r\n            walk();\r\n            wagTail();\r\n        } else{\r\n            run();\r\n          //  bark();\r\n        }\r\n    }\r\n\r\n    private void bark() {\r\n        System.out.println(\"Woof! \");\r\n    }\r\n\r\n    private void run() {\r\n        System.out.println(type + \" Running\");\r\n    }\r\n\r\n    private void walk(){\r\n        System.out.println(type + \" Walking\");\r\n    }\r\n\r\n    private void wagTail(){\r\n        System.out.println(\"Tail Wagging\");\r\n    }\r\n\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
+        "fileName": "Fish.java",
+        "topicName": "Fish",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance",
+        "headerComments": [],
+        "inlineComments": [
+          "This method overrides the toString method of the parent Animal Class",
+          "This method overrides the move method of the parent Animal Class"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n\r\npublic class Fish extends Animal{\r\n\r\n    private int gills;\r\n    private int fins;\r\n\r\n    public Fish(String type,double weight,int gills, int fins){\r\n        super(type,\"small\",weight); // The constructor of animal class is called, using constructor chaining\r\n        this.gills = gills;\r\n        this.fins = fins;\r\n    }\r\n\r\n    // This method overrides the toString method of the parent Animal Class\r\n    @Override\r\n    public String toString() { // The toString() method of Fish class is called, as it overrides the animal class toString() method\r\n        return \"Fish{\" +\r\n                \"gills=\" + gills +\r\n                \", fins=\" + fins +\r\n                \"} \" + super.toString(); // With the help of super.toString() the animal class toString() method is called\r\n    }\r\n\r\n    private void moveMuscles(){\r\n        System.out.println(\"muscle moving \");\r\n    }\r\n\r\n    private void moveBackFin(){\r\n        System.out.println(\"backfin moving \");\r\n    }\r\n\r\n    // This method overrides the move method of the parent Animal Class\r\n    public void move(String speed){\r\n        super.move(speed);\r\n        moveMuscles();\r\n        if(speed == \"fast\"){\r\n            moveBackFin();\r\n        }\r\n    }\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
+        "fileName": "Inheritance.java",
+        "topicName": "Inheritance",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "Animal (Base Class)",
+              "Vertebrates (Sub Class of Animal)",
+              "Warm Blooded                   Cold Blooded",
+              "Mammal              Bird       Fish             Reptiles",
+              "Dog                  Cat      Salmon              GoldFish",
+              "Each box on this diagram represents a Class",
+              "The most generic, or base class, starts at the top of the hierarchy.",
+              "Every class below it is a subclass.",
+              "A baseclass or parent class can have multiple children.",
+              "A child can only have one direct parent in Java, but it will inherit from its parents class's parents and so on.",
+              "All subclasses can execute methods even though the code is declared on the parent class.",
+              "The code doesn't have to be duplicated in each subclass.",
+              "We can use code from the parent. Or we can change that code for the subclass."
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Inheritance is a mechanism for code reuse — a child class inherits all accessible fields and methods from its parent.",
+              "In Java, a class can only extend ONE direct parent (single inheritance), but inherits all the way up the hierarchy.",
+              "The 'extends' keyword establishes the parent-child relationship: class Dog extends Animal",
+              "\"IS-A\" relationship: Dog IS-A Animal. This means a Dog object can be used ANYWHERE an Animal is expected.",
+              "When a Dog object is passed to a method expecting an Animal, Java accepts it — because Dog is a type of Animal.",
+              "Java uses DYNAMIC DISPATCH (polymorphism at runtime) to call the correct overridden method.",
+              "Example: doAnimalStuff(dog, \"fast\") — even though the parameter type is Animal, Java calls Dog's makeNoise() and move() methods.",
+              "Every class in Java implicitly extends Object if no other class is specified. Object is the root of the class hierarchy.",
+              "Inheritance hierarchy example:",
+              "Object (root of all classes)",
+              "+-- Animal",
+              "+-- Dog",
+              "+-- Fish"
+            ]
+          }
+        ],
+        "inlineComments": [
+          "Since Dog inherits from animal.",
+          "A dog object can be used as the method argument even though the type was declared as an animal.",
+          "It works because dog inherits from animal, it's a type of animal",
+          "A dog instance can be passed to any method that takes an animal",
+          "Java checks the actual object type and uses its toString() method. If that class doesn't have toString(), it uses the parent class's version."
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;\r\n// Inheritance is a mechanism for code reuse — a child class inherits all accessible fields and methods from its parent.\n// In Java, a class can only extend ONE direct parent (single inheritance), but inherits all the way up the hierarchy.\n// The 'extends' keyword establishes the parent-child relationship: class Dog extends Animal\n// \"IS-A\" relationship: Dog IS-A Animal. This means a Dog object can be used ANYWHERE an Animal is expected.\n// When a Dog object is passed to a method expecting an Animal, Java accepts it — because Dog is a type of Animal.\n// Java uses DYNAMIC DISPATCH (polymorphism at runtime) to call the correct overridden method.\n//   Example: doAnimalStuff(dog, \"fast\") — even though the parameter type is Animal, Java calls Dog's makeNoise() and move() methods.\n// Every class in Java implicitly extends Object if no other class is specified. Object is the root of the class hierarchy.\n// Inheritance hierarchy example:\n//   Object (root of all classes)\n//     +-- Animal\n//           +-- Dog\n//           +-- Fish\r\n/*\r\n  Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child\r\n  hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.\r\n*\r\n*\r\n* */\r\n\r\n/*\r\n*                                      Animal (Base Class)\r\n*                                        |\r\n*                                        |\r\n*                                    Vertebrates (Sub Class of Animal)\r\n*                                        |\r\n*                         _______________|_______________\r\n*                         |                             |\r\n*                         |                             |\r\n*                    Warm Blooded                   Cold Blooded\r\n*                         |                             |\r\n*                _________|__________          _________|__________\r\n*                |                  |          |                  |\r\n*                |                  |          |                  |\r\n*              Mammal              Bird       Fish             Reptiles\r\n*                |                             |\r\n*     ___________|__________         __________|__________\r\n*     |                    |         |                   |\r\n*     |                    |         |                   |\r\n*    Dog                  Cat      Salmon              GoldFish\r\n*\r\n* Each box on this diagram represents a Class\r\n*\r\n* The most generic, or base class, starts at the top of the hierarchy.\r\n*\r\n* Every class below it is a subclass.\r\n*\r\n* A baseclass or parent class can have multiple children.\r\n*\r\n* A child can only have one direct parent in Java, but it will inherit from its parents class's parents and so on.\r\n*\r\n* All subclasses can execute methods even though the code is declared on the parent class.\r\n*\r\n* The code doesn't have to be duplicated in each subclass.\r\n*\r\n* We can use code from the parent. Or we can change that code for the subclass.\r\n*\r\n*\r\n */\r\n\r\n\r\npublic class Inheritance {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        Animal animal = new Animal(\"Generic Animal\", \"Huge\", 400);\r\n       doAnimalStuff(animal,\"slow\");\r\n\r\n\r\n       Dog dog = new Dog();\r\n       // Since Dog inherits from animal,\r\n\r\n        // A dog object can be used as the method argument even though the type was declared as an animal.\r\n        // It works because dog inherits from animal, it's a type of animal\r\n        // A dog instance can be passed to any method that takes an animal\r\n\r\n       doAnimalStuff(dog,\"fast\");\r\n\r\n\r\n       /*\r\n\r\n       If only super() is called from the Dog() constructor then :-\r\n\r\n          Output :-\r\n       *  null makes some kind of noise\r\n       *  null moves fast\r\n       *  Since Dog() constructor called the super() with no arguments passed,\r\n       *  so nothing got set on the Animal Class\r\n       *  but dog has inherited all of animal's attributes.\r\n       *  The values have the default values for their type because there is no way,\r\n       *  to pass any data to these fields on dog\r\n       *\r\n       * */\r\n\r\n/*        If super(\"Mutt\",\"Big\", 50) is called from the Dog() constructor then :-\r\n\r\n          Output :-\r\n       *  Mutt makes some kind of noise\r\n       *  Mutt moves fast\r\n       *  Since the Dog constructor calls the parameterized Animal constructor,\r\n          all values are stored in the Animal class fields.\r\n       *\r\n*/\r\n\r\n        Dog dog1 = new Dog(\"Yorkie\",15);  // Constructor chaining is used in this object creation\r\n        doAnimalStuff(dog1,\"Fast\");\r\n\r\n        Fish goldie = new Fish(\"GoldFish\",0.25,2,5);\r\n        doAnimalStuff(goldie,\"fast\");\r\n\r\n\r\n    }\r\n\r\n    public static void doAnimalStuff(Animal animal, String speed){\r\n        animal.makeNoise();\r\n        animal.move(speed);\r\n        System.out.println(animal);\r\n        System.out.println(\"*************************************************************************************\");\r\n        // Java checks the actual object type and uses its toString() method. If that class doesn't have toString(), it uses the parent class's version.\r\n\r\n\r\n    }\r\n\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
+        "fileName": "Main.java",
+        "topicName": "Main",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Every class created in Java extends a special Java class.",
+              "That class is named Object, and it's in the java.lang package.",
+              "Class Object is the root of the class hierarchy.",
+              "All classes, which do not explicitly extend another class will implicitly extend a class named object",
+              "Every class has Object as a superclass. All objects, including arrays, implement the methods of this class.",
+              "Java only supports 1 class in the extends class"
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Since, every class in java, implicitly extend object, there is no need to explicitly extend the Object class"
+            ]
+          }
+        ],
+        "inlineComments": [
+          "Since the toString method, is explicitly called by an object, there is no need to make an explicit call to toString method from an object",
+          "Output :- Here, the toString method is actually the parent class toString method, which in this case is Object Class",
+          "This override is redundant, as it is simply calling the parent class toString() method, and hence, will give the same output, when the toString() method was called without overriding",
+          "The parent class toString() method is implicitly called, when super.toString() is explicitly called"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample.ObjectClass;\r\n\r\n/*\r\n* Every class created in Java extends a special Java class.\r\n*\r\n* That class is named Object, and it's in the java.lang package.\r\n*\r\n* Class Object is the root of the class hierarchy.\r\n*\r\n* All classes, which do not explicitly extend another class will implicitly extend a class named object\r\n*\r\n* Every class has Object as a superclass. All objects, including arrays,\r\n  implement the methods of this class.\r\n*\r\n* Java only supports 1 class in the extends class\r\n*\r\n*\r\n* */\r\n\r\n\r\n// Since, every class in java, implicitly extend object, there is no need to explicitly extend the Object class\r\npublic class Main extends Object{\r\n\r\n    public static void main(String[] args) {\r\n\r\n        Student s = new Student(\"Navneet\", 21);\r\n      //  System.out.println(s.toString());\r\n        // Since the toString method, is explicitly called by an object,\r\n        // there is no need to make an explicit call to toString method from an object\r\n        System.out.println(s);\r\n        // Output :- Here, the toString method is actually the parent class toString method, which in this case is Object Class\r\n\r\n        PrimarySchoolStudent primarySchoolStudent = new PrimarySchoolStudent(\"Navneet\", 21,\"Puttu\");\r\n        System.out.println(primarySchoolStudent.toString());\r\n    }\r\n\r\n}\r\n\r\nclass Student {\r\n\r\n    private String name;\r\n    private int age;\r\n\r\n    Student(String name, int age){\r\n        this.name = name;\r\n        this.age = age;\r\n    }\r\n\r\n//    @Override\r\n//    public String toString() {\r\n//        return super.toString(); // This override is redundant, as it is simply calling the parent class toString() method, and hence, will give the same output, when the toString() method was called without overriding\r\n//        // The parent class toString() method is implicitly called, when super.toString() is explicitly called\r\n//    }\r\n\r\n\r\n        @Override\r\n    public String toString() {\r\n        return \"Student{\" +\r\n                \"name='\" + name + '\\'' +\r\n                \", age=\" + age +\r\n                '}';\r\n    }\r\n\r\n}\r\n\r\nclass PrimarySchoolStudent extends Student { //,Object // Class cannot extend multiple class {\r\n\r\n    private String parentName;\r\n\r\n    PrimarySchoolStudent(String name, int age, String parentName){\r\n        super(name,age); // Call to parent constructor is been made\r\n        this.parentName = parentName;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"PrimarySchoolStudent{\" +\r\n                \"parentName='\" + parentName + '\\'' +\r\n                \"} \" + super.toString();\r\n    }\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
+        "fileName": "Employee.java",
+        "topicName": "Employee",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance Coding Challenge",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Employee Class Extends the Worker Class"
+            ]
+          }
+        ],
+        "inlineComments": [
+          "Here the employeeNumber is taken as static, hence, whenever a new employee gets created, the employeeId gets incremented by 1",
+          "An Employee constructor is created, that accepts name, birthDate and hireDate as the parameters",
+          "The name and birthDate information gets set in the worker class using constructor chaining using super keyword, whenever the Employee constructor is called"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n/* Employee Class Extends the Worker Class */\r\npublic class Employee extends Worker {\r\n\r\n    /*\r\n    * Two new fields are introduced for Employee class, employeeId, hireDate\r\n    * */\r\n    private int employeeId;\r\n    private String hireDate;\r\n\r\n    // Here the employeeNumber is taken as static, hence, whenever a new employee gets created, the employeeId gets incremented by 1\r\n    private static int employeeNumber = 1;\r\n\r\n\r\n    // An Employee constructor is created, that accepts name, birthDate and hireDate as the parameters\r\n    public Employee(String name, String birthDate,  String hireDate) {\r\n        super(name, birthDate); // With the help of super keyword, the Worker constructor is called, through constructor chaining\r\n        // The name and birthDate information gets set in the worker class using constructor chaining using super keyword, whenever the Employee constructor is called\r\n        this.employeeId = Employee.employeeNumber++;\r\n        this.hireDate = hireDate;\r\n    }\r\n\r\n    /* Here, the toString() method of the Worker Class is overridden, and with the help of super.toString(),\r\n       the toString() method of Worker class is called   */\r\n    @Override\r\n    public String toString() {\r\n        return \"Employee{\" +\r\n                \"employeeId=\" + employeeId +\r\n                \", hireDate='\" + hireDate + '\\'' +\r\n                \"} \" + super.toString(); // Worker class toString() method is called\r\n    }\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
+        "fileName": "HourlyEmployee.java",
+        "topicName": "Hourly Employee",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance Coding Challenge",
+        "headerComments": [
+          {
+            "type": "lines",
+            "lines": [
+              "The HourlyEmployee Class extends the Employee Class"
+            ]
+          }
+        ],
+        "inlineComments": [
+          "The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)",
+          "The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n// The HourlyEmployee Class extends the Employee Class\r\npublic class HourlyEmployee extends Employee {\r\n\r\n    /*\r\n     * Here, 1 new field is introduced for HourlyEmployee Class, namely hourlyRate\r\n     * */\r\n    private double hourlyRate;\r\n\r\n    /*\r\n     * An Hourly employee constructor is created, that accepts name, birthDate, hireDate and hourlyRate as the parameters\r\n     * */\r\n\r\n    public HourlyEmployee(String name, String birthDate, String hireDate, double hourlyRate) {\r\n        super(name, birthDate, hireDate); // With the help of super keyword, the Employee constructor is called, through constructor chaining\r\n        // The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)\r\n        // The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called\r\n        this.hourlyRate = hourlyRate;\r\n    }\r\n\r\n    /*\r\n     * The Worker class collectPay() method is being overridden in the SalariedEmployeeClass\r\n     * */\r\n    @Override\r\n    public double collectPay() {\r\n        return 40 * hourlyRate;\r\n    }\r\n\r\n    public double getDoublePay(){\r\n        return 2 * collectPay();\r\n    }\r\n\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
+        "fileName": "Main.java",
+        "topicName": "Main",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance Coding Challenge",
+        "headerComments": [
+          {
+            "type": "lines",
+            "lines": [
+              "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
+              "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.",
+              "Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.",
+              "Constructor chaining (super()) passes data up through the hierarchy — HourlyEmployee → Employee → Worker.",
+              "This demonstrates polymorphism: calling collectPay() on an Employee reference calls the correct subclass implementation."
+            ]
+          }
+        ],
+        "inlineComments": [],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n// This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.\r\n// Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee.\r\n// Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.\r\n// Constructor chaining (super()) passes data up through the hierarchy — HourlyEmployee → Employee → Worker.\r\n// This demonstrates polymorphism: calling collectPay() on an Employee reference calls the correct subclass implementation.\r\n\r\npublic class Main {\r\n\r\n    public static void main(String[] args) {\r\n        Employee tim = new Employee(\"Tim\",\"11/11/1985\",\"01/01/2010\");\r\n        System.out.println(tim);\r\n        System.out.println(\"Age = \" + tim.getAge());\r\n        System.out.println(\"Pay = \" + tim.collectPay());\r\n\r\n        SalariedEmployee joe = new SalariedEmployee(\"Joe\",\"11/11/1990\",\"03/03/2020\",35000);\r\n        System.out.println(joe);\r\n        System.out.println(\"Joe's paycheck = $\" + (int)joe.collectPay());\r\n        joe.retire();\r\n        System.out.println(\"Joe's retirement pension paycheck = $\" + (int)joe.collectPay());\r\n\r\n\r\n        HourlyEmployee mary = new HourlyEmployee(\"Mary\",\"05/05/1984\",\"05/06/2009\",20);\r\n        System.out.println(mary);\r\n        System.out.println(\"Mary's paycheck = $\" + (int)mary.collectPay());\r\n        System.out.println(\"Mary's Holiday Pay = $\" + (int)mary.getDoublePay());\r\n\r\n    }\r\n\r\n\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
+        "fileName": "SalariedEmployee.java",
+        "topicName": "Salaried Employee",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance Coding Challenge",
+        "headerComments": [
+          {
+            "type": "lines",
+            "lines": [
+              "The salaried employee class, extends the Employee Class"
+            ]
+          }
+        ],
+        "inlineComments": [
+          "The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)",
+          "The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called",
+          "The terminate(String endDate parameter) method of the Worker Class is called"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n// The salaried employee class, extends the Employee Class\r\npublic class SalariedEmployee extends Employee {\r\n\r\n    /*\r\n    * Here, 2 new fields are introduced for SalariedEmployee Class, namely annualSalary, isRetired\r\n    * */\r\n    private double annualSalary;\r\n    private boolean isRetired;\r\n\r\n\r\n    /*\r\n    * A Salaried employee constructor is created, that accepts name, birthDate, hireDate and annualSalary as the parameters\r\n    * */\r\n\r\n    public SalariedEmployee(String name, String birthDate, String hireDate, double annualSalary) {\r\n        super(name, birthDate, hireDate); // With the help of super keyword, the Employee constructor is called, through constructor chaining\r\n        // The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)\r\n        // The hireDate information gets set in the Employee Class, using constructor chaining using super keyword, whenever the SalariedEmployee constructor is called\r\n        this.annualSalary = annualSalary;\r\n    }\r\n\r\n\r\n    public void retire(){\r\n        // The terminate(String endDate parameter) method of the Worker Class is called\r\n       terminate(\"12/12/2025\");\r\n       isRetired = true;\r\n    }\r\n\r\n\r\n    /*\r\n     * The Worker class collectPay() method is being overridden in the SalariedEmployeeClass\r\n     * */\r\n\r\n    @Override\r\n    public double collectPay() {\r\n\r\n        double salary = annualSalary / 26;\r\n\r\n        double adjustedPay = (isRetired) ? 0.9 * salary : salary;\r\n\r\n        return adjustedPay;\r\n    }\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
+        "fileName": "Worker.java",
+        "topicName": "Worker",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Inheritance Coding Challenge",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Inheritance Challenge Problem",
+              "Create Worker Class -> This should be on top of the Hierarchy",
+              "Create attributes :-",
+              "name      : String birthDate : String endDate   : String intGetAge() double collectPay() terminate(String endDate)",
+              "Below the Worker Class, introduce another Class named Employee which extends the Worker Class",
+              "Create Attributes :-",
+              "employeeId : long hireDate   : String",
+              "Create Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee",
+              "For SalariedEmployee, Create Attributes :-",
+              "annualSalary : double isRetired    : boolean retire()",
+              "For HourlyEmployee, Create Attributes :-",
+              "hourlyPayRate : double getDoublePay()"
+            ]
+          }
+        ],
+        "inlineComments": [
+          "Since name and birthDate are supposed to be used only by the worker class, it makes sense to make it private",
+          "Since, endDate value might get set either by this class, or subclass, it would make sense to make it protected",
+          "In real world scenario, it would be highly unlikely that we would be knowing a worker's end date, hence in the arg constructor, it would make sense, that we should only include two variables namely name and birthDate",
+          "Adding a no argument constructor can also provide more flexibility, hence adding 1 no arg constructor to this class"
+        ],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n\r\n/*  Inheritance Challenge Problem\r\n\r\nCreate Worker Class -> This should be on top of the Hierarchy\r\n\r\nCreate attributes :-\r\nname      : String\r\nbirthDate : String\r\nendDate   : String\r\nintGetAge()\r\ndouble collectPay()\r\nterminate(String endDate)\r\n\r\nBelow the Worker Class, introduce another Class named Employee which extends the Worker Class\r\n\r\nCreate Attributes :-\r\nemployeeId : long\r\nhireDate   : String\r\n\r\nCreate Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee\r\n\r\nFor SalariedEmployee, Create Attributes :-\r\nannualSalary : double\r\nisRetired    : boolean\r\nretire()\r\n\r\nFor HourlyEmployee, Create Attributes :-\r\nhourlyPayRate : double\r\ngetDoublePay()\r\n\r\n*\r\n* */\r\npublic class Worker {\r\n\r\n// Since name and birthDate are supposed to be used only by the worker class, it makes sense to make it private\r\n\r\n// Since, endDate value might get set either by this class, or subclass, it would make sense to make it protected\r\n    private String name;\r\n    private String birthDate;\r\n    protected String endDate;\r\n\r\n// In real world scenario, it would be highly unlikely that we would be knowing a worker's end date, hence in the arg constructor,\r\n// it would make sense, that we should only include two variables namely name and birthDate\r\n\r\n    public Worker(String name, String birthDate) {\r\n        this.name = name;\r\n        this.birthDate = birthDate;\r\n    }\r\n\r\n// Adding a no argument constructor can also provide more flexibility, hence adding 1 no arg constructor to this class\r\n\r\n    public Worker(){\r\n\r\n    }\r\n\r\n\r\n\r\n    public int getAge(){\r\n        int currentYear = 2025;\r\n        int birthYear = Integer.parseInt(birthDate.substring(6));\r\n\r\n        return (currentYear - birthYear);\r\n    }\r\n\r\n\r\n/* The idea is to override the collectPay and terminate method by the subclasses so that specific implementation\r\n   can be processed by the sub class */\r\n\r\n    public double collectPay(){\r\n        return 0.0;\r\n    }\r\n\r\n    public void terminate(String endDate){\r\n        this.endDate = endDate;\r\n    }\r\n\r\n/*\r\n* Here, the toString method is overridden, which overrides the toString method of the Object Class\r\n* */\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Worker{\" +\r\n                \"name='\" + name + '\\'' +\r\n                \", birthDate='\" + birthDate + '\\'' +\r\n                \", endDate='\" + endDate + '\\'' +\r\n                '}';\r\n    }\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_13_Method_Overloading_Vs_method_Overriding/MethodOverridingInJava.java",
+        "fileName": "MethodOverridingInJava.java",
+        "topicName": "Method Overriding In Java",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Method Overloading Vs Method Overriding",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In other words, the same name, and same parameters).",
+              "By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.",
+              "Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.",
+              "When we override a method, it's recommended to put @Override immediately above the method definition.",
+              "The @Override statement is not required, but it's a way to get the compiler to flag an error if you don't actually properly override this method.",
+              "We'll get an error if we don't follow the overriding rules correctly for that method.",
+              "We can't override static methods,only instance methods can be overridden.",
+              "Method overriding rules",
+              "A method will be considered overridden if we follow these rules.",
+              "1) Firstly, It must have the same name and same arguments.",
+              "2) The return type can be a subclass of the return type in the parent class.",
+              "3) It can't have a lower access modifier. In other words, it can't have more restrictive access privileges. For example, if the parent's method is protected, then using private in the child's overridden method is not allowed. However, using public for the child's method would be allowed, in this example.",
+              "4) Only inherited methods can be overridden, in other words, methods can be overridden only in child classes.",
+              "5) Constructors and private methods cannot be overridden.",
+              "6) And Methods that are final also cannot be overridden.",
+              "7) A subclass can use super.methodName() to call the superclass version of an overridden method."
+            ]
+          }
+        ],
+        "inlineComments": [],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_method_Overriding;\r\n\r\n/*\r\n*    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In\r\n*    other words, the same name, and same parameters).\r\n*\r\n*    By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.\r\n*\r\n*    Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.\r\n*\r\n*    When we override a method, it's recommended to put @Override immediately above the method definition.\r\n*    The @Override statement is not required, but it's a way to get the compiler to flag\r\n*    an error if you don't actually properly override this method.\r\n*    We'll get an error if we don't follow the overriding rules correctly for that method.\r\n*\r\n*     We can't override static methods,only instance methods can be overridden.\r\n*\r\n*     Method overriding rules\r\n*\r\n*     A method will be considered overridden if we follow these rules.\r\n*\r\n*     1) Firstly, It must have the same name and same arguments.\r\n*     2) The return type can be a subclass of the return type in the parent class.\r\n*     3) It can't have a lower access modifier. In other words, it\r\n*     can't have more restrictive access privileges. For example, if the parent's method is protected, then\r\n*     using private in the child's overridden method is not allowed. However, using public for the child's\r\n*     method would be allowed, in this example.\r\n*     4) Only inherited methods can be overridden, in other words, methods can be overridden only in child classes.\r\n*     5) Constructors and private methods cannot be overridden.\r\n*     6) And Methods that are final also cannot be overridden.\r\n*     7) A subclass can use super.methodName() to call the superclass version of an overridden method.\r\n*\r\n*\r\n*\r\n* */\r\n\r\n\r\npublic class MethodOverridingInJava {\r\n}\r\n"
       }
     ]
   }
