@@ -4109,6 +4109,25 @@ const CONCEPTS_DATA = [
         "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;\r\n\r\n\r\n/*  Inheritance Challenge Problem\r\n\r\nCreate Worker Class -> This should be on top of the Hierarchy\r\n\r\nCreate attributes :-\r\nname      : String\r\nbirthDate : String\r\nendDate   : String\r\nintGetAge()\r\ndouble collectPay()\r\nterminate(String endDate)\r\n\r\nBelow the Worker Class, introduce another Class named Employee which extends the Worker Class\r\n\r\nCreate Attributes :-\r\nemployeeId : long\r\nhireDate   : String\r\n\r\nCreate Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee\r\n\r\nFor SalariedEmployee, Create Attributes :-\r\nannualSalary : double\r\nisRetired    : boolean\r\nretire()\r\n\r\nFor HourlyEmployee, Create Attributes :-\r\nhourlyPayRate : double\r\ngetDoublePay()\r\n\r\n*\r\n* */\r\npublic class Worker {\r\n\r\n// Since name and birthDate are supposed to be used only by the worker class, it makes sense to make it private\r\n\r\n// Since, endDate value might get set either by this class, or subclass, it would make sense to make it protected\r\n    private String name;\r\n    private String birthDate;\r\n    protected String endDate;\r\n\r\n// In real world scenario, it would be highly unlikely that we would be knowing a worker's end date, hence in the arg constructor,\r\n// it would make sense, that we should only include two variables namely name and birthDate\r\n\r\n    public Worker(String name, String birthDate) {\r\n        this.name = name;\r\n        this.birthDate = birthDate;\r\n    }\r\n\r\n// Adding a no argument constructor can also provide more flexibility, hence adding 1 no arg constructor to this class\r\n\r\n    public Worker(){\r\n\r\n    }\r\n\r\n\r\n\r\n    public int getAge(){\r\n        int currentYear = 2025;\r\n        int birthYear = Integer.parseInt(birthDate.substring(6));\r\n\r\n        return (currentYear - birthYear);\r\n    }\r\n\r\n\r\n/* The idea is to override the collectPay and terminate method by the subclasses so that specific implementation\r\n   can be processed by the sub class */\r\n\r\n    public double collectPay(){\r\n        return 0.0;\r\n    }\r\n\r\n    public void terminate(String endDate){\r\n        this.endDate = endDate;\r\n    }\r\n\r\n/*\r\n* Here, the toString method is overridden, which overrides the toString method of the Object Class\r\n* */\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Worker{\" +\r\n                \"name='\" + name + '\\'' +\r\n                \", birthDate='\" + birthDate + '\\'' +\r\n                \", endDate='\" + endDate + '\\'' +\r\n                '}';\r\n    }\r\n}\r\n"
       },
       {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding/MethodOverloadingExample/Dog.java",
+        "fileName": "Dog.java",
+        "topicName": "Dog",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Method Overloading Vs Method Overriding",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Bark method has same name but different parameters"
+            ]
+          }
+        ],
+        "inlineComments": [],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding.MethodOverloadingExample;\r\n\r\npublic class Dog {\r\n\r\n    /*\r\n     * Bark method has same name but different parameters\r\n     *\r\n     * */\r\n\r\n    public void bark(){\r\n        System.out.println(\"woof\");\r\n    }\r\n\r\n    public void bark(int number){\r\n        for(int i = 0; i < number; i++){\r\n            System.out.println(\"woof\");\r\n        }\r\n    }\r\n}\r\n"
+      },
+      {
         "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
         "fileName": "MethodOverLoadingVsMethodOverridingDifference.java",
         "topicName": "Method Over Loading Vs Method Overriding Difference",
@@ -4138,6 +4157,25 @@ const CONCEPTS_DATA = [
         "customQuizzes": [],
         "deepChallenges": [],
         "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding;\r\n\r\npublic class MethodOverLoadingVsMethodOverridingDifference {\r\n\r\n\r\n    /*\r\n    * Method OverLoading\r\n    *\r\n    * 1) Provides functionality to reuse a method name with different parameters.\r\n    *\r\n    * 2) Usually in a single class but also can be used in a child class\r\n    *\r\n    * 3) Must have different return types\r\n    *\r\n    * 4) Must have different access modifiers ( private, protected, public )\r\n    *\r\n    * 5) May throw different exceptions\r\n    *\r\n    * Method Overriding\r\n    *\r\n    * 1) Used to override a behavior which the class has inherited from the parent Class\r\n    *\r\n    * 2) Always in two classes that have a child parent or IS-A relationship\r\n    *\r\n    * 3) Must have the same parameters and same name\r\n    *\r\n    * 4) Must have the same return type or covariant return type ( child class )\r\n    *\r\n    * 5) Must not have a lower modifier bur may have a higher modifier\r\n    *\r\n    * 6) Must not throw a new or broader checked exception\r\n    *\r\n    * */\r\n\r\n\r\n}\r\n"
+      },
+      {
+        "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding/MethodOverridingExample/Dog.java",
+        "fileName": "Dog.java",
+        "topicName": "Dog",
+        "chapter": "Chapter 14: OOP Concepts",
+        "subChapter": "Method Overloading Vs Method Overriding",
+        "headerComments": [
+          {
+            "type": "block",
+            "lines": [
+              "Bark method has same name and same parameters"
+            ]
+          }
+        ],
+        "inlineComments": [],
+        "customQuizzes": [],
+        "deepChallenges": [],
+        "code": "package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding.MethodOverridingExample;\r\n\r\npublic class Dog {\r\n\r\n/*\r\n* Bark method has same name and same parameters\r\n*\r\n* */\r\n\r\n    public void bark(){\r\n        System.out.println(\"woof\");\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\nclass GermanShepherd extends Dog {\r\n\r\n    @Override\r\n    public void bark(){\r\n     System.out.println(\"woof woof woof\");\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_14_OOPSConcepts/Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding/MethodOverridingInJava.java",

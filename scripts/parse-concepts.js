@@ -716,7 +716,20 @@ function buildStarterQuestions(chapterName, topics) {
 
     // ---- Existing 5 question types (qid added) ----------------------------------------
 
-    // Find first meaningful code line that contains a target keyword (skip class declaration line)
+    // Helper: does a line look like actual Java code (not just prose/comment text)?
+    // Must have Java syntax chars in the code portion (before //)
+    const isCodeLine = (line) => {
+      const codePart = line.split('//')[0];
+      return /[=();{}\[\]]/.test(codePart);
+    };
+    // Helper: is keyword in the code part (before //) rather than a comment?
+    const kwInCode = (line, kw) => {
+      const codePart = line.split('//')[0];
+      return new RegExp(`\\b${kw}\\b`).test(codePart);
+    };
+
+    // Scan lines with block-comment awareness
+    let inBlockComment = false;
     let keywordLine = null;
     let keyword = null;
     let classDeclarationLine = null;
@@ -724,9 +737,15 @@ function buildStarterQuestions(chapterName, topics) {
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       const trimmed = line.trim();
+      // Track block comment state
+      if (!inBlockComment && (trimmed.startsWith('/*') || trimmed.includes('/*'))) inBlockComment = true;
+      if (inBlockComment) {
+        if (trimmed.endsWith('*/') || trimmed.includes('*/')) inBlockComment = false;
+        continue;
+      }
       if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.length === 0) continue;
-      const kw = targetKeywords.find(k => new RegExp(`\\b${k}\\b`).test(line));
-      if (kw) {
+      const kw = targetKeywords.find(k => kwInCode(line, k));
+      if (kw && isCodeLine(line)) {
         // Keep the first keyword line found as class-level fallback
         if (!classDeclarationLine) { classDeclarationLine = line; classKeyword = kw; }
         // Prefer lines that are NOT just the class/main declaration (skip `public class Foo {`)
@@ -762,15 +781,23 @@ function buildStarterQuestions(chapterName, topics) {
     });
 
     // Find a DIFFERENT code line for codefill (avoid duplicating the SCQ)
+    // Must be actual Java code (not prose/comment), keyword must appear in code part
     let codefillLine = null;
     let codefillKeyword = null;
+    inBlockComment = false;
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       if (line === keywordLine) continue; // skip SCQ line
       const trimmed = line.trim();
+      // Block comment tracking
+      if (!inBlockComment && (trimmed.startsWith('/*') || trimmed.includes('/*'))) inBlockComment = true;
+      if (inBlockComment) {
+        if (trimmed.endsWith('*/') || trimmed.includes('*/')) inBlockComment = false;
+        continue;
+      }
       if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.length === 0) continue;
-      const kw = targetKeywords.find(k => new RegExp(`\\b${k}\\b`).test(line));
-      if (kw) {
+      const kw = targetKeywords.find(k => kwInCode(line, k));
+      if (kw && isCodeLine(line)) {
         if (/\bclass\s+\w+\s*[\{<]/.test(line)) continue;
         if (/public\s+static\s+void\s+main/.test(line)) continue;
         codefillKeyword = kw;
@@ -794,11 +821,18 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     // Predict: only add if there's a real println with a STATIC string literal (no variable concatenation)
+    // Also skip comment lines and block comments
     let printLine = null;
     let printAnswer = null;
+    inBlockComment = false;
     for (const line of lines) {
       const trimmed = line.trim();
-      if (trimmed.startsWith('//') || trimmed.startsWith('*')) continue; // skip comment lines
+      if (!inBlockComment && (trimmed.startsWith('/*') || trimmed.includes('/*'))) inBlockComment = true;
+      if (inBlockComment) {
+        if (trimmed.endsWith('*/') || trimmed.includes('*/')) inBlockComment = false;
+        continue;
+      }
+      if (trimmed.startsWith('//') || trimmed.startsWith('*')) continue;
       if (!trimmed.includes('System.out.println')) continue;
       // Match println with only a string literal (no + concatenation with variables)
       const pureStringMatch = trimmed.match(/System\.out\.println\(\s*"([^"]{5,})"\s*\)/);
@@ -812,22 +846,23 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     if (printLine && printAnswer) {
-      // Only use predict if the line is actual code (not a comment)
-      const isComment = printLine.trim().startsWith('//') || printLine.trim().startsWith('*');
-      if (!isComment) {
-        questions.push({
-          type: 'predict',
-          qid: makeQid(chapterName, topicLabel, 'predict', 3),
-          difficulty: difficulty,
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `What does this code print?`,
-          code: printLine,
-          answer: [printAnswer],
-          explanation: `The output comes directly from the string literal in the println call.`
-        });
-      }
+      questions.push({
+        type: 'predict',
+        qid: makeQid(chapterName, topicLabel, 'predict', 3),
+        difficulty: difficulty,
+        chapter: chapterName,
+        topic: topicLabel,
+        question: `What does this code print?`,
+        code: printLine,
+        answer: [printAnswer],
+        explanation: `The output comes directly from the string literal in the println call.`
+      });
     }
+
+    const topicHeaderLines = topic.headerComments.flatMap(block => block.lines)
+      .filter(l => l && l.length > 5 && !l.startsWith('@'));
+    const topicModelAnswer = topicHeaderLines.slice(0, 3).join(' ') ||
+      `This topic covers ${topicLabel}. Refer to the source file for implementation details.`;
 
     questions.push({
       type: 'interview',
@@ -836,14 +871,10 @@ function buildStarterQuestions(chapterName, topics) {
       chapter: chapterName,
       topic: topicLabel,
       question: `Explain the main ideas in ${topicLabel}.`,
-      modelAnswer: [
-        ...(topic.headerComments.flatMap(block => block.lines).slice(0, 2)),
-        ...(quickRevision.gotchas.slice(0, 1))
-      ].join(' '),
-      keyPoints: [
-        ...(topic.headerComments.flatMap(block => block.lines).slice(0, 2)),
-        ...(quickRevision.gotchas.slice(0, 1))
-      ],
+      modelAnswer: topicModelAnswer,
+      keyPoints: topicHeaderLines.slice(0, 3).length > 0
+        ? topicHeaderLines.slice(0, 3)
+        : [`This topic covers ${topicLabel}. Refer to the source file for implementation details.`],
       explanation: `Use the source comments and code structure to summarize the topic clearly.`
     });
 
