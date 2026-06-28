@@ -4,10 +4,28 @@ public class MethodOverloadingInJava {
 
 //    If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.
 
+//    Method return type may or may not be different, and that allows us to reuse the same method name
+
+//    Overriding is very handy, it reduces duplicated code, and we don't have to remember multiple method names.
+
+//    We can overload, static or instance methods
+
+/*    To the code calling an overloaded method, it looks like a single method can be
+      called with different sets of arguments. In actuality, each call that's made with
+      a different set of arguments is calling a separate method.
+
+      Java developers often refer to method overloading, as compile-time polymorphism.
+
+      This means the compiler is determining the right method to call, based on the method name and argument list. Usually overloading happens within a single class.
+
+      But methods can also be overloaded by subclasses. That's because a subclass inherits one version of the method from the parent class, and then the subclass can have
+      another overloaded version of that method. */
+
 //    There are two ways to overload the method in java
 
 //    By changing number of arguments
 //    By changing the data type
+
 
 //    Method Overloading and Type Promotion*
 

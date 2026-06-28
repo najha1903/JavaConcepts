@@ -1,4 +1,4 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_method_Overriding;
+package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding;
 
 /*
 *    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In
@@ -106,5 +106,5 @@ package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_method_Over
 // @hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.
 // @testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);
 
-public class MethodOverridingInJava {
+public class  MethodOverridingInJava {
 }

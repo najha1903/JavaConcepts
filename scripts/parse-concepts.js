@@ -701,6 +701,12 @@ function buildStarterQuestions(chapterName, topics) {
 
   const stopWords = new Set(['this', 'that', 'these', 'those', 'their', 'which', 'where', 'there', 'would', 'could', 'should', 'about', 'after', 'every', 'other', 'first', 'being', 'using']);
   const gotchaKeywords = ['important', 'note', 'pitfall', 'warning', 'caution', 'remember', 'avoid', 'careful', 'never', 'always'];
+  // Meaningful fallback distractors for fill-blank and concept-scq
+  // (never use raw Java types like 'Object'/'int' as distractors for conceptual questions)
+  const conceptFallbacks = [
+    'immutable', 'mutable', 'compiled', 'interpreted', 'inherited', 'overridden',
+    'encapsulated', 'polymorphic', 'abstract', 'synchronized', 'serialized', 'generic'
+  ];
 
   topics.forEach((topic, topicIndex) => {
     const topicLabel = topic.topicName || topic.fileName.replace('.java', '');
@@ -710,22 +716,33 @@ function buildStarterQuestions(chapterName, topics) {
 
     // ---- Existing 5 question types (qid added) ----------------------------------------
 
+    // Find first meaningful code line that contains a target keyword (skip class declaration line)
     let keywordLine = null;
     let keyword = null;
+    let classDeclarationLine = null;
+    let classKeyword = null;
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       const trimmed = line.trim();
       if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.length === 0) continue;
-      keyword = targetKeywords.find(k => new RegExp(`\\b${k}\\b`).test(line));
-      if (keyword) {
+      const kw = targetKeywords.find(k => new RegExp(`\\b${k}\\b`).test(line));
+      if (kw) {
+        // Keep the first keyword line found as class-level fallback
+        if (!classDeclarationLine) { classDeclarationLine = line; classKeyword = kw; }
+        // Prefer lines that are NOT just the class/main declaration (skip `public class Foo {`)
+        if (/\bclass\s+\w+\s*\{/.test(line) || /\bclass\s+\w+\s+extends/.test(line) || /\bclass\s+\w+\s+implements/.test(line)) continue;
+        // Skip "public static void main" — too trivial
+        if (/public\s+static\s+void\s+main/.test(line)) continue;
+        keyword = kw;
         keywordLine = line;
         break;
       }
     }
 
+    // If no better line found, fall back to class declaration
     if (!keywordLine) {
-      keyword = 'class';
-      keywordLine = `public ${keyword} ${topic.fileName.replace('.java', '')} {`;
+      keyword = classKeyword || 'class';
+      keywordLine = classDeclarationLine || `public ${keyword} ${topic.fileName.replace('.java', '')} {`;
     }
 
     const masked = keywordLine.replace(new RegExp(`\\b${keyword}\\b`, 'g'), '___');
@@ -744,63 +761,73 @@ function buildStarterQuestions(chapterName, topics) {
       explanation: `The correct keyword is '${keyword}'. It fits the syntax and semantics of this Java statement.`
     });
 
-    const topicStatements = [
-      { text: `This topic belongs to ${chapterLabel}.`, truth: true },
-      { text: `Its source file is ${topic.fileName}.`, truth: true },
-      { text: `This topic has ${topic.inlineComments.length} inline annotation${topic.inlineComments.length === 1 ? '' : 's'}.`, truth: true },
-      { text: `This topic has no Java source code.`, truth: false }
-    ];
-
-    questions.push({
-      type: 'mcq',
-      qid: makeQid(chapterName, topicLabel, 'mcq', 1),
-      difficulty: 'medium',
-      chapter: chapterName,
-      topic: topicLabel,
-      question: `Which of the following statements about ${topicLabel} are correct? (Select all that apply)`,
-      options: topicStatements.map(item => item.text),
-      answer: topicStatements.map((item, idx) => item.truth ? idx : -1).filter(idx => idx >= 0),
-      explanation: `The correct statements come directly from the parsed source metadata for ${topic.fileName}.`
-    });
-
-    const codeFillAnswer = keyword || 'class';
-    questions.push({
-      type: 'codefill',
-      qid: makeQid(chapterName, topicLabel, 'codefill', 2),
-      difficulty: difficulty,
-      chapter: chapterName,
-      topic: topicLabel,
-      question: `Complete the missing keyword in this snippet from "${topic.fileName}".`,
-      code: keywordLine.replace(new RegExp(`\\b${codeFillAnswer}\\b`, 'g'), '___'),
-      answer: [codeFillAnswer],
-      explanation: `The missing keyword is '${codeFillAnswer}', taken from the parsed source for ${topic.fileName}.`
-    });
-
-    let printLine = lines.find(line => line.includes('System.out.println'));
-    let printAnswer = `${chapterLabel} - ${topicLabel}`;
-    if (printLine) {
-      const literalMatch = printLine.match(/"([^"]*)"/);
-      if (literalMatch) {
-        printAnswer = literalMatch[1];
-      } else {
-        printLine = `System.out.println("${chapterLabel} - ${topicLabel}");`;
-        printAnswer = `${chapterLabel} - ${topicLabel}`;
+    // Find a DIFFERENT code line for codefill (avoid duplicating the SCQ)
+    let codefillLine = null;
+    let codefillKeyword = null;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line === keywordLine) continue; // skip SCQ line
+      const trimmed = line.trim();
+      if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.length === 0) continue;
+      const kw = targetKeywords.find(k => new RegExp(`\\b${k}\\b`).test(line));
+      if (kw) {
+        if (/\bclass\s+\w+\s*[\{<]/.test(line)) continue;
+        if (/public\s+static\s+void\s+main/.test(line)) continue;
+        codefillKeyword = kw;
+        codefillLine = line;
+        break;
       }
-    } else {
-      printLine = `System.out.println("${chapterLabel} - ${topicLabel}");`;
     }
 
-    questions.push({
-      type: 'predict',
-      qid: makeQid(chapterName, topicLabel, 'predict', 3),
-      difficulty: difficulty,
-      chapter: chapterName,
-      topic: topicLabel,
-      question: `What does this code print?`,
-      code: printLine,
-      answer: [printAnswer],
-      explanation: `The output comes directly from the string literal in the println call.`
-    });
+    if (codefillLine && codefillKeyword && codefillLine.trim() !== keywordLine.trim()) {
+      questions.push({
+        type: 'codefill',
+        qid: makeQid(chapterName, topicLabel, 'codefill', 2),
+        difficulty: difficulty,
+        chapter: chapterName,
+        topic: topicLabel,
+        question: `Complete the missing keyword in this snippet from "${topic.fileName}".`,
+        code: codefillLine.replace(new RegExp(`\\b${codefillKeyword}\\b`, 'g'), '___'),
+        answer: [codefillKeyword],
+        explanation: `The missing keyword is '${codefillKeyword}', taken from the parsed source for ${topic.fileName}.`
+      });
+    }
+
+    // Predict: only add if there's a real println with a STATIC string literal (no variable concatenation)
+    let printLine = null;
+    let printAnswer = null;
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('//') || trimmed.startsWith('*')) continue; // skip comment lines
+      if (!trimmed.includes('System.out.println')) continue;
+      // Match println with only a string literal (no + concatenation with variables)
+      const pureStringMatch = trimmed.match(/System\.out\.println\(\s*"([^"]{5,})"\s*\)/);
+      if (pureStringMatch) {
+        const val = pureStringMatch[1];
+        if (val === `${chapterLabel} - ${topicLabel}`) continue; // skip auto-generated echo
+        printLine = trimmed;
+        printAnswer = val;
+        break;
+      }
+    }
+
+    if (printLine && printAnswer) {
+      // Only use predict if the line is actual code (not a comment)
+      const isComment = printLine.trim().startsWith('//') || printLine.trim().startsWith('*');
+      if (!isComment) {
+        questions.push({
+          type: 'predict',
+          qid: makeQid(chapterName, topicLabel, 'predict', 3),
+          difficulty: difficulty,
+          chapter: chapterName,
+          topic: topicLabel,
+          question: `What does this code print?`,
+          code: printLine,
+          answer: [printAnswer],
+          explanation: `The output comes directly from the string literal in the println call.`
+        });
+      }
+    }
 
     questions.push({
       type: 'interview',
@@ -849,7 +876,7 @@ function buildStarterQuestions(chapterName, topics) {
         }
         if (otherBullets.length >= 3) break;
       }
-      const genericDistr = ['Object', 'null', 'void', 'int'];
+      const genericDistr = conceptFallbacks.filter(d => d !== currentFirstBullet);
       let gdi = 0;
       while (otherBullets.length < 3 && gdi < genericDistr.length) {
         if (!otherBullets.includes(genericDistr[gdi])) otherBullets.push(genericDistr[gdi]);
@@ -872,7 +899,7 @@ function buildStarterQuestions(chapterName, topics) {
       }
     }
 
-    // B. Multi-select True/False MCQ
+    // B. Multi-select True/False MCQ (only when topic has enough notes to provide quality distractors)
     const trueOptions = topicNotes.slice(0, 3).filter(l => l && l.length > 10);
     const falseOptions = [];
     for (let i = 0; i < topics.length; i++) {
@@ -883,7 +910,8 @@ function buildStarterQuestions(chapterName, topics) {
         if (falseOptions.length >= 2) break;
       }
     }
-    if (trueOptions.length >= 2 && falseOptions.length >= 1) {
+    // Require at least 3 true notes AND 2 plausible false statements — avoids low-quality MCQs for thin topics
+    if (trueOptions.length >= 3 && falseOptions.length >= 2) {
       const selectedTrue = trueOptions.slice(0, Math.min(3, trueOptions.length));
       const selectedFalse = falseOptions.slice(0, Math.min(2, falseOptions.length));
       const allOpts = [...selectedTrue, ...selectedFalse];
@@ -941,7 +969,7 @@ function buildStarterQuestions(chapterName, topics) {
           if (fillDistractors.length >= 3) break outer;
         }
       }
-      const genFillDistr = ['Object', 'String', 'Integer', 'Array', 'Class', 'Method'];
+      const genFillDistr = conceptFallbacks.filter(d => d !== fillWord);
       let gfi = 0;
       while (fillDistractors.length < 3 && gfi < genFillDistr.length) {
         if (!fillDistractors.includes(genFillDistr[gfi]) && genFillDistr[gfi] !== fillWord) {
