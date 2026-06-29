@@ -1,4 +1,4 @@
-﻿package Chapter_7_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
+package Chapter_7_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.
 // Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.
 // Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }

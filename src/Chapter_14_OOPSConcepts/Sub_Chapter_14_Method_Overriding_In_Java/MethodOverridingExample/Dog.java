@@ -1,4 +1,4 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding.MethodOverridingExample;
+package Chapter_14_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java.MethodOverridingExample;
 
 public class Dog {
 

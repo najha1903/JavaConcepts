@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_8_Static_And_Instance_Variables;
+package Chapter_14_OOPSConcepts.Sub_Chapter_8_Static_And_Instance_Variables;
 // Understanding the difference between static and instance variables is crucial in OOP.
 // STATIC variable: one shared copy for the ENTIRE class. If any object changes it, ALL objects see the new value.
 // INSTANCE variable: each object has its OWN private copy. Changes to one object's instance variable don't affect other objects.

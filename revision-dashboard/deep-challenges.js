@@ -487,5 +487,31 @@ const DEEP_CHALLENGES = [
       "Heron Triangle(3,4,5) → area = 6.0"
     ],
     "selfCheck": true
+  },
+  {
+    "id": "deep-chapter-15-strings-string-ops",
+    "title": "String Manipulation Mastery",
+    "chapter": "Chapter 15: Strings",
+    "topic": "Strings Deep Challenge",
+    "difficulty": "Medium",
+    "tags": [
+      "deep",
+      "coding",
+      "strings",
+      "ocjp"
+    ],
+    "source": "auto",
+    "description": "Implement these String utility methods WITHOUT using external libraries:\n\n1. isPalindrome(String s) → boolean — ignore case and spaces\n2. countVowels(String s) → int\n3. reverseWords(String sentence) → String — reverse word order, not characters\n4. titleCase(String sentence) → String — capitalize first letter of each word\n5. countOccurrences(String text, String word) → int — count non-overlapping occurrences\n\nOCJP focus: String immutability, .equals() vs ==, StringBuilder for efficiency, String methods: .split(), .trim(), .toLowerCase(), .charAt(), .length().",
+    "hints": [
+      "Use StringBuilder for reverseWords() for efficiency",
+      "Split on \"\\\\s+\" to handle multiple spaces",
+      "isPalindrome: strip spaces, toLowerCase, then compare char by char"
+    ],
+    "testcases": [
+      "isPalindrome(\"A man a plan a canal Panama\") → true",
+      "countVowels(\"Hello World\") → 3",
+      "reverseWords(\"Hello World\") → \"World Hello\""
+    ],
+    "selfCheck": true
   }
 ];

@@ -1,4 +1,4 @@
-﻿package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
+package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
 // The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.
 // In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.
 // This makes do-while ideal for situations like "ask the user for input at least once, then keep asking if the input is invalid."

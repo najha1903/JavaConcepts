@@ -1,4 +1,4 @@
-﻿package Chapter_6_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Challenge;
+package Chapter_6_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Challenge;
 // An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.
 // Structure: if(condition1) { ... } else if(condition2) { ... } else { ... }
 // The 'else' block is the fallback — it runs only when ALL preceding conditions are false.

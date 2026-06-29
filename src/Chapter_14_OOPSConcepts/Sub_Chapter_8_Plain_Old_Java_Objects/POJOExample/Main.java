@@ -56,11 +56,18 @@ public class Main {
         //                                   iii) Single quotes around Strings are there
 
         /*
+        * System.out.println(s1);
+        * System.out.println(s2);
+        * System.out.println(s3);
+        * System.out.println(s4);
+        * System.out.println(s5);
+        *
+        * Output :-
         * Student{id='1', name='Navneet', dateOfBirth='19/03/1994', classList='Java MasterClass'}
-          Student{id='2', name='Puttu', dateOfBirth='20/04/1995', classList='Javascript MasterClass'}
-          Student{id='1', name='Navi', dateOfBirth='21/05/1996', classList='Python MasterClass'}
-          Student{id='1', name='NaviPuttu', dateOfBirth='22/06/1997', classList='Kotlin MasterClass'}
-          Student{id='1', name='PuttuNavi', dateOfBirth='23/07/1998', classList='Golang MasterClass'}
+        * Student{id='2', name='Puttu', dateOfBirth='20/04/1995', classList='Javascript MasterClass'}
+        * Student{id='1', name='Navi', dateOfBirth='21/05/1996', classList='Python MasterClass'}
+        * Student{id='1', name='NaviPuttu', dateOfBirth='22/06/1997', classList='Kotlin MasterClass'}
+        * Student{id='1', name='PuttuNavi', dateOfBirth='23/07/1998', classList='Golang MasterClass'}
         *
         * */
 
@@ -109,11 +116,18 @@ public class Main {
         //                                   iii) Single quotes around Strings are not there
 
         /*
+        * System.out.println(s1);
+        * System.out.println(s2);
+        * System.out.println(s3);
+        * System.out.println(s4);
+        * System.out.println(s5);
+        *
+        * Output :-
         * StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]
-          StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]
-          StudentRecord[id=1, name=Navi, dateOfBirth=21/05/1996, classList=Python MasterClass]
-          StudentRecord[id=1, name=NaviPuttu, dateOfBirth=22/06/1997, classList=Kotlin MasterClass]
-          StudentRecord[id=1, name=PuttuNavi, dateOfBirth=23/07/1998, classList=Golang MasterClass]
+        * StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]
+        * StudentRecord[id=1, name=Navi, dateOfBirth=21/05/1996, classList=Python MasterClass]
+        * StudentRecord[id=1, name=NaviPuttu, dateOfBirth=22/06/1997, classList=Kotlin MasterClass]
+        * StudentRecord[id=1, name=PuttuNavi, dateOfBirth=23/07/1998, classList=Golang MasterClass]
         *
         * */
 

@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
+package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
 // Inheritance is a mechanism for code reuse — a child class inherits all accessible fields and methods from its parent.
 // In Java, a class can only extend ONE direct parent (single inheritance), but inherits all the way up the hierarchy.
 // The 'extends' keyword establishes the parent-child relationship: class Dog extends Animal

@@ -1,4 +1,4 @@
-﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
+package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.
 // Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.
 //
@@ -40,6 +40,26 @@
 // Reference: https://unicode-table.com/en/
 //
 // boolean: can only be true or false. It is the result of any comparison or logical expression.
+
+// @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?
+// @answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.
+// @answer Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast.
+
+// @quiz (INTERVIEW) What is integer overflow in Java?
+// @answer Integer overflow happens when a value goes past the type's range and wraps around to the opposite end.
+// @answer For example, Integer.MAX_VALUE + 1 becomes Integer.MIN_VALUE.
+
+// @quiz (INTERVIEW) Why does integer division drop the decimal part?
+// @answer When both operands are integer types, Java performs integer division and keeps only the whole-number result.
+// @answer So 1 / 2 is 0, while 1.0 / 2 uses floating-point division and keeps the fraction.
+
+// @quiz (OCJP) What is the output of: System.out.println(1 / 2); System.out.println(1.0 / 2);?
+// @answer The output is 0 and 0.5.
+// @answer The first uses integer division, while the second uses double division.
+
+// @quiz (OCJP) What happens here: long l = 10; int i = l;?
+// @answer It does not compile because assigning long to int is narrowing and may lose data.
+// @answer You need an explicit cast, such as int i = (int) l;.
 
 // @quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?
 // @answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\u0000' which is the Unicode null character.

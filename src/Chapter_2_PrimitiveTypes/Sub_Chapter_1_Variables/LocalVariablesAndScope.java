@@ -1,4 +1,4 @@
-﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
+package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 // A local variable is one declared inside a method, constructor, or block. It only exists (is "in scope") within that block.
 // Scope describes the region of code where a variable is accessible. 'In scope' = accessible. 'Out of scope' = the variable no longer exists and cannot be used.
 // Best practice: Declare and initialise a variable in the same place if possible. Declare variables in the narrowest scope possible.

@@ -1,4 +1,4 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding;
+package Chapter_14_OOPSConcepts.Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding;
 
 public class MethodOverLoadingVsMethodOverridingDifference {
 
@@ -26,7 +26,7 @@ public class MethodOverLoadingVsMethodOverridingDifference {
     *
     * 4) Must have the same return type or covariant return type ( child class )
     *
-    * 5) Must not have a lower modifier bur may have a higher modifier
+    * 5) Must not have a lower modifier but may have a higher modifier
     *
     * 6) Must not throw a new or broader checked exception
     *

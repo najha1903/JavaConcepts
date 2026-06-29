@@ -1,4 +1,4 @@
-﻿package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
+package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
 // CODING CHALLENGE — For Loop Accumulator Pattern
 // This challenge practices: for loops, the modulus operator (%), accumulating a running sum, and breaking early.
 // The modulus operator: if i % 3 == 0, then i is divisible by 3 with no remainder.

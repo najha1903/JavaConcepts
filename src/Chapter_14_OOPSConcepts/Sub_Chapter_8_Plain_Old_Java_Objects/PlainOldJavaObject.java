@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects;
+package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects;
 // A POJO (Plain Old Java Object) is a simple class whose primary purpose is to hold data.
 // POJOs are the workhorses of Java data modelling — databases, APIs, and frameworks use them extensively.
 // A POJO typically has: private fields, a constructor, getters, setters, and often a toString() method.

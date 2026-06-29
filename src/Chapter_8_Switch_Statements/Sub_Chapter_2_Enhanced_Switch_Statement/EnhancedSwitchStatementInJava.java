@@ -1,4 +1,4 @@
-﻿package Chapter_8_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
+package Chapter_8_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
 // The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.
 // It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.
 // Traditional switch: case 1: ... break;   Enhanced switch: case 1 -> ...
@@ -10,6 +10,22 @@
 // yield is to a switch expression what return is to a method — it provides the value for that case.
 // Example: default -> { String msg = "INVALID"; yield msg; }
 // Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.
+
+// @quiz (INTERVIEW) What is the difference between a traditional switch statement and an enhanced switch expression?
+// @answer Traditional switch uses colon syntax and can fall through, while enhanced switch uses arrow syntax and does not fall through.
+// @answer Enhanced switch can also be used as an expression that directly returns a value.
+
+// @quiz (INTERVIEW) Can an enhanced switch return a value?
+// @answer Yes. An enhanced switch can be used on the right side of an assignment or in a return statement.
+// @answer Each case provides the result with an expression or with yield inside a block.
+
+// @quiz (INTERVIEW) What is the purpose of yield in an enhanced switch?
+// @answer yield returns a value from a case block when that case needs multiple statements.
+// @answer It is only used inside switch expressions, not ordinary methods.
+
+// @quiz (OCJP) Does an enhanced switch fall through here: switch (x) { case 1 -> System.out.println("A"); case 2 -> System.out.println("B"); default -> System.out.println("C"); }?
+// @answer No. Each arrow case is isolated, so execution stops after the matching case.
+// @answer That is why enhanced switch does not need break statements.
 public class EnhancedSwitchStatementInJava {
 
     public static void main(String[] args) {

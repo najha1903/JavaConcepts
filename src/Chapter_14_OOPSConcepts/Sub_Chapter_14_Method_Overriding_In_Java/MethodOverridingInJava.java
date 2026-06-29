@@ -1,4 +1,4 @@
-package Chapter_14_OOPSConcepts.Sub_Chapter_13_Method_Overloading_Vs_Method_Overriding;
+package Chapter_14_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
 
 /*
 *    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In

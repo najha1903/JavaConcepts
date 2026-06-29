@@ -1,4 +1,4 @@
-﻿package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
+package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 // A CLASS is the most fundamental building block of Object-Oriented Programming (OOP) in Java.
 // A class is a blueprint or template that defines: (1) what data (fields/attributes) an object will hold, and (2) what behaviour (methods) it will have.
 // Think of a class like a blank form template — it defines what fields exist. An OBJECT is a filled-in copy of that form.
@@ -57,8 +57,29 @@
 *
 * */
 
+// @quiz (INTERVIEW) What is the difference between a class and an object in Java?
+// @answer A class is a blueprint that defines fields and methods, while an object is a real instance created from that blueprint.
+// @answer Many objects can be created from one class, each with its own state.
 
+// @quiz (INTERVIEW) What is the difference between static fields and instance fields?
+// @answer A static field belongs to the class itself and is shared by all objects of that class.
+// @answer An instance field belongs to each object, so every object gets its own copy.
 
+// @quiz (INTERVIEW) What are the default values of instance fields in Java?
+// @answer Numeric instance fields default to 0 or 0.0, boolean defaults to false, and reference fields default to null.
+// @answer These defaults apply to fields, not to local variables.
+
+// @quiz (INTERVIEW) When would you make a field static?
+// @answer Use a static field when the value should be shared across all objects, such as a counter or constant-like class state.
+// @answer Do not use static when every object needs its own separate value.
+
+// @quiz (OCJP) What prints here: class Counter { static int c = 0; } Counter a = new Counter(); Counter b = new Counter(); a.c = 5; System.out.println(b.c);?
+// @answer It prints 5.
+// @answer The field is static, so both references access the same shared class variable.
+
+// @quiz (OCJP) Can a static method directly access an instance field like int age; without an object?
+// @answer No. A static method has no current object, so direct access to an instance field causes a compile-time error.
+// @answer It must use an object reference or access a static field instead.
 
 public class ClassExample {
 

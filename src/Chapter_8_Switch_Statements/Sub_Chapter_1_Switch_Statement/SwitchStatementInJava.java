@@ -1,4 +1,4 @@
-﻿package Chapter_8_Switch_Statements.Sub_Chapter_1_Switch_Statement;
+package Chapter_8_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.
 // Switch is cleaner and more readable than nested if-else when you have many possible values to test.
 // switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.
@@ -9,6 +9,30 @@
 // A return statement inside a switch also acts like a break — it exits both the switch AND the method.
 // Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println("1, 2 or 3");
 // The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through.
+
+// @quiz (INTERVIEW) What data types can be used in a traditional Java switch statement?
+// @answer switch supports byte, short, char, int, their wrapper types, enum types, and String.
+// @answer It does not support every type, so larger or unrelated types still need if-else logic.
+
+// @quiz (INTERVIEW) What is fall-through in a switch statement, and when is it useful?
+// @answer Fall-through means execution continues into the next case when break is omitted.
+// @answer It is useful when multiple cases should share the same logic, but accidental fall-through is a common bug.
+
+// @quiz (INTERVIEW) What is the default case in a switch statement, and is it required?
+// @answer default runs when no case label matches the switch value.
+// @answer It is optional, but it is often useful for invalid or unexpected values.
+
+// @quiz (INTERVIEW) When is switch usually preferred over a long if-else chain?
+// @answer switch is cleaner when one expression is compared against many fixed constant values.
+// @answer if-else is better when conditions are ranges, combinations, or more complex boolean expressions.
+
+// @quiz (OCJP) What prints here: int x = 2; switch (x) { case 1: System.out.print("A"); case 2: System.out.print("B"); default: System.out.print("C"); }?
+// @answer It prints BC.
+// @answer Execution starts at case 2 and falls through to default because there are no break statements.
+
+// @quiz (OCJP) Can a traditional switch use long or boolean as the selector?
+// @answer No. long and boolean are not valid selector types for a traditional switch statement.
+// @answer For those cases, use if-else instead.
 public class SwitchStatementInJava {
 
     public static void main(String[] args) {

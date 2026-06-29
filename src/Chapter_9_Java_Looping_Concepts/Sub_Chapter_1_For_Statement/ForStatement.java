@@ -1,4 +1,4 @@
-﻿package Chapter_9_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
+package Chapter_9_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
 // Loops let your program execute a block of code multiple times, without writing it multiple times.
 // Java supports three main loops: for (best when you know the count), while (condition-based), and do-while (always runs at least once).
 // The for loop is the most common when iterating over a range or a fixed number of times.
@@ -59,6 +59,29 @@
 
 */
 
+// @quiz (INTERVIEW) What is the difference between for, while, and do-while loops in Java?
+// @answer for is best when initialization, condition, and update belong together, while while is better for condition-driven loops.
+// @answer do-while checks the condition after the body, so it runs at least once.
+
+// @quiz (INTERVIEW) What is an enhanced for-each loop, and when can you not use it?
+// @answer The enhanced for loop iterates over arrays or collections without managing an index manually.
+// @answer It is not suitable when you need the index, need to skip backward, or need structural modification during iteration.
+
+// @quiz (INTERVIEW) Can you declare multiple variables in a for loop initializer?
+// @answer Yes, but they must be of the same declared type in that initializer.
+// @answer For example, for (int i = 0, j = 10; i < j; i++, j--) is valid.
+
+// @quiz (INTERVIEW) When is a for loop usually preferred over a while loop?
+// @answer A for loop is preferred when the loop count or iteration pattern is known up front.
+// @answer It keeps loop setup in one place and is often easier to read for counter-based logic.
+
+// @quiz (OCJP) What does for (;;) do in Java?
+// @answer It creates an infinite loop because all three sections are omitted.
+// @answer The loop stops only with break, return, an exception, or external termination.
+
+// @quiz (OCJP) What prints here: for (int i = 0; i < 3; i++) { i++; System.out.print(i); }?
+// @answer It prints 13.
+// @answer Modifying the loop variable inside the body is legal, but it changes the loop flow and can be tricky.
 
 public class ForStatement {
 

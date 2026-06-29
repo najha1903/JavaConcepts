@@ -1,4 +1,4 @@
-﻿package Chapter_13_Exception_Handling;
+package Chapter_13_Exception_Handling;
 // An exception is a runtime error — an abnormal condition that occurs while the program is running and disrupts normal execution.
 // Common causes: null references (NullPointerException), dividing by zero (ArithmeticException), invalid array index (ArrayIndexOutOfBoundsException), invalid string-to-number parsing (NumberFormatException).
 // Without exception handling, an unhandled exception crashes your program and prints a stack trace.

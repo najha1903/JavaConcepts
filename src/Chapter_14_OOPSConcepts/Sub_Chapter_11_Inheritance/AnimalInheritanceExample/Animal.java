@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
+package Chapter_14_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
 // This is the superclass (parent class) of the Animal inheritance hierarchy.
 // Inheritance allows a child class to reuse (inherit) fields and methods from a parent class, adding or customising as needed.
 // Method Overriding: a subclass can provide its own implementation of a method defined in the superclass.

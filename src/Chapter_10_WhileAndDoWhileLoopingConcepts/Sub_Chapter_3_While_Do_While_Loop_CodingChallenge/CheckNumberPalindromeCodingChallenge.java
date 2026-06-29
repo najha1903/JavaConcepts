@@ -1,4 +1,4 @@
-﻿package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_3_While_Do_While_Loop_CodingChallenge;
+package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_3_While_Do_While_Loop_CodingChallenge;
 // CODING CHALLENGE — While Loop with Number Reversal
 // A palindrome number reads the same forwards and backwards: 121, 1001, 707.
 // Technique: reverse the number using arithmetic. Extract the last digit with (number % 10), add it to the reversed number (reversed * 10 + digit), then remove the last digit (number / 10). Compare reversed == original.

@@ -1,4 +1,4 @@
-﻿package Chapter_12_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And_Reading_input;
+package Chapter_12_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And_Reading_input;
 // When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.
 // You cannot do arithmetic on Strings — "100" - "50" is a compile error because - is not defined for Strings.
 // You also cannot use + for addition on Strings — "100" + "50" = "10050" (concatenation, not addition).
@@ -31,6 +31,29 @@ import java.util.Scanner; // the import statement lets us use classes from other
                            // In this case, Java provides a library of code,
                            // which includes the Scanner class in a library called java.util.
 
+// @quiz (INTERVIEW) What does Integer.parseInt() do, and what exception can it throw?
+// @answer Integer.parseInt() converts a numeric String like "42" into a primitive int.
+// @answer It throws NumberFormatException if the text is not a valid integer.
+
+// @quiz (INTERVIEW) What is the difference between Integer.parseInt() and Integer.valueOf()?
+// @answer parseInt() returns a primitive int, while valueOf() returns an Integer object.
+// @answer valueOf() is useful when you need the wrapper type instead of the primitive.
+
+// @quiz (INTERVIEW) What is Scanner, and how does it read input?
+// @answer Scanner is a utility class that reads tokens or lines from sources such as System.in.
+// @answer Methods like nextInt(), next(), and nextLine() parse different kinds of input.
+
+// @quiz (INTERVIEW) Why do Java programs often need parsing when reading console input?
+// @answer Console input arrives as text, so you must convert numeric text into number types before doing arithmetic.
+// @answer That is why parsing methods are common when reading user input.
+
+// @quiz (OCJP) What happens with: Integer.parseInt("3.5")?
+// @answer It throws NumberFormatException because parseInt accepts only valid integer text.
+// @answer Decimal text must be parsed with a floating-point parser instead.
+
+// @quiz (OCJP) Why can nextLine() appear to skip input after nextInt() in Scanner?
+// @answer nextInt() leaves the trailing newline in the input buffer.
+// @answer The following nextLine() reads that leftover newline, so you often need an extra nextLine() to consume it first.
 
 public class ParsingValuesReadingInput {
 

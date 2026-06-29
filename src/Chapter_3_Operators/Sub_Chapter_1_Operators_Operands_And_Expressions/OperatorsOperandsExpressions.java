@@ -1,4 +1,4 @@
-﻿package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
+package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // Operators in Java are special symbols that perform specific operations on one or more values (operands) and produce a result.
 // An operand is any value, variable, or expression that an operator acts upon. Example: in '15 + 12', 15 and 12 are operands, + is the operator.
 // An expression is a combination of variables, literals, operators, and method calls that evaluates to a single value.

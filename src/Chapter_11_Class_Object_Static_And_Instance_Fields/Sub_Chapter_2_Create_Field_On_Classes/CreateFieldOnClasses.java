@@ -1,4 +1,4 @@
-﻿package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_Field_On_Classes;
+package Chapter_11_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_Field_On_Classes;
 // Java classes have two types of fields (variables declared at the class level, outside any method):
 // STATIC FIELDS: declared with 'static'. There is exactly ONE copy in memory, shared by ALL objects of that class. Accessed via ClassName.fieldName.
 // INSTANCE FIELDS: declared without 'static'. Each object gets its OWN separate copy. Accessed via objectVariable.fieldName.

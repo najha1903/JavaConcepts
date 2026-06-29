@@ -1,4 +1,4 @@
-﻿package Chapter_6_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statement;
+package Chapter_6_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statement;
 // Conditional logic (also called control flow) lets your program make decisions: execute different code depending on whether a condition is true or false.
 // The if statement evaluates a boolean expression. If the expression is true, the code block runs. If false, it is skipped.
 // IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.
@@ -25,6 +25,30 @@
     Operand three - false. is the value to be assigned to the variable isEighteenOrOver if the condition above is false.
 
  */
+
+// @quiz (INTERVIEW) What is the dangling else problem in Java?
+// @answer A dangling else happens when nested if statements omit braces and it is unclear which if the else belongs to.
+// @answer In Java, else always matches the nearest unmatched if.
+
+// @quiz (INTERVIEW) Can an if condition use non-boolean types in Java?
+// @answer No. Java requires the condition to be a boolean expression.
+// @answer Unlike C, Java does not allow numbers or object references directly as if conditions.
+
+// @quiz (INTERVIEW) When should you use the ternary operator instead of if-else?
+// @answer Use the ternary operator for short value-producing decisions, such as assigning one of two values.
+// @answer Use if-else when the logic is longer or you need multiple statements.
+
+// @quiz (INTERVIEW) Why are braces recommended even for a single if statement?
+// @answer Braces make the controlled block explicit and prevent bugs when more lines are added later.
+// @answer They also make nested conditions easier to read.
+
+// @quiz (OCJP) What happens here: int x = 5; if (x = 5) { System.out.println("Hi"); }?
+// @answer It does not compile because x = 5 is an int assignment expression, not a boolean condition.
+// @answer Java if conditions must evaluate to true or false.
+
+// @quiz (OCJP) How many statements does if control here: if (true) System.out.println("A"); System.out.println("B");?
+// @answer Only the first statement after if is controlled by the condition.
+// @answer The second println is outside the if unless braces are used.
 public class IfExample {
 
     public static void main(String[] args) {

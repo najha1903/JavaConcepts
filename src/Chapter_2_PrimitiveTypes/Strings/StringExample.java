@@ -1,4 +1,4 @@
-﻿package Chapter_2_PrimitiveTypes.Strings;
+package Chapter_2_PrimitiveTypes.Strings;
 // String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.
 // A String is a sequence of characters of any length — from empty "" to thousands of characters long.
 // Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes ("Hello").
@@ -11,6 +11,30 @@
 // Unicode in Strings: you can embed Unicode escape sequences in String literals.
 // Example: "\u00A9" = copyright symbol. Unicode lets Strings contain characters from any language.
 // Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.
+
+// @quiz (INTERVIEW) Is String a primitive type or an object in Java?
+// @answer String is a class, so it is a reference type, not a primitive.
+// @answer It feels special because Java supports string literals like "hello", but it is still an object.
+
+// @quiz (INTERVIEW) Why is String immutable in Java?
+// @answer An immutable String cannot change after creation, which makes it safe for sharing, caching, and use in the string pool.
+// @answer Immutability also helps security and makes Strings naturally thread-safe.
+
+// @quiz (INTERVIEW) What is the String pool, and what is the difference between == and .equals() for Strings?
+// @answer The string pool stores reused string literals so identical literals can share the same object.
+// @answer == compares references, while .equals() compares the actual character content.
+
+// @quiz (INTERVIEW) Why is StringBuilder preferred over String concatenation in loops?
+// @answer Repeated String concatenation creates many temporary String objects because String is immutable.
+// @answer StringBuilder changes the same buffer, so it is usually faster and uses less memory in loops.
+
+// @quiz (OCJP) What prints here: String s = "a" + "b"; String t = "ab"; System.out.println(s == t);?
+// @answer It prints true because both values are compile-time constants and refer to the same pooled String object.
+// @answer The concatenation is folded by the compiler into the literal "ab".
+
+// @quiz (OCJP) What prints here: String s = new String("ab"); String t = "ab"; System.out.println(s == t); System.out.println(s.equals(t));?
+// @answer It prints false and then true.
+// @answer new String("ab") creates a different object, so == is false, but the contents are equal.
 
 // @quiz What does it mean that Strings are immutable in Java?
 // @answer Once a String is created, its value cannot be changed. Any modification creates a new String object.

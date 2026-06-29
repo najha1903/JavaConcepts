@@ -1,4 +1,4 @@
-﻿package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
+package Chapter_9_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
 // CODING CHALLENGE — For Loop with Method Decomposition
 // This challenge decomposes the problem into two methods: isOdd() checks a single number, sumOdd() uses a for loop to accumulate the sum.
 // Method decomposition: breaking a complex problem into smaller, single-purpose methods is a fundamental good programming practice.

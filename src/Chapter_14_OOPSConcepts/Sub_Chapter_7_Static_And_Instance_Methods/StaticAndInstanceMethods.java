@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_7_Static_And_Instance_Methods;
+package Chapter_14_OOPSConcepts.Sub_Chapter_7_Static_And_Instance_Methods;
 // Java methods are either STATIC (belong to the class) or INSTANCE (belong to individual objects).
 // Deciding which to use: does the method need to access any instance fields or instance methods? If YES -> instance method. If NO -> static method.
 // Static methods are called on the class: ClassName.methodName() or just methodName() if called from within the same class.

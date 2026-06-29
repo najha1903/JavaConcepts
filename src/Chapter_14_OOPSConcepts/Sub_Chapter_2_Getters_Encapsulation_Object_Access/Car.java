@@ -103,7 +103,7 @@ public class Car {
     }
 
     /*
-    * If values are assigned to the fields then the output is :- 2-Door Gray Tesla Model X Convertible
+    * System.out.println(doors + "-Door " + color + " " + make + " " + model + " " + (convertible ? "Convertible" : "")) Output :- 2-Door Gray Tesla Model X Convertible
     *
     * */
 

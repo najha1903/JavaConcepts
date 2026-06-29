@@ -1,4 +1,4 @@
-﻿package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
+package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 // Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.
 // Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.
 // Reference: https://en.wikipedia.org/wiki/List_of_Java_keywords

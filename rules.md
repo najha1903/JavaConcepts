@@ -153,16 +153,16 @@ Write your own quiz questions directly in the Java source file.
 They appear in the quiz bank alongside auto-generated questions.
 
 ```java
-// @quiz What does "immutable" mean for Strings in Java?
-// @answer A String cannot be changed after creation. Any modification creates a new String object.
+// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?
+// @answer Java is ALWAYS pass-by-value.
+// @answer For objects, the reference value is copied — not the object itself.
 
-// @quiz What is the difference between == and .equals() for Strings?
-// @answer == compares object references; .equals() compares actual character content.
-// @answer Always use .equals() for String comparison — == fails for non-literal Strings.
+// @quiz (INTERVIEW TRAP) What prints: System.out.println(10 + 20 + "Java")?
+// @answer 30Java — + is left-to-right: 10+20=30 (int), then 30+"Java"="30Java" (concat).
 
-// @quiz (OCJP) What does String.concat() return?
-// @answer A new String with the concatenated value. The original String is NOT modified.
-// @answer OCJP trap: if you ignore the return value, the original String is unchanged.
+// @quiz (OCJP) What happens when byte b = 128?
+// @answer Compile error — 128 exceeds byte's max value of 127.
+// @answer Use int, short, or cast explicitly: byte b = (byte) 128; → gives -128 (overflow).
 ```
 
 **Rules:**
@@ -170,6 +170,8 @@ They appear in the quiz bank alongside auto-generated questions.
 - `// @answer <answer>` — one or more answer lines follow immediately
 - Multiple `@answer` lines → checklist items in the self-evaluation panel
 - `@quiz`/`@answer` lines are excluded from Notes/Key Takeaways — quiz bank only
+- Use `(INTERVIEW)` for standard interview questions
+- Use `(INTERVIEW TRAP)` for tricky gotcha-style questions
 - Use `(OCJP)` prefix on the question for exam-style tricky questions
 
 ---
@@ -224,22 +226,25 @@ Format that channels these books:
 
 ## Adding a new topic — complete checklist
 
-1. Create `.java` file under `src/Chapter_N_.../`
+1. Create `.java` file under `src/Chapter_N_.../Sub_Chapter_1_.../`
 2. Write overview comments BEFORE the class declaration:
    - What is this concept? (1-2 lines)
    - Why does it matter / real-world use?
    - At least one OCJP trap
 3. Write inline comments on key lines inside the class body
-4. Add `@quiz`/`@answer` pairs for any tricky questions you want to test yourself on
-5. Run: `npm run revise`
-6. Open `revision-dashboard/index.html` — your topic appears automatically with:
+4. Add `@quiz (INTERVIEW)` and `@quiz (OCJP)` pairs for tricky questions
+5. Create `Sub_Chapter_2_CodingChallenge/` with beginner challenge files
+6. Create `Sub_Chapter_3_DeepProblems/` with a `*DeepProblem.java` file
+7. Run: `npm run revise`
+8. Open `revision-dashboard/index.html` — your topic appears automatically with:
    - Notes (Overview + Key Takeaways)
    - Quick Revision flashcard (with gotchas highlighted)
    - ~12 auto-generated quiz questions
    - OCJP-style tricky questions (for matching chapter types)
-   - Your custom `@quiz` questions
+   - Your custom `@quiz` questions filtered by `(INTERVIEW)`, `(INTERVIEW TRAP)`, `(OCJP)`
    - Inline concept review when you get answers wrong
    - Practice Lab entry (if filename has "Challenge")
+   - Deep Problems entry (if filename has "DeepProblem")
 
 ---
 
@@ -520,9 +525,11 @@ public class OperatorsInJava {
 
 ```
 src/
-  Chapter_<N>_<TopicName>/           ← required prefix
-    Sub_Chapter_<N>_<SubTopicName>/  ← optional
-      MyJavaFile.java
+  Chapter_<N>_<TopicName>/               ← required prefix
+    Sub_Chapter_1_<ConceptName>/         ← concept notes + @quiz tags
+    Sub_Chapter_2_<CodingChallenge>/     ← beginner/intermediate challenge files
+    Sub_Chapter_3_DeepProblems/          ← hard real-world problem files
+      MyTopicDeepProblem.java            ← naming: *DeepProblem.java
 ```
 
 Examples:

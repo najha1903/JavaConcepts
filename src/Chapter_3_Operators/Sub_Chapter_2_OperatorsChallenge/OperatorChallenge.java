@@ -1,4 +1,4 @@
-﻿package Chapter_3_Operators.Sub_Chapter_2_OperatorsChallenge;
+package Chapter_3_Operators.Sub_Chapter_2_OperatorsChallenge;
 // CODING CHALLENGE — Operators Practice
 // This challenge demonstrates practical use of arithmetic operators, the modulus (remainder) operator, boolean logic, and the ternary operator.
 // Key concept: the modulus operator (%) gives the REMAINDER of division. If a % b == 0, then a is perfectly divisible by b with no remainder.

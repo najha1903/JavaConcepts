@@ -1,4 +1,4 @@
-﻿package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
+package Chapter_10_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
 /*
   WHILE LOOPS
 
@@ -39,6 +39,29 @@
   - A never-executing loop (condition is false from the start) will silently skip all the loop code.
 */
 
+// @quiz (INTERVIEW) What is the difference between while and do-while in Java?
+// @answer while checks its condition before the body, so it may run zero times.
+// @answer do-while checks after the body, so it always runs at least once.
+
+// @quiz (INTERVIEW) What is an infinite loop, and how do you break out of one?
+// @answer An infinite loop is a loop whose condition never becomes false or that intentionally uses while(true).
+// @answer You exit it with break, return, an exception, or by changing the condition from inside the loop.
+
+// @quiz (INTERVIEW) When would you prefer while over for?
+// @answer Prefer while when the number of iterations is not known in advance and the loop depends on a changing condition.
+// @answer It is common for input-reading, waiting, and sentinel-controlled loops.
+
+// @quiz (INTERVIEW) What do break and continue do inside a while loop?
+// @answer break exits the loop immediately, while continue skips the rest of the current iteration and reevaluates the condition.
+// @answer Both change control flow without waiting for the loop body to finish normally.
+
+// @quiz (OCJP) What prints here: int x = 0; do { x++; } while (x < 0); System.out.println(x);?
+// @answer It prints 1.
+// @answer A do-while loop always executes its body once before checking the condition.
+
+// @quiz (OCJP) Which is usually clearer: while (condition) { ... } or while (true) { if (condition) break; }?
+// @answer The explicit condition form is usually clearer when the exit rule is known up front.
+// @answer while (true) with break is fine when the exit depends on logic inside the loop body.
 public class WhileLoops {
 
     /* while loop simply has expression
@@ -94,7 +117,5 @@ Unlike the for loop, there is no place for the declaration of a temporary variab
 
 // while statement with continue and break: 'continue' skips to the next iteration, 'break' exits the loop entirely.
 
-
-
-
+}
 

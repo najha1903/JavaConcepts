@@ -17,8 +17,7 @@ public class Main {
       // Car car = new Car();
         car.describeCar();
 
-        /* Output :- 0-Door null null null
-         *
+        /*
          * Null :- null is a special keyword in Java, meaning, the variable or attribute has a type but no reference to an object.
          *
          * This means that no instance or object is assigned to the variable or field.
@@ -58,8 +57,5 @@ public class Main {
         System.out.println("make = " + car.getMake());
         System.out.println("model = " + car.getModel());
 
-        // Output :- make = Porsche
-        // model = Model X
-        
     }
 }
