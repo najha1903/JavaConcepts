@@ -107,6 +107,8 @@ function parseJavaFile(filePath, rootDir) {
     if (/^[A-Za-z_][\w$.]*\s*\([^)]*\)\s*;$/.test(n)) return true;
     // Java access-modifier declarations
     if (/^(public|private|protected)\s+(static\s+|final\s+)?[\w<>\[\],\s]+\s+\w+\s*[({]/.test(n)) return true;
+    // Switch labels:  case 1:   case 'A':   case "x":   case ENUM_VALUE:   default:
+    if (/^(case\s+([0-9]+|'\\?.'|"[^"]*"|[A-Za-z_$][\w$.]*)|default)\s*:\s*$/.test(n)) return true;
     // Starts with another comment marker
     if (/^\/\//.test(n)) return true;
     return false;
@@ -164,7 +166,9 @@ function parseJavaFile(filePath, rootDir) {
         .filter(l => !l.includes('//'))
         // Lines with braces or ending semicolons are code examples.
         .filter(l => !/[{}]/.test(l))
-        .filter(l => !/;\s*$/.test(l));
+        .filter(l => !/;\s*$/.test(l))
+        // Switch labels, lone declarations, and other code fragments.
+        .filter(l => !isCodeFragment(l));
       const joined = joinContinuationLines(rawLines).map(fixTrailingComma);
       if (joined.length > 0) {
         results.push({ type: 'block', lines: joined });

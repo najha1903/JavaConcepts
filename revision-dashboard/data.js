@@ -437,11 +437,7 @@ const CONCEPTS_DATA = [
               "--- IF STATEMENT SCOPE ---",
               "Variables declared inside an if block are NOT accessible in else or outside the if.",
               "--- SWITCH SCOPE (special rule!) ---",
-              "In a switch, a variable declared in one case IS accessible to later cases (cases that come after), but NOT to earlier cases, and NOT outside the switch.",
-              "case 1:",
-              "case 2:",
-              "case 3:",
-              "default:"
+              "In a switch, a variable declared in one case IS accessible to later cases (cases that come after), but NOT to earlier cases, and NOT outside the switch."
             ]
           },
           {
