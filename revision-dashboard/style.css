@@ -1553,8 +1553,8 @@ h1, h2, h3, h4, .logo span {
     align-items: center;
     justify-content: center;
     width: 42px; height: 42px;
-    border: none;
-    background: transparent;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
     color: var(--text-primary);
     border-radius: 10px;
     cursor: pointer;
@@ -1562,6 +1562,12 @@ h1, h2, h3, h4, .logo span {
   }
   .mobile-icon-btn:active { background: var(--bg-card-hover); }
   .mobile-icon-btn svg { width: 24px; height: 24px; }
+  /* Make the light/dark switch stand out as a distinct, tappable control */
+  #mobile-theme-toggle {
+    border-color: var(--accent-primary);
+    background: var(--accent-primary-subtle);
+  }
+  #mobile-theme-toggle svg { color: var(--accent-primary); }
   .mobile-topbar-title {
     display: flex;
     align-items: center;
