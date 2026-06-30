@@ -1470,6 +1470,15 @@ h1, h2, h3, h4, .logo span {
 .code-annotation { color: var(--accent-secondary); font-style: italic; }
 
 /* ==========================================================================
+   Mobile chrome (hidden on desktop, activated in the ≤768px media query)
+   ========================================================================== */
+.mobile-topbar { display: none; }
+.drawer-backdrop { display: none; }
+.mobile-intro { display: none; }
+.mobile-code-toggle { display: none; }
+.mobile-only-inline { display: none; }
+
+/* ==========================================================================
    Responsive Adaptation
    ========================================================================== */
 @media (max-width: 1024px) {
@@ -1500,9 +1509,6 @@ h1, h2, h3, h4, .logo span {
   .app-container {
     grid-template-columns: 1fr;
   }
-  .sidebar {
-    display: none; /* In a production app, we would add a hamburger menu */
-  }
   .main-content {
     padding: 20px;
   }
@@ -1516,6 +1522,171 @@ h1, h2, h3, h4, .logo span {
   .quiz-result-actions .btn {
     width: 100%;
   }
+}
+
+/* ==========================================================================
+   Mobile notes-only experience (phones / small tablets)
+   - Sidebar becomes an off-canvas drawer opened from a fixed top bar
+   - Only the notes (Detailed Study) are shown; quizzes, practice lab,
+     Anki/Quick Revision and the dashboard stats are hidden
+   - The code example is available via a collapsed "View code" toggle
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* --- Fixed top bar --- */
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    padding: 0 10px;
+    background: var(--bg-card);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1100;
+  }
+  .mobile-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px; height: 42px;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    border-radius: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .mobile-icon-btn:active { background: var(--bg-card-hover); }
+  .mobile-icon-btn svg { width: 24px; height: 24px; }
+  .mobile-topbar-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .mobile-topbar-title svg { width: 20px; height: 20px; color: var(--accent-primary); flex-shrink: 0; }
+
+  /* --- Single column layout below the fixed bar --- */
+  .app-container {
+    display: block;
+    height: auto;
+    min-height: 100vh;
+  }
+  .main-content {
+    padding: 16px;
+    padding-top: 72px;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* --- Sidebar as off-canvas drawer --- */
+  .sidebar {
+    display: flex;
+    position: fixed;
+    top: 0; left: 0;
+    width: 86%;
+    max-width: 330px;
+    height: 100vh;
+    height: 100dvh;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+    z-index: 1200;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.45);
+    overflow-y: auto;
+  }
+  .app-container.drawer-open .sidebar { transform: translateX(0); }
+  .drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+    z-index: 1150;
+  }
+  .app-container.drawer-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
+
+  .mobile-only-inline { display: inline-flex; }
+  .desktop-only-inline { display: none; }
+
+  /* --- Hide non-notes navigation entry points --- */
+  .nav-menu .nav-section,
+  .nav-menu .nav-divider { display: none; }
+
+  /* --- Dashboard view: show mobile intro, hide everything else --- */
+  #dashboard-view > *:not(.mobile-intro) { display: none; }
+  .mobile-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding: 48px 18px 24px;
+  }
+  .mobile-intro-icon svg { width: 56px; height: 56px; color: var(--accent-primary); }
+  .mobile-intro h1 { font-size: 24px; margin: 0; }
+  .mobile-intro p { color: var(--text-secondary); max-width: 320px; margin: 0; line-height: 1.5; }
+  .mobile-intro .btn { margin-top: 8px; }
+
+  /* --- Study view = notes only --- */
+  .study-header-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .study-mode-toggle,
+  .study-actions { display: none; }   /* no Quick Revision toggle, no quiz/practice buttons */
+  #quick-revision-panel { display: none !important; }
+
+  .study-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    height: auto;
+    overflow: visible;
+  }
+  .study-notes-panel {
+    height: auto;
+    overflow: visible;
+  }
+  .explanations-content .concept-bullet-list li { font-size: 15px; }
+
+  /* --- Code example: collapsed by default, expandable --- */
+  .study-code-panel { height: auto; }
+  .mobile-code-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .mobile-code-toggle > span { flex: 1; text-align: left; }
+  .mobile-code-toggle svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .mobile-code-toggle .code-toggle-chevron { transition: transform 0.2s ease; }
+  .mobile-code-toggle[aria-expanded="true"] .code-toggle-chevron { transform: rotate(180deg); }
+  .study-code-panel .code-card { display: none; margin-top: 12px; height: auto; }
+  .study-code-panel.mobile-show .code-card { display: flex; }
+  .study-code-panel .code-wrapper { max-height: 60vh; }
+
+  /* --- Footer pagination --- */
+  .study-footer-nav { gap: 10px; }
+  .study-footer-nav .btn { flex: 1; justify-content: center; }
 }
 
 /* ==========================================================================

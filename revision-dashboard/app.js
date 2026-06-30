@@ -215,21 +215,19 @@ function initApp() {
   showView('dashboard-view');
 }
 
+function updateThemeIcons(theme) {
+  document.querySelectorAll('.theme-icon.moon-icon').forEach(el => {
+    el.style.display = theme === 'light' ? 'none' : 'block';
+  });
+  document.querySelectorAll('.theme-icon.sun-icon').forEach(el => {
+    el.style.display = theme === 'light' ? 'block' : 'none';
+  });
+}
+
 function setupTheme() {
   const currentTheme = localStorage.getItem('javarev_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
-  
-  const themeToggle = document.getElementById('theme-toggle');
-  const moonIcon = themeToggle.querySelector('.moon-icon');
-  const sunIcon = themeToggle.querySelector('.sun-icon');
-  
-  if (currentTheme === 'light') {
-    moonIcon.style.display = 'none';
-    sunIcon.style.display = 'block';
-  } else {
-    moonIcon.style.display = 'block';
-    sunIcon.style.display = 'none';
-  }
+  updateThemeIcons(currentTheme);
 }
 
 function toggleTheme() {
@@ -238,18 +236,7 @@ function toggleTheme() {
   
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem('javarev_theme', newTheme);
-  
-  const themeToggle = document.getElementById('theme-toggle');
-  const moonIcon = themeToggle.querySelector('.moon-icon');
-  const sunIcon = themeToggle.querySelector('.sun-icon');
-  
-  if (newTheme === 'light') {
-    moonIcon.style.display = 'none';
-    sunIcon.style.display = 'block';
-  } else {
-    moonIcon.style.display = 'block';
-    sunIcon.style.display = 'none';
-  }
+  updateThemeIcons(newTheme);
 }
 
 // View switching
@@ -273,6 +260,44 @@ function showView(viewId) {
   } else if (viewId === 'notes-view') {
     document.getElementById('nav-notes-btn').classList.add('active');
   }
+}
+
+// ==========================================================================
+// Mobile drawer + notes-only helpers
+// ==========================================================================
+function isMobileView() {
+  return window.matchMedia('(max-width: 768px)').matches;
+}
+function openDrawer() {
+  const c = document.querySelector('.app-container');
+  if (c) c.classList.add('drawer-open');
+}
+function closeDrawer() {
+  const c = document.querySelector('.app-container');
+  if (c) c.classList.remove('drawer-open');
+}
+function toggleDrawer() {
+  const c = document.querySelector('.app-container');
+  if (c) c.classList.toggle('drawer-open');
+}
+function resetMobileCodePanel() {
+  const panel = document.querySelector('.study-code-panel');
+  if (panel) panel.classList.remove('mobile-show');
+  const btn = document.getElementById('mobile-code-toggle');
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'false');
+    const label = btn.querySelector('span');
+    if (label) label.textContent = 'View code example';
+  }
+}
+function toggleMobileCode() {
+  const panel = document.querySelector('.study-code-panel');
+  const btn = document.getElementById('mobile-code-toggle');
+  if (!panel || !btn) return;
+  const showing = panel.classList.toggle('mobile-show');
+  btn.setAttribute('aria-expanded', showing ? 'true' : 'false');
+  const label = btn.querySelector('span');
+  if (label) label.textContent = showing ? 'Hide code example' : 'View code example';
 }
 
 function shuffleArray(items) {
@@ -529,6 +554,20 @@ function setupEventListeners() {
   searchInput.addEventListener('input', (e) => {
     handleSearch(e.target.value);
   });
+
+  // Mobile drawer + notes-only controls
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  if (menuBtn) menuBtn.addEventListener('click', toggleDrawer);
+  const backdrop = document.getElementById('drawer-backdrop');
+  if (backdrop) backdrop.addEventListener('click', closeDrawer);
+  const drawerClose = document.getElementById('drawer-close-btn');
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  const browseBtn = document.getElementById('mobile-browse-btn');
+  if (browseBtn) browseBtn.addEventListener('click', openDrawer);
+  const mobileTheme = document.getElementById('mobile-theme-toggle');
+  if (mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+  const codeToggle = document.getElementById('mobile-code-toggle');
+  if (codeToggle) codeToggle.addEventListener('click', toggleMobileCode);
 }
 
 // ==========================================================================
@@ -1045,6 +1084,14 @@ function selectTopic(chIdx, tpIdx) {
   
   updateRevisionView();
   showView('study-view');
+
+  // On mobile, keep it notes-only and tidy up the drawer / code panel
+  if (isMobileView()) {
+    setRevisionDepth('detailed');
+    resetMobileCodePanel();
+    closeDrawer();
+    window.scrollTo(0, 0);
+  }
 }
 
 function setRevisionDepth(depth) {
@@ -2455,6 +2502,9 @@ function handleSearch(query) {
     }
     return;
   }
+
+  // On mobile, close the drawer so search results are visible in the main area
+  if (isMobileView()) closeDrawer();
   
   const matches = [];
   
