@@ -159,6 +159,7 @@ function parseJavaFile(filePath, rootDir) {
       const rawLines = m[1].split('\n')
         .map(l => l.replace(/^\s*\*\s?/, '').trim())
         .filter(isMeaningfulLine)
+        .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))
         // Lines containing '//' inside a block comment are code examples, not prose.
         .filter(l => !l.includes('//'))
         // Lines with braces or ending semicolons are code examples.
@@ -184,7 +185,9 @@ function parseJavaFile(filePath, rootDir) {
   const rawLineComments = cleanHeader.split('\n')
     .map(l => l.trim())
     .filter(l => l.startsWith('//'))
+    .filter(l => !/^\/\/\s*@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))  // skip annotation markers
     .map(l => l.replace(/^\/\/\s*/, '').replace(/^\/\/\s*/, '').trim())  // strip nested //
+    .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))  // belt-and-suspenders
     .filter(l => !/https?:\/\//.test(l))   // skip URL-only reference lines
     .filter(isMeaningfulLine)
     .filter(l => !isCodeFragment(l));

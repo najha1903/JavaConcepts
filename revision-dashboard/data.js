@@ -23,25 +23,7 @@ const CONCEPTS_DATA = [
               "The void keyword means this method does not return any value. Methods that return nothing are declared void.",
               "main is the special method name the JVM looks for to start the program. The name must be exactly 'main'.",
               "String[] args is a parameter — it allows you to pass command-line arguments into the program when it runs. args is an array of Strings.",
-              "System.out.println() is a method call that prints a line of text to the console. System is a class, out is a static field (output stream), println is the method.",
-              "@quiz (INTERVIEW) What is the difference between JVM, JRE, and JDK?",
-              "@answer JVM executes Java bytecode, JRE is the runtime package with the JVM and core libraries, and JDK adds tools like javac.",
-              "@answer In short, JDK is for development, JRE is for running programs, and JVM is the execution engine.",
-              "@quiz (INTERVIEW) What does public static void main(String[] args) mean in Java?",
-              "@answer public lets the JVM access it, static lets it run without creating an object, and void means it returns no value.",
-              "@answer main is the entry-point method name, and String[] args holds command-line arguments.",
-              "@quiz (INTERVIEW) Is Java compiled or interpreted?",
-              "@answer Java is both: javac compiles source code to bytecode, and the JVM interprets or JIT-compiles that bytecode at runtime.",
-              "@answer This two-step model is why Java can stay portable across platforms.",
-              "@quiz (INTERVIEW) Why is Java called platform-independent?",
-              "@answer Java source is compiled to bytecode, and any platform with a compatible JVM can run that bytecode.",
-              "@answer That is the basis of Java's \"write once, run anywhere\" idea.",
-              "@quiz (OCJP) What happens here: class A { public void main(String[] args) {} }?",
-              "@answer It compiles, but the JVM will not treat it as the entry point because main is not static.",
-              "@answer Running the class gives a main method not found error.",
-              "@quiz (OCJP) Is this a valid entry point: public static void main(String... args)?",
-              "@answer Yes. String... is varargs syntax, and it is treated as a String[] parameter by the JVM.",
-              "@answer This signature is a valid Java entry point."
+              "System.out.println() is a method call that prints a line of text to the console. System is a class, out is a static field (output stream), println is the method."
             ]
           }
         ],
@@ -179,120 +161,7 @@ const CONCEPTS_DATA = [
               "Unicode in Strings: you can embed Unicode escape sequences in String literals.",
               "Example: \"\\u00A9\" = copyright symbol. Unicode lets Strings contain characters from any language.",
               "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
-              "@quiz (INTERVIEW) Is String a primitive type or an object in Java?",
-              "@answer String is a class, so it is a reference type, not a primitive.",
-              "@answer It feels special because Java supports string literals like \"hello\", but it is still an object.",
-              "@quiz (INTERVIEW) Why is String immutable in Java?",
-              "@answer An immutable String cannot change after creation, which makes it safe for sharing, caching, and use in the string pool.",
-              "@answer Immutability also helps security and makes Strings naturally thread-safe.",
-              "@quiz (INTERVIEW) What is the String pool, and what is the difference between == and .equals() for Strings?",
-              "@answer The string pool stores reused string literals so identical literals can share the same object.",
-              "@answer == compares references, while .equals() compares the actual character content.",
-              "@quiz (INTERVIEW) Why is StringBuilder preferred over String concatenation in loops?",
-              "@answer Repeated String concatenation creates many temporary String objects because String is immutable.",
-              "@answer StringBuilder changes the same buffer, so it is usually faster and uses less memory in loops.",
-              "@quiz (OCJP) What prints here: String s = \"a\" + \"b\"; String t = \"ab\"; System.out.println(s == t);?",
-              "@answer It prints true because both values are compile-time constants and refer to the same pooled String object.",
-              "@answer The concatenation is folded by the compiler into the literal \"ab\".",
-              "@quiz (OCJP) What prints here: String s = new String(\"ab\"); String t = \"ab\"; System.out.println(s == t); System.out.println(s.equals(t));?",
-              "@answer It prints false and then true.",
-              "@answer new String(\"ab\") creates a different object, so == is false, but the contents are equal.",
-              "@quiz What does it mean that Strings are immutable in Java?",
-              "@answer Once a String is created, its value cannot be changed. Any modification creates a new String object.",
-              "@answer The original String is discarded and becomes eligible for garbage collection.",
-              "@quiz What is the difference between a char and a String in Java?",
-              "@answer char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\").",
-              "@quiz When should you use StringBuilder instead of String concatenation?",
-              "@answer When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.",
-              "@quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(a + b + c);",
-              "@answer Output: 30Navneet",
-              "@answer Java evaluates + left to right: (a + b) is done first (both ints) giving 30, then 30 + \"Navneet\" triggers String concatenation giving \"30Navneet\".",
-              "@answer KEY RULE: if both operands of + are numeric, it is arithmetic. Once one operand is a String, + becomes concatenation for the rest of the expression.",
-              "@quiz (INTERVIEW TRAP) int a=10; int b=20; String c=\"Navneet\"; What is the output of: System.out.println(c + a + b);",
-              "@answer Output: Navneet1020",
-              "@answer Java evaluates + left to right: c+\"Navneet\" + a=10 gives \"Navneet10\", then \"Navneet10\" + b=20 gives \"Navneet1020\".",
-              "@answer Once the first operand is a String, ALL subsequent + operations become string concatenation — even int + int after it.",
-              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Result: \" + 1 + 2);",
-              "@answer Output: Result: 12 (NOT Result: 3)",
-              "@answer Because + is left-to-right: \"Result: \" + 1 = \"Result: 1\", then \"Result: 1\" + 2 = \"Result: 12\". Both additions become concatenation once a String is involved.",
-              "@answer To get \"Result: 3\", use parentheses: \"Result: \" + (1 + 2). Parentheses force arithmetic first.",
-              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(1 + 2 + \"Result\");",
-              "@answer Output: 3Result",
-              "@answer Java evaluates left to right: 1 + 2 = 3 (both ints, arithmetic), then 3 + \"Result\" = \"3Result\" (String concat).",
-              "@answer Contrast: \"Result\" + 1 + 2 = \"Result12\". Order matters!",
-              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Value: \" + (10 + 20) + \" done\");",
-              "@answer Output: Value: 30 done",
-              "@answer Parentheses (10 + 20) are evaluated first as arithmetic giving 30. Then \"Value: \" + 30 = \"Value: 30\", then + \" done\" = \"Value: 30 done\".",
-              "@quiz (INTERVIEW TRAP) What is the output of: char ch = 'A'; System.out.println(ch + 1);",
-              "@answer Output: 66 (NOT A1)",
-              "@answer char in arithmetic context is treated as its Unicode/ASCII integer value. 'A' = 65. 65 + 1 = 66. Result is int 66, not a String.",
-              "@answer To get \"A1\", use: \"\" + ch + 1 OR String.valueOf(ch) + 1. Adding an empty String \"\" forces concatenation.",
-              "@quiz (INTERVIEW) How do you find the length of a String WITHOUT using the built-in .length() method?",
-              "@answer Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length.",
-              "@answer Another approach: convert to char array and use array.length — but that internally calls length anyway.",
-              "@answer Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally.",
-              "@quiz (INTERVIEW) What is the output of: String s = \"Java\"; s.concat(\" is fun\"); System.out.println(s);",
-              "@answer Output: Java",
-              "@answer Strings are immutable. concat() returns a NEW String but does NOT modify s. Since the return value is ignored, s is still \"Java\".",
-              "@answer Fix: s = s.concat(\" is fun\"); — you must assign the result back.",
-              "@quiz (INTERVIEW TRAP) int a=5; What is the output of: System.out.println(\"\" + a + a);",
-              "@answer Output: 55 (NOT 10)",
-              "@answer \"\" is an empty String. \"\" + a = \"5\" (String), then \"5\" + a = \"55\". Not arithmetic because the first operand is a String.",
-              "@answer To add them arithmetically: System.out.println(a + a + \"\") = \"10\"",
-              "─── WITHOUT BUILT-IN METHOD — Classic Interview Series ────────────────────",
-              "@quiz (INTERVIEW) How do you REVERSE a String WITHOUT using StringBuilder.reverse() or any library?",
-              "@answer Iterate from the last index to 0 and build a new String: String rev = \"\"; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }",
-              "@answer Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr).",
-              "@answer Key insight: Strings are immutable so you can't modify in place — you must build a new result.",
-              "@quiz (INTERVIEW) How do you check if a String is a PALINDROME without using any built-in reverse method?",
-              "@answer Use two pointers — one at the start, one at the end, move inward and compare: boolean isPalin = true; int l=0, r=str.length()-1; while(l<r){ if(str.charAt(l)!=str.charAt(r)){isPalin=false; break;} l++; r--; }",
-              "@answer Key insight: a palindrome reads the same forwards and backwards. \"madam\", \"racecar\", \"level\" are palindromes.",
-              "@answer You DON'T need to reverse the whole string — just compare from both ends. This is O(n/2) = O(n).",
-              "@quiz (INTERVIEW) How do you count occurrences of a specific character in a String WITHOUT using regex or library?",
-              "@answer Loop through each character and compare: int count = 0; for (int i = 0; i < str.length(); i++) { if (str.charAt(i) == target) count++; }",
-              "@answer Or with for-each: for (char ch : str.toCharArray()) { if (ch == target) count++; }",
-              "@quiz (INTERVIEW) How do you check if a String CONTAINS a substring WITHOUT using contains() or indexOf()?",
-              "@answer Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true.",
-              "@answer Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm.",
-              "@quiz (INTERVIEW) How do you convert a String to UPPERCASE WITHOUT using toUpperCase()?",
-              "@answer Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);",
-              "@answer Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }",
-              "@quiz (INTERVIEW) How do you COUNT VOWELS in a String WITHOUT using regex?",
-              "@answer Loop through each char and check if it's in the set {a,e,i,o,u,A,E,I,O,U}: int count=0; for(char ch: str.toCharArray()){ String v=\"aeiouAEIOU\"; if(v.indexOf(ch)!=-1) count++; }",
-              "@answer Simpler: use a switch or if-else chain: if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') count++;",
-              "@quiz (INTERVIEW) How do you check if two Strings are ANAGRAMS WITHOUT using sort()?",
-              "@answer Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0.",
-              "@answer If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach.",
-              "@answer Example: \"listen\" and \"silent\" are anagrams — same characters, different order.",
-              "@quiz (INTERVIEW) How do you REMOVE ALL SPACES from a String WITHOUT using replace() or replaceAll()?",
-              "@answer Loop and skip spaces: StringBuilder sb = new StringBuilder(); for(char ch: str.toCharArray()){ if(ch!=' ') sb.append(ch); }",
-              "@answer This builds a new String containing only non-space characters.",
-              "@quiz (INTERVIEW) How do you COUNT WORDS in a String WITHOUT using split()?",
-              "@answer Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }",
-              "@answer Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it.",
-              "@quiz (INTERVIEW) How do you find the FIRST NON-REPEATING CHARACTER in a String WITHOUT library methods?",
-              "@answer Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1.",
-              "@answer int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;",
-              "@quiz (INTERVIEW) How do you REMOVE DUPLICATE CHARACTERS from a String WITHOUT using Set or distinct()?",
-              "@answer Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true.",
-              "@answer Example: \"programming\" → \"progamin\" (each character kept only on first occurrence).",
-              "@quiz (INTERVIEW) How do you check if a String is NUMERIC (all digits) WITHOUT using parseInt() or regex?",
-              "@answer Loop through each char and check ch >= '0' && ch <= '9': boolean isNum=true; for(char ch:str.toCharArray()){ if(ch<'0'||ch>'9'){isNum=false;break;} }",
-              "@answer Handle edge cases: empty string should return false. Negative sign ('-' at index 0) may or may not count depending on requirement.",
-              "@challenge Implement a StringUtils class with methods that do NOT use any built-in String methods except charAt() and length()",
-              "@desc Implement: reverse(String s), isPalindrome(String s), countChar(String s, char target), toUpperCase(String s), countVowels(String s), removeSpaces(String s)",
-              "@hint For reverse: use two pointers on a char array. For palindrome: compare from both ends. For toUpperCase: use ASCII arithmetic (subtract 32 from lowercase chars).",
-              "@testcase reverse(\"hello\") → \"olleh\", isPalindrome(\"racecar\") → true, isPalindrome(\"java\") → false, countVowels(\"Hello World\") → 3",
-              "@quiz (INTERVIEW) What is the difference between == and .equals() when comparing Strings in Java?",
-              "@answer == compares references, meaning whether both variables point to the exact same String object in memory.",
-              "@answer .equals() compares String content, so it checks whether the characters are the same.",
-              "@answer Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because both usually point to the same pooled literal object, but new String(\"hello\") compared with another new String(\"hello\") gives == as false because they are different heap objects.",
-              "@answer Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects.",
-              "@quiz (INTERVIEW TRAP) What is the output of: Integer a = 127; Integer b = 127; System.out.println(a == b); then Integer x = 128; Integer y = 128; System.out.println(x == y);",
-              "@answer Output: true on the first line and false on the second line.",
-              "@answer Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.",
-              "@answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.",
-              "@answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality."
+              "─── WITHOUT BUILT-IN METHOD — Classic Interview Series ────────────────────"
             ]
           }
         ],
@@ -633,25 +502,7 @@ const CONCEPTS_DATA = [
               "An identifier (variable name) must start with a letter, underscore, or dollar sign. By convention, variable names use camelCase (e.g., myFirstNumber).",
               "A String literal is any sequence of characters surrounded by double quotes — e.g., \"Hello\". Unlike variables, the literal itself cannot be changed; the variable pointing to it can be reassigned.",
               "Java operators perform operations on variables and values — for example + (addition), - (subtraction), * (multiplication), / (division), % (remainder).",
-              "A declaration statement defines a variable: int myFirstNumber = 5; — the type is int, name is myFirstNumber, value is 5.",
-              "@quiz (INTERVIEW) What are Java's 8 primitive types and their sizes?",
-              "@answer byte=8 bits, short=16, int=32, long=64, char=16, float=32, double=64, and boolean stores true or false.",
-              "@answer boolean has no fixed JVM-wide bit size in memory, but conceptually it has only two possible values.",
-              "@quiz (INTERVIEW) What is the difference between a primitive type and a reference type?",
-              "@answer A primitive stores its actual value directly, while a reference type stores the address-like reference to an object.",
-              "@answer int, double, and boolean are primitives; String and arrays are reference types.",
-              "@quiz (INTERVIEW) What is the default value of a local variable in Java?",
-              "@answer Local variables do not get default values in Java.",
-              "@answer You must initialize a local variable before reading it, or the code will not compile.",
-              "@quiz (INTERVIEW) Do instance fields and local variables behave the same way for default values?",
-              "@answer No. Instance and static fields get default values like 0, false, or null, but local variables do not.",
-              "@answer That is why uninitialized locals cause compile-time errors while fields do not.",
-              "@quiz (OCJP) What concept is shown here: Integer x = 10; int y = x;?",
-              "@answer int to Integer is autoboxing, and Integer to int is unboxing.",
-              "@answer Java inserts those conversions automatically when the types are compatible.",
-              "@quiz (OCJP) What happens with: byte b = 128;?",
-              "@answer It does not compile because 128 is outside the byte range of -128 to 127.",
-              "@answer You need a smaller literal or an explicit cast, though a cast can still change the value."
+              "A declaration statement defines a variable: int myFirstNumber = 5; — the type is int, name is myFirstNumber, value is 5."
             ]
           }
         ],
@@ -764,38 +615,7 @@ const CONCEPTS_DATA = [
               "char and Unicode: char holds a single character, uses single quotes: char c = 'D';",
               "You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')",
               "Unicode is an international encoding standard — every character in every language has a unique code point.",
-              "boolean: can only be true or false. It is the result of any comparison or logical expression.",
-              "@quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?",
-              "@answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.",
-              "@answer Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast.",
-              "@quiz (INTERVIEW) What is integer overflow in Java?",
-              "@answer Integer overflow happens when a value goes past the type's range and wraps around to the opposite end.",
-              "@answer For example, Integer.MAX_VALUE + 1 becomes Integer.MIN_VALUE.",
-              "@quiz (INTERVIEW) Why does integer division drop the decimal part?",
-              "@answer When both operands are integer types, Java performs integer division and keeps only the whole-number result.",
-              "@answer So 1 / 2 is 0, while 1.0 / 2 uses floating-point division and keeps the fraction.",
-              "@quiz (OCJP) What is the output of: System.out.println(1 / 2); System.out.println(1.0 / 2);?",
-              "@answer The output is 0 and 0.5.",
-              "@answer The first uses integer division, while the second uses double division.",
-              "@quiz (OCJP) What happens here: long l = 10; int i = l;?",
-              "@answer It does not compile because assigning long to int is narrowing and may lose data.",
-              "@answer You need an explicit cast, such as int i = (int) l;.",
-              "@quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?",
-              "@answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.",
-              "@answer Reference type fields default to null because they store no object reference yet.",
-              "@answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.",
-              "@quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?",
-              "@answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.",
-              "@answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.",
-              "@answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.",
-              "@quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?",
-              "@answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.",
-              "@answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.",
-              "@answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.",
-              "@quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?",
-              "@answer Yes, it is valid in Java 7 and later, and the value is still one million.",
-              "@answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.",
-              "@answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F."
+              "boolean: can only be true or false. It is the result of any comparison or logical expression."
             ]
           }
         ],
@@ -990,35 +810,7 @@ const CONCEPTS_DATA = [
               "Increment (++) adds 1 to a variable: myVar++ is equivalent to myVar = myVar + 1.",
               "Decrement (--) subtracts 1 from a variable: myVar-- is equivalent to myVar = myVar - 1.",
               "Operator precedence determines the order in which operators are evaluated in an expression (like BODMAS/PEMDAS in maths). Use parentheses to override precedence.",
-              "Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html",
-              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");",
-              "@answer Output: 30Java",
-              "@answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).",
-              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);",
-              "@answer Output: Java1020 (NOT Java30)",
-              "@answer \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.",
-              "@quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));",
-              "@answer Output: Java30",
-              "@answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".",
-              "@answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.",
-              "@quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?",
-              "@answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.",
-              "@answer Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.",
-              "@quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?",
-              "@answer = is the assignment operator, while == is the equality comparison operator.",
-              "@answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.",
-              "@answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.",
-              "@quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);",
-              "@answer Output: big",
-              "@answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\".",
-              "@quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?",
-              "@answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.",
-              "@answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.",
-              "@answer After b += 5, the value of b becomes 15.",
-              "@quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?",
-              "@answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.",
-              "@answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.",
-              "@answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady()."
+              "Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html"
             ]
           }
         ],
@@ -1174,19 +966,7 @@ const CONCEPTS_DATA = [
               "Whitespace (spaces, tabs, blank lines) between tokens is completely ignored by the Java compiler. It is for human readability only.",
               "Indentation is not required by Java — code will compile and run with any (or no) indentation. BUT proper indentation is essential for readability and shows the logical nesting of code blocks.",
               "In IntelliJ IDEA: Code -> Reformat Code (Ctrl+Alt+L) will auto-indent and format your code.",
-              "Best practice: one statement per line, consistent indentation (usually 4 spaces or 1 tab per level).",
-              "@quiz (INTERVIEW) What is the difference between a statement and an expression in Java?",
-              "@answer An expression produces a value, such as 2 + 3 or x > 5.",
-              "@answer A statement is a complete instruction, such as int x = 5; or System.out.println(x);.",
-              "@quiz (INTERVIEW) Do whitespace and indentation affect Java compilation?",
-              "@answer No. Java mostly ignores extra spaces, tabs, and line breaks between tokens.",
-              "@answer They matter for readability, but not for the meaning of correctly separated code.",
-              "@quiz (INTERVIEW) Can one statement span multiple lines or multiple statements share one line?",
-              "@answer Yes. A statement can span lines, and multiple statements can appear on one line if each is properly terminated.",
-              "@answer The semicolon ends most statements, not the line break.",
-              "@quiz (OCJP) Is int x = 5; a statement or an expression?",
-              "@answer It is a declaration statement.",
-              "@answer The whole line is not just an expression, even though it contains the assignment expression x = 5."
+              "Best practice: one statement per line, consistent indentation (usually 4 spaces or 1 tab per level)."
             ]
           }
         ],
@@ -1297,25 +1077,7 @@ const CONCEPTS_DATA = [
               "The assignment operator (=) assigns a value. The equality operator (==) compares values. Never use = inside a condition — use == instead.",
               "Ternary Operator: a compact if-else in a single expression. Syntax: condition ? valueIfTrue : valueIfFalse",
               "Example from code below: boolean wasCar = isCar ? true : false; — if isCar is true, wasCar = true; else wasCar = false.",
-              "Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html",
-              "@quiz (INTERVIEW) What is the dangling else problem in Java?",
-              "@answer A dangling else happens when nested if statements omit braces and it is unclear which if the else belongs to.",
-              "@answer In Java, else always matches the nearest unmatched if.",
-              "@quiz (INTERVIEW) Can an if condition use non-boolean types in Java?",
-              "@answer No. Java requires the condition to be a boolean expression.",
-              "@answer Unlike C, Java does not allow numbers or object references directly as if conditions.",
-              "@quiz (INTERVIEW) When should you use the ternary operator instead of if-else?",
-              "@answer Use the ternary operator for short value-producing decisions, such as assigning one of two values.",
-              "@answer Use if-else when the logic is longer or you need multiple statements.",
-              "@quiz (INTERVIEW) Why are braces recommended even for a single if statement?",
-              "@answer Braces make the controlled block explicit and prevent bugs when more lines are added later.",
-              "@answer They also make nested conditions easier to read.",
-              "@quiz (OCJP) What happens here: int x = 5; if (x = 5) { System.out.println(\"Hi\"); }?",
-              "@answer It does not compile because x = 5 is an int assignment expression, not a boolean condition.",
-              "@answer Java if conditions must evaluate to true or false.",
-              "@quiz (OCJP) How many statements does if control here: if (true) System.out.println(\"A\"); System.out.println(\"B\");?",
-              "@answer Only the first statement after if is controlled by the condition.",
-              "@answer The second println is outside the if unless braces are used."
+              "Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html"
             ]
           }
         ],
@@ -1444,24 +1206,7 @@ const CONCEPTS_DATA = [
               "Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.",
               "Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.",
               "A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.",
-              "This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method.",
-              "@quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?",
-              "@answer Java is ALWAYS pass-by-value.",
-              "@answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.",
-              "@answer For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.",
-              "@answer Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped.",
-              "@quiz (INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?",
-              "@answer Java resolves overloads at compile time and chooses the most specific applicable method.",
-              "@answer Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.",
-              "@answer If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order.",
-              "@quiz (INTERVIEW) What is the difference between a void method and a method with a return type?",
-              "@answer A void method performs work but does not return a value to the caller.",
-              "@answer A method with a return type must return a value of that declared type on every valid execution path.",
-              "@answer You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use.",
-              "@quiz (INTERVIEW) What is the difference between a static method and an instance method in Java?",
-              "@answer A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().",
-              "@answer An instance method belongs to a specific object and is called on an object reference.",
-              "@answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members."
+              "This file shows: (1) a void method with no parameters, (2) a commented-out void method with parameters (showing the evolution), and (3) the final int-returning overloaded method."
             ]
           }
         ],
@@ -1985,25 +1730,7 @@ const CONCEPTS_DATA = [
               "The 'default' case is like the 'else' in an if-else — it runs when no case matches. It is optional but recommended.",
               "A return statement inside a switch also acts like a break — it exits both the switch AND the method.",
               "Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println(\"1, 2 or 3\");",
-              "The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through.",
-              "@quiz (INTERVIEW) What data types can be used in a traditional Java switch statement?",
-              "@answer switch supports byte, short, char, int, their wrapper types, enum types, and String.",
-              "@answer It does not support every type, so larger or unrelated types still need if-else logic.",
-              "@quiz (INTERVIEW) What is fall-through in a switch statement, and when is it useful?",
-              "@answer Fall-through means execution continues into the next case when break is omitted.",
-              "@answer It is useful when multiple cases should share the same logic, but accidental fall-through is a common bug.",
-              "@quiz (INTERVIEW) What is the default case in a switch statement, and is it required?",
-              "@answer default runs when no case label matches the switch value.",
-              "@answer It is optional, but it is often useful for invalid or unexpected values.",
-              "@quiz (INTERVIEW) When is switch usually preferred over a long if-else chain?",
-              "@answer switch is cleaner when one expression is compared against many fixed constant values.",
-              "@answer if-else is better when conditions are ranges, combinations, or more complex boolean expressions.",
-              "@quiz (OCJP) What prints here: int x = 2; switch (x) { case 1: System.out.print(\"A\"); case 2: System.out.print(\"B\"); default: System.out.print(\"C\"); }?",
-              "@answer It prints BC.",
-              "@answer Execution starts at case 2 and falls through to default because there are no break statements.",
-              "@quiz (OCJP) Can a traditional switch use long or boolean as the selector?",
-              "@answer No. long and boolean are not valid selector types for a traditional switch statement.",
-              "@answer For those cases, use if-else instead."
+              "The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through."
             ]
           }
         ],
@@ -2088,19 +1815,7 @@ const CONCEPTS_DATA = [
               "The 'yield' keyword is used inside a case block { } when you need multiple statements before returning a value.",
               "yield is to a switch expression what return is to a method — it provides the value for that case.",
               "Example: default -> { String msg = \"INVALID\"; yield msg; }",
-              "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
-              "@quiz (INTERVIEW) What is the difference between a traditional switch statement and an enhanced switch expression?",
-              "@answer Traditional switch uses colon syntax and can fall through, while enhanced switch uses arrow syntax and does not fall through.",
-              "@answer Enhanced switch can also be used as an expression that directly returns a value.",
-              "@quiz (INTERVIEW) Can an enhanced switch return a value?",
-              "@answer Yes. An enhanced switch can be used on the right side of an assignment or in a return statement.",
-              "@answer Each case provides the result with an expression or with yield inside a block.",
-              "@quiz (INTERVIEW) What is the purpose of yield in an enhanced switch?",
-              "@answer yield returns a value from a case block when that case needs multiple statements.",
-              "@answer It is only used inside switch expressions, not ordinary methods.",
-              "@quiz (OCJP) Does an enhanced switch fall through here: switch (x) { case 1 -> System.out.println(\"A\"); case 2 -> System.out.println(\"B\"); default -> System.out.println(\"C\"); }?",
-              "@answer No. Each arrow case is isolated, so execution stops after the matching case.",
-              "@answer That is why enhanced switch does not need break statements."
+              "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive."
             ]
           }
         ],
@@ -2334,25 +2049,7 @@ const CONCEPTS_DATA = [
               "Update: runs AFTER each iteration body. Usually increments or decrements the counter.",
               "The counter variable declared in 'for(int i = ...)' is LOCAL to the loop — it does not exist outside the loop.",
               "The 'break' statement immediately exits the loop, regardless of the condition.",
-              "The 'continue' statement skips the rest of the current iteration and moves to the update step, then checks the condition again.",
-              "@quiz (INTERVIEW) What is the difference between for, while, and do-while loops in Java?",
-              "@answer for is best when initialization, condition, and update belong together, while while is better for condition-driven loops.",
-              "@answer do-while checks the condition after the body, so it runs at least once.",
-              "@quiz (INTERVIEW) What is an enhanced for-each loop, and when can you not use it?",
-              "@answer The enhanced for loop iterates over arrays or collections without managing an index manually.",
-              "@answer It is not suitable when you need the index, need to skip backward, or need structural modification during iteration.",
-              "@quiz (INTERVIEW) Can you declare multiple variables in a for loop initializer?",
-              "@answer Yes, but they must be of the same declared type in that initializer.",
-              "@answer For example, for (int i = 0, j = 10; i < j; i++, j--) is valid.",
-              "@quiz (INTERVIEW) When is a for loop usually preferred over a while loop?",
-              "@answer A for loop is preferred when the loop count or iteration pattern is known up front.",
-              "@answer It keeps loop setup in one place and is often easier to read for counter-based logic.",
-              "@quiz (OCJP) What does for (;;) do in Java?",
-              "@answer It creates an infinite loop because all three sections are omitted.",
-              "@answer The loop stops only with break, return, an exception, or external termination.",
-              "@quiz (OCJP) What prints here: for (int i = 0; i < 3; i++) { i++; System.out.print(i); }?",
-              "@answer It prints 13.",
-              "@answer Modifying the loop variable inside the body is legal, but it changes the loop flow and can be tricky."
+              "The 'continue' statement skips the rest of the current iteration and moves to the update step, then checks the condition again."
             ]
           }
         ],
@@ -2555,29 +2252,6 @@ const CONCEPTS_DATA = [
               "IMPORTANT: Always check your loop condition carefully.",
               "- An infinite loop (condition never becomes false, no break) will freeze or crash your program.",
               "- A never-executing loop (condition is false from the start) will silently skip all the loop code."
-            ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@quiz (INTERVIEW) What is the difference between while and do-while in Java?",
-              "@answer while checks its condition before the body, so it may run zero times.",
-              "@answer do-while checks after the body, so it always runs at least once.",
-              "@quiz (INTERVIEW) What is an infinite loop, and how do you break out of one?",
-              "@answer An infinite loop is a loop whose condition never becomes false or that intentionally uses while(true).",
-              "@answer You exit it with break, return, an exception, or by changing the condition from inside the loop.",
-              "@quiz (INTERVIEW) When would you prefer while over for?",
-              "@answer Prefer while when the number of iterations is not known in advance and the loop depends on a changing condition.",
-              "@answer It is common for input-reading, waiting, and sentinel-controlled loops.",
-              "@quiz (INTERVIEW) What do break and continue do inside a while loop?",
-              "@answer break exits the loop immediately, while continue skips the rest of the current iteration and reevaluates the condition.",
-              "@answer Both change control flow without waiting for the loop body to finish normally.",
-              "@quiz (OCJP) What prints here: int x = 0; do { x++; } while (x < 0); System.out.println(x);?",
-              "@answer It prints 1.",
-              "@answer A do-while loop always executes its body once before checking the condition.",
-              "@quiz (OCJP) Which is usually clearer: while (condition) { ... } or while (true) { if (condition) break; }?",
-              "@answer The explicit condition form is usually clearer when the exit rule is known up front.",
-              "@answer while (true) with break is fine when the exit depends on logic inside the loop body."
             ]
           }
         ],
@@ -3102,25 +2776,7 @@ const CONCEPTS_DATA = [
               "A class can describe a real-world concept: a Car class has fields like colour, make, model; a Person class has name, age, etc.",
               "Objects are created using the 'new' keyword: ClassName obj = new ClassName();",
               "Each object has its own copy of the class's instance fields, so different objects can have different values.",
-              "There is no limit on how many objects you can create from a single class.",
-              "@quiz (INTERVIEW) What is the difference between a class and an object in Java?",
-              "@answer A class is a blueprint that defines fields and methods, while an object is a real instance created from that blueprint.",
-              "@answer Many objects can be created from one class, each with its own state.",
-              "@quiz (INTERVIEW) What is the difference between static fields and instance fields?",
-              "@answer A static field belongs to the class itself and is shared by all objects of that class.",
-              "@answer An instance field belongs to each object, so every object gets its own copy.",
-              "@quiz (INTERVIEW) What are the default values of instance fields in Java?",
-              "@answer Numeric instance fields default to 0 or 0.0, boolean defaults to false, and reference fields default to null.",
-              "@answer These defaults apply to fields, not to local variables.",
-              "@quiz (INTERVIEW) When would you make a field static?",
-              "@answer Use a static field when the value should be shared across all objects, such as a counter or constant-like class state.",
-              "@answer Do not use static when every object needs its own separate value.",
-              "@quiz (OCJP) What prints here: class Counter { static int c = 0; } Counter a = new Counter(); Counter b = new Counter(); a.c = 5; System.out.println(b.c);?",
-              "@answer It prints 5.",
-              "@answer The field is static, so both references access the same shared class variable.",
-              "@quiz (OCJP) Can a static method directly access an instance field like int age; without an object?",
-              "@answer No. A static method has no current object, so direct access to an instance field causes a compile-time error.",
-              "@answer It must use an object reference or access a static field instead."
+              "There is no limit on how many objects you can create from a single class."
             ]
           }
         ],
@@ -3324,25 +2980,7 @@ const CONCEPTS_DATA = [
               "Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.",
               "Always close the Scanner when done: sc.close(); (or use try-with-resources).",
               "The import statement lets you use classes defined in Java's standard library or other packages.",
-              "In this case, Java provides a library of code, which includes the Scanner class in a library called java.util.",
-              "@quiz (INTERVIEW) What does Integer.parseInt() do, and what exception can it throw?",
-              "@answer Integer.parseInt() converts a numeric String like \"42\" into a primitive int.",
-              "@answer It throws NumberFormatException if the text is not a valid integer.",
-              "@quiz (INTERVIEW) What is the difference between Integer.parseInt() and Integer.valueOf()?",
-              "@answer parseInt() returns a primitive int, while valueOf() returns an Integer object.",
-              "@answer valueOf() is useful when you need the wrapper type instead of the primitive.",
-              "@quiz (INTERVIEW) What is Scanner, and how does it read input?",
-              "@answer Scanner is a utility class that reads tokens or lines from sources such as System.in.",
-              "@answer Methods like nextInt(), next(), and nextLine() parse different kinds of input.",
-              "@quiz (INTERVIEW) Why do Java programs often need parsing when reading console input?",
-              "@answer Console input arrives as text, so you must convert numeric text into number types before doing arithmetic.",
-              "@answer That is why parsing methods are common when reading user input.",
-              "@quiz (OCJP) What happens with: Integer.parseInt(\"3.5\")?",
-              "@answer It throws NumberFormatException because parseInt accepts only valid integer text.",
-              "@answer Decimal text must be parsed with a floating-point parser instead.",
-              "@quiz (OCJP) Why can nextLine() appear to skip input after nextInt() in Scanner?",
-              "@answer nextInt() leaves the trailing newline in the input buffer.",
-              "@answer The following nextLine() reads that leftover newline, so you often need an extra nextLine() to consume it first."
+              "In this case, Java provides a library of code, which includes the Scanner class in a library called java.util."
             ]
           }
         ],
@@ -3581,32 +3219,7 @@ const CONCEPTS_DATA = [
               "The catch parameter specifies WHICH type of exception to catch. 'Exception' is the most general (catches anything).",
               "Useful methods on the exception object: e.getMessage() -> the error message, e.printStackTrace() -> full call stack.",
               "You can have multiple catch blocks for different exception types, ordered from most specific to most general.",
-              "The NullPointerException (NPE) occurs when you try to call a method or access a field on a variable that is null (has no object).",
-              "@quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?",
-              "@answer Yes. The finally block runs even when try or catch executes a return statement.",
-              "@answer Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.",
-              "@answer The main practical exception is System.exit(), which terminates the JVM before finally can run.",
-              "@quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?",
-              "@answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.",
-              "@answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.",
-              "@answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.",
-              "@quiz (INTERVIEW) What is the basic exception hierarchy in Java?",
-              "@answer At the top is Throwable.",
-              "@answer Throwable has two major branches: Error and Exception.",
-              "@answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.",
-              "@answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.",
-              "@quiz (INTERVIEW) What is multi-catch in Java?",
-              "@answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).",
-              "@answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.",
-              "@answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.",
-              "@quiz (INTERVIEW) What is the difference between throw and throws in Java?",
-              "@answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").",
-              "@answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.",
-              "@answer Think of throw as the action and throws as the declaration.",
-              "@quiz (INTERVIEW) What is a NullPointerException and when does it occur?",
-              "@answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.",
-              "@answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.",
-              "@answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization."
+              "The NullPointerException (NPE) occurs when you try to call a method or access a field on a variable that is null (has no object)."
             ]
           }
         ],
@@ -3817,30 +3430,7 @@ const CONCEPTS_DATA = [
               "OOP is built on four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.",
               "A class defines FIELDS (data/state) and METHODS (behaviour). Together these are called class members.",
               "A static field has one copy shared by all instances. An instance field has one copy per object.",
-              "A static method cannot use instance data. An instance method can use both static and instance data.",
-              "@quiz (INTERVIEW) What is the difference between an abstract class and an interface in Java?",
-              "@answer An abstract class can have constructors, instance fields, concrete methods, and abstract methods, so it is useful for sharing common state and behavior in a base class.",
-              "@answer An interface represents a contract or capability. It has no constructors and no instance state for objects, though Java 8+ allows default and static methods.",
-              "@answer A class can extend only ONE abstract class, but it can implement MULTIPLE interfaces.",
-              "@answer Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable.",
-              "@quiz (INTERVIEW) What are the three common uses of the final keyword in Java?",
-              "@answer A final variable can be assigned only once after initialization, so its reference or primitive value cannot be reassigned.",
-              "@answer A final method cannot be overridden by subclasses.",
-              "@answer A final class cannot be extended, which is why classes like String and Integer cannot be subclassed.",
-              "@quiz (INTERVIEW) What is the order of Java access modifiers from most restrictive to least restrictive?",
-              "@answer Order: private, default (package-private), protected, public.",
-              "@answer private means only inside the same class.",
-              "@answer default means only classes in the same package.",
-              "@answer protected means same package plus subclasses in other packages.",
-              "@answer public means accessible from everywhere.",
-              "@quiz (INTERVIEW) What is the difference between this and super in Java?",
-              "@answer this refers to the current object and is used to access current class fields, methods, or another constructor in the same class through this().",
-              "@answer super refers to the parent-class part of the current object and is used to call the parent constructor with super() or access overridden parent methods and hidden parent fields.",
-              "@answer this resolves current-object context, while super explicitly moves one level up the inheritance chain.",
-              "@quiz (INTERVIEW) What is polymorphism in Java, and what is the difference between compile-time and runtime polymorphism?",
-              "@answer Compile-time polymorphism usually means method overloading, where the compiler decides which overloaded method signature matches the arguments.",
-              "@answer Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.",
-              "@answer Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch."
+              "A static method cannot use instance data. An instance method can use both static and instance data."
             ]
           }
         ],
@@ -5309,69 +4899,6 @@ const CONCEPTS_DATA = [
               "6) And Methods that are final also cannot be overridden.",
               "7) A subclass can use super.methodName() to call the superclass version of an overridden method."
             ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@quiz (INTERVIEW) What is method overriding in Java?",
-              "@answer Defining a method in a child class with the SAME name, SAME parameters, and compatible return type as a method in the parent class.",
-              "@answer The child's version replaces the parent's version when called on a child object — this is Runtime Polymorphism (Dynamic Method Dispatch).",
-              "@answer The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type.",
-              "@quiz (INTERVIEW) What is the difference between method overloading and method overriding?",
-              "@answer Overloading: SAME class, SAME name, DIFFERENT parameters. Resolved at COMPILE TIME (static polymorphism).",
-              "@answer Overriding: CHILD class, SAME name, SAME parameters. Resolved at RUNTIME (dynamic polymorphism).",
-              "@answer Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical.",
-              "@quiz (INTERVIEW) What are the rules for method overriding in Java?",
-              "@answer 1) Same method name and same parameters (signature must match exactly).",
-              "@answer 2) Return type must be the same OR a subclass (covariant return type — Java 5+).",
-              "@answer 3) Access modifier cannot be MORE restrictive (public > protected > default > private). Can be less restrictive.",
-              "@answer 4) Only inherited (non-private, non-static, non-final) methods can be overridden.",
-              "@answer 5) Constructors and private methods CANNOT be overridden.",
-              "@answer 6) final methods CANNOT be overridden — compiler error.",
-              "@answer 7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden.",
-              "@quiz (OCJP TRAP) What is the output? class Animal { void speak(){ System.out.println(\"Animal\"); } } class Dog extends Animal { void speak(){ System.out.println(\"Dog\"); } } Animal a = new Dog(); a.speak();",
-              "@answer Output: Dog",
-              "@answer Even though the reference type is Animal, the ACTUAL object is Dog. Java uses dynamic dispatch — the JVM calls Dog's speak() at runtime. This is the core of runtime polymorphism.",
-              "@answer TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method.",
-              "@quiz (OCJP TRAP) Can you override a static method in Java?",
-              "@answer NO. Static methods belong to the class, not the object. You can declare a static method with the same name in a subclass, but this is called METHOD HIDING, not overriding.",
-              "@answer With hiding: the method called depends on the REFERENCE type (compile-time). With overriding: it depends on the OBJECT type (runtime). This is the key difference.",
-              "@answer @Override annotation on a static method causes a COMPILE ERROR.",
-              "@quiz (OCJP TRAP) What is the output? class Parent { String name = \"Parent\"; void show() { System.out.println(\"Parent show\"); } } class Child extends Parent { String name = \"Child\"; void show() { System.out.println(\"Child show\"); } } Parent p = new Child(); System.out.println(p.name); p.show();",
-              "@answer Output: Parent (then) Child show",
-              "@answer Fields are resolved at COMPILE TIME based on reference type → p.name uses Parent's name field.",
-              "@answer Methods are resolved at RUNTIME based on object type → p.show() calls Child's show().",
-              "@answer CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object).",
-              "@quiz (INTERVIEW) What is covariant return type in method overriding?",
-              "@answer Java 5+ allows the overriding method to return a subtype of the parent method's return type.",
-              "@answer Example: Parent returns Animal, Child can override to return Dog (Dog IS-A Animal). This is valid.",
-              "@answer Why useful: allows more specific return types without breaking the contract.",
-              "@quiz (INTERVIEW) What is the purpose of the @Override annotation?",
-              "@answer It tells the compiler you INTEND to override a method. If the signatures don't match (e.g., you made a typo), the compiler gives an error instead of silently creating an overloaded method.",
-              "@answer Best practice: ALWAYS use @Override when overriding — it's a safety net against bugs.",
-              "@answer Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't.",
-              "@quiz (INTERVIEW) Can a private method be overridden?",
-              "@answer NO. Private methods are not inherited — the child class cannot see them. If you define a method with the same name in the child class, it's a completely NEW method, not an override.",
-              "@answer @Override on a \"private method override\" will cause a compile error.",
-              "@quiz (INTERVIEW) What happens when you call super.methodName() inside an overriding method?",
-              "@answer It explicitly calls the PARENT class's version of the method. This is used to extend (not replace) the parent's behaviour.",
-              "@answer Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields.",
-              "@quiz (INTERVIEW) Can a constructor be overridden?",
-              "@answer NO. Constructors are not inherited — they cannot be overridden. Each class has its own constructor(s).",
-              "@answer Constructors can be OVERLOADED (same class, different parameters) but not overridden.",
-              "@challenge Design a Shape hierarchy demonstrating method overriding",
-              "@desc Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each.",
-              "@hint area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w).",
-              "@testcase Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each",
-              "@challenge Demonstrate the field hiding vs method overriding trap",
-              "@desc Create a Parent class with a String field name=\"Parent\" and void display(). Create Child extending Parent with name=\"Child\" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why.",
-              "@hint Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps.",
-              "@testcase Parent p = new Child(); p.name should be \"Parent\". p.display() should call Child's version.",
-              "@challenge Implement a polymorphic payment system using method overriding",
-              "@desc Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically.",
-              "@hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.",
-              "@testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);"
-            ]
           }
         ],
         "inlineComments": [],
@@ -5570,26 +5097,133 @@ const CONCEPTS_DATA = [
         "subChapter": "Text Block And Advanced Formatting",
         "headerComments": [
           {
-            "type": "lines",
+            "type": "block",
             "lines": [
-              "@quiz (INTERVIEW) What is a text block in Java, and which Java version introduced it?",
-              "@answer A text block is a multi-line String literal written with triple double quotes.",
-              "@answer It appeared as a preview in Java 13 and became a standard feature in Java 15.",
-              "@quiz (INTERVIEW) What do common printf format specifiers like %d, %s, %f, and %n mean?",
-              "@answer %d formats integers, %s formats strings, %f formats floating-point numbers, and %n inserts a platform-safe newline.",
-              "@answer These specifiers are used by printf(), format(), and related formatting APIs.",
-              "@quiz (INTERVIEW) What is the difference between String.format() and .formatted()?",
-              "@answer String.format() is a static utility method, while .formatted() is an instance method called on a format string.",
-              "@answer Both produce a formatted String instead of printing directly to the console.",
-              "@quiz (INTERVIEW) Why are text blocks useful compared with ordinary string literals?",
-              "@answer They make multi-line text easier to read and reduce the need for escape sequences and string concatenation.",
-              "@answer They are especially useful for JSON, SQL, XML, or formatted console output templates.",
-              "@quiz (OCJP) What happens with: System.out.printf(\"%f\", 10);?",
-              "@answer It throws IllegalFormatConversionException because %f expects a floating-point argument, not an int.",
-              "@answer Use 10.0 or a %d specifier instead.",
-              "@quiz (OCJP) In a text block like String s = \"\"\"\\n    hi\\n    \"\"\";, what controls the incidental indentation?",
-              "@answer The position of the closing triple quotes helps determine how much leading whitespace is stripped.",
-              "@answer Moving the closing delimiter changes the resulting indentation in the String."
+              "Text Block",
+              "1) A Test block is just a special format for multi-line String literals",
+              "2) It's simply a String, with a new representation in the source code",
+              "Escape Sequences",
+              "1) An escape sequence starts with a backslash.",
+              "i)   \\t - Inserts a tab character ii)  \\n - Inserts a new line character iii) \\\" - Inserts a double quote character iv)  \\\\ - Inserts a backslash character",
+              "Format Specifiers",
+              "%[argument_index$][flags][width][.precision]conversion"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "System.out.println(bulletIt) Output :-",
+              "Print a Bulleted List:",
+              "• First Point",
+              "• Sub Point"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "In order to create a text block, the text should be enclosed within triple quotes",
+              "The text block allows to format text in the source code the same way it is expected to see it in the output",
+              "No additional quotes, + sign, escape character sequences are required"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "System.out.println(textBlock) Output :-",
+              "Print a Bullet List:",
+              "• First Point",
+              "• Sub Point"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "1) printf() allows to format strings using placeholders and variables but does not automatically add a newline",
+              "2) printf() accepts multiple arguments, the first one is a string which will be printed to the console, and the following arguments are values that'll be used in the String.",
+              "3) %d which is symbol used for decimal value is a special indicator called a format specifier which acts as a placeholder for other data which is passed as 2nd argument which will eventually replace the specifier in the text",
+              "4) If there are multiple instances of format specifier, then multiple arguments needs to be passed, as those arguments will eventually replace the specifiers in the text",
+              "5) We can use either /n or %n to move the cursor to a new line, to shift the cursor to a new line with printf statement"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "System.out.printf(\"Age = %d, Birth year = %d%n\" , age, yearOfBirth) Output :- Age = 35, Birth year = 1988"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "This will throw java.util.IllegalFormatConversionException : f! = java.lang.Integer",
+              "The expression was expecting float or double but the value that was passed was of integer type"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "The above expression works, as the age is now casted to float",
+              "System.out.printf(\"Your age is %.2f\\n\", (float) age) Output :- Your age is 35.0000"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "In order to set precision to a specific decimal places, after the % sign . and the number of precision is used",
+              "System.out.printf(\"Your age is %f\\n\", (float) age) Output :- Your age is 35.00"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "System.out.printf(\"Printing %d %n\", i) Output :-",
+              "Printing   1",
+              "Printing   10",
+              "Printing   100",
+              "Printing   1000",
+              "Printing   10000",
+              "Printing   100000"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "Here, the number 6 represents the width of the number (space) in the specifier",
+              "System.out.printf(\"Printing %6d %n\", i) Output :-",
+              "Printing       1",
+              "Printing      10",
+              "Printing     100",
+              "Printing    1000",
+              "Printing   10000",
+              "Printing  100000"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "String.format() is a static method on the String class.",
+              "It works exactly like printf() — same format specifiers — but instead of printing directly, it RETURNS the formatted string so you can store it in a variable and use it later.",
+              "Syntax: String.format(\"template with %specifiers\", arg1, arg2, ...)"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "System.out.println(formattedString) Output :- Your age is 35"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              ".formatted() is an instance method on String (introduced in Java 15).",
+              "It does the same job as String.format(), but is called directly ON the template string.",
+              "Syntax: \"template with %specifiers\".formatted(arg1, arg2, ...)",
+              "Both String.format() and .formatted() produce the same result — .formatted() is just more concise."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "System.out.println(formattedString) Output :- Your age is 35"
             ]
           }
         ],
