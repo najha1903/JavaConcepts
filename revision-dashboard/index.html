@@ -231,6 +231,44 @@
 
         <!-- Quick Revision View (Hidden by default) -->
         <div id="quick-revision-panel" style="display: none;">
+          <!-- Quick Revision mode toggle: Anki flashcards vs Browse notes -->
+          <div class="qr-mode-bar">
+            <div class="qr-mode-toggle">
+              <button id="qr-mode-flashcards" class="qr-mode-btn active" onclick="setQuickRevMode('flashcards')">🎴 Flashcards</button>
+              <button id="qr-mode-browse" class="qr-mode-btn" onclick="setQuickRevMode('browse')">📖 Browse Notes</button>
+            </div>
+          </div>
+
+          <!-- ANKI-STYLE SPACED-REPETITION FLASHCARDS -->
+          <div id="anki-mode">
+            <div class="anki-deck-header">
+              <div class="anki-deck-titlerow">
+                <div class="anki-deck-title" id="anki-deck-title">Flashcard Deck</div>
+                <div class="anki-scope-toggle">
+                  <button id="anki-scope-chapter" class="anki-scope-btn active" onclick="setAnkiScope('chapter')">This Chapter</button>
+                  <button id="anki-scope-all" class="anki-scope-btn" onclick="setAnkiScope('all')">All Chapters</button>
+                </div>
+              </div>
+              <div class="anki-stats" id="anki-stats">
+                <span class="anki-stat anki-stat-new">New <b id="anki-stat-new">0</b></span>
+                <span class="anki-stat anki-stat-due">Due <b id="anki-stat-due">0</b></span>
+                <span class="anki-stat anki-stat-done">Done <b id="anki-stat-done">0</b></span>
+                <span class="anki-stat anki-stat-left">Left <b id="anki-stat-left">0</b></span>
+              </div>
+              <div class="anki-progress"><div class="anki-progress-bar" id="anki-progress-bar"></div></div>
+            </div>
+            <div id="anki-card-area">
+              <!-- JS-rendered card / completion screen -->
+            </div>
+            <div class="anki-deck-footer">
+              <button class="anki-footer-btn" onclick="shuffleAnkiQueue()">🔀 Shuffle</button>
+              <button class="anki-footer-btn" onclick="resetAnkiDeck()">↺ Reset progress</button>
+              <span class="anki-footer-hint">Shortcuts: <kbd>Space</kbd> reveal · <kbd>1</kbd>–<kbd>4</kbd> rate</span>
+            </div>
+          </div>
+
+          <!-- BROWSE NOTES MODE (original quick-revision content) -->
+          <div id="browse-mode" style="display: none;">
           <!-- 3D Flip Flashcard -->
           <div class="flashcard-scene" onclick="this.querySelector('.flashcard').classList.toggle('is-flipped')">
             <div class="flashcard" id="quick-flashcard">
@@ -307,6 +345,7 @@
               </div>
             </div>
           </div>
+          </div><!-- /browse-mode -->
         </div>
 
         <!-- Footer Navigation -->

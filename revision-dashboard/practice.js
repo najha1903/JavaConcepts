@@ -1,6 +1,24 @@
 // Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.
 const GENERATED_PRACTICE_CHALLENGES = [
   {
+    "id": "temperatureconverterchallenge",
+    "title": "Temperature Converter",
+    "difficulty": "Easy",
+    "chapter": "Chapter 1: Java Introduction",
+    "description": "<p>Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.</p><p>Print the result in the format: \"25°C is 77.0°F\".</p>",
+    "template": "public class PracticeWorkspace {\n    public static double toFahrenheit(double celsius) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "toFahrenheit",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
     "id": "areacalculatorcodingchallenge",
     "title": "Area Calculator",
     "difficulty": "Easy",
@@ -912,6 +930,60 @@ const GENERATED_PRACTICE_CHALLENGES = [
     ],
     "selfCheck": true,
     "methodName": "printSumOfNumbersEnteredByUserUsingWhileLoop",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "multicatchchallenge",
+    "title": "Multi Catch",
+    "difficulty": "Hard",
+    "chapter": "Chapter 13: Exception Handling",
+    "description": "<p>Challenge: Demonstrate handling NullPointerException, ArrayIndexOutOfBoundsException, and NumberFormatException with separate catch blocks and a finally block.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void demonstrateException(String scenario) {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "demonstrateException",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "parseandhandlechallenge",
+    "title": "Parse And Handle",
+    "difficulty": "Hard",
+    "chapter": "Chapter 13: Exception Handling",
+    "description": "<p>Challenge: Parse an age from a String using Integer.parseInt, catch NumberFormatException, and return -1 for invalid input.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int parseAge(String input) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "parseAge",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "safedivisionchallenge",
+    "title": "Safe Division",
+    "difficulty": "Hard",
+    "chapter": "Chapter 13: Exception Handling",
+    "description": "<p>Challenge: Write a safeDivide method that returns a / b and catches ArithmeticException when the divisor is zero, returning 0 instead.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int safeDivide(int a, int b) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "safeDivide",
     "hasVerify": false,
     "verifyFnStr": null
   },

@@ -24,6 +24,17 @@ let currentDifficultyFilter = 'all'; // 'all', 'easy', 'medium', 'hard'
 let currentTagFilter = 'all'; // 'all', 'ocjp', 'interview', 'tricky', 'predict', 'concept', 'codefill'
 let currentPracticeTab = 'coding'; // 'coding' or 'deep'
 
+// Anki-style spaced-repetition flashcard state
+let quickRevMode = 'flashcards';   // 'flashcards' (Anki) or 'browse'
+let ankiScope = 'chapter';         // 'chapter' or 'all'
+let ankiDeck = [];                 // array of card objects for the active deck
+let ankiQueue = [];                // in-session study queue (subset of ankiDeck)
+let ankiCurrentCard = null;        // card currently shown
+let ankiFlipped = false;           // is the current card showing its answer
+let ankiSessionReviewed = 0;       // cards graduated (not "again") this session
+let ankiDeckKey = null;            // identifies which deck is currently built/active
+let ankiActive = false;            // true when Anki flashcard UI is on screen (for keyboard)
+
 
 // LocalStorage helpers
 const STORAGE_REVISED_KEY = 'javarev_revised_topics';
@@ -31,6 +42,7 @@ const STORAGE_QUIZ_KEY = 'javarev_quiz_history';
 const STORAGE_PRACTICE_KEY = 'javarev_practice_status';
 const STORAGE_NOTES_KEY = 'javarev_notes';
 const STORAGE_QHISTORY_KEY = 'javarev_question_history';
+const STORAGE_ANKI_KEY = 'javarev_anki_srs';
 
 function getRevisedTopics() {
   const data = localStorage.getItem(STORAGE_REVISED_KEY);
@@ -508,6 +520,9 @@ function setupEventListeners() {
   document.getElementById('btn-depth-quick').addEventListener('click', () => {
     setRevisionDepth('quick');
   });
+
+  // Anki flashcard keyboard shortcuts (Space to reveal, 1-4 to rate)
+  document.addEventListener('keydown', handleAnkiKeydown);
   
   // Search feature
   const searchInput = document.getElementById('search-input');
@@ -982,7 +997,8 @@ function setRevisionDepth(depth) {
   
   document.querySelector('.study-grid').style.display = depth === 'detailed' ? 'grid' : 'none';
   document.getElementById('quick-revision-panel').style.display = depth === 'quick' ? 'block' : 'none';
-  
+
+  ankiActive = (depth === 'quick' && quickRevMode === 'flashcards');
   updateRevisionView();
 }
 
@@ -991,7 +1007,447 @@ function updateRevisionView() {
   const topic = chapter.topics[currentTopicIndex];
   
   if (revisionDepth === 'quick') {
+    // Always keep the browse-mode flashcard/notes in sync
     renderQuickRevision(topic);
+    if (quickRevMode === 'flashcards') {
+      ensureAnkiDeck();
+    }
+  }
+}
+
+// ==========================================================================
+// Anki-style Spaced Repetition Flashcards
+// ==========================================================================
+function setQuickRevMode(mode) {
+  quickRevMode = mode;
+  const ankiEl = document.getElementById('anki-mode');
+  const browseEl = document.getElementById('browse-mode');
+  document.getElementById('qr-mode-flashcards').classList.toggle('active', mode === 'flashcards');
+  document.getElementById('qr-mode-browse').classList.toggle('active', mode === 'browse');
+  if (ankiEl) ankiEl.style.display = mode === 'flashcards' ? 'block' : 'none';
+  if (browseEl) browseEl.style.display = mode === 'browse' ? 'block' : 'none';
+  ankiActive = (mode === 'flashcards');
+  if (mode === 'flashcards') ensureAnkiDeck();
+}
+
+function setAnkiScope(scope) {
+  if (ankiScope === scope) return;
+  ankiScope = scope;
+  document.getElementById('anki-scope-chapter').classList.toggle('active', scope === 'chapter');
+  document.getElementById('anki-scope-all').classList.toggle('active', scope === 'all');
+  ankiDeckKey = null; // force rebuild
+  ensureAnkiDeck();
+}
+
+// Build deck only when the relevant chapter/scope changes (so topic navigation
+// doesn't reset an in-progress study session).
+function ensureAnkiDeck() {
+  const desiredKey = ankiScope === 'all' ? 'ALL' : CONCEPTS_DATA[currentChapterIndex].name;
+  if (ankiDeckKey === desiredKey && ankiDeck.length > 0) {
+    renderAnkiArea();
+    updateAnkiStats();
+    return;
+  }
+  ankiDeckKey = desiredKey;
+  ankiDeck = buildAnkiDeck(ankiScope);
+  const titleEl = document.getElementById('anki-deck-title');
+  if (titleEl) {
+    titleEl.textContent = ankiScope === 'all'
+      ? `All Chapters · ${ankiDeck.length} cards`
+      : `${CONCEPTS_DATA[currentChapterIndex].name} · ${ankiDeck.length} cards`;
+  }
+  startAnkiSession();
+}
+
+// ---- Card generation ------------------------------------------------------
+function ankiHash(str) {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = (((h << 5) + h) ^ str.charCodeAt(i)) >>> 0;
+  return 'c' + h.toString(36);
+}
+
+function ankiEscape(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function ankiCleanText(text) {
+  return String(text)
+    .replace(/@quiz\s*(\(INTERVIEW TRAP\))?/gi, '')
+    .replace(/@answer/gi, '')
+    .replace(/^\s*[-*•]\s*/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+const ANKI_STOPWORDS = new Set(['this','that','these','those','their','which','where','there','would','could','should','about','after','every','other','first','being','using','java','value','values','when','with','from','have','into','than','then','will','your','each','because','between','inside','outside','before','during','while','means','example']);
+
+function ankiMakeCloze(sentence) {
+  const clean = ankiCleanText(sentence);
+  if (clean.length < 25) return null;
+  const words = clean.split(/\s+/);
+  let best = null, bestScore = -1;
+  for (const w of words) {
+    const bare = w.replace(/[^A-Za-z]/g, '');
+    if (bare.length < 5) continue;
+    if (ANKI_STOPWORDS.has(bare.toLowerCase())) continue;
+    let score = bare.length;
+    if (/^[A-Z]/.test(bare)) score += 3;
+    if (/^(static|final|public|private|protected|abstract|interface|extends|implements|override|overload|overrid|immutab|mutable|bytecode|compil|interpret|inherit|polymorph|encapsulat|constructor|exception|primitive|reference|autobox)/i.test(bare)) score += 6;
+    if (score > bestScore) { bestScore = score; best = bare; }
+  }
+  if (!best) return null;
+  const escaped = best.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp('\\b' + escaped + '\\b');
+  const front = clean.replace(re, '_____');
+  if (front === clean) return null;
+  return { front, back: clean, answer: best };
+}
+
+function buildAnkiDeck(scope) {
+  const cards = [];
+  const seen = new Set();
+
+  const addChapter = (chapterName) => {
+    // 1) Hand-authored interview Q&A (richest cards)
+    const qbank = (typeof QUESTIONS_BANK !== 'undefined' && QUESTIONS_BANK[chapterName]) || [];
+    qbank.forEach(q => {
+      if (q.type !== 'interview' || !q.modelAnswer) return;
+      const front = ankiCleanText(q.question);
+      const back = ankiCleanText(q.modelAnswer);
+      if (front.length < 8 || back.length < 8) return;
+      const key = front.toLowerCase().slice(0, 90);
+      if (seen.has(key)) return; seen.add(key);
+      cards.push({
+        id: ankiHash(chapterName + '::qa::' + front),
+        chapter: chapterName, topic: q.topic || '',
+        type: 'qa', front, back,
+        keyPoints: Array.isArray(q.keyPoints) ? q.keyPoints.slice(0, 4) : []
+      });
+    });
+
+    // 2) Cloze cards from chapter takeaways + gotchas (Quick Revision bank)
+    const rev = (typeof QUICK_REVISION_BANK !== 'undefined' && QUICK_REVISION_BANK[chapterName]) || null;
+    if (rev) {
+      (rev.takeaways || []).forEach(t => {
+        const c = ankiMakeCloze(t);
+        if (!c) return;
+        const key = c.back.toLowerCase().slice(0, 90);
+        if (seen.has(key)) return; seen.add(key);
+        cards.push({
+          id: ankiHash(chapterName + '::cz::' + c.back),
+          chapter: chapterName, topic: 'Core Rule',
+          type: 'cloze', front: c.front, back: c.back, answer: c.answer
+        });
+      });
+
+      (rev.gotchas || []).forEach(g => {
+        // Skip raw @quiz traps — already represented as interview Q&A cards
+        if (/output of:|INTERVIEW TRAP|what is wrong with|what is the result|what happens/i.test(g)) return;
+        const clean = ankiCleanText(g);
+        if (clean.length < 20) return;
+        const key = clean.toLowerCase().slice(0, 90);
+        if (seen.has(key)) return; seen.add(key);
+        const c = ankiMakeCloze(clean);
+        if (c) {
+          cards.push({
+            id: ankiHash(chapterName + '::gz::' + c.back),
+            chapter: chapterName, topic: 'Gotcha',
+            type: 'gotcha', front: c.front, back: c.back, answer: c.answer
+          });
+        } else {
+          cards.push({
+            id: ankiHash(chapterName + '::gr::' + clean),
+            chapter: chapterName, topic: 'Gotcha',
+            type: 'gotcha', front: '⚠️ Recall this pitfall / best-practice:', back: clean
+          });
+        }
+      });
+    }
+  };
+
+  if (scope === 'all') {
+    CONCEPTS_DATA.forEach(ch => addChapter(ch.name));
+  } else {
+    addChapter(CONCEPTS_DATA[currentChapterIndex].name);
+  }
+  return cards;
+}
+
+// ---- SRS storage + scheduling ---------------------------------------------
+function getAnkiState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_ANKI_KEY)) || {}; }
+  catch (e) { return {}; }
+}
+function saveAnkiState(state) {
+  try { localStorage.setItem(STORAGE_ANKI_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+const ANKI_DAY = 86400000;
+
+function ankiSchedule(card, rating) {
+  const state = getAnkiState();
+  let s = state[card.id] || { ease: 2.5, interval: 0, due: 0, reps: 0, lapses: 0, state: 'new' };
+  const now = Date.now();
+  switch (rating) {
+    case 'again':
+      s.lapses = (s.lapses || 0) + 1; s.reps = 0;
+      s.ease = Math.max(1.3, (s.ease || 2.5) - 0.2);
+      s.interval = 0; s.state = 'learning'; s.due = now + 60000;
+      break;
+    case 'hard':
+      s.reps = (s.reps || 0) + 1;
+      s.ease = Math.max(1.3, (s.ease || 2.5) - 0.15);
+      s.interval = s.interval < 1 ? 1 : Math.max(1, Math.round(s.interval * 1.2));
+      s.state = 'review'; s.due = now + s.interval * ANKI_DAY;
+      break;
+    case 'good':
+      s.reps = (s.reps || 0) + 1;
+      s.interval = s.interval < 1 ? 1 : Math.round(s.interval * (s.ease || 2.5));
+      s.state = 'review'; s.due = now + s.interval * ANKI_DAY;
+      break;
+    case 'easy':
+      s.reps = (s.reps || 0) + 1;
+      s.ease = (s.ease || 2.5) + 0.15;
+      s.interval = s.interval < 1 ? 4 : Math.round(s.interval * s.ease * 1.3);
+      s.state = 'review'; s.due = now + s.interval * ANKI_DAY;
+      break;
+  }
+  state[card.id] = s;
+  saveAnkiState(state);
+  return s;
+}
+
+function ankiPreviewInterval(card, rating) {
+  const state = getAnkiState();
+  const s = state[card.id] || { ease: 2.5, interval: 0 };
+  let days;
+  switch (rating) {
+    case 'again': return '<1m';
+    case 'hard': days = s.interval < 1 ? 1 : Math.max(1, Math.round(s.interval * 1.2)); break;
+    case 'good': days = s.interval < 1 ? 1 : Math.round(s.interval * (s.ease || 2.5)); break;
+    case 'easy': days = s.interval < 1 ? 4 : Math.round(s.interval * ((s.ease || 2.5) + 0.15) * 1.3); break;
+  }
+  return ankiFormatDays(days);
+}
+
+function ankiFormatDays(d) {
+  if (!d || d < 1) return '<1d';
+  if (d < 30) return d + 'd';
+  if (d < 365) return Math.max(1, Math.round(d / 30)) + 'mo';
+  return (d / 365).toFixed(1) + 'y';
+}
+
+// ---- Session flow ---------------------------------------------------------
+function startAnkiSession() {
+  const state = getAnkiState();
+  const NEW_LIMIT = 25;
+  const now = Date.now();
+  const newCards = [], dueCards = [];
+  ankiDeck.forEach(card => {
+    const s = state[card.id];
+    if (!s || s.state === 'new') newCards.push(card);
+    else if ((s.due || 0) <= now) dueCards.push(card);
+  });
+  ankiQueue = shuffleArray(dueCards).concat(shuffleArray(newCards).slice(0, NEW_LIMIT));
+  ankiQueue = shuffleArray(ankiQueue);
+  ankiSessionReviewed = 0;
+  ankiFlipped = false;
+  ankiCurrentCard = ankiQueue.length ? ankiQueue[0] : null;
+  renderAnkiArea();
+  updateAnkiStats();
+}
+
+function cramAnkiDeck() {
+  ankiQueue = shuffleArray(ankiDeck.slice());
+  ankiSessionReviewed = 0;
+  ankiFlipped = false;
+  ankiCurrentCard = ankiQueue.length ? ankiQueue[0] : null;
+  renderAnkiArea();
+  updateAnkiStats();
+}
+
+function shuffleAnkiQueue() {
+  if (ankiQueue.length <= 1) return;
+  ankiQueue = shuffleArray(ankiQueue);
+  ankiFlipped = false;
+  ankiCurrentCard = ankiQueue[0];
+  renderAnkiArea();
+}
+
+function resetAnkiDeck() {
+  if (!confirm('Reset spaced-repetition progress for this deck? This clears scheduling for these cards only.')) return;
+  const state = getAnkiState();
+  ankiDeck.forEach(card => { delete state[card.id]; });
+  saveAnkiState(state);
+  startAnkiSession();
+}
+
+function flipAnkiCard() {
+  if (!ankiCurrentCard || ankiFlipped) return;
+  ankiFlipped = true;
+  renderAnkiArea();
+}
+
+function rateAnkiCard(rating) {
+  if (!ankiCurrentCard || !ankiFlipped) return;
+  const card = ankiCurrentCard;
+  ankiSchedule(card, rating);
+  ankiQueue.shift();
+  if (rating === 'again') {
+    ankiQueue.push(card); // resurface later this session
+  } else {
+    ankiSessionReviewed++;
+  }
+  ankiFlipped = false;
+  ankiCurrentCard = ankiQueue.length ? ankiQueue[0] : null;
+  renderAnkiArea();
+  updateAnkiStats();
+}
+
+// ---- Rendering ------------------------------------------------------------
+function ankiTypeLabel(type) {
+  return ({ qa: 'Q & A', cloze: 'Core Rule', gotcha: 'Gotcha / Pitfall' })[type] || 'Card';
+}
+
+function ankiInlineCode(text) {
+  // escape, then render `code` spans
+  return ankiEscape(text).replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+
+function renderAnkiFrontText(card) {
+  return ankiInlineCode(card.front);
+}
+
+function renderAnkiBackText(card) {
+  if (card.type === 'qa') {
+    let html = ankiInlineCode(card.back);
+    if (card.keyPoints && card.keyPoints.length) {
+      html += '<ul class="anki-keypoints">' +
+        card.keyPoints.map(k => `<li>${ankiInlineCode(ankiCleanText(k))}</li>`).join('') +
+        '</ul>';
+    }
+    return html;
+  }
+  // cloze / gotcha-cloze: highlight the answer word inside the full sentence
+  if (card.answer) {
+    const escapedAnswer = card.answer.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('\\b' + escapedAnswer + '\\b');
+    return ankiInlineCode(card.back).replace(re, '<span class="anki-cloze-answer">' + ankiEscape(card.answer) + '</span>');
+  }
+  return ankiInlineCode(card.back);
+}
+
+function renderAnkiArea() {
+  const area = document.getElementById('anki-card-area');
+  if (!area) return;
+
+  if (ankiDeck.length === 0) {
+    area.innerHTML = `<div class="anki-empty"><div style="font-size:34px">🗂️</div>
+      <p>No flashcards available for this scope yet.</p>
+      <p style="font-size:12px">Add notes / <code>@quiz</code> markers in the source files and run <code>npm run revise</code>.</p></div>`;
+    return;
+  }
+
+  if (!ankiCurrentCard) {
+    const nextDue = ankiNextDueLabel();
+    area.innerHTML = `
+      <div class="anki-complete">
+        <div class="anki-complete-emoji">🎉</div>
+        <h3>Deck complete!</h3>
+        <p>You reviewed <b>${ankiSessionReviewed}</b> card${ankiSessionReviewed === 1 ? '' : 's'} this session.</p>
+        ${nextDue ? `<p class="anki-next-due">Next review due: <b>${nextDue}</b></p>` : ''}
+        <div class="anki-complete-actions">
+          <button class="btn btn-primary" onclick="cramAnkiDeck()">🔁 Study all again (cram)</button>
+        </div>
+      </div>`;
+    return;
+  }
+
+  const card = ankiCurrentCard;
+  const controls = ankiFlipped
+    ? `<div class="anki-rating-row">
+         <button class="anki-rate again" onclick="rateAnkiCard('again')">Again<small>${ankiPreviewInterval(card, 'again')}</small></button>
+         <button class="anki-rate hard" onclick="rateAnkiCard('hard')">Hard<small>${ankiPreviewInterval(card, 'hard')}</small></button>
+         <button class="anki-rate good" onclick="rateAnkiCard('good')">Good<small>${ankiPreviewInterval(card, 'good')}</small></button>
+         <button class="anki-rate easy" onclick="rateAnkiCard('easy')">Easy<small>${ankiPreviewInterval(card, 'easy')}</small></button>
+       </div>`
+    : `<button class="anki-show-btn" onclick="flipAnkiCard()">Show Answer <kbd>Space</kbd></button>`;
+
+  area.innerHTML = `
+    <div class="flashcard-scene anki-scene" onclick="flipAnkiCard()">
+      <div class="flashcard anki-flashcard ${ankiFlipped ? 'is-flipped' : ''}">
+        <div class="flashcard-face flashcard-front anki-face-front">
+          <div class="flashcard-chip">${ankiTypeLabel(card.type)}${card.topic ? ' · ' + ankiEscape(card.topic) : ''}</div>
+          <div class="anki-card-text">${renderAnkiFrontText(card)}</div>
+          <div class="flashcard-hint">Tap card or press Space to reveal</div>
+        </div>
+        <div class="flashcard-face flashcard-back anki-face-back">
+          <div class="flashcard-chip flashcard-chip-back">Answer${card.answer ? ' · ' + ankiEscape(card.answer) : ''}</div>
+          <div class="anki-card-text anki-card-back-text">${renderAnkiBackText(card)}</div>
+        </div>
+      </div>
+    </div>
+    <div class="anki-controls" onclick="event.stopPropagation()">${controls}</div>`;
+}
+
+function updateAnkiStats() {
+  const state = getAnkiState();
+  const now = Date.now();
+  let nw = 0, due = 0, done = 0;
+  ankiDeck.forEach(card => {
+    const s = state[card.id];
+    if (!s || s.state === 'new') nw++;
+    else if ((s.due || 0) <= now) due++;
+    else done++;
+  });
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  set('anki-stat-new', nw);
+  set('anki-stat-due', due);
+  set('anki-stat-done', done);
+  set('anki-stat-left', ankiQueue.length);
+
+  const total = ankiSessionReviewed + ankiQueue.length;
+  const pct = total > 0 ? Math.round((ankiSessionReviewed / total) * 100) : (ankiDeck.length ? 100 : 0);
+  const bar = document.getElementById('anki-progress-bar');
+  if (bar) bar.style.width = pct + '%';
+}
+
+function ankiNextDueLabel() {
+  const state = getAnkiState();
+  let earliest = Infinity;
+  ankiDeck.forEach(card => {
+    const s = state[card.id];
+    if (s && s.due && s.state === 'review') earliest = Math.min(earliest, s.due);
+  });
+  if (earliest === Infinity) return null;
+  const diff = earliest - Date.now();
+  if (diff <= 0) return 'now';
+  const days = Math.round(diff / ANKI_DAY);
+  if (days < 1) return 'in a few hours';
+  if (days === 1) return 'tomorrow';
+  return 'in ' + ankiFormatDays(days);
+}
+
+function handleAnkiKeydown(e) {
+  if (!ankiActive) return;
+  const panel = document.getElementById('quick-revision-panel');
+  if (!panel || panel.style.display === 'none') return;
+  // Ignore when typing in an input/textarea
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
+  if (!ankiCurrentCard) return;
+
+  if (e.code === 'Space' || e.key === 'Enter') {
+    e.preventDefault();
+    if (!ankiFlipped) flipAnkiCard();
+    return;
+  }
+  if (ankiFlipped && ['1', '2', '3', '4'].includes(e.key)) {
+    e.preventDefault();
+    rateAnkiCard({ '1': 'again', '2': 'hard', '3': 'good', '4': 'easy' }[e.key]);
   }
 }
 
