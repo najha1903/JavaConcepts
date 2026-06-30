@@ -17,8 +17,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).
 // These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.
 //
-// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around (overflow).
-// If you go below the minimum, it wraps to the maximum (underflow).
+// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow).
 // Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)
 //
 // Casting: Converting from one type to another.
