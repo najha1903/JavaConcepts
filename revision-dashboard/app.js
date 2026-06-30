@@ -861,6 +861,48 @@ function renderNotesTopicList() {
 // ==========================================================================
 // Study / Flashcards Logic
 // ==========================================================================
+function buildNoteTable(block) {
+  const esc = (s) => String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/`([^`]+)`/g, '<code>$1</code>');
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'note-table-wrapper';
+
+  const table = document.createElement('table');
+  table.className = 'note-table';
+
+  if (block.headers && block.headers.length) {
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
+    block.headers.forEach(h => {
+      const th = document.createElement('th');
+      th.innerHTML = esc(h);
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+  }
+
+  const tbody = document.createElement('tbody');
+  (block.rows || []).forEach(row => {
+    const tr = document.createElement('tr');
+    row.forEach((cell, idx) => {
+      const td = document.createElement('td');
+      if (idx === 0) td.className = 'note-table-key';
+      td.innerHTML = esc(cell);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  wrapper.appendChild(table);
+  return wrapper;
+}
+
 function selectTopic(chIdx, tpIdx) {
   currentChapterIndex = chIdx;
   currentTopicIndex = tpIdx;
@@ -896,29 +938,45 @@ function selectTopic(chIdx, tpIdx) {
   let usedInlineAsOverview = false;
   
   if (topic.headerComments && topic.headerComments.length > 0) {
-    const bullets = document.createElement('ul');
-    bullets.className = 'bullet-list concept-bullet-list';
+    let currentList = null;
+    const flushList = () => {
+      if (currentList && currentList.childElementCount > 0) {
+        explanationsContainer.appendChild(currentList);
+      }
+      currentList = null;
+    };
 
     topic.headerComments.forEach(commentBlock => {
-      commentBlock.lines.forEach(line => {
+      if (commentBlock.type === 'table' && commentBlock.headers) {
+        flushList();
+        explanationsContainer.appendChild(buildNoteTable(commentBlock));
+        return;
+      }
+
+      if (!currentList) {
+        currentList = document.createElement('ul');
+        currentList.className = 'bullet-list concept-bullet-list';
+      }
+
+      (commentBlock.lines || []).forEach(line => {
         const li = document.createElement('li');
-        
+
         // Escape HTML entities first, then apply safe markup
         const escaped = line
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;');
-        
+
         // Apply backtick → <code> and bold label formatting
         let formattedLine = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
         if (formattedLine.endsWith(':-') || formattedLine.endsWith(':')) {
           formattedLine = `<strong>${formattedLine}</strong>`;
         }
         li.innerHTML = formattedLine;
-        bullets.appendChild(li);
+        currentList.appendChild(li);
       });
     });
-    explanationsContainer.appendChild(bullets);
+    flushList();
   } else if (topic.inlineComments && topic.inlineComments.length > 0) {
     const fallbackBullets = document.createElement('ul');
     fallbackBullets.className = 'bullet-list concept-bullet-list';
@@ -1518,7 +1576,16 @@ function renderQuickRevision(topic) {
     
     if (topic.headerComments && topic.headerComments.length > 0) {
       topic.headerComments.forEach(block => {
-        block.lines.forEach(line => {
+        if (block.type === 'table' && block.rows) {
+          block.rows.forEach(row => {
+            const line = row.map(c => (c || '').trim()).filter(Boolean).join(' — ');
+            if (!line) return;
+            const escapedLine = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            coreRules.push(escapedLine.replace(/`([^`]+)`/g, '<code>$1</code>'));
+          });
+          return;
+        }
+        (block.lines || []).forEach(line => {
           const lowerLine = line.toLowerCase();
           const isGotcha = gotchasKeywords.some(keyword => lowerLine.includes(keyword));
           

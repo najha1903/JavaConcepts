@@ -591,8 +591,73 @@ const CONCEPTS_DATA = [
             "lines": [
               "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
               "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.",
-              "The 8 Primitive Types:",
-              "Type     | Width  | Range / Notes boolean  | 1 bit  | Only two values: true or false byte     | 8 bits | -128 to 127 short    | 16 bits| -32,768 to 32,767 char     | 16 bits| A single Unicode character — written in single quotes: 'A' int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
+              "The 8 Primitive Types:"
+            ]
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Type",
+              "Width",
+              "Range / Notes"
+            ],
+            "rows": [
+              [
+                "boolean",
+                "1 bit",
+                "Only two values: true or false"
+              ],
+              [
+                "byte",
+                "8 bits",
+                "-128 to 127"
+              ],
+              [
+                "short",
+                "16 bits",
+                "-32,768 to 32,767"
+              ],
+              [
+                "char",
+                "16 bits",
+                "A single Unicode character — written in single quotes: 'A'"
+              ],
+              [
+                "int",
+                "32 bits",
+                "-2,147,483,648 to 2,147,483,647 (default for whole numbers)"
+              ],
+              [
+                "long",
+                "64 bits",
+                "Very large whole numbers — add 'L' suffix: 100L"
+              ],
+              [
+                "float",
+                "32 bits",
+                "Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)"
+              ],
+              [
+                "double",
+                "64 bits",
+                "Double-precision decimal — default for decimals, add 'd': 3.14d"
+              ]
+            ],
+            "lines": [
+              "Type — Width — Range / Notes",
+              "boolean — 1 bit — Only two values: true or false",
+              "byte — 8 bits — -128 to 127",
+              "short — 16 bits — -32,768 to 32,767",
+              "char — 16 bits — A single Unicode character — written in single quotes: 'A'",
+              "int — 32 bits — -2,147,483,648 to 2,147,483,647 (default for whole numbers)",
+              "long — 64 bits — Very large whole numbers — add 'L' suffix: 100L",
+              "float — 32 bits — Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)",
+              "double — 64 bits — Double-precision decimal — default for decimals, add 'd': 3.14d"
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
               "Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).",
               "These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.",
               "Overflow and Underflow: If you exceed the maximum value of a type, it wraps around (overflow).",
@@ -2952,12 +3017,39 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-              "Reading Data From Console",
-              "Technique              | Description",
-              "System.in              | Like System.out, Java provides System.in which can read input from the console or terminal.",
-              "System.console         | This is Java's solution for easier support for reading a single line and prompting user for information",
-              "Command Line Arguments | This is calling the Java program and specifying data in the call",
-              "Scanner                | The scanner class was built to be a common way to read input either using System.in or a file."
+              "Reading Data From Console"
+            ]
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Technique",
+              "Description"
+            ],
+            "rows": [
+              [
+                "System.in",
+                "Like System.out, Java provides System.in which can read input from the console or terminal."
+              ],
+              [
+                "System.console",
+                "This is Java's solution for easier support for reading a single line and prompting user for information"
+              ],
+              [
+                "Command Line Arguments",
+                "This is calling the Java program and specifying data in the call"
+              ],
+              [
+                "Scanner",
+                "The scanner class was built to be a common way to read input either using System.in or a file."
+              ]
+            ],
+            "lines": [
+              "Technique — Description",
+              "System.in — Like System.out, Java provides System.in which can read input from the console or terminal.",
+              "System.console — This is Java's solution for easier support for reading a single line and prompting user for information",
+              "Command Line Arguments — This is calling the Java program and specifying data in the call",
+              "Scanner — The scanner class was built to be a common way to read input either using System.in or a file."
             ]
           },
           {

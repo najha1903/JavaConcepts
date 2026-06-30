@@ -152,6 +152,63 @@ function parseJavaFile(filePath, rootDir) {
     return /,\s*$/.test(line) ? line.trimEnd().replace(/,\s*$/, '.') : line;
   }
 
+  // ---- ASCII / markdown table detection --------------------------------------
+  // Recognises pipe-delimited rows so they can be rendered as a real table
+  // instead of being mashed into one run-on prose line.
+  function isTableRow(line) {
+    if (!line.includes('|')) return false;
+    const nonEmpty = line.split('|').map(c => c.trim()).filter(c => c !== '');
+    return nonEmpty.length >= 2;
+  }
+  function isSeparatorRow(line) {
+    return /-/.test(line) && line.split('|').every(c => /^[\s:|-]*$/.test(c));
+  }
+  function splitCells(line) {
+    return line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+  }
+  // Returns the non-separator rows of a consecutive table run starting at `start`.
+  function tableRunInfo(lines, start) {
+    let j = start;
+    const rowLines = [];
+    while (j < lines.length && isTableRow(lines[j])) {
+      if (!isSeparatorRow(lines[j])) rowLines.push(lines[j]);
+      j++;
+    }
+    return { end: j, rowLines };
+  }
+  // Splits an array of note lines into ordered prose / table segments.
+  function segmentTables(lines) {
+    const segments = [];
+    let prose = [];
+    const flushProse = () => {
+      if (prose.length) { segments.push({ type: 'lines', lines: prose }); prose = []; }
+    };
+    let i = 0;
+    while (i < lines.length) {
+      if (isTableRow(lines[i])) {
+        const { end, rowLines } = tableRunInfo(lines, i);
+        if (rowLines.length >= 2) {
+          flushProse();
+          const cellRows = rowLines.map(splitCells);
+          const colCount = Math.max(...cellRows.map(r => r.length));
+          const pad = r => { const c = r.slice(); while (c.length < colCount) c.push(''); return c; };
+          segments.push({
+            type: 'table',
+            headers: pad(cellRows[0]),
+            rows: cellRows.slice(1).map(pad),
+            lines: cellRows.map(cells => cells.filter(c => c !== '').join(' — '))
+          });
+          i = end;
+          continue;
+        }
+      }
+      prose.push(lines[i]);
+      i++;
+    }
+    flushProse();
+    return segments;
+  }
+
   // Extracts and cleans block comments from a text region.
   function extractBlockComments(text) {
     const re = /\/\*([\s\S]*?)\*\//g;
@@ -164,14 +221,18 @@ function parseJavaFile(filePath, rootDir) {
         .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))
         // Lines containing '//' inside a block comment are code examples, not prose.
         .filter(l => !l.includes('//'))
-        // Lines with braces or ending semicolons are code examples.
-        .filter(l => !/[{}]/.test(l))
-        .filter(l => !/;\s*$/.test(l))
+        // Lines with braces or ending semicolons are code examples (but keep table rows).
+        .filter(l => isTableRow(l) || !/[{}]/.test(l))
+        .filter(l => isTableRow(l) || !/;\s*$/.test(l))
         // Switch labels, lone declarations, and other code fragments.
-        .filter(l => !isCodeFragment(l));
-      const joined = joinContinuationLines(rawLines).map(fixTrailingComma);
-      if (joined.length > 0) {
-        results.push({ type: 'block', lines: joined });
+        .filter(l => isTableRow(l) || !isCodeFragment(l));
+      for (const seg of segmentTables(rawLines)) {
+        if (seg.type === 'table') {
+          results.push(seg);
+        } else {
+          const joined = joinContinuationLines(seg.lines).map(fixTrailingComma);
+          if (joined.length > 0) results.push({ type: 'block', lines: joined });
+        }
       }
     }
     return results;
@@ -194,10 +255,14 @@ function parseJavaFile(filePath, rootDir) {
     .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))  // belt-and-suspenders
     .filter(l => !/https?:\/\//.test(l))   // skip URL-only reference lines
     .filter(isMeaningfulLine)
-    .filter(l => !isCodeFragment(l));
-  const joinedLineComments = joinContinuationLines(rawLineComments).map(fixTrailingComma);
-  if (joinedLineComments.length > 0) {
-    headerComments.push({ type: 'lines', lines: joinedLineComments });
+    .filter(l => isTableRow(l) || !isCodeFragment(l));
+  for (const seg of segmentTables(rawLineComments)) {
+    if (seg.type === 'table') {
+      headerComments.push(seg);
+    } else {
+      const joined = joinContinuationLines(seg.lines).map(fixTrailingComma);
+      if (joined.length > 0) headerComments.push({ type: 'lines', lines: joined });
+    }
   }
 
   // Fallback: try block comments inside the class body when header has nothing.
