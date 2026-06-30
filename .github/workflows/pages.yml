@@ -2,6 +2,7 @@ name: Deploy Notes to GitHub Pages
 
 # Publishes the revision dashboard (notes-first, mobile-friendly) to GitHub Pages.
 # Live site: https://najha1903.github.io/JavaConcepts/
+# To redeploy manually: Actions tab -> "Deploy Notes to GitHub Pages" -> Run workflow.
 
 on:
   push:
