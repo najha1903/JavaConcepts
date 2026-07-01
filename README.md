@@ -2,6 +2,8 @@
 
 A structured Java learning repository with concept notes, interview preparation, OCJP exam questions, coding challenges, and deep coding problems — all powering an interactive revision dashboard.
 
+🌐 **Live dashboard:** https://najha1903.github.io/JavaConcepts/revision-dashboard/
+
 ---
 
 ## Project Structure
@@ -22,8 +24,9 @@ src/
   Chapter_13_Exception_Handling/
   Chapter_14_OOPSConcepts/
   Chapter_15_Strings/
-revision-dashboard/     ← interactive quiz + practice dashboard
+revision-dashboard/     ← interactive quiz + practice dashboard (mobile-friendly)
 scripts/                ← auto-generates dashboard data from src/
+.github/workflows/      ← GitHub Pages auto-deploy
 ```
 
 Each chapter follows this sub-chapter pattern:
@@ -72,11 +75,13 @@ Tags: `(INTERVIEW)`, `(INTERVIEW TRAP)`, `(OCJP)` — all appear in the quiz ban
 npm run revise
 ```
 
-Then open `revision-dashboard/index.html`. The dashboard auto-generates:
-- **Notes** — Overview + Key Takeaways from source comments
-- **Quiz Bank** — Interview, OCJP, tricky questions from `@quiz` tags
-- **Practice Lab** — All `*Challenge.java` files become coding challenges
-- **Deep Problems** — All `*DeepProblem.java` files appear under 🏆 Deep Problems
+Then open `revision-dashboard/index.html` (or visit the [live GitHub Pages URL](https://najha1903.github.io/JavaConcepts/revision-dashboard/)). The dashboard auto-generates:
+- **Notes** — Overview + Key Takeaways from source comments (pipe-delimited tables render as HTML)
+- **Quiz Bank** — 1045+ questions: Interview, OCJP (47), Tricky, Concept, Predict — filtered by type & difficulty
+- **Quick Revision** — Anki-style spaced-repetition flashcards with gotcha highlights
+- **Practice Lab** — 44 coding challenges from `*Challenge.java` files (auto-verify + self-check)
+- **Deep Problems** — 21 large OOP/algorithm problems from `@challenge` annotations
+- **Wrong answer → Concept Review** — amber panel shows relevant notes inline after a wrong answer
 
 ---
 

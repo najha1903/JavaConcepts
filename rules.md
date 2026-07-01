@@ -195,10 +195,20 @@ These require no action from you — they appear automatically in the quiz bank.
 
 When you answer a question **incorrectly**, the dashboard automatically shows:
 - The relevant concept notes (up to 5 bullets from the topic's Overview)
-- A highlighted review panel below the wrong answer feedback
+- A highlighted amber review panel below the wrong answer feedback
 
 This provides **immediate reinforcement** — you don't have to navigate away.
 After reviewing, click Next Question to continue.
+
+---
+
+## Quick Revision — Anki-style flashcard flow
+
+Each topic has a flashcard in the Quick Revision tab:
+- Shows concept overview + gotcha highlights
+- **Show Answer** → **Know It** / **Didn't Know It** buttons
+- Tracks mastery per card in localStorage (spaced-repetition)
+- Due cards surface automatically on next session
 
 ---
 
