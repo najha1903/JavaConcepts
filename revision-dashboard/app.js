@@ -1085,9 +1085,9 @@ function selectTopic(chIdx, tpIdx) {
   updateRevisionView();
   showView('study-view');
 
-  // On mobile, keep it notes-only and tidy up the drawer / code panel
+  // On mobile, tidy up the drawer / code panel after navigating (keep the
+  // user's current Detailed/Quick mode rather than forcing it back)
   if (isMobileView()) {
-    setRevisionDepth('detailed');
     resetMobileCodePanel();
     closeDrawer();
     window.scrollTo(0, 0);

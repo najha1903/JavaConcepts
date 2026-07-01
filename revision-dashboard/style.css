@@ -1582,10 +1582,19 @@ h1, h2, h3, h4, .logo span {
   .mobile-topbar-title svg { width: 20px; height: 20px; color: var(--accent-primary); flex-shrink: 0; }
 
   /* --- Single column layout below the fixed bar --- */
+  /* Desktop locks the body to 100vh and scrolls inner panels; on mobile we
+     let the whole document scroll naturally instead. */
+  html, body {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+  body { overflow-x: hidden; }
   .app-container {
     display: block;
     height: auto;
     min-height: 100vh;
+    overflow: visible;
   }
   .main-content {
     padding: 16px;
@@ -1650,9 +1659,7 @@ h1, h2, h3, h4, .logo span {
     align-items: stretch;
     gap: 12px;
   }
-  .study-mode-toggle,
-  .study-actions { display: none; }   /* no Quick Revision toggle, no quiz/practice buttons */
-  #quick-revision-panel { display: none !important; }
+  .study-actions { display: none; }   /* hide quiz/practice buttons; keep the Detailed/Quick toggle */
 
   .study-grid {
     grid-template-columns: 1fr;
@@ -1689,6 +1696,15 @@ h1, h2, h3, h4, .logo span {
   .study-code-panel .code-card { display: none; margin-top: 12px; height: auto; }
   .study-code-panel.mobile-show .code-card { display: flex; }
   .study-code-panel .code-wrapper { max-height: 60vh; }
+
+  /* --- Quick Revision panel: single column, no horizontal overflow --- */
+  .quick-revision-grid { gap: 14px; }
+  .quick-revision-grid > * { min-width: 0; }
+  .quick-cards-column,
+  .quick-syntax-column { min-width: 0; }
+  .quick-syntax-column pre,
+  .quick-notes-card pre,
+  .syntax-template-card pre { overflow-x: auto; max-width: 100%; }
 
   /* --- Footer pagination --- */
   .study-footer-nav { gap: 10px; }
