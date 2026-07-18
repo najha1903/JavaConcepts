@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Access;
+package Chapter_14_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Access;
 // This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.
 // Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.
 // When you create a class instance (Car car = new Car()), Java sets all un-initialised fields to their default values: Strings -> null, int -> 0, boolean -> false.

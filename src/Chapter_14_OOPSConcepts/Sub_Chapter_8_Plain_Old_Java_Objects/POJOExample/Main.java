@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects.POJOExample;
+package Chapter_14_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects.POJOExample;
 
 import Chapter_14_OOPSConcepts.Sub_Chapter_9_JavaRecords.StudentRecord;
 

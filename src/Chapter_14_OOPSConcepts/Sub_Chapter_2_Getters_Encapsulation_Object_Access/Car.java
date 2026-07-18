@@ -1,4 +1,4 @@
-﻿package Chapter_14_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Access;
+package Chapter_14_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Access;
 // Encapsulation is one of the four pillars of OOP. It means hiding the internal state of an object and only allowing access through controlled methods (getters and setters).
 // All instance fields in this class are declared 'private' — they cannot be accessed directly from outside the class.
 // Getters and setters provide controlled access: a getter READS a field value; a setter WRITES (updates) a field value.
