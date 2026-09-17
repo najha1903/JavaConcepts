@@ -183,6 +183,63 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 //
 // @quiz (OCJP) Why choose 5f instead of 5 in floatValue = (5f / 2f)?
 // @answer The f suffix makes each literal a float, so Java performs floating-point division and keeps the decimal result instead of integer division.
+// @quiz (INTERVIEW, MEDIUM) Does this line compile?
+// @code byte b = 128;
+// @option No. 128 is outside the byte range, so the compiler rejects the assignment. [correct]
+// @option Yes, and b holds 128.
+// @option Yes, and b wraps around to -128.
+// @option Yes, but only because 128 fits in a nibble.
+// @explain A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.
+// @why B: 128 is one past the maximum, so the value does not fit.
+// @why C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.
+// @why D: the range is fixed by the type, and 127 is the largest byte.
+
+// @quiz (OCJP, HARD) What is printed by these two statements?
+// @code System.out.println(-7 / 2);
+// @code System.out.println(-7 % 2);
+// @option -3 and -1 [correct]
+// @option -4 and 1
+// @option -3.5 and -1
+// @option -4 and -1
+// @explain Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.
+// @why B: -7 / 2 truncates towards zero to -3, not away from it to -4.
+// @why C: both operands are int, so the result of / is an int and cannot be -3.5.
+// @why D: the division result is -3, not -4.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code System.out.println(0.1 + 0.2);
+// @code System.out.println(0.1 + 0.2 == 0.3);
+// @option 0.30000000000000004 and false [correct]
+// @option 0.3 and true
+// @option 0.3 and false
+// @option 0.30000000000000004 and true
+// @explain double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.
+// @why B: the sum is not exactly 0.3, so the comparison cannot be true.
+// @why C: the printed value shows the accumulated error rather than a clean 0.3.
+// @why D: the two halves cannot both be right. If the sum differs from 0.3, the comparison is false.
+
+// @quiz (INTERVIEW, MEDIUM) Does this code compile?
+// @code short s = 1;
+// @code s = s + 1;
+// @option No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast. [correct]
+// @option Yes, and s becomes 2.
+// @option Yes, and s wraps around.
+// @option Yes, because short and int are the same width.
+// @explain Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).
+// @why B: the promotion makes the assignment invalid, so it never reaches runtime.
+// @why C: nothing wraps here. The compiler rejects the type mismatch first.
+// @why D: short is 16 bits and int is 32 bits, so they differ.
+
+// @quiz (OCJP, MEDIUM) Which statement about boolean in Java is correct?
+// @option boolean is not a numeric type, so it cannot be cast to or from an int. [correct]
+// @option true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.
+// @option A boolean can be used directly as an if condition only after converting it to an int.
+// @option boolean and byte are interchangeable because both are 8 bits.
+// @explain Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.
+// @why B: that rule belongs to C and C++. Java does not allow the cast.
+// @why C: no conversion is needed or possible. A boolean is exactly what if requires.
+// @why D: a boolean is not a number, so it is not interchangeable with any numeric type.
+
 public class PrimitiveDataTypes {
 
     public static void main(String[] args) {

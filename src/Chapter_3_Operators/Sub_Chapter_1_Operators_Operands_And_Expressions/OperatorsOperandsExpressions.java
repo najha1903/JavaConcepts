@@ -143,6 +143,65 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // @why C: the code does not compile at all, so nothing runs.
 // @why D: Java reports this as an error, not a warning.
 
+// @quiz (OCJP, MEDIUM) What is printed by this statement?
+// @code System.out.println(2 + 3 * 4);
+// @option 14, because * is evaluated before +. [correct]
+// @option 20, because + is evaluated first.
+// @option 24, because the expression is read left to right.
+// @option It does not compile without parentheses.
+// @explain Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.
+// @why B: + is lower precedence than *, so it cannot run first.
+// @why C: left-to-right order applies between operators of the same precedence, which these are not.
+// @why D: the expression is perfectly legal, and parentheses are only needed to change the order.
+
+// @quiz (OCJP, HARD) Does this condition compile?
+// @code int a = 5, b = 3, c = 1;
+// @code if (a > b > c) { System.out.println("yes"); }
+// @option No. a > b produces a boolean, and a boolean cannot be compared with c using >. [correct]
+// @option Yes, and it prints yes.
+// @option Yes, and it prints nothing.
+// @option Yes, because Java compares all three values at once.
+// @explain The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.
+// @why B: the compiler rejects the expression, so nothing runs.
+// @why C: it never reaches runtime for the same reason.
+// @why D: Java has no three-way comparison like that. You must chain with &&.
+
+// @quiz (INTERVIEW, MEDIUM) Does this line compile?
+// @code int x = true ? 1 : "one";
+// @option No. The two branches have incompatible types, int and String. [correct]
+// @option Yes, and x becomes 1.
+// @option Yes, and x becomes the text "one".
+// @option Yes, because Java converts the String to a number.
+// @explain The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and "one" is a String, which means there is no common type for the result.
+// @why B: it does not compile, so nothing is assigned.
+// @why C: the same type problem stops it, and "one" could never go into an int.
+// @why D: Java does not convert text to a number automatically. That is what Integer.parseInt is for.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code String s = "Total: ";
+// @code s += 10 + 20;
+// @code System.out.println(s);
+// @option Total: 30, because 10 + 20 is worked out before the concatenation. [correct]
+// @option Total: 1020, because += concatenates everything.
+// @option Total: 30 is not possible, since += only concatenates text.
+// @option It does not compile, because += cannot be used with a String.
+// @explain The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.
+// @why B: 1020 would need the String to be involved in the addition, which it is not.
+// @why C: += performs concatenation for a String, and the numeric part is already resolved.
+// @why D: += with a String is legal and is one of the most common uses of compound assignment.
+
+// @quiz (INTERVIEW, MEDIUM) What does the ! operator do, and what is printed?
+// @code boolean ready = false;
+// @code System.out.println(!ready);
+// @option true, because ! inverts a boolean value. [correct]
+// @option false, because ! leaves the value unchanged.
+// @option It does not compile, because ! needs a number.
+// @option -1, because ! negates the value numerically.
+// @explain ! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.
+// @why B: inversion is exactly what it does, so the value must change.
+// @why C: ! requires a boolean, and ready is one.
+// @why D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign.
+
 public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {

@@ -1928,6 +1928,140 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_20-does-this-line-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "interview"
+      ],
+      "question": "Does this line compile?",
+      "code": "byte b = 128;",
+      "options": [
+        "No. 128 is outside the byte range, so the compiler rejects the assignment.",
+        "Yes, and b wraps around to -128.",
+        "Yes, but only because 128 fits in a nibble.",
+        "Yes, and b holds 128."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.",
+        "2": "the range is fixed by the type, and 127 is the largest byte.",
+        "3": "128 is one past the maximum, so the value does not fit."
+      },
+      "explanation": "A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_21-what-is-printed-by-these-two-statements",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by these two statements?",
+      "code": "System.out.println(-7 / 2);\nSystem.out.println(-7 % 2);",
+      "options": [
+        "-3 and -1",
+        "-4 and 1",
+        "-4 and -1",
+        "-3.5 and -1"
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "-7 / 2 truncates towards zero to -3, not away from it to -4.",
+        "2": "the division result is -3, not -4.",
+        "3": "both operands are int, so the result of / is an int and cannot be -3.5."
+      },
+      "explanation": "Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_22-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "System.out.println(0.1 + 0.2);\nSystem.out.println(0.1 + 0.2 == 0.3);",
+      "options": [
+        "0.3 and true",
+        "0.30000000000000004 and false",
+        "0.30000000000000004 and true",
+        "0.3 and false"
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the sum is not exactly 0.3, so the comparison cannot be true.",
+        "2": "the two halves cannot both be right. If the sum differs from 0.3, the comparison is false.",
+        "3": "the printed value shows the accumulated error rather than a clean 0.3."
+      },
+      "explanation": "double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_23-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "interview"
+      ],
+      "question": "Does this code compile?",
+      "code": "short s = 1;\ns = s + 1;",
+      "options": [
+        "Yes, because short and int are the same width.",
+        "Yes, and s becomes 2.",
+        "Yes, and s wraps around.",
+        "No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "short is 16 bits and int is 32 bits, so they differ.",
+        "1": "the promotion makes the assignment invalid, so it never reaches runtime.",
+        "2": "nothing wraps here. The compiler rejects the type mismatch first."
+      },
+      "explanation": "Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_24-which-statement-about-boolean-in-java-is",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which statement about boolean in Java is correct?",
+      "options": [
+        "boolean and byte are interchangeable because both are 8 bits.",
+        "A boolean can be used directly as an if condition only after converting it to an int.",
+        "true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.",
+        "boolean is not a numeric type, so it cannot be cast to or from an int."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "a boolean is not a number, so it is not interchangeable with any numeric type.",
+        "1": "no conversion is needed or possible. A boolean is exactly what if requires.",
+        "2": "that rule belongs to C and C++. Java does not allow the cast."
+      },
+      "explanation": "Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_true-false-mcq_5",
@@ -2439,6 +2573,141 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_18-what-is-printed-by-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.println(2 + 3 * 4);",
+      "options": [
+        "20, because + is evaluated first.",
+        "It does not compile without parentheses.",
+        "24, because the expression is read left to right.",
+        "14, because * is evaluated before +."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "+ is lower precedence than *, so it cannot run first.",
+        "1": "the expression is perfectly legal, and parentheses are only needed to change the order.",
+        "2": "left-to-right order applies between operators of the same precedence, which these are not."
+      },
+      "explanation": "Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_19-does-this-condition-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this condition compile?",
+      "code": "int a = 5, b = 3, c = 1;\nif (a > b > c) { System.out.println(\"yes\"); }",
+      "options": [
+        "Yes, because Java compares all three values at once.",
+        "No. a > b produces a boolean, and a boolean cannot be compared with c using >.",
+        "Yes, and it prints nothing.",
+        "Yes, and it prints yes."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "Java has no three-way comparison like that. You must chain with &&.",
+        "2": "it never reaches runtime for the same reason.",
+        "3": "the compiler rejects the expression, so nothing runs."
+      },
+      "explanation": "The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_20-does-this-line-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "interview"
+      ],
+      "question": "Does this line compile?",
+      "code": "int x = true ? 1 : \"one\";",
+      "options": [
+        "Yes, and x becomes the text \"one\".",
+        "Yes, because Java converts the String to a number.",
+        "Yes, and x becomes 1.",
+        "No. The two branches have incompatible types, int and String."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the same type problem stops it, and \"one\" could never go into an int.",
+        "1": "Java does not convert text to a number automatically. That is what Integer.parseInt is for.",
+        "2": "it does not compile, so nothing is assigned."
+      },
+      "explanation": "The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_21-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "String s = \"Total: \";\ns += 10 + 20;\nSystem.out.println(s);",
+      "options": [
+        "It does not compile, because += cannot be used with a String.",
+        "Total: 1020, because += concatenates everything.",
+        "Total: 30, because 10 + 20 is worked out before the concatenation.",
+        "Total: 30 is not possible, since += only concatenates text."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "+= with a String is legal and is one of the most common uses of compound assignment.",
+        "1": "1020 would need the String to be involved in the addition, which it is not.",
+        "3": "+= performs concatenation for a String, and the numeric part is already resolved."
+      },
+      "explanation": "The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_22-what-does-the-operator-do-and-what-is-pr",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "interview"
+      ],
+      "question": "What does the ! operator do, and what is printed?",
+      "code": "boolean ready = false;\nSystem.out.println(!ready);",
+      "options": [
+        "false, because ! leaves the value unchanged.",
+        "true, because ! inverts a boolean value.",
+        "-1, because ! negates the value numerically.",
+        "It does not compile, because ! needs a number."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "inversion is exactly what it does, so the value must change.",
+        "2": "there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign.",
+        "3": "! requires a boolean, and ready is one."
+      },
+      "explanation": "! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
       "type": "predict",
       "kind": "predict",
       "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-2-operatorschallenge-operatorchallenge-java_predict_3",
@@ -2795,6 +3064,113 @@ const QUESTIONS_BANK = {
         "3": "x = 10; is an assignment statement."
       },
       "explanation": "A bare comparison is an expression, not a complete statement, so the compiler rejects it. The other three are the everyday statement forms.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_12-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "public static void main(String[] args) {\nint x = 5\nSystem.out.println(x);\n}",
+      "options": [
+        "Yes, and it prints 5.",
+        "Yes, because a line break ends the statement.",
+        "Yes, because Java adds the semicolon for you.",
+        "No. The missing semicolon after int x = 5 is a compile error."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "nothing runs, because the file never compiles.",
+        "1": "this is the common misconception. The statement ends at the semicolon, and the line break is only whitespace.",
+        "2": "Java never inserts missing punctuation."
+      },
+      "explanation": "A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_13-what-is-the-effect-of-the-semicolon-in-t",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is the effect of the semicolon in this line?",
+      "code": "int x = 5;;",
+      "options": [
+        "It compiles. The second semicolon is an empty statement that does nothing.",
+        "It is a compile error, because only one semicolon is allowed.",
+        "It creates a second variable named x.",
+        "It sets x to 0."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "an empty statement is valid Java, which is exactly what makes the mistake so easy to miss.",
+        "2": "declaring x twice with the same type in one scope would be an error, but that is not what this line does.",
+        "3": "an empty statement performs no assignment."
+      },
+      "explanation": "A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_14-which-of-these-is-a-single-valid-stateme",
+      "difficulty": "easy",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "interview"
+      ],
+      "question": "Which of these is a single valid statement?",
+      "options": [
+        "x > 5",
+        "int x = 5;",
+        "5 + 3",
+        "\"hello\""
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "x > 5 is an expression that produces a boolean. Alone, it is not a statement.",
+        "2": "5 + 3 is an expression that produces 8. It has no effect on its own.",
+        "3": "a String literal is an expression. Without a semicolon or a use for the value, it is not a statement."
+      },
+      "explanation": "A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_15-where-can-the-variable-declared-here-be-",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Where can the variable declared here be used?",
+      "code": "if (true) {\nint inner = 10;\n}\nSystem.out.println(inner);",
+      "options": [
+        "It compiles and prints 10.",
+        "It compiles and prints 0, because inner loses its value.",
+        "It does not compile, because inner is scoped to the block and is gone after the closing brace.",
+        "It compiles only if inner is declared final."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the name is out of scope at that point.",
+        "1": "the variable is not reset, it is simply no longer visible.",
+        "3": "final changes whether the value can be reassigned, not how long the variable lives."
+      },
+      "explanation": "A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
     },
     {
@@ -3192,6 +3568,141 @@ const QUESTIONS_BANK = {
         "3": "the two are swapped."
       },
       "explanation": "They are the logical AND and OR operators. Both also short-circuit, so the right side is skipped once the answer is already known.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_16-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int score = 75;\nif (score >= 90) { System.out.println(\"A\"); }\nelse if (score >= 70) { System.out.println(\"B\"); }\nelse if (score >= 50) { System.out.println(\"C\"); }",
+      "options": [
+        "B, because the first matching condition wins and the rest are skipped.",
+        "A, because 75 is more than 50.",
+        "B and C, because both conditions are true.",
+        "C, because score is also at least 50."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "75 is less than 90, so the first condition is false.",
+        "2": "only one branch of an if/else-if chain runs.",
+        "3": "the C branch is never tested, because the chain already stopped."
+      },
+      "explanation": "An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_17-why-is-this-condition-safe-even-when-nam",
+      "difficulty": "hard",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Why is this condition safe, even when name is null?",
+      "code": "if (name != null && name.length() > 5) { ... }",
+      "options": [
+        "Java converts null to an empty String before the check.",
+        "&& short-circuits, so the right side is skipped when name is null.",
+        "&& always evaluates both sides, so it would throw a NullPointerException.",
+        "The condition is not safe, and it always throws."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "null is not converted. Calling a method on it is what throws.",
+        "2": "only the non-short-circuiting & evaluates both sides. That version would throw.",
+        "3": "the guard exists precisely to prevent the exception."
+      },
+      "explanation": "Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_18-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "String a = \"hello\";\nString b = new String(\"hello\");\nif (a == b) { System.out.println(\"equal\"); }\nelse { System.out.println(\"not equal\"); }",
+      "options": [
+        "equal, because both strings contain the same characters.",
+        "not equal, because == compares references and these are two different objects.",
+        "equal, because == compares String content in Java.",
+        "It does not compile, because Strings cannot be compared with ==."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "content is what equals compares, not ==.",
+        "2": "== compares references. equals is the method that compares content.",
+        "3": "it compiles for any reference type, which is why the bug is so easy to make."
+      },
+      "explanation": "The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_19-what-does-this-code-print",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "interview"
+      ],
+      "question": "What does this code print?",
+      "code": "int x = 10;\nif (x > 5); { System.out.println(\"big\"); }",
+      "options": [
+        "big, and it would print even if x were 1.",
+        "nothing at all.",
+        "big, but only when x > 5 is true.",
+        "It does not compile, because of the semicolon."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the block is unconditional, so it always prints.",
+        "2": "the block is outside the if, so the condition cannot affect it.",
+        "3": "it is legal Java, and that is what makes the mistake dangerous."
+      },
+      "explanation": "The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_20-what-is-the-value-of-result",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is the value of result?",
+      "code": "int result = (10 > 5) ? 1 : 2 + 3;",
+      "options": [
+        "1, because the condition is true and only that branch is used.",
+        "4, because the ternary is evaluated after the addition.",
+        "It does not compile, because the branches are different expressions.",
+        "6, because the false branch is added."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the branches of a ternary are alternatives, never combined.",
+        "2": "both branches are int here, so the types are compatible.",
+        "3": "the false branch is not used, and 2 + 3 is not added to the result."
+      },
+      "explanation": "The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
     },
     {
@@ -6106,28 +6617,6 @@ const QUESTIONS_BANK = {
       "tags": [
         "predict"
       ]
-    },
-    {
-      "qid": "ocjp-chapter-9-while-and-do-while-looping-concepts-for-scope-1",
-      "type": "scq",
-      "difficulty": "hard",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "OCJP Tricky",
-      "question": "Which statement about for-loop variable scope is correct? (OCJP)",
-      "options": [
-        "The loop variable (int i) is accessible after the loop ends",
-        "The loop variable (int i) declared in for() is scoped only to the loop block",
-        "You can reuse the same variable name in two nested for-loops",
-        "The loop variable persists between method calls"
-      ],
-      "answer": 1,
-      "explanation": "A variable declared in the for-loop initializer (for(int i=0;...)) is scoped to that loop only. It cannot be accessed after the loop. You CANNOT reuse the same name in an inner nested loop — that would shadow it and cause a compile error.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky"
-      ]
     }
   ],
   "Chapter 10: Class Object Static And Instance Fields": [
@@ -6549,152 +7038,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_4_DeepProblems/LibrarySystemDeepProblem.java",
       "tags": [
         "predict"
-      ]
-    },
-    {
-      "qid": "ocjp-chapter-10-class-object-static-and-instance-fields-polymorphism-1",
-      "type": "predict",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "OCJP Tricky",
-      "question": "What is the output? (OCJP)",
-      "code": "class Animal {\n  String type = \"Animal\";\n  void speak() { System.out.println(\"Animal\"); }\n}\nclass Dog extends Animal {\n  String type = \"Dog\";\n  void speak() { System.out.println(\"Dog\"); }\n}\nAnimal a = new Dog();\nSystem.out.println(a.type);\na.speak();",
-      "answer": [
-        "Animal\nDog"
-      ],
-      "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap.",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky",
-        "predict"
-      ]
-    },
-    {
-      "qid": "ocjp-chapter-10-class-object-static-and-instance-fields-constructor-chain-1",
-      "type": "predict",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "OCJP Tricky",
-      "question": "What is the output? (OCJP)",
-      "code": "class A {\n  A() { System.out.println(\"A\"); }\n}\nclass B extends A {\n  B() { System.out.println(\"B\"); }\n}\nclass C extends B {\n  C() { System.out.println(\"C\"); }\n}\nnew C();",
-      "answer": [
-        "A\nB\nC"
-      ],
-      "explanation": "Constructor chaining: the JVM always calls super() implicitly at the top of each constructor. So A() runs, then B(), then C(). Output is A, B, C — top to bottom in the hierarchy.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky",
-        "predict"
-      ]
-    },
-    {
-      "qid": "ocjp-chapter-10-class-object-static-and-instance-fields-override-overload-1",
-      "type": "scq",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "OCJP Tricky",
-      "question": "Which is true about method overriding in Java? (OCJP)",
-      "options": [
-        "Overriding is resolved at compile time based on the reference type",
-        "Overriding is resolved at runtime based on the actual object type (dynamic dispatch)",
-        "A private method can be overridden in a subclass",
-        "A static method can be overridden to behave polymorphically"
-      ],
-      "answer": 1,
-      "explanation": "Overriding is resolved at RUNTIME — the JVM looks at the actual object, not the reference type. Private methods are not inherited and cannot be overridden. Static methods are hidden, not overridden.",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky"
-      ]
-    },
-    {
-      "qid": "ocjp-chapter-10-class-object-static-and-instance-fields-final-keyword-1",
-      "type": "scq",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "OCJP Tricky",
-      "question": "What does marking a method as final mean in Java? (OCJP)",
-      "options": [
-        "The method cannot be called more than once",
-        "The method cannot be overridden by any subclass",
-        "The method must return a non-null value",
-        "The method is automatically made static"
-      ],
-      "answer": 1,
-      "explanation": "final on a method means no subclass can override it. final on a class means no class can extend it. final on a variable means it can only be assigned once.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky"
-      ]
-    },
-    {
-      "qid": "ocjp-chapter-10-class-object-static-and-instance-fields-static-hiding-1",
-      "type": "scq",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "OCJP Tricky",
-      "question": "What happens when you define a static method with the same name in a subclass? (OCJP)",
-      "options": [
-        "It overrides the parent static method — dynamic dispatch applies",
-        "It hides the parent static method — method called depends on reference type, not object type",
-        "It causes a compile-time error",
-        "It calls both parent and child static methods"
-      ],
-      "answer": 1,
-      "explanation": "Static methods are HIDDEN, not overridden. With hiding, which method is called depends on the REFERENCE type at compile time. With overriding, it depends on the OBJECT type at runtime. @Override on a static method causes a compile error.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky"
-      ]
-    },
-    {
-      "qid": "ocjp-chapter-10-class-object-static-and-instance-fields-covariant-return-1",
-      "type": "scq",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "OCJP Tricky",
-      "question": "Which return type change is VALID when overriding a method that returns Animal? (OCJP)",
-      "options": [
-        "Return Object (supertype of Animal)",
-        "Return Dog (subtype of Animal — covariant return)",
-        "Return String (unrelated type)",
-        "Return void"
-      ],
-      "answer": 1,
-      "explanation": "Covariant return type (Java 5+): the overriding method can return a subtype of the declared return type. Dog IS-A Animal, so returning Dog is valid. Returning a supertype (Object) or unrelated type is NOT valid.",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky"
-      ]
-    },
-    {
-      "qid": "ocjp-chapter-10-class-object-static-and-instance-fields-access-modifier-override-1",
-      "type": "scq",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "OCJP Tricky",
-      "question": "Parent has: protected void show(). Which access modifier is INVALID in the overriding method? (OCJP)",
-      "options": [
-        "public void show() — more accessible, allowed",
-        "protected void show() — same, allowed",
-        "private void show() — more restrictive, NOT allowed",
-        "default (package) void show() — less accessible than protected in some cases"
-      ],
-      "answer": 2,
-      "explanation": "Overriding cannot make the method MORE restrictive. protected → private is not allowed (private is more restrictive). protected → public is fine (more accessible). This is rule 3 of method overriding.",
-      "kind": "ocjp-tricky",
-      "tags": [
-        "ocjp",
-        "tricky"
       ]
     }
   ],

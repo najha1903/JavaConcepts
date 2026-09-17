@@ -90,6 +90,55 @@ package Chapter_4_Statements_And_Indentations;
 // @why C: x = 10; is an assignment statement.
 // @why D: a method call followed by a semicolon is a statement.
 
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code public static void main(String[] args) {
+// @code     int x = 5
+// @code     System.out.println(x);
+// @code }
+// @option No. The missing semicolon after int x = 5 is a compile error. [correct]
+// @option Yes, because Java adds the semicolon for you.
+// @option Yes, because a line break ends the statement.
+// @option Yes, and it prints 5.
+// @explain A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.
+// @why B: Java never inserts missing punctuation.
+// @why C: this is the common misconception. The statement ends at the semicolon, and the line break is only whitespace.
+// @why D: nothing runs, because the file never compiles.
+
+// @quiz (INTERVIEW, MEDIUM) What is the effect of the semicolon in this line?
+// @code int x = 5;;
+// @option It compiles. The second semicolon is an empty statement that does nothing. [correct]
+// @option It is a compile error, because only one semicolon is allowed.
+// @option It sets x to 0.
+// @option It creates a second variable named x.
+// @explain A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.
+// @why B: an empty statement is valid Java, which is exactly what makes the mistake so easy to miss.
+// @why C: an empty statement performs no assignment.
+// @why D: declaring x twice with the same type in one scope would be an error, but that is not what this line does.
+
+// @quiz (INTERVIEW, EASY) Which of these is a single valid statement?
+// @option int x = 5; [correct]
+// @option x > 5
+// @option 5 + 3
+// @option "hello"
+// @explain A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.
+// @why B: x > 5 is an expression that produces a boolean. Alone, it is not a statement.
+// @why C: 5 + 3 is an expression that produces 8. It has no effect on its own.
+// @why D: a String literal is an expression. Without a semicolon or a use for the value, it is not a statement.
+
+// @quiz (OCJP, MEDIUM) Where can the variable declared here be used?
+// @code if (true) {
+// @code     int inner = 10;
+// @code }
+// @code System.out.println(inner);
+// @option It does not compile, because inner is scoped to the block and is gone after the closing brace. [correct]
+// @option It compiles and prints 10.
+// @option It compiles and prints 0, because inner loses its value.
+// @option It compiles only if inner is declared final.
+// @explain A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.
+// @why B: the name is out of scope at that point.
+// @why C: the variable is not reset, it is simply no longer visible.
+// @why D: final changes whether the value can be reassigned, not how long the variable lives.
+
 public class StatementsWhiteSpaceAndIndentation {
 
     public static void main(String[] args) {

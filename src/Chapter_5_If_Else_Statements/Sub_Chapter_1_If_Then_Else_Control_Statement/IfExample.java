@@ -138,6 +138,68 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // @why C: they differ, and swapping them changes when a block runs.
 // @why D: both operators work on boolean expressions.
 
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int score = 75;
+// @code if (score >= 90) { System.out.println("A"); }
+// @code else if (score >= 70) { System.out.println("B"); }
+// @code else if (score >= 50) { System.out.println("C"); }
+// @option B, because the first matching condition wins and the rest are skipped. [correct]
+// @option C, because score is also at least 50.
+// @option B and C, because both conditions are true.
+// @option A, because 75 is more than 50.
+// @explain An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.
+// @why B: the C branch is never tested, because the chain already stopped.
+// @why C: only one branch of an if/else-if chain runs.
+// @why D: 75 is less than 90, so the first condition is false.
+
+// @quiz (OCJP, HARD) Why is this condition safe, even when name is null?
+// @code if (name != null && name.length() > 5) { ... }
+// @option && short-circuits, so the right side is skipped when name is null. [correct]
+// @option && always evaluates both sides, so it would throw a NullPointerException.
+// @option The condition is not safe, and it always throws.
+// @option Java converts null to an empty String before the check.
+// @explain Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.
+// @why B: only the non-short-circuiting & evaluates both sides. That version would throw.
+// @why C: the guard exists precisely to prevent the exception.
+// @why D: null is not converted. Calling a method on it is what throws.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code String a = "hello";
+// @code String b = new String("hello");
+// @code if (a == b) { System.out.println("equal"); }
+// @code else { System.out.println("not equal"); }
+// @option not equal, because == compares references and these are two different objects. [correct]
+// @option equal, because both strings contain the same characters.
+// @option equal, because == compares String content in Java.
+// @option It does not compile, because Strings cannot be compared with ==.
+// @explain The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.
+// @why B: content is what equals compares, not ==.
+// @why C: == compares references. equals is the method that compares content.
+// @why D: it compiles for any reference type, which is why the bug is so easy to make.
+
+// @quiz (INTERVIEW, MEDIUM) What does this code print?
+// @code int x = 10;
+// @code if (x > 5); { System.out.println("big"); }
+// @option big, and it would print even if x were 1. [correct]
+// @option big, but only when x > 5 is true.
+// @option nothing at all.
+// @option It does not compile, because of the semicolon.
+// @explain The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.
+// @why B: the block is outside the if, so the condition cannot affect it.
+// @why C: the block is unconditional, so it always prints.
+// @why D: it is legal Java, and that is what makes the mistake dangerous.
+
+// @quiz (INTERVIEW, MEDIUM) What is the value of result?
+// @code int result = (10 > 5) ? 1 : 2 + 3;
+// @option 1, because the condition is true and only that branch is used. [correct]
+// @option 6, because the false branch is added.
+// @option 4, because the ternary is evaluated after the addition.
+// @option It does not compile, because the branches are different expressions.
+// @explain The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.
+// @why B: the false branch is not used, and 2 + 3 is not added to the result.
+// @why C: the branches of a ternary are alternatives, never combined.
+// @why D: both branches are int here, so the types are compatible.
+
 public class IfExample {
 
     public static void main(String[] args) {

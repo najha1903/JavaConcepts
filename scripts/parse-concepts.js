@@ -1177,7 +1177,10 @@ function buildOCJPQuestions(chapterName, topics) {
   // ── OOP / Inheritance ───────────────────────────────────────────────────
   // These must match whole words. "looping" contains "oop", which is why the
   // looping chapters used to be given the whole OOP exam block.
-  if (labelHas(label, 'oop') || labelHas(label, 'inherit') || labelHas(label, 'class') || labelHas(label, 'override') || labelHas(label, 'overload')) {
+  // Chapter 13 is the OOP chapter. Matching on bare "class" also caught Chapter 10
+  // ("Class Object Static And Instance Fields"), which then received the same exam
+  // block as Chapter 13. The block belongs to the inheritance chapter only.
+  if (labelHas(label, 'oop') || labelHas(label, 'inherit') || labelHas(label, 'override') || labelHas(label, 'overload')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-polymorphism-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -1299,7 +1302,10 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── Loops ────────────────────────────────────────────────────────────────
-  if (labelHas(label, 'loop') || labelHas(label, 'while') || labelHas(label, 'for')) {
+  // This question is about for loops, so it belongs to the for-loop chapter. Both
+  // looping chapters contain the word "looping", so the while chapter is excluded
+  // explicitly to stop the same question appearing in two chapters.
+  if (labelHas(label, 'loop') && !labelHas(label, 'while')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-for-scope-1`,
       type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',

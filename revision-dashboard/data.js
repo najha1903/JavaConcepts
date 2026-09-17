@@ -1831,6 +1831,90 @@ const CONCEPTS_DATA = [
               "- target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.",
               "- numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long, f for float, and d for double when you want to be explicit; note that decimal literals default to double."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code byte b = 128;",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. 128 is outside the byte range, so the compiler rejects the assignment. [correct]",
+              "@option Yes, and b holds 128.",
+              "@option Yes, and b wraps around to -128.",
+              "@option Yes, but only because 128 fits in a nibble.",
+              "@explain A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.",
+              "@why B: 128 is one past the maximum, so the value does not fit.",
+              "@why C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.",
+              "@why D: the range is fixed by the type, and 127 is the largest byte."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code System.out.println(-7 / 2);\r\n@code System.out.println(-7 % 2);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option -3 and -1 [correct]",
+              "@option -4 and 1",
+              "@option -3.5 and -1",
+              "@option -4 and -1",
+              "@explain Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.",
+              "@why B: -7 / 2 truncates towards zero to -3, not away from it to -4.",
+              "@why C: both operands are int, so the result of / is an int and cannot be -3.5.",
+              "@why D: the division result is -3, not -4."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code System.out.println(0.1 + 0.2);\r\n@code System.out.println(0.1 + 0.2 == 0.3);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 0.30000000000000004 and false [correct]",
+              "@option 0.3 and true",
+              "@option 0.3 and false",
+              "@option 0.30000000000000004 and true",
+              "@explain double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.",
+              "@why B: the sum is not exactly 0.3, so the comparison cannot be true.",
+              "@why C: the printed value shows the accumulated error rather than a clean 0.3.",
+              "@why D: the two halves cannot both be right. If the sum differs from 0.3, the comparison is false."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code short s = 1;\r\n@code s = s + 1;",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast. [correct]",
+              "@option Yes, and s becomes 2.",
+              "@option Yes, and s wraps around.",
+              "@option Yes, because short and int are the same width.",
+              "@explain Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).",
+              "@why B: the promotion makes the assignment invalid, so it never reaches runtime.",
+              "@why C: nothing wraps here. The compiler rejects the type mismatch first.",
+              "@why D: short is 16 bits and int is 32 bits, so they differ.",
+              "@option boolean is not a numeric type, so it cannot be cast to or from an int. [correct]",
+              "@option true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.",
+              "@option A boolean can be used directly as an if condition only after converting it to an int.",
+              "@option boolean and byte are interchangeable because both are 8 bits.",
+              "@explain Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.",
+              "@why B: that rule belongs to C and C++. Java does not allow the cast.",
+              "@why C: no conversion is needed or possible. A boolean is exactly what if requires.",
+              "@why D: a boolean is not a number, so it is not interchangeable with any numeric type."
+            ]
           }
         ],
         "inlineComments": [
@@ -1844,6 +1928,13 @@ const CONCEPTS_DATA = [
           "@code double d = 9.8;",
           "@code int n = (int) d;",
           "- args (main): the command-line String array. Use it only when program input should come from launch arguments; remember every element is text and must be parsed before numeric primitive calculations.",
+          "@code byte b = 128;",
+          "@code System.out.println(-7 / 2);",
+          "@code System.out.println(-7 % 2);",
+          "@code System.out.println(0.1 + 0.2);",
+          "@code System.out.println(0.1 + 0.2 == 0.3);",
+          "@code short s = 1;",
+          "@code s = s + 1;",
           "If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java, then we will get an Overflow in the case of the maximum value and underflow in the case of minimum"
         ],
         "customQuizzes": [
@@ -2284,10 +2375,191 @@ const CONCEPTS_DATA = [
             "code": [],
             "explain": "",
             "whyNotes": []
+          },
+          {
+            "question": "Does this line compile?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. 128 is outside the byte range, so the compiler rejects the assignment.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and b holds 128.",
+                "correct": false,
+                "why": "128 is one past the maximum, so the value does not fit."
+              },
+              {
+                "text": "Yes, and b wraps around to -128.",
+                "correct": false,
+                "why": "the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first."
+              },
+              {
+                "text": "Yes, but only because 128 fits in a nibble.",
+                "correct": false,
+                "why": "the range is fixed by the type, and 127 is the largest byte."
+              }
+            ],
+            "code": [
+              "byte b = 128;"
+            ],
+            "explain": "A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.",
+            "whyNotes": [
+              "B: 128 is one past the maximum, so the value does not fit.",
+              "C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.",
+              "D: the range is fixed by the type, and 127 is the largest byte."
+            ]
+          },
+          {
+            "question": "What is printed by these two statements?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "-3 and -1",
+                "correct": true
+              },
+              {
+                "text": "-4 and 1",
+                "correct": false,
+                "why": "-7 / 2 truncates towards zero to -3, not away from it to -4."
+              },
+              {
+                "text": "-3.5 and -1",
+                "correct": false,
+                "why": "both operands are int, so the result of / is an int and cannot be -3.5."
+              },
+              {
+                "text": "-4 and -1",
+                "correct": false,
+                "why": "the division result is -3, not -4."
+              }
+            ],
+            "code": [
+              "System.out.println(-7 / 2);",
+              "System.out.println(-7 % 2);"
+            ],
+            "explain": "Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.",
+            "whyNotes": [
+              "B: -7 / 2 truncates towards zero to -3, not away from it to -4.",
+              "C: both operands are int, so the result of / is an int and cannot be -3.5.",
+              "D: the division result is -3, not -4."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "0.30000000000000004 and false",
+                "correct": true
+              },
+              {
+                "text": "0.3 and true",
+                "correct": false,
+                "why": "the sum is not exactly 0.3, so the comparison cannot be true."
+              },
+              {
+                "text": "0.3 and false",
+                "correct": false,
+                "why": "the printed value shows the accumulated error rather than a clean 0.3."
+              },
+              {
+                "text": "0.30000000000000004 and true",
+                "correct": false,
+                "why": "the two halves cannot both be right. If the sum differs from 0.3, the comparison is false."
+              }
+            ],
+            "code": [
+              "System.out.println(0.1 + 0.2);",
+              "System.out.println(0.1 + 0.2 == 0.3);"
+            ],
+            "explain": "double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.",
+            "whyNotes": [
+              "B: the sum is not exactly 0.3, so the comparison cannot be true.",
+              "C: the printed value shows the accumulated error rather than a clean 0.3.",
+              "D: the two halves cannot both be right. If the sum differs from 0.3, the comparison is false."
+            ]
+          },
+          {
+            "question": "Does this code compile?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and s becomes 2.",
+                "correct": false,
+                "why": "the promotion makes the assignment invalid, so it never reaches runtime."
+              },
+              {
+                "text": "Yes, and s wraps around.",
+                "correct": false,
+                "why": "nothing wraps here. The compiler rejects the type mismatch first."
+              },
+              {
+                "text": "Yes, because short and int are the same width.",
+                "correct": false,
+                "why": "short is 16 bits and int is 32 bits, so they differ."
+              }
+            ],
+            "code": [
+              "short s = 1;",
+              "s = s + 1;"
+            ],
+            "explain": "Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).",
+            "whyNotes": [
+              "B: the promotion makes the assignment invalid, so it never reaches runtime.",
+              "C: nothing wraps here. The compiler rejects the type mismatch first.",
+              "D: short is 16 bits and int is 32 bits, so they differ."
+            ]
+          },
+          {
+            "question": "Which statement about boolean in Java is correct?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "boolean is not a numeric type, so it cannot be cast to or from an int.",
+                "correct": true
+              },
+              {
+                "text": "true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.",
+                "correct": false,
+                "why": "that rule belongs to C and C++. Java does not allow the cast."
+              },
+              {
+                "text": "A boolean can be used directly as an if condition only after converting it to an int.",
+                "correct": false,
+                "why": "no conversion is needed or possible. A boolean is exactly what if requires."
+              },
+              {
+                "text": "boolean and byte are interchangeable because both are 8 bits.",
+                "correct": false,
+                "why": "a boolean is not a number, so it is not interchangeable with any numeric type."
+              }
+            ],
+            "code": [],
+            "explain": "Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.",
+            "whyNotes": [
+              "B: that rule belongs to C and C++. Java does not allow the cast.",
+              "C: no conversion is needed or possible. A boolean is exactly what if requires.",
+              "D: a boolean is not a number, so it is not interchangeable with any numeric type."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;\r\n// Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.\r\n// Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.\r\n//\r\n// The 8 Primitive Types:\r\n// Type     | Width  | Range / Notes\r\n// ---------|--------|--------------------------------------------------------------\r\n// boolean  | 1 bit  | Only two values: true or false\r\n// byte     | 8 bits | -128 to 127\r\n// short    | 16 bits| -32,768 to 32,767\r\n// char     | 16 bits| A single Unicode character — written in single quotes: 'A'\r\n// int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)\r\n// long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L\r\n// float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)\r\n// double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d\r\n//\r\n// Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).\r\n// These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.\r\n//\r\n// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow).\r\n// Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)\r\n//\r\n// Casting: Converting from one type to another.\r\n// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double\r\n// Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte\r\n// Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.\r\n//\r\n// Integer division: when both operands are int, the result is also int — the decimal part is DROPPED.\r\n// Example: 5/2 = 2 (not 2.5). Use 5.0/2.0 or 5d/2d to get 2.5.\r\n//\r\n// Precision: double has more decimal places than float.\r\n// 5f/3f = 1.6666666 (7 significant digits)\r\n// 5d/3d = 1.6666666666666667 (15+ significant digits)\r\n// For currency or financial calculations, use BigDecimal instead of float/double.\r\n//\r\n// char and Unicode: char holds a single character, uses single quotes: char c = 'D';\r\n// You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')\r\n// Unicode is an international encoding standard — every character in every language has a unique code point.\r\n// Reference: https://unicode-table.com/en/\r\n//\r\n// boolean: can only be true or false. It is the result of any comparison or logical expression.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?\r\n// @answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.\r\n// @answer Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast.\r\n\r\n// @quiz (INTERVIEW) What is integer overflow in Java?\r\n// @answer Integer overflow happens when a value goes past the type's range and wraps around to the opposite end.\r\n// @answer For example, Integer.MAX_VALUE + 1 becomes Integer.MIN_VALUE.\r\n\r\n// @quiz (INTERVIEW) Why does integer division drop the decimal part?\r\n// @answer When both operands are integer types, Java performs integer division and keeps only the whole-number result.\r\n// @answer So 1 / 2 is 0, while 1.0 / 2 uses floating-point division and keeps the fraction.\r\n\r\n// @quiz (OCJP) What is the output of: System.out.println(1 / 2); System.out.println(1.0 / 2);?\r\n// @answer The output is 0 and 0.5.\r\n// @answer The first uses integer division, while the second uses double division.\r\n\r\n// @quiz (OCJP) What happens here: long l = 10; int i = l;?\r\n// @answer It does not compile because assigning long to int is narrowing and may lose data.\r\n// @answer You need an explicit cast, such as int i = (int) l;.\r\n\r\n// @quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?\r\n// @answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.\r\n// @answer Reference type fields default to null because they store no object reference yet.\r\n// @answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.\r\n\r\n// @quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?\r\n// @answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.\r\n// @answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.\r\n// @answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?\r\n// @answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.\r\n// @answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.\r\n// @answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.\r\n\r\n// @quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?\r\n// @answer Yes, it is valid in Java 7 and later, and the value is still one million.\r\n// @answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.\r\n// @answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F.\r\n// @quiz (INTERVIEW, EASY) Which statement about primitive type sizes and ranges is correct?\r\n// @option int is 32-bit, covering -2,147,483,648 to 2,147,483,647. [correct]\r\n// @option byte is 8-bit, covering -128 to 128.\r\n// @option short is 16-bit, covering -32,768 to 32,768.\r\n// @option long is 32-bit, the same width as int.\r\n// @explain Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.\r\n// @why B: byte covers -128 to 127. The upper bound is 127, not 128, because 0 occupies one of the 256 values.\r\n// @why C: short covers -32,768 to 32,767. The upper bound is 32,767, not 32,768.\r\n// @why D: long is 64-bit. int is 32-bit. That is why a literal such as 100L is written with the L suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the difference between widening and narrowing conversion?\r\n// @option Widening goes from a smaller type to a larger compatible type and is automatic. Narrowing goes the other way and requires an explicit cast. [correct]\r\n// @option Widening requires a cast because the larger type needs more memory.\r\n// @option Both directions are automatic, and Java truncates silently when needed.\r\n// @option Narrowing never loses information because Java rounds the value.\r\n// @explain Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.\r\n// @why B: requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.\r\n// @why C: if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents.\r\n// @why D: narrowing can lose information. A cast truncates rather than rounds, so 9.8 becomes 9, not 10.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by these two statements?\r\n// @code System.out.println(5 / 2);\r\n// @code System.out.println(5 / 2.0);\r\n// @option 2 and 2.5 [correct]\r\n// @option 2.5 and 2.5\r\n// @option 2 and 2\r\n// @option 3 and 2.5\r\n// @explain When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.\r\n// @why B: the first line has two int operands, so it cannot produce 2.5.\r\n// @why C: the second line has a double operand, so it cannot produce 2.\r\n// @why D: integer division truncates towards zero, it does not round up. 5 / 2 is 2, never 3.\r\n\r\n// @quiz (OCJP, HARD) What is the value of x after this code runs?\r\n// @code int x = Integer.MAX_VALUE;\r\n// @code x++;\r\n// @option -2147483648, because the value wraps around to Integer.MIN_VALUE. [correct]\r\n// @option 2147483648, because int is promoted to long automatically.\r\n// @option It throws ArithmeticException.\r\n// @option It stays at 2147483647 and the increment is ignored.\r\n// @explain int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.\r\n// @why B: no promotion happens on overflow. The result is stored back into an int, so there is nowhere to hold 2147483648.\r\n// @why C: Java does not raise an exception for primitive integer overflow. Only integer division by zero throws ArithmeticException.\r\n// @why D: the value does change. The carry bit is discarded, which is what makes the value wrap to the opposite end of the range.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about numeric literal suffixes is correct?\r\n// @option 100L creates a long, 3.14f creates a float, and a plain decimal literal such as 3.14 is a double. [correct]\r\n// @option 100L creates an int, and a plain decimal literal such as 3.14 is a float.\r\n// @option The suffix d is compulsory for every double literal.\r\n// @option A decimal literal such as 3.14 is treated as a float by default.\r\n// @explain Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.\r\n// @why B: L means long, not int, and a decimal literal is double, not float.\r\n// @why C: double is the default for decimals, so the d suffix is optional. float is the type that needs a suffix.\r\n// @why D: decimals default to double. Writing float f = 3.14; fails to compile without the f suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about default values in Java is correct?\r\n// @option Instance and static fields receive type defaults such as 0 and false, while local variables must be assigned before they are read. [correct]\r\n// @option Every variable, including a local variable, receives a default value.\r\n// @option Local variables default to null.\r\n// @option Only static fields receive default values.\r\n// @explain Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.\r\n// @why B: locals are the exception. Reading an unassigned local variable is a compile-time error.\r\n// @why C: a local primitive is not set to null, and null is not even a valid value for a primitive. It simply has no value yet.\r\n// @why D: instance fields receive defaults too, not only static fields.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about char is correct?\r\n// @option The escape written as backslash-u 0044 is the character 'D', because char is 16-bit and Unicode-based. [correct]\r\n// @option char is 8-bit and holds one ASCII character.\r\n// @option char uses double quotes, just like a String.\r\n// @option The escape backslash-u 0044 is decimal 44, which is the comma character.\r\n// @explain A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.\r\n// @why B: char is 16-bit so it can represent Unicode, not just 8-bit ASCII.\r\n// @why C: double quotes create a String. A char literal always uses single quotes, as in 'D'.\r\n// @why D: the escape is hexadecimal, not decimal. 0x44 is 68, which is 'D'; decimal 44 is the comma.\r\n\r\n// @quiz (OCJP, HARD) What is the value of n?\r\n// @code double d = 9.8;\r\n// @code int n = (int) d;\r\n// @option 9, because the cast truncates towards zero. [correct]\r\n// @option 10, because the cast rounds to the nearest whole number.\r\n// @option 9.8, because int keeps the fractional part.\r\n// @option It does not compile, because a double can never be converted to an int.\r\n// @explain Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.\r\n// @why B: a cast truncates. To round 9.8 up to 10 you would need Math.round(d).\r\n// @why C: an int cannot hold a fraction at all, which is why precision is lost here.\r\n// @why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.\r\n\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): the command-line String array. Use it only when program input should come from launch arguments;\r\n//     remember every element is text and must be parsed before numeric primitive calculations.\r\n// - x (System.out.println): the value printed to the console. In this file the argument is usually a String created\r\n//     by concatenating a label with a primitive value; Java converts primitives to text before printing.\r\n// - target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a\r\n//     narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.\r\n// - numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long,\r\n//     f for float, and d for double when you want to be explicit; note that decimal literals default to double.\r\n//\r\n// @quiz (INTERVIEW) In System.out.println(\"The max Value of the integer is = \" + intMaxValue), what parameter is passed?\r\n// @answer The parameter is one final String formed by concatenating the label with intMaxValue; println receives that String and prints it.\r\n//\r\n// @quiz (INTERVIEW TRAP) What does the (byte) parameter-like target in (byte) (intMinValue / 2) tell Java?\r\n// @answer It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information.\r\n//\r\n// @quiz (OCJP) Why choose 5f instead of 5 in floatValue = (5f / 2f)?\r\n// @answer The f suffix makes each literal a float, so Java performs floating-point division and keeps the decimal result instead of integer division.\r\npublic class PrimitiveDataTypes {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myValue = 10000; // A plain int declaration: datatype int, identifier myValue, value 10000.\r\n        System.out.println(\"myValue is = \" + myValue); //myValue is = 10000\r\n\r\n        int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.\r\n\r\n        int intMinValue = Integer.MIN_VALUE; //By specifying wrapper class Integer, it allows us to perform different operations on int.\r\n\r\n        System.out.println(\"The max Value of the integer is = \" + intMaxValue); //The max Value of the integer is = 2147483647\r\n        System.out.println(\"The min Value of the integer is = \" + intMinValue); //The min Value of the integer is = -2147483648\r\n\r\n        //If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java,\r\n        // then we will get an Overflow in the case of the maximum value and underflow in the case of minimum\r\n\r\n        System.out.println(\"The overflow value of int is  = \" + (intMaxValue + 1)); //The overflow value of int is  = -2147483648\r\n        System.out.println(\"The underflow value of int is = \" + (intMinValue - 1)); //The underflow value of int is = 2147483647\r\n\r\n        byte myMaxByteValue = Byte.MAX_VALUE;\r\n        byte myMinByteValue = Byte.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of the Byte is = \" + myMaxByteValue); //The max Value of the Byte is = 127\r\n        System.out.println(\"The min Value of the Byte is = \" + myMinByteValue); //The min Value of the Byte is = -128\r\n\r\n        short myShortMaxValue = Short.MAX_VALUE;\r\n        short myShortMinValue = Short.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Short is = \" + myShortMaxValue); //The max Value of Short is = 32767\r\n        System.out.println(\"The min Value of Short is = \" + myShortMinValue); //The min Value of Short is = -32768\r\n\r\n        long myLongValue = 100L; //We need to put letter L in the end to make it as long value.\r\n\r\n        long myLongMaxValue = Long.MAX_VALUE;\r\n        long myLongMinValue = Long.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Long is = \" + myLongMaxValue); //The max Value of Long is = 9223372036854775807\r\n        System.out.println(\"The min Value of Long is = \" + myLongMinValue); //The min Value of Long is = -9223372036854775808\r\n\r\n        byte myNewByteValue = (byte) (intMinValue / 2); //By Casting, we tell/instruct java to treat the int value as byte\r\n        System.out.println(\"myNewByteValue is = \" + myNewByteValue);\r\n\r\n        float myMaxFloatValue = Float.MAX_VALUE;\r\n        float myMinFloatValue = Float.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Float is = \" + myMaxFloatValue); //The max Value of Float is = 3.4028235E38\r\n        System.out.println(\"The min Value of Float is = \" + myMinFloatValue); //The min Value of Float is = 1.4E-45\r\n\r\n        double myMaxDoubleValue = Double.MAX_VALUE;\r\n        double myMinDoubleValue = Double.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Double is = \" + myMaxDoubleValue); //The max Value of Double is = 1.7976931348623157E308\r\n        System.out.println(\"The min Value of Double is = \" + myMinDoubleValue); //The min Value of Double is = 4.9E-324\r\n\r\n        int myIntValue = 5;          // For whole numbers int is considered as default\r\n        float myFloatValue = 5.3f;   // To declare float, it is best practice adding f after declaring number at the end of expression\r\n        double myDoubleValue = 5.4d; // For floating point numbers, double is accepted as default. To declare double, it is best practice adding d after declaring number at the end of the declaration\r\n\r\n        int intValue = (5 / 2);\r\n        float floatValue = (5f / 2f);\r\n        double doubleValue = (5d / 2d);\r\n\r\n        System.out.println(\"Int value is = \" + intValue);       //Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor\r\n        System.out.println(\"Float value is = \" + floatValue);   //Float value is = 2.5\r\n        System.out.println(\"Double value is = \" + doubleValue); //Double value is = 2.5\r\n\r\n        int intValuePrecision = (5 / 3);\r\n        float floatValuePrecision = (5f / 3f);\r\n\r\n        double doubleValuePrecision = (5d / 3d);\r\n\r\n        System.out.println(\"Int precision value is = \" + intValuePrecision);       //Int precision value is = 1\r\n        System.out.println(\"Float precision value is = \" + floatValuePrecision);   //Float precision value is = 1.6666666\r\n        System.out.println(\"Double precision value is = \" + doubleValuePrecision); //Double precision value is = 1.6666666666666667\r\n\r\n        char myChar = 'D';\r\n        char myUnicodeChar = '\\u0044';\r\n\r\n        System.out.println(\"myChar value is \" + myChar);\r\n        System.out.println(\"myUnicodeChar value is \" + myUnicodeChar);\r\n\r\n        boolean myTrueBooleanValue = true;\r\n        boolean myFalseBooleanValue = false;\r\n\r\n        System.out.println(\"myTrueBooleanValue is = \" + myTrueBooleanValue);   //myTrueBooleanValue is = true\r\n        System.out.println(\"myFalseBooleanValue is = \" + myFalseBooleanValue); //myFalseBooleanValue is = false\r\n    }\r\n\r\n}\r\n"
+        "code": "package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;\r\n// Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.\r\n// Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.\r\n//\r\n// The 8 Primitive Types:\r\n// Type     | Width  | Range / Notes\r\n// ---------|--------|--------------------------------------------------------------\r\n// boolean  | 1 bit  | Only two values: true or false\r\n// byte     | 8 bits | -128 to 127\r\n// short    | 16 bits| -32,768 to 32,767\r\n// char     | 16 bits| A single Unicode character — written in single quotes: 'A'\r\n// int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)\r\n// long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L\r\n// float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)\r\n// double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d\r\n//\r\n// Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).\r\n// These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.\r\n//\r\n// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow).\r\n// Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)\r\n//\r\n// Casting: Converting from one type to another.\r\n// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double\r\n// Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte\r\n// Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.\r\n//\r\n// Integer division: when both operands are int, the result is also int — the decimal part is DROPPED.\r\n// Example: 5/2 = 2 (not 2.5). Use 5.0/2.0 or 5d/2d to get 2.5.\r\n//\r\n// Precision: double has more decimal places than float.\r\n// 5f/3f = 1.6666666 (7 significant digits)\r\n// 5d/3d = 1.6666666666666667 (15+ significant digits)\r\n// For currency or financial calculations, use BigDecimal instead of float/double.\r\n//\r\n// char and Unicode: char holds a single character, uses single quotes: char c = 'D';\r\n// You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')\r\n// Unicode is an international encoding standard — every character in every language has a unique code point.\r\n// Reference: https://unicode-table.com/en/\r\n//\r\n// boolean: can only be true or false. It is the result of any comparison or logical expression.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?\r\n// @answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.\r\n// @answer Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast.\r\n\r\n// @quiz (INTERVIEW) What is integer overflow in Java?\r\n// @answer Integer overflow happens when a value goes past the type's range and wraps around to the opposite end.\r\n// @answer For example, Integer.MAX_VALUE + 1 becomes Integer.MIN_VALUE.\r\n\r\n// @quiz (INTERVIEW) Why does integer division drop the decimal part?\r\n// @answer When both operands are integer types, Java performs integer division and keeps only the whole-number result.\r\n// @answer So 1 / 2 is 0, while 1.0 / 2 uses floating-point division and keeps the fraction.\r\n\r\n// @quiz (OCJP) What is the output of: System.out.println(1 / 2); System.out.println(1.0 / 2);?\r\n// @answer The output is 0 and 0.5.\r\n// @answer The first uses integer division, while the second uses double division.\r\n\r\n// @quiz (OCJP) What happens here: long l = 10; int i = l;?\r\n// @answer It does not compile because assigning long to int is narrowing and may lose data.\r\n// @answer You need an explicit cast, such as int i = (int) l;.\r\n\r\n// @quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?\r\n// @answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.\r\n// @answer Reference type fields default to null because they store no object reference yet.\r\n// @answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.\r\n\r\n// @quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?\r\n// @answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.\r\n// @answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.\r\n// @answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?\r\n// @answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.\r\n// @answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.\r\n// @answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.\r\n\r\n// @quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?\r\n// @answer Yes, it is valid in Java 7 and later, and the value is still one million.\r\n// @answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.\r\n// @answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F.\r\n// @quiz (INTERVIEW, EASY) Which statement about primitive type sizes and ranges is correct?\r\n// @option int is 32-bit, covering -2,147,483,648 to 2,147,483,647. [correct]\r\n// @option byte is 8-bit, covering -128 to 128.\r\n// @option short is 16-bit, covering -32,768 to 32,768.\r\n// @option long is 32-bit, the same width as int.\r\n// @explain Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.\r\n// @why B: byte covers -128 to 127. The upper bound is 127, not 128, because 0 occupies one of the 256 values.\r\n// @why C: short covers -32,768 to 32,767. The upper bound is 32,767, not 32,768.\r\n// @why D: long is 64-bit. int is 32-bit. That is why a literal such as 100L is written with the L suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the difference between widening and narrowing conversion?\r\n// @option Widening goes from a smaller type to a larger compatible type and is automatic. Narrowing goes the other way and requires an explicit cast. [correct]\r\n// @option Widening requires a cast because the larger type needs more memory.\r\n// @option Both directions are automatic, and Java truncates silently when needed.\r\n// @option Narrowing never loses information because Java rounds the value.\r\n// @explain Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.\r\n// @why B: requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.\r\n// @why C: if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents.\r\n// @why D: narrowing can lose information. A cast truncates rather than rounds, so 9.8 becomes 9, not 10.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by these two statements?\r\n// @code System.out.println(5 / 2);\r\n// @code System.out.println(5 / 2.0);\r\n// @option 2 and 2.5 [correct]\r\n// @option 2.5 and 2.5\r\n// @option 2 and 2\r\n// @option 3 and 2.5\r\n// @explain When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.\r\n// @why B: the first line has two int operands, so it cannot produce 2.5.\r\n// @why C: the second line has a double operand, so it cannot produce 2.\r\n// @why D: integer division truncates towards zero, it does not round up. 5 / 2 is 2, never 3.\r\n\r\n// @quiz (OCJP, HARD) What is the value of x after this code runs?\r\n// @code int x = Integer.MAX_VALUE;\r\n// @code x++;\r\n// @option -2147483648, because the value wraps around to Integer.MIN_VALUE. [correct]\r\n// @option 2147483648, because int is promoted to long automatically.\r\n// @option It throws ArithmeticException.\r\n// @option It stays at 2147483647 and the increment is ignored.\r\n// @explain int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.\r\n// @why B: no promotion happens on overflow. The result is stored back into an int, so there is nowhere to hold 2147483648.\r\n// @why C: Java does not raise an exception for primitive integer overflow. Only integer division by zero throws ArithmeticException.\r\n// @why D: the value does change. The carry bit is discarded, which is what makes the value wrap to the opposite end of the range.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about numeric literal suffixes is correct?\r\n// @option 100L creates a long, 3.14f creates a float, and a plain decimal literal such as 3.14 is a double. [correct]\r\n// @option 100L creates an int, and a plain decimal literal such as 3.14 is a float.\r\n// @option The suffix d is compulsory for every double literal.\r\n// @option A decimal literal such as 3.14 is treated as a float by default.\r\n// @explain Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.\r\n// @why B: L means long, not int, and a decimal literal is double, not float.\r\n// @why C: double is the default for decimals, so the d suffix is optional. float is the type that needs a suffix.\r\n// @why D: decimals default to double. Writing float f = 3.14; fails to compile without the f suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about default values in Java is correct?\r\n// @option Instance and static fields receive type defaults such as 0 and false, while local variables must be assigned before they are read. [correct]\r\n// @option Every variable, including a local variable, receives a default value.\r\n// @option Local variables default to null.\r\n// @option Only static fields receive default values.\r\n// @explain Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.\r\n// @why B: locals are the exception. Reading an unassigned local variable is a compile-time error.\r\n// @why C: a local primitive is not set to null, and null is not even a valid value for a primitive. It simply has no value yet.\r\n// @why D: instance fields receive defaults too, not only static fields.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about char is correct?\r\n// @option The escape written as backslash-u 0044 is the character 'D', because char is 16-bit and Unicode-based. [correct]\r\n// @option char is 8-bit and holds one ASCII character.\r\n// @option char uses double quotes, just like a String.\r\n// @option The escape backslash-u 0044 is decimal 44, which is the comma character.\r\n// @explain A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.\r\n// @why B: char is 16-bit so it can represent Unicode, not just 8-bit ASCII.\r\n// @why C: double quotes create a String. A char literal always uses single quotes, as in 'D'.\r\n// @why D: the escape is hexadecimal, not decimal. 0x44 is 68, which is 'D'; decimal 44 is the comma.\r\n\r\n// @quiz (OCJP, HARD) What is the value of n?\r\n// @code double d = 9.8;\r\n// @code int n = (int) d;\r\n// @option 9, because the cast truncates towards zero. [correct]\r\n// @option 10, because the cast rounds to the nearest whole number.\r\n// @option 9.8, because int keeps the fractional part.\r\n// @option It does not compile, because a double can never be converted to an int.\r\n// @explain Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.\r\n// @why B: a cast truncates. To round 9.8 up to 10 you would need Math.round(d).\r\n// @why C: an int cannot hold a fraction at all, which is why precision is lost here.\r\n// @why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.\r\n\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): the command-line String array. Use it only when program input should come from launch arguments;\r\n//     remember every element is text and must be parsed before numeric primitive calculations.\r\n// - x (System.out.println): the value printed to the console. In this file the argument is usually a String created\r\n//     by concatenating a label with a primitive value; Java converts primitives to text before printing.\r\n// - target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a\r\n//     narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.\r\n// - numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long,\r\n//     f for float, and d for double when you want to be explicit; note that decimal literals default to double.\r\n//\r\n// @quiz (INTERVIEW) In System.out.println(\"The max Value of the integer is = \" + intMaxValue), what parameter is passed?\r\n// @answer The parameter is one final String formed by concatenating the label with intMaxValue; println receives that String and prints it.\r\n//\r\n// @quiz (INTERVIEW TRAP) What does the (byte) parameter-like target in (byte) (intMinValue / 2) tell Java?\r\n// @answer It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information.\r\n//\r\n// @quiz (OCJP) Why choose 5f instead of 5 in floatValue = (5f / 2f)?\r\n// @answer The f suffix makes each literal a float, so Java performs floating-point division and keeps the decimal result instead of integer division.\r\n// @quiz (INTERVIEW, MEDIUM) Does this line compile?\r\n// @code byte b = 128;\r\n// @option No. 128 is outside the byte range, so the compiler rejects the assignment. [correct]\r\n// @option Yes, and b holds 128.\r\n// @option Yes, and b wraps around to -128.\r\n// @option Yes, but only because 128 fits in a nibble.\r\n// @explain A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.\r\n// @why B: 128 is one past the maximum, so the value does not fit.\r\n// @why C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.\r\n// @why D: the range is fixed by the type, and 127 is the largest byte.\r\n\r\n// @quiz (OCJP, HARD) What is printed by these two statements?\r\n// @code System.out.println(-7 / 2);\r\n// @code System.out.println(-7 % 2);\r\n// @option -3 and -1 [correct]\r\n// @option -4 and 1\r\n// @option -3.5 and -1\r\n// @option -4 and -1\r\n// @explain Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.\r\n// @why B: -7 / 2 truncates towards zero to -3, not away from it to -4.\r\n// @why C: both operands are int, so the result of / is an int and cannot be -3.5.\r\n// @why D: the division result is -3, not -4.\r\n\r\n// @quiz (OCJP, HARD) What is printed by this code?\r\n// @code System.out.println(0.1 + 0.2);\r\n// @code System.out.println(0.1 + 0.2 == 0.3);\r\n// @option 0.30000000000000004 and false [correct]\r\n// @option 0.3 and true\r\n// @option 0.3 and false\r\n// @option 0.30000000000000004 and true\r\n// @explain double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.\r\n// @why B: the sum is not exactly 0.3, so the comparison cannot be true.\r\n// @why C: the printed value shows the accumulated error rather than a clean 0.3.\r\n// @why D: the two halves cannot both be right. If the sum differs from 0.3, the comparison is false.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Does this code compile?\r\n// @code short s = 1;\r\n// @code s = s + 1;\r\n// @option No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast. [correct]\r\n// @option Yes, and s becomes 2.\r\n// @option Yes, and s wraps around.\r\n// @option Yes, because short and int are the same width.\r\n// @explain Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).\r\n// @why B: the promotion makes the assignment invalid, so it never reaches runtime.\r\n// @why C: nothing wraps here. The compiler rejects the type mismatch first.\r\n// @why D: short is 16 bits and int is 32 bits, so they differ.\r\n\r\n// @quiz (OCJP, MEDIUM) Which statement about boolean in Java is correct?\r\n// @option boolean is not a numeric type, so it cannot be cast to or from an int. [correct]\r\n// @option true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.\r\n// @option A boolean can be used directly as an if condition only after converting it to an int.\r\n// @option boolean and byte are interchangeable because both are 8 bits.\r\n// @explain Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.\r\n// @why B: that rule belongs to C and C++. Java does not allow the cast.\r\n// @why C: no conversion is needed or possible. A boolean is exactly what if requires.\r\n// @why D: a boolean is not a number, so it is not interchangeable with any numeric type.\r\n\r\npublic class PrimitiveDataTypes {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myValue = 10000; // A plain int declaration: datatype int, identifier myValue, value 10000.\r\n        System.out.println(\"myValue is = \" + myValue); //myValue is = 10000\r\n\r\n        int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.\r\n\r\n        int intMinValue = Integer.MIN_VALUE; //By specifying wrapper class Integer, it allows us to perform different operations on int.\r\n\r\n        System.out.println(\"The max Value of the integer is = \" + intMaxValue); //The max Value of the integer is = 2147483647\r\n        System.out.println(\"The min Value of the integer is = \" + intMinValue); //The min Value of the integer is = -2147483648\r\n\r\n        //If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java,\r\n        // then we will get an Overflow in the case of the maximum value and underflow in the case of minimum\r\n\r\n        System.out.println(\"The overflow value of int is  = \" + (intMaxValue + 1)); //The overflow value of int is  = -2147483648\r\n        System.out.println(\"The underflow value of int is = \" + (intMinValue - 1)); //The underflow value of int is = 2147483647\r\n\r\n        byte myMaxByteValue = Byte.MAX_VALUE;\r\n        byte myMinByteValue = Byte.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of the Byte is = \" + myMaxByteValue); //The max Value of the Byte is = 127\r\n        System.out.println(\"The min Value of the Byte is = \" + myMinByteValue); //The min Value of the Byte is = -128\r\n\r\n        short myShortMaxValue = Short.MAX_VALUE;\r\n        short myShortMinValue = Short.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Short is = \" + myShortMaxValue); //The max Value of Short is = 32767\r\n        System.out.println(\"The min Value of Short is = \" + myShortMinValue); //The min Value of Short is = -32768\r\n\r\n        long myLongValue = 100L; //We need to put letter L in the end to make it as long value.\r\n\r\n        long myLongMaxValue = Long.MAX_VALUE;\r\n        long myLongMinValue = Long.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Long is = \" + myLongMaxValue); //The max Value of Long is = 9223372036854775807\r\n        System.out.println(\"The min Value of Long is = \" + myLongMinValue); //The min Value of Long is = -9223372036854775808\r\n\r\n        byte myNewByteValue = (byte) (intMinValue / 2); //By Casting, we tell/instruct java to treat the int value as byte\r\n        System.out.println(\"myNewByteValue is = \" + myNewByteValue);\r\n\r\n        float myMaxFloatValue = Float.MAX_VALUE;\r\n        float myMinFloatValue = Float.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Float is = \" + myMaxFloatValue); //The max Value of Float is = 3.4028235E38\r\n        System.out.println(\"The min Value of Float is = \" + myMinFloatValue); //The min Value of Float is = 1.4E-45\r\n\r\n        double myMaxDoubleValue = Double.MAX_VALUE;\r\n        double myMinDoubleValue = Double.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Double is = \" + myMaxDoubleValue); //The max Value of Double is = 1.7976931348623157E308\r\n        System.out.println(\"The min Value of Double is = \" + myMinDoubleValue); //The min Value of Double is = 4.9E-324\r\n\r\n        int myIntValue = 5;          // For whole numbers int is considered as default\r\n        float myFloatValue = 5.3f;   // To declare float, it is best practice adding f after declaring number at the end of expression\r\n        double myDoubleValue = 5.4d; // For floating point numbers, double is accepted as default. To declare double, it is best practice adding d after declaring number at the end of the declaration\r\n\r\n        int intValue = (5 / 2);\r\n        float floatValue = (5f / 2f);\r\n        double doubleValue = (5d / 2d);\r\n\r\n        System.out.println(\"Int value is = \" + intValue);       //Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor\r\n        System.out.println(\"Float value is = \" + floatValue);   //Float value is = 2.5\r\n        System.out.println(\"Double value is = \" + doubleValue); //Double value is = 2.5\r\n\r\n        int intValuePrecision = (5 / 3);\r\n        float floatValuePrecision = (5f / 3f);\r\n\r\n        double doubleValuePrecision = (5d / 3d);\r\n\r\n        System.out.println(\"Int precision value is = \" + intValuePrecision);       //Int precision value is = 1\r\n        System.out.println(\"Float precision value is = \" + floatValuePrecision);   //Float precision value is = 1.6666666\r\n        System.out.println(\"Double precision value is = \" + doubleValuePrecision); //Double precision value is = 1.6666666666666667\r\n\r\n        char myChar = 'D';\r\n        char myUnicodeChar = '\\u0044';\r\n\r\n        System.out.println(\"myChar value is \" + myChar);\r\n        System.out.println(\"myUnicodeChar value is \" + myUnicodeChar);\r\n\r\n        boolean myTrueBooleanValue = true;\r\n        boolean myFalseBooleanValue = false;\r\n\r\n        System.out.println(\"myTrueBooleanValue is = \" + myTrueBooleanValue);   //myTrueBooleanValue is = true\r\n        System.out.println(\"myFalseBooleanValue is = \" + myFalseBooleanValue); //myFalseBooleanValue is = false\r\n    }\r\n\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_4_PrimitiveTypes_CodingChallenge/DataTypeLimitsChallenge.java",
@@ -2529,6 +2801,101 @@ const CONCEPTS_DATA = [
               "@why C: the code does not compile at all, so nothing runs.",
               "@why D: Java reports this as an error, not a warning."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code System.out.println(2 + 3 * 4);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 14, because * is evaluated before +. [correct]",
+              "@option 20, because + is evaluated first.",
+              "@option 24, because the expression is read left to right.",
+              "@option It does not compile without parentheses.",
+              "@explain Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.",
+              "@why B: + is lower precedence than *, so it cannot run first.",
+              "@why C: left-to-right order applies between operators of the same precedence, which these are not.",
+              "@why D: the expression is perfectly legal, and parentheses are only needed to change the order."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int a = 5, b = 3, c = 1;\r\n@code if (a > b > c) { System.out.println(\"yes\"); }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. a > b produces a boolean, and a boolean cannot be compared with c using >. [correct]",
+              "@option Yes, and it prints yes.",
+              "@option Yes, and it prints nothing.",
+              "@option Yes, because Java compares all three values at once.",
+              "@explain The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.",
+              "@why B: the compiler rejects the expression, so nothing runs.",
+              "@why C: it never reaches runtime for the same reason.",
+              "@why D: Java has no three-way comparison like that. You must chain with &&."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int x = true ? 1 : \"one\";",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. The two branches have incompatible types, int and String. [correct]",
+              "@option Yes, and x becomes 1.",
+              "@option Yes, and x becomes the text \"one\".",
+              "@option Yes, because Java converts the String to a number.",
+              "@explain The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.",
+              "@why B: it does not compile, so nothing is assigned.",
+              "@why C: the same type problem stops it, and \"one\" could never go into an int.",
+              "@why D: Java does not convert text to a number automatically. That is what Integer.parseInt is for."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code String s = \"Total: \";\r\n@code s += 10 + 20;\r\n@code System.out.println(s);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option Total: 30, because 10 + 20 is worked out before the concatenation. [correct]",
+              "@option Total: 1020, because += concatenates everything.",
+              "@option Total: 30 is not possible, since += only concatenates text.",
+              "@option It does not compile, because += cannot be used with a String.",
+              "@explain The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.",
+              "@why B: 1020 would need the String to be involved in the addition, which it is not.",
+              "@why C: += performs concatenation for a String, and the numeric part is already resolved.",
+              "@why D: += with a String is legal and is one of the most common uses of compound assignment."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code boolean ready = false;\r\n@code System.out.println(!ready);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option true, because ! inverts a boolean value. [correct]",
+              "@option false, because ! leaves the value unchanged.",
+              "@option It does not compile, because ! needs a number.",
+              "@option -1, because ! negates the value numerically.",
+              "@explain ! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.",
+              "@why B: inversion is exactly what it does, so the value must change.",
+              "@why C: ! requires a boolean, and ready is one.",
+              "@why D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign."
+            ]
           }
         ],
         "inlineComments": [
@@ -2541,6 +2908,15 @@ const CONCEPTS_DATA = [
           "@code System.out.println(10 + 20 + \"Java\");",
           "@code System.out.println(\"Java\" + 10 + 20);",
           "@why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);",
+          "@code System.out.println(2 + 3 * 4);",
+          "@code int a = 5, b = 3, c = 1;",
+          "@code if (a > b > c) { System.out.println(\"yes\"); }",
+          "@code int x = true ? 1 : \"one\";",
+          "@code String s = \"Total: \";",
+          "@code s += 10 + 20;",
+          "@code System.out.println(s);",
+          "@code boolean ready = false;",
+          "@code System.out.println(!ready);",
           "myVar = myVar + 1 is equivalent to myVar++ (increment by 1).",
           "myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).",
           "myVar = myVar + 2 is equivalent to myVar += 2.",
@@ -2934,10 +3310,194 @@ const CONCEPTS_DATA = [
               "C: the code does not compile at all, so nothing runs.",
               "D: Java reports this as an error, not a warning."
             ]
+          },
+          {
+            "question": "What is printed by this statement?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "14, because * is evaluated before +.",
+                "correct": true
+              },
+              {
+                "text": "20, because + is evaluated first.",
+                "correct": false,
+                "why": "+ is lower precedence than *, so it cannot run first."
+              },
+              {
+                "text": "24, because the expression is read left to right.",
+                "correct": false,
+                "why": "left-to-right order applies between operators of the same precedence, which these are not."
+              },
+              {
+                "text": "It does not compile without parentheses.",
+                "correct": false,
+                "why": "the expression is perfectly legal, and parentheses are only needed to change the order."
+              }
+            ],
+            "code": [
+              "System.out.println(2 + 3 * 4);"
+            ],
+            "explain": "Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.",
+            "whyNotes": [
+              "B: + is lower precedence than *, so it cannot run first.",
+              "C: left-to-right order applies between operators of the same precedence, which these are not.",
+              "D: the expression is perfectly legal, and parentheses are only needed to change the order."
+            ]
+          },
+          {
+            "question": "Does this condition compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "No. a > b produces a boolean, and a boolean cannot be compared with c using >.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and it prints yes.",
+                "correct": false,
+                "why": "the compiler rejects the expression, so nothing runs."
+              },
+              {
+                "text": "Yes, and it prints nothing.",
+                "correct": false,
+                "why": "it never reaches runtime for the same reason."
+              },
+              {
+                "text": "Yes, because Java compares all three values at once.",
+                "correct": false,
+                "why": "Java has no three-way comparison like that. You must chain with &&."
+              }
+            ],
+            "code": [
+              "int a = 5, b = 3, c = 1;",
+              "if (a > b > c) { System.out.println(\"yes\"); }"
+            ],
+            "explain": "The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.",
+            "whyNotes": [
+              "B: the compiler rejects the expression, so nothing runs.",
+              "C: it never reaches runtime for the same reason.",
+              "D: Java has no three-way comparison like that. You must chain with &&."
+            ]
+          },
+          {
+            "question": "Does this line compile?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. The two branches have incompatible types, int and String.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and x becomes 1.",
+                "correct": false,
+                "why": "it does not compile, so nothing is assigned."
+              },
+              {
+                "text": "Yes, and x becomes the text \"one\".",
+                "correct": false,
+                "why": "the same type problem stops it, and \"one\" could never go into an int."
+              },
+              {
+                "text": "Yes, because Java converts the String to a number.",
+                "correct": false,
+                "why": "Java does not convert text to a number automatically. That is what Integer.parseInt is for."
+              }
+            ],
+            "code": [
+              "int x = true ? 1 : \"one\";"
+            ],
+            "explain": "The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.",
+            "whyNotes": [
+              "B: it does not compile, so nothing is assigned.",
+              "C: the same type problem stops it, and \"one\" could never go into an int.",
+              "D: Java does not convert text to a number automatically. That is what Integer.parseInt is for."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "Total: 30, because 10 + 20 is worked out before the concatenation.",
+                "correct": true
+              },
+              {
+                "text": "Total: 1020, because += concatenates everything.",
+                "correct": false,
+                "why": "1020 would need the String to be involved in the addition, which it is not."
+              },
+              {
+                "text": "Total: 30 is not possible, since += only concatenates text.",
+                "correct": false,
+                "why": "+= performs concatenation for a String, and the numeric part is already resolved."
+              },
+              {
+                "text": "It does not compile, because += cannot be used with a String.",
+                "correct": false,
+                "why": "+= with a String is legal and is one of the most common uses of compound assignment."
+              }
+            ],
+            "code": [
+              "String s = \"Total: \";",
+              "s += 10 + 20;",
+              "System.out.println(s);"
+            ],
+            "explain": "The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.",
+            "whyNotes": [
+              "B: 1020 would need the String to be involved in the addition, which it is not.",
+              "C: += performs concatenation for a String, and the numeric part is already resolved.",
+              "D: += with a String is legal and is one of the most common uses of compound assignment."
+            ]
+          },
+          {
+            "question": "What does the ! operator do, and what is printed?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "true, because ! inverts a boolean value.",
+                "correct": true
+              },
+              {
+                "text": "false, because ! leaves the value unchanged.",
+                "correct": false,
+                "why": "inversion is exactly what it does, so the value must change."
+              },
+              {
+                "text": "It does not compile, because ! needs a number.",
+                "correct": false,
+                "why": "! requires a boolean, and ready is one."
+              },
+              {
+                "text": "-1, because ! negates the value numerically.",
+                "correct": false,
+                "why": "there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign."
+              }
+            ],
+            "code": [
+              "boolean ready = false;",
+              "System.out.println(!ready);"
+            ],
+            "explain": "! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.",
+            "whyNotes": [
+              "B: inversion is exactly what it does, so the value must change.",
+              "C: ! requires a boolean, and ready is one.",
+              "D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;\r\n// Core Concepts: Operators, Operands & Expression Evaluation\r\n// - Operator: A special symbol that performs operations on one or more operands and evaluates to a result.\r\n// - Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands).\r\n// - Expression: A combination of variables, literals, operators, and method calls that evaluates to a single output value.\r\n//\r\n// Operator Summary Table:\r\n// | Operator | Target Type | Behavior | Code Example |\r\n// |---|---|---|---|\r\n// | `+` | Numeric / String | Addition for numbers, Concatenation if any operand is String | `10 + 20` -> `30`, `\"Score: \" + 10` -> `\"Score: 10\"` |\r\n// | `-` | Numeric | Subtraction | `20 - 5` -> `15` |\r\n// | `*` | Numeric | Multiplication | `4 * 5` -> `20` |\r\n// | `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |\r\n// | `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |\r\n//\r\n// Critical Gotchas & Precedence Rules:\r\n// - Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.\r\n// - Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.\r\n// - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.\r\n\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");\r\n// @answer Output: 30Java\r\n// @answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);\r\n// @answer Output: Java1020 (NOT Java30)\r\n// @answer \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));\r\n// @answer Output: Java30\r\n// @answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".\r\n// @answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.\r\n\r\n// @quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?\r\n// @answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.\r\n// @answer Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.\r\n\r\n// @quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?\r\n// @answer = is the assignment operator, while == is the equality comparison operator.\r\n// @answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.\r\n// @answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);\r\n// @answer Output: big\r\n// @answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\".\r\n\r\n// @quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?\r\n// @answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.\r\n// @answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.\r\n// @answer After b += 5, the value of b becomes 15.\r\n\r\n// @quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?\r\n// @answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.\r\n// @answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.\r\n// @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().\r\n\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): the command-line String array supplied by the JVM. Choose values at launch time if the operator\r\n//     examples should use external input; otherwise it can remain unused.\r\n// - x (System.out.println): the value printed after each operator example. Passing myVar prints its current value\r\n//     after increment, decrement, or compound assignment has already changed it.\r\n// - leftOperand/rightOperand (operators): the values around an operator determine the operation. Choose numeric\r\n//     operands for arithmetic, boolean operands for logical operators, and remember the pitfall that + concatenates when a String is involved.\r\n//\r\n// @quiz (INTERVIEW) In System.out.println(myVar), what does the println parameter show after myVar++?\r\n// @answer It shows the updated value of myVar, because myVar++ has already executed before println receives the variable's current int value.\r\n//\r\n// @quiz (INTERVIEW TRAP) How do the operands you choose affect the + operator?\r\n// @answer If both operands are numeric, + performs addition. If either operand is a String, + performs concatenation for that operation.\r\n//\r\n// @quiz (OCJP) What is important about the right-hand value in myVar += 2?\r\n// @answer The right-hand value is the amount added before assigning back to myVar; compound assignment also performs an implicit cast when needed.\r\n// @quiz (INTERVIEW, EASY) Which statement correctly defines an operator, an operand, and an expression?\r\n// @option An operator is the symbol that performs an operation, an operand is a value or variable it acts on, and an expression is a combination that evaluates to one value. [correct]\r\n// @option An operator is the value being calculated, and an operand is the symbol that calculates it.\r\n// @option An expression is any line of code that ends with a semicolon.\r\n// @option An operand is always a literal value and can never be a variable or a method call.\r\n// @explain In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.\r\n// @why B: the two are the other way round. The symbol is the operator and the values are the operands.\r\n// @why C: a line ending in a semicolon is a statement. An expression is defined by producing a value, not by the semicolon.\r\n// @why D: an operand may be a literal, a variable, or a whole sub-expression such as (a + b).\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) Reading strictly left to right, what is printed by this statement?\r\n// @code System.out.println(10 + 20 + \"Java\");\r\n// @option 30Java [correct]\r\n// @option 1020Java\r\n// @option Java30\r\n// @option It does not compile, because + cannot mix int and String.\r\n// @explain Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + \"Java\" involves a String, so it becomes concatenation and produces 30Java.\r\n// @why B: 1020Java is what you get when the String appears first, as in \"Java\" + 10 + 20.\r\n// @why C: the string is on the right here, so it cannot come out in front of the number.\r\n// @why D: + with a String operand is legal. It concatenates rather than adding.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) What is printed when the String operand comes first?\r\n// @code System.out.println(\"Java\" + 10 + 20);\r\n// @option Java1020 [correct]\r\n// @option Java30\r\n// @option 30Java\r\n// @option It does not compile.\r\n// @explain Once the left operand is a String, every following + is concatenation. \"Java\" + 10 gives \"Java10\", and \"Java10\" + 20 gives \"Java1020\".\r\n// @why B: to get Java30 the addition must be forced first with parentheses: \"Java\" + (10 + 20).\r\n// @why C: the String is first, so the digits cannot appear before the word.\r\n// @why D: this is valid Java. It simply concatenates instead of adding.\r\n\r\n// @quiz (OCJP, HARD) Why does `byte b = 10; b += 5;` compile, while `b = b + 5;` does not?\r\n// @option Compound assignment performs an implicit narrowing cast back to byte, while b + 5 is promoted to int and cannot be assigned to byte without a cast. [correct]\r\n// @option += is only allowed on byte variables.\r\n// @option b + 5 is evaluated at runtime, so the compiler cannot check it.\r\n// @option The two forms are identical, and both compile.\r\n// @explain A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.\r\n// @why B: += works on every numeric type, not only byte.\r\n// @why C: the compiler resolves types at compile time, which is exactly why it rejects the plain addition.\r\n// @why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);\r\n\r\n// @quiz (OCJP, HARD) What is the difference between & and && for boolean expressions?\r\n// @option && short-circuits, so the right side is skipped when the left side is false. & always evaluates both sides. [correct]\r\n// @option & short-circuits, and && always evaluates both sides.\r\n// @option Both short-circuit in exactly the same way.\r\n// @option && can only be used with numbers, not with booleans.\r\n// @explain Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.\r\n// @why B: the behaviour is the other way round. & is the non-short-circuiting form.\r\n// @why C: they differ precisely in whether the right operand is evaluated.\r\n// @why D: && is a logical operator for booleans. The bitwise form & also works on integers, but that is a separate use.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What are the results of 10 / 3 and 10 % 3?\r\n// @option 3 and 1 [correct]\r\n// @option 3.33 and 1\r\n// @option 3 and 0\r\n// @option 1 and 3\r\n// @explain With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.\r\n// @why B: 10 / 3 cannot produce 3.33, because both operands are int.\r\n// @why C: the remainder is 1, not 0. 3 * 3 is 9, and 10 - 9 = 1.\r\n// @why D: the two results are swapped. / gives the whole part and % gives the remainder.\r\n\r\n// @quiz (OCJP, HARD) What happens with `int x = 5; if (x = 5) { ... }`?\r\n// @option It does not compile, because x = 5 is an int assignment and if requires a boolean condition. [correct]\r\n// @option It compiles and the block always runs.\r\n// @option It compiles but the block never runs.\r\n// @option It compiles and prints a warning only.\r\n// @explain = assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.\r\n// @why B: it never reaches runtime. The type error is found while compiling.\r\n// @why C: the code does not compile at all, so nothing runs.\r\n// @why D: Java reports this as an error, not a warning.\r\n\r\npublic class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);\r\n\r\n        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).\r\n        myVar++;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).\r\n        myVar--;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar + 2 is equivalent to myVar += 2.\r\n        myVar += 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 2 is equivalent to myVar -= 2.\r\n        myVar -= 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar * 10 is equivalent to myVar *= 10.\r\n        myVar *= 10;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar / 10 is equivalent to myVar /= 10.\r\n        myVar /= 10;\r\n        System.out.println(myVar);\r\n\r\n    }\r\n}\r\n"
+        "code": "package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;\r\n// Core Concepts: Operators, Operands & Expression Evaluation\r\n// - Operator: A special symbol that performs operations on one or more operands and evaluates to a result.\r\n// - Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands).\r\n// - Expression: A combination of variables, literals, operators, and method calls that evaluates to a single output value.\r\n//\r\n// Operator Summary Table:\r\n// | Operator | Target Type | Behavior | Code Example |\r\n// |---|---|---|---|\r\n// | `+` | Numeric / String | Addition for numbers, Concatenation if any operand is String | `10 + 20` -> `30`, `\"Score: \" + 10` -> `\"Score: 10\"` |\r\n// | `-` | Numeric | Subtraction | `20 - 5` -> `15` |\r\n// | `*` | Numeric | Multiplication | `4 * 5` -> `20` |\r\n// | `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |\r\n// | `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |\r\n//\r\n// Critical Gotchas & Precedence Rules:\r\n// - Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.\r\n// - Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.\r\n// - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.\r\n\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");\r\n// @answer Output: 30Java\r\n// @answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);\r\n// @answer Output: Java1020 (NOT Java30)\r\n// @answer \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));\r\n// @answer Output: Java30\r\n// @answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".\r\n// @answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.\r\n\r\n// @quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?\r\n// @answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.\r\n// @answer Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.\r\n\r\n// @quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?\r\n// @answer = is the assignment operator, while == is the equality comparison operator.\r\n// @answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.\r\n// @answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);\r\n// @answer Output: big\r\n// @answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\".\r\n\r\n// @quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?\r\n// @answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.\r\n// @answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.\r\n// @answer After b += 5, the value of b becomes 15.\r\n\r\n// @quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?\r\n// @answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.\r\n// @answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.\r\n// @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().\r\n\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): the command-line String array supplied by the JVM. Choose values at launch time if the operator\r\n//     examples should use external input; otherwise it can remain unused.\r\n// - x (System.out.println): the value printed after each operator example. Passing myVar prints its current value\r\n//     after increment, decrement, or compound assignment has already changed it.\r\n// - leftOperand/rightOperand (operators): the values around an operator determine the operation. Choose numeric\r\n//     operands for arithmetic, boolean operands for logical operators, and remember the pitfall that + concatenates when a String is involved.\r\n//\r\n// @quiz (INTERVIEW) In System.out.println(myVar), what does the println parameter show after myVar++?\r\n// @answer It shows the updated value of myVar, because myVar++ has already executed before println receives the variable's current int value.\r\n//\r\n// @quiz (INTERVIEW TRAP) How do the operands you choose affect the + operator?\r\n// @answer If both operands are numeric, + performs addition. If either operand is a String, + performs concatenation for that operation.\r\n//\r\n// @quiz (OCJP) What is important about the right-hand value in myVar += 2?\r\n// @answer The right-hand value is the amount added before assigning back to myVar; compound assignment also performs an implicit cast when needed.\r\n// @quiz (INTERVIEW, EASY) Which statement correctly defines an operator, an operand, and an expression?\r\n// @option An operator is the symbol that performs an operation, an operand is a value or variable it acts on, and an expression is a combination that evaluates to one value. [correct]\r\n// @option An operator is the value being calculated, and an operand is the symbol that calculates it.\r\n// @option An expression is any line of code that ends with a semicolon.\r\n// @option An operand is always a literal value and can never be a variable or a method call.\r\n// @explain In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.\r\n// @why B: the two are the other way round. The symbol is the operator and the values are the operands.\r\n// @why C: a line ending in a semicolon is a statement. An expression is defined by producing a value, not by the semicolon.\r\n// @why D: an operand may be a literal, a variable, or a whole sub-expression such as (a + b).\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) Reading strictly left to right, what is printed by this statement?\r\n// @code System.out.println(10 + 20 + \"Java\");\r\n// @option 30Java [correct]\r\n// @option 1020Java\r\n// @option Java30\r\n// @option It does not compile, because + cannot mix int and String.\r\n// @explain Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + \"Java\" involves a String, so it becomes concatenation and produces 30Java.\r\n// @why B: 1020Java is what you get when the String appears first, as in \"Java\" + 10 + 20.\r\n// @why C: the string is on the right here, so it cannot come out in front of the number.\r\n// @why D: + with a String operand is legal. It concatenates rather than adding.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) What is printed when the String operand comes first?\r\n// @code System.out.println(\"Java\" + 10 + 20);\r\n// @option Java1020 [correct]\r\n// @option Java30\r\n// @option 30Java\r\n// @option It does not compile.\r\n// @explain Once the left operand is a String, every following + is concatenation. \"Java\" + 10 gives \"Java10\", and \"Java10\" + 20 gives \"Java1020\".\r\n// @why B: to get Java30 the addition must be forced first with parentheses: \"Java\" + (10 + 20).\r\n// @why C: the String is first, so the digits cannot appear before the word.\r\n// @why D: this is valid Java. It simply concatenates instead of adding.\r\n\r\n// @quiz (OCJP, HARD) Why does `byte b = 10; b += 5;` compile, while `b = b + 5;` does not?\r\n// @option Compound assignment performs an implicit narrowing cast back to byte, while b + 5 is promoted to int and cannot be assigned to byte without a cast. [correct]\r\n// @option += is only allowed on byte variables.\r\n// @option b + 5 is evaluated at runtime, so the compiler cannot check it.\r\n// @option The two forms are identical, and both compile.\r\n// @explain A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.\r\n// @why B: += works on every numeric type, not only byte.\r\n// @why C: the compiler resolves types at compile time, which is exactly why it rejects the plain addition.\r\n// @why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);\r\n\r\n// @quiz (OCJP, HARD) What is the difference between & and && for boolean expressions?\r\n// @option && short-circuits, so the right side is skipped when the left side is false. & always evaluates both sides. [correct]\r\n// @option & short-circuits, and && always evaluates both sides.\r\n// @option Both short-circuit in exactly the same way.\r\n// @option && can only be used with numbers, not with booleans.\r\n// @explain Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.\r\n// @why B: the behaviour is the other way round. & is the non-short-circuiting form.\r\n// @why C: they differ precisely in whether the right operand is evaluated.\r\n// @why D: && is a logical operator for booleans. The bitwise form & also works on integers, but that is a separate use.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What are the results of 10 / 3 and 10 % 3?\r\n// @option 3 and 1 [correct]\r\n// @option 3.33 and 1\r\n// @option 3 and 0\r\n// @option 1 and 3\r\n// @explain With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.\r\n// @why B: 10 / 3 cannot produce 3.33, because both operands are int.\r\n// @why C: the remainder is 1, not 0. 3 * 3 is 9, and 10 - 9 = 1.\r\n// @why D: the two results are swapped. / gives the whole part and % gives the remainder.\r\n\r\n// @quiz (OCJP, HARD) What happens with `int x = 5; if (x = 5) { ... }`?\r\n// @option It does not compile, because x = 5 is an int assignment and if requires a boolean condition. [correct]\r\n// @option It compiles and the block always runs.\r\n// @option It compiles but the block never runs.\r\n// @option It compiles and prints a warning only.\r\n// @explain = assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.\r\n// @why B: it never reaches runtime. The type error is found while compiling.\r\n// @why C: the code does not compile at all, so nothing runs.\r\n// @why D: Java reports this as an error, not a warning.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this statement?\r\n// @code System.out.println(2 + 3 * 4);\r\n// @option 14, because * is evaluated before +. [correct]\r\n// @option 20, because + is evaluated first.\r\n// @option 24, because the expression is read left to right.\r\n// @option It does not compile without parentheses.\r\n// @explain Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.\r\n// @why B: + is lower precedence than *, so it cannot run first.\r\n// @why C: left-to-right order applies between operators of the same precedence, which these are not.\r\n// @why D: the expression is perfectly legal, and parentheses are only needed to change the order.\r\n\r\n// @quiz (OCJP, HARD) Does this condition compile?\r\n// @code int a = 5, b = 3, c = 1;\r\n// @code if (a > b > c) { System.out.println(\"yes\"); }\r\n// @option No. a > b produces a boolean, and a boolean cannot be compared with c using >. [correct]\r\n// @option Yes, and it prints yes.\r\n// @option Yes, and it prints nothing.\r\n// @option Yes, because Java compares all three values at once.\r\n// @explain The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.\r\n// @why B: the compiler rejects the expression, so nothing runs.\r\n// @why C: it never reaches runtime for the same reason.\r\n// @why D: Java has no three-way comparison like that. You must chain with &&.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Does this line compile?\r\n// @code int x = true ? 1 : \"one\";\r\n// @option No. The two branches have incompatible types, int and String. [correct]\r\n// @option Yes, and x becomes 1.\r\n// @option Yes, and x becomes the text \"one\".\r\n// @option Yes, because Java converts the String to a number.\r\n// @explain The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.\r\n// @why B: it does not compile, so nothing is assigned.\r\n// @why C: the same type problem stops it, and \"one\" could never go into an int.\r\n// @why D: Java does not convert text to a number automatically. That is what Integer.parseInt is for.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this code?\r\n// @code String s = \"Total: \";\r\n// @code s += 10 + 20;\r\n// @code System.out.println(s);\r\n// @option Total: 30, because 10 + 20 is worked out before the concatenation. [correct]\r\n// @option Total: 1020, because += concatenates everything.\r\n// @option Total: 30 is not possible, since += only concatenates text.\r\n// @option It does not compile, because += cannot be used with a String.\r\n// @explain The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.\r\n// @why B: 1020 would need the String to be involved in the addition, which it is not.\r\n// @why C: += performs concatenation for a String, and the numeric part is already resolved.\r\n// @why D: += with a String is legal and is one of the most common uses of compound assignment.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What does the ! operator do, and what is printed?\r\n// @code boolean ready = false;\r\n// @code System.out.println(!ready);\r\n// @option true, because ! inverts a boolean value. [correct]\r\n// @option false, because ! leaves the value unchanged.\r\n// @option It does not compile, because ! needs a number.\r\n// @option -1, because ! negates the value numerically.\r\n// @explain ! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.\r\n// @why B: inversion is exactly what it does, so the value must change.\r\n// @why C: ! requires a boolean, and ready is one.\r\n// @why D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign.\r\n\r\npublic class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);\r\n\r\n        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).\r\n        myVar++;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).\r\n        myVar--;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar + 2 is equivalent to myVar += 2.\r\n        myVar += 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 2 is equivalent to myVar -= 2.\r\n        myVar -= 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar * 10 is equivalent to myVar *= 10.\r\n        myVar *= 10;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar / 10 is equivalent to myVar /= 10.\r\n        myVar /= 10;\r\n        System.out.println(myVar);\r\n\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_3_Operators/Sub_Chapter_2_OperatorsChallenge/OperatorChallenge.java",
@@ -3085,12 +3645,96 @@ const CONCEPTS_DATA = [
               "@why C: x = 10; is an assignment statement.",
               "@why D: a method call followed by a semicolon is a statement."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code public static void main(String[] args) {",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@code int x = 5"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code     System.out.println(x);\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. The missing semicolon after int x = 5 is a compile error. [correct]",
+              "@option Yes, because Java adds the semicolon for you.",
+              "@option Yes, because a line break ends the statement.",
+              "@option Yes, and it prints 5.",
+              "@explain A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.",
+              "@why B: Java never inserts missing punctuation.",
+              "@why C: this is the common misconception. The statement ends at the semicolon, and the line break is only whitespace.",
+              "@why D: nothing runs, because the file never compiles."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int x = 5;;",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option It compiles. The second semicolon is an empty statement that does nothing. [correct]",
+              "@option It is a compile error, because only one semicolon is allowed.",
+              "@option It sets x to 0.",
+              "@option It creates a second variable named x.",
+              "@explain A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.",
+              "@why B: an empty statement is valid Java, which is exactly what makes the mistake so easy to miss.",
+              "@why C: an empty statement performs no assignment.",
+              "@why D: declaring x twice with the same type in one scope would be an error, but that is not what this line does.",
+              "@option int x = 5; [correct]",
+              "@option x > 5",
+              "@option 5 + 3",
+              "@option \"hello\"",
+              "@explain A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.",
+              "@why B: x > 5 is an expression that produces a boolean. Alone, it is not a statement.",
+              "@why C: 5 + 3 is an expression that produces 8. It has no effect on its own.",
+              "@why D: a String literal is an expression. Without a semicolon or a use for the value, it is not a statement."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code if (true) {\r\n@code     int inner = 10;\r\n@code }\r\n@code System.out.println(inner);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option It does not compile, because inner is scoped to the block and is gone after the closing brace. [correct]",
+              "@option It compiles and prints 10.",
+              "@option It compiles and prints 0, because inner loses its value.",
+              "@option It compiles only if inner is declared final.",
+              "@explain A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.",
+              "@why B: the name is out of scope at that point.",
+              "@why C: the variable is not reset, it is simply no longer visible.",
+              "@why D: final changes whether the value can be reassigned, not how long the variable lives."
+            ]
           }
         ],
         "inlineComments": [
           "@option A declaration statement, such as int x = 5;",
           "@option An assignment statement, such as x = 10;",
-          "@option A method call statement, such as System.out.println(\"hi\");"
+          "@option A method call statement, such as System.out.println(\"hi\");",
+          "@code public static void main(String[] args) {",
+          "@code System.out.println(x);",
+          "@code }",
+          "@code int x = 5;;",
+          "@code if (true) {",
+          "@code int inner = 10;",
+          "@code System.out.println(inner);"
         ],
         "customQuizzes": [
           {
@@ -3350,10 +3994,158 @@ const CONCEPTS_DATA = [
               "C: x = 10; is an assignment statement.",
               "D: a method call followed by a semicolon is a statement."
             ]
+          },
+          {
+            "question": "Does this code compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. The missing semicolon after int x = 5 is a compile error.",
+                "correct": true
+              },
+              {
+                "text": "Yes, because Java adds the semicolon for you.",
+                "correct": false,
+                "why": "Java never inserts missing punctuation."
+              },
+              {
+                "text": "Yes, because a line break ends the statement.",
+                "correct": false,
+                "why": "this is the common misconception. The statement ends at the semicolon, and the line break is only whitespace."
+              },
+              {
+                "text": "Yes, and it prints 5.",
+                "correct": false,
+                "why": "nothing runs, because the file never compiles."
+              }
+            ],
+            "code": [
+              "public static void main(String[] args) {",
+              "int x = 5",
+              "System.out.println(x);",
+              "}"
+            ],
+            "explain": "A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.",
+            "whyNotes": [
+              "B: Java never inserts missing punctuation.",
+              "C: this is the common misconception. The statement ends at the semicolon, and the line break is only whitespace.",
+              "D: nothing runs, because the file never compiles."
+            ]
+          },
+          {
+            "question": "What is the effect of the semicolon in this line?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It compiles. The second semicolon is an empty statement that does nothing.",
+                "correct": true
+              },
+              {
+                "text": "It is a compile error, because only one semicolon is allowed.",
+                "correct": false,
+                "why": "an empty statement is valid Java, which is exactly what makes the mistake so easy to miss."
+              },
+              {
+                "text": "It sets x to 0.",
+                "correct": false,
+                "why": "an empty statement performs no assignment."
+              },
+              {
+                "text": "It creates a second variable named x.",
+                "correct": false,
+                "why": "declaring x twice with the same type in one scope would be an error, but that is not what this line does."
+              }
+            ],
+            "code": [
+              "int x = 5;;"
+            ],
+            "explain": "A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.",
+            "whyNotes": [
+              "B: an empty statement is valid Java, which is exactly what makes the mistake so easy to miss.",
+              "C: an empty statement performs no assignment.",
+              "D: declaring x twice with the same type in one scope would be an error, but that is not what this line does."
+            ]
+          },
+          {
+            "question": "Which of these is a single valid statement?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "easy",
+            "options": [
+              {
+                "text": "int x = 5;",
+                "correct": true
+              },
+              {
+                "text": "x > 5",
+                "correct": false,
+                "why": "x > 5 is an expression that produces a boolean. Alone, it is not a statement."
+              },
+              {
+                "text": "5 + 3",
+                "correct": false,
+                "why": "5 + 3 is an expression that produces 8. It has no effect on its own."
+              },
+              {
+                "text": "\"hello\"",
+                "correct": false,
+                "why": "a String literal is an expression. Without a semicolon or a use for the value, it is not a statement."
+              }
+            ],
+            "code": [],
+            "explain": "A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.",
+            "whyNotes": [
+              "B: x > 5 is an expression that produces a boolean. Alone, it is not a statement.",
+              "C: 5 + 3 is an expression that produces 8. It has no effect on its own.",
+              "D: a String literal is an expression. Without a semicolon or a use for the value, it is not a statement."
+            ]
+          },
+          {
+            "question": "Where can the variable declared here be used?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It does not compile, because inner is scoped to the block and is gone after the closing brace.",
+                "correct": true
+              },
+              {
+                "text": "It compiles and prints 10.",
+                "correct": false,
+                "why": "the name is out of scope at that point."
+              },
+              {
+                "text": "It compiles and prints 0, because inner loses its value.",
+                "correct": false,
+                "why": "the variable is not reset, it is simply no longer visible."
+              },
+              {
+                "text": "It compiles only if inner is declared final.",
+                "correct": false,
+                "why": "final changes whether the value can be reassigned, not how long the variable lives."
+              }
+            ],
+            "code": [
+              "if (true) {",
+              "int inner = 10;",
+              "}",
+              "System.out.println(inner);"
+            ],
+            "explain": "A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.",
+            "whyNotes": [
+              "B: the name is out of scope at that point.",
+              "C: the variable is not reset, it is simply no longer visible.",
+              "D: final changes whether the value can be reassigned, not how long the variable lives."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_4_Statements_And_Indentations;\r\n// A Java statement is a complete unit of execution. Most statements end with a semicolon (;).\r\n// Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.\r\n// A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.\r\n// Example: String s = \"Hello\" + \" World\" + \"!\"; — this is one statement split across multiple lines. It's still valid.\r\n// Multiple statements CAN be placed on a single line, though it reduces readability.\r\n// Whitespace (spaces, tabs, blank lines) between tokens is completely ignored by the Java compiler. It is for human readability only.\r\n// Indentation is not required by Java — code will compile and run with any (or no) indentation. BUT proper indentation is essential for readability and shows the logical nesting of code blocks.\r\n// In IntelliJ IDEA: Code -> Reformat Code (Ctrl+Alt+L) will auto-indent and format your code.\r\n// Best practice: one statement per line, consistent indentation (usually 4 spaces or 1 tab per level).\r\n\r\n// @quiz (INTERVIEW) What is the difference between a statement and an expression in Java?\r\n// @answer An expression produces a value, such as 2 + 3 or x > 5.\r\n// @answer A statement is a complete instruction, such as int x = 5; or System.out.println(x);.\r\n\r\n// @quiz (INTERVIEW) Do whitespace and indentation affect Java compilation?\r\n// @answer No. Java mostly ignores extra spaces, tabs, and line breaks between tokens.\r\n// @answer They matter for readability, but not for the meaning of correctly separated code.\r\n\r\n// @quiz (INTERVIEW) Can one statement span multiple lines or multiple statements share one line?\r\n// @answer Yes. A statement can span lines, and multiple statements can appear on one line if each is properly terminated.\r\n// @answer The semicolon ends most statements, not the line break.\r\n\r\n// @quiz (OCJP) Is int x = 5; a statement or an expression?\r\n// @answer It is a declaration statement.\r\n// @answer The whole line is not just an expression, even though it contains the assignment expression x = 5.\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): command-line values supplied as a String array. Choose values when launching the program; whitespace\r\n//     in the command line can split arguments unless quoted.\r\n// - x (System.out.println): the single value printed as one statement. Choose the String, variable, or expression\r\n//     that should be displayed; note that the Java statement ends at the semicolon, not at the visual line break.\r\n// - pieces in String concatenation: each quoted literal around + is an operand used to build the final println\r\n//     parameter. Choose pieces for readability, but remember the runtime receives one combined String.\r\n//\r\n// @quiz (INTERVIEW) In a multi-line call like System.out.println(\"This is\" + \" another\" + \" still more.\"), what is the parameter?\r\n// @answer The parameter is the single combined String produced by the concatenation expression; line breaks in source code do not create separate parameters.\r\n//\r\n// @quiz (INTERVIEW TRAP) Does indentation change the parameter passed to println?\r\n// @answer No. Indentation and most whitespace are ignored by the compiler; the expression before the semicolon determines the parameter value.\r\n//\r\n// @quiz (OCJP) What tells Java where the println statement with its parameter ends?\r\n// @answer The semicolon ends the statement. A method call and its parameter can be split across multiple lines before that semicolon.\r\n// @quiz (INTERVIEW, EASY) What is the difference between a statement and an expression?\r\n// @option An expression produces a value, such as 2 + 3, while a statement is a complete instruction, such as int x = 5; [correct]\r\n// @option A statement produces a value, while an expression is a complete instruction.\r\n// @option They are two names for the same thing.\r\n// @option An expression is always a whole line, and a statement is always a fragment.\r\n// @explain An expression evaluates to something. A statement is the complete unit of execution that the compiler acts on, and most statements end in a semicolon.\r\n// @why B: this is reversed. 2 + 3 yields a value, so it is an expression.\r\n// @why C: int x = 5; contains the expression x = 5, but the whole declaration is a statement, so the two are not the same.\r\n// @why D: expressions can be fragments such as 2 + 3, and statements are the ones usually written as a line.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Do whitespace and indentation affect whether Java code compiles?\r\n// @option No. The compiler ignores extra spaces, tabs and line breaks between tokens, though they matter for readability. [correct]\r\n// @option Yes. Incorrect indentation is a compile-time error.\r\n// @option Yes, but only inside an if statement.\r\n// @option Only tabs cause an error, not spaces.\r\n// @explain Whitespace between tokens is discarded by the compiler. Indentation exists for humans, and it shows the nesting of code blocks.\r\n// @why B: Java has no rule requiring indentation. Unindented code still compiles.\r\n// @why C: an if statement is not special in this respect.\r\n// @why D: neither tabs nor spaces change compilation. Mixing them only affects how the code looks.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Can a single statement be spread over several lines?\r\n// @option Yes. What ends most statements is the semicolon, not the line break. [correct]\r\n// @option No. Every statement must be written on exactly one line.\r\n// @option Only if the statement is a method call.\r\n// @option Yes, but only for comments.\r\n// @explain Java does not treat a newline as a terminator. A concatenation or method call may be split over many lines and still be one statement, as long as it ends with a semicolon.\r\n// @why B: line breaks are whitespace and carry no meaning between tokens.\r\n// @why C: any statement may be wrapped, including declarations and assignments.\r\n// @why D: comments have their own rules, and this applies to ordinary statements.\r\n\r\n// @quiz (OCJP, MEDIUM) What decides where a println statement and its parameter end?\r\n// @option The semicolon ends the statement. A method call and its arguments may be split across several lines before it. [correct]\r\n// @option The newline character in the source file ends the statement.\r\n// @option The closing parenthesis ends the statement.\r\n// @option The indentation of the next line ends the statement.\r\n// @explain A method call is one statement that runs until the semicolon. Line breaks inside the parentheses are ignored, so a long concatenation can be formatted over several lines.\r\n// @why B: source line breaks are whitespace, so they end nothing.\r\n// @why C: the parenthesis closes the argument list, but the statement is not complete until the semicolon.\r\n// @why D: indentation is for readability only.\r\n\r\n// @quiz (INTERVIEW, EASY) Which of these is NOT one of the common statement types in Java?\r\n// @option A comparison that evaluates to true or false but is never used, such as (x > 5) on its own line. [correct]\r\n// @option A declaration statement, such as int x = 5;\r\n// @option An assignment statement, such as x = 10;\r\n// @option A method call statement, such as System.out.println(\"hi\");\r\n// @explain A bare comparison is an expression, not a complete statement, so the compiler rejects it. The other three are the everyday statement forms.\r\n// @why B: int x = 5; is a declaration statement.\r\n// @why C: x = 10; is an assignment statement.\r\n// @why D: a method call followed by a semicolon is a statement.\r\n\r\npublic class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +\r\n                \" another\" +\r\n                \" still more.\"); // This is a valid statement, spread across multiple lines\r\n\r\n        int var = 5;\r\n        var--;\r\n        System.out.println(var); // Shows the decremented value: 4\r\n        System.out.println(\"Writing in same line\");\r\n\r\n        int anotherVar\r\n                =\r\n                50; // Its a completely valid code, java compiles the code, deletes the spaces internally.\r\n        System.out.println(anotherVar); // Shows anotherVar was assigned correctly despite the odd formatting: 50\r\n\r\n    }\r\n}\r\n"
+        "code": "package Chapter_4_Statements_And_Indentations;\r\n// A Java statement is a complete unit of execution. Most statements end with a semicolon (;).\r\n// Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.\r\n// A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.\r\n// Example: String s = \"Hello\" + \" World\" + \"!\"; — this is one statement split across multiple lines. It's still valid.\r\n// Multiple statements CAN be placed on a single line, though it reduces readability.\r\n// Whitespace (spaces, tabs, blank lines) between tokens is completely ignored by the Java compiler. It is for human readability only.\r\n// Indentation is not required by Java — code will compile and run with any (or no) indentation. BUT proper indentation is essential for readability and shows the logical nesting of code blocks.\r\n// In IntelliJ IDEA: Code -> Reformat Code (Ctrl+Alt+L) will auto-indent and format your code.\r\n// Best practice: one statement per line, consistent indentation (usually 4 spaces or 1 tab per level).\r\n\r\n// @quiz (INTERVIEW) What is the difference between a statement and an expression in Java?\r\n// @answer An expression produces a value, such as 2 + 3 or x > 5.\r\n// @answer A statement is a complete instruction, such as int x = 5; or System.out.println(x);.\r\n\r\n// @quiz (INTERVIEW) Do whitespace and indentation affect Java compilation?\r\n// @answer No. Java mostly ignores extra spaces, tabs, and line breaks between tokens.\r\n// @answer They matter for readability, but not for the meaning of correctly separated code.\r\n\r\n// @quiz (INTERVIEW) Can one statement span multiple lines or multiple statements share one line?\r\n// @answer Yes. A statement can span lines, and multiple statements can appear on one line if each is properly terminated.\r\n// @answer The semicolon ends most statements, not the line break.\r\n\r\n// @quiz (OCJP) Is int x = 5; a statement or an expression?\r\n// @answer It is a declaration statement.\r\n// @answer The whole line is not just an expression, even though it contains the assignment expression x = 5.\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): command-line values supplied as a String array. Choose values when launching the program; whitespace\r\n//     in the command line can split arguments unless quoted.\r\n// - x (System.out.println): the single value printed as one statement. Choose the String, variable, or expression\r\n//     that should be displayed; note that the Java statement ends at the semicolon, not at the visual line break.\r\n// - pieces in String concatenation: each quoted literal around + is an operand used to build the final println\r\n//     parameter. Choose pieces for readability, but remember the runtime receives one combined String.\r\n//\r\n// @quiz (INTERVIEW) In a multi-line call like System.out.println(\"This is\" + \" another\" + \" still more.\"), what is the parameter?\r\n// @answer The parameter is the single combined String produced by the concatenation expression; line breaks in source code do not create separate parameters.\r\n//\r\n// @quiz (INTERVIEW TRAP) Does indentation change the parameter passed to println?\r\n// @answer No. Indentation and most whitespace are ignored by the compiler; the expression before the semicolon determines the parameter value.\r\n//\r\n// @quiz (OCJP) What tells Java where the println statement with its parameter ends?\r\n// @answer The semicolon ends the statement. A method call and its parameter can be split across multiple lines before that semicolon.\r\n// @quiz (INTERVIEW, EASY) What is the difference between a statement and an expression?\r\n// @option An expression produces a value, such as 2 + 3, while a statement is a complete instruction, such as int x = 5; [correct]\r\n// @option A statement produces a value, while an expression is a complete instruction.\r\n// @option They are two names for the same thing.\r\n// @option An expression is always a whole line, and a statement is always a fragment.\r\n// @explain An expression evaluates to something. A statement is the complete unit of execution that the compiler acts on, and most statements end in a semicolon.\r\n// @why B: this is reversed. 2 + 3 yields a value, so it is an expression.\r\n// @why C: int x = 5; contains the expression x = 5, but the whole declaration is a statement, so the two are not the same.\r\n// @why D: expressions can be fragments such as 2 + 3, and statements are the ones usually written as a line.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Do whitespace and indentation affect whether Java code compiles?\r\n// @option No. The compiler ignores extra spaces, tabs and line breaks between tokens, though they matter for readability. [correct]\r\n// @option Yes. Incorrect indentation is a compile-time error.\r\n// @option Yes, but only inside an if statement.\r\n// @option Only tabs cause an error, not spaces.\r\n// @explain Whitespace between tokens is discarded by the compiler. Indentation exists for humans, and it shows the nesting of code blocks.\r\n// @why B: Java has no rule requiring indentation. Unindented code still compiles.\r\n// @why C: an if statement is not special in this respect.\r\n// @why D: neither tabs nor spaces change compilation. Mixing them only affects how the code looks.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Can a single statement be spread over several lines?\r\n// @option Yes. What ends most statements is the semicolon, not the line break. [correct]\r\n// @option No. Every statement must be written on exactly one line.\r\n// @option Only if the statement is a method call.\r\n// @option Yes, but only for comments.\r\n// @explain Java does not treat a newline as a terminator. A concatenation or method call may be split over many lines and still be one statement, as long as it ends with a semicolon.\r\n// @why B: line breaks are whitespace and carry no meaning between tokens.\r\n// @why C: any statement may be wrapped, including declarations and assignments.\r\n// @why D: comments have their own rules, and this applies to ordinary statements.\r\n\r\n// @quiz (OCJP, MEDIUM) What decides where a println statement and its parameter end?\r\n// @option The semicolon ends the statement. A method call and its arguments may be split across several lines before it. [correct]\r\n// @option The newline character in the source file ends the statement.\r\n// @option The closing parenthesis ends the statement.\r\n// @option The indentation of the next line ends the statement.\r\n// @explain A method call is one statement that runs until the semicolon. Line breaks inside the parentheses are ignored, so a long concatenation can be formatted over several lines.\r\n// @why B: source line breaks are whitespace, so they end nothing.\r\n// @why C: the parenthesis closes the argument list, but the statement is not complete until the semicolon.\r\n// @why D: indentation is for readability only.\r\n\r\n// @quiz (INTERVIEW, EASY) Which of these is NOT one of the common statement types in Java?\r\n// @option A comparison that evaluates to true or false but is never used, such as (x > 5) on its own line. [correct]\r\n// @option A declaration statement, such as int x = 5;\r\n// @option An assignment statement, such as x = 10;\r\n// @option A method call statement, such as System.out.println(\"hi\");\r\n// @explain A bare comparison is an expression, not a complete statement, so the compiler rejects it. The other three are the everyday statement forms.\r\n// @why B: int x = 5; is a declaration statement.\r\n// @why C: x = 10; is an assignment statement.\r\n// @why D: a method call followed by a semicolon is a statement.\r\n\r\n// @quiz (OCJP, MEDIUM) Does this code compile?\r\n// @code public static void main(String[] args) {\r\n// @code     int x = 5\r\n// @code     System.out.println(x);\r\n// @code }\r\n// @option No. The missing semicolon after int x = 5 is a compile error. [correct]\r\n// @option Yes, because Java adds the semicolon for you.\r\n// @option Yes, because a line break ends the statement.\r\n// @option Yes, and it prints 5.\r\n// @explain A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.\r\n// @why B: Java never inserts missing punctuation.\r\n// @why C: this is the common misconception. The statement ends at the semicolon, and the line break is only whitespace.\r\n// @why D: nothing runs, because the file never compiles.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the effect of the semicolon in this line?\r\n// @code int x = 5;;\r\n// @option It compiles. The second semicolon is an empty statement that does nothing. [correct]\r\n// @option It is a compile error, because only one semicolon is allowed.\r\n// @option It sets x to 0.\r\n// @option It creates a second variable named x.\r\n// @explain A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.\r\n// @why B: an empty statement is valid Java, which is exactly what makes the mistake so easy to miss.\r\n// @why C: an empty statement performs no assignment.\r\n// @why D: declaring x twice with the same type in one scope would be an error, but that is not what this line does.\r\n\r\n// @quiz (INTERVIEW, EASY) Which of these is a single valid statement?\r\n// @option int x = 5; [correct]\r\n// @option x > 5\r\n// @option 5 + 3\r\n// @option \"hello\"\r\n// @explain A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.\r\n// @why B: x > 5 is an expression that produces a boolean. Alone, it is not a statement.\r\n// @why C: 5 + 3 is an expression that produces 8. It has no effect on its own.\r\n// @why D: a String literal is an expression. Without a semicolon or a use for the value, it is not a statement.\r\n\r\n// @quiz (OCJP, MEDIUM) Where can the variable declared here be used?\r\n// @code if (true) {\r\n// @code     int inner = 10;\r\n// @code }\r\n// @code System.out.println(inner);\r\n// @option It does not compile, because inner is scoped to the block and is gone after the closing brace. [correct]\r\n// @option It compiles and prints 10.\r\n// @option It compiles and prints 0, because inner loses its value.\r\n// @option It compiles only if inner is declared final.\r\n// @explain A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.\r\n// @why B: the name is out of scope at that point.\r\n// @why C: the variable is not reset, it is simply no longer visible.\r\n// @why D: final changes whether the value can be reassigned, not how long the variable lives.\r\n\r\npublic class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +\r\n                \" another\" +\r\n                \" still more.\"); // This is a valid statement, spread across multiple lines\r\n\r\n        int var = 5;\r\n        var--;\r\n        System.out.println(var); // Shows the decremented value: 4\r\n        System.out.println(\"Writing in same line\");\r\n\r\n        int anotherVar\r\n                =\r\n                50; // Its a completely valid code, java compiles the code, deletes the spaces internally.\r\n        System.out.println(anotherVar); // Shows anotherVar was assigned correctly despite the odd formatting: 50\r\n\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_4_Statements_And_Indentations/Sub_Chapter_2_Statements_CodingChallenge/ExpressionBuilderChallenge.java",
@@ -3581,6 +4373,101 @@ const CONCEPTS_DATA = [
               "@why C: they differ, and swapping them changes when a block runs.",
               "@why D: both operators work on boolean expressions."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int score = 75;\r\n@code if (score >= 90) { System.out.println(\"A\"); }\r\n@code else if (score >= 70) { System.out.println(\"B\"); }\r\n@code else if (score >= 50) { System.out.println(\"C\"); }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option B, because the first matching condition wins and the rest are skipped. [correct]",
+              "@option C, because score is also at least 50.",
+              "@option B and C, because both conditions are true.",
+              "@option A, because 75 is more than 50.",
+              "@explain An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.",
+              "@why B: the C branch is never tested, because the chain already stopped.",
+              "@why C: only one branch of an if/else-if chain runs.",
+              "@why D: 75 is less than 90, so the first condition is false."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code if (name != null && name.length() > 5) { ... }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option && short-circuits, so the right side is skipped when name is null. [correct]",
+              "@option && always evaluates both sides, so it would throw a NullPointerException.",
+              "@option The condition is not safe, and it always throws.",
+              "@option Java converts null to an empty String before the check.",
+              "@explain Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.",
+              "@why B: only the non-short-circuiting & evaluates both sides. That version would throw.",
+              "@why C: the guard exists precisely to prevent the exception.",
+              "@why D: null is not converted. Calling a method on it is what throws."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code String a = \"hello\";\r\n@code String b = new String(\"hello\");\r\n@code if (a == b) { System.out.println(\"equal\"); }\r\n@code else { System.out.println(\"not equal\"); }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option not equal, because == compares references and these are two different objects. [correct]",
+              "@option equal, because both strings contain the same characters.",
+              "@option equal, because == compares String content in Java.",
+              "@option It does not compile, because Strings cannot be compared with ==.",
+              "@explain The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.",
+              "@why B: content is what equals compares, not ==.",
+              "@why C: == compares references. equals is the method that compares content.",
+              "@why D: it compiles for any reference type, which is why the bug is so easy to make."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int x = 10;\r\n@code if (x > 5); { System.out.println(\"big\"); }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option big, and it would print even if x were 1. [correct]",
+              "@option big, but only when x > 5 is true.",
+              "@option nothing at all.",
+              "@option It does not compile, because of the semicolon.",
+              "@explain The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.",
+              "@why B: the block is outside the if, so the condition cannot affect it.",
+              "@why C: the block is unconditional, so it always prints.",
+              "@why D: it is legal Java, and that is what makes the mistake dangerous."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int result = (10 > 5) ? 1 : 2 + 3;",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 1, because the condition is true and only that branch is used. [correct]",
+              "@option 6, because the false branch is added.",
+              "@option 4, because the ternary is evaluated after the addition.",
+              "@option It does not compile, because the branches are different expressions.",
+              "@explain The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.",
+              "@why B: the false branch is not used, and 2 + 3 is not added to the result.",
+              "@why C: the branches of a ternary are alternatives, never combined.",
+              "@why D: both branches are int here, so the types are compatible."
+            ]
           }
         ],
         "inlineComments": [
@@ -3592,6 +4479,18 @@ const CONCEPTS_DATA = [
           "@code System.out.println(\"B\");",
           "@option && requires both sides to be true, while || requires at least one side to be true. [correct]",
           "@option && requires at least one side to be true, while || requires both.",
+          "@code int score = 75;",
+          "@code if (score >= 90) { System.out.println(\"A\"); }",
+          "@code else if (score >= 70) { System.out.println(\"B\"); }",
+          "@code else if (score >= 50) { System.out.println(\"C\"); }",
+          "@code if (name != null && name.length() > 5) { ... }",
+          "@code String a = \"hello\";",
+          "@code String b = new String(\"hello\");",
+          "@code if (a == b) { System.out.println(\"equal\"); }",
+          "@code else { System.out.println(\"not equal\"); }",
+          "@code int x = 10;",
+          "@code if (x > 5); { System.out.println(\"big\"); }",
+          "@code int result = (10 > 5) ? 1 : 2 + 3;",
           "If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed."
         ],
         "customQuizzes": [
@@ -3954,10 +4853,197 @@ const CONCEPTS_DATA = [
               "C: they differ, and swapping them changes when a block runs.",
               "D: both operators work on boolean expressions."
             ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "B, because the first matching condition wins and the rest are skipped.",
+                "correct": true
+              },
+              {
+                "text": "C, because score is also at least 50.",
+                "correct": false,
+                "why": "the C branch is never tested, because the chain already stopped."
+              },
+              {
+                "text": "B and C, because both conditions are true.",
+                "correct": false,
+                "why": "only one branch of an if/else-if chain runs."
+              },
+              {
+                "text": "A, because 75 is more than 50.",
+                "correct": false,
+                "why": "75 is less than 90, so the first condition is false."
+              }
+            ],
+            "code": [
+              "int score = 75;",
+              "if (score >= 90) { System.out.println(\"A\"); }",
+              "else if (score >= 70) { System.out.println(\"B\"); }",
+              "else if (score >= 50) { System.out.println(\"C\"); }"
+            ],
+            "explain": "An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.",
+            "whyNotes": [
+              "B: the C branch is never tested, because the chain already stopped.",
+              "C: only one branch of an if/else-if chain runs.",
+              "D: 75 is less than 90, so the first condition is false."
+            ]
+          },
+          {
+            "question": "Why is this condition safe, even when name is null?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "&& short-circuits, so the right side is skipped when name is null.",
+                "correct": true
+              },
+              {
+                "text": "&& always evaluates both sides, so it would throw a NullPointerException.",
+                "correct": false,
+                "why": "only the non-short-circuiting & evaluates both sides. That version would throw."
+              },
+              {
+                "text": "The condition is not safe, and it always throws.",
+                "correct": false,
+                "why": "the guard exists precisely to prevent the exception."
+              },
+              {
+                "text": "Java converts null to an empty String before the check.",
+                "correct": false,
+                "why": "null is not converted. Calling a method on it is what throws."
+              }
+            ],
+            "code": [
+              "if (name != null && name.length() > 5) { ... }"
+            ],
+            "explain": "Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.",
+            "whyNotes": [
+              "B: only the non-short-circuiting & evaluates both sides. That version would throw.",
+              "C: the guard exists precisely to prevent the exception.",
+              "D: null is not converted. Calling a method on it is what throws."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "not equal, because == compares references and these are two different objects.",
+                "correct": true
+              },
+              {
+                "text": "equal, because both strings contain the same characters.",
+                "correct": false,
+                "why": "content is what equals compares, not ==."
+              },
+              {
+                "text": "equal, because == compares String content in Java.",
+                "correct": false,
+                "why": "== compares references. equals is the method that compares content."
+              },
+              {
+                "text": "It does not compile, because Strings cannot be compared with ==.",
+                "correct": false,
+                "why": "it compiles for any reference type, which is why the bug is so easy to make."
+              }
+            ],
+            "code": [
+              "String a = \"hello\";",
+              "String b = new String(\"hello\");",
+              "if (a == b) { System.out.println(\"equal\"); }",
+              "else { System.out.println(\"not equal\"); }"
+            ],
+            "explain": "The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.",
+            "whyNotes": [
+              "B: content is what equals compares, not ==.",
+              "C: == compares references. equals is the method that compares content.",
+              "D: it compiles for any reference type, which is why the bug is so easy to make."
+            ]
+          },
+          {
+            "question": "What does this code print?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "big, and it would print even if x were 1.",
+                "correct": true
+              },
+              {
+                "text": "big, but only when x > 5 is true.",
+                "correct": false,
+                "why": "the block is outside the if, so the condition cannot affect it."
+              },
+              {
+                "text": "nothing at all.",
+                "correct": false,
+                "why": "the block is unconditional, so it always prints."
+              },
+              {
+                "text": "It does not compile, because of the semicolon.",
+                "correct": false,
+                "why": "it is legal Java, and that is what makes the mistake dangerous."
+              }
+            ],
+            "code": [
+              "int x = 10;",
+              "if (x > 5); { System.out.println(\"big\"); }"
+            ],
+            "explain": "The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.",
+            "whyNotes": [
+              "B: the block is outside the if, so the condition cannot affect it.",
+              "C: the block is unconditional, so it always prints.",
+              "D: it is legal Java, and that is what makes the mistake dangerous."
+            ]
+          },
+          {
+            "question": "What is the value of result?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "1, because the condition is true and only that branch is used.",
+                "correct": true
+              },
+              {
+                "text": "6, because the false branch is added.",
+                "correct": false,
+                "why": "the false branch is not used, and 2 + 3 is not added to the result."
+              },
+              {
+                "text": "4, because the ternary is evaluated after the addition.",
+                "correct": false,
+                "why": "the branches of a ternary are alternatives, never combined."
+              },
+              {
+                "text": "It does not compile, because the branches are different expressions.",
+                "correct": false,
+                "why": "both branches are int here, so the types are compatible."
+              }
+            ],
+            "code": [
+              "int result = (10 > 5) ? 1 : 2 + 3;"
+            ],
+            "explain": "The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.",
+            "whyNotes": [
+              "B: the false branch is not used, and 2 + 3 is not added to the result.",
+              "C: the branches of a ternary are alternatives, never combined.",
+              "D: both branches are int here, so the types are compatible."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statement;\r\n// Conditional logic (also called control flow) lets your program make decisions: execute different code depending on whether a condition is true or false.\r\n// The if statement evaluates a boolean expression. If the expression is true, the code block runs. If false, it is skipped.\r\n// IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.\r\n// Always use curly braces { } with if — even for single-line bodies. It prevents bugs when you add more code later.\r\n// Comparison operators for conditions: == (equal to), != (not equal to), > (greater than), < (less than), >= (greater or equal), <= (less or equal).\r\n// Logical AND (&&): both conditions must be true. Example: (score >= 50) && (score < 100)\r\n// Logical OR (||): at least one condition must be true. Example: (score < 10) || (score > 90)\r\n// The NOT operator (!): inverts a boolean. !true = false. !false = true. Example: if(!isAlien) means \"if isAlien is false\".\r\n// The assignment operator (=) assigns a value. The equality operator (==) compares values. Never use = inside a condition — use == instead.\r\n// Ternary Operator: a compact if-else in a single expression. Syntax: condition ? valueIfTrue : valueIfFalse\r\n// Example from code below: boolean wasCar = isCar ? true : false; — if isCar is true, wasCar = true; else wasCar = false.\r\n// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html\r\n/*\r\n    Ternary Operator Example :-\r\n\r\n    int ageOfClient = 20;\r\n\r\n    boolean isEighteenOrOver = (ageOfClient == 20) ? true : false;\r\n\r\n    Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.\r\n\r\n    Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true.\r\n\r\n    Operand three - false. is the value to be assigned to the variable isEighteenOrOver if the condition above is false.\r\n\r\n */\r\n\r\n// @quiz (INTERVIEW) What is the dangling else problem in Java?\r\n// @answer A dangling else happens when nested if statements omit braces and it is unclear which if the else belongs to.\r\n// @answer In Java, else always matches the nearest unmatched if.\r\n\r\n// @quiz (INTERVIEW) Can an if condition use non-boolean types in Java?\r\n// @answer No. Java requires the condition to be a boolean expression.\r\n// @answer Unlike C, Java does not allow numbers or object references directly as if conditions.\r\n\r\n// @quiz (INTERVIEW) When should you use the ternary operator instead of if-else?\r\n// @answer Use the ternary operator for short value-producing decisions, such as assigning one of two values.\r\n// @answer Use if-else when the logic is longer or you need multiple statements.\r\n\r\n// @quiz (INTERVIEW) Why are braces recommended even for a single if statement?\r\n// @answer Braces make the controlled block explicit and prevent bugs when more lines are added later.\r\n// @answer They also make nested conditions easier to read.\r\n\r\n// @quiz (OCJP) What happens here: int x = 5; if (x = 5) { System.out.println(\"Hi\"); }?\r\n// @answer It does not compile because x = 5 is an int assignment expression, not a boolean condition.\r\n// @answer Java if conditions must evaluate to true or false.\r\n\r\n// @quiz (OCJP) How many statements does if control here: if (true) System.out.println(\"A\"); System.out.println(\"B\");?\r\n// @answer Only the first statement after if is controlled by the condition.\r\n// @answer The second println is outside the if unless braces are used.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args contains command-line arguments in the order typed after the class name; choose values only when the program is launched from a terminal or run configuration.\r\n// - System.out.println(String x): x is the text to print followed by a new line; choose a clear message that explains which branch ran. Passing null prints the literal text \"null\".\r\n// - The ternary expression condition ? valueIfTrue : valueIfFalse has three operands: the boolean condition to test, the value chosen when true, and the value chosen when false; choose compatible result types.\r\n// - if(condition) and logical operators such as && and || are not method calls, but their boolean expressions act like decision inputs; important: choose expressions that evaluate to true or false only.\r\n//\r\n// @quiz (INTERVIEW) In main(String[] args), what does the args parameter contain?\r\n// @answer It contains command-line arguments as a zero-based String array, in the same order the user supplied them when starting the program.\r\n//\r\n// @quiz (INTERVIEW TRAP) What parameter value does System.out.println(null) print?\r\n// @answer It prints the literal text \"null\" followed by a newline; careful, it does not print an empty line.\r\n//\r\n// @quiz (OCJP) In condition ? a : b, what do the second and third operands mean?\r\n// @answer The second operand is the value used when the condition is true, and the third operand is the value used when the condition is false.\r\n// @quiz (OCJP, HARD) What does this code print?\r\n// @code int x = 5;\r\n// @code if (x > 3) ; { System.out.println(\"Hello\"); }\r\n// @option Hello, and it is printed even if the condition were false. [correct]\r\n// @option Nothing at all.\r\n// @option It does not compile.\r\n// @option Hello, but only when x > 3 is true.\r\n// @explain The semicolon straight after the condition ends the if statement, creating an empty body. The braced block that follows is then a separate statement that always runs. This is why a semicolon must never be placed after if (condition).\r\n// @why B: the block is no longer controlled by the if, so it does run.\r\n// @why C: it is legal Java, which is exactly what makes the mistake so easy to miss.\r\n// @why D: the block is outside the if, so the condition no longer affects it.\r\n\r\n// @quiz (INTERVIEW, EASY) Why is it recommended to always use braces with if, even for a single statement?\r\n// @option Braces make the controlled block explicit and prevent bugs when more lines are added later. [correct]\r\n// @option Braces make the code run faster.\r\n// @option Java requires braces, otherwise the code will not compile.\r\n// @option Braces are needed only when the condition is complex.\r\n// @explain Without braces, only the single next statement belongs to the if. A later edit that adds a line is easy to get wrong, and the second line silently falls outside the condition.\r\n// @why B: braces have no effect on execution speed.\r\n// @why C: braces are optional for a single statement, which is the reason the guidance exists.\r\n// @why D: the risk applies to simple conditions too.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) In the ternary expression condition ? a : b, what are the three parts?\r\n// @option A boolean condition, the value used when it is true, and the value used when it is false. [correct]\r\n// @option An assignment, a variable, and a literal.\r\n// @option Two conditions and one value.\r\n// @option A method call, its argument, and its return value.\r\n// @explain The ternary operator is a compact if-else that produces a value. The condition must be boolean, and the two result expressions should be of compatible types.\r\n// @why B: there is no assignment in the operator itself.\r\n// @why C: only the first part is a condition; the other two are the results.\r\n// @why D: it is an operator, not a method call.\r\n\r\n// @quiz (OCJP, HARD) With braces omitted, which if does an else belong to?\r\n// @code if (a) if (b) x = 1; else x = 2;\r\n// @option The inner if, because else always binds to the nearest unmatched if. [correct]\r\n// @option The outer if, because else always belongs to the first if.\r\n// @option It does not compile without braces.\r\n// @option It is ambiguous and the compiler picks at random.\r\n// @explain This is the dangling else problem. Java resolves it by binding else to the closest if that does not already have one, which is the inner if here. Braces remove the doubt.\r\n// @why B: binding to the outer if would change the meaning, and Java does not do that.\r\n// @why C: it compiles, and it compiles in a way that often surprises people.\r\n// @why D: the rule is fixed and deterministic, not random.\r\n\r\n// @quiz (OCJP, MEDIUM) Can a Java if condition use a number or an object reference directly?\r\n// @option No. The condition must be a boolean expression, unlike C where a number can be tested. [correct]\r\n// @option Yes, where 0 means false and any other number means true.\r\n// @option Yes, where null means false.\r\n// @option Yes, but only for int values.\r\n// @explain Java is strict here. Something like if (1) is a compile-time error, and it must be written as a real comparison such as if (x != 0).\r\n// @why B: that rule belongs to C and C++, not to Java.\r\n// @why C: an object reference cannot be used directly either. Write if (obj != null) instead.\r\n// @why D: no numeric type is accepted, not even int.\r\n\r\n// @quiz (OCJP, MEDIUM) How many statements does the if control here?\r\n// @code if (true) System.out.println(\"A\");\r\n// @code System.out.println(\"B\");\r\n// @option Only the first, so B is printed whatever the condition is. [correct]\r\n// @option Both, because the condition is true.\r\n// @option Neither, because there are no braces.\r\n// @option It does not compile without braces.\r\n// @explain Without braces, an if controls exactly one statement, the one immediately after it. Everything after that is outside the condition.\r\n// @why B: braces would be needed to control both lines.\r\n// @why C: an if with no braces still controls the single following statement.\r\n// @why D: braces are optional for one statement.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the difference between && and || in a condition?\r\n// @option && requires both sides to be true, while || requires at least one side to be true. [correct]\r\n// @option && requires at least one side to be true, while || requires both.\r\n// @option Both mean the same thing.\r\n// @option && works only with numbers, and || only with Strings.\r\n// @explain They are the logical AND and OR operators. Both also short-circuit, so the right side is skipped once the answer is already known.\r\n// @why B: the two are swapped.\r\n// @why C: they differ, and swapping them changes when a block runs.\r\n// @why D: both operators work on boolean expressions.\r\n\r\npublic class IfExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        boolean isAlien = false;\r\n\r\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\r\n        if(isAlien == false){ // condition check\r\n            System.out.println(\"It is not an alien!\");\r\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.\r\n\r\n        int topScore = 100;\r\n        if(topScore == 100){\r\n            System.out.println(\"You got the high score!\");\r\n        }\r\n        if(topScore != 100){\r\n            System.out.println(\"You didn't get the high score!\");\r\n        }\r\n        if(topScore >= 100){\r\n            System.out.println(\"You got the high score for greater than equal to!\");\r\n        }\r\n        if((topScore >= 100) && (topScore < 200)){ // && represents logical AND operator\r\n            System.out.println(\"You got the high score\");\r\n        }\r\n\r\n        if((topScore < 100) || (topScore >= 100)){ // || represents logical OR operator\r\n            System.out.println(\"You got the high score\");\r\n        }\r\n\r\n        boolean isCar = false;\r\n        if(isCar == true){ // Ideally, we should have used equalsTo(==) operator in place of assignment(=) operator. In this case,\r\n            System.out.println(\"This is not supposed to happen\");\r\n\r\n            boolean wasCar = isCar ? true : false; //Here since isCar value is false, the condition is checked first, since the condition is false, so false value gets assigned to wasCar.\r\n\r\n            if(wasCar){\r\n                System.out.println(\"wasCar is true\");\r\n            }\r\n        }\r\n    }\r\n\r\n}\r\n"
+        "code": "package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statement;\r\n// Conditional logic (also called control flow) lets your program make decisions: execute different code depending on whether a condition is true or false.\r\n// The if statement evaluates a boolean expression. If the expression is true, the code block runs. If false, it is skipped.\r\n// IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.\r\n// Always use curly braces { } with if — even for single-line bodies. It prevents bugs when you add more code later.\r\n// Comparison operators for conditions: == (equal to), != (not equal to), > (greater than), < (less than), >= (greater or equal), <= (less or equal).\r\n// Logical AND (&&): both conditions must be true. Example: (score >= 50) && (score < 100)\r\n// Logical OR (||): at least one condition must be true. Example: (score < 10) || (score > 90)\r\n// The NOT operator (!): inverts a boolean. !true = false. !false = true. Example: if(!isAlien) means \"if isAlien is false\".\r\n// The assignment operator (=) assigns a value. The equality operator (==) compares values. Never use = inside a condition — use == instead.\r\n// Ternary Operator: a compact if-else in a single expression. Syntax: condition ? valueIfTrue : valueIfFalse\r\n// Example from code below: boolean wasCar = isCar ? true : false; — if isCar is true, wasCar = true; else wasCar = false.\r\n// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html\r\n/*\r\n    Ternary Operator Example :-\r\n\r\n    int ageOfClient = 20;\r\n\r\n    boolean isEighteenOrOver = (ageOfClient == 20) ? true : false;\r\n\r\n    Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.\r\n\r\n    Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true.\r\n\r\n    Operand three - false. is the value to be assigned to the variable isEighteenOrOver if the condition above is false.\r\n\r\n */\r\n\r\n// @quiz (INTERVIEW) What is the dangling else problem in Java?\r\n// @answer A dangling else happens when nested if statements omit braces and it is unclear which if the else belongs to.\r\n// @answer In Java, else always matches the nearest unmatched if.\r\n\r\n// @quiz (INTERVIEW) Can an if condition use non-boolean types in Java?\r\n// @answer No. Java requires the condition to be a boolean expression.\r\n// @answer Unlike C, Java does not allow numbers or object references directly as if conditions.\r\n\r\n// @quiz (INTERVIEW) When should you use the ternary operator instead of if-else?\r\n// @answer Use the ternary operator for short value-producing decisions, such as assigning one of two values.\r\n// @answer Use if-else when the logic is longer or you need multiple statements.\r\n\r\n// @quiz (INTERVIEW) Why are braces recommended even for a single if statement?\r\n// @answer Braces make the controlled block explicit and prevent bugs when more lines are added later.\r\n// @answer They also make nested conditions easier to read.\r\n\r\n// @quiz (OCJP) What happens here: int x = 5; if (x = 5) { System.out.println(\"Hi\"); }?\r\n// @answer It does not compile because x = 5 is an int assignment expression, not a boolean condition.\r\n// @answer Java if conditions must evaluate to true or false.\r\n\r\n// @quiz (OCJP) How many statements does if control here: if (true) System.out.println(\"A\"); System.out.println(\"B\");?\r\n// @answer Only the first statement after if is controlled by the condition.\r\n// @answer The second println is outside the if unless braces are used.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args contains command-line arguments in the order typed after the class name; choose values only when the program is launched from a terminal or run configuration.\r\n// - System.out.println(String x): x is the text to print followed by a new line; choose a clear message that explains which branch ran. Passing null prints the literal text \"null\".\r\n// - The ternary expression condition ? valueIfTrue : valueIfFalse has three operands: the boolean condition to test, the value chosen when true, and the value chosen when false; choose compatible result types.\r\n// - if(condition) and logical operators such as && and || are not method calls, but their boolean expressions act like decision inputs; important: choose expressions that evaluate to true or false only.\r\n//\r\n// @quiz (INTERVIEW) In main(String[] args), what does the args parameter contain?\r\n// @answer It contains command-line arguments as a zero-based String array, in the same order the user supplied them when starting the program.\r\n//\r\n// @quiz (INTERVIEW TRAP) What parameter value does System.out.println(null) print?\r\n// @answer It prints the literal text \"null\" followed by a newline; careful, it does not print an empty line.\r\n//\r\n// @quiz (OCJP) In condition ? a : b, what do the second and third operands mean?\r\n// @answer The second operand is the value used when the condition is true, and the third operand is the value used when the condition is false.\r\n// @quiz (OCJP, HARD) What does this code print?\r\n// @code int x = 5;\r\n// @code if (x > 3) ; { System.out.println(\"Hello\"); }\r\n// @option Hello, and it is printed even if the condition were false. [correct]\r\n// @option Nothing at all.\r\n// @option It does not compile.\r\n// @option Hello, but only when x > 3 is true.\r\n// @explain The semicolon straight after the condition ends the if statement, creating an empty body. The braced block that follows is then a separate statement that always runs. This is why a semicolon must never be placed after if (condition).\r\n// @why B: the block is no longer controlled by the if, so it does run.\r\n// @why C: it is legal Java, which is exactly what makes the mistake so easy to miss.\r\n// @why D: the block is outside the if, so the condition no longer affects it.\r\n\r\n// @quiz (INTERVIEW, EASY) Why is it recommended to always use braces with if, even for a single statement?\r\n// @option Braces make the controlled block explicit and prevent bugs when more lines are added later. [correct]\r\n// @option Braces make the code run faster.\r\n// @option Java requires braces, otherwise the code will not compile.\r\n// @option Braces are needed only when the condition is complex.\r\n// @explain Without braces, only the single next statement belongs to the if. A later edit that adds a line is easy to get wrong, and the second line silently falls outside the condition.\r\n// @why B: braces have no effect on execution speed.\r\n// @why C: braces are optional for a single statement, which is the reason the guidance exists.\r\n// @why D: the risk applies to simple conditions too.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) In the ternary expression condition ? a : b, what are the three parts?\r\n// @option A boolean condition, the value used when it is true, and the value used when it is false. [correct]\r\n// @option An assignment, a variable, and a literal.\r\n// @option Two conditions and one value.\r\n// @option A method call, its argument, and its return value.\r\n// @explain The ternary operator is a compact if-else that produces a value. The condition must be boolean, and the two result expressions should be of compatible types.\r\n// @why B: there is no assignment in the operator itself.\r\n// @why C: only the first part is a condition; the other two are the results.\r\n// @why D: it is an operator, not a method call.\r\n\r\n// @quiz (OCJP, HARD) With braces omitted, which if does an else belong to?\r\n// @code if (a) if (b) x = 1; else x = 2;\r\n// @option The inner if, because else always binds to the nearest unmatched if. [correct]\r\n// @option The outer if, because else always belongs to the first if.\r\n// @option It does not compile without braces.\r\n// @option It is ambiguous and the compiler picks at random.\r\n// @explain This is the dangling else problem. Java resolves it by binding else to the closest if that does not already have one, which is the inner if here. Braces remove the doubt.\r\n// @why B: binding to the outer if would change the meaning, and Java does not do that.\r\n// @why C: it compiles, and it compiles in a way that often surprises people.\r\n// @why D: the rule is fixed and deterministic, not random.\r\n\r\n// @quiz (OCJP, MEDIUM) Can a Java if condition use a number or an object reference directly?\r\n// @option No. The condition must be a boolean expression, unlike C where a number can be tested. [correct]\r\n// @option Yes, where 0 means false and any other number means true.\r\n// @option Yes, where null means false.\r\n// @option Yes, but only for int values.\r\n// @explain Java is strict here. Something like if (1) is a compile-time error, and it must be written as a real comparison such as if (x != 0).\r\n// @why B: that rule belongs to C and C++, not to Java.\r\n// @why C: an object reference cannot be used directly either. Write if (obj != null) instead.\r\n// @why D: no numeric type is accepted, not even int.\r\n\r\n// @quiz (OCJP, MEDIUM) How many statements does the if control here?\r\n// @code if (true) System.out.println(\"A\");\r\n// @code System.out.println(\"B\");\r\n// @option Only the first, so B is printed whatever the condition is. [correct]\r\n// @option Both, because the condition is true.\r\n// @option Neither, because there are no braces.\r\n// @option It does not compile without braces.\r\n// @explain Without braces, an if controls exactly one statement, the one immediately after it. Everything after that is outside the condition.\r\n// @why B: braces would be needed to control both lines.\r\n// @why C: an if with no braces still controls the single following statement.\r\n// @why D: braces are optional for one statement.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the difference between && and || in a condition?\r\n// @option && requires both sides to be true, while || requires at least one side to be true. [correct]\r\n// @option && requires at least one side to be true, while || requires both.\r\n// @option Both mean the same thing.\r\n// @option && works only with numbers, and || only with Strings.\r\n// @explain They are the logical AND and OR operators. Both also short-circuit, so the right side is skipped once the answer is already known.\r\n// @why B: the two are swapped.\r\n// @why C: they differ, and swapping them changes when a block runs.\r\n// @why D: both operators work on boolean expressions.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this code?\r\n// @code int score = 75;\r\n// @code if (score >= 90) { System.out.println(\"A\"); }\r\n// @code else if (score >= 70) { System.out.println(\"B\"); }\r\n// @code else if (score >= 50) { System.out.println(\"C\"); }\r\n// @option B, because the first matching condition wins and the rest are skipped. [correct]\r\n// @option C, because score is also at least 50.\r\n// @option B and C, because both conditions are true.\r\n// @option A, because 75 is more than 50.\r\n// @explain An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.\r\n// @why B: the C branch is never tested, because the chain already stopped.\r\n// @why C: only one branch of an if/else-if chain runs.\r\n// @why D: 75 is less than 90, so the first condition is false.\r\n\r\n// @quiz (OCJP, HARD) Why is this condition safe, even when name is null?\r\n// @code if (name != null && name.length() > 5) { ... }\r\n// @option && short-circuits, so the right side is skipped when name is null. [correct]\r\n// @option && always evaluates both sides, so it would throw a NullPointerException.\r\n// @option The condition is not safe, and it always throws.\r\n// @option Java converts null to an empty String before the check.\r\n// @explain Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.\r\n// @why B: only the non-short-circuiting & evaluates both sides. That version would throw.\r\n// @why C: the guard exists precisely to prevent the exception.\r\n// @why D: null is not converted. Calling a method on it is what throws.\r\n\r\n// @quiz (OCJP, HARD) What is printed by this code?\r\n// @code String a = \"hello\";\r\n// @code String b = new String(\"hello\");\r\n// @code if (a == b) { System.out.println(\"equal\"); }\r\n// @code else { System.out.println(\"not equal\"); }\r\n// @option not equal, because == compares references and these are two different objects. [correct]\r\n// @option equal, because both strings contain the same characters.\r\n// @option equal, because == compares String content in Java.\r\n// @option It does not compile, because Strings cannot be compared with ==.\r\n// @explain The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.\r\n// @why B: content is what equals compares, not ==.\r\n// @why C: == compares references. equals is the method that compares content.\r\n// @why D: it compiles for any reference type, which is why the bug is so easy to make.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What does this code print?\r\n// @code int x = 10;\r\n// @code if (x > 5); { System.out.println(\"big\"); }\r\n// @option big, and it would print even if x were 1. [correct]\r\n// @option big, but only when x > 5 is true.\r\n// @option nothing at all.\r\n// @option It does not compile, because of the semicolon.\r\n// @explain The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.\r\n// @why B: the block is outside the if, so the condition cannot affect it.\r\n// @why C: the block is unconditional, so it always prints.\r\n// @why D: it is legal Java, and that is what makes the mistake dangerous.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the value of result?\r\n// @code int result = (10 > 5) ? 1 : 2 + 3;\r\n// @option 1, because the condition is true and only that branch is used. [correct]\r\n// @option 6, because the false branch is added.\r\n// @option 4, because the ternary is evaluated after the addition.\r\n// @option It does not compile, because the branches are different expressions.\r\n// @explain The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.\r\n// @why B: the false branch is not used, and 2 + 3 is not added to the result.\r\n// @why C: the branches of a ternary are alternatives, never combined.\r\n// @why D: both branches are int here, so the types are compatible.\r\n\r\npublic class IfExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        boolean isAlien = false;\r\n\r\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\r\n        if(isAlien == false){ // condition check\r\n            System.out.println(\"It is not an alien!\");\r\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.\r\n\r\n        int topScore = 100;\r\n        if(topScore == 100){\r\n            System.out.println(\"You got the high score!\");\r\n        }\r\n        if(topScore != 100){\r\n            System.out.println(\"You didn't get the high score!\");\r\n        }\r\n        if(topScore >= 100){\r\n            System.out.println(\"You got the high score for greater than equal to!\");\r\n        }\r\n        if((topScore >= 100) && (topScore < 200)){ // && represents logical AND operator\r\n            System.out.println(\"You got the high score\");\r\n        }\r\n\r\n        if((topScore < 100) || (topScore >= 100)){ // || represents logical OR operator\r\n            System.out.println(\"You got the high score\");\r\n        }\r\n\r\n        boolean isCar = false;\r\n        if(isCar == true){ // Ideally, we should have used equalsTo(==) operator in place of assignment(=) operator. In this case,\r\n            System.out.println(\"This is not supposed to happen\");\r\n\r\n            boolean wasCar = isCar ? true : false; //Here since isCar value is false, the condition is checked first, since the condition is false, so false value gets assigned to wasCar.\r\n\r\n            if(wasCar){\r\n                System.out.println(\"wasCar is true\");\r\n            }\r\n        }\r\n    }\r\n\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
