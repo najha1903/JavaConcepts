@@ -15653,7 +15653,9 @@ const QUICK_REVISION_BANK = {
       "An access modifier narrows who can see a member: private is the class itself, nothing written means package, protected adds subclasses in other packages, and public is everyone.",
       "Overriding means a child class writes its own version of a method the parent already has, keeping the same name and exactly the same parameter list.",
       "Which overridden method runs is decided at runtime from the actual object type, not from the reference type, which is why overriding is called runtime polymorphism.",
-      "Which overloaded method runs is decided at compile time from the argument types, so overloading has nothing to do with polymorphism."
+      "Which overloaded method runs is decided at compile time from the argument types, so overloading has nothing to do with polymorphism.",
+      "A child version may not take access away from callers, so a public parent method cannot become protected or private in the child, and it may narrow the return type to a subclass.",
+      "Static methods, private methods, final methods and constructors cannot be overridden. `@Override` above the child method makes the compiler check all of this for you."
     ],
     "gotchas": [
       "Adding `extends` does not copy the parent's constructors, so the child still has to call one with `super(...)`. If the parent has no no-argument constructor, that call becomes compulsory.",
@@ -15661,7 +15663,8 @@ const QUICK_REVISION_BANK = {
       "A top-level class can only be public or have no modifier at all. protected and private are not valid on a top-level class.",
       "A static method called through an object reference compiles and works the same as calling it through the class name, which makes it look like an instance method when it is not.",
       "Changing the parameter list turns an intended override into an overload, and the code still compiles. `@Override` is what turns that silent mistake into an error.",
-      "A private method in the parent cannot be overridden, because the child cannot even see it. A same-named method in the child is a separate, unrelated method."
+      "A private method in the parent cannot be overridden, because the child cannot even see it. A same-named method in the child is a separate, unrelated method.",
+      "Through a parent reference you can only call the methods the parent declares, so calling a child-only method needs a child reference or a cast."
     ],
     "syntax": "public class ClassesAndInheritance {\r\n\r\n\r\n\r\n}",
     "badges": [
@@ -15712,7 +15715,9 @@ const QUICK_REVISION_BANK = {
       "Characters are counted from index 0, and `substring(begin, end)` stops just before end, so `substring(0, 3)` gives the first three characters.",
       "A `char` uses single quotes and holds exactly one character, while a String uses double quotes and holds any number of them. Adding a char to a number gives a number: `'A' + 1` is 66, and `(char) ('A' + 1)` is B.",
       "A StringBuilder is a mutable buffer. `append` changes the same object and returns it, so nothing is copied and there is no need to reassign the result.",
-      "Use StringBuilder when text is joined repeatedly, especially inside a loop, because String concatenation builds a new String on every pass while the builder keeps working on one buffer."
+      "Use StringBuilder when text is joined repeatedly, especially inside a loop, because String concatenation builds a new String on every pass while the builder keeps working on one buffer.",
+      "`toString()` captures the text as it is at that moment in a new, immutable String, so appending afterwards cannot change the String you already took.",
+      "StringBuilder is the modern and faster choice; StringBuffer is the older type whose methods are synchronised, so it is only worth choosing when several threads share one buffer."
     ],
     "gotchas": [
       "A placeholder that does not match its argument throws at runtime, not at compile time, so `printf(\"%f\", 42)` looks fine until the line runs.",
@@ -15720,7 +15725,10 @@ const QUICK_REVISION_BANK = {
       "`\"Java\" + 10 + 20` gives Java1020 rather than Java30, because + starts joining as soon as one side is text. Wrap the arithmetic in parentheses to add it first.",
       "`substring` and `charAt` throw StringIndexOutOfBoundsException at runtime when the index is outside the String, so bound the value before using it.",
       "Comparing Strings with `==` can appear to work with literals and then fail as soon as one of them is built at runtime, because `==` never compares text.",
-      "`replaceAll` reads its first argument as a regular expression, so `replaceAll(\".\", \"-\")` replaces every character. Use `replace` when you mean a literal dot."
+      "`replaceAll` reads its first argument as a regular expression, so `replaceAll(\".\", \"-\")` replaces every character. Use `replace` when you mean a literal dot.",
+      "A StringBuilder is not a String, so `sb.equals(\"text\")` is false because that method compares references. Convert with `toString()` before comparing text.",
+      "`new StringBuilder(\"Hello\")` starts with a capacity of 16 plus the text length, so 21 here. Capacity is the room available before the buffer has to grow, not the length of the text.",
+      "Building a long String with `+` inside a loop creates a new object on every pass and leaves the earlier ones for the garbage collector, which is exactly the cost StringBuilder avoids."
     ],
     "syntax": "public class TextBlockAndAdvancedOutputFormatting {\r\n\r\n    /*\r\n\r\n    * Text Block\r\n    * 1) A text block is just a special format for multi-line String literals\r\n    *\r\n    * 2) It's simply a String, with a new representation in the source code\r\n    *\r\n    * Escape Sequences",
     "badges": [

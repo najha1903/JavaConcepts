@@ -842,12 +842,13 @@ function buildQuickRevisionEntry(chapterName, topics) {
   });
 
   // Authored lines win. Only a chapter with none of its own falls back to the
-  // derived round-robin pick.
+  // derived round-robin pick. The caps are generous enough that a chapter
+  // writing its own points does not silently lose the last few.
   const takeaways = authoredTakeaways.length
-    ? authoredTakeaways.slice(0, 8)
+    ? authoredTakeaways.slice(0, 12)
     : takeRoundRobin(conceptsByTopic, 6);
   const gotchas = authoredGotchas.length
-    ? authoredGotchas.slice(0, 6)
+    ? authoredGotchas.slice(0, 10)
     : takeRoundRobin(gotchasByTopic, 4);
 
   const syntax = codeSnippets[0] || `// See source files in ${chapterName}`;
