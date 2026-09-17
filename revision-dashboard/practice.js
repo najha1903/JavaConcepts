@@ -5,7 +5,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Temperature Converter",
     "difficulty": "Easy",
     "chapter": "Chapter 1: Java Introduction",
-    "description": "<p>Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.</p><p>Print the result in the format: \"25°C is 77.0°F\".</p><p>Practises: variables, arithmetic with `double`, and printing a formatted result.</p><p>Note: integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.</p><p>Expected output for 25: 25°C is 77.0°F</p>",
+    "description": "<p>Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.</p><p>Print the result in the format: \"25°C is 77.0°F\".</p><p>Practises :- variables, arithmetic with `double`, and printing a formatted result.</p><p>Note :- integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.</p><p>Expected output for 25 :- 25°C is 77.0°F</p>",
     "template": "public class PracticeWorkspace {\n    public static double toFahrenheit(double celsius) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
@@ -23,7 +23,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Fibonacci",
     "difficulty": "Hard",
     "chapter": "Chapter 1: Java Introduction",
-    "description": "<p>Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.</p><p>Practises: loops, building and returning a long[], and testing membership of a sequence.</p><p>Note: the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.</p><p>Note: watch the boundary where count is 0 or negative, which is why the method returns an empty array.</p>",
+    "description": "<p>Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.</p><p>Practises :- loops, building and returning a long[], and testing membership of a sequence.</p><p>Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.</p><p>Note :- watch the boundary where count is 0 or negative, which is why the method returns an empty array.</p>",
     "template": "public class PracticeWorkspace {\n    public static long[] generateFibonacci(int count) {\n        // Write your code here\n        return null;\n    }\n}",
     "testCases": [
       {
@@ -1304,7 +1304,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Composition",
     "difficulty": "Medium",
     "chapter": "Chapter 15: Composition",
-    "description": "<p>Deep Problem: Computer Assembly — composition in practice.</p><p>A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.</p><p>Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.</p><p>This is the difference between HAS-A (composition) and IS-A (inheritance).</p><p>This exercise works with the parts as simple values, so the idea can be practised without building the whole object graph.</p><p>describePart: returns the part as \"model by manufacturer\", or \"incomplete part\" when either value is missing.</p><p>totalCost: adds the three part prices to give the cost of the whole build.</p><p>isFullyAssembled: returns true only when every part is present.</p>",
+    "description": "<p>Deep Problem: Computer Assembly — composition in practice.</p><p>A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.</p><p>Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.</p><p>This is the difference between HAS-A (composition) and IS-A (inheritance).</p><p>This exercise works with the parts as simple values, so the idea can be practised without building the whole object graph.</p><p>describePart :- returns the part as \"model by manufacturer\", or \"incomplete part\" when either value is missing.</p><p>totalCost :- adds the three part prices to give the cost of the whole build.</p><p>isFullyAssembled :- returns true only when every part is present.</p>",
     "template": "public class PracticeWorkspace {\n    public static String describePart(String model, String manufacturer) {\n        // Write your code here\n        return \"\";\n    }\n}",
     "testCases": [
       {

@@ -435,15 +435,15 @@ const QUESTIONS_BANK = {
       "topic": "Hello World",
       "question": "Which of the following are TRUE about Hello World? Select all that apply.",
       "options": [
-        "- java HelloWorld: starts the JVM, which runs HelloWorld.class",
         "Java is both a compiled and interpreted language.",
         "Print the result in the format: \"25°C is 77.0°F\".",
         "Then print all three values on one line using string concatenation.",
-        "Core Concepts: Java Architecture & Execution Flow"
+        "Core Concepts: Java Architecture & Execution Flow",
+        "- java HelloWorld :- starts the JVM, which runs HelloWorld.class"
       ],
       "answer": [
         0,
-        1,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Hello World.",
@@ -461,10 +461,10 @@ const QUESTIONS_BANK = {
       "topic": "Hello World Variation Challenge",
       "question": "Which of the following are TRUE about Hello World Variation Challenge? Select all that apply.",
       "options": [
-        "Expected output: three lines first, then one line holding all three values.",
+        "Practises :- calling System.out.println, and joining text with the + operator.",
         "Print the result in the format: \"25°C is 77.0°F\".",
-        "Practises: calling System.out.println, and joining text with the + operator.",
         "Then print all three values on one line using string concatenation.",
+        "Expected output :- three lines first, then one line holding all three values.",
         "Core Concepts: Java Architecture & Execution Flow"
       ],
       "answer": [
@@ -487,15 +487,15 @@ const QUESTIONS_BANK = {
       "topic": "Temperature Converter Challenge",
       "question": "Which of the following are TRUE about Temperature Converter Challenge? Select all that apply.",
       "options": [
-        "Practises: variables, arithmetic with `double`, and printing a formatted result.",
         "Print the result in the format: \"25°C is 77.0°F\".",
         "Then print all three values on one line using string concatenation.",
+        "Practises :- variables, arithmetic with `double`, and printing a formatted result.",
         "Core Concepts: Java Architecture & Execution Flow",
-        "Expected output for 25: 25°C is 77.0°F"
+        "Expected output for 25 :- 25°C is 77.0°F"
       ],
       "answer": [
         0,
-        1,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Temperature Converter Challenge.",
@@ -13969,9 +13969,9 @@ const QUESTIONS_BANK = {
       "options": [
         "- In printf(\"%d\", age), %d requires an integral argument; using %f with an int is a trap and throws IllegalFormatConversionException.",
         "String -> immutable; each method call returns a NEW String instance.",
-        "1) String Inspection Methods: These give information about the String, such as its length or the position of a character. For example: length(), isEmpty(), isBlank(), charAt(), indexOf(), lastIndexOf().",
         "String indexing is 0 - based, so the first character is at index 0 and the last one is at length() - 1.",
-        "String is a sequence of characters, which means its characters are ordered and indexed."
+        "String is a sequence of characters, which means its characters are ordered and indexed.",
+        "1) String Inspection Methods :- These give information about the String, such as its length or the position of a character. For example :- length(), isEmpty(), isBlank(), charAt(), indexOf(), lastIndexOf()."
       ],
       "answer": [
         2,
@@ -15200,10 +15200,10 @@ const QUICK_REVISION_BANK = {
       "Then print all three values on one line using string concatenation."
     ],
     "gotchas": [
-      "Note: the file name must match the name of the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.",
-      "Note: println ends the line for you, but concatenation does not add spaces, so you have to include them yourself, for example \"Navneet \" + 41 gives Navneet 41 and not Navneet41.",
-      "Note: integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.",
-      "Note: the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5."
+      "Note :- the file name must match the name of the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.",
+      "Note :- println ends the line for you, but concatenation does not add spaces, so you have to include them yourself, for example \"Navneet \" + 41 gives Navneet 41 and not Navneet41.",
+      "Note :- integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.",
+      "Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5."
     ],
     "syntax": "public class HelloWorld {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Hello World\");\r\n    }\r\n\r\n}",
     "badges": [
@@ -15377,7 +15377,7 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 5: If Else Statements": {
     "takeaways": [
-      "Ternary Operator Example:",
+      "Ternary Operator Example :-",
       "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
       "Deep Problem: Academic Result Classifier — Create a grading engine that converts numeric scores into fine-grained labels, determines pass/fail status, and maps results into broader academic bands such as Distinction and Merit. The main method should sweep through a range of scores to demonstrate how each rule behaves.",
       "Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.",
@@ -15627,8 +15627,8 @@ const QUICK_REVISION_BANK = {
       "Deep Problem: Text Intelligence Analyzer — Create a utility that inspects sentences for palindrome behavior, word count, character frequency, and reversed word order, then combines the findings into a formatted report. The challenge reflects common string-processing tasks used in search, validation, and reporting systems."
     ],
     "gotchas": [
-      "Note: %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
-      "Note: the original String is never changed, because String is immutable. Every method of the String class returns a new String instead of changing the existing one.",
+      "Note :- %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
+      "Note :- the original String is never changed, because String is immutable. Every method of the String class returns a new String instead of changing the existing one.",
       "note: new StringBuilder(String) starts with capacity 16 + the text length, so new StringBuilder(\"Hello\") has capacity 21 (16 + 5), not 16. new StringBuilder(int n) starts with capacity exactly n.",
       "StringBuilder is mutable. Its append(), insert(), delete(), and replace() methods update the same character buffer and return the same builder object, which makes method chaining possible. This avoids creating a new String for every intermediate change and is usually the best choice for text built by one thread, especially inside a loop."
     ],

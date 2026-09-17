@@ -203,7 +203,9 @@ function parseJavaFile(filePath, rootDir) {
     }
 
     clarified = clarified
-      .replace(/\s*:-\s*/g, ': ')
+      // The author writes ":-" throughout his notes as a signpost, for example
+      // "Note :-" and "Pitfall :-". It is part of his voice, so it is left alone
+      // rather than rewritten to a colon.
       .replace(/\bFor Ex\s*[:-]+/gi, 'For example:')
       .replace(/\bEx\s*:-\s*/gi, 'Example: ')
       .replace(/\bFor ex\s*[:-]+/gi, 'For example:')
@@ -255,19 +257,22 @@ function parseJavaFile(filePath, rootDir) {
     // it can be long. Judging only on the semicolon used to turn whole sentences
     // into code blocks, which split the author's notes apart. A line is treated as
     // code only when it also looks like a statement: a call, a keyword, or braces.
-    const wordCount = t.split(/\s+/).filter(Boolean).length;
+    // A trailing // comment is ignored when counting words, because "Integer boxed
+    // = 5; // autoboxing, int to Integer" is code with a note beside it, not prose.
+    const codePart = t.split('//')[0].trim();
+    const wordCount = codePart.split(/\s+/).filter(Boolean).length;
     // A line that only STARTS with a type name is not necessarily code: "char and
     // Unicode: ..." is a note, while "char c = 'D';" is a declaration. So a type
     // keyword counts only when it is followed by an identifier and then = ; or ,.
     const looksLikeStatement =
-      /^[A-Za-z_$][\w$.]*\s*\(/.test(t) ||
-      /^(System|new|return|throw|super|this|break|continue)\b/.test(t) ||
-      /^(public|private|protected|static|final|void|class|interface)\b/.test(t) ||
-      /^(int|long|double|float|boolean|char|String|StringBuilder|var)\s+[\w\[\]]+\s*(=|;|,)/.test(t) ||
-      /^(if|for|while|switch|try|catch)\s*\(/.test(t) ||
-      /^}?\s*else\b/.test(t) ||
-      /^[-*•]\s*\w+\s*[=;]/.test(t);
-    if (wordCount >= 8 && !looksLikeStatement && !/[{}]/.test(t)) return false;
+      /^[A-Za-z_$][\w$.]*\s*\(/.test(codePart) ||
+      /^(System|new|return|throw|super|this|break|continue)\b/.test(codePart) ||
+      /^(public|private|protected|static|final|void|class|interface)\b/.test(codePart) ||
+      /^(int|long|double|float|boolean|char|String|StringBuilder|var|Integer|Double|Long|Float|Boolean|Character|Short|Byte)\s+[\w\[\]]+\s*(=|;|,)/.test(codePart) ||
+      /^(if|for|while|switch|try|catch)\s*\(/.test(codePart) ||
+      /^}?\s*else\b/.test(codePart) ||
+      /^[-*•]\s*\w+\s*[=;]/.test(codePart);
+    if (wordCount >= 8 && !looksLikeStatement && !/[{}]/.test(codePart)) return false;
     return /[{}]/.test(t) ||
       /;\s*(\/\/.*)?$/.test(t) ||
       isCodeFragment(t) ||

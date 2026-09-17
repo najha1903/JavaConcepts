@@ -17,10 +17,10 @@ const CONCEPTS_DATA = [
               "Java is both a compiled and interpreted language.",
               "Source code (.java) is compiled by `javac` into intermediate bytecode (.class files), which is then executed by the Java Virtual Machine (JVM) on any platform (\"Write Once, Run Anywhere\").",
               "Those two steps, in order:",
-              "- javac HelloWorld.java: writes HelloWorld.class, the bytecode",
-              "- java HelloWorld: starts the JVM, which runs HelloWorld.class",
-              "Note: the file name must match the name of the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.",
-              "Note: Java is case-sensitive. `HelloWorld` and `helloworld` are two different names.",
+              "- javac HelloWorld.java :- writes HelloWorld.class, the bytecode",
+              "- java HelloWorld :- starts the JVM, which runs HelloWorld.class",
+              "Note :- the file name must match the name of the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.",
+              "Note :- Java is case-sensitive. `HelloWorld` and `helloworld` are two different names.",
               "Key Components of Java Ecosystem:",
               "- JDK (Java Development Kit): Contains development tools (`javac`, `javadoc`, debugger) + JRE.",
               "- JRE (Java Runtime Environment): Contains core libraries + JVM for running applications.",
@@ -43,12 +43,12 @@ const CONCEPTS_DATA = [
           {
             "type": "lines",
             "lines": [
-              "`System.out.println` is three parts joined by dots:",
-              "- `System`: the class that gives access to the machine's standard streams.",
-              "- `out`: the standard output stream, normally the console.",
-              "- `println`: prints the value it is given, then a newline. Use `print` when no newline is wanted.",
-              "Note: the text inside the quotes is a String literal, and `println` accepts any value, not only text.",
-              "What you should be able to do after this topic:",
+              "`System.out.println` is three parts joined by dots :-",
+              "- `System` :- the class that gives access to the machine's standard streams.",
+              "- `out` :- the standard output stream, normally the console.",
+              "- `println` :- prints the value it is given, then a newline. Use `print` when no newline is wanted.",
+              "Note :- the text inside the quotes is a String literal, and `println` accepts any value, not only text.",
+              "What you should be able to do after this topic :-",
               "- Compile a .java file and run the resulting .class file from the terminal.",
               "- Say what the JDK, the JRE and the JVM each provide.",
               "- Explain why `main` is public, static and void.",
@@ -553,9 +553,9 @@ const CONCEPTS_DATA = [
             "lines": [
               "Challenge: Print your name, age, and developer status on separate lines using System.out.println.",
               "Then print all three values on one line using string concatenation.",
-              "Practises: calling System.out.println, and joining text with the + operator.",
-              "Note: println ends the line for you, but concatenation does not add spaces, so you have to include them yourself, for example \"Navneet \" + 41 gives Navneet 41 and not Navneet41.",
-              "Expected output: three lines first, then one line holding all three values."
+              "Practises :- calling System.out.println, and joining text with the + operator.",
+              "Note :- println ends the line for you, but concatenation does not add spaces, so you have to include them yourself, for example \"Navneet \" + 41 gives Navneet 41 and not Navneet41.",
+              "Expected output :- three lines first, then one line holding all three values."
             ]
           }
         ],
@@ -576,9 +576,9 @@ const CONCEPTS_DATA = [
             "lines": [
               "Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.",
               "Print the result in the format: \"25°C is 77.0°F\".",
-              "Practises: variables, arithmetic with `double`, and printing a formatted result.",
-              "Note: integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.",
-              "Expected output for 25: 25°C is 77.0°F"
+              "Practises :- variables, arithmetic with `double`, and printing a formatted result.",
+              "Note :- integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.",
+              "Expected output for 25 :- 25°C is 77.0°F"
             ]
           }
         ],
@@ -603,9 +603,9 @@ const CONCEPTS_DATA = [
           {
             "type": "lines",
             "lines": [
-              "Practises: loops, building and returning a long[], and testing membership of a sequence.",
-              "Note: the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.",
-              "Note: watch the boundary where count is 0 or negative, which is why the method returns an empty array."
+              "Practises :- loops, building and returning a long[], and testing membership of a sequence.",
+              "Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.",
+              "Note :- watch the boundary where count is 0 or negative, which is why the method returns an empty array."
             ]
           }
         ],
@@ -1166,19 +1166,7 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "public static void aMethod(int value) {\n  switch (value) {\n    case 1:\n      int i = 10;               // i declared here, accessible from this point downwards in the switch\n      break;\n\n    case 2:\n      System.out.println(j);   // ERROR: j is declared in case 3 (later), so case 2 cannot see it\n      break;\n\n    case 3:\n      int j = 10;               // j declared here\n      System.out.println(j);   // OK: j is accessible from this point\n      break;\n\n    default:",
-            "lines": []
-          },
-          {
-            "type": "block",
-            "lines": [
-              "i = value; // OK: i was declared in case 1 (before default)"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "System.out.println(i);   // OK: accessible\n      System.out.println(j);   // OK: j was declared in case 3 (before default)\n      break;\n  }\n  System.out.println(i);        // ERROR: i is out of scope outside the switch\n  System.out.println(j);        // ERROR: j is out of scope outside the switch\n}",
+            "code": "public static void aMethod(int value) {\n  switch (value) {\n    case 1:\n      int i = 10;               // i declared here, accessible from this point downwards in the switch\n      break;\n\n    case 2:\n      System.out.println(j);   // ERROR: j is declared in case 3 (later), so case 2 cannot see it\n      break;\n\n    case 3:\n      int j = 10;               // j declared here\n      System.out.println(j);   // OK: j is accessible from this point\n      break;\n\n    default:\n      i = value;                // OK: i was declared in case 1 (before default)\n      System.out.println(i);   // OK: accessible\n      System.out.println(j);   // OK: j was declared in case 3 (before default)\n      break;\n  }\n  System.out.println(i);        // ERROR: i is out of scope outside the switch\n  System.out.println(j);        // ERROR: j is out of scope outside the switch\n}",
             "lines": []
           },
           {
@@ -1202,7 +1190,7 @@ const CONCEPTS_DATA = [
           "Starts an outer block - method block. It is also the containing block in this instance",
           "Flow statement block starts inner block",
           "Inner block code has access to outer block's variables",
-          "Compile Error: Cannot resolve symbol 'thirdVariable'",
+          "Compile Error :- Cannot resolve symbol 'thirdVariable'",
           "Outer code block cannot access the thirdVariable as third variable is out of scope for second code block"
         ],
         "customQuizzes": [
@@ -1266,6 +1254,28 @@ const CONCEPTS_DATA = [
               "- Local variables are declared inside methods, constructors, or code blocks.",
               "- Unlike instance/static fields, local variables NEVER receive default values.",
               "- Warning: You MUST initialize a local variable before reading or referencing it, otherwise the code will fail to compile.",
+              "The three kinds of variable :-",
+              "- Local variable :- declared inside a method, constructor or block. It exists only while that block runs, and it must be assigned before it is read.",
+              "- Instance field :- declared in the class but outside any method. Every object gets its own copy.",
+              "- Static field :- declared with the static keyword. One copy is shared by the whole class.",
+              "Default values, for fields only. Local variables get none :-",
+              "- int, long, short, byte :- 0",
+              "- double, float :- 0.0",
+              "- boolean :- false",
+              "- char :- the null character, Unicode 0000",
+              "- any reference type, including String :- null",
+              "Syntax and a declaration in practice :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "dataType variableName = initialValue;\r\nint myFirstNumber = 5;",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
               "Parameter notes (what each argument means and how to choose it):",
               "- args (main): String[] array containing command-line arguments passed to the application.",
               "- x (System.out.println): The primitive or reference value printed to the console output stream."
@@ -1275,6 +1285,7 @@ const CONCEPTS_DATA = [
         "inlineComments": [
           "Syntax: dataType variableName = initialValue;",
           "Example: int myFirstNumber = 5;",
+          "dataType variableName = initialValue; int myFirstNumber = 5;",
           "Declaration statement: declares data type (int), identifier (myFirstNumber), and initial value (5)."
         ],
         "customQuizzes": [
@@ -1374,7 +1385,7 @@ const CONCEPTS_DATA = [
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;\r\n\r\n// Core Concepts: Java Variables & Initialization\r\n// A variable is a named storage location in memory that holds a data value.\r\n// In Java, variables are strongly typed: every variable must be declared with a specific data type before it can be used.\r\n//\r\n// Syntax: dataType variableName = initialValue;\r\n// Example: int myFirstNumber = 5;\r\n//\r\n// Naming Rules & Conventions:\r\n// - Identifiers must begin with a letter, underscore (_), or dollar sign ($).\r\n// - By convention, variable names follow camelCase (e.g. myFirstNumber, totalAccountBalance).\r\n// - Keywords (such as int, double, class, public) cannot be used as variable identifiers.\r\n//\r\n// Local Variable Lifecycle & Rules:\r\n// - Local variables are declared inside methods, constructors, or code blocks.\r\n// - Unlike instance/static fields, local variables NEVER receive default values.\r\n// - Warning: You MUST initialize a local variable before reading or referencing it, otherwise the code will fail to compile.\r\n\r\n// Parameter notes (what each argument means and how to choose it):\r\n// - args (main): String[] array containing command-line arguments passed to the application.\r\n// - x (System.out.println): The primitive or reference value printed to the console output stream.\r\n\r\n// @quiz (INTERVIEW) What are Java's 8 primitive types and their sizes?\r\n// @answer byte (8-bit), short (16-bit), int (32-bit), long (64-bit), char (16-bit Unicode), float (32-bit IEEE 754), double (64-bit IEEE 754), and boolean (true/false).\r\n// @answer Primitives store their actual raw values directly in stack memory, whereas reference types store object memory addresses.\r\n\r\n// @quiz (INTERVIEW TRAP) Do local variables receive default values in Java?\r\n// @answer No. Instance and static fields get default values (0, false, null), but local variables do not.\r\n// @answer An uninitialized local variable causes a compile-time error if read before assignment.\r\n\r\n// @quiz (INTERVIEW, EASY) Which of these is a valid Java variable identifier that also follows the usual naming convention?\r\n// @option totalAccountBalance [correct]\r\n// @option 2ndPlaceScore\r\n// @option class\r\n// @option total-balance\r\n// @explain An identifier must begin with a letter, an underscore, or a dollar sign, may not be a keyword, and by convention uses camelCase.\r\n// @why B: an identifier cannot begin with a digit.\r\n// @why C: class is a Java keyword and cannot be used as a variable name.\r\n// @why D: a hyphen is not allowed in an identifier; the compiler reads it as a subtraction.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Is `int x = 1_000_000;` valid Java, and what do the underscores do?\r\n// @option It is valid from Java 7 onward, the value is one million, and the underscores are ignored by the compiler. [correct]\r\n// @option It is invalid, because underscores are not permitted in numeric literals.\r\n// @option It creates a String rather than a number.\r\n// @option The underscores must appear after every third digit, or the code will not compile.\r\n// @explain Underscores exist purely to make long numbers easier for a human to read. The compiler strips them, so the value is unchanged.\r\n// @why B: Java 7 added underscores in numeric literals exactly for readability.\r\n// @why C: it is still an int literal, and x holds the number 1000000.\r\n// @why D: grouping in threes is only a convention. The real rules forbid an underscore at the very start or end, next to a decimal point, or directly before a suffix such as L or f.\r\n\r\npublic class Variables {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        // Declaration statement: declares data type (int), identifier (myFirstNumber), and initial value (5).\r\n        int myFirstNumber = 5;\r\n\r\n        System.out.println(myFirstNumber);\r\n    }\r\n}\r\n\r\n"
+        "code": "package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;\r\n\r\n// Core Concepts: Java Variables & Initialization\r\n// A variable is a named storage location in memory that holds a data value.\r\n// In Java, variables are strongly typed: every variable must be declared with a specific data type before it can be used.\r\n//\r\n// Syntax: dataType variableName = initialValue;\r\n// Example: int myFirstNumber = 5;\r\n//\r\n// Naming Rules & Conventions:\r\n// - Identifiers must begin with a letter, underscore (_), or dollar sign ($).\r\n// - By convention, variable names follow camelCase (e.g. myFirstNumber, totalAccountBalance).\r\n// - Keywords (such as int, double, class, public) cannot be used as variable identifiers.\r\n//\r\n// Local Variable Lifecycle & Rules:\r\n// - Local variables are declared inside methods, constructors, or code blocks.\r\n// - Unlike instance/static fields, local variables NEVER receive default values.\r\n// - Warning: You MUST initialize a local variable before reading or referencing it, otherwise the code will fail to compile.\r\n//\r\n// The three kinds of variable :-\r\n// - Local variable :- declared inside a method, constructor or block. It exists only while that block\r\n//   runs, and it must be assigned before it is read.\r\n// - Instance field :- declared in the class but outside any method. Every object gets its own copy.\r\n// - Static field :- declared with the static keyword. One copy is shared by the whole class.\r\n//\r\n// Default values, for fields only. Local variables get none :-\r\n// - int, long, short, byte :- 0\r\n// - double, float :- 0.0\r\n// - boolean :- false\r\n// - char :- the null character, Unicode 0000\r\n// - any reference type, including String :- null\r\n//\r\n// Syntax and a declaration in practice :-\r\n// dataType variableName = initialValue;\r\n// int myFirstNumber = 5;\r\n\r\n// Parameter notes (what each argument means and how to choose it):\r\n// - args (main): String[] array containing command-line arguments passed to the application.\r\n// - x (System.out.println): The primitive or reference value printed to the console output stream.\r\n\r\n// @quiz (INTERVIEW) What are Java's 8 primitive types and their sizes?\r\n// @answer byte (8-bit), short (16-bit), int (32-bit), long (64-bit), char (16-bit Unicode), float (32-bit IEEE 754), double (64-bit IEEE 754), and boolean (true/false).\r\n// @answer Primitives store their actual raw values directly in stack memory, whereas reference types store object memory addresses.\r\n\r\n// @quiz (INTERVIEW TRAP) Do local variables receive default values in Java?\r\n// @answer No. Instance and static fields get default values (0, false, null), but local variables do not.\r\n// @answer An uninitialized local variable causes a compile-time error if read before assignment.\r\n\r\n// @quiz (INTERVIEW, EASY) Which of these is a valid Java variable identifier that also follows the usual naming convention?\r\n// @option totalAccountBalance [correct]\r\n// @option 2ndPlaceScore\r\n// @option class\r\n// @option total-balance\r\n// @explain An identifier must begin with a letter, an underscore, or a dollar sign, may not be a keyword, and by convention uses camelCase.\r\n// @why B: an identifier cannot begin with a digit.\r\n// @why C: class is a Java keyword and cannot be used as a variable name.\r\n// @why D: a hyphen is not allowed in an identifier; the compiler reads it as a subtraction.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Is `int x = 1_000_000;` valid Java, and what do the underscores do?\r\n// @option It is valid from Java 7 onward, the value is one million, and the underscores are ignored by the compiler. [correct]\r\n// @option It is invalid, because underscores are not permitted in numeric literals.\r\n// @option It creates a String rather than a number.\r\n// @option The underscores must appear after every third digit, or the code will not compile.\r\n// @explain Underscores exist purely to make long numbers easier for a human to read. The compiler strips them, so the value is unchanged.\r\n// @why B: Java 7 added underscores in numeric literals exactly for readability.\r\n// @why C: it is still an int literal, and x holds the number 1000000.\r\n// @why D: grouping in threes is only a convention. The real rules forbid an underscore at the very start or end, next to a decimal point, or directly before a suffix such as L or f.\r\n\r\npublic class Variables {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        // Declaration statement: declares data type (int), identifier (myFirstNumber), and initial value (5).\r\n        int myFirstNumber = 5;\r\n\r\n        System.out.println(myFirstNumber);\r\n    }\r\n}\r\n\r\n"
       },
       {
         "filePath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
@@ -1517,6 +1528,71 @@ const CONCEPTS_DATA = [
               "You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')",
               "Unicode is an international encoding standard — every character in every language has a unique code point.",
               "boolean: can only be true or false. It is the result of any comparison or logical expression.",
+              "Worked examples :-",
+              "1) Overflow wraps around instead of failing :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "int max = Integer.MAX_VALUE;\r\nSystem.out.println(max + 1);        // prints -2147483648, which is Integer.MIN_VALUE",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "2) Widening is automatic, narrowing needs a cast :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "int i = 100;\r\nlong l = i;                         // widening, nothing to write\r\ndouble d = 9.8;\r\nint n = (int) d;                    // narrowing, the cast is required and prints 9",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Note :- a cast truncates rather than rounds, so (int) 9.8 is 9 and not 10.",
+              "3) Integer division drops the fraction :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "System.out.println(5 / 2);          // prints 2, because both operands are int\r\nSystem.out.println(5 / 2.0);        // prints 2.5, because one operand is double",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "4) char is a number underneath :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "char c = 'A';\r\nSystem.out.println(c + 1);          // prints 66, because 'A' is 65 and c is promoted to int\r\nSystem.out.println((char) (c + 1)); // prints B, after casting the int back to char",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Note :- this is why adding a char to an int gives an int, not a char. The cast is needed to get a character back.",
+              "5) A wrapper class lets a primitive be used where an object is needed :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "Integer boxed = 5;                  // autoboxing, int to Integer\r\nint unboxed = boxed;                // unboxing, Integer back to int",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Note :- Integer.MAX_VALUE and Integer.MIN_VALUE come from the wrapper class, not from the primitive.",
+              "Pitfall :- comparing two Integer objects with == compares references, not values, so use equals for the numbers.",
               "Parameter notes (important method parameters and how to choose them):",
               "- args (main): the command-line String array. Use it only when program input should come from launch arguments; remember every element is text and must be parsed before numeric primitive calculations.",
               "- x (System.out.println): the value printed to the console. In this file the argument is usually a String created by concatenating a label with a primitive value; Java converts primitives to text before printing.",
@@ -1528,6 +1604,11 @@ const CONCEPTS_DATA = [
         "inlineComments": [
           "Type | Width | Range / Notes",
           "boolean | 1 bit | Only two values: true or false byte | 8 bits | -128 to 127 short | 16 bits| -32,768 to 32,767 char | 16 bits| A single Unicode character — written in single quotes: 'A' int | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long | 64 bits| Very large whole numbers — add 'L' suffix: 100L float | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
+          "int max = Integer.MAX_VALUE; prints -2147483648, which is Integer.MIN_VALUE",
+          "int i = 100; widening, nothing to write double d = 9.8; narrowing, the cast is required and prints 9",
+          "prints 2, because both operands are int prints 2.5, because one operand is double",
+          "char c = 'A'; prints 66, because 'A' is 65 and c is promoted to int prints B, after casting the int back to char",
+          "autoboxing, int to Integer unboxing, Integer back to int",
           "If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java, then we will get an Overflow in the case of the maximum value and underflow in the case of minimum"
         ],
         "customQuizzes": [
@@ -2140,7 +2221,7 @@ const CONCEPTS_DATA = [
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;\r\n// Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.\r\n// Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.\r\n//\r\n// The 8 Primitive Types:\r\n// Type     | Width  | Range / Notes\r\n// ---------|--------|--------------------------------------------------------------\r\n// boolean  | 1 bit  | Only two values: true or false\r\n// byte     | 8 bits | -128 to 127\r\n// short    | 16 bits| -32,768 to 32,767\r\n// char     | 16 bits| A single Unicode character — written in single quotes: 'A'\r\n// int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)\r\n// long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L\r\n// float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)\r\n// double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d\r\n//\r\n// Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).\r\n// These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.\r\n//\r\n// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow).\r\n// Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)\r\n//\r\n// Casting: Converting from one type to another.\r\n// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double\r\n// Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte\r\n// Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.\r\n//\r\n// Integer division: when both operands are int, the result is also int — the decimal part is DROPPED.\r\n// Example: 5/2 = 2 (not 2.5). Use 5.0/2.0 or 5d/2d to get 2.5.\r\n//\r\n// Precision: double has more decimal places than float.\r\n// 5f/3f = 1.6666666 (7 significant digits)\r\n// 5d/3d = 1.6666666666666667 (15+ significant digits)\r\n// For currency or financial calculations, use BigDecimal instead of float/double.\r\n//\r\n// char and Unicode: char holds a single character, uses single quotes: char c = 'D';\r\n// You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')\r\n// Unicode is an international encoding standard — every character in every language has a unique code point.\r\n// Reference: https://unicode-table.com/en/\r\n//\r\n// boolean: can only be true or false. It is the result of any comparison or logical expression.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?\r\n// @answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.\r\n// @answer Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast.\r\n\r\n// @quiz (INTERVIEW) What is integer overflow in Java?\r\n// @answer Integer overflow happens when a value goes past the type's range and wraps around to the opposite end.\r\n// @answer For example, Integer.MAX_VALUE + 1 becomes Integer.MIN_VALUE.\r\n\r\n// @quiz (INTERVIEW) Why does integer division drop the decimal part?\r\n// @answer When both operands are integer types, Java performs integer division and keeps only the whole-number result.\r\n// @answer So 1 / 2 is 0, while 1.0 / 2 uses floating-point division and keeps the fraction.\r\n\r\n// @quiz (OCJP) What is the output of: System.out.println(1 / 2); System.out.println(1.0 / 2);?\r\n// @answer The output is 0 and 0.5.\r\n// @answer The first uses integer division, while the second uses double division.\r\n\r\n// @quiz (OCJP) What happens here: long l = 10; int i = l;?\r\n// @answer It does not compile because assigning long to int is narrowing and may lose data.\r\n// @answer You need an explicit cast, such as int i = (int) l;.\r\n\r\n// @quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?\r\n// @answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.\r\n// @answer Reference type fields default to null because they store no object reference yet.\r\n// @answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.\r\n\r\n// @quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?\r\n// @answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.\r\n// @answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.\r\n// @answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?\r\n// @answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.\r\n// @answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.\r\n// @answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.\r\n\r\n// @quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?\r\n// @answer Yes, it is valid in Java 7 and later, and the value is still one million.\r\n// @answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.\r\n// @answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F.\r\n// @quiz (INTERVIEW, EASY) Which statement about primitive type sizes and ranges is correct?\r\n// @option int is 32-bit, covering -2,147,483,648 to 2,147,483,647. [correct]\r\n// @option byte is 8-bit, covering -128 to 128.\r\n// @option short is 16-bit, covering -32,768 to 32,768.\r\n// @option long is 32-bit, the same width as int.\r\n// @explain Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.\r\n// @why B: byte covers -128 to 127. The upper bound is 127, not 128, because 0 occupies one of the 256 values.\r\n// @why C: short covers -32,768 to 32,767. The upper bound is 32,767, not 32,768.\r\n// @why D: long is 64-bit. int is 32-bit. That is why a literal such as 100L is written with the L suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the difference between widening and narrowing conversion?\r\n// @option Widening goes from a smaller type to a larger compatible type and is automatic. Narrowing goes the other way and requires an explicit cast. [correct]\r\n// @option Widening requires a cast because the larger type needs more memory.\r\n// @option Both directions are automatic, and Java truncates silently when needed.\r\n// @option Narrowing never loses information because Java rounds the value.\r\n// @explain Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.\r\n// @why B: requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.\r\n// @why C: if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents.\r\n// @why D: narrowing can lose information. A cast truncates rather than rounds, so 9.8 becomes 9, not 10.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by these two statements?\r\n// @code System.out.println(5 / 2);\r\n// @code System.out.println(5 / 2.0);\r\n// @option 2 and 2.5 [correct]\r\n// @option 2.5 and 2.5\r\n// @option 2 and 2\r\n// @option 3 and 2.5\r\n// @explain When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.\r\n// @why B: the first line has two int operands, so it cannot produce 2.5.\r\n// @why C: the second line has a double operand, so it cannot produce 2.\r\n// @why D: integer division truncates towards zero, it does not round up. 5 / 2 is 2, never 3.\r\n\r\n// @quiz (OCJP, HARD) What is the value of x after this code runs?\r\n// @code int x = Integer.MAX_VALUE;\r\n// @code x++;\r\n// @option -2147483648, because the value wraps around to Integer.MIN_VALUE. [correct]\r\n// @option 2147483648, because int is promoted to long automatically.\r\n// @option It throws ArithmeticException.\r\n// @option It stays at 2147483647 and the increment is ignored.\r\n// @explain int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.\r\n// @why B: no promotion happens on overflow. The result is stored back into an int, so there is nowhere to hold 2147483648.\r\n// @why C: Java does not raise an exception for primitive integer overflow. Only integer division by zero throws ArithmeticException.\r\n// @why D: the value does change. The carry bit is discarded, which is what makes the value wrap to the opposite end of the range.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about numeric literal suffixes is correct?\r\n// @option 100L creates a long, 3.14f creates a float, and a plain decimal literal such as 3.14 is a double. [correct]\r\n// @option 100L creates an int, and a plain decimal literal such as 3.14 is a float.\r\n// @option The suffix d is compulsory for every double literal.\r\n// @option A decimal literal such as 3.14 is treated as a float by default.\r\n// @explain Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.\r\n// @why B: L means long, not int, and a decimal literal is double, not float.\r\n// @why C: double is the default for decimals, so the d suffix is optional. float is the type that needs a suffix.\r\n// @why D: decimals default to double. Writing float f = 3.14; fails to compile without the f suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about default values in Java is correct?\r\n// @option Instance and static fields receive type defaults such as 0 and false, while local variables must be assigned before they are read. [correct]\r\n// @option Every variable, including a local variable, receives a default value.\r\n// @option Local variables default to null.\r\n// @option Only static fields receive default values.\r\n// @explain Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.\r\n// @why B: locals are the exception. Reading an unassigned local variable is a compile-time error.\r\n// @why C: a local primitive is not set to null, and null is not even a valid value for a primitive. It simply has no value yet.\r\n// @why D: instance fields receive defaults too, not only static fields.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about char is correct?\r\n// @option The escape written as backslash-u 0044 is the character 'D', because char is 16-bit and Unicode-based. [correct]\r\n// @option char is 8-bit and holds one ASCII character.\r\n// @option char uses double quotes, just like a String.\r\n// @option The escape backslash-u 0044 is decimal 44, which is the comma character.\r\n// @explain A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.\r\n// @why B: char is 16-bit so it can represent Unicode, not just 8-bit ASCII.\r\n// @why C: double quotes create a String. A char literal always uses single quotes, as in 'D'.\r\n// @why D: the escape is hexadecimal, not decimal. 0x44 is 68, which is 'D'; decimal 44 is the comma.\r\n\r\n// @quiz (OCJP, HARD) What is the value of n?\r\n// @code double d = 9.8;\r\n// @code int n = (int) d;\r\n// @option 9, because the cast truncates towards zero. [correct]\r\n// @option 10, because the cast rounds to the nearest whole number.\r\n// @option 9.8, because int keeps the fractional part.\r\n// @option It does not compile, because a double can never be converted to an int.\r\n// @explain Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.\r\n// @why B: a cast truncates. To round 9.8 up to 10 you would need Math.round(d).\r\n// @why C: an int cannot hold a fraction at all, which is why precision is lost here.\r\n// @why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.\r\n\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): the command-line String array. Use it only when program input should come from launch arguments;\r\n//     remember every element is text and must be parsed before numeric primitive calculations.\r\n// - x (System.out.println): the value printed to the console. In this file the argument is usually a String created\r\n//     by concatenating a label with a primitive value; Java converts primitives to text before printing.\r\n// - target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a\r\n//     narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.\r\n// - numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long,\r\n//     f for float, and d for double when you want to be explicit; note that decimal literals default to double.\r\n//\r\n//\r\n// @quiz (INTERVIEW TRAP) What does the (byte) parameter-like target in (byte) (intMinValue / 2) tell Java?\r\n// @answer It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information.\r\n//\r\n// @quiz (OCJP) Why choose 5f instead of 5 in floatValue = (5f / 2f)?\r\n// @answer The f suffix makes each literal a float, so Java performs floating-point division and keeps the decimal result instead of integer division.\r\n// @quiz (INTERVIEW, MEDIUM) Does this line compile?\r\n// @code byte b = 128;\r\n// @option No. 128 is outside the byte range, so the compiler rejects the assignment. [correct]\r\n// @option Yes, and b holds 128.\r\n// @option Yes, and b wraps around to -128.\r\n// @option Yes, but only because 128 fits in a nibble.\r\n// @explain A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.\r\n// @why B: 128 is one past the maximum, so the value does not fit.\r\n// @why C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.\r\n// @why D: the range is fixed by the type, and 127 is the largest byte.\r\n\r\n// @quiz (OCJP, HARD) What is printed by these two statements?\r\n// @code System.out.println(-7 / 2);\r\n// @code System.out.println(-7 % 2);\r\n// @option -3 and -1 [correct]\r\n// @option -4 and 1\r\n// @option -3.5 and -1\r\n// @option -4 and -1\r\n// @explain Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.\r\n// @why B: -7 / 2 truncates towards zero to -3, not away from it to -4.\r\n// @why C: both operands are int, so the result of / is an int and cannot be -3.5.\r\n// @why D: the division result is -3, not -4.\r\n\r\n// @quiz (OCJP, HARD) What is printed by this code?\r\n// @code System.out.println(0.1 + 0.2);\r\n// @code System.out.println(0.1 + 0.2 == 0.3);\r\n// @option 0.30000000000000004 and false [correct]\r\n// @option 0.3 and true\r\n// @option 0.3 and false\r\n// @option 0.30000000000000004 and true\r\n// @explain double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.\r\n// @why B: the sum is not exactly 0.3, so the comparison cannot be true.\r\n// @why C: the printed value shows the accumulated error rather than a clean 0.3.\r\n// @why D: the two halves cannot both be right. If the sum differs from 0.3, the comparison is false.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Does this code compile?\r\n// @code short s = 1;\r\n// @code s = s + 1;\r\n// @option No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast. [correct]\r\n// @option Yes, and s becomes 2.\r\n// @option Yes, and s wraps around.\r\n// @option Yes, because short and int are the same width.\r\n// @explain Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).\r\n// @why B: the promotion makes the assignment invalid, so it never reaches runtime.\r\n// @why C: nothing wraps here. The compiler rejects the type mismatch first.\r\n// @why D: short is 16 bits and int is 32 bits, so they differ.\r\n\r\n// @quiz (OCJP, MEDIUM) Which statement about boolean in Java is correct?\r\n// @option boolean is not a numeric type, so it cannot be cast to or from an int. [correct]\r\n// @option true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.\r\n// @option A boolean can be used directly as an if condition only after converting it to an int.\r\n// @option boolean and byte are interchangeable because both are 8 bits.\r\n// @explain Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.\r\n// @why B: that rule belongs to C and C++. Java does not allow the cast.\r\n// @why C: no conversion is needed or possible. A boolean is exactly what if requires.\r\n// @why D: a boolean is not a number, so it is not interchangeable with any numeric type.\r\n\r\npublic class PrimitiveDataTypes {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myValue = 10000; // A plain int declaration: datatype int, identifier myValue, value 10000.\r\n        System.out.println(\"myValue is = \" + myValue); //myValue is = 10000\r\n\r\n        int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.\r\n\r\n        int intMinValue = Integer.MIN_VALUE; //By specifying wrapper class Integer, it allows us to perform different operations on int.\r\n\r\n        System.out.println(\"The max Value of the integer is = \" + intMaxValue); //The max Value of the integer is = 2147483647\r\n        System.out.println(\"The min Value of the integer is = \" + intMinValue); //The min Value of the integer is = -2147483648\r\n\r\n        //If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java,\r\n        // then we will get an Overflow in the case of the maximum value and underflow in the case of minimum\r\n\r\n        System.out.println(\"The overflow value of int is  = \" + (intMaxValue + 1)); //The overflow value of int is  = -2147483648\r\n        System.out.println(\"The underflow value of int is = \" + (intMinValue - 1)); //The underflow value of int is = 2147483647\r\n\r\n        byte myMaxByteValue = Byte.MAX_VALUE;\r\n        byte myMinByteValue = Byte.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of the Byte is = \" + myMaxByteValue); //The max Value of the Byte is = 127\r\n        System.out.println(\"The min Value of the Byte is = \" + myMinByteValue); //The min Value of the Byte is = -128\r\n\r\n        short myShortMaxValue = Short.MAX_VALUE;\r\n        short myShortMinValue = Short.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Short is = \" + myShortMaxValue); //The max Value of Short is = 32767\r\n        System.out.println(\"The min Value of Short is = \" + myShortMinValue); //The min Value of Short is = -32768\r\n\r\n        long myLongValue = 100L; //We need to put letter L in the end to make it as long value.\r\n\r\n        long myLongMaxValue = Long.MAX_VALUE;\r\n        long myLongMinValue = Long.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Long is = \" + myLongMaxValue); //The max Value of Long is = 9223372036854775807\r\n        System.out.println(\"The min Value of Long is = \" + myLongMinValue); //The min Value of Long is = -9223372036854775808\r\n\r\n        byte myNewByteValue = (byte) (intMinValue / 2); //By Casting, we tell/instruct java to treat the int value as byte\r\n        System.out.println(\"myNewByteValue is = \" + myNewByteValue);\r\n\r\n        float myMaxFloatValue = Float.MAX_VALUE;\r\n        float myMinFloatValue = Float.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Float is = \" + myMaxFloatValue); //The max Value of Float is = 3.4028235E38\r\n        System.out.println(\"The min Value of Float is = \" + myMinFloatValue); //The min Value of Float is = 1.4E-45\r\n\r\n        double myMaxDoubleValue = Double.MAX_VALUE;\r\n        double myMinDoubleValue = Double.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Double is = \" + myMaxDoubleValue); //The max Value of Double is = 1.7976931348623157E308\r\n        System.out.println(\"The min Value of Double is = \" + myMinDoubleValue); //The min Value of Double is = 4.9E-324\r\n\r\n        int myIntValue = 5;          // For whole numbers int is considered as default\r\n        float myFloatValue = 5.3f;   // To declare float, it is best practice adding f after declaring number at the end of expression\r\n        double myDoubleValue = 5.4d; // For floating point numbers, double is accepted as default. To declare double, it is best practice adding d after declaring number at the end of the declaration\r\n\r\n        int intValue = (5 / 2);\r\n        float floatValue = (5f / 2f);\r\n        double doubleValue = (5d / 2d);\r\n\r\n        System.out.println(\"Int value is = \" + intValue);       //Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor\r\n        System.out.println(\"Float value is = \" + floatValue);   //Float value is = 2.5\r\n        System.out.println(\"Double value is = \" + doubleValue); //Double value is = 2.5\r\n\r\n        int intValuePrecision = (5 / 3);\r\n        float floatValuePrecision = (5f / 3f);\r\n\r\n        double doubleValuePrecision = (5d / 3d);\r\n\r\n        System.out.println(\"Int precision value is = \" + intValuePrecision);       //Int precision value is = 1\r\n        System.out.println(\"Float precision value is = \" + floatValuePrecision);   //Float precision value is = 1.6666666\r\n        System.out.println(\"Double precision value is = \" + doubleValuePrecision); //Double precision value is = 1.6666666666666667\r\n\r\n        char myChar = 'D';\r\n        char myUnicodeChar = '\\u0044';\r\n\r\n        System.out.println(\"myChar value is \" + myChar);\r\n        System.out.println(\"myUnicodeChar value is \" + myUnicodeChar);\r\n\r\n        boolean myTrueBooleanValue = true;\r\n        boolean myFalseBooleanValue = false;\r\n\r\n        System.out.println(\"myTrueBooleanValue is = \" + myTrueBooleanValue);   //myTrueBooleanValue is = true\r\n        System.out.println(\"myFalseBooleanValue is = \" + myFalseBooleanValue); //myFalseBooleanValue is = false\r\n    }\r\n\r\n}\r\n"
+        "code": "package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;\r\n// Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.\r\n// Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.\r\n//\r\n// The 8 Primitive Types:\r\n// Type     | Width  | Range / Notes\r\n// ---------|--------|--------------------------------------------------------------\r\n// boolean  | 1 bit  | Only two values: true or false\r\n// byte     | 8 bits | -128 to 127\r\n// short    | 16 bits| -32,768 to 32,767\r\n// char     | 16 bits| A single Unicode character — written in single quotes: 'A'\r\n// int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)\r\n// long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L\r\n// float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)\r\n// double   | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d\r\n//\r\n// Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).\r\n// These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.\r\n//\r\n// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow).\r\n// Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)\r\n//\r\n// Casting: Converting from one type to another.\r\n// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double\r\n// Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte\r\n// Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.\r\n//\r\n// Integer division: when both operands are int, the result is also int — the decimal part is DROPPED.\r\n// Example: 5/2 = 2 (not 2.5). Use 5.0/2.0 or 5d/2d to get 2.5.\r\n//\r\n// Precision: double has more decimal places than float.\r\n// 5f/3f = 1.6666666 (7 significant digits)\r\n// 5d/3d = 1.6666666666666667 (15+ significant digits)\r\n// For currency or financial calculations, use BigDecimal instead of float/double.\r\n//\r\n// char and Unicode: char holds a single character, uses single quotes: char c = 'D';\r\n// You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')\r\n// Unicode is an international encoding standard — every character in every language has a unique code point.\r\n// Reference: https://unicode-table.com/en/\r\n//\r\n// boolean: can only be true or false. It is the result of any comparison or logical expression.\r\n//\r\n// Worked examples :-\r\n// 1) Overflow wraps around instead of failing :-\r\n// int max = Integer.MAX_VALUE;\r\n// System.out.println(max + 1);        // prints -2147483648, which is Integer.MIN_VALUE\r\n//\r\n// 2) Widening is automatic, narrowing needs a cast :-\r\n// int i = 100;\r\n// long l = i;                         // widening, nothing to write\r\n// double d = 9.8;\r\n// int n = (int) d;                    // narrowing, the cast is required and prints 9\r\n// Note :- a cast truncates rather than rounds, so (int) 9.8 is 9 and not 10.\r\n//\r\n// 3) Integer division drops the fraction :-\r\n// System.out.println(5 / 2);          // prints 2, because both operands are int\r\n// System.out.println(5 / 2.0);        // prints 2.5, because one operand is double\r\n//\r\n// 4) char is a number underneath :-\r\n// char c = 'A';\r\n// System.out.println(c + 1);          // prints 66, because 'A' is 65 and c is promoted to int\r\n// System.out.println((char) (c + 1)); // prints B, after casting the int back to char\r\n// Note :- this is why adding a char to an int gives an int, not a char. The cast is needed to get a character back.\r\n//\r\n// 5) A wrapper class lets a primitive be used where an object is needed :-\r\n// Integer boxed = 5;                  // autoboxing, int to Integer\r\n// int unboxed = boxed;                // unboxing, Integer back to int\r\n// Note :- Integer.MAX_VALUE and Integer.MIN_VALUE come from the wrapper class, not from the primitive.\r\n// Pitfall :- comparing two Integer objects with == compares references, not values, so use equals for the numbers.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?\r\n// @answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.\r\n// @answer Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast.\r\n\r\n// @quiz (INTERVIEW) What is integer overflow in Java?\r\n// @answer Integer overflow happens when a value goes past the type's range and wraps around to the opposite end.\r\n// @answer For example, Integer.MAX_VALUE + 1 becomes Integer.MIN_VALUE.\r\n\r\n// @quiz (INTERVIEW) Why does integer division drop the decimal part?\r\n// @answer When both operands are integer types, Java performs integer division and keeps only the whole-number result.\r\n// @answer So 1 / 2 is 0, while 1.0 / 2 uses floating-point division and keeps the fraction.\r\n\r\n// @quiz (OCJP) What is the output of: System.out.println(1 / 2); System.out.println(1.0 / 2);?\r\n// @answer The output is 0 and 0.5.\r\n// @answer The first uses integer division, while the second uses double division.\r\n\r\n// @quiz (OCJP) What happens here: long l = 10; int i = l;?\r\n// @answer It does not compile because assigning long to int is narrowing and may lose data.\r\n// @answer You need an explicit cast, such as int i = (int) l;.\r\n\r\n// @quiz (INTERVIEW) What are the default values of Java primitive fields and object references if you do not initialize them explicitly?\r\n// @answer Instance fields get type-specific defaults: int = 0, boolean = false, double = 0.0, and char = '\\u0000' which is the Unicode null character.\r\n// @answer Reference type fields default to null because they store no object reference yet.\r\n// @answer Local variables are different: Java does NOT give them default values, so you must initialize them before use.\r\n\r\n// @quiz (INTERVIEW) What happens in Java when you run: int x = Integer.MAX_VALUE; x++; ?\r\n// @answer Output/value: x becomes -2147483648, which is Integer.MIN_VALUE.\r\n// @answer int is a 32-bit signed two's-complement type, so incrementing the largest possible bit pattern wraps around to the smallest negative value.\r\n// @answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.\r\n\r\n// @quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?\r\n// @answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.\r\n// @answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.\r\n// @answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.\r\n\r\n// @quiz (INTERVIEW) Is this valid Java: int x = 1_000_000; and what is the purpose of the underscores?\r\n// @answer Yes, it is valid in Java 7 and later, and the value is still one million.\r\n// @answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.\r\n// @answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F.\r\n// @quiz (INTERVIEW, EASY) Which statement about primitive type sizes and ranges is correct?\r\n// @option int is 32-bit, covering -2,147,483,648 to 2,147,483,647. [correct]\r\n// @option byte is 8-bit, covering -128 to 128.\r\n// @option short is 16-bit, covering -32,768 to 32,768.\r\n// @option long is 32-bit, the same width as int.\r\n// @explain Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.\r\n// @why B: byte covers -128 to 127. The upper bound is 127, not 128, because 0 occupies one of the 256 values.\r\n// @why C: short covers -32,768 to 32,767. The upper bound is 32,767, not 32,768.\r\n// @why D: long is 64-bit. int is 32-bit. That is why a literal such as 100L is written with the L suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the difference between widening and narrowing conversion?\r\n// @option Widening goes from a smaller type to a larger compatible type and is automatic. Narrowing goes the other way and requires an explicit cast. [correct]\r\n// @option Widening requires a cast because the larger type needs more memory.\r\n// @option Both directions are automatic, and Java truncates silently when needed.\r\n// @option Narrowing never loses information because Java rounds the value.\r\n// @explain Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.\r\n// @why B: requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.\r\n// @why C: if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents.\r\n// @why D: narrowing can lose information. A cast truncates rather than rounds, so 9.8 becomes 9, not 10.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by these two statements?\r\n// @code System.out.println(5 / 2);\r\n// @code System.out.println(5 / 2.0);\r\n// @option 2 and 2.5 [correct]\r\n// @option 2.5 and 2.5\r\n// @option 2 and 2\r\n// @option 3 and 2.5\r\n// @explain When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.\r\n// @why B: the first line has two int operands, so it cannot produce 2.5.\r\n// @why C: the second line has a double operand, so it cannot produce 2.\r\n// @why D: integer division truncates towards zero, it does not round up. 5 / 2 is 2, never 3.\r\n\r\n// @quiz (OCJP, HARD) What is the value of x after this code runs?\r\n// @code int x = Integer.MAX_VALUE;\r\n// @code x++;\r\n// @option -2147483648, because the value wraps around to Integer.MIN_VALUE. [correct]\r\n// @option 2147483648, because int is promoted to long automatically.\r\n// @option It throws ArithmeticException.\r\n// @option It stays at 2147483647 and the increment is ignored.\r\n// @explain int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.\r\n// @why B: no promotion happens on overflow. The result is stored back into an int, so there is nowhere to hold 2147483648.\r\n// @why C: Java does not raise an exception for primitive integer overflow. Only integer division by zero throws ArithmeticException.\r\n// @why D: the value does change. The carry bit is discarded, which is what makes the value wrap to the opposite end of the range.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about numeric literal suffixes is correct?\r\n// @option 100L creates a long, 3.14f creates a float, and a plain decimal literal such as 3.14 is a double. [correct]\r\n// @option 100L creates an int, and a plain decimal literal such as 3.14 is a float.\r\n// @option The suffix d is compulsory for every double literal.\r\n// @option A decimal literal such as 3.14 is treated as a float by default.\r\n// @explain Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.\r\n// @why B: L means long, not int, and a decimal literal is double, not float.\r\n// @why C: double is the default for decimals, so the d suffix is optional. float is the type that needs a suffix.\r\n// @why D: decimals default to double. Writing float f = 3.14; fails to compile without the f suffix.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about default values in Java is correct?\r\n// @option Instance and static fields receive type defaults such as 0 and false, while local variables must be assigned before they are read. [correct]\r\n// @option Every variable, including a local variable, receives a default value.\r\n// @option Local variables default to null.\r\n// @option Only static fields receive default values.\r\n// @explain Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.\r\n// @why B: locals are the exception. Reading an unassigned local variable is a compile-time error.\r\n// @why C: a local primitive is not set to null, and null is not even a valid value for a primitive. It simply has no value yet.\r\n// @why D: instance fields receive defaults too, not only static fields.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about char is correct?\r\n// @option The escape written as backslash-u 0044 is the character 'D', because char is 16-bit and Unicode-based. [correct]\r\n// @option char is 8-bit and holds one ASCII character.\r\n// @option char uses double quotes, just like a String.\r\n// @option The escape backslash-u 0044 is decimal 44, which is the comma character.\r\n// @explain A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.\r\n// @why B: char is 16-bit so it can represent Unicode, not just 8-bit ASCII.\r\n// @why C: double quotes create a String. A char literal always uses single quotes, as in 'D'.\r\n// @why D: the escape is hexadecimal, not decimal. 0x44 is 68, which is 'D'; decimal 44 is the comma.\r\n\r\n// @quiz (OCJP, HARD) What is the value of n?\r\n// @code double d = 9.8;\r\n// @code int n = (int) d;\r\n// @option 9, because the cast truncates towards zero. [correct]\r\n// @option 10, because the cast rounds to the nearest whole number.\r\n// @option 9.8, because int keeps the fractional part.\r\n// @option It does not compile, because a double can never be converted to an int.\r\n// @explain Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.\r\n// @why B: a cast truncates. To round 9.8 up to 10 you would need Math.round(d).\r\n// @why C: an int cannot hold a fraction at all, which is why precision is lost here.\r\n// @why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.\r\n\r\n// Parameter notes (important method parameters and how to choose them):\r\n// - args (main): the command-line String array. Use it only when program input should come from launch arguments;\r\n//     remember every element is text and must be parsed before numeric primitive calculations.\r\n// - x (System.out.println): the value printed to the console. In this file the argument is usually a String created\r\n//     by concatenating a label with a primitive value; Java converts primitives to text before printing.\r\n// - target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a\r\n//     narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.\r\n// - numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long,\r\n//     f for float, and d for double when you want to be explicit; note that decimal literals default to double.\r\n//\r\n//\r\n// @quiz (INTERVIEW TRAP) What does the (byte) parameter-like target in (byte) (intMinValue / 2) tell Java?\r\n// @answer It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information.\r\n//\r\n// @quiz (OCJP) Why choose 5f instead of 5 in floatValue = (5f / 2f)?\r\n// @answer The f suffix makes each literal a float, so Java performs floating-point division and keeps the decimal result instead of integer division.\r\n// @quiz (INTERVIEW, MEDIUM) Does this line compile?\r\n// @code byte b = 128;\r\n// @option No. 128 is outside the byte range, so the compiler rejects the assignment. [correct]\r\n// @option Yes, and b holds 128.\r\n// @option Yes, and b wraps around to -128.\r\n// @option Yes, but only because 128 fits in a nibble.\r\n// @explain A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.\r\n// @why B: 128 is one past the maximum, so the value does not fit.\r\n// @why C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.\r\n// @why D: the range is fixed by the type, and 127 is the largest byte.\r\n\r\n// @quiz (OCJP, HARD) What is printed by these two statements?\r\n// @code System.out.println(-7 / 2);\r\n// @code System.out.println(-7 % 2);\r\n// @option -3 and -1 [correct]\r\n// @option -4 and 1\r\n// @option -3.5 and -1\r\n// @option -4 and -1\r\n// @explain Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.\r\n// @why B: -7 / 2 truncates towards zero to -3, not away from it to -4.\r\n// @why C: both operands are int, so the result of / is an int and cannot be -3.5.\r\n// @why D: the division result is -3, not -4.\r\n\r\n// @quiz (OCJP, HARD) What is printed by this code?\r\n// @code System.out.println(0.1 + 0.2);\r\n// @code System.out.println(0.1 + 0.2 == 0.3);\r\n// @option 0.30000000000000004 and false [correct]\r\n// @option 0.3 and true\r\n// @option 0.3 and false\r\n// @option 0.30000000000000004 and true\r\n// @explain double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.\r\n// @why B: the sum is not exactly 0.3, so the comparison cannot be true.\r\n// @why C: the printed value shows the accumulated error rather than a clean 0.3.\r\n// @why D: the two halves cannot both be right. If the sum differs from 0.3, the comparison is false.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Does this code compile?\r\n// @code short s = 1;\r\n// @code s = s + 1;\r\n// @option No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast. [correct]\r\n// @option Yes, and s becomes 2.\r\n// @option Yes, and s wraps around.\r\n// @option Yes, because short and int are the same width.\r\n// @explain Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).\r\n// @why B: the promotion makes the assignment invalid, so it never reaches runtime.\r\n// @why C: nothing wraps here. The compiler rejects the type mismatch first.\r\n// @why D: short is 16 bits and int is 32 bits, so they differ.\r\n\r\n// @quiz (OCJP, MEDIUM) Which statement about boolean in Java is correct?\r\n// @option boolean is not a numeric type, so it cannot be cast to or from an int. [correct]\r\n// @option true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.\r\n// @option A boolean can be used directly as an if condition only after converting it to an int.\r\n// @option boolean and byte are interchangeable because both are 8 bits.\r\n// @explain Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.\r\n// @why B: that rule belongs to C and C++. Java does not allow the cast.\r\n// @why C: no conversion is needed or possible. A boolean is exactly what if requires.\r\n// @why D: a boolean is not a number, so it is not interchangeable with any numeric type.\r\n\r\npublic class PrimitiveDataTypes {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myValue = 10000; // A plain int declaration: datatype int, identifier myValue, value 10000.\r\n        System.out.println(\"myValue is = \" + myValue); //myValue is = 10000\r\n\r\n        int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.\r\n\r\n        int intMinValue = Integer.MIN_VALUE; //By specifying wrapper class Integer, it allows us to perform different operations on int.\r\n\r\n        System.out.println(\"The max Value of the integer is = \" + intMaxValue); //The max Value of the integer is = 2147483647\r\n        System.out.println(\"The min Value of the integer is = \" + intMinValue); //The min Value of the integer is = -2147483648\r\n\r\n        //If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java,\r\n        // then we will get an Overflow in the case of the maximum value and underflow in the case of minimum\r\n\r\n        System.out.println(\"The overflow value of int is  = \" + (intMaxValue + 1)); //The overflow value of int is  = -2147483648\r\n        System.out.println(\"The underflow value of int is = \" + (intMinValue - 1)); //The underflow value of int is = 2147483647\r\n\r\n        byte myMaxByteValue = Byte.MAX_VALUE;\r\n        byte myMinByteValue = Byte.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of the Byte is = \" + myMaxByteValue); //The max Value of the Byte is = 127\r\n        System.out.println(\"The min Value of the Byte is = \" + myMinByteValue); //The min Value of the Byte is = -128\r\n\r\n        short myShortMaxValue = Short.MAX_VALUE;\r\n        short myShortMinValue = Short.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Short is = \" + myShortMaxValue); //The max Value of Short is = 32767\r\n        System.out.println(\"The min Value of Short is = \" + myShortMinValue); //The min Value of Short is = -32768\r\n\r\n        long myLongValue = 100L; //We need to put letter L in the end to make it as long value.\r\n\r\n        long myLongMaxValue = Long.MAX_VALUE;\r\n        long myLongMinValue = Long.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Long is = \" + myLongMaxValue); //The max Value of Long is = 9223372036854775807\r\n        System.out.println(\"The min Value of Long is = \" + myLongMinValue); //The min Value of Long is = -9223372036854775808\r\n\r\n        byte myNewByteValue = (byte) (intMinValue / 2); //By Casting, we tell/instruct java to treat the int value as byte\r\n        System.out.println(\"myNewByteValue is = \" + myNewByteValue);\r\n\r\n        float myMaxFloatValue = Float.MAX_VALUE;\r\n        float myMinFloatValue = Float.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Float is = \" + myMaxFloatValue); //The max Value of Float is = 3.4028235E38\r\n        System.out.println(\"The min Value of Float is = \" + myMinFloatValue); //The min Value of Float is = 1.4E-45\r\n\r\n        double myMaxDoubleValue = Double.MAX_VALUE;\r\n        double myMinDoubleValue = Double.MIN_VALUE;\r\n\r\n        System.out.println(\"The max Value of Double is = \" + myMaxDoubleValue); //The max Value of Double is = 1.7976931348623157E308\r\n        System.out.println(\"The min Value of Double is = \" + myMinDoubleValue); //The min Value of Double is = 4.9E-324\r\n\r\n        int myIntValue = 5;          // For whole numbers int is considered as default\r\n        float myFloatValue = 5.3f;   // To declare float, it is best practice adding f after declaring number at the end of expression\r\n        double myDoubleValue = 5.4d; // For floating point numbers, double is accepted as default. To declare double, it is best practice adding d after declaring number at the end of the declaration\r\n\r\n        int intValue = (5 / 2);\r\n        float floatValue = (5f / 2f);\r\n        double doubleValue = (5d / 2d);\r\n\r\n        System.out.println(\"Int value is = \" + intValue);       //Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor\r\n        System.out.println(\"Float value is = \" + floatValue);   //Float value is = 2.5\r\n        System.out.println(\"Double value is = \" + doubleValue); //Double value is = 2.5\r\n\r\n        int intValuePrecision = (5 / 3);\r\n        float floatValuePrecision = (5f / 3f);\r\n\r\n        double doubleValuePrecision = (5d / 3d);\r\n\r\n        System.out.println(\"Int precision value is = \" + intValuePrecision);       //Int precision value is = 1\r\n        System.out.println(\"Float precision value is = \" + floatValuePrecision);   //Float precision value is = 1.6666666\r\n        System.out.println(\"Double precision value is = \" + doubleValuePrecision); //Double precision value is = 1.6666666666666667\r\n\r\n        char myChar = 'D';\r\n        char myUnicodeChar = '\\u0044';\r\n\r\n        System.out.println(\"myChar value is \" + myChar);\r\n        System.out.println(\"myUnicodeChar value is \" + myUnicodeChar);\r\n\r\n        boolean myTrueBooleanValue = true;\r\n        boolean myFalseBooleanValue = false;\r\n\r\n        System.out.println(\"myTrueBooleanValue is = \" + myTrueBooleanValue);   //myTrueBooleanValue is = true\r\n        System.out.println(\"myFalseBooleanValue is = \" + myFalseBooleanValue); //myFalseBooleanValue is = false\r\n    }\r\n\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_4_PrimitiveTypes_CodingChallenge/DataTypeLimitsChallenge.java",
@@ -3403,7 +3484,7 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "Ternary Operator Example:"
+              "Ternary Operator Example :-"
             ]
           },
           {
@@ -6088,10 +6169,10 @@ const CONCEPTS_DATA = [
               "- Condition is checked before each iteration. If it becomes false, the loop ends.",
               "- Update runs after each iteration body and usually increments or decrements the loop variable.",
               "- A variable declared inside for(int i = ...) is local to that loop and does not exist outside it.",
-              "Break Statement:",
+              "Break Statement :-",
               "A break statement transfers control out of an enclosing statement.",
               "It can also be used inside a loop to exit immediately.",
-              "Continue Statement:",
+              "Continue Statement :-",
               "The continue statement stops the current iteration, skips the remaining code in that iteration, and starts the next one.",
               "It is useful when you want to keep looping but skip certain values or partially execute some iterations.",
               "Example of continue statement:"
@@ -6106,7 +6187,7 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "Output: 5 10 15 20 30 35 40 45 [Numbers 25 and 50 are not printed]"
+              "Output :- 5 10 15 20 30 35 40 45 [Numbers 25 and 50 are not printed]"
             ]
           },
           {
@@ -6753,13 +6834,7 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "while (condition) {\n      // body",
-            "lines": []
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "}",
+            "code": "while (condition) {\n      // body\n      // must update loop variable here, or you get an infinite loop!\n  }",
             "lines": []
           },
           {
@@ -6815,7 +6890,7 @@ const CONCEPTS_DATA = [
         "inlineComments": [
           "body must update loop variable here, or you get an infinite loop!",
           "block of statements",
-          "Another common way to program while loop is:",
+          "Another common way to program while loop is :-",
           "while statement with continue and break: 'continue' skips to the next iteration, 'break' exits the loop entirely."
         ],
         "customQuizzes": [
@@ -7443,13 +7518,7 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "do {",
-            "lines": []
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "} while (condition);  // NOTE: semicolon required after the closing parenthesis!",
+            "code": "do {\r\n      // body — executes first, at least once\r\n  } while (condition);  // NOTE: semicolon required after the closing parenthesis!",
             "lines": []
           },
           {
@@ -7926,7 +7995,7 @@ const CONCEPTS_DATA = [
               "1) A custom data type --> For example: String",
               "2) A special code block that contains methods",
               "A class is like an empty form that gets copied and handed out.",
-              "For Example: A form containing fields like Name and Address can be considered as an example of Class",
+              "For Example :- A form containing fields like Name and Address can be considered as an example of Class",
               "A class is like an empty form. It describes information or placeholders for data that'll be filled in, when that form is given to a unique individual.",
               "An empty form is like a class: it is a template that describes the data an object will hold.",
               "The class provides the structure and behavior that describe each object created from it.",
@@ -8505,20 +8574,30 @@ const CONCEPTS_DATA = [
               "There are 2 ways to create fields on classes.",
               "1) With static keyword",
               "2) Without static keyword",
-              "Static Field:",
+              "Static Field :-",
               "i) Requires 'static' keyword when declared on the class ii) It is used for value of the field that aren't changing constantly and remains constant.",
               "It is stored in special memory location and only in one place.",
               "A static field has one shared value for the class, and you access it through ClassName.fieldName.",
-              "Ex: Integer.MAX_VALUE",
-              "Instance Field:",
+              "Example: Integer.MAX_VALUE",
+              "Instance Field :-",
               "i) Omits 'static' keyword when declared on the class ii) Value of the field is not allocated any memory and has no value until the object is created.",
               "The instance fields can have different values for every instance created.",
               "An instance field is accessed through an object reference, such as objectVariable.fieldName.",
-              "Ex: myObject.myFieldName",
+              "Example: myObject.myFieldName",
               "(myObject is a variable name for the object created and myFieldName is an attribute on the class)",
-              "Static Method:",
-              "i) Requires 'static' keyword when declared on the class ii) Call the method through ClassName.methodName",
-              "Example: Integer.parseInt(\"123\"); // A method called parseInt is called directly from the Class, Integer",
+              "Static Method :-",
+              "i) Requires 'static' keyword when declared on the class ii) Call the method through ClassName.methodName"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "Example :- Integer.parseInt(\"123\"); // A method called parseInt is called directly from the Class, Integer",
+            "lines": []
+          },
+          {
+            "type": "block",
+            "lines": [
               "Instance Method i) Omits 'static' keyword when declared on the class ii) call the method through ObjectVariable.methodName"
             ]
           },
@@ -9498,7 +9577,7 @@ const CONCEPTS_DATA = [
               "Parameter notes (what each argument means and how to choose it):",
               "- e (catch): Receives the exception thrown inside the matching `try` block. In this file, `Exception e` is the generic template example, while `NullPointerException e` is the specific type used for the runnable null-handling demo below.",
               "Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.",
-              "Note: the question \"What is the difference between checked and unchecked exceptions?\" is already asked above as a written question, so it is not repeated here as a multiple-choice question."
+              "Note:- the question \"What is the difference between checked and unchecked exceptions?\" is already asked above as a written question, so it is not repeated here as a multiple-choice question."
             ]
           }
         ],
@@ -10151,14 +10230,14 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "An access modifier at the member level allows granular control over class members.",
-              "Access Keyword: public",
-              "Description: public means any other class in any package can access this class.",
-              "Access Keyword: protected",
-              "Description: protected allows classes in the same package, and any subclass in other packages to have access to the member",
-              "Access Keyword: None ( No access keyword specified)",
-              "Description: When the modifier is omitted, this has special meaning, called package access, meaning the member is accessible only to classes in the same package",
-              "Access Keyword: private",
-              "Description: private means that no other class can access this member"
+              "Access Keyword :- public",
+              "Description :- public means any other class in any package can access this class.",
+              "Access Keyword :- protected",
+              "Description :- protected allows classes in the same package, and any subclass in other packages to have access to the member",
+              "Access Keyword :- None ( No access keyword specified)",
+              "Description :- When the modifier is omitted, this has special meaning, called package access, meaning the member is accessible only to classes in the same package",
+              "Access Keyword :- private",
+              "Description :- private means that no other class can access this member"
             ]
           },
           {
@@ -11163,7 +11242,7 @@ const CONCEPTS_DATA = [
           "Explicit constructor with parameters is called",
           "ConstructorConcept constructorConcept1 = new ConstructorConcept(\"123456789\",1000.0,\"Navneet Jha\",\"navneet.jha500@gmail.com\",\"(+91) 8093958396\");",
           "Constructor chaining example, where a no-args constructor will call the other args constructor using this keyword, where all the parameters required by the second constructor will be passed to this() keyword",
-          "As per the below code. the behaviour will be:",
+          "As per the below code. the behaviour will be :-",
           "As this() should always be the first line in the constructor, when the no - args constructor is called, then as per the flow, it then calls, the args constructor using this() and once the args constructor code block is executed, the controls then comes back to the no-args constructor",
           "As this() should always be the first line in the constructor, when the parameterised constructor with 4 arguments is called, then as per the flow, it then calls, the args constructor which has 5 arguments using this() and once the args constructor code block is executed, the controls then comes back to the parameterised constructor with 4 arguments"
         ],
@@ -11292,23 +11371,23 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "super keyword:",
+              "super keyword :-",
               "1) The keyword super is used to access or call the parent class members (both variables and methods).",
-              "this keyword:",
+              "this keyword :-",
               "1) The keyword this, is used to call the current class members (both variables and methods).",
               "2) this keyword is required when we have a parameter with the same name as an instance variable or field.",
               "NOTE: Both the keywords can be used anywhere in a class except for static elements such as a static method.",
               "Any attempt to do so will lead to compile time errors.",
-              "this() method call:",
+              "this() method call :-",
               "1) this() parentheses is used to call a constructor from another overloaded constructor in the same class.",
               "2) The call to this() parentheses can only be used in a constructor, and it must be the first statement in a constructor.",
               "3) It's used with constructor chaining, in other words, when one constructor calls another constructor, and it helps to reduce duplicated code.",
-              "super() method call:",
+              "super() method call :-",
               "1) The only way to call a parent constructor is by calling super() parentheses, which calls the parent constructor.",
               "2) The Java compiler puts a default call to super() parentheses if we don't add it, and it's always a call to the no argument constructor, which is inserted by the compiler.",
               "In other words, a call to the constructor that hasn't got any arguments.",
               "3) The call to super() parentheses must be the first statement in each constructor.",
-              "Note: 1) this() and super() keyword are known as calls, since they look like regular method calls, although they are used to call constructors",
+              "Note :- 1) this() and super() keyword are known as calls, since they look like regular method calls, although they are used to call constructors",
               "2) A constructor can have a call to super() or this(), but never both"
             ]
           },
@@ -11465,20 +11544,20 @@ const CONCEPTS_DATA = [
             "lines": [
               "Whenever a child class object is created, the parent class part has to be built first, and Java does it automatically, by inserting a super() call with empty parentheses at the start of the child constructor.",
               "In this example, the parent class GoodConstructorSuperCallExample has only 1 parameterised constructor, which accepts x and y, so the free no - args constructor is not created for the parent class.",
-              "So the implicit super() call fails, because there is no constructor in the parent class which takes no arguments, and the compiler throws an error like this:",
+              "So the implicit super() call fails, because there is no constructor in the parent class which takes no arguments, and the compiler throws an error like this :-",
               "constructor GoodConstructorSuperCallExample in class GoodConstructorSuperCallExample cannot be applied to given types; required: int,int; found: no arguments",
               "To fix this, the child constructor tells Java which constructor of the parent class to use, by calling super(x, y), which matches GoodConstructorSuperCallExample(int x, int y).",
               "If the fields of the parent class are private, as x and y are here, the child class cannot set them directly, and super(...) is the only way to initialize them.",
-              "Note: the super() call has to be the first statement in the child constructor.",
-              "Note: Why does this call have to be the first statement ? Because the parent class part of the object has to be completely initialized before any statement of the child constructor runs. If statements of the child constructor were allowed to run first, they could read inherited fields, or call inherited methods, on an object which is not initialized yet, and the object would be in a half built state.",
-              "Note: for this(), the reason is the same. The constructor called by this() has to finish its work first, so that all the fields are initialized before the remaining statements of the current constructor run.",
-              "Note: this() and super() cannot be used together in the same constructor, because both of them have to be the first statement, and a constructor body can have only 1 first statement. So Java would have no way to decide which of the two constructors has to be called first.",
-              "If either call is written after another statement, the compiler throws an error like:",
+              "Note :- the super() call has to be the first statement in the child constructor.",
+              "Note :- Why does this call have to be the first statement ? Because the parent class part of the object has to be completely initialized before any statement of the child constructor runs. If statements of the child constructor were allowed to run first, they could read inherited fields, or call inherited methods, on an object which is not initialized yet, and the object would be in a half built state.",
+              "Note :- for this(), the reason is the same. The constructor called by this() has to finish its work first, so that all the fields are initialized before the remaining statements of the current constructor run.",
+              "Note :- this() and super() cannot be used together in the same constructor, because both of them have to be the first statement, and a constructor body can have only 1 first statement. So Java would have no way to decide which of the two constructors has to be called first.",
+              "If either call is written after another statement, the compiler throws an error like :-",
               "call to this must be first statement in constructor call to super must be first statement in constructor",
-              "Note: every constructor of the child class needs this call, either directly through super(args...), or through this(args...) chaining to a constructor which performs the super() call.",
-              "Note: Why is this needed when 1 constructor is already calling the parent constructor ? Because creating an object runs only 1 constructor of the child class, the one which matches the arguments passed with new.",
+              "Note :- every constructor of the child class needs this call, either directly through super(args...), or through this(args...) chaining to a constructor which performs the super() call.",
+              "Note :- Why is this needed when 1 constructor is already calling the parent constructor ? Because creating an object runs only 1 constructor of the child class, the one which matches the arguments passed with new.",
               "The other constructors do not run at all, so they cannot do the work on behalf of the constructor which is called. That is why each constructor has to reach a super() call on its own, either directly through super(args...), or through this(args...) chaining, and exactly 1 super() call happens for each object created.",
-              "Note: if the parent class had no constructor declared at all, Java would have created the no - args constructor for it, and the child class would not need to call the parent constructor explicitly."
+              "Note :- if the parent class had no constructor declared at all, Java would have created the no - args constructor for it, and the child class would not need to call the parent constructor explicitly."
             ]
           },
           {
@@ -11488,10 +11567,10 @@ const CONCEPTS_DATA = [
               "If the parent class has no parameterised constructor, the child class does not need to call the parent constructor, because Java inserts the super() call automatically.",
               "If the parent class has 1 parameterised constructor, then the child class has to call the same parameterised constructor using super, otherwise the code will not compile.",
               "If the parent class has multiple parameterised constructors, then the child class has to call any of those parameterised constructors, whichever matches the arguments passed inside super().",
-              "Important: the parent constructor is always called, either implicitly by the compiler or explicitly through super(), and the super() call has to be the first statement in the child constructor.",
-              "Pitfall: if the parent class has no accessible no - args constructor, and a child constructor has no super() call, the compiler throws an error, for example \"constructor GoodConstructorSuperCallExample in class GoodConstructorSuperCallExample cannot be applied to given types\".",
-              "Note: a constructor can have a call to this() or super(), but never both, because both of these calls have to be the first statement, and only 1 statement can be first in a constructor body.",
-              "Note: if the only constructor of the parent class is private, the child class cannot call it at all.",
+              "Important :- the parent constructor is always called, either implicitly by the compiler or explicitly through super(), and the super() call has to be the first statement in the child constructor.",
+              "Pitfall :- if the parent class has no accessible no - args constructor, and a child constructor has no super() call, the compiler throws an error, for example \"constructor GoodConstructorSuperCallExample in class GoodConstructorSuperCallExample cannot be applied to given types\".",
+              "Note :- a constructor can have a call to this() or super(), but never both, because both of these calls have to be the first statement, and only 1 statement can be first in a constructor body.",
+              "Note :- if the only constructor of the parent class is private, the child class cannot call it at all.",
               "WHY THE CHILD HAS TO CALL THE PARENT CONSTRUCTOR — The free no - args constructor rule:",
               "Java creates the free no - args constructor for a class only when that class declares no constructor at all.",
               "So if the parent class declares even 1 parameterised constructor, the parent class has no no - args constructor.",
@@ -12106,7 +12185,7 @@ const CONCEPTS_DATA = [
               "POJO CONCEPTS i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii) It's used to house data and pass data between functional classes.",
               "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
               "iv) Many database frameworks use POJO's to read data from, or to write data to databases,files or streams.",
-              "v) Examples: i) A POJO also might be called a bean or a JavaBean.",
+              "v) Examples :- i) A POJO also might be called a bean or a JavaBean.",
               "ii) A JavaBean is just a POJO with some extra rules applied to it.",
               "iii) These rules are in place so that Java frameworks have a standard way to manipulate and manage these objects.",
               "iv) A POJO is sometimes called an Entity because it mirrors database entities.",
@@ -12198,20 +12277,20 @@ const CONCEPTS_DATA = [
           "Objects are created using POJO",
           "Getter methods that are defined explicitly in the Student POJO class are called below",
           "The pre-defined best practice to define an explicit getter method name is that the getter method name to access any instance field will have a prefix like (get or is) before the instance variable name for which the value is retrieved(get) which together will form the getter method name",
-          "Ex: getName() & getClassList() are explicitly defined getter methods for the name and classList instance variables",
+          "Example: getName() & getClassList() are explicitly defined getter methods for the name and classList instance variables",
           "The values of the instance variables in POJO based approach can be set using the explicitly defined setter methods.",
           "For example: s1.setClassList(s1.getClassList() + \", Java OCJP Exam 829\") will work as expected as the setClassList setter method has been defined explicitly and the value of the classList instance variable of the s1 object will get set to \"Java MasterClass, Java OCJP Exam 829\"",
           "Output of the code",
-          "Difference between the outputs: i) toString() method should be there in the pojo ii) It starts with curly bracket iii) Single quotes around Strings are there",
+          "Difference between the outputs :- i) toString() method should be there in the pojo ii) It starts with curly bracket iii) Single quotes around Strings are there",
           "Objects are created using Record Class",
           "Getter methods are implicitly handled in the Record Type StudentRecord class. There is no need to explicitly define the getter methods in the Record Type Class",
           "The implicit defined getter method name to retrieve(get) the value of the specific instance field will only have the instance variable name for which the value is retrieved(get) as the getter method name to access that instance variable value",
-          "Ex: name() & classList() are implicitly defined accessor methods for the name and classList record components",
+          "Example: name() & classList() are implicitly defined accessor methods for the name and classList record components",
           "1) The values of the instance variables in Record Type based approach cannot be set ever and the Record Type class do not have implicitly defined setter methods",
           "2) For example: s1.setClassList(s1.classList() + \", Java OCJP Exam 829\") will not work as there is no implicitly defined setter method for any of the instance field in the Record Type Class",
           "3) This is by design because the Record type class goal is to be immutable and they are built like that specifically",
           "4) The objective of the record type Class suits well for the use cases of immutable data transfer objects and keeping them well encapsulated. The data needs to be well protected from unintended mutations",
-          "Difference between the outputs: i) toString() method is not required. It is handled implicitly by the Record type class ii) It starts with square bracket iii) Single quotes around Strings are not there"
+          "Difference between the outputs :- i) toString() method is not required. It is handled implicitly by the Record type class ii) It starts with square bracket iii) Single quotes around Strings are not there"
         ],
         "customQuizzes": [
           {
@@ -12350,7 +12429,7 @@ const CONCEPTS_DATA = [
               "2) Static variables are also known as static member variables. They belong to the class, not the instance",
               "3) Every instance of the class shares the same static variable.",
               "4) If changes are made to that variable, all other instances of that class will see the effect of that change.",
-              "5) Static variables can be used to:",
+              "5) Static variables can be used to :-",
               "i) Storing counters ii) Generating unique IDs iii) Storing constant value that does not change. For example: value of pi iv) Creating and controlling access to a shared resource. For example: log file, a database, input stream, output stream etc",
               "Instance Variables",
               "1) Static keyword is not used",
@@ -12741,7 +12820,7 @@ const CONCEPTS_DATA = [
               "Or the method can call the parent class's method and include other code to run so it can extend the functionality for the Dog",
               "Polymorphism",
               "Polymorphism simply means \"many forms\"",
-              "Advantages:",
+              "Advantages :-",
               "1) It makes code simpler",
               "2) It encourages code extensibility"
             ]
@@ -12833,7 +12912,7 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Most Important Point: A class can specify one and only one class in it's extends clause.",
+          "Most Important Point :- A class can specify one and only one class in it's extends clause.",
           "Java creates a default constructor implicitly, if we don't explicitly declare 1",
           "Since we created a 2 parameter constructor in the parent class, the default constructor was not created automatically for the parent class by Java.",
           "This will call the no argument constructor of the parent class, if no constructors are defined in the parent's class, java will implicitly create one.",
@@ -13101,7 +13180,7 @@ const CONCEPTS_DATA = [
         ],
         "inlineComments": [
           "Since the toString method, is explicitly called by an object, there is no need to make an explicit call to toString method from an object",
-          "Output: Here, the Student class's overridden toString() method runs.",
+          "Output :- Here, the Student class's overridden toString() method runs.",
           "This override is redundant, as it is simply calling the parent class toString() method, and hence, will give the same output, when the toString() method was called without overriding",
           "The parent class toString() method is implicitly called, when super.toString() is explicitly called"
         ],
@@ -13425,15 +13504,15 @@ const CONCEPTS_DATA = [
             "lines": [
               "Inheritance Challenge Problem",
               "Create Worker Class -> This should be on top of the Hierarchy",
-              "Create attributes:",
+              "Create attributes :-",
               "name : String birthDate : String endDate : String intGetAge() double collectPay() terminate(String endDate)",
               "Below the Worker Class, introduce another Class named Employee which extends the Worker Class",
-              "Create Attributes:",
+              "Create Attributes :-",
               "employeeId : long hireDate : String",
               "Create Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee",
-              "For SalariedEmployee, Create Attributes:",
+              "For SalariedEmployee, Create Attributes :-",
               "annualSalary : double isRetired : boolean retire()",
-              "For HourlyEmployee, Create Attributes:",
+              "For HourlyEmployee, Create Attributes :-",
               "hourlyPayRate : double getDoublePay()"
             ]
           },
@@ -14622,7 +14701,7 @@ const CONCEPTS_DATA = [
               "- String.format(String format, Object... args) accepts the same format string and replacement values as printf. Instead of printing the result to the console, it returns the completed text as a String, so you can store it, combine it with other text, or print it later.",
               "- \"template %d\".formatted(args): args fill the placeholders in the receiver string; choose one compatible value per placeholder.",
               "- Important note: prefer %n instead of \\n in format strings when you want a platform-specific newline.",
-              "New line in a format string - \\n or %n:"
+              "New line in a format string - \\n or %n :-"
             ]
           },
           {
@@ -14656,8 +14735,8 @@ const CONCEPTS_DATA = [
           {
             "type": "lines",
             "lines": [
-              "Note: %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
-              "Note: \"Hello \\n\".length() is always 7, but String.format(\"Hello%n\").length() is 6 on Linux and 7 on Windows."
+              "Note :- %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
+              "Note :- \"Hello \\n\".length() is always 7, but String.format(\"Hello%n\").length() is 6 on Linux and 7 on Windows."
             ]
           }
         ],
@@ -14919,35 +14998,35 @@ const CONCEPTS_DATA = [
               "STRING METHODS AND BEST PRACTICES",
               "String is a sequence of characters, which means its characters are ordered and indexed.",
               "String indexing is 0 - based, so the first character is at index 0 and the last one is at length() - 1.",
-              "String methods can be grouped into three categories:",
-              "1) String Inspection Methods: These give information about the String, such as its length or the position of a character. For example: length(), isEmpty(), isBlank(), charAt(), indexOf(), lastIndexOf().",
-              "2) String Comparison Methods: These compare the content of the String with another String or CharSequence and return true or false. For example: equals(), equalsIgnoreCase(), contentEquals(), startsWith(), endsWith(), contains(), regionMatches().",
-              "3) String Manipulation Methods: These return a new String after a transformation. For example: substring(), replace(), replaceAll(), replaceFirst(), concat(), join(), repeat(), indent(), strip(), trim(), toLowerCase(), toUpperCase().",
-              "Note: the original String is never changed, because String is immutable. Every method of the String class returns a new String instead of changing the existing one.",
+              "String methods can be grouped into three categories :-",
+              "1) String Inspection Methods :- These give information about the String, such as its length or the position of a character. For example :- length(), isEmpty(), isBlank(), charAt(), indexOf(), lastIndexOf().",
+              "2) String Comparison Methods :- These compare the content of the String with another String or CharSequence and return true or false. For example :- equals(), equalsIgnoreCase(), contentEquals(), startsWith(), endsWith(), contains(), regionMatches().",
+              "3) String Manipulation Methods :- These return a new String after a transformation. For example :- substring(), replace(), replaceAll(), replaceFirst(), concat(), join(), repeat(), indent(), strip(), trim(), toLowerCase(), toUpperCase().",
+              "Note :- the original String is never changed, because String is immutable. Every method of the String class returns a new String instead of changing the existing one.",
               "---- Important points to remember ----",
-              "1) isEmpty() vs isBlank():",
+              "1) isEmpty() vs isBlank() :-",
               "isEmpty() returns true only when the length is 0, so a String with only spaces, like \" \", returns false.",
               "isBlank() returns true when the length is 0, or when the String has only whitespace characters.",
-              "Note: for user input validation, always use isBlank(), otherwise the user can enter spaces and bypass it.",
-              "2) trim() vs strip() (JDK 11+):",
+              "Note :- for user input validation, always use isBlank(), otherwise the user can enter spaces and bypass it.",
+              "2) trim() vs strip() (JDK 11+) :-",
               "trim() removes only ASCII whitespace, which means characters with a codepoint of 32 or less.",
               "strip() is Unicode - aware, so it also removes characters like \\u2000 (en quad) and other Unicode spaces.",
-              "Note: in JDK 11 or above, prefer strip(), stripLeading() and stripTrailing() over trim().",
-              "3) equals() vs contentEquals():",
+              "Note :- in JDK 11 or above, prefer strip(), stripLeading() and stripTrailing() over trim().",
+              "3) equals() vs contentEquals() :-",
               "equals() returns true only when the other object is also a String.",
               "contentEquals() accepts any CharSequence, such as StringBuilder, StringBuffer or CharBuffer.",
-              "Note: to compare a String with a StringBuilder, use contentEquals(), because it avoids calling toString() and creating an extra String object on the heap.",
-              "4) replace() vs replaceAll() vs replaceFirst():",
+              "Note :- to compare a String with a StringBuilder, use contentEquals(), because it avoids calling toString() and creating an extra String object on the heap.",
+              "4) replace() vs replaceAll() vs replaceFirst() :-",
               "replace() takes a literal value as the target, so it does not treat the target as a Regular Expression.",
               "replaceAll() and replaceFirst() take a Regular Expression as the target, so they are slower, because the pattern has to be compiled first.",
-              "Note: use replace() for literal replacements, and use replaceAll() or replaceFirst() only when pattern matching is really needed.",
-              "Pitfall: in replaceAll(\".\", \"X\"), the \".\" is a Regular Expression which matches ANY character, so every character of the String gets replaced. To replace only the dots, use replaceAll(\"\\\\.\", \"X\") or use replace(\".\", \"X\").",
-              "5) concat() vs + operator vs join() vs StringBuilder:",
+              "Note :- use replace() for literal replacements, and use replaceAll() or replaceFirst() only when pattern matching is really needed.",
+              "Pitfall :- in replaceAll(\".\", \"X\"), the \".\" is a Regular Expression which matches ANY character, so every character of the String gets replaced. To replace only the dots, use replaceAll(\"\\\\.\", \"X\") or use replace(\".\", \"X\").",
+              "5) concat() vs + operator vs join() vs StringBuilder :-",
               "concat() joins 2 Strings, but it throws NullPointerException when the argument is null.",
               "The + operator is easy to read, and it converts null to the text \"null\" instead of throwing an exception.",
               "String.join() is useful for joining many elements with a delimiter, without writing extra logic for it.",
               "StringBuilder should be used when Strings are joined inside a loop.",
-              "Pitfall: never join Strings inside a loop using concat() or +, because a new String object gets created every time and the program becomes slow. Use StringBuilder inside the loop instead.",
+              "Pitfall :- never join Strings inside a loop using concat() or +, because a new String object gets created every time and the program becomes slow. Use StringBuilder inside the loop instead.",
               "---- Edge cases to remember ----",
               "1) substring(length) is valid, it returns an empty String and does not throw an exception.",
               "2) substring(0, 0) is valid, it also returns an empty String, because the range has 0 length.",
@@ -14981,7 +15060,7 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "String Inspection Methods: These give information about the String, they never change it.",
+          "String Inspection Methods :- These give information about the String, they never change it.",
           "This method is called with \"Hello World\", with \"\" and with \"\\t \\n\", so that these methods can be seen working on a normal String, on an empty String and on a blank String.",
           "length() returns the total number of characters, and it is an O(1) operation.",
           "isEmpty() returns true only when the length is 0, so a String with only whitespace returns false.",
@@ -14993,16 +15072,16 @@ const CONCEPTS_DATA = [
           "Both of them return -1 when the value is not found.",
           "The second argument of indexOf() is the position where the search starts.",
           "The second argument of lastIndexOf() is the position where the backward search starts.",
-          "String Comparison Methods: These compare the content of the String with another String or with a CharSequence, and they return true or false.",
+          "String Comparison Methods :- These compare the content of the String with another String or with a CharSequence, and they return true or false.",
           "equals() compares the content and it is case - sensitive.",
-          "Note: always use equals() instead of == for Strings, because == compares the memory references.",
+          "Note :- always use equals() instead of == for Strings, because == compares the memory references.",
           "equalsIgnoreCase() compares the content and ignores the case, so no lowercasing is needed first.",
           "startsWith() checks the prefix of the String.",
           "endsWith() checks the suffix of the String.",
           "contentEquals() accepts any CharSequence, so a String can be compared with a StringBuilder without calling toString() on it.",
           "contains() checks whether the given sequence appears anywhere inside the String.",
           "regionMatches(ignoreCase, toffset, other, ooffset, len) compares only the given regions, so no extra substring objects are created.",
-          "String Manipulation Methods: These return a new String after a transformation, the original String is never changed.",
+          "String Manipulation Methods :- These return a new String after a transformation, the original String is never changed.",
           "indexOf() gives the position of the year, and substring() then takes the text from that position.",
           "substring(beginIndex) returns the text from beginIndex up to the end of the String.",
           "substring(beginIndex, endIndex) takes beginIndex as inclusive and endIndex as exclusive.",
@@ -16528,9 +16607,9 @@ const CONCEPTS_DATA = [
               "Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.",
               "This is the difference between HAS-A (composition) and IS-A (inheritance).",
               "This exercise works with the parts as simple values, so the idea can be practised without building the whole object graph.",
-              "describePart: returns the part as \"model by manufacturer\", or \"incomplete part\" when either value is missing.",
-              "totalCost: adds the three part prices to give the cost of the whole build.",
-              "isFullyAssembled: returns true only when every part is present."
+              "describePart :- returns the part as \"model by manufacturer\", or \"incomplete part\" when either value is missing.",
+              "totalCost :- adds the three part prices to give the cost of the whole build.",
+              "isFullyAssembled :- returns true only when every part is present."
             ]
           }
         ],

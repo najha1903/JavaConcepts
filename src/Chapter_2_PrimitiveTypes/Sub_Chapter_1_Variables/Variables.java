@@ -16,6 +16,23 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 // - Local variables are declared inside methods, constructors, or code blocks.
 // - Unlike instance/static fields, local variables NEVER receive default values.
 // - Warning: You MUST initialize a local variable before reading or referencing it, otherwise the code will fail to compile.
+//
+// The three kinds of variable :-
+// - Local variable :- declared inside a method, constructor or block. It exists only while that block
+//   runs, and it must be assigned before it is read.
+// - Instance field :- declared in the class but outside any method. Every object gets its own copy.
+// - Static field :- declared with the static keyword. One copy is shared by the whole class.
+//
+// Default values, for fields only. Local variables get none :-
+// - int, long, short, byte :- 0
+// - double, float :- 0.0
+// - boolean :- false
+// - char :- the null character, Unicode 0000
+// - any reference type, including String :- null
+//
+// Syntax and a declaration in practice :-
+// dataType variableName = initialValue;
+// int myFirstNumber = 5;
 
 // Parameter notes (what each argument means and how to choose it):
 // - args (main): String[] array containing command-line arguments passed to the application.

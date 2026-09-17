@@ -39,6 +39,34 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // Reference: https://unicode-table.com/en/
 //
 // boolean: can only be true or false. It is the result of any comparison or logical expression.
+//
+// Worked examples :-
+// 1) Overflow wraps around instead of failing :-
+// int max = Integer.MAX_VALUE;
+// System.out.println(max + 1);        // prints -2147483648, which is Integer.MIN_VALUE
+//
+// 2) Widening is automatic, narrowing needs a cast :-
+// int i = 100;
+// long l = i;                         // widening, nothing to write
+// double d = 9.8;
+// int n = (int) d;                    // narrowing, the cast is required and prints 9
+// Note :- a cast truncates rather than rounds, so (int) 9.8 is 9 and not 10.
+//
+// 3) Integer division drops the fraction :-
+// System.out.println(5 / 2);          // prints 2, because both operands are int
+// System.out.println(5 / 2.0);        // prints 2.5, because one operand is double
+//
+// 4) char is a number underneath :-
+// char c = 'A';
+// System.out.println(c + 1);          // prints 66, because 'A' is 65 and c is promoted to int
+// System.out.println((char) (c + 1)); // prints B, after casting the int back to char
+// Note :- this is why adding a char to an int gives an int, not a char. The cast is needed to get a character back.
+//
+// 5) A wrapper class lets a primitive be used where an object is needed :-
+// Integer boxed = 5;                  // autoboxing, int to Integer
+// int unboxed = boxed;                // unboxing, Integer back to int
+// Note :- Integer.MAX_VALUE and Integer.MIN_VALUE come from the wrapper class, not from the primitive.
+// Pitfall :- comparing two Integer objects with == compares references, not values, so use equals for the numbers.
 
 // @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?
 // @answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.
