@@ -5,17 +5,43 @@ package Chapter_1_Java_Introduction;
 // Source code (.java) is compiled by `javac` into intermediate bytecode (.class files),
 // which is then executed by the Java Virtual Machine (JVM) on any platform ("Write Once, Run Anywhere").
 //
+// Those two steps, in order:
+// - javac HelloWorld.java :- writes HelloWorld.class, the bytecode
+// - java HelloWorld :- starts the JVM, which runs HelloWorld.class
+//
+// Note :- the file name must match the name of the public class inside it, so this file is
+// HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.
+// Note :- Java is case-sensitive. `HelloWorld` and `helloworld` are two different names.
+//
 // Key Components of Java Ecosystem:
 // - JDK (Java Development Kit): Contains development tools (`javac`, `javadoc`, debugger) + JRE.
 // - JRE (Java Runtime Environment): Contains core libraries + JVM for running applications.
 // - JVM (Java Virtual Machine): The execution engine that translates bytecode into native machine instructions.
 //
 // Main Method Signature Breakdown (`public static void main(String[] args)`):
-// - `public`: Access modifier allowing the JVM to invoke the method from outside the class package.
+// - `public`: The launcher has to call `main`, so the method must be visible outside its own class.
 // - `static`: Allows the JVM to invoke `main` directly on the class without instantiating an object first.
 // - `void`: Indicates that the method returns no value to the caller.
 // - `main`: The exact identifier search target for the JVM application entry point.
 // - `String[] args`: Parameter array that captures command-line arguments passed during execution.
+//
+// The smallest complete program, with each part labelled:
+// public class HelloWorld {                       // the class name matches the file name
+//     public static void main(String[] args) {    // the entry point the JVM looks for
+//         System.out.println("Hello World");      // prints the text, then moves to a new line
+//     }
+// }
+//
+// `System.out.println` is three parts joined by dots :-
+// - `System`  :- the class that gives access to the machine's standard streams.
+// - `out`     :- the standard output stream, normally the console.
+// - `println` :- prints the value it is given, then a newline. Use `print` when no newline is wanted.
+// Note :- the text inside the quotes is a String literal, and `println` accepts any value, not only text.
+//
+// What you should be able to do after this topic :-
+// - Compile a .java file and run the resulting .class file from the terminal.
+// - Say what the JDK, the JRE and the JVM each provide.
+// - Explain why `main` is public, static and void.
 
 // Parameter notes (what each argument means and how to choose it):
 // - args (main): String[] array supplied by the JVM containing command-line tokens passed after the class name.

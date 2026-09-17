@@ -5,7 +5,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Temperature Converter",
     "difficulty": "Easy",
     "chapter": "Chapter 1: Java Introduction",
-    "description": "<p>Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.</p><p>Print the result in the format: \"25°C is 77.0°F\".</p>",
+    "description": "<p>Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.</p><p>Print the result in the format: \"25°C is 77.0°F\".</p><p>Practises: variables, arithmetic with `double`, and printing a formatted result.</p><p>Note: integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.</p><p>Expected output for 25: 25°C is 77.0°F</p>",
     "template": "public class PracticeWorkspace {\n    public static double toFahrenheit(double celsius) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
@@ -23,18 +23,20 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Fibonacci",
     "difficulty": "Hard",
     "chapter": "Chapter 1: Java Introduction",
-    "description": "<p>Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.</p>",
+    "description": "<p>Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.</p><p>Practises: loops, building and returning a long[], and testing membership of a sequence.</p><p>Note: the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.</p><p>Note: watch the boundary where count is 0 or negative, which is why the method returns an empty array.</p>",
     "template": "public class PracticeWorkspace {\n    public static long[] generateFibonacci(int count) {\n        // Write your code here\n        return null;\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "args": [
+          6
+        ],
+        "expected": 0
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "generateFibonacci",
-    "hasVerify": false,
-    "verifyFnStr": null
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"generateFibonacci\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"count\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "bitwiseoperationsdeepproblem",

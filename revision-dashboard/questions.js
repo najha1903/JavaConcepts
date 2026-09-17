@@ -435,7 +435,7 @@ const QUESTIONS_BANK = {
       "topic": "Hello World",
       "question": "Which of the following are TRUE about Hello World? Select all that apply.",
       "options": [
-        "Main Method Signature Breakdown (`public static void main(String[] args)`):",
+        "- java HelloWorld: starts the JVM, which runs HelloWorld.class",
         "Java is both a compiled and interpreted language.",
         "Print the result in the format: \"25°C is 77.0°F\".",
         "Then print all three values on one line using string concatenation.",
@@ -448,6 +448,58 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "The true statements are taken directly from the notes for Hello World.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-sub-chapter-2-java-intro-codingchallenge-helloworldvariationchallenge-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World Variation Challenge",
+      "question": "Which of the following are TRUE about Hello World Variation Challenge? Select all that apply.",
+      "options": [
+        "Expected output: three lines first, then one line holding all three values.",
+        "Print the result in the format: \"25°C is 77.0°F\".",
+        "Practises: calling System.out.println, and joining text with the + operator.",
+        "Then print all three values on one line using string concatenation.",
+        "Core Concepts: Java Architecture & Execution Flow"
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "The true statements are taken directly from the notes for Hello World Variation Challenge.",
+      "topicPath": "src/Chapter_1_Java_Introduction/Sub_Chapter_2_Java_Intro_CodingChallenge/HelloWorldVariationChallenge.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-sub-chapter-2-java-intro-codingchallenge-temperatureconverterchallenge-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Temperature Converter Challenge",
+      "question": "Which of the following are TRUE about Temperature Converter Challenge? Select all that apply.",
+      "options": [
+        "Practises: variables, arithmetic with `double`, and printing a formatted result.",
+        "Print the result in the format: \"25°C is 77.0°F\".",
+        "Then print all three values on one line using string concatenation.",
+        "Core Concepts: Java Architecture & Execution Flow",
+        "Expected output for 25: 25°C is 77.0°F"
+      ],
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Temperature Converter Challenge.",
+      "topicPath": "src/Chapter_1_Java_Introduction/Sub_Chapter_2_Java_Intro_CodingChallenge/TemperatureConverterChallenge.java",
       "tags": [
         "concept"
       ]
@@ -15148,7 +15200,10 @@ const QUICK_REVISION_BANK = {
       "Then print all three values on one line using string concatenation."
     ],
     "gotchas": [
-      "Parameter notes (what each argument means and how to choose it):"
+      "Note: the file name must match the name of the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.",
+      "Note: println ends the line for you, but concatenation does not add spaces, so you have to include them yourself, for example \"Navneet \" + 41 gives Navneet 41 and not Navneet41.",
+      "Note: integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.",
+      "Note: the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5."
     ],
     "syntax": "public class HelloWorld {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Hello World\");\r\n    }\r\n\r\n}",
     "badges": [

@@ -3,6 +3,10 @@ package Chapter_1_Java_Introduction.Sub_Chapter_2_Java_Intro_CodingChallenge;
 /*
  * Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.
  * Print the result in the format: "25°C is 77.0°F".
+ *
+ * Practises :- variables, arithmetic with `double`, and printing a formatted result.
+ * Note :- integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.
+ * Expected output for 25 :- 25°C is 77.0°F
  */
 public class TemperatureConverterChallenge {
 

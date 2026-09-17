@@ -1,4 +1,8 @@
 /* Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking. */
+// Practises :- loops, building and returning a long[], and testing membership of a sequence.
+// Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so
+// generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.
+// Note :- watch the boundary where count is 0 or negative, which is why the method returns an empty array.
 package Chapter_1_Java_Introduction.Sub_Chapter_3_DeepProblems;
 
 public class FibonacciDeepProblem {
