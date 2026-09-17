@@ -63,8 +63,6 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // - leftOperand/rightOperand (operators): the values around an operator determine the operation. Choose numeric
 //     operands for arithmetic, boolean operands for logical operators, and remember the pitfall that + concatenates when a String is involved.
 //
-// @quiz (INTERVIEW) In System.out.println(myVar), what does the println parameter show after myVar++?
-// @answer It shows the updated value of myVar, because myVar++ has already executed before println receives the variable's current int value.
 //
 // @quiz (INTERVIEW TRAP) How do the operands you choose affect the + operator?
 // @answer If both operands are numeric, + performs addition. If either operand is a String, + performs concatenation for that operation.

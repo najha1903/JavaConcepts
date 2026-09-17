@@ -8,8 +8,6 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_
 // @quiz (INTERVIEW) Why does new CreateFieldOnClasses() not need constructor arguments in this file?
 // @answer The class defines no parameterized constructor, so the default no-argument constructor is used and field initializers supply the values.
 //
-// @quiz (INTERVIEW TRAP) In System.out.println(a + " " + b), how many arguments are passed to println?
-// @answer One argument is passed: the concatenated String expression produced before println receives it.
 // Java classes have two types of fields (variables declared at the class level, outside any method):
 // STATIC FIELDS: declared with 'static'. There is exactly ONE copy in memory, shared by ALL objects of that class. Accessed via ClassName.fieldName.
 // INSTANCE FIELDS: declared without 'static'. Each object gets its OWN separate copy. Accessed via objectVariable.fieldName.

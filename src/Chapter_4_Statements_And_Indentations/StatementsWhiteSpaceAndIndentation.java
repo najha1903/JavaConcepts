@@ -32,8 +32,6 @@ package Chapter_4_Statements_And_Indentations;
 // - pieces in String concatenation: each quoted literal around + is an operand used to build the final println
 //     parameter. Choose pieces for readability, but remember the runtime receives one combined String.
 //
-// @quiz (INTERVIEW) In a multi-line call like System.out.println("This is" + " another" + " still more."), what is the parameter?
-// @answer The parameter is the single combined String produced by the concatenation expression; line breaks in source code do not create separate parameters.
 //
 // @quiz (INTERVIEW TRAP) Does indentation change the parameter passed to println?
 // @answer No. Indentation and most whitespace are ignored by the compiler; the expression before the semicolon determines the parameter value.

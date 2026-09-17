@@ -1106,25 +1106,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_32-in-system-out-println-mystring-is-equal-",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "String Example",
-      "tags": [
-        "interview"
-      ],
-      "question": "In System.out.println(\"MyString is equal to \" + myString), what is the println parameter?",
-      "modelAnswer": "The parameter is the completed String produced after concatenation, not the separate pieces; Java builds it first, then println prints it.",
-      "keyPoints": [
-        "The parameter is the completed String produced after concatenation, not the separate pieces; Java builds it first, then println prints it."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_33-if-s-concat-is-fun-receives-is-fun-as-it",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_32-if-s-concat-is-fun-receives-is-fun-as-it",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1143,7 +1125,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_34-what-should-you-remember-about-the-args-",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_33-what-should-you-remember-about-the-args-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1188,25 +1170,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_0-what-does-the-println-parameter-secondva",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Local Variables And Scope",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the println parameter secondVariable mean in this scope example?",
-      "modelAnswer": "It is the local variable value currently in scope; println receives that int value and prints it on its own line.",
-      "keyPoints": [
-        "It is the local variable value currently in scope; println receives that int value and prints it on its own line."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_1-can-system-out-println-thirdvariable-use",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_0-can-system-out-println-thirdvariable-use",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Local Variables And Scope",
@@ -1225,7 +1189,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_2-what-must-the-parameter-inside-if-firstv",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_1-what-must-the-parameter-inside-if-firstv",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Local Variables And Scope",
@@ -1405,25 +1369,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_0-what-does-the-parameter-highscore-50-mea",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Key Words And Expressions In Java",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the parameter highScore == 50 mean inside if(...)?",
-      "modelAnswer": "It is the condition argument that controls the if block; the block runs only when the comparison evaluates to true.",
-      "keyPoints": [
-        "It is the condition argument that controls the if block; the block runs only when the comparison evaluates to true."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_1-why-is-if-highscore-50-not-the-right-par",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_0-why-is-if-highscore-50-not-the-right-par",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
@@ -1437,24 +1383,6 @@ const QUESTIONS_BANK = {
         "= is assignment, not comparison. Use == when the condition should test whether highScore already equals 50."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_2-in-system-out-println-you-got-the-high-s",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Key Words And Expressions In Java",
-      "tags": [
-        "interview"
-      ],
-      "question": "In System.out.println(\"You got the high score!\"), what is the method parameter?",
-      "modelAnswer": "The parameter is the String message to display; choose text that should appear when the surrounding condition is satisfied.",
-      "keyPoints": [
-        "The parameter is the String message to display; choose text that should appear when the surrounding condition is satisfied."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
     },
     {
@@ -1874,25 +1802,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_17-in-system-out-println-the-max-value-of-t",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Primitive Data Types",
-      "tags": [
-        "interview"
-      ],
-      "question": "In System.out.println(\"The max Value of the integer is = \" + intMaxValue), what parameter is passed?",
-      "modelAnswer": "The parameter is one final String formed by concatenating the label with intMaxValue; println receives that String and prints it.",
-      "keyPoints": [
-        "The parameter is one final String formed by concatenating the label with intMaxValue; println receives that String and prints it."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_18-what-does-the-byte-parameter-like-target",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_17-what-does-the-byte-parameter-like-target",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -1911,7 +1821,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_19-why-choose-5f-instead-of-5-in-floatvalue",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_18-why-choose-5f-instead-of-5-in-floatvalue",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -1930,7 +1840,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_20-does-this-line-compile",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_19-does-this-line-compile",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -1957,7 +1867,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_21-what-is-printed-by-these-two-statements",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_20-what-is-printed-by-these-two-statements",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -1984,7 +1894,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_22-what-is-printed-by-this-code",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_21-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2011,7 +1921,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_23-does-this-code-compile",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_22-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2038,7 +1948,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_24-which-statement-about-boolean-in-java-is",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_23-which-statement-about-boolean-in-java-is",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2333,25 +2243,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_8-in-system-out-println-myvar-what-does-th",
-      "difficulty": "medium",
-      "chapter": "Chapter 3: Operators",
-      "topic": "Operators Operands Expressions",
-      "tags": [
-        "interview"
-      ],
-      "question": "In System.out.println(myVar), what does the println parameter show after myVar++?",
-      "modelAnswer": "It shows the updated value of myVar, because myVar++ has already executed before println receives the variable's current int value.",
-      "keyPoints": [
-        "It shows the updated value of myVar, because myVar++ has already executed before println receives the variable's current int value."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_9-how-do-the-operands-you-choose-affect-th",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_8-how-do-the-operands-you-choose-affect-th",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2370,7 +2262,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_10-what-is-important-about-the-right-hand-v",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_9-what-is-important-about-the-right-hand-v",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2389,7 +2281,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_11-which-statement-correctly-defines-an-ope",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_10-which-statement-correctly-defines-an-ope",
       "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2415,7 +2307,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_12-reading-strictly-left-to-right-what-is-p",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_11-reading-strictly-left-to-right-what-is-p",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2443,7 +2335,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_13-what-is-printed-when-the-string-operand-",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_12-what-is-printed-when-the-string-operand-",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2471,7 +2363,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_14-why-does-byte-b-10-b-5-compile-while-b-b",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_13-why-does-byte-b-10-b-5-compile-while-b-b",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2497,7 +2389,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_15-what-is-the-difference-between-and-for-b",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_14-what-is-the-difference-between-and-for-b",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2523,7 +2415,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_16-what-are-the-results-of-10-3-and-10-3",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_15-what-are-the-results-of-10-3-and-10-3",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2549,7 +2441,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_17-what-happens-with-int-x-5-if-x-5",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_16-what-happens-with-int-x-5-if-x-5",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2575,7 +2467,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_18-what-is-printed-by-this-statement",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_17-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2602,7 +2494,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_19-does-this-condition-compile",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_18-does-this-condition-compile",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2629,7 +2521,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_20-does-this-line-compile",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_19-does-this-line-compile",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2656,7 +2548,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_21-what-is-printed-by-this-code",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_20-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2683,7 +2575,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_22-what-does-the-operator-do-and-what-is-pr",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_21-what-does-the-operator-do-and-what-is-pr",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -2883,25 +2775,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_4-in-a-multi-line-call-like-system-out-pri",
-      "difficulty": "medium",
-      "chapter": "Chapter 4: Statements And Indentations",
-      "topic": "Statements White Space And Indentation",
-      "tags": [
-        "interview"
-      ],
-      "question": "In a multi-line call like System.out.println(\"This is\" + \" another\" + \" still more.\"), what is the parameter?",
-      "modelAnswer": "The parameter is the single combined String produced by the concatenation expression; line breaks in source code do not create separate parameters.",
-      "keyPoints": [
-        "The parameter is the single combined String produced by the concatenation expression; line breaks in source code do not create separate parameters."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_5-does-indentation-change-the-parameter-pa",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_4-does-indentation-change-the-parameter-pa",
       "difficulty": "hard",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -2920,7 +2794,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_6-what-tells-java-where-the-println-statem",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_5-what-tells-java-where-the-println-statem",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -2939,7 +2813,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_7-what-is-the-difference-between-a-stateme",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_6-what-is-the-difference-between-a-stateme",
       "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -2965,7 +2839,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_8-do-whitespace-and-indentation-affect-whe",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_7-do-whitespace-and-indentation-affect-whe",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -2991,7 +2865,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_9-can-a-single-statement-be-spread-over-se",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_8-can-a-single-statement-be-spread-over-se",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -3017,7 +2891,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_10-what-decides-where-a-println-statement-a",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_9-what-decides-where-a-println-statement-a",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -3043,7 +2917,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_11-which-of-these-is-not-one-of-the-common-",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_10-which-of-these-is-not-one-of-the-common-",
       "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -3069,7 +2943,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_12-does-this-code-compile",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_11-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -3096,7 +2970,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_13-what-is-the-effect-of-the-semicolon-in-t",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_12-what-is-the-effect-of-the-semicolon-in-t",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -3123,7 +2997,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_14-which-of-these-is-a-single-valid-stateme",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_13-which-of-these-is-a-single-valid-stateme",
       "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -3149,7 +3023,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_15-where-can-the-variable-declared-here-be-",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_14-where-can-the-variable-declared-here-be-",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -3726,25 +3600,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_0-what-single-argument-is-passed-to-system",
-      "difficulty": "medium",
-      "chapter": "Chapter 5: If Else Statements",
-      "topic": "Code Blocks If Then Else",
-      "tags": [
-        "interview"
-      ],
-      "question": "What single argument is passed to System.out.println(\"Your final score was \" + finalScore)?",
-      "modelAnswer": "The concatenation expression is evaluated first, producing one String that println receives and prints with a newline.",
-      "keyPoints": [
-        "The concatenation expression is evaluated first, producing one String that println receives and prints with a newline."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_1-in-an-if-else-if-chain-with-parameter-li",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_0-in-an-if-else-if-chain-with-parameter-li",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -3763,7 +3619,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_2-how-should-a-caller-choose-values-for-st",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_1-how-should-a-caller-choose-values-for-st",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -3885,25 +3741,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_4-what-does-the-gameover-parameter-of-calc",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Methods In Java",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the gameOver parameter of calculateScore control?",
-      "modelAnswer": "It decides whether the method calculates and returns a final score; if false, the method returns -1 as a sentinel for no valid score.",
-      "keyPoints": [
-        "It decides whether the method calculates and returns a final score; if false, the method returns -1 as a sentinel for no valid score."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_5-how-should-a-caller-choose-levelcomplete",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_4-how-should-a-caller-choose-levelcomplete",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -3921,7 +3759,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_6-does-calculatescore-gameover-score-level",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_5-does-calculatescore-gameover-score-level",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -3940,7 +3778,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_7-which-overload-is-called-by-calculatesco",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_6-which-overload-is-called-by-calculatesco",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -3959,7 +3797,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_8-which-statement-about-method-parameters-",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_7-which-statement-about-method-parameters-",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -3985,7 +3823,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_9-a-method-is-declared-as-public-static-in",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_8-a-method-is-declared-as-public-static-in",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4011,7 +3849,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_10-given-the-overloads-print-int-x-and-prin",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_9-given-the-overloads-print-int-x-and-prin",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4037,7 +3875,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_11-a-classic-swap-int-a-int-b-method-exchan",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_10-a-classic-swap-int-a-int-b-method-exchan",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4064,7 +3902,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_12-which-statement-about-a-void-method-is-c",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_11-which-statement-about-a-void-method-is-c",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4090,7 +3928,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_13-which-statement-correctly-compares-a-sta",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_12-which-statement-correctly-compares-a-sta",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4116,7 +3954,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_14-what-is-the-value-of-result-after-this-c",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_13-what-is-the-value-of-result-after-this-c",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4143,7 +3981,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_15-why-can-the-first-version-of-calculatesc",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_14-why-can-the-first-version-of-calculatesc",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4169,7 +4007,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_16-what-is-printed-by-this-code",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_15-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4196,7 +4034,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_17-what-is-printed-by-this-code",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_16-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4223,7 +4061,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_18-does-this-method-compile",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_17-does-this-method-compile",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4250,7 +4088,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_19-does-this-line-compile",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_18-does-this-line-compile",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4277,7 +4115,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_20-what-is-printed-by-this-code",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_19-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -4936,28 +4774,9 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
     },
     {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_8-in-quartervalue-equals-invalid-month-wha",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Switch Statement In Java",
-      "tags": [
-        "ocjp",
-        "interview"
-      ],
-      "question": "In quarterValue.equals(\"INVALID MONTH\"), what does the parameter represent?",
-      "modelAnswer": "It is the value being compared to quarterValue; equals returns true only when the contents match exactly.",
-      "keyPoints": [
-        "It is the value being compared to quarterValue; equals returns true only when the contents match exactly."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
-    },
-    {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_9-which-types-can-be-used-as-the-selector-",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_8-which-types-can-be-used-as-the-selector-",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -4983,7 +4802,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_10-what-does-this-code-print-when-x-is-2",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_9-what-does-this-code-print-when-x-is-2",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5010,7 +4829,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_11-which-statement-about-the-default-label-",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_10-which-statement-about-the-default-label-",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5036,7 +4855,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_12-which-of-these-types-cannot-be-used-as-t",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_11-which-of-these-types-cannot-be-used-as-t",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5062,7 +4881,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_13-given-getquarter-string-month-what-does-",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_12-given-getquarter-string-month-what-does-",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5089,7 +4908,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_14-what-happens-when-a-return-statement-is-",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_13-what-happens-when-a-return-statement-is-",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5115,7 +4934,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_15-in-switchcasemultiplecasestogether-what-",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_14-in-switchcasemultiplecasestogether-what-",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5141,7 +4960,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_16-what-does-switchcasewithoutusingbreak-4-",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_15-what-does-switchcasewithoutusingbreak-4-",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5167,7 +4986,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_17-does-this-switch-compile",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_16-does-this-switch-compile",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5194,7 +5013,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_18-what-is-printed-by-this-code",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_17-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5221,7 +5040,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_19-what-is-printed-by-this-code",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_18-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5248,7 +5067,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_20-what-is-printed-by-this-code",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_19-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -5275,7 +5094,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_21-what-is-printed-by-this-code",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_20-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7320,44 +7139,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_6-in-new-string-hello-what-does-the-hello-",
-      "difficulty": "medium",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "Class Example",
-      "tags": [
-        "interview"
-      ],
-      "question": "In new String(\"Hello\"), what does the \"Hello\" parameter provide?",
-      "modelAnswer": "It provides the initial characters for the new String object; in normal code, prefer the literal \"Hello\" unless a separate object is deliberately needed.",
-      "keyPoints": [
-        "It provides the initial characters for the new String object; in normal code, prefer the literal \"Hello\" unless a separate object is deliberately needed."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_7-what-does-the-args-parameter-in-public-s",
-      "difficulty": "medium",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "Class Example",
-      "tags": [
-        "ocjp",
-        "interview"
-      ],
-      "question": "What does the args parameter in public static void main(String[] args) contain?",
-      "modelAnswer": "It contains command-line arguments passed to the Java program, in order, as Strings.",
-      "keyPoints": [
-        "It contains command-line arguments passed to the Java program, in order, as Strings."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_8-is-system-out-println-null-the-same-risk",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_6-is-system-out-println-null-the-same-risk",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7376,7 +7158,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_9-what-is-the-difference-between-a-class-a",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_7-what-is-the-difference-between-a-class-a",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7395,7 +7177,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_10-what-is-the-difference-between-static-fi",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_8-what-is-the-difference-between-static-fi",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7414,7 +7196,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_11-what-are-the-default-values-of-instance-",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_9-what-are-the-default-values-of-instance-",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7433,7 +7215,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_12-when-would-you-make-a-field-static",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_10-when-would-you-make-a-field-static",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7452,7 +7234,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_13-what-prints-here-class-counter-static-in",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_11-what-prints-here-class-counter-static-in",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7472,7 +7254,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_14-can-a-static-method-directly-access-an-i",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_12-can-a-static-method-directly-access-an-i",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7492,7 +7274,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_15-what-is-printed-by-this-code",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_13-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7519,7 +7301,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_16-what-is-printed-by-this-code",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_14-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7546,7 +7328,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_17-does-this-class-compile",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_15-does-this-class-compile",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7573,7 +7355,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_18-what-is-printed-by-this-code",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_16-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7600,7 +7382,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_19-what-happens-when-this-code-runs",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_17-what-happens-when-this-code-runs",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -7641,25 +7423,6 @@ const QUESTIONS_BANK = {
         "The class defines no parameterized constructor, so the default no-argument constructor is used and field initializers supply the values."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_1-in-system-out-println-a-b-how-many-argum",
-      "difficulty": "hard",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "Create Field On Classes",
-      "tags": [
-        "tricky",
-        "interview"
-      ],
-      "question": "In System.out.println(a + \" \" + b), how many arguments are passed to println?",
-      "modelAnswer": "One argument is passed: the concatenated String expression produced before println receives it.",
-      "keyPoints": [
-        "One argument is passed: the concatenated String expression produced before println receives it."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
     },
     {
@@ -7922,25 +7685,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_7-what-does-the-parameter-to-new-scanner-s",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Parsing Values Reading Input",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the parameter to new Scanner(System.in) decide?",
-      "modelAnswer": "It decides the input source. System.in means read from keyboard/stdin; use another source, such as a File, when input should come from elsewhere.",
-      "keyPoints": [
-        "It decides the input source. System.in means read from keyboard/stdin; use another source, such as a File, when input should come from elsewhere."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_8-what-must-be-true-about-the-string-passe",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_7-what-must-be-true-about-the-string-passe",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -7958,7 +7703,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_9-what-happens-if-integer-parseint-22-5-is",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_8-what-happens-if-integer-parseint-22-5-is",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -7977,7 +7722,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_10-when-would-you-choose-double-parsedouble",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_9-when-would-you-choose-double-parsedouble",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -7995,7 +7740,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_11-in-checkvaliddob-currentyear-yearofbirth",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_10-in-checkvaliddob-currentyear-yearofbirth",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8013,7 +7758,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_12-why-should-the-catch-parameter-often-be-",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_11-why-should-the-catch-parameter-often-be-",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8032,7 +7777,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_13-in-integer-parseint-1010-2-what-does-the",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_12-in-integer-parseint-1010-2-what-does-the",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8051,25 +7796,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_14-what-is-the-purpose-of-the-prompt-parame",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Parsing Values Reading Input",
-      "tags": [
-        "interview"
-      ],
-      "question": "What is the purpose of the prompt parameter in System.console().readLine(\"Question\")?",
-      "modelAnswer": "It displays a clear question before reading the user's line, so choose wording that tells the user exactly what value to enter.",
-      "keyPoints": [
-        "It displays a clear question before reading the user's line, so choose wording that tells the user exactly what value to enter."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_15-what-does-integer-parseint-do-and-what-e",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_13-what-does-integer-parseint-do-and-what-e",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8088,7 +7815,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_16-what-is-the-difference-between-integer-p",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_14-what-is-the-difference-between-integer-p",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8107,7 +7834,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_17-what-is-scanner-and-how-does-it-read-inp",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_15-what-is-scanner-and-how-does-it-read-inp",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8126,7 +7853,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_18-why-do-java-programs-often-need-parsing-",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_16-why-do-java-programs-often-need-parsing-",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8145,7 +7872,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_19-what-happens-with-integer-parseint-3-5",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_17-what-happens-with-integer-parseint-3-5",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8165,7 +7892,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_20-why-can-nextline-appear-to-skip-input-af",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_18-why-can-nextline-appear-to-skip-input-af",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8185,7 +7912,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_21-what-does-integer-parseint-ff-16-return",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_19-what-does-integer-parseint-ff-16-return",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8211,7 +7938,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_22-what-happens-when-integer-parseint-42-ru",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_20-what-happens-when-integer-parseint-42-ru",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8237,7 +7964,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_23-what-happens-when-integer-parseint-null-",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_21-what-happens-when-integer-parseint-null-",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8263,7 +7990,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_24-what-is-printed-by-this-code-when-the-us",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_22-what-is-printed-by-this-code-when-the-us",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -8290,7 +8017,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_25-what-does-this-code-print-when-the-user-",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_23-what-does-this-code-print-when-the-user-",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -9573,25 +9300,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java"
     },
     {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_2-what-is-the-purpose-of-the-string-args-p",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Getters Encapsulation Object Access)",
-      "tags": [
-        "ocjp",
-        "interview"
-      ],
-      "question": "What is the purpose of the String[] args parameter in main(String[] args)?",
-      "modelAnswer": "It receives command-line arguments from the JVM, although this program does not use them.",
-      "keyPoints": [
-        "It receives command-line arguments from the JVM, although this program does not use them."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java"
-    },
-    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_true-false-mcq_5",
@@ -9620,25 +9328,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_0-what-does-the-withdrawalamount-parameter",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Bank Account",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the withdrawalAmount parameter control in withdrawFunds(double withdrawalAmount)?",
-      "modelAnswer": "It is the amount requested for withdrawal; the method subtracts it only if it is less than or equal to the current accountBalance.",
-      "keyPoints": [
-        "It is the amount requested for withdrawal; the method subtracts it only if it is less than or equal to the current accountBalance."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_1-why-is-passing-a-negative-depositamount-",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_0-why-is-passing-a-negative-depositamount-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bank Account",
@@ -9657,7 +9347,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_2-in-setcustomername-string-customername-w",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_1-in-setcustomername-string-customername-w",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bank Account",
@@ -10218,25 +9908,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_0-what-does-the-color-parameter-mean-in-th",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "This Key Word Use Example",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the color parameter mean in ThisKeyWordUseExample(String color)?",
-      "modelAnswer": "It is the initial value copied into the object's color field during construction.",
-      "keyPoints": [
-        "It is the initial value copied into the object's color field during construction."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_1-why-is-this-color-needed-in-this-color-c",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_0-why-is-this-color-needed-in-this-color-c",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This Key Word Use Example",
@@ -10255,7 +9927,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_2-does-getcolor-need-a-parameter-to-return",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_1-does-getcolor-need-a-parameter-to-return",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This Key Word Use Example",
@@ -10646,25 +10318,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_0-what-does-the-color-parameter-mean-in-ne",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "House",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the color parameter mean in new House(\"blue\")?",
-      "modelAnswer": "It is the initial value copied into the new House object's color field.",
-      "keyPoints": [
-        "It is the initial value copied into the new House object's color field."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_1-if-two-references-point-to-the-same-hous",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_0-if-two-references-point-to-the-same-hous",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "House",
@@ -10683,7 +10337,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_2-in-this-color-color-which-color-is-the-f",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_1-in-this-color-color-which-color-is-the-f",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "House",
@@ -11552,25 +11206,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java"
     },
     {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_custom_2-in-move-string-speed-what-does-the-speed",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Animal",
-      "tags": [
-        "ocjp",
-        "interview"
-      ],
-      "question": "In move(String speed), what does the speed parameter control?",
-      "modelAnswer": "It supplies the movement description printed by the method and may be used by overriding subclass methods.",
-      "keyPoints": [
-        "It supplies the movement description printed by the method and may be used by overriding subclass methods."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java"
-    },
-    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_true-false-mcq_5",
@@ -12379,25 +12014,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_0-what-does-the-number-parameter-in-bark-i",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Dog (Method Over Loading In Java)",
-      "tags": [
-        "interview"
-      ],
-      "question": "What does the number parameter in bark(int number) control?",
-      "modelAnswer": "It controls how many times the loop prints \"woof\"; pass a positive int when you want repeated barking.",
-      "keyPoints": [
-        "It controls how many times the loop prints \"woof\"; pass a positive int when you want repeated barking."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_1-why-are-bark-and-bark-int-number-overloa",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_0-why-are-bark-and-bark-int-number-overloa",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Method Over Loading In Java)",
@@ -12415,7 +12032,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_2-would-bark-int-number-and-int-bark-int-n",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_1-would-bark-int-number-and-int-bark-int-n",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Method Over Loading In Java)",
@@ -14560,26 +14177,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_15-in-stringbuilder-methods-what-is-the-off",
-      "difficulty": "medium",
-      "chapter": "Chapter 14: Strings",
-      "topic": "String Builder Concepts",
-      "tags": [
-        "interview"
-      ],
-      "question": "In StringBuilder methods, what is the \"offset\" parameter and how do you choose its value?",
-      "modelAnswer": "offset is the 0-based index where insertion happens; the existing character at that index and everything after shift right. Use offset = 0 to insert at the start and offset = length() to append at the end; valid range is 0..length().",
-      "keyPoints": [
-        "offset is the 0-based index where insertion happens; the existing character at that index and everything after shift right.",
-        "Use offset = 0 to insert at the start and offset = length() to append at the end; valid range is 0..length()."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_16-in-delete-start-end-what-do-start-and-en",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_15-in-delete-start-end-what-do-start-and-en",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14599,7 +14197,7 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_17-what-does-the-int-argument-to-the-constr",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_16-what-does-the-int-argument-to-the-constr",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14618,7 +14216,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_18-what-is-the-key-difference-between-strin",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_17-what-is-the-key-difference-between-strin",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14644,7 +14242,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_19-what-is-the-difference-between-length-an",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_18-what-is-the-difference-between-length-an",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14670,7 +14268,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_20-what-does-this-code-print",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_19-what-does-this-code-print",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14697,7 +14295,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_21-why-does-sb1-equals-sb2-return-false-for",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_20-why-does-sb1-equals-sb2-return-false-for",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14723,7 +14321,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_22-when-a-stringbuilder-buffer-overflows-ho",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_21-when-a-stringbuilder-buffer-overflows-ho",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14749,7 +14347,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_23-what-does-delete-0-1-remove-from-a-strin",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_22-what-does-delete-0-1-remove-from-a-strin",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14776,7 +14374,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_24-what-does-setlength-0-do-and-how-does-it",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_23-what-does-setlength-0-do-and-how-does-it",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14802,7 +14400,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_25-why-can-calls-like-sb-append-a-append-b-",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_24-why-can-calls-like-sb-append-a-append-b-",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14828,7 +14426,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_26-what-does-this-code-print",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_25-what-does-this-code-print",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14855,7 +14453,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_27-what-is-the-result-of-this-call",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_26-what-is-the-result-of-this-call",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -14882,7 +14480,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_28-what-is-printed-by-this-code",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_27-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",

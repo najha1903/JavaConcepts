@@ -68,11 +68,7 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 // - System.out.println(value): the parameter is the value to display; choose any expression you want converted to text and printed with a newline.
 // - Important pitfall: passing null to println is safe and prints "null", but many String constructors or methods may reject null.
 //
-// @quiz (INTERVIEW) In new String("Hello"), what does the "Hello" parameter provide?
-// @answer It provides the initial characters for the new String object; in normal code, prefer the literal "Hello" unless a separate object is deliberately needed.
 //
-// @quiz (OCJP) What does the args parameter in public static void main(String[] args) contain?
-// @answer It contains command-line arguments passed to the Java program, in order, as Strings.
 //
 // @quiz (INTERVIEW TRAP) Is System.out.println(null) the same risk as calling a method on a null String reference?
 // @answer No. println can print null as the text "null", but calling an instance method on a null reference throws NullPointerException.
@@ -248,6 +244,5 @@ public class ClassExample {
         System.out.println("String created with new = " + value);
 
     }
-
 
 }

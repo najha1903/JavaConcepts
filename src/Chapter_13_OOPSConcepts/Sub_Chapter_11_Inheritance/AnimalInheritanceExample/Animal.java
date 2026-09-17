@@ -49,8 +49,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExam
 // @answer Choose a type name, a size label, and a numeric weight for the animal, in that exact order.
 // @quiz (INTERVIEW TRAP) What important detail should you remember about Animal(String type, double weight)?
 // @answer It uses the same weight argument for two jobs: storing the numeric weight and deriving the size label.
-// @quiz (OCJP) In move(String speed), what does the speed parameter control?
-// @answer It supplies the movement description printed by the method and may be used by overriding subclass methods.
 public class Animal {
 
     private String type;
@@ -74,7 +72,6 @@ public class Animal {
         this.weight = weight;
     }
 
-
     // This method has overridden the Object toString method
     // It got override by the toString method of Dog Class and Fish Class
     @Override
@@ -95,6 +92,5 @@ public class Animal {
     public void makeNoise(){
         System.out.println(type + " makes noise");
     }
-
 
 }

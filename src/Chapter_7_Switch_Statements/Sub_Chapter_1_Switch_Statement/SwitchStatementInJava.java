@@ -49,9 +49,6 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // @quiz (INTERVIEW TRAP) What is dangerous about the value parameter in switchCaseWithoutUsingBreak?
 // @answer It selects the starting case only; without break statements, execution falls through and runs later cases too.
 //
-// @quiz (OCJP) In quarterValue.equals("INVALID MONTH"), what does the parameter represent?
-// @answer It is the value being compared to quarterValue; equals returns true only when the contents match exactly.
-
 // @quiz (INTERVIEW, EASY) Which types can be used as the selector of a traditional switch statement?
 // @option byte, short, char and int, plus their wrapper types, together with String and enum types. [correct]
 // @option Every primitive type, including long, float, double and boolean.

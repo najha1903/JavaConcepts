@@ -19,9 +19,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Acces
 // @answer A parameterized method call needs a real target object; null has no object to receive the "Carrera" argument, so Java throws NullPointerException.
 // @quiz (INTERVIEW) What does the argument true mean in car.setConvertible(true)?
 // @answer It tells the Car object to store convertible as true; pass false for a non-convertible car.
-// @quiz (OCJP) What is the purpose of the String[] args parameter in main(String[] args)?
-// @answer It receives command-line arguments from the JVM, although this program does not use them.
-
 public class Main {
 
     public static void main(String[] args) {

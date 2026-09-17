@@ -169,8 +169,6 @@ package Chapter_2_PrimitiveTypes.Strings;
 // - target (String.valueOf): the value converted into text. Choose the char, number, boolean, object, or array
 //     whose textual form you need before joining it with other Strings.
 //
-// @quiz (INTERVIEW) In System.out.println("MyString is equal to " + myString), what is the println parameter?
-// @answer The parameter is the completed String produced after concatenation, not the separate pieces; Java builds it first, then println prints it.
 //
 // @quiz (INTERVIEW TRAP) If s.concat(" is fun") receives " is fun" as its parameter, why might printing s still show the old value?
 // @answer String is immutable, so concat returns a new String. If you avoid assigning the result back to s, the original reference still points to the old text.

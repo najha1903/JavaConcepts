@@ -15,14 +15,10 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 // - x (System.out.println): the value printed when the if condition is true. Choose the message or expression
 //     that explains the result; in this file the String literal is printed only when highScore == 50.
 //
-// @quiz (INTERVIEW) What does the parameter highScore == 50 mean inside if(...)?
-// @answer It is the condition argument that controls the if block; the block runs only when the comparison evaluates to true.
 //
 // @quiz (INTERVIEW TRAP) Why is if(highScore = 50) not the right parameter for checking equality?
 // @answer = is assignment, not comparison. Use == when the condition should test whether highScore already equals 50.
 //
-// @quiz (INTERVIEW) In System.out.println("You got the high score!"), what is the method parameter?
-// @answer The parameter is the String message to display; choose text that should appear when the surrounding condition is satisfied.
 public class KeyWordsAndExpressionsInJava {
 
     // Link For Java Keywords :- https://en.wikipedia.org/wiki/List_of_Java_keywords

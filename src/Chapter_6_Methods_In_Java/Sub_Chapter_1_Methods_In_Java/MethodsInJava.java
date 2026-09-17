@@ -43,8 +43,6 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // - System.out.println(String x): in this file x is always a label concatenated with a score result, e.g. "Your final score was " + highScore.
 // - calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them.
 //
-// @quiz (INTERVIEW) What does the gameOver parameter of calculateScore control?
-// @answer It decides whether the method calculates and returns a final score; if false, the method returns -1 as a sentinel for no valid score.
 //
 // @quiz (INTERVIEW) How should a caller choose levelCompleted and bonus for calculateScore?
 // @answer levelCompleted should be the number of levels completed, and bonus should be the points per level; the method multiplies them together.

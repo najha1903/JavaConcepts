@@ -175,8 +175,6 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // - numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long,
 //     f for float, and d for double when you want to be explicit; note that decimal literals default to double.
 //
-// @quiz (INTERVIEW) In System.out.println("The max Value of the integer is = " + intMaxValue), what parameter is passed?
-// @answer The parameter is one final String formed by concatenating the label with intMaxValue; println receives that String and prints it.
 //
 // @quiz (INTERVIEW TRAP) What does the (byte) parameter-like target in (byte) (intMinValue / 2) tell Java?
 // @answer It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information.

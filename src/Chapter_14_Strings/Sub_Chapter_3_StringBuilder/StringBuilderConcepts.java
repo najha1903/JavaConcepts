@@ -150,10 +150,6 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
 // @quiz (OCJP) Does insert(offset, x) allow offset to equal the current length()?
 // @answer Yes -- inserting at offset == length() appends at the end. Any offset outside 0..length() throws StringIndexOutOfBoundsException.
 
-// @quiz (INTERVIEW) In StringBuilder methods, what is the "offset" parameter and how do you choose its value?
-// @answer offset is the 0-based index where insertion happens; the existing character at that index and everything after shift right.
-// @answer Use offset = 0 to insert at the start and offset = length() to append at the end; valid range is 0..length().
-
 // @quiz (INTERVIEW TRAP) In delete(start, end), what do start and end mean and how many characters are removed?
 // @answer start is the inclusive begin index and end is the exclusive stop index, so characters at start..end-1 are removed.
 // @answer The number of characters removed is (end - start), which is why delete(2, 5) removes 3 characters.

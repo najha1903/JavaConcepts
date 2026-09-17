@@ -1,6 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_And_Super;
 
-
 /*
 * The keyword this is commonly used within constructors and setters and is optionally used within getters.
 *
@@ -14,8 +13,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_An
 // - getColor() has no parameter because it reads the current object's stored color rather than taking a new value.
 // - note: no validation is performed, so null or blank strings can be stored if the caller passes them.
 //
-// @quiz (INTERVIEW) What does the color parameter mean in ThisKeyWordUseExample(String color)?
-// @answer It is the initial value copied into the object's color field during construction.
 // @quiz (INTERVIEW TRAP) Why is this.color needed in this.color = color?
 // @answer The parameter shadows the field, so this.color identifies the instance field and color identifies the constructor or setter parameter.
 // @quiz (OCJP) Does getColor() need a parameter to return the color?

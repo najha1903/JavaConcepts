@@ -27,8 +27,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_3_Classes_Challenge.BankAccountChall
 // - depositFunds(double depositAmount): depositAmount is added to the current balance; avoid zero or negative deposits because no validation prevents them.
 // - withdrawFunds(double withdrawalAmount): withdrawalAmount is subtracted only when it is not greater than the current balance; choose an amount the balance can cover.
 //
-// @quiz (INTERVIEW) What does the withdrawalAmount parameter control in withdrawFunds(double withdrawalAmount)?
-// @answer It is the amount requested for withdrawal; the method subtracts it only if it is less than or equal to the current accountBalance.
 // @quiz (INTERVIEW TRAP) Why is passing a negative depositAmount a pitfall in this implementation?
 // @answer depositFunds directly adds the parameter without validation, so a negative value would reduce the balance instead of behaving like a normal deposit.
 // @quiz (OCJP) In setCustomerName(String customerName), why is this.customerName = customerName used?
@@ -103,8 +101,5 @@ public class BankAccount {
         System.out.println("Email :- " + getEmail());
         System.out.println("Phone Number :- " + getPhoneNumber());
     }
-
-
-
 
 }

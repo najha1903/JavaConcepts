@@ -16,8 +16,6 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Chall
 // - String concatenation inside println, such as "Your final score was " + finalScore, builds one String argument before println receives it; careful with order because left-to-right concatenation affects the final message.
 // - if/else-if conditions are parameter-like boolean inputs to control flow; choose non-overlapping ranges when only one branch should execute, because the first true branch wins.
 //
-// @quiz (INTERVIEW) What single argument is passed to System.out.println("Your final score was " + finalScore)?
-// @answer The concatenation expression is evaluated first, producing one String that println receives and prints with a newline.
 //
 // @quiz (INTERVIEW TRAP) In an if/else-if chain with parameter-like conditions, what happens if two conditions could both be true?
 // @answer Only the first true branch executes; later branches are skipped, so order conditions carefully.

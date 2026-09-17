@@ -84,8 +84,6 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // - catch (NumberFormatException e): the parameter type chooses which exception is handled; choose the most specific exception before broader ones.
 // - Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.
 //
-// @quiz (INTERVIEW) What does the parameter to new Scanner(System.in) decide?
-// @answer It decides the input source. System.in means read from keyboard/stdin; use another source, such as a File, when input should come from elsewhere.
 //
 // @quiz (INTERVIEW) What must be true about the String passed to Integer.parseInt(String s)?
 // @answer It must contain valid integer text for the expected radix, with no decimal point or non-numeric characters except a valid sign.
@@ -105,8 +103,6 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // @quiz (OCJP) In Integer.parseInt("1010", 2), what does the second parameter mean?
 // @answer The second parameter is the radix/base; 2 means interpret "1010" as binary, producing decimal 10.
 //
-// @quiz (INTERVIEW) What is the purpose of the prompt parameter in System.console().readLine("Question")?
-// @answer It displays a clear question before reading the user's line, so choose wording that tells the user exactly what value to enter.
 // When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.
 // You cannot do arithmetic on Strings — "100" - "50" is a compile error because - is not defined for Strings.
 // You also cannot use + for addition on Strings — "100" + "50" = "10050" (concatenation, not addition).
@@ -244,7 +240,6 @@ public class ParsingValuesReadingInput {
             are of type String, both strings will be concatenated together.
         */
 
-
         /*  To parse and transform Strings into numeric values, we have to use wrapper-class methods.
 
             Wrapper |  Wrapper Method
@@ -273,7 +268,6 @@ public class ParsingValuesReadingInput {
 
         System.out.println(getInputFromScanner(2024));
 
-
     }
 
     public static String getInputFromConsole(int currentYear) {
@@ -297,7 +291,6 @@ public class ParsingValuesReadingInput {
 
         return name + "'s" + " age is " + age;
     }
-
 
     /*
     *
@@ -354,7 +347,6 @@ public class ParsingValuesReadingInput {
         do { // The idea of putting the logic to get the user input of year of birth inside do while block is to make sure that the code executes at least one time,
              // and if the user input is not within the proper range, the code continues to execute till the time the correct year of birth
              // within the prescribed year range is entered by the user.
-
 
             System.out.println("What is your year of Birth ?");
 

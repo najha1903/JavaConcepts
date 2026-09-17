@@ -8,8 +8,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_13_Method_OverLoading_In_Java.Method
 // careful: adding a different return type to bark(int number) would not create another overload; the parameter list must differ.
 // - If a child class wanted to override bark(int number), it would need the identical int parameter list.
 
-// @quiz (INTERVIEW) What does the number parameter in bark(int number) control?
-// @answer It controls how many times the loop prints "woof"; pass a positive int when you want repeated barking.
 // @quiz (INTERVIEW) Why are bark() and bark(int number) overloads?
 // @answer They have the same method name but different parameter counts: zero parameters versus one int parameter.
 // @quiz (INTERVIEW TRAP) Would bark(int number) and int bark(int number) be valid overloads?
