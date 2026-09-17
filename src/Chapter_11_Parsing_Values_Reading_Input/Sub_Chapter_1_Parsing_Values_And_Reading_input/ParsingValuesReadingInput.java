@@ -70,7 +70,6 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // @why D: Console is mainly used for reading input with a prompt.
 
 // Parameter notes (what each argument means and how to choose it):
-// - main(String[] args): args holds command-line inputs as Strings; use it when startup values should come from the terminal command.
 // - Integer.parseInt(String s): s is base-10 integer text such as "2024"; avoid null, blanks, decimals, and letters because they throw NumberFormatException.
 // - Integer.parseInt(String s, int radix): radix chooses the number base from Character.MIN_RADIX to Character.MAX_RADIX, commonly 2, 8, 10, or 16.
 // - Double.parseDouble(String s): s is floating-point text such as "22.5"; choose it when decimals are valid and handle NumberFormatException for bad text.
@@ -80,7 +79,6 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // - new Scanner(System.in): System.in selects keyboard/stdin as the input source; choose a File or other source when reading somewhere else.
 // - sc.nextLine(): no parameter; it reads the rest of the current line, including spaces, and is useful for names or full text answers.
 // - checkValidDOB(int currentYear, String yearOfBirth): currentYear is the maximum allowed birth year; yearOfBirth is user-entered numeric text to parse and validate.
-// - System.out.println(value): value is the message to display; choose user-friendly text, especially in validation and catch blocks.
 // - catch (NumberFormatException e): the parameter type chooses which exception is handled; choose the most specific exception before broader ones.
 // - Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.
 //

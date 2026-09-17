@@ -56,9 +56,7 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().
 
 // Parameter notes (important method parameters and how to choose them):
-// - args (main): the command-line String array supplied by the JVM. Choose values at launch time if the operator
 //     examples should use external input; otherwise it can remain unused.
-// - x (System.out.println): the value printed after each operator example. Passing myVar prints its current value
 //     after increment, decrement, or compound assignment has already changed it.
 // - leftOperand/rightOperand (operators): the values around an operator determine the operation. Choose numeric
 //     operands for arithmetic, boolean operands for logical operators, and remember the pitfall that + concatenates when a String is involved.

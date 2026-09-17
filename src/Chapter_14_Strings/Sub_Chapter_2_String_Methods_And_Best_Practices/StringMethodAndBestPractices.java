@@ -59,12 +59,10 @@ package Chapter_14_Strings.Sub_Chapter_2_String_Methods_And_Best_Practices;
 * */
 
 // Parameter notes (what each argument means and how to choose it):
-// - main(String[] args): args stores the command line values; this example uses fixed sample Strings instead.
 // - StringInspectionMethods(String text) and StringComparisonMethods(String text): text is the sample String under study. Choose non - null values, because these methods call instance methods on it. The values "Hello World", "" and "\t   \n" are useful to show the behaviour on a normal, an empty and a blank String.
 // - text.charAt(int index): index is 0 - based, so it has to be between 0 and length() - 1.
 // - text.indexOf(target) and lastIndexOf(target): target is the character or the substring to search for, and -1 means the value was not found.
 // - text.indexOf(target, fromIndex) and lastIndexOf(target, fromIndex): fromIndex is the position where the search starts.
-// - text.equals(Object other) and equalsIgnoreCase(String other): equals() is case - sensitive and equalsIgnoreCase() is not.
 // - text.contentEquals(CharSequence cs): cs can be a String, StringBuilder, StringBuffer or CharBuffer.
 // - text.startsWith(prefix), endsWith(suffix) and contains(sequence): choose the exact prefix, suffix or text to look for, these checks are case - sensitive.
 // - text.regionMatches(ignoreCase, toffset, other, ooffset, len): ignoreCase decides case sensitivity, toffset and ooffset are the start indexes in each String, and len is the number of characters to compare.

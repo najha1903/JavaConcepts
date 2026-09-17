@@ -11,10 +11,6 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Chall
 // Inner blocks CAN access variables from their containing outer block (e.g., score, levelCompleted, bonus are in the outer method block and accessible inside the if block).
 // The concept of where a variable is accessible is called its SCOPE. Narrowing scope is a best practice — declare variables as close to where they are used as possible.
 // Parameter notes (what each method/constructor argument means and how to choose it):
-// - main(String[] args): args is the optional command-line input array; choose it when you want outside values to influence the program at launch time.
-// - System.out.println(String x): x is the message to print with a newline; choose a value that makes the active if/else branch or calculated result obvious.
-// - String concatenation inside println, such as "Your final score was " + finalScore, builds one String argument before println receives it; careful with order because left-to-right concatenation affects the final message.
-// - if/else-if conditions are parameter-like boolean inputs to control flow; choose non-overlapping ranges when only one branch should execute, because the first true branch wins.
 //
 //
 // @quiz (INTERVIEW TRAP) In an if/else-if chain with parameter-like conditions, what happens if two conditions could both be true?

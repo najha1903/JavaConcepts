@@ -1,8 +1,6 @@
 package Chapter_14_Strings.Sub_Chapter_1_Text_Block_And_Advanced_Formatting;
 import java.util.IllegalFormatConversionException;
 // Parameter notes (what each argument means and how to choose it):
-// - main(String[] args): args stores command-line inputs; this formatting demo does not need external startup values.
-// - System.out.println(text): text is the exact value to print followed by a newline; choose a String or expression that already contains the content you want displayed.
 // - System.out.printf(String format, Object... args): format contains placeholders such as %d, %f, %s, %n; args must match those placeholders in count, order, and type.
 // - In printf("%d", age), %d requires an integral argument; using %f with an int is a trap and throws IllegalFormatConversionException.
 // - In printf("%.2f", value), .2 is the precision for floating-point output; choose it based on required decimal places, such as money or measurements.

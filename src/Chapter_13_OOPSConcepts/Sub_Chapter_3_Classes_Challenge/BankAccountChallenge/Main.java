@@ -1,7 +1,6 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_3_Classes_Challenge.BankAccountChallenge;
 
 // Parameter notes (what each constructor/method argument means and how to choose it):
-// - main(String[] args): args contains command-line arguments supplied to this demo; no code reads them, so they do not affect the account operations.
 // - new BankAccount(): this no-args constructor call supplies no parameters, so fields start with Java defaults until setter calls provide values.
 // - setAccountNumber("123456789"): choose the account identifier string to store and later print.
 // - setAccountBalance(1000.0): choose the initial balance amount; note that the setter itself does not validate negative balances.

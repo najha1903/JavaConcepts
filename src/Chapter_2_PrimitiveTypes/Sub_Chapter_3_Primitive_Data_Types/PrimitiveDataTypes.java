@@ -194,9 +194,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // @why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.
 
 // Parameter notes (important method parameters and how to choose them):
-// - args (main): the command-line String array. Use it only when program input should come from launch arguments;
 //     remember every element is text and must be parsed before numeric primitive calculations.
-// - x (System.out.println): the value printed to the console. In this file the argument is usually a String created
 //     by concatenating a label with a primitive value; Java converts primitives to text before printing.
 // - target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a
 //     narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.

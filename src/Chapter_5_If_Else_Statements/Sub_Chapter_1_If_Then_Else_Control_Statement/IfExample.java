@@ -50,10 +50,6 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // @answer Only the first statement after if is controlled by the condition.
 // @answer The second println is outside the if unless braces are used.
 // Parameter notes (what each method/constructor argument means and how to choose it):
-// - main(String[] args): args contains command-line arguments in the order typed after the class name; choose values only when the program is launched from a terminal or run configuration.
-// - System.out.println(String x): x is the text to print followed by a new line; choose a clear message that explains which branch ran. Passing null prints the literal text "null".
-// - The ternary expression condition ? valueIfTrue : valueIfFalse has three operands: the boolean condition to test, the value chosen when true, and the value chosen when false; choose compatible result types.
-// - if(condition) and logical operators such as && and || are not method calls, but their boolean expressions act like decision inputs; important: choose expressions that evaluate to true or false only.
 //
 // @quiz (INTERVIEW) In main(String[] args), what does the args parameter contain?
 // @answer It contains command-line arguments as a zero-based String array, in the same order the user supplied them when starting the program.

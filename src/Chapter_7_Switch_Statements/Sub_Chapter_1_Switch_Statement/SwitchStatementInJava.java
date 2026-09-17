@@ -34,14 +34,11 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // @answer No. long and boolean are not valid selector types for a traditional switch statement.
 // @answer For those cases, use if-else instead.
 // Parameter notes (what each method/constructor argument means and how to choose it):
-// - main(String[] args): args holds optional command-line Strings; choose values when launch-time input is needed, otherwise it may be unused.
 // - ifElseExample(int value): value is the number to compare against 1 and 2; choose an int whose exact value should select a message.
 // - switchCase(int value): value is the switch selector matched against case labels 1, 2, and 3; choose one of those values for a specific branch or another int for default.
 // - switchCaseMultipleCasesTogether(int value): value selects case 1, 2, or the grouped 3/4/5 branch; careful, grouped labels all run the same code.
 // - switchCaseWithoutUsingBreak(int value): value chooses the starting case, but missing breaks cause fall-through; warning: choose 1 only if you expect all later messages too.
 // - getQuarter(String month): month is expected to be an uppercase English month name such as "NOVEMBER"; choose exactly one of the listed names to avoid "INVALID MONTH".
-// - quarterValue.equals("INVALID MONTH"): the argument is the Object/String to compare with quarterValue; choose the exact text you want to test, and remember equals is case-sensitive.
-// - System.out.println(String x): x is the line printed with a newline; choose either the result alone or a concatenated explanatory sentence.
 //
 // @quiz (INTERVIEW) What values should be passed to getQuarter(String month)?
 // @answer Pass an exact uppercase month name like "JANUARY" or "NOVEMBER"; any unlisted spelling, case, or null fails to match the cases.

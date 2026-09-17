@@ -47,7 +47,6 @@ The number of parameters can be different between constructors.
 
 If the number of parameters is the same between two constructors, their types, or order of the types must differ.
 
-
 Constructor chaining is when one constructor explicitly calls another overloaded constructor.
 
 Constructor chaining can be used within constructors and it is completely optional
@@ -79,7 +78,6 @@ having to duplicate code by duplicating initialization in more than one place.
 // - ConstructorConcept(): calls this("1234567890", 5000.0, "Navneet Jha", "puttu.jha500@gmail.com", "(+91) 8093958396") to supply default field values.
 // - warning: parameter order matters; two String parameters swapped, such as email and phoneNumber, still compile but store the wrong data.
 // - Setter parameters replace individual fields, depositAmount adds to balance, and withdrawalAmount subtracts only when the balance is sufficient.
-// - main(String[] args): args receives command-line values, but this example ignores them.
 //
 // @quiz (INTERVIEW) What does the accountBalance argument represent in the 5-argument ConstructorConcept constructor?
 // @answer It is the initial balance copied into the accountBalance field when the object is created.
@@ -129,7 +127,6 @@ public class ConstructorConcept {
         System.out.println("Constructor with 4 Arguments called");
     }
 
-
     public ConstructorConcept(){
         this("1234567890",5000.0,"Navneet Jha","puttu.jha500@gmail.com","(+91) 8093958396");
         System.out.println("Empty Constructor Called");
@@ -137,11 +134,6 @@ public class ConstructorConcept {
       //  this("123456789",1000.0,"Navneet Jha","navneet.jha500@gmail.com","(+91) 8093958396");
 
     }
-
-
-
-
-
 
     public String getAccountNumber() {
         return accountNumber;
@@ -205,14 +197,12 @@ public class ConstructorConcept {
         System.out.println("Phone Number :- " + getPhoneNumber());
     }
 
-
     public static void main(String[] args) {
 
    /* So, when the keyword new is typed, and the name of the class, and then parentheses, this is actually calling that implicit constructor, if no explicit constructor is defined.
       If no constructor is explicitly created in the account class, Java creates one which is called the default constructor. */
 
    /* This code is actually calling that special constructor that creates the class. Its purpose is to create the object from the class.*/
-
 
 /*
         ConstructorConcept constructorConcept = new ConstructorConcept();
@@ -241,7 +231,6 @@ public class ConstructorConcept {
 
         // Constructor chaining example, where a no-args constructor will call the other args constructor using this keyword, where all the parameters required by the second constructor will be passed to this() keyword
 
-
         // As per the below code. the behaviour will be :-
         // As this() should always be the first line in the constructor, when the no - args constructor is called, then as per the flow, it then calls, the args constructor using this() and once the args constructor code block is executed, the controls then comes back to the no-args constructor
 
@@ -260,7 +249,6 @@ public class ConstructorConcept {
         constructorConcept1.withdrawFunds(45.55);
         constructorConcept1.withdrawFunds(54.46);
 */
-
 
         // As per the below code. the behaviour will be :-
         // As this() should always be the first line in the constructor, when the parameterised constructor with 4 arguments is called, then as per the flow, it then calls, the args constructor which has 5 arguments using this() and once the args constructor code block is executed, the controls then comes back to the parameterised constructor with 4 arguments

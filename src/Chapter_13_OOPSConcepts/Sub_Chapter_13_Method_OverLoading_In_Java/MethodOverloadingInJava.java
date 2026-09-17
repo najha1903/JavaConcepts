@@ -1,7 +1,6 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_13_Method_OverLoading_In_Java;
 
 // Parameter notes (what each argument means and how the parameter list matters):
-// - main(String[] args): args is the command-line argument array; choose values only when launching the program with extra text input.
 // - calculateScore(String playerName, int score): playerName names the player to print, and score is the points value to convert; use this overload when the name is known.
 // - calculateScore(int score): score is the points value for an unnamed player; this overload is chosen when only one int argument is passed.
 // important: calculateScore(String, int) and calculateScore(int) are OVERLOADS because their parameter counts and types differ.

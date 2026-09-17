@@ -3,10 +3,8 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects.POJOExample
 import Chapter_13_OOPSConcepts.Sub_Chapter_9_JavaRecords.StudentRecord;
 
 // Parameter notes (what each argument means and how to choose it):
-// - public static void main(String[] args): args is command-line input supplied by the JVM; this demo ignores it and creates fixed sample students instead.
 // - new Student(id, name, dateOfBirth, classList): id is the student's identifier, name is the display name, dateOfBirth is the birth-date text, and classList is the course or courses text. Choose values in this exact order because Java matches constructor arguments by position.
 // - new StudentRecord(id, name, dateOfBirth, classList): the same four arguments initialize record components; remember each component also has an accessor method id(), name(), dateOfBirth(), and classList().
-// - System.out.println(value): value is the object or String to display. Passing a Student or StudentRecord uses its toString() result; passing concatenated getter/accessor results prints a custom sentence.
 // - Getter and record accessor calls such as s1.getName(), s1.getClassList(), s1.name(), and s1.classList() take no parameters because they read values already stored in the object or record.
 // - If setClassList(s1.getClassList() + ", Java OCJP Exam 829") were called, the setter argument would be the replacement classList value; careful: it should include the old value if the goal is to append rather than replace.
 //

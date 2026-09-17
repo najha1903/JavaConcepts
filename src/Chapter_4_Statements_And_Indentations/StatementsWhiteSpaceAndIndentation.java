@@ -25,9 +25,7 @@ package Chapter_4_Statements_And_Indentations;
 // @answer It is a declaration statement.
 // @answer The whole line is not just an expression, even though it contains the assignment expression x = 5.
 // Parameter notes (important method parameters and how to choose them):
-// - args (main): command-line values supplied as a String array. Choose values when launching the program; whitespace
 //     in the command line can split arguments unless quoted.
-// - x (System.out.println): the single value printed as one statement. Choose the String, variable, or expression
 //     that should be displayed; note that the Java statement ends at the semicolon, not at the visual line break.
 // - pieces in String concatenation: each quoted literal around + is an operand used to build the final println
 //     parameter. Choose pieces for readability, but remember the runtime receives one combined String.

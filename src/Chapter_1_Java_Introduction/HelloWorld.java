@@ -44,8 +44,6 @@ package Chapter_1_Java_Introduction;
 // - Explain why `main` is public, static and void.
 
 // Parameter notes (what each argument means and how to choose it):
-// - args (main): String[] array supplied by the JVM containing command-line tokens passed after the class name.
-// - x (System.out.println): The message, variable, or expression printed to standard output followed by a newline.
 
 // @quiz (INTERVIEW) What is the difference between JVM, JRE, and JDK?
 // @answer JDK is for development (contains compiler javac), JRE is for running Java programs (libraries + JVM), and JVM is the execution engine.

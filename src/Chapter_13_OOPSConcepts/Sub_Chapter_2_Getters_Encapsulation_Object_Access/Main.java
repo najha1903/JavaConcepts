@@ -7,7 +7,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Acces
 // The setMake() method in Car validates the input — only "holden", "porsche", or "tesla" are accepted. Passing "Maserati" results in "Unsupported".
 // This demonstrates encapsulation at work — the class controls what data is valid, and outside code cannot bypass those rules.
 // Parameter notes (what each constructor/method argument means and how to choose it):
-// - main(String[] args): args holds command-line values supplied when the program starts; this demo does not read them, so any values are ignored.
 // - car.setModel("Carrera"): the String argument becomes the model field, so choose the exact model name you want describeCar() and getModel() to show.
 // - car.setMake("Maserati"): the argument is validated by Car.setMake; warning: unsupported makes are stored as "Unsupported" rather than the original value.
 // - car.setDoors(2): the int argument becomes the door count; choose a realistic positive number because the setter does not reject bad values.

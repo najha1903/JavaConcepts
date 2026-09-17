@@ -35,8 +35,6 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 // int myFirstNumber = 5;
 
 // Parameter notes (what each argument means and how to choose it):
-// - args (main): String[] array containing command-line arguments passed to the application.
-// - x (System.out.println): The primitive or reference value printed to the console output stream.
 
 // @quiz (INTERVIEW) What are Java's 8 primitive types and their sizes?
 // @answer byte (8-bit), short (16-bit), int (32-bit), long (64-bit), char (16-bit Unicode), float (32-bit IEEE 754), double (64-bit IEEE 754), and boolean (true/false).

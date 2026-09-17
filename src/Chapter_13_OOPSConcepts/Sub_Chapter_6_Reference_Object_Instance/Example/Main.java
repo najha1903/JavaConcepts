@@ -1,10 +1,8 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_6_Reference_Object_Instance.Example;
 
 // Parameter notes (what each argument means and how to choose it):
-// - public static void main(String[] args): args is the command-line String array supplied by the JVM; this demo does not use it, so callers do not need to provide command-line values.
 // - new House("blue"), new House("green"): the String argument is the initial color copied into that new House object's color field. Choose the starting color state for the object being created.
 // - anotherHouse.setColor("red"): the String argument is the new color assigned to the existing House object referenced by anotherHouse. Important: because blueHouse and anotherHouse initially refer to the same object, blueHouse observes the changed color too.
-// - System.out.println(value): value is what should be displayed; here getter call results are passed to confirm which object each reference currently points to.
 // - getColor() takes no parameters because the object reference already identifies which House to read from.
 //
 // @quiz (INTERVIEW) In House blueHouse = new House("blue"), what does the "blue" argument choose?

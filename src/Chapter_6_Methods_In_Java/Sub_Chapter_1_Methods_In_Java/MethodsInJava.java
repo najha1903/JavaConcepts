@@ -35,12 +35,10 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // @answer An instance method belongs to a specific object and is called on an object reference.
 // @answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members.
 // Parameter notes (what each method/constructor argument means and how to choose it):
-// - main(String[] args): args is the zero-based command-line String array; choose values only when the program should receive startup input.
 // - calculateScore(boolean gameOver, int score, int levelCompleted, int bonus): gameOver tells the method whether to compute a final score; pass true when the game has ended and false to receive the error/sentinel result -1.
 // - calculateScore(...): score is the player's current points before bonus; choose the measured score value, usually non-negative in a game.
 // - calculateScore(...): levelCompleted is the number of completed levels used as a multiplier; choose a count, not a level index, and avoid negative counts unless intentionally modeling a penalty.
 // - calculateScore(...): bonus is points awarded per completed level; choose the per-level bonus amount, so finalScore adds levelCompleted * bonus plus 1000.
-// - System.out.println(String x): in this file x is always a label concatenated with a score result, e.g. "Your final score was " + highScore.
 // - calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them.
 //
 //

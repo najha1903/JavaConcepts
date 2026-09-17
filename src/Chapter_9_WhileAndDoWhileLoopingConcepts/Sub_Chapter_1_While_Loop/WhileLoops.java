@@ -63,8 +63,6 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
 // @answer The explicit condition form is usually clearer when the exit rule is known up front.
 // @answer while (true) with break is fine when the exit depends on logic inside the loop body.
 // Parameter notes (what each method/constructor argument means and how to choose it):
-// - main(String[] args): args contains zero-based command-line Strings supplied at launch; choose them only when this loop example needs external input.
-// - System.out.println(String x) and System.out.println(int x): x is the value printed followed by a newline; choose a String for explanatory messages or an int for raw numeric output.
 // - while(number < 15): the expression is the loop's controlling input; choose a condition that eventually becomes false to avoid an infinite loop.
 // - if(number <= 5) with continue uses 5 as an inclusive skip limit; choose the boundary so every value up to and including it is skipped.
 // - if(number >= 10) with break uses 10 as an inclusive stop limit; choose the boundary so the loop exits as soon as the value reaches or passes it.

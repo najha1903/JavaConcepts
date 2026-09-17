@@ -6,7 +6,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
 // Constructor chaining (super()) passes data up through the hierarchy — HourlyEmployee → Employee → Worker.
 // This demonstrates polymorphism: calling collectPay() on an Employee reference calls the correct subclass implementation.
 // Parameter notes (what each argument means and how to choose it):
-// - main(String[] args): args is command-line input; this demo does not use it.
 // - new Employee("Tim", "11/11/1985", "01/01/2010"): pass name, birthDate, and hireDate in that order.
 // - new SalariedEmployee("Joe", "11/11/1990", "03/03/2020", 35000): annualSalary is the yearly pay used by collectPay().
 // - joe.retire() takes no arguments, but internally passes a termination date to terminate(String endDate).

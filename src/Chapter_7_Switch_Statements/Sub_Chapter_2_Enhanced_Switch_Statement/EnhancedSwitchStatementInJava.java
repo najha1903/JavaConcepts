@@ -27,12 +27,8 @@ package Chapter_7_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
 // @answer No. Each arrow case is isolated, so execution stops after the matching case.
 // @answer That is why enhanced switch does not need break statements.
 // Parameter notes (what each method/constructor argument means and how to choose it):
-// - main(String[] args): args is the optional zero-based command-line String array; choose startup values only if the program is designed to read them.
 // - getQuarter(String month): month is the switch selector and should be an uppercase month name included in a case list; choose exact spelling because String switch matching is case-sensitive.
 // - getQuarterUsingYieldKeyword(String month): month has the same meaning, but the default branch uses a block and yield; pass unsupported text to receive "INVALID MONTH".
-// - quarterValue.equals("INVALID MONTH"): the parameter is the comparison target; choose the exact sentinel text and avoid calling equals on a possibly null receiver.
-// - System.out.println(String x): x is the message to print with a newline; choose a literal or concatenated String that explains the switch result.
-// - switch(value) and switch(month) take selector expressions, not method parameters; important: choose selector types supported by switch and values that match case labels exactly.
 //
 // @quiz (INTERVIEW) How should the month parameter be chosen for getQuarterUsingYieldKeyword?
 // @answer Use an exact uppercase month name from the case labels, such as "JANUARY" or "DECEMBER"; otherwise the default branch yields "INVALID MONTH".

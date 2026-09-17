@@ -15363,6 +15363,7 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "Parameter notes (important method parameters and how to choose them):",
+      "that should be displayed; note that the Java statement ends at the semicolon, not at the visual line break.",
       "- pieces in String concatenation: each quoted literal around + is an operand used to build the final println parameter. Choose pieces for readability, but remember the runtime receives one combined String."
     ],
     "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +",

@@ -6,7 +6,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_An
 *  */
 // Parameter notes (what each constructor/method argument means and how to choose it):
 // - printMethod() in both parent and child takes no parameters; the important call here is super.printMethod(), which passes no arguments but chooses the parent implementation.
-// - main(String[] args): args contains command-line arguments for the demo runner; this method does not inspect them.
 // - new SubClass(): calls the implicit no-argument constructor because no constructor parameters are defined in SubClass.
 // - s.printMethod(): passes no method arguments; dynamic dispatch chooses SubClass.printMethod(), and super.printMethod() inside it avoids recursive self-calling.
 // - trap: writing printMethod() instead of super.printMethod() inside the override would call the overriding method again with the same no-argument list.

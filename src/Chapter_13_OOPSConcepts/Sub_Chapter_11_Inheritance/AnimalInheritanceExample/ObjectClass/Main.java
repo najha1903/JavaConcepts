@@ -19,7 +19,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExam
 
 
 // Parameter notes (what each argument means and how to choose it):
-// - main(String[] args): args contains command-line text values; this demo does not use them.
 // - new Student("Navneet", 21): name is the student's display name and age is the student's age as an int.
 // - Student(String name, int age): choose a meaningful name and a non-negative age value.
 // - new PrimarySchoolStudent("Navneet", 21, "Puttu"): passes student name, age, and the parent or guardian name.

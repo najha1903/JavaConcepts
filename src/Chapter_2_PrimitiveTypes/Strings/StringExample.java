@@ -160,9 +160,7 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.
 // @answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.
 // Parameter notes (important method parameters and how to choose them):
-// - args (main): the command-line String array received by the program. Choose values by typing them after the
 //     class name when running Java; remember every value arrives as text, even if it looks like a number.
-// - x (System.out.println): the value printed to the console. In this file the argument is often a concatenation
 //     expression, so Java evaluates the whole expression first and passes the resulting String to println.
 // - str (String.concat): the text appended to the end of the original String. Choose the exact suffix to add;
 //     important pitfall: concat returns a new String and does not change the original object unless reassigned.

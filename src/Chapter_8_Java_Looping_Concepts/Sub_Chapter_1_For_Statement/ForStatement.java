@@ -70,11 +70,9 @@ package Chapter_8_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
  @answer Modifying the loop variable inside the body is legal, but it changes the loop flow and can be tricky.
 
  Parameter notes (what each method/constructor argument means and how to choose it):
- - main(String[] args): args is the command-line String array; use it only if this loop demo should receive launch-time input.
  - calculateInterest(double amount, double interestRate): amount is the principal amount used in this file's examples, such as 10000 for yearly interest demos or 100 for the quarter-percent loop.
  - calculateInterest(...): interestRate is a percent value, not a decimal fraction; pass 7.5 for 7.5%, not 0.075, because the method divides by 100.
  - for(double rate = start; rate <= end; rate += step): start is the first interest rate tested, end is inclusive because <= is used, and step is how much the rate increases each iteration.
- - System.out.println(...): print the loop counter, the calculated interest, or both together so the demo output is visible to the reader.
  - break has no parameter, but here it depends on the condition interestAmount > 8.5; that exclusive cutoff stops the final loop once the interest becomes larger than 8.5.
 
  @quiz (INTERVIEW) In calculateInterest(amount, interestRate), should interestRate be 7.5 or 0.075 for 7.5 percent?

@@ -10,8 +10,6 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
 // continue and break work the same way in do-while: continue jumps to the condition check; break exits the loop.
 // When using loops: always check for infinite loops (condition never becomes false) and never-executing loops (condition false from the very start — can't happen in do-while, but watch for it in while and for loops).
 // Parameter notes (what each method/constructor argument means and how to choose it):
-// - main(String[] args): args is the optional zero-based command-line String array; choose values when outside launch input should be available to the program.
-// - System.out.println(int x) and System.out.println(String x): x is the value printed with a newline; choose an int for raw counters or a String for labeled status messages.
 // - do { ... } while (isReady): isReady is the boolean continuation condition checked after each run; choose true to keep looping until a break, or false to stop after the first pass.
 // - if(j > 5) uses 5 as an exclusive upper limit before break; choose the threshold so values greater than it stop the loop.
 // - In the commented do-while, while(number < 15) uses 15 as an exclusive continuation limit, while number <= 5 and number >= 10 are inclusive boundaries for continue and break.

@@ -8,11 +8,9 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 // For example: if(highScore == 50) — the keyword 'if' and the brackets are not part of the expression. The expression is 'highScore == 50'.
 // Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.
 // Parameter notes (important method parameters and how to choose them):
-// - args (main): command-line input values passed by the JVM as a String array. Choose values when running the
 //     class; each value is text and must be converted if the expression needs a number.
 // - condition (if): the boolean expression inside if(...). Choose an expression that evaluates to true when the
 //     block should run; warning: = assigns, while == compares primitive values.
-// - x (System.out.println): the value printed when the if condition is true. Choose the message or expression
 //     that explains the result; in this file the String literal is printed only when highScore == 50.
 //
 //

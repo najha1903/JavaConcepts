@@ -19,7 +19,6 @@ We can pass references as parameters to constructors and methods.
 
 */
 // Parameter notes (what each argument means and how to choose it):
-// - public static void main(String[] args): args is command-line input supplied by the JVM; this lesson ignores it, so no command-line values are needed.
 // - new House("red") and new House("beige"): the String argument is the initial color for the created House object. Choose the color that should be stored in that object's color field.
 // - The first new House("red") call passes a color but stores no reference; warning: after the statement ends, the object cannot be accessed by this code and becomes eligible for garbage collection.
 // - House myHouse = new House("beige") and House redHouse = new House("red"): the constructor argument still initializes the object, while the variable stores the reference needed to use it later.

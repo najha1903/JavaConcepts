@@ -62,9 +62,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
   }
 */
 // Parameter notes (important method parameters and how to choose them):
-// - args (main): the command-line String array for the whole program. Use it when external input should affect
 //     local variables; remember indexes are 0-based and args.length tells how many values were supplied.
-// - x (System.out.println): the value or expression to print. Here secondVariable is passed, so Java chooses the
 //     int overload and prints the current in-scope value of that local variable.
 // - condition (if): the boolean expression inside if(...). Choose an expression that answers the yes/no question
 //     controlling the block; careful, variables declared inside the block exist only inside that block.

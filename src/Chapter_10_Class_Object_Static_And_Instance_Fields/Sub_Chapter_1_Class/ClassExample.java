@@ -63,10 +63,6 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 // @answer In new String("Hello"), the "Hello" argument provides the initial characters for a brand new String object.
 
 // Parameter notes (what each argument means and how to choose it):
-// - main(String[] args): args receives command-line words passed after the class name; choose values only when the program needs startup input.
-// - new String("Hello"): the constructor argument is the initial character content; prefer a string literal unless you specifically need a distinct String object.
-// - System.out.println(value): the parameter is the value to display; choose any expression you want converted to text and printed with a newline.
-// - Important pitfall: passing null to println is safe and prints "null", but many String constructors or methods may reject null.
 //
 //
 //

@@ -1,8 +1,6 @@
 package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_Field_On_Classes;
 // Parameter notes (what each argument means and how to choose it):
-// - main(String[] args): args is the array of command-line inputs; leave it unused when the example does not require external startup values.
 // - new CreateFieldOnClasses(): this constructor call has no parameters, so Java uses default field values and the field initializers in the class.
-// - System.out.println(createFieldOnClasses.hello + " " + CreateFieldOnClasses.name): the parameter is one final String expression to print.
 // - Remember: choose the object reference parameter/expression when reading instance data, and choose ClassName.field when reading shared static data.
 //
 // @quiz (INTERVIEW) Why does new CreateFieldOnClasses() not need constructor arguments in this file?
