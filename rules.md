@@ -48,15 +48,17 @@ Never edit those generated files by hand. The next run will replace them.
 The parser keeps the core meaning of your comments and improves the reading experience in the generated portal. It:
 
 - Joins wrapped lines when a sentence clearly continues onto the next line.
-- Repairs common shorthand such as `:-` and `For Ex`.
+- Repairs a small set of known shorthand, such as `For Ex :-` to `For example:` and `can't` to `cannot`.
+- Leaves the author's `:-` signposts alone. `Note :-`, `Output :-`, and `Pitfall :-` are his voice, and are never rewritten to a colon.
 - Preserves Markdown-like inline code in readable form.
 - Detects Java-like lines inside comments and renders them as code blocks.
 - Preserves pipe-delimited tables as tables in Notes, Quick Revision, and PDF output.
 - Separates overview notes, inline code explanations, parameter notes, quizzes, and challenges.
-- Adds parameter guidance from actual method and constructor signatures when a topic has no relevant parameter explanation.
-- Keeps authored parameter explanations and only fills missing coverage.
+- Filters every marker it understands out of the notes, so tool syntax never appears as an authored note. New markers are registered in `MARKER_KEYWORDS` in `scripts/parse-concepts.js`, which is the single list all four filter sites read.
 
 This is a clarity and structure pass, not permission to invent new behavior. Write the technical idea yourself, especially when a rule has important exceptions or boundary cases. Any added context should support the source note and should never contradict or overshadow it.
+
+Parameter notes are written by the author, not generated. The parser used to invent a parameter entry from each method signature whenever it found a gap, which filled the notes with entries the author had not written. That generator is now switched off, and the entries it had already produced were removed.
 
 ## File And Folder Naming
 
@@ -234,6 +236,16 @@ Rules:
 - A question with `@option` lines appears as A, B, C, D in the quiz. When a learner picks a wrong option, the matching `@why` is shown, so the mistake is explained rather than just marked.
 - Quiz markers are excluded from ordinary Notes and appear in the Quiz Bank.
 - Every generated question receives a stable ID and source-topic identity for progress tracking and concept review.
+
+## Section Markers
+
+A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.
+
+```java
+// @section WITHOUT BUILT-IN METHOD — Classic Interview Series
+```
+
+Use it when one file holds two clearly different sets of questions. Never use it to introduce notes: anything that should be read as a note is an ordinary `//` line.
 
 ## Quiz Levels
 

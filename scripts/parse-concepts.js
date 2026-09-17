@@ -3,6 +3,16 @@ const path = require('path');
 const vm = require('vm');
 
 // ==========================================================================
+// The marker vocabulary, in one place.
+// Every marker the tool understands is listed here. A marker that is missing
+// from this list is not recognised as tool syntax, so it shows up in the
+// author's notes as if he had written it. Always add new markers here.
+// ==========================================================================
+const MARKER_KEYWORDS = 'quiz|answer|option|explain|why|code|challenge|desc|hint|testcase|section';
+const MARKER_AFTER_SLASHES = new RegExp(`^//\\s*@(?:${MARKER_KEYWORDS})\\b`, 'i');
+const MARKER_BARE = new RegExp(`^@(?:${MARKER_KEYWORDS})\\b`, 'i');
+
+// ==========================================================================
 // Helper: Recursively list all .java files
 // ==========================================================================
 function getJavaFiles(dir, fileList = []) {
@@ -288,7 +298,7 @@ function parseJavaFile(filePath, rootDir) {
     const meaningful = lines
       .map(l => l.trim())
       .filter(isMeaningfulLine)
-      .filter(l => !/^@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/i.test(l))
+      .filter(l => !MARKER_BARE.test(l))
       .filter(l => isTableRow(l) || !isCodeFragment(l));
 
     for (const seg of segmentTables(meaningful)) {
@@ -306,98 +316,6 @@ function parseJavaFile(filePath, rootDir) {
     if (code) results.push({ type: 'code', language: 'java', code, lines: [] });
   }
 
-  // Extract method and constructor parameters from the actual Java source so
-  // every topic can explain the values its public API accepts. This is used
-  // only as a fallback when a file does not already document its parameters.
-  function extractParameterSignatures(source) {
-    const withoutComments = source
-      .replace(/\/\*[\s\S]*?\*\//g, ' ')
-      .replace(/\/\/.*$/gm, '');
-    const signatures = [];
-    const signatureRegex = /^\s*(?:(?:public|private|protected|static|final|abstract|synchronized|native|strictfp)\s+)*(?:[\w$<>.,?\[\] ]+\s+)?([A-Za-z_$][\w$]*)\s*\(([^()]*)\)\s*(?:throws\s+[^\{]+)?\{/gm;
-    const ignoredNames = new Set(['if', 'for', 'while', 'switch', 'catch', 'do', 'try', 'return']);
-
-    const splitParameters = value => {
-      const parts = [];
-      let start = 0;
-      let angleDepth = 0;
-      for (let i = 0; i < value.length; i++) {
-        if (value[i] === '<') angleDepth++;
-        else if (value[i] === '>') angleDepth = Math.max(0, angleDepth - 1);
-        else if (value[i] === ',' && angleDepth === 0) {
-          parts.push(value.slice(start, i).trim());
-          start = i + 1;
-        }
-      }
-      if (value.slice(start).trim()) parts.push(value.slice(start).trim());
-      return parts;
-    };
-
-    let match;
-    while ((match = signatureRegex.exec(withoutComments)) !== null) {
-      const methodName = match[1];
-      if (ignoredNames.has(methodName)) continue;
-      const parameters = splitParameters(match[2]).map(parameter => {
-        const cleaned = parameter
-          .replace(/@\w+(?:\([^)]*\))?\s*/g, '')
-          .replace(/\bfinal\s+/g, '')
-          .trim();
-        const nameMatch = cleaned.match(/([A-Za-z_$][\w$]*)\s*$/);
-        if (!nameMatch) return null;
-        const name = nameMatch[1];
-        const type = cleaned.slice(0, nameMatch.index).trim() || 'value';
-        return { name, type };
-      }).filter(Boolean);
-      // main(String[] args) is the JVM entry point, not part of the example's
-      // teaching API. Keep it out of generated fallback notes unless the
-      // author has explicitly documented it in the source comments.
-      if (methodName === 'main' && parameters.length === 1 && parameters[0].name === 'args') continue;
-      if (parameters.length) signatures.push({ methodName, parameters });
-    }
-    return signatures;
-  }
-
-  function parameterDescription(name, type, methodName) {
-    const lower = name.toLowerCase();
-    const typeLabel = type.replace(/\s+/g, ' ').trim();
-    if (name === 'args') return `the command-line ${typeLabel} supplied to main; choose values only when this example needs launch-time input.`;
-    const specificDescriptions = {
-      celsius: `the Celsius temperature supplied to ${methodName}(); choose the temperature you want to convert, such as 25 for 25°C.`,
-      fahrenheit: `the Fahrenheit temperature supplied to ${methodName}(); choose the temperature in degrees Fahrenheit.`,
-      count: `the number of items or terms that ${methodName}() should process; choose a non-negative count and check the zero case.`,
-      target: `the value that ${methodName}() must locate, compare, or classify; choose a value that exercises both matching and non-matching paths.`,
-      score: `the score supplied to ${methodName}(); choose a value within the documented scoring range, including boundary values when testing conditions.`,
-      year: `the calendar year supplied to ${methodName}(); choose a four-digit year and include leap-year boundaries when testing.`,
-      month: `the month value supplied to ${methodName}(); choose a valid month number or name and test the invalid/default case too.`,
-      radius: `the circle radius supplied to ${methodName}(); choose a non-negative measurement because area depends on radius squared.`,
-      width: `the width supplied to ${methodName}(); choose a non-negative measurement that matches the unit used by the related dimensions.`,
-      height: `the height supplied to ${methodName}(); choose a non-negative measurement that matches the unit used by the related dimensions.`,
-      amount: `the numeric amount supplied to ${methodName}(); choose a value that respects the operation's limits, such as a non-negative deposit or a valid withdrawal.`,
-      minutes: `the total minutes supplied to ${methodName}(); choose a non-negative duration so it can be converted into years and remaining days.`,
-      temperature: `the temperature supplied to ${methodName}(); choose a value at or around the documented seasonal or comparison boundary.`,
-      limit: `the upper limit supplied to ${methodName}(); choose a positive boundary that controls how far the algorithm iterates.`,
-      size: `the requested size supplied to ${methodName}(); choose a positive dimension and test the smallest valid size.`,
-      operator: `the operator supplied to ${methodName}(); choose one of the operators supported by the implementation and test the invalid case.`,
-      expression: `the expression text supplied to ${methodName}(); choose input that follows the parser's supported format and include invalid input when testing.`,
-      sequence: `the ${typeLabel} supplied to ${methodName}(); choose the generated or expected sequence whose elements the method should process.`,
-      remaining: `the remaining value supplied to ${methodName}(); choose the unprocessed portion passed into the recursive step.`,
-      reversed: `the reversed accumulator supplied to ${methodName}(); start with the neutral value and let each recursive step append the next digit.`,
-      base: `the base value supplied to ${methodName}(); choose the number that will be raised to the requested exponent.`,
-      exponent: `the exponent supplied to ${methodName}(); choose the power to apply and test zero, positive, and boundary values.`,
-      minimum: `the lower bound supplied to ${methodName}(); choose the smallest accepted value in the validation range.`,
-      maximum: `the upper bound supplied to ${methodName}(); choose the largest accepted value in the validation range.`,
-      firstnumber: `the first numeric operand supplied to ${methodName}(); choose the first value in the comparison or calculation.`,
-      secondnumber: `the second numeric operand supplied to ${methodName}(); choose the second value in the comparison or calculation.`,
-      thirdnumber: `the third numeric operand supplied to ${methodName}(); choose the final value in the comparison or calculation.`
-    };
-    if (specificDescriptions[lower]) return specificDescriptions[lower];
-    if (/^(first|second|third|left|right|a|b|x|y|z)$/.test(lower)) return `the ${lower} operand supplied to ${methodName}(); choose a value that represents this operation's ${lower} input.`;
-    if (/count|size|limit|length|index|position|number|year|month|day|hour|minute|second|score|temperature|radius|width|height|amount|goal|capacity|target/.test(lower)) return `the ${typeLabel} input used by ${methodName}(); choose a value that matches the method's range and boundary rules.`;
-    if (/flag|valid|summer|barking|enabled|open|closed|developer/.test(lower) || /^boolean$/i.test(typeLabel)) return `the boolean condition used by ${methodName}(); choose true or false to exercise the relevant branch.`;
-    if (/text|string|name|title|author|isbn|input|expression|sentence|operator|unit|scenario|code/.test(lower) || /String/.test(typeLabel)) return `the ${typeLabel} text supplied to ${methodName}(); choose content that matches the method's expected format.`;
-    if (/converter|function|predicate|mapper/.test(lower) || /FunctionalInterface|Operator|Function/.test(typeLabel)) return `the conversion or callback logic supplied to ${methodName}(); choose an implementation that matches the expected input and output types.`;
-    return `the ${typeLabel} value supplied to ${methodName}(); choose a representative value, then test a boundary or invalid value to observe how the method responds.`;
-  }
 
   // Generated parameter notes are deliberately NOT produced.
   //
@@ -409,36 +327,6 @@ function parseJavaFile(filePath, rootDir) {
   // the topics where they matter, and those are kept exactly as written.
   function addGeneratedParameterNotes() {
     return;
-  }
-  function addGeneratedParameterNotesDisabled() {
-    const signatures = extractParameterSignatures(content);
-    if (!signatures.length) return;
-
-    const existingText = headerComments.flatMap(block => block.lines || []).join('\n');
-    const parameterBlock = headerComments.find(block => (block.lines || []).some(line => /parameter notes/i.test(line)));
-    const missingEntries = [];
-    signatures.forEach(signature => {
-      signature.parameters.forEach(parameter => {
-        const parameterPattern = new RegExp(`\\b${parameter.name.replace(/[$]/g, '\\$&')}\\b`);
-        if (!parameterBlock || !parameterPattern.test(existingText)) {
-          missingEntries.push(`- ${parameter.name} (${signature.methodName}(${signature.parameters.map(p => `${p.type} ${p.name}`).join(', ')})): ${parameterDescription(parameter.name, parameter.type, signature.methodName)}`);
-        }
-      });
-    });
-    if (!missingEntries.length) return;
-
-    if (parameterBlock) {
-      const headingIndex = parameterBlock.lines.findIndex(line => /parameter notes/i.test(line));
-      parameterBlock.lines.splice(headingIndex + 1, 0, ...missingEntries);
-    } else {
-      headerComments.push({
-        type: 'generated-parameters',
-        lines: [
-          'Parameter notes (generated from the method signatures in this file):',
-          ...missingEntries
-        ]
-      });
-    }
   }
 
   // Returns the non-separator rows of a consecutive table run starting at `start`.
@@ -511,7 +399,7 @@ function parseJavaFile(filePath, rootDir) {
 
       for (const line of lines) {
         const trimmed = line.trim();
-        if (/^\/\/\s*@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/i.test(trimmed)) {
+        if (MARKER_AFTER_SLASHES.test(trimmed)) {
           if (inCode) { flushCode(codeBuffer); codeBuffer = []; inCode = false; }
           flushProse(proseBuffer); proseBuffer = [];
           continue;
@@ -552,7 +440,7 @@ function parseJavaFile(filePath, rootDir) {
   const lineCommentLines = cleanHeader.split('\n')
     .filter(l => l.trim().startsWith('//'))
     .map(l => l.replace(/^\s*\/\/ ?/, '').replace(/^\/\/ ?/, ''))
-    .filter(l => !/^@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/i.test(l.trim()))
+    .filter(l => !MARKER_BARE.test(l.trim()))
     .filter(l => !/https?:\/\//.test(l));
 
   let lineProseBuffer = [];
@@ -702,7 +590,7 @@ function parseJavaFile(filePath, rootDir) {
 
     if (trimmed.startsWith('//')) {
       // Skip @quiz / @answer / @challenge / @desc / @hint / @testcase marker lines
-      if (/^\/\/\s*@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/.test(trimmed)) {
+      if (MARKER_AFTER_SLASHES.test(trimmed)) {
         if (currentGroup) { inlineGroups.push(currentGroup); currentGroup = null; }
         return;
       }

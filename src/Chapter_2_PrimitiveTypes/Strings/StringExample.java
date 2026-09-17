@@ -90,7 +90,7 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer "" is an empty String. "" + a = "5" (String), then "5" + a = "55". Not arithmetic because the first operand is a String.
 // @answer To add them arithmetically: System.out.println(a + a + "") = "10"
 
-// ─── WITHOUT BUILT-IN METHOD — Classic Interview Series ────────────────────
+// @section WITHOUT BUILT-IN METHOD — Classic Interview Series
 
 // @quiz (INTERVIEW) How do you REVERSE a String WITHOUT using StringBuilder.reverse() or any library?
 // @answer Iterate from the last index to 0 and build a new String: String rev = ""; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }
