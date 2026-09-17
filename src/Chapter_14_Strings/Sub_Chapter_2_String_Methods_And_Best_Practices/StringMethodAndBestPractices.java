@@ -73,7 +73,6 @@ package Chapter_14_Strings.Sub_Chapter_2_String_Methods_And_Best_Practices;
 // - repeat(int count): count is the number of copies, 0 gives an empty String and a negative value throws IllegalArgumentException.
 // - indent(int n): a positive n adds leading spaces to every line, a negative n removes up to that many leading spaces, and 0 only normalizes the line endings.
 // - trim(), strip(), stripLeading() and stripTrailing(): these take no parameters, choose between them based on whether ASCII or Unicode whitespace has to be removed.
-//
 // @quiz (INTERVIEW) What range is valid for the index parameter in text.charAt(index)?
 // @answer The valid range is 0 to length() - 1. Any index outside that range throws StringIndexOutOfBoundsException.
 //

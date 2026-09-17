@@ -39,7 +39,6 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // - switchCaseMultipleCasesTogether(int value): value selects case 1, 2, or the grouped 3/4/5 branch; careful, grouped labels all run the same code.
 // - switchCaseWithoutUsingBreak(int value): value chooses the starting case, but missing breaks cause fall-through; warning: choose 1 only if you expect all later messages too.
 // - getQuarter(String month): month is expected to be an uppercase English month name such as "NOVEMBER"; choose exactly one of the listed names to avoid "INVALID MONTH".
-//
 // @quiz (INTERVIEW) What values should be passed to getQuarter(String month)?
 // @answer Pass an exact uppercase month name like "JANUARY" or "NOVEMBER"; any unlisted spelling, case, or null fails to match the cases.
 //

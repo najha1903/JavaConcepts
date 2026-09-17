@@ -23,7 +23,6 @@ create a constructor with just the name and email parameters, which also calls a
 // - Customer(String name, double creditLimit, String emailAddress): name identifies the customer, creditLimit is the allowed credit amount, and emailAddress is contact information. Choose meaningful non-empty strings and a sensible non-negative money value; this code does not validate them.
 // - this(name, creditLimit, emailAddress) and this(name, 1200000.00, emailAddress): the argument order must match the target constructor exactly; important pitfall: swapping creditLimit and emailAddress would not compile because their types differ.
 // - Getter calls getName(), getCreditLimit(), and getEmailAddress() take no parameters because they only read the values already copied into fields by the constructor.
-//
 // @quiz (INTERVIEW) In Customer(String name, double creditLimit, String emailAddress), what does each parameter initialize?
 // @answer name initializes the name field, creditLimit initializes the creditLimit field, and emailAddress initializes the emailAddress field.
 // @quiz (INTERVIEW TRAP) What is the important effect of Customer() calling this("Navneet", "navneet.jha@gmail.com")?

@@ -160,14 +160,10 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.
 // @answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.
 // Parameter notes (important method parameters and how to choose them):
-//     class name when running Java; remember every value arrives as text, even if it looks like a number.
-//     expression, so Java evaluates the whole expression first and passes the resulting String to println.
 // - str (String.concat): the text appended to the end of the original String. Choose the exact suffix to add;
 //     important pitfall: concat returns a new String and does not change the original object unless reassigned.
 // - target (String.valueOf): the value converted into text. Choose the char, number, boolean, object, or array
 //     whose textual form you need before joining it with other Strings.
-//
-//
 // @quiz (INTERVIEW TRAP) If s.concat(" is fun") receives " is fun" as its parameter, why might printing s still show the old value?
 // @answer String is immutable, so concat returns a new String. If you avoid assigning the result back to s, the original reference still points to the old text.
 //

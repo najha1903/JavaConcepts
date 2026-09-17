@@ -62,10 +62,6 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 
 // @answer In new String("Hello"), the "Hello" argument provides the initial characters for a brand new String object.
 
-// Parameter notes (what each argument means and how to choose it):
-//
-//
-//
 // @quiz (INTERVIEW TRAP) Is System.out.println(null) the same risk as calling a method on a null String reference?
 // @answer No. println can print null as the text "null", but calling an instance method on a null reference throws NullPointerException.
 // A CLASS is the most fundamental building block of Object-Oriented Programming (OOP) in Java.

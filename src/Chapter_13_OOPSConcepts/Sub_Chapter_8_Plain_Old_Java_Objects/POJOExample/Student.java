@@ -8,7 +8,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects.POJOExample
 // - setClassList(String classList): classList is the replacement course list. Important: setters replace the old value, so pass oldValue + extra text if you want to append.
 // - this.id = id and similar assignments copy parameters into fields; pitfall: the parameter shadows the field, so this.field means the object's stored data.
 // - Getters and toString() take no parameters because they read and format the current object state.
-//
 // @quiz (INTERVIEW) What are the four constructor parameters of Student used for?
 // @answer id, name, dateOfBirth, and classList initialize the matching fields of the new Student object.
 // @quiz (INTERVIEW TRAP) What is the warning when calling setClassList(String classList)?

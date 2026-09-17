@@ -41,7 +41,6 @@ Instance Variables
 // - new StaticAndInstanceVariables("Rex") and new StaticAndInstanceVariables("Fluffy"): the String argument changes the shared static name; the later "Fluffy" call overwrites "Rex" for all instances.
 // - new StaticAndInstanceVariables("Rex", 4) and new StaticAndInstanceVariables("Fluffy", 2): the first argument becomes instanceName and the second becomes age for that specific object.
 // - printName() and printDogNameAndAge() take no parameters because they print values already stored in static or instance variables.
-//
 // @quiz (INTERVIEW) What is the difference between the name parameter and the instanceName parameter in the two constructors?
 // @answer name updates the shared static class variable, while instanceName initializes a separate instance field for one object.
 // @quiz (INTERVIEW TRAP) What is the pitfall of calling new StaticAndInstanceVariables("Fluffy") after new StaticAndInstanceVariables("Rex")?

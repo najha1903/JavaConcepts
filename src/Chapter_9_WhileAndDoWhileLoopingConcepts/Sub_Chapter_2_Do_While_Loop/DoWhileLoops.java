@@ -13,7 +13,6 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
 // - do { ... } while (isReady): isReady is the boolean continuation condition checked after each run; choose true to keep looping until a break, or false to stop after the first pass.
 // - if(j > 5) uses 5 as an exclusive upper limit before break; choose the threshold so values greater than it stop the loop.
 // - In the commented do-while, while(number < 15) uses 15 as an exclusive continuation limit, while number <= 5 and number >= 10 are inclusive boundaries for continue and break.
-//
 // @quiz (INTERVIEW) What does the isReady value control in do { ... } while (isReady)?
 // @answer It controls whether another iteration starts after the body finishes; because it is checked after the body, the body runs at least once.
 //

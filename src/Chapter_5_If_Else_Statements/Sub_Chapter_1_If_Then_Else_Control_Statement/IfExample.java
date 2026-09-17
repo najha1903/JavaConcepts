@@ -49,8 +49,6 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // @quiz (OCJP) How many statements does if control here: if (true) System.out.println("A"); System.out.println("B");?
 // @answer Only the first statement after if is controlled by the condition.
 // @answer The second println is outside the if unless braces are used.
-// Parameter notes (what each method/constructor argument means and how to choose it):
-//
 // @quiz (INTERVIEW) In main(String[] args), what does the args parameter contain?
 // @answer It contains command-line arguments as a zero-based String array, in the same order the user supplied them when starting the program.
 //

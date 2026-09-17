@@ -5,7 +5,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_6_Reference_Object_Instance.Example;
 // - setColor(String color): color is the replacement color for the same existing House object. Choose the new state you want all references to that object to observe.
 // - In both House(String color) and setColor(String color), this.color = color copies the parameter into the object's field; important: the parameter shadows the field name.
 // - getColor() has no parameters because it simply returns the current field value from the object referenced by the caller.
-//
 // @quiz (INTERVIEW TRAP) If two references point to the same House and one calls setColor("red"), what will the other reference see?
 // @answer It will see red too, because setColor changes the shared object, not just one reference variable.
 // @quiz (OCJP) In this.color = color, which color is the field and which is the parameter?

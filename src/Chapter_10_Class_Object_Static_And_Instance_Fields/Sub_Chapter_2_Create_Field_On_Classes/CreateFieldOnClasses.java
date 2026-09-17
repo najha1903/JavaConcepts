@@ -2,7 +2,6 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_
 // Parameter notes (what each argument means and how to choose it):
 // - new CreateFieldOnClasses(): this constructor call has no parameters, so Java uses default field values and the field initializers in the class.
 // - Remember: choose the object reference parameter/expression when reading instance data, and choose ClassName.field when reading shared static data.
-//
 // @quiz (INTERVIEW) Why does new CreateFieldOnClasses() not need constructor arguments in this file?
 // @answer The class defines no parameterized constructor, so the default no-argument constructor is used and field initializers supply the values.
 //

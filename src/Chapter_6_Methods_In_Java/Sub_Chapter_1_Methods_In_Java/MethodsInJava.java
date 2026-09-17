@@ -40,8 +40,6 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // - calculateScore(...): levelCompleted is the number of completed levels used as a multiplier; choose a count, not a level index, and avoid negative counts unless intentionally modeling a penalty.
 // - calculateScore(...): bonus is points awarded per completed level; choose the per-level bonus amount, so finalScore adds levelCompleted * bonus plus 1000.
 // - calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them.
-//
-//
 // @quiz (INTERVIEW) How should a caller choose levelCompleted and bonus for calculateScore?
 // @answer levelCompleted should be the number of levels completed, and bonus should be the points per level; the method multiplies them together.
 //

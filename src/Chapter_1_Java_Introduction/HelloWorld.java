@@ -43,7 +43,6 @@ package Chapter_1_Java_Introduction;
 // - Say what the JDK, the JRE and the JVM each provide.
 // - Explain why `main` is public, static and void.
 
-// Parameter notes (what each argument means and how to choose it):
 
 // @quiz (INTERVIEW) What is the difference between JVM, JRE, and JDK?
 // @answer JDK is for development (contains compiler javac), JRE is for running Java programs (libraries + JVM), and JVM is the execution engine.

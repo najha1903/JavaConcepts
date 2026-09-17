@@ -13,7 +13,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Acces
 // - car.setConvertible(true): true means convertible, false means not convertible; choose the boolean that matches the vehicle.
 // - car.setColor("black"): the String argument becomes the color field; avoid null if you want meaningful printed output.
 // - careful: these setter calls require car to reference an actual Car object; calling them while car is null causes a NullPointerException before parameters matter.
-//
 // @quiz (INTERVIEW TRAP) Why will car.setModel("Carrera") fail here if car is still null?
 // @answer A parameterized method call needs a real target object; null has no object to receive the "Carrera" argument, so Java throws NullPointerException.
 // @quiz (INTERVIEW) What does the argument true mean in car.setConvertible(true)?

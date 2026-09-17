@@ -62,12 +62,8 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
   }
 */
 // Parameter notes (important method parameters and how to choose them):
-//     local variables; remember indexes are 0-based and args.length tells how many values were supplied.
-//     int overload and prints the current in-scope value of that local variable.
 // - condition (if): the boolean expression inside if(...). Choose an expression that answers the yes/no question
 //     controlling the block; careful, variables declared inside the block exist only inside that block.
-//
-//
 // @quiz (INTERVIEW TRAP) Can System.out.println(thirdVariable) use thirdVariable as a parameter outside the if block?
 // @answer No. thirdVariable was declared inside the if block, so it is out of scope outside that block and cannot be passed to println there.
 //

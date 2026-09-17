@@ -10,9 +10,6 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Chall
 // Once a code block ends, Java removes the variables declared inside it from memory. This is why you can re-declare finalScore in a second if(gameOver) block — Java treats it as a fresh variable.
 // Inner blocks CAN access variables from their containing outer block (e.g., score, levelCompleted, bonus are in the outer method block and accessible inside the if block).
 // The concept of where a variable is accessible is called its SCOPE. Narrowing scope is a best practice — declare variables as close to where they are used as possible.
-// Parameter notes (what each method/constructor argument means and how to choose it):
-//
-//
 // @quiz (INTERVIEW TRAP) In an if/else-if chain with parameter-like conditions, what happens if two conditions could both be true?
 // @answer Only the first true branch executes; later branches are skipped, so order conditions carefully.
 //

@@ -16,7 +16,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_3_Constru
 // - BadConstructorThisCallExample(int x, int y, int width, int height): x and y are position coordinates, while width and height are dimensions.
 // - pitfall: because all parameters are int, Java cannot detect if the caller accidentally passes x/y values where width/height values were intended.
 // - warning: this file intentionally duplicates assignments instead of using this(...), so changing parameter handling would require updates in multiple constructors.
-//
 // @quiz (INTERVIEW) What do width and height mean in BadConstructorThisCallExample(int width, int height)?
 // @answer They are the object's dimensions; the constructor stores them while defaulting x and y to 0.
 // @quiz (INTERVIEW TRAP) Why is parameter order especially important in the 4-argument constructor?

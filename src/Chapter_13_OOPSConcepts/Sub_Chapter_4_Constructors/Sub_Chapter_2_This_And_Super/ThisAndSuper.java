@@ -43,7 +43,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_An
 // - super(args) sends arguments up to the parent constructor; choose values needed to initialize inherited fields before child fields are initialized.
 // - important: this(args) and super(args) are not normal methods, and either call must be the first statement in a constructor.
 // - careful: a constructor cannot contain both this(args) and super(args) because both would need to be first.
-//
 // @quiz (INTERVIEW) What is the difference between passing arguments to this(args) and super(args)?
 // @answer this(args) calls another constructor in the same class, while super(args) calls a constructor in the parent class.
 // @quiz (OCJP) Why can't a constructor call both this(args) and super(args)?

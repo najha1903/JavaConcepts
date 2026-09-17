@@ -22,7 +22,6 @@ We can pass references as parameters to constructors and methods.
 // - new House("red") and new House("beige"): the String argument is the initial color for the created House object. Choose the color that should be stored in that object's color field.
 // - The first new House("red") call passes a color but stores no reference; warning: after the statement ends, the object cannot be accessed by this code and becomes eligible for garbage collection.
 // - House myHouse = new House("beige") and House redHouse = new House("red"): the constructor argument still initializes the object, while the variable stores the reference needed to use it later.
-//
 // @quiz (INTERVIEW) What does the "beige" argument do in House myHouse = new House("beige")?
 // @answer It is passed to the House constructor and copied into the new object's color field.
 // @quiz (INTERVIEW TRAP) What is the pitfall of calling new House("red") without assigning the result to a reference?

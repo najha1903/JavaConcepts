@@ -81,8 +81,6 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // - checkValidDOB(int currentYear, String yearOfBirth): currentYear is the maximum allowed birth year; yearOfBirth is user-entered numeric text to parse and validate.
 // - catch (NumberFormatException e): the parameter type chooses which exception is handled; choose the most specific exception before broader ones.
 // - Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.
-//
-//
 // @quiz (INTERVIEW) What must be true about the String passed to Integer.parseInt(String s)?
 // @answer It must contain valid integer text for the expected radix, with no decimal point or non-numeric characters except a valid sign.
 //

@@ -8,7 +8,6 @@ import java.util.IllegalFormatConversionException;
 // - String.format(String format, Object... args): parameters mean the same as printf, but the formatted result is returned instead of printed.
 // - "template %d".formatted(args): args fill the placeholders in the receiver string; choose one compatible value per placeholder.
 // - Important note: prefer %n instead of \n in format strings when you want a platform-specific newline.
-//
 // @quiz (INTERVIEW) In System.out.printf("Age = %d", age), what does the first parameter control?
 // @answer The first parameter is the format string; it controls the literal text and placeholders that later arguments fill.
 //

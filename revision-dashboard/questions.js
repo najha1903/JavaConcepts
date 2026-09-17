@@ -15363,7 +15363,6 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "Parameter notes (important method parameters and how to choose them):",
-      "that should be displayed; note that the Java statement ends at the semicolon, not at the visual line break.",
       "- pieces in String concatenation: each quoted literal around + is an operand used to build the final println parameter. Choose pieces for readability, but remember the runtime receives one combined String."
     ],
     "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +",
@@ -15387,9 +15386,7 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.",
-      "Trying to use finalScore outside that if block would cause a compile error: \"Cannot resolve symbol 'finalScore'\".",
-      "Parameter notes (what each method/constructor argument means and how to choose it):",
-      "Parameter notes (what each method/constructor argument means and how to choose it):"
+      "Trying to use finalScore outside that if block would cause a compile error: \"Cannot resolve symbol 'finalScore'\"."
     ],
     "syntax": "public class IfExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        boolean isAlien = false;\r\n\r\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\r\n        if(isAlien == false){ // condition check\r\n            System.out.println(\"It is not an alien!\");\r\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.",
     "badges": [
@@ -15508,7 +15505,7 @@ const QUICK_REVISION_BANK = {
     "gotchas": [
       "Always be aware of scope, type constraints, and compiler rules in this area."
     ],
-    "syntax": "public class ClassExample {\n\n    public static void main(String[] args) {\n        //  We can create String using 2 ways\n\n         // 1) Literal form\n\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\n           System.out.println(\"Literal String = \" + s);",
+    "syntax": "public class ClassExample {\r\n\r\n    public static void main(String[] args) {\r\n        //  We can create String using 2 ways\r\n\r\n         // 1) Literal form\r\n\r\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\r\n           System.out.println(\"Literal String = \" + s);",
     "badges": [
       "Counter",
       "read",
@@ -15583,7 +15580,7 @@ const QUICK_REVISION_BANK = {
       "- `Throwable`: Root class for all errors and exceptions.",
       "- `Error`: Serious problems (e.g. `OutOfMemoryError`) that applications should NOT attempt to catch."
     ],
-    "syntax": "public class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }",
+    "syntax": "public class ExceptionHandlingInJava {\r\n    public static void main(String[] args) {\r\n\r\n        try{ // The try block wraps any code that might throw an exception at runtime.\r\n            // Place only the risky code here — keep try blocks as small as possible.\r\n        } // The try block ends here; the catch block immediately follows.\r\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\r\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\r\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\r\n        }",
     "badges": [
       "test",
       "main",
@@ -15608,7 +15605,7 @@ const QUICK_REVISION_BANK = {
       "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
       "Parameter notes (what each constructor/method argument means and how to choose it):"
     ],
-    "syntax": "public class ClassesAndInheritance {\n\n\n\n}",
+    "syntax": "public class ClassesAndInheritance {\r\n\r\n\r\n\r\n}",
     "badges": [
       "show",
       "isConvertible",

@@ -86,7 +86,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_3_Constru
 // - AnotherGoodConstructorSuperCallExample(int x, int y, int width, int height): x/y initialize inherited location through super(x, y); width/height initialize child-specific size.
 // - super(x, y): passes coordinate arguments up to the parent constructor; important: it must run before assigning child fields.
 // - warning: parameter order matters because all values are int; swapping x with y or width with height compiles but changes meaning.
-//
 // @quiz (INTERVIEW) What do the x and y arguments passed to super(x, y) represent?
 // @answer They are position coordinates forwarded to the parent constructor so the parent fields can be initialized.
 // @quiz (INTERVIEW TRAP) Why is swapping width and height easy to miss in this example?

@@ -20,7 +20,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_3_Constru
 // - this(0, 0, width, height): forwards default coordinates plus caller-provided dimensions to the master constructor.
 // - GoodConstructorThisCallExample(int x, int y, int width, int height): x/y are position coordinates and width/height are dimensions; this constructor performs the actual field assignments.
 // - remember: this(...) must be first, and the argument types/order decide which overloaded constructor receives the call.
-//
 // @quiz (INTERVIEW) In this(0, 0, width, height), which arguments are defaults and which come from the caller?
 // @answer The first two arguments, 0 and 0, default x and y; width and height are the caller's parameters forwarded to the master constructor.
 // @quiz (INTERVIEW TRAP) Why must callers be careful with the 4-int constructor argument order?

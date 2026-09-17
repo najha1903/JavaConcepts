@@ -7,7 +7,6 @@ import Chapter_13_OOPSConcepts.Sub_Chapter_9_JavaRecords.StudentRecord;
 // - new StudentRecord(id, name, dateOfBirth, classList): the same four arguments initialize record components; remember each component also has an accessor method id(), name(), dateOfBirth(), and classList().
 // - Getter and record accessor calls such as s1.getName(), s1.getClassList(), s1.name(), and s1.classList() take no parameters because they read values already stored in the object or record.
 // - If setClassList(s1.getClassList() + ", Java OCJP Exam 829") were called, the setter argument would be the replacement classList value; careful: it should include the old value if the goal is to append rather than replace.
-//
 // @quiz (INTERVIEW) In new Student("1", "Navneet", "19/03/1994", "Java MasterClass"), what does the fourth argument mean?
 // @answer It is the classList value, describing the course or list of courses for that Student.
 // @quiz (INTERVIEW TRAP) Why is argument order important when creating Student and StudentRecord objects?

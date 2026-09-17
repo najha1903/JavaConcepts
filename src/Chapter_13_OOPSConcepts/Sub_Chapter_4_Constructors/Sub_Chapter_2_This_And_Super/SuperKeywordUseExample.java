@@ -9,7 +9,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_An
 // - new SubClass(): calls the implicit no-argument constructor because no constructor parameters are defined in SubClass.
 // - s.printMethod(): passes no method arguments; dynamic dispatch chooses SubClass.printMethod(), and super.printMethod() inside it avoids recursive self-calling.
 // - trap: writing printMethod() instead of super.printMethod() inside the override would call the overriding method again with the same no-argument list.
-//
 // @quiz (INTERVIEW) What does super.printMethod() pass as arguments, and which method body does it select?
 // @answer It passes no arguments and explicitly selects the parent class printMethod() implementation.
 // @quiz (INTERVIEW TRAP) Why is super important in the overriding printMethod() even though there are no parameters?

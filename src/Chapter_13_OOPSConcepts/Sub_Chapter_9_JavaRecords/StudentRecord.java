@@ -69,7 +69,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_9_JavaRecords;
 // - classList is the course or courses text. Choose the complete course-list value at construction time; remember records have no setters, so it cannot be changed later.
 // - new StudentRecord(id, name, dateOfBirth, classList) arguments are matched by position. Important trap: all four components are Strings, so swapping arguments can compile but create an incorrect record.
 // - Accessor calls id(), name(), dateOfBirth(), and classList() take no parameters because they return the final component values copied by the canonical constructor.
-//
 // @quiz (OCJP) In record StudentRecord(String id, String name, String dateOfBirth, String classList), what does each component generate automatically?
 // @answer Each component becomes a canonical constructor parameter, a private final field, and a public accessor method with the same name.
 // @quiz (INTERVIEW) How should a caller choose the classList component value for a StudentRecord?

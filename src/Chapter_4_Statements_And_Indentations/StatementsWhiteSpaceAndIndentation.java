@@ -25,12 +25,8 @@ package Chapter_4_Statements_And_Indentations;
 // @answer It is a declaration statement.
 // @answer The whole line is not just an expression, even though it contains the assignment expression x = 5.
 // Parameter notes (important method parameters and how to choose them):
-//     in the command line can split arguments unless quoted.
-//     that should be displayed; note that the Java statement ends at the semicolon, not at the visual line break.
 // - pieces in String concatenation: each quoted literal around + is an operand used to build the final println
 //     parameter. Choose pieces for readability, but remember the runtime receives one combined String.
-//
-//
 // @quiz (INTERVIEW TRAP) Does indentation change the parameter passed to println?
 // @answer No. Indentation and most whitespace are ignored by the compiler; the expression before the semicolon determines the parameter value.
 //

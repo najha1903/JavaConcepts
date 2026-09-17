@@ -74,7 +74,6 @@ NOTE: Do not add the main method to the solution code.
 // - setAge(int age): age is the person's age in years; valid values are 0 through 100, and invalid values below 0 or above 100 reset the field to 0.
 // - getFirstName().isEmpty() and getLastName().isEmpty(): these parameterless calls depend on the stored name Strings not being null.
 // - remember: isTeen() has no parameter because it uses the current object's stored age; change the age by calling setAge(value) first.
-//
 // @quiz (INTERVIEW) What values should be passed to setAge(int age), and what happens outside the valid range?
 // @answer Pass an age from 0 to 100 inclusive; values less than 0 or greater than 100 cause the field to be set to 0.
 // @quiz (INTERVIEW TRAP) Why is passing null to setFirstName(String firstName) or setLastName(String lastName) dangerous here?
