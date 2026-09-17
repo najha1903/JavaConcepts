@@ -1370,9 +1370,7 @@ function buildOCJPQuestions(chapterName, topics) {
 // ==========================================================================
 function buildStarterQuestions(chapterName, topics) {
   const chapterLabel = chapterName.replace(/Chapter \d+: /, '');
-  const targetKeywords = ['static', 'void', 'public', 'extends', 'implements', 'final', 'super', 'this', 'new', 'throws', 'class', 'interface', 'return', 'try', 'catch'];
   const questions = [];
-  const quickRevision = buildQuickRevisionEntry(chapterName, topics);
 
   // Pre-collect all header comment lines per topic (index == topics array index).
   // Table rows are excluded: their flattened "cell — cell" form is display text,
@@ -1381,15 +1379,6 @@ function buildStarterQuestions(chapterName, topics) {
     .filter(block => block.type !== 'table')
     .flatMap(block => block.lines || [])
     .filter(Boolean));
-
-  const stopWords = new Set(['this', 'that', 'these', 'those', 'their', 'which', 'where', 'there', 'would', 'could', 'should', 'about', 'after', 'every', 'other', 'first', 'being', 'using']);
-  const gotchaKeywords = ['important', 'note', 'pitfall', 'warning', 'caution', 'remember', 'avoid', 'careful', 'never', 'always'];
-  // Meaningful fallback distractors for fill-blank and concept-scq
-  // (never use raw Java types like 'Object'/'int' as distractors for conceptual questions)
-  const conceptFallbacks = [
-    'immutable', 'mutable', 'compiled', 'interpreted', 'inherited', 'overridden',
-    'encapsulated', 'polymorphic', 'abstract', 'synchronized', 'serialized', 'generic'
-  ];
 
   // Several sub-chapters contain a file with the same name, for example Main.java
   // and Dog.java. Those topics then share one label, which produced questions such
@@ -1425,119 +1414,11 @@ function buildStarterQuestions(chapterName, topics) {
     };
     const topicNotes = (allTopicNoteLines[topicIndex] || []).filter(line => !isHeadingLine(line));
 
-    // ---- Existing 5 question types (qid added) ----------------------------------------
-
-    // Helper: does a line look like actual Java code (not just prose/comment text)?
-    // Must have Java syntax chars in the code portion (before //)
-    const isCodeLine = (line) => {
-      const codePart = line.split('//')[0];
-      return /[=();{}\[\]]/.test(codePart);
-    };
-    // Helper: is keyword in the code part (before //) rather than a comment?
-    const kwInCode = (line, kw) => {
-      const codePart = line.split('//')[0];
-      return new RegExp(`\\b${kw}\\b`).test(codePart);
-    };
-
-    // Scan lines with block-comment awareness
-    let inBlockComment = false;
-    let keywordLine = null;
-    let keyword = null;
-    let classDeclarationLine = null;
-    let classKeyword = null;
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      const trimmed = line.trim();
-      // Track block comment state
-      if (!inBlockComment && (trimmed.startsWith('/*') || trimmed.includes('/*'))) inBlockComment = true;
-      if (inBlockComment) {
-        if (trimmed.endsWith('*/') || trimmed.includes('*/')) inBlockComment = false;
-        continue;
-      }
-      if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.length === 0) continue;
-      const kw = targetKeywords.find(k => kwInCode(line, k));
-      if (kw && isCodeLine(line)) {
-        // Keep the first keyword line found as class-level fallback
-        if (!classDeclarationLine) { classDeclarationLine = line; classKeyword = kw; }
-        // Prefer lines that are NOT just the class/main declaration (skip `public class Foo {`)
-        if (/\bclass\s+\w+\s*\{/.test(line) || /\bclass\s+\w+\s+extends/.test(line) || /\bclass\s+\w+\s+implements/.test(line)) continue;
-        // Skip "public static void main" — too trivial
-        if (/public\s+static\s+void\s+main/.test(line)) continue;
-        keyword = kw;
-        keywordLine = line;
-        break;
-      }
-    }
-
-    // If no better line found, fall back to class declaration
-    if (!keywordLine) {
-      keyword = classKeyword || 'class';
-      keywordLine = classDeclarationLine || `public ${keyword} ${topic.fileName.replace('.java', '')} {`;
-    }
-
-    const masked = keywordLine.replace(new RegExp(`\\b${keyword}\\b`, 'g'), '___');
-    const distractors = targetKeywords.filter(k => k !== keyword).slice(0, 3);
-    const scqOptions = [keyword, ...distractors];
-
-    addQuestion({
-      type: 'scq',
-      kind: 'mask-keyword',
-      qid: makeQid(chapterName, topicIdentity, 'scq', 0),
-      difficulty: levelForKind('mask-keyword'),
-      chapter: chapterName,
-      topic: topicLabel,
-      question: `Which Java keyword correctly fills in the blank in this code from "${topicLabel}"?\n\n${masked.trim()}`,
-      options: scqOptions,
-      answer: scqOptions.indexOf(keyword),
-      explanation: `The correct keyword is '${keyword}'. It fits the syntax and semantics of this Java statement.`
-    });
-
-    // Find a DIFFERENT code line for codefill (avoid duplicating the SCQ)
-    // Must be actual Java code (not prose/comment), keyword must appear in code part
-    let codefillLine = null;
-    let codefillKeyword = null;
-    inBlockComment = false;
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      if (line === keywordLine) continue; // skip SCQ line
-      const trimmed = line.trim();
-      // Block comment tracking
-      if (!inBlockComment && (trimmed.startsWith('/*') || trimmed.includes('/*'))) inBlockComment = true;
-      if (inBlockComment) {
-        if (trimmed.endsWith('*/') || trimmed.includes('*/')) inBlockComment = false;
-        continue;
-      }
-      if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.length === 0) continue;
-      const kw = targetKeywords.find(k => kwInCode(line, k));
-      if (kw && isCodeLine(line)) {
-        if (/\bclass\s+\w+\s*[\{<]/.test(line)) continue;
-        if (/public\s+static\s+void\s+main/.test(line)) continue;
-        codefillKeyword = kw;
-        codefillLine = line;
-        break;
-      }
-    }
-
-    if (codefillLine && codefillKeyword && codefillLine.trim() !== keywordLine.trim()) {
-      addQuestion({
-        type: 'codefill',
-        kind: 'codefill',
-        qid: makeQid(chapterName, topicIdentity, 'codefill', 2),
-        difficulty: levelForKind('codefill'),
-        chapter: chapterName,
-        topic: topicLabel,
-        question: `Complete the missing keyword in this snippet from "${topicLabel}".`,
-        code: codefillLine.replace(new RegExp(`\\b${codefillKeyword}\\b`, 'g'), '___'),
-        answer: [codefillKeyword],
-        explanation: `The missing keyword is '${codefillKeyword}', taken from the parsed source for ${topic.fileName}.`
-      });
-    }
-
-    // Predict: only add if there's a real println with a STATIC string literal (no variable concatenation)
-    // Also skip comment lines and block comments
+    // Predict: a genuine code-tracing exercise. Only a println with a fixed string
+    // literal is used, so the answer is unambiguous.
     let printLine = null;
     let printAnswer = null;
-    inBlockComment = false;
+    let inBlockComment = false;
     for (const line of lines) {
       const trimmed = line.trim();
       if (!inBlockComment && (trimmed.startsWith('/*') || trimmed.includes('/*'))) inBlockComment = true;
@@ -1572,26 +1453,6 @@ function buildStarterQuestions(chapterName, topics) {
         explanation: `The output comes directly from the string literal in the println call.`
       });
     }
-
-    const topicHeaderLines = topic.headerComments.flatMap(block => block.lines)
-      .filter(l => isUsableQuizStatement(l));
-    const topicModelAnswer = topicHeaderLines.slice(0, 3).join(' ') ||
-      `This topic covers ${topicLabel}. Refer to the source file for implementation details.`;
-
-    addQuestion({
-      type: 'interview',
-      kind: 'explain',
-      qid: makeQid(chapterName, topicIdentity, 'interview', 4),
-      difficulty: levelForKind('explain'),
-      chapter: chapterName,
-      topic: topicLabel,
-      question: `Explain the main ideas in ${topicLabel}.`,
-      modelAnswer: topicModelAnswer,
-      keyPoints: topicHeaderLines.slice(0, 3).length > 0
-        ? topicHeaderLines.slice(0, 3)
-        : [`This topic covers ${topicLabel}. Refer to the source file for implementation details.`],
-      explanation: `Use the source comments and code structure to summarize the topic clearly.`
-    });
 
     // ---- @quiz / @answer custom questions from Java source comments -----------
     (topic.customQuizzes || []).forEach((q, customIndex) => {
@@ -1654,47 +1515,10 @@ function buildStarterQuestions(chapterName, topics) {
 
     // ---- New question types A–F ------------------------------------------------
 
-    // A. Concept SCQ from notes
-    // The answer and every wrong option must be a real statement. Titles,
-    // headings and parameter notes are refused, and a generic philosophical word
-    // is only used when there is nothing better, because a word is not a
-    // description of a topic.
+    // ---- Concept check: which of these statements are true? --------------------
+    // The statements come from this topic and from other topics, so the learner has
+    // to recognise what really belongs to the concept rather than match a phrase.
     const conceptPool = topicNotes.filter(isUsableQuizStatement);
-    const currentFirstBullet = conceptPool[0];
-    if (currentFirstBullet) {
-      const otherBullets = [];
-      for (let i = 0; i < topics.length; i++) {
-        if (i === topicIndex) continue;
-        const otLines = (allTopicNoteLines[i] || []).filter(isUsableQuizStatement);
-        if (otLines.length > 0 && otLines[0] !== currentFirstBullet) {
-          otherBullets.push(otLines[0]);
-        }
-        if (otherBullets.length >= 3) break;
-      }
-      // Only ask the question when there are three genuine competing statements.
-      // Without them the "wrong" options would be nonsense, which is how this
-      // question type used to mark a heading as the correct answer.
-      if (otherBullets.length >= 3) {
-        const conceptOptions = shuffleArr([currentFirstBullet, ...otherBullets.slice(0, 3)]);
-        const conceptAnswer = conceptOptions.indexOf(currentFirstBullet);
-        if (conceptAnswer >= 0) {
-          addQuestion({
-            type: 'scq',
-            kind: 'concept',
-            qid: makeQid(chapterName, topicIdentity, 'concept-scq', 5),
-            difficulty: levelForKind('concept'),
-            chapter: chapterName,
-            topic: topicLabel,
-            question: `Which statement best describes ${topicLabel}?`,
-            options: conceptOptions,
-            answer: conceptAnswer,
-            explanation: `This is drawn directly from the notes for ${topicLabel}.`
-          });
-        }
-      }
-    }
-
-    // B. Multi-select True/False MCQ (only when topic has enough notes to provide quality distractors)
     const trueOptions = conceptPool.slice(0, 3);
     const falseOptions = [];
     for (let i = 0; i < topics.length; i++) {
@@ -1730,200 +1554,6 @@ function buildStarterQuestions(chapterName, topics) {
       }
     }
 
-    // C. Note fill-blank SCQ
-    // The blank is placed on a real technical term. Blanks on the first word of a
-    // sentence produced nonsense such as "___ notes (what each argument means...)"
-    // or "___ Variables", so a line without a recognised term is skipped instead.
-    const technicalTerms = [
-      'static', 'void', 'public', 'private', 'protected', 'extends', 'implements', 'final', 'super', 'this',
-      'new', 'throws', 'throw', 'class', 'interface', 'return', 'try', 'catch', 'finally', 'abstract', 'synchronized',
-      'String', 'StringBuilder', 'StringBuffer', 'immutable', 'mutable', 'method', 'constructor', 'object', 'instance',
-      'parameter', 'argument', 'overloading', 'overriding', 'inheritance', 'polymorphism', 'encapsulation', 'exception',
-      'compile', 'runtime', 'loop', 'array', 'operator', 'operand', 'expression', 'variable', 'field', 'constant',
-      'unchecked', 'checked', 'cast', 'pool', 'literal', 'recursion', 'iterator', 'generics', 'lambda', 'stream'
-    ];
-    let fillBlankGenerated = false;
-    for (const noteLine of topicNotes) {
-      if (fillBlankGenerated) break;
-      if (!noteLine || noteLine.length < 15) continue;
-      // Skip challenge descriptions and generated parameter notes, which are not
-      // concepts to be recalled.
-      if (/^(challenge|deep problem|hint|testcase|print|write|create|use|build)\b/i.test(noteLine)) continue;
-      if (/parameter notes|what each (argument|constructor)/i.test(noteLine)) continue;
-      if (!isUsableQuizStatement(noteLine)) continue;
-      const lowerLine = noteLine.toLowerCase();
-      const fillTerm = technicalTerms.find(term => new RegExp(`\\b${term}\\b`, 'i').test(noteLine));
-      if (!fillTerm) continue;
-      const fillWord = fillTerm;
-      const blanked = noteLine.replace(new RegExp(`\\b${fillWord}\\b`, 'i'), '___');
-      if (blanked === noteLine) continue;
-
-      const fillDistractors = [];
-      outer: for (let i = 0; i < topics.length; i++) {
-        if (i === topicIndex) continue;
-        const otLines = allTopicNoteLines[i] || [];
-        for (const ol of otLines) {
-          if (!ol) continue;
-          const otWords = ol.split(/\s+/);
-          for (const ow of otWords) {
-            const cleanOw = ow.replace(/[^a-zA-Z]/g, '');
-            if (cleanOw.length >= 5 && !stopWords.has(cleanOw.toLowerCase()) && cleanOw !== fillWord && !fillDistractors.includes(cleanOw)) {
-              fillDistractors.push(cleanOw);
-              break;
-            }
-          }
-          if (fillDistractors.length >= 3) break outer;
-        }
-      }
-      const genFillDistr = conceptFallbacks.filter(d => d !== fillWord);
-      let gfi = 0;
-      while (fillDistractors.length < 3 && gfi < genFillDistr.length) {
-        if (!fillDistractors.includes(genFillDistr[gfi]) && genFillDistr[gfi] !== fillWord) {
-          fillDistractors.push(genFillDistr[gfi]);
-        }
-        gfi++;
-      }
-      const fillOptions = shuffleArr([fillWord, ...fillDistractors.slice(0, 3)]);
-      const fillAnswer = fillOptions.indexOf(fillWord);
-      if (fillAnswer >= 0) {
-        addQuestion({
-          type: 'scq',
-          kind: 'fill-blank',
-          qid: makeQid(chapterName, topicIdentity, 'fill-blank', 5),
-          difficulty: levelForKind('fill-blank'),
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `Complete the blank: "${blanked}"`,
-          options: fillOptions,
-          answer: fillAnswer,
-          explanation: `The missing word is '${fillWord}', from the notes for ${topicLabel}.`
-        });
-        fillBlankGenerated = true;
-      }
-    }
-
-    // D. Gotcha SCQ
-    // Both the answer and the wrong options must be real statements. This kind
-    // was the worst offender: it selected a heading as the "important
-    // consideration", which is not an answer at all.
-    const gotchaLine = conceptPool.find(l => gotchaKeywords.some(kw => l.toLowerCase().includes(kw)));
-    if (gotchaLine) {
-      const gotchaDistractors = [];
-      for (let i = 0; i < topics.length; i++) {
-        if (i === topicIndex) continue;
-        const otLines = (allTopicNoteLines[i] || []).filter(isUsableQuizStatement);
-        for (const ol of otLines) {
-          if (ol !== gotchaLine && !gotchaDistractors.includes(ol)) {
-            gotchaDistractors.push(ol);
-            break;
-          }
-        }
-        if (gotchaDistractors.length >= 3) break;
-      }
-      const fallbacks = ['Always initialize variables before use.', 'Be careful with null references.', 'Avoid using raw types in generics.'];
-      let fi = 0;
-      while (gotchaDistractors.length < 3 && fi < fallbacks.length) {
-        if (!gotchaDistractors.includes(fallbacks[fi])) gotchaDistractors.push(fallbacks[fi]);
-        fi++;
-      }
-      const gotchaOptions = shuffleArr([gotchaLine, ...gotchaDistractors.slice(0, 3)]);
-      const gotchaAnswer = gotchaOptions.indexOf(gotchaLine);
-      if (gotchaAnswer >= 0) {
-        addQuestion({
-          type: 'scq',
-          kind: 'gotcha',
-          qid: makeQid(chapterName, topicIdentity, 'gotcha-scq', 5),
-          difficulty: levelForKind('gotcha'),
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `What is an important consideration when working with ${topicLabel}?`,
-          options: gotchaOptions,
-          answer: gotchaAnswer,
-          explanation: `This is a key gotcha or note taken directly from the source for ${topicLabel}.`
-        });
-      }
-    }
-
-    // E. Method return type SCQ
-    const methodRegex = /\b(public|private|protected)\s+(?:static\s+)?([A-Za-z_][\w<>\[\]]*)\s+(\w+)\s*\([^)]*\)\s*(?:throws\s+[\w,\s]+)?\s*\{/g;
-    let methodMatch;
-    while ((methodMatch = methodRegex.exec(topic.code)) !== null) {
-      const returnType = methodMatch[2].trim();
-      const methodName = methodMatch[3];
-      if (returnType === 'void') continue;
-      if (['if', 'while', 'for', 'switch', 'catch', 'class'].includes(methodName)) continue;
-      // Skip constructors (name matches class file name)
-      if (methodName === topic.fileName.replace('.java', '')) continue;
-
-      const rtDistractors = ['void', 'int', 'String', 'boolean'].filter(d => d !== returnType).slice(0, 3);
-      const rtOptions = shuffleArr([returnType, ...rtDistractors]);
-      const rtAnswer = rtOptions.indexOf(returnType);
-      if (rtAnswer >= 0) {
-        addQuestion({
-          type: 'scq',
-          kind: 'return-type',
-          qid: makeQid(chapterName, topicIdentity, 'return-type', 5),
-          difficulty: levelForKind('return-type'),
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `In ${topicLabel}, what does the method ${methodName}() return?`,
-          options: rtOptions,
-          answer: rtAnswer,
-          explanation: `The method ${methodName}() is declared with return type '${returnType}' in ${topic.fileName}.`
-        });
-      }
-      break; // one per topic
-    }
-
-    // F. Class relation SCQ
-    const extendsMatch = topic.code.match(/\bclass\s+(\w+)\s+extends\s+(\w+)/);
-    const implementsMatch = !extendsMatch && topic.code.match(/\bclass\s+(\w+)\s+implements\s+(\w+)/);
-
-    if (extendsMatch) {
-      const className = extendsMatch[1];
-      const parentName = extendsMatch[2];
-      const crBase = [parentName, 'Object', 'Comparable', 'Runnable'].filter((v, i, a) => a.indexOf(v) === i);
-      const crPadded = crBase.length >= 4 ? crBase.slice(0, 4)
-        : [...crBase, ...['Serializable', 'Cloneable'].filter(d => !crBase.includes(d))].slice(0, 4);
-      const crOptions = shuffleArr(crPadded);
-      const crAnswer = crOptions.indexOf(parentName);
-      if (crAnswer >= 0) {
-        addQuestion({
-          type: 'scq',
-          kind: 'class-relation',
-          qid: makeQid(chapterName, topicIdentity, 'class-relation', 5),
-          difficulty: levelForKind('class-relation'),
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `What does class ${className} extend?`,
-          options: crOptions,
-          answer: crAnswer,
-          explanation: `${className} extends ${parentName} as declared in ${topic.fileName}.`
-        });
-      }
-    } else if (implementsMatch) {
-      const className = implementsMatch[1];
-      const interfaceName = implementsMatch[2].trim();
-      const crBase = [interfaceName, 'Object', 'Comparable', 'Runnable'].filter((v, i, a) => a.indexOf(v) === i);
-      const crPadded = crBase.length >= 4 ? crBase.slice(0, 4)
-        : [...crBase, ...['Serializable', 'Cloneable'].filter(d => !crBase.includes(d))].slice(0, 4);
-      const crOptions = shuffleArr(crPadded);
-      const crAnswer = crOptions.indexOf(interfaceName);
-      if (crAnswer >= 0) {
-        addQuestion({
-          type: 'scq',
-          kind: 'class-relation',
-          qid: makeQid(chapterName, topicIdentity, 'class-relation', 5),
-          difficulty: levelForKind('class-relation'),
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `What interface does class ${className} implement?`,
-          options: crOptions,
-          answer: crAnswer,
-          explanation: `${className} implements ${interfaceName} as declared in ${topic.fileName}.`
-        });
-      }
-    }
   });
 
   return questions.map(q => assignTags(q));
