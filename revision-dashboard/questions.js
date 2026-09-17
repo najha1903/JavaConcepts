@@ -11662,13 +11662,13 @@ const QUESTIONS_BANK = {
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Vertebrates (Sub Class of Animal)",
+        "Each box on this diagram represents a Class",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
-        "Warm Blooded Cold Blooded"
+        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent."
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Inheritance.",
@@ -12073,7 +12073,7 @@ const QUESTIONS_BANK = {
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Inheritance Challenge Problem",
-        "name : String birthDate : String endDate : String intGetAge() double collectPay() terminate(String endDate)",
+        "intGetAge() double collectPay() terminate(String endDate)",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Create Worker Class -> This should be on top of the Hierarchy"
       ],
@@ -15246,7 +15246,10 @@ const QUICK_REVISION_BANK = {
       "- Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands)."
     ],
     "gotchas": [
-      "Critical Gotchas & Precedence Rules:"
+      "Critical Gotchas & Precedence Rules:",
+      "Note :- logical OR works the same way as logical AND. Double-pipe short-circuits, so it stops at the first true, while the single-pipe form always evaluates both sides.",
+      "Note :- when in doubt, add parentheses. They cost nothing and they remove the doubt.",
+      "Note :- on a line by itself, i++ and ++i do the same thing. The difference only shows when the value is used, such as in a print, an assignment, or an array index."
     ],
     "syntax": "public class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);",
     "badges": [
@@ -15296,6 +15299,50 @@ const QUICK_REVISION_BANK = {
             "`10 % 3` -> `1`"
           ]
         ]
+      },
+      {
+        "headers": [
+          "Category",
+          "Operators",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "Arithmetic",
+            "`+ - * / %`",
+            "`%` returns the remainder. `int / int` drops the fraction."
+          ],
+          [
+            "Unary",
+            "`+ - ++ -- !`",
+            "`++` and `--` change the variable itself by 1."
+          ],
+          [
+            "Relational",
+            "`< > <= >=`",
+            "Produces a boolean. Cannot be chained, so `a > b > c` is an error."
+          ],
+          [
+            "Equality",
+            "`== !=`",
+            "On primitives it compares values; on objects it compares references."
+          ],
+          [
+            "Logical",
+            "`&&` `&` `!`",
+            "Short-circuiting AND is `&&`; `&` always evaluates both sides."
+          ],
+          [
+            "Assignment",
+            "`= += -= *= /= %=`",
+            "The compound forms include an implicit cast back to the left-hand type."
+          ],
+          [
+            "Ternary",
+            "`?:`",
+            "Both branches must produce a compatible type."
+          ]
+        ]
       }
     ]
   },
@@ -15308,9 +15355,7 @@ const QUICK_REVISION_BANK = {
       "A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.",
       "Example: String s = \"Hello\" + \" World\" + \"!\"; — this is one statement split across multiple lines. It's still valid."
     ],
-    "gotchas": [
-      "Always be aware of scope, type constraints, and compiler rules in this area."
-    ],
+    "gotchas": [],
     "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +",
     "badges": [
       "main",
@@ -15401,9 +15446,7 @@ const QUICK_REVISION_BANK = {
       "Deep Problem: Pattern Rendering Engine — Use nested loops to generate multiple console-based patterns, including star triangles, a number pyramid, and a full multiplication table. The challenge mirrors the kind of structured output logic often needed in reporting and diagnostic tools.",
       "Java supports several looping statements for repetitive execution:"
     ],
-    "gotchas": [
-      "Always be aware of scope, type constraints, and compiler rules in this area."
-    ],
+    "gotchas": [],
     "syntax": "public class ForStatement {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Counting from 1 to 5:\");\r\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\r\n           System.out.println(counter);\r\n        }\r\n\r\n        System.out.println();",
     "badges": [
       "main",
@@ -15446,9 +15489,7 @@ const QUICK_REVISION_BANK = {
       "Deep Problem: Library Inventory Tracker — Design a compact library system that models books as objects, tracks a shared total count through a static field, and supports checkout and return workflows. The solution should show how instance state and class-wide state interact in a realistic domain model.",
       "1) A custom data type --> For example: String"
     ],
-    "gotchas": [
-      "Always be aware of scope, type constraints, and compiler rules in this area."
-    ],
+    "gotchas": [],
     "syntax": "public class ClassExample {\r\n\r\n    public static void main(String[] args) {\r\n        //  We can create String using 2 ways\r\n\r\n         // 1) Literal form\r\n\r\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\r\n           System.out.println(\"Literal String = \" + s);",
     "badges": [
       "Counter",
@@ -15616,9 +15657,7 @@ const QUICK_REVISION_BANK = {
       "Composition is a way to make the combination of classes act like a single coherent object",
       "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase."
     ],
-    "gotchas": [
-      "Always be aware of scope, type constraints, and compiler rules in this area."
-    ],
+    "gotchas": [],
     "syntax": "public class ComputerCase extends Product{\r\n\r\n    private String powerSupply;\r\n\r\n    public ComputerCase(String model, String manufacturer){\r\n        super(model,manufacturer);\r\n    }\r\n\r\n    public ComputerCase(String model, String manufacturer, String powerSupply){\r\n        super(model,manufacturer);",
     "badges": [
       "ComputerCase",

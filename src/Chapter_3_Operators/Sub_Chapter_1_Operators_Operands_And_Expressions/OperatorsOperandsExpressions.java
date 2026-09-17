@@ -17,6 +17,72 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // - Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.
 // - Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.
 // - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.
+//
+// Operator Categories (named by how many operands they take):
+// - Unary: one operand, such as `!flag`, `-5`, or `x++`
+// - Binary: two operands, such as `a + b`, `x > y`, or `p && q`
+// - Ternary: three operands, such as `condition ? valueIfTrue : valueIfFalse`
+//
+// Complete Operator Reference:
+// | Category | Operators | Notes |
+// |---|---|---|
+// | Arithmetic | `+ - * / %` | `%` returns the remainder. `int / int` drops the fraction. |
+// | Unary | `+ - ++ -- !` | `++` and `--` change the variable itself by 1. |
+// | Relational | `< > <= >=` | Produces a boolean. Cannot be chained, so `a > b > c` is an error. |
+// | Equality | `== !=` | On primitives it compares values; on objects it compares references. |
+// | Logical | `&&` `&` `!` | Short-circuiting AND is `&&`; `&` always evaluates both sides. |
+// | Assignment | `= += -= *= /= %=` | The compound forms include an implicit cast back to the left-hand type. |
+// | Ternary | `?:` | Both branches must produce a compatible type. |
+//
+// Note :- logical OR works the same way as logical AND. Double-pipe short-circuits, so it stops at the first true, while the single-pipe form always evaluates both sides.
+//
+// Precedence (highest first, so work out the top row before the rows below it):
+// 1) unary operators: increment, decrement, logical NOT, unary plus and minus
+// 2) multiplication, division and remainder
+// 3) addition and subtraction
+// 4) relational: less than, greater than, less-or-equal, greater-or-equal
+// 5) equality: double-equals and not-equals
+// 6) logical AND
+// 7) logical OR
+// 8) ternary
+// 9) assignment, including the compound forms
+// Note :- when in doubt, add parentheses. They cost nothing and they remove the doubt.
+//
+// Worked examples :-
+// 1) Precedence decides the result :-
+// System.out.println(2 + 3 * 4);        // prints 14, because * binds tighter than +
+// System.out.println((2 + 3) * 4);      // prints 20, the parentheses override precedence
+//
+// 2) Prefix or postfix changes the value you get back :-
+// int i = 5;
+// System.out.println(i++);              // prints 5, then i becomes 6. Use the value, then increment.
+// System.out.println(++i);              // prints 7. Increment first, then use the value.
+// Note :- on a line by itself, i++ and ++i do the same thing. The difference only shows when the value is used, such as in a print, an assignment, or an array index.
+//
+// 3) Integer division truncates, it does not round :-
+// System.out.println(10 / 3);           // prints 3, not 3.33
+// System.out.println(10 % 3);           // prints 1, the remainder
+// System.out.println(-10 % 3);          // prints -1. The sign follows the left operand, not the divisor.
+// Note :- to get 3.33, make one operand a decimal type: 10 / 3.0
+//
+// 4) Dividing by zero behaves differently for int and double :-
+// System.out.println(10 / 0);           // ArithmeticException: / by zero
+// System.out.println(10.0 / 0);         // prints Infinity, and throws no exception
+//
+// 5) The compound form carries its own cast :-
+// byte b = 10;
+// b += 5;                               // fine, += casts the int result back to byte
+// b = b + 5;                            // compile error, because b + 5 is an int
+// Note :- this is the reason the two lines above are not interchangeable.
+//
+// 6) A String turns everything after it into text :-
+// System.out.println(10 + 20 + "Java");     // prints 30Java
+// System.out.println("Java" + 10 + 20);     // prints Java1020
+// System.out.println("Java" + (10 + 20));   // prints Java30, the parentheses force the addition first
+//
+// Parameter notes :-
+// - divisor (the value on the right of `/` and `%`): choose a non-zero divisor for int arithmetic, because integer division by zero throws ArithmeticException. For double, the result is Infinity instead.
+// - leftOperand (`10 + 20`, `"Score: " + 10`): the operand you read first decides the operation. If it is a String, every `+` after it concatenates; if it is numeric, `+` adds until a String appears.
 
 
 // @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + "Java");

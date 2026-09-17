@@ -44,8 +44,18 @@ const CONCEPTS_DATA = [
             "type": "lines",
             "lines": [
               "`System.out.println` is three parts joined by dots :-",
-              "- `System` :- the class that gives access to the machine's standard streams.",
-              "- `out` :- the standard output stream, normally the console.",
+              "- `System` :- the class that gives access to the machine's standard streams."
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "- `out` :- the standard output stream, normally the console."
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
               "- `println` :- prints the value it is given, then a newline. Use `print` when no newline is wanted.",
               "Note :- the text inside the quotes is a String literal, and `println` accepts any value, not only text.",
               "What you should be able to do after this topic :-",
@@ -2329,7 +2339,163 @@ const CONCEPTS_DATA = [
               "Critical Gotchas & Precedence Rules:",
               "- Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.",
               "- Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.",
-              "- Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value."
+              "- Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.",
+              "Operator Categories (named by how many operands they take):",
+              "- Unary: one operand, such as `!flag`, `-5`, or `x++`",
+              "- Binary: two operands, such as `a + b`, `x > y`, or `p && q`",
+              "- Ternary: three operands, such as `condition ? valueIfTrue : valueIfFalse`",
+              "Complete Operator Reference:"
+            ]
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Category",
+              "Operators",
+              "Notes"
+            ],
+            "rows": [
+              [
+                "Arithmetic",
+                "`+ - * / %`",
+                "`%` returns the remainder. `int / int` drops the fraction."
+              ],
+              [
+                "Unary",
+                "`+ - ++ -- !`",
+                "`++` and `--` change the variable itself by 1."
+              ],
+              [
+                "Relational",
+                "`< > <= >=`",
+                "Produces a boolean. Cannot be chained, so `a > b > c` is an error."
+              ],
+              [
+                "Equality",
+                "`== !=`",
+                "On primitives it compares values; on objects it compares references."
+              ],
+              [
+                "Logical",
+                "`&&` `&` `!`",
+                "Short-circuiting AND is `&&`; `&` always evaluates both sides."
+              ],
+              [
+                "Assignment",
+                "`= += -= *= /= %=`",
+                "The compound forms include an implicit cast back to the left-hand type."
+              ],
+              [
+                "Ternary",
+                "`?:`",
+                "Both branches must produce a compatible type."
+              ]
+            ],
+            "lines": [
+              "Category — Operators — Notes",
+              "Arithmetic — `+ - * / %` — `%` returns the remainder. `int / int` drops the fraction.",
+              "Unary — `+ - ++ -- !` — `++` and `--` change the variable itself by 1.",
+              "Relational — `< > <= >=` — Produces a boolean. Cannot be chained, so `a > b > c` is an error.",
+              "Equality — `== !=` — On primitives it compares values; on objects it compares references.",
+              "Logical — `&&` `&` `!` — Short-circuiting AND is `&&`; `&` always evaluates both sides.",
+              "Assignment — `= += -= *= /= %=` — The compound forms include an implicit cast back to the left-hand type.",
+              "Ternary — `?:` — Both branches must produce a compatible type."
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Note :- logical OR works the same way as logical AND. Double-pipe short-circuits, so it stops at the first true, while the single-pipe form always evaluates both sides.",
+              "Precedence (highest first, so work out the top row before the rows below it):",
+              "1) unary operators: increment, decrement, logical NOT, unary plus and minus",
+              "2) multiplication, division and remainder",
+              "3) addition and subtraction",
+              "4) relational: less than, greater than, less-or-equal, greater-or-equal",
+              "5) equality: double-equals and not-equals",
+              "6) logical AND",
+              "7) logical OR",
+              "8) ternary",
+              "9) assignment, including the compound forms",
+              "Note :- when in doubt, add parentheses. They cost nothing and they remove the doubt.",
+              "Worked examples :-",
+              "1) Precedence decides the result :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "System.out.println(2 + 3 * 4);        // prints 14, because * binds tighter than +\r\nSystem.out.println((2 + 3) * 4);      // prints 20, the parentheses override precedence",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "2) Prefix or postfix changes the value you get back :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "int i = 5;\r\nSystem.out.println(i++);              // prints 5, then i becomes 6. Use the value, then increment.\r\nSystem.out.println(++i);              // prints 7. Increment first, then use the value.",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Note :- on a line by itself, i++ and ++i do the same thing. The difference only shows when the value is used, such as in a print, an assignment, or an array index.",
+              "3) Integer division truncates, it does not round :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "System.out.println(10 / 3);           // prints 3, not 3.33\r\nSystem.out.println(10 % 3);           // prints 1, the remainder\r\nSystem.out.println(-10 % 3);          // prints -1. The sign follows the left operand, not the divisor.",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Note :- to get 3.33, make one operand a decimal type: 10 / 3.0",
+              "4) Dividing by zero behaves differently for int and double :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "System.out.println(10 / 0);           // ArithmeticException: / by zero\r\nSystem.out.println(10.0 / 0);         // prints Infinity, and throws no exception",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "5) The compound form carries its own cast :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "byte b = 10;\r\nb += 5;                               // fine, += casts the int result back to byte\r\nb = b + 5;                            // compile error, because b + 5 is an int",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Note :- this is the reason the two lines above are not interchangeable.",
+              "6) A String turns everything after it into text :-"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "System.out.println(10 + 20 + \"Java\");     // prints 30Java\r\nSystem.out.println(\"Java\" + 10 + 20);     // prints Java1020\r\nSystem.out.println(\"Java\" + (10 + 20));   // prints Java30, the parentheses force the addition first",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Parameter notes :-",
+              "- divisor (the value on the right of `/` and `%`): choose a non-zero divisor for int arithmetic, because integer division by zero throws ArithmeticException. For double, the result is Infinity instead.",
+              "- leftOperand (`10 + 20`, `\"Score: \" + 10`): the operand you read first decides the operation. If it is a String, every `+` after it concatenates; if it is numeric, `+` adds until a String appears."
             ]
           }
         ],
@@ -2340,6 +2506,21 @@ const CONCEPTS_DATA = [
           "| `*` | Numeric | Multiplication | `4 * 5` -> `20` |",
           "| `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |",
           "| `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |",
+          "| Category | Operators | Notes |",
+          "| Arithmetic | `+ - * / %` | `%` returns the remainder. `int / int` drops the fraction. |",
+          "| Unary | `+ - ++ -- !` | `++` and `--` change the variable itself by 1. |",
+          "| Relational | `< > <= >=` | Produces a boolean. Cannot be chained, so `a > b > c` is an error. |",
+          "| Equality | `== !=` | On primitives it compares values; on objects it compares references. |",
+          "| Logical | `&&` `&` `!` | Short-circuiting AND is `&&`; `&` always evaluates both sides. |",
+          "| Assignment | `= += -= *= /= %=` | The compound forms include an implicit cast back to the left-hand type. |",
+          "| Ternary | `?:` | Both branches must produce a compatible type. |",
+          "prints 14, because * binds tighter than + prints 20, the parentheses override precedence",
+          "int i = 5; prints 5, then i becomes 6. Use the value, then increment.",
+          "prints 7. Increment first, then use the value.",
+          "prints 3, not 3.33 prints 1, the remainder prints -1. The sign follows the left operand, not the divisor.",
+          "ArithmeticException: / by zero prints Infinity, and throws no exception",
+          "byte b = 10; fine, += casts the int result back to byte compile error, because b + 5 is an int",
+          "prints 30Java prints Java1020 prints Java30, the parentheses force the addition first",
           "myVar = myVar + 1 is equivalent to myVar++ (increment by 1).",
           "myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).",
           "myVar = myVar + 2 is equivalent to myVar += 2.",
@@ -2908,7 +3089,7 @@ const CONCEPTS_DATA = [
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;\r\n// Core Concepts: Operators, Operands & Expression Evaluation\r\n// - Operator: A special symbol that performs operations on one or more operands and evaluates to a result.\r\n// - Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands).\r\n// - Expression: A combination of variables, literals, operators, and method calls that evaluates to a single output value.\r\n//\r\n// Operator Summary Table:\r\n// | Operator | Target Type | Behavior | Code Example |\r\n// |---|---|---|---|\r\n// | `+` | Numeric / String | Addition for numbers, Concatenation if any operand is String | `10 + 20` -> `30`, `\"Score: \" + 10` -> `\"Score: 10\"` |\r\n// | `-` | Numeric | Subtraction | `20 - 5` -> `15` |\r\n// | `*` | Numeric | Multiplication | `4 * 5` -> `20` |\r\n// | `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |\r\n// | `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |\r\n//\r\n// Critical Gotchas & Precedence Rules:\r\n// - Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.\r\n// - Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.\r\n// - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.\r\n\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");\r\n// @answer Output: 30Java\r\n// @answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);\r\n// @answer Output: Java1020 (NOT Java30)\r\n// @answer \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));\r\n// @answer Output: Java30\r\n// @answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".\r\n// @answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.\r\n\r\n// @quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?\r\n// @answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.\r\n// @answer Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.\r\n\r\n// @quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?\r\n// @answer = is the assignment operator, while == is the equality comparison operator.\r\n// @answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.\r\n// @answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);\r\n// @answer Output: big\r\n// @answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\".\r\n\r\n// @quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?\r\n// @answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.\r\n// @answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.\r\n// @answer After b += 5, the value of b becomes 15.\r\n\r\n// @quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?\r\n// @answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.\r\n// @answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.\r\n// @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().\r\n\r\n// @quiz (INTERVIEW TRAP) How do the operands you choose affect the + operator?\r\n// @answer If both operands are numeric, + performs addition. If either operand is a String, + performs concatenation for that operation.\r\n//\r\n// @quiz (OCJP) What is important about the right-hand value in myVar += 2?\r\n// @answer The right-hand value is the amount added before assigning back to myVar; compound assignment also performs an implicit cast when needed.\r\n// @quiz (INTERVIEW, EASY) Which statement correctly defines an operator, an operand, and an expression?\r\n// @option An operator is the symbol that performs an operation, an operand is a value or variable it acts on, and an expression is a combination that evaluates to one value. [correct]\r\n// @option An operator is the value being calculated, and an operand is the symbol that calculates it.\r\n// @option An expression is any line of code that ends with a semicolon.\r\n// @option An operand is always a literal value and can never be a variable or a method call.\r\n// @explain In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.\r\n// @why B: the two are the other way round. The symbol is the operator and the values are the operands.\r\n// @why C: a line ending in a semicolon is a statement. An expression is defined by producing a value, not by the semicolon.\r\n// @why D: an operand may be a literal, a variable, or a whole sub-expression such as (a + b).\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) Reading strictly left to right, what is printed by this statement?\r\n// @code System.out.println(10 + 20 + \"Java\");\r\n// @option 30Java [correct]\r\n// @option 1020Java\r\n// @option Java30\r\n// @option It does not compile, because + cannot mix int and String.\r\n// @explain Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + \"Java\" involves a String, so it becomes concatenation and produces 30Java.\r\n// @why B: 1020Java is what you get when the String appears first, as in \"Java\" + 10 + 20.\r\n// @why C: the string is on the right here, so it cannot come out in front of the number.\r\n// @why D: + with a String operand is legal. It concatenates rather than adding.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) What is printed when the String operand comes first?\r\n// @code System.out.println(\"Java\" + 10 + 20);\r\n// @option Java1020 [correct]\r\n// @option Java30\r\n// @option 30Java\r\n// @option It does not compile.\r\n// @explain Once the left operand is a String, every following + is concatenation. \"Java\" + 10 gives \"Java10\", and \"Java10\" + 20 gives \"Java1020\".\r\n// @why B: to get Java30 the addition must be forced first with parentheses: \"Java\" + (10 + 20).\r\n// @why C: the String is first, so the digits cannot appear before the word.\r\n// @why D: this is valid Java. It simply concatenates instead of adding.\r\n\r\n// @quiz (OCJP, HARD) Why does `byte b = 10; b += 5;` compile, while `b = b + 5;` does not?\r\n// @option Compound assignment performs an implicit narrowing cast back to byte, while b + 5 is promoted to int and cannot be assigned to byte without a cast. [correct]\r\n// @option += is only allowed on byte variables.\r\n// @option b + 5 is evaluated at runtime, so the compiler cannot check it.\r\n// @option The two forms are identical, and both compile.\r\n// @explain A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.\r\n// @why B: += works on every numeric type, not only byte.\r\n// @why C: the compiler resolves types at compile time, which is exactly why it rejects the plain addition.\r\n// @why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);\r\n\r\n// @quiz (OCJP, HARD) What is the difference between & and && for boolean expressions?\r\n// @option && short-circuits, so the right side is skipped when the left side is false. & always evaluates both sides. [correct]\r\n// @option & short-circuits, and && always evaluates both sides.\r\n// @option Both short-circuit in exactly the same way.\r\n// @option && can only be used with numbers, not with booleans.\r\n// @explain Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.\r\n// @why B: the behaviour is the other way round. & is the non-short-circuiting form.\r\n// @why C: they differ precisely in whether the right operand is evaluated.\r\n// @why D: && is a logical operator for booleans. The bitwise form & also works on integers, but that is a separate use.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What are the results of 10 / 3 and 10 % 3?\r\n// @option 3 and 1 [correct]\r\n// @option 3.33 and 1\r\n// @option 3 and 0\r\n// @option 1 and 3\r\n// @explain With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.\r\n// @why B: 10 / 3 cannot produce 3.33, because both operands are int.\r\n// @why C: the remainder is 1, not 0. 3 * 3 is 9, and 10 - 9 = 1.\r\n// @why D: the two results are swapped. / gives the whole part and % gives the remainder.\r\n\r\n// @quiz (OCJP, HARD) What happens with `int x = 5; if (x = 5) { ... }`?\r\n// @option It does not compile, because x = 5 is an int assignment and if requires a boolean condition. [correct]\r\n// @option It compiles and the block always runs.\r\n// @option It compiles but the block never runs.\r\n// @option It compiles and prints a warning only.\r\n// @explain = assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.\r\n// @why B: it never reaches runtime. The type error is found while compiling.\r\n// @why C: the code does not compile at all, so nothing runs.\r\n// @why D: Java reports this as an error, not a warning.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this statement?\r\n// @code System.out.println(2 + 3 * 4);\r\n// @option 14, because * is evaluated before +. [correct]\r\n// @option 20, because + is evaluated first.\r\n// @option 24, because the expression is read left to right.\r\n// @option It does not compile without parentheses.\r\n// @explain Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.\r\n// @why B: + is lower precedence than *, so it cannot run first.\r\n// @why C: left-to-right order applies between operators of the same precedence, which these are not.\r\n// @why D: the expression is perfectly legal, and parentheses are only needed to change the order.\r\n\r\n// @quiz (OCJP, HARD) Does this condition compile?\r\n// @code int a = 5, b = 3, c = 1;\r\n// @code if (a > b > c) { System.out.println(\"yes\"); }\r\n// @option No. a > b produces a boolean, and a boolean cannot be compared with c using >. [correct]\r\n// @option Yes, and it prints yes.\r\n// @option Yes, and it prints nothing.\r\n// @option Yes, because Java compares all three values at once.\r\n// @explain The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.\r\n// @why B: the compiler rejects the expression, so nothing runs.\r\n// @why C: it never reaches runtime for the same reason.\r\n// @why D: Java has no three-way comparison like that. You must chain with &&.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Does this line compile?\r\n// @code int x = true ? 1 : \"one\";\r\n// @option No. The two branches have incompatible types, int and String. [correct]\r\n// @option Yes, and x becomes 1.\r\n// @option Yes, and x becomes the text \"one\".\r\n// @option Yes, because Java converts the String to a number.\r\n// @explain The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.\r\n// @why B: it does not compile, so nothing is assigned.\r\n// @why C: the same type problem stops it, and \"one\" could never go into an int.\r\n// @why D: Java does not convert text to a number automatically. That is what Integer.parseInt is for.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this code?\r\n// @code String s = \"Total: \";\r\n// @code s += 10 + 20;\r\n// @code System.out.println(s);\r\n// @option Total: 30, because 10 + 20 is worked out before the concatenation. [correct]\r\n// @option Total: 1020, because += concatenates everything.\r\n// @option Total: 30 is not possible, since += only concatenates text.\r\n// @option It does not compile, because += cannot be used with a String.\r\n// @explain The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.\r\n// @why B: 1020 would need the String to be involved in the addition, which it is not.\r\n// @why C: += performs concatenation for a String, and the numeric part is already resolved.\r\n// @why D: += with a String is legal and is one of the most common uses of compound assignment.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What does the ! operator do, and what is printed?\r\n// @code boolean ready = false;\r\n// @code System.out.println(!ready);\r\n// @option true, because ! inverts a boolean value. [correct]\r\n// @option false, because ! leaves the value unchanged.\r\n// @option It does not compile, because ! needs a number.\r\n// @option -1, because ! negates the value numerically.\r\n// @explain ! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.\r\n// @why B: inversion is exactly what it does, so the value must change.\r\n// @why C: ! requires a boolean, and ready is one.\r\n// @why D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign.\r\n\r\npublic class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);\r\n\r\n        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).\r\n        myVar++;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).\r\n        myVar--;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar + 2 is equivalent to myVar += 2.\r\n        myVar += 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 2 is equivalent to myVar -= 2.\r\n        myVar -= 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar * 10 is equivalent to myVar *= 10.\r\n        myVar *= 10;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar / 10 is equivalent to myVar /= 10.\r\n        myVar /= 10;\r\n        System.out.println(myVar);\r\n\r\n    }\r\n}\r\n"
+        "code": "package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;\r\n// Core Concepts: Operators, Operands & Expression Evaluation\r\n// - Operator: A special symbol that performs operations on one or more operands and evaluates to a result.\r\n// - Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands).\r\n// - Expression: A combination of variables, literals, operators, and method calls that evaluates to a single output value.\r\n//\r\n// Operator Summary Table:\r\n// | Operator | Target Type | Behavior | Code Example |\r\n// |---|---|---|---|\r\n// | `+` | Numeric / String | Addition for numbers, Concatenation if any operand is String | `10 + 20` -> `30`, `\"Score: \" + 10` -> `\"Score: 10\"` |\r\n// | `-` | Numeric | Subtraction | `20 - 5` -> `15` |\r\n// | `*` | Numeric | Multiplication | `4 * 5` -> `20` |\r\n// | `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |\r\n// | `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |\r\n//\r\n// Critical Gotchas & Precedence Rules:\r\n// - Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.\r\n// - Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.\r\n// - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.\r\n//\r\n// Operator Categories (named by how many operands they take):\r\n// - Unary: one operand, such as `!flag`, `-5`, or `x++`\r\n// - Binary: two operands, such as `a + b`, `x > y`, or `p && q`\r\n// - Ternary: three operands, such as `condition ? valueIfTrue : valueIfFalse`\r\n//\r\n// Complete Operator Reference:\r\n// | Category | Operators | Notes |\r\n// |---|---|---|\r\n// | Arithmetic | `+ - * / %` | `%` returns the remainder. `int / int` drops the fraction. |\r\n// | Unary | `+ - ++ -- !` | `++` and `--` change the variable itself by 1. |\r\n// | Relational | `< > <= >=` | Produces a boolean. Cannot be chained, so `a > b > c` is an error. |\r\n// | Equality | `== !=` | On primitives it compares values; on objects it compares references. |\r\n// | Logical | `&&` `&` `!` | Short-circuiting AND is `&&`; `&` always evaluates both sides. |\r\n// | Assignment | `= += -= *= /= %=` | The compound forms include an implicit cast back to the left-hand type. |\r\n// | Ternary | `?:` | Both branches must produce a compatible type. |\r\n//\r\n// Note :- logical OR works the same way as logical AND. Double-pipe short-circuits, so it stops at the first true, while the single-pipe form always evaluates both sides.\r\n//\r\n// Precedence (highest first, so work out the top row before the rows below it):\r\n// 1) unary operators: increment, decrement, logical NOT, unary plus and minus\r\n// 2) multiplication, division and remainder\r\n// 3) addition and subtraction\r\n// 4) relational: less than, greater than, less-or-equal, greater-or-equal\r\n// 5) equality: double-equals and not-equals\r\n// 6) logical AND\r\n// 7) logical OR\r\n// 8) ternary\r\n// 9) assignment, including the compound forms\r\n// Note :- when in doubt, add parentheses. They cost nothing and they remove the doubt.\r\n//\r\n// Worked examples :-\r\n// 1) Precedence decides the result :-\r\n// System.out.println(2 + 3 * 4);        // prints 14, because * binds tighter than +\r\n// System.out.println((2 + 3) * 4);      // prints 20, the parentheses override precedence\r\n//\r\n// 2) Prefix or postfix changes the value you get back :-\r\n// int i = 5;\r\n// System.out.println(i++);              // prints 5, then i becomes 6. Use the value, then increment.\r\n// System.out.println(++i);              // prints 7. Increment first, then use the value.\r\n// Note :- on a line by itself, i++ and ++i do the same thing. The difference only shows when the value is used, such as in a print, an assignment, or an array index.\r\n//\r\n// 3) Integer division truncates, it does not round :-\r\n// System.out.println(10 / 3);           // prints 3, not 3.33\r\n// System.out.println(10 % 3);           // prints 1, the remainder\r\n// System.out.println(-10 % 3);          // prints -1. The sign follows the left operand, not the divisor.\r\n// Note :- to get 3.33, make one operand a decimal type: 10 / 3.0\r\n//\r\n// 4) Dividing by zero behaves differently for int and double :-\r\n// System.out.println(10 / 0);           // ArithmeticException: / by zero\r\n// System.out.println(10.0 / 0);         // prints Infinity, and throws no exception\r\n//\r\n// 5) The compound form carries its own cast :-\r\n// byte b = 10;\r\n// b += 5;                               // fine, += casts the int result back to byte\r\n// b = b + 5;                            // compile error, because b + 5 is an int\r\n// Note :- this is the reason the two lines above are not interchangeable.\r\n//\r\n// 6) A String turns everything after it into text :-\r\n// System.out.println(10 + 20 + \"Java\");     // prints 30Java\r\n// System.out.println(\"Java\" + 10 + 20);     // prints Java1020\r\n// System.out.println(\"Java\" + (10 + 20));   // prints Java30, the parentheses force the addition first\r\n//\r\n// Parameter notes :-\r\n// - divisor (the value on the right of `/` and `%`): choose a non-zero divisor for int arithmetic, because integer division by zero throws ArithmeticException. For double, the result is Infinity instead.\r\n// - leftOperand (`10 + 20`, `\"Score: \" + 10`): the operand you read first decides the operation. If it is a String, every `+` after it concatenates; if it is numeric, `+` adds until a String appears.\r\n\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + \"Java\");\r\n// @answer Output: 30Java\r\n// @answer + is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat).\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + 10 + 20);\r\n// @answer Output: Java1020 (NOT Java30)\r\n// @answer \"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: System.out.println(\"Java\" + (10 + 20));\r\n// @answer Output: Java30\r\n// @answer Parentheses force (10 + 20) to be evaluated as arithmetic first = 30. Then \"Java\" + 30 = \"Java30\".\r\n// @answer This is the FIX when you want arithmetic inside a String expression: wrap with parentheses.\r\n\r\n// @quiz (INTERVIEW) What is the golden rule for the + operator in Java when Strings are involved?\r\n// @answer Java evaluates + strictly left to right. If BOTH operands are numeric, + is arithmetic addition. The moment one operand is a String, + becomes String concatenation for that operation and all subsequent ones in the same expression.\r\n// @answer Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations.\r\n\r\n// @quiz (INTERVIEW TRAP) What is wrong with writing if (x = 5) instead of if (x == 5)?\r\n// @answer = is the assignment operator, while == is the equality comparison operator.\r\n// @answer With int x, if (x = 5) does not compare anything; it tries to assign 5 to x and causes a compile-time error because if requires a boolean expression, not an int.\r\n// @answer The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5.\r\n\r\n// @quiz (INTERVIEW TRAP) What is the output of: int x = 10; String result = (x > 5) ? \"big\" : \"small\"; System.out.println(result);\r\n// @answer Output: big\r\n// @answer The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\".\r\n\r\n// @quiz (INTERVIEW) Why does byte b = 10; b += 5; compile, but b = b + 5; does not?\r\n// @answer b += 5 is a compound assignment, and Java automatically inserts an implicit cast back to byte after doing the addition.\r\n// @answer b = b + 5 does not compile because b + 5 is promoted to int, and Java will not assign that int back to byte without an explicit cast.\r\n// @answer After b += 5, the value of b becomes 15.\r\n\r\n// @quiz (INTERVIEW) What is the difference between & and && when used with boolean expressions?\r\n// @answer && is the short-circuit logical AND. If the left side is false, Java skips evaluating the right side.\r\n// @answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.\r\n// @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().\r\n\r\n// @quiz (INTERVIEW TRAP) How do the operands you choose affect the + operator?\r\n// @answer If both operands are numeric, + performs addition. If either operand is a String, + performs concatenation for that operation.\r\n//\r\n// @quiz (OCJP) What is important about the right-hand value in myVar += 2?\r\n// @answer The right-hand value is the amount added before assigning back to myVar; compound assignment also performs an implicit cast when needed.\r\n// @quiz (INTERVIEW, EASY) Which statement correctly defines an operator, an operand, and an expression?\r\n// @option An operator is the symbol that performs an operation, an operand is a value or variable it acts on, and an expression is a combination that evaluates to one value. [correct]\r\n// @option An operator is the value being calculated, and an operand is the symbol that calculates it.\r\n// @option An expression is any line of code that ends with a semicolon.\r\n// @option An operand is always a literal value and can never be a variable or a method call.\r\n// @explain In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.\r\n// @why B: the two are the other way round. The symbol is the operator and the values are the operands.\r\n// @why C: a line ending in a semicolon is a statement. An expression is defined by producing a value, not by the semicolon.\r\n// @why D: an operand may be a literal, a variable, or a whole sub-expression such as (a + b).\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) Reading strictly left to right, what is printed by this statement?\r\n// @code System.out.println(10 + 20 + \"Java\");\r\n// @option 30Java [correct]\r\n// @option 1020Java\r\n// @option Java30\r\n// @option It does not compile, because + cannot mix int and String.\r\n// @explain Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + \"Java\" involves a String, so it becomes concatenation and produces 30Java.\r\n// @why B: 1020Java is what you get when the String appears first, as in \"Java\" + 10 + 20.\r\n// @why C: the string is on the right here, so it cannot come out in front of the number.\r\n// @why D: + with a String operand is legal. It concatenates rather than adding.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) What is printed when the String operand comes first?\r\n// @code System.out.println(\"Java\" + 10 + 20);\r\n// @option Java1020 [correct]\r\n// @option Java30\r\n// @option 30Java\r\n// @option It does not compile.\r\n// @explain Once the left operand is a String, every following + is concatenation. \"Java\" + 10 gives \"Java10\", and \"Java10\" + 20 gives \"Java1020\".\r\n// @why B: to get Java30 the addition must be forced first with parentheses: \"Java\" + (10 + 20).\r\n// @why C: the String is first, so the digits cannot appear before the word.\r\n// @why D: this is valid Java. It simply concatenates instead of adding.\r\n\r\n// @quiz (OCJP, HARD) Why does `byte b = 10; b += 5;` compile, while `b = b + 5;` does not?\r\n// @option Compound assignment performs an implicit narrowing cast back to byte, while b + 5 is promoted to int and cannot be assigned to byte without a cast. [correct]\r\n// @option += is only allowed on byte variables.\r\n// @option b + 5 is evaluated at runtime, so the compiler cannot check it.\r\n// @option The two forms are identical, and both compile.\r\n// @explain A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.\r\n// @why B: += works on every numeric type, not only byte.\r\n// @why C: the compiler resolves types at compile time, which is exactly why it rejects the plain addition.\r\n// @why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);\r\n\r\n// @quiz (OCJP, HARD) What is the difference between & and && for boolean expressions?\r\n// @option && short-circuits, so the right side is skipped when the left side is false. & always evaluates both sides. [correct]\r\n// @option & short-circuits, and && always evaluates both sides.\r\n// @option Both short-circuit in exactly the same way.\r\n// @option && can only be used with numbers, not with booleans.\r\n// @explain Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.\r\n// @why B: the behaviour is the other way round. & is the non-short-circuiting form.\r\n// @why C: they differ precisely in whether the right operand is evaluated.\r\n// @why D: && is a logical operator for booleans. The bitwise form & also works on integers, but that is a separate use.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What are the results of 10 / 3 and 10 % 3?\r\n// @option 3 and 1 [correct]\r\n// @option 3.33 and 1\r\n// @option 3 and 0\r\n// @option 1 and 3\r\n// @explain With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.\r\n// @why B: 10 / 3 cannot produce 3.33, because both operands are int.\r\n// @why C: the remainder is 1, not 0. 3 * 3 is 9, and 10 - 9 = 1.\r\n// @why D: the two results are swapped. / gives the whole part and % gives the remainder.\r\n\r\n// @quiz (OCJP, HARD) What happens with `int x = 5; if (x = 5) { ... }`?\r\n// @option It does not compile, because x = 5 is an int assignment and if requires a boolean condition. [correct]\r\n// @option It compiles and the block always runs.\r\n// @option It compiles but the block never runs.\r\n// @option It compiles and prints a warning only.\r\n// @explain = assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.\r\n// @why B: it never reaches runtime. The type error is found while compiling.\r\n// @why C: the code does not compile at all, so nothing runs.\r\n// @why D: Java reports this as an error, not a warning.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this statement?\r\n// @code System.out.println(2 + 3 * 4);\r\n// @option 14, because * is evaluated before +. [correct]\r\n// @option 20, because + is evaluated first.\r\n// @option 24, because the expression is read left to right.\r\n// @option It does not compile without parentheses.\r\n// @explain Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.\r\n// @why B: + is lower precedence than *, so it cannot run first.\r\n// @why C: left-to-right order applies between operators of the same precedence, which these are not.\r\n// @why D: the expression is perfectly legal, and parentheses are only needed to change the order.\r\n\r\n// @quiz (OCJP, HARD) Does this condition compile?\r\n// @code int a = 5, b = 3, c = 1;\r\n// @code if (a > b > c) { System.out.println(\"yes\"); }\r\n// @option No. a > b produces a boolean, and a boolean cannot be compared with c using >. [correct]\r\n// @option Yes, and it prints yes.\r\n// @option Yes, and it prints nothing.\r\n// @option Yes, because Java compares all three values at once.\r\n// @explain The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.\r\n// @why B: the compiler rejects the expression, so nothing runs.\r\n// @why C: it never reaches runtime for the same reason.\r\n// @why D: Java has no three-way comparison like that. You must chain with &&.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Does this line compile?\r\n// @code int x = true ? 1 : \"one\";\r\n// @option No. The two branches have incompatible types, int and String. [correct]\r\n// @option Yes, and x becomes 1.\r\n// @option Yes, and x becomes the text \"one\".\r\n// @option Yes, because Java converts the String to a number.\r\n// @explain The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.\r\n// @why B: it does not compile, so nothing is assigned.\r\n// @why C: the same type problem stops it, and \"one\" could never go into an int.\r\n// @why D: Java does not convert text to a number automatically. That is what Integer.parseInt is for.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this code?\r\n// @code String s = \"Total: \";\r\n// @code s += 10 + 20;\r\n// @code System.out.println(s);\r\n// @option Total: 30, because 10 + 20 is worked out before the concatenation. [correct]\r\n// @option Total: 1020, because += concatenates everything.\r\n// @option Total: 30 is not possible, since += only concatenates text.\r\n// @option It does not compile, because += cannot be used with a String.\r\n// @explain The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.\r\n// @why B: 1020 would need the String to be involved in the addition, which it is not.\r\n// @why C: += performs concatenation for a String, and the numeric part is already resolved.\r\n// @why D: += with a String is legal and is one of the most common uses of compound assignment.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What does the ! operator do, and what is printed?\r\n// @code boolean ready = false;\r\n// @code System.out.println(!ready);\r\n// @option true, because ! inverts a boolean value. [correct]\r\n// @option false, because ! leaves the value unchanged.\r\n// @option It does not compile, because ! needs a number.\r\n// @option -1, because ! negates the value numerically.\r\n// @explain ! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.\r\n// @why B: inversion is exactly what it does, so the value must change.\r\n// @why C: ! requires a boolean, and ready is one.\r\n// @why D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign.\r\n\r\npublic class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);\r\n\r\n        // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).\r\n        myVar++;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).\r\n        myVar--;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar + 2 is equivalent to myVar += 2.\r\n        myVar += 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar - 2 is equivalent to myVar -= 2.\r\n        myVar -= 2;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar * 10 is equivalent to myVar *= 10.\r\n        myVar *= 10;\r\n        System.out.println(myVar);\r\n\r\n        // myVar = myVar / 10 is equivalent to myVar /= 10.\r\n        myVar /= 10;\r\n        System.out.println(myVar);\r\n\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_3_Operators/Sub_Chapter_2_OperatorsChallenge/OperatorChallenge.java",
@@ -5765,8 +5946,18 @@ const CONCEPTS_DATA = [
             "type": "lines",
             "lines": [
               "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-              "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
-              "Traditional switch: case 1: ... break; Enhanced switch: case 1 -> ...",
+              "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed."
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "Traditional switch: case 1: ... break; Enhanced switch: case 1 -> ..."
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
               "Multiple values can be grouped with comma-separated lists: case 3, 4, 5 -> ... (instead of stacking three case labels)",
               "The enhanced switch can be used as an EXPRESSION — it can return a value directly. This makes code concise and readable."
             ]
@@ -8650,8 +8841,18 @@ const CONCEPTS_DATA = [
               "Double.parseDouble(\"3.14\") -> double 3.14",
               "Long.parseLong(\"1000000\") -> long 1000000",
               "If the String cannot be parsed (e.g., \"abc\"), a NumberFormatException is thrown at runtime.",
-              "The Scanner class (java.util.Scanner) is the standard way to read keyboard input in Java.",
-              "To use Scanner: import java.util.Scanner; Scanner sc = new Scanner(System.in);",
+              "The Scanner class (java.util.Scanner) is the standard way to read keyboard input in Java."
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "To use Scanner: import java.util.Scanner; Scanner sc = new Scanner(System.in);"
+            ]
+          },
+          {
+            "type": "lines",
+            "lines": [
               "Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.",
               "Always close the Scanner when done: sc.close(); (or use try-with-resources).",
               "The import statement lets you use classes defined in Java's standard library or other packages.",
@@ -11892,15 +12093,40 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "POJO CONCEPTS",
-              "i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data",
+              "POJO CONCEPTS"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "ii) It's used to house data and pass data between functional classes.",
               "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
-              "iv) Many database frameworks use POJO's to read data from, or to write data to databases,files or streams.",
-              "v) Examples :- i) A POJO also might be called a bean or a JavaBean.",
+              "iv) Many database frameworks use POJO's to read data from, or to write data to databases,files or streams."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "v) Examples :- i) A POJO also might be called a bean or a JavaBean."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "ii) A JavaBean is just a POJO with some extra rules applied to it.",
               "iii) These rules are in place so that Java frameworks have a standard way to manipulate and manage these objects.",
-              "iv) A POJO is sometimes called an Entity because it mirrors database entities.",
+              "iv) A POJO is sometimes called an Entity because it mirrors database entities."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "v) Another acronym is DTO for Data Transfer Object. It's a description of an object that can be modeled as just data."
             ]
           },
@@ -12223,8 +12449,18 @@ const CONCEPTS_DATA = [
               "2) Static variables are also known as static member variables. They belong to the class, not the instance",
               "3) Every instance of the class shares the same static variable.",
               "4) If changes are made to that variable, all other instances of that class will see the effect of that change.",
-              "5) Static variables can be used to :-",
-              "i) Storing counters",
+              "5) Static variables can be used to :-"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "i) Storing counters"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "ii) Generating unique IDs",
               "iii) Storing constant value that doesn't change. For example: value of pi",
               "iv) Creating and controlling access to a shared resource. For example: log file, a database, input stream, output stream etc",
@@ -12334,12 +12570,33 @@ const CONCEPTS_DATA = [
               "4) Similar to a constructor, we can set up some parameters within those parentheses.",
               "5) After setting up the required necessary parameters within the parentheses of the Record type class, we don't have to do anything.",
               "Everything else is handled internally.",
-              "6) The part that's in parentheses, is called the record header.",
-              "i) The record header consists of record components, a comma-delimited list of components.",
+              "6) The part that's in parentheses, is called the record header."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "i) The record header consists of record components, a comma-delimited list of components."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "ii) For each component in the header, Java generates: A field with the same name and declared type as the record component. It sets up fields for us as we have them in the parentheses.",
               "iii) These become the fields of the record. The field is declared private and final.",
-              "iv) Simply put, it means the field can't be modified.",
-              "v) The field is sometimes referred to as a component field. Java generates a toString method that prints out each attribute in a formatted String.",
+              "iv) Simply put, it means the field can't be modified."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "v) The field is sometimes referred to as a component field. Java generates a toString method that prints"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "out each attribute in a formatted String.",
               "vi) In addition to creating a private final field for each component, Java generates a public accessor method for each component.",
               "This method has the same name and type of the component, but it doesn't have any kind of special prefix like get or is."
             ]
@@ -12788,10 +13045,18 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Animal (Base Class)",
-              "Vertebrates (Sub Class of Animal)",
-              "Warm Blooded Cold Blooded",
-              "Mammal Bird Fish Reptiles",
-              "Dog Cat Salmon GoldFish",
+              "Vertebrates (Sub Class of Animal)"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "text",
+            "code": "                   Warm Blooded                   Cold Blooded\n             Mammal              Bird       Fish             Reptiles\n   Dog                  Cat      Salmon              GoldFish",
+            "lines": []
+          },
+          {
+            "type": "block",
+            "lines": [
               "Each box on this diagram represents a Class",
               "The most generic, or base class, starts at the top of the hierarchy.",
               "Every class below it is a subclass.",
@@ -13192,14 +13457,60 @@ const CONCEPTS_DATA = [
             "lines": [
               "Inheritance Challenge Problem",
               "Create Worker Class -> This should be on top of the Hierarchy",
-              "Create attributes :-",
-              "name : String birthDate : String endDate : String intGetAge() double collectPay() terminate(String endDate)",
+              "Create attributes :-"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "name : String"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "birthDate : String"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "endDate : String"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "intGetAge() double collectPay() terminate(String endDate)",
               "Below the Worker Class, introduce another Class named Employee which extends the Worker Class",
               "Create Attributes :-",
-              "employeeId : long hireDate : String",
+              "employeeId : long"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "hireDate : String"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "Create Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee",
               "For SalariedEmployee, Create Attributes :-",
-              "annualSalary : double isRetired : boolean retire()",
+              "annualSalary : double"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "isRetired : boolean"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "retire()",
               "For HourlyEmployee, Create Attributes :-",
               "hourlyPayRate : double getDoublePay()"
             ]
@@ -14649,8 +14960,18 @@ const CONCEPTS_DATA = [
               "3) String Manipulation Methods :- These return a new String after a transformation. For example :- substring(), replace(), replaceAll(), replaceFirst(), concat(), join(), repeat(), indent(), strip(), trim(), toLowerCase(), toUpperCase().",
               "Note :- the original String is never changed, because String is immutable. Every method of the String class returns a new String instead of changing the existing one.",
               "---- Important points to remember ----",
-              "1) isEmpty() vs isBlank() :-",
-              "isEmpty() returns true only when the length is 0, so a String with only spaces, like \" \", returns false.",
+              "1) isEmpty() vs isBlank() :-"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "isEmpty() returns true only when the length is 0, so a String with only spaces, like \" \", returns false."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "isBlank() returns true when the length is 0, or when the String has only whitespace characters.",
               "Note :- for user input validation, always use isBlank(), otherwise the user can enter spaces and bypass it.",
               "2) trim() vs strip() (JDK 11+) :-",
@@ -14887,7 +15208,12 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "String -> immutable; each method call returns a NEW String instance.",
+              "String -> immutable; each method call returns a NEW String instance."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "StringBuilder -> mutable class that lets us change its text value in place.",
               "Instantiating String Objects"
             ]
@@ -14913,8 +15239,18 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "There are four ways to create a StringBuilder with the new keyword:",
-              "i) Pass a String",
+              "There are four ways to create a StringBuilder with the new keyword:"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "i) Pass a String"
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "ii) Pass no arguments at all",
               "iii) Pass an integer initial capacity",
               "iv) Pass another CharSequence (like a StringBuilder)"
@@ -15875,8 +16211,18 @@ const CONCEPTS_DATA = [
               "Composition defines HAS-A relationship",
               "Product model:String manufacturer:String width:int height:int depth:int",
               "| All the below classes will extend the Product Class",
-              "| All of these class inherits from the Product",
-              "PersonalComputer Monitor MotherBoard ComputerCase size:int ramSlots:int powerSupply:String resolution:String cardSlots:int pressPowerButton() drawPixel(int x,int y,String color) bios:String monitor:Monitor ------------------------- | |",
+              "| All of these class inherits from the Product"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "text",
+            "code": "  PersonalComputer              Monitor                                          MotherBoard             ComputerCase\n                                size:int                                         ramSlots:int            powerSupply:String\n                                resolution:String                                cardSlots:int           pressPowerButton()\n                                drawPixel(int x,int y,String color)              bios:String\n monitor:Monitor -------------------------                                            |                        |\n motherBoard:MotherBoard --------------------------------------------------------------                        |\n computerCase:ComputerCase ----------------------------------------------------------------------------------- |",
+            "lines": []
+          },
+          {
+            "type": "block",
+            "lines": [
               "The Monitor, MotherBoard and ComputerCase, are also part of Personal Computer",
               "In other words, Personal Computer HAS-A Monitor, MotherBoard and ComputerCase"
             ]
@@ -16232,9 +16578,30 @@ const CONCEPTS_DATA = [
               "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.",
               "Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.",
               "This is the difference between HAS-A (composition) and IS-A (inheritance).",
-              "This exercise works with the parts as simple values, so the idea can be practised without building the whole object graph.",
-              "describePart :- returns the part as \"model by manufacturer\", or \"incomplete part\" when either value is missing.",
-              "totalCost :- adds the three part prices to give the cost of the whole build.",
+              "This exercise works with the parts as simple values, so the idea can be practised without building the whole object graph."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "describePart :- returns the part as \"model by manufacturer\", or \"incomplete part\""
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "when either value is missing."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
+              "totalCost :- adds the three part prices to give the cost of the whole build."
+            ]
+          },
+          {
+            "type": "block",
+            "lines": [
               "isFullyAssembled :- returns true only when every part is present."
             ]
           }

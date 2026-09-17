@@ -8,7 +8,7 @@ const vm = require('vm');
 // from this list is not recognised as tool syntax, so it shows up in the
 // author's notes as if he had written it. Always add new markers here.
 // ==========================================================================
-const MARKER_KEYWORDS = 'quiz|answer|option|explain|why|code|challenge|desc|hint|testcase|section';
+const MARKER_KEYWORDS = 'quiz|answer|option|explain|why|code|challenge|desc|hint|testcase|section|takeaway|gotcha';
 const MARKER_AFTER_SLASHES = new RegExp(`^//\\s*@(?:${MARKER_KEYWORDS})\\b`, 'i');
 const MARKER_BARE = new RegExp(`^@(?:${MARKER_KEYWORDS})\\b`, 'i');
 
@@ -98,6 +98,12 @@ function parseJavaFile(filePath, rootDir) {
     if (/^[|\s]*[|_\-/\\|]+[|\s]*$/.test(n)) return false;
     const letters = (n.match(/[A-Za-z]/g) || []).length;
     if (letters < 3) return false;
+    // A line that contains a real word is a note, even when it is mostly symbols.
+    // This test comes before the ratio below so that a line such as
+    // "1) unary: ++ -- ! + -   2) * / %   3) + -" is kept: it is a note about
+    // operator precedence, and judging it only on the ratio of letters to length
+    // discarded it as if it were decoration.
+    if (/[A-Za-z]{3,}/.test(n)) return true;
     const alphaNums = (n.match(/[A-Za-z0-9]/g) || []).length;
     if (alphaNums / n.length < 0.30) return false;
     return true;
@@ -252,19 +258,54 @@ function parseJavaFile(filePath, rootDir) {
       /^[a-zA-Z_$][\w$]*\s*(=|\+\+|--)/.test(t);
   }
 
-  function appendProseSegments(lines, results, type = 'lines') {
-    const meaningful = lines
-      .map(l => l.trim())
-      .filter(isMeaningfulLine)
-      .filter(l => !MARKER_BARE.test(l))
-      .filter(l => isTableRow(l) || !isCodeFragment(l));
+  // An ASCII diagram is a picture made of aligned columns. Detecting it matters
+  // because joining its rows into a paragraph, or trimming their indentation,
+  // destroys the picture. A diagram row either lines up columns with a run of
+  // spaces, or draws a rule with a long run of the same character.
+  function isDiagramLine(line) {
+    const t = String(line || '').replace(/\s+$/, '');
+    if (!t.trim()) return false;
+    if (/\S {3,}\S/.test(t)) return true;
+    if (/[-=_|+~]{6,}/.test(t)) return true;
+    if (/^[\s|+\\/.-]+$/.test(t) && /[|+\\/]/.test(t)) return true;
+    return false;
+  }
 
-    for (const seg of segmentTables(meaningful)) {
-      if (seg.type === 'table') {
-        results.push(seg);
-      } else {
-        const joined = joinContinuationLines(seg.lines).map(fixTrailingComma).map(clarifyNoteLine);
-        if (joined.length > 0) results.push({ type, lines: joined });
+  function appendProseSegments(lines, results, type = 'lines') {
+    const kept = lines
+      .map(raw => ({ raw, text: String(raw || '').trim() }))
+      .filter(p => isMeaningfulLine(p.text))
+      .filter(p => !MARKER_BARE.test(p.text))
+      .filter(p => isTableRow(p.text) || !isCodeFragment(p.text));
+
+    // Split into runs of diagram rows and runs of ordinary prose, so a diagram
+    // is emitted as one preformatted block instead of being flattened.
+    const groups = [];
+    for (const p of kept) {
+      const diagram = !isTableRow(p.text) && isDiagramLine(p.raw);
+      const last = groups[groups.length - 1];
+      if (last && last.diagram === diagram) last.items.push(p);
+      else groups.push({ diagram, items: [p] });
+    }
+
+    for (const group of groups) {
+      if (group.diagram && group.items.length >= 2) {
+        results.push({
+          type: 'code',
+          language: 'text',
+          code: group.items.map(p => p.raw.replace(/\s+$/, '')).join('\n'),
+          lines: []
+        });
+        continue;
+      }
+      const meaningful = group.items.map(p => p.text);
+      for (const seg of segmentTables(meaningful)) {
+        if (seg.type === 'table') {
+          results.push(seg);
+        } else {
+          const joined = joinContinuationLines(seg.lines).map(fixTrailingComma).map(clarifyNoteLine);
+          if (joined.length > 0) results.push({ type, lines: joined });
+        }
       }
     }
   }
@@ -728,8 +769,22 @@ function buildQuickRevisionEntry(chapterName, topics) {
   // instead of the first topic filling every slot with its parameter notes.
   const conceptsByTopic = [];
   const gotchasByTopic = [];
+  // The author can state a chapter's key points himself with @takeaway and
+  // @gotcha. Those lines are used ahead of anything the tool derives, because a
+  // derived list picks whatever line happens to come first in a file, which is
+  // how challenge instructions and bare headings used to end up as "takeaways".
+  const authoredTakeaways = [];
+  const authoredGotchas = [];
 
   topics.forEach(topic => {
+    for (const raw of String(topic.code || '').split('\n')) {
+      const marker = raw.trim().match(/^(?:\/\/|\*)?\s*@(takeaway|gotcha)\s+(.+)$/i);
+      if (!marker) continue;
+      const text = marker[2].trim();
+      if (marker[1].toLowerCase() === 'takeaway') authoredTakeaways.push(text);
+      else authoredGotchas.push(text);
+    }
+
     const conceptLines = [];
     const gotchaLines = [];
 
@@ -782,17 +837,14 @@ function buildQuickRevisionEntry(chapterName, topics) {
     }
   });
 
-  const takeaways = takeRoundRobin(conceptsByTopic, 6);
-  const gotchas = takeRoundRobin(gotchasByTopic, 4);
-
-  // Fallbacks if no comments found
-  if (takeaways.length === 0) {
-    takeaways.push(`Study the ${chapterName} concepts and their practical applications.`);
-    takeaways.push(`Review variable declarations, method signatures, and access modifiers.`);
-  }
-  if (gotchas.length === 0) {
-    gotchas.push(`Always be aware of scope, type constraints, and compiler rules in this area.`);
-  }
+  // Authored lines win. Only a chapter with none of its own falls back to the
+  // derived round-robin pick.
+  const takeaways = authoredTakeaways.length
+    ? authoredTakeaways.slice(0, 8)
+    : takeRoundRobin(conceptsByTopic, 6);
+  const gotchas = authoredGotchas.length
+    ? authoredGotchas.slice(0, 6)
+    : takeRoundRobin(gotchasByTopic, 4);
 
   const syntax = codeSnippets[0] || `// See source files in ${chapterName}`;
   const badgeList = Array.from(badges).slice(0, 5);

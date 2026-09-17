@@ -83,6 +83,77 @@ for (const chapter of concepts || []) {
   }
 }
 
+// ---- Author notes must survive the parser ------------------------------------
+// Every note line the author wrote has to reach the dashboard. The parser used
+// to drop a line silently when it judged the line to be decoration, which threw
+// away real notes such as a precedence list written mostly with operator
+// symbols. Comparing the source comment lines against the rendered topic catches
+// that class of loss, which is otherwise invisible.
+function normalizeNote(text) {
+  return String(text)
+    // Strip the comment delimiters first: a one-line /* note */ is a note.
+    .replace(/^\s*\/\*+\s?/, '')
+    .replace(/\s*\*+\/\s*$/, '')
+    .replace(/^\s*(?:\/\/|\*)\s?/, '')
+    .replace(/\bFor Ex\s*[:-]+/gi, 'For example:')
+    .replace(/\bEx\s*:-\s*/gi, 'Example: ')
+    .replace(/\bFor ex\s*[:-]+/gi, 'For example:')
+    // A pipe-delimited row is rendered as a real table, so the pipes are not in
+    // the output. Dropping them on both sides keeps tables out of the report.
+    .replace(/\|/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function renderedText(topic) {
+  const parts = [];
+  for (const block of topic.headerComments || []) {
+    if (block.type === 'code') { parts.push(block.code || ''); continue; }
+    if (block.type === 'table') {
+      parts.push((block.headers || []).join(' '));
+      (block.rows || []).forEach(row => parts.push(row.join(' ')));
+      continue;
+    }
+    (block.lines || []).forEach(line => parts.push(line));
+  }
+  for (const block of topic.inlineComments || []) {
+    (block.lines || []).forEach(line => parts.push(line));
+  }
+  return parts.join('\n').replace(/\|/g, ' ').replace(/\s+/g, ' ');
+}
+
+for (const chapter of concepts || []) {
+  for (const topic of chapter.topics || []) {
+    if (!topic.filePath || !fs.existsSync(path.join(root, topic.filePath))) continue;
+    const source = fs.readFileSync(path.join(root, topic.filePath), 'utf8');
+    const rendered = renderedText(topic);
+    // Only comments above the class declaration are notes. A comment inside a
+    // method body annotates the code beside it and is shown with that code, so it
+    // is not part of the note comparison.
+    const sourceLines = source.split('\n');
+    const classLine = sourceLines.findIndex(l => /^\s*(?:public\s+|final\s+|abstract\s+)*class\s+\w+/.test(l));
+    const noteRegion = classLine === -1 ? sourceLines : sourceLines.slice(0, classLine);
+    let inBlock = false;
+    for (const rawLine of noteRegion) {
+      const trimmed = rawLine.trim();
+      if (/^\/\*/.test(trimmed)) inBlock = true;
+      const isComment = trimmed.startsWith('//') || inBlock;
+      if (/\*\/$/.test(trimmed)) inBlock = false;
+      if (!isComment) continue;
+      if (/^(?:\/\/|\*)?\s*@/.test(trimmed)) continue;      // tool markers are not notes
+      const note = normalizeNote(trimmed);
+      // Only lines with real prose are checked; decoration and short labels are
+      // filtered out on purpose by the parser.
+      if (note.length < 20 || !/[A-Za-z]{3,}/.test(note)) continue;
+      if (/https?:\/\//.test(note)) continue;
+      const probe = note.slice(0, 40);
+      if (note.length > 40 && !rendered.includes(probe)) {
+        failures.push(`${topic.filePath}: note line did not reach the dashboard: ${note.slice(0, 70)}`);
+      }
+    }
+  }
+}
+
 for (const challenge of [...(practice || []), ...(deep || [])]) {
   if (!challenge.id || !challenge.title || !challenge.description) failures.push(`Challenge is incomplete: ${challenge.id || '(no id)'}`);
 }
