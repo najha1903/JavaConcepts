@@ -251,6 +251,23 @@ function parseJavaFile(filePath, rootDir) {
     // and not ending like a statement) is prose, never code. This keeps tables
     // whose rows start with System./type keywords from being split into code.
     if (isTableRow(t) && !/\|\|/.test(t) && !/[;{}]\s*$/.test(t)) return false;
+    // A note can end with a semicolon, for example when it names a statement, and
+    // it can be long. Judging only on the semicolon used to turn whole sentences
+    // into code blocks, which split the author's notes apart. A line is treated as
+    // code only when it also looks like a statement: a call, a keyword, or braces.
+    const wordCount = t.split(/\s+/).filter(Boolean).length;
+    // A line that only STARTS with a type name is not necessarily code: "char and
+    // Unicode: ..." is a note, while "char c = 'D';" is a declaration. So a type
+    // keyword counts only when it is followed by an identifier and then = ; or ,.
+    const looksLikeStatement =
+      /^[A-Za-z_$][\w$.]*\s*\(/.test(t) ||
+      /^(System|new|return|throw|super|this|break|continue)\b/.test(t) ||
+      /^(public|private|protected|static|final|void|class|interface)\b/.test(t) ||
+      /^(int|long|double|float|boolean|char|String|StringBuilder|var)\s+[\w\[\]]+\s*(=|;|,)/.test(t) ||
+      /^(if|for|while|switch|try|catch)\s*\(/.test(t) ||
+      /^}?\s*else\b/.test(t) ||
+      /^[-*•]\s*\w+\s*[=;]/.test(t);
+    if (wordCount >= 8 && !looksLikeStatement && !/[{}]/.test(t)) return false;
     return /[{}]/.test(t) ||
       /;\s*(\/\/.*)?$/.test(t) ||
       isCodeFragment(t) ||
@@ -266,7 +283,7 @@ function parseJavaFile(filePath, rootDir) {
     const meaningful = lines
       .map(l => l.trim())
       .filter(isMeaningfulLine)
-      .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))
+      .filter(l => !/^@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/i.test(l))
       .filter(l => isTableRow(l) || !isCodeFragment(l));
 
     for (const seg of segmentTables(meaningful)) {
@@ -377,7 +394,18 @@ function parseJavaFile(filePath, rootDir) {
     return `the ${typeLabel} value supplied to ${methodName}(); choose a representative value, then test a boundary or invalid value to observe how the method responds.`;
   }
 
+  // Generated parameter notes are deliberately NOT produced.
+  //
+  // This used to invent a line for every method parameter that the author had not
+  // described, which produced boilerplate such as "the int value supplied to
+  // isOdd(); choose a representative value, then test a boundary value". That
+  // restates the signature, adds nothing to understanding, and puts the tool's
+  // words into the author's notes. The author writes parameter notes himself in
+  // the topics where they matter, and those are kept exactly as written.
   function addGeneratedParameterNotes() {
+    return;
+  }
+  function addGeneratedParameterNotesDisabled() {
     const signatures = extractParameterSignatures(content);
     if (!signatures.length) return;
 
@@ -478,7 +506,7 @@ function parseJavaFile(filePath, rootDir) {
 
       for (const line of lines) {
         const trimmed = line.trim();
-        if (/^\/\/\s*@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(trimmed)) {
+        if (/^\/\/\s*@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/i.test(trimmed)) {
           if (inCode) { flushCode(codeBuffer); codeBuffer = []; inCode = false; }
           flushProse(proseBuffer); proseBuffer = [];
           continue;
@@ -519,7 +547,7 @@ function parseJavaFile(filePath, rootDir) {
   const lineCommentLines = cleanHeader.split('\n')
     .filter(l => l.trim().startsWith('//'))
     .map(l => l.replace(/^\s*\/\/ ?/, '').replace(/^\/\/ ?/, ''))
-    .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l.trim()))
+    .filter(l => !/^@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/i.test(l.trim()))
     .filter(l => !/https?:\/\//.test(l));
 
   let lineProseBuffer = [];
@@ -669,7 +697,7 @@ function parseJavaFile(filePath, rootDir) {
 
     if (trimmed.startsWith('//')) {
       // Skip @quiz / @answer / @challenge / @desc / @hint / @testcase marker lines
-      if (/^\/\/\s*@(quiz|answer|challenge|desc|hint|testcase)\b/.test(trimmed)) {
+      if (/^\/\/\s*@(quiz|answer|option|explain|why|code|challenge|desc|hint|testcase)\b/.test(trimmed)) {
         if (currentGroup) { inlineGroups.push(currentGroup); currentGroup = null; }
         return;
       }

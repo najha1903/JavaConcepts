@@ -3059,7 +3059,6 @@ const QUESTIONS_BANK = {
         "two\nthree\ndefault"
       ],
       "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
       "kind": "ocjp-tricky",
       "tags": [
         "ocjp",
@@ -6910,6 +6909,58 @@ const QUESTIONS_BANK = {
     {
       "type": "mcq",
       "kind": "true-false",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-numbertowordscodingchallenge-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "Number To Words Coding Challenge",
+      "question": "Which of the following are TRUE about Number To Words Coding Challenge? Select all that apply.",
+      "options": [
+        "This example defines 3 methods; trace method behavior step by step.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+        "The while loop repeatedly executes its body as long as a condition remains true.",
+        "Review the class NumberToWordsCodingChallenge and understand its key responsibilities."
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Number To Words Coding Challenge.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-perfectnumbercodingchallenge-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "Perfect Number Coding Challenge",
+      "question": "Which of the following are TRUE about Perfect Number Coding Challenge? Select all that apply.",
+      "options": [
+        "This example defines 2 methods; trace method behavior step by step.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
+        "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+        "The while loop repeatedly executes its body as long as a condition remains true."
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "The true statements are taken directly from the notes for Perfect Number Coding Challenge.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-shareddigitcodingchallenge-java_true-false-mcq_5",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
@@ -8050,15 +8101,15 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Which of the following are TRUE about Parsing Values Reading Input? Select all that apply.",
       "options": [
-        "@option It converts numeric text such as \"42\" into a primitive int, and throws NumberFormatException if the text is not a valid integer. [correct]",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "Reading Data From Console",
+        "- Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.",
         "Write a method called inputThenPrintSumAndAverage that does not have any parameters."
       ],
       "answer": [
         0,
-        1,
+        2,
         3
       ],
       "explanation": "The true statements are taken directly from the notes for Parsing Values Reading Input.",
@@ -9309,14 +9360,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Main (Getters Encapsulation Object Access)? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
         "When you create a class instance (Car car = new Car()), Java sets all un-initialised fields to their default values: Strings -> null, int -> 0, boolean -> false."
       ],
       "answer": [
         1,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Main (Getters Encapsulation Object Access).",
@@ -13179,7 +13230,7 @@ const QUESTIONS_BANK = {
         "Animal\nDog"
       ],
       "explanation": "Method calls are resolved at runtime (dynamic dispatch) → a.speak() calls Dog.speak(). But field access is resolved at compile time (static binding) → a.type uses Animal's type. This is a critical OCJP polymorphism trap.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
       "kind": "ocjp-tricky",
       "tags": [
         "ocjp",
@@ -13288,7 +13339,7 @@ const QUESTIONS_BANK = {
       ],
       "answer": 1,
       "explanation": "Covariant return type (Java 5+): the overriding method can return a subtype of the declared return type. Dog IS-A Animal, so returning Dog is valid. Returning a supertype (Object) or unrelated type is NOT valid.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
       "kind": "ocjp-tricky",
       "tags": [
         "ocjp",
@@ -14659,25 +14710,139 @@ const QUESTIONS_BANK = {
     {
       "type": "mcq",
       "kind": "true-false",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-computercase-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Computer Case",
+      "question": "Which of the following are TRUE about Computer Case? Select all that apply.",
+      "options": [
+        "This example defines 1 method; trace method behavior step by step.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "Review the class ComputerCase and understand its key responsibilities."
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Computer Case.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/ComputerCase.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
       "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-main-java_true-false-mcq_5",
       "difficulty": "medium",
       "chapter": "Chapter 15: Composition",
       "topic": "Main",
       "question": "Which of the following are TRUE about Main? Select all that apply.",
       "options": [
-        "Inheritence is a way to reuse functionality and attributes",
         "Review the class Main and understand its key responsibilities.",
-        "Product is the base Class",
         "This example defines 1 method; trace method behavior step by step.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
         "This topic belongs to Chapter 15: Composition → Composition Example Computer Package."
       ],
       "answer": [
+        0,
         1,
+        2,
         3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Main.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Main.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-monitor-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Monitor",
+      "question": "Which of the following are TRUE about Monitor? Select all that apply.",
+      "options": [
+        "This example defines 1 method; trace method behavior step by step.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "Review the class Monitor and understand its key responsibilities."
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Monitor.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Monitor.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-motherboard-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Mother Board",
+      "question": "Which of the following are TRUE about Mother Board? Select all that apply.",
+      "options": [
+        "This example defines 1 method; trace method behavior step by step.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "Review the class MotherBoard and understand its key responsibilities."
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Mother Board.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/MotherBoard.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-personalcomputer-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Personal Computer",
+      "question": "Which of the following are TRUE about Personal Computer? Select all that apply.",
+      "options": [
+        "Review the class PersonalComputer and understand its key responsibilities.",
+        "This example defines 3 methods; trace method behavior step by step.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package."
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Personal Computer.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/PersonalComputer.java",
       "tags": [
         "concept"
       ]
@@ -14821,15 +14986,15 @@ const QUESTIONS_BANK = {
       "topic": "Product",
       "question": "Which of the following are TRUE about Product? Select all that apply.",
       "options": [
-        "Inheritence is a way to reuse functionality and attributes",
         "Product is the base Class",
         "All of the base parts will have set of attributes names manufacturer, model and dimensions ( width, height and depth )",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
         "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
         "All of the computer parts are going to be inherited from Product"
       ],
       "answer": [
+        0,
         1,
-        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Product.",
@@ -14946,47 +15111,21 @@ const QUESTIONS_BANK = {
     {
       "type": "mcq",
       "kind": "true-false",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "question": "Which of the following are TRUE about Inheritence Vs Composition? Select all that apply.",
-      "options": [
-        "Composition is a way to make the combination of classes act like a single coherent object",
-        "Inheritence is a way to reuse functionality and attributes",
-        "Product is the base Class",
-        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "@option Inheritance is a way to reuse functionality and attributes from a parent class. [correct]"
-      ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Inheritence Vs Composition.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
       "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-3-deepproblems-compositiondeepproblem-java_true-false-mcq_5",
       "difficulty": "medium",
       "chapter": "Chapter 15: Composition",
       "topic": "Composition Deep Problem",
       "question": "Which of the following are TRUE about Composition Deep Problem? Select all that apply.",
       "options": [
-        "Product is the base Class",
         "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.",
         "Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
         "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
         "This is the difference between HAS-A (composition) and IS-A (inheritance)."
       ],
       "answer": [
+        0,
         1,
-        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Composition Deep Problem.",
@@ -15009,10 +15148,7 @@ const QUICK_REVISION_BANK = {
       "Then print all three values on one line using string concatenation."
     ],
     "gotchas": [
-      "Parameter notes (what each argument means and how to choose it):",
-      "@option It prints 2 and then notes.",
-      "@why B: args[1] is \"notes\". Index 0 is always the first argument.",
-      "@option javac reports a compile error, no .class file is produced, and nothing runs. [correct]"
+      "Parameter notes (what each argument means and how to choose it):"
     ],
     "syntax": "public class HelloWorld {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Hello World\");\r\n    }\r\n\r\n}",
     "badges": [
@@ -15108,9 +15244,7 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "Critical Gotchas & Precedence Rules:",
-      "Parameter notes (important method parameters and how to choose them):",
-      "@option It compiles and prints a warning only.",
-      "@why B: it never reaches runtime. The type error is found while compiling."
+      "Parameter notes (important method parameters and how to choose them):"
     ],
     "syntax": "public class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);",
     "badges": [
@@ -15174,9 +15308,7 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "Parameter notes (important method parameters and how to choose them):",
-      "- pieces in String concatenation: each quoted literal around + is an operand used to build the final println parameter. Choose pieces for readability, but remember the runtime receives one combined String.",
-      "@option Yes. Incorrect indentation is a compile-time error.",
-      "@option Only tabs cause an error, not spaces."
+      "- pieces in String concatenation: each quoted literal around + is an operand used to build the final println parameter. Choose pieces for readability, but remember the runtime receives one combined String."
     ],
     "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +",
     "badges": [
@@ -15210,22 +15342,7 @@ const QUICK_REVISION_BANK = {
       "isPassing",
       "letterGrade"
     ],
-    "tables": [
-      {
-        "headers": [
-          "@option && requires both sides to be true, while",
-          "",
-          "requires at least one side to be true. [correct]"
-        ],
-        "rows": [
-          [
-            "@option && requires at least one side to be true, while",
-            "",
-            "requires both."
-          ]
-        ]
-      }
-    ]
+    "tables": []
   },
   "Chapter 6: Methods In Java": {
     "takeaways": [
@@ -15265,7 +15382,7 @@ const QUICK_REVISION_BANK = {
       "Parameter notes (what each method/constructor argument means and how to choose it):",
       "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "NOTE: The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
-      "@why D: Omitting break is legal in a traditional switch; it causes fall-through rather than a compile error."
+      "Parameter notes (what each method/constructor argument means and how to choose it):"
     ],
     "syntax": "public class SwitchStatementInJava {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"If-else example:\");\r\n        ifElseExample(3);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Traditional switch example:\");\r\n        switchCase(2);",
     "badges": [
@@ -15287,8 +15404,7 @@ const QUICK_REVISION_BANK = {
       "Java supports several looping statements for repetitive execution:"
     ],
     "gotchas": [
-      "@why D: A for header has exactly three sections separated by two semicolons, so the third semicolon is a syntax error.",
-      "@why C: the same scope error applies."
+      "Always be aware of scope, type constraints, and compiler rules in this area."
     ],
     "syntax": "public class ForStatement {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Counting from 1 to 5:\");\r\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\r\n           System.out.println(counter);\r\n        }\r\n\r\n        System.out.println();",
     "badges": [
@@ -15312,7 +15428,6 @@ const QUICK_REVISION_BANK = {
     "gotchas": [
       "IMPORTANT: Always check your loop condition carefully.",
       "The semicolon after while(condition); is MANDATORY — forgetting it is a syntax error.",
-      "@option It must contain a continue statement, otherwise it is a syntax error.",
       "Parameter notes (what each method/constructor argument means and how to choose it):"
     ],
     "syntax": "public class WhileLoops {\r\n\r\n    /* while loop simply has expression\r\n\r\n    While loop code format :-\r\n\r\n    while(expression)  {\r\n    // block of statements\r\n\r\n    } */",
@@ -15335,8 +15450,7 @@ const QUICK_REVISION_BANK = {
       "1) A custom data type --> For example: String"
     ],
     "gotchas": [
-      "Parameter notes (what each argument means and how to choose it):",
-      "- Important pitfall: passing null to println is safe and prints \"null\", but many String constructors or methods may reject null."
+      "Always be aware of scope, type constraints, and compiler rules in this area."
     ],
     "syntax": "public class ClassExample {\n\n    public static void main(String[] args) {\n        //  We can create String using 2 ways\n\n         // 1) Literal form\n\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\n           System.out.println(\"Literal String = \" + s);",
     "badges": [
@@ -15358,10 +15472,10 @@ const QUICK_REVISION_BANK = {
       "Reading Data From Console"
     ],
     "gotchas": [
-      "@option It returns 0 and prints a warning.",
       "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
       "Deep Problem: Form Validation Pipeline — Build reusable parsing and validation methods that verify integer and decimal fields, enforce numeric ranges, and aggregate multiple form errors into a single readable report. This mirrors the validation logic used in real business forms and APIs.",
-      "@why D: there is no warning path. The method throws an exception."
+      "NOTE: Be mindful of spaces in the printed message.",
+      "NOTE: Be mindful of users who may type an invalid input right away (see example above)."
     ],
     "syntax": "public class ParsingValuesReadingInput {\n\n    public static void main(String[] args) {\n\n        String currentYear = \"2024\";\n\n        String userDateOfBirth = \"1999\";\n\n        // System.out.println(\"Age = \" + (currentYear - userDateOfBirth));",
     "badges": [
@@ -15450,12 +15564,12 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 14: Strings": {
     "takeaways": [
-      "@option Age is 35, because %s accepts any value by converting it to text. [correct]",
       "String is a sequence of characters, which means its characters are ordered and indexed.",
       "String -> immutable; each method call returns a NEW String instance.",
       "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
       "Challenge: Use printf and String.format to print a formatted employee summary and a right-aligned table of names and numbers.",
-      "Challenge: Create a JSON-like text block, build the same content with traditional string concatenation, print both, and compare them using equals()."
+      "Challenge: Create a JSON-like text block, build the same content with traditional string concatenation, print both, and compare them using equals().",
+      "Deep Problem: Text Intelligence Analyzer — Create a utility that inspects sentences for palindrome behavior, word count, character frequency, and reversed word order, then combines the findings into a formatted report. The challenge reflects common string-processing tasks used in search, validation, and reporting systems."
     ],
     "gotchas": [
       "Note: %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
@@ -15506,7 +15620,7 @@ const QUICK_REVISION_BANK = {
       "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase."
     ],
     "gotchas": [
-      "@option Avoid having any fields of their own."
+      "Always be aware of scope, type constraints, and compiler rules in this area."
     ],
     "syntax": "public class ComputerCase extends Product{\r\n\r\n    private String powerSupply;\r\n\r\n    public ComputerCase(String model, String manufacturer){\r\n        super(model,manufacturer);\r\n    }\r\n\r\n    public ComputerCase(String model, String manufacturer, String powerSupply){\r\n        super(model,manufacturer);",
     "badges": [

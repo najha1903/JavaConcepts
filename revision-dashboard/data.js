@@ -28,162 +28,11 @@ const CONCEPTS_DATA = [
               "- `String[] args`: Parameter array that captures command-line arguments passed during execution.",
               "Parameter notes (what each argument means and how to choose it):",
               "- args (main): String[] array supplied by the JVM containing command-line tokens passed after the class name.",
-              "- x (System.out.println): The message, variable, or expression printed to standard output followed by a newline.",
-              "@option The JDK contains the development tools and the JRE, and the JRE contains the core libraries and the JVM. [correct]",
-              "@option The JRE contains the JDK and the javac compiler.",
-              "@option The JVM contains the JRE and the core libraries.",
-              "@option The three are unrelated components installed separately.",
-              "@explain The nesting is JDK > JRE > JVM. The JDK adds development tools such as javac on top of the JRE, and the JRE provides the libraries and the JVM that runs a program.",
-              "@why B: it is the other way round. The JDK contains the JRE, and javac lives in the JDK, not the JRE.",
-              "@why C: the JVM is the innermost piece. The JRE contains the JVM, and the JVM does not contain the libraries.",
-              "@why D: they are nested, not independent. Installing a JDK also gives you a JRE and a JVM.",
-              "@option It compiles .java source into platform-neutral bytecode in .class files, which the JVM executes. [correct]",
-              "@option It compiles .java source straight into native machine code for the current operating system.",
-              "@option It interprets the .java source line by line, leaving no intermediate file.",
-              "@option It produces a stand-alone .exe that runs without a JVM.",
-              "@explain javac turns source into bytecode, and the JVM translates that bytecode into the native instructions of whatever machine it is running on.",
-              "@why B: producing native code directly is not what javac does. Bytecode is the intermediate step, and that is exactly what makes the same .class file portable.",
-              "@why C: javac is a compiler, not an interpreter, and it does write .class files to disk.",
-              "@why D: a .class file is not an executable. It needs a JVM to run.",
-              "@option So the JVM can call it on the class, without creating an object first. [correct]",
-              "@option So that other classes are allowed to call it.",
-              "@option So that no subclass is able to override it.",
-              "@option So that the method is not allowed to return a value.",
-              "@explain A program needs an entry point before any object exists, so main must be callable without an instance. That is what static provides.",
-              "@why B: being callable from other classes is the job of public, not static.",
-              "@why C: preventing overriding is the job of final, not static.",
-              "@why D: returning nothing is the job of void, not static.",
-              "@option Adding final, as in `public static final void main(String[] args)` [correct]",
-              "@option Removing static",
-              "@option Removing public",
-              "@option Changing the return type to int",
-              "@explain The launcher requires a method named main that is public, static, and void, with one String[] parameter. Extra modifiers such as final are allowed, so the method is still a valid entry point.",
-              "@why B: without static it becomes an instance method, so the launcher finds no entry point and the program fails at runtime.",
-              "@why C: the launcher requires main to be public, so removing public breaks it.",
-              "@why D: the return type must be void. A static int main compiles, but it is not accepted as the entry point.",
-              "@option The command-line arguments passed after the class name, each as a String. [correct]",
-              "@option The name of the class that is being run.",
-              "@option The lines of output the program has printed so far.",
-              "@option The list of methods declared in the class.",
-              "@explain args carries the values typed after the class name, for example `java HelloWorld Navneet 25` gives args[0] = \"Navneet\" and args[1] = \"25\". They are Strings, not numbers.",
-              "@why B: the class name is used by the launcher to find the class; it is not placed inside args.",
-              "@why C: args is input to the program, not a record of its output.",
-              "@why D: args holds data values only. Reflection is the tool for inspecting methods.",
-              "@option The compiler produces platform-neutral bytecode, and each platform's own JVM translates it into that machine's instructions. [correct]",
-              "@option The .java source file is copied to the new machine and compiled there by javac.",
-              "@option The JVM is a single build that runs on every operating system unchanged.",
-              "@option Bytecode is already native machine code, so nothing has to be translated.",
-              "@explain The portable artefact is the .class file. The JVM is platform-specific, and that is the piece that adapts the same bytecode to each operating system.",
-              "@why B: copying source and recompiling is possible, but it is not the mechanism. The whole point is that the compiled .class file is already portable.",
-              "@why C: the JVM itself is not portable in that sense; there is a different JVM implementation for each platform, and installing one is how a machine gains the ability to run Java.",
-              "@why D: bytecode is an intermediate form, not native code. Translating it is precisely what the JVM does."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code public class HelloWorld {\r\n@code     public static void main(String[] args) {\r\n@code         System.out.println(args.length);\r\n@code         System.out.println(args[0]);\r\n@code     }\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It prints 2 and then Java. [correct]",
-              "@option It prints 2 and then notes.",
-              "@option It prints 1 and then Java.",
-              "@option It does not compile, because args is never assigned a value.",
-              "@explain args receives the words typed after the class name, in order. Two words were supplied, so the length is 2, and args[0] is the first one, \"Java\".",
-              "@why B: args[1] is \"notes\". Index 0 is always the first argument.",
-              "@why C: the length counts every argument, and two were given.",
-              "@why D: the JVM creates args and fills it in. You never assign it yourself."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code public class HelloWorld {\r\n@code     public static void main(String[] args) {",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@code System.out.println(\"Hello\") // semicolon missing"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code     }\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option javac reports a compile error, no .class file is produced, and nothing runs. [correct]",
-              "@option javac still produces the .class file and the error appears only when you run it.",
-              "@option The .class file is produced and the program runs, printing Hello.",
-              "@option The compiler inserts the missing semicolon and compiles normally.",
-              "@explain Compilation is a separate stage that happens before anything runs. A syntax problem stops javac, so the bytecode is never created and there is nothing to execute.",
-              "@why B: javac only writes the .class when the whole file is valid, so the failure comes first.",
-              "@why C: the file never reaches the point of producing bytecode.",
-              "@why D: the compiler never repairs syntax. It reports the problem and stops.",
-              "@option Run an existing .class file, but not compile .java source. [correct]",
-              "@option Compile .java source, but not run the result.",
-              "@option Both compile and run, because the JVM ships in the JRE.",
-              "@option Neither, because the JVM is only installed with the JDK.",
-              "@explain The JRE contains the core libraries and the JVM, which is everything needed to run a program. The development tools, including javac, live in the JDK, which is the larger set that contains the JRE.",
-              "@why B: compiling needs javac, and javac is part of the JDK, not the JRE.",
-              "@why C: the JVM is present, but the compiler is not, so compiling is not possible.",
-              "@why D: the JVM is precisely what the JRE provides.",
-              "@option The Mac's JVM runs the same bytecode, because the JVM translates it for that machine. [correct]",
-              "@option It fails, because the .class files were produced for Windows.",
-              "@option It fails, because the .java source has to be copied as well.",
-              "@option It runs only after javac is used again on the Mac.",
-              "@explain The compiled .class file is the portable part. It contains bytecode, not machine code, and each platform's JVM turns that bytecode into instructions its own processor understands.",
-              "@why B: bytecode is platform-neutral. That is what makes the same file usable elsewhere.",
-              "@why C: the source is not needed to run. It is needed only to compile.",
-              "@why D: compiling again is unnecessary. That would defeat the purpose of bytecode."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code public class Start {\r\n@code     public static int main(String[] args) {\r\n@code         return 42;\r\n@code     }\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It compiles but the launcher reports that no main method was found, because the return type must be void. [correct]",
-              "@option It runs and prints 42.",
-              "@option It does not compile, because main may not return an int.",
-              "@option It runs and ignores the returned value.",
-              "@explain A static int method named main is a perfectly legal Java method, so the compiler accepts it. The launcher, however, looks for public static void main with a single String[] parameter, so it finds no entry point and refuses to start.",
-              "@why B: nothing calls the method, so nothing prints, and the JVM stops before main runs.",
-              "@why C: the compiler allows it. Only the launcher's rule rejects it.",
-              "@why D: the method is never reached. The failure happens before it is invoked.",
-              "@option The old .class file still runs, so the change does not appear yet. [correct]",
-              "@option The new source is used automatically, so the change appears.",
-              "@option It fails, because the JVM always compiles the source first.",
-              "@option It fails, because the .class file becomes invalid once the source changes.",
-              "@explain java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.",
-              "@why B: the source is not consulted at run time, so the new text cannot take effect.",
-              "@why C: the JVM executes bytecode. Compiling is javac's job, and it is a separate step.",
-              "@why D: the existing .class stays valid. It simply does not contain your change."
+              "- x (System.out.println): The message, variable, or expression printed to standard output followed by a newline."
             ]
           }
         ],
-        "inlineComments": [
-          "@code public class HelloWorld {",
-          "@code public static void main(String[] args) {",
-          "@code System.out.println(args.length);",
-          "@code System.out.println(args[0]);",
-          "@code }",
-          "@code public static void main(String[] args) { semicolon missing",
-          "@code public class Start {",
-          "@code public static int main(String[] args) {",
-          "@code return 42;"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "What is the difference between JVM, JRE, and JDK?",
@@ -697,13 +546,6 @@ const CONCEPTS_DATA = [
               "Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.",
               "Print the result in the format: \"25°C is 77.0°F\"."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- celsius (toFahrenheit(double celsius)): the Celsius temperature supplied to toFahrenheit(); choose the temperature you want to convert, such as 25 for 25°C."
-            ]
           }
         ],
         "inlineComments": [],
@@ -722,15 +564,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- count (generateFibonacci(int count)): the number of items or terms that generateFibonacci() should process; choose a non-negative count and check the zero case.",
-              "- target (isFibonacci(long target)): the value that isFibonacci() must locate, compare, or classify; choose a value that exercises both matching and non-matching paths.",
-              "- sequence (printSequence(long[] sequence)): the long[] supplied to printSequence(); choose the generated or expected sequence whose elements the method should process."
             ]
           }
         ],
@@ -769,26 +602,13 @@ const CONCEPTS_DATA = [
               "─── WITHOUT BUILT-IN METHOD — Classic Interview Series ────────────────────",
               "Parameter notes (important method parameters and how to choose them):",
               "- args (main): the command-line String array received by the program. Choose values by typing them after the class name when running Java; remember every value arrives as text, even if it looks like a number.",
-              "- x (System.out.println): the value printed to the console. In this file the argument is often a concatenation expression, so Java evaluates the whole expression first and passes the resulting String to println."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "- str (String.concat): the text appended to the end of the original String. Choose the exact suffix to add;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "important pitfall: concat returns a new String and does not change the original object unless reassigned.",
+              "- x (System.out.println): the value printed to the console. In this file the argument is often a concatenation expression, so Java evaluates the whole expression first and passes the resulting String to println.",
+              "- str (String.concat): the text appended to the end of the original String. Choose the exact suffix to add; important pitfall: concat returns a new String and does not change the original object unless reassigned.",
               "- target (String.valueOf): the value converted into text. Choose the char, number, boolean, object, or array whose textual form you need before joining it with other Strings."
             ]
           }
         ],
-        "inlineComments": [
-          "- str (String.concat): the text appended to the end of the original String. Choose the exact suffix to add; important pitfall: concat returns a new String and does not change the original object unless reassigned."
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "Is String a primitive type or an object in Java?",
@@ -1304,7 +1124,19 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "public static void aMethod(int value) {\n  switch (value) {\n    case 1:\n      int i = 10;               // i declared here, accessible from this point downwards in the switch\n      break;\n\n    case 2:\n      System.out.println(j);   // ERROR: j is declared in case 3 (later), so case 2 cannot see it\n      break;\n\n    case 3:\n      int j = 10;               // j declared here\n      System.out.println(j);   // OK: j is accessible from this point\n      break;\n\n    default:\n      i = value;                // OK: i was declared in case 1 (before default)\n      System.out.println(i);   // OK: accessible\n      System.out.println(j);   // OK: j was declared in case 3 (before default)\n      break;\n  }\n  System.out.println(i);        // ERROR: i is out of scope outside the switch\n  System.out.println(j);        // ERROR: j is out of scope outside the switch\n}",
+            "code": "public static void aMethod(int value) {\n  switch (value) {\n    case 1:\n      int i = 10;               // i declared here, accessible from this point downwards in the switch\n      break;\n\n    case 2:\n      System.out.println(j);   // ERROR: j is declared in case 3 (later), so case 2 cannot see it\n      break;\n\n    case 3:\n      int j = 10;               // j declared here\n      System.out.println(j);   // OK: j is accessible from this point\n      break;\n\n    default:",
+            "lines": []
+          },
+          {
+            "type": "block",
+            "lines": [
+              "i = value; // OK: i was declared in case 1 (before default)"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "System.out.println(i);   // OK: accessible\n      System.out.println(j);   // OK: j was declared in case 3 (before default)\n      break;\n  }\n  System.out.println(i);        // ERROR: i is out of scope outside the switch\n  System.out.println(j);        // ERROR: j is out of scope outside the switch\n}",
             "lines": []
           },
           {
@@ -1394,23 +1226,7 @@ const CONCEPTS_DATA = [
               "- Warning: You MUST initialize a local variable before reading or referencing it, otherwise the code will fail to compile.",
               "Parameter notes (what each argument means and how to choose it):",
               "- args (main): String[] array containing command-line arguments passed to the application.",
-              "- x (System.out.println): The primitive or reference value printed to the console output stream.",
-              "@option totalAccountBalance [correct]",
-              "@option 2ndPlaceScore",
-              "@option class",
-              "@option total-balance",
-              "@explain An identifier must begin with a letter, an underscore, or a dollar sign, may not be a keyword, and by convention uses camelCase.",
-              "@why B: an identifier cannot begin with a digit.",
-              "@why C: class is a Java keyword and cannot be used as a variable name.",
-              "@why D: a hyphen is not allowed in an identifier; the compiler reads it as a subtraction.",
-              "@option It is valid from Java 7 onward, the value is one million, and the underscores are ignored by the compiler. [correct]",
-              "@option It is invalid, because underscores are not permitted in numeric literals.",
-              "@option It creates a String rather than a number.",
-              "@option The underscores must appear after every third digit, or the code will not compile.",
-              "@explain Underscores exist purely to make long numbers easier for a human to read. The compiler strips them, so the value is unchanged.",
-              "@why B: Java 7 added underscores in numeric literals exactly for readability.",
-              "@why C: it is still an int literal, and x holds the number 1000000.",
-              "@why D: grouping in threes is only a convention. The real rules forbid an underscore at the very start or end, next to a decimal point, or directly before a suffix such as L or f."
+              "- x (System.out.println): The primitive or reference value printed to the console output stream."
             ]
           }
         ],
@@ -1654,239 +1470,22 @@ const CONCEPTS_DATA = [
               "Precision: double has more decimal places than float.",
               "5f/3f = 1.6666666 (7 significant digits)",
               "5d/3d = 1.6666666666666667 (15+ significant digits)",
-              "For currency or financial calculations, use BigDecimal instead of float/double."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "char and Unicode: char holds a single character, uses single quotes: char c = 'D';",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
+              "For currency or financial calculations, use BigDecimal instead of float/double.",
+              "char and Unicode: char holds a single character, uses single quotes: char c = 'D';",
               "You can also use Unicode escape sequences: char d = '\\u0044'; (both give 'D')",
               "Unicode is an international encoding standard — every character in every language has a unique code point.",
               "boolean: can only be true or false. It is the result of any comparison or logical expression.",
-              "@option int is 32-bit, covering -2,147,483,648 to 2,147,483,647. [correct]",
-              "@option byte is 8-bit, covering -128 to 128.",
-              "@option short is 16-bit, covering -32,768 to 32,768.",
-              "@option long is 32-bit, the same width as int.",
-              "@explain Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.",
-              "@why B: byte covers -128 to 127. The upper bound is 127, not 128, because 0 occupies one of the 256 values.",
-              "@why C: short covers -32,768 to 32,767. The upper bound is 32,767, not 32,768.",
-              "@why D: long is 64-bit. int is 32-bit. That is why a literal such as 100L is written with the L suffix.",
-              "@option Widening goes from a smaller type to a larger compatible type and is automatic. Narrowing goes the other way and requires an explicit cast. [correct]",
-              "@option Widening requires a cast because the larger type needs more memory.",
-              "@option Both directions are automatic, and Java truncates silently when needed.",
-              "@option Narrowing never loses information because Java rounds the value.",
-              "@explain Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.",
-              "@why B: requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.",
-              "@why C: if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents.",
-              "@why D: narrowing can lose information. A cast truncates rather than rounds, so 9.8 becomes 9, not 10."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.println(5 / 2);\r\n@code System.out.println(5 / 2.0);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 2 and 2.5 [correct]",
-              "@option 2.5 and 2.5",
-              "@option 2 and 2",
-              "@option 3 and 2.5",
-              "@explain When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.",
-              "@why B: the first line has two int operands, so it cannot produce 2.5.",
-              "@why C: the second line has a double operand, so it cannot produce 2.",
-              "@why D: integer division truncates towards zero, it does not round up. 5 / 2 is 2, never 3."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = Integer.MAX_VALUE;\r\n@code x++;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option -2147483648, because the value wraps around to Integer.MIN_VALUE. [correct]",
-              "@option 2147483648, because int is promoted to long automatically.",
-              "@option It throws ArithmeticException.",
-              "@option It stays at 2147483647 and the increment is ignored.",
-              "@explain int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.",
-              "@why B: no promotion happens on overflow. The result is stored back into an int, so there is nowhere to hold 2147483648.",
-              "@why C: Java does not raise an exception for primitive integer overflow. Only integer division by zero throws ArithmeticException.",
-              "@why D: the value does change. The carry bit is discarded, which is what makes the value wrap to the opposite end of the range.",
-              "@option 100L creates a long, 3.14f creates a float, and a plain decimal literal such as 3.14 is a double. [correct]",
-              "@option 100L creates an int, and a plain decimal literal such as 3.14 is a float.",
-              "@option The suffix d is compulsory for every double literal.",
-              "@option A decimal literal such as 3.14 is treated as a float by default.",
-              "@explain Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.",
-              "@why B: L means long, not int, and a decimal literal is double, not float.",
-              "@why C: double is the default for decimals, so the d suffix is optional. float is the type that needs a suffix.",
-              "@why D: decimals default to double. Writing float f = 3.14; fails to compile without the f suffix.",
-              "@option Instance and static fields receive type defaults such as 0 and false, while local variables must be assigned before they are read. [correct]",
-              "@option Every variable, including a local variable, receives a default value.",
-              "@option Local variables default to null.",
-              "@option Only static fields receive default values.",
-              "@explain Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.",
-              "@why B: locals are the exception. Reading an unassigned local variable is a compile-time error.",
-              "@why C: a local primitive is not set to null, and null is not even a valid value for a primitive. It simply has no value yet.",
-              "@why D: instance fields receive defaults too, not only static fields.",
-              "@option The escape written as backslash-u 0044 is the character 'D', because char is 16-bit and Unicode-based. [correct]",
-              "@option char is 8-bit and holds one ASCII character.",
-              "@option char uses double quotes, just like a String.",
-              "@option The escape backslash-u 0044 is decimal 44, which is the comma character.",
-              "@explain A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.",
-              "@why B: char is 16-bit so it can represent Unicode, not just 8-bit ASCII.",
-              "@why C: double quotes create a String. A char literal always uses single quotes, as in 'D'.",
-              "@why D: the escape is hexadecimal, not decimal. 0x44 is 68, which is 'D'; decimal 44 is the comma."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code double d = 9.8;\r\n@code int n = (int) d;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 9, because the cast truncates towards zero. [correct]",
-              "@option 10, because the cast rounds to the nearest whole number.",
-              "@option 9.8, because int keeps the fractional part.",
-              "@option It does not compile, because a double can never be converted to an int.",
-              "@explain Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.",
-              "@why B: a cast truncates. To round 9.8 up to 10 you would need Math.round(d).",
-              "@why C: an int cannot hold a fraction at all, which is why precision is lost here.",
-              "@why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.",
-              "Parameter notes (important method parameters and how to choose them):"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "- args (main): the command-line String array. Use it only when program input should come from launch arguments;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "remember every element is text and must be parsed before numeric primitive calculations.",
+              "Parameter notes (important method parameters and how to choose them):",
+              "- args (main): the command-line String array. Use it only when program input should come from launch arguments; remember every element is text and must be parsed before numeric primitive calculations.",
               "- x (System.out.println): the value printed to the console. In this file the argument is usually a String created by concatenating a label with a primitive value; Java converts primitives to text before printing.",
               "- target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.",
               "- numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long, f for float, and d for double when you want to be explicit; note that decimal literals default to double."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code byte b = 128;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. 128 is outside the byte range, so the compiler rejects the assignment. [correct]",
-              "@option Yes, and b holds 128.",
-              "@option Yes, and b wraps around to -128.",
-              "@option Yes, but only because 128 fits in a nibble.",
-              "@explain A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.",
-              "@why B: 128 is one past the maximum, so the value does not fit.",
-              "@why C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.",
-              "@why D: the range is fixed by the type, and 127 is the largest byte."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.println(-7 / 2);\r\n@code System.out.println(-7 % 2);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option -3 and -1 [correct]",
-              "@option -4 and 1",
-              "@option -3.5 and -1",
-              "@option -4 and -1",
-              "@explain Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.",
-              "@why B: -7 / 2 truncates towards zero to -3, not away from it to -4.",
-              "@why C: both operands are int, so the result of / is an int and cannot be -3.5.",
-              "@why D: the division result is -3, not -4."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.println(0.1 + 0.2);\r\n@code System.out.println(0.1 + 0.2 == 0.3);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 0.30000000000000004 and false [correct]",
-              "@option 0.3 and true",
-              "@option 0.3 and false",
-              "@option 0.30000000000000004 and true",
-              "@explain double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.",
-              "@why B: the sum is not exactly 0.3, so the comparison cannot be true.",
-              "@why C: the printed value shows the accumulated error rather than a clean 0.3.",
-              "@why D: the two halves cannot both be right. If the sum differs from 0.3, the comparison is false."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code short s = 1;\r\n@code s = s + 1;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. s + 1 is promoted to int, and an int cannot be assigned back to a short without a cast. [correct]",
-              "@option Yes, and s becomes 2.",
-              "@option Yes, and s wraps around.",
-              "@option Yes, because short and int are the same width.",
-              "@explain Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).",
-              "@why B: the promotion makes the assignment invalid, so it never reaches runtime.",
-              "@why C: nothing wraps here. The compiler rejects the type mismatch first.",
-              "@why D: short is 16 bits and int is 32 bits, so they differ.",
-              "@option boolean is not a numeric type, so it cannot be cast to or from an int. [correct]",
-              "@option true is equal to 1 and false is equal to 0, so int x = (int) true; is valid.",
-              "@option A boolean can be used directly as an if condition only after converting it to an int.",
-              "@option boolean and byte are interchangeable because both are 8 bits.",
-              "@explain Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.",
-              "@why B: that rule belongs to C and C++. Java does not allow the cast.",
-              "@why C: no conversion is needed or possible. A boolean is exactly what if requires.",
-              "@why D: a boolean is not a number, so it is not interchangeable with any numeric type."
             ]
           }
         ],
         "inlineComments": [
           "Type | Width | Range / Notes",
           "boolean | 1 bit | Only two values: true or false byte | 8 bits | -128 to 127 short | 16 bits| -32,768 to 32,767 char | 16 bits| A single Unicode character — written in single quotes: 'A' int | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long | 64 bits| Very large whole numbers — add 'L' suffix: 100L float | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
-          "char and Unicode: char holds a single character, uses single quotes: char c = 'D';",
-          "@code System.out.println(5 / 2);",
-          "@code System.out.println(5 / 2.0);",
-          "@code int x = Integer.MAX_VALUE;",
-          "@code x++;",
-          "@code double d = 9.8;",
-          "@code int n = (int) d;",
-          "- args (main): the command-line String array. Use it only when program input should come from launch arguments; remember every element is text and must be parsed before numeric primitive calculations.",
-          "@code byte b = 128;",
-          "@code System.out.println(-7 / 2);",
-          "@code System.out.println(-7 % 2);",
-          "@code System.out.println(0.1 + 0.2);",
-          "@code System.out.println(0.1 + 0.2 == 0.3);",
-          "@code short s = 1;",
-          "@code s = s + 1;",
           "If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java, then we will get an Overflow in the case of the maximum value and underflow in the case of minimum"
         ],
         "customQuizzes": [
@@ -2553,16 +2152,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Deep Problem: Bitwise Diagnostics — Given an integer, use bitwise operators to answer practical low-level questions: determine odd/even status, count the number of set bits, and swap two integers without a temporary variable by relying on XOR. The program should print a readable diagnostic report."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- value (isOdd(int value)): the int value supplied to isOdd(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- value (countSetBits(int value)): the int value supplied to countSetBits(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- first (swapWithXor(int first, int second)): the first operand supplied to swapWithXor(); choose a value that represents this operation's first input.",
-              "- second (swapWithXor(int first, int second)): the second operand supplied to swapWithXor(); choose a value that represents this operation's second input."
-            ]
           }
         ],
         "inlineComments": [],
@@ -2651,190 +2240,7 @@ const CONCEPTS_DATA = [
               "Parameter notes (important method parameters and how to choose them):",
               "- args (main): the command-line String array supplied by the JVM. Choose values at launch time if the operator examples should use external input; otherwise it can remain unused.",
               "- x (System.out.println): the value printed after each operator example. Passing myVar prints its current value after increment, decrement, or compound assignment has already changed it.",
-              "- leftOperand/rightOperand (operators): the values around an operator determine the operation. Choose numeric operands for arithmetic, boolean operands for logical operators, and remember the pitfall that + concatenates when a String is involved.",
-              "@option An operator is the symbol that performs an operation, an operand is a value or variable it acts on, and an expression is a combination that evaluates to one value. [correct]",
-              "@option An operator is the value being calculated, and an operand is the symbol that calculates it.",
-              "@option An expression is any line of code that ends with a semicolon.",
-              "@option An operand is always a literal value and can never be a variable or a method call.",
-              "@explain In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.",
-              "@why B: the two are the other way round. The symbol is the operator and the values are the operands.",
-              "@why C: a line ending in a semicolon is a statement. An expression is defined by producing a value, not by the semicolon.",
-              "@why D: an operand may be a literal, a variable, or a whole sub-expression such as (a + b)."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.println(10 + 20 + \"Java\");",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 30Java [correct]",
-              "@option 1020Java",
-              "@option Java30",
-              "@option It does not compile, because + cannot mix int and String.",
-              "@explain Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + \"Java\" involves a String, so it becomes concatenation and produces 30Java.",
-              "@why B: 1020Java is what you get when the String appears first, as in \"Java\" + 10 + 20.",
-              "@why C: the string is on the right here, so it cannot come out in front of the number.",
-              "@why D: + with a String operand is legal. It concatenates rather than adding."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.println(\"Java\" + 10 + 20);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Java1020 [correct]",
-              "@option Java30",
-              "@option 30Java",
-              "@option It does not compile.",
-              "@explain Once the left operand is a String, every following + is concatenation. \"Java\" + 10 gives \"Java10\", and \"Java10\" + 20 gives \"Java1020\".",
-              "@why B: to get Java30 the addition must be forced first with parentheses: \"Java\" + (10 + 20).",
-              "@why C: the String is first, so the digits cannot appear before the word.",
-              "@why D: this is valid Java. It simply concatenates instead of adding.",
-              "@option Compound assignment performs an implicit narrowing cast back to byte, while b + 5 is promoted to int and cannot be assigned to byte without a cast. [correct]",
-              "@option += is only allowed on byte variables.",
-              "@option b + 5 is evaluated at runtime, so the compiler cannot check it.",
-              "@option The two forms are identical, and both compile.",
-              "@explain A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.",
-              "@why B: += works on every numeric type, not only byte.",
-              "@why C: the compiler resolves types at compile time, which is exactly why it rejects the plain addition."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option && short-circuits, so the right side is skipped when the left side is false. & always evaluates both sides. [correct]",
-              "@option & short-circuits, and && always evaluates both sides.",
-              "@option Both short-circuit in exactly the same way.",
-              "@option && can only be used with numbers, not with booleans.",
-              "@explain Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.",
-              "@why B: the behaviour is the other way round. & is the non-short-circuiting form.",
-              "@why C: they differ precisely in whether the right operand is evaluated.",
-              "@why D: && is a logical operator for booleans. The bitwise form & also works on integers, but that is a separate use.",
-              "@option 3 and 1 [correct]",
-              "@option 3.33 and 1",
-              "@option 3 and 0",
-              "@option 1 and 3",
-              "@explain With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.",
-              "@why B: 10 / 3 cannot produce 3.33, because both operands are int.",
-              "@why C: the remainder is 1, not 0. 3 * 3 is 9, and 10 - 9 = 1.",
-              "@why D: the two results are swapped. / gives the whole part and % gives the remainder.",
-              "@option It does not compile, because x = 5 is an int assignment and if requires a boolean condition. [correct]",
-              "@option It compiles and the block always runs.",
-              "@option It compiles but the block never runs.",
-              "@option It compiles and prints a warning only.",
-              "@explain = assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.",
-              "@why B: it never reaches runtime. The type error is found while compiling.",
-              "@why C: the code does not compile at all, so nothing runs.",
-              "@why D: Java reports this as an error, not a warning."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.println(2 + 3 * 4);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 14, because * is evaluated before +. [correct]",
-              "@option 20, because + is evaluated first.",
-              "@option 24, because the expression is read left to right.",
-              "@option It does not compile without parentheses.",
-              "@explain Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.",
-              "@why B: + is lower precedence than *, so it cannot run first.",
-              "@why C: left-to-right order applies between operators of the same precedence, which these are not.",
-              "@why D: the expression is perfectly legal, and parentheses are only needed to change the order."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int a = 5, b = 3, c = 1;\r\n@code if (a > b > c) { System.out.println(\"yes\"); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. a > b produces a boolean, and a boolean cannot be compared with c using >. [correct]",
-              "@option Yes, and it prints yes.",
-              "@option Yes, and it prints nothing.",
-              "@option Yes, because Java compares all three values at once.",
-              "@explain The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.",
-              "@why B: the compiler rejects the expression, so nothing runs.",
-              "@why C: it never reaches runtime for the same reason.",
-              "@why D: Java has no three-way comparison like that. You must chain with &&."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = true ? 1 : \"one\";",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. The two branches have incompatible types, int and String. [correct]",
-              "@option Yes, and x becomes 1.",
-              "@option Yes, and x becomes the text \"one\".",
-              "@option Yes, because Java converts the String to a number.",
-              "@explain The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.",
-              "@why B: it does not compile, so nothing is assigned.",
-              "@why C: the same type problem stops it, and \"one\" could never go into an int.",
-              "@why D: Java does not convert text to a number automatically. That is what Integer.parseInt is for."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code String s = \"Total: \";\r\n@code s += 10 + 20;\r\n@code System.out.println(s);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Total: 30, because 10 + 20 is worked out before the concatenation. [correct]",
-              "@option Total: 1020, because += concatenates everything.",
-              "@option Total: 30 is not possible, since += only concatenates text.",
-              "@option It does not compile, because += cannot be used with a String.",
-              "@explain The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.",
-              "@why B: 1020 would need the String to be involved in the addition, which it is not.",
-              "@why C: += performs concatenation for a String, and the numeric part is already resolved.",
-              "@why D: += with a String is legal and is one of the most common uses of compound assignment."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code boolean ready = false;\r\n@code System.out.println(!ready);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option true, because ! inverts a boolean value. [correct]",
-              "@option false, because ! leaves the value unchanged.",
-              "@option It does not compile, because ! needs a number.",
-              "@option -1, because ! negates the value numerically.",
-              "@explain ! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.",
-              "@why B: inversion is exactly what it does, so the value must change.",
-              "@why C: ! requires a boolean, and ready is one.",
-              "@why D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign."
+              "- leftOperand/rightOperand (operators): the values around an operator determine the operation. Choose numeric operands for arithmetic, boolean operands for logical operators, and remember the pitfall that + concatenates when a String is involved."
             ]
           }
         ],
@@ -2845,18 +2251,6 @@ const CONCEPTS_DATA = [
           "| `*` | Numeric | Multiplication | `4 * 5` -> `20` |",
           "| `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |",
           "| `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |",
-          "@code System.out.println(10 + 20 + \"Java\");",
-          "@code System.out.println(\"Java\" + 10 + 20);",
-          "@why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);",
-          "@code System.out.println(2 + 3 * 4);",
-          "@code int a = 5, b = 3, c = 1;",
-          "@code if (a > b > c) { System.out.println(\"yes\"); }",
-          "@code int x = true ? 1 : \"one\";",
-          "@code String s = \"Total: \";",
-          "@code s += 10 + 20;",
-          "@code System.out.println(s);",
-          "@code boolean ready = false;",
-          "@code System.out.println(!ready);",
           "myVar = myVar + 1 is equivalent to myVar++ (increment by 1).",
           "myVar = myVar - 1 is equivalent to myVar-- (decrement by 1).",
           "myVar = myVar + 2 is equivalent to myVar += 2.",
@@ -3476,19 +2870,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Deep Problem: Expression Evaluator Utilities — Build core numeric helper methods without using Math library shortcuts. Compute powers using repeated multiplication, determine absolute value manually, find the maximum of three values, and classify a number's sign. The goal is to practice operator-driven problem solving."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- base (power(int base, int exponent)): the base value supplied to power(); choose the number that will be raised to the requested exponent.",
-              "- exponent (power(int base, int exponent)): the exponent supplied to power(); choose the power to apply and test zero, positive, and boundary values.",
-              "- value (absolute(int value)): the int value supplied to absolute(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- first (maxOfThree(int first, int second, int third)): the first operand supplied to maxOfThree(); choose a value that represents this operation's first input.",
-              "- second (maxOfThree(int first, int second, int third)): the second operand supplied to maxOfThree(); choose a value that represents this operation's second input.",
-              "- third (maxOfThree(int first, int second, int third)): the third operand supplied to maxOfThree(); choose a value that represents this operation's third input.",
-              "- value (sign(int value)): the int value supplied to sign(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
-            ]
           }
         ],
         "inlineComments": [],
@@ -3523,147 +2904,11 @@ const CONCEPTS_DATA = [
               "Parameter notes (important method parameters and how to choose them):",
               "- args (main): command-line values supplied as a String array. Choose values when launching the program; whitespace in the command line can split arguments unless quoted.",
               "- x (System.out.println): the single value printed as one statement. Choose the String, variable, or expression that should be displayed; note that the Java statement ends at the semicolon, not at the visual line break.",
-              "- pieces in String concatenation: each quoted literal around + is an operand used to build the final println parameter. Choose pieces for readability, but remember the runtime receives one combined String.",
-              "@option An expression produces a value, such as 2 + 3, while a statement is a complete instruction, such as int x = 5; [correct]",
-              "@option A statement produces a value, while an expression is a complete instruction.",
-              "@option They are two names for the same thing.",
-              "@option An expression is always a whole line, and a statement is always a fragment.",
-              "@explain An expression evaluates to something. A statement is the complete unit of execution that the compiler acts on, and most statements end in a semicolon.",
-              "@why B: this is reversed. 2 + 3 yields a value, so it is an expression.",
-              "@why C: int x = 5; contains the expression x = 5, but the whole declaration is a statement, so the two are not the same.",
-              "@why D: expressions can be fragments such as 2 + 3, and statements are the ones usually written as a line.",
-              "@option No. The compiler ignores extra spaces, tabs and line breaks between tokens, though they matter for readability. [correct]",
-              "@option Yes. Incorrect indentation is a compile-time error.",
-              "@option Yes, but only inside an if statement.",
-              "@option Only tabs cause an error, not spaces.",
-              "@explain Whitespace between tokens is discarded by the compiler. Indentation exists for humans, and it shows the nesting of code blocks.",
-              "@why B: Java has no rule requiring indentation. Unindented code still compiles.",
-              "@why C: an if statement is not special in this respect.",
-              "@why D: neither tabs nor spaces change compilation. Mixing them only affects how the code looks.",
-              "@option Yes. What ends most statements is the semicolon, not the line break. [correct]",
-              "@option No. Every statement must be written on exactly one line.",
-              "@option Only if the statement is a method call.",
-              "@option Yes, but only for comments.",
-              "@explain Java does not treat a newline as a terminator. A concatenation or method call may be split over many lines and still be one statement, as long as it ends with a semicolon.",
-              "@why B: line breaks are whitespace and carry no meaning between tokens.",
-              "@why C: any statement may be wrapped, including declarations and assignments.",
-              "@why D: comments have their own rules, and this applies to ordinary statements.",
-              "@option The semicolon ends the statement. A method call and its arguments may be split across several lines before it. [correct]",
-              "@option The newline character in the source file ends the statement.",
-              "@option The closing parenthesis ends the statement.",
-              "@option The indentation of the next line ends the statement.",
-              "@explain A method call is one statement that runs until the semicolon. Line breaks inside the parentheses are ignored, so a long concatenation can be formatted over several lines.",
-              "@why B: source line breaks are whitespace, so they end nothing.",
-              "@why C: the parenthesis closes the argument list, but the statement is not complete until the semicolon.",
-              "@why D: indentation is for readability only.",
-              "@option A comparison that evaluates to true or false but is never used, such as (x > 5) on its own line. [correct]"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@option A declaration statement, such as int x = 5;\r\n@option An assignment statement, such as x = 10;\r\n@option A method call statement, such as System.out.println(\"hi\");",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@explain A bare comparison is an expression, not a complete statement, so the compiler rejects it. The other three are the everyday statement forms.",
-              "@why B: int x = 5; is a declaration statement.",
-              "@why C: x = 10; is an assignment statement.",
-              "@why D: a method call followed by a semicolon is a statement."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code public static void main(String[] args) {",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@code int x = 5"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code     System.out.println(x);\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. The missing semicolon after int x = 5 is a compile error. [correct]",
-              "@option Yes, because Java adds the semicolon for you.",
-              "@option Yes, because a line break ends the statement.",
-              "@option Yes, and it prints 5.",
-              "@explain A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.",
-              "@why B: Java never inserts missing punctuation.",
-              "@why C: this is the common misconception. The statement ends at the semicolon, and the line break is only whitespace.",
-              "@why D: nothing runs, because the file never compiles."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = 5;;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It compiles. The second semicolon is an empty statement that does nothing. [correct]",
-              "@option It is a compile error, because only one semicolon is allowed.",
-              "@option It sets x to 0.",
-              "@option It creates a second variable named x.",
-              "@explain A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.",
-              "@why B: an empty statement is valid Java, which is exactly what makes the mistake so easy to miss.",
-              "@why C: an empty statement performs no assignment.",
-              "@why D: declaring x twice with the same type in one scope would be an error, but that is not what this line does.",
-              "@option int x = 5; [correct]",
-              "@option x > 5",
-              "@option 5 + 3",
-              "@option \"hello\"",
-              "@explain A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.",
-              "@why B: x > 5 is an expression that produces a boolean. Alone, it is not a statement.",
-              "@why C: 5 + 3 is an expression that produces 8. It has no effect on its own.",
-              "@why D: a String literal is an expression. Without a semicolon or a use for the value, it is not a statement."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code if (true) {\r\n@code     int inner = 10;\r\n@code }\r\n@code System.out.println(inner);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It does not compile, because inner is scoped to the block and is gone after the closing brace. [correct]",
-              "@option It compiles and prints 10.",
-              "@option It compiles and prints 0, because inner loses its value.",
-              "@option It compiles only if inner is declared final.",
-              "@explain A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.",
-              "@why B: the name is out of scope at that point.",
-              "@why C: the variable is not reset, it is simply no longer visible.",
-              "@why D: final changes whether the value can be reassigned, not how long the variable lives."
+              "- pieces in String concatenation: each quoted literal around + is an operand used to build the final println parameter. Choose pieces for readability, but remember the runtime receives one combined String."
             ]
           }
         ],
-        "inlineComments": [
-          "@option A declaration statement, such as int x = 5;",
-          "@option An assignment statement, such as x = 10;",
-          "@option A method call statement, such as System.out.println(\"hi\");",
-          "@code public static void main(String[] args) {",
-          "@code System.out.println(x);",
-          "@code }",
-          "@code int x = 5;;",
-          "@code if (true) {",
-          "@code int inner = 10;",
-          "@code System.out.println(inner);"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "What is the difference between a statement and an expression in Java?",
@@ -4094,20 +3339,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Deep Problem: Multi-Domain Unit Converter — Implement a conversion utility that handles distance, weight, temperature, and volume. Each conversion must be isolated in its own method, and the program should generate readable tables for values 1 through 10 to simulate the kind of output a small engineering tool might need."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- kilometers (kilometersToMiles(double kilometers)): the double value supplied to kilometersToMiles(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- kilograms (kilogramsToPounds(double kilograms)): the double value supplied to kilogramsToPounds(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- celsius (celsiusToFahrenheit(double celsius)): the Celsius temperature supplied to celsiusToFahrenheit(); choose the temperature you want to convert, such as 25 for 25°C.",
-              "- liters (litersToGallons(double liters)): the double value supplied to litersToGallons(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- title (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the String text supplied to printTable(); choose content that matches the method's expected format.",
-              "- fromUnit (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the String text supplied to printTable(); choose content that matches the method's expected format.",
-              "- toUnit (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the String text supplied to printTable(); choose content that matches the method's expected format.",
-              "- converter (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the conversion or callback logic supplied to printTable(); choose an implementation that matches the expected input and output types."
-            ]
           }
         ],
         "inlineComments": [],
@@ -4178,235 +3409,10 @@ const CONCEPTS_DATA = [
               "- The ternary expression condition ? valueIfTrue : valueIfFalse has three operands: the boolean condition to test, the value chosen when true, and the value chosen when false; choose compatible result types.",
               "- if(condition) and logical operators such as && and || are not method calls, but their boolean expressions act like decision inputs; important: choose expressions that evaluate to true or false only."
             ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = 5;\r\n@code if (x > 3) ; { System.out.println(\"Hello\"); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Hello, and it is printed even if the condition were false. [correct]",
-              "@option Nothing at all.",
-              "@option It does not compile.",
-              "@option Hello, but only when x > 3 is true.",
-              "@explain The semicolon straight after the condition ends the if statement, creating an empty body. The braced block that follows is then a separate statement that always runs. This is why a semicolon must never be placed after if (condition).",
-              "@why B: the block is no longer controlled by the if, so it does run.",
-              "@why C: it is legal Java, which is exactly what makes the mistake so easy to miss.",
-              "@why D: the block is outside the if, so the condition no longer affects it.",
-              "@option Braces make the controlled block explicit and prevent bugs when more lines are added later. [correct]",
-              "@option Braces make the code run faster.",
-              "@option Java requires braces, otherwise the code will not compile.",
-              "@option Braces are needed only when the condition is complex.",
-              "@explain Without braces, only the single next statement belongs to the if. A later edit that adds a line is easy to get wrong, and the second line silently falls outside the condition.",
-              "@why B: braces have no effect on execution speed.",
-              "@why C: braces are optional for a single statement, which is the reason the guidance exists.",
-              "@why D: the risk applies to simple conditions too.",
-              "@option A boolean condition, the value used when it is true, and the value used when it is false. [correct]",
-              "@option An assignment, a variable, and a literal.",
-              "@option Two conditions and one value.",
-              "@option A method call, its argument, and its return value.",
-              "@explain The ternary operator is a compact if-else that produces a value. The condition must be boolean, and the two result expressions should be of compatible types.",
-              "@why B: there is no assignment in the operator itself.",
-              "@why C: only the first part is a condition; the other two are the results.",
-              "@why D: it is an operator, not a method call."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code if (a) if (b) x = 1; else x = 2;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option The inner if, because else always binds to the nearest unmatched if. [correct]",
-              "@option The outer if, because else always belongs to the first if.",
-              "@option It does not compile without braces.",
-              "@option It is ambiguous and the compiler picks at random.",
-              "@explain This is the dangling else problem. Java resolves it by binding else to the closest if that does not already have one, which is the inner if here. Braces remove the doubt.",
-              "@why B: binding to the outer if would change the meaning, and Java does not do that.",
-              "@why C: it compiles, and it compiles in a way that often surprises people.",
-              "@why D: the rule is fixed and deterministic, not random.",
-              "@option No. The condition must be a boolean expression, unlike C where a number can be tested. [correct]",
-              "@option Yes, where 0 means false and any other number means true.",
-              "@option Yes, where null means false.",
-              "@option Yes, but only for int values.",
-              "@explain Java is strict here. Something like if (1) is a compile-time error, and it must be written as a real comparison such as if (x != 0).",
-              "@why B: that rule belongs to C and C++, not to Java.",
-              "@why C: an object reference cannot be used directly either. Write if (obj != null) instead.",
-              "@why D: no numeric type is accepted, not even int."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code if (true) System.out.println(\"A\");\r\n@code System.out.println(\"B\");",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Only the first, so B is printed whatever the condition is. [correct]",
-              "@option Both, because the condition is true.",
-              "@option Neither, because there are no braces.",
-              "@option It does not compile without braces.",
-              "@explain Without braces, an if controls exactly one statement, the one immediately after it. Everything after that is outside the condition.",
-              "@why B: braces would be needed to control both lines.",
-              "@why C: an if with no braces still controls the single following statement.",
-              "@why D: braces are optional for one statement."
-            ]
-          },
-          {
-            "type": "table",
-            "headers": [
-              "@option && requires both sides to be true, while",
-              "",
-              "requires at least one side to be true. [correct]"
-            ],
-            "rows": [
-              [
-                "@option && requires at least one side to be true, while",
-                "",
-                "requires both."
-              ]
-            ],
-            "lines": [
-              "@option && requires both sides to be true, while — requires at least one side to be true. [correct]",
-              "@option && requires at least one side to be true, while — requires both."
-            ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Both mean the same thing.",
-              "@option && works only with numbers, and || only with Strings.",
-              "@explain They are the logical AND and OR operators. Both also short-circuit, so the right side is skipped once the answer is already known.",
-              "@why B: the two are swapped.",
-              "@why C: they differ, and swapping them changes when a block runs.",
-              "@why D: both operators work on boolean expressions."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int score = 75;\r\n@code if (score >= 90) { System.out.println(\"A\"); }\r\n@code else if (score >= 70) { System.out.println(\"B\"); }\r\n@code else if (score >= 50) { System.out.println(\"C\"); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option B, because the first matching condition wins and the rest are skipped. [correct]",
-              "@option C, because score is also at least 50.",
-              "@option B and C, because both conditions are true.",
-              "@option A, because 75 is more than 50.",
-              "@explain An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.",
-              "@why B: the C branch is never tested, because the chain already stopped.",
-              "@why C: only one branch of an if/else-if chain runs.",
-              "@why D: 75 is less than 90, so the first condition is false."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code if (name != null && name.length() > 5) { ... }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option && short-circuits, so the right side is skipped when name is null. [correct]",
-              "@option && always evaluates both sides, so it would throw a NullPointerException.",
-              "@option The condition is not safe, and it always throws.",
-              "@option Java converts null to an empty String before the check.",
-              "@explain Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.",
-              "@why B: only the non-short-circuiting & evaluates both sides. That version would throw.",
-              "@why C: the guard exists precisely to prevent the exception.",
-              "@why D: null is not converted. Calling a method on it is what throws."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code String a = \"hello\";\r\n@code String b = new String(\"hello\");\r\n@code if (a == b) { System.out.println(\"equal\"); }\r\n@code else { System.out.println(\"not equal\"); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option not equal, because == compares references and these are two different objects. [correct]",
-              "@option equal, because both strings contain the same characters.",
-              "@option equal, because == compares String content in Java.",
-              "@option It does not compile, because Strings cannot be compared with ==.",
-              "@explain The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.",
-              "@why B: content is what equals compares, not ==.",
-              "@why C: == compares references. equals is the method that compares content.",
-              "@why D: it compiles for any reference type, which is why the bug is so easy to make."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = 10;\r\n@code if (x > 5); { System.out.println(\"big\"); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option big, and it would print even if x were 1. [correct]",
-              "@option big, but only when x > 5 is true.",
-              "@option nothing at all.",
-              "@option It does not compile, because of the semicolon.",
-              "@explain The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.",
-              "@why B: the block is outside the if, so the condition cannot affect it.",
-              "@why C: the block is unconditional, so it always prints.",
-              "@why D: it is legal Java, and that is what makes the mistake dangerous."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int result = (10 > 5) ? 1 : 2 + 3;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 1, because the condition is true and only that branch is used. [correct]",
-              "@option 6, because the false branch is added.",
-              "@option 4, because the ternary is evaluated after the addition.",
-              "@option It does not compile, because the branches are different expressions.",
-              "@explain The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.",
-              "@why B: the false branch is not used, and 2 + 3 is not added to the result.",
-              "@why C: the branches of a ternary are alternatives, never combined.",
-              "@why D: both branches are int here, so the types are compatible."
-            ]
           }
         ],
         "inlineComments": [
           "Always use curly braces { } with if — even for single-line bodies. It prevents bugs when you add more code later.",
-          "@code int x = 5;",
-          "@code if (x > 3) ; { System.out.println(\"Hello\"); }",
-          "@code if (a) if (b) x = 1; else x = 2;",
-          "@code if (true) System.out.println(\"A\");",
-          "@code System.out.println(\"B\");",
-          "@option && requires both sides to be true, while || requires at least one side to be true. [correct]",
-          "@option && requires at least one side to be true, while || requires both.",
-          "@code int score = 75;",
-          "@code if (score >= 90) { System.out.println(\"A\"); }",
-          "@code else if (score >= 70) { System.out.println(\"B\"); }",
-          "@code else if (score >= 50) { System.out.println(\"C\"); }",
-          "@code if (name != null && name.length() > 5) { ... }",
-          "@code String a = \"hello\";",
-          "@code String b = new String(\"hello\");",
-          "@code if (a == b) { System.out.println(\"equal\"); }",
-          "@code else { System.out.println(\"not equal\"); }",
-          "@code int x = 10;",
-          "@code if (x > 5); { System.out.println(\"big\"); }",
-          "@code int result = (10 > 5) ? 1 : 2 + 3;",
           "If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed."
         ],
         "customQuizzes": [
@@ -5067,15 +4073,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Deep Problem: Academic Result Classifier — Create a grading engine that converts numeric scores into fine-grained labels, determines pass/fail status, and maps results into broader academic bands such as Distinction and Merit. The main method should sweep through a range of scores to demonstrate how each rule behaves."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- score (classify(int score)): the score supplied to classify(); choose a value within the documented scoring range, including boundary values when testing conditions.",
-              "- score (isPassing(int score)): the score supplied to isPassing(); choose a value within the documented scoring range, including boundary values when testing conditions.",
-              "- score (letterGrade(int score)): the score supplied to letterGrade(); choose a value within the documented scoring range, including boundary values when testing conditions."
-            ]
           }
         ],
         "inlineComments": [],
@@ -5129,199 +4126,13 @@ const CONCEPTS_DATA = [
               "- calculateScore(...): levelCompleted is the number of completed levels used as a multiplier; choose a count, not a level index, and avoid negative counts unless intentionally modeling a penalty.",
               "- calculateScore(...): bonus is points awarded per completed level; choose the per-level bonus amount, so finalScore adds levelCompleted * bonus plus 1000.",
               "- System.out.println(String x): in this file x is always a label concatenated with a score result, e.g. \"Your final score was \" + highScore.",
-              "- calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them.",
-              "@option A parameter is a local variable that is created on each call, holds a copy of the argument value, and is destroyed when the method returns. [correct]",
-              "@option A parameter is an alias for the caller's variable, so assigning a new value to the parameter also changes the caller's variable.",
-              "@option A parameter keeps the value from the previous call, because Java reuses the same variable for the same method.",
-              "@option A parameter must have exactly the same name as the variable that the caller passes in.",
-              "@explain Parameters are local variables that exist only for the duration of a call. They are initialised with copies of the argument values, which is why Java is described as pass-by-value.",
-              "@why B: Java always passes by value, so reassigning a parameter cannot affect the caller's variable.",
-              "@why C: Each call creates fresh parameters, and they are destroyed when the method returns, so nothing is retained.",
-              "@why D: The parameter name is local to the method; the caller's variable names have no effect on it.",
-              "@option Every valid execution path must return an int value, and this method uses -1 to signal that no valid score could be produced. [correct]",
-              "@option Nothing extra, because the int only documents the type of the value that is printed inside the method.",
-              "@option The method must return a double, because finalScore is increased by the constant 1000.",
-              "@option The method may finish without returning a value, as long as it prints the result first.",
-              "@explain A non-void return type is a promise that the method sends back a value of that declared type on every path that finishes normally. Here the promise is kept by returning finalScore, or -1 as the sentinel when no score is valid.",
-              "@why B: The return type describes the value sent back to the caller, not what is printed inside the method.",
-              "@why C: finalScore is an int and the declared return type stays int; adding 1000 does not widen it.",
-              "@why D: Printing is not returning, so a method with a non-void return type must still return a value.",
-              "@option print(int), because the argument is already an int, so that overload is the most specific applicable one. [correct]",
-              "@option print(double), because Java widens to double before it looks for an exact match.",
-              "@option Neither, because the call is ambiguous and the code does not compile.",
-              "@option Java decides at runtime, by asking the argument which parameter type it prefers.",
-              "@explain Overload resolution happens at compile time and picks the most specific applicable method. The argument is exactly an int, so print(int) is a better match than print(double).",
-              "@why B: Widening is only considered when no more specific applicable overload exists, so the int version wins here.",
-              "@why C: The call is not ambiguous, because print(int) is strictly more specific than print(double).",
-              "@why D: Overload resolution is a compile-time decision based on the declared types of the arguments.",
-              "@option The caller's variables are unchanged, because the method swaps only its own copies of the two values. [correct]",
-              "@option The caller's variables are swapped, because int arguments are passed by reference.",
-              "@option The caller's variables are swapped, but only when the method is declared static.",
-              "@option The code does not compile, because Java cannot pass an int value to a method.",
-              "@explain Java passes arguments by value, so a and b are copies. Swapping the copies leaves the caller's variables exactly as they were, which is the classic Java trap.",
-              "@why B: Primitives are passed by value, so no link to the caller's variables is ever created.",
-              "@why C: Being static has no effect on argument passing; copies are made either way.",
-              "@why D: Passing int values to int parameters is completely legal; the values are simply copied.",
-              "@option A void method can be called as a statement but cannot be used inside an expression, because the call produces no value. [correct]",
-              "@option A void method must still return a value, and the usual choice is to return 0 as a placeholder.",
-              "@option A void method cannot declare parameters, because it has nothing to send back.",
-              "@option A void method can be assigned to any variable, and that variable then holds null.",
-              "@explain void means the method sends no value back to the caller. The call is therefore an action rather than an expression, so it cannot be used where a value is expected.",
-              "@why B: A void method may finish without any return statement at all.",
-              "@why C: void describes only the return type; a void method may take as many parameters as it needs.",
-              "@why D: There is no value to assign, so a void method call cannot appear on the right-hand side of an assignment.",
-              "@option A static method has no current object, so it cannot directly access instance fields, while an instance method can access both instance and static members. [correct]",
-              "@option A static method is called on an object, while an instance method is called with the class name.",
-              "@option An instance method cannot read static fields, because static members belong only to the class.",
-              "@option A static method belongs to each object separately, so every object gets its own copy of it.",
-              "@explain A static method belongs to the class and is called through the class name, such as Math.max(). It has no current object, so instance fields are out of reach, whereas an instance method has a current object and can use both kinds of member.",
-              "@why B: It is the other way round: static members are used with the class name, and instance members with an object reference.",
-              "@why C: An instance method can access static members as well as instance members.",
-              "@why D: Static members belong to the class and are shared by all objects rather than copied for each object."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int result = calculateScore(false, 800, 5, 100);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option -1, because gameOver is false, so the calculation is skipped and the sentinel value is returned. [correct]",
-              "@option 2300, because 800 + (5 * 100) + 1000 is calculated from the arguments that were passed.",
-              "@option 0, because finalScore is still zero when the if block does not run.",
-              "@option The code does not compile, because an if block without an else block cannot return an int on every path.",
-              "@explain The whole calculation sits inside if(gameOver), so passing false skips it. Execution then reaches the final return -1, which is the documented sentinel meaning no valid score.",
-              "@why B: The arithmetic is never performed for a false gameOver, so 2300 cannot be returned here.",
-              "@why C: finalScore is declared inside the if block, so it does not exist at all when the block is skipped.",
-              "@why D: The return -1 after the if statement provides a value on every path, so the method compiles.",
-              "@option Because that version declares an empty parameter list and hard-codes its own gameOver, score, levelCompleted and bonus values. [correct]",
-              "@option Because Java fills in a default value for every argument that is left out.",
-              "@option Because void methods are not allowed to declare parameters.",
-              "@option Because the other overload has already stored the four values for it to use.",
-              "@explain A no-argument method declares no parameters, so it must supply its own values inside the body. That is exactly why the caller of this version has no way to change gameOver, score, levelCompleted or bonus.",
-              "@why B: Java never invents arguments; the argument count and types must match a declared parameter list.",
-              "@why C: void methods can declare parameters, as the later versions of calculateScore show.",
-              "@why D: Overloading does not carry values between methods; the no-argument call simply matches the method with an empty parameter list."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code static void update(int[] data) { data[0] = 99; }\r\n@code int[] nums = {1, 2, 3};\r\n@code update(nums);\r\n@code System.out.println(nums[0]);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 99, because the method receives a copy of the reference and changes the same array object. [correct]",
-              "@option 1, because Java passes a copy of the array so the original is untouched.",
-              "@option It does not compile, because arrays cannot be passed to methods.",
-              "@option 0, because the array is reset when the method returns.",
-              "@explain Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.",
-              "@why B: the reference is copied, not the contents. The copy still points at the same array.",
-              "@why C: arrays are objects and can be passed freely.",
-              "@why D: nothing is reset. The change made inside the method persists."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code static void reset(int[] data) { data = new int[]{0, 0, 0}; }\r\n@code int[] nums = {1, 2, 3};\r\n@code reset(nums);\r\n@code System.out.println(nums[0]);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 1, because reassigning the parameter only changes the local copy of the reference. [correct]",
-              "@option 0, because the method replaces the array with zeros.",
-              "@option It does not compile, because data cannot be reassigned.",
-              "@option 99, because the old value is retained.",
-              "@explain The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.",
-              "@why B: the new array is local to the method and is discarded when it returns.",
-              "@why C: reassigning a parameter is allowed; it simply has no effect on the caller.",
-              "@why D: 99 was never involved in this code."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code public static int sign(int n) {\r\n@code     if (n > 0) { return 1; }\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. A non-void method must return a value on every path, and the case where n is not positive has no return. [correct]",
-              "@option Yes, and it returns 0 when n is not positive.",
-              "@option Yes, because Java supplies a default return value of 0.",
-              "@option Yes, and it returns 1 in every case.",
-              "@explain The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.",
-              "@why B: there is no implicit 0. The method would have to say so.",
-              "@why C: Java never supplies a default return value for a method.",
-              "@why D: the return sits inside the if, so it does not cover every case."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code public static void printScore(int score) { System.out.println(score); }\r\n@code int result = printScore(10);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. A void method produces no value, so there is nothing to assign to result. [correct]",
-              "@option Yes, and result becomes 10.",
-              "@option Yes, and result becomes 0.",
-              "@option Yes, because Java converts the printed value into an int.",
-              "@explain void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.",
-              "@why B: the score inside the method is a parameter, not a return value.",
-              "@why C: an absent value is not the same as zero.",
-              "@why D: printing is output, not a return."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code static void swap(int a, int b) { int t = a; a = b; b = t; }\r\n@code int x = 1, y = 2;\r\n@code swap(x, y);\r\n@code System.out.println(x + \" \" + y);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 1 2, because the method swaps only its own copies of the values. [correct]",
-              "@option 2 1, because the swap is applied to the caller's variables.",
-              "@option It does not compile, because a and b cannot be reassigned.",
-              "@option 1 1, because both variables end up with the same value.",
-              "@explain Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.",
-              "@why B: reaching the caller's variables would need pass-by-reference, which Java does not do.",
-              "@why C: reassigning parameters is perfectly legal.",
-              "@why D: the method works correctly on its own copies; the caller simply never sees it."
+              "- calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them."
             ]
           }
         ],
         "inlineComments": [
           "Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }",
           "Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a /* */ block to show the in-between step — it never compiles or runs.",
-          "@code int result = calculateScore(false, 800, 5, 100);",
-          "@code static void update(int[] data) { data[0] = 99; }",
-          "@code int[] nums = {1, 2, 3};",
-          "@code update(nums);",
-          "@code System.out.println(nums[0]);",
-          "@code static void reset(int[] data) { data = new int[]{0, 0, 0}; }",
-          "@code reset(nums);",
-          "@code public static int sign(int n) {",
-          "@code if (n > 0) { return 1; }",
-          "@code }",
-          "@code public static void printScore(int score) { System.out.println(score); }",
-          "@code int result = printScore(10);",
-          "@code static void swap(int a, int b) { int t = a; a = b; b = t; }",
-          "@code int x = 1, y = 2;",
-          "@code swap(x, y);",
-          "@code System.out.println(x + \" \" + y);",
           "Calling the overloaded method with parameters",
           "The parameters should be passed in the same order as it is defined in the method.",
           "We can also pass the values to the method using variables",
@@ -5911,15 +4722,6 @@ const CONCEPTS_DATA = [
               "Java chooses the correct overloaded method at compile time by looking at the number and types of arguments.",
               "Example results: area(5.0) returns about 78.53975, area(5.0, 4.0) returns 20.0, and area(-1.0, 4.0) returns -1.0."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- radius (area(double radius)): the circle radius supplied to area(); choose a non-negative measurement because area depends on radius squared.",
-              "- x (area(double x, double y)): the x operand supplied to area(); choose a value that represents this operation's x input.",
-              "- y (area(double x, double y)): the y operand supplied to area(); choose a value that represents this operation's y input."
-            ]
           }
         ],
         "inlineComments": [],
@@ -5944,14 +4746,6 @@ const CONCEPTS_DATA = [
               "Example results: shouldWakeUp(true, 1) returns true, shouldWakeUp(false, 2) returns false, and shouldWakeUp(true, 8) returns false.",
               "Important: combine conditions carefully so invalid hours never accidentally produce a true result."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- barking (shouldWakeUp(boolean barking, int hourOfDay)): the boolean condition used by shouldWakeUp(); choose true or false to exercise the relevant branch.",
-              "- hourOfDay (shouldWakeUp(boolean barking, int hourOfDay)): the int input used by shouldWakeUp(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -5975,14 +4769,6 @@ const CONCEPTS_DATA = [
               "If the two truncated int values are equal, the original numbers match to three decimal places.",
               "Example results: -3.1756 and -3.175 match, 3.175 and 3.176 do not match, and -3.123 and 3.123 do not match.",
               "Important: this exercise intentionally uses casting and truncation, so it is checking decimal-place equality rather than true mathematical closeness."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- firstNumber (areEqualByThreeDecimalPlaces(double firstNumber, double secondNumber)): the first numeric operand supplied to areEqualByThreeDecimalPlaces(); choose the first value in the comparison or calculation.",
-              "- secondNumber (areEqualByThreeDecimalPlaces(double firstNumber, double secondNumber)): the second numeric operand supplied to areEqualByThreeDecimalPlaces(); choose the second value in the comparison or calculation."
             ]
           }
         ],
@@ -6009,15 +4795,6 @@ const CONCEPTS_DATA = [
               "All remaining valid combinations print \"Neither all are equal or different\".",
               "Important: exact output text matters in coding challenge platforms, including capitalization and spaces."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- firstNumber (printEqual(int firstNumber, int secondNumber, int thirdNumber)): the first numeric operand supplied to printEqual(); choose the first value in the comparison or calculation.",
-              "- secondNumber (printEqual(int firstNumber, int secondNumber, int thirdNumber)): the second numeric operand supplied to printEqual(); choose the second value in the comparison or calculation.",
-              "- thirdNumber (printEqual(int firstNumber, int secondNumber, int thirdNumber)): the third numeric operand supplied to printEqual(); choose the final value in the comparison or calculation."
-            ]
           }
         ],
         "inlineComments": [],
@@ -6040,15 +4817,6 @@ const CONCEPTS_DATA = [
               "The method should return true for matching totals and false for all other totals.",
               "Example results: hasEqualSum(1, 1, 1) returns false, hasEqualSum(1, 1, 2) returns true, and hasEqualSum(1, -1, 0) returns true.",
               "Important: because the comparison already produces a boolean, the method can return the expression directly."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- firstNumber (hasEqualSum(int firstNumber, int secondNumber, int sum)): the first numeric operand supplied to hasEqualSum(); choose the first value in the comparison or calculation.",
-              "- secondNumber (hasEqualSum(int firstNumber, int secondNumber, int sum)): the second numeric operand supplied to hasEqualSum(); choose the second value in the comparison or calculation.",
-              "- sum (hasEqualSum(int firstNumber, int secondNumber, int sum)): the int value supplied to hasEqualSum(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
             ]
           }
         ],
@@ -6075,13 +4843,6 @@ const CONCEPTS_DATA = [
               "Example results: isLeapYear(-1600) returns false, isLeapYear(1600) returns true, and isLeapYear(2017) returns false.",
               "Important: place the range validation first so invalid years cannot pass the divisibility checks."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- year (isLeapYear(int year)): the calendar year supplied to isLeapYear(); choose a four-digit year and include leap-year boundaries when testing."
-            ]
           }
         ],
         "inlineComments": [],
@@ -6107,13 +4868,6 @@ const CONCEPTS_DATA = [
               "Important: output formatting is part of the requirement, so extra spaces can make an otherwise correct calculation fail.",
               "Example results: 2500 prints \"2500 KB = 2 MB and 452 KB\", and 5000 prints \"5000 KB = 4 MB and 904 KB\"."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- kilobytes (printMegaBytesAndKiloBytes(int kilobytes)): the int value supplied to printMegaBytesAndKiloBytes(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
-            ]
           }
         ],
         "inlineComments": [],
@@ -6137,15 +4891,6 @@ const CONCEPTS_DATA = [
               "displayHighScorePosition(String name, int position) prints a readable message using the player's name and calculated position.",
               "The main method demonstrates the full flow with sample scores 1500, 900, 400, and 50.",
               "Important: calculate the position first, then pass that result into the display method instead of mixing both jobs in one method."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- name (displayHighScorePosition(String name, int position)): the String text supplied to displayHighScorePosition(); choose content that matches the method's expected format.",
-              "- position (displayHighScorePosition(String name, int position)): the int input used by displayHighScorePosition(); choose a value that matches the method's range and boundary rules.",
-              "- score (calculateHighScorePosition(int score)): the score supplied to calculateHighScorePosition(); choose a value within the documented scoring range, including boundary values when testing conditions."
             ]
           }
         ],
@@ -6174,13 +4919,6 @@ const CONCEPTS_DATA = [
               "Example results: 525600 prints \"525600 min = 1 y and 0 d\", and 561600 prints \"561600 min = 1 y and 25 d\".",
               "Important: exact spacing and capitalization matter because this kind of challenge often checks output text literally."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- minutes (printYearsAndDays(long minutes)): the total minutes supplied to printYearsAndDays(); choose a non-negative duration so it can be converted into years and remaining days."
-            ]
           }
         ],
         "inlineComments": [],
@@ -6205,14 +4943,6 @@ const CONCEPTS_DATA = [
               "Example results: isCatPlaying(true, 10) returns false, isCatPlaying(false, 36) returns false, and isCatPlaying(false, 35) returns true.",
               "Important: inclusive boundaries mean 25, 35, and 45 can be valid depending on the value of isSummer."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- isSummer (isCatPlaying(boolean isSummer, int temperature)): the boolean condition used by isCatPlaying(); choose true or false to exercise the relevant branch.",
-              "- temperature (isCatPlaying(boolean isSummer, int temperature)): the temperature supplied to isCatPlaying(); choose a value at or around the documented seasonal or comparison boundary."
-            ]
           }
         ],
         "inlineComments": [],
@@ -6235,13 +4965,6 @@ const CONCEPTS_DATA = [
               "A value greater than 0 prints \"positive\", a value less than 0 prints \"negative\", and 0 prints \"zero\".",
               "The method does not return a value because the result is communicated through console output.",
               "Important: the zero case must be handled separately because zero is neither positive nor negative."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (checkNumber(int number)): the int input used by checkNumber(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -6269,14 +4992,6 @@ const CONCEPTS_DATA = [
               "Important: 1 mile per hour is approximately 1.609 kilometers per hour, so milesPerHour = kilometersPerHour / 1.609.",
               "Example results: toMilesPerHour(1.5) returns 1, toMilesPerHour(10.25) returns 6, and toMilesPerHour(-5.6) returns -1."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- kilometersPerHour (toMilesPerHour(double kilometersPerHour)): the double input used by toMilesPerHour(); choose a value that matches the method's range and boundary rules.",
-              "- kilometersPerHour (printConversion(double kilometersPerHour)): the double input used by printConversion(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -6301,16 +5016,6 @@ const CONCEPTS_DATA = [
               "Example results: hasTeen(9, 99, 19) returns true, hasTeen(23, 15, 42) returns true, and hasTeen(22, 23, 24) returns false.",
               "Important: inclusive range checks use >= for the lower boundary and <= for the upper boundary."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- firstNumber (hasTeen(int firstNumber, int secondNumber, int thirdNumber)): the first numeric operand supplied to hasTeen(); choose the first value in the comparison or calculation.",
-              "- secondNumber (hasTeen(int firstNumber, int secondNumber, int thirdNumber)): the second numeric operand supplied to hasTeen(); choose the second value in the comparison or calculation.",
-              "- thirdNumber (hasTeen(int firstNumber, int secondNumber, int thirdNumber)): the third numeric operand supplied to hasTeen(); choose the final value in the comparison or calculation.",
-              "- number (isTeen(int number)): the int input used by isTeen(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -6329,19 +5034,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Recursive Number Toolkit — Implement recursive solutions for factorial, Fibonacci, digit summation, and number reversal, while also comparing iterative and recursive factorial side by side. The challenge highlights where recursion is elegant and where iteration can be more direct."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (factorialRecursive(int number)): the int input used by factorialRecursive(); choose a value that matches the method's range and boundary rules.",
-              "- number (factorialIterative(int number)): the int input used by factorialIterative(); choose a value that matches the method's range and boundary rules.",
-              "- number (fibonacci(int number)): the int input used by fibonacci(); choose a value that matches the method's range and boundary rules.",
-              "- number (sumDigits(int number)): the int input used by sumDigits(); choose a value that matches the method's range and boundary rules.",
-              "- number (reverseNumber(int number)): the int input used by reverseNumber(); choose a value that matches the method's range and boundary rules.",
-              "- remaining (reversePositive(int remaining, int reversed)): the remaining value supplied to reversePositive(); choose the unprocessed portion passed into the recursive step.",
-              "- reversed (reversePositive(int remaining, int reversed)): the reversed accumulator supplied to reversePositive(); start with the neutral value and let each recursive step append the next digit."
             ]
           }
         ],
@@ -6382,18 +5074,8 @@ const CONCEPTS_DATA = [
               "The 'break' statement is critical — without it, execution \"falls through\" to the next case and continues running (even if that case's value does not match).",
               "Fall-through can sometimes be useful (grouping multiple cases together), but is mostly a source of bugs if not intended.",
               "The 'default' case is like the 'else' in an if-else — it runs when no case matches. It is optional but recommended.",
-              "A return statement inside a switch also acts like a break — it exits both the switch AND the method."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println(\"1, 2 or 3\");",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
+              "A return statement inside a switch also acts like a break — it exits both the switch AND the method.",
+              "Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println(\"1, 2 or 3\");",
               "The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through.",
               "Parameter notes (what each method/constructor argument means and how to choose it):",
               "- main(String[] args): args holds optional command-line Strings; choose values when launch-time input is needed, otherwise it may be unused.",
@@ -6403,218 +5085,12 @@ const CONCEPTS_DATA = [
               "- switchCaseWithoutUsingBreak(int value): value chooses the starting case, but missing breaks cause fall-through; warning: choose 1 only if you expect all later messages too.",
               "- getQuarter(String month): month is expected to be an uppercase English month name such as \"NOVEMBER\"; choose exactly one of the listed names to avoid \"INVALID MONTH\".",
               "- quarterValue.equals(\"INVALID MONTH\"): the argument is the Object/String to compare with quarterValue; choose the exact text you want to test, and remember equals is case-sensitive.",
-              "- System.out.println(String x): x is the line printed with a newline; choose either the result alone or a concatenated explanatory sentence.",
-              "@option byte, short, char and int, plus their wrapper types, together with String and enum types. [correct]",
-              "@option Every primitive type, including long, float, double and boolean.",
-              "@option Any object type, because switch compares the selector with the case labels using equals.",
-              "@option Only int and enum, because every case label must be an int constant.",
-              "@explain A traditional switch accepts the smaller integral types byte, short, char and int, their wrapper classes, String from Java 7 onwards, and enum types. Nothing larger than int is allowed, and unrelated object types are not allowed either.",
-              "@why B: long, float, double and boolean are primitives too, but none of them is a valid selector type, so such a switch would not compile.",
-              "@why C: switch does not call equals on arbitrary objects; String and enum are the only reference types it accepts.",
-              "@why D: char, byte, short and String are all valid selectors, so limiting switch to int and enum is wrong."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code switch (x) {\r\n@code     case 1: System.out.print(\"A\"); break;\r\n@code     case 2: System.out.print(\"B\");\r\n@code     case 3: System.out.print(\"C\"); break;\r\n@code     default: System.out.print(\"D\");\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option BC, because execution starts at case 2 and falls through into case 3 before that break stops it. [correct]",
-              "@option B, because the matching case finishes as soon as its statement has run.",
-              "@option BCD, because the default case always runs after the matching case.",
-              "@option The code does not compile, because case 2 has no break statement.",
-              "@explain The matching label is case 2, so B is printed. With no break there, execution falls through into the next case and prints C, and the break in case 3 then leaves the switch. default is never reached because a case did match.",
-              "@why B: B on its own would need a break straight after case 2; the missing break causes fall-through into case 3.",
-              "@why C: default runs only when no case label matches, and here case 2 matched.",
-              "@why D: Omitting break is legal in a traditional switch; it causes fall-through rather than a compile error.",
-              "@option It is optional, and it runs when no case label matches the selector. [correct]",
-              "@option It is mandatory, because a switch written without default does not compile.",
-              "@option It must be written before the first case, so that it is checked first.",
-              "@option It is needed only when the selector is a String.",
-              "@explain default is the switch equivalent of the final else: it is chosen only when the selector matches none of the case labels. Java lets you leave it out, but including it handles unexpected values.",
-              "@why B: A switch compiles without default; it is recommended rather than required.",
-              "@why C: A case label is still matched first wherever default is written, so there is no rule that it must come first.",
-              "@why D: default is unrelated to the selector type; it applies to every form of switch.",
-              "@option long [correct]",
-              "@option char",
-              "@option String",
-              "@option enum",
-              "@explain A traditional switch accepts byte, short, char, int and their wrapper types, plus String and enum types. long is not in that list, so a switch on a long would not compile, and the same is true of float, double and boolean.",
-              "@why B: char is a valid selector type and has been since the earliest version of the language.",
-              "@why C: String has been allowed since Java 7, which is why the month lookup in this file works.",
-              "@why D: enum types are valid selectors and are commonly combined with switch.",
-              "@option \"INVALID MONTH\", because the case labels are uppercase and String matching in a switch is case-sensitive. [correct]",
-              "@option \"4th Quarter\", because a switch comparison ignores the case of a String.",
-              "@option The code does not compile, because getQuarter has no default label.",
-              "@option null, because an unmatched switch with no default produces no value.",
-              "@explain String matching in a switch is exact and case-sensitive, so lowercase \"november\" matches none of the uppercase labels. Execution falls past every case to the final return, which supplies the text \"INVALID MONTH\".",
-              "@why B: The comparison is case-sensitive, so the label \"NOVEMBER\" does not match the argument \"november\".",
-              "@why C: The code compiles without default, because the return statement after the switch provides a value on that path.",
-              "@why D: Nothing returns null here; the statement after the switch always returns the literal \"INVALID MONTH\".",
-              "@option It exits both the switch and the method, so no break is needed after it. [correct]",
-              "@option It exits only the switch, and the rest of the method continues to run.",
-              "@option It is not allowed inside a switch, where only break may be used.",
-              "@option It behaves like break but still needs a following break to stop fall-through.",
-              "@explain return leaves the method altogether, so control never comes back to the switch. That is why getQuarter can return from each group of cases without writing any break.",
-              "@why B: return ends the whole method, not just the switch statement.",
-              "@why C: Returning from inside a case is legal and is used in getQuarter.",
-              "@why D: Once the method has returned, no later case can execute, so a following break would be unreachable.",
-              "@option \"Value is 3 or 4 or 5\", because case 3, case 4 and case 5 share the same code block. [correct]",
-              "@option \"Neither numbers are provided\", because case 4 has no statements of its own.",
-              "@option Nothing, because only the first label of a group of cases can match.",
-              "@option The code does not compile, because an empty case label is not allowed.",
-              "@explain Labels written one after another share the single block that follows them, so any of 3, 4 or 5 starts the same message. The shared block ends with a break, so there is no fall-through beyond it.",
-              "@why B: default is chosen only when no label matches, and case 4 does match here.",
-              "@why C: Every label in the group is a real match, so 4 selects the shared block.",
-              "@why D: An empty case label is legal, and that is exactly how cases are grouped to share one block.",
-              "@option \"Value is 3 or 4 or 5\" followed by \"Neither numbers are provided\". [correct]",
-              "@option Only \"Value is 3 or 4 or 5\", because the switch stops once a matching case has run.",
-              "@option \"Value is 1\", \"Value is 2\", \"Value is 3 or 4 or 5\" and \"Neither numbers are provided\", because every case runs when there is no break.",
-              "@option Nothing, because a switch that contains no break statement cannot execute.",
-              "@explain With no break anywhere, execution starts at the matching label and then falls through every following label. Starting at the grouped case 3/4/5, it prints that message and then falls into default.",
-              "@why B: Nothing stops the flow at the end of the matched block, so default also runs.",
-              "@why C: Execution starts at the label that matched, so the earlier messages for case 1 and case 2 are not printed.",
-              "@why D: A switch without break is legal; it falls through instead of failing."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = 2;\r\n@code switch (x) {\r\n@code     case 1: System.out.println(\"one\"); break;\r\n@code     case 1: System.out.println(\"again\"); break;\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. A duplicate case label is a compile error. [correct]",
-              "@option Yes, and the first case 1 runs.",
-              "@option Yes, and the second case 1 runs.",
-              "@option Yes, and both of them run.",
-              "@explain The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.",
-              "@why B: the file does not compile, so nothing runs.",
-              "@why C: for the same reason, the duplicate is rejected first.",
-              "@why D: it never gets that far."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code String day = \"monday\";\r\n@code switch (day) {\r\n@code     case \"Monday\": System.out.println(\"start of week\"); break;\r\n@code     default: System.out.println(\"unknown\");\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option unknown, because the case label is compared exactly and \"monday\" does not match \"Monday\". [correct]",
-              "@option start of week, because switch ignores letter case.",
-              "@option It does not compile, because a switch cannot use a String.",
-              "@option It does not compile, because case labels must be int values.",
-              "@explain A switch on a String compares with equals, which is case-sensitive. Since \"monday\" differs from \"Monday\", no label matches and the default branch runs.",
-              "@why B: switch does not normalise case. Lowercase the value first if case must be ignored.",
-              "@why C: String has been a valid switch selector since Java 7.",
-              "@why D: String labels are allowed; the values simply have to match exactly."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = 3;\r\n@code switch (x) {",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@code case 1:",
-              "@code case 2:"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code     case 3: System.out.println(\"low\"); break;\r\n@code     default: System.out.println(\"high\");\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option low, because cases 1, 2 and 3 all lead to the same block. [correct]",
-              "@option low then high, because case 3 falls through into default.",
-              "@option high, because 3 has no block of its own.",
-              "@option It does not compile, because case 1 and case 2 have no statements.",
-              "@explain Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.",
-              "@why B: after printing low, break leaves the switch, so default never runs.",
-              "@why C: the grouping means 3 has a block, the shared one.",
-              "@why D: a label with no statements is exactly how grouping is written."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code static void check(int x) {\r\n@code     switch (x) {\r\n@code         case 1: System.out.println(\"one\"); return;\r\n@code         default: System.out.println(\"other\");\r\n@code     }\r\n@code     System.out.println(\"after switch\");\r\n@code }\r\n@code check(1);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option one, and nothing else, because return exits the whole method. [correct]",
-              "@option one, then after switch.",
-              "@option one, other, then after switch.",
-              "@option after switch only.",
-              "@explain return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.",
-              "@why B: after switch is not reached, because the method has already returned.",
-              "@why C: only the matching branch runs, and the method returns from it.",
-              "@why D: case 1 matches, so one is printed before the return."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int x = 2;\r\n@code switch (x) {\r\n@code     default: System.out.print(\"D\");\r\n@code     case 1: System.out.print(\"A\");\r\n@code     case 2: System.out.print(\"B\");\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option B, because case 2 matches and execution begins at the matching label. [correct]",
-              "@option DB, because default is written first and falls through.",
-              "@option DAB, because execution always starts at default.",
-              "@option D, because default runs before the cases are tested.",
-              "@explain default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.",
-              "@why B: putting default first does not make it run. It is used only when nothing matches.",
-              "@why C: execution starts at the matching case, not at default.",
-              "@why D: x is 2, so case 2 matches and default is not needed."
+              "- System.out.println(String x): x is the line printed with a newline; choose either the result alone or a concatenated explanatory sentence."
             ]
           }
         ],
         "inlineComments": [
           "Structure: switch(variable) { case value1: code; break; case value2: code; break; default: code; }",
-          "Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println(\"1, 2 or 3\");",
-          "@code switch (x) {",
-          "@code case 1: System.out.print(\"A\"); break;",
-          "@code case 2: System.out.print(\"B\");",
-          "@code case 3: System.out.print(\"C\"); break;",
-          "@code default: System.out.print(\"D\");",
-          "@code }",
-          "@code int x = 2;",
-          "@code case 1: System.out.println(\"one\"); break;",
-          "@code case 1: System.out.println(\"again\"); break;",
-          "@code String day = \"monday\";",
-          "@code switch (day) {",
-          "@code case \"Monday\": System.out.println(\"start of week\"); break;",
-          "@code default: System.out.println(\"unknown\");",
-          "@code int x = 3;",
-          "@code case 3: System.out.println(\"low\"); break;",
-          "@code default: System.out.println(\"high\");",
-          "@code static void check(int x) {",
-          "@code case 1: System.out.println(\"one\"); return;",
-          "@code default: System.out.println(\"other\");",
-          "@code System.out.println(\"after switch\");",
-          "@code check(1);",
-          "@code case 1: System.out.print(\"A\");",
           "The same logic can be written using if-else; switch is cleaner when testing one variable against many values.",
           "The switch expression is matched against each case label. When a match is found, its code block executes. Without break, execution 'falls through' to the next case.",
           "The condition is provided as parameter to switch statement, which is then matched to the case statement.",
@@ -7416,15 +5892,6 @@ const CONCEPTS_DATA = [
               "getDaysInMonth(-1, 2020); → should return -1 since the parameter month is invalid.",
               "getDaysInMonth(1, -2020); → should return -1 since the parameter year is outside the range of 1 to 9999."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- year (isLeapYear(int year)): the calendar year supplied to isLeapYear(); choose a four-digit year and include leap-year boundaries when testing.",
-              "- month (getDaysInMonth(int month, int year)): the month value supplied to getDaysInMonth(); choose a valid month number or name and test the invalid/default case too.",
-              "- year (getDaysInMonth(int month, int year)): the calendar year supplied to getDaysInMonth(); choose a four-digit year and include leap-year boundaries when testing."
-            ]
           }
         ],
         "inlineComments": [],
@@ -7445,16 +5912,6 @@ const CONCEPTS_DATA = [
               "Write a method called printNumberInWord.",
               "The method has one parameter number which is the whole number.",
               "The method needs to print \"ZERO\", \"ONE\", \"TWO\", ... \"NINE\", \"OTHER\" if the int parameter number is 0, 1, 2, .... 9 or other for any other number including negative numbers."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (returnNumberInAWordUsingTraditionalSwitch(int number)): the int input used by returnNumberInAWordUsingTraditionalSwitch(); choose a value that matches the method's range and boundary rules.",
-              "- number (returnNumberInAWordUsingEnhancedSwitch(int number)): the int input used by returnNumberInAWordUsingEnhancedSwitch(); choose a value that matches the method's range and boundary rules.",
-              "- number (printNumberInAWordUsingTraditionalSwitch(int number)): the int input used by printNumberInAWordUsingTraditionalSwitch(); choose a value that matches the method's range and boundary rules.",
-              "- number (printNumberInAWordUsingEnhancedSwitch(int number)): the int input used by printNumberInAWordUsingEnhancedSwitch(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -7477,13 +5934,6 @@ const CONCEPTS_DATA = [
               "Create a new char variable",
               "Create a switch statement testing for A,B,C,D or E display a message if any of these are found and then break",
               "Add a default which displays a message saying not found"
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- ch (switchStatementUsingChar(char ch)): the char value supplied to switchStatementUsingChar(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
             ]
           }
         ],
@@ -7511,14 +5961,6 @@ const CONCEPTS_DATA = [
               "Challenge",
               "1. Create a method called printDaysOfWeek, that takes an int parameter called day, but does not return any value"
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- day (printDayOfWeek(int day)): the int input used by printDayOfWeek(); choose a value that matches the method's range and boundary rules.",
-              "- day (returnDayOfWeek(int day)): the int input used by returnDayOfWeek(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -7541,13 +5983,6 @@ const CONCEPTS_DATA = [
               "2) Create cases for the characters, A, B, C, D, and E. Display a message in each case block,with the letter and the NATO word, then break.",
               "3) Add a default block, which displays the letter with a message saying not found."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- ch (returnNatoStringForGivenCharacter(char ch)): the char value supplied to returnNatoStringForGivenCharacter(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
-            ]
           }
         ],
         "inlineComments": [],
@@ -7566,16 +6001,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Menu-Driven Decision Engine — Build a calculator that evaluates arithmetic operations through an enhanced switch and a day classifier that categorizes weekday and weekend values. The program should also guard against invalid input such as division by zero or unknown day names."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- first (calculate(double first, double second, char operator)): the first operand supplied to calculate(); choose a value that represents this operation's first input.",
-              "- second (calculate(double first, double second, char operator)): the second operand supplied to calculate(); choose a value that represents this operation's second input.",
-              "- operator (calculate(double first, double second, char operator)): the operator supplied to calculate(); choose one of the operators supported by the implementation and test the invalid case.",
-              "- day (dayType(String day)): the String input used by dayType(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -7659,214 +6084,10 @@ const CONCEPTS_DATA = [
               "- System.out.println(...): print the loop counter, the calculated interest, or both together so the demo output is visible to the reader.",
               "- break has no parameter, but here it depends on the condition interestAmount > 8.5; that exclusive cutoff stops the final loop once the interest becomes larger than 8.5."
             ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Initialisation once before the loop starts, then the condition before each iteration, then the update after each iteration body. [correct]",
-              "@option Initialisation, condition and update once each, all before the first iteration begins.",
-              "@option The condition once, followed by the initialisation and the update on every iteration.",
-              "@option The update first, then the condition, then the initialisation on every pass.",
-              "@explain The header reads for(initialisation; condition; update). The initialisation runs a single time, the condition is re-tested before every iteration, and the update runs after the body of each iteration.",
-              "@why B: Only the initialisation runs once; the condition and the update are repeated.",
-              "@why C: The condition is tested before every iteration, not just once.",
-              "@why D: The parts always run in the written order, with the update last."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code for (int i = 0; i < 3; i++) {\r\n@code     System.out.println(i);\r\n@code }\r\n@code System.out.println(i);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It does not compile, because a variable declared in the for initialiser is local to the loop and is not visible after it. [correct]",
-              "@option It prints 3, the value i held when the loop ended.",
-              "@option It prints 2, because the update does not run after the final iteration.",
-              "@option It prints 0, because i is re-initialised once the loop has finished.",
-              "@explain A variable declared in for(int i = ...) is scoped to the loop, so i no longer exists at the println after the closing brace. The value would have been 3 if the name were still in scope.",
-              "@why B: The value 3 is never printed, because the name i is out of scope at that point.",
-              "@why C: The update does run at the end of each completed iteration, but the real problem is scope rather than the value.",
-              "@why D: There is no re-initialisation; the name is simply not declared in the enclosing block."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code for (int i = 0; i < 3; i++) {\r\n@code     i++;\r\n@code     System.out.print(i);\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 13 [correct]",
-              "@option 012",
-              "@option 123",
-              "@option It does not compile, because a loop variable may not be modified inside the body.",
-              "@explain The body increments the loop variable as well as the update does, so the printed values are 1 and then 3, and the loop ends when i reaches 4. Modifying the loop variable inside the body is legal, but it changes the loop flow and is easy to get wrong.",
-              "@why B: The body increments i before printing, so 0 is never printed.",
-              "@why C: The first printed value is 1, but the second is 3, because i is incremented twice per iteration.",
-              "@why D: Java allows the loop variable to be modified inside the body; it is legal but confusing.",
-              "@option It creates an infinite loop, because all three sections are omitted, and it stops only with break, return, an exception or external termination. [correct]",
-              "@option It does not compile, because the header of a for statement may not be empty.",
-              "@option It runs its body exactly once, because a missing condition counts as false after the first pass.",
-              "@option It is an infinite loop that ignores any break statement inside its body.",
-              "@explain Leaving the initialisation, condition and update empty gives a header that is always true, so the loop repeats until something inside it ends it. This is a deliberate way of writing \"loop until done\".",
-              "@why B: An empty header is legal Java and is a recognised way to write an infinite loop.",
-              "@why C: A missing condition is treated as permanently true, not as false after one pass.",
-              "@why D: break, return and exceptions inside the body all end the loop as usual.",
-              "@option When you need the element index, need to iterate backwards, or need to change the structure of the array or collection while iterating. [correct]",
-              "@option When the array holds double values instead of int values.",
-              "@option When you only want to read the elements and not change them.",
-              "@option When the collection is declared as an interface rather than a class.",
-              "@explain The enhanced for loop hides the index and always walks forward, so it cannot give you positions or move backwards, and it is not suitable when the structure is modified during iteration. A counted for loop is used for those tasks.",
-              "@why B: The enhanced for loop works with arrays of any element type, including double.",
-              "@why C: Reading the elements without changing them is exactly what the enhanced for loop is designed for.",
-              "@why D: It works with any array or collection, whether the variable is declared as an interface or a class.",
-              "@option for (int i = 0, j = 10; i < j; i++, j--) [correct]",
-              "@option for (int i = 0, double j = 10; i < j; i++, j--)",
-              "@option for (int i = 0, j = 10.0; i < j; i++, j--)",
-              "@option for (int i = 0; j = 10; i < j; i++, j--)",
-              "@explain The initialiser may declare several variables as long as they share the single declared type, and the update section may hold several comma-separated expressions. Here both i and j are int, and the loop runs while i is less than j.",
-              "@why B: One declaration cannot mix types, so declaring int i and double j in the same initialiser does not compile.",
-              "@why C: 10.0 is a double literal, so it cannot initialise the int variable j in that declaration.",
-              "@why D: A for header has exactly three sections separated by two semicolons, so the third semicolon is a syntax error.",
-              "@option Because the parameter is treated as a percentage and the method divides it by 100 internally. [correct]",
-              "@option Because the method expects a fraction and multiplies the parameter by 100 internally.",
-              "@option Because the method rounds every rate up to the nearest whole number.",
-              "@option Because the parameter is an int, so 0.075 would not compile.",
-              "@explain calculateInterest computes amount * (interestRate / 100), so the parameter is a percent value. Passing 0.075 would divide twice and give a rate far too small.",
-              "@why B: The method divides by 100 and never multiplies by 100, so a fraction is the wrong scale.",
-              "@why C: There is no rounding anywhere, only a multiplication and a division.",
-              "@why D: The parameter is declared as double, so 0.075 compiles but produces a wrong, very small result."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code for (double rate = 7.5; rate <= 10; rate += 0.25) {\r\n@code     double interestAmount = calculateInterest(100.00, rate);\r\n@code     if (interestAmount > 8.5) {\r\n@code         break;\r\n@code     }\r\n@code     System.out.println(rate + \"% interest on 100 = \" + interestAmount);\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 8.5, because the comparison is strictly greater than, so a rate of 8.5 is still printed. [correct]",
-              "@option 8.25, because a rate of 8.5 counts as reaching the cutoff.",
-              "@option 10.0, because break only ends the loop after the last iteration.",
-              "@option No rate is printed, because the break runs on the very first iteration.",
-              "@explain calculateInterest(100, rate) is just rate, so the interest amount equals the rate. 8.5 is not greater than 8.5, so it is printed, and the next rate of 8.75 triggers the break.",
-              "@why B: The cutoff is exclusive, so 8.25 is not the last printed rate; 8.5 is printed after it.",
-              "@why C: break leaves the loop immediately, so rates above 8.5 are never reached.",
-              "@why D: The first interest amount is 7.5, which is below the cutoff, so several rates are printed before the break."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int number = 0;\r\n@code while (number < 50) {\r\n@code     number = number + 5;\r\n@code     if (number % 25 == 0) { continue; }\r\n@code     System.out.print(number + \" \");\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 5 10 15 20 30 35 40 45, because 25 and 50 are skipped. [correct]",
-              "@option 5 10 15 20 25 30 35 40 45 50",
-              "@option 5 10 15 20, because the loop stops at 25.",
-              "@option nothing, because continue ends the loop.",
-              "@explain continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.",
-              "@why B: the continue prevents 25 and 50 from being printed.",
-              "@why C: the loop does not stop. continue is not break.",
-              "@why D: continue skips one iteration, not the whole loop."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code for (int i = 0; i <= 5; i++) { System.out.println(i); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 6, printing 0 to 5. [correct]",
-              "@option 5, printing 0 to 4.",
-              "@option 5, printing 1 to 5.",
-              "@option 6, printing 1 to 6.",
-              "@explain i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.",
-              "@why B: i <= 5 includes 5, so there is one more iteration than i < 5 would give.",
-              "@why C: i begins at 0, not 1.",
-              "@why D: i never reaches 6, and the first value printed is 0."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code for (;;) { System.out.println(\"tick\"); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It runs forever, because an absent condition is treated as always true. [correct]",
-              "@option It does not compile, because a for header needs all three parts.",
-              "@option It runs exactly once.",
-              "@option It never runs at all.",
-              "@explain All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.",
-              "@why B: the parts are optional, so for(;;) is legal Java.",
-              "@why C: nothing limits it to a single pass.",
-              "@why D: an empty condition is true, so the body does run.",
-              "@option break ends the loop, while continue skips the rest of this iteration and moves to the next. [correct]",
-              "@option break skips one iteration, while continue ends the loop.",
-              "@option Both end the loop immediately.",
-              "@option Both only skip the current iteration.",
-              "@explain break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.",
-              "@why B: the two are swapped.",
-              "@why C: only break ends the loop.",
-              "@why D: only continue behaves that way."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code for (int i = 0; i < 3; i++) { System.out.print(i); }\r\n@code System.out.println(i);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. i is declared in the for header, so its scope ends with the loop. [correct]",
-              "@option Yes, and it prints the final value of i.",
-              "@option Yes, and it prints 0.",
-              "@option Yes, because i defaults to 0 after the loop.",
-              "@explain A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.",
-              "@why B: the name is out of scope, so the line does not compile.",
-              "@why C: the same scope error applies.",
-              "@why D: the variable is not reset. It simply no longer exists."
-            ]
           }
         ],
         "inlineComments": [
-          "block of statements",
-          "@code for (int i = 0; i < 3; i++) {",
-          "@code System.out.println(i);",
-          "@code }",
-          "@code i++;",
-          "@code System.out.print(i);",
-          "@code for (double rate = 7.5; rate <= 10; rate += 0.25) {",
-          "@code double interestAmount = calculateInterest(100.00, rate);",
-          "@code if (interestAmount > 8.5) {",
-          "@code break;",
-          "@code System.out.println(rate + \"% interest on 100 = \" + interestAmount);",
-          "@code int number = 0;",
-          "@code while (number < 50) {",
-          "@code number = number + 5;",
-          "@code if (number % 25 == 0) { continue; }",
-          "@code System.out.print(number + \" \");",
-          "@code for (int i = 0; i <= 5; i++) { System.out.println(i); }",
-          "@code for (;;) { System.out.println(\"tick\"); }",
-          "@code for (int i = 0; i < 3; i++) { System.out.print(i); }"
+          "block of statements"
         ],
         "customQuizzes": [
           {
@@ -8371,13 +6592,6 @@ const CONCEPTS_DATA = [
               "A prime number is only divisible by 1 and itself. The isPrime method checks divisibility up to number/2 (any factor beyond that would have a corresponding factor below it).",
               "The challenge: find 3 prime numbers in range 10-20 using a for loop, then break once 3 are found."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (isPrime(int number)): the int input used by isPrime(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -8446,15 +6660,6 @@ const CONCEPTS_DATA = [
               "Method decomposition: breaking a complex problem into smaller, single-purpose methods is a fundamental good programming practice.",
               "Guard clauses: checking invalid input at the start of a method and returning early (-1) to signal invalid input."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (isOdd(int number)): the int input used by isOdd(); choose a value that matches the method's range and boundary rules.",
-              "- start (sumOdd(int start, int end)): the int value supplied to sumOdd(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- end (sumOdd(int start, int end)): the int value supplied to sumOdd(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
-            ]
           }
         ],
         "inlineComments": [],
@@ -8473,16 +6678,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Pattern Rendering Engine — Use nested loops to generate multiple console-based patterns, including star triangles, a number pyramid, and a full multiplication table. The challenge mirrors the kind of structured output logic often needed in reporting and diagnostic tools."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- size (printRightTriangle(int size)): the requested size supplied to printRightTriangle(); choose a positive dimension and test the smallest valid size.",
-              "- size (printInvertedRightTriangle(int size)): the requested size supplied to printInvertedRightTriangle(); choose a positive dimension and test the smallest valid size.",
-              "- size (printNumberPyramid(int size)): the requested size supplied to printNumberPyramid(); choose a positive dimension and test the smallest valid size.",
-              "- limit (printMultiplicationTable(int limit)): the upper limit supplied to printMultiplicationTable(); choose a positive boundary that controls how far the algorithm iterates."
             ]
           }
         ],
@@ -8516,7 +6711,13 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "while (condition) {\n      // body\n      // must update loop variable here, or you get an infinite loop!\n  }",
+            "code": "while (condition) {\n      // body",
+            "lines": []
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "}",
             "lines": []
           },
           {
@@ -8565,216 +6766,12 @@ const CONCEPTS_DATA = [
               "- System.out.println(String x) and System.out.println(int x): x is the value printed followed by a newline; choose a String for explanatory messages or an int for raw numeric output.",
               "- while(number < 15): the expression is the loop's controlling input; choose a condition that eventually becomes false to avoid an infinite loop.",
               "- if(number <= 5) with continue uses 5 as an inclusive skip limit; choose the boundary so every value up to and including it is skipped.",
-              "- if(number >= 10) with break uses 10 as an inclusive stop limit; choose the boundary so the loop exits as soon as the value reaches or passes it.",
-              "@option The counter is declared and initialised before the loop, and updated inside the loop body. [correct]",
-              "@option The counter is declared in the while header, exactly as it would be in a for loop.",
-              "@option The counter is updated inside the condition, for example while (j++ <= 5).",
-              "@option Java updates the counter automatically after each iteration.",
-              "@explain A while header holds only a boolean condition, so unlike a for loop it has no initialisation or update section. The counter must be prepared before the loop and changed inside the body, otherwise the condition never becomes false.",
-              "@why B: There is no initialisation part in a while header; only the condition is written there.",
-              "@why C: The condition is a test, not the place for the required update; changing it there also changes the test itself.",
-              "@why D: Java never updates loop variables automatically, which is exactly why a missing update causes an infinite loop."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int j = 10;\r\n@code while (j <= 5) {\r\n@code     System.out.println(j);\r\n@code     j++;\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Zero times, because the condition is tested before the body and is already false. [correct]",
-              "@option Once, because a while loop always runs its body at least once.",
-              "@option Forever, because the condition is never tested again once j is above the bound.",
-              "@option The code does not compile, because j is declared outside the loop.",
-              "@explain A while loop tests its condition first, so when the condition is false from the start the body is skipped entirely and control continues after the loop. This is the \"never-executing loop\" case.",
-              "@why B: Running the body at least once is the behaviour of a do-while loop, not a while loop.",
-              "@why C: The condition is re-tested every time, and it is false on the very first test.",
-              "@why D: Declaring the counter before the loop is exactly what a while loop requires.",
-              "@option It repeats until something inside the body ends it, such as break, return or an exception. [correct]",
-              "@option It does not compile, because the condition must be a variable rather than a literal.",
-              "@option It runs exactly one iteration, because true is only tested once.",
-              "@option It must contain a continue statement, otherwise it is a syntax error.",
-              "@explain while (true) is a deliberate infinite loop whose condition never becomes false. It is a common \"loop until done\" pattern, and the exit has to come from inside the body.",
-              "@why B: A boolean literal is a valid condition, and while (true) compiles.",
-              "@why C: The condition is re-tested before every iteration and stays true, so it does not stop after one pass.",
-              "@why D: continue only skips the rest of the current iteration; the statements that actually end the loop are break and return.",
-              "@option No, because the test number <= 5 includes 5, and continue skips the rest of that iteration. [correct]",
-              "@option Yes, because continue only applies to even numbers.",
-              "@option Yes, because <= stops just below 5 and lets 5 through to the plain print.",
-              "@option No, because continue exits the loop entirely before 5 is reached.",
-              "@explain The test number <= 5 is inclusive, so 1 through 5 all take the continue branch and print the Skipping message instead of the bare number. The first bare number printed is 6.",
-              "@why B: There is no test on even or odd numbers here; every value up to and including 5 is skipped.",
-              "@why C: <= is inclusive, so 5 satisfies the condition and is skipped along with 1 to 4.",
-              "@why D: continue skips only the current iteration; it is break that leaves the loop.",
-              "@option When the number of iterations is not known in advance and the loop depends on a condition that changes. [correct]",
-              "@option When the exact number of iterations is known before the loop starts.",
-              "@option When the loop must run at least once whatever the condition says.",
-              "@option When the counter needs to be initialised inside the loop header.",
-              "@explain A while loop keeps only the condition in its declaration, which suits sentinel-controlled and input-reading loops where the count is unknown. A for loop is preferred when the count is known up front.",
-              "@why B: A known iteration count is the case where a for loop fits better, because its setup stays in one line.",
-              "@why C: Running at least once regardless of the condition is the job of a do-while loop.",
-              "@why D: A while header holds only the condition, so there is nowhere to initialise a counter in it."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int number = 0;\r\n@code while (number < 15) {\r\n@code     number++;\r\n@code     if (number <= 5) {\r\n@code         System.out.println(\"Skipping number \" + number);\r\n@code         continue;\r\n@code     }\r\n@code     if (number >= 10) {\r\n@code         System.out.println(\"Skipping number \" + number);\r\n@code         break;\r\n@code     }\r\n@code     System.out.println(number);\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 6, 7, 8 and 9 [correct]",
-              "@option 1, 2, 3, 4 and 5",
-              "@option 6, 7, 8, 9 and 10",
-              "@option 5, 6, 7, 8, 9 and 10",
-              "@explain Values 1 to 5 are caught by the first test, print the Skipping message and continue, and 10 is caught by the second test and breaks. Only 6, 7, 8 and 9 fall through both tests to the plain println.",
-              "@why B: Those values print the Skipping message and continue, so they never reach the bare print.",
-              "@why C: 10 prints the Skipping message and then breaks, so it is not printed as a bare number.",
-              "@why D: 5 is skipped by the <= 5 test and 10 is stopped by break, so neither reaches the final print.",
-              "@option do-while, because it tests the condition after the body. [correct]",
-              "@option while, because it re-tests the condition after every iteration.",
-              "@option for, because its initialisation always runs before the condition.",
-              "@option The enhanced for loop, because it visits each element in turn.",
-              "@explain A do-while loop checks its condition after the body has run, so the body executes once even when the condition is false from the start. while and for test before the body and may run it zero times.",
-              "@why B: A while loop tests first, so a false condition means the body never runs.",
-              "@why C: The initialisation of a for loop runs once, but the body is still skipped when the condition is false.",
-              "@why D: An enhanced for loop runs zero times when the array or collection is empty."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int j = 1;\r\n@code while (j <= 5) {\r\n@code     System.out.println(j);\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It prints 1 again and again and never stops, because the condition stays true. [correct]",
-              "@option It prints 1, 2, 3, 4 and 5 and then stops normally.",
-              "@option It does not compile, because the body must change the loop variable.",
-              "@option It prints nothing, because the condition is false from the start.",
-              "@explain The body never changes j, so j stays 1 and j <= 5 remains true for ever. Every while loop depends on the body updating its counter.",
-              "@why B: Nothing increments j, so the loop never reaches 5 and never ends.",
-              "@why C: Java does not require the body to modify the loop variable; the code compiles but loops for ever.",
-              "@why D: The condition is true when j is 1, so the body does run; it simply never stops."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int j = 10;\r\n@code do {\r\n@code     System.out.println(\"body\");\r\n@code } while (j < 5);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option body, printed once, because a do-while tests its condition after the body. [correct]",
-              "@option nothing, because j < 5 is false.",
-              "@option body printed repeatedly, because the condition is false.",
-              "@option It does not compile, because the condition is false.",
-              "@explain A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.",
-              "@why B: that is the behaviour of a while loop, which tests before the body.",
-              "@why C: the false condition ends the loop after the first pass.",
-              "@why D: a condition that is false at runtime is perfectly legal."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int j = 1;\r\n@code while (j <= 5) {\r\n@code     System.out.println(j);\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It never ends, because j is never changed inside the body. [correct]",
-              "@option It ends after five iterations.",
-              "@option It does not compile, because j is declared outside the loop.",
-              "@option It prints nothing, because the condition is false.",
-              "@explain A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.",
-              "@why B: the condition never becomes false, so it cannot stop after five passes.",
-              "@why C: declaring the counter before the loop is exactly how while loops are written.",
-              "@why D: 1 <= 5 is true, so the body runs and prints."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int j = 0;\r\n@code while (j < 5) {\r\n@code     if (j == 2) { continue; }\r\n@code     j++;\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It hangs forever, because when j is 2 the continue skips the increment. [correct]",
-              "@option It finishes normally after five increments.",
-              "@option It skips the value 2 and then finishes.",
-              "@option It does not compile, because continue cannot be used in a while.",
-              "@explain When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.",
-              "@why B: the increment is skipped exactly when it is needed most.",
-              "@why C: nothing raises j past 2, so it cannot finish.",
-              "@why D: continue is valid in a while; the problem is where it was placed."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int j = 1;\r\n@code int count = 0;\r\n@code while (j <= 4) { count++; j += 2; }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 2 times, for j = 1 and j = 3. [correct]",
-              "@option 4 times, for j = 1, 2, 3 and 4.",
-              "@option 3 times, for j = 1, 3 and 5.",
-              "@option Once, because j += 2 ends the loop.",
-              "@explain j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.",
-              "@why B: the step is 2, so the even values are never used.",
-              "@why C: when j is 5 the condition is false, so there is no third pass.",
-              "@why D: the loop continues while the condition holds, which it does for 1 and 3.",
-              "@option When the body must run at least once, such as showing a menu before checking the choice. [correct]",
-              "@option When the number of iterations is known in advance.",
-              "@option When the condition must be tested before the body.",
-              "@option When the loop must be able to run zero times.",
-              "@explain do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.",
-              "@why B: a known count is the strength of a for loop.",
-              "@why C: testing first is what a while loop does.",
-              "@why D: running zero times is impossible with do-while, which is the point of the question."
+              "- if(number >= 10) with break uses 10 as an inclusive stop limit; choose the boundary so the loop exits as soon as the value reaches or passes it."
             ]
           }
         ],
         "inlineComments": [
           "body must update loop variable here, or you get an infinite loop!",
-          "@code int j = 10;",
-          "@code while (j <= 5) {",
-          "@code System.out.println(j);",
-          "@code j++;",
-          "@code }",
-          "@code int number = 0;",
-          "@code while (number < 15) {",
-          "@code number++;",
-          "@code if (number <= 5) {",
-          "@code System.out.println(\"Skipping number \" + number);",
-          "@code continue;",
-          "@code if (number >= 10) {",
-          "@code break;",
-          "@code System.out.println(number);",
-          "@code int j = 1;",
-          "@code do {",
-          "@code System.out.println(\"body\");",
-          "@code } while (j < 5);",
-          "@code int j = 0;",
-          "@code while (j < 5) {",
-          "@code if (j == 2) { continue; }",
-          "@code int count = 0;",
-          "@code while (j <= 4) { count++; j += 2; }",
           "block of statements",
           "Another common way to program while loop is:",
           "while statement with continue and break: 'continue' skips to the next iteration, 'break' exits the loop entirely."
@@ -9404,7 +7401,13 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "do {\r\n      // body — executes first, at least once\r\n  } while (condition);  // NOTE: semicolon required after the closing parenthesis!",
+            "code": "do {",
+            "lines": []
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "} while (condition);  // NOTE: semicolon required after the closing parenthesis!",
             "lines": []
           },
           {
@@ -9521,13 +7524,6 @@ const CONCEPTS_DATA = [
               "A palindrome number reads the same forwards and backwards: 121, 1001, 707.",
               "Technique: reverse the number using arithmetic. Extract the last digit with (number % 10), add it to the reversed number (reversed * 10 + digit), then remove the last digit (number / 10). Compare reversed == original."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (checkIfNumberIsPalindrome(int number)): the int input used by checkIfNumberIsPalindrome(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -9551,13 +7547,6 @@ const CONCEPTS_DATA = [
               "The method should parse out each digit from the number and sum the digits up.",
               "So, if 125 is the value passed to the method, the code should sum each digit, in this case, 1 + 2 + 5, and return 8, as a value. And another example, if the value is 1000, the code should sum each digit, 1 + 0 + 0 + 0, and return 1 as a value.",
               "If the number is a single digit number, simply return the number itself as the result."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (sumDigits(int number)): the int input used by sumDigits(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -9583,13 +7572,6 @@ const CONCEPTS_DATA = [
               "EXAMPLE INPUT/OUTPUT:",
               "getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20 getEvenDigitSum(252); → should return 4 since 2 + 2 = 4 getEvenDigitSum(-22); → should return -1 since the number is negative"
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (getEvenDigitSum(int number)): the int input used by getEvenDigitSum(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -9611,13 +7593,6 @@ const CONCEPTS_DATA = [
               "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
               "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).",
               "If the number is less than 1, the method returns -1 to indicate invalid input."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (printFactors(int number)): the int input used by printFactors(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -9645,13 +7620,6 @@ const CONCEPTS_DATA = [
               "sumFirstAndLastDigit(0); → should return 0, the first digit and the last digit is 0 since we only have 1 digit, which gives us 0+0 and the sum is 0.",
               "sumFirstAndLastDigit(5); → should return 10, the first digit and the last digit is 5 since we only have 1 digit, which gives us 5+5 and the sum is 10.",
               "sumFirstAndLastDigit(-10); → should return -1, since the parameter is negative and needs to be positive."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (sumFirstAndLastDigit(int number)): the int input used by sumFirstAndLastDigit(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -9684,15 +7652,6 @@ const CONCEPTS_DATA = [
               "canPack (2, 2, 11); should return true since bigCount is 2 (big bags 5 kilos each) and smallCount is 2 (small bags of 1 kilo), makes in total 12 kilos and goal is 11 kilos.",
               "canPack (-3, 2, 12); should return false since bigCount is negative."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- bigCount (canPack(int bigCount, int smallCount, int goal)): the int input used by canPack(); choose a value that matches the method's range and boundary rules.",
-              "- smallCount (canPack(int bigCount, int smallCount, int goal)): the int input used by canPack(); choose a value that matches the method's range and boundary rules.",
-              "- goal (canPack(int bigCount, int smallCount, int goal)): the int input used by canPack(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -9716,14 +7675,6 @@ const CONCEPTS_DATA = [
               "Both numbers must be >= 10; otherwise -1 is returned to indicate invalid input.",
               "The approach uses nested while loops to compare factors of both numbers, tracking the largest common one found."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number1 (getGreatestCommonDivisor(int number1, int number2)): the int input used by getGreatestCommonDivisor(); choose a value that matches the method's range and boundary rules.",
-              "- number2 (getGreatestCommonDivisor(int number1, int number2)): the int input used by getGreatestCommonDivisor(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -9746,13 +7697,6 @@ const CONCEPTS_DATA = [
               "The method should calculate the largest prime factor of a given number and return it.",
               "EXAMPLE INPUT/OUTPUT:",
               "getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21) getLargestPrime (217); should return 31 since 31 is the largest prime (7 * 31 = 217) getLargestPrime (0); should return -1 since 0 does not have any prime numbers getLargestPrime (45); should return 5 since 5 is the largest prime (3 * 3 * 5 = 45) getLargestPrime (-1); should return -1 since the parameter is negative"
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (getLargestPrime(int number)): the int input used by getLargestPrime(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -9781,16 +7725,6 @@ const CONCEPTS_DATA = [
               "The method needs to return true if the number parameter is in range of 10(inclusive) - 1000(inclusive), otherwise return false.",
               "EXAMPLE INPUT/OUTPUT isValid(10); → should return true since 10 is within the range of 10-1000 isValid(468); → should return true since 468 is within the range of 10-1000 isValid(1051); → should return false since 1051 is not within the range of 10-1000"
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (isValid(int number)): the int input used by isValid(); choose a value that matches the method's range and boundary rules.",
-              "- number1 (hasSameLastDigit(int number1, int number2, int number3)): the int input used by hasSameLastDigit(); choose a value that matches the method's range and boundary rules.",
-              "- number2 (hasSameLastDigit(int number1, int number2, int number3)): the int input used by hasSameLastDigit(); choose a value that matches the method's range and boundary rules.",
-              "- number3 (hasSameLastDigit(int number1, int number2, int number3)): the int input used by hasSameLastDigit(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -9806,12 +7740,11 @@ const CONCEPTS_DATA = [
         "subChapter": "While Do While Loop Coding Challenge",
         "headerComments": [
           {
-            "type": "generated-parameters",
+            "type": "generated",
             "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (getDigitCount(int number)): the int input used by getDigitCount(); choose a value that matches the method's range and boundary rules.",
-              "- number (reverse(int number)): the int input used by reverse(); choose a value that matches the method's range and boundary rules.",
-              "- number (numberToWords(int number)): the int input used by numberToWords(); choose a value that matches the method's range and boundary rules."
+              "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+              "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
+              "This example defines 3 methods; trace method behavior step by step."
             ]
           }
         ],
@@ -9828,10 +7761,12 @@ const CONCEPTS_DATA = [
         "subChapter": "While Do While Loop Coding Challenge",
         "headerComments": [
           {
-            "type": "generated-parameters",
+            "type": "generated",
             "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (isPerfectNumber(int number)): the int input used by isPerfectNumber(); choose a value that matches the method's range and boundary rules."
+              "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+              "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
+              "This example defines 2 methods; trace method behavior step by step.",
+              "Run through the main method flow to understand execution order and output."
             ]
           }
         ],
@@ -9856,14 +7791,6 @@ const CONCEPTS_DATA = [
               "The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false.",
               "EXAMPLE INPUT/OUTPUT:",
               "hasSharedDigit(12, 23); → should return true since the digit 2 appears in both numbers hasSharedDigit(9, 99); → should return false since 9 is not within the range of 10-99 hasSharedDigit(15, 55); → should return true since the digit 5 appears in both numbers"
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number1 (hasSharedDigit(int number1, int number2)): the int input used by hasSharedDigit(); choose a value that matches the method's range and boundary rules.",
-              "- number2 (hasSharedDigit(int number1, int number2)): the int input used by hasSharedDigit(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -9893,13 +7820,6 @@ const CONCEPTS_DATA = [
               "CODING CHALLENGE — While Loop Basics",
               "This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (isEvenNumber(int number)): the int input used by isEvenNumber(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -9919,13 +7839,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Step 2 is to modify the while code. Make it also record the total number of even numbers it has found. Break out of the loop once 5 even numbers are found. Finally, display the total number of odd and even numbers found. Alright, so the challenge is to modify the while code above. So, you want to leave the existing functionality as it is, but make it so it also records the total number of even numbers, as well as odd numbers that it's found. And once five even numbers have been found, break out of the code and display the total number of even numbers."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- number (isEvenNumber(int number)): the int input used by isEvenNumber(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -9944,15 +7857,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Guided Search and Sequence Analysis — Simulate a non-interactive number guessing routine that advances toward a secret using Fibonacci-sized jumps, then analyze Collatz sequence lengths for a range of inputs to discover which starting value produces the longest run."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- secret (simulateGuessingGame(int secret)): the int value supplied to simulateGuessingGame(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- limit (largestFibonacciStep(int limit)): the upper limit supplied to largestFibonacciStep(); choose a positive boundary that controls how far the algorithm iterates.",
-              "- number (collatz(int number)): the int input used by collatz(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -10021,54 +7925,6 @@ const CONCEPTS_DATA = [
           {
             "type": "lines",
             "lines": [
-              "@option A class is a blueprint that defines fields and methods, and an object is an instance created from that blueprint. [correct]",
-              "@option A class is an instance of an object.",
-              "@option A class can only ever be used to create one object.",
-              "@option An object is a copy of the class file stored on disk.",
-              "@explain The class describes the data and behaviour; the object is the real thing in memory, created from that description. There is no limit on how many objects one class can produce.",
-              "@why B: the relationship is the other way round. An object is an instance of a class.",
-              "@why C: a single class can create any number of objects, each with its own values.",
-              "@why D: an object is created in memory at runtime by the new keyword. It is not a copy of the source file.",
-              "@option By using the new keyword, as in ClassName obj = new ClassName(); [correct]",
-              "@option By declaring a variable of the class type on its own.",
-              "@option By writing the class name with no keyword in front of it.",
-              "@option Objects are created automatically when the source file is compiled.",
-              "@explain new performs the class instance creation expression. It allocates the object and gives you a reference to it. Declaring the variable only reserves a name; no object exists until new runs.",
-              "@why B: a declaration such as ClassName obj; creates a reference that is still null, not an object.",
-              "@why C: writing the class name alone is not valid syntax for creating an object.",
-              "@why D: compilation produces bytecode. Objects exist only while the program runs.",
-              "@option Each object gets its own copy of the instance fields, so the values can differ between objects. [correct]",
-              "@option All objects share one copy of each instance field.",
-              "@option Instance fields are shared between objects, and static fields are per object.",
-              "@option Instance fields cannot hold different values in different objects at the same time.",
-              "@explain An instance field belongs to the object. Two Car objects can have different colours at the same time, because each holds its own copy.",
-              "@why B: that describes a static field, not an instance field.",
-              "@why C: this is reversed. Static fields are the shared ones.",
-              "@why D: holding different values per object is exactly what instance fields are for.",
-              "@option A static field belongs to the class and is shared by all objects, while an instance field belongs to each object. [correct]",
-              "@option A static field is created once for every object.",
-              "@option An instance field is accessed through the class name.",
-              "@option A static field cannot be changed after it is set.",
-              "@explain A static field has one value for the whole class, so every object sees the same value. An instance field gives each object its own storage.",
-              "@why B: static means one per class, not one per object.",
-              "@why C: an instance field is reached through an object reference, as in myCar.colour. ClassName.field is the static style.",
-              "@why D: a static field can be changed unless it is also declared final.",
-              "@option println prints the text \"null\", while calling an instance method on a null reference throws NullPointerException. [correct]",
-              "@option Both throw NullPointerException.",
-              "@option Both handle null safely and print \"null\".",
-              "@option println(null) does not compile.",
-              "@explain println is built to accept a null argument and prints the word null. The danger is elsewhere: any instance method called on a null reference fails, because there is no object to run it on.",
-              "@why B: println(null) is safe. Only the method call fails.",
-              "@why C: the method call does not survive a null reference.",
-              "@why D: println(null) compiles and prints the text null.",
-              "@option new String(\"Hello\") creates a distinct String object, while the literal \"Hello\" is reused from the String pool. [correct]",
-              "@option Both always produce the same object in memory.",
-              "@option new String(\"Hello\") returns the pooled literal for you.",
-              "@option The literal creates a new object every time it appears in the code.",
-              "@explain new always allocates a fresh object. A literal is looked up in the String pool and reused, which is why two identical literals usually share one object.",
-              "@why B: they are different objects, which is why == can be false for two equal Strings.",
-              "@why C: if it returned the pooled literal, new would be pointless.",
-              "@why D: literals are pooled and reused, not recreated each time.",
               "Parameter notes (what each argument means and how to choose it):",
               "- main(String[] args): args receives command-line words passed after the class name; choose values only when the program needs startup input.",
               "- new String(\"Hello\"): the constructor argument is the initial character content; prefer a string literal unless you specifically need a distinct String object.",
@@ -10078,142 +7934,14 @@ const CONCEPTS_DATA = [
               "A class is a blueprint or template that defines: (1) what data (fields/attributes) an object will hold, and (2) what behaviour (methods) it will have.",
               "Think of a class like a blank form template — it defines what fields exist. An OBJECT is a filled-in copy of that form.",
               "Creating an object from a class is called instantiation. Each object is an instance of its class.",
-              "A class can describe a real-world concept: a Car class has fields like colour, make, model; a Person class has name, age, etc."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "Objects are created using the 'new' keyword: ClassName obj = new ClassName();",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
+              "A class can describe a real-world concept: a Car class has fields like colour, make, model; a Person class has name, age, etc.",
+              "Objects are created using the 'new' keyword: ClassName obj = new ClassName();",
               "Each object has its own copy of the class's instance fields, so different objects can have different values.",
               "There is no limit on how many objects you can create from a single class."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Counter {\n@code     static int total = 0;\n@code     Counter() { total++; }\n@code }\n@code new Counter(); new Counter(); new Counter();\n@code System.out.println(Counter.total);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 3, because the static field is shared and each constructor increments it. [correct]",
-              "@option 1, because each object gets its own copy of total.",
-              "@option 0, because a static field cannot be changed by a constructor.",
-              "@option It does not compile, because a constructor cannot change a static field.",
-              "@explain A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.",
-              "@why B: an instance field would behave that way. A static field is the shared one.",
-              "@why C: constructors may change static fields, which is a common way to count objects.",
-              "@why D: it is legal, and counting instances is one of the standard uses of a static field."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Person { String name; }\n@code Person a = new Person();\n@code Person b = new Person();\n@code a.name = \"Ada\";\n@code b.name = \"Alan\";\n@code System.out.println(a.name + \" \" + b.name);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Ada Alan, because each object has its own copy of the instance field. [correct]",
-              "@option Alan Alan, because the second assignment overwrites the first.",
-              "@option Ada Ada, because both objects share the field.",
-              "@option It does not compile, because name is not initialised.",
-              "@explain name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.",
-              "@why B: the two assignments target different objects.",
-              "@why C: sharing happens only with a static field.",
-              "@why D: a field of an object gets a default value, here null, so it compiles."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Example {\n@code     int count = 5;\n@code     static int read() { return count; }\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. A static method cannot access an instance field, because there is no object to read it from. [correct]",
-              "@option Yes, and read() returns 5.",
-              "@option Yes, and read() returns 0.",
-              "@option Yes, because count is set before the method runs.",
-              "@explain A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.",
-              "@why B: the compiler rejects the access, so nothing runs.",
-              "@why C: an absent object is not the same as a zero value.",
-              "@why D: the order of statements cannot help, because the problem is that no object is involved."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Box { int size = 1; }\n@code Box first = new Box();\n@code Box second = first;\n@code second.size = 7;\n@code System.out.println(first.size);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 7, because both references point at the same object. [correct]",
-              "@option 1, because first keeps its own copy.",
-              "@option 0, because second replaced the object.",
-              "@option It does not compile, because a reference cannot be assigned to another reference.",
-              "@explain Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.",
-              "@why B: there is only one object, so there is only one size field.",
-              "@why C: second does not create or replace anything. It simply points at the existing object.",
-              "@why D: assigning references is ordinary and common."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Person { String name; }\n@code Person p = null;\n@code System.out.println(p.name);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It throws NullPointerException at runtime, because p points at no object. [correct]",
-              "@option It prints null, because the field is uninitialised.",
-              "@option It does not compile, because p is null.",
-              "@option It prints an empty line.",
-              "@explain The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.",
-              "@why B: a field on a real object can be null, but there is no object here at all.",
-              "@why C: null must be checked when the code runs, so the compiler allows it.",
-              "@why D: nothing is printed. The failure happens while the argument is being evaluated."
             ]
           }
         ],
         "inlineComments": [
-          "Objects are created using the 'new' keyword: ClassName obj = new ClassName();",
-          "@code class Counter {",
-          "@code static int total = 0;",
-          "@code Counter() { total++; }",
-          "@code }",
-          "@code new Counter(); new Counter(); new Counter();",
-          "@code System.out.println(Counter.total);",
-          "@code class Person { String name; }",
-          "@code Person a = new Person();",
-          "@code Person b = new Person();",
-          "@code a.name = \"Ada\";",
-          "@code b.name = \"Alan\";",
-          "@code System.out.println(a.name + \" \" + b.name);",
-          "@code class Example {",
-          "@code int count = 5;",
-          "@code static int read() { return count; }",
-          "@code class Box { int size = 1; }",
-          "@code Box first = new Box();",
-          "@code Box second = first;",
-          "@code second.size = 7;",
-          "@code System.out.println(first.size);",
-          "@code Person p = null;",
-          "@code System.out.println(p.name);",
           "We can create String using 2 ways",
           "1) Literal form",
           "s is a local variable on which the objects memory location also known as reference is assigned.",
@@ -10747,18 +8475,8 @@ const CONCEPTS_DATA = [
               "Ex: myObject.myFieldName",
               "(myObject is a variable name for the object created and myFieldName is an attribute on the class)",
               "Static Method:",
-              "i) Requires 'static' keyword when declared on the class ii) Call the method through ClassName.methodName"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "Example :- Integer.parseInt(\"123\"); // A method called parseInt is called directly from the Class, Integer",
-            "lines": []
-          },
-          {
-            "type": "block",
-            "lines": [
+              "i) Requires 'static' keyword when declared on the class ii) Call the method through ClassName.methodName",
+              "Example: Integer.parseInt(\"123\"); // A method called parseInt is called directly from the Class, Integer",
               "Instance Method i) Omits 'static' keyword when declared on the class ii) call the method through ObjectVariable.methodName"
             ]
           },
@@ -10822,16 +8540,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Challenge: Create a BankAccount class with a shared static bankName field, instance fields for account holder and balance, plus deposit and withdraw methods."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- accountHolder (BankAccount(String accountHolder, double balance)): the String input used by BankAccount(); choose a value that matches the method's range and boundary rules.",
-              "- balance (BankAccount(String accountHolder, double balance)): the double value supplied to BankAccount(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- amount (deposit(double amount)): the numeric amount supplied to deposit(); choose a value that respects the operation's limits, such as a non-negative deposit or a valid withdrawal.",
-              "- amount (withdraw(double amount)): the numeric amount supplied to withdraw(); choose a value that respects the operation's limits, such as a non-negative deposit or a valid withdrawal."
-            ]
           }
         ],
         "inlineComments": [],
@@ -10851,15 +8559,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Challenge: Create a Student class with a shared static schoolName field and instance fields for name, grade, and gpa. Create two students, print their details, and show static field behaviour."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- name (Student(String name, int grade, double gpa)): the String text supplied to Student(); choose content that matches the method's expected format.",
-              "- grade (Student(String name, int grade, double gpa)): the int value supplied to Student(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- gpa (Student(String name, int grade, double gpa)): the double value supplied to Student(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
-            ]
           }
         ],
         "inlineComments": [],
@@ -10878,15 +8577,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Library Inventory Tracker — Design a compact library system that models books as objects, tracks a shared total count through a static field, and supports checkout and return workflows. The solution should show how instance state and class-wide state interact in a realistic domain model."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- title (Book(String title, String author, String isbn)): the String text supplied to Book(); choose content that matches the method's expected format.",
-              "- author (Book(String title, String author, String isbn)): the String text supplied to Book(); choose content that matches the method's expected format.",
-              "- isbn (Book(String title, String author, String isbn)): the String text supplied to Book(); choose content that matches the method's expected format."
             ]
           }
         ],
@@ -10949,62 +8639,6 @@ const CONCEPTS_DATA = [
           {
             "type": "lines",
             "lines": [
-              "@option It converts numeric text such as \"42\" into a primitive int, and throws NumberFormatException if the text is not a valid integer. [correct]",
-              "@option It converts a number into text.",
-              "@option It returns null when the text is not numeric.",
-              "@option It rounds a decimal value to the nearest whole number.",
-              "@explain parseInt is a conversion from text to a number. It only accepts valid integer text, so a decimal point, letters, or a blank string cause NumberFormatException at runtime.",
-              "@why B: that is the opposite direction, done by String.valueOf or Integer.toString.",
-              "@why C: it does not return a value on failure. It throws.",
-              "@why D: parseInt rejects decimals such as \"22.5\" rather than rounding them.",
-              "@option It throws NumberFormatException, because \"22.5\" is not valid integer text. [correct]",
-              "@option It returns 22 by trimming the decimal part.",
-              "@option It returns 22.5 as a double.",
-              "@option It returns 0 and prints a warning.",
-              "@explain parseInt expects whole-number text. The decimal point makes the input invalid, so the method throws rather than guessing what you meant.",
-              "@why B: it does not truncate. Use Double.parseDouble(\"22.5\") when decimals are expected.",
-              "@why C: the return type is int, so it can never hand back a double.",
-              "@why D: there is no warning path. The method throws an exception.",
-              "@option It is the radix, so \"1010\" is read as binary and the method returns the decimal value 10. [correct]",
-              "@option It is the number of digits to read.",
-              "@option It is the maximum value allowed.",
-              "@option It is a rounding mode.",
-              "@explain The radix selects the number base used to interpret the text. Base 2 means binary, so the digits 1010 represent 8 + 0 + 2 + 0, which is 10.",
-              "@why B: the whole string is parsed. The second argument never limits how many characters are used.",
-              "@why C: radix controls the base, not a limit.",
-              "@why D: rounding is not involved in parsing an integer.",
-              "@option nextInt() reads the number but leaves the newline in the input, so the next nextLine() returns an empty string unless the leftover line is consumed first. [correct]",
-              "@option nextInt() consumes the newline automatically, so the two can be mixed freely.",
-              "@option nextLine() does not compile after nextInt().",
-              "@option You must always use next() instead of nextLine().",
-              "@explain Token methods such as nextInt read up to the number and stop. The line break is still waiting, so the following nextLine call sees an empty line. Reading one extra line first clears it.",
-              "@why B: if the newline were consumed, this bug would not exist.",
-              "@why C: it compiles. The problem appears at runtime as an unexpectedly empty string.",
-              "@why D: next() and nextLine() both have their uses; the issue is the leftover newline, not the choice of method.",
-              "@option When decimal values are expected, such as \"22.5\", because parseInt would reject the decimal point. [correct]",
-              "@option Whenever the input might contain letters.",
-              "@option Only when the value is guaranteed to be a whole number.",
-              "@option When you want an int result from decimal text.",
-              "@explain Choose the parse method that matches the text you expect. Any input can still fail with NumberFormatException, so letters remain a problem for both methods.",
-              "@why B: letters fail in both methods. The choice is about decimals, not letters.",
-              "@why C: a whole number works with parseInt too. Decimals are the reason to prefer parseDouble.",
-              "@why D: parseDouble returns a double. Use parseInt for an int result from whole-number text.",
-              "@option Because + on Strings performs concatenation, so the two pieces are joined into one text value. [correct]",
-              "@option Because Java converts the Strings to numbers before adding.",
-              "@option Because Java always treats + as addition when it sees digits.",
-              "@option Because the compiler reports an error and this never runs.",
-              "@explain The + operator is defined for text as concatenation. The type of the operands decides the meaning, so two Strings produce one longer String. To add them you must parse them first.",
-              "@why B: no automatic conversion happens. That is why parse methods exist.",
-              "@why C: + does arithmetic only when both operands are numeric.",
-              "@why D: it compiles and runs, producing \"10050\".",
-              "@option It returns null when there is no console attached, which happens in some IDEs, so the result must be null-checked. [correct]",
-              "@option It always returns a valid Console object, so no check is needed.",
-              "@option It is another name for System.out.",
-              "@option It can only be used to write output, never to read input.",
-              "@explain Console is a convenient way to read a line and show a prompt, but it is not always available. When the JVM is not connected to a terminal, console() returns null and calling a method on it would throw.",
-              "@why B: returning null is exactly the risk, so the check matters.",
-              "@why C: System.out is an output stream. Console offers both reading and a prompt.",
-              "@why D: Console is mainly used for reading input with a prompt.",
               "Parameter notes (what each argument means and how to choose it):",
               "- main(String[] args): args holds command-line inputs as Strings; use it when startup values should come from the terminal command.",
               "- Integer.parseInt(String s): s is base-10 integer text such as \"2024\"; avoid null, blanks, decimals, and letters because they throw NumberFormatException.",
@@ -11027,100 +8661,17 @@ const CONCEPTS_DATA = [
               "Double.parseDouble(\"3.14\") -> double 3.14",
               "Long.parseLong(\"1000000\") -> long 1000000",
               "If the String cannot be parsed (e.g., \"abc\"), a NumberFormatException is thrown at runtime.",
-              "The Scanner class (java.util.Scanner) is the standard way to read keyboard input in Java."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "To use Scanner: import java.util.Scanner;   Scanner sc = new Scanner(System.in);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
+              "The Scanner class (java.util.Scanner) is the standard way to read keyboard input in Java.",
+              "To use Scanner: import java.util.Scanner; Scanner sc = new Scanner(System.in);",
               "Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.",
               "Always close the Scanner when done: sc.close(); (or use try-with-resources).",
               "The import statement lets you use classes defined in Java's standard library or other packages.",
-              "In this case, Java provides a library of code, which includes the Scanner class in a library called java.util.",
-              "@option 255, because the second argument sets the radix to hexadecimal. [correct]",
-              "@option 16, because FF is two characters.",
-              "@option 170, because FF is read as decimal.",
-              "@option It throws NumberFormatException, because FF is not a number.",
-              "@explain The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so \"FF\" means 15 times 16 plus 15, which is 255.",
-              "@why B: the second argument is the base, not a count of characters.",
-              "@why C: with no radix, \"FF\" would fail. Base 16 is what makes it readable as digits.",
-              "@why D: letters are valid in a base that is large enough to include them.",
-              "@option It throws NumberFormatException, because surrounding spaces are not allowed. [correct]",
-              "@option It returns 42, because parseInt ignores whitespace.",
-              "@option It returns 0, because the spaces invalidate the value.",
-              "@option It compiles but returns null.",
-              "@explain parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.",
-              "@why B: trimming is not part of parsing. You would call trim() first.",
-              "@why C: it throws instead of returning a fallback value.",
-              "@why D: the return type is int, so null is not possible.",
-              "@option It throws NumberFormatException, because null is not valid integer text. [correct]",
-              "@option It returns 0.",
-              "@option It throws NullPointerException.",
-              "@option It compiles but returns -1.",
-              "@explain parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.",
-              "@why B: there is no fallback value. The method throws.",
-              "@why C: validate the input first if you need to distinguish null from bad text.",
-              "@why D: the return type is int, and an exception is thrown instead of returning."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code String a = \"80\";\n@code String b = \"90\";\n@code int average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;\n@code System.out.println(average);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 85, because the values are parsed to int and then averaged. [correct]",
-              "@option 8090, because the Strings are concatenated.",
-              "@option 85.0, because parseInt produces a decimal.",
-              "@option It does not compile, because Strings cannot be added.",
-              "@explain parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.",
-              "@why B: concatenation would happen only if + were applied to the Strings themselves.",
-              "@why C: parseInt returns an int, and int division produces an int.",
-              "@why D: the parsing happens first, so the addition is between two int values."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code try {\n@code     int value = Integer.parseInt(\"hello\");\n@code     System.out.println(\"parsed \" + value);\n@code } catch (NumberFormatException e) {\n@code     System.out.println(\"not a number\");\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option not a number, because parsing fails and the catch block runs. [correct]",
-              "@option parsed 0, because failed parsing returns zero.",
-              "@option It crashes with an uncaught exception.",
-              "@option not a number, and then parsed 0.",
-              "@explain parseInt cannot read \"hello\" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.",
-              "@why B: parsing does not return a fallback. It throws.",
-              "@why C: the catch block matches NumberFormatException, so the exception is handled.",
-              "@why D: only one branch runs when an exception is thrown."
+              "In this case, Java provides a library of code, which includes the Scanner class in a library called java.util."
             ]
           }
         ],
         "inlineComments": [
-          "To use Scanner: import java.util.Scanner; Scanner sc = new Scanner(System.in);",
           "the import statement lets us use classes from other people's code.",
-          "@code String a = \"80\";",
-          "@code String b = \"90\";",
-          "@code int average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;",
-          "@code System.out.println(average);",
-          "@code try {",
-          "@code int value = Integer.parseInt(\"hello\");",
-          "@code System.out.println(\"parsed \" + value);",
-          "@code } catch (NumberFormatException e) {",
-          "@code System.out.println(\"not a number\");",
-          "@code }",
           "The above code will give error as both the data type is in String java: bad operand types for binary operator '-' first type: java.lang.String second type: java.lang.String",
           "Integer is a class. It has a static method called parseInt that takes a String and returns a value of data type int.",
           "To access a static method, we use ClassName.methodName. Integer is the class name, and parseInt is the static method.",
@@ -11797,13 +9348,6 @@ const CONCEPTS_DATA = [
               "If the user entered a valid number, you'll want to see if it is less than what you have for a minimum number, and if it is, you'll set that to the current number.",
               "You'll do the same check for maximum number. For example, after one valid numeric entry, minimum and maximum numbers should be the same number."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- userInput (checkIfUserInputIsNumber(String userInput)): the String text supplied to checkIfUserInputIsNumber(); choose content that matches the method's expected format."
-            ]
           }
         ],
         "inlineComments": [],
@@ -11826,21 +9370,6 @@ const CONCEPTS_DATA = [
               "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
               "The method is overloaded with 3 versions: (area, areaPerBucket), (width, height, areaPerBucket), and (width, height, areaPerBucket, extraBuckets) to handle different input scenarios.",
               "If any parameter is invalid (negative or zero), the method returns -1."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- width (getBucketCount(double width, double height, double areaOfBucket, int extraBuckets)): the width supplied to getBucketCount(); choose a non-negative measurement that matches the unit used by the related dimensions.",
-              "- height (getBucketCount(double width, double height, double areaOfBucket, int extraBuckets)): the height supplied to getBucketCount(); choose a non-negative measurement that matches the unit used by the related dimensions.",
-              "- areaOfBucket (getBucketCount(double width, double height, double areaOfBucket, int extraBuckets)): the double value supplied to getBucketCount(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- extraBuckets (getBucketCount(double width, double height, double areaOfBucket, int extraBuckets)): the int value supplied to getBucketCount(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- width (getBucketCount(double width, double height, double areaOfBucket)): the width supplied to getBucketCount(); choose a non-negative measurement that matches the unit used by the related dimensions.",
-              "- height (getBucketCount(double width, double height, double areaOfBucket)): the height supplied to getBucketCount(); choose a non-negative measurement that matches the unit used by the related dimensions.",
-              "- areaOfBucket (getBucketCount(double width, double height, double areaOfBucket)): the double value supplied to getBucketCount(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- area (getBucketCount(double area, double areaPerBucket)): the double value supplied to getBucketCount(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- areaPerBucket (getBucketCount(double area, double areaPerBucket)): the double value supplied to getBucketCount(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
             ]
           }
         ],
@@ -11868,13 +9397,6 @@ const CONCEPTS_DATA = [
               "Use integer dot parse int, as we did in the previous videos.",
               "You'll need some local variables to keep track of the count of valid integers, as well as the sum of the integers."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- userNumberInput (checkIfNumberIsValid(String userNumberInput)): the String input used by checkIfNumberIsValid(); choose a value that matches the method's range and boundary rules."
-            ]
           }
         ],
         "inlineComments": [],
@@ -11893,20 +9415,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Form Validation Pipeline — Build reusable parsing and validation methods that verify integer and decimal fields, enforce numeric ranges, and aggregate multiple form errors into a single readable report. This mirrors the validation logic used in real business forms and APIs."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- value (isValidInt(String value)): the String text supplied to isValidInt(); choose content that matches the method's expected format.",
-              "- value (isValidDouble(String value)): the String text supplied to isValidDouble(); choose content that matches the method's expected format.",
-              "- value (isInRange(String value, int minimum, int maximum)): the String text supplied to isInRange(); choose content that matches the method's expected format.",
-              "- minimum (isInRange(String value, int minimum, int maximum)): the lower bound supplied to isInRange(); choose the smallest accepted value in the validation range.",
-              "- maximum (isInRange(String value, int minimum, int maximum)): the upper bound supplied to isInRange(); choose the largest accepted value in the validation range.",
-              "- age (validateForm(String age, String salary, String zipCode)): the String text supplied to validateForm(); choose content that matches the method's expected format.",
-              "- salary (validateForm(String age, String salary, String zipCode)): the String text supplied to validateForm(); choose content that matches the method's expected format.",
-              "- zipCode (validateForm(String age, String salary, String zipCode)): the String text supplied to validateForm(); choose content that matches the method's expected format."
             ]
           }
         ],
@@ -11948,170 +9456,11 @@ const CONCEPTS_DATA = [
               "Parameter notes (what each argument means and how to choose it):",
               "- e (catch): Receives the exception thrown inside the matching `try` block. In this file, `Exception e` is the generic template example, while `NullPointerException e` is the specific type used for the runnable null-handling demo below.",
               "Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.",
-              "@option Throwable is the root, splitting into Error, which applications should not catch, and Exception, which includes RuntimeException and the checked exceptions. [correct]",
-              "@option Exception is the root of every throwable type.",
-              "@option Error and RuntimeException are the same branch of the hierarchy.",
-              "@option RuntimeException is a checked exception.",
-              "@explain Everything throwable descends from Throwable. Error covers serious JVM-level problems such as OutOfMemoryError. Exception covers the conditions your code is expected to handle.",
-              "@why B: Throwable is the root. Exception is one of its two main branches.",
-              "@why C: Error and RuntimeException sit on different branches, because Error is not something application code recovers from.",
-              "@why D: RuntimeException and its subclasses are the unchecked exceptions.",
               "Note: the question \"What is the difference between checked and unchecked exceptions?\" is already asked above as a written question, so it is not repeated here as a multiple-choice question."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code try { return 1; } finally { System.out.println(\"finally\"); }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option finally is printed, and then the method returns 1. [correct]",
-              "@option Nothing is printed, because return skips the finally block.",
-              "@option It does not compile, because return is not allowed inside try.",
-              "@option finally runs only when an exception is thrown.",
-              "@explain A finally block runs before control leaves the try statement, including when a return is on its way out. The return value is settled after finally completes.",
-              "@why B: finally is designed to run even on the way out through a return.",
-              "@why C: return inside try is perfectly legal.",
-              "@why D: finally runs whether or not an exception occurred. The practical exception is System.exit, which ends the JVM.",
-              "@option throw raises an exception inside a method body, while throws declares in the signature which checked exceptions may propagate. [correct]",
-              "@option Both are written in the method signature.",
-              "@option throws is used inside the body to raise an exception.",
-              "@option throw can be used only with unchecked exceptions.",
-              "@explain Think of throw as the action and throws as the declaration. throw new IllegalArgumentException(\"bad\") creates and passes an exception now; throws warns the caller that a checked exception may arrive.",
-              "@why B: throw belongs in the body, not the signature.",
-              "@why C: raises is throw's job; throws only declares.",
-              "@why D: throw works with any Throwable, including checked exceptions.",
-              "@option When a method or field is used through a reference that is null, such as String s = null; s.length(); [correct]",
-              "@option When null is assigned to a variable.",
-              "@option It is a checked exception that must be caught.",
-              "@option It occurs at compile time.",
-              "@explain Assigning null is harmless. The failure comes later, when you try to use the reference as though it pointed at a real object, and there is nothing there to run the method on.",
-              "@why B: the assignment itself is fine, and local variables must simply be assigned before use.",
-              "@why C: NullPointerException extends RuntimeException, so it is unchecked.",
-              "@why D: the compiler cannot know whether a reference will be null, so this is a runtime failure.",
-              "@option It can swallow unrelated bugs, so it is better to catch the specific exception you expect. [correct]",
-              "@option It is always the recommended practice.",
-              "@option You must always catch Throwable instead.",
-              "@option Specific catch blocks must come after the general one.",
-              "@explain A broad catch treats every failure as the one you anticipated, which hides the problems you did not. Catching the specific type keeps the handler honest about what it can actually deal with.",
-              "@why B: the general guidance is the opposite, unless you genuinely intend to handle everything.",
-              "@why C: catching Throwable is even broader, and it would also catch Error.",
-              "@why D: this is reversed. A more specific catch must come first, because a general one would otherwise capture the exception before the specific block is reached.",
-              "@option getMessage() returns the description of the exception, and printStackTrace() writes the trace to standard error. [correct]",
-              "@option getMessage() prints the trace to standard error.",
-              "@option printStackTrace() returns a String that you must print yourself.",
-              "@option Both are fields rather than methods.",
-              "@explain These are the two diagnostic tools you reach for first. The message explains what went wrong, and the trace shows where it happened by listing the call chain.",
-              "@why B: that is what printStackTrace does. getMessage only returns the text.",
-              "@why C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.",
-              "@why D: they are methods, called with parentheses."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code try {\n@code     int value = Integer.parseInt(\"42\");\n@code } catch (Exception e) {\n@code     System.out.println(\"general\");\n@code } catch (NumberFormatException e) {\n@code     System.out.println(\"number\");\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. The broader catch comes first, so the narrower one can never be reached. [correct]",
-              "@option Yes, and it prints general when parsing fails.",
-              "@option Yes, and it prints number when parsing fails.",
-              "@option Yes, because the catch blocks are checked in order at runtime.",
-              "@explain Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.",
-              "@why B: the code does not compile, so nothing runs.",
-              "@why C: the specific catch must be written before the general one.",
-              "@why D: the order matters, and the compiler rejects an order that makes a block unreachable."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int result = 10 / 0;\n@code System.out.println(result);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It compiles and then throws ArithmeticException at runtime. [correct]",
-              "@option It does not compile, because division by zero is an error.",
-              "@option It prints 0.",
-              "@option It prints Infinity.",
-              "@explain Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.",
-              "@why B: the compiler cannot know the value of the divisor at compile time.",
-              "@why C: there is no result to print. The exception is thrown during the division.",
-              "@why D: integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int[] numbers = {1, 2, 3};\n@code System.out.println(numbers[3]);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2. [correct]",
-              "@option NullPointerException.",
-              "@option Nothing. It prints 0.",
-              "@option Nothing. It prints 3.",
-              "@explain A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.",
-              "@why B: the array exists. The problem is the index, not a null reference.",
-              "@why C: Java does not return a default for an out-of-range index.",
-              "@why D: index 3 does not exist, so no value can be returned."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code static int test() {\n@code     try {\n@code         return 1;\n@code     } finally {\n@code         return 2;\n@code     }\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 2, because a return inside finally overrides the return from try. [correct]",
-              "@option 1, because the return in try is evaluated first.",
-              "@option 3, because the two values are added.",
-              "@option It does not compile, because a method cannot have two returns.",
-              "@explain The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.",
-              "@why B: the value from try is discarded, because finally runs afterwards.",
-              "@why C: nothing is added. Only the last return value is used.",
-              "@why D: several return statements in one method are normal.",
-              "@option ArithmeticException, because it extends RuntimeException and is unchecked. [correct]",
-              "@option IOException, because it is unchecked.",
-              "@option SQLException, because it is unchecked.",
-              "@option FileNotFoundException, because it is unchecked.",
-              "@explain Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.",
-              "@why B: IOException is checked, so it must be handled.",
-              "@why C: SQLException is checked as well.",
-              "@why D: FileNotFoundException extends IOException, so it is checked too."
             ]
           }
         ],
         "inlineComments": [
-          "@code try { return 1; } finally { System.out.println(\"finally\"); }",
-          "@code try {",
-          "@code int value = Integer.parseInt(\"42\");",
-          "@code } catch (Exception e) {",
-          "@code System.out.println(\"general\");",
-          "@code } catch (NumberFormatException e) {",
-          "@code System.out.println(\"number\");",
-          "@code }",
-          "@code int result = 10 / 0;",
-          "@code System.out.println(result);",
-          "@code int[] numbers = {1, 2, 3};",
-          "@code System.out.println(numbers[3]);",
-          "@code static int test() {",
-          "@code return 1;",
-          "@code } finally {",
-          "@code return 2;",
           "The try block wraps any code that might throw an exception at runtime.",
           "Place only the risky code here — keep try blocks as small as possible.",
           "The try block ends here; the catch block immediately follows.",
@@ -12649,13 +9998,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Challenge: Demonstrate handling NullPointerException, ArrayIndexOutOfBoundsException, and NumberFormatException with separate catch blocks and a finally block."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- scenario (demonstrateException(String scenario)): the String text supplied to demonstrateException(); choose content that matches the method's expected format."
-            ]
           }
         ],
         "inlineComments": [],
@@ -12674,13 +10016,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Challenge: Parse an age from a String using Integer.parseInt, catch NumberFormatException, and return -1 for invalid input."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- input (parseAge(String input)): the String text supplied to parseAge(); choose content that matches the method's expected format."
             ]
           }
         ],
@@ -12701,14 +10036,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Challenge: Write a safeDivide method that returns a / b and catches ArithmeticException when the divisor is zero, returning 0 instead."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- a (safeDivide(int a, int b)): the a operand supplied to safeDivide(); choose a value that represents this operation's a input.",
-              "- b (safeDivide(int a, int b)): the b operand supplied to safeDivide(); choose a value that represents this operation's b input."
-            ]
           }
         ],
         "inlineComments": [],
@@ -12727,26 +10054,6 @@ const CONCEPTS_DATA = [
             "type": "block",
             "lines": [
               "Deep Problem: Fault-Tolerant Calculator — Build a calculator that performs standard arithmetic and square root operations while handling invalid expressions, divide-by-zero cases, negative square roots, and parsing errors gracefully. The solution should expose safe operation methods and a parser for simple text expressions."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- first (add(double first, double second)): the first operand supplied to add(); choose a value that represents this operation's first input.",
-              "- second (add(double first, double second)): the second operand supplied to add(); choose a value that represents this operation's second input.",
-              "- first (subtract(double first, double second)): the first operand supplied to subtract(); choose a value that represents this operation's first input.",
-              "- second (subtract(double first, double second)): the second operand supplied to subtract(); choose a value that represents this operation's second input.",
-              "- first (multiply(double first, double second)): the first operand supplied to multiply(); choose a value that represents this operation's first input.",
-              "- second (multiply(double first, double second)): the second operand supplied to multiply(); choose a value that represents this operation's second input.",
-              "- first (divide(double first, double second)): the first operand supplied to divide(); choose a value that represents this operation's first input.",
-              "- second (divide(double first, double second)): the second operand supplied to divide(); choose a value that represents this operation's second input.",
-              "- value (sqrt(double value)): the double value supplied to sqrt(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- expression (calculate(String expression)): the expression text supplied to calculate(); choose input that follows the parser's supported format and include invalid input when testing.",
-              "- first (formatBinaryResult(double first, String operator, double second, double result)): the first operand supplied to formatBinaryResult(); choose a value that represents this operation's first input.",
-              "- operator (formatBinaryResult(double first, String operator, double second, double result)): the operator supplied to formatBinaryResult(); choose one of the operators supported by the implementation and test the invalid case.",
-              "- second (formatBinaryResult(double first, String operator, double second, double result)): the second operand supplied to formatBinaryResult(); choose a value that represents this operation's second input.",
-              "- result (formatBinaryResult(double first, String operator, double second, double result)): the double value supplied to formatBinaryResult(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
             ]
           }
         ],
@@ -12825,100 +10132,11 @@ const CONCEPTS_DATA = [
               "- This overview class defines no parameterized constructors or parameterized methods, so there are no object arguments to validate here.",
               "- important: when later examples call overloaded methods or constructors, Java chooses the matching signature from the argument count, types, and order.",
               "- remember: if a subclass constructor calls super(args), those arguments initialize the parent-class part of the object; choose values the parent fields can safely store.",
-              "- careful: if a method parameter has the same name as a field, this.field = field copies the incoming argument into the object's field.",
-              "@option Encapsulation, inheritance, polymorphism and abstraction. [correct]",
-              "@option Classes, objects, methods and fields.",
-              "@option Compilation, interpretation, bytecode and the JVM.",
-              "@option Overloading, overriding, hiding and shadowing.",
-              "@explain The four pillars describe the design principles of OOP. Classes, objects, methods and fields are the building blocks you use to apply them, not the pillars themselves.",
-              "@why B: those are the basic building blocks of a class, not the four design pillars.",
-              "@why C: those belong to how Java code is built and run, not to OOP design.",
-              "@why D: those are features of how methods and fields behave, not the pillars.",
-              "@option Its fields, which hold data, and its methods, which define behaviour. [correct]",
-              "@option Only its methods.",
-              "@option Only the objects created from it.",
-              "@option The packages it belongs to.",
-              "@explain A class describes the data it holds and what it can do. Fields store the state, methods provide the behaviour, and together they are called class members.",
-              "@why B: methods are only half of it. The fields that hold the state are members too.",
-              "@why C: objects are instances of the class, not members of it.",
-              "@why D: a package groups related classes. It is not a member of a class.",
-              "@option A static field has one copy shared by the whole class, while an instance field has one copy per object. [correct]",
-              "@option A static field has one copy per object, and an instance field is shared.",
-              "@option Both have one copy per object.",
-              "@option A static field cannot be read outside its own class.",
-              "@explain Static means it belongs to the class, so every object sees the same value. Instance fields belong to the object, so different objects can hold different values at the same time.",
-              "@why B: this is the reverse. Static is the shared one.",
-              "@why C: instance fields are per object, but a static field is not.",
-              "@why D: visibility is controlled by the access modifier, such as public or private, not by static.",
-              "@option Because a static method belongs to the class and may run when no object exists, so there is no instance state to read. [correct]",
-              "@option Because static methods run before the class is loaded.",
-              "@option Because instance fields are private by definition.",
-              "@option Because static methods are always private.",
-              "@explain A static method is called on the class, so it has no object to take state from. That is why it cannot reference instance fields directly, while an instance method can use both static and instance data.",
-              "@why B: the class must be loaded before anything in it runs, including static methods.",
-              "@why C: instance fields can have any access modifier.",
-              "@why D: a static method can be public, and the restriction on instance data applies either way.",
-              "@option Only public or none, where none means package-private access. [correct]",
-              "@option public, protected or private, just like a field.",
-              "@option Any access modifier at all.",
-              "@option private only, because a class is used by its own file.",
-              "@explain A top-level class can be public or package-private. protected and private describe access relative to a class, so they make sense for members, not for the top-level class itself.",
-              "@why B: protected and private are valid for members, not for a top-level class.",
-              "@why C: only two options apply to a top-level class.",
-              "@why D: a private top-level class would be unreachable, and Java does not allow it.",
-              "@option The class with no modifier is package-private, so other classes in the same package can use it, but classes in other packages cannot. [correct]",
-              "@option The class with no modifier is public by default.",
-              "@option The class with no modifier can only be used inside its own file.",
-              "@option The class with no modifier cannot be instantiated at all.",
-              "@explain Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.",
-              "@why B: public has to be written. The default is package-private, not public.",
-              "@why C: package-private covers the whole package, and other classes in the same package can use it.",
-              "@why D: it can be instantiated by anything in the same package."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Holder {\n@code     int value = 5;\n@code     static void show() {\n@code         System.out.println(value);\n@code     }\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. A static method has no object to read an instance field from. [correct]",
-              "@option Yes, and it prints 5.",
-              "@option Yes, and it prints 0.",
-              "@option Yes, because value is initialised when the class is loaded.",
-              "@explain An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.",
-              "@why B: the compiler rejects it, so nothing is printed.",
-              "@why C: the field is not zero. The problem is that there is no object at all.",
-              "@why D: instance fields are created with the object, not when the class is loaded.",
-              "@option The accessible members, which means public and protected ones, and package-private ones when the packages match. [correct]",
-              "@option Every member, including private ones.",
-              "@option Only the private members.",
-              "@option Only the members declared static.",
-              "@explain Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.",
-              "@why B: private members are excluded. A subclass cannot see or override them.",
-              "@why C: private members are exactly the ones that are not inherited.",
-              "@why D: static members may be inherited, but they are not the only kind.",
-              "@option A field or a method declared inside the class, together with other elements such as nested types. [correct]",
-              "@option Only the methods of a class.",
-              "@option Only the objects created from the class.",
-              "@option The package that contains the class.",
-              "@explain Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.",
-              "@why B: methods are members, but the fields are members too.",
-              "@why C: objects are instances of the class, not members of it.",
-              "@why D: a package groups classes. It is not a member of any one class."
+              "- careful: if a method parameter has the same name as a field, this.field = field copies the incoming argument into the object's field."
             ]
           }
         ],
-        "inlineComments": [
-          "@code class Holder {",
-          "@code int value = 5;",
-          "@code static void show() {",
-          "@code System.out.println(value);",
-          "@code }"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "What is the difference between an abstract class and an interface in Java?",
@@ -13426,18 +10644,8 @@ const CONCEPTS_DATA = [
           {
             "type": "lines",
             "lines": [
-              "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
+              "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
+              "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
               "When you create a class instance (Car car = new Car()), Java sets all un-initialised fields to their default values: Strings -> null, int -> 0, boolean -> false.",
               "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
               "To read field values, use the getter: car.getMake(). To update, use the setter: car.setMake(\"Porsche\").",
@@ -13455,7 +10663,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
           "This will give compile time error as the car variable is not initialised",
           "This would give a runtime error if we called a method now, because the variable is pointing to a null reference",
           "Car car = new Car();",
@@ -13630,15 +10837,6 @@ const CONCEPTS_DATA = [
               "You'll convert inches to centimeters, in this method, and pass back the number of centimeters, as a double. The second method has two parameters of type int, one to represent height in feet, and one to represent the remaining height in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for inches would be passed to this method.",
               "This method will convert feet and inches to just inches, then call the first method, to get the number of centimeters, also returning the value as a double. Both methods should return a real number or decimal value for total height in centimeters. Call both methods, and print out the results."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- feet (calcFeetAndInchesToCentimeters(double feet, double inches)): the double value supplied to calcFeetAndInchesToCentimeters(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- inches (calcFeetAndInchesToCentimeters(double feet, double inches)): the double value supplied to calcFeetAndInchesToCentimeters(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- centimeters (calcFeetAndInchesToCentimeters(double centimeters)): the double value supplied to calcFeetAndInchesToCentimeters(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
-            ]
           }
         ],
         "inlineComments": [],
@@ -13672,15 +10870,6 @@ const CONCEPTS_DATA = [
               "Bonus:",
               "For the input 61 minutes output should be 01h 01m 00s, but it is ok if it is 1h 1m 0s (Tip: use if-else)",
               "Create a new console project and call it SecondsAndMinutesChallenge"
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- minutes (getDurationString(int minutes, int seconds)): the total minutes supplied to getDurationString(); choose a non-negative duration so it can be converted into years and remaining days.",
-              "- seconds (getDurationString(int minutes, int seconds)): the int input used by getDurationString(); choose a value that matches the method's range and boundary rules.",
-              "- seconds (getDurationString(int seconds)): the int input used by getDurationString(); choose a value that matches the method's range and boundary rules."
             ]
           }
         ],
@@ -13851,29 +11040,11 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "TIPS:"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "add= 9.0 is printed because 5.0 + 4 is 9.0\n\nsubtract= 1.0 is printed because 5.0 - 4 is 1.0\n\nmultiply= 0.0 is printed because 5.25 * 0 is 0.0\n\ndivide= 0.0 is printed because secondNumber is set to 0",
-            "lines": []
-          },
-          {
-            "type": "block",
-            "lines": [
+              "TIPS:",
+              "add= 9.0 is printed because 5.0 + 4 is 9.0 subtract= 1.0 is printed because 5.0 - 4 is 1.0 multiply= 0.0 is printed because 5.25 * 0 is 0.0 divide= 0.0 is printed because secondNumber is set to 0",
               "NOTE: All methods should be defined as public NOT public static.",
               "NOTE: In total, you have to write 8 methods.",
               "NOTE: Do not add the main method to the solution code."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- firstNumber (setFirstNumber(double firstNumber)): the first numeric operand supplied to setFirstNumber(); choose the first value in the comparison or calculation.",
-              "- secondNumber (setSecondNumber(double secondNumber)): the second numeric operand supplied to setSecondNumber(); choose the second value in the comparison or calculation."
             ]
           }
         ],
@@ -16641,158 +13812,11 @@ const CONCEPTS_DATA = [
               "- For overriding, Java decides which implementation runs at runtime from the actual object type.",
               "- For overloading, Java decides which parameter list matches at compile time from the reference type and argument expressions.",
               "warning: changing parameter type by boxing, widening, or adding parameters breaks overriding even if the method name looks correct.",
-              "remember: a covariant return type may be allowed in overriding, but the parameters must still match exactly.",
-              "@option Defining a method in a child class with the same name and parameters as the parent's, with the version chosen at runtime. [correct]",
-              "@option Defining two methods with the same name but different parameters in one class.",
-              "@option Replacing a method in the same class so the old one no longer exists.",
-              "@option Choosing the method at compile time, based on the reference type.",
-              "@explain Overriding is runtime polymorphism, also called dynamic method dispatch. The JVM looks at the actual object, not the declared type of the reference, when deciding which version to run.",
-              "@why B: same name and different parameters in one class is overloading.",
-              "@why C: you cannot replace a method in the same class. Overriding happens in a child class.",
-              "@why D: compile-time resolution based on the reference type describes overloading.",
-              "@option Overloading is in the same class with different parameters and is resolved at compile time. Overriding is in a child class with the same parameters and is resolved at runtime. [correct]",
-              "@option Overloading happens in a child class, and overriding happens in the same class.",
-              "@option Overloading is resolved at runtime, and overriding at compile time.",
-              "@option They are the same thing with different names.",
-              "@explain The distinction interviewers look for is which one the compiler decides and which one the JVM decides. Changing the parameters means a new overload; keeping them identical means an override.",
-              "@why B: this is reversed. Overloading stays within one class.",
-              "@why C: this is also reversed. Overloading is the compile-time one.",
-              "@why D: they differ in where they happen, in their parameters, and in when they are resolved.",
-              "@option private, because an override cannot be more restrictive than the method it overrides. [correct]",
-              "@option public, because it is more accessible.",
-              "@option protected, because it is identical.",
-              "@option No modifier at all, because that gives package access.",
-              "@explain An override may widen access but never narrow it. protected can become public, but it cannot become private, because callers that could reach the parent's method would suddenly be locked out.",
-              "@why B: public is allowed, because it is less restrictive.",
-              "@why C: the same modifier is always allowed.",
-              "@why D: package-private is more restrictive than protected, so it is not allowed here either, but private is the clearly invalid one being asked for."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Animal { void speak() { System.out.println(\"Animal\"); } }\r\n@code class Dog extends Animal { void speak() { System.out.println(\"Dog\"); } }\r\n@code Animal a = new Dog();\r\n@code a.speak();",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Dog, because the JVM uses the actual object type at runtime. [correct]",
-              "@option Animal, because the reference is declared as Animal.",
-              "@option Both lines, Animal then Dog.",
-              "@option It does not compile, because the types do not match.",
-              "@explain This is the heart of runtime polymorphism. The reference type only decides what you are allowed to call; the object type decides which version actually runs. Assigning a Dog to an Animal reference is legal because a Dog is an Animal.",
-              "@why B: this is the classic trap. The reference type does not choose the method at runtime.",
-              "@why C: only one version runs, not both.",
-              "@why D: the assignment is allowed, because Dog extends Animal.",
-              "@option static methods, private methods, final methods and constructors. [correct]",
-              "@option Only final methods.",
-              "@option Any method that returns void.",
-              "@option Any method that takes parameters.",
-              "@explain static methods are hidden rather than overridden, private methods are not inherited at all, final methods are locked down by the compiler, and constructors are not inherited methods. A method must be inheritable before it can be overridden.",
-              "@why B: final is only one of several cases.",
-              "@why C: a void return type has no bearing on whether a method can be overridden.",
-              "@why D: overridden methods have parameters all the time. The signature simply has to match the parent's.",
-              "@option It makes the compiler flag the method if it does not actually override anything, which catches a mistyped signature. [correct]",
-              "@option It makes the method run faster.",
-              "@option It is required for runtime polymorphism to work.",
-              "@option It marks the method as final.",
-              "@explain The annotation is a promise to the compiler. If the signature does not match a parent method, the compiler reports an error instead of silently creating a new method that never gets called.",
-              "@why B: the annotation has no effect on performance.",
-              "@why C: polymorphism works without it. The annotation is a safety check.",
-              "@why D: final does the opposite, preventing further overrides.",
-              "@option The overriding method may return a subclass of the return type declared by the parent. [correct]",
-              "@option The overriding method must change the return type.",
-              "@option The overriding method may return a supertype of the parent's return type.",
-              "@option The return type must always match exactly, with no exceptions.",
-              "@explain Covariance lets an override narrow the return type, which is more specific and therefore safe. If the parent returns Animal, the child may return Dog, because a Dog is an Animal.",
-              "@why B: the return type may stay exactly the same. Changing it is optional.",
-              "@why C: widening to a supertype would break callers who expect the narrower type.",
-              "@why D: an exact match is always allowed, but it is not the only option."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Parent {\r\n@code     static void show() { System.out.println(\"parent\"); }\r\n@code }\r\n@code class Child extends Parent {",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@code @Override"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code     static void show() { System.out.println(\"child\"); }\r\n@code }",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option No. A static method is hidden rather than overridden, so @Override is a compile error. [correct]",
-              "@option Yes, and calling Child.show() prints child.",
-              "@option Yes, because @Override is optional.",
-              "@option Yes, and calling show() on a Parent reference prints child.",
-              "@explain Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.",
-              "@why B: the annotation is checked, and it fails here.",
-              "@why C: @Override is optional only when a real override exists. Here there is none.",
-              "@why D: hiding resolves at compile time from the reference type, so a Parent reference would print parent."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code class Parent {\r\n@code     private void greet() { System.out.println(\"parent\"); }\r\n@code     void hello() { greet(); }\r\n@code }\r\n@code class Child extends Parent {\r\n@code     void greet() { System.out.println(\"child\"); }\r\n@code }\r\n@code new Child().hello();",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option parent, because the private method is not overridden, so Parent's own method is still used. [correct]",
-              "@option child, because Child declares a method with the same name.",
-              "@option It does not compile, because Child cannot declare greet().",
-              "@option It prints both parent and child.",
-              "@explain A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.",
-              "@why B: overriding needs an inherited method. A private method is not inherited.",
-              "@why C: declaring a method with the same name is allowed; it simply is not an override.",
-              "@why D: only one method is called.",
-              "@option It calls the parent class version of toString, which is useful for adding the parent fields to the result. [correct]",
-              "@option It creates a new parent object.",
-              "@option It calls the constructor of the parent class.",
-              "@option It returns the class name only.",
-              "@explain super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.",
-              "@why B: no object is created. The method is simply called on the same object.",
-              "@why C: a constructor call is super(...) with parentheses and arguments, not super.method().",
-              "@why D: it runs whatever the parent toString returns, which normally includes the parent fields.",
-              "@option public, because an override may widen access but never narrow it. [correct]",
-              "@option private, because an override may be more restrictive.",
-              "@option It does not matter, because an override can use any modifier.",
-              "@option Only protected, exactly matching the parent.",
-              "@explain An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.",
-              "@why B: private is more restrictive, which is exactly what is forbidden.",
-              "@why C: the modifier is constrained by the rule that access may not be reduced.",
-              "@why D: an exact match is allowed, but so is widening it to public."
+              "remember: a covariant return type may be allowed in overriding, but the parameters must still match exactly."
             ]
           }
         ],
-        "inlineComments": [
-          "@code class Animal { void speak() { System.out.println(\"Animal\"); } }",
-          "@code class Dog extends Animal { void speak() { System.out.println(\"Dog\"); } }",
-          "@code Animal a = new Dog();",
-          "@code a.speak();",
-          "@code class Parent {",
-          "@code static void show() { System.out.println(\"parent\"); }",
-          "@code }",
-          "@code class Child extends Parent {",
-          "@code static void show() { System.out.println(\"child\"); }",
-          "@code private void greet() { System.out.println(\"parent\"); }",
-          "@code void hello() { greet(); }",
-          "@code void greet() { System.out.println(\"child\"); }",
-          "@code new Child().hello();"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "What is method overriding in Java?",
@@ -17524,23 +14548,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Deep Problem: Shape Hierarchy and Polymorphic Reporting — Model a small geometry system with a base Shape type and specialized subclasses for circles, rectangles, and triangles. Each shape must compute its own area, while a shared reporting method uses instanceof checks and polymorphism to print detailed runtime information."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- color (Shape(String color, String name)): the String text supplied to Shape(); choose content that matches the method's expected format.",
-              "- name (Shape(String color, String name)): the String text supplied to Shape(); choose content that matches the method's expected format.",
-              "- color (Circle(String color, double radius)): the String text supplied to Circle(); choose content that matches the method's expected format.",
-              "- radius (Circle(String color, double radius)): the circle radius supplied to Circle(); choose a non-negative measurement because area depends on radius squared.",
-              "- color (Rectangle(String color, double width, double height)): the String text supplied to Rectangle(); choose content that matches the method's expected format.",
-              "- width (Rectangle(String color, double width, double height)): the width supplied to Rectangle(); choose a non-negative measurement that matches the unit used by the related dimensions.",
-              "- height (Rectangle(String color, double width, double height)): the height supplied to Rectangle(); choose a non-negative measurement that matches the unit used by the related dimensions.",
-              "- color (Triangle(String color, double base, double height)): the String text supplied to Triangle(); choose content that matches the method's expected format.",
-              "- base (Triangle(String color, double base, double height)): the base value supplied to Triangle(); choose the number that will be raised to the requested exponent.",
-              "- height (Triangle(String color, double base, double height)): the height supplied to Triangle(); choose a non-negative measurement that matches the unit used by the related dimensions.",
-              "- shape (printShapeInfo(Shape shape)): the Shape value supplied to printShapeInfo(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
-            ]
           }
         ],
         "inlineComments": [],
@@ -17610,73 +14617,12 @@ const CONCEPTS_DATA = [
               "Note: %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
               "Note: \"Hello \\n\".length() is always 7, but String.format(\"Hello%n\").length() is 6 on Linux and 7 on Windows."
             ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code int age = 35;\r\n@code System.out.printf(\"Age is %s%n\", age);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Age is 35, because %s accepts any value by converting it to text. [correct]",
-              "@option It throws IllegalFormatConversionException, because age is not a String.",
-              "@option Age is null, because an int is not a String.",
-              "@option It does not compile, because %s requires a String argument.",
-              "@explain %s calls toString() on whatever it is given, so an int is perfectly acceptable. That is different from %f, which insists on a floating-point value and throws for an int.",
-              "@why B: the exception comes from a mismatched numeric specifier such as %f with an int, not from %s.",
-              "@why C: the value is converted to its text form, so 35 is printed.",
-              "@why D: the format string is not type-checked at compile time, and %s accepts any object or primitive."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.printf(\"100%% complete%n\");",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option 100% complete [correct]",
-              "@option 100%% complete",
-              "@option It throws an exception, because %% is not a valid specifier.",
-              "@option 100 complete, because %% is removed.",
-              "@explain The percent sign starts a format specifier, so a literal percent has to be written twice. The pair %% is replaced by a single % in the output.",
-              "@why B: the doubled sign is a way of writing one, so the second is not printed literally.",
-              "@why C: %% is a valid escape in a format string.",
-              "@why D: the character is printed once, not removed."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code System.out.printf(\"[%-5d]%n\", 42);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option It left-aligns the number in a field five characters wide, giving [42 ]. [correct]",
-              "@option It right-aligns the number in a field five characters wide.",
-              "@option It prints the number five times.",
-              "@option It rounds the number to five decimal places.",
-              "@explain The width sets the minimum field size and the minus flag pads on the right instead of the left. So 42 becomes 42 followed by three spaces inside the brackets.",
-              "@why B: right alignment is the default with %5d, without the minus.",
-              "@why C: repetition uses String.repeat, not a format flag.",
-              "@why D: decimal places are set by .precision, which applies to floating-point values."
-            ]
           }
         ],
         "inlineComments": [
           "| New line | What it is | Where it works | What it gives |",
           "| `\\n` | Escape sequence, put into the String while compiling | Any String | Always the LF character, on every OS |",
-          "| `%n` | Format specifier, converted by the Formatter at run time | Only a format string | Line separator of the platform: \\r\\n on Windows, \\n on Linux or macOS |",
-          "@code int age = 35;",
-          "@code System.out.printf(\"Age is %s%n\", age);",
-          "@code System.out.printf(\"100%% complete%n\");",
-          "@code System.out.printf(\"[%-5d]%n\", 42);"
+          "| `%n` | Format specifier, converted by the Formatter at run time | Only a format string | Line separator of the platform: \\r\\n on Windows, \\n on Linux or macOS |"
         ],
         "customQuizzes": [
           {
@@ -18265,155 +15211,11 @@ const CONCEPTS_DATA = [
               "- newLength (setLength): the desired length after the call. Smaller than current -> truncate; larger -> pad with '\\u0000'. Set to 0 to clear the builder for reuse.",
               "- capacity (constructor int arg, ensureCapacity): the buffer size, NOT the content. new StringBuilder(50) pre-allocates room for 50 chars while length() stays 0. Set it when you can estimate final size to avoid repeated re-allocation.",
               "- the X argument of append(X) / insert(offset, X): an overloaded value of almost any type -- String, char, char[], boolean, int, long, float, double, Object. For Object/String it appends \"null\" when the value is null; note the char[] overload would throw NullPointerException on a null array.",
-              "- str + fromIndex (indexOf(str), indexOf(str, fromIndex)): str is the substring to search for; fromIndex is the 0-based position to start searching from (defaults to 0 in the one-arg form). Returns -1 if not found.",
-              "@option String is immutable, so every change creates a new object, while StringBuilder modifies its own character buffer in place. [correct]",
-              "@option StringBuilder is immutable, while String is mutable.",
-              "@option Both are immutable, and StringBuilder is only faster to type.",
-              "@option StringBuilder always stores fewer characters than String.",
-              "@explain String never changes once created. StringBuilder edits one internal buffer, which is why repeated appends are far cheaper than building the same text with +.",
-              "@why B: this is reversed. StringBuilder is the mutable one.",
-              "@why C: mutability is the whole reason StringBuilder exists.",
-              "@why D: they can hold the same text. The difference is how changes are performed, not how much fits.",
-              "@option length() is how many characters are currently stored, and capacity() is how much the buffer can hold before it must grow. [correct]",
-              "@option They always return the same number.",
-              "@option length() is the buffer size, and capacity() is the number of characters stored.",
-              "@option capacity() is the maximum number of characters a StringBuilder can ever hold.",
-              "@explain Capacity is the size of the internal storage and length is what is actually used. A new StringBuilder() has length 0 but capacity 16, because the buffer is already reserved.",
-              "@why B: they are equal only when the buffer happens to be exactly full.",
-              "@why C: this is the reverse of the actual meaning.",
-              "@why D: capacity is not a fixed limit. The buffer grows when it overflows."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code StringBuilder sb = new StringBuilder(\"abc\");\r\n@code StringBuilder same = sb.reverse();\r\n@code System.out.println(sb + \" \" + (sb == same));",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option cba true, because reverse() reverses in place and returns the same object. [correct]",
-              "@option abc false, because reverse() returns a new StringBuilder and leaves sb untouched.",
-              "@option cba false, because reverse() returns a copy.",
-              "@option It does not compile, because reverse() returns void.",
-              "@explain reverse() mutates the buffer and returns the same instance, which is why sb and same refer to one object and the identity check prints true.",
-              "@why B: reverse() does change the original, so sb is no longer \"abc\".",
-              "@why C: no copy is made. Returning the same object is what allows chaining.",
-              "@why D: reverse() returns a StringBuilder, not void, so the assignment compiles.",
-              "@why D: capacity grows with the text, it does not shrink.",
-              "@option StringBuilder does not override equals(), so it compares references rather than contents. [correct]",
-              "@option StringBuilders can never be compared at all.",
-              "@option equals() on StringBuilder compares only the first character.",
-              "@option It returns true, because the text is the same.",
-              "@explain Without an override, equals() falls back to the version inherited from Object, which compares identity. Two different objects are therefore unequal even when they hold identical characters.",
-              "@why B: the comparison compiles and runs, but it answers the wrong question.",
-              "@why C: no content comparison happens at all.",
-              "@why D: identical text does not help, because equals is not looking at the text.",
-              "@option It grows to (oldCapacity * 2) + 2, so from 16 the sequence is 16, then 34, then 70. [correct]",
-              "@option It grows by exactly one character each time.",
-              "@option It doubles to 32, then 64, then 128.",
-              "@option It does not grow. Adding more text throws an exception.",
-              "@explain The growth rule doubles the old capacity and adds 2. Knowing this is why presizing with new StringBuilder(int) is worthwhile when the final size is known.",
-              "@why B: growing one character at a time would make appending very slow.",
-              "@why C: the rule adds 2 as well, so 16 becomes 34 rather than 32.",
-              "@why D: the buffer grows automatically. It does not fail.",
-              "@option One character, because the end index is exclusive. [correct]",
-              "@option Two characters, because the range is 0 to 1.",
-              "@option Nothing, because the range is empty.",
-              "@option Everything, because 0 is the start.",
-              "@explain The range is half-open: start is included and end is excluded. So delete(0, 1) affects index 0 only, while delete(0, sb.length()) clears the whole buffer.",
-              "@why B: the end index is not affected, so only index 0 is removed.",
-              "@why C: the range contains index 0, so one character is removed.",
-              "@why D: clearing everything needs the end index to be length(), not 1.",
-              "@option It clears the buffer by truncating to length 0, and unlike the others it returns void rather than the same instance. [correct]",
-              "@option It creates a brand new empty StringBuilder and returns it.",
-              "@option It does nothing, because 0 is not a valid length.",
-              "@option It returns a String containing the removed characters.",
-              "@explain A smaller length truncates the buffer, and 0 therefore clears it. This is a common way to reuse a StringBuilder without allocating a new one. Its void return means it cannot be chained.",
-              "@why B: the same object is reused, which is the point of the idiom.",
-              "@why C: 0 is valid and truncates everything.",
-              "@why D: it returns nothing at all.",
-              "@option Because append() returns the same StringBuilder instance, which allows fluent chaining. [correct]",
-              "@option Because each append() returns a new StringBuilder.",
-              "@option Because Java automatically joins statements that end with a dot.",
-              "@option Because append() is a static method.",
-              "@explain Returning the same instance is what makes chaining work. Because it is the same object, every call writes into one buffer. Call toString() when you finally need an immutable String.",
-              "@why B: returning a new instance each time would defeat the efficiency of StringBuilder.",
-              "@why C: chaining is ordinary method-call syntax, not a compiler trick.",
-              "@why D: append is an instance method, called on the builder."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code StringBuilder sb = new StringBuilder(\"abc\");\r\n@code sb.insert(sb.length(), \"d\");\r\n@code System.out.println(sb);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option abcd, because insert accepts an offset equal to length(), which appends. [correct]",
-              "@option It does not compile, because the offset must be less than length().",
-              "@option It throws StringIndexOutOfBoundsException.",
-              "@option dabc, because the offset is ignored at the end.",
-              "@explain The valid offset range is 0 up to and including length(). Using exactly length() places the text after the last character, which is the same effect as append.",
-              "@why B: the range is inclusive of length(), unlike an array index.",
-              "@why C: the exception is thrown for an offset outside 0 to length(), and this one is inside it.",
-              "@why D: the offset is honoured. It places the text at that position, which is the end here."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code StringBuilder sb = new StringBuilder(\"abcdef\");\r\n@code sb.delete(1, 4);\r\n@code System.out.println(sb);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option aef, because delete removes the half-open range 1 to 3. [correct]",
-              "@option adef, because only one character is removed.",
-              "@option abcd, because the last four characters are removed.",
-              "@option abcdef, because nothing is removed.",
-              "@explain The end index is exclusive, so delete(1, 4) removes the characters at indexes 1, 2 and 3. That is b, c and d, leaving a, e and f.",
-              "@why B: three characters are removed, not one. deleteCharAt(1) would remove a single character.",
-              "@why C: the range starts at 1, so a is kept.",
-              "@why D: the range is not empty, so characters are removed."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code StringBuilder sb = new StringBuilder(\"Hello\");\r\n@code String snapshot = sb.toString();\r\n@code sb.append(\" World\");\r\n@code System.out.println(snapshot);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Hello, because toString() created a String copy at that moment. [correct]",
-              "@option Hello World, because the String tracks the builder.",
-              "@option It does not compile, because a String cannot be made from a StringBuilder.",
-              "@option null, because the String was created before the append.",
-              "@explain toString() returns an immutable String holding the characters as they were at that instant. Later changes to the StringBuilder cannot affect it, because String never changes.",
-              "@why B: the String is a separate object and is not linked to the builder.",
-              "@why C: toString() is exactly how you convert a StringBuilder back to a String.",
-              "@why D: the value is captured, so it holds Hello rather than null."
+              "- str + fromIndex (indexOf(str), indexOf(str, fromIndex)): str is the substring to search for; fromIndex is the 0-based position to start searching from (defaults to 0 in the one-arg form). Returns -1 if not found."
             ]
           }
         ],
         "inlineComments": [
-          "@code StringBuilder sb = new StringBuilder(\"abc\");",
-          "@code StringBuilder same = sb.reverse();",
-          "@code System.out.println(sb + \" \" + (sb == same));",
-          "@code sb.insert(sb.length(), \"d\");",
-          "@code System.out.println(sb);",
-          "@code StringBuilder sb = new StringBuilder(\"abcdef\");",
-          "@code sb.delete(1, 4);",
-          "@code StringBuilder sb = new StringBuilder(\"Hello\");",
-          "@code String snapshot = sb.toString();",
-          "@code sb.append(\" World\");",
-          "@code System.out.println(snapshot);",
           "Efficient loop building: one buffer, no throwaway String objects per iteration",
           "Repeating with String.repeat(int) — added in Java 11, returns a NEW String",
           "Repeating with StringBuilder on Java 17 — append in a loop (StringBuilder has no repeat() until Java 21)",
@@ -19190,17 +15992,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Deep Problem: Text Intelligence Analyzer — Create a utility that inspects sentences for palindrome behavior, word count, character frequency, and reversed word order, then combines the findings into a formatted report. The challenge reflects common string-processing tasks used in search, validation, and reporting systems."
             ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- text (isPalindrome(String text)): the String text supplied to isPalindrome(); choose content that matches the method's expected format.",
-              "- text (wordCount(String text)): the String text supplied to wordCount(); choose content that matches the method's expected format.",
-              "- text (mostFrequentChar(String text)): the String text supplied to mostFrequentChar(); choose content that matches the method's expected format.",
-              "- sentence (reverseWords(String sentence)): the String text supplied to reverseWords(); choose content that matches the method's expected format.",
-              "- text (generateReport(String text)): the String text supplied to generateReport(); choose content that matches the method's expected format."
-            ]
           }
         ],
         "inlineComments": [],
@@ -19221,14 +16012,11 @@ const CONCEPTS_DATA = [
         "subChapter": "Composition Example Computer Package",
         "headerComments": [
           {
-            "type": "generated-parameters",
+            "type": "generated",
             "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- model (ComputerCase(String model, String manufacturer)): the String text supplied to ComputerCase(); choose content that matches the method's expected format.",
-              "- manufacturer (ComputerCase(String model, String manufacturer)): the String text supplied to ComputerCase(); choose content that matches the method's expected format.",
-              "- model (ComputerCase(String model, String manufacturer, String powerSupply)): the String text supplied to ComputerCase(); choose content that matches the method's expected format.",
-              "- manufacturer (ComputerCase(String model, String manufacturer, String powerSupply)): the String text supplied to ComputerCase(); choose content that matches the method's expected format.",
-              "- powerSupply (ComputerCase(String model, String manufacturer, String powerSupply)): the String text supplied to ComputerCase(); choose content that matches the method's expected format."
+              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+              "Review the class ComputerCase and understand its key responsibilities.",
+              "This example defines 1 method; trace method behavior step by step."
             ]
           }
         ],
@@ -19267,18 +16055,11 @@ const CONCEPTS_DATA = [
         "subChapter": "Composition Example Computer Package",
         "headerComments": [
           {
-            "type": "generated-parameters",
+            "type": "generated",
             "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- model (Monitor(String model, String manufacturer)): the String text supplied to Monitor(); choose content that matches the method's expected format.",
-              "- manufacturer (Monitor(String model, String manufacturer)): the String text supplied to Monitor(); choose content that matches the method's expected format.",
-              "- model (Monitor(String model, String manufacturer, int size, String resolution)): the String text supplied to Monitor(); choose content that matches the method's expected format.",
-              "- manufacturer (Monitor(String model, String manufacturer, int size, String resolution)): the String text supplied to Monitor(); choose content that matches the method's expected format.",
-              "- size (Monitor(String model, String manufacturer, int size, String resolution)): the requested size supplied to Monitor(); choose a positive dimension and test the smallest valid size.",
-              "- resolution (Monitor(String model, String manufacturer, int size, String resolution)): the String text supplied to Monitor(); choose content that matches the method's expected format.",
-              "- x (drawPixelAt(int x, int y, String color)): the x operand supplied to drawPixelAt(); choose a value that represents this operation's x input.",
-              "- y (drawPixelAt(int x, int y, String color)): the y operand supplied to drawPixelAt(); choose a value that represents this operation's y input.",
-              "- color (drawPixelAt(int x, int y, String color)): the String text supplied to drawPixelAt(); choose content that matches the method's expected format."
+              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+              "Review the class Monitor and understand its key responsibilities.",
+              "This example defines 1 method; trace method behavior step by step."
             ]
           }
         ],
@@ -19295,17 +16076,11 @@ const CONCEPTS_DATA = [
         "subChapter": "Composition Example Computer Package",
         "headerComments": [
           {
-            "type": "generated-parameters",
+            "type": "generated",
             "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- model (MotherBoard(String model, String manufacturer)): the String text supplied to MotherBoard(); choose content that matches the method's expected format.",
-              "- manufacturer (MotherBoard(String model, String manufacturer)): the String text supplied to MotherBoard(); choose content that matches the method's expected format.",
-              "- model (MotherBoard(String model, String manufacturer, int ramSlots, int cardSlots, String bios)): the String text supplied to MotherBoard(); choose content that matches the method's expected format.",
-              "- manufacturer (MotherBoard(String model, String manufacturer, int ramSlots, int cardSlots, String bios)): the String text supplied to MotherBoard(); choose content that matches the method's expected format.",
-              "- ramSlots (MotherBoard(String model, String manufacturer, int ramSlots, int cardSlots, String bios)): the int value supplied to MotherBoard(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- cardSlots (MotherBoard(String model, String manufacturer, int ramSlots, int cardSlots, String bios)): the int value supplied to MotherBoard(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- bios (MotherBoard(String model, String manufacturer, int ramSlots, int cardSlots, String bios)): the String text supplied to MotherBoard(); choose content that matches the method's expected format.",
-              "- programName (loadProgram(String programName)): the String text supplied to loadProgram(); choose content that matches the method's expected format."
+              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+              "Review the class MotherBoard and understand its key responsibilities.",
+              "This example defines 1 method; trace method behavior step by step."
             ]
           }
         ],
@@ -19322,16 +16097,11 @@ const CONCEPTS_DATA = [
         "subChapter": "Composition Example Computer Package",
         "headerComments": [
           {
-            "type": "generated-parameters",
+            "type": "generated",
             "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- model (PersonalComputer(String model, String manufacturer)): the String text supplied to PersonalComputer(); choose content that matches the method's expected format.",
-              "- manufacturer (PersonalComputer(String model, String manufacturer)): the String text supplied to PersonalComputer(); choose content that matches the method's expected format.",
-              "- model (PersonalComputer(String model, String manufacturer, Monitor monitor, MotherBoard motherboard, ComputerCase computerCase)): the String text supplied to PersonalComputer(); choose content that matches the method's expected format.",
-              "- manufacturer (PersonalComputer(String model, String manufacturer, Monitor monitor, MotherBoard motherboard, ComputerCase computerCase)): the String text supplied to PersonalComputer(); choose content that matches the method's expected format.",
-              "- monitor (PersonalComputer(String model, String manufacturer, Monitor monitor, MotherBoard motherboard, ComputerCase computerCase)): the Monitor value supplied to PersonalComputer(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- motherboard (PersonalComputer(String model, String manufacturer, Monitor monitor, MotherBoard motherboard, ComputerCase computerCase)): the MotherBoard value supplied to PersonalComputer(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- computerCase (PersonalComputer(String model, String manufacturer, Monitor monitor, MotherBoard motherboard, ComputerCase computerCase)): the ComputerCase value supplied to PersonalComputer(); choose a representative value, then test a boundary or invalid value to observe how the method responds."
+              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+              "Review the class PersonalComputer and understand its key responsibilities.",
+              "This example defines 3 methods; trace method behavior step by step."
             ]
           }
         ],
@@ -19362,59 +16132,6 @@ const CONCEPTS_DATA = [
               "PersonalComputer Monitor MotherBoard ComputerCase size:int ramSlots:int powerSupply:String resolution:String cardSlots:int pressPowerButton() drawPixel(int x,int y,String color) bios:String monitor:Monitor ------------------------- | |",
               "The Monitor, MotherBoard and ComputerCase, are also part of Personal Computer",
               "In other words, Personal Computer HAS-A Monitor, MotherBoard and ComputerCase"
-            ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Inheritance defines an IS-A relationship, and composition defines a HAS-A relationship. [correct]",
-              "@option Inheritance defines a HAS-A relationship, and composition defines an IS-A relationship.",
-              "@option Both describe the same relationship.",
-              "@option IS-A means an object stores another object as a field.",
-              "@explain A Monitor IS-A Product, which is inheritance. A PersonalComputer HAS-A Monitor, which is composition, because the computer holds a Monitor as one of its parts.",
-              "@why B: the two are the other way round.",
-              "@why C: they describe different relationships, and choosing between them is a design decision.",
-              "@why D: storing another object as a field is HAS-A, which is composition.",
-              "@option Because the computer is built from other objects held as its parts, rather than inheriting from them. [correct]",
-              "@option Because PersonalComputer extends Monitor.",
-              "@option Because Monitor and PersonalComputer share the same fields.",
-              "@option Because composition always requires an interface.",
-              "@explain Composition means one object is made up of others. A PersonalComputer contains a Monitor, a MotherBoard and a ComputerCase, so those are parts of it rather than parents of it.",
-              "@why B: extending Monitor would make the computer a kind of monitor, which is not what the design says. They both extend Product instead.",
-              "@why C: sharing fields is not what composition means.",
-              "@why D: composition works with concrete classes too. Interfaces are optional.",
-              "@option They all inherit Product's common attributes, such as model and manufacturer, without repeating that code. [correct]",
-              "@option Each of them gets its own separate copy of the Product class file.",
-              "@option It makes them all the same type at runtime.",
-              "@option It prevents them from adding their own fields.",
-              "@explain Inheritance is a form of code reuse. The shared attributes live once in Product, and every subclass inherits them while still being free to add its own fields and behaviour.",
-              "@why B: there is one Product class. The subclasses share its definition.",
-              "@why C: they remain distinct types, which is what allows each to have its own behaviour.",
-              "@why D: subclasses can add their own fields freely, such as ramSlots on MotherBoard.",
-              "@option Call super(model, manufacturer), because private fields of the parent cannot be assigned directly. [correct]",
-              "@option Assign this.model = model, because a subclass can reach the parent fields.",
-              "@option Declare model again inside MotherBoard and assign that.",
-              "@option Nothing. The parent fields are set automatically from the parameter names.",
-              "@explain private means the field is visible only inside Product. A subclass therefore has to go through a Product constructor, which is what super(...) does.",
-              "@why B: private really does block the subclass, which is the point of encapsulation.",
-              "@why C: that would create a second, unrelated field and leave the parent's copy unset.",
-              "@why D: Java does not match parameters to fields by name. You must pass the values yourself.",
-              "@option Reuse the model and manufacturer attributes from Product instead of declaring them again. [correct]",
-              "@option Share one set of field values between all three classes.",
-              "@option Avoid having any fields of their own.",
-              "@option Become the same class at runtime.",
-              "@explain Inheritance lets each subclass reuse the parent's definition. Each object still has its own copy of those fields, but the declarations live once in Product.",
-              "@why B: sharing one value happens with static fields. Each instance field here is per object.",
-              "@why C: each subclass is free to add its own fields, such as ramSlots on MotherBoard.",
-              "@why D: they remain distinct types, which is what allows each to have its own behaviour."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- model (Product(String model, String manufacturer)): the String text supplied to Product(); choose content that matches the method's expected format.",
-              "- manufacturer (Product(String model, String manufacturer)): the String text supplied to Product(); choose content that matches the method's expected format."
             ]
           }
         ],
@@ -19607,59 +16324,9 @@ const CONCEPTS_DATA = [
               "Inheritence is a way to reuse functionality and attributes",
               "Composition is a way to make the combination of classes act like a single coherent object"
             ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Inheritance is a way to reuse functionality and attributes from a parent class. [correct]",
-              "@option Inheritance is a way to make several objects act as one.",
-              "@option Inheritance means copying the source code of one class into another.",
-              "@option Inheritance is only possible between classes in the same package.",
-              "@explain Inheritance lets a subclass reuse what the parent already defines, and then add to it or change it. It is reuse through a parent-child relationship, not copying.",
-              "@why B: making a combination of classes act as one coherent object is the description of composition.",
-              "@why C: the subclass reuses the parent's definition. Nothing is copied into the file.",
-              "@why D: a subclass may extend a class from another package, provided the class is visible.",
-              "@option Composition is a way to make a combination of classes act like a single coherent object. [correct]",
-              "@option Composition is a way to reuse attributes through a parent-child hierarchy.",
-              "@option Composition means one class can have only one field.",
-              "@option Composition is another word for inheritance.",
-              "@explain Composition is about building one thing out of others and presenting the result as a single object. The containing class delegates work to the parts it holds.",
-              "@why B: reusing attributes through a parent-child hierarchy is inheritance.",
-              "@why C: a composed class can hold as many parts as it needs.",
-              "@why D: they are different approaches, which is why this topic compares them.",
-              "@option HAS-A, which is composition, because the parts are held inside the whole. [correct]",
-              "@option IS-A, because the parts are all products.",
-              "@option IS-A, because the computer uses the parts.",
-              "@option Neither. Holding a field is not a relationship between classes.",
-              "@explain The computer is built from those objects, so it has them. IS-A describes inheritance, where one class is a kind of another, which is a different relationship.",
-              "@why B: the parts being Products is a separate IS-A relationship, and it is not what the fields express.",
-              "@why C: using a part is still HAS-A. The whole contains it.",
-              "@why D: one object holding another as a field is exactly how composition is expressed."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@code Product p = new Monitor();          // IS-A\r\n@code personalComputer.setMonitor(m);    // HAS-A",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@option Because Monitor is a kind of Product and is also able to be held as a part of another object. [correct]",
-              "@option Because Monitor inherits from PersonalComputer.",
-              "@option Because setMonitor converts the Monitor into a Product.",
-              "@option Because composition and inheritance are the same relationship.",
-              "@explain Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.",
-              "@why B: the inheritance runs the other way, from Monitor up to Product.",
-              "@why C: no conversion happens. A Monitor already is a Product.",
-              "@why D: they are different: IS-A is a kind of, HAS-A is made of parts."
-            ]
           }
         ],
-        "inlineComments": [
-          "IS-A HAS-A @option Because Monitor is a kind of Product and is also able to be held as a part of another object. [correct]"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "How is inheritance described in these notes?",
@@ -19822,21 +16489,6 @@ const CONCEPTS_DATA = [
               "describePart: returns the part as \"model by manufacturer\", or \"incomplete part\" when either value is missing.",
               "totalCost: adds the three part prices to give the cost of the whole build.",
               "isFullyAssembled: returns true only when every part is present."
-            ]
-          },
-          {
-            "type": "generated-parameters",
-            "lines": [
-              "Parameter notes (generated from the method signatures in this file):",
-              "- model (describePart(String model, String manufacturer)): the String text supplied to describePart(); choose content that matches the method's expected format.",
-              "- manufacturer (describePart(String model, String manufacturer)): the String text supplied to describePart(); choose content that matches the method's expected format.",
-              "- computerCase (totalCost(double computerCase, double motherBoard, double monitor)): the double value supplied to totalCost(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- motherBoard (totalCost(double computerCase, double motherBoard, double monitor)): the double value supplied to totalCost(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- monitor (totalCost(double computerCase, double motherBoard, double monitor)): the double value supplied to totalCost(); choose a representative value, then test a boundary or invalid value to observe how the method responds.",
-              "- monitor (isFullyAssembled(String monitor, String motherBoard, String computerCase)): the String text supplied to isFullyAssembled(); choose content that matches the method's expected format.",
-              "- motherBoard (isFullyAssembled(String monitor, String motherBoard, String computerCase)): the String text supplied to isFullyAssembled(); choose content that matches the method's expected format.",
-              "- computerCase (isFullyAssembled(String monitor, String motherBoard, String computerCase)): the String text supplied to isFullyAssembled(); choose content that matches the method's expected format.",
-              "- value (isPresent(String value)): the String text supplied to isPresent(); choose content that matches the method's expected format."
             ]
           }
         ],
