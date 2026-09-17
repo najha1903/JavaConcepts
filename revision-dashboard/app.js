@@ -110,7 +110,7 @@ function recordQuestionResult(qid, isCorrect) {
 }
 
 function getQuestionWeight(qid, history) {
-  if (!qid || !history[qid]) return 10; // never seen Ã¢â‚¬â€ highest priority
+  if (!qid || !history[qid]) return 10; // never seen — highest priority
   const h = history[qid];
   const daysSince = (Date.now() - h.lastSeenMs) / (1000 * 60 * 60 * 24);
   if (h.wrong > h.correct && daysSince < 7) return 8;  // recently wrong
@@ -668,7 +668,7 @@ function renderSidebar() {
       renderTopicItem(topic, content, chIdx, topic.originalIdx, revised);
     });
     
-    // Render sub-chapters Ã¢â‚¬â€ sorted numerically by Sub_Chapter_N from filePath
+    // Render sub-chapters — sorted numerically by Sub_Chapter_N from filePath
     const sortedSubChapterNames = Object.keys(subChaptersMap).sort((a, b) => {
       const aNum = parseInt((subChaptersMap[a][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
       const bNum = parseInt((subChaptersMap[b][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
@@ -702,7 +702,7 @@ function renderSidebar() {
       document.querySelectorAll('.chapter-accordion').forEach(a => a.classList.remove('open'));
       if (!isOpen) {
         accordion.classList.add('open');
-        // Auto-select first topic so one click navigates directly Ã¢â‚¬â€ no second click needed
+        // Auto-select first topic so one click navigates directly — no second click needed
         selectTopic(chIdx, 0);
       }
     });
@@ -874,7 +874,7 @@ function renderPrintTopicNotes(topic) {
 
   const flushList = () => {
     if (!listItems.length) return;
-    html += `<ul>${listItems.map(item => `<li>${formatPrintInline(item.replace(/^[-*Ã¢â‚¬Â¢]\s*/, ''))}</li>`).join('')}</ul>`;
+    html += `<ul>${listItems.map(item => `<li>${formatPrintInline(item.replace(/^[-*•]\s*/, ''))}</li>`).join('')}</ul>`;
     listItems = [];
   };
 
@@ -1031,7 +1031,7 @@ function renderNotesView() {
 
   const topicInfo = currentNotesTopicPath ? findTopicByFilePath(currentNotesTopicPath) : null;
   if (topicInfo && topicTitle) {
-    topicTitle.innerText = `${topicInfo.chapter.name} Ã¢â‚¬â€ ${topicInfo.topic.topicName}`;
+    topicTitle.innerText = `${topicInfo.chapter.name} — ${topicInfo.topic.topicName}`;
   } else if (topicTitle) {
     topicTitle.innerText = 'Topic Notes';
   }
@@ -1261,7 +1261,7 @@ function selectTopic(chIdx, tpIdx) {
         }
 
         // 3. Check for Parameter Note Items (e.g. "- args (main): ...")
-        const paramMatch = trimmedLine.match(/^[-*Ã¢â‚¬Â¢]\s*([a-zA-Z0-9_$]+)\s*(?:\(([^)]+)\))?\s*:\s*(.*)/);
+        const paramMatch = trimmedLine.match(/^[-*•]\s*([a-zA-Z0-9_$]+)\s*(?:\(([^)]+)\))?\s*:\s*(.*)/);
         if (paramMatch) {
           flushList();
           const paramName = paramMatch[1];
@@ -1287,7 +1287,7 @@ function selectTopic(chIdx, tpIdx) {
           currentList.className = 'bullet-list concept-bullet-list';
         }
 
-        const cleanBulletText = trimmedLine.replace(/^[-*Ã¢â‚¬Â¢]\s*/, '');
+        const cleanBulletText = trimmedLine.replace(/^[-*•]\s*/, '');
         const li = document.createElement('li');
         li.innerHTML = formatInlineText(cleanBulletText);
         currentList.appendChild(li);
@@ -1436,8 +1436,8 @@ function ensureAnkiDeck() {
   const titleEl = document.getElementById('anki-deck-title');
   if (titleEl) {
     titleEl.textContent = ankiScope === 'all'
-      ? `All Chapters Ã‚Â· ${ankiDeck.length} cards`
-      : `${CONCEPTS_DATA[currentChapterIndex].name} Ã‚Â· ${ankiDeck.length} cards`;
+      ? `All Chapters · ${ankiDeck.length} cards`
+      : `${CONCEPTS_DATA[currentChapterIndex].name} · ${ankiDeck.length} cards`;
   }
   startAnkiSession();
 }
@@ -1460,7 +1460,7 @@ function ankiCleanText(text) {
   return String(text)
     .replace(/@quiz\s*(\(INTERVIEW TRAP\))?/gi, '')
     .replace(/@answer/gi, '')
-    .replace(/^\s*[-*Ã¢â‚¬Â¢]\s*/, '')
+    .replace(/^\s*[-*•]\s*/, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -1527,7 +1527,7 @@ function buildAnkiDeck(scope) {
       });
 
       (rev.gotchas || []).forEach(g => {
-        // Skip raw @quiz traps Ã¢â‚¬â€ already represented as interview Q&A cards
+        // Skip raw @quiz traps — already represented as interview Q&A cards
         if (/output of:|INTERVIEW TRAP|what is wrong with|what is the result|what happens/i.test(g)) return;
         const clean = ankiCleanText(g);
         if (clean.length < 20) return;
@@ -1544,7 +1544,7 @@ function buildAnkiDeck(scope) {
           cards.push({
             id: ankiHash(chapterName + '::gr::' + clean),
             chapter: chapterName, topic: 'Gotcha',
-            type: 'gotcha', front: 'Ã¢Å¡Â Ã¯Â¸Â Recall this pitfall / best-practice:', back: clean
+            type: 'gotcha', front: '⚠️ Recall this pitfall / best-practice:', back: clean
           });
         }
       });
@@ -1728,7 +1728,7 @@ function renderAnkiArea() {
   if (!area) return;
 
   if (ankiDeck.length === 0) {
-    area.innerHTML = `<div class="anki-empty"><div style="font-size:34px">Ã°Å¸â€”â€šÃ¯Â¸Â</div>
+    area.innerHTML = `<div class="anki-empty"><div style="font-size:34px">🗂️</div>
       <p>No flashcards available for this scope yet.</p>
       <p style="font-size:12px">Add notes / <code>@quiz</code> markers in the source files and run <code>npm run revise</code>.</p></div>`;
     return;
@@ -1738,12 +1738,12 @@ function renderAnkiArea() {
     const nextDue = ankiNextDueLabel();
     area.innerHTML = `
       <div class="anki-complete">
-        <div class="anki-complete-emoji">Ã°Å¸Å½â€°</div>
+        <div class="anki-complete-emoji">🎉</div>
         <h3>Deck complete!</h3>
         <p>You reviewed <b>${ankiSessionReviewed}</b> card${ankiSessionReviewed === 1 ? '' : 's'} this session.</p>
         ${nextDue ? `<p class="anki-next-due">Next review due: <b>${nextDue}</b></p>` : ''}
         <div class="anki-complete-actions">
-          <button class="btn btn-primary" onclick="cramAnkiDeck()">Ã°Å¸â€Â Study all again (cram)</button>
+          <button class="btn btn-primary" onclick="cramAnkiDeck()">🔁 Study all again (cram)</button>
         </div>
       </div>`;
     return;
@@ -1763,12 +1763,12 @@ function renderAnkiArea() {
     <div class="flashcard-scene anki-scene" onclick="flipAnkiCard()">
       <div class="flashcard anki-flashcard ${ankiFlipped ? 'is-flipped' : ''}">
         <div class="flashcard-face flashcard-front anki-face-front">
-          <div class="flashcard-chip">${ankiTypeLabel(card.type)}${card.topic ? ' Ã‚Â· ' + ankiEscape(card.topic) : ''}</div>
+          <div class="flashcard-chip">${ankiTypeLabel(card.type)}${card.topic ? ' · ' + ankiEscape(card.topic) : ''}</div>
           <div class="anki-card-text">${renderAnkiFrontText(card)}</div>
           <div class="flashcard-hint">Tap card or press Space to reveal</div>
         </div>
         <div class="flashcard-face flashcard-back anki-face-back">
-          <div class="flashcard-chip flashcard-chip-back">Answer${card.answer ? ' Ã‚Â· ' + ankiEscape(card.answer) : ''}</div>
+          <div class="flashcard-chip flashcard-chip-back">Answer${card.answer ? ' · ' + ankiEscape(card.answer) : ''}</div>
           <div class="anki-card-text anki-card-back-text">${renderAnkiBackText(card)}</div>
         </div>
       </div>
@@ -1912,7 +1912,7 @@ function renderQuickRevision(topic) {
     if (topic.headerComments && topic.headerComments.length > 0) {
       topic.headerComments.forEach(block => {
         // Keep the grid intact for the Quick Revision panel instead of
-        // squashing each row into "cell Ã¢â‚¬â€ cell Ã¢â‚¬â€ cell" text.
+        // squashing each row into "cell — cell — cell" text.
         if (block.type === 'table' && (block.headers || block.rows)) {
           fallbackTables.push(block);
           return;
@@ -2174,14 +2174,14 @@ function renderQuizQuestion() {
     if (question.chapter) {
       const sourceSpan = document.createElement('span');
       sourceSpan.className = 'question-tag tag-source';
-      const topicPart = (question.topic && question.topic !== 'OCJP Tricky') ? ` Ã¢â‚¬Âº ${question.topic}` : '';
-      sourceSpan.textContent = `Ã°Å¸â€œËœ ${question.chapter}${topicPart}`;
+      const topicPart = (question.topic && question.topic !== 'OCJP Tricky') ? ` › ${question.topic}` : '';
+      sourceSpan.textContent = `📘 ${question.chapter}${topicPart}`;
       tagsContainer.appendChild(sourceSpan);
     }
     (question.tags || []).forEach(tag => {
       const span = document.createElement('span');
       span.className = `question-tag tag-${tag}`;
-      const tagLabels = { ocjp: 'Ã°Å¸Å½â€œ OCJP', interview: 'Ã°Å¸â€™Â¼ Interview', tricky: 'Ã¢Å¡Â¡ Tricky', concept: 'Ã°Å¸â€œÅ¡ Concept', predict: 'Ã°Å¸â€Â® Predict', codefill: 'Ã¢Å’Â¨ Code Fill' };
+      const tagLabels = { ocjp: '🎓 OCJP', interview: '💼 Interview', tricky: '⚡ Tricky', concept: '📚 Concept', predict: '🔮 Predict', codefill: '⌨ Code Fill' };
       span.textContent = tagLabels[tag] || tag;
       tagsContainer.appendChild(span);
     });
@@ -2412,10 +2412,10 @@ function submitQuizAnswer() {
       recordQuestionResult(question.qid, isCorrect);
       
       if (isCorrect) {
-        feedback.innerText = `Ã¢Å“â€œ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
+        feedback.innerText = `✓ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
         feedback.className = "answer-feedback text-success";
       } else {
-        feedback.innerHTML = `Ã¢Å“â€” Evaluated: Covered ${checkedCount}/${totalPoints} key points. Try to include more core details. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+        feedback.innerHTML = `✗ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Try to include more core details. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
         feedback.className = "answer-feedback text-danger";
         const revisitBtn = document.getElementById('btn-revisit-missed-topic');
         if (revisitBtn && revisitScope.chapterName) {
@@ -2504,7 +2504,7 @@ function submitQuizAnswer() {
     
     if (isCorrect) {
       quizScore++;
-      feedback.innerText = "Ã¢Å“â€œ Correct! " + question.explanation;
+      feedback.innerText = "✓ Correct! " + question.explanation;
       feedback.className = "answer-feedback text-success";
     } else {
       // When the question explains why a wrong option is wrong, say so: that is
@@ -2526,7 +2526,7 @@ function submitQuizAnswer() {
       if (question.type === 'predict' || question.type === 'codefill') {
         correctAnsStr = ` Correct answer: "${question.answer[0]}".`;
       }
-      feedback.innerHTML = `Ã¢Å“â€” Incorrect.${correctAnsStr} ${question.explanation} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+      feedback.innerHTML = `✗ Incorrect.${correctAnsStr} ${question.explanation} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
       feedback.className = "answer-feedback text-danger";
       if (whyMine) {
         const whyPara = document.createElement('div');
@@ -2603,7 +2603,7 @@ function showQuizResults() {
           row.className = 'result-breakdown-row';
           row.innerHTML = `
             <span class="result-breakdown-name">${name}</span>
-            <span class="result-breakdown-score ${percent >= 70 ? 'good' : percent >= 40 ? 'mid' : 'weak'}">${stats.correct}/${stats.total} Ã‚Â· ${percent}%</span>
+            <span class="result-breakdown-score ${percent >= 70 ? 'good' : percent >= 40 ? 'mid' : 'weak'}">${stats.correct}/${stats.total} · ${percent}%</span>
           `;
           chapterBreakdown.appendChild(row);
         });
@@ -2838,7 +2838,7 @@ function renderQuizMenu() {
     row.innerHTML = `
       <div class="quiz-menu-chapter-info">
         <span class="quiz-menu-chapter-name">${chapter.name}</span>
-        <span class="bank-topic-meta">${chapter.topics.length} topic(s) Ã‚Â· ${questions.length} question(s)</span>
+        <span class="bank-topic-meta">${chapter.topics.length} topic(s) · ${questions.length} question(s)</span>
       </div>
       <div class="quiz-menu-chapter-actions"></div>
     `;
@@ -3528,8 +3528,8 @@ function selectDeepChallenge(challenge) {
   const hintsHtml = challenge.hints && challenge.hints.length > 0
     ? `<div class="dc-section" id="dc-hints">
         <button class="dc-section-toggle" onclick="toggleDcSection('dc-hints')">
-          <span>Ã°Å¸â€™Â¡ Hints <span class="dc-count">${challenge.hints.length}</span></span>
-          <span class="dc-chevron">Ã¢â€“Â¼</span>
+          <span>💡 Hints <span class="dc-count">${challenge.hints.length}</span></span>
+          <span class="dc-chevron">▼</span>
         </button>
         <div class="dc-section-body">
           <ul>${challenge.hints.map(h => `<li>${h}</li>`).join('')}</ul>
@@ -3540,8 +3540,8 @@ function selectDeepChallenge(challenge) {
   const testcasesHtml = challenge.testcases && challenge.testcases.length > 0
     ? `<div class="dc-section" id="dc-testcases">
         <button class="dc-section-toggle" onclick="toggleDcSection('dc-testcases')">
-          <span>Ã°Å¸Â§Âª Test Cases <span class="dc-count">${challenge.testcases.length}</span></span>
-          <span class="dc-chevron">Ã¢â€“Â¼</span>
+          <span>🧪 Test Cases <span class="dc-count">${challenge.testcases.length}</span></span>
+          <span class="dc-chevron">▼</span>
         </button>
         <div class="dc-section-body">
           <ul>${challenge.testcases.map(t => `<li><code>${t}</code></li>`).join('')}</ul>
@@ -3555,8 +3555,8 @@ function selectDeepChallenge(challenge) {
 
     <div class="dc-section dc-open" id="dc-desc">
       <button class="dc-section-toggle" onclick="toggleDcSection('dc-desc')">
-        <span>Ã°Å¸â€œâ€¹ Problem Description</span>
-        <span class="dc-chevron">Ã¢â€“Â¼</span>
+        <span>📋 Problem Description</span>
+        <span class="dc-chevron">▼</span>
       </button>
       <div class="dc-section-body">
         <div class="deep-challenge-body">${challenge.description.replace(/\n/g, '<br>')}</div>
@@ -3568,13 +3568,13 @@ function selectDeepChallenge(challenge) {
 
     <div class="dc-section dc-open" id="dc-submit">
       <button class="dc-section-toggle" onclick="toggleDcSection('dc-submit')">
-        <span>Ã¢Å“Â Submit</span>
-        <span class="dc-chevron">Ã¢â€“Â¼</span>
+        <span>✍ Submit</span>
+        <span class="dc-chevron">▼</span>
       </button>
       <div class="dc-section-body">
         <div class="deep-self-check">
           <p>Implement this in your IDE or in the editor below, then mark as complete when done.</p>
-          <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">Ã¢Å“â€œ Mark as Completed</button>
+          <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">✓ Mark as Completed</button>
         </div>
       </div>
     </div>
@@ -3588,7 +3588,7 @@ function selectDeepChallenge(challenge) {
 
   const casesContainer = document.getElementById('test-cases-grid');
   if (casesContainer) {
-    casesContainer.innerHTML = '<p class="self-check-note">Ã°Å¸â€œâ€¹ This is a self-check challenge. Implement in your IDE, verify your test cases, then mark as completed.</p>';
+    casesContainer.innerHTML = '<p class="self-check-note">📋 This is a self-check challenge. Implement in your IDE, verify your test cases, then mark as completed.</p>';
   }
 
   logToConsole(`SYSTEM READY: Loaded deep challenge "${challenge.title}". Implement in your IDE, then mark as completed.`);
@@ -3597,7 +3597,7 @@ function selectDeepChallenge(challenge) {
 function markDeepChallengeDone(id) {
   saveChallengePassed(id);
   const btn = document.querySelector(`button[onclick="markDeepChallengeDone('${id}')"]`);
-  if (btn) { btn.textContent = 'Ã¢Å“â€œ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
+  if (btn) { btn.textContent = '✓ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
 }
 
 function toggleDcSection(id) {
@@ -3776,11 +3776,11 @@ function selectChallenge(index) {
     // Self-check mode: show examples and a "Mark as Completed" button
     const noteDiv = document.createElement('div');
     noteDiv.className = 'test-case-card self-check-card';
-    noteDiv.innerHTML = '<p class="self-check-note">Ã°Å¸â€œâ€¹ Self-check: Implement the method, run it in your IDE and verify the output matches the examples in the description, then mark as completed.</p>';
+    noteDiv.innerHTML = '<p class="self-check-note">📋 Self-check: Implement the method, run it in your IDE and verify the output matches the examples in the description, then mark as completed.</p>';
     casesContainer.appendChild(noteDiv);
     const markBtn = document.createElement('button');
     markBtn.className = 'btn btn-success btn-small';
-    markBtn.innerText = 'Ã¢Å“â€œ Mark as Completed';
+    markBtn.innerText = '✓ Mark as Completed';
     markBtn.onclick = () => { saveChallengePassed(challenge.id); };
     casesContainer.appendChild(markBtn);
   } else {
@@ -4026,10 +4026,10 @@ function runPracticeChallenge() {
   if (allPassed && anyUnverified) {
     logToConsole("\nSome test cases could not be checked automatically. Verify them by hand before marking this complete.");
   } else if (allPassed) {
-    logToConsole("\nÃ¢Å“â€œ SUCCESS: ALL TEST CASES PASSED!", "success");
+    logToConsole("\n✓ SUCCESS: ALL TEST CASES PASSED!", "success");
     logToConsole("Saving challenge completed status... Great job!");
     saveChallengePassed(challenge.id);
   } else {
-    logToConsole("\nÃ¢Å“â€” FAILURE: Some test cases did not pass. Debug your logic and try again.", "error");
+    logToConsole("\n✗ FAILURE: Some test cases did not pass. Debug your logic and try again.", "error");
   }
 }
