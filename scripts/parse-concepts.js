@@ -1575,8 +1575,11 @@ function buildStarterQuestions(chapterName, topics) {
 function isPlausibleTestCase(testCase, returnType) {
   const args = testCase.args || [];
   if (args.length === 0) return false;
-  // A type declaration such as "double radius" is a signature, not an argument.
-  if (args.some(arg => typeof arg === 'string' && /\s/.test(arg))) return false;
+  // A type declaration such as "double radius" is a signature that the scraper
+  // caught by mistake, not an argument. Ordinary text such as a sentence passed to
+  // a String parameter is legitimate, so the test is specific: a type name
+  // followed by exactly one identifier.
+  if (args.some(arg => typeof arg === 'string' && /\s/.test(arg) && /^[A-Za-z_$][\w$.<>\[\]]*\s+[A-Za-z_$]\w*$/.test(arg.trim()))) return false;
   const expected = testCase.expected;
   if (expected === null || expected === undefined) return false;
   if (typeof expected === 'string') {
@@ -1599,7 +1602,13 @@ function buildPracticeChallenges(parsedData) {
   const challenges = [];
 
   for (const topic of parsedData) {
-    if (!topic.fileName.toLowerCase().includes('challenge')) continue;
+    const nameLower = topic.fileName.toLowerCase();
+    // Practice is built from files that contain an exercise: the *Challenge* files,
+    // and also the *DeepProblem* files. Several chapters keep their practice methods
+    // only in the DeepProblem file while their Challenge file holds just main(), so
+    // those chapters used to receive no practice at all.
+    const isExercise = nameLower.includes('challenge') || nameLower.includes('problem');
+    if (!isExercise) continue;
 
     const code = topic.code;
     const fileName = topic.fileName.replace('.java', '');
@@ -1610,6 +1619,7 @@ function buildPracticeChallenges(parsedData) {
     // Human-readable title
     const title = fileName
       .replace(/CodingChallenge$/, '')
+      .replace(/DeepProblem$/, '')
       .replace(/Challenge$/, '')
       .replace(/([A-Z])/g, ' $1')
       .trim()
@@ -1692,6 +1702,24 @@ function buildPracticeChallenges(parsedData) {
       if (/^-?\d+$/.test(v)) return parseInt(v, 10);
       return v.replace(/^["']|["']$/g, '');
     };
+
+    // An explicit @testcase line is the most reliable source, because the author
+    // writes the call and the expected result together. This is what makes a
+    // challenge verifiable when the notes contain no worked examples.
+    //   // @testcase isOdd(3) -> true
+    const testcaseLines = code.split('\n')
+      .map(l => l.trim())
+      .filter(l => /^\/\/\s*@testcase\s+/.test(l))
+      .map(l => l.replace(/^\/\/\s*@testcase\s+/, '').trim());
+    testcaseLines.forEach(line => {
+      const match = line.match(new RegExp(`(?:^|\\W)${methodName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\(([^()]*)\\)\\s*(?:->|→|=>|returns?|gives)\\s*(.+)$`, 'i'));
+      if (!match) return;
+      const args = match[1].trim() === '' ? [] : match[1].split(',').map(normalizeValue);
+      const expectedText = match[2].trim().replace(/\s*;+\s*$/, '');
+      const expected = normalizeValue(expectedText);
+      const candidate = { args, expected };
+      if (isPlausibleTestCase(candidate, returnType)) testCases.push(candidate);
+    });
 
     const testPattern = new RegExp(
       methodName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +

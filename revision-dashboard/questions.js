@@ -14968,6 +14968,32 @@ const QUESTIONS_BANK = {
       "tags": [
         "concept"
       ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-3-deepproblems-compositiondeepproblem-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Composition Deep Problem",
+      "question": "Which of the following are TRUE about Composition Deep Problem? Select all that apply.",
+      "options": [
+        "Product is the base Class",
+        "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.",
+        "Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This is the difference between HAS-A (composition) and IS-A (inheritance)."
+      ],
+      "answer": [
+        1,
+        2,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Composition Deep Problem.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_3_DeepProblems/CompositionDeepProblem.java",
+      "tags": [
+        "concept"
+      ]
     }
   ]
 };
@@ -15474,10 +15500,10 @@ const QUICK_REVISION_BANK = {
     "takeaways": [
       "Product is the base Class",
       "Inheritence is a way to reuse functionality and attributes",
+      "Deep Problem: Computer Assembly — composition in practice.",
       "All of the computer parts are going to be inherited from Product",
       "Composition is a way to make the combination of classes act like a single coherent object",
-      "All of the base parts will have set of attributes names manufacturer, model and dimensions ( width, height and depth )",
-      "@option Inheritance is a way to reuse functionality and attributes from a parent class. [correct]"
+      "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase."
     ],
     "gotchas": [
       "@option Avoid having any fields of their own."

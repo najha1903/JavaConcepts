@@ -1,4 +1,9 @@
 /* Deep Problem: Bitwise Diagnostics — Given an integer, use bitwise operators to answer practical low-level questions: determine odd/even status, count the number of set bits, and swap two integers without a temporary variable by relying on XOR. The program should print a readable diagnostic report. */
+
+// @testcase isOdd(3) -> true
+// @testcase isOdd(4) -> false
+// @testcase isOdd(0) -> false
+// @testcase isOdd(-7) -> true
 package Chapter_2_PrimitiveTypes.Sub_Chapter_5_DeepProblems;
 
 public class BitwiseOperationsDeepProblem {

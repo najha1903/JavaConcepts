@@ -5,6 +5,10 @@ import java.util.function.DoubleUnaryOperator;
 
 public class UnitConverterDeepProblem {
 
+    // @testcase kilometersToMiles(1) -> 0.621371
+    // @testcase kilometersToMiles(10) -> 6.21371
+    // @testcase kilometersToMiles(0) -> 0
+
     private static final double KILOMETERS_TO_MILES = 0.621371;
     private static final double KILOGRAMS_TO_POUNDS = 2.20462;
     private static final double LITERS_TO_GALLONS = 0.264172;

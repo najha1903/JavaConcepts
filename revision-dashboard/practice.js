@@ -19,6 +19,150 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "verifyFnStr": null
   },
   {
+    "id": "fibonaccideepproblem",
+    "title": "Fibonacci",
+    "difficulty": "Hard",
+    "chapter": "Chapter 1: Java Introduction",
+    "description": "<p>Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- count (generateFibonacci(int count)): the number of items or terms that generateFibonacci() should process; choose a non-negative count and check the zero case.</p><p>- target (isFibonacci(long target)): the value that isFibonacci() must locate, compare, or classify; choose a value that exercises both matching and non-matching paths.</p><p>- sequence (printSequence(long[] sequence)): the long[] supplied to printSequence(); choose the generated or expected sequence whose elements the method should process.</p>",
+    "template": "public class PracticeWorkspace {\n    public static long[] generateFibonacci(int count) {\n        // Write your code here\n        return null;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "generateFibonacci",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "bitwiseoperationsdeepproblem",
+    "title": "Bitwise Operations",
+    "difficulty": "Medium",
+    "chapter": "Chapter 2: Primitive Types",
+    "description": "<p>Deep Problem: Bitwise Diagnostics — Given an integer, use bitwise operators to answer practical low-level questions: determine odd/even status, count the number of set bits, and swap two integers without a temporary variable by relying on XOR. The program should print a readable diagnostic report.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- value (isOdd(int value)): the int value supplied to isOdd(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- value (countSetBits(int value)): the int value supplied to countSetBits(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- first (swapWithXor(int first, int second)): the first operand supplied to swapWithXor(); choose a value that represents this operation's first input.</p><p>- second (swapWithXor(int first, int second)): the second operand supplied to swapWithXor(); choose a value that represents this operation's second input.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean isOdd(int value) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          3
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          -7
+        ],
+        "expected": true
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "isOdd",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+  },
+  {
+    "id": "expressionevaluatordeepproblem",
+    "title": "Expression Evaluator",
+    "difficulty": "Hard",
+    "chapter": "Chapter 3: Operators",
+    "description": "<p>Deep Problem: Expression Evaluator Utilities — Build core numeric helper methods without using Math library shortcuts. Compute powers using repeated multiplication, determine absolute value manually, find the maximum of three values, and classify a number's sign. The goal is to practice operator-driven problem solving.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- base (power(int base, int exponent)): the base value supplied to power(); choose the number that will be raised to the requested exponent.</p><p>- exponent (power(int base, int exponent)): the exponent supplied to power(); choose the power to apply and test zero, positive, and boundary values.</p><p>- value (absolute(int value)): the int value supplied to absolute(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- first (maxOfThree(int first, int second, int third)): the first operand supplied to maxOfThree(); choose a value that represents this operation's first input.</p><p>- second (maxOfThree(int first, int second, int third)): the second operand supplied to maxOfThree(); choose a value that represents this operation's second input.</p><p>- third (maxOfThree(int first, int second, int third)): the third operand supplied to maxOfThree(); choose a value that represents this operation's third input.</p><p>- value (sign(int value)): the int value supplied to sign(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p>",
+    "template": "public class PracticeWorkspace {\n    public static long power(int base, int exponent) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "power",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "unitconverterdeepproblem",
+    "title": "Unit Converter",
+    "difficulty": "Medium",
+    "chapter": "Chapter 4: Statements And Indentations",
+    "description": "<p>Deep Problem: Multi-Domain Unit Converter — Implement a conversion utility that handles distance, weight, temperature, and volume. Each conversion must be isolated in its own method, and the program should generate readable tables for values 1 through 10 to simulate the kind of output a small engineering tool might need.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- kilometers (kilometersToMiles(double kilometers)): the double value supplied to kilometersToMiles(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- kilograms (kilogramsToPounds(double kilograms)): the double value supplied to kilogramsToPounds(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- celsius (celsiusToFahrenheit(double celsius)): the Celsius temperature supplied to celsiusToFahrenheit(); choose the temperature you want to convert, such as 25 for 25°C.</p><p>- liters (litersToGallons(double liters)): the double value supplied to litersToGallons(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- title (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the String text supplied to printTable(); choose content that matches the method's expected format.</p><p>- fromUnit (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the String text supplied to printTable(); choose content that matches the method's expected format.</p><p>- toUnit (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the String text supplied to printTable(); choose content that matches the method's expected format.</p><p>- converter (printTable(String title, String fromUnit, String toUnit, DoubleUnaryOperator converter)): the conversion or callback logic supplied to printTable(); choose an implementation that matches the expected input and output types.</p>",
+    "template": "public class PracticeWorkspace {\n    public static double kilometersToMiles(double kilometers) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          1
+        ],
+        "expected": 0.621371
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 6.21371
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "kilometersToMiles",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"kilometersToMiles\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometers\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+  },
+  {
+    "id": "gradeclassifierdeepproblem",
+    "title": "Grade Classifier",
+    "difficulty": "Medium",
+    "chapter": "Chapter 5: If Else Statements",
+    "description": "<p>Deep Problem: Academic Result Classifier — Create a grading engine that converts numeric scores into fine-grained labels, determines pass/fail status, and maps results into broader academic bands such as Distinction and Merit. The main method should sweep through a range of scores to demonstrate how each rule behaves.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- score (classify(int score)): the score supplied to classify(); choose a value within the documented scoring range, including boundary values when testing conditions.</p><p>- score (isPassing(int score)): the score supplied to isPassing(); choose a value within the documented scoring range, including boundary values when testing conditions.</p><p>- score (letterGrade(int score)): the score supplied to letterGrade(); choose a value within the documented scoring range, including boundary values when testing conditions.</p>",
+    "template": "public class PracticeWorkspace {\n    public static String classify(int score) {\n        // Write your code here\n        return \"\";\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          98
+        ],
+        "expected": "A+"
+      },
+      {
+        "args": [
+          88
+        ],
+        "expected": "A"
+      },
+      {
+        "args": [
+          78
+        ],
+        "expected": "B"
+      },
+      {
+        "args": [
+          40
+        ],
+        "expected": "F"
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "classify",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"classify\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"score\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+  },
+  {
     "id": "areacalculatorcodingchallenge",
     "title": "Area Calculator",
     "difficulty": "Medium",
@@ -357,6 +501,24 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasTeen\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
+    "id": "recursiondeepproblem",
+    "title": "Recursion",
+    "difficulty": "Hard",
+    "chapter": "Chapter 6: Methods In Java",
+    "description": "<p>Deep Problem: Recursive Number Toolkit — Implement recursive solutions for factorial, Fibonacci, digit summation, and number reversal, while also comparing iterative and recursive factorial side by side. The challenge highlights where recursion is elegant and where iteration can be more direct.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- number (factorialRecursive(int number)): the int input used by factorialRecursive(); choose a value that matches the method's range and boundary rules.</p><p>- number (factorialIterative(int number)): the int input used by factorialIterative(); choose a value that matches the method's range and boundary rules.</p><p>- number (fibonacci(int number)): the int input used by fibonacci(); choose a value that matches the method's range and boundary rules.</p><p>- number (sumDigits(int number)): the int input used by sumDigits(); choose a value that matches the method's range and boundary rules.</p><p>- number (reverseNumber(int number)): the int input used by reverseNumber(); choose a value that matches the method's range and boundary rules.</p><p>- remaining (reversePositive(int remaining, int reversed)): the remaining value supplied to reversePositive(); choose the unprocessed portion passed into the recursive step.</p><p>- reversed (reversePositive(int remaining, int reversed)): the reversed accumulator supplied to reversePositive(); start with the neutral value and let each recursive step append the next digit.</p>",
+    "template": "public class PracticeWorkspace {\n    public static long factorialRecursive(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "factorialRecursive",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
     "id": "numberofdaysinamonthcodingchallenge",
     "title": "Number Of Days In A Month",
     "difficulty": "Medium",
@@ -467,6 +629,24 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "verifyFnStr": null
   },
   {
+    "id": "menudrivencalculatordeepproblem",
+    "title": "Menu Driven Calculator",
+    "difficulty": "Hard",
+    "chapter": "Chapter 7: Switch Statements",
+    "description": "<p>Deep Problem: Menu-Driven Decision Engine — Build a calculator that evaluates arithmetic operations through an enhanced switch and a day classifier that categorizes weekday and weekend values. The program should also guard against invalid input such as division by zero or unknown day names.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- first (calculate(double first, double second, char operator)): the first operand supplied to calculate(); choose a value that represents this operation's first input.</p><p>- second (calculate(double first, double second, char operator)): the second operand supplied to calculate(); choose a value that represents this operation's second input.</p><p>- operator (calculate(double first, double second, char operator)): the operator supplied to calculate(); choose one of the operators supported by the implementation and test the invalid case.</p><p>- day (dayType(String day)): the String input used by dayType(); choose a value that matches the method's range and boundary rules.</p>",
+    "template": "public class PracticeWorkspace {\n    public static String calculate(double first, double second, char operator) {\n        // Write your code here\n        return \"\";\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "calculate",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
     "id": "forloopprimenumberchallenge",
     "title": "For Loop Prime Number",
     "difficulty": "Medium",
@@ -499,6 +679,24 @@ const GENERATED_PRACTICE_CHALLENGES = [
     ],
     "selfCheck": true,
     "methodName": "isOdd",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "patternprinterdeepproblem",
+    "title": "Pattern Printer",
+    "difficulty": "Medium",
+    "chapter": "Chapter 8: Java Looping Concepts",
+    "description": "<p>Deep Problem: Pattern Rendering Engine — Use nested loops to generate multiple console-based patterns, including star triangles, a number pyramid, and a full multiplication table. The challenge mirrors the kind of structured output logic often needed in reporting and diagnostic tools.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- size (printRightTriangle(int size)): the requested size supplied to printRightTriangle(); choose a positive dimension and test the smallest valid size.</p><p>- size (printInvertedRightTriangle(int size)): the requested size supplied to printInvertedRightTriangle(); choose a positive dimension and test the smallest valid size.</p><p>- size (printNumberPyramid(int size)): the requested size supplied to printNumberPyramid(); choose a positive dimension and test the smallest valid size.</p><p>- limit (printMultiplicationTable(int limit)): the upper limit supplied to printMultiplicationTable(); choose a positive boundary that controls how far the algorithm iterates.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void printRightTriangle(int size) {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "printRightTriangle",
     "hasVerify": false,
     "verifyFnStr": null
   },
@@ -834,6 +1032,42 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "verifyFnStr": null
   },
   {
+    "id": "numberguesserdeepproblem",
+    "title": "Number Guesser",
+    "difficulty": "Hard",
+    "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "description": "<p>Deep Problem: Guided Search and Sequence Analysis — Simulate a non-interactive number guessing routine that advances toward a secret using Fibonacci-sized jumps, then analyze Collatz sequence lengths for a range of inputs to discover which starting value produces the longest run.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- secret (simulateGuessingGame(int secret)): the int value supplied to simulateGuessingGame(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- limit (largestFibonacciStep(int limit)): the upper limit supplied to largestFibonacciStep(); choose a positive boundary that controls how far the algorithm iterates.</p><p>- number (collatz(int number)): the int input used by collatz(); choose a value that matches the method's range and boundary rules.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void simulateGuessingGame(int secret) {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "simulateGuessingGame",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "librarysystemdeepproblem",
+    "title": "Library System",
+    "difficulty": "Medium",
+    "chapter": "Chapter 10: Class Object Static And Instance Fields",
+    "description": "<p>Deep Problem: Library Inventory Tracker — Design a compact library system that models books as objects, tracks a shared total count through a static field, and supports checkout and return workflows. The solution should show how instance state and class-wide state interact in a realistic domain model.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- title (Book(String title, String author, String isbn)): the String text supplied to Book(); choose content that matches the method's expected format.</p><p>- author (Book(String title, String author, String isbn)): the String text supplied to Book(); choose content that matches the method's expected format.</p><p>- isbn (Book(String title, String author, String isbn)): the String text supplied to Book(); choose content that matches the method's expected format.</p>",
+    "template": "public class PracticeWorkspace {\n    public static int getBookCount() {\n        // Write your code here\n        return 0;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "getBookCount",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
     "id": "inputcalculatorchallenge",
     "title": "Input Calculator",
     "difficulty": "Easy",
@@ -902,6 +1136,24 @@ const GENERATED_PRACTICE_CHALLENGES = [
     ],
     "selfCheck": true,
     "methodName": "printSumOfNumbersEnteredByUserUsingWhileLoop",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "inputvalidatordeepproblem",
+    "title": "Input Validator",
+    "difficulty": "Medium",
+    "chapter": "Chapter 11: Parsing Values Reading Input",
+    "description": "<p>Deep Problem: Form Validation Pipeline — Build reusable parsing and validation methods that verify integer and decimal fields, enforce numeric ranges, and aggregate multiple form errors into a single readable report. This mirrors the validation logic used in real business forms and APIs.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- value (isValidInt(String value)): the String text supplied to isValidInt(); choose content that matches the method's expected format.</p><p>- value (isValidDouble(String value)): the String text supplied to isValidDouble(); choose content that matches the method's expected format.</p><p>- value (isInRange(String value, int minimum, int maximum)): the String text supplied to isInRange(); choose content that matches the method's expected format.</p><p>- minimum (isInRange(String value, int minimum, int maximum)): the lower bound supplied to isInRange(); choose the smallest accepted value in the validation range.</p><p>- maximum (isInRange(String value, int minimum, int maximum)): the upper bound supplied to isInRange(); choose the largest accepted value in the validation range.</p><p>- age (validateForm(String age, String salary, String zipCode)): the String text supplied to validateForm(); choose content that matches the method's expected format.</p><p>- salary (validateForm(String age, String salary, String zipCode)): the String text supplied to validateForm(); choose content that matches the method's expected format.</p><p>- zipCode (validateForm(String age, String salary, String zipCode)): the String text supplied to validateForm(); choose content that matches the method's expected format.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean isValidInt(String value) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "isValidInt",
     "hasVerify": false,
     "verifyFnStr": null
   },
@@ -994,5 +1246,83 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "methodName": "getDurationString",
     "hasVerify": false,
     "verifyFnStr": null
+  },
+  {
+    "id": "shapehierarchydeepproblem",
+    "title": "Shape Hierarchy",
+    "difficulty": "Medium",
+    "chapter": "Chapter 13: OOP Concepts",
+    "description": "<p>Deep Problem: Shape Hierarchy and Polymorphic Reporting — Model a small geometry system with a base Shape type and specialized subclasses for circles, rectangles, and triangles. Each shape must compute its own area, while a shared reporting method uses instanceof checks and polymorphism to print detailed runtime information.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- color (Shape(String color, String name)): the String text supplied to Shape(); choose content that matches the method's expected format.</p><p>- name (Shape(String color, String name)): the String text supplied to Shape(); choose content that matches the method's expected format.</p><p>- color (Circle(String color, double radius)): the String text supplied to Circle(); choose content that matches the method's expected format.</p><p>- radius (Circle(String color, double radius)): the circle radius supplied to Circle(); choose a non-negative measurement because area depends on radius squared.</p><p>- color (Rectangle(String color, double width, double height)): the String text supplied to Rectangle(); choose content that matches the method's expected format.</p><p>- width (Rectangle(String color, double width, double height)): the width supplied to Rectangle(); choose a non-negative measurement that matches the unit used by the related dimensions.</p><p>- height (Rectangle(String color, double width, double height)): the height supplied to Rectangle(); choose a non-negative measurement that matches the unit used by the related dimensions.</p><p>- color (Triangle(String color, double base, double height)): the String text supplied to Triangle(); choose content that matches the method's expected format.</p><p>- base (Triangle(String color, double base, double height)): the base value supplied to Triangle(); choose the number that will be raised to the requested exponent.</p><p>- height (Triangle(String color, double base, double height)): the height supplied to Triangle(); choose a non-negative measurement that matches the unit used by the related dimensions.</p><p>- shape (printShapeInfo(Shape shape)): the Shape value supplied to printShapeInfo(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p>",
+    "template": "public class PracticeWorkspace {\n    public static void printShapeInfo(Shape shape) {\n        // Write your code here\n    }\n}",
+    "testCases": [
+      {
+        "args": [],
+        "expected": null
+      }
+    ],
+    "selfCheck": true,
+    "methodName": "printShapeInfo",
+    "hasVerify": false,
+    "verifyFnStr": null
+  },
+  {
+    "id": "stringanalyzerdeepproblem",
+    "title": "String Analyzer",
+    "difficulty": "Hard",
+    "chapter": "Chapter 14: Strings",
+    "description": "<p>Deep Problem: Text Intelligence Analyzer — Create a utility that inspects sentences for palindrome behavior, word count, character frequency, and reversed word order, then combines the findings into a formatted report. The challenge reflects common string-processing tasks used in search, validation, and reporting systems.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- text (isPalindrome(String text)): the String text supplied to isPalindrome(); choose content that matches the method's expected format.</p><p>- text (wordCount(String text)): the String text supplied to wordCount(); choose content that matches the method's expected format.</p><p>- text (mostFrequentChar(String text)): the String text supplied to mostFrequentChar(); choose content that matches the method's expected format.</p><p>- sentence (reverseWords(String sentence)): the String text supplied to reverseWords(); choose content that matches the method's expected format.</p><p>- text (generateReport(String text)): the String text supplied to generateReport(); choose content that matches the method's expected format.</p>",
+    "template": "public class PracticeWorkspace {\n    public static boolean isPalindrome(String text) {\n        // Write your code here\n        return false;\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          "racecar"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "hello"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "A man a plan a canal Panama"
+        ],
+        "expected": true
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "isPalindrome",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"text\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+  },
+  {
+    "id": "compositiondeepproblem",
+    "title": "Composition",
+    "difficulty": "Medium",
+    "chapter": "Chapter 15: Composition",
+    "description": "<p>Deep Problem: Computer Assembly — composition in practice.</p><p>A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.</p><p>Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.</p><p>This is the difference between HAS-A (composition) and IS-A (inheritance).</p><p>This exercise works with the parts as simple values, so the idea can be practised without building the whole object graph.</p><p>describePart: returns the part as \"model by manufacturer\", or \"incomplete part\" when either value is missing.</p><p>totalCost: adds the three part prices to give the cost of the whole build.</p><p>isFullyAssembled: returns true only when every part is present.</p><p>Parameter notes (generated from the method signatures in this file):</p><p>- model (describePart(String model, String manufacturer)): the String text supplied to describePart(); choose content that matches the method's expected format.</p><p>- manufacturer (describePart(String model, String manufacturer)): the String text supplied to describePart(); choose content that matches the method's expected format.</p><p>- computerCase (totalCost(double computerCase, double motherBoard, double monitor)): the double value supplied to totalCost(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- motherBoard (totalCost(double computerCase, double motherBoard, double monitor)): the double value supplied to totalCost(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- monitor (totalCost(double computerCase, double motherBoard, double monitor)): the double value supplied to totalCost(); choose a representative value, then test a boundary or invalid value to observe how the method responds.</p><p>- monitor (isFullyAssembled(String monitor, String motherBoard, String computerCase)): the String text supplied to isFullyAssembled(); choose content that matches the method's expected format.</p><p>- motherBoard (isFullyAssembled(String monitor, String motherBoard, String computerCase)): the String text supplied to isFullyAssembled(); choose content that matches the method's expected format.</p><p>- computerCase (isFullyAssembled(String monitor, String motherBoard, String computerCase)): the String text supplied to isFullyAssembled(); choose content that matches the method's expected format.</p><p>- value (isPresent(String value)): the String text supplied to isPresent(); choose content that matches the method's expected format.</p>",
+    "template": "public class PracticeWorkspace {\n    public static String describePart(String model, String manufacturer) {\n        // Write your code here\n        return \"\";\n    }\n}",
+    "testCases": [
+      {
+        "args": [
+          "U2720Q",
+          "Dell"
+        ],
+        "expected": "U2720Q by Dell"
+      },
+      {
+        "args": [
+          "H510",
+          "NZXT"
+        ],
+        "expected": "H510 by NZXT"
+      }
+    ],
+    "selfCheck": false,
+    "methodName": "describePart",
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"describePart\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"model\", \"manufacturer\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   }
 ];

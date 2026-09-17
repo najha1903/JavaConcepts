@@ -6,6 +6,10 @@ import java.util.Map;
 
 public class StringAnalyzerDeepProblem {
 
+    // @testcase isPalindrome("racecar") -> true
+    // @testcase isPalindrome("hello") -> false
+    // @testcase isPalindrome("A man a plan a canal Panama") -> true
+
     public static boolean isPalindrome(String text) {
         String normalized = text.replace(" ", "").toLowerCase();
         int left = 0;

@@ -3,6 +3,11 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_3_DeepProblems;
 
 public class GradeClassifierDeepProblem {
 
+    // @testcase classify(98) -> A+
+    // @testcase classify(88) -> A
+    // @testcase classify(78) -> B
+    // @testcase classify(40) -> F
+
     public static String classify(int score) {
         if (score >= 95) {
             return "A+";
