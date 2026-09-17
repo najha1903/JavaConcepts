@@ -93,6 +93,82 @@ package Chapter_1_Java_Introduction;
 // @why C: the JVM itself is not portable in that sense; there is a different JVM implementation for each platform, and installing one is how a machine gains the ability to run Java.
 // @why D: bytecode is an intermediate form, not native code. Translating it is precisely what the JVM does.
 
+// @quiz (INTERVIEW, MEDIUM) The program below is run with:  java HelloWorld Java notes
+// @code public class HelloWorld {
+// @code     public static void main(String[] args) {
+// @code         System.out.println(args.length);
+// @code         System.out.println(args[0]);
+// @code     }
+// @code }
+// @option It prints 2 and then Java. [correct]
+// @option It prints 2 and then notes.
+// @option It prints 1 and then Java.
+// @option It does not compile, because args is never assigned a value.
+// @explain args receives the words typed after the class name, in order. Two words were supplied, so the length is 2, and args[0] is the first one, "Java".
+// @why B: args[1] is "notes". Index 0 is always the first argument.
+// @why C: the length counts every argument, and two were given.
+// @why D: the JVM creates args and fills it in. You never assign it yourself.
+
+// @quiz (INTERVIEW, MEDIUM) This source is saved and you run javac HelloWorld.java. What happens?
+// @code public class HelloWorld {
+// @code     public static void main(String[] args) {
+// @code         System.out.println("Hello")   // semicolon missing
+// @code     }
+// @code }
+// @option javac reports a compile error, no .class file is produced, and nothing runs. [correct]
+// @option javac still produces the .class file and the error appears only when you run it.
+// @option The .class file is produced and the program runs, printing Hello.
+// @option The compiler inserts the missing semicolon and compiles normally.
+// @explain Compilation is a separate stage that happens before anything runs. A syntax problem stops javac, so the bytecode is never created and there is nothing to execute.
+// @why B: javac only writes the .class when the whole file is valid, so the failure comes first.
+// @why C: the file never reaches the point of producing bytecode.
+// @why D: the compiler never repairs syntax. It reports the problem and stops.
+
+// @quiz (INTERVIEW, MEDIUM) A colleague's machine has the JRE installed, but no JDK. Which task can they do?
+// @option Run an existing .class file, but not compile .java source. [correct]
+// @option Compile .java source, but not run the result.
+// @option Both compile and run, because the JVM ships in the JRE.
+// @option Neither, because the JVM is only installed with the JDK.
+// @explain The JRE contains the core libraries and the JVM, which is everything needed to run a program. The development tools, including javac, live in the JDK, which is the larger set that contains the JRE.
+// @why B: compiling needs javac, and javac is part of the JDK, not the JRE.
+// @why C: the JVM is present, but the compiler is not, so compiling is not possible.
+// @why D: the JVM is precisely what the JRE provides.
+
+// @quiz (INTERVIEW, MEDIUM) You compile a program on Windows, then copy only the .class files to a Mac. What happens when a Java program is started there?
+// @option The Mac's JVM runs the same bytecode, because the JVM translates it for that machine. [correct]
+// @option It fails, because the .class files were produced for Windows.
+// @option It fails, because the .java source has to be copied as well.
+// @option It runs only after javac is used again on the Mac.
+// @explain The compiled .class file is the portable part. It contains bytecode, not machine code, and each platform's JVM turns that bytecode into instructions its own processor understands.
+// @why B: bytecode is platform-neutral. That is what makes the same file usable elsewhere.
+// @why C: the source is not needed to run. It is needed only to compile.
+// @why D: compiling again is unnecessary. That would defeat the purpose of bytecode.
+
+// @quiz (OCJP, HARD) The class below compiles successfully. What happens when you try to run it?
+// @code public class Start {
+// @code     public static int main(String[] args) {
+// @code         return 42;
+// @code     }
+// @code }
+// @option It compiles but the launcher reports that no main method was found, because the return type must be void. [correct]
+// @option It runs and prints 42.
+// @option It does not compile, because main may not return an int.
+// @option It runs and ignores the returned value.
+// @explain A static int method named main is a perfectly legal Java method, so the compiler accepts it. The launcher, however, looks for public static void main with a single String[] parameter, so it finds no entry point and refuses to start.
+// @why B: nothing calls the method, so nothing prints, and the JVM stops before main runs.
+// @why C: the compiler allows it. Only the launcher's rule rejects it.
+// @why D: the method is never reached. The failure happens before it is invoked.
+
+// @quiz (INTERVIEW, HARD) You change a message inside HelloWorld.java, then run `java HelloWorld` without running javac first. What is the effect of the change?
+// @option The old .class file still runs, so the change does not appear yet. [correct]
+// @option The new source is used automatically, so the change appears.
+// @option It fails, because the JVM always compiles the source first.
+// @option It fails, because the .class file becomes invalid once the source changes.
+// @explain java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.
+// @why B: the source is not consulted at run time, so the new text cannot take effect.
+// @why C: the JVM executes bytecode. Compiling is javac's job, and it is a separate step.
+// @why D: the existing .class stays valid. It simply does not contain your change.
+
 public class HelloWorld {
 
     public static void main(String[] args) {

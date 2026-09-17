@@ -268,6 +268,165 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_10-the-program-below-is-run-with-java-hello",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "interview"
+      ],
+      "question": "The program below is run with:  java HelloWorld Java notes",
+      "code": "public class HelloWorld {\npublic static void main(String[] args) {\nSystem.out.println(args.length);\nSystem.out.println(args[0]);\n}\n}",
+      "options": [
+        "It prints 2 and then notes.",
+        "It does not compile, because args is never assigned a value.",
+        "It prints 2 and then Java.",
+        "It prints 1 and then Java."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "args[1] is \"notes\". Index 0 is always the first argument.",
+        "1": "the JVM creates args and fills it in. You never assign it yourself.",
+        "3": "the length counts every argument, and two were given."
+      },
+      "explanation": "args receives the words typed after the class name, in order. Two words were supplied, so the length is 2, and args[0] is the first one, \"Java\".",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_11-this-source-is-saved-and-you-run-javac-h",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "interview"
+      ],
+      "question": "This source is saved and you run javac HelloWorld.java. What happens?",
+      "code": "public class HelloWorld {\npublic static void main(String[] args) {\nSystem.out.println(\"Hello\")   // semicolon missing\n}\n}",
+      "options": [
+        "javac reports a compile error, no .class file is produced, and nothing runs.",
+        "The .class file is produced and the program runs, printing Hello.",
+        "The compiler inserts the missing semicolon and compiles normally.",
+        "javac still produces the .class file and the error appears only when you run it."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the file never reaches the point of producing bytecode.",
+        "2": "the compiler never repairs syntax. It reports the problem and stops.",
+        "3": "javac only writes the .class when the whole file is valid, so the failure comes first."
+      },
+      "explanation": "Compilation is a separate stage that happens before anything runs. A syntax problem stops javac, so the bytecode is never created and there is nothing to execute.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_12-a-colleague-s-machine-has-the-jre-instal",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "interview"
+      ],
+      "question": "A colleague's machine has the JRE installed, but no JDK. Which task can they do?",
+      "options": [
+        "Neither, because the JVM is only installed with the JDK.",
+        "Run an existing .class file, but not compile .java source.",
+        "Compile .java source, but not run the result.",
+        "Both compile and run, because the JVM ships in the JRE."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the JVM is precisely what the JRE provides.",
+        "2": "compiling needs javac, and javac is part of the JDK, not the JRE.",
+        "3": "the JVM is present, but the compiler is not, so compiling is not possible."
+      },
+      "explanation": "The JRE contains the core libraries and the JVM, which is everything needed to run a program. The development tools, including javac, live in the JDK, which is the larger set that contains the JRE.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_13-you-compile-a-program-on-windows-then-co",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "interview"
+      ],
+      "question": "You compile a program on Windows, then copy only the .class files to a Mac. What happens when a Java program is started there?",
+      "options": [
+        "The Mac's JVM runs the same bytecode, because the JVM translates it for that machine.",
+        "It fails, because the .class files were produced for Windows.",
+        "It fails, because the .java source has to be copied as well.",
+        "It runs only after javac is used again on the Mac."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "bytecode is platform-neutral. That is what makes the same file usable elsewhere.",
+        "2": "the source is not needed to run. It is needed only to compile.",
+        "3": "compiling again is unnecessary. That would defeat the purpose of bytecode."
+      },
+      "explanation": "The compiled .class file is the portable part. It contains bytecode, not machine code, and each platform's JVM turns that bytecode into instructions its own processor understands.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_14-the-class-below-compiles-successfully-wh",
+      "difficulty": "hard",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "The class below compiles successfully. What happens when you try to run it?",
+      "code": "public class Start {\npublic static int main(String[] args) {\nreturn 42;\n}\n}",
+      "options": [
+        "It compiles but the launcher reports that no main method was found, because the return type must be void.",
+        "It runs and ignores the returned value.",
+        "It does not compile, because main may not return an int.",
+        "It runs and prints 42."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the method is never reached. The failure happens before it is invoked.",
+        "2": "the compiler allows it. Only the launcher's rule rejects it.",
+        "3": "nothing calls the method, so nothing prints, and the JVM stops before main runs."
+      },
+      "explanation": "A static int method named main is a perfectly legal Java method, so the compiler accepts it. The launcher, however, looks for public static void main with a single String[] parameter, so it finds no entry point and refuses to start.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_15-you-change-a-message-inside-helloworld-j",
+      "difficulty": "hard",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "interview"
+      ],
+      "question": "You change a message inside HelloWorld.java, then run `java HelloWorld` without running javac first. What is the effect of the change?",
+      "options": [
+        "It fails, because the JVM always compiles the source first.",
+        "It fails, because the .class file becomes invalid once the source changes.",
+        "The old .class file still runs, so the change does not appear yet.",
+        "The new source is used automatically, so the change appears."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the JVM executes bytecode. Compiling is javac's job, and it is a separate step.",
+        "1": "the existing .class stays valid. It simply does not contain your change.",
+        "3": "the source is not consulted at run time, so the new text cannot take effect."
+      },
+      "explanation": "java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_true-false-mcq_5",
@@ -13462,7 +13621,10 @@ const QUICK_REVISION_BANK = {
       "Then print all three values on one line using string concatenation."
     ],
     "gotchas": [
-      "Parameter notes (what each argument means and how to choose it):"
+      "Parameter notes (what each argument means and how to choose it):",
+      "@option It prints 2 and then notes.",
+      "@why B: args[1] is \"notes\". Index 0 is always the first argument.",
+      "@option javac reports a compile error, no .class file is produced, and nothing runs. [correct]"
     ],
     "syntax": "public class HelloWorld {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Hello World\");\r\n    }\r\n\r\n}",
     "badges": [
