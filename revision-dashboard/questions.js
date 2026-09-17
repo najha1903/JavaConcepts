@@ -13892,6 +13892,87 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_10-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int age = 35;\nSystem.out.printf(\"Age is %s%n\", age);",
+      "options": [
+        "Age is null, because an int is not a String.",
+        "It throws IllegalFormatConversionException, because age is not a String.",
+        "Age is 35, because %s accepts any value by converting it to text.",
+        "It does not compile, because %s requires a String argument."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the value is converted to its text form, so 35 is printed.",
+        "1": "the exception comes from a mismatched numeric specifier such as %f with an int, not from %s.",
+        "3": "the format string is not type-checked at compile time, and %s accepts any object or primitive."
+      },
+      "explanation": "%s calls toString() on whatever it is given, so an int is perfectly acceptable. That is different from %f, which insists on a floating-point value and throws for an int.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_11-what-is-printed-by-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.printf(\"100%% complete%n\");",
+      "options": [
+        "It throws an exception, because %% is not a valid specifier.",
+        "100 complete, because %% is removed.",
+        "100% complete",
+        "100%% complete"
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "%% is a valid escape in a format string.",
+        "1": "the character is printed once, not removed.",
+        "3": "the doubled sign is a way of writing one, so the second is not printed literally."
+      },
+      "explanation": "The percent sign starts a format specifier, so a literal percent has to be written twice. The pair %% is replaced by a single % in the output.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_12-what-does-the-5-do-in-this-statement",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What does the -5 do in this statement?",
+      "code": "System.out.printf(\"[%-5d]%n\", 42);",
+      "options": [
+        "It right-aligns the number in a field five characters wide.",
+        "It left-aligns the number in a field five characters wide, giving [42   ].",
+        "It rounds the number to five decimal places.",
+        "It prints the number five times."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "right alignment is the default with %5d, without the minus.",
+        "2": "decimal places are set by .precision, which applies to floating-point values.",
+        "3": "repetition uses String.repeat, not a format flag."
+      },
+      "explanation": "The width sets the minimum field size and the minus flag pads on the right instead of the left. So 42 becomes 42 followed by three spaces inside the brackets.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_true-false-mcq_5",
@@ -14745,6 +14826,87 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_26-what-does-this-code-print",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What does this code print?",
+      "code": "StringBuilder sb = new StringBuilder(\"abc\");\nsb.insert(sb.length(), \"d\");\nSystem.out.println(sb);",
+      "options": [
+        "It throws StringIndexOutOfBoundsException.",
+        "abcd, because insert accepts an offset equal to length(), which appends.",
+        "dabc, because the offset is ignored at the end.",
+        "It does not compile, because the offset must be less than length()."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the exception is thrown for an offset outside 0 to length(), and this one is inside it.",
+        "2": "the offset is honoured. It places the text at that position, which is the end here.",
+        "3": "the range is inclusive of length(), unlike an array index."
+      },
+      "explanation": "The valid offset range is 0 up to and including length(). Using exactly length() places the text after the last character, which is the same effect as append.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_27-what-is-the-result-of-this-call",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is the result of this call?",
+      "code": "StringBuilder sb = new StringBuilder(\"abcdef\");\nsb.delete(1, 4);\nSystem.out.println(sb);",
+      "options": [
+        "abcd, because the last four characters are removed.",
+        "abcdef, because nothing is removed.",
+        "adef, because only one character is removed.",
+        "aef, because delete removes the half-open range 1 to 3."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the range starts at 1, so a is kept.",
+        "1": "the range is not empty, so characters are removed.",
+        "2": "three characters are removed, not one. deleteCharAt(1) would remove a single character."
+      },
+      "explanation": "The end index is exclusive, so delete(1, 4) removes the characters at indexes 1, 2 and 3. That is b, c and d, leaving a, e and f.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_28-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "StringBuilder sb = new StringBuilder(\"Hello\");\nString snapshot = sb.toString();\nsb.append(\" World\");\nSystem.out.println(snapshot);",
+      "options": [
+        "Hello, because toString() created a String copy at that moment.",
+        "null, because the String was created before the append.",
+        "Hello World, because the String tracks the builder.",
+        "It does not compile, because a String cannot be made from a StringBuilder."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the value is captured, so it holds Hello rather than null.",
+        "2": "the String is a separate object and is not linked to the builder.",
+        "3": "toString() is exactly how you convert a StringBuilder back to a String."
+      },
+      "explanation": "toString() returns an immutable String holding the characters as they were at that instant. Later changes to the StringBuilder cannot affect it, because String never changes.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_true-false-mcq_5",
@@ -15001,6 +15163,58 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_custom_3-motherboard-extends-product-and-product-",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Product",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "MotherBoard extends Product, and Product declares its fields as private. What must the MotherBoard constructor do to set the model?",
+      "options": [
+        "Nothing. The parent fields are set automatically from the parameter names.",
+        "Assign this.model = model, because a subclass can reach the parent fields.",
+        "Declare model again inside MotherBoard and assign that.",
+        "Call super(model, manufacturer), because private fields of the parent cannot be assigned directly."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "Java does not match parameters to fields by name. You must pass the values yourself.",
+        "1": "private really does block the subclass, which is the point of encapsulation.",
+        "2": "that would create a second, unrelated field and leave the parent's copy unset."
+      },
+      "explanation": "private means the field is visible only inside Product. A subclass therefore has to go through a Product constructor, which is what super(...) does.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_custom_4-monitor-motherboard-and-computercase-all",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Product",
+      "tags": [
+        "interview"
+      ],
+      "question": "Monitor, MotherBoard and ComputerCase all extend Product. What does that let them do?",
+      "options": [
+        "Reuse the model and manufacturer attributes from Product instead of declaring them again.",
+        "Become the same class at runtime.",
+        "Avoid having any fields of their own.",
+        "Share one set of field values between all three classes."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "they remain distinct types, which is what allows each to have its own behaviour.",
+        "2": "each subclass is free to add its own fields, such as ramSlots on MotherBoard.",
+        "3": "sharing one value happens with static fields. Each instance field here is per object."
+      },
+      "explanation": "Inheritance lets each subclass reuse the parent's definition. Each object still has its own copy of those fields, but the declarations live once in Product.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_true-false-mcq_5",
@@ -15076,6 +15290,59 @@ const QUESTIONS_BANK = {
         "3": "reusing attributes through a parent-child hierarchy is inheritance."
       },
       "explanation": "Composition is about building one thing out of others and presenting the result as a single object. The containing class delegates work to the parts it holds.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_2-a-personalcomputer-holds-a-monitor-a-mot",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Inheritence Vs Composition",
+      "tags": [
+        "interview"
+      ],
+      "question": "A PersonalComputer holds a Monitor, a MotherBoard and a ComputerCase as fields. Which relationship is that?",
+      "options": [
+        "IS-A, because the parts are all products.",
+        "IS-A, because the computer uses the parts.",
+        "HAS-A, which is composition, because the parts are held inside the whole.",
+        "Neither. Holding a field is not a relationship between classes."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the parts being Products is a separate IS-A relationship, and it is not what the fields express.",
+        "1": "using a part is still HAS-A. The whole contains it.",
+        "3": "one object holding another as a field is exactly how composition is expressed."
+      },
+      "explanation": "The computer is built from those objects, so it has them. IS-A describes inheritance, where one class is a kind of another, which is a different relationship.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_3-why-can-a-monitor-be-used-in-both-of-the",
+      "difficulty": "hard",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Inheritence Vs Composition",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Why can a Monitor be used in both of these ways?",
+      "code": "Product p = new Monitor();          // IS-A\npersonalComputer.setMonitor(m);    // HAS-A",
+      "options": [
+        "Because Monitor inherits from PersonalComputer.",
+        "Because setMonitor converts the Monitor into a Product.",
+        "Because Monitor is a kind of Product and is also able to be held as a part of another object.",
+        "Because composition and inheritance are the same relationship."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the inheritance runs the other way, from Monitor up to Product.",
+        "1": "no conversion happens. A Monitor already is a Product.",
+        "3": "they are different: IS-A is a kind of, HAS-A is made of parts."
+      },
+      "explanation": "Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
     },
     {
@@ -15559,12 +15826,12 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 14: Strings": {
     "takeaways": [
+      "@option Age is 35, because %s accepts any value by converting it to text. [correct]",
       "String is a sequence of characters, which means its characters are ordered and indexed.",
       "String -> immutable; each method call returns a NEW String instance.",
       "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
       "Challenge: Use printf and String.format to print a formatted employee summary and a right-aligned table of names and numbers.",
-      "Challenge: Create a JSON-like text block, build the same content with traditional string concatenation, print both, and compare them using equals().",
-      "Deep Problem: Text Intelligence Analyzer — Create a utility that inspects sentences for palindrome behavior, word count, character frequency, and reversed word order, then combines the findings into a formatted report. The challenge reflects common string-processing tasks used in search, validation, and reporting systems."
+      "Challenge: Create a JSON-like text block, build the same content with traditional string concatenation, print both, and compare them using equals()."
     ],
     "gotchas": [
       "Note: %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
@@ -15615,7 +15882,7 @@ const QUICK_REVISION_BANK = {
       "@option Inheritance is a way to reuse functionality and attributes from a parent class. [correct]"
     ],
     "gotchas": [
-      "Always be aware of scope, type constraints, and compiler rules in this area."
+      "@option Avoid having any fields of their own."
     ],
     "syntax": "public class ComputerCase extends Product{\r\n\r\n    private String powerSupply;\r\n\r\n    public ComputerCase(String model, String manufacturer){\r\n        super(model,manufacturer);\r\n    }\r\n\r\n    public ComputerCase(String model, String manufacturer, String powerSupply){\r\n        super(model,manufacturer);",
     "badges": [

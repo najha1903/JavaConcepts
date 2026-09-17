@@ -256,6 +256,46 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
 // @why C: chaining is ordinary method-call syntax, not a compiler trick.
 // @why D: append is an instance method, called on the builder.
 
+// @quiz (OCJP, MEDIUM) What does this code print?
+// @code StringBuilder sb = new StringBuilder("abc");
+// @code sb.insert(sb.length(), "d");
+// @code System.out.println(sb);
+// @option abcd, because insert accepts an offset equal to length(), which appends. [correct]
+// @option It does not compile, because the offset must be less than length().
+// @option It throws StringIndexOutOfBoundsException.
+// @option dabc, because the offset is ignored at the end.
+// @explain The valid offset range is 0 up to and including length(). Using exactly length() places the text after the last character, which is the same effect as append.
+// @why B: the range is inclusive of length(), unlike an array index.
+// @why C: the exception is thrown for an offset outside 0 to length(), and this one is inside it.
+// @why D: the offset is honoured. It places the text at that position, which is the end here.
+
+// @quiz (OCJP, MEDIUM) What is the result of this call?
+// @code StringBuilder sb = new StringBuilder("abcdef");
+// @code sb.delete(1, 4);
+// @code System.out.println(sb);
+// @option aef, because delete removes the half-open range 1 to 3. [correct]
+// @option adef, because only one character is removed.
+// @option abcd, because the last four characters are removed.
+// @option abcdef, because nothing is removed.
+// @explain The end index is exclusive, so delete(1, 4) removes the characters at indexes 1, 2 and 3. That is b, c and d, leaving a, e and f.
+// @why B: three characters are removed, not one. deleteCharAt(1) would remove a single character.
+// @why C: the range starts at 1, so a is kept.
+// @why D: the range is not empty, so characters are removed.
+
+// @quiz (INTERVIEW, MEDIUM) What is printed by this code?
+// @code StringBuilder sb = new StringBuilder("Hello");
+// @code String snapshot = sb.toString();
+// @code sb.append(" World");
+// @code System.out.println(snapshot);
+// @option Hello, because toString() created a String copy at that moment. [correct]
+// @option Hello World, because the String tracks the builder.
+// @option It does not compile, because a String cannot be made from a StringBuilder.
+// @option null, because the String was created before the append.
+// @explain toString() returns an immutable String holding the characters as they were at that instant. Later changes to the StringBuilder cannot affect it, because String never changes.
+// @why B: the String is a separate object and is not linked to the builder.
+// @why C: toString() is exactly how you convert a StringBuilder back to a String.
+// @why D: the value is captured, so it holds Hello rather than null.
+
 public class StringBuilderConcepts {
 
     public static void main(String[] args) {

@@ -70,6 +70,26 @@ package Chapter_15_Composition.Sub_Chapter_1_Composition_Example_Computer_Packag
 // @why C: they remain distinct types, which is what allows each to have its own behaviour.
 // @why D: subclasses can add their own fields freely, such as ramSlots on MotherBoard.
 
+// @quiz (OCJP, MEDIUM) MotherBoard extends Product, and Product declares its fields as private. What must the MotherBoard constructor do to set the model?
+// @option Call super(model, manufacturer), because private fields of the parent cannot be assigned directly. [correct]
+// @option Assign this.model = model, because a subclass can reach the parent fields.
+// @option Declare model again inside MotherBoard and assign that.
+// @option Nothing. The parent fields are set automatically from the parameter names.
+// @explain private means the field is visible only inside Product. A subclass therefore has to go through a Product constructor, which is what super(...) does.
+// @why B: private really does block the subclass, which is the point of encapsulation.
+// @why C: that would create a second, unrelated field and leave the parent's copy unset.
+// @why D: Java does not match parameters to fields by name. You must pass the values yourself.
+
+// @quiz (INTERVIEW, MEDIUM) Monitor, MotherBoard and ComputerCase all extend Product. What does that let them do?
+// @option Reuse the model and manufacturer attributes from Product instead of declaring them again. [correct]
+// @option Share one set of field values between all three classes.
+// @option Avoid having any fields of their own.
+// @option Become the same class at runtime.
+// @explain Inheritance lets each subclass reuse the parent's definition. Each object still has its own copy of those fields, but the declarations live once in Product.
+// @why B: sharing one value happens with static fields. Each instance field here is per object.
+// @why C: each subclass is free to add its own fields, such as ramSlots on MotherBoard.
+// @why D: they remain distinct types, which is what allows each to have its own behaviour.
+
 public class Product {
 
     private String model;

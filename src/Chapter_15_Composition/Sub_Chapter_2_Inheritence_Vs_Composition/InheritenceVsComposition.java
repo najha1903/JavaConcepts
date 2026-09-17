@@ -26,5 +26,27 @@ package Chapter_15_Composition.Sub_Chapter_2_Inheritence_Vs_Composition;
 // @why C: a composed class can hold as many parts as it needs.
 // @why D: they are different approaches, which is why this topic compares them.
 
+// @quiz (INTERVIEW, MEDIUM) A PersonalComputer holds a Monitor, a MotherBoard and a ComputerCase as fields. Which relationship is that?
+// @option HAS-A, which is composition, because the parts are held inside the whole. [correct]
+// @option IS-A, because the parts are all products.
+// @option IS-A, because the computer uses the parts.
+// @option Neither. Holding a field is not a relationship between classes.
+// @explain The computer is built from those objects, so it has them. IS-A describes inheritance, where one class is a kind of another, which is a different relationship.
+// @why B: the parts being Products is a separate IS-A relationship, and it is not what the fields express.
+// @why C: using a part is still HAS-A. The whole contains it.
+// @why D: one object holding another as a field is exactly how composition is expressed.
+
+// @quiz (OCJP, HARD) Why can a Monitor be used in both of these ways?
+// @code Product p = new Monitor();          // IS-A
+// @code personalComputer.setMonitor(m);    // HAS-A
+// @option Because Monitor is a kind of Product and is also able to be held as a part of another object. [correct]
+// @option Because Monitor inherits from PersonalComputer.
+// @option Because setMonitor converts the Monitor into a Product.
+// @option Because composition and inheritance are the same relationship.
+// @explain Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.
+// @why B: the inheritance runs the other way, from Monitor up to Product.
+// @why C: no conversion happens. A Monitor already is a Product.
+// @why D: they are different: IS-A is a kind of, HAS-A is made of parts.
+
 public class InheritenceVsComposition {
 }

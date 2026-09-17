@@ -55,6 +55,40 @@ import java.util.IllegalFormatConversionException;
 // Note :- %n works only inside a format string. System.out.println("Hello %n") prints Hello %n as it is.
 // Note :- "Hello \n".length() is always 7, but String.format("Hello%n").length() is 6 on Linux and 7 on Windows.
 
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int age = 35;
+// @code System.out.printf("Age is %s%n", age);
+// @option Age is 35, because %s accepts any value by converting it to text. [correct]
+// @option It throws IllegalFormatConversionException, because age is not a String.
+// @option Age is null, because an int is not a String.
+// @option It does not compile, because %s requires a String argument.
+// @explain %s calls toString() on whatever it is given, so an int is perfectly acceptable. That is different from %f, which insists on a floating-point value and throws for an int.
+// @why B: the exception comes from a mismatched numeric specifier such as %f with an int, not from %s.
+// @why C: the value is converted to its text form, so 35 is printed.
+// @why D: the format string is not type-checked at compile time, and %s accepts any object or primitive.
+
+// @quiz (OCJP, MEDIUM) What is printed by this statement?
+// @code System.out.printf("100%% complete%n");
+// @option 100% complete [correct]
+// @option 100%% complete
+// @option It throws an exception, because %% is not a valid specifier.
+// @option 100 complete, because %% is removed.
+// @explain The percent sign starts a format specifier, so a literal percent has to be written twice. The pair %% is replaced by a single % in the output.
+// @why B: the doubled sign is a way of writing one, so the second is not printed literally.
+// @why C: %% is a valid escape in a format string.
+// @why D: the character is printed once, not removed.
+
+// @quiz (OCJP, HARD) What does the -5 do in this statement?
+// @code System.out.printf("[%-5d]%n", 42);
+// @option It left-aligns the number in a field five characters wide, giving [42   ]. [correct]
+// @option It right-aligns the number in a field five characters wide.
+// @option It prints the number five times.
+// @option It rounds the number to five decimal places.
+// @explain The width sets the minimum field size and the minus flag pads on the right instead of the left. So 42 becomes 42 followed by three spaces inside the brackets.
+// @why B: right alignment is the default with %5d, without the minus.
+// @why C: repetition uses String.repeat, not a format flag.
+// @why D: decimal places are set by .precision, which applies to floating-point values.
+
 public class TextBlockAndAdvancedOutputFormatting {
 
     /*
