@@ -128,6 +128,74 @@ package Chapter_12_Exception_Handling;
 // @why C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.
 // @why D: they are methods, called with parentheses.
 
+// @quiz (OCJP, HARD) Does this code compile?
+// @code try {
+// @code     int value = Integer.parseInt("42");
+// @code } catch (Exception e) {
+// @code     System.out.println("general");
+// @code } catch (NumberFormatException e) {
+// @code     System.out.println("number");
+// @code }
+// @option No. The broader catch comes first, so the narrower one can never be reached. [correct]
+// @option Yes, and it prints general when parsing fails.
+// @option Yes, and it prints number when parsing fails.
+// @option Yes, because the catch blocks are checked in order at runtime.
+// @explain Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.
+// @why B: the code does not compile, so nothing runs.
+// @why C: the specific catch must be written before the general one.
+// @why D: the order matters, and the compiler rejects an order that makes a block unreachable.
+
+// @quiz (OCJP, MEDIUM) What happens when this code runs?
+// @code int result = 10 / 0;
+// @code System.out.println(result);
+// @option It compiles and then throws ArithmeticException at runtime. [correct]
+// @option It does not compile, because division by zero is an error.
+// @option It prints 0.
+// @option It prints Infinity.
+// @explain Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.
+// @why B: the compiler cannot know the value of the divisor at compile time.
+// @why C: there is no result to print. The exception is thrown during the division.
+// @why D: integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead.
+
+// @quiz (OCJP, MEDIUM) What is thrown by this code?
+// @code int[] numbers = {1, 2, 3};
+// @code System.out.println(numbers[3]);
+// @option ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2. [correct]
+// @option NullPointerException.
+// @option Nothing. It prints 0.
+// @option Nothing. It prints 3.
+// @explain A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.
+// @why B: the array exists. The problem is the index, not a null reference.
+// @why C: Java does not return a default for an out-of-range index.
+// @why D: index 3 does not exist, so no value can be returned.
+
+// @quiz (INTERVIEW TRAP, HARD) What does this method return?
+// @code static int test() {
+// @code     try {
+// @code         return 1;
+// @code     } finally {
+// @code         return 2;
+// @code     }
+// @code }
+// @option 2, because a return inside finally overrides the return from try. [correct]
+// @option 1, because the return in try is evaluated first.
+// @option 3, because the two values are added.
+// @option It does not compile, because a method cannot have two returns.
+// @explain The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.
+// @why B: the value from try is discarded, because finally runs afterwards.
+// @why C: nothing is added. Only the last return value is used.
+// @why D: several return statements in one method are normal.
+
+// @quiz (INTERVIEW, MEDIUM) Which exception type is NOT required to be caught or declared?
+// @option ArithmeticException, because it extends RuntimeException and is unchecked. [correct]
+// @option IOException, because it is unchecked.
+// @option SQLException, because it is unchecked.
+// @option FileNotFoundException, because it is unchecked.
+// @explain Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.
+// @why B: IOException is checked, so it must be handled.
+// @why C: SQLException is checked as well.
+// @why D: FileNotFoundException extends IOException, so it is checked too.
+
 public class ExceptionHandlingInJava {
     public static void main(String[] args) {
 

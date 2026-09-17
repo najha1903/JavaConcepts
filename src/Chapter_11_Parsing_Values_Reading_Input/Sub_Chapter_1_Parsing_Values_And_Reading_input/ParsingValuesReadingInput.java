@@ -163,6 +163,66 @@ import java.util.Scanner; // the import statement lets us use classes from other
 // @answer nextInt() leaves the trailing newline in the input buffer.
 // @answer The following nextLine() reads that leftover newline, so you often need an extra nextLine() to consume it first.
 
+// @quiz (OCJP, HARD) What does Integer.parseInt("FF", 16) return?
+// @option 255, because the second argument sets the radix to hexadecimal. [correct]
+// @option 16, because FF is two characters.
+// @option 170, because FF is read as decimal.
+// @option It throws NumberFormatException, because FF is not a number.
+// @explain The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so "FF" means 15 times 16 plus 15, which is 255.
+// @why B: the second argument is the base, not a count of characters.
+// @why C: with no radix, "FF" would fail. Base 16 is what makes it readable as digits.
+// @why D: letters are valid in a base that is large enough to include them.
+
+// @quiz (OCJP, HARD) What happens when Integer.parseInt(" 42 ") runs?
+// @option It throws NumberFormatException, because surrounding spaces are not allowed. [correct]
+// @option It returns 42, because parseInt ignores whitespace.
+// @option It returns 0, because the spaces invalidate the value.
+// @option It compiles but returns null.
+// @explain parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.
+// @why B: trimming is not part of parsing. You would call trim() first.
+// @why C: it throws instead of returning a fallback value.
+// @why D: the return type is int, so null is not possible.
+
+// @quiz (OCJP, HARD) What happens when Integer.parseInt(null) runs?
+// @option It throws NumberFormatException, because null is not valid integer text. [correct]
+// @option It returns 0.
+// @option It throws NullPointerException.
+// @option It compiles but returns -1.
+// @explain parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.
+// @why B: there is no fallback value. The method throws.
+// @why C: validate the input first if you need to distinguish null from bad text.
+// @why D: the return type is int, and an exception is thrown instead of returning.
+
+// @quiz (INTERVIEW, MEDIUM) What is printed by this code when the user enters 80 and 90?
+// @code String a = "80";
+// @code String b = "90";
+// @code int average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;
+// @code System.out.println(average);
+// @option 85, because the values are parsed to int and then averaged. [correct]
+// @option 8090, because the Strings are concatenated.
+// @option 85.0, because parseInt produces a decimal.
+// @option It does not compile, because Strings cannot be added.
+// @explain parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.
+// @why B: concatenation would happen only if + were applied to the Strings themselves.
+// @why C: parseInt returns an int, and int division produces an int.
+// @why D: the parsing happens first, so the addition is between two int values.
+
+// @quiz (INTERVIEW, MEDIUM) What does this code print when the user types the word hello?
+// @code try {
+// @code     int value = Integer.parseInt("hello");
+// @code     System.out.println("parsed " + value);
+// @code } catch (NumberFormatException e) {
+// @code     System.out.println("not a number");
+// @code }
+// @option not a number, because parsing fails and the catch block runs. [correct]
+// @option parsed 0, because failed parsing returns zero.
+// @option It crashes with an uncaught exception.
+// @option not a number, and then parsed 0.
+// @explain parseInt cannot read "hello" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.
+// @why B: parsing does not return a fallback. It throws.
+// @why C: the catch block matches NumberFormatException, so the exception is handled.
+// @why D: only one branch runs when an exception is thrown.
+
 public class ParsingValuesReadingInput {
 
     public static void main(String[] args) {

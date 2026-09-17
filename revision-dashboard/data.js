@@ -10213,10 +10213,127 @@ const CONCEPTS_DATA = [
               "Each object has its own copy of the class's instance fields, so different objects can have different values.",
               "There is no limit on how many objects you can create from a single class."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Counter {\n@code     static int total = 0;\n@code     Counter() { total++; }\n@code }\n@code new Counter(); new Counter(); new Counter();\n@code System.out.println(Counter.total);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 3, because the static field is shared and each constructor increments it. [correct]",
+              "@option 1, because each object gets its own copy of total.",
+              "@option 0, because a static field cannot be changed by a constructor.",
+              "@option It does not compile, because a constructor cannot change a static field.",
+              "@explain A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.",
+              "@why B: an instance field would behave that way. A static field is the shared one.",
+              "@why C: constructors may change static fields, which is a common way to count objects.",
+              "@why D: it is legal, and counting instances is one of the standard uses of a static field."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Person { String name; }\n@code Person a = new Person();\n@code Person b = new Person();\n@code a.name = \"Ada\";\n@code b.name = \"Alan\";\n@code System.out.println(a.name + \" \" + b.name);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option Ada Alan, because each object has its own copy of the instance field. [correct]",
+              "@option Alan Alan, because the second assignment overwrites the first.",
+              "@option Ada Ada, because both objects share the field.",
+              "@option It does not compile, because name is not initialised.",
+              "@explain name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.",
+              "@why B: the two assignments target different objects.",
+              "@why C: sharing happens only with a static field.",
+              "@why D: a field of an object gets a default value, here null, so it compiles."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Example {\n@code     int count = 5;\n@code     static int read() { return count; }\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. A static method cannot access an instance field, because there is no object to read it from. [correct]",
+              "@option Yes, and read() returns 5.",
+              "@option Yes, and read() returns 0.",
+              "@option Yes, because count is set before the method runs.",
+              "@explain A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.",
+              "@why B: the compiler rejects the access, so nothing runs.",
+              "@why C: an absent object is not the same as a zero value.",
+              "@why D: the order of statements cannot help, because the problem is that no object is involved."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Box { int size = 1; }\n@code Box first = new Box();\n@code Box second = first;\n@code second.size = 7;\n@code System.out.println(first.size);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 7, because both references point at the same object. [correct]",
+              "@option 1, because first keeps its own copy.",
+              "@option 0, because second replaced the object.",
+              "@option It does not compile, because a reference cannot be assigned to another reference.",
+              "@explain Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.",
+              "@why B: there is only one object, so there is only one size field.",
+              "@why C: second does not create or replace anything. It simply points at the existing object.",
+              "@why D: assigning references is ordinary and common."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Person { String name; }\n@code Person p = null;\n@code System.out.println(p.name);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option It throws NullPointerException at runtime, because p points at no object. [correct]",
+              "@option It prints null, because the field is uninitialised.",
+              "@option It does not compile, because p is null.",
+              "@option It prints an empty line.",
+              "@explain The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.",
+              "@why B: a field on a real object can be null, but there is no object here at all.",
+              "@why C: null must be checked when the code runs, so the compiler allows it.",
+              "@why D: nothing is printed. The failure happens while the argument is being evaluated."
+            ]
           }
         ],
         "inlineComments": [
           "Objects are created using the 'new' keyword: ClassName obj = new ClassName();",
+          "@code class Counter {",
+          "@code static int total = 0;",
+          "@code Counter() { total++; }",
+          "@code }",
+          "@code new Counter(); new Counter(); new Counter();",
+          "@code System.out.println(Counter.total);",
+          "@code class Person { String name; }",
+          "@code Person a = new Person();",
+          "@code Person b = new Person();",
+          "@code a.name = \"Ada\";",
+          "@code b.name = \"Alan\";",
+          "@code System.out.println(a.name + \" \" + b.name);",
+          "@code class Example {",
+          "@code int count = 5;",
+          "@code static int read() { return count; }",
+          "@code class Box { int size = 1; }",
+          "@code Box first = new Box();",
+          "@code Box second = first;",
+          "@code second.size = 7;",
+          "@code System.out.println(first.size);",
+          "@code Person p = null;",
+          "@code System.out.println(p.name);",
           "We can create String using 2 ways",
           "1) Literal form",
           "s is a local variable on which the objects memory location also known as reference is assigned.",
@@ -10545,10 +10662,209 @@ const CONCEPTS_DATA = [
             "code": [],
             "explain": "",
             "whyNotes": []
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "3, because the static field is shared and each constructor increments it.",
+                "correct": true
+              },
+              {
+                "text": "1, because each object gets its own copy of total.",
+                "correct": false,
+                "why": "an instance field would behave that way. A static field is the shared one."
+              },
+              {
+                "text": "0, because a static field cannot be changed by a constructor.",
+                "correct": false,
+                "why": "constructors may change static fields, which is a common way to count objects."
+              },
+              {
+                "text": "It does not compile, because a constructor cannot change a static field.",
+                "correct": false,
+                "why": "it is legal, and counting instances is one of the standard uses of a static field."
+              }
+            ],
+            "code": [
+              "class Counter {",
+              "static int total = 0;",
+              "Counter() { total++; }",
+              "}",
+              "new Counter(); new Counter(); new Counter();",
+              "System.out.println(Counter.total);"
+            ],
+            "explain": "A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.",
+            "whyNotes": [
+              "B: an instance field would behave that way. A static field is the shared one.",
+              "C: constructors may change static fields, which is a common way to count objects.",
+              "D: it is legal, and counting instances is one of the standard uses of a static field."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "Ada Alan, because each object has its own copy of the instance field.",
+                "correct": true
+              },
+              {
+                "text": "Alan Alan, because the second assignment overwrites the first.",
+                "correct": false,
+                "why": "the two assignments target different objects."
+              },
+              {
+                "text": "Ada Ada, because both objects share the field.",
+                "correct": false,
+                "why": "sharing happens only with a static field."
+              },
+              {
+                "text": "It does not compile, because name is not initialised.",
+                "correct": false,
+                "why": "a field of an object gets a default value, here null, so it compiles."
+              }
+            ],
+            "code": [
+              "class Person { String name; }",
+              "Person a = new Person();",
+              "Person b = new Person();",
+              "a.name = \"Ada\";",
+              "b.name = \"Alan\";",
+              "System.out.println(a.name + \" \" + b.name);"
+            ],
+            "explain": "name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.",
+            "whyNotes": [
+              "B: the two assignments target different objects.",
+              "C: sharing happens only with a static field.",
+              "D: a field of an object gets a default value, here null, so it compiles."
+            ]
+          },
+          {
+            "question": "Does this class compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. A static method cannot access an instance field, because there is no object to read it from.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and read() returns 5.",
+                "correct": false,
+                "why": "the compiler rejects the access, so nothing runs."
+              },
+              {
+                "text": "Yes, and read() returns 0.",
+                "correct": false,
+                "why": "an absent object is not the same as a zero value."
+              },
+              {
+                "text": "Yes, because count is set before the method runs.",
+                "correct": false,
+                "why": "the order of statements cannot help, because the problem is that no object is involved."
+              }
+            ],
+            "code": [
+              "class Example {",
+              "int count = 5;",
+              "static int read() { return count; }",
+              "}"
+            ],
+            "explain": "A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.",
+            "whyNotes": [
+              "B: the compiler rejects the access, so nothing runs.",
+              "C: an absent object is not the same as a zero value.",
+              "D: the order of statements cannot help, because the problem is that no object is involved."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "7, because both references point at the same object.",
+                "correct": true
+              },
+              {
+                "text": "1, because first keeps its own copy.",
+                "correct": false,
+                "why": "there is only one object, so there is only one size field."
+              },
+              {
+                "text": "0, because second replaced the object.",
+                "correct": false,
+                "why": "second does not create or replace anything. It simply points at the existing object."
+              },
+              {
+                "text": "It does not compile, because a reference cannot be assigned to another reference.",
+                "correct": false,
+                "why": "assigning references is ordinary and common."
+              }
+            ],
+            "code": [
+              "class Box { int size = 1; }",
+              "Box first = new Box();",
+              "Box second = first;",
+              "second.size = 7;",
+              "System.out.println(first.size);"
+            ],
+            "explain": "Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.",
+            "whyNotes": [
+              "B: there is only one object, so there is only one size field.",
+              "C: second does not create or replace anything. It simply points at the existing object.",
+              "D: assigning references is ordinary and common."
+            ]
+          },
+          {
+            "question": "What happens when this code runs?",
+            "answers": [],
+            "quizTag": "INTERVIEW TRAP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "It throws NullPointerException at runtime, because p points at no object.",
+                "correct": true
+              },
+              {
+                "text": "It prints null, because the field is uninitialised.",
+                "correct": false,
+                "why": "a field on a real object can be null, but there is no object here at all."
+              },
+              {
+                "text": "It does not compile, because p is null.",
+                "correct": false,
+                "why": "null must be checked when the code runs, so the compiler allows it."
+              },
+              {
+                "text": "It prints an empty line.",
+                "correct": false,
+                "why": "nothing is printed. The failure happens while the argument is being evaluated."
+              }
+            ],
+            "code": [
+              "class Person { String name; }",
+              "Person p = null;",
+              "System.out.println(p.name);"
+            ],
+            "explain": "The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.",
+            "whyNotes": [
+              "B: a field on a real object can be null, but there is no object here at all.",
+              "C: null must be checked when the code runs, so the compiler allows it.",
+              "D: nothing is printed. The failure happens while the argument is being evaluated."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;\n// @quiz (INTERVIEW, EASY) What is the difference between a class and an object?\n// @option A class is a blueprint that defines fields and methods, and an object is an instance created from that blueprint. [correct]\n// @option A class is an instance of an object.\n// @option A class can only ever be used to create one object.\n// @option An object is a copy of the class file stored on disk.\n// @explain The class describes the data and behaviour; the object is the real thing in memory, created from that description. There is no limit on how many objects one class can produce.\n// @why B: the relationship is the other way round. An object is an instance of a class.\n// @why C: a single class can create any number of objects, each with its own values.\n// @why D: an object is created in memory at runtime by the new keyword. It is not a copy of the source file.\n// @answer A class is a blueprint that defines fields and methods, and an object is an instance created from it.\n\n// @quiz (INTERVIEW, EASY) How is an object created from a class?\n// @option By using the new keyword, as in ClassName obj = new ClassName(); [correct]\n// @option By declaring a variable of the class type on its own.\n// @option By writing the class name with no keyword in front of it.\n// @option Objects are created automatically when the source file is compiled.\n// @explain new performs the class instance creation expression. It allocates the object and gives you a reference to it. Declaring the variable only reserves a name; no object exists until new runs.\n// @why B: a declaration such as ClassName obj; creates a reference that is still null, not an object.\n// @why C: writing the class name alone is not valid syntax for creating an object.\n// @why D: compilation produces bytecode. Objects exist only while the program runs.\n\n// @quiz (INTERVIEW, MEDIUM) How do instance fields behave across several objects of the same class?\n// @option Each object gets its own copy of the instance fields, so the values can differ between objects. [correct]\n// @option All objects share one copy of each instance field.\n// @option Instance fields are shared between objects, and static fields are per object.\n// @option Instance fields cannot hold different values in different objects at the same time.\n// @explain An instance field belongs to the object. Two Car objects can have different colours at the same time, because each holds its own copy.\n// @why B: that describes a static field, not an instance field.\n// @why C: this is reversed. Static fields are the shared ones.\n// @why D: holding different values per object is exactly what instance fields are for.\n\n// @quiz (INTERVIEW, MEDIUM) What is the difference between a static field and an instance field?\n// @option A static field belongs to the class and is shared by all objects, while an instance field belongs to each object. [correct]\n// @option A static field is created once for every object.\n// @option An instance field is accessed through the class name.\n// @option A static field cannot be changed after it is set.\n// @explain A static field has one value for the whole class, so every object sees the same value. An instance field gives each object its own storage.\n// @why B: static means one per class, not one per object.\n// @why C: an instance field is reached through an object reference, as in myCar.colour. ClassName.field is the static style.\n// @why D: a static field can be changed unless it is also declared final.\n\n// @quiz (INTERVIEW TRAP, HARD) How do System.out.println(null) and calling a method on a null String differ?\n// @option println prints the text \"null\", while calling an instance method on a null reference throws NullPointerException. [correct]\n// @option Both throw NullPointerException.\n// @option Both handle null safely and print \"null\".\n// @option println(null) does not compile.\n// @explain println is built to accept a null argument and prints the word null. The danger is elsewhere: any instance method called on a null reference fails, because there is no object to run it on.\n// @why B: println(null) is safe. Only the method call fails.\n// @why C: the method call does not survive a null reference.\n// @why D: println(null) compiles and prints the text null.\n\n// @quiz (INTERVIEW, MEDIUM) How does new String(\"Hello\") differ from writing the literal \"Hello\"?\n// @option new String(\"Hello\") creates a distinct String object, while the literal \"Hello\" is reused from the String pool. [correct]\n// @option Both always produce the same object in memory.\n// @option new String(\"Hello\") returns the pooled literal for you.\n// @option The literal creates a new object every time it appears in the code.\n// @explain new always allocates a fresh object. A literal is looked up in the String pool and reused, which is why two identical literals usually share one object.\n// @why B: they are different objects, which is why == can be false for two equal Strings.\n// @why C: if it returned the pooled literal, new would be pointless.\n// @why D: literals are pooled and reused, not recreated each time.\n\n// @answer In new String(\"Hello\"), the \"Hello\" argument provides the initial characters for a brand new String object.\n\n// Parameter notes (what each argument means and how to choose it):\n// - main(String[] args): args receives command-line words passed after the class name; choose values only when the program needs startup input.\n// - new String(\"Hello\"): the constructor argument is the initial character content; prefer a string literal unless you specifically need a distinct String object.\n// - System.out.println(value): the parameter is the value to display; choose any expression you want converted to text and printed with a newline.\n// - Important pitfall: passing null to println is safe and prints \"null\", but many String constructors or methods may reject null.\n//\n// @quiz (INTERVIEW) In new String(\"Hello\"), what does the \"Hello\" parameter provide?\n// @answer It provides the initial characters for the new String object; in normal code, prefer the literal \"Hello\" unless a separate object is deliberately needed.\n//\n// @quiz (OCJP) What does the args parameter in public static void main(String[] args) contain?\n// @answer It contains command-line arguments passed to the Java program, in order, as Strings.\n//\n// @quiz (INTERVIEW TRAP) Is System.out.println(null) the same risk as calling a method on a null String reference?\n// @answer No. println can print null as the text \"null\", but calling an instance method on a null reference throws NullPointerException.\n// A CLASS is the most fundamental building block of Object-Oriented Programming (OOP) in Java.\n// A class is a blueprint or template that defines: (1) what data (fields/attributes) an object will hold, and (2) what behaviour (methods) it will have.\n// Think of a class like a blank form template — it defines what fields exist. An OBJECT is a filled-in copy of that form.\n// Creating an object from a class is called instantiation. Each object is an instance of its class.\n// A class can describe a real-world concept: a Car class has fields like colour, make, model; a Person class has name, age, etc.\n// Objects are created using the 'new' keyword: ClassName obj = new ClassName();\n// Each object has its own copy of the class's instance fields, so different objects can have different values.\n// There is no limit on how many objects you can create from a single class.\n/*\n*   A class can be described as :-\n*\n*   1) A custom data type --> For Ex :- String\n*   2) A special code block that contains methods\n*\n*\n*    A class is like an empty form that gets copied and handed out.\n*    For Example :- A form containing fields like Name and Address can be considered as an example of Class\n*\n*    A class is like an empty form. It describes information or placeholders for data that'll be filled in,\n*    when that form is given to a unique individual.\n*    The empty form, the class is the template for the data to be collected\n*    The class provides a shape or framework that describes the object being created\n*\n*    The process of copying that empty form and then delivering it to some process or person\n*    to fill in the blanks is a loose analogy to what happens when you create an object.\n*    Multiple copies of form can be considered as an example of object creation from the class.\n*\n*    An object, is like the form, once it's been handed out and filled in.\n*    If the class has a field for name, then the object will have a value in the name field,\n*    which will be unique to the object. If the class has a field for address,\n*    then the object will have a value for the address field, and so on.\n*\n*    The populated form, the object may be completely different each time\n*    because of the values used to fill in the data.\n*    The data being collected each time is determined by the class or the form, in this analogy.\n*\n*    An object is called an instance of a particular class.\n*    Creation of the object can be called as instantiation or instantiating a class\n*    Object and instance can be used interchangeably\n*    There is no limit on number of object one can create from a class\n*\n*    The most common way to create an object is to use the new keyword.\n*    The new keyword creates an instance of a class,\n*    and you can optionally pass data when creating that instance to set up data on that object.\n*\n*    The new keyword is used in what Java calls a Class Instance Creation Expression.\n*    In its simplest form, it's the word new, followed by class name, and empty parenthesis\n*\n*    ClassName variableName = new ClassName();\n*\n*    We can optionally pass arguments in those parentheses, as we saw with methods.\n*\n*    ClassName variableName = new ClassName(argument1, argument2);\n*\n*\n*\n* */\n\n// @quiz (INTERVIEW) What is the difference between a class and an object in Java?\n// @answer A class is a blueprint that defines fields and methods, while an object is a real instance created from that blueprint.\n// @answer Many objects can be created from one class, each with its own state.\n\n// @quiz (INTERVIEW) What is the difference between static fields and instance fields?\n// @answer A static field belongs to the class itself and is shared by all objects of that class.\n// @answer An instance field belongs to each object, so every object gets its own copy.\n\n// @quiz (INTERVIEW) What are the default values of instance fields in Java?\n// @answer Numeric instance fields default to 0 or 0.0, boolean defaults to false, and reference fields default to null.\n// @answer These defaults apply to fields, not to local variables.\n\n// @quiz (INTERVIEW) When would you make a field static?\n// @answer Use a static field when the value should be shared across all objects, such as a counter or constant-like class state.\n// @answer Do not use static when every object needs its own separate value.\n\n// @quiz (OCJP) What prints here: class Counter { static int c = 0; } Counter a = new Counter(); Counter b = new Counter(); a.c = 5; System.out.println(b.c);?\n// @answer It prints 5.\n// @answer The field is static, so both references access the same shared class variable.\n\n// @quiz (OCJP) Can a static method directly access an instance field like int age; without an object?\n// @answer No. A static method has no current object, so direct access to an instance field causes a compile-time error.\n// @answer It must use an object reference or access a static field instead.\n\npublic class ClassExample {\n\n    public static void main(String[] args) {\n        //  We can create String using 2 ways\n\n         // 1) Literal form\n\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\n           System.out.println(\"Literal String = \" + s);\n\n        //  2) Using new keyword\n\n        String value = new String(\"Hello\"); // When we create an object, we can pass initial data to be associated with it in parentheses.\n        System.out.println(\"String created with new = \" + value);\n\n    }\n\n\n}\n"
+        "code": "package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;\n// @quiz (INTERVIEW, EASY) What is the difference between a class and an object?\n// @option A class is a blueprint that defines fields and methods, and an object is an instance created from that blueprint. [correct]\n// @option A class is an instance of an object.\n// @option A class can only ever be used to create one object.\n// @option An object is a copy of the class file stored on disk.\n// @explain The class describes the data and behaviour; the object is the real thing in memory, created from that description. There is no limit on how many objects one class can produce.\n// @why B: the relationship is the other way round. An object is an instance of a class.\n// @why C: a single class can create any number of objects, each with its own values.\n// @why D: an object is created in memory at runtime by the new keyword. It is not a copy of the source file.\n// @answer A class is a blueprint that defines fields and methods, and an object is an instance created from it.\n\n// @quiz (INTERVIEW, EASY) How is an object created from a class?\n// @option By using the new keyword, as in ClassName obj = new ClassName(); [correct]\n// @option By declaring a variable of the class type on its own.\n// @option By writing the class name with no keyword in front of it.\n// @option Objects are created automatically when the source file is compiled.\n// @explain new performs the class instance creation expression. It allocates the object and gives you a reference to it. Declaring the variable only reserves a name; no object exists until new runs.\n// @why B: a declaration such as ClassName obj; creates a reference that is still null, not an object.\n// @why C: writing the class name alone is not valid syntax for creating an object.\n// @why D: compilation produces bytecode. Objects exist only while the program runs.\n\n// @quiz (INTERVIEW, MEDIUM) How do instance fields behave across several objects of the same class?\n// @option Each object gets its own copy of the instance fields, so the values can differ between objects. [correct]\n// @option All objects share one copy of each instance field.\n// @option Instance fields are shared between objects, and static fields are per object.\n// @option Instance fields cannot hold different values in different objects at the same time.\n// @explain An instance field belongs to the object. Two Car objects can have different colours at the same time, because each holds its own copy.\n// @why B: that describes a static field, not an instance field.\n// @why C: this is reversed. Static fields are the shared ones.\n// @why D: holding different values per object is exactly what instance fields are for.\n\n// @quiz (INTERVIEW, MEDIUM) What is the difference between a static field and an instance field?\n// @option A static field belongs to the class and is shared by all objects, while an instance field belongs to each object. [correct]\n// @option A static field is created once for every object.\n// @option An instance field is accessed through the class name.\n// @option A static field cannot be changed after it is set.\n// @explain A static field has one value for the whole class, so every object sees the same value. An instance field gives each object its own storage.\n// @why B: static means one per class, not one per object.\n// @why C: an instance field is reached through an object reference, as in myCar.colour. ClassName.field is the static style.\n// @why D: a static field can be changed unless it is also declared final.\n\n// @quiz (INTERVIEW TRAP, HARD) How do System.out.println(null) and calling a method on a null String differ?\n// @option println prints the text \"null\", while calling an instance method on a null reference throws NullPointerException. [correct]\n// @option Both throw NullPointerException.\n// @option Both handle null safely and print \"null\".\n// @option println(null) does not compile.\n// @explain println is built to accept a null argument and prints the word null. The danger is elsewhere: any instance method called on a null reference fails, because there is no object to run it on.\n// @why B: println(null) is safe. Only the method call fails.\n// @why C: the method call does not survive a null reference.\n// @why D: println(null) compiles and prints the text null.\n\n// @quiz (INTERVIEW, MEDIUM) How does new String(\"Hello\") differ from writing the literal \"Hello\"?\n// @option new String(\"Hello\") creates a distinct String object, while the literal \"Hello\" is reused from the String pool. [correct]\n// @option Both always produce the same object in memory.\n// @option new String(\"Hello\") returns the pooled literal for you.\n// @option The literal creates a new object every time it appears in the code.\n// @explain new always allocates a fresh object. A literal is looked up in the String pool and reused, which is why two identical literals usually share one object.\n// @why B: they are different objects, which is why == can be false for two equal Strings.\n// @why C: if it returned the pooled literal, new would be pointless.\n// @why D: literals are pooled and reused, not recreated each time.\n\n// @answer In new String(\"Hello\"), the \"Hello\" argument provides the initial characters for a brand new String object.\n\n// Parameter notes (what each argument means and how to choose it):\n// - main(String[] args): args receives command-line words passed after the class name; choose values only when the program needs startup input.\n// - new String(\"Hello\"): the constructor argument is the initial character content; prefer a string literal unless you specifically need a distinct String object.\n// - System.out.println(value): the parameter is the value to display; choose any expression you want converted to text and printed with a newline.\n// - Important pitfall: passing null to println is safe and prints \"null\", but many String constructors or methods may reject null.\n//\n// @quiz (INTERVIEW) In new String(\"Hello\"), what does the \"Hello\" parameter provide?\n// @answer It provides the initial characters for the new String object; in normal code, prefer the literal \"Hello\" unless a separate object is deliberately needed.\n//\n// @quiz (OCJP) What does the args parameter in public static void main(String[] args) contain?\n// @answer It contains command-line arguments passed to the Java program, in order, as Strings.\n//\n// @quiz (INTERVIEW TRAP) Is System.out.println(null) the same risk as calling a method on a null String reference?\n// @answer No. println can print null as the text \"null\", but calling an instance method on a null reference throws NullPointerException.\n// A CLASS is the most fundamental building block of Object-Oriented Programming (OOP) in Java.\n// A class is a blueprint or template that defines: (1) what data (fields/attributes) an object will hold, and (2) what behaviour (methods) it will have.\n// Think of a class like a blank form template — it defines what fields exist. An OBJECT is a filled-in copy of that form.\n// Creating an object from a class is called instantiation. Each object is an instance of its class.\n// A class can describe a real-world concept: a Car class has fields like colour, make, model; a Person class has name, age, etc.\n// Objects are created using the 'new' keyword: ClassName obj = new ClassName();\n// Each object has its own copy of the class's instance fields, so different objects can have different values.\n// There is no limit on how many objects you can create from a single class.\n/*\n*   A class can be described as :-\n*\n*   1) A custom data type --> For Ex :- String\n*   2) A special code block that contains methods\n*\n*\n*    A class is like an empty form that gets copied and handed out.\n*    For Example :- A form containing fields like Name and Address can be considered as an example of Class\n*\n*    A class is like an empty form. It describes information or placeholders for data that'll be filled in,\n*    when that form is given to a unique individual.\n*    The empty form, the class is the template for the data to be collected\n*    The class provides a shape or framework that describes the object being created\n*\n*    The process of copying that empty form and then delivering it to some process or person\n*    to fill in the blanks is a loose analogy to what happens when you create an object.\n*    Multiple copies of form can be considered as an example of object creation from the class.\n*\n*    An object, is like the form, once it's been handed out and filled in.\n*    If the class has a field for name, then the object will have a value in the name field,\n*    which will be unique to the object. If the class has a field for address,\n*    then the object will have a value for the address field, and so on.\n*\n*    The populated form, the object may be completely different each time\n*    because of the values used to fill in the data.\n*    The data being collected each time is determined by the class or the form, in this analogy.\n*\n*    An object is called an instance of a particular class.\n*    Creation of the object can be called as instantiation or instantiating a class\n*    Object and instance can be used interchangeably\n*    There is no limit on number of object one can create from a class\n*\n*    The most common way to create an object is to use the new keyword.\n*    The new keyword creates an instance of a class,\n*    and you can optionally pass data when creating that instance to set up data on that object.\n*\n*    The new keyword is used in what Java calls a Class Instance Creation Expression.\n*    In its simplest form, it's the word new, followed by class name, and empty parenthesis\n*\n*    ClassName variableName = new ClassName();\n*\n*    We can optionally pass arguments in those parentheses, as we saw with methods.\n*\n*    ClassName variableName = new ClassName(argument1, argument2);\n*\n*\n*\n* */\n\n// @quiz (INTERVIEW) What is the difference between a class and an object in Java?\n// @answer A class is a blueprint that defines fields and methods, while an object is a real instance created from that blueprint.\n// @answer Many objects can be created from one class, each with its own state.\n\n// @quiz (INTERVIEW) What is the difference between static fields and instance fields?\n// @answer A static field belongs to the class itself and is shared by all objects of that class.\n// @answer An instance field belongs to each object, so every object gets its own copy.\n\n// @quiz (INTERVIEW) What are the default values of instance fields in Java?\n// @answer Numeric instance fields default to 0 or 0.0, boolean defaults to false, and reference fields default to null.\n// @answer These defaults apply to fields, not to local variables.\n\n// @quiz (INTERVIEW) When would you make a field static?\n// @answer Use a static field when the value should be shared across all objects, such as a counter or constant-like class state.\n// @answer Do not use static when every object needs its own separate value.\n\n// @quiz (OCJP) What prints here: class Counter { static int c = 0; } Counter a = new Counter(); Counter b = new Counter(); a.c = 5; System.out.println(b.c);?\n// @answer It prints 5.\n// @answer The field is static, so both references access the same shared class variable.\n\n// @quiz (OCJP) Can a static method directly access an instance field like int age; without an object?\n// @answer No. A static method has no current object, so direct access to an instance field causes a compile-time error.\n// @answer It must use an object reference or access a static field instead.\n\n// @quiz (OCJP, MEDIUM) What is printed by this code?\n// @code class Counter {\n// @code     static int total = 0;\n// @code     Counter() { total++; }\n// @code }\n// @code new Counter(); new Counter(); new Counter();\n// @code System.out.println(Counter.total);\n// @option 3, because the static field is shared and each constructor increments it. [correct]\n// @option 1, because each object gets its own copy of total.\n// @option 0, because a static field cannot be changed by a constructor.\n// @option It does not compile, because a constructor cannot change a static field.\n// @explain A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.\n// @why B: an instance field would behave that way. A static field is the shared one.\n// @why C: constructors may change static fields, which is a common way to count objects.\n// @why D: it is legal, and counting instances is one of the standard uses of a static field.\n\n// @quiz (INTERVIEW, MEDIUM) What is printed by this code?\n// @code class Person { String name; }\n// @code Person a = new Person();\n// @code Person b = new Person();\n// @code a.name = \"Ada\";\n// @code b.name = \"Alan\";\n// @code System.out.println(a.name + \" \" + b.name);\n// @option Ada Alan, because each object has its own copy of the instance field. [correct]\n// @option Alan Alan, because the second assignment overwrites the first.\n// @option Ada Ada, because both objects share the field.\n// @option It does not compile, because name is not initialised.\n// @explain name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.\n// @why B: the two assignments target different objects.\n// @why C: sharing happens only with a static field.\n// @why D: a field of an object gets a default value, here null, so it compiles.\n\n// @quiz (OCJP, MEDIUM) Does this class compile?\n// @code class Example {\n// @code     int count = 5;\n// @code     static int read() { return count; }\n// @code }\n// @option No. A static method cannot access an instance field, because there is no object to read it from. [correct]\n// @option Yes, and read() returns 5.\n// @option Yes, and read() returns 0.\n// @option Yes, because count is set before the method runs.\n// @explain A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.\n// @why B: the compiler rejects the access, so nothing runs.\n// @why C: an absent object is not the same as a zero value.\n// @why D: the order of statements cannot help, because the problem is that no object is involved.\n\n// @quiz (OCJP, HARD) What is printed by this code?\n// @code class Box { int size = 1; }\n// @code Box first = new Box();\n// @code Box second = first;\n// @code second.size = 7;\n// @code System.out.println(first.size);\n// @option 7, because both references point at the same object. [correct]\n// @option 1, because first keeps its own copy.\n// @option 0, because second replaced the object.\n// @option It does not compile, because a reference cannot be assigned to another reference.\n// @explain Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.\n// @why B: there is only one object, so there is only one size field.\n// @why C: second does not create or replace anything. It simply points at the existing object.\n// @why D: assigning references is ordinary and common.\n\n// @quiz (INTERVIEW TRAP, HARD) What happens when this code runs?\n// @code class Person { String name; }\n// @code Person p = null;\n// @code System.out.println(p.name);\n// @option It throws NullPointerException at runtime, because p points at no object. [correct]\n// @option It prints null, because the field is uninitialised.\n// @option It does not compile, because p is null.\n// @option It prints an empty line.\n// @explain The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.\n// @why B: a field on a real object can be null, but there is no object here at all.\n// @why C: null must be checked when the code runs, so the compiler allows it.\n// @why D: nothing is printed. The failure happens while the argument is being evaluated.\n\npublic class ClassExample {\n\n    public static void main(String[] args) {\n        //  We can create String using 2 ways\n\n         // 1) Literal form\n\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\n           System.out.println(\"Literal String = \" + s);\n\n        //  2) Using new keyword\n\n        String value = new String(\"Hello\"); // When we create an object, we can pass initial data to be associated with it in parentheses.\n        System.out.println(\"String created with new = \" + value);\n\n    }\n\n\n}\n"
       },
       {
         "filePath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
@@ -10882,13 +11198,85 @@ const CONCEPTS_DATA = [
               "Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.",
               "Always close the Scanner when done: sc.close(); (or use try-with-resources).",
               "The import statement lets you use classes defined in Java's standard library or other packages.",
-              "In this case, Java provides a library of code, which includes the Scanner class in a library called java.util."
+              "In this case, Java provides a library of code, which includes the Scanner class in a library called java.util.",
+              "@option 255, because the second argument sets the radix to hexadecimal. [correct]",
+              "@option 16, because FF is two characters.",
+              "@option 170, because FF is read as decimal.",
+              "@option It throws NumberFormatException, because FF is not a number.",
+              "@explain The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so \"FF\" means 15 times 16 plus 15, which is 255.",
+              "@why B: the second argument is the base, not a count of characters.",
+              "@why C: with no radix, \"FF\" would fail. Base 16 is what makes it readable as digits.",
+              "@why D: letters are valid in a base that is large enough to include them.",
+              "@option It throws NumberFormatException, because surrounding spaces are not allowed. [correct]",
+              "@option It returns 42, because parseInt ignores whitespace.",
+              "@option It returns 0, because the spaces invalidate the value.",
+              "@option It compiles but returns null.",
+              "@explain parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.",
+              "@why B: trimming is not part of parsing. You would call trim() first.",
+              "@why C: it throws instead of returning a fallback value.",
+              "@why D: the return type is int, so null is not possible.",
+              "@option It throws NumberFormatException, because null is not valid integer text. [correct]",
+              "@option It returns 0.",
+              "@option It throws NullPointerException.",
+              "@option It compiles but returns -1.",
+              "@explain parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.",
+              "@why B: there is no fallback value. The method throws.",
+              "@why C: validate the input first if you need to distinguish null from bad text.",
+              "@why D: the return type is int, and an exception is thrown instead of returning."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code String a = \"80\";\n@code String b = \"90\";\n@code int average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;\n@code System.out.println(average);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 85, because the values are parsed to int and then averaged. [correct]",
+              "@option 8090, because the Strings are concatenated.",
+              "@option 85.0, because parseInt produces a decimal.",
+              "@option It does not compile, because Strings cannot be added.",
+              "@explain parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.",
+              "@why B: concatenation would happen only if + were applied to the Strings themselves.",
+              "@why C: parseInt returns an int, and int division produces an int.",
+              "@why D: the parsing happens first, so the addition is between two int values."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code try {\n@code     int value = Integer.parseInt(\"hello\");\n@code     System.out.println(\"parsed \" + value);\n@code } catch (NumberFormatException e) {\n@code     System.out.println(\"not a number\");\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option not a number, because parsing fails and the catch block runs. [correct]",
+              "@option parsed 0, because failed parsing returns zero.",
+              "@option It crashes with an uncaught exception.",
+              "@option not a number, and then parsed 0.",
+              "@explain parseInt cannot read \"hello\" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.",
+              "@why B: parsing does not return a fallback. It throws.",
+              "@why C: the catch block matches NumberFormatException, so the exception is handled.",
+              "@why D: only one branch runs when an exception is thrown."
             ]
           }
         ],
         "inlineComments": [
           "To use Scanner: import java.util.Scanner; Scanner sc = new Scanner(System.in);",
           "the import statement lets us use classes from other people's code.",
+          "@code String a = \"80\";",
+          "@code String b = \"90\";",
+          "@code int average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;",
+          "@code System.out.println(average);",
+          "@code try {",
+          "@code int value = Integer.parseInt(\"hello\");",
+          "@code System.out.println(\"parsed \" + value);",
+          "@code } catch (NumberFormatException e) {",
+          "@code System.out.println(\"not a number\");",
+          "@code }",
           "The above code will give error as both the data type is in String java: bad operand types for binary operator '-' first type: java.lang.String second type: java.lang.String",
           "Integer is a class. It has a static method called parseInt that takes a String and returns a value of data type int.",
           "To access a static method, we use ClassName.methodName. Integer is the class name, and parseInt is the static method.",
@@ -11326,10 +11714,192 @@ const CONCEPTS_DATA = [
             "code": [],
             "explain": "",
             "whyNotes": []
+          },
+          {
+            "question": "What does Integer.parseInt(\"FF\", 16) return?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "255, because the second argument sets the radix to hexadecimal.",
+                "correct": true
+              },
+              {
+                "text": "16, because FF is two characters.",
+                "correct": false,
+                "why": "the second argument is the base, not a count of characters."
+              },
+              {
+                "text": "170, because FF is read as decimal.",
+                "correct": false,
+                "why": "with no radix, \"FF\" would fail. Base 16 is what makes it readable as digits."
+              },
+              {
+                "text": "It throws NumberFormatException, because FF is not a number.",
+                "correct": false,
+                "why": "letters are valid in a base that is large enough to include them."
+              }
+            ],
+            "code": [],
+            "explain": "The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so \"FF\" means 15 times 16 plus 15, which is 255.",
+            "whyNotes": [
+              "B: the second argument is the base, not a count of characters.",
+              "C: with no radix, \"FF\" would fail. Base 16 is what makes it readable as digits.",
+              "D: letters are valid in a base that is large enough to include them."
+            ]
+          },
+          {
+            "question": "What happens when Integer.parseInt(\" 42 \") runs?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "It throws NumberFormatException, because surrounding spaces are not allowed.",
+                "correct": true
+              },
+              {
+                "text": "It returns 42, because parseInt ignores whitespace.",
+                "correct": false,
+                "why": "trimming is not part of parsing. You would call trim() first."
+              },
+              {
+                "text": "It returns 0, because the spaces invalidate the value.",
+                "correct": false,
+                "why": "it throws instead of returning a fallback value."
+              },
+              {
+                "text": "It compiles but returns null.",
+                "correct": false,
+                "why": "the return type is int, so null is not possible."
+              }
+            ],
+            "code": [],
+            "explain": "parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.",
+            "whyNotes": [
+              "B: trimming is not part of parsing. You would call trim() first.",
+              "C: it throws instead of returning a fallback value.",
+              "D: the return type is int, so null is not possible."
+            ]
+          },
+          {
+            "question": "What happens when Integer.parseInt(null) runs?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "It throws NumberFormatException, because null is not valid integer text.",
+                "correct": true
+              },
+              {
+                "text": "It returns 0.",
+                "correct": false,
+                "why": "there is no fallback value. The method throws."
+              },
+              {
+                "text": "It throws NullPointerException.",
+                "correct": false,
+                "why": "validate the input first if you need to distinguish null from bad text."
+              },
+              {
+                "text": "It compiles but returns -1.",
+                "correct": false,
+                "why": "the return type is int, and an exception is thrown instead of returning."
+              }
+            ],
+            "code": [],
+            "explain": "parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.",
+            "whyNotes": [
+              "B: there is no fallback value. The method throws.",
+              "C: validate the input first if you need to distinguish null from bad text.",
+              "D: the return type is int, and an exception is thrown instead of returning."
+            ]
+          },
+          {
+            "question": "What is printed by this code when the user enters 80 and 90?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "85, because the values are parsed to int and then averaged.",
+                "correct": true
+              },
+              {
+                "text": "8090, because the Strings are concatenated.",
+                "correct": false,
+                "why": "concatenation would happen only if + were applied to the Strings themselves."
+              },
+              {
+                "text": "85.0, because parseInt produces a decimal.",
+                "correct": false,
+                "why": "parseInt returns an int, and int division produces an int."
+              },
+              {
+                "text": "It does not compile, because Strings cannot be added.",
+                "correct": false,
+                "why": "the parsing happens first, so the addition is between two int values."
+              }
+            ],
+            "code": [
+              "String a = \"80\";",
+              "String b = \"90\";",
+              "int average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;",
+              "System.out.println(average);"
+            ],
+            "explain": "parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.",
+            "whyNotes": [
+              "B: concatenation would happen only if + were applied to the Strings themselves.",
+              "C: parseInt returns an int, and int division produces an int.",
+              "D: the parsing happens first, so the addition is between two int values."
+            ]
+          },
+          {
+            "question": "What does this code print when the user types the word hello?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "not a number, because parsing fails and the catch block runs.",
+                "correct": true
+              },
+              {
+                "text": "parsed 0, because failed parsing returns zero.",
+                "correct": false,
+                "why": "parsing does not return a fallback. It throws."
+              },
+              {
+                "text": "It crashes with an uncaught exception.",
+                "correct": false,
+                "why": "the catch block matches NumberFormatException, so the exception is handled."
+              },
+              {
+                "text": "not a number, and then parsed 0.",
+                "correct": false,
+                "why": "only one branch runs when an exception is thrown."
+              }
+            ],
+            "code": [
+              "try {",
+              "int value = Integer.parseInt(\"hello\");",
+              "System.out.println(\"parsed \" + value);",
+              "} catch (NumberFormatException e) {",
+              "System.out.println(\"not a number\");",
+              "}"
+            ],
+            "explain": "parseInt cannot read \"hello\" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.",
+            "whyNotes": [
+              "B: parsing does not return a fallback. It throws.",
+              "C: the catch block matches NumberFormatException, so the exception is handled.",
+              "D: only one branch runs when an exception is thrown."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And_Reading_input;\n// @quiz (INTERVIEW, EASY) What does Integer.parseInt() do, and what can go wrong?\n// @option It converts numeric text such as \"42\" into a primitive int, and throws NumberFormatException if the text is not a valid integer. [correct]\n// @option It converts a number into text.\n// @option It returns null when the text is not numeric.\n// @option It rounds a decimal value to the nearest whole number.\n// @explain parseInt is a conversion from text to a number. It only accepts valid integer text, so a decimal point, letters, or a blank string cause NumberFormatException at runtime.\n// @why B: that is the opposite direction, done by String.valueOf or Integer.toString.\n// @why C: it does not return a value on failure. It throws.\n// @why D: parseInt rejects decimals such as \"22.5\" rather than rounding them.\n\n// @quiz (OCJP, MEDIUM) What happens when Integer.parseInt(\"22.5\") is called?\n// @option It throws NumberFormatException, because \"22.5\" is not valid integer text. [correct]\n// @option It returns 22 by trimming the decimal part.\n// @option It returns 22.5 as a double.\n// @option It returns 0 and prints a warning.\n// @explain parseInt expects whole-number text. The decimal point makes the input invalid, so the method throws rather than guessing what you meant.\n// @why B: it does not truncate. Use Double.parseDouble(\"22.5\") when decimals are expected.\n// @why C: the return type is int, so it can never hand back a double.\n// @why D: there is no warning path. The method throws an exception.\n\n// @quiz (OCJP, MEDIUM) In Integer.parseInt(\"1010\", 2), what does the second argument mean?\n// @option It is the radix, so \"1010\" is read as binary and the method returns the decimal value 10. [correct]\n// @option It is the number of digits to read.\n// @option It is the maximum value allowed.\n// @option It is a rounding mode.\n// @explain The radix selects the number base used to interpret the text. Base 2 means binary, so the digits 1010 represent 8 + 0 + 2 + 0, which is 10.\n// @why B: the whole string is parsed. The second argument never limits how many characters are used.\n// @why C: radix controls the base, not a limit.\n// @why D: rounding is not involved in parsing an integer.\n\n// @quiz (INTERVIEW TRAP, HARD) Why is mixing Scanner.nextInt() and Scanner.nextLine() a common bug?\n// @option nextInt() reads the number but leaves the newline in the input, so the next nextLine() returns an empty string unless the leftover line is consumed first. [correct]\n// @option nextInt() consumes the newline automatically, so the two can be mixed freely.\n// @option nextLine() does not compile after nextInt().\n// @option You must always use next() instead of nextLine().\n// @explain Token methods such as nextInt read up to the number and stop. The line break is still waiting, so the following nextLine call sees an empty line. Reading one extra line first clears it.\n// @why B: if the newline were consumed, this bug would not exist.\n// @why C: it compiles. The problem appears at runtime as an unexpectedly empty string.\n// @why D: next() and nextLine() both have their uses; the issue is the leftover newline, not the choice of method.\n\n// @quiz (INTERVIEW, MEDIUM) When is Double.parseDouble the right choice?\n// @option When decimal values are expected, such as \"22.5\", because parseInt would reject the decimal point. [correct]\n// @option Whenever the input might contain letters.\n// @option Only when the value is guaranteed to be a whole number.\n// @option When you want an int result from decimal text.\n// @explain Choose the parse method that matches the text you expect. Any input can still fail with NumberFormatException, so letters remain a problem for both methods.\n// @why B: letters fail in both methods. The choice is about decimals, not letters.\n// @why C: a whole number works with parseInt too. Decimals are the reason to prefer parseDouble.\n// @why D: parseDouble returns a double. Use parseInt for an int result from whole-number text.\n\n// @quiz (INTERVIEW, MEDIUM) Why does \"100\" + \"50\" give \"10050\" rather than 150?\n// @option Because + on Strings performs concatenation, so the two pieces are joined into one text value. [correct]\n// @option Because Java converts the Strings to numbers before adding.\n// @option Because Java always treats + as addition when it sees digits.\n// @option Because the compiler reports an error and this never runs.\n// @explain The + operator is defined for text as concatenation. The type of the operands decides the meaning, so two Strings produce one longer String. To add them you must parse them first.\n// @why B: no automatic conversion happens. That is why parse methods exist.\n// @why C: + does arithmetic only when both operands are numeric.\n// @why D: it compiles and runs, producing \"10050\".\n\n// @quiz (INTERVIEW, MEDIUM) Why can System.console() be a problem in some development environments?\n// @option It returns null when there is no console attached, which happens in some IDEs, so the result must be null-checked. [correct]\n// @option It always returns a valid Console object, so no check is needed.\n// @option It is another name for System.out.\n// @option It can only be used to write output, never to read input.\n// @explain Console is a convenient way to read a line and show a prompt, but it is not always available. When the JVM is not connected to a terminal, console() returns null and calling a method on it would throw.\n// @why B: returning null is exactly the risk, so the check matters.\n// @why C: System.out is an output stream. Console offers both reading and a prompt.\n// @why D: Console is mainly used for reading input with a prompt.\n\n// Parameter notes (what each argument means and how to choose it):\n// - main(String[] args): args holds command-line inputs as Strings; use it when startup values should come from the terminal command.\n// - Integer.parseInt(String s): s is base-10 integer text such as \"2024\"; avoid null, blanks, decimals, and letters because they throw NumberFormatException.\n// - Integer.parseInt(String s, int radix): radix chooses the number base from Character.MIN_RADIX to Character.MAX_RADIX, commonly 2, 8, 10, or 16.\n// - Double.parseDouble(String s): s is floating-point text such as \"22.5\"; choose it when decimals are valid and handle NumberFormatException for bad text.\n// - getInputFromConsole(int currentYear): currentYear is the reference year used for age calculation; choose the current calendar year or a fixed test year.\n// - System.console().readLine(String prompt): prompt is the text shown before input; choose a clear question and remember System.console() can be null in some IDEs.\n// - getInputFromScanner(int currentYear): currentYear has the same age-calculation meaning as above and is passed into validation logic.\n// - new Scanner(System.in): System.in selects keyboard/stdin as the input source; choose a File or other source when reading somewhere else.\n// - sc.nextLine(): no parameter; it reads the rest of the current line, including spaces, and is useful for names or full text answers.\n// - checkValidDOB(int currentYear, String yearOfBirth): currentYear is the maximum allowed birth year; yearOfBirth is user-entered numeric text to parse and validate.\n// - System.out.println(value): value is the message to display; choose user-friendly text, especially in validation and catch blocks.\n// - catch (NumberFormatException e): the parameter type chooses which exception is handled; choose the most specific exception before broader ones.\n// - Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.\n//\n// @quiz (INTERVIEW) What does the parameter to new Scanner(System.in) decide?\n// @answer It decides the input source. System.in means read from keyboard/stdin; use another source, such as a File, when input should come from elsewhere.\n//\n// @quiz (INTERVIEW) What must be true about the String passed to Integer.parseInt(String s)?\n// @answer It must contain valid integer text for the expected radix, with no decimal point or non-numeric characters except a valid sign.\n//\n// @quiz (OCJP) What happens if Integer.parseInt(\"22.5\") is called?\n// @answer It throws NumberFormatException because \"22.5\" is not valid integer text.\n//\n// @quiz (INTERVIEW) When would you choose Double.parseDouble(userInput) instead of Integer.parseInt(userInput)?\n// @answer Choose Double.parseDouble when decimal values are allowed or expected, such as \"22.5\".\n//\n// @quiz (INTERVIEW) In checkValidDOB(currentYear, yearOfBirth), why are both parameters needed?\n// @answer currentYear sets the upper validation limit, while yearOfBirth supplies the user text that must be parsed and checked against the allowed range.\n//\n// @quiz (INTERVIEW TRAP) Why should the catch parameter often be NumberFormatException instead of plain Exception here?\n// @answer NumberFormatException is specific to parsing failures, so it avoids accidentally hiding unrelated bugs that a broad Exception catch would also catch.\n//\n// @quiz (OCJP) In Integer.parseInt(\"1010\", 2), what does the second parameter mean?\n// @answer The second parameter is the radix/base; 2 means interpret \"1010\" as binary, producing decimal 10.\n//\n// @quiz (INTERVIEW) What is the purpose of the prompt parameter in System.console().readLine(\"Question\")?\n// @answer It displays a clear question before reading the user's line, so choose wording that tells the user exactly what value to enter.\n// When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.\n// You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.\n// You also cannot use + for addition on Strings — \"100\" + \"50\" = \"10050\" (concatenation, not addition).\n// To convert a String to a number, use the wrapper class's parse method:\n//   Integer.parseInt(\"42\")  -> int 42\n//   Double.parseDouble(\"3.14\") -> double 3.14\n//   Long.parseLong(\"1000000\") -> long 1000000\n// If the String cannot be parsed (e.g., \"abc\"), a NumberFormatException is thrown at runtime.\n// The Scanner class (java.util.Scanner) is the standard way to read keyboard input in Java.\n// To use Scanner: import java.util.Scanner;   Scanner sc = new Scanner(System.in);\n// Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.\n// Always close the Scanner when done: sc.close(); (or use try-with-resources).\n// The import statement lets you use classes defined in Java's standard library or other packages.\n/*\n*  When we read data in from either a file or from user input, it's common for the data\n*  to be initially stored as a String, which we'll need to convert to a numeric value.\n*\n*  Reading Data From Console\n*\n*  Technique              | Description\n*\n*  System.in              | Like System.out, Java provides System.in which can read input from the console or terminal.\n*  System.console         | This is Java's solution for easier support for reading a single line and prompting user for information\n*  Command Line Arguments | This is calling the Java program and specifying data in the call\n*  Scanner                | The scanner class was built to be a common way to read input either using System.in or a file.\n*\n* */\n\nimport java.util.Scanner; // the import statement lets us use classes from other people's code.\n                           // In this case, Java provides a library of code,\n                           // which includes the Scanner class in a library called java.util.\n\n// @quiz (INTERVIEW) What does Integer.parseInt() do, and what exception can it throw?\n// @answer Integer.parseInt() converts a numeric String like \"42\" into a primitive int.\n// @answer It throws NumberFormatException if the text is not a valid integer.\n\n// @quiz (INTERVIEW) What is the difference between Integer.parseInt() and Integer.valueOf()?\n// @answer parseInt() returns a primitive int, while valueOf() returns an Integer object.\n// @answer valueOf() is useful when you need the wrapper type instead of the primitive.\n\n// @quiz (INTERVIEW) What is Scanner, and how does it read input?\n// @answer Scanner is a utility class that reads tokens or lines from sources such as System.in.\n// @answer Methods like nextInt(), next(), and nextLine() parse different kinds of input.\n\n// @quiz (INTERVIEW) Why do Java programs often need parsing when reading console input?\n// @answer Console input arrives as text, so you must convert numeric text into number types before doing arithmetic.\n// @answer That is why parsing methods are common when reading user input.\n\n// @quiz (OCJP) What happens with: Integer.parseInt(\"3.5\")?\n// @answer It throws NumberFormatException because parseInt accepts only valid integer text.\n// @answer Decimal text must be parsed with a floating-point parser instead.\n\n// @quiz (OCJP) Why can nextLine() appear to skip input after nextInt() in Scanner?\n// @answer nextInt() leaves the trailing newline in the input buffer.\n// @answer The following nextLine() reads that leftover newline, so you often need an extra nextLine() to consume it first.\n\npublic class ParsingValuesReadingInput {\n\n    public static void main(String[] args) {\n\n        String currentYear = \"2024\";\n\n        String userDateOfBirth = \"1999\";\n\n        // System.out.println(\"Age = \" + (currentYear - userDateOfBirth));\n\n        // The above code will give error as both the data type is in String\n        // java: bad operand types for binary operator '-'\n        //  first type:  java.lang.String\n        //  second type: java.lang.String\n\n        // System.out.println(\"Age = \" + (currentYear + userDateOfBirth));\n\n        /* The above code will compile, and since currentYear and userDateOfBirth\n            are of type String, both strings will be concatenated together.\n        */\n\n\n        /*  To parse and transform Strings into numeric values, we have to use wrapper-class methods.\n\n            Wrapper |  Wrapper Method\n            Integer |  parseInt(String)\n            Double  |  parseDouble(String)\n        *\n        * */\n\n        int currentYearOfBirth = Integer.parseInt(currentYear);\n        int dateOfBirth = Integer.parseInt(userDateOfBirth);\n\n        System.out.println(\"The age is \" + (currentYearOfBirth - dateOfBirth));\n\n        // Integer is a class. It has a static method called parseInt that takes a String and returns a value of data type int.\n        // To access a static method, we use ClassName.methodName. Integer is the class name, and parseInt is the static method.\n\n        String userAgeWithPartialYear = \"22.5\";\n        double ageWithPartialYear = Double.parseDouble(userAgeWithPartialYear);\n\n        // Double is a class. It has a static method called parseDouble that takes a String and returns a value of data type double.\n        // To access a static method, we use ClassName.methodName. Double is the class name, and parseDouble is the static method.\n\n        System.out.println(\"The partial age is \" + ageWithPartialYear);\n\n    //    System.out.println(getInputFromConsole(currentYearOfBirth));\n\n        System.out.println(getInputFromScanner(2024));\n\n\n    }\n\n    public static String getInputFromConsole(int currentYear) {\n\n        /*\n        * To run java code from console in Intellij, we need to go to terminal, then\n        * change directory using cd to the chapter source folder\n        * cd src\n        * cd Chapter_11_Parsing_Values_Reading_Input\n        *\n        * and then run the packaged class using its fully qualified name after compiling it\n        *\n        * */\n\n        String name = System.console().readLine(\"Hi, What's your name? \");\n        System.out.println(\"Hi \" + name + \", Nice to meet you!\");\n\n        String yearOfBirth = System.console().readLine(\"What's your year of birth? \");\n\n        int age = currentYear - Integer.parseInt(yearOfBirth);\n\n        return name + \"'s\" + \" age is \" + age;\n    }\n\n\n    /*\n    *\n    * The scanner class is described as a simple text scanner which can parse primitive types and strings\n    *  To use the Scanner class, we have to create an instance / object of type Scanner using keyword new\n    *\n    * Reading input from console -->\n    *\n    * For reading input from the console or terminal, we instantiate a scanner object using new,\n    * followed by the Scanner class name, and passing System.in, as an argument, in the parentheses\n    *\n    * Scanner sc = new Scanner(System.in);\n    *\n    * For reading input from a file, we instantiate a scanner object using new,\n    * again with the Scanner class name, but pass a File object, as an argument, in the parentheses.\n    *\n    * File is another class provided by Java, for reading and writing files.\n    *\n    * Scanner sc = new Scanner(new File(\"nameOfFileOnFileSystem\")); // Since, we want to read file we create object of file using new keyword\n    * */\n    // This function checks if the date of birth entered through user input is valid or not.\n    // It returns a boolean value of false, if the date of birth entered is not within the range mentioned in the if condition logic and vice versa\n\n    public static boolean checkValidDOB(int currentYear, String yearOfBirth){\n\n        int birthYear = Integer.parseInt(yearOfBirth); // The yearOfBirth entered in the form of String is converted into int usingInteger.parseInt method\n\n        if((birthYear < 1895) || (birthYear > currentYear)){ // The if condition checks for the condition that the year of Birth entered is well within the range of required parameters\n                                                             //  If the birth year is not within the required condition the code returns a boolean value of false and vice versa\n\n            System.out.println(\"Enter the year of birth greater than 1895 and less than or equal to current year\");\n\n            return false;\n\n        }\n\n        return true;\n    }\n\n    public static String getInputFromScanner(int currentYear){\n\n        Scanner sc = new Scanner(System.in);\n\n        System.out.println(\"Hi, What's your name? \");\n\n        String name = sc.nextLine(); // sc is the local variable of type Scanner class on which the instance methods can be executed\n\n        System.out.println(\"Hi \" + name + \", Nice to meet you!\");\n\n        boolean checkDOBValidity; // A boolean variable checkDOBValidity is created on which the value returned from checkValidDOB(currentYear, yearOfBirth)\n\n        String yearOfBirth = \"\";\n\n        do { // The idea of putting the logic to get the user input of year of birth inside do while block is to make sure that the code executes at least one time,\n             // and if the user input is not within the proper range, the code continues to execute till the time the correct year of birth\n             // within the prescribed year range is entered by the user.\n\n\n            System.out.println(\"What is your year of Birth ?\");\n\n            try {  // There could be a possibility that the user might not enter the correct year of Birth,\n                   // they might enter characters in place of numbers which might lead to NumberFormat Exception\n                   // hence, the code is wrapped around a try catch block, where the code logic that might create problem\n                   // is written inside try code block.\n                yearOfBirth = sc.nextLine();\n\n                checkDOBValidity = checkValidDOB(currentYear, yearOfBirth); // The boolean return value of checkValidDOB(currentYear, yearOfBirth) is assigned to checkDOBValidity variable of type boolean\n            }catch (NumberFormatException e){ // The catch block accepts the parameter of the type exception, which the code might throw, in this case, it's NumberFormatException\n                System.out.println(\"You have entered characters in year of birth, please enter the correct details\");\n                checkDOBValidity = false; // Since, the user definitely have entered the wrong year of birth, that's why the exception got caught, we are setting the checkDOBValidity value back to false,\n                                          // so the do while loop continues to execute until the user enters the correct year of birth value within the desired year range\n            }\n\n        }while(!checkDOBValidity); // On the basis of boolean value of checkDOBValidity, the do while loop might continue to execute or terminate\n                                   // If the user enters the correct date of birth as per the format and range, the checkDOBValidity boolean value\n                                   // is evaluated to true, and the while loop will terminate as while condition will evaluate to false as we have used not check\n                                   // Similarly,if the checkDOBValidity boolean value is evaluated to false,the loop will continue to execute, as the while condition\n                                   // will evaluate to true because of not condition\n\n        int age = currentYear - Integer.parseInt(yearOfBirth); \n\n        return name + \"'s\" + \" Age is \" + age;\n    }\n\n}\n"
+        "code": "package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And_Reading_input;\n// @quiz (INTERVIEW, EASY) What does Integer.parseInt() do, and what can go wrong?\n// @option It converts numeric text such as \"42\" into a primitive int, and throws NumberFormatException if the text is not a valid integer. [correct]\n// @option It converts a number into text.\n// @option It returns null when the text is not numeric.\n// @option It rounds a decimal value to the nearest whole number.\n// @explain parseInt is a conversion from text to a number. It only accepts valid integer text, so a decimal point, letters, or a blank string cause NumberFormatException at runtime.\n// @why B: that is the opposite direction, done by String.valueOf or Integer.toString.\n// @why C: it does not return a value on failure. It throws.\n// @why D: parseInt rejects decimals such as \"22.5\" rather than rounding them.\n\n// @quiz (OCJP, MEDIUM) What happens when Integer.parseInt(\"22.5\") is called?\n// @option It throws NumberFormatException, because \"22.5\" is not valid integer text. [correct]\n// @option It returns 22 by trimming the decimal part.\n// @option It returns 22.5 as a double.\n// @option It returns 0 and prints a warning.\n// @explain parseInt expects whole-number text. The decimal point makes the input invalid, so the method throws rather than guessing what you meant.\n// @why B: it does not truncate. Use Double.parseDouble(\"22.5\") when decimals are expected.\n// @why C: the return type is int, so it can never hand back a double.\n// @why D: there is no warning path. The method throws an exception.\n\n// @quiz (OCJP, MEDIUM) In Integer.parseInt(\"1010\", 2), what does the second argument mean?\n// @option It is the radix, so \"1010\" is read as binary and the method returns the decimal value 10. [correct]\n// @option It is the number of digits to read.\n// @option It is the maximum value allowed.\n// @option It is a rounding mode.\n// @explain The radix selects the number base used to interpret the text. Base 2 means binary, so the digits 1010 represent 8 + 0 + 2 + 0, which is 10.\n// @why B: the whole string is parsed. The second argument never limits how many characters are used.\n// @why C: radix controls the base, not a limit.\n// @why D: rounding is not involved in parsing an integer.\n\n// @quiz (INTERVIEW TRAP, HARD) Why is mixing Scanner.nextInt() and Scanner.nextLine() a common bug?\n// @option nextInt() reads the number but leaves the newline in the input, so the next nextLine() returns an empty string unless the leftover line is consumed first. [correct]\n// @option nextInt() consumes the newline automatically, so the two can be mixed freely.\n// @option nextLine() does not compile after nextInt().\n// @option You must always use next() instead of nextLine().\n// @explain Token methods such as nextInt read up to the number and stop. The line break is still waiting, so the following nextLine call sees an empty line. Reading one extra line first clears it.\n// @why B: if the newline were consumed, this bug would not exist.\n// @why C: it compiles. The problem appears at runtime as an unexpectedly empty string.\n// @why D: next() and nextLine() both have their uses; the issue is the leftover newline, not the choice of method.\n\n// @quiz (INTERVIEW, MEDIUM) When is Double.parseDouble the right choice?\n// @option When decimal values are expected, such as \"22.5\", because parseInt would reject the decimal point. [correct]\n// @option Whenever the input might contain letters.\n// @option Only when the value is guaranteed to be a whole number.\n// @option When you want an int result from decimal text.\n// @explain Choose the parse method that matches the text you expect. Any input can still fail with NumberFormatException, so letters remain a problem for both methods.\n// @why B: letters fail in both methods. The choice is about decimals, not letters.\n// @why C: a whole number works with parseInt too. Decimals are the reason to prefer parseDouble.\n// @why D: parseDouble returns a double. Use parseInt for an int result from whole-number text.\n\n// @quiz (INTERVIEW, MEDIUM) Why does \"100\" + \"50\" give \"10050\" rather than 150?\n// @option Because + on Strings performs concatenation, so the two pieces are joined into one text value. [correct]\n// @option Because Java converts the Strings to numbers before adding.\n// @option Because Java always treats + as addition when it sees digits.\n// @option Because the compiler reports an error and this never runs.\n// @explain The + operator is defined for text as concatenation. The type of the operands decides the meaning, so two Strings produce one longer String. To add them you must parse them first.\n// @why B: no automatic conversion happens. That is why parse methods exist.\n// @why C: + does arithmetic only when both operands are numeric.\n// @why D: it compiles and runs, producing \"10050\".\n\n// @quiz (INTERVIEW, MEDIUM) Why can System.console() be a problem in some development environments?\n// @option It returns null when there is no console attached, which happens in some IDEs, so the result must be null-checked. [correct]\n// @option It always returns a valid Console object, so no check is needed.\n// @option It is another name for System.out.\n// @option It can only be used to write output, never to read input.\n// @explain Console is a convenient way to read a line and show a prompt, but it is not always available. When the JVM is not connected to a terminal, console() returns null and calling a method on it would throw.\n// @why B: returning null is exactly the risk, so the check matters.\n// @why C: System.out is an output stream. Console offers both reading and a prompt.\n// @why D: Console is mainly used for reading input with a prompt.\n\n// Parameter notes (what each argument means and how to choose it):\n// - main(String[] args): args holds command-line inputs as Strings; use it when startup values should come from the terminal command.\n// - Integer.parseInt(String s): s is base-10 integer text such as \"2024\"; avoid null, blanks, decimals, and letters because they throw NumberFormatException.\n// - Integer.parseInt(String s, int radix): radix chooses the number base from Character.MIN_RADIX to Character.MAX_RADIX, commonly 2, 8, 10, or 16.\n// - Double.parseDouble(String s): s is floating-point text such as \"22.5\"; choose it when decimals are valid and handle NumberFormatException for bad text.\n// - getInputFromConsole(int currentYear): currentYear is the reference year used for age calculation; choose the current calendar year or a fixed test year.\n// - System.console().readLine(String prompt): prompt is the text shown before input; choose a clear question and remember System.console() can be null in some IDEs.\n// - getInputFromScanner(int currentYear): currentYear has the same age-calculation meaning as above and is passed into validation logic.\n// - new Scanner(System.in): System.in selects keyboard/stdin as the input source; choose a File or other source when reading somewhere else.\n// - sc.nextLine(): no parameter; it reads the rest of the current line, including spaces, and is useful for names or full text answers.\n// - checkValidDOB(int currentYear, String yearOfBirth): currentYear is the maximum allowed birth year; yearOfBirth is user-entered numeric text to parse and validate.\n// - System.out.println(value): value is the message to display; choose user-friendly text, especially in validation and catch blocks.\n// - catch (NumberFormatException e): the parameter type chooses which exception is handled; choose the most specific exception before broader ones.\n// - Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.\n//\n// @quiz (INTERVIEW) What does the parameter to new Scanner(System.in) decide?\n// @answer It decides the input source. System.in means read from keyboard/stdin; use another source, such as a File, when input should come from elsewhere.\n//\n// @quiz (INTERVIEW) What must be true about the String passed to Integer.parseInt(String s)?\n// @answer It must contain valid integer text for the expected radix, with no decimal point or non-numeric characters except a valid sign.\n//\n// @quiz (OCJP) What happens if Integer.parseInt(\"22.5\") is called?\n// @answer It throws NumberFormatException because \"22.5\" is not valid integer text.\n//\n// @quiz (INTERVIEW) When would you choose Double.parseDouble(userInput) instead of Integer.parseInt(userInput)?\n// @answer Choose Double.parseDouble when decimal values are allowed or expected, such as \"22.5\".\n//\n// @quiz (INTERVIEW) In checkValidDOB(currentYear, yearOfBirth), why are both parameters needed?\n// @answer currentYear sets the upper validation limit, while yearOfBirth supplies the user text that must be parsed and checked against the allowed range.\n//\n// @quiz (INTERVIEW TRAP) Why should the catch parameter often be NumberFormatException instead of plain Exception here?\n// @answer NumberFormatException is specific to parsing failures, so it avoids accidentally hiding unrelated bugs that a broad Exception catch would also catch.\n//\n// @quiz (OCJP) In Integer.parseInt(\"1010\", 2), what does the second parameter mean?\n// @answer The second parameter is the radix/base; 2 means interpret \"1010\" as binary, producing decimal 10.\n//\n// @quiz (INTERVIEW) What is the purpose of the prompt parameter in System.console().readLine(\"Question\")?\n// @answer It displays a clear question before reading the user's line, so choose wording that tells the user exactly what value to enter.\n// When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.\n// You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.\n// You also cannot use + for addition on Strings — \"100\" + \"50\" = \"10050\" (concatenation, not addition).\n// To convert a String to a number, use the wrapper class's parse method:\n//   Integer.parseInt(\"42\")  -> int 42\n//   Double.parseDouble(\"3.14\") -> double 3.14\n//   Long.parseLong(\"1000000\") -> long 1000000\n// If the String cannot be parsed (e.g., \"abc\"), a NumberFormatException is thrown at runtime.\n// The Scanner class (java.util.Scanner) is the standard way to read keyboard input in Java.\n// To use Scanner: import java.util.Scanner;   Scanner sc = new Scanner(System.in);\n// Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.\n// Always close the Scanner when done: sc.close(); (or use try-with-resources).\n// The import statement lets you use classes defined in Java's standard library or other packages.\n/*\n*  When we read data in from either a file or from user input, it's common for the data\n*  to be initially stored as a String, which we'll need to convert to a numeric value.\n*\n*  Reading Data From Console\n*\n*  Technique              | Description\n*\n*  System.in              | Like System.out, Java provides System.in which can read input from the console or terminal.\n*  System.console         | This is Java's solution for easier support for reading a single line and prompting user for information\n*  Command Line Arguments | This is calling the Java program and specifying data in the call\n*  Scanner                | The scanner class was built to be a common way to read input either using System.in or a file.\n*\n* */\n\nimport java.util.Scanner; // the import statement lets us use classes from other people's code.\n                           // In this case, Java provides a library of code,\n                           // which includes the Scanner class in a library called java.util.\n\n// @quiz (INTERVIEW) What does Integer.parseInt() do, and what exception can it throw?\n// @answer Integer.parseInt() converts a numeric String like \"42\" into a primitive int.\n// @answer It throws NumberFormatException if the text is not a valid integer.\n\n// @quiz (INTERVIEW) What is the difference between Integer.parseInt() and Integer.valueOf()?\n// @answer parseInt() returns a primitive int, while valueOf() returns an Integer object.\n// @answer valueOf() is useful when you need the wrapper type instead of the primitive.\n\n// @quiz (INTERVIEW) What is Scanner, and how does it read input?\n// @answer Scanner is a utility class that reads tokens or lines from sources such as System.in.\n// @answer Methods like nextInt(), next(), and nextLine() parse different kinds of input.\n\n// @quiz (INTERVIEW) Why do Java programs often need parsing when reading console input?\n// @answer Console input arrives as text, so you must convert numeric text into number types before doing arithmetic.\n// @answer That is why parsing methods are common when reading user input.\n\n// @quiz (OCJP) What happens with: Integer.parseInt(\"3.5\")?\n// @answer It throws NumberFormatException because parseInt accepts only valid integer text.\n// @answer Decimal text must be parsed with a floating-point parser instead.\n\n// @quiz (OCJP) Why can nextLine() appear to skip input after nextInt() in Scanner?\n// @answer nextInt() leaves the trailing newline in the input buffer.\n// @answer The following nextLine() reads that leftover newline, so you often need an extra nextLine() to consume it first.\n\n// @quiz (OCJP, HARD) What does Integer.parseInt(\"FF\", 16) return?\n// @option 255, because the second argument sets the radix to hexadecimal. [correct]\n// @option 16, because FF is two characters.\n// @option 170, because FF is read as decimal.\n// @option It throws NumberFormatException, because FF is not a number.\n// @explain The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so \"FF\" means 15 times 16 plus 15, which is 255.\n// @why B: the second argument is the base, not a count of characters.\n// @why C: with no radix, \"FF\" would fail. Base 16 is what makes it readable as digits.\n// @why D: letters are valid in a base that is large enough to include them.\n\n// @quiz (OCJP, HARD) What happens when Integer.parseInt(\" 42 \") runs?\n// @option It throws NumberFormatException, because surrounding spaces are not allowed. [correct]\n// @option It returns 42, because parseInt ignores whitespace.\n// @option It returns 0, because the spaces invalidate the value.\n// @option It compiles but returns null.\n// @explain parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.\n// @why B: trimming is not part of parsing. You would call trim() first.\n// @why C: it throws instead of returning a fallback value.\n// @why D: the return type is int, so null is not possible.\n\n// @quiz (OCJP, HARD) What happens when Integer.parseInt(null) runs?\n// @option It throws NumberFormatException, because null is not valid integer text. [correct]\n// @option It returns 0.\n// @option It throws NullPointerException.\n// @option It compiles but returns -1.\n// @explain parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.\n// @why B: there is no fallback value. The method throws.\n// @why C: validate the input first if you need to distinguish null from bad text.\n// @why D: the return type is int, and an exception is thrown instead of returning.\n\n// @quiz (INTERVIEW, MEDIUM) What is printed by this code when the user enters 80 and 90?\n// @code String a = \"80\";\n// @code String b = \"90\";\n// @code int average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;\n// @code System.out.println(average);\n// @option 85, because the values are parsed to int and then averaged. [correct]\n// @option 8090, because the Strings are concatenated.\n// @option 85.0, because parseInt produces a decimal.\n// @option It does not compile, because Strings cannot be added.\n// @explain parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.\n// @why B: concatenation would happen only if + were applied to the Strings themselves.\n// @why C: parseInt returns an int, and int division produces an int.\n// @why D: the parsing happens first, so the addition is between two int values.\n\n// @quiz (INTERVIEW, MEDIUM) What does this code print when the user types the word hello?\n// @code try {\n// @code     int value = Integer.parseInt(\"hello\");\n// @code     System.out.println(\"parsed \" + value);\n// @code } catch (NumberFormatException e) {\n// @code     System.out.println(\"not a number\");\n// @code }\n// @option not a number, because parsing fails and the catch block runs. [correct]\n// @option parsed 0, because failed parsing returns zero.\n// @option It crashes with an uncaught exception.\n// @option not a number, and then parsed 0.\n// @explain parseInt cannot read \"hello\" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.\n// @why B: parsing does not return a fallback. It throws.\n// @why C: the catch block matches NumberFormatException, so the exception is handled.\n// @why D: only one branch runs when an exception is thrown.\n\npublic class ParsingValuesReadingInput {\n\n    public static void main(String[] args) {\n\n        String currentYear = \"2024\";\n\n        String userDateOfBirth = \"1999\";\n\n        // System.out.println(\"Age = \" + (currentYear - userDateOfBirth));\n\n        // The above code will give error as both the data type is in String\n        // java: bad operand types for binary operator '-'\n        //  first type:  java.lang.String\n        //  second type: java.lang.String\n\n        // System.out.println(\"Age = \" + (currentYear + userDateOfBirth));\n\n        /* The above code will compile, and since currentYear and userDateOfBirth\n            are of type String, both strings will be concatenated together.\n        */\n\n\n        /*  To parse and transform Strings into numeric values, we have to use wrapper-class methods.\n\n            Wrapper |  Wrapper Method\n            Integer |  parseInt(String)\n            Double  |  parseDouble(String)\n        *\n        * */\n\n        int currentYearOfBirth = Integer.parseInt(currentYear);\n        int dateOfBirth = Integer.parseInt(userDateOfBirth);\n\n        System.out.println(\"The age is \" + (currentYearOfBirth - dateOfBirth));\n\n        // Integer is a class. It has a static method called parseInt that takes a String and returns a value of data type int.\n        // To access a static method, we use ClassName.methodName. Integer is the class name, and parseInt is the static method.\n\n        String userAgeWithPartialYear = \"22.5\";\n        double ageWithPartialYear = Double.parseDouble(userAgeWithPartialYear);\n\n        // Double is a class. It has a static method called parseDouble that takes a String and returns a value of data type double.\n        // To access a static method, we use ClassName.methodName. Double is the class name, and parseDouble is the static method.\n\n        System.out.println(\"The partial age is \" + ageWithPartialYear);\n\n    //    System.out.println(getInputFromConsole(currentYearOfBirth));\n\n        System.out.println(getInputFromScanner(2024));\n\n\n    }\n\n    public static String getInputFromConsole(int currentYear) {\n\n        /*\n        * To run java code from console in Intellij, we need to go to terminal, then\n        * change directory using cd to the chapter source folder\n        * cd src\n        * cd Chapter_11_Parsing_Values_Reading_Input\n        *\n        * and then run the packaged class using its fully qualified name after compiling it\n        *\n        * */\n\n        String name = System.console().readLine(\"Hi, What's your name? \");\n        System.out.println(\"Hi \" + name + \", Nice to meet you!\");\n\n        String yearOfBirth = System.console().readLine(\"What's your year of birth? \");\n\n        int age = currentYear - Integer.parseInt(yearOfBirth);\n\n        return name + \"'s\" + \" age is \" + age;\n    }\n\n\n    /*\n    *\n    * The scanner class is described as a simple text scanner which can parse primitive types and strings\n    *  To use the Scanner class, we have to create an instance / object of type Scanner using keyword new\n    *\n    * Reading input from console -->\n    *\n    * For reading input from the console or terminal, we instantiate a scanner object using new,\n    * followed by the Scanner class name, and passing System.in, as an argument, in the parentheses\n    *\n    * Scanner sc = new Scanner(System.in);\n    *\n    * For reading input from a file, we instantiate a scanner object using new,\n    * again with the Scanner class name, but pass a File object, as an argument, in the parentheses.\n    *\n    * File is another class provided by Java, for reading and writing files.\n    *\n    * Scanner sc = new Scanner(new File(\"nameOfFileOnFileSystem\")); // Since, we want to read file we create object of file using new keyword\n    * */\n    // This function checks if the date of birth entered through user input is valid or not.\n    // It returns a boolean value of false, if the date of birth entered is not within the range mentioned in the if condition logic and vice versa\n\n    public static boolean checkValidDOB(int currentYear, String yearOfBirth){\n\n        int birthYear = Integer.parseInt(yearOfBirth); // The yearOfBirth entered in the form of String is converted into int usingInteger.parseInt method\n\n        if((birthYear < 1895) || (birthYear > currentYear)){ // The if condition checks for the condition that the year of Birth entered is well within the range of required parameters\n                                                             //  If the birth year is not within the required condition the code returns a boolean value of false and vice versa\n\n            System.out.println(\"Enter the year of birth greater than 1895 and less than or equal to current year\");\n\n            return false;\n\n        }\n\n        return true;\n    }\n\n    public static String getInputFromScanner(int currentYear){\n\n        Scanner sc = new Scanner(System.in);\n\n        System.out.println(\"Hi, What's your name? \");\n\n        String name = sc.nextLine(); // sc is the local variable of type Scanner class on which the instance methods can be executed\n\n        System.out.println(\"Hi \" + name + \", Nice to meet you!\");\n\n        boolean checkDOBValidity; // A boolean variable checkDOBValidity is created on which the value returned from checkValidDOB(currentYear, yearOfBirth)\n\n        String yearOfBirth = \"\";\n\n        do { // The idea of putting the logic to get the user input of year of birth inside do while block is to make sure that the code executes at least one time,\n             // and if the user input is not within the proper range, the code continues to execute till the time the correct year of birth\n             // within the prescribed year range is entered by the user.\n\n\n            System.out.println(\"What is your year of Birth ?\");\n\n            try {  // There could be a possibility that the user might not enter the correct year of Birth,\n                   // they might enter characters in place of numbers which might lead to NumberFormat Exception\n                   // hence, the code is wrapped around a try catch block, where the code logic that might create problem\n                   // is written inside try code block.\n                yearOfBirth = sc.nextLine();\n\n                checkDOBValidity = checkValidDOB(currentYear, yearOfBirth); // The boolean return value of checkValidDOB(currentYear, yearOfBirth) is assigned to checkDOBValidity variable of type boolean\n            }catch (NumberFormatException e){ // The catch block accepts the parameter of the type exception, which the code might throw, in this case, it's NumberFormatException\n                System.out.println(\"You have entered characters in year of birth, please enter the correct details\");\n                checkDOBValidity = false; // Since, the user definitely have entered the wrong year of birth, that's why the exception got caught, we are setting the checkDOBValidity value back to false,\n                                          // so the do while loop continues to execute until the user enters the correct year of birth value within the desired year range\n            }\n\n        }while(!checkDOBValidity); // On the basis of boolean value of checkDOBValidity, the do while loop might continue to execute or terminate\n                                   // If the user enters the correct date of birth as per the format and range, the checkDOBValidity boolean value\n                                   // is evaluated to true, and the while loop will terminate as while condition will evaluate to false as we have used not check\n                                   // Similarly,if the checkDOBValidity boolean value is evaluated to false,the loop will continue to execute, as the while condition\n                                   // will evaluate to true because of not condition\n\n        int age = currentYear - Integer.parseInt(yearOfBirth); \n\n        return name + \"'s\" + \" Age is \" + age;\n    }\n\n}\n"
       },
       {
         "filePath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/InputCalculatorChallenge.java",
@@ -11619,10 +12189,109 @@ const CONCEPTS_DATA = [
               "@why C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.",
               "@why D: they are methods, called with parentheses."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code try {\n@code     int value = Integer.parseInt(\"42\");\n@code } catch (Exception e) {\n@code     System.out.println(\"general\");\n@code } catch (NumberFormatException e) {\n@code     System.out.println(\"number\");\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. The broader catch comes first, so the narrower one can never be reached. [correct]",
+              "@option Yes, and it prints general when parsing fails.",
+              "@option Yes, and it prints number when parsing fails.",
+              "@option Yes, because the catch blocks are checked in order at runtime.",
+              "@explain Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.",
+              "@why B: the code does not compile, so nothing runs.",
+              "@why C: the specific catch must be written before the general one.",
+              "@why D: the order matters, and the compiler rejects an order that makes a block unreachable."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int result = 10 / 0;\n@code System.out.println(result);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option It compiles and then throws ArithmeticException at runtime. [correct]",
+              "@option It does not compile, because division by zero is an error.",
+              "@option It prints 0.",
+              "@option It prints Infinity.",
+              "@explain Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.",
+              "@why B: the compiler cannot know the value of the divisor at compile time.",
+              "@why C: there is no result to print. The exception is thrown during the division.",
+              "@why D: integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int[] numbers = {1, 2, 3};\n@code System.out.println(numbers[3]);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2. [correct]",
+              "@option NullPointerException.",
+              "@option Nothing. It prints 0.",
+              "@option Nothing. It prints 3.",
+              "@explain A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.",
+              "@why B: the array exists. The problem is the index, not a null reference.",
+              "@why C: Java does not return a default for an out-of-range index.",
+              "@why D: index 3 does not exist, so no value can be returned."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code static int test() {\n@code     try {\n@code         return 1;\n@code     } finally {\n@code         return 2;\n@code     }\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 2, because a return inside finally overrides the return from try. [correct]",
+              "@option 1, because the return in try is evaluated first.",
+              "@option 3, because the two values are added.",
+              "@option It does not compile, because a method cannot have two returns.",
+              "@explain The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.",
+              "@why B: the value from try is discarded, because finally runs afterwards.",
+              "@why C: nothing is added. Only the last return value is used.",
+              "@why D: several return statements in one method are normal.",
+              "@option ArithmeticException, because it extends RuntimeException and is unchecked. [correct]",
+              "@option IOException, because it is unchecked.",
+              "@option SQLException, because it is unchecked.",
+              "@option FileNotFoundException, because it is unchecked.",
+              "@explain Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.",
+              "@why B: IOException is checked, so it must be handled.",
+              "@why C: SQLException is checked as well.",
+              "@why D: FileNotFoundException extends IOException, so it is checked too."
+            ]
           }
         ],
         "inlineComments": [
           "@code try { return 1; } finally { System.out.println(\"finally\"); }",
+          "@code try {",
+          "@code int value = Integer.parseInt(\"42\");",
+          "@code } catch (Exception e) {",
+          "@code System.out.println(\"general\");",
+          "@code } catch (NumberFormatException e) {",
+          "@code System.out.println(\"number\");",
+          "@code }",
+          "@code int result = 10 / 0;",
+          "@code System.out.println(result);",
+          "@code int[] numbers = {1, 2, 3};",
+          "@code System.out.println(numbers[3]);",
+          "@code static int test() {",
+          "@code return 1;",
+          "@code } finally {",
+          "@code return 2;",
           "The try block wraps any code that might throw an exception at runtime.",
           "Place only the risky code here — keep try blocks as small as possible.",
           "The try block ends here; the catch block immediately follows.",
@@ -11951,10 +12620,202 @@ const CONCEPTS_DATA = [
               "C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.",
               "D: they are methods, called with parentheses."
             ]
+          },
+          {
+            "question": "Does this code compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "No. The broader catch comes first, so the narrower one can never be reached.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and it prints general when parsing fails.",
+                "correct": false,
+                "why": "the code does not compile, so nothing runs."
+              },
+              {
+                "text": "Yes, and it prints number when parsing fails.",
+                "correct": false,
+                "why": "the specific catch must be written before the general one."
+              },
+              {
+                "text": "Yes, because the catch blocks are checked in order at runtime.",
+                "correct": false,
+                "why": "the order matters, and the compiler rejects an order that makes a block unreachable."
+              }
+            ],
+            "code": [
+              "try {",
+              "int value = Integer.parseInt(\"42\");",
+              "} catch (Exception e) {",
+              "System.out.println(\"general\");",
+              "} catch (NumberFormatException e) {",
+              "System.out.println(\"number\");",
+              "}"
+            ],
+            "explain": "Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.",
+            "whyNotes": [
+              "B: the code does not compile, so nothing runs.",
+              "C: the specific catch must be written before the general one.",
+              "D: the order matters, and the compiler rejects an order that makes a block unreachable."
+            ]
+          },
+          {
+            "question": "What happens when this code runs?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It compiles and then throws ArithmeticException at runtime.",
+                "correct": true
+              },
+              {
+                "text": "It does not compile, because division by zero is an error.",
+                "correct": false,
+                "why": "the compiler cannot know the value of the divisor at compile time."
+              },
+              {
+                "text": "It prints 0.",
+                "correct": false,
+                "why": "there is no result to print. The exception is thrown during the division."
+              },
+              {
+                "text": "It prints Infinity.",
+                "correct": false,
+                "why": "integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead."
+              }
+            ],
+            "code": [
+              "int result = 10 / 0;",
+              "System.out.println(result);"
+            ],
+            "explain": "Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.",
+            "whyNotes": [
+              "B: the compiler cannot know the value of the divisor at compile time.",
+              "C: there is no result to print. The exception is thrown during the division.",
+              "D: integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead."
+            ]
+          },
+          {
+            "question": "What is thrown by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2.",
+                "correct": true
+              },
+              {
+                "text": "NullPointerException.",
+                "correct": false,
+                "why": "the array exists. The problem is the index, not a null reference."
+              },
+              {
+                "text": "Nothing. It prints 0.",
+                "correct": false,
+                "why": "Java does not return a default for an out-of-range index."
+              },
+              {
+                "text": "Nothing. It prints 3.",
+                "correct": false,
+                "why": "index 3 does not exist, so no value can be returned."
+              }
+            ],
+            "code": [
+              "int[] numbers = {1, 2, 3};",
+              "System.out.println(numbers[3]);"
+            ],
+            "explain": "A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.",
+            "whyNotes": [
+              "B: the array exists. The problem is the index, not a null reference.",
+              "C: Java does not return a default for an out-of-range index.",
+              "D: index 3 does not exist, so no value can be returned."
+            ]
+          },
+          {
+            "question": "What does this method return?",
+            "answers": [],
+            "quizTag": "INTERVIEW TRAP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "2, because a return inside finally overrides the return from try.",
+                "correct": true
+              },
+              {
+                "text": "1, because the return in try is evaluated first.",
+                "correct": false,
+                "why": "the value from try is discarded, because finally runs afterwards."
+              },
+              {
+                "text": "3, because the two values are added.",
+                "correct": false,
+                "why": "nothing is added. Only the last return value is used."
+              },
+              {
+                "text": "It does not compile, because a method cannot have two returns.",
+                "correct": false,
+                "why": "several return statements in one method are normal."
+              }
+            ],
+            "code": [
+              "static int test() {",
+              "try {",
+              "return 1;",
+              "} finally {",
+              "return 2;",
+              "}",
+              "}"
+            ],
+            "explain": "The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.",
+            "whyNotes": [
+              "B: the value from try is discarded, because finally runs afterwards.",
+              "C: nothing is added. Only the last return value is used.",
+              "D: several return statements in one method are normal."
+            ]
+          },
+          {
+            "question": "Which exception type is NOT required to be caught or declared?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "ArithmeticException, because it extends RuntimeException and is unchecked.",
+                "correct": true
+              },
+              {
+                "text": "IOException, because it is unchecked.",
+                "correct": false,
+                "why": "IOException is checked, so it must be handled."
+              },
+              {
+                "text": "SQLException, because it is unchecked.",
+                "correct": false,
+                "why": "SQLException is checked as well."
+              },
+              {
+                "text": "FileNotFoundException, because it is unchecked.",
+                "correct": false,
+                "why": "FileNotFoundException extends IOException, so it is checked too."
+              }
+            ],
+            "code": [],
+            "explain": "Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.",
+            "whyNotes": [
+              "B: IOException is checked, so it must be handled.",
+              "C: SQLException is checked as well.",
+              "D: FileNotFoundException extends IOException, so it is checked too."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_12_Exception_Handling;\n\n// Core Concepts: Exception Handling in Java\n// An exception is an abnormal condition or runtime error that occurs during program execution and disrupts normal control flow.\n// Without handling, an exception immediately terminates execution and prints a stack trace.\n//\n// Exception Hierarchy Overview:\n// - `Throwable`: Root class for all errors and exceptions.\n// - `Error`: Serious problems (e.g. `OutOfMemoryError`) that applications should NOT attempt to catch.\n// - `Exception`: Checked exceptions (compulsory handling/declaration, e.g. `IOException`).\n// - `RuntimeException`: Unchecked exceptions (programmer logic errors, e.g. `NullPointerException`, `ArithmeticException`).\n//\n// Key Components & Blocks:\n// - `try` block: Encloses statements that might throw an exception. Keep try blocks scoped tightly.\n// - `catch` block: Handles a specific exception type thrown from the associated `try` block.\n// - `finally` block: Guarantees execution regardless of whether an exception was thrown or caught (used for resource cleanup).\n//\n// Useful Diagnostic Methods:\n// - `e.getMessage()`: Returns detailed string description of the exception.\n// - `e.printStackTrace()`: Prints stack trace details to standard error.\n\n// Parameter notes (what each argument means and how to choose it):\n// - e (catch): Receives the exception thrown inside the matching `try` block. In this file, `Exception e` is the generic template example,\n//   while `NullPointerException e` is the specific type used for the runnable null-handling demo below.\n\n// Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions?\n// @answer Checked exceptions (subclasses of Exception excluding RuntimeException) are checked at compile-time and must be caught or declared with `throws`.\n// @answer Unchecked exceptions (subclasses of RuntimeException) occur at runtime due to logic bugs and do not require explicit compiler handling.\n\n// @quiz (INTERVIEW TRAP) Does a `finally` block execute if the `try` block contains a `return` statement?\n// @answer Yes. The `finally` block executes before the method returns. The main exception is if `System.exit()` is called, terminating the JVM.\n\n\n// @quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?\n// @answer Yes. The finally block runs even when try or catch executes a return statement.\n// @answer Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.\n// @answer The main practical exception is System.exit(), which terminates the JVM before finally can run.\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?\n// @answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.\n// @answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.\n// @answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.\n\n// @quiz (INTERVIEW) What is the basic exception hierarchy in Java?\n// @answer At the top is Throwable.\n// @answer Throwable has two major branches: Error and Exception.\n// @answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.\n// @answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.\n\n// @quiz (INTERVIEW) What is multi-catch in Java?\n// @answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).\n// @answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.\n// @answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.\n\n// @quiz (INTERVIEW) What is the difference between throw and throws in Java?\n// @answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").\n// @answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.\n// @answer Think of throw as the action and throws as the declaration.\n\n// @quiz (INTERVIEW) What is a NullPointerException and when does it occur?\n// @answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.\n// @answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.\n// @answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization.\n\n// @quiz (INTERVIEW, EASY) What is the basic structure of the exception hierarchy in Java?\n// @option Throwable is the root, splitting into Error, which applications should not catch, and Exception, which includes RuntimeException and the checked exceptions. [correct]\n// @option Exception is the root of every throwable type.\n// @option Error and RuntimeException are the same branch of the hierarchy.\n// @option RuntimeException is a checked exception.\n// @explain Everything throwable descends from Throwable. Error covers serious JVM-level problems such as OutOfMemoryError. Exception covers the conditions your code is expected to handle.\n// @why B: Throwable is the root. Exception is one of its two main branches.\n// @why C: Error and RuntimeException sit on different branches, because Error is not something application code recovers from.\n// @why D: RuntimeException and its subclasses are the unchecked exceptions.\n//\n// Note:- the question \"What is the difference between checked and unchecked exceptions?\" is already\n// asked above as a written question, so it is not repeated here as a multiple-choice question.\n\n// @quiz (INTERVIEW TRAP, HARD) What is printed by this code?\n// @code try { return 1; } finally { System.out.println(\"finally\"); }\n// @option finally is printed, and then the method returns 1. [correct]\n// @option Nothing is printed, because return skips the finally block.\n// @option It does not compile, because return is not allowed inside try.\n// @option finally runs only when an exception is thrown.\n// @explain A finally block runs before control leaves the try statement, including when a return is on its way out. The return value is settled after finally completes.\n// @why B: finally is designed to run even on the way out through a return.\n// @why C: return inside try is perfectly legal.\n// @why D: finally runs whether or not an exception occurred. The practical exception is System.exit, which ends the JVM.\n\n// @quiz (INTERVIEW, MEDIUM) What is the difference between throw and throws?\n// @option throw raises an exception inside a method body, while throws declares in the signature which checked exceptions may propagate. [correct]\n// @option Both are written in the method signature.\n// @option throws is used inside the body to raise an exception.\n// @option throw can be used only with unchecked exceptions.\n// @explain Think of throw as the action and throws as the declaration. throw new IllegalArgumentException(\"bad\") creates and passes an exception now; throws warns the caller that a checked exception may arrive.\n// @why B: throw belongs in the body, not the signature.\n// @why C: raises is throw's job; throws only declares.\n// @why D: throw works with any Throwable, including checked exceptions.\n\n// @quiz (INTERVIEW, MEDIUM) When does a NullPointerException occur?\n// @option When a method or field is used through a reference that is null, such as String s = null; s.length(); [correct]\n// @option When null is assigned to a variable.\n// @option It is a checked exception that must be caught.\n// @option It occurs at compile time.\n// @explain Assigning null is harmless. The failure comes later, when you try to use the reference as though it pointed at a real object, and there is nothing there to run the method on.\n// @why B: the assignment itself is fine, and local variables must simply be assigned before use.\n// @why C: NullPointerException extends RuntimeException, so it is unchecked.\n// @why D: the compiler cannot know whether a reference will be null, so this is a runtime failure.\n\n// @quiz (INTERVIEW TRAP, MEDIUM) Why is a broad catch (Exception e) usually a poor choice?\n// @option It can swallow unrelated bugs, so it is better to catch the specific exception you expect. [correct]\n// @option It is always the recommended practice.\n// @option You must always catch Throwable instead.\n// @option Specific catch blocks must come after the general one.\n// @explain A broad catch treats every failure as the one you anticipated, which hides the problems you did not. Catching the specific type keeps the handler honest about what it can actually deal with.\n// @why B: the general guidance is the opposite, unless you genuinely intend to handle everything.\n// @why C: catching Throwable is even broader, and it would also catch Error.\n// @why D: this is reversed. A more specific catch must come first, because a general one would otherwise capture the exception before the specific block is reached.\n\n// @quiz (INTERVIEW, EASY) What do getMessage() and printStackTrace() do?\n// @option getMessage() returns the description of the exception, and printStackTrace() writes the trace to standard error. [correct]\n// @option getMessage() prints the trace to standard error.\n// @option printStackTrace() returns a String that you must print yourself.\n// @option Both are fields rather than methods.\n// @explain These are the two diagnostic tools you reach for first. The message explains what went wrong, and the trace shows where it happened by listing the call chain.\n// @why B: that is what printStackTrace does. getMessage only returns the text.\n// @why C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.\n// @why D: they are methods, called with parentheses.\n\npublic class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }\n\n       // The String `value` is intentionally set to null below to demonstrate a caught NullPointerException.\n        String value = null;\n\n        try {\n            System.out.println(value.toUpperCase()); // `value` is null, so calling a method on it throws NullPointerException.\n                                                    // The risky statement belongs inside the `try` block so the program can handle the failure gracefully.\n\n            }catch (NullPointerException e){         // This catch block handles only NullPointerException from the try block above.\n                                                    // Using the specific exception type makes it clear what failure this demo is teaching.\n\n            System.out.println(\"You are trying to access a null value.\");\n            System.out.println(\"Caught exception message: \" + e.getMessage());\n        }\n\n    }\n}\n"
+        "code": "package Chapter_12_Exception_Handling;\n\n// Core Concepts: Exception Handling in Java\n// An exception is an abnormal condition or runtime error that occurs during program execution and disrupts normal control flow.\n// Without handling, an exception immediately terminates execution and prints a stack trace.\n//\n// Exception Hierarchy Overview:\n// - `Throwable`: Root class for all errors and exceptions.\n// - `Error`: Serious problems (e.g. `OutOfMemoryError`) that applications should NOT attempt to catch.\n// - `Exception`: Checked exceptions (compulsory handling/declaration, e.g. `IOException`).\n// - `RuntimeException`: Unchecked exceptions (programmer logic errors, e.g. `NullPointerException`, `ArithmeticException`).\n//\n// Key Components & Blocks:\n// - `try` block: Encloses statements that might throw an exception. Keep try blocks scoped tightly.\n// - `catch` block: Handles a specific exception type thrown from the associated `try` block.\n// - `finally` block: Guarantees execution regardless of whether an exception was thrown or caught (used for resource cleanup).\n//\n// Useful Diagnostic Methods:\n// - `e.getMessage()`: Returns detailed string description of the exception.\n// - `e.printStackTrace()`: Prints stack trace details to standard error.\n\n// Parameter notes (what each argument means and how to choose it):\n// - e (catch): Receives the exception thrown inside the matching `try` block. In this file, `Exception e` is the generic template example,\n//   while `NullPointerException e` is the specific type used for the runnable null-handling demo below.\n\n// Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions?\n// @answer Checked exceptions (subclasses of Exception excluding RuntimeException) are checked at compile-time and must be caught or declared with `throws`.\n// @answer Unchecked exceptions (subclasses of RuntimeException) occur at runtime due to logic bugs and do not require explicit compiler handling.\n\n// @quiz (INTERVIEW TRAP) Does a `finally` block execute if the `try` block contains a `return` statement?\n// @answer Yes. The `finally` block executes before the method returns. The main exception is if `System.exit()` is called, terminating the JVM.\n\n\n// @quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?\n// @answer Yes. The finally block runs even when try or catch executes a return statement.\n// @answer Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.\n// @answer The main practical exception is System.exit(), which terminates the JVM before finally can run.\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?\n// @answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.\n// @answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.\n// @answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.\n\n// @quiz (INTERVIEW) What is the basic exception hierarchy in Java?\n// @answer At the top is Throwable.\n// @answer Throwable has two major branches: Error and Exception.\n// @answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.\n// @answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.\n\n// @quiz (INTERVIEW) What is multi-catch in Java?\n// @answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).\n// @answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.\n// @answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.\n\n// @quiz (INTERVIEW) What is the difference between throw and throws in Java?\n// @answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").\n// @answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.\n// @answer Think of throw as the action and throws as the declaration.\n\n// @quiz (INTERVIEW) What is a NullPointerException and when does it occur?\n// @answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.\n// @answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.\n// @answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization.\n\n// @quiz (INTERVIEW, EASY) What is the basic structure of the exception hierarchy in Java?\n// @option Throwable is the root, splitting into Error, which applications should not catch, and Exception, which includes RuntimeException and the checked exceptions. [correct]\n// @option Exception is the root of every throwable type.\n// @option Error and RuntimeException are the same branch of the hierarchy.\n// @option RuntimeException is a checked exception.\n// @explain Everything throwable descends from Throwable. Error covers serious JVM-level problems such as OutOfMemoryError. Exception covers the conditions your code is expected to handle.\n// @why B: Throwable is the root. Exception is one of its two main branches.\n// @why C: Error and RuntimeException sit on different branches, because Error is not something application code recovers from.\n// @why D: RuntimeException and its subclasses are the unchecked exceptions.\n//\n// Note:- the question \"What is the difference between checked and unchecked exceptions?\" is already\n// asked above as a written question, so it is not repeated here as a multiple-choice question.\n\n// @quiz (INTERVIEW TRAP, HARD) What is printed by this code?\n// @code try { return 1; } finally { System.out.println(\"finally\"); }\n// @option finally is printed, and then the method returns 1. [correct]\n// @option Nothing is printed, because return skips the finally block.\n// @option It does not compile, because return is not allowed inside try.\n// @option finally runs only when an exception is thrown.\n// @explain A finally block runs before control leaves the try statement, including when a return is on its way out. The return value is settled after finally completes.\n// @why B: finally is designed to run even on the way out through a return.\n// @why C: return inside try is perfectly legal.\n// @why D: finally runs whether or not an exception occurred. The practical exception is System.exit, which ends the JVM.\n\n// @quiz (INTERVIEW, MEDIUM) What is the difference between throw and throws?\n// @option throw raises an exception inside a method body, while throws declares in the signature which checked exceptions may propagate. [correct]\n// @option Both are written in the method signature.\n// @option throws is used inside the body to raise an exception.\n// @option throw can be used only with unchecked exceptions.\n// @explain Think of throw as the action and throws as the declaration. throw new IllegalArgumentException(\"bad\") creates and passes an exception now; throws warns the caller that a checked exception may arrive.\n// @why B: throw belongs in the body, not the signature.\n// @why C: raises is throw's job; throws only declares.\n// @why D: throw works with any Throwable, including checked exceptions.\n\n// @quiz (INTERVIEW, MEDIUM) When does a NullPointerException occur?\n// @option When a method or field is used through a reference that is null, such as String s = null; s.length(); [correct]\n// @option When null is assigned to a variable.\n// @option It is a checked exception that must be caught.\n// @option It occurs at compile time.\n// @explain Assigning null is harmless. The failure comes later, when you try to use the reference as though it pointed at a real object, and there is nothing there to run the method on.\n// @why B: the assignment itself is fine, and local variables must simply be assigned before use.\n// @why C: NullPointerException extends RuntimeException, so it is unchecked.\n// @why D: the compiler cannot know whether a reference will be null, so this is a runtime failure.\n\n// @quiz (INTERVIEW TRAP, MEDIUM) Why is a broad catch (Exception e) usually a poor choice?\n// @option It can swallow unrelated bugs, so it is better to catch the specific exception you expect. [correct]\n// @option It is always the recommended practice.\n// @option You must always catch Throwable instead.\n// @option Specific catch blocks must come after the general one.\n// @explain A broad catch treats every failure as the one you anticipated, which hides the problems you did not. Catching the specific type keeps the handler honest about what it can actually deal with.\n// @why B: the general guidance is the opposite, unless you genuinely intend to handle everything.\n// @why C: catching Throwable is even broader, and it would also catch Error.\n// @why D: this is reversed. A more specific catch must come first, because a general one would otherwise capture the exception before the specific block is reached.\n\n// @quiz (INTERVIEW, EASY) What do getMessage() and printStackTrace() do?\n// @option getMessage() returns the description of the exception, and printStackTrace() writes the trace to standard error. [correct]\n// @option getMessage() prints the trace to standard error.\n// @option printStackTrace() returns a String that you must print yourself.\n// @option Both are fields rather than methods.\n// @explain These are the two diagnostic tools you reach for first. The message explains what went wrong, and the trace shows where it happened by listing the call chain.\n// @why B: that is what printStackTrace does. getMessage only returns the text.\n// @why C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.\n// @why D: they are methods, called with parentheses.\n\n// @quiz (OCJP, HARD) Does this code compile?\n// @code try {\n// @code     int value = Integer.parseInt(\"42\");\n// @code } catch (Exception e) {\n// @code     System.out.println(\"general\");\n// @code } catch (NumberFormatException e) {\n// @code     System.out.println(\"number\");\n// @code }\n// @option No. The broader catch comes first, so the narrower one can never be reached. [correct]\n// @option Yes, and it prints general when parsing fails.\n// @option Yes, and it prints number when parsing fails.\n// @option Yes, because the catch blocks are checked in order at runtime.\n// @explain Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.\n// @why B: the code does not compile, so nothing runs.\n// @why C: the specific catch must be written before the general one.\n// @why D: the order matters, and the compiler rejects an order that makes a block unreachable.\n\n// @quiz (OCJP, MEDIUM) What happens when this code runs?\n// @code int result = 10 / 0;\n// @code System.out.println(result);\n// @option It compiles and then throws ArithmeticException at runtime. [correct]\n// @option It does not compile, because division by zero is an error.\n// @option It prints 0.\n// @option It prints Infinity.\n// @explain Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.\n// @why B: the compiler cannot know the value of the divisor at compile time.\n// @why C: there is no result to print. The exception is thrown during the division.\n// @why D: integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead.\n\n// @quiz (OCJP, MEDIUM) What is thrown by this code?\n// @code int[] numbers = {1, 2, 3};\n// @code System.out.println(numbers[3]);\n// @option ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2. [correct]\n// @option NullPointerException.\n// @option Nothing. It prints 0.\n// @option Nothing. It prints 3.\n// @explain A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.\n// @why B: the array exists. The problem is the index, not a null reference.\n// @why C: Java does not return a default for an out-of-range index.\n// @why D: index 3 does not exist, so no value can be returned.\n\n// @quiz (INTERVIEW TRAP, HARD) What does this method return?\n// @code static int test() {\n// @code     try {\n// @code         return 1;\n// @code     } finally {\n// @code         return 2;\n// @code     }\n// @code }\n// @option 2, because a return inside finally overrides the return from try. [correct]\n// @option 1, because the return in try is evaluated first.\n// @option 3, because the two values are added.\n// @option It does not compile, because a method cannot have two returns.\n// @explain The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.\n// @why B: the value from try is discarded, because finally runs afterwards.\n// @why C: nothing is added. Only the last return value is used.\n// @why D: several return statements in one method are normal.\n\n// @quiz (INTERVIEW, MEDIUM) Which exception type is NOT required to be caught or declared?\n// @option ArithmeticException, because it extends RuntimeException and is unchecked. [correct]\n// @option IOException, because it is unchecked.\n// @option SQLException, because it is unchecked.\n// @option FileNotFoundException, because it is unchecked.\n// @explain Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.\n// @why B: IOException is checked, so it must be handled.\n// @why C: SQLException is checked as well.\n// @why D: FileNotFoundException extends IOException, so it is checked too.\n\npublic class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }\n\n       // The String `value` is intentionally set to null below to demonstrate a caught NullPointerException.\n        String value = null;\n\n        try {\n            System.out.println(value.toUpperCase()); // `value` is null, so calling a method on it throws NullPointerException.\n                                                    // The risky statement belongs inside the `try` block so the program can handle the failure gracefully.\n\n            }catch (NullPointerException e){         // This catch block handles only NullPointerException from the try block above.\n                                                    // Using the specific exception type makes it clear what failure this demo is teaching.\n\n            System.out.println(\"You are trying to access a null value.\");\n            System.out.println(\"Caught exception message: \" + e.getMessage());\n        }\n\n    }\n}\n"
       },
       {
         "filePath": "src/Chapter_12_Exception_Handling/Sub_Chapter_2_Exception_Handling_CodingChallenge/MultiCatchChallenge.java",
@@ -12184,11 +13045,60 @@ const CONCEPTS_DATA = [
               "@explain A top-level class can be public or package-private. protected and private describe access relative to a class, so they make sense for members, not for the top-level class itself.",
               "@why B: protected and private are valid for members, not for a top-level class.",
               "@why C: only two options apply to a top-level class.",
-              "@why D: a private top-level class would be unreachable, and Java does not allow it."
+              "@why D: a private top-level class would be unreachable, and Java does not allow it.",
+              "@option The class with no modifier is package-private, so other classes in the same package can use it, but classes in other packages cannot. [correct]",
+              "@option The class with no modifier is public by default.",
+              "@option The class with no modifier can only be used inside its own file.",
+              "@option The class with no modifier cannot be instantiated at all.",
+              "@explain Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.",
+              "@why B: public has to be written. The default is package-private, not public.",
+              "@why C: package-private covers the whole package, and other classes in the same package can use it.",
+              "@why D: it can be instantiated by anything in the same package."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Holder {\n@code     int value = 5;\n@code     static void show() {\n@code         System.out.println(value);\n@code     }\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. A static method has no object to read an instance field from. [correct]",
+              "@option Yes, and it prints 5.",
+              "@option Yes, and it prints 0.",
+              "@option Yes, because value is initialised when the class is loaded.",
+              "@explain An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.",
+              "@why B: the compiler rejects it, so nothing is printed.",
+              "@why C: the field is not zero. The problem is that there is no object at all.",
+              "@why D: instance fields are created with the object, not when the class is loaded.",
+              "@option The accessible members, which means public and protected ones, and package-private ones when the packages match. [correct]",
+              "@option Every member, including private ones.",
+              "@option Only the private members.",
+              "@option Only the members declared static.",
+              "@explain Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.",
+              "@why B: private members are excluded. A subclass cannot see or override them.",
+              "@why C: private members are exactly the ones that are not inherited.",
+              "@why D: static members may be inherited, but they are not the only kind.",
+              "@option A field or a method declared inside the class, together with other elements such as nested types. [correct]",
+              "@option Only the methods of a class.",
+              "@option Only the objects created from the class.",
+              "@option The package that contains the class.",
+              "@explain Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.",
+              "@why B: methods are members, but the fields are members too.",
+              "@why C: objects are instances of the class, not members of it.",
+              "@why D: a package groups classes. It is not a member of any one class."
             ]
           }
         ],
-        "inlineComments": [],
+        "inlineComments": [
+          "@code class Holder {",
+          "@code int value = 5;",
+          "@code static void show() {",
+          "@code System.out.println(value);",
+          "@code }"
+        ],
         "customQuizzes": [
           {
             "question": "What is the difference between an abstract class and an interface in Java?",
@@ -12456,10 +13366,153 @@ const CONCEPTS_DATA = [
               "C: only two options apply to a top-level class.",
               "D: a private top-level class would be unreachable, and Java does not allow it."
             ]
+          },
+          {
+            "question": "Two classes are declared in the same package. One is public, and the other has no access modifier. Which is true?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "The class with no modifier is package-private, so other classes in the same package can use it, but classes in other packages cannot.",
+                "correct": true
+              },
+              {
+                "text": "The class with no modifier is public by default.",
+                "correct": false,
+                "why": "public has to be written. The default is package-private, not public."
+              },
+              {
+                "text": "The class with no modifier can only be used inside its own file.",
+                "correct": false,
+                "why": "package-private covers the whole package, and other classes in the same package can use it."
+              },
+              {
+                "text": "The class with no modifier cannot be instantiated at all.",
+                "correct": false,
+                "why": "it can be instantiated by anything in the same package."
+              }
+            ],
+            "code": [],
+            "explain": "Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.",
+            "whyNotes": [
+              "B: public has to be written. The default is package-private, not public.",
+              "C: package-private covers the whole package, and other classes in the same package can use it.",
+              "D: it can be instantiated by anything in the same package."
+            ]
+          },
+          {
+            "question": "Does this class compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. A static method has no object to read an instance field from.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and it prints 5.",
+                "correct": false,
+                "why": "the compiler rejects it, so nothing is printed."
+              },
+              {
+                "text": "Yes, and it prints 0.",
+                "correct": false,
+                "why": "the field is not zero. The problem is that there is no object at all."
+              },
+              {
+                "text": "Yes, because value is initialised when the class is loaded.",
+                "correct": false,
+                "why": "instance fields are created with the object, not when the class is loaded."
+              }
+            ],
+            "code": [
+              "class Holder {",
+              "int value = 5;",
+              "static void show() {",
+              "System.out.println(value);",
+              "}",
+              "}"
+            ],
+            "explain": "An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.",
+            "whyNotes": [
+              "B: the compiler rejects it, so nothing is printed.",
+              "C: the field is not zero. The problem is that there is no object at all.",
+              "D: instance fields are created with the object, not when the class is loaded."
+            ]
+          },
+          {
+            "question": "A subclass inherits from a parent. Which members does it inherit?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "The accessible members, which means public and protected ones, and package-private ones when the packages match.",
+                "correct": true
+              },
+              {
+                "text": "Every member, including private ones.",
+                "correct": false,
+                "why": "private members are excluded. A subclass cannot see or override them."
+              },
+              {
+                "text": "Only the private members.",
+                "correct": false,
+                "why": "private members are exactly the ones that are not inherited."
+              },
+              {
+                "text": "Only the members declared static.",
+                "correct": false,
+                "why": "static members may be inherited, but they are not the only kind."
+              }
+            ],
+            "code": [],
+            "explain": "Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.",
+            "whyNotes": [
+              "B: private members are excluded. A subclass cannot see or override them.",
+              "C: private members are exactly the ones that are not inherited.",
+              "D: static members may be inherited, but they are not the only kind."
+            ]
+          },
+          {
+            "question": "What is a class member in Java?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "A field or a method declared inside the class, together with other elements such as nested types.",
+                "correct": true
+              },
+              {
+                "text": "Only the methods of a class.",
+                "correct": false,
+                "why": "methods are members, but the fields are members too."
+              },
+              {
+                "text": "Only the objects created from the class.",
+                "correct": false,
+                "why": "objects are instances of the class, not members of it."
+              },
+              {
+                "text": "The package that contains the class.",
+                "correct": false,
+                "why": "a package groups classes. It is not a member of any one class."
+              }
+            ],
+            "code": [],
+            "explain": "Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.",
+            "whyNotes": [
+              "B: methods are members, but the fields are members too.",
+              "C: objects are instances of the class, not members of it.",
+              "D: a package groups classes. It is not a member of any one class."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;\n// Object-Oriented Programming (OOP) is a programming paradigm that models real-world entities as software objects.\n// In OOP, everything revolves around CLASSES (blueprints) and OBJECTS (instances of those blueprints).\n// OOP is built on four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.\n// A class defines FIELDS (data/state) and METHODS (behaviour). Together these are called class members.\n// A static field has one copy shared by all instances. An instance field has one copy per object.\n// A static method cannot use instance data. An instance method can use both static and instance data.\n/*\n*  Object-oriented programming is a way to model real world objects as software objects which contain both data and code\n*\n*  OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects\n*\n*  Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.\n*\n* A software object stores its state in fields, which can also be called variables or attributes.\n*\n* Objects expose their behavior with methods.\n*\n* Class is basically a template or a blueprint for creating objects.\n*\n* The class describes the data (fields), and the behavior (methods), that are relevant to the real-world object we want to describe. These are called class members.\n*\n* A class member can be a field or a method, or some other type of dependent element.\n*\n* If a field is static, there is only one copy in memory, and this value is associated with the class or template itself.\n*\n* If a field is not static, it's called an instance field, and each object may have a different value stored for this field.\n*\n* A static method can't be dependent on any one object's state, so it can't reference any instance members.\n*\n* Any method that operates on instance fields needs to be non-static. These class or member fields can be thought of as variables, though it's more common to call them fields or attributes.\n*\n*/\n\n\n/*\n* The public keyword is an access modifier. This lets us determine what access others will have to this new class that we're creating.\n*\n* Classes can be organized into logical groupings which are called packages.\n*\n* You declare a package name in the class using the package statement.\n*\n* If you don't declare a package, the class implicitly belongs to the default package.\n*\n* A class is said to be a top-level class if it is defined in the source code file\n*\n* and not enclosed in the code block of another class, type, or method.\n*\n* A top-level class has only two valid access modifier options: public or none.\n*\n* The word public gives unrestricted access to a class.\n*\n* When there is no modifier specified at all, Java, by default, implicitly allows package-private access.\n*\n* This means that classes grouped into the same package can access the class.\n* */\n\n\n/*\n* An access modifier at the member level allows granular control over class members.\n*\n* Access Keyword :- public\n* Description :- public means any other class in any package can access this class.\n*\n* Access Keyword :- protected\n* Description :- protected allows classes in the same package, and any subclass in other packages to have access to the member\n*\n* Access Keyword :- None ( No access keyword specified)\n* Description :- When the modifier is omitted, this has special meaning, called package access, meaning the member is accessible only to classes in the same package\n*\n* Access Keyword :- private\n* Description :- private means that no other class can access this member\n*\n* */\n\n// @quiz (INTERVIEW) What is the difference between an abstract class and an interface in Java?\n// @answer An abstract class can have constructors, instance fields, concrete methods, and abstract methods, so it is useful for sharing common state and behavior in a base class.\n// @answer An interface represents a contract or capability. It has no constructors and no instance state for objects, though Java 8+ allows default and static methods.\n// @answer A class can extend only ONE abstract class, but it can implement MULTIPLE interfaces.\n// @answer Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable.\n\n// @quiz (INTERVIEW) What are the three common uses of the final keyword in Java?\n// @answer A final variable can be assigned only once after initialization, so its reference or primitive value cannot be reassigned.\n// @answer A final method cannot be overridden by subclasses.\n// @answer A final class cannot be extended, which is why classes like String and Integer cannot be subclassed.\n\n// @quiz (INTERVIEW) What is the order of Java access modifiers from most restrictive to least restrictive?\n// @answer Order: private, default (package-private), protected, public.\n// @answer private means only inside the same class.\n// @answer default means only classes in the same package.\n// @answer protected means same package plus subclasses in other packages.\n// @answer public means accessible from everywhere.\n\n// @quiz (INTERVIEW) What is the difference between this and super in Java?\n// @answer this refers to the current object and is used to access current class fields, methods, or another constructor in the same class through this().\n// @answer super refers to the parent-class part of the current object and is used to call the parent constructor with super() or access overridden parent methods and hidden parent fields.\n// @answer this resolves current-object context, while super explicitly moves one level up the inheritance chain.\n\n// @quiz (INTERVIEW) What is polymorphism in Java, and what is the difference between compile-time and runtime polymorphism?\n// @answer Compile-time polymorphism usually means method overloading, where the compiler decides which overloaded method signature matches the arguments.\n// @answer Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.\n// @answer Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch.\n\n// Parameter notes (what each constructor/method argument means and how to choose it):\n// - This overview class defines no parameterized constructors or parameterized methods, so there are no object arguments to validate here.\n// - important: when later examples call overloaded methods or constructors, Java chooses the matching signature from the argument count, types, and order.\n// - remember: if a subclass constructor calls super(args), those arguments initialize the parent-class part of the object; choose values the parent fields can safely store.\n// - careful: if a method parameter has the same name as a field, this.field = field copies the incoming argument into the object's field.\n//\n// @quiz (INTERVIEW) When a constructor parameter has the same name as an instance field, what does this.field = field mean?\n// @answer The bare name field is the parameter, while this.field is the current object's instance field; the assignment stores the caller's argument in the object.\n// @quiz (OCJP) How does Java choose between overloaded methods or constructors that take parameters?\n// @answer Java matches the argument list at compile time by number, compatible types, and order, so passing arguments in the wrong order can call a different overload or fail to compile.\n\n// @quiz (INTERVIEW, EASY) What are the four pillars of Object-Oriented Programming?\n// @option Encapsulation, inheritance, polymorphism and abstraction. [correct]\n// @option Classes, objects, methods and fields.\n// @option Compilation, interpretation, bytecode and the JVM.\n// @option Overloading, overriding, hiding and shadowing.\n// @explain The four pillars describe the design principles of OOP. Classes, objects, methods and fields are the building blocks you use to apply them, not the pillars themselves.\n// @why B: those are the basic building blocks of a class, not the four design pillars.\n// @why C: those belong to how Java code is built and run, not to OOP design.\n// @why D: those are features of how methods and fields behave, not the pillars.\n\n// @quiz (INTERVIEW, EASY) What are the members of a class?\n// @option Its fields, which hold data, and its methods, which define behaviour. [correct]\n// @option Only its methods.\n// @option Only the objects created from it.\n// @option The packages it belongs to.\n// @explain A class describes the data it holds and what it can do. Fields store the state, methods provide the behaviour, and together they are called class members.\n// @why B: methods are only half of it. The fields that hold the state are members too.\n// @why C: objects are instances of the class, not members of it.\n// @why D: a package groups related classes. It is not a member of a class.\n\n// @quiz (INTERVIEW, MEDIUM) How does a static field differ from an instance field?\n// @option A static field has one copy shared by the whole class, while an instance field has one copy per object. [correct]\n// @option A static field has one copy per object, and an instance field is shared.\n// @option Both have one copy per object.\n// @option A static field cannot be read outside its own class.\n// @explain Static means it belongs to the class itself, so every object sees the same value. Instance fields belong to the object, so different objects can hold different values at the same time.\n// @why B: this is the reverse. Static is the shared one.\n// @why C: instance fields are per object, but a static field is not.\n// @why D: visibility is controlled by the access modifier, such as public or private, not by static.\n\n// @quiz (INTERVIEW, MEDIUM) Why can a static method not use instance data?\n// @option Because a static method belongs to the class and may run when no object exists, so there is no instance state to read. [correct]\n// @option Because static methods run before the class is loaded.\n// @option Because instance fields are private by definition.\n// @option Because static methods are always private.\n// @explain A static method is called on the class, so it has no object to take state from. That is why it cannot reference instance fields directly, while an instance method can use both static and instance data.\n// @why B: the class must be loaded before anything in it runs, including static methods.\n// @why C: instance fields can have any access modifier.\n// @why D: a static method can be public, and the restriction on instance data applies either way.\n\n// @quiz (OCJP, MEDIUM) What access modifiers may a top-level class have?\n// @option Only public or none, where none means package-private access. [correct]\n// @option public, protected or private, just like a field.\n// @option Any access modifier at all.\n// @option private only, because a class is used by its own file.\n// @explain A top-level class can be public or package-private. protected and private describe access relative to a class, so they make sense for members, not for the top-level class itself.\n// @why B: protected and private are valid for members, not for a top-level class.\n// @why C: only two options apply to a top-level class.\n// @why D: a private top-level class would be unreachable, and Java does not allow it.\n\npublic class ClassesAndInheritance {\n\n\n\n}\n"
+        "code": "package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;\n// Object-Oriented Programming (OOP) is a programming paradigm that models real-world entities as software objects.\n// In OOP, everything revolves around CLASSES (blueprints) and OBJECTS (instances of those blueprints).\n// OOP is built on four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.\n// A class defines FIELDS (data/state) and METHODS (behaviour). Together these are called class members.\n// A static field has one copy shared by all instances. An instance field has one copy per object.\n// A static method cannot use instance data. An instance method can use both static and instance data.\n/*\n*  Object-oriented programming is a way to model real world objects as software objects which contain both data and code\n*\n*  OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects\n*\n*  Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.\n*\n* A software object stores its state in fields, which can also be called variables or attributes.\n*\n* Objects expose their behavior with methods.\n*\n* Class is basically a template or a blueprint for creating objects.\n*\n* The class describes the data (fields), and the behavior (methods), that are relevant to the real-world object we want to describe. These are called class members.\n*\n* A class member can be a field or a method, or some other type of dependent element.\n*\n* If a field is static, there is only one copy in memory, and this value is associated with the class or template itself.\n*\n* If a field is not static, it's called an instance field, and each object may have a different value stored for this field.\n*\n* A static method can't be dependent on any one object's state, so it can't reference any instance members.\n*\n* Any method that operates on instance fields needs to be non-static. These class or member fields can be thought of as variables, though it's more common to call them fields or attributes.\n*\n*/\n\n\n/*\n* The public keyword is an access modifier. This lets us determine what access others will have to this new class that we're creating.\n*\n* Classes can be organized into logical groupings which are called packages.\n*\n* You declare a package name in the class using the package statement.\n*\n* If you don't declare a package, the class implicitly belongs to the default package.\n*\n* A class is said to be a top-level class if it is defined in the source code file\n*\n* and not enclosed in the code block of another class, type, or method.\n*\n* A top-level class has only two valid access modifier options: public or none.\n*\n* The word public gives unrestricted access to a class.\n*\n* When there is no modifier specified at all, Java, by default, implicitly allows package-private access.\n*\n* This means that classes grouped into the same package can access the class.\n* */\n\n\n/*\n* An access modifier at the member level allows granular control over class members.\n*\n* Access Keyword :- public\n* Description :- public means any other class in any package can access this class.\n*\n* Access Keyword :- protected\n* Description :- protected allows classes in the same package, and any subclass in other packages to have access to the member\n*\n* Access Keyword :- None ( No access keyword specified)\n* Description :- When the modifier is omitted, this has special meaning, called package access, meaning the member is accessible only to classes in the same package\n*\n* Access Keyword :- private\n* Description :- private means that no other class can access this member\n*\n* */\n\n// @quiz (INTERVIEW) What is the difference between an abstract class and an interface in Java?\n// @answer An abstract class can have constructors, instance fields, concrete methods, and abstract methods, so it is useful for sharing common state and behavior in a base class.\n// @answer An interface represents a contract or capability. It has no constructors and no instance state for objects, though Java 8+ allows default and static methods.\n// @answer A class can extend only ONE abstract class, but it can implement MULTIPLE interfaces.\n// @answer Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable.\n\n// @quiz (INTERVIEW) What are the three common uses of the final keyword in Java?\n// @answer A final variable can be assigned only once after initialization, so its reference or primitive value cannot be reassigned.\n// @answer A final method cannot be overridden by subclasses.\n// @answer A final class cannot be extended, which is why classes like String and Integer cannot be subclassed.\n\n// @quiz (INTERVIEW) What is the order of Java access modifiers from most restrictive to least restrictive?\n// @answer Order: private, default (package-private), protected, public.\n// @answer private means only inside the same class.\n// @answer default means only classes in the same package.\n// @answer protected means same package plus subclasses in other packages.\n// @answer public means accessible from everywhere.\n\n// @quiz (INTERVIEW) What is the difference between this and super in Java?\n// @answer this refers to the current object and is used to access current class fields, methods, or another constructor in the same class through this().\n// @answer super refers to the parent-class part of the current object and is used to call the parent constructor with super() or access overridden parent methods and hidden parent fields.\n// @answer this resolves current-object context, while super explicitly moves one level up the inheritance chain.\n\n// @quiz (INTERVIEW) What is polymorphism in Java, and what is the difference between compile-time and runtime polymorphism?\n// @answer Compile-time polymorphism usually means method overloading, where the compiler decides which overloaded method signature matches the arguments.\n// @answer Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.\n// @answer Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch.\n\n// Parameter notes (what each constructor/method argument means and how to choose it):\n// - This overview class defines no parameterized constructors or parameterized methods, so there are no object arguments to validate here.\n// - important: when later examples call overloaded methods or constructors, Java chooses the matching signature from the argument count, types, and order.\n// - remember: if a subclass constructor calls super(args), those arguments initialize the parent-class part of the object; choose values the parent fields can safely store.\n// - careful: if a method parameter has the same name as a field, this.field = field copies the incoming argument into the object's field.\n//\n// @quiz (INTERVIEW) When a constructor parameter has the same name as an instance field, what does this.field = field mean?\n// @answer The bare name field is the parameter, while this.field is the current object's instance field; the assignment stores the caller's argument in the object.\n// @quiz (OCJP) How does Java choose between overloaded methods or constructors that take parameters?\n// @answer Java matches the argument list at compile time by number, compatible types, and order, so passing arguments in the wrong order can call a different overload or fail to compile.\n\n// @quiz (INTERVIEW, EASY) What are the four pillars of Object-Oriented Programming?\n// @option Encapsulation, inheritance, polymorphism and abstraction. [correct]\n// @option Classes, objects, methods and fields.\n// @option Compilation, interpretation, bytecode and the JVM.\n// @option Overloading, overriding, hiding and shadowing.\n// @explain The four pillars describe the design principles of OOP. Classes, objects, methods and fields are the building blocks you use to apply them, not the pillars themselves.\n// @why B: those are the basic building blocks of a class, not the four design pillars.\n// @why C: those belong to how Java code is built and run, not to OOP design.\n// @why D: those are features of how methods and fields behave, not the pillars.\n\n// @quiz (INTERVIEW, EASY) What are the members of a class?\n// @option Its fields, which hold data, and its methods, which define behaviour. [correct]\n// @option Only its methods.\n// @option Only the objects created from it.\n// @option The packages it belongs to.\n// @explain A class describes the data it holds and what it can do. Fields store the state, methods provide the behaviour, and together they are called class members.\n// @why B: methods are only half of it. The fields that hold the state are members too.\n// @why C: objects are instances of the class, not members of it.\n// @why D: a package groups related classes. It is not a member of a class.\n\n// @quiz (INTERVIEW, MEDIUM) How does a static field differ from an instance field?\n// @option A static field has one copy shared by the whole class, while an instance field has one copy per object. [correct]\n// @option A static field has one copy per object, and an instance field is shared.\n// @option Both have one copy per object.\n// @option A static field cannot be read outside its own class.\n// @explain Static means it belongs to the class itself, so every object sees the same value. Instance fields belong to the object, so different objects can hold different values at the same time.\n// @why B: this is the reverse. Static is the shared one.\n// @why C: instance fields are per object, but a static field is not.\n// @why D: visibility is controlled by the access modifier, such as public or private, not by static.\n\n// @quiz (INTERVIEW, MEDIUM) Why can a static method not use instance data?\n// @option Because a static method belongs to the class and may run when no object exists, so there is no instance state to read. [correct]\n// @option Because static methods run before the class is loaded.\n// @option Because instance fields are private by definition.\n// @option Because static methods are always private.\n// @explain A static method is called on the class, so it has no object to take state from. That is why it cannot reference instance fields directly, while an instance method can use both static and instance data.\n// @why B: the class must be loaded before anything in it runs, including static methods.\n// @why C: instance fields can have any access modifier.\n// @why D: a static method can be public, and the restriction on instance data applies either way.\n\n// @quiz (OCJP, MEDIUM) What access modifiers may a top-level class have?\n// @option Only public or none, where none means package-private access. [correct]\n// @option public, protected or private, just like a field.\n// @option Any access modifier at all.\n// @option private only, because a class is used by its own file.\n// @explain A top-level class can be public or package-private. protected and private describe access relative to a class, so they make sense for members, not for the top-level class itself.\n// @why B: protected and private are valid for members, not for a top-level class.\n// @why C: only two options apply to a top-level class.\n// @why D: a private top-level class would be unreachable, and Java does not allow it.\n\n// @quiz (INTERVIEW, MEDIUM) Two classes are declared in the same package. One is public, and the other has no access modifier. Which is true?\n// @option The class with no modifier is package-private, so other classes in the same package can use it, but classes in other packages cannot. [correct]\n// @option The class with no modifier is public by default.\n// @option The class with no modifier can only be used inside its own file.\n// @option The class with no modifier cannot be instantiated at all.\n// @explain Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.\n// @why B: public has to be written. The default is package-private, not public.\n// @why C: package-private covers the whole package, and other classes in the same package can use it.\n// @why D: it can be instantiated by anything in the same package.\n\n// @quiz (OCJP, MEDIUM) Does this class compile?\n// @code class Holder {\n// @code     int value = 5;\n// @code     static void show() {\n// @code         System.out.println(value);\n// @code     }\n// @code }\n// @option No. A static method has no object to read an instance field from. [correct]\n// @option Yes, and it prints 5.\n// @option Yes, and it prints 0.\n// @option Yes, because value is initialised when the class is loaded.\n// @explain An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.\n// @why B: the compiler rejects it, so nothing is printed.\n// @why C: the field is not zero. The problem is that there is no object at all.\n// @why D: instance fields are created with the object, not when the class is loaded.\n\n// @quiz (INTERVIEW, MEDIUM) A subclass inherits from a parent. Which members does it inherit?\n// @option The accessible members, which means public and protected ones, and package-private ones when the packages match. [correct]\n// @option Every member, including private ones.\n// @option Only the private members.\n// @option Only the members declared static.\n// @explain Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.\n// @why B: private members are excluded. A subclass cannot see or override them.\n// @why C: private members are exactly the ones that are not inherited.\n// @why D: static members may be inherited, but they are not the only kind.\n\n// @quiz (INTERVIEW, MEDIUM) What is a class member in Java?\n// @option A field or a method declared inside the class, together with other elements such as nested types. [correct]\n// @option Only the methods of a class.\n// @option Only the objects created from the class.\n// @option The package that contains the class.\n// @explain Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.\n// @why B: methods are members, but the fields are members too.\n// @why C: objects are instances of the class, not members of it.\n// @why D: a package groups classes. It is not a member of any one class.\n\npublic class ClassesAndInheritance {\n\n\n\n}\n"
       },
       {
         "filePath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
@@ -15909,13 +16962,88 @@ const CONCEPTS_DATA = [
               "@why C: widening to a supertype would break callers who expect the narrower type.",
               "@why D: an exact match is always allowed, but it is not the only option."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Parent {\r\n@code     static void show() { System.out.println(\"parent\"); }\r\n@code }\r\n@code class Child extends Parent {",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@code @Override"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code     static void show() { System.out.println(\"child\"); }\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. A static method is hidden rather than overridden, so @Override is a compile error. [correct]",
+              "@option Yes, and calling Child.show() prints child.",
+              "@option Yes, because @Override is optional.",
+              "@option Yes, and calling show() on a Parent reference prints child.",
+              "@explain Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.",
+              "@why B: the annotation is checked, and it fails here.",
+              "@why C: @Override is optional only when a real override exists. Here there is none.",
+              "@why D: hiding resolves at compile time from the reference type, so a Parent reference would print parent."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code class Parent {\r\n@code     private void greet() { System.out.println(\"parent\"); }\r\n@code     void hello() { greet(); }\r\n@code }\r\n@code class Child extends Parent {\r\n@code     void greet() { System.out.println(\"child\"); }\r\n@code }\r\n@code new Child().hello();",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option parent, because the private method is not overridden, so Parent's own method is still used. [correct]",
+              "@option child, because Child declares a method with the same name.",
+              "@option It does not compile, because Child cannot declare greet().",
+              "@option It prints both parent and child.",
+              "@explain A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.",
+              "@why B: overriding needs an inherited method. A private method is not inherited.",
+              "@why C: declaring a method with the same name is allowed; it simply is not an override.",
+              "@why D: only one method is called.",
+              "@option It calls the parent class version of toString, which is useful for adding the parent fields to the result. [correct]",
+              "@option It creates a new parent object.",
+              "@option It calls the constructor of the parent class.",
+              "@option It returns the class name only.",
+              "@explain super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.",
+              "@why B: no object is created. The method is simply called on the same object.",
+              "@why C: a constructor call is super(...) with parentheses and arguments, not super.method().",
+              "@why D: it runs whatever the parent toString returns, which normally includes the parent fields.",
+              "@option public, because an override may widen access but never narrow it. [correct]",
+              "@option private, because an override may be more restrictive.",
+              "@option It does not matter, because an override can use any modifier.",
+              "@option Only protected, exactly matching the parent.",
+              "@explain An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.",
+              "@why B: private is more restrictive, which is exactly what is forbidden.",
+              "@why C: the modifier is constrained by the rule that access may not be reduced.",
+              "@why D: an exact match is allowed, but so is widening it to public."
+            ]
           }
         ],
         "inlineComments": [
           "@code class Animal { void speak() { System.out.println(\"Animal\"); } }",
           "@code class Dog extends Animal { void speak() { System.out.println(\"Dog\"); } }",
           "@code Animal a = new Dog();",
-          "@code a.speak();"
+          "@code a.speak();",
+          "@code class Parent {",
+          "@code static void show() { System.out.println(\"parent\"); }",
+          "@code }",
+          "@code class Child extends Parent {",
+          "@code static void show() { System.out.println(\"child\"); }",
+          "@code private void greet() { System.out.println(\"parent\"); }",
+          "@code void hello() { greet(); }",
+          "@code void greet() { System.out.println(\"child\"); }",
+          "@code new Child().hello();"
         ],
         "customQuizzes": [
           {
@@ -16364,6 +17492,159 @@ const CONCEPTS_DATA = [
               "C: widening to a supertype would break callers who expect the narrower type.",
               "D: an exact match is always allowed, but it is not the only option."
             ]
+          },
+          {
+            "question": "Does this code compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "No. A static method is hidden rather than overridden, so @Override is a compile error.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and calling Child.show() prints child.",
+                "correct": false,
+                "why": "the annotation is checked, and it fails here."
+              },
+              {
+                "text": "Yes, because @Override is optional.",
+                "correct": false,
+                "why": "@Override is optional only when a real override exists. Here there is none."
+              },
+              {
+                "text": "Yes, and calling show() on a Parent reference prints child.",
+                "correct": false,
+                "why": "hiding resolves at compile time from the reference type, so a Parent reference would print parent."
+              }
+            ],
+            "code": [
+              "class Parent {",
+              "static void show() { System.out.println(\"parent\"); }",
+              "}",
+              "class Child extends Parent {",
+              "@Override",
+              "static void show() { System.out.println(\"child\"); }",
+              "}"
+            ],
+            "explain": "Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.",
+            "whyNotes": [
+              "B: the annotation is checked, and it fails here.",
+              "C: @Override is optional only when a real override exists. Here there is none.",
+              "D: hiding resolves at compile time from the reference type, so a Parent reference would print parent."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "parent, because the private method is not overridden, so Parent's own method is still used.",
+                "correct": true
+              },
+              {
+                "text": "child, because Child declares a method with the same name.",
+                "correct": false,
+                "why": "overriding needs an inherited method. A private method is not inherited."
+              },
+              {
+                "text": "It does not compile, because Child cannot declare greet().",
+                "correct": false,
+                "why": "declaring a method with the same name is allowed; it simply is not an override."
+              },
+              {
+                "text": "It prints both parent and child.",
+                "correct": false,
+                "why": "only one method is called."
+              }
+            ],
+            "code": [
+              "class Parent {",
+              "private void greet() { System.out.println(\"parent\"); }",
+              "void hello() { greet(); }",
+              "}",
+              "class Child extends Parent {",
+              "void greet() { System.out.println(\"child\"); }",
+              "}",
+              "new Child().hello();"
+            ],
+            "explain": "A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.",
+            "whyNotes": [
+              "B: overriding needs an inherited method. A private method is not inherited.",
+              "C: declaring a method with the same name is allowed; it simply is not an override.",
+              "D: only one method is called."
+            ]
+          },
+          {
+            "question": "What does super.toString() do inside an overriding toString method?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It calls the parent class version of toString, which is useful for adding the parent fields to the result.",
+                "correct": true
+              },
+              {
+                "text": "It creates a new parent object.",
+                "correct": false,
+                "why": "no object is created. The method is simply called on the same object."
+              },
+              {
+                "text": "It calls the constructor of the parent class.",
+                "correct": false,
+                "why": "a constructor call is super(...) with parentheses and arguments, not super.method()."
+              },
+              {
+                "text": "It returns the class name only.",
+                "correct": false,
+                "why": "it runs whatever the parent toString returns, which normally includes the parent fields."
+              }
+            ],
+            "code": [],
+            "explain": "super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.",
+            "whyNotes": [
+              "B: no object is created. The method is simply called on the same object.",
+              "C: a constructor call is super(...) with parentheses and arguments, not super.method().",
+              "D: it runs whatever the parent toString returns, which normally includes the parent fields."
+            ]
+          },
+          {
+            "question": "A parent declares a method as protected. Which access modifier in an overriding child method is allowed?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "public, because an override may widen access but never narrow it.",
+                "correct": true
+              },
+              {
+                "text": "private, because an override may be more restrictive.",
+                "correct": false,
+                "why": "private is more restrictive, which is exactly what is forbidden."
+              },
+              {
+                "text": "It does not matter, because an override can use any modifier.",
+                "correct": false,
+                "why": "the modifier is constrained by the rule that access may not be reduced."
+              },
+              {
+                "text": "Only protected, exactly matching the parent.",
+                "correct": false,
+                "why": "an exact match is allowed, but so is widening it to public."
+              }
+            ],
+            "code": [],
+            "explain": "An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.",
+            "whyNotes": [
+              "B: private is more restrictive, which is exactly what is forbidden.",
+              "C: the modifier is constrained by the rule that access may not be reduced.",
+              "D: an exact match is allowed, but so is widening it to public."
+            ]
           }
         ],
         "deepChallenges": [
@@ -16404,7 +17685,7 @@ const CONCEPTS_DATA = [
             ]
           }
         ],
-        "code": "package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;\r\n\r\n/*\r\n*    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In\r\n*    other words, the same name, and same parameters).\r\n*\r\n*    By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.\r\n*\r\n*    Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.\r\n*\r\n*    When we override a method, it's recommended to put @Override immediately above the method definition.\r\n*    The @Override statement is not required, but it's a way to get the compiler to flag\r\n*    an error if you don't actually properly override this method.\r\n*    We'll get an error if we don't follow the overriding rules correctly for that method.\r\n*\r\n*     We can't override static methods,only instance methods can be overridden.\r\n*\r\n*     Method overriding rules\r\n*\r\n*     A method will be considered overridden if we follow these rules.\r\n*\r\n*     1) Firstly, It must have the same name and same arguments.\r\n*     2) The return type can be a subclass of the return type in the parent class.\r\n*     3) It can't have a lower access modifier. In other words, it\r\n*     can't have more restrictive access privileges. For example, if the parent's method is protected, then\r\n*     using private in the child's overridden method is not allowed. However, using public for the child's\r\n*     method would be allowed, in this example.\r\n*     4) Only inherited methods can be overridden, in other words, methods can be overridden only in child classes.\r\n*     5) Constructors and private methods cannot be overridden.\r\n*     6) And Methods that are final also cannot be overridden.\r\n*     7) A subclass can use super.methodName() to call the superclass version of an overridden method.\r\n*\r\n*\r\n*\r\n* */\r\n\r\n// @quiz (INTERVIEW) What is method overriding in Java?\r\n// @answer Defining a method in a child class with the SAME name, SAME parameters, and compatible return type as a method in the parent class.\r\n// @answer The child's version replaces the parent's version when called on a child object — this is Runtime Polymorphism (Dynamic Method Dispatch).\r\n// @answer The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type.\r\n\r\n// @quiz (INTERVIEW) What is the difference between method overloading and method overriding?\r\n// @answer Overloading: SAME class, SAME name, DIFFERENT parameters. Resolved at COMPILE TIME (static polymorphism).\r\n// @answer Overriding: CHILD class, SAME name, SAME parameters. Resolved at RUNTIME (dynamic polymorphism).\r\n// @answer Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical.\r\n\r\n// @quiz (INTERVIEW) What are the rules for method overriding in Java?\r\n// @answer 1) Same method name and same parameters (signature must match exactly).\r\n// @answer 2) Return type must be the same OR a subclass (covariant return type — Java 5+).\r\n// @answer 3) Access modifier cannot be MORE restrictive (public > protected > default > private). Can be less restrictive.\r\n// @answer 4) Only inherited (non-private, non-static, non-final) methods can be overridden.\r\n// @answer 5) Constructors and private methods CANNOT be overridden.\r\n// @answer 6) final methods CANNOT be overridden — compiler error.\r\n// @answer 7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden.\r\n\r\n// @quiz (OCJP TRAP) What is the output? class Animal { void speak(){ System.out.println(\"Animal\"); } } class Dog extends Animal { void speak(){ System.out.println(\"Dog\"); } } Animal a = new Dog(); a.speak();\r\n// @answer Output: Dog\r\n// @answer Even though the reference type is Animal, the ACTUAL object is Dog. Java uses dynamic dispatch — the JVM calls Dog's speak() at runtime. This is the core of runtime polymorphism.\r\n// @answer TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method.\r\n\r\n// @quiz (OCJP TRAP) Can you override a static method in Java?\r\n// @answer NO. Static methods belong to the class, not the object. You can declare a static method with the same name in a subclass, but this is called METHOD HIDING, not overriding.\r\n// @answer With hiding: the method called depends on the REFERENCE type (compile-time). With overriding: it depends on the OBJECT type (runtime). This is the key difference.\r\n// @answer @Override annotation on a static method causes a COMPILE ERROR.\r\n\r\n// @quiz (OCJP TRAP) What is the output? class Parent { String name = \"Parent\"; void show() { System.out.println(\"Parent show\"); } } class Child extends Parent { String name = \"Child\"; void show() { System.out.println(\"Child show\"); } } Parent p = new Child(); System.out.println(p.name); p.show();\r\n// @answer Output: Parent (then) Child show\r\n// @answer Fields are resolved at COMPILE TIME based on reference type → p.name uses Parent's name field.\r\n// @answer Methods are resolved at RUNTIME based on object type → p.show() calls Child's show().\r\n// @answer CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object).\r\n\r\n// @quiz (INTERVIEW) What is covariant return type in method overriding?\r\n// @answer Java 5+ allows the overriding method to return a subtype of the parent method's return type.\r\n// @answer Example: Parent returns Animal, Child can override to return Dog (Dog IS-A Animal). This is valid.\r\n// @answer Why useful: allows more specific return types without breaking the contract.\r\n\r\n// @quiz (INTERVIEW) What is the purpose of the @Override annotation?\r\n// @answer It tells the compiler you INTEND to override a method. If the signatures don't match (e.g., you made a typo), the compiler gives an error instead of silently creating an overloaded method.\r\n// @answer Best practice: ALWAYS use @Override when overriding — it's a safety net against bugs.\r\n// @answer Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't.\r\n\r\n// @quiz (INTERVIEW) Can a private method be overridden?\r\n// @answer NO. Private methods are not inherited — the child class cannot see them. If you define a method with the same name in the child class, it's a completely NEW method, not an override.\r\n// @answer @Override on a \"private method override\" will cause a compile error.\r\n\r\n// @quiz (INTERVIEW) What happens when you call super.methodName() inside an overriding method?\r\n// @answer It explicitly calls the PARENT class's version of the method. This is used to extend (not replace) the parent's behaviour.\r\n// @answer Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields.\r\n\r\n// @quiz (INTERVIEW) Can a constructor be overridden?\r\n// @answer NO. Constructors are not inherited — they cannot be overridden. Each class has its own constructor(s).\r\n// @answer Constructors can be OVERLOADED (same class, different parameters) but not overridden.\r\n\r\n// @challenge Design a Shape hierarchy demonstrating method overriding\r\n// @desc Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each.\r\n// @hint area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w).\r\n// @testcase Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each\r\n\r\n// @challenge Demonstrate the field hiding vs method overriding trap\r\n// @desc Create a Parent class with a String field name=\"Parent\" and void display(). Create Child extending Parent with name=\"Child\" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why.\r\n// @hint Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps.\r\n// @testcase Parent p = new Child(); p.name should be \"Parent\". p.display() should call Child's version.\r\n\r\n// @challenge Implement a polymorphic payment system using method overriding\r\n// @desc Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically.\r\n// @hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.\r\n// @testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);\r\n\r\n// Parameter notes (what each argument means and how the parameter list matters):\r\n// - An overriding method must repeat the parent method's parameter list exactly: same number, same types, and same order.\r\n// - In the challenge example processPayment(double amount), amount means the payment value to process; choose a double that represents the transaction amount.\r\n// important: CreditCardPayment.processPayment(double amount) overrides Payment.processPayment(double amount) only because the parameter list is identical.\r\n// trap: processPayment(int amount), processPayment(double amount, String currency), or processPayment(Double amount) would be overloads, not overrides.\r\n// - For overriding, Java decides which implementation runs at runtime from the actual object type.\r\n// - For overloading, Java decides which parameter list matches at compile time from the reference type and argument expressions.\r\n// warning: changing parameter type by boxing, widening, or adding parameters breaks overriding even if the method name looks correct.\r\n// remember: a covariant return type may be allowed in overriding, but the parameters must still match exactly.\r\n\r\n// @quiz (INTERVIEW) For a child method to override a parent method, what must be true about its parameters?\r\n// @answer The parameter list must be identical: same count, same types, and same order.\r\n// @quiz (INTERVIEW TRAP) Does processPayment(int amount) override processPayment(double amount)?\r\n// @answer No. int and double are different parameter types, so this creates an overload instead of an override.\r\n// @quiz (OCJP) When is an overloaded method selected versus an overridden method selected?\r\n// @answer Overloading is selected at compile time by the argument list; overriding is selected at runtime by the actual object type.\r\n// @quiz (INTERVIEW TRAP) Can @Override catch a parameter-list mismatch?\r\n// @answer Yes. If the child method's parameters do not exactly match an inherited method, @Override causes a compile-time error.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is method overriding, and when is the choice of method made?\r\n// @option Defining a method in a child class with the same name and parameters as the parent's, with the version chosen at runtime. [correct]\r\n// @option Defining two methods with the same name but different parameters in one class.\r\n// @option Replacing a method in the same class so the old one no longer exists.\r\n// @option Choosing the method at compile time, based on the reference type.\r\n// @explain Overriding is runtime polymorphism, also called dynamic method dispatch. The JVM looks at the actual object, not the declared type of the reference, when deciding which version to run.\r\n// @why B: same name and different parameters in one class is overloading.\r\n// @why C: you cannot replace a method in the same class. Overriding happens in a child class.\r\n// @why D: compile-time resolution based on the reference type describes overloading.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the key difference between overloading and overriding?\r\n// @option Overloading is in the same class with different parameters and is resolved at compile time. Overriding is in a child class with the same parameters and is resolved at runtime. [correct]\r\n// @option Overloading happens in a child class, and overriding happens in the same class.\r\n// @option Overloading is resolved at runtime, and overriding at compile time.\r\n// @option They are the same thing with different names.\r\n// @explain The distinction interviewers look for is which one the compiler decides and which one the JVM decides. Changing the parameters means a new overload; keeping them identical means an override.\r\n// @why B: this is reversed. Overloading stays within one class.\r\n// @why C: this is also reversed. Overloading is the compile-time one.\r\n// @why D: they differ in where they happen, in their parameters, and in when they are resolved.\r\n\r\n// @quiz (OCJP, HARD) A parent method is declared protected. Which access modifier in the overriding child method is invalid?\r\n// @option private, because an override cannot be more restrictive than the method it overrides. [correct]\r\n// @option public, because it is more accessible.\r\n// @option protected, because it is identical.\r\n// @option No modifier at all, because that gives package access.\r\n// @explain An override may widen access but never narrow it. protected can become public, but it cannot become private, because callers that could reach the parent's method would suddenly be locked out.\r\n// @why B: public is allowed, because it is less restrictive.\r\n// @why C: the same modifier is always allowed.\r\n// @why D: package-private is more restrictive than protected, so it is not allowed here either, but private is the clearly invalid one being asked for.\r\n\r\n// @quiz (OCJP, HARD) What is printed?\r\n// @code class Animal { void speak() { System.out.println(\"Animal\"); } }\r\n// @code class Dog extends Animal { void speak() { System.out.println(\"Dog\"); } }\r\n// @code Animal a = new Dog();\r\n// @code a.speak();\r\n// @option Dog, because the JVM uses the actual object type at runtime. [correct]\r\n// @option Animal, because the reference is declared as Animal.\r\n// @option Both lines, Animal then Dog.\r\n// @option It does not compile, because the types do not match.\r\n// @explain This is the heart of runtime polymorphism. The reference type only decides what you are allowed to call; the object type decides which version actually runs. Assigning a Dog to an Animal reference is legal because a Dog is an Animal.\r\n// @why B: this is the classic trap. The reference type does not choose the method at runtime.\r\n// @why C: only one version runs, not both.\r\n// @why D: the assignment is allowed, because Dog extends Animal.\r\n\r\n// @quiz (OCJP, HARD) Which methods can NOT be overridden?\r\n// @option static methods, private methods, final methods and constructors. [correct]\r\n// @option Only final methods.\r\n// @option Any method that returns void.\r\n// @option Any method that takes parameters.\r\n// @explain static methods are hidden rather than overridden, private methods are not inherited at all, final methods are locked down by the compiler, and constructors are not inherited methods. A method must be inheritable before it can be overridden.\r\n// @why B: final is only one of several cases.\r\n// @why C: a void return type has no bearing on whether a method can be overridden.\r\n// @why D: overridden methods have parameters all the time. The signature simply has to match the parent's.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Why is @Override recommended, even though it is optional?\r\n// @option It makes the compiler flag the method if it does not actually override anything, which catches a mistyped signature. [correct]\r\n// @option It makes the method run faster.\r\n// @option It is required for runtime polymorphism to work.\r\n// @option It marks the method as final.\r\n// @explain The annotation is a promise to the compiler. If the signature does not match a parent method, the compiler reports an error instead of silently creating a new method that never gets called.\r\n// @why B: the annotation has no effect on performance.\r\n// @why C: polymorphism works without it. The annotation is a safety check.\r\n// @why D: final does the opposite, preventing further overrides.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is a covariant return type in an overriding method?\r\n// @option The overriding method may return a subclass of the return type declared by the parent. [correct]\r\n// @option The overriding method must change the return type.\r\n// @option The overriding method may return a supertype of the parent's return type.\r\n// @option The return type must always match exactly, with no exceptions.\r\n// @explain Covariance lets an override narrow the return type, which is more specific and therefore safe. If the parent returns Animal, the child may return Dog, because a Dog is an Animal.\r\n// @why B: the return type may stay exactly the same. Changing it is optional.\r\n// @why C: widening to a supertype would break callers who expect the narrower type.\r\n// @why D: an exact match is always allowed, but it is not the only option.\r\n\r\npublic class MethodOverridingInJava {\r\n}\r\n"
+        "code": "package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;\r\n\r\n/*\r\n*    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In\r\n*    other words, the same name, and same parameters).\r\n*\r\n*    By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.\r\n*\r\n*    Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.\r\n*\r\n*    When we override a method, it's recommended to put @Override immediately above the method definition.\r\n*    The @Override statement is not required, but it's a way to get the compiler to flag\r\n*    an error if you don't actually properly override this method.\r\n*    We'll get an error if we don't follow the overriding rules correctly for that method.\r\n*\r\n*     We can't override static methods,only instance methods can be overridden.\r\n*\r\n*     Method overriding rules\r\n*\r\n*     A method will be considered overridden if we follow these rules.\r\n*\r\n*     1) Firstly, It must have the same name and same arguments.\r\n*     2) The return type can be a subclass of the return type in the parent class.\r\n*     3) It can't have a lower access modifier. In other words, it\r\n*     can't have more restrictive access privileges. For example, if the parent's method is protected, then\r\n*     using private in the child's overridden method is not allowed. However, using public for the child's\r\n*     method would be allowed, in this example.\r\n*     4) Only inherited methods can be overridden, in other words, methods can be overridden only in child classes.\r\n*     5) Constructors and private methods cannot be overridden.\r\n*     6) And Methods that are final also cannot be overridden.\r\n*     7) A subclass can use super.methodName() to call the superclass version of an overridden method.\r\n*\r\n*\r\n*\r\n* */\r\n\r\n// @quiz (INTERVIEW) What is method overriding in Java?\r\n// @answer Defining a method in a child class with the SAME name, SAME parameters, and compatible return type as a method in the parent class.\r\n// @answer The child's version replaces the parent's version when called on a child object — this is Runtime Polymorphism (Dynamic Method Dispatch).\r\n// @answer The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type.\r\n\r\n// @quiz (INTERVIEW) What is the difference between method overloading and method overriding?\r\n// @answer Overloading: SAME class, SAME name, DIFFERENT parameters. Resolved at COMPILE TIME (static polymorphism).\r\n// @answer Overriding: CHILD class, SAME name, SAME parameters. Resolved at RUNTIME (dynamic polymorphism).\r\n// @answer Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical.\r\n\r\n// @quiz (INTERVIEW) What are the rules for method overriding in Java?\r\n// @answer 1) Same method name and same parameters (signature must match exactly).\r\n// @answer 2) Return type must be the same OR a subclass (covariant return type — Java 5+).\r\n// @answer 3) Access modifier cannot be MORE restrictive (public > protected > default > private). Can be less restrictive.\r\n// @answer 4) Only inherited (non-private, non-static, non-final) methods can be overridden.\r\n// @answer 5) Constructors and private methods CANNOT be overridden.\r\n// @answer 6) final methods CANNOT be overridden — compiler error.\r\n// @answer 7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden.\r\n\r\n// @quiz (OCJP TRAP) What is the output? class Animal { void speak(){ System.out.println(\"Animal\"); } } class Dog extends Animal { void speak(){ System.out.println(\"Dog\"); } } Animal a = new Dog(); a.speak();\r\n// @answer Output: Dog\r\n// @answer Even though the reference type is Animal, the ACTUAL object is Dog. Java uses dynamic dispatch — the JVM calls Dog's speak() at runtime. This is the core of runtime polymorphism.\r\n// @answer TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method.\r\n\r\n// @quiz (OCJP TRAP) Can you override a static method in Java?\r\n// @answer NO. Static methods belong to the class, not the object. You can declare a static method with the same name in a subclass, but this is called METHOD HIDING, not overriding.\r\n// @answer With hiding: the method called depends on the REFERENCE type (compile-time). With overriding: it depends on the OBJECT type (runtime). This is the key difference.\r\n// @answer @Override annotation on a static method causes a COMPILE ERROR.\r\n\r\n// @quiz (OCJP TRAP) What is the output? class Parent { String name = \"Parent\"; void show() { System.out.println(\"Parent show\"); } } class Child extends Parent { String name = \"Child\"; void show() { System.out.println(\"Child show\"); } } Parent p = new Child(); System.out.println(p.name); p.show();\r\n// @answer Output: Parent (then) Child show\r\n// @answer Fields are resolved at COMPILE TIME based on reference type → p.name uses Parent's name field.\r\n// @answer Methods are resolved at RUNTIME based on object type → p.show() calls Child's show().\r\n// @answer CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object).\r\n\r\n// @quiz (INTERVIEW) What is covariant return type in method overriding?\r\n// @answer Java 5+ allows the overriding method to return a subtype of the parent method's return type.\r\n// @answer Example: Parent returns Animal, Child can override to return Dog (Dog IS-A Animal). This is valid.\r\n// @answer Why useful: allows more specific return types without breaking the contract.\r\n\r\n// @quiz (INTERVIEW) What is the purpose of the @Override annotation?\r\n// @answer It tells the compiler you INTEND to override a method. If the signatures don't match (e.g., you made a typo), the compiler gives an error instead of silently creating an overloaded method.\r\n// @answer Best practice: ALWAYS use @Override when overriding — it's a safety net against bugs.\r\n// @answer Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't.\r\n\r\n// @quiz (INTERVIEW) Can a private method be overridden?\r\n// @answer NO. Private methods are not inherited — the child class cannot see them. If you define a method with the same name in the child class, it's a completely NEW method, not an override.\r\n// @answer @Override on a \"private method override\" will cause a compile error.\r\n\r\n// @quiz (INTERVIEW) What happens when you call super.methodName() inside an overriding method?\r\n// @answer It explicitly calls the PARENT class's version of the method. This is used to extend (not replace) the parent's behaviour.\r\n// @answer Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields.\r\n\r\n// @quiz (INTERVIEW) Can a constructor be overridden?\r\n// @answer NO. Constructors are not inherited — they cannot be overridden. Each class has its own constructor(s).\r\n// @answer Constructors can be OVERLOADED (same class, different parameters) but not overridden.\r\n\r\n// @challenge Design a Shape hierarchy demonstrating method overriding\r\n// @desc Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each.\r\n// @hint area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w).\r\n// @testcase Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each\r\n\r\n// @challenge Demonstrate the field hiding vs method overriding trap\r\n// @desc Create a Parent class with a String field name=\"Parent\" and void display(). Create Child extending Parent with name=\"Child\" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why.\r\n// @hint Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps.\r\n// @testcase Parent p = new Child(); p.name should be \"Parent\". p.display() should call Child's version.\r\n\r\n// @challenge Implement a polymorphic payment system using method overriding\r\n// @desc Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically.\r\n// @hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.\r\n// @testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);\r\n\r\n// Parameter notes (what each argument means and how the parameter list matters):\r\n// - An overriding method must repeat the parent method's parameter list exactly: same number, same types, and same order.\r\n// - In the challenge example processPayment(double amount), amount means the payment value to process; choose a double that represents the transaction amount.\r\n// important: CreditCardPayment.processPayment(double amount) overrides Payment.processPayment(double amount) only because the parameter list is identical.\r\n// trap: processPayment(int amount), processPayment(double amount, String currency), or processPayment(Double amount) would be overloads, not overrides.\r\n// - For overriding, Java decides which implementation runs at runtime from the actual object type.\r\n// - For overloading, Java decides which parameter list matches at compile time from the reference type and argument expressions.\r\n// warning: changing parameter type by boxing, widening, or adding parameters breaks overriding even if the method name looks correct.\r\n// remember: a covariant return type may be allowed in overriding, but the parameters must still match exactly.\r\n\r\n// @quiz (INTERVIEW) For a child method to override a parent method, what must be true about its parameters?\r\n// @answer The parameter list must be identical: same count, same types, and same order.\r\n// @quiz (INTERVIEW TRAP) Does processPayment(int amount) override processPayment(double amount)?\r\n// @answer No. int and double are different parameter types, so this creates an overload instead of an override.\r\n// @quiz (OCJP) When is an overloaded method selected versus an overridden method selected?\r\n// @answer Overloading is selected at compile time by the argument list; overriding is selected at runtime by the actual object type.\r\n// @quiz (INTERVIEW TRAP) Can @Override catch a parameter-list mismatch?\r\n// @answer Yes. If the child method's parameters do not exactly match an inherited method, @Override causes a compile-time error.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is method overriding, and when is the choice of method made?\r\n// @option Defining a method in a child class with the same name and parameters as the parent's, with the version chosen at runtime. [correct]\r\n// @option Defining two methods with the same name but different parameters in one class.\r\n// @option Replacing a method in the same class so the old one no longer exists.\r\n// @option Choosing the method at compile time, based on the reference type.\r\n// @explain Overriding is runtime polymorphism, also called dynamic method dispatch. The JVM looks at the actual object, not the declared type of the reference, when deciding which version to run.\r\n// @why B: same name and different parameters in one class is overloading.\r\n// @why C: you cannot replace a method in the same class. Overriding happens in a child class.\r\n// @why D: compile-time resolution based on the reference type describes overloading.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the key difference between overloading and overriding?\r\n// @option Overloading is in the same class with different parameters and is resolved at compile time. Overriding is in a child class with the same parameters and is resolved at runtime. [correct]\r\n// @option Overloading happens in a child class, and overriding happens in the same class.\r\n// @option Overloading is resolved at runtime, and overriding at compile time.\r\n// @option They are the same thing with different names.\r\n// @explain The distinction interviewers look for is which one the compiler decides and which one the JVM decides. Changing the parameters means a new overload; keeping them identical means an override.\r\n// @why B: this is reversed. Overloading stays within one class.\r\n// @why C: this is also reversed. Overloading is the compile-time one.\r\n// @why D: they differ in where they happen, in their parameters, and in when they are resolved.\r\n\r\n// @quiz (OCJP, HARD) A parent method is declared protected. Which access modifier in the overriding child method is invalid?\r\n// @option private, because an override cannot be more restrictive than the method it overrides. [correct]\r\n// @option public, because it is more accessible.\r\n// @option protected, because it is identical.\r\n// @option No modifier at all, because that gives package access.\r\n// @explain An override may widen access but never narrow it. protected can become public, but it cannot become private, because callers that could reach the parent's method would suddenly be locked out.\r\n// @why B: public is allowed, because it is less restrictive.\r\n// @why C: the same modifier is always allowed.\r\n// @why D: package-private is more restrictive than protected, so it is not allowed here either, but private is the clearly invalid one being asked for.\r\n\r\n// @quiz (OCJP, HARD) What is printed?\r\n// @code class Animal { void speak() { System.out.println(\"Animal\"); } }\r\n// @code class Dog extends Animal { void speak() { System.out.println(\"Dog\"); } }\r\n// @code Animal a = new Dog();\r\n// @code a.speak();\r\n// @option Dog, because the JVM uses the actual object type at runtime. [correct]\r\n// @option Animal, because the reference is declared as Animal.\r\n// @option Both lines, Animal then Dog.\r\n// @option It does not compile, because the types do not match.\r\n// @explain This is the heart of runtime polymorphism. The reference type only decides what you are allowed to call; the object type decides which version actually runs. Assigning a Dog to an Animal reference is legal because a Dog is an Animal.\r\n// @why B: this is the classic trap. The reference type does not choose the method at runtime.\r\n// @why C: only one version runs, not both.\r\n// @why D: the assignment is allowed, because Dog extends Animal.\r\n\r\n// @quiz (OCJP, HARD) Which methods can NOT be overridden?\r\n// @option static methods, private methods, final methods and constructors. [correct]\r\n// @option Only final methods.\r\n// @option Any method that returns void.\r\n// @option Any method that takes parameters.\r\n// @explain static methods are hidden rather than overridden, private methods are not inherited at all, final methods are locked down by the compiler, and constructors are not inherited methods. A method must be inheritable before it can be overridden.\r\n// @why B: final is only one of several cases.\r\n// @why C: a void return type has no bearing on whether a method can be overridden.\r\n// @why D: overridden methods have parameters all the time. The signature simply has to match the parent's.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Why is @Override recommended, even though it is optional?\r\n// @option It makes the compiler flag the method if it does not actually override anything, which catches a mistyped signature. [correct]\r\n// @option It makes the method run faster.\r\n// @option It is required for runtime polymorphism to work.\r\n// @option It marks the method as final.\r\n// @explain The annotation is a promise to the compiler. If the signature does not match a parent method, the compiler reports an error instead of silently creating a new method that never gets called.\r\n// @why B: the annotation has no effect on performance.\r\n// @why C: polymorphism works without it. The annotation is a safety check.\r\n// @why D: final does the opposite, preventing further overrides.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is a covariant return type in an overriding method?\r\n// @option The overriding method may return a subclass of the return type declared by the parent. [correct]\r\n// @option The overriding method must change the return type.\r\n// @option The overriding method may return a supertype of the parent's return type.\r\n// @option The return type must always match exactly, with no exceptions.\r\n// @explain Covariance lets an override narrow the return type, which is more specific and therefore safe. If the parent returns Animal, the child may return Dog, because a Dog is an Animal.\r\n// @why B: the return type may stay exactly the same. Changing it is optional.\r\n// @why C: widening to a supertype would break callers who expect the narrower type.\r\n// @why D: an exact match is always allowed, but it is not the only option.\r\n\r\n// @quiz (OCJP, HARD) Does this code compile?\r\n// @code class Parent {\r\n// @code     static void show() { System.out.println(\"parent\"); }\r\n// @code }\r\n// @code class Child extends Parent {\r\n// @code     @Override\r\n// @code     static void show() { System.out.println(\"child\"); }\r\n// @code }\r\n// @option No. A static method is hidden rather than overridden, so @Override is a compile error. [correct]\r\n// @option Yes, and calling Child.show() prints child.\r\n// @option Yes, because @Override is optional.\r\n// @option Yes, and calling show() on a Parent reference prints child.\r\n// @explain Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.\r\n// @why B: the annotation is checked, and it fails here.\r\n// @why C: @Override is optional only when a real override exists. Here there is none.\r\n// @why D: hiding resolves at compile time from the reference type, so a Parent reference would print parent.\r\n\r\n// @quiz (OCJP, HARD) What is printed by this code?\r\n// @code class Parent {\r\n// @code     private void greet() { System.out.println(\"parent\"); }\r\n// @code     void hello() { greet(); }\r\n// @code }\r\n// @code class Child extends Parent {\r\n// @code     void greet() { System.out.println(\"child\"); }\r\n// @code }\r\n// @code new Child().hello();\r\n// @option parent, because the private method is not overridden, so Parent's own method is still used. [correct]\r\n// @option child, because Child declares a method with the same name.\r\n// @option It does not compile, because Child cannot declare greet().\r\n// @option It prints both parent and child.\r\n// @explain A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.\r\n// @why B: overriding needs an inherited method. A private method is not inherited.\r\n// @why C: declaring a method with the same name is allowed; it simply is not an override.\r\n// @why D: only one method is called.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What does super.toString() do inside an overriding toString method?\r\n// @option It calls the parent class version of toString, which is useful for adding the parent fields to the result. [correct]\r\n// @option It creates a new parent object.\r\n// @option It calls the constructor of the parent class.\r\n// @option It returns the class name only.\r\n// @explain super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.\r\n// @why B: no object is created. The method is simply called on the same object.\r\n// @why C: a constructor call is super(...) with parentheses and arguments, not super.method().\r\n// @why D: it runs whatever the parent toString returns, which normally includes the parent fields.\r\n\r\n// @quiz (OCJP, MEDIUM) A parent declares a method as protected. Which access modifier in an overriding child method is allowed?\r\n// @option public, because an override may widen access but never narrow it. [correct]\r\n// @option private, because an override may be more restrictive.\r\n// @option It does not matter, because an override can use any modifier.\r\n// @option Only protected, exactly matching the parent.\r\n// @explain An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.\r\n// @why B: private is more restrictive, which is exactly what is forbidden.\r\n// @why C: the modifier is constrained by the rule that access may not be reduced.\r\n// @why D: an exact match is allowed, but so is widening it to public.\r\n\r\npublic class MethodOverridingInJava {\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",

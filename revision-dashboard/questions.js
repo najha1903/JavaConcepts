@@ -7490,6 +7490,142 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_15-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Class Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "class Counter {\nstatic int total = 0;\nCounter() { total++; }\n}\nnew Counter(); new Counter(); new Counter();\nSystem.out.println(Counter.total);",
+      "options": [
+        "3, because the static field is shared and each constructor increments it.",
+        "0, because a static field cannot be changed by a constructor.",
+        "It does not compile, because a constructor cannot change a static field.",
+        "1, because each object gets its own copy of total."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "constructors may change static fields, which is a common way to count objects.",
+        "2": "it is legal, and counting instances is one of the standard uses of a static field.",
+        "3": "an instance field would behave that way. A static field is the shared one."
+      },
+      "explanation": "A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_16-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Class Example",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "class Person { String name; }\nPerson a = new Person();\nPerson b = new Person();\na.name = \"Ada\";\nb.name = \"Alan\";\nSystem.out.println(a.name + \" \" + b.name);",
+      "options": [
+        "Ada Alan, because each object has its own copy of the instance field.",
+        "Alan Alan, because the second assignment overwrites the first.",
+        "Ada Ada, because both objects share the field.",
+        "It does not compile, because name is not initialised."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the two assignments target different objects.",
+        "2": "sharing happens only with a static field.",
+        "3": "a field of an object gets a default value, here null, so it compiles."
+      },
+      "explanation": "name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_17-does-this-class-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Class Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this class compile?",
+      "code": "class Example {\nint count = 5;\nstatic int read() { return count; }\n}",
+      "options": [
+        "Yes, and read() returns 0.",
+        "No. A static method cannot access an instance field, because there is no object to read it from.",
+        "Yes, and read() returns 5.",
+        "Yes, because count is set before the method runs."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "an absent object is not the same as a zero value.",
+        "2": "the compiler rejects the access, so nothing runs.",
+        "3": "the order of statements cannot help, because the problem is that no object is involved."
+      },
+      "explanation": "A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_18-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Class Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "class Box { int size = 1; }\nBox first = new Box();\nBox second = first;\nsecond.size = 7;\nSystem.out.println(first.size);",
+      "options": [
+        "0, because second replaced the object.",
+        "7, because both references point at the same object.",
+        "It does not compile, because a reference cannot be assigned to another reference.",
+        "1, because first keeps its own copy."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "second does not create or replace anything. It simply points at the existing object.",
+        "2": "assigning references is ordinary and common.",
+        "3": "there is only one object, so there is only one size field."
+      },
+      "explanation": "Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_19-what-happens-when-this-code-runs",
+      "difficulty": "hard",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Class Example",
+      "tags": [
+        "tricky",
+        "interview"
+      ],
+      "question": "What happens when this code runs?",
+      "code": "class Person { String name; }\nPerson p = null;\nSystem.out.println(p.name);",
+      "options": [
+        "It prints null, because the field is uninitialised.",
+        "It prints an empty line.",
+        "It throws NullPointerException at runtime, because p points at no object.",
+        "It does not compile, because p is null."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "a field on a real object can be null, but there is no object here at all.",
+        "1": "nothing is printed. The failure happens while the argument is being evaluated.",
+        "3": "null must be checked when the code runs, so the compiler allows it."
+      },
+      "explanation": "The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+    },
+    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_0-why-does-new-createfieldonclasses-not-ne",
@@ -8047,6 +8183,138 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_21-what-does-integer-parseint-ff-16-return",
+      "difficulty": "hard",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What does Integer.parseInt(\"FF\", 16) return?",
+      "options": [
+        "255, because the second argument sets the radix to hexadecimal.",
+        "It throws NumberFormatException, because FF is not a number.",
+        "170, because FF is read as decimal.",
+        "16, because FF is two characters."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "letters are valid in a base that is large enough to include them.",
+        "2": "with no radix, \"FF\" would fail. Base 16 is what makes it readable as digits.",
+        "3": "the second argument is the base, not a count of characters."
+      },
+      "explanation": "The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so \"FF\" means 15 times 16 plus 15, which is 255.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_22-what-happens-when-integer-parseint-42-ru",
+      "difficulty": "hard",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when Integer.parseInt(\" 42 \") runs?",
+      "options": [
+        "It throws NumberFormatException, because surrounding spaces are not allowed.",
+        "It returns 0, because the spaces invalidate the value.",
+        "It compiles but returns null.",
+        "It returns 42, because parseInt ignores whitespace."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "it throws instead of returning a fallback value.",
+        "2": "the return type is int, so null is not possible.",
+        "3": "trimming is not part of parsing. You would call trim() first."
+      },
+      "explanation": "parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_23-what-happens-when-integer-parseint-null-",
+      "difficulty": "hard",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when Integer.parseInt(null) runs?",
+      "options": [
+        "It throws NumberFormatException, because null is not valid integer text.",
+        "It returns 0.",
+        "It compiles but returns -1.",
+        "It throws NullPointerException."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "there is no fallback value. The method throws.",
+        "2": "the return type is int, and an exception is thrown instead of returning.",
+        "3": "validate the input first if you need to distinguish null from bad text."
+      },
+      "explanation": "parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_24-what-is-printed-by-this-code-when-the-us",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code when the user enters 80 and 90?",
+      "code": "String a = \"80\";\nString b = \"90\";\nint average = (Integer.parseInt(a) + Integer.parseInt(b)) / 2;\nSystem.out.println(average);",
+      "options": [
+        "It does not compile, because Strings cannot be added.",
+        "8090, because the Strings are concatenated.",
+        "85, because the values are parsed to int and then averaged.",
+        "85.0, because parseInt produces a decimal."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the parsing happens first, so the addition is between two int values.",
+        "1": "concatenation would happen only if + were applied to the Strings themselves.",
+        "3": "parseInt returns an int, and int division produces an int."
+      },
+      "explanation": "parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_25-what-does-this-code-print-when-the-user-",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "interview"
+      ],
+      "question": "What does this code print when the user types the word hello?",
+      "code": "try {\nint value = Integer.parseInt(\"hello\");\nSystem.out.println(\"parsed \" + value);\n} catch (NumberFormatException e) {\nSystem.out.println(\"not a number\");\n}",
+      "options": [
+        "not a number, because parsing fails and the catch block runs.",
+        "It crashes with an uncaught exception.",
+        "not a number, and then parsed 0.",
+        "parsed 0, because failed parsing returns zero."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the catch block matches NumberFormatException, so the exception is handled.",
+        "2": "only one branch runs when an exception is thrown.",
+        "3": "parsing does not return a fallback. It throws."
+      },
+      "explanation": "parseInt cannot read \"hello\" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_true-false-mcq_5",
@@ -8570,6 +8838,141 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_14-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "try {\nint value = Integer.parseInt(\"42\");\n} catch (Exception e) {\nSystem.out.println(\"general\");\n} catch (NumberFormatException e) {\nSystem.out.println(\"number\");\n}",
+      "options": [
+        "Yes, and it prints number when parsing fails.",
+        "No. The broader catch comes first, so the narrower one can never be reached.",
+        "Yes, because the catch blocks are checked in order at runtime.",
+        "Yes, and it prints general when parsing fails."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the specific catch must be written before the general one.",
+        "2": "the order matters, and the compiler rejects an order that makes a block unreachable.",
+        "3": "the code does not compile, so nothing runs."
+      },
+      "explanation": "Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_15-what-happens-when-this-code-runs",
+      "difficulty": "medium",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this code runs?",
+      "code": "int result = 10 / 0;\nSystem.out.println(result);",
+      "options": [
+        "It prints Infinity.",
+        "It does not compile, because division by zero is an error.",
+        "It prints 0.",
+        "It compiles and then throws ArithmeticException at runtime."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead.",
+        "1": "the compiler cannot know the value of the divisor at compile time.",
+        "2": "there is no result to print. The exception is thrown during the division."
+      },
+      "explanation": "Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_16-what-is-thrown-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is thrown by this code?",
+      "code": "int[] numbers = {1, 2, 3};\nSystem.out.println(numbers[3]);",
+      "options": [
+        "ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2.",
+        "Nothing. It prints 3.",
+        "Nothing. It prints 0.",
+        "NullPointerException."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "index 3 does not exist, so no value can be returned.",
+        "2": "Java does not return a default for an out-of-range index.",
+        "3": "the array exists. The problem is the index, not a null reference."
+      },
+      "explanation": "A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_17-what-does-this-method-return",
+      "difficulty": "hard",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "tricky",
+        "interview"
+      ],
+      "question": "What does this method return?",
+      "code": "static int test() {\ntry {\nreturn 1;\n} finally {\nreturn 2;\n}\n}",
+      "options": [
+        "3, because the two values are added.",
+        "It does not compile, because a method cannot have two returns.",
+        "1, because the return in try is evaluated first.",
+        "2, because a return inside finally overrides the return from try."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "nothing is added. Only the last return value is used.",
+        "1": "several return statements in one method are normal.",
+        "2": "the value from try is discarded, because finally runs afterwards."
+      },
+      "explanation": "The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_18-which-exception-type-is-not-required-to-",
+      "difficulty": "medium",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "interview"
+      ],
+      "question": "Which exception type is NOT required to be caught or declared?",
+      "options": [
+        "ArithmeticException, because it extends RuntimeException and is unchecked.",
+        "SQLException, because it is unchecked.",
+        "FileNotFoundException, because it is unchecked.",
+        "IOException, because it is unchecked."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "SQLException is checked as well.",
+        "2": "FileNotFoundException extends IOException, so it is checked too.",
+        "3": "IOException is checked, so it must be handled."
+      },
+      "explanation": "Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
       "type": "predict",
       "kind": "predict",
       "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-sub-chapter-2-exception-handling-codingchallenge-safedivisionchallenge-java_predict_3",
@@ -8899,6 +9302,111 @@ const QUESTIONS_BANK = {
         "2": "only two options apply to a top-level class."
       },
       "explanation": "A top-level class can be public or package-private. protected and private describe access relative to a class, so they make sense for members, not for the top-level class itself.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_12-two-classes-are-declared-in-the-same-pac",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "interview"
+      ],
+      "question": "Two classes are declared in the same package. One is public, and the other has no access modifier. Which is true?",
+      "options": [
+        "The class with no modifier can only be used inside its own file.",
+        "The class with no modifier cannot be instantiated at all.",
+        "The class with no modifier is public by default.",
+        "The class with no modifier is package-private, so other classes in the same package can use it, but classes in other packages cannot."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "package-private covers the whole package, and other classes in the same package can use it.",
+        "1": "it can be instantiated by anything in the same package.",
+        "2": "public has to be written. The default is package-private, not public."
+      },
+      "explanation": "Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_13-does-this-class-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this class compile?",
+      "code": "class Holder {\nint value = 5;\nstatic void show() {\nSystem.out.println(value);\n}\n}",
+      "options": [
+        "Yes, and it prints 0.",
+        "Yes, because value is initialised when the class is loaded.",
+        "No. A static method has no object to read an instance field from.",
+        "Yes, and it prints 5."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the field is not zero. The problem is that there is no object at all.",
+        "1": "instance fields are created with the object, not when the class is loaded.",
+        "3": "the compiler rejects it, so nothing is printed."
+      },
+      "explanation": "An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_14-a-subclass-inherits-from-a-parent-which-",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "interview"
+      ],
+      "question": "A subclass inherits from a parent. Which members does it inherit?",
+      "options": [
+        "Every member, including private ones.",
+        "Only the members declared static.",
+        "Only the private members.",
+        "The accessible members, which means public and protected ones, and package-private ones when the packages match."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "private members are excluded. A subclass cannot see or override them.",
+        "1": "static members may be inherited, but they are not the only kind.",
+        "2": "private members are exactly the ones that are not inherited."
+      },
+      "explanation": "Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_15-what-is-a-class-member-in-java",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is a class member in Java?",
+      "options": [
+        "The package that contains the class.",
+        "A field or a method declared inside the class, together with other elements such as nested types.",
+        "Only the methods of a class.",
+        "Only the objects created from the class."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "a package groups classes. It is not a member of any one class.",
+        "2": "methods are members, but the fields are members too.",
+        "3": "objects are instances of the class, not members of it."
+      },
+      "explanation": "Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
     },
     {
@@ -12793,6 +13301,112 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_22-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "class Parent {\nstatic void show() { System.out.println(\"parent\"); }\n}\nclass Child extends Parent {\n@Override\nstatic void show() { System.out.println(\"child\"); }\n}",
+      "options": [
+        "Yes, because @Override is optional.",
+        "Yes, and calling show() on a Parent reference prints child.",
+        "No. A static method is hidden rather than overridden, so @Override is a compile error.",
+        "Yes, and calling Child.show() prints child."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "@Override is optional only when a real override exists. Here there is none.",
+        "1": "hiding resolves at compile time from the reference type, so a Parent reference would print parent.",
+        "3": "the annotation is checked, and it fails here."
+      },
+      "explanation": "Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_23-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "class Parent {\nprivate void greet() { System.out.println(\"parent\"); }\nvoid hello() { greet(); }\n}\nclass Child extends Parent {\nvoid greet() { System.out.println(\"child\"); }\n}\nnew Child().hello();",
+      "options": [
+        "It does not compile, because Child cannot declare greet().",
+        "parent, because the private method is not overridden, so Parent's own method is still used.",
+        "child, because Child declares a method with the same name.",
+        "It prints both parent and child."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "declaring a method with the same name is allowed; it simply is not an override.",
+        "2": "overriding needs an inherited method. A private method is not inherited.",
+        "3": "only one method is called."
+      },
+      "explanation": "A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_24-what-does-super-tostring-do-inside-an-ov",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "interview"
+      ],
+      "question": "What does super.toString() do inside an overriding toString method?",
+      "options": [
+        "It returns the class name only.",
+        "It calls the parent class version of toString, which is useful for adding the parent fields to the result.",
+        "It creates a new parent object.",
+        "It calls the constructor of the parent class."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "it runs whatever the parent toString returns, which normally includes the parent fields.",
+        "2": "no object is created. The method is simply called on the same object.",
+        "3": "a constructor call is super(...) with parentheses and arguments, not super.method()."
+      },
+      "explanation": "super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_25-a-parent-declares-a-method-as-protected-",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "A parent declares a method as protected. Which access modifier in an overriding child method is allowed?",
+      "options": [
+        "public, because an override may widen access but never narrow it.",
+        "private, because an override may be more restrictive.",
+        "Only protected, exactly matching the parent.",
+        "It does not matter, because an override can use any modifier."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "private is more restrictive, which is exactly what is forbidden.",
+        "2": "an exact match is allowed, but so is widening it to public.",
+        "3": "the modifier is constrained by the rule that access may not be reduced."
+      },
+      "explanation": "An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_true-false-mcq_5",
@@ -14835,11 +15449,11 @@ const QUICK_REVISION_BANK = {
     ],
     "syntax": "public class ClassExample {\n\n    public static void main(String[] args) {\n        //  We can create String using 2 ways\n\n         // 1) Literal form\n\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\n           System.out.println(\"Literal String = \" + s);",
     "badges": [
+      "Counter",
+      "read",
       "main",
       "deposit",
-      "withdraw",
-      "printAccountDetails",
-      "printDetails"
+      "withdraw"
     ],
     "tables": []
   },
@@ -14910,11 +15524,11 @@ const QUICK_REVISION_BANK = {
     ],
     "syntax": "public class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }",
     "badges": [
+      "test",
       "main",
       "demonstrateException",
       "parseAge",
-      "safeDivide",
-      "add"
+      "safeDivide"
     ],
     "tables": []
   },
@@ -14935,11 +15549,11 @@ const QUICK_REVISION_BANK = {
     ],
     "syntax": "public class ClassesAndInheritance {\n\n\n\n}",
     "badges": [
+      "show",
       "isConvertible",
       "setConvertible",
       "getDoors",
-      "setDoors",
-      "getColor"
+      "setDoors"
     ],
     "tables": []
   },

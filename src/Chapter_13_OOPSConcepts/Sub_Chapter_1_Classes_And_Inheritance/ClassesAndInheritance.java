@@ -162,6 +162,52 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
 // @why C: only two options apply to a top-level class.
 // @why D: a private top-level class would be unreachable, and Java does not allow it.
 
+// @quiz (INTERVIEW, MEDIUM) Two classes are declared in the same package. One is public, and the other has no access modifier. Which is true?
+// @option The class with no modifier is package-private, so other classes in the same package can use it, but classes in other packages cannot. [correct]
+// @option The class with no modifier is public by default.
+// @option The class with no modifier can only be used inside its own file.
+// @option The class with no modifier cannot be instantiated at all.
+// @explain Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.
+// @why B: public has to be written. The default is package-private, not public.
+// @why C: package-private covers the whole package, and other classes in the same package can use it.
+// @why D: it can be instantiated by anything in the same package.
+
+// @quiz (OCJP, MEDIUM) Does this class compile?
+// @code class Holder {
+// @code     int value = 5;
+// @code     static void show() {
+// @code         System.out.println(value);
+// @code     }
+// @code }
+// @option No. A static method has no object to read an instance field from. [correct]
+// @option Yes, and it prints 5.
+// @option Yes, and it prints 0.
+// @option Yes, because value is initialised when the class is loaded.
+// @explain An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.
+// @why B: the compiler rejects it, so nothing is printed.
+// @why C: the field is not zero. The problem is that there is no object at all.
+// @why D: instance fields are created with the object, not when the class is loaded.
+
+// @quiz (INTERVIEW, MEDIUM) A subclass inherits from a parent. Which members does it inherit?
+// @option The accessible members, which means public and protected ones, and package-private ones when the packages match. [correct]
+// @option Every member, including private ones.
+// @option Only the private members.
+// @option Only the members declared static.
+// @explain Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.
+// @why B: private members are excluded. A subclass cannot see or override them.
+// @why C: private members are exactly the ones that are not inherited.
+// @why D: static members may be inherited, but they are not the only kind.
+
+// @quiz (INTERVIEW, MEDIUM) What is a class member in Java?
+// @option A field or a method declared inside the class, together with other elements such as nested types. [correct]
+// @option Only the methods of a class.
+// @option Only the objects created from the class.
+// @option The package that contains the class.
+// @explain Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.
+// @why B: methods are members, but the fields are members too.
+// @why C: objects are instances of the class, not members of it.
+// @why D: a package groups classes. It is not a member of any one class.
+
 public class ClassesAndInheritance {
 
 

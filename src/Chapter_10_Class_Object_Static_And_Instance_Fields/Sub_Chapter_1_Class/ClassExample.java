@@ -158,6 +158,80 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 // @answer No. A static method has no current object, so direct access to an instance field causes a compile-time error.
 // @answer It must use an object reference or access a static field instead.
 
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code class Counter {
+// @code     static int total = 0;
+// @code     Counter() { total++; }
+// @code }
+// @code new Counter(); new Counter(); new Counter();
+// @code System.out.println(Counter.total);
+// @option 3, because the static field is shared and each constructor increments it. [correct]
+// @option 1, because each object gets its own copy of total.
+// @option 0, because a static field cannot be changed by a constructor.
+// @option It does not compile, because a constructor cannot change a static field.
+// @explain A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.
+// @why B: an instance field would behave that way. A static field is the shared one.
+// @why C: constructors may change static fields, which is a common way to count objects.
+// @why D: it is legal, and counting instances is one of the standard uses of a static field.
+
+// @quiz (INTERVIEW, MEDIUM) What is printed by this code?
+// @code class Person { String name; }
+// @code Person a = new Person();
+// @code Person b = new Person();
+// @code a.name = "Ada";
+// @code b.name = "Alan";
+// @code System.out.println(a.name + " " + b.name);
+// @option Ada Alan, because each object has its own copy of the instance field. [correct]
+// @option Alan Alan, because the second assignment overwrites the first.
+// @option Ada Ada, because both objects share the field.
+// @option It does not compile, because name is not initialised.
+// @explain name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.
+// @why B: the two assignments target different objects.
+// @why C: sharing happens only with a static field.
+// @why D: a field of an object gets a default value, here null, so it compiles.
+
+// @quiz (OCJP, MEDIUM) Does this class compile?
+// @code class Example {
+// @code     int count = 5;
+// @code     static int read() { return count; }
+// @code }
+// @option No. A static method cannot access an instance field, because there is no object to read it from. [correct]
+// @option Yes, and read() returns 5.
+// @option Yes, and read() returns 0.
+// @option Yes, because count is set before the method runs.
+// @explain A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.
+// @why B: the compiler rejects the access, so nothing runs.
+// @why C: an absent object is not the same as a zero value.
+// @why D: the order of statements cannot help, because the problem is that no object is involved.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code class Box { int size = 1; }
+// @code Box first = new Box();
+// @code Box second = first;
+// @code second.size = 7;
+// @code System.out.println(first.size);
+// @option 7, because both references point at the same object. [correct]
+// @option 1, because first keeps its own copy.
+// @option 0, because second replaced the object.
+// @option It does not compile, because a reference cannot be assigned to another reference.
+// @explain Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.
+// @why B: there is only one object, so there is only one size field.
+// @why C: second does not create or replace anything. It simply points at the existing object.
+// @why D: assigning references is ordinary and common.
+
+// @quiz (INTERVIEW TRAP, HARD) What happens when this code runs?
+// @code class Person { String name; }
+// @code Person p = null;
+// @code System.out.println(p.name);
+// @option It throws NullPointerException at runtime, because p points at no object. [correct]
+// @option It prints null, because the field is uninitialised.
+// @option It does not compile, because p is null.
+// @option It prints an empty line.
+// @explain The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.
+// @why B: a field on a real object can be null, but there is no object here at all.
+// @why C: null must be checked when the code runs, so the compiler allows it.
+// @why D: nothing is printed. The failure happens while the argument is being evaluated.
+
 public class ClassExample {
 
     public static void main(String[] args) {

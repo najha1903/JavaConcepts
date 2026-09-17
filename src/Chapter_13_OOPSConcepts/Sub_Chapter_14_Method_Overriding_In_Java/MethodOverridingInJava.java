@@ -199,5 +199,60 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
 // @why C: widening to a supertype would break callers who expect the narrower type.
 // @why D: an exact match is always allowed, but it is not the only option.
 
+// @quiz (OCJP, HARD) Does this code compile?
+// @code class Parent {
+// @code     static void show() { System.out.println("parent"); }
+// @code }
+// @code class Child extends Parent {
+// @code     @Override
+// @code     static void show() { System.out.println("child"); }
+// @code }
+// @option No. A static method is hidden rather than overridden, so @Override is a compile error. [correct]
+// @option Yes, and calling Child.show() prints child.
+// @option Yes, because @Override is optional.
+// @option Yes, and calling show() on a Parent reference prints child.
+// @explain Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.
+// @why B: the annotation is checked, and it fails here.
+// @why C: @Override is optional only when a real override exists. Here there is none.
+// @why D: hiding resolves at compile time from the reference type, so a Parent reference would print parent.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code class Parent {
+// @code     private void greet() { System.out.println("parent"); }
+// @code     void hello() { greet(); }
+// @code }
+// @code class Child extends Parent {
+// @code     void greet() { System.out.println("child"); }
+// @code }
+// @code new Child().hello();
+// @option parent, because the private method is not overridden, so Parent's own method is still used. [correct]
+// @option child, because Child declares a method with the same name.
+// @option It does not compile, because Child cannot declare greet().
+// @option It prints both parent and child.
+// @explain A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.
+// @why B: overriding needs an inherited method. A private method is not inherited.
+// @why C: declaring a method with the same name is allowed; it simply is not an override.
+// @why D: only one method is called.
+
+// @quiz (INTERVIEW, MEDIUM) What does super.toString() do inside an overriding toString method?
+// @option It calls the parent class version of toString, which is useful for adding the parent fields to the result. [correct]
+// @option It creates a new parent object.
+// @option It calls the constructor of the parent class.
+// @option It returns the class name only.
+// @explain super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.
+// @why B: no object is created. The method is simply called on the same object.
+// @why C: a constructor call is super(...) with parentheses and arguments, not super.method().
+// @why D: it runs whatever the parent toString returns, which normally includes the parent fields.
+
+// @quiz (OCJP, MEDIUM) A parent declares a method as protected. Which access modifier in an overriding child method is allowed?
+// @option public, because an override may widen access but never narrow it. [correct]
+// @option private, because an override may be more restrictive.
+// @option It does not matter, because an override can use any modifier.
+// @option Only protected, exactly matching the parent.
+// @explain An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.
+// @why B: private is more restrictive, which is exactly what is forbidden.
+// @why C: the modifier is constrained by the rule that access may not be reduced.
+// @why D: an exact match is allowed, but so is widening it to public.
+
 public class MethodOverridingInJava {
 }
