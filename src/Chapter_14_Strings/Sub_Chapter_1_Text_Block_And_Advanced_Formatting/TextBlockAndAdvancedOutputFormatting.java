@@ -1,13 +1,5 @@
 package Chapter_14_Strings.Sub_Chapter_1_Text_Block_And_Advanced_Formatting;
 import java.util.IllegalFormatConversionException;
-// Parameter notes (what each argument means and how to choose it):
-// - System.out.printf(String format, Object... args): format contains placeholders such as %d, %f, %s, %n; args must match those placeholders in count, order, and type.
-// - In printf("%d", age), %d requires an integral argument; using %f with an int is a trap and throws IllegalFormatConversionException.
-// - In printf("%.2f", value), .2 is the precision for floating-point output; choose it based on required decimal places, such as money or measurements.
-// - In printf("%6d", i), 6 is the minimum field width; choose it to align columns, knowing larger values are not truncated.
-// - String.format(String format, Object... args): parameters mean the same as printf, but the formatted result is returned instead of printed.
-// - "template %d".formatted(args): args fill the placeholders in the receiver string; choose one compatible value per placeholder.
-// - Important note: prefer %n instead of \n in format strings when you want a platform-specific newline.
 // @quiz (INTERVIEW) In System.out.printf("Age = %d", age), what does the first parameter control?
 // @answer The first parameter is the format string; it controls the literal text and placeholders that later arguments fill.
 //

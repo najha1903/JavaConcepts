@@ -1,8 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_13_Method_OverLoading_In_Java;
 
-// Parameter notes (what each argument means and how the parameter list matters):
-// - calculateScore(String playerName, int score): playerName names the player to print, and score is the points value to convert; use this overload when the name is known.
-// - calculateScore(int score): score is the points value for an unnamed player; this overload is chosen when only one int argument is passed.
 // important: calculateScore(String, int) and calculateScore(int) are OVERLOADS because their parameter counts and types differ.
 // - sum(int a, long b): a and b are the two numbers to add; an int second argument can widen to long when no exact sum(int, int) exists.
 // - sum(int a, int b, int c): a, b, and c are the three numbers to add; this overload is chosen by parameter COUNT.

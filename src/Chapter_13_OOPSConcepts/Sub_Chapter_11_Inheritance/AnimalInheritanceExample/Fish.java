@@ -1,10 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExample;
 
-// Parameter notes (what each argument means and how to choose it):
-// - Fish(String type, double weight, int gills, int fins): type names the fish, weight is its numeric weight, gills and fins are counts.
-// - The constructor calls super(type, "small", weight), so type and weight are passed to Animal while size is hard-coded as "small".
-// - Choose gills and fins as non-negative counts that describe the fish's body parts.
-// - move(String speed): speed is passed to super.move(speed) and also checked for "fast" to decide whether the back fin moves.
 // @quiz (INTERVIEW) In Fish(String type, double weight, int gills, int fins), what does super(type, "small", weight) do?
 // @answer It invokes Animal(String, String, double), passing the fish type, hard-coding size to "small", and passing the fish weight.
 // @quiz (INTERVIEW) How should callers choose gills and fins?

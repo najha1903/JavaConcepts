@@ -79,13 +79,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_3_Constru
 * constructor for it, and the child class would not need to call the parent constructor explicitly.
 * */
 
-// Parameter notes (what each constructor/method argument means and how to choose it):
-// - GoodConstructorSuperCallExample(int x, int y): x and y are the parent object's position coordinates; choose the starting location values to store in parent fields.
-// - AnotherGoodConstructorSuperCallExample(int x, int y): x and y are forwarded to this(x, y, 0, 0), while width and height default to 0.
-// - this(x, y, 0, 0): passes the same coordinates across to the 4-argument child constructor and supplies default size values.
-// - AnotherGoodConstructorSuperCallExample(int x, int y, int width, int height): x/y initialize inherited location through super(x, y); width/height initialize child-specific size.
-// - super(x, y): passes coordinate arguments up to the parent constructor; important: it must run before assigning child fields.
-// - warning: parameter order matters because all values are int; swapping x with y or width with height compiles but changes meaning.
 // @quiz (INTERVIEW) What do the x and y arguments passed to super(x, y) represent?
 // @answer They are position coordinates forwarded to the parent constructor so the parent fields can be initialized.
 // @quiz (INTERVIEW TRAP) Why is swapping width and height easy to miss in this example?

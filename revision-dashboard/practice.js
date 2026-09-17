@@ -599,7 +599,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Switch Statement Challenge Return Day Of The Week",
     "difficulty": "Easy",
     "chapter": "Chapter 7: Switch Statements",
-    "description": "<p>Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.</p><p>Challenge</p><p>1. Create a method called printDaysOfWeek, that takes an int parameter called day, but does not return any value</p>",
+    "description": "<p>Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7.</p><p>Challenge</p><p>1. Create a method called printDaysOfWeek, that takes an int parameter called day, but doesn't return any value</p>",
     "template": "public class PracticeWorkspace {\n    public static void printDayOfWeek(int day) {\n        // Write your code here\n    }\n}",
     "testCases": [
       {

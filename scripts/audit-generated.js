@@ -51,13 +51,19 @@ for (const [chapterName, chapterQuestions] of Object.entries(questions || {})) {
   }
 }
 
+// Guards for the tool's own text. Each pattern matches something the tool must
+// never leave behind in the notes: the "For Ex :-" shorthand it rewrites, a
+// mangled rewrite of that shorthand, and boilerplate from the retired
+// parameter-notes generator.
+//
+// The author's own phrasing is deliberately NOT listed here. Lines such as
+// "Value of the field always stays with the class" and "iii) Value is accessed
+// by ObjectVariable.fieldname" are his own notes, and the audit must never
+// report his writing as a defect.
 const clarityPatterns = [
-  /parameters mean the same as printf/i,
   /For Ex\s*[:-]/i,
   /For example:(?:ample|plan|act)/i,
-  /multiple number of times/i,
-  /Value of the field always stays/i,
-  /Value is accessed by ObjectVariable/i
+  /parameters mean the same as printf/i
 ];
 const incompleteEnding = /\b(?:as|and|or|but|because|with|from|to|of|for|in|on|is|are|the|a|an|that|which|when|if|than|into|while|until|this|its|their|same|nearly)$/i;
 for (const chapter of concepts || []) {

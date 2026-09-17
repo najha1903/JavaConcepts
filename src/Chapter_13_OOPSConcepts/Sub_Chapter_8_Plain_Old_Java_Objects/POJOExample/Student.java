@@ -1,13 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects.POJOExample;
 
-// Parameter notes (what each argument means and how to choose it):
-// - Student(String id, String name, String dateOfBirth, String classList): id identifies the student, name is the student's display name, dateOfBirth is birth-date text, and classList is the course list text. Choose all four values in this exact order; this code stores them directly without validation.
-// - setId(String id): id is the replacement identifier. Choose the new unique or meaningful student id expected by the rest of the program.
-// - setName(String name): name is the replacement display name. Choose the exact text that should appear in output.
-// - setDateOfBirth(String dateOfBirth): dateOfBirth is the replacement birth-date text. Choose a consistent date format such as the format already used by callers.
-// - setClassList(String classList): classList is the replacement course list. Important: setters replace the old value, so pass oldValue + extra text if you want to append.
-// - this.id = id and similar assignments copy parameters into fields; pitfall: the parameter shadows the field, so this.field means the object's stored data.
-// - Getters and toString() take no parameters because they read and format the current object state.
 // @quiz (INTERVIEW) What are the four constructor parameters of Student used for?
 // @answer id, name, dateOfBirth, and classList initialize the matching fields of the new Student object.
 // @quiz (INTERVIEW TRAP) What is the warning when calling setClassList(String classList)?

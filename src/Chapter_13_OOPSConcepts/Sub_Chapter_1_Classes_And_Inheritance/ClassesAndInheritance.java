@@ -101,11 +101,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
 // @answer Runtime polymorphism usually means method overriding, where the JVM decides at runtime which overridden method to call based on the ACTUAL object type, not the reference type.
 // @answer Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch.
 
-// Parameter notes (what each constructor/method argument means and how to choose it):
-// - This overview class defines no parameterized constructors or parameterized methods, so there are no object arguments to validate here.
-// - important: when later examples call overloaded methods or constructors, Java chooses the matching signature from the argument count, types, and order.
-// - remember: if a subclass constructor calls super(args), those arguments initialize the parent-class part of the object; choose values the parent fields can safely store.
-// - careful: if a method parameter has the same name as a field, this.field = field copies the incoming argument into the object's field.
 // @quiz (INTERVIEW) When a constructor parameter has the same name as an instance field, what does this.field = field mean?
 // @answer The bare name field is the parameter, while this.field is the current object's instance field; the assignment stores the caller's argument in the object.
 // @quiz (OCJP) How does Java choose between overloaded methods or constructors that take parameters?

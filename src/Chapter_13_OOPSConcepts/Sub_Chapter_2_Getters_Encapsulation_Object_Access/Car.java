@@ -22,13 +22,6 @@ When writing methods that use non-static fields, your method can't be declared s
 *
 * */
 
-// Parameter notes (what each constructor/method argument means and how to choose it):
-// - setConvertible(boolean convertible): pass true for a convertible car and false for a non-convertible car; this.convertible stores that choice in the object.
-// - setDoors(int doors): doors is the number of doors to display; choose a realistic positive door count because this setter currently performs no validation.
-// - setColor(String color): color is the paint/color description; pass a non-null readable color name because it is printed by describeCar().
-// - setModel(String model): model is the car model name; pass the specific model label such as "Carrera" or "Model X".
-// - setMake(String make): make is the manufacturer name; null becomes "Unknown", and only holden, porsche, or tesla are accepted by validation.
-// - trap: setMake converts the argument to lowercase for comparison but stores the original make argument when accepted, so caller capitalization is preserved.
 // @quiz (INTERVIEW) What should you pass to setMake(String make), and what happens for null or unsupported values?
 // @answer Pass the manufacturer name; null is changed to "Unknown", accepted values are holden, porsche, and tesla, and any other value stores "Unsupported".
 // @quiz (INTERVIEW TRAP) Why does setDoors(int doors) need a sensible caller-provided value even though it accepts any int?

@@ -32,11 +32,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_7_Static_And_Instance_Methods;
 *
 * */
 
-// Parameter notes (what each argument means and how to choose it):
-// - printSum(int a, int b): a and b are the two int values to add. Choose the exact numbers whose sum should be printed; important: this method only prints the result and does not return it.
-// - StaticAndInstanceMethods.printSum(2, 3): 2 is passed to a and 3 is passed to b by position, so the output uses 2 + 3.
-// - printName(String name): name is the text to include in the message for the object receiving the call. Choose the person's name or label you want printed.
-// - staticAndInstanceMethods.printName("Navneet"): the String argument becomes the name parameter; note that an instance method still receives its explicit parameters after the object reference chooses the receiver.
 // @quiz (INTERVIEW) What do a and b mean in printSum(int a, int b)?
 // @answer They are the two integer operands that the method adds and prints.
 // @quiz (INTERVIEW TRAP) Does printName(String name) become static just because its parameter is independent of object fields?

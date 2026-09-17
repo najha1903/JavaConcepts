@@ -24,9 +24,6 @@ package Chapter_4_Statements_And_Indentations;
 // @quiz (OCJP) Is int x = 5; a statement or an expression?
 // @answer It is a declaration statement.
 // @answer The whole line is not just an expression, even though it contains the assignment expression x = 5.
-// Parameter notes (important method parameters and how to choose them):
-// - pieces in String concatenation: each quoted literal around + is an operand used to build the final println
-//     parameter. Choose pieces for readability, but remember the runtime receives one combined String.
 // @quiz (INTERVIEW TRAP) Does indentation change the parameter passed to println?
 // @answer No. Indentation and most whitespace are ignored by the compiler; the expression before the semicolon determines the parameter value.
 //

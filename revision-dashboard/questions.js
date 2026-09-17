@@ -8154,14 +8154,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Parsing Values Reading Input? Select all that apply.",
       "options": [
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "Reading Data From Console",
-        "- Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.",
         "Write a method called inputThenPrintSumAndAverage that does not have any parameters."
       ],
       "answer": [
         0,
-        2,
+        1,
         3
       ],
       "explanation": "The true statements are taken directly from the notes for Parsing Values Reading Input.",
@@ -9331,14 +9331,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Car? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "When writing methods that use non-static fields, your method cannot be declared static.",
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly."
+        "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly.",
+        "When writing methods that use non-static fields, your method can't be declared static."
       ],
       "answer": [
         0,
-        1,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Car.",
@@ -9547,6 +9547,32 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java"
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Main (Classes Challenge)",
+      "question": "Which of the following are TRUE about Main (Classes Challenge)? Select all that apply.",
+      "options": [
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Review the class Main and understand its key responsibilities.",
+        "This topic belongs to Chapter 13: OOP Concepts → Classes Challenge.",
+        "This example defines 1 method; trace method behavior step by step.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+      ],
+      "answer": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "The true statements are taken directly from the notes for Main (Classes Challenge).",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "tags": [
+        "concept"
+      ]
     },
     {
       "type": "predict",
@@ -9812,7 +9838,7 @@ const QUESTIONS_BANK = {
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "It is a special type of code block that has a specific name and parameters, much like a method.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "It has the same name as the class, and it does not return any values.",
+        "It has the same name as the class itself, and it doesn't return any values.",
         "A constructor is used in the creation of an object."
       ],
       "answer": [
@@ -9899,32 +9925,6 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java"
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Super Keyword Use Example",
-      "question": "Which of the following are TRUE about Super Keyword Use Example? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "- printMethod() in both parent and child takes no parameters; the important call here is super.printMethod(), which passes no arguments but chooses the parent implementation.",
-        "- trap: writing printMethod() instead of super.printMethod() inside the override would call the overriding method again with the same no-argument list.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "The keyword super is commonly used with method overriding when we call a method with the same name from the parent class."
-      ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Super Keyword Use Example.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
-      "tags": [
-        "concept"
-      ]
     },
     {
       "type": "interview",
@@ -10045,32 +10045,6 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java"
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "This Key Word Use Example",
-      "question": "Which of the following are TRUE about This Key Word Use Example? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The keyword this is commonly used within constructors and setters and is optionally used within getters.",
-        "In the getter, there are no parameters so there's no conflict. Therefore,the use of this keyword is optional there.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "- this.color = color copies the parameter into the instance field; the parameter name shadows the field name."
-      ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for This Key Word Use Example.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java",
-      "tags": [
-        "concept"
-      ]
     },
     {
       "type": "interview",
@@ -10457,6 +10431,32 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java"
     },
     {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "House",
+      "question": "Which of the following are TRUE about House? Select all that apply.",
+      "options": [
+        "Review the class House and understand its key responsibilities.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "This example defines 2 methods; trace method behavior step by step.",
+        "This topic belongs to Chapter 13: OOP Concepts → Reference Object Instance.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "The true statements are taken directly from the notes for House.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_0-in-house-bluehouse-new-house-blue-what-d",
@@ -10578,10 +10578,10 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Reference Objects Instance Class? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Using one class blueprint, a program can create as many objects as it needs.",
+        "Using blueprint, we can create as many objects that we want",
         "This object can also be known as an instance.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "A class is a blueprint that defines the fields and methods available on its objects."
+        "A Class is like a blueprint"
       ],
       "answer": [
         1,
@@ -10678,10 +10678,10 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Static And Instance Methods? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "1) Static methods are declared using a static modifier and they belong to the class",
+        "1) Static methods are declared using a static modifier and they belong to Class",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "3) They're usually used for operations that don't require any data from an instance of the class (from this)",
-        "2) Static methods cannot access instance methods and instance variables directly."
+        "2) Static methods can't access instance methods and instance variables directly."
       ],
       "answer": [
         1,
@@ -10761,14 +10761,14 @@ const QUESTIONS_BANK = {
       "options": [
         "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "iv) Many database frameworks use POJO's to read data from, or to write data to databases,files or streams.",
-        "POJO CONCEPTS i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data ii) It's used to house data and pass data between functional classes.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "ii) It's used to house data and pass data between functional classes.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data"
       ],
       "answer": [
         0,
         2,
-        3
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Plain Old Java Object.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
@@ -10851,6 +10851,32 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java"
     },
     {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Main (Plain Old Java Objects)",
+      "question": "Which of the following are TRUE about Main (Plain Old Java Objects)? Select all that apply.",
+      "options": [
+        "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]",
+        "StudentRecord[id=1, name=Navi, dateOfBirth=21/05/1996, classList=Python MasterClass]",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]"
+      ],
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Main (Plain Old Java Objects).",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_0-what-are-the-four-constructor-parameters",
@@ -10923,6 +10949,32 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java"
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Student",
+      "question": "Which of the following are TRUE about Student? Select all that apply.",
+      "options": [
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "The toString() method is a special method in Java.",
+        "The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way.",
+        "The toString() method can be implemented in any class, and doing this helps to print out the current state of the object.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+      ],
+      "answer": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "The true statements are taken directly from the notes for Student.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "tags": [
+        "concept"
+      ]
     },
     {
       "type": "interview",
@@ -11764,32 +11816,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java"
     },
     {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Employee",
-      "question": "Which of the following are TRUE about Employee? Select all that apply.",
-      "options": [
-        "- super(name, birthDate) passes the shared Worker data up to Worker(String, String); hireDate remains in Employee.",
-        "Employee Class Extends the Worker Class",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "- Choose birthDate in the expected dd/MM/yyyy-like format because Worker.getAge() later reads substring(6) as the birth year.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
-      ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "explanation": "The true statements are taken directly from the notes for Employee.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_0-in-hourlyemployee-string-name-string-bir",
@@ -11843,32 +11869,6 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java"
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Hourly Employee",
-      "question": "Which of the following are TRUE about Hourly Employee? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "- Choose hourlyRate as a non-negative money amount per hour; collectPay() multiplies it by 40 hours.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "- getDoublePay() takes no parameters because it doubles the current collectPay() result using the stored hourlyRate.",
-        "- super(name, birthDate, hireDate) passes employee identity and dates to Employee, which then passes name and birthDate up to Worker."
-      ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Hourly Employee.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
-      "tags": [
-        "concept"
-      ]
     },
     {
       "type": "interview",
@@ -12007,32 +12007,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java"
     },
     {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Salaried Employee",
-      "question": "Which of the following are TRUE about Salaried Employee? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "- super(name, birthDate, hireDate) passes common employee data to Employee, which chains name and birthDate up to Worker.",
-        "- retire() takes no parameters, but it calls terminate(\"12/12/2025\"); that String argument becomes the inherited endDate.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "- Choose annualSalary as a non-negative yearly amount; collectPay() divides it by 26 pay periods."
-      ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Salaried Employee.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_0-in-worker-string-name-string-birthdate-h",
@@ -12162,14 +12136,14 @@ const QUESTIONS_BANK = {
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "important: bark() and bark(int number) are OVERLOADS because the parameter COUNT is different.",
-        "- bark(int number) uses number as the repeat count; choose a positive whole number for how many \"woof\" lines you want.",
-        "- bark() has an empty parameter list, so it means \"bark once\" with no caller-controlled repeat count.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "remember: the compiler chooses bark() or bark(int) at compile time from the arguments in the call.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "careful: adding a different return type to bark(int number) would not create another overload; the parameter list must differ."
       ],
       "answer": [
         1,
         2,
-        3
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Dog (Method Over Loading In Java).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
@@ -12518,10 +12492,10 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Dog (Method Overriding In Java)? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "- GermanShepherd.bark() also has an empty parameter list, matching Dog.bark() exactly.",
+        "trap: if GermanShepherd used bark(int number), it would be overloading, not overriding, because the parameter count changed.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "- Dog.bark() has an empty parameter list, so callers pass no values and the method always prints one default bark.",
-        "important: this is OVERRIDING because the child method keeps the same name and identical parameter list as the parent method."
+        "important: this is OVERRIDING because the child method keeps the same name and identical parameter list as the parent method.",
+        "remember: @Override helps catch parameter-list mistakes that would otherwise create a new overload by accident."
       ],
       "answer": [
         1,
@@ -13236,10 +13210,10 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Method Over Loading Vs Method Overriding Difference? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "- Different parameter COUNT means examples like area(int side) versus area(int length, int width).",
-        "- Method overloading reuses one method name with different parameter lists, so callers choose values by the operation shape they need.",
+        "- Method overriding keeps the parent parameter list identical so polymorphism can replace inherited behavior safely.",
+        "remember: overriding allows the same return type or a covariant return type, but it does not allow changed parameters.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "- Different parameter TYPE means examples like print(int value) versus print(String value)."
+        "important: return type, access modifier, and thrown exceptions do not by themselves create overloaded methods; the parameter list must differ."
       ],
       "answer": [
         1,
@@ -13693,32 +13667,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
     },
     {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 14: Strings",
-      "topic": "Text Block And Advanced Output Formatting",
-      "question": "Which of the following are TRUE about Text Block And Advanced Output Formatting? Select all that apply.",
-      "options": [
-        "- In printf(\"%d\", age), %d requires an integral argument; using %f with an int is a trap and throws IllegalFormatConversionException.",
-        "- In printf(\"%6d\", i), 6 is the minimum field width; choose it to align columns, knowing larger values are not truncated.",
-        "String -> immutable; each method call returns a NEW String instance.",
-        "String is a sequence of characters, which means its characters are ordered and indexed.",
-        "- In printf(\"%.2f\", value), .2 is the precision for floating-point output; choose it based on required decimal places, such as money or measurements."
-      ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Text Block And Advanced Output Formatting.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
       "type": "predict",
       "kind": "predict",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_predict_3",
@@ -13967,14 +13915,14 @@ const QUESTIONS_BANK = {
       "topic": "String Method And Best Practices",
       "question": "Which of the following are TRUE about String Method And Best Practices? Select all that apply.",
       "options": [
-        "- In printf(\"%d\", age), %d requires an integral argument; using %f with an int is a trap and throws IllegalFormatConversionException.",
         "String -> immutable; each method call returns a NEW String instance.",
         "String indexing is 0 - based, so the first character is at index 0 and the last one is at length() - 1.",
+        "New line in a format string - \\n or %n :-",
         "String is a sequence of characters, which means its characters are ordered and indexed.",
         "1) String Inspection Methods :- These give information about the String, such as its length or the position of a character. For example :- length(), isEmpty(), isBlank(), charAt(), indexOf(), lastIndexOf()."
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
@@ -14616,16 +14564,16 @@ const QUESTIONS_BANK = {
       "topic": "String Builder Concepts",
       "question": "Which of the following are TRUE about String Builder Concepts? Select all that apply.",
       "options": [
-        "- In printf(\"%d\", age), %d requires an integral argument; using %f with an int is a trap and throws IllegalFormatConversionException.",
         "StringBuilder -> mutable class that lets us change its text value in place.",
         "String -> immutable; each method call returns a NEW String instance.",
         "Instantiating String Objects",
+        "New line in a format string - \\n or %n :-",
         "String is a sequence of characters, which means its characters are ordered and indexed."
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for String Builder Concepts.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
@@ -14642,16 +14590,16 @@ const QUESTIONS_BANK = {
       "topic": "String Vs String Buffer Vs String Builder",
       "question": "Which of the following are TRUE about String Vs String Buffer Vs String Builder? Select all that apply.",
       "options": [
-        "- In printf(\"%d\", age), %d requires an integral argument; using %f with an int is a trap and throws IllegalFormatConversionException.",
         "StringBuilder is mutable. Its append(), insert(), delete(), and replace() methods update the same character buffer and return the same builder object, which makes method chaining possible. This avoids creating a new String for every intermediate change and is usually the best choice for text built by one thread, especially inside a loop.",
         "String is immutable. Once a String object has been created, its character contents cannot be changed. An operation such as concat() creates and returns a new String; it does not change the original String. If the result is not assigned to a variable, the original value remains unchanged.",
         "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
+        "New line in a format string - \\n or %n :-",
         "String is a sequence of characters, which means its characters are ordered and indexed."
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for String Vs String Buffer Vs String Builder.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringVsStringBufferVsStringBuilder.java",
@@ -15225,9 +15173,9 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
-      "Parameter notes (important method parameters and how to choose them):",
       "- Warning: You MUST initialize a local variable before reading or referencing it, otherwise the code will fail to compile.",
-      "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value."
+      "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.",
+      "Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow)."
     ],
     "syntax": "public class StringExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String myString = \"This is a string\";\r\n        System.out.println(\"MyString is equal to \" + myString);\r\n        myString = myString  + \", and this is more.\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n        myString = myString + \" \\u00A9 2022\";\r\n        System.out.println(\"myString is equal to \" + myString);",
     "badges": [
@@ -15298,8 +15246,7 @@ const QUICK_REVISION_BANK = {
       "- Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands)."
     ],
     "gotchas": [
-      "Critical Gotchas & Precedence Rules:",
-      "Parameter notes (important method parameters and how to choose them):"
+      "Critical Gotchas & Precedence Rules:"
     ],
     "syntax": "public class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);",
     "badges": [
@@ -15358,12 +15305,11 @@ const QUICK_REVISION_BANK = {
       "Challenge: Use separate statements to calculate the area and perimeter of a rectangle, and the hypotenuse of a right triangle using Math.sqrt and Math.pow.",
       "Deep Problem: Multi-Domain Unit Converter — Implement a conversion utility that handles distance, weight, temperature, and volume. Each conversion must be isolated in its own method, and the program should generate readable tables for values 1 through 10 to simulate the kind of output a small engineering tool might need.",
       "Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.",
-      "A single statement CAN span multiple lines — Java does not care about line breaks, only about the semicolon that ends the statement.",
+      "A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.",
       "Example: String s = \"Hello\" + \" World\" + \"!\"; — this is one statement split across multiple lines. It's still valid."
     ],
     "gotchas": [
-      "Parameter notes (important method parameters and how to choose them):",
-      "- pieces in String concatenation: each quoted literal around + is an operand used to build the final println parameter. Choose pieces for readability, but remember the runtime receives one combined String."
+      "Always be aware of scope, type constraints, and compiler rules in this area."
     ],
     "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +",
     "badges": [
@@ -15407,10 +15353,10 @@ const QUICK_REVISION_BANK = {
       "This challenge practices returning a boolean expression directly from a method."
     ],
     "gotchas": [
-      "Parameter notes (what each method/constructor argument means and how to choose it):",
       "Important: combine conditions carefully so invalid hours never accidentally produce a true result.",
       "Important: this exercise intentionally uses casting and truncation, so it is checking decimal-place equality rather than true mathematical closeness.",
-      "Important: exact output text matters in coding challenge platforms, including capitalization and spaces."
+      "Important: exact output text matters in coding challenge platforms, including capitalization and spaces.",
+      "Important: because the comparison already produces a boolean, the method can return the expression directly."
     ],
     "syntax": "public class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);",
     "badges": [
@@ -15432,10 +15378,9 @@ const QUICK_REVISION_BANK = {
       "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7."
     ],
     "gotchas": [
-      "Parameter notes (what each method/constructor argument means and how to choose it):",
       "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
       "NOTE: The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
-      "Parameter notes (what each method/constructor argument means and how to choose it):"
+      "This method needs to return the number of days in the month. Be careful about leap years they have 29 days in month 2 (February)."
     ],
     "syntax": "public class SwitchStatementInJava {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"If-else example:\");\r\n        ifElseExample(3);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Traditional switch example:\");\r\n        switchCase(2);",
     "badges": [
@@ -15480,8 +15425,7 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       "IMPORTANT: Always check your loop condition carefully.",
-      "The semicolon after while(condition); is MANDATORY — forgetting it is a syntax error.",
-      "Parameter notes (what each method/constructor argument means and how to choose it):"
+      "The semicolon after while(condition); is MANDATORY — forgetting it is a syntax error."
     ],
     "syntax": "public class WhileLoops {\r\n\r\n    /* while loop simply has expression\r\n\r\n    While loop code format :-\r\n\r\n    while(expression)  {\r\n    // block of statements\r\n\r\n    } */",
     "badges": [
@@ -15495,7 +15439,7 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 10: Class Object Static And Instance Fields": {
     "takeaways": [
-      "A class is a blueprint that defines the data and behavior that its objects will have.",
+      "A class can be described as :-",
       "There are 2 ways to create fields on classes.",
       "Challenge: Create a BankAccount class with a shared static bankName field, instance fields for account holder and balance, plus deposit and withdraw methods.",
       "Challenge: Create a Student class with a shared static schoolName field and instance fields for name, grade, and gpa. Create two students, print their details, and show static field behaviour.",
@@ -15525,10 +15469,10 @@ const QUICK_REVISION_BANK = {
       "Reading Data From Console"
     ],
     "gotchas": [
+      "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
       "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
       "Deep Problem: Form Validation Pipeline — Build reusable parsing and validation methods that verify integer and decimal fields, enforce numeric ranges, and aggregate multiple form errors into a single readable report. This mirrors the validation logic used in real business forms and APIs.",
-      "NOTE: Be mindful of spaces in the printed message.",
-      "NOTE: Be mindful of users who may type an invalid input right away (see example above)."
+      "NOTE: Be mindful of spaces in the printed message."
     ],
     "syntax": "public class ParsingValuesReadingInput {\n\n    public static void main(String[] args) {\n\n        String currentYear = \"2024\";\n\n        String userDateOfBirth = \"1999\";\n\n        // System.out.println(\"Age = \" + (currentYear - userDateOfBirth));",
     "badges": [
@@ -15600,10 +15544,10 @@ const QUICK_REVISION_BANK = {
       "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds."
     ],
     "gotchas": [
-      "Parameter notes (what each constructor/method argument means and how to choose it):",
-      "Parameter notes (what each constructor/method argument means and how to choose it):",
       "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
-      "Parameter notes (what each constructor/method argument means and how to choose it):"
+      "NOTE: All methods should be defined as public NOT public static.",
+      "NOTE: All methods should be defined as public NOT public static.",
+      "That's a good way of doing things, and it often leads to good coding because it avoids having to duplicate code by duplicating initialization in more than one place."
     ],
     "syntax": "public class ClassesAndInheritance {\r\n\r\n\r\n\r\n}",
     "badges": [
@@ -15617,12 +15561,12 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 14: Strings": {
     "takeaways": [
+      "New line in a format string - \\n or %n :-",
       "String is a sequence of characters, which means its characters are ordered and indexed.",
       "String -> immutable; each method call returns a NEW String instance.",
       "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
       "Challenge: Use printf and String.format to print a formatted employee summary and a right-aligned table of names and numbers.",
-      "Challenge: Create a JSON-like text block, build the same content with traditional string concatenation, print both, and compare them using equals().",
-      "Deep Problem: Text Intelligence Analyzer — Create a utility that inspects sentences for palindrome behavior, word count, character frequency, and reversed word order, then combines the findings into a formatted report. The challenge reflects common string-processing tasks used in search, validation, and reporting systems."
+      "Challenge: Create a JSON-like text block, build the same content with traditional string concatenation, print both, and compare them using equals()."
     ],
     "gotchas": [
       "Note :- %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",

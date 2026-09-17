@@ -60,13 +60,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExam
  */
 
 
-// Parameter notes (what each argument means and how to choose it):
-// - new Animal("Generic Animal", "Huge", 400): pass type, size, and weight in the same order as Animal(String, String, double).
-// - doAnimalStuff(Animal animal, String speed): animal is any Animal or subclass object; speed is forwarded to animal.move(speed).
-// - new Dog("Yorkie", 15): passes dog type and weight; the Dog constructor then supplies default ear and tail shapes.
-// - new Fish("GoldFish", 0.25, 2, 5): passes fish type, weight, gill count, and fin count in that order.
-// - Important polymorphism note: choosing a Dog or Fish for the Animal parameter changes which overridden makeNoise(), move(), and toString() methods run.
-// - Avoid null for the animal parameter because doAnimalStuff calls methods on it.
 // @quiz (INTERVIEW) In doAnimalStuff(Animal animal, String speed), why can a Dog or Fish be passed as the animal argument?
 // @answer Dog and Fish extend Animal, so they satisfy the Animal parameter type and Java dispatches overridden methods at runtime.
 // @quiz (INTERVIEW) What do the arguments in new Fish("GoldFish", 0.25, 2, 5) represent?

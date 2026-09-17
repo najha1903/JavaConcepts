@@ -36,13 +36,6 @@ Where √ represents square root.
 
 import java.awt.*;
 
-// Parameter notes (what each argument means and how to choose it):
-// - PointClassDistanceCalculation(int x, int y): x is the horizontal coordinate and y is the vertical coordinate of the point.
-// - setX(int x): pass the new horizontal coordinate; choose any int that represents the point's position on the x-axis.
-// - setY(int y): pass the new vertical coordinate; choose any int that represents the point's position on the y-axis.
-// - distance(int a, int b): a and b are the target point's x and y coordinates; remember the order is x first, y second.
-// - distance(Point a): a is the other Point object to measure from; avoid passing null because the method calls a.getX() and a.getY().
-// - Math.sqrt(double value): the value is the squared distance total, so it should be non-negative before taking the square root.
 // @quiz (INTERVIEW) In PointClassDistanceCalculation(int x, int y), what do x and y represent?
 // @answer x is the horizontal coordinate and y is the vertical coordinate used to initialize the point's fields.
 // @quiz (INTERVIEW TRAP) What is the pitfall in calling distance(Point a) with a null argument?

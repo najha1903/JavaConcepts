@@ -106,9 +106,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
 // @hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.
 // @testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);
 
-// Parameter notes (what each argument means and how the parameter list matters):
-// - An overriding method must repeat the parent method's parameter list exactly: same number, same types, and same order.
-// - In the challenge example processPayment(double amount), amount means the payment value to process; choose a double that represents the transaction amount.
 // important: CreditCardPayment.processPayment(double amount) overrides Payment.processPayment(double amount) only because the parameter list is identical.
 // trap: processPayment(int amount), processPayment(double amount, String currency), or processPayment(Double amount) would be overloads, not overrides.
 // - For overriding, Java decides which implementation runs at runtime from the actual object type.

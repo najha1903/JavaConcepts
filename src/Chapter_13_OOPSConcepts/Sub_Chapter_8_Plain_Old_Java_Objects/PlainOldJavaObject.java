@@ -25,11 +25,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_8_Plain_Old_Java_Objects;
 
 * */
 
-// Parameter notes (what each argument means and how to choose it):
-// - This overview class defines no constructors or methods with parameters, so there are no local parameters to pass.
-// - POJO parameter pattern to remember: a typical all-arguments constructor receives one value per field, and each setter receives the replacement value for exactly one field.
-// - Choose constructor arguments to represent the object's starting state; choose setter arguments to represent later updates. Important: unless validation is coded, setters and constructors usually store the caller's value directly.
-// - toString() in a POJO normally has no parameters because it reads the object's current fields and returns a formatted String.
 // @quiz (INTERVIEW) In a typical POJO constructor with one parameter per field, how should a caller choose each argument?
 // @answer Choose values that represent the initial state of the object, matching the constructor parameter order and types.
 // @quiz (INTERVIEW TRAP) If a POJO setter has no validation, what warning applies to its parameter?

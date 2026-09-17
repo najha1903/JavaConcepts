@@ -6,13 +6,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_2_Getters_Encapsulation_Object_Acces
 // To read field values, use the getter: car.getMake(). To update, use the setter: car.setMake("Porsche").
 // The setMake() method in Car validates the input — only "holden", "porsche", or "tesla" are accepted. Passing "Maserati" results in "Unsupported".
 // This demonstrates encapsulation at work — the class controls what data is valid, and outside code cannot bypass those rules.
-// Parameter notes (what each constructor/method argument means and how to choose it):
-// - car.setModel("Carrera"): the String argument becomes the model field, so choose the exact model name you want describeCar() and getModel() to show.
-// - car.setMake("Maserati"): the argument is validated by Car.setMake; warning: unsupported makes are stored as "Unsupported" rather than the original value.
-// - car.setDoors(2): the int argument becomes the door count; choose a realistic positive number because the setter does not reject bad values.
-// - car.setConvertible(true): true means convertible, false means not convertible; choose the boolean that matches the vehicle.
-// - car.setColor("black"): the String argument becomes the color field; avoid null if you want meaningful printed output.
-// - careful: these setter calls require car to reference an actual Car object; calling them while car is null causes a NullPointerException before parameters matter.
 // @quiz (INTERVIEW TRAP) Why will car.setModel("Carrera") fail here if car is still null?
 // @answer A parameterized method call needs a real target object; null has no object to receive the "Carrera" argument, so Java throws NullPointerException.
 // @quiz (INTERVIEW) What does the argument true mean in car.setConvertible(true)?

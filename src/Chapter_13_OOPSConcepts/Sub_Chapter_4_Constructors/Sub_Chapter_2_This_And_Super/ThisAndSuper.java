@@ -37,12 +37,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_An
 * Note :- 1) this() and super() keyword are known as calls, since they look like regular method calls, although they are used to call constructors
 *         2) A constructor can have a call to super() or this(), but never both
 * */
-// Parameter notes (what each constructor/method argument means and how to choose it):
-// - This concept file defines no parameterized constructors or methods, but explains this(args) and super(args), which are parameterized constructor calls.
-// - this(args) sends arguments across to another constructor in the same class; choose values that match one of that class's overloaded constructor parameter lists.
-// - super(args) sends arguments up to the parent constructor; choose values needed to initialize inherited fields before child fields are initialized.
-// - important: this(args) and super(args) are not normal methods, and either call must be the first statement in a constructor.
-// - careful: a constructor cannot contain both this(args) and super(args) because both would need to be first.
 // @quiz (INTERVIEW) What is the difference between passing arguments to this(args) and super(args)?
 // @answer this(args) calls another constructor in the same class, while super(args) calls a constructor in the parent class.
 // @quiz (OCJP) Why can't a constructor call both this(args) and super(args)?

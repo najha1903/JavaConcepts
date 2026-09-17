@@ -1,9 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java.MethodOverridingExample.CovariantReturnType;
 
-// Parameter notes (what each argument means and how the parameter list matters):
-// - Person(String name, String birthDate): name stores the person's display name, and birthDate stores the date text used when cloning.
-// - Choose name as meaningful person text and birthDate in the same format expected by the rest of your example or application.
-// - The Person constructor is overloaded only if another Person constructor has a different parameter count, type, or order.
 // important: constructors cannot be overridden because they are not inherited; only methods can be overridden.
 // - clone() has an empty parameter list in Object and in Person, so the parameter list is identical for overriding.
 // remember: Person clone() can return Person instead of Object because covariant return types are allowed in overriding.

@@ -19,13 +19,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExam
 *
 */
 
-// Parameter notes (what each argument means and how to choose it):
-// - Dog() calls super("Mutt", "Big", 50), so the default dog passes type, size, and weight up to the Animal constructor.
-// - Dog(String type, double weight, String earShape, String tailShape): type and weight describe the Animal part; earShape and tailShape describe Dog-specific fields.
-// - super(type, weight) calls Animal(String, double); careful, that parent constructor derives size from weight.
-// - Dog(String type, double weight) calls this(type, weight, "Perky", "Curled"), supplying default ear and tail shapes.
-// - move(String speed): pass "slow" to trigger walking and tail wagging, or another value such as "fast" to trigger running.
-// - super.toString() calls the parent Animal version with no arguments, while super(...) is a constructor call with arguments.
 // @quiz (INTERVIEW) In Dog(String type, double weight, String earShape, String tailShape), which arguments go to Animal and which stay in Dog?
 // @answer type and weight are passed to the Animal constructor with super(type, weight); earShape and tailShape initialize Dog fields.
 // @quiz (INTERVIEW TRAP) What is the pitfall of Dog(String type, double weight) calling this(type, weight, "Perky", "Curled")?

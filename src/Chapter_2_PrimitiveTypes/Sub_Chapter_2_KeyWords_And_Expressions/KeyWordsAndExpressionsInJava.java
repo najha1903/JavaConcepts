@@ -7,10 +7,6 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 // Control flow keywords like 'if', 'for', 'while' and their surrounding parentheses are NOT part of the expression — only the content inside the parentheses forms the expression.
 // For example: if(highScore == 50) — the keyword 'if' and the brackets are not part of the expression. The expression is 'highScore == 50'.
 // Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.
-// Parameter notes (important method parameters and how to choose them):
-// - condition (if): the boolean expression inside if(...). Choose an expression that evaluates to true when the
-//     block should run; warning: = assigns, while == compares primitive values.
-//     that explains the result; in this file the String literal is printed only when highScore == 50.
 // @quiz (INTERVIEW TRAP) Why is if(highScore = 50) not the right parameter for checking equality?
 // @answer = is assignment, not comparison. Use == when the condition should test whether highScore already equals 50.
 //

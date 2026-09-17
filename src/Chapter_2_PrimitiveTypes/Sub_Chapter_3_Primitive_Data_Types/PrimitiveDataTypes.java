@@ -193,11 +193,6 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // @why C: an int cannot hold a fraction at all, which is why precision is lost here.
 // @why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.
 
-// Parameter notes (important method parameters and how to choose them):
-// - target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a
-//     narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.
-// - numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long,
-//     f for float, and d for double when you want to be explicit; note that decimal literals default to double.
 // @quiz (INTERVIEW TRAP) What does the (byte) parameter-like target in (byte) (intMinValue / 2) tell Java?
 // @answer It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information.
 //

@@ -1,10 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
 
-// Parameter notes (what each argument means and how to choose it):
-// - HourlyEmployee(String name, String birthDate, String hireDate, double hourlyRate): name, birthDate, and hireDate identify the employee; hourlyRate is pay per hour.
-// - super(name, birthDate, hireDate) passes employee identity and dates to Employee, which then passes name and birthDate up to Worker.
-// - Choose hourlyRate as a non-negative money amount per hour; collectPay() multiplies it by 40 hours.
-// - getDoublePay() takes no parameters because it doubles the current collectPay() result using the stored hourlyRate.
 // @quiz (INTERVIEW) In HourlyEmployee(String name, String birthDate, String hireDate, double hourlyRate), what does hourlyRate control?
 // @answer It controls weekly pay because collectPay() returns 40 multiplied by hourlyRate.
 // @quiz (INTERVIEW) What happens to name, birthDate, and hireDate when super(name, birthDate, hireDate) is called?

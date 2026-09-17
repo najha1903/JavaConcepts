@@ -62,10 +62,6 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
 // @quiz (OCJP) Which is usually clearer: while (condition) { ... } or while (true) { if (condition) break; }?
 // @answer The explicit condition form is usually clearer when the exit rule is known up front.
 // @answer while (true) with break is fine when the exit depends on logic inside the loop body.
-// Parameter notes (what each method/constructor argument means and how to choose it):
-// - while(number < 15): the expression is the loop's controlling input; choose a condition that eventually becomes false to avoid an infinite loop.
-// - if(number <= 5) with continue uses 5 as an inclusive skip limit; choose the boundary so every value up to and including it is skipped.
-// - if(number >= 10) with break uses 10 as an inclusive stop limit; choose the boundary so the loop exits as soon as the value reaches or passes it.
 // @quiz (INTERVIEW) What parameter-like value controls when while(number < 15) stops?
 // @answer The boolean condition number < 15 controls the loop; it stops when that expression becomes false.
 //

@@ -1,11 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
 
-// Parameter notes (what each argument means and how to choose it):
-// - SalariedEmployee(String name, String birthDate, String hireDate, double annualSalary): name and dates identify the employee; annualSalary is yearly pay.
-// - super(name, birthDate, hireDate) passes common employee data to Employee, which chains name and birthDate up to Worker.
-// - Choose annualSalary as a non-negative yearly amount; collectPay() divides it by 26 pay periods.
-// - retire() takes no parameters, but it calls terminate("12/12/2025"); that String argument becomes the inherited endDate.
-// - Important note: isRetired is not a constructor parameter; retire() changes it to true after setting the termination date.
 // @quiz (INTERVIEW) In SalariedEmployee(String name, String birthDate, String hireDate, double annualSalary), what does annualSalary represent?
 // @answer It is the yearly salary amount used by collectPay(), which divides it by 26.
 // @quiz (INTERVIEW) What do the arguments in super(name, birthDate, hireDate) do?

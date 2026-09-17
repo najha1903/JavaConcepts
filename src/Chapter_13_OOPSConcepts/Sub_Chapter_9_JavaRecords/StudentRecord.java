@@ -61,14 +61,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_9_JavaRecords;
 
 */
 
-// Parameter notes (what each argument means and how to choose it):
-// - record StudentRecord(String id, String name, String dateOfBirth, String classList): id, name, dateOfBirth, and classList are record components; each becomes a canonical constructor parameter, a private final field, and an accessor method with the same name.
-// - id identifies the student record. Choose a stable identifier String that callers can use to distinguish students.
-// - name is the student's display name. Choose the exact text that should appear in generated toString() output and name() accessor results.
-// - dateOfBirth is birth-date text. Choose a consistent date format because this record stores the String directly without validation or parsing.
-// - classList is the course or courses text. Choose the complete course-list value at construction time; remember records have no setters, so it cannot be changed later.
-// - new StudentRecord(id, name, dateOfBirth, classList) arguments are matched by position. Important trap: all four components are Strings, so swapping arguments can compile but create an incorrect record.
-// - Accessor calls id(), name(), dateOfBirth(), and classList() take no parameters because they return the final component values copied by the canonical constructor.
 // @quiz (OCJP) In record StudentRecord(String id, String name, String dateOfBirth, String classList), what does each component generate automatically?
 // @answer Each component becomes a canonical constructor parameter, a private final field, and a public accessor method with the same name.
 // @quiz (INTERVIEW) How should a caller choose the classList component value for a StudentRecord?

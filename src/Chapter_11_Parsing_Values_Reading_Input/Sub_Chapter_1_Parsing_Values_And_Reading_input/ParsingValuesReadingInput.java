@@ -69,18 +69,6 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // @why C: System.out is an output stream. Console offers both reading and a prompt.
 // @why D: Console is mainly used for reading input with a prompt.
 
-// Parameter notes (what each argument means and how to choose it):
-// - Integer.parseInt(String s): s is base-10 integer text such as "2024"; avoid null, blanks, decimals, and letters because they throw NumberFormatException.
-// - Integer.parseInt(String s, int radix): radix chooses the number base from Character.MIN_RADIX to Character.MAX_RADIX, commonly 2, 8, 10, or 16.
-// - Double.parseDouble(String s): s is floating-point text such as "22.5"; choose it when decimals are valid and handle NumberFormatException for bad text.
-// - getInputFromConsole(int currentYear): currentYear is the reference year used for age calculation; choose the current calendar year or a fixed test year.
-// - System.console().readLine(String prompt): prompt is the text shown before input; choose a clear question and remember System.console() can be null in some IDEs.
-// - getInputFromScanner(int currentYear): currentYear has the same age-calculation meaning as above and is passed into validation logic.
-// - new Scanner(System.in): System.in selects keyboard/stdin as the input source; choose a File or other source when reading somewhere else.
-// - sc.nextLine(): no parameter; it reads the rest of the current line, including spaces, and is useful for names or full text answers.
-// - checkValidDOB(int currentYear, String yearOfBirth): currentYear is the maximum allowed birth year; yearOfBirth is user-entered numeric text to parse and validate.
-// - catch (NumberFormatException e): the parameter type chooses which exception is handled; choose the most specific exception before broader ones.
-// - Important pitfall: Scanner token methods such as nextInt() leave a newline behind; use nextLine() carefully when mixing token and line reads.
 // @quiz (INTERVIEW) What must be true about the String passed to Integer.parseInt(String s)?
 // @answer It must contain valid integer text for the expected radix, with no decimal point or non-numeric characters except a valid sign.
 //

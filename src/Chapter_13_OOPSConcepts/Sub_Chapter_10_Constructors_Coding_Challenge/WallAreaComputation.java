@@ -35,12 +35,6 @@ Method named getArea without any parameters, it needs to return the area of the 
 *
 * */
 
-// Parameter notes (what each argument means and how to choose it):
-// - WallAreaComputation(double width, double height): width and height are wall dimensions; choose non-negative measurements in the same unit.
-// - The constructor validates each dimension; important note: a negative width or height is stored as 0 instead of the negative value.
-// - setWidth(double width): pass the replacement width; avoid negative values unless you intentionally want the field reset to 0.
-// - setHeight(double height): pass the replacement height; avoid negative values unless you intentionally want the field reset to 0.
-// - getArea() takes no parameters because it uses the already stored width and height fields.
 // @quiz (INTERVIEW) What do width and height mean in WallAreaComputation(double width, double height)?
 // @answer They are the wall's two dimensions, and callers should choose non-negative values in the same unit.
 // @quiz (INTERVIEW TRAP) What happens if setWidth(double width) receives a negative value?

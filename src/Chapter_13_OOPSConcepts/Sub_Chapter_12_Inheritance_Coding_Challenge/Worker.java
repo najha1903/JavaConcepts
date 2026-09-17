@@ -32,12 +32,6 @@ getDoublePay()
 
 *
 * */
-// Parameter notes (what each argument means and how to choose it):
-// - Worker(String name, String birthDate): name identifies the worker, and birthDate is later used by getAge().
-// - Choose birthDate in the expected dd/MM/yyyy-like format because getAge() reads birthDate.substring(6) and parses it as the year.
-// - Integer.parseInt(String value) receives the year text extracted from birthDate; warning, non-numeric year text will fail.
-// - terminate(String endDate): endDate is the worker's final date; choose the same date format used for other dates in this example.
-// - Subclasses call super(name, birthDate) to initialize the Worker part before adding their own fields.
 // @quiz (INTERVIEW) In Worker(String name, String birthDate), how is birthDate later used?
 // @answer getAge() extracts the year with substring(6), parses it, and subtracts it from the current year.
 // @quiz (INTERVIEW TRAP) What is the pitfall of passing birthDate in the wrong format?

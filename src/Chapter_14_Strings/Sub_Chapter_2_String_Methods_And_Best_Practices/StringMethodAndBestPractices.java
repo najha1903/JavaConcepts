@@ -58,21 +58,6 @@ package Chapter_14_Strings.Sub_Chapter_2_String_Methods_And_Best_Practices;
 *
 * */
 
-// Parameter notes (what each argument means and how to choose it):
-// - StringInspectionMethods(String text) and StringComparisonMethods(String text): text is the sample String under study. Choose non - null values, because these methods call instance methods on it. The values "Hello World", "" and "\t   \n" are useful to show the behaviour on a normal, an empty and a blank String.
-// - text.charAt(int index): index is 0 - based, so it has to be between 0 and length() - 1.
-// - text.indexOf(target) and lastIndexOf(target): target is the character or the substring to search for, and -1 means the value was not found.
-// - text.indexOf(target, fromIndex) and lastIndexOf(target, fromIndex): fromIndex is the position where the search starts.
-// - text.contentEquals(CharSequence cs): cs can be a String, StringBuilder, StringBuffer or CharBuffer.
-// - text.startsWith(prefix), endsWith(suffix) and contains(sequence): choose the exact prefix, suffix or text to look for, these checks are case - sensitive.
-// - text.regionMatches(ignoreCase, toffset, other, ooffset, len): ignoreCase decides case sensitivity, toffset and ooffset are the start indexes in each String, and len is the number of characters to compare.
-// - substring(beginIndex) and substring(beginIndex, endIndex): beginIndex is inclusive and endIndex is exclusive, an invalid range throws StringIndexOutOfBoundsException.
-// - String.join(delimiter, elements...): delimiter is placed between the elements, choose a separator such as "/" or ",".
-// - replace(target, replacement): the target is a literal value, given as a char or as a CharSequence.
-// - replaceFirst(regex, replacement) and replaceAll(regex, replacement): the target is a Regular Expression, so metacharacters like "." have to be escaped when the dot itself is meant.
-// - repeat(int count): count is the number of copies, 0 gives an empty String and a negative value throws IllegalArgumentException.
-// - indent(int n): a positive n adds leading spaces to every line, a negative n removes up to that many leading spaces, and 0 only normalizes the line endings.
-// - trim(), strip(), stripLeading() and stripTrailing(): these take no parameters, choose between them based on whether ASCII or Unicode whitespace has to be removed.
 // @quiz (INTERVIEW) What range is valid for the index parameter in text.charAt(index)?
 // @answer The valid range is 0 to length() - 1. Any index outside that range throws StringIndexOutOfBoundsException.
 //

@@ -72,12 +72,6 @@ having to duplicate code by duplicating initialization in more than one place.
 
 */
 
-// Parameter notes (what each constructor/method argument means and how to choose it):
-// - ConstructorConcept(String accountNumber, double accountBalance, String customerName, String email, String phoneNumber): pass account identity, starting balance, holder name, email, and phone in that exact order.
-// - ConstructorConcept(String accountNumber, String customerName, String email, String phoneNumber): omits balance and calls this(accountNumber, 100.00, customerName, email, phoneNumber), so 100.00 is the default starting balance.
-// - ConstructorConcept(): calls this("1234567890", 5000.0, "Navneet Jha", "puttu.jha500@gmail.com", "(+91) 8093958396") to supply default field values.
-// - warning: parameter order matters; two String parameters swapped, such as email and phoneNumber, still compile but store the wrong data.
-// - Setter parameters replace individual fields, depositAmount adds to balance, and withdrawalAmount subtracts only when the balance is sufficient.
 // @quiz (INTERVIEW) What does the accountBalance argument represent in the 5-argument ConstructorConcept constructor?
 // @answer It is the initial balance copied into the accountBalance field when the object is created.
 // @quiz (INTERVIEW TRAP) Why can swapping email and phoneNumber arguments be a subtle bug in this constructor?

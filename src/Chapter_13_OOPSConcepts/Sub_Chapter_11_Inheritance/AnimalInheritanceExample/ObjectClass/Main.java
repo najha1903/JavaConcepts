@@ -18,12 +18,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExam
 * */
 
 
-// Parameter notes (what each argument means and how to choose it):
-// - new Student("Navneet", 21): name is the student's display name and age is the student's age as an int.
-// - Student(String name, int age): choose a meaningful name and a non-negative age value.
-// - new PrimarySchoolStudent("Navneet", 21, "Puttu"): passes student name, age, and the parent or guardian name.
-// - PrimarySchoolStudent(String name, int age, String parentName) calls super(name, age), so name and age initialize the Student parent part.
-// - super.toString() in PrimarySchoolStudent.toString() adds the parent Student text after the child-specific parentName field.
 // @quiz (INTERVIEW) In PrimarySchoolStudent(String name, int age, String parentName), which parameters are passed to super?
 // @answer name and age are passed to Student(String, int); parentName is stored in the PrimarySchoolStudent field.
 // @quiz (INTERVIEW TRAP) What should callers avoid when choosing the age parameter for Student(String name, int age)?

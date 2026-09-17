@@ -1,10 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding;
 
-// Parameter notes (what each argument means and how the parameter list matters):
-// - Method overloading reuses one method name with different parameter lists, so callers choose values by the operation shape they need.
-// - Different parameter COUNT means examples like area(int side) versus area(int length, int width).
-// - Different parameter TYPE means examples like print(int value) versus print(String value).
-// - Different parameter ORDER can overload methods, such as show(String name, int age) versus show(int age, String name), but use this carefully for readability.
 // important: return type, access modifier, and thrown exceptions do not by themselves create overloaded methods; the parameter list must differ.
 // - Method overriding keeps the parent parameter list identical so polymorphism can replace inherited behavior safely.
 // remember: overriding allows the same return type or a covariant return type, but it does not allow changed parameters.

@@ -5,12 +5,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
 // Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.
 // Constructor chaining (super()) passes data up through the hierarchy — HourlyEmployee → Employee → Worker.
 // This demonstrates polymorphism: calling collectPay() on an Employee reference calls the correct subclass implementation.
-// Parameter notes (what each argument means and how to choose it):
-// - new Employee("Tim", "11/11/1985", "01/01/2010"): pass name, birthDate, and hireDate in that order.
-// - new SalariedEmployee("Joe", "11/11/1990", "03/03/2020", 35000): annualSalary is the yearly pay used by collectPay().
-// - joe.retire() takes no arguments, but internally passes a termination date to terminate(String endDate).
-// - new HourlyEmployee("Mary", "05/05/1984", "05/06/2009", 20): hourlyRate is the per-hour pay, and collectPay() assumes 40 hours.
-// - Important date note: choose birthDate strings with the year starting at character index 6 because Worker.getAge() depends on that.
 // @quiz (INTERVIEW) What do the four arguments in new SalariedEmployee("Joe", "11/11/1990", "03/03/2020", 35000) represent?
 // @answer They are name, birthDate, hireDate, and annualSalary, in that order.
 // @quiz (INTERVIEW) How does new HourlyEmployee("Mary", "05/05/1984", "05/06/2009", 20) use the 20 argument?

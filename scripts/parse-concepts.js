@@ -136,7 +136,12 @@ function parseJavaFile(filePath, rootDir) {
       const line = lines[i];
       if (!acc) { acc = line; continue; }
 
-      const startsNewItem = /^\d+[\).]/.test(line) || /^[-*•]/.test(line);
+      // A list item always starts a new line. Roman numerals count as list
+      // markers too, because the author numbers lists as i), ii), iii). Without
+      // this, "iii) Value is accessed by ClassName.fieldname" was joined onto the
+      // end of the item above it, welding two separate list items into one line.
+      // A trailing space is required so that "i.e." is not mistaken for a marker.
+      const startsNewItem = /^\d+[\).]/.test(line) || /^[ivx]{1,4}[\).]\s/i.test(line) || /^[-*•]/.test(line);
       const accEndsPunctuation = /[.!?]$/.test(acc) || /:-?$/.test(acc);
       const accEndsComma = /,\s*$/.test(acc);
       const nextStartsLower = /^[a-z]/.test(line);
@@ -174,68 +179,21 @@ function parseJavaFile(filePath, rootDir) {
     const bulletPrefix = bulletMatch ? bulletMatch[1] : '';
     clarified = bulletMatch ? clarified.slice(bulletMatch[0].length).trim() : clarified;
 
-    const exactRewrites = [
-      [/^String\.format\(String format, Object\.\.\. args\):\s*parameters mean the same as printf, but the formatted result is returned instead of printed\.?$/i,
-        'String.format(String format, Object... args) accepts the same format string and replacement values as printf. Instead of printing the result to the console, it returns the completed text as a String, so you can store it, combine it with other text, or print it later.'],
-      [/^A class can be described as\s*[:-]*$/i,
-        'A class is a blueprint that defines the data and behavior that its objects will have.'],
-      [/^Looping\s*[:-]*\s*Looping let us execute the code multiple number of times\.?$/i,
-        'Looping lets a program execute the same block of code repeatedly while a condition remains true.'],
-      [/^Value of the field always stays with the class$/i,
-        'A static field has one shared value that belongs to the class, rather than a separate value for each object.'],
-      [/^Creation of the object can be called as instantiation or instantiating a class\.?$/i,
-        'Creating an object is called instantiation, or instantiating the class.'],
-      [/^There is no limit on number of object one can create from a class\.?$/i,
-        'A class can be used to create any number of objects, as long as the program has enough memory.'],
-      [/^In its simplest form, it'?s the word new, followed by class name, and empty parenthesis\.?$/i,
-        'In its simplest form, object creation uses the new keyword followed by the class name and parentheses, such as new Person().'],
-      [/^The empty form, the class is the template for the data to be collected\.?$/i,
-        'An empty form is like a class: it is a template that describes the data an object will hold.'],
-      [/^The class provides a shape or framework that describes the object being created\.?$/i,
-        'The class provides the structure and behavior that describe each object created from it.'],
-      [/^Object and instance can be used interchangeably\.?$/i,
-        'In everyday Java terminology, object and instance usually refer to the same created value.'],
-      [/^A Class is like a blueprint\.?$/i,
-        'A class is a blueprint that defines the fields and methods available on its objects.'],
-      [/^Using blueprint, we can create as many objects that we want\.?$/i,
-        'Using one class blueprint, a program can create as many objects as it needs.'],
-      [/^Value of the field always stays with the class\s+iii\)\s*Value is accessed by ClassName\.fieldname\.?$/i,
-        'A static field has one shared value for the class, and you access it through ClassName.fieldName.'],
-      [/^iii\)\s*Value is accessed by ObjectVariable\.fieldname\.?$/i,
-        'An instance field is accessed through an object reference, such as objectVariable.fieldName.'],
-      [/^i\)\s*Storing counters\s+ii\)\s*Generating unique IDs\s+iii\)\s*Storing constant value that does not change\.\s*For example:\s*value of pi\s+iv\)\s*Creating and controlling access to a shared resource\.\s*For example:\s*log file, a database, input stream, output stream etc\.?$/i,
-        'Common uses for static variables include counting objects, generating unique IDs, storing constants such as pi, and sharing resources such as log files, databases, or streams.'],
-      [/^POJO parameter pattern to remember:\s*(.*)\s+For exactly one field\.?$/i,
-        'POJO parameter pattern to remember: an all-arguments constructor receives one value for each field, while each setter receives the replacement value for exactly one field.']
-    ];
-    for (const [pattern, replacement] of exactRewrites) {
-      if (pattern.test(clarified)) return bulletPrefix + replacement;
-    }
-
+    // The author's note is the source of truth, so nothing below rewords it.
+    // The only substitutions are for shorthand he uses as a writing convenience:
+    // "For Ex :-" and "Ex:-" become "For example:" and "Example:".
+    //
+    // Everything else is left exactly as written. His ":-" signposts ("Note :-",
+    // "Output :-", "Pitfall :-") are part of his voice, contractions such as
+    // "doesn't" are never expanded, and a sentence is never replaced with a
+    // rewritten version of itself.
     clarified = clarified
-      // The author writes ":-" throughout his notes as a signpost, for example
-      // "Note :-" and "Pitfall :-". It is part of his voice, so it is left alone
-      // rather than rewritten to a colon.
       .replace(/\bFor Ex\s*[:-]+/gi, 'For example:')
       .replace(/\bEx\s*:-\s*/gi, 'Example: ')
       .replace(/\bFor ex\s*[:-]+/gi, 'For example:')
-      .replace(/\bdoesn't\b/gi, 'does not')
-      .replace(/\bcan't\b/gi, 'cannot')
-      .replace(/\bwon't\b/gi, 'will not')
-      .replace(/\bshould return\b/gi, 'should return')
-      .replace(/\bnumber of object\b/gi, 'number of objects')
-      .replace(/\bmultiple number of times\b/gi, 'multiple times')
-      .replace(/\bmethod is accessed by\b/gi, 'call the method through')
-      .replace(/\bMethod is accessible by\b/gi, 'Call the method through')
-      .replace(/\bbelong to Class\b/gi, 'belong to the class')
-      .replace(/\bbelong to class\b/gi, 'belong to the class')
-      .replace(/\bthe class itself\b/gi, 'the class')
       .replace(/\s{2,}/g, ' ')
       .trim();
 
-    if (/^String\.format\(/i.test(clarified) && /formatted result is returned/i.test(clarified)) {
-      return bulletPrefix + 'String.format accepts a format string and replacement values, then returns the completed text as a String instead of printing it immediately.';
-    }
     return bulletPrefix + clarified;
   }
 

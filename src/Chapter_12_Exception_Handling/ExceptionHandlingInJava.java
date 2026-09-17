@@ -19,9 +19,6 @@ package Chapter_12_Exception_Handling;
 // - `e.getMessage()`: Returns detailed string description of the exception.
 // - `e.printStackTrace()`: Prints stack trace details to standard error.
 
-// Parameter notes (what each argument means and how to choose it):
-// - e (catch): Receives the exception thrown inside the matching `try` block. In this file, `Exception e` is the generic template example,
-//   while `NullPointerException e` is the specific type used for the runnable null-handling demo below.
 
 // Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.
 

@@ -1,10 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
 
-// Parameter notes (what each argument means and how to choose it):
-// - Employee(String name, String birthDate, String hireDate): name identifies the worker, birthDate is used by Worker.getAge(), and hireDate records when employment began.
-// - super(name, birthDate) passes the shared Worker data up to Worker(String, String); hireDate remains in Employee.
-// - Choose birthDate in the expected dd/MM/yyyy-like format because Worker.getAge() later reads substring(6) as the birth year.
-// - employeeId is not a constructor parameter; it is automatically assigned from the static employeeNumber counter.
 // @quiz (INTERVIEW) In Employee(String name, String birthDate, String hireDate), what does super(name, birthDate) initialize?
 // @answer It invokes Worker(String, String), setting the Worker name and birthDate fields for the Employee object.
 // @quiz (INTERVIEW TRAP) Why is birthDate format important when creating an Employee?

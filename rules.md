@@ -162,7 +162,9 @@ Good parameter notes answer:
 - What boundary or invalid values should be tested?
 - Does the method mutate the value or return a result?
 
-The generator creates a parameter section from actual signatures only when relevant coverage is missing. It does not add boilerplate for a topic with no meaningful method or constructor parameters, and it does not add `main(String[] args)` unless you document it yourself.
+Write these only for the parameters that are worth explaining. A no-argument method, or an argument whose meaning is obvious from its name, does not need an entry, and covering every signature in a file turns the section into a list rather than an explanation.
+
+The generator never writes parameter notes. It used to build a section from the method and constructor signatures in each file, which added entries for every parameter, including `main(String[] args)` and calls with no arguments, in a lecturing voice. Those entries now read as notes the author had written when he had not, so the feature was removed along with the entries it had already produced. A parameter section in a file is the author's writing.
 
 ## Tables And Examples
 

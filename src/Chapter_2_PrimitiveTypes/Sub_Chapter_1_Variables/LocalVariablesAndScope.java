@@ -61,9 +61,6 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
     System.out.println(j);        // ERROR: j is out of scope outside the switch
   }
 */
-// Parameter notes (important method parameters and how to choose them):
-// - condition (if): the boolean expression inside if(...). Choose an expression that answers the yes/no question
-//     controlling the block; careful, variables declared inside the block exist only inside that block.
 // @quiz (INTERVIEW TRAP) Can System.out.println(thirdVariable) use thirdVariable as a parameter outside the if block?
 // @answer No. thirdVariable was declared inside the if block, so it is out of scope outside that block and cannot be passed to println there.
 //

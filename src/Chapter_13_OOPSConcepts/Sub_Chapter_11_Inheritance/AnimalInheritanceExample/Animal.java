@@ -40,11 +40,6 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_11_Inheritance.AnimalInheritanceExam
 * 2) It encourages code extensibility
 * */
 
-// Parameter notes (what each argument means and how to choose it):
-// - Animal(String type, String size, double weight): type identifies the animal category, size stores a label, and weight is used as the numeric body weight.
-// - Animal(String type, double weight): type is still the animal category; weight is stored in the weight field and also used to choose size automatically as small, medium, or large.
-// - move(String speed): speed is a descriptive word such as "slow" or "fast" that tells how the animal is moving.
-// - Subclasses such as Dog and Fish call super(...) with these values; the argument order must match an Animal constructor signature.
 // @quiz (INTERVIEW) In Animal(String type, String size, double weight), how should the three arguments be chosen?
 // @answer Choose a type name, a size label, and a numeric weight for the animal, in that exact order.
 // @quiz (INTERVIEW TRAP) What important detail should you remember about Animal(String type, double weight)?

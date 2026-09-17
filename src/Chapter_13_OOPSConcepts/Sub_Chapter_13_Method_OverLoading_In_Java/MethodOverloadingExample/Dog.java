@@ -1,8 +1,5 @@
 package Chapter_13_OOPSConcepts.Sub_Chapter_13_Method_OverLoading_In_Java.MethodOverloadingExample;
 
-// Parameter notes (what each argument means and how the parameter list matters):
-// - bark() has an empty parameter list, so it means "bark once" with no caller-controlled repeat count.
-// - bark(int number) uses number as the repeat count; choose a positive whole number for how many "woof" lines you want.
 // important: bark() and bark(int number) are OVERLOADS because the parameter COUNT is different.
 // remember: the compiler chooses bark() or bark(int) at compile time from the arguments in the call.
 // careful: adding a different return type to bark(int number) would not create another overload; the parameter list must differ.
