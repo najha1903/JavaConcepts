@@ -100,6 +100,60 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // Then call sc.nextLine() to read a whole line, sc.nextInt() for an int, sc.nextDouble() for a double, etc.
 // Always close the Scanner when done: sc.close(); (or use try-with-resources).
 // The import statement lets you use classes defined in Java's standard library or other packages.
+
+// Converting text into a number :-
+// 1) The two ways to parse, and the difference :-
+// int a = Integer.parseInt("42");        // returns a primitive int
+// Integer b = Integer.valueOf("42");     // returns an Integer object
+// System.out.println(a + " / " + b);     // prints 42 / 42
+// Note :- parseInt gives you an int to do arithmetic with. valueOf gives you an Integer object, which is what you want when the value has to be stored where an object is expected.
+//
+// 2) Why parsing is needed at all :-
+// System.out.println("100" + "50");      // prints 10050, because + joins text
+// int sum = Integer.parseInt("100") + Integer.parseInt("50");
+// System.out.println(sum);               // prints 150
+// Note :- the text has to be turned into numbers before arithmetic means anything. `-` is not defined for Strings at all, so `"100" - "50"` does not even compile.
+//
+// 3) Bad text throws at runtime :-
+// int n = Integer.parseInt("abc");       // NumberFormatException: For input string: "abc"
+// Note :- this is a runtime failure, not a compile error, so it appears while the program is running. Chapter 12 covers catching it.
+//
+// 4) Spaces are enough to break a parse :-
+// int n = Integer.parseInt(" 42 ");      // NumberFormatException
+// int m = Integer.parseInt(" 42 ".trim());   // works, trim removes the spaces first
+// Note :- parseInt is strict. Anything that is not exactly a number, including a stray space, is rejected.
+//
+// 5) Reading with Scanner :-
+// Scanner sc = new Scanner(System.in);
+// System.out.print("Enter your name: ");
+// String name = sc.nextLine();           // reads the whole line, spaces included
+// System.out.print("Enter your age: ");
+// int age = sc.nextInt();                // reads one integer token
+// Note :- nextLine reads to the end of the line, while nextInt reads a single token and stops before the newline.
+//
+// 6) The classic nextInt then nextLine trap :-
+// int age = sc.nextInt();                // the Enter key is still waiting in the buffer
+// String name = sc.nextLine();           // reads that leftover newline, so name becomes ""
+// Note :- nextInt consumes the digits but leaves the newline behind. Either call an extra `sc.nextLine();` to clear it, or read everything with nextLine() and parse the text yourself.
+//
+// Pitfall :- System.console() returns null when the program is not started from a real terminal, which is usual inside an IDE. Code that uses it then throws NullPointerException, which is why Scanner is the safer choice for practice.
+// Pitfall :- a Scanner reading System.in should not be closed while input may still be needed, because closing it closes System.in as well.
+
+// Parameter notes :-
+// - s (the String given to Integer.parseInt, Double.parseDouble and the other parse methods): it must be exactly the digits of the number, with no spaces and no other characters. Choose it from trimmed user input so that " 42 " does not reach the parser.
+// - currentYear (passed to getInputFromConsole and getInputFromScanner): the year used to work out an age, so pass the real current year, or a fixed year when you want a repeatable test.
+// - yearOfBirth (passed to checkValidDOB): the text the user typed for their birth year. It is still a String at this point, so it is parsed and checked, and it must not be later than currentYear.
+
+// @takeaway Input always arrives as text, even when the user typed digits. `Integer.parseInt("42")` turns that text into 42, and `Double.parseDouble("3.14")` into 3.14.
+// @takeaway Text and numbers behave differently with the same operator. `"100" + "50"` gives "10050" because + joins text, and `"100" - "50"` does not compile at all. Parse first, then do the arithmetic.
+// @takeaway Parsing fails at runtime with a NumberFormatException when the text is not a valid number, so bad input has to be expected rather than assumed away.
+// @takeaway `new Scanner(System.in)` reads the keyboard: `nextLine()` takes the whole line including spaces, and `nextInt()` takes a single number token.
+// @takeaway The two Scanner methods disagree about newlines, which is the source of the most common input bug: `nextInt()` leaves the Enter key behind, so the `nextLine()` after it reads an empty line.
+// @gotcha `nextInt()` stops before the newline, so a `nextLine()` straight afterwards returns "" instead of the text you typed. Call an extra `nextLine()` to clear the leftover.
+// @gotcha `Integer.parseInt(" 42 ")` throws, because the spaces make it invalid text. Trim the input first.
+// @gotcha `System.console()` returns null inside most IDEs, because the program is not attached to a real terminal, so code that calls it throws a NullPointerException.
+// @gotcha `Math.round` returns a long, not an int, so storing its result in an int needs a cast.
+
 /*
 *  When we read data in from either a file or from user input, it's common for the data
 *  to be initially stored as a String, which we'll need to convert to a numeric value.

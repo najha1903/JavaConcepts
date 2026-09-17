@@ -292,6 +292,34 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
 // @why C: toString() is exactly how you convert a StringBuilder back to a String.
 // @why D: the value is captured, so it holds Hello rather than null.
 
+// Why StringBuilder exists :-
+// String result = "";
+// for (int i = 0; i < 5; i++) { result = result + i; }   // builds 5 brand new Strings and throws 4 of them away
+//
+// StringBuilder builder = new StringBuilder();
+// for (int i = 0; i < 5; i++) { builder.append(i); }     // edits one buffer, nothing is copied
+// System.out.println(builder.toString());                // prints 01234
+// Note :- String is immutable, so every `+` makes a new object from the old ones. A StringBuilder is mutable, so append changes the same object and hands it back.
+//
+// The three text types, and how they were numbered :-
+// | Type | Can it change | Safe across threads | Use it when |
+// |---|---|---|---|
+// | String | No | Yes, because it never changes | the text is fixed or rarely changed |
+// | StringBuilder | Yes | No | one thread is doing lots of joining |
+// | StringBuffer | Yes | Yes, methods are synchronised | several threads share the same buffer |
+// Note :- StringBuffer is the older type. Its methods are synchronised, which costs speed, so StringBuilder is preferred when only one thread is involved.
+//
+// Pitfall :- a StringBuilder is not a String, so `builder.equals("text")` is false. That method compares references, not characters. Convert first: `builder.toString().equals("text")`.
+
+// @takeaway A StringBuilder is a mutable buffer. `append` changes the same object and returns it, so nothing is copied and there is no need to reassign the result.
+// @takeaway Use StringBuilder when text is joined repeatedly, especially inside a loop, because String concatenation builds a new String on every pass while the builder keeps working on one buffer.
+// @takeaway `toString()` captures the text as it is at that moment in a new, immutable String, so appending afterwards cannot change the String you already took.
+// @takeaway StringBuilder is the modern and faster choice; StringBuffer is the older type whose methods are synchronised, so it is only worth choosing when several threads share one buffer.
+// @gotcha A StringBuilder is not a String, so `sb.equals("text")` is false because that method compares references. Convert with `toString()` before comparing text.
+// @gotcha `new StringBuilder("Hello")` starts with a capacity of 16 plus the text length, so 21 here. Capacity is the room available before the buffer has to grow, not the length of the text.
+// @gotcha Building a long String with `+` inside a loop creates a new object on every pass and leaves the earlier ones for the garbage collector, which is exactly the cost StringBuilder avoids.
+
+
 public class StringBuilderConcepts {
 
     public static void main(String[] args) {

@@ -93,6 +93,38 @@ package Chapter_14_Strings.Sub_Chapter_2_String_Methods_And_Best_Practices;
 //
 // @quiz (INTERVIEW) When should replace() be used instead of replaceAll()?
 // @answer Use replace() when the target is a literal value, because it does not compile a Regular Expression and is faster. Use replaceAll() only when the target is really meant to be a pattern.
+//
+// Why immutability is the thing to hold on to :-
+// String s = "Java";
+// s.concat(" is fun");                 // the result is thrown away
+// System.out.println(s);               // prints Java, s never changed
+// String t = s.concat(" is fun");      // the result is stored
+// System.out.println(t);               // prints Java is fun
+// Note :- String cannot be changed once it exists. Every method that looks like it modifies a String actually builds and returns a new one, so the result has to be stored or printed to be seen.
+//
+// What that means for comparing two Strings :-
+// String a = "hello";
+// String b = "hello";
+// String c = new String("hello");
+// System.out.println(a == b);          // prints true, both literals come from the string pool
+// System.out.println(a == c);          // prints false, new String made a separate object
+// System.out.println(a.equals(c));     // prints true, equals compares the characters
+// Note :- `==` asks whether they are the same object. equals asks whether the text matches. Use equals for content, always.
+
+// Parameter notes :-
+// - beginIndex and endIndex (substring): the returned text runs from beginIndex up to but NOT including endIndex, so substring(0, 3) gives the first three characters and index 3 itself is left out. An index outside the String throws StringIndexOutOfBoundsException.
+// - target (indexOf, replace, replaceAll): the text being searched for or replaced. In replaceAll the target is a REGULAR EXPRESSION, so a "." matches any single character and needs escaping when you mean a real dot.
+// - newChar or replacement (replace): a literal value, useful when the text to find contains characters that a regular expression would treat specially.
+
+// @takeaway A String cannot be changed after it is created. `concat`, `toUpperCase`, `trim`, `replace` and `substring` all build and return a NEW String, so the result must be stored or printed to be seen.
+// @takeaway `==` asks whether two variables point at the same object, while `.equals()` asks whether the characters match. Use equals for content, because literals and runtime-built Strings do not share an object.
+// @takeaway Characters are counted from index 0, and `substring(begin, end)` stops just before end, so `substring(0, 3)` gives the first three characters.
+// @takeaway A `char` uses single quotes and holds exactly one character, while a String uses double quotes and holds any number of them. Adding a char to a number gives a number: `'A' + 1` is 66, and `(char) ('A' + 1)` is B.
+// @gotcha `"Java" + 10 + 20` gives Java1020 rather than Java30, because + starts joining as soon as one side is text. Wrap the arithmetic in parentheses to add it first.
+// @gotcha `substring` and `charAt` throw StringIndexOutOfBoundsException at runtime when the index is outside the String, so bound the value before using it.
+// @gotcha Comparing Strings with `==` can appear to work with literals and then fail as soon as one of them is built at runtime, because `==` never compares text.
+// @gotcha `replaceAll` reads its first argument as a regular expression, so `replaceAll(".", "-")` replaces every character. Use `replace` when you mean a literal dot.
+
 
 public class StringMethodAndBestPractices {
 

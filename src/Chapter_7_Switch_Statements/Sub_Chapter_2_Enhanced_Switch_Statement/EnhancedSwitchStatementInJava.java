@@ -11,6 +11,57 @@ package Chapter_7_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
 // Example: default -> { String msg = "INVALID"; yield msg; }
 // Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.
 
+// Enhanced switch in detail :-
+// 1) No fall-through, so there is no break to forget :-
+// int x = 2;
+// switch (x) {
+//     case 1 -> System.out.println("one");
+//     case 2 -> System.out.println("two");
+//     default -> System.out.println("other");
+// }
+// Output :- two
+// Note :- an arrow arm is finished when its statement ends, so execution can never slide into the arm below it.
+//
+// 2) Several values share one arrow :-
+// int x = 4;
+// switch (x) {
+//     case 1, 2, 3 -> System.out.println("low");
+//     case 4, 5    -> System.out.println("high");
+//     default      -> System.out.println("out of range");
+// }
+// Output :- high
+// Note :- the comma list does the job of three stacked case labels, with less to get wrong.
+//
+// 3) A switch expression produces a value :-
+// String day = switch (2) {
+//     case 1 -> "Monday";
+//     case 2 -> "Tuesday";
+//     default -> "Unknown";
+// };
+// System.out.println(day);           // prints Tuesday
+// Note :- the value of the chosen arm becomes the value of the whole switch, so it can be assigned to a variable or returned from a method.
+//
+// 4) An arm may need more than one statement :-
+// String month = "JANUARY";
+// String quarter = switch (month) {
+//     case "JANUARY", "FEBRUARY", "MARCH" -> "Q1";
+//     default -> {
+//         String msg = "INVALID MONTH";
+//         yield msg;
+//     }
+// };
+// System.out.println(quarter);       // prints Q1
+// Note :- an arm that needs a block ends with `yield`, which hands the value back to the switch. `yield` is to a switch expression what `return` is to a method.
+//
+// Pitfall :- a switch expression must cover every possible input, so the `default` arm is compulsory there. A switch statement may omit it, but then an unmatched value does nothing at all.
+// Pitfall :- `yield` is only allowed inside a switch expression. Writing it in an ordinary method is a compile error.
+
+// @takeaway The enhanced switch uses `->` in place of `:`, and each arm ends when its statement ends, so there is no fall-through and no `break` to forget.
+// @takeaway A comma-separated list groups values into one arm, so `case 1, 2, 3 -> ...` does the work of three stacked case labels.
+// @takeaway An enhanced switch can be used as an expression: whatever the chosen arm produces becomes the value of the whole switch, ready to be assigned or returned.
+// @gotcha A switch expression requires a `default` arm, because the expression has to produce a value for every possible input.
+// @gotcha `yield` is valid only inside a switch expression, and it is what returns the value from an arm that needs more than one statement.
+
 // @quiz (INTERVIEW) What is the difference between a traditional switch statement and an enhanced switch expression?
 // @answer Traditional switch uses colon syntax and can fall through, while enhanced switch uses arrow syntax and does not fall through.
 // @answer Enhanced switch can also be used as an expression that directly returns a value.

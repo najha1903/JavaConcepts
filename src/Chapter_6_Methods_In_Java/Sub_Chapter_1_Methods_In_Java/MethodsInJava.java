@@ -14,6 +14,67 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a /* */ block to show the in-between step — it never compiles or runs.
 // Stage 3 — calculateScore(boolean, int, int, int): the final, real overload; same parameters as stage 2, but now returns an int so the caller can capture and reuse the result.
 
+// How a method call actually works :-
+// 1) Parameters receive copies of the argument values :-
+// static void tryToChange(int n) { n = 99; }
+// int x = 5;
+// tryToChange(x);
+// System.out.println(x);            // prints 5, because n was a copy
+// Note :- Java is always pass-by-value. For a primitive, the copy is the number itself, so changing the parameter inside the method can never change the caller's variable.
+//
+// 2) The classic swap that does nothing :-
+// static void swap(int a, int b) { int t = a; a = b; b = t; }
+// int x = 1, y = 2;
+// swap(x, y);
+// System.out.println(x + " " + y);  // prints 1 2, not 2 1
+// Note :- only the copies a and b are swapped. swap only works if the values come back through a return value, or if they are objects whose fields you swap.
+//
+// 3) For an object, the copy is the reference :-
+// static void update(int[] data) { data[0] = 99; }
+// int[] nums = {1, 2, 3};
+// update(nums);
+// System.out.println(nums[0]);      // prints 99, the caller's array really changed
+// Note :- the parameter holds a copy of the reference, and both copies point at the same array, so writing through it is visible to the caller.
+//
+// 4) Reassigning the reference is not visible :-
+// static void reset(int[] data) { data = new int[]{0, 0, 0}; }
+// int[] nums = {1, 2, 3};
+// reset(nums);
+// System.out.println(nums[0]);      // prints 1, because only the copy was pointed elsewhere
+// Note :- comparing 3 and 4 is the whole of the pass-by-value trap. Changing the object is visible, pointing the parameter at a new object is not.
+//
+// 5) A non-void method must return on every path :-
+// static int sign(int n) {
+//     if (n > 0) { return 1; }
+// }                                  // Compile Error :- missing return statement
+// Note :- when n is 0 or less the method would finish without a value, so the compiler refuses the file.
+//
+// 6) An overload is chosen by the argument types :-
+// static void print(int x)    { System.out.println("int"); }
+// static void print(double x) { System.out.println("double"); }
+// print(5);                         // prints int
+// Note :- Java decides at compile time and prefers the most specific match, so an int argument takes the int version rather than widening to double.
+//
+// 7) void means the call produces no value :-
+// static void printScore(int score) { System.out.println(score); }
+// int result = printScore(10);      // Compile Error :- void cannot be converted to int
+// Note :- the method still runs and prints, but there is no value to store.
+//
+// Parameter notes :-
+// - score, levelCompleted and bonus (the three int values passed to calculateScore): score is the starting points, levelCompleted is how many levels were finished, and bonus is the points per level. The method adds score to levelCompleted * bonus, so a zero or negative bonus would reduce the score.
+// - gameOver (the boolean passed to calculateScore): it decides whether the score is reported, so pass true for a finished game and false to keep playing.
+
+// @takeaway A method is a named block of code you can run by name, so the same logic is written once instead of copied around. Calling it means writing the name with parentheses; defining it means writing a body instead of ending with a semicolon.
+// @takeaway Parameters are local variables created fresh for every call, holding copies of the values you passed in. They exist only while the method is running, and they disappear when it returns.
+// @takeaway Java always passes by value. For a primitive you get a copy of the number, which is why `swap(a, b)` leaves the caller's variables untouched. For an object you get a copy of the reference, so the method can change the object's contents but not point the caller's variable somewhere else.
+// @takeaway A return type is a promise. A non-void method must return a value on every path that can finish, so `static int sign(int n) { if (n > 0) { return 1; } }` does not compile: when n is 0 or less there is nothing to return.
+// @takeaway Overloading means several methods share one name but take different parameter lists. Java picks the version at compile time from the argument types, so `print(5)` chooses `print(int)` instead of widening to `print(double)`.
+// @takeaway `void` means the call produces no value at all, so `int result = printScore(10);` is a compile error even though the method runs and prints normally.
+// @gotcha A parameter is a copy, so assigning to it inside the method never changes the caller's variable. That is the whole reason the classic swap method appears to work and then changes nothing.
+// @gotcha For an object, writing through the reference is visible to the caller, but reassigning the reference is not: `data[0] = 99` changes the caller's array, while `data = new int[]{0,0,0}` only moves the local copy.
+// @gotcha The return type is not part of a method's signature, so two methods that differ only in their return type cannot overload each other.
+// @gotcha The compiler checks every path of a non-void method, so one branch that can finish without a return fails the whole file rather than compiling and returning a surprise at runtime.
+
 // @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?
 // @answer Java is ALWAYS pass-by-value.
 // @answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.

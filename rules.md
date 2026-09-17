@@ -249,6 +249,35 @@ A `@section` line divides a file into groups of questions, so the file stays rea
 
 Use it when one file holds two clearly different sets of questions. Never use it to introduce notes: anything that should be read as a note is an ordinary `//` line.
 
+## Key Takeaways And Gotchas
+
+`@takeaway` and `@gotcha` state a chapter's key points in the author's own words. They feed the Quick Revision panel and the cloze cards.
+
+```java
+// @takeaway A String cannot be changed after it is created, so concat, trim and substring all return a NEW String and the result has to be stored to be seen.
+// @gotcha `"Java" + 10 + 20` gives Java1020 rather than Java30, because + starts joining as soon as one side is text.
+```
+
+A chapter with no authored lines falls back to a round-robin pick of its note lines, which is why challenge instructions and bare headings used to appear as "key points". Authoring them is what removes that.
+
+### How To Write One
+
+A takeaway is there to help you understand the concept, not to remind you of a rule you already understand. Write it as if explaining the idea to yourself next month.
+
+- Explain the idea in plain words first, then use the term.
+- Give one concrete example with its real output, such as `5 / 2` is 2.
+- Say why it matters, or what goes wrong without it.
+- Two or three sentences is the right length. One dense line is not.
+
+Compare:
+
+```text
+Cryptic     : Division and modulus differ in that integer division truncates while modulus yields the remainder.
+Explained   : Dividing two whole numbers throws the fraction away, so 10 / 3 is 3 and not 3.33. The % operator hands you that thrown-away remainder instead, which makes 10 % 3 equal 1.
+```
+
+A gotcha is for the mistake that is easy to make and easy to miss. Name the mistake, show the wrong code, and say what actually happens. Do not restate the rule in the negative.
+
 ## Quiz Levels
 
 A question's level must describe what the question asks. It is never taken from the position of the topic inside the chapter.

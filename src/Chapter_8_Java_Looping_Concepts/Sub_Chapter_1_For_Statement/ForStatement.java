@@ -45,6 +45,52 @@ package Chapter_8_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
 
  Output :- 5 10 15 20 30 35 40 45 [Numbers 25 and 50 are not printed]
 
+ The three parts in more detail :-
+ 1) Off-by-one is decided by < or <= :-
+ for (int i = 0; i < 5; i++) { System.out.print(i + " "); }     // prints 0 1 2 3 4
+ for (int i = 0; i <= 5; i++) { System.out.print(i + " "); }    // prints 0 1 2 3 4 5
+ Note :- starting at 0 with < gives exactly 5 passes. Changing < to <= adds one more pass, which is the usual off-by-one mistake.
+
+ 2) The loop variable and the header :-
+ for (int i = 0; i < 3; i++) { System.out.println(i); }
+ // System.out.println(i);      // Compile Error :- cannot resolve symbol 'i'
+ Note :- i is declared in the header, so it belongs to the loop and is gone once the loop ends. To keep it, declare it before the loop.
+
+ 3) Two counters in one header :-
+ for (int i = 0, j = 10; i < j; i++, j--) { System.out.println(i + " " + j); }
+ Output :- 0 10, then 1 9, then 2 8, and so on
+ Note :- the initialisation and update sections may each hold several statements separated by commas.
+
+ 4) The endless for loop :-
+ for (;;) { ... }                // same as while (true)
+ Note :- all three sections are optional. Only a break or a return inside the body can end this loop.
+
+ 5) continue skips the rest of this pass, but still runs the update :-
+ for (int i = 1; i <= 5; i++) {
+     if (i == 3) { continue; }   // 3 is skipped
+     System.out.print(i + " ");  // prints 1 2 4 5
+ }
+ Note :- continue jumps to the update step, so i still increases. That is why the loop cannot get stuck here.
+
+ 6) Nested loops, and how to leave both at once :-
+ outer:
+ for (int i = 1; i <= 3; i++) {
+     for (int j = 1; j <= 3; j++) {
+         if (i * j == 6) { break outer; }   // leaves BOTH loops
+         System.out.println(i + " x " + j + " = " + (i * j));
+     }
+ }
+ Note :- the inner loop runs its whole 3 passes for every single pass of the outer loop. A plain break would leave only the inner loop, which is why a label is used when both must stop.
+
+ @takeaway A for loop keeps all three parts on one line: what to do before it starts, the test that decides whether to keep going, and what to change after each pass. `for (int i = 0; i < 5; i++)` runs the body five times, with i taking 0, 1, 2, 3 and 4.
+ @takeaway The variable declared in the header belongs to the loop and disappears at the closing brace, so `i` cannot be used after the loop.
+ @takeaway `break` leaves the loop immediately, while `continue` skips the rest of the current pass and jumps to the update step, so the counter still advances.
+ @takeaway Whether you write `<` or `<=` decides how many passes there are. `i < 5` stops at 4 and `i <= 5` stops at 5, and that one extra pass is the usual off-by-one bug.
+ @takeaway Nested loops run the inner loop completely for every single pass of the outer loop, so 3 outer passes over 4 inner passes run the inner body 12 times. A labelled break is how you leave both loops together.
+ @gotcha A loop that never changes its condition runs forever, and the program looks frozen rather than showing an error.
+ @gotcha `break` on its own leaves only the innermost loop. Leaving two loops needs a label, or a flag that the outer loop tests.
+ @gotcha If `continue` runs before the counter update in a while loop, the counter never advances and the loop spins forever. In a for loop the update still runs, so the same mistake is harmless there.
+
  @quiz (INTERVIEW) What is the difference between for, while, and do-while loops in Java?
  @answer for is best when initialization, condition, and update belong together, while while is better for condition-driven loops.
  @answer do-while checks the condition after the body, so it runs at least once.

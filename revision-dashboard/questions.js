@@ -3111,6 +3111,7 @@ const QUESTIONS_BANK = {
         "two\nthree\ndefault"
       ],
       "explanation": "Classic switch fall-through! Without break statements, execution falls through to every case below the match. case 2 matches, then falls to case 3, then default. Always add break unless fall-through is intentional.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
       "kind": "ocjp-tricky",
       "tags": [
         "ocjp",
@@ -13667,6 +13668,32 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
     },
     {
+      "type": "mcq",
+      "kind": "true-false",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "question": "Which of the following are TRUE about Text Block And Advanced Output Formatting? Select all that apply.",
+      "options": [
+        "String -> immutable; each method call returns a NEW String instance.",
+        "New line in a format string - \\n or %n :-",
+        "String is a sequence of characters, which means its characters are ordered and indexed.",
+        "2) What the common placeholders mean :-",
+        "1) printf prints straight away, String.format hands the text back :-"
+      ],
+      "answer": [
+        1,
+        3,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Text Block And Advanced Output Formatting.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
       "type": "predict",
       "kind": "predict",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_predict_3",
@@ -15111,6 +15138,32 @@ const QUESTIONS_BANK = {
     {
       "type": "mcq",
       "kind": "true-false",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_true-false-mcq_5",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Inheritence Vs Composition",
+      "question": "Which of the following are TRUE about Inheritence Vs Composition? Select all that apply.",
+      "options": [
+        "Composition is a way to make the combination of classes act like a single coherent object",
+        "Inheritence is a way to reuse functionality and attributes",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
+        "IS-A -> inheritance: `class Monitor extends Product` means a Monitor is a kind of Product, so it can be used wherever a Product is expected."
+      ],
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "explanation": "The true statements are taken directly from the notes for Inheritence Vs Composition.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "tags": [
+        "concept"
+      ]
+    },
+    {
+      "type": "mcq",
+      "kind": "true-false",
       "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-3-deepproblems-compositiondeepproblem-java_true-false-mcq_5",
       "difficulty": "medium",
       "chapter": "Chapter 15: Composition",
@@ -15140,18 +15193,16 @@ const QUESTIONS_BANK = {
 const QUICK_REVISION_BANK = {
   "Chapter 1: Java Introduction": {
     "takeaways": [
-      "Core Concepts: Java Architecture & Execution Flow",
-      "Challenge: Print your name, age, and developer status on separate lines using System.out.println.",
-      "Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.",
-      "Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.",
-      "Java is both a compiled and interpreted language.",
-      "Then print all three values on one line using string concatenation."
+      "`javac HelloWorld.java` compiles the source into bytecode, and `java HelloWorld` runs that bytecode on the JVM. The JVM never reads your .java file.",
+      "Java is compiled and interpreted: javac turns source into bytecode once, and the JVM runs that bytecode on the machine it happens to be on.",
+      "The file name has to match the public class inside it, so `public class HelloWorld` must live in HelloWorld.java.",
+      "Java is case-sensitive, so `String` is not `string`, `System` is not `system`, and the capital letters in a name are part of the name.",
+      "`System.out.println` is three separate things: the System class, its standard output stream `out`, and the `println` method, whose \"ln\" adds a new line at the end."
     ],
     "gotchas": [
-      "Note :- the file name must match the name of the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.",
-      "Note :- println ends the line for you, but concatenation does not add spaces, so you have to include them yourself, for example \"Navneet \" + 41 gives Navneet 41 and not Navneet41.",
-      "Note :- integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.",
-      "Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5."
+      "Editing the source without compiling again appears to change nothing, because the JVM keeps running the previous bytecode that is already on disk.",
+      "`java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.",
+      "Only one class in a file may be public, and it must be the one whose name matches the file name."
     ],
     "syntax": "public class HelloWorld {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Hello World\");\r\n    }\r\n\r\n}",
     "badges": [
@@ -15164,18 +15215,18 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 2: Primitive Types": {
     "takeaways": [
-      "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-      "Variables declared inside the for loop init section are local to the loop only.",
-      "Core Concepts: Java Variables & Initialization",
-      "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-      "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
-      "Challenge: Declare all 8 primitive data types, assign useful values, and print each with a label."
+      "Java has exactly eight primitive types: byte, short, int, long, float, double, boolean and char. Everything else is an object, including String.",
+      "Use int for whole numbers and double for decimals by default. Reach for long with an L suffix when a whole number is bigger than about 2.1 billion, and for BigDecimal when the values are money.",
+      "A declaration has three parts: the type, which decides the size and the allowed values, the name you will use, and the initialiser that gives the first value.",
+      "A literal has a type of its own: whole numbers are int and decimals are double, unless a suffix changes them. That is what `long big = 3000000000L;` and `float f = 3.14f;` are for.",
+      "A local variable must be assigned before it is read. Fields and array elements get a default of 0, 0.0, false or null, but locals get nothing at all.",
+      "`char` is written in single quotes and holds exactly one character, and it is a number underneath, which is why `'A' + 1` gives 66 rather than B."
     ],
     "gotchas": [
-      "Best practice: for large amounts of string manipulation (many concatenations in a loop), use StringBuilder instead, as it avoids creating many intermediate String objects.",
-      "- Warning: You MUST initialize a local variable before reading or referencing it, otherwise the code will fail to compile.",
-      "Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.",
-      "Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow)."
+      "Going past a type's range does not throw. It wraps around to the opposite end, so `Integer.MAX_VALUE + 1` is `Integer.MIN_VALUE` and the program carries on with a wrong number.",
+      "Dividing two whole numbers keeps only the whole part, so `5 / 2` is 2. Make one side a decimal, as in `5 / 2.0`, when you want 2.5.",
+      "A narrowing cast such as `(int) 9.8` truncates rather than rounds, so it gives 9 and not 10.",
+      "Comparing two Integer objects with `==` compares references rather than values, so use `equals` for the numbers, or store them as int."
     ],
     "syntax": "public class StringExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String myString = \"This is a string\";\r\n        System.out.println(\"MyString is equal to \" + myString);\r\n        myString = myString  + \", and this is more.\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n        myString = myString + \" \\u00A9 2022\";\r\n        System.out.println(\"myString is equal to \" + myString);",
     "badges": [
@@ -15238,18 +15289,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 3: Operators": {
     "takeaways": [
-      "Core Concepts: Operators, Operands & Expression Evaluation",
-      "1. Create a double variable with a value of 20.00",
-      "Deep Problem: Expression Evaluator Utilities — Build core numeric helper methods without using Math library shortcuts. Compute powers using repeated multiplication, determine absolute value manually, find the maximum of three values, and classify a number's sign. The goal is to practice operator-driven problem solving.",
-      "- Operator: A special symbol that performs operations on one or more operands and evaluates to a result.",
-      "2. Create a second variable of type double with the value 80.00",
-      "- Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands)."
+      "An operator is the symbol that does the work, such as `+` or `*`, and the values it works on are called operands. Put them together and you have an expression, which always works out to one value: `15 + 12` is an expression worth 27.",
+      "`+` does two different jobs. While both sides are numbers it adds, so `10 + 20` is 30. The moment one side is text it joins instead, so `10 + 20 + \"Java\"` gives `30Java` because the two numbers were added first, while `\"Java\" + 10 + 20` gives `Java1020` because the text came first.",
+      "Dividing two whole numbers throws the fraction away: `10 / 3` is 3 and not 3.33. The `%` operator hands you that thrown-away remainder instead, so `10 % 3` is 1. Write `10 / 3.0` when you want the decimal answer.",
+      "`b += 5` is not just a shorthand for `b = b + 5`. The compound form quietly converts the result back to the type on the left, which is why `byte b = 10; b += 5;` compiles while `b = b + 5;` does not: `b + 5` has become an int, and Java will not put an int back into a byte unless it is told to.",
+      "Multiply and divide happen before you add and subtract, so `2 + 3 * 4` is 14 and not 20. `i++` uses the value and then increases it, while `++i` increases first and then uses it: with `i = 5`, printing `i++` shows 5, and printing `++i` afterwards shows 7."
     ],
     "gotchas": [
-      "Critical Gotchas & Precedence Rules:",
-      "Note :- logical OR works the same way as logical AND. Double-pipe short-circuits, so it stops at the first true, while the single-pipe form always evaluates both sides.",
-      "Note :- when in doubt, add parentheses. They cost nothing and they remove the doubt.",
-      "Note :- on a line by itself, i++ and ++i do the same thing. The difference only shows when the value is used, such as in a print, an assignment, or an array index."
+      "Dividing an int by zero throws ArithmeticException, but dividing a double by zero gives Infinity and no error at all, so the same mistake behaves differently depending on the type.",
+      "`a > b > c` does not compile. `a > b` gives you a boolean, and a boolean cannot be compared with a number using `>`. Write it as `a > b && b > c`.",
+      "`=` puts a value into a variable, and `==` asks whether two values are the same. Because `x = 5` produces an int, `if (x = 5)` is a compile error, which is Java catching a mistake that would go unnoticed in other languages.",
+      "A remainder keeps the sign of the number on the left, not the divisor: `-10 % 3` is -1 and not 1."
     ],
     "syntax": "public class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);",
     "badges": [
@@ -15348,14 +15398,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 4: Statements And Indentations": {
     "takeaways": [
-      "A Java statement is a complete unit of execution. Most statements end with a semicolon (;).",
-      "Challenge: Use separate statements to calculate the area and perimeter of a rectangle, and the hypotenuse of a right triangle using Math.sqrt and Math.pow.",
-      "Deep Problem: Multi-Domain Unit Converter — Implement a conversion utility that handles distance, weight, temperature, and volume. Each conversion must be isolated in its own method, and the program should generate readable tables for values 1 through 10 to simulate the kind of output a small engineering tool might need.",
-      "Types of statements: declaration statements (int x = 5;), assignment statements (x = 10;), method call statements (System.out.println(\"hi\");), and more.",
-      "A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.",
-      "Example: String s = \"Hello\" + \" World\" + \"!\"; — this is one statement split across multiple lines. It's still valid."
+      "A statement is one complete instruction. Most of them end with a semicolon, and it is the semicolon that ends them rather than the line break, which is why `int x = 5` on its own line does not compile even though it looks finished.",
+      "An expression works out to a value, such as `2 + 3` or `x > 5`, and a statement is the complete instruction built around it. `int x = 5;` contains the expression `x = 5`, but the line as a whole is a declaration statement.",
+      "Spaces, tabs and line breaks mean nothing to the compiler. `int     c     =      5;` compiles exactly like `int c = 5;`. Indentation is there so that you and I can see which lines sit inside which block.",
+      "One statement can be spread across several lines, and several statements can share one line. Both compile. Write one statement per line anyway, because that is what makes a mistake easy to spot.",
+      "A line holding nothing but a semicolon is a legal empty statement, and that is what makes `if (x > 5);` so dangerous: the semicolon becomes the body of the if, and the block you wrote underneath ends up belonging to nothing."
     ],
-    "gotchas": [],
+    "gotchas": [
+      "A semicolon straight after `if (condition)` ends the if before its block, so the block runs no matter what the condition said. The code still compiles, which is what makes it easy to miss.",
+      "A variable declared inside a block disappears at the closing brace. Using it afterwards gives \"cannot resolve symbol\", because the name no longer exists.",
+      "Braces are not punctuation you can sprinkle anywhere. A class body, a method body, and the headers of `if` and `for` all end in `{` or `}`, and none of them takes a semicolon."
+    ],
     "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +",
     "badges": [
       "main",
@@ -15368,16 +15421,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 5: If Else Statements": {
     "takeaways": [
-      "Ternary Operator Example :-",
-      "An if-else if-else chain allows you to test multiple conditions in sequence, executing only the FIRST matching branch.",
-      "Deep Problem: Academic Result Classifier — Create a grading engine that converts numeric scores into fine-grained labels, determines pass/fail status, and maps results into broader academic bands such as Distinction and Merit. The main method should sweep through a range of scores to demonstrate how each rule behaves.",
-      "Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.",
-      "The 'else' block is the fallback — it runs only when ALL preceding conditions are false.",
-      "Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true."
+      "An `if` asks a true-or-false question and runs its block only when the answer is true. `if (score >= 50) { ... }` runs the block when the score is at least 50, and skips past it completely when it is not.",
+      "The condition has to be a real boolean. Java will not accept `if (1)` or `if (obj)` the way C does, so write the question out: `if (x != 0)` or `if (obj != null)`.",
+      "In a chain of `else if`, only the first condition that turns out true runs and the rest are skipped. With a score of 75 the `>= 90` test fails and the `>= 70` test passes, so you get B, and the `>= 50` test is never even looked at.",
+      "Without braces, an `if` controls only the one statement that follows it. In `if (flag) System.out.println(\"A\"); System.out.println(\"B\");` the second println runs whatever flag is, because only the first one belongs to the if.",
+      "`condition ? valueIfTrue : valueIfFalse` is a whole if-else squeezed into one expression, and it produces a value. Use it to choose between two values, as in `int paid = isMember ? 10 : 20;`, and use a normal if-else when a branch needs more than one line."
     ],
     "gotchas": [
-      "IMPORTANT: Do NOT put a semicolon after if(condition) — that would end the statement before the code block, creating an empty if.",
-      "Trying to use finalScore outside that if block would cause a compile error: \"Cannot resolve symbol 'finalScore'\"."
+      "A semicolon straight after the condition ends the if and leaves it with an empty body, so the block underneath always runs. `if (x > 5); { System.out.println(\"big\"); }` prints big even when x is 1.",
+      "`if (x = 5)` does not compile. `=` assigns a value and produces an int, and an if needs a boolean, so use `==` when you mean to compare.",
+      "Comparing two Strings with `==` asks whether they are the same object rather than whether they hold the same text, so `new String(\"hello\") == \"hello\"` is false. Use `.equals()` for content.",
+      "`&&` and `||` stop as soon as the answer is settled, and that is exactly what makes `name != null && name.length() > 5` safe: when name is null the left side is already false, so the method call that would throw never happens."
     ],
     "syntax": "public class IfExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        boolean isAlien = false;\r\n\r\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\r\n        if(isAlien == false){ // condition check\r\n            System.out.println(\"It is not an alien!\");\r\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.",
     "badges": [
@@ -15390,42 +15444,47 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 6: Methods In Java": {
     "takeaways": [
-      "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-      "This challenge uses method overloading to give the same method name two related meanings.",
-      "This challenge practices boolean logic with two inputs: whether barking is happening and what hour it is.",
-      "This challenge compares two double values only up to three decimal places.",
-      "This challenge classifies the relationship between three int values and prints one exact message.",
-      "This challenge practices returning a boolean expression directly from a method."
+      "A method is a named block of code you can run by name, so the same logic is written once instead of copied around. Calling it means writing the name with parentheses; defining it means writing a body instead of ending with a semicolon.",
+      "Parameters are local variables created fresh for every call, holding copies of the values you passed in. They exist only while the method is running, and they disappear when it returns.",
+      "Java always passes by value. For a primitive you get a copy of the number, which is why `swap(a, b)` leaves the caller's variables untouched. For an object you get a copy of the reference, so the method can change the object's contents but not point the caller's variable somewhere else.",
+      "A return type is a promise. A non-void method must return a value on every path that can finish, so `static int sign(int n) { if (n > 0) { return 1; } }` does not compile: when n is 0 or less there is nothing to return.",
+      "Overloading means several methods share one name but take different parameter lists. Java picks the version at compile time from the argument types, so `print(5)` chooses `print(int)` instead of widening to `print(double)`.",
+      "`void` means the call produces no value at all, so `int result = printScore(10);` is a compile error even though the method runs and prints normally."
     ],
     "gotchas": [
-      "Important: combine conditions carefully so invalid hours never accidentally produce a true result.",
-      "Important: this exercise intentionally uses casting and truncation, so it is checking decimal-place equality rather than true mathematical closeness.",
-      "Important: exact output text matters in coding challenge platforms, including capitalization and spaces.",
-      "Important: because the comparison already produces a boolean, the method can return the expression directly."
+      "A parameter is a copy, so assigning to it inside the method never changes the caller's variable. That is the whole reason the classic swap method appears to work and then changes nothing.",
+      "For an object, writing through the reference is visible to the caller, but reassigning the reference is not: `data[0] = 99` changes the caller's array, while `data = new int[]{0,0,0}` only moves the local copy.",
+      "The return type is not part of a method's signature, so two methods that differ only in their return type cannot overload each other.",
+      "The compiler checks every path of a non-void method, so one branch that can finish without a return fails the whole file rather than compiling and returning a surprise at runtime."
     ],
     "syntax": "public class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);",
     "badges": [
       "methodName",
+      "tryToChange",
+      "swap",
       "update",
-      "reset",
-      "sign",
-      "printScore"
+      "reset"
     ],
     "tables": []
   },
   "Chapter 7: Switch Statements": {
     "takeaways": [
-      "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-      "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-      "Write a method isLeapYear with a parameter of type int named year.",
-      "Write a method called printNumberInWord.",
-      "Create a new switch statement using char instead of int.",
-      "Use the enhanced switch statement as an expression, returning the result to a String named dayOfTheWeek. Print both the day variable and the dayOfTheWeek variable. In the main method, call this method for the values 0 through 7."
+      "`switch` compares one value against a list of fixed constants. Reach for it when the possibilities are exact values rather than ranges, and use if-else when the conditions are ranges or combinations.",
+      "The selector can be byte, short, char, int, their wrapper types, a String, or an enum value. long, float, double and boolean are rejected, so those need an if-else chain.",
+      "`break` is what stops a case running into the next one. Without it execution falls straight through, which is why `case 2` with no break also prints what `case 3` prints.",
+      "Fall-through is sometimes what you want. Stacking `case 1: case 2: case 3:` makes all three share one body, and only the last label needs a break.",
+      "`default` is matched rather than ordered. It runs when nothing else matched, and writing it first only changes which cases fall into it.",
+      "The enhanced switch uses `->` in place of `:`, and each arm ends when its statement ends, so there is no fall-through and no `break` to forget.",
+      "A comma-separated list groups values into one arm, so `case 1, 2, 3 -> ...` does the work of three stacked case labels.",
+      "An enhanced switch can be used as an expression: whatever the chosen arm produces becomes the value of the whole switch, ready to be assigned or returned."
     ],
     "gotchas": [
-      "Choosing between traditional and enhanced: prefer enhanced switch for new code — it is less error-prone and more expressive.",
-      "NOTE: The solution to the Leap Year coding exercise earlier in the course created the isLeapYear method. You can use that solution if you wish.",
-      "This method needs to return the number of days in the month. Be careful about leap years they have 29 days in month 2 (February)."
+      "A missing `break` is the classic switch bug, and the code still compiles, so the mistake shows up as extra output rather than as a compiler error.",
+      "Two case labels holding the same value do not compile, so a duplicated constant is caught at compile time.",
+      "A `return` inside a case leaves the whole method rather than just the switch, so any statement written after the switch never runs.",
+      "A String selector is matched by content and is case-sensitive, so \"monday\" does not match `case \"Monday\"` and quietly takes the default branch.",
+      "A switch expression requires a `default` arm, because the expression has to produce a value for every possible input.",
+      "`yield` is valid only inside a switch expression, and it is what returns the value from an arm that needs more than one statement."
     ],
     "syntax": "public class SwitchStatementInJava {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"If-else example:\");\r\n        ifElseExample(3);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Traditional switch example:\");\r\n        switchCase(2);",
     "badges": [
@@ -15439,14 +15498,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 8: Java Looping Concepts": {
     "takeaways": [
-      "Loops let us execute the same block of code multiple times without writing that code again and again.",
-      "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-      "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-      "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
-      "Deep Problem: Pattern Rendering Engine — Use nested loops to generate multiple console-based patterns, including star triangles, a number pyramid, and a full multiplication table. The challenge mirrors the kind of structured output logic often needed in reporting and diagnostic tools.",
-      "Java supports several looping statements for repetitive execution:"
+      "A for loop keeps all three parts on one line: what to do before it starts, the test that decides whether to keep going, and what to change after each pass. `for (int i = 0; i < 5; i++)` runs the body five times, with i taking 0, 1, 2, 3 and 4.",
+      "The variable declared in the header belongs to the loop and disappears at the closing brace, so `i` cannot be used after the loop.",
+      "`break` leaves the loop immediately, while `continue` skips the rest of the current pass and jumps to the update step, so the counter still advances.",
+      "Whether you write `<` or `<=` decides how many passes there are. `i < 5` stops at 4 and `i <= 5` stops at 5, and that one extra pass is the usual off-by-one bug.",
+      "Nested loops run the inner loop completely for every single pass of the outer loop, so 3 outer passes over 4 inner passes run the inner body 12 times. A labelled break is how you leave both loops together."
     ],
-    "gotchas": [],
+    "gotchas": [
+      "A loop that never changes its condition runs forever, and the program looks frozen rather than showing an error.",
+      "`break` on its own leaves only the innermost loop. Leaving two loops needs a label, or a flag that the outer loop tests.",
+      "If `continue` runs before the counter update in a while loop, the counter never advances and the loop spins forever. In a for loop the update still runs, so the same mistake is harmless there."
+    ],
     "syntax": "public class ForStatement {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Counting from 1 to 5:\");\r\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\r\n           System.out.println(counter);\r\n        }\r\n\r\n        System.out.println();",
     "badges": [
       "main",
@@ -15459,16 +15521,21 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 9: While And Do While Looping Concepts": {
     "takeaways": [
-      "The while loop repeatedly executes its body as long as a condition remains true.",
-      "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-      "Number Palindrome",
-      "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-      "Even Digit Sum",
-      "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder."
+      "A while loop tests its condition before every pass, so when the condition is false to begin with the body never runs at all.",
+      "Nothing is built into a while header. You set the counter up before the loop and change it inside the body, and forgetting to change it is what produces an infinite loop.",
+      "Three shapes cover most while loops: count up to a limit, keep going until a sentinel value arrives, and keep asking until the input becomes valid.",
+      "`n % 10` gives the last digit of a number and `n = n / 10` removes it. Repeat that while `n > 0` and the digits come out in reverse, which is the basis of digit sum, palindrome checks and number-to-words.",
+      "A do-while runs its body first and tests the condition afterwards, so the body always runs at least once, while a while loop can skip its body completely.",
+      "A do-while suits work that must happen once before it can be tested, such as asking for input and then repeating while the answer is out of range.",
+      "The semicolon after `while (condition);` is part of the do-while statement. Leaving it out is a syntax error."
     ],
     "gotchas": [
-      "IMPORTANT: Always check your loop condition carefully.",
-      "The semicolon after while(condition); is MANDATORY — forgetting it is a syntax error."
+      "A while loop whose body never changes the condition runs forever, and the program looks frozen rather than reporting anything.",
+      "`while (condition);` with a stray semicolon gives the loop an empty body, so the condition is tested endlessly and the block underneath is outside the loop.",
+      "`continue` in a while loop jumps back to the condition without running the update, so a counter incremented only at the end of the body never moves.",
+      "A do-while always executes its body at least once, even when the condition is false from the very start, so it can never behave like a guarded while loop.",
+      "`while (condition)` inside a do-while needs a statement terminator, unlike the `while` that starts a normal loop.",
+      "`continue` inside a do-while jumps to the condition test rather than to the top of the body, so the body may run fewer times than you expect."
     ],
     "syntax": "public class WhileLoops {\r\n\r\n    /* while loop simply has expression\r\n\r\n    While loop code format :-\r\n\r\n    while(expression)  {\r\n    // block of statements\r\n\r\n    } */",
     "badges": [
@@ -15482,14 +15549,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 10: Class Object Static And Instance Fields": {
     "takeaways": [
-      "A class can be described as :-",
-      "There are 2 ways to create fields on classes.",
-      "Challenge: Create a BankAccount class with a shared static bankName field, instance fields for account holder and balance, plus deposit and withdraw methods.",
-      "Challenge: Create a Student class with a shared static schoolName field and instance fields for name, grade, and gpa. Create two students, print their details, and show static field behaviour.",
-      "Deep Problem: Library Inventory Tracker — Design a compact library system that models books as objects, tracks a shared total count through a static field, and supports checkout and return workflows. The solution should show how instance state and class-wide state interact in a realistic domain model.",
-      "1) A custom data type --> For example: String"
+      "A class is a blueprint that lists the fields (the data) and the methods (the behaviour). An object is one filled-in copy of that blueprint, created with `new`.",
+      "Every object gets its own copy of the instance fields, so two objects from the same class hold different values. A field you never assign keeps its default: 0, 0.0, false, or null for an object type.",
+      "A variable of a class type holds a reference rather than the object itself. `Car myCar = new Car();` stores the address of an object on the heap, which is why two variables can point at the same one.",
+      "`new` runs a constructor and hands back a reference. The object stays alive while some reference points at it, and Java reclaims it automatically once none does.",
+      "`==` on two object variables asks whether they point at the same object, not whether their fields match, so two separately created cars compare as not equal."
     ],
-    "gotchas": [],
+    "gotchas": [
+      "A field you never assign is not empty. It holds the type's default, so a String field is null and calling a method on it throws a NullPointerException.",
+      "An object variable that has not been given an object holds null, and using it throws a NullPointerException rather than quietly creating something.",
+      "Local variables declared inside a method have no default at all, so reading one before assigning it is a compile error, unlike a field."
+    ],
     "syntax": "public class ClassExample {\r\n\r\n    public static void main(String[] args) {\r\n        //  We can create String using 2 ways\r\n\r\n         // 1) Literal form\r\n\r\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\r\n           System.out.println(\"Literal String = \" + s);",
     "badges": [
       "Counter",
@@ -15502,18 +15572,17 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 11: Parsing Values Reading Input": {
     "takeaways": [
-      "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-      "Input Calculator",
-      "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-      "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-      "Reading User Input Challenge.",
-      "Reading Data From Console"
+      "Input always arrives as text, even when the user typed digits. `Integer.parseInt(\"42\")` turns that text into 42, and `Double.parseDouble(\"3.14\")` into 3.14.",
+      "Text and numbers behave differently with the same operator. `\"100\" + \"50\"` gives \"10050\" because + joins text, and `\"100\" - \"50\"` does not compile at all. Parse first, then do the arithmetic.",
+      "Parsing fails at runtime with a NumberFormatException when the text is not a valid number, so bad input has to be expected rather than assumed away.",
+      "`new Scanner(System.in)` reads the keyboard: `nextLine()` takes the whole line including spaces, and `nextInt()` takes a single number token.",
+      "The two Scanner methods disagree about newlines, which is the source of the most common input bug: `nextInt()` leaves the Enter key behind, so the `nextLine()` after it reads an empty line."
     ],
     "gotchas": [
-      "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
-      "NOTE: Use the method Math.round to round the calculated average (double). The method round returns long.",
-      "Deep Problem: Form Validation Pipeline — Build reusable parsing and validation methods that verify integer and decimal fields, enforce numeric ranges, and aggregate multiple form errors into a single readable report. This mirrors the validation logic used in real business forms and APIs.",
-      "NOTE: Be mindful of spaces in the printed message."
+      "`nextInt()` stops before the newline, so a `nextLine()` straight afterwards returns \"\" instead of the text you typed. Call an extra `nextLine()` to clear the leftover.",
+      "`Integer.parseInt(\" 42 \")` throws, because the spaces make it invalid text. Trim the input first.",
+      "`System.console()` returns null inside most IDEs, because the program is not attached to a real terminal, so code that calls it throws a NullPointerException.",
+      "`Math.round` returns a long, not an int, so storing its result in an int needs a cast."
     ],
     "syntax": "public class ParsingValuesReadingInput {\n\n    public static void main(String[] args) {\n\n        String currentYear = \"2024\";\n\n        String userDateOfBirth = \"1999\";\n\n        // System.out.println(\"Age = \" + (currentYear - userDateOfBirth));",
     "badges": [
@@ -15552,68 +15621,106 @@ const QUICK_REVISION_BANK = {
   },
   "Chapter 12: Exception Handling": {
     "takeaways": [
-      "Core Concepts: Exception Handling in Java",
-      "Challenge: Demonstrate handling NullPointerException, ArrayIndexOutOfBoundsException, and NumberFormatException with separate catch blocks and a finally block.",
-      "Challenge: Parse an age from a String using Integer.parseInt, catch NumberFormatException, and return -1 for invalid input.",
-      "Challenge: Write a safeDivide method that returns a / b and catches ArithmeticException when the divisor is zero, returning 0 instead.",
-      "Without handling, an exception immediately terminates execution and prints a stack trace.",
-      "Exception Hierarchy Overview:"
+      "An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace.",
+      "`try` holds the risky code, `catch` deals with one chosen type of failure, and `finally` runs whatever happened, which is what makes it the right place for cleanup.",
+      "Checked exceptions are the ones the compiler makes you deal with, such as IOException. Unchecked ones such as NullPointerException and ArithmeticException are usually mistakes and the compiler asks for nothing.",
+      "`throw` raises an exception at the moment something is wrong, while `throws` in a method signature warns callers that this method may pass one on.",
+      "Catch order matters. List the most specific type first, because a broader catch placed above a narrower one makes that narrower one unreachable and the file will not compile."
     ],
     "gotchas": [
-      "An exception is an abnormal condition or runtime error that occurs during program execution and disrupts normal control flow.",
-      "Deep Problem: Fault-Tolerant Calculator — Build a calculator that performs standard arithmetic and square root operations while handling invalid expressions, divide-by-zero cases, negative square roots, and parsing errors gracefully. The solution should expose safe operation methods and a parser for simple text expressions.",
-      "- `Throwable`: Root class for all errors and exceptions.",
-      "- `Error`: Serious problems (e.g. `OutOfMemoryError`) that applications should NOT attempt to catch."
+      "A `catch (Exception e)` wrapped around everything treats a programming bug and a recoverable problem the same way, so real bugs survive unnoticed.",
+      "An empty catch block makes the failure disappear silently, which is worse than not catching it at all.",
+      "`finally` still runs when the try block returns, which is exactly why resources are closed there rather than after the try.",
+      "`Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.",
+      "The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened."
     ],
     "syntax": "public class ExceptionHandlingInJava {\r\n    public static void main(String[] args) {\r\n\r\n        try{ // The try block wraps any code that might throw an exception at runtime.\r\n            // Place only the risky code here — keep try blocks as small as possible.\r\n        } // The try block ends here; the catch block immediately follows.\r\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\r\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\r\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\r\n        }",
     "badges": [
+      "checkAge",
       "test",
       "main",
       "demonstrateException",
-      "parseAge",
-      "safeDivide"
+      "parseAge"
     ],
     "tables": []
   },
   "Chapter 13: OOP Concepts": {
     "takeaways": [
-      "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-      "Unlike local variables, class variables should have some type of access modifier declared for it.",
-      "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
-      "Create a new class for a bank account.",
-      "Create two methods with the same name: convertToCentimeters",
-      "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds."
+      "A class is a template listing the data (fields) and the behaviour (methods) of one kind of thing. An object is a created copy of that template, and it is the copy that holds actual values.",
+      "`static` means one copy shared by the whole class and reached through the class name, while an instance member means one copy per object reached through that object.",
+      "A static method has no object to work with, so it cannot read or change instance fields. The compiler refuses it at compile time rather than letting it fail later.",
+      "Inheritance lets a child class reuse a parent's fields and methods by writing `extends`. It models an IS-A relationship: a Dog IS-A Animal.",
+      "An access modifier narrows who can see a member: private is the class itself, nothing written means package, protected adds subclasses in other packages, and public is everyone.",
+      "Overriding means a child class writes its own version of a method the parent already has, keeping the same name and exactly the same parameter list.",
+      "Which overridden method runs is decided at runtime from the actual object type, not from the reference type, which is why overriding is called runtime polymorphism.",
+      "Which overloaded method runs is decided at compile time from the argument types, so overloading has nothing to do with polymorphism."
     ],
     "gotchas": [
-      "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
-      "NOTE: All methods should be defined as public NOT public static.",
-      "NOTE: All methods should be defined as public NOT public static.",
-      "That's a good way of doing things, and it often leads to good coding because it avoids having to duplicate code by duplicating initialization in more than one place."
+      "Adding `extends` does not copy the parent's constructors, so the child still has to call one with `super(...)`. If the parent has no no-argument constructor, that call becomes compulsory.",
+      "A private field is not visible to a child class, so a subclass cannot read or set it directly even though it inherits it. It has to go through the parent's methods.",
+      "A top-level class can only be public or have no modifier at all. protected and private are not valid on a top-level class.",
+      "A static method called through an object reference compiles and works the same as calling it through the class name, which makes it look like an instance method when it is not.",
+      "Changing the parameter list turns an intended override into an overload, and the code still compiles. `@Override` is what turns that silent mistake into an error.",
+      "A private method in the parent cannot be overridden, because the child cannot even see it. A same-named method in the child is a separate, unrelated method."
     ],
     "syntax": "public class ClassesAndInheritance {\r\n\r\n\r\n\r\n}",
     "badges": [
       "show",
-      "isConvertible",
-      "setConvertible",
-      "getDoors",
-      "setDoors"
+      "tick",
+      "resetShared",
+      "bad",
+      "isConvertible"
     ],
-    "tables": []
+    "tables": [
+      {
+        "headers": [
+          "Question",
+          "Overriding",
+          "Overloading"
+        ],
+        "rows": [
+          [
+            "Same name?",
+            "Yes",
+            "Yes"
+          ],
+          [
+            "Parameter list",
+            "Identical",
+            "Different"
+          ],
+          [
+            "Which one runs",
+            "Decided at runtime from the object type",
+            "Decided at compile time from the argument types"
+          ],
+          [
+            "Also called",
+            "Runtime polymorphism",
+            "Compile-time selection"
+          ]
+        ]
+      }
+    ]
   },
   "Chapter 14: Strings": {
     "takeaways": [
-      "New line in a format string - \\n or %n :-",
-      "String is a sequence of characters, which means its characters are ordered and indexed.",
-      "String -> immutable; each method call returns a NEW String instance.",
-      "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
-      "Challenge: Use printf and String.format to print a formatted employee summary and a right-aligned table of names and numbers.",
-      "Challenge: Create a JSON-like text block, build the same content with traditional string concatenation, print both, and compare them using equals()."
+      "`System.out.printf` prints its result immediately, while `String.format` returns the same text as a String you can store, compare or print later. The placeholders and arguments behave identically.",
+      "In a format string, %d is a whole number, %f is a decimal, %s is text, %.2f keeps two decimal places, %5d pads to width 5, and %n is the platform's new line.",
+      "A String cannot be changed after it is created. `concat`, `toUpperCase`, `trim`, `replace` and `substring` all build and return a NEW String, so the result must be stored or printed to be seen.",
+      "`==` asks whether two variables point at the same object, while `.equals()` asks whether the characters match. Use equals for content, because literals and runtime-built Strings do not share an object.",
+      "Characters are counted from index 0, and `substring(begin, end)` stops just before end, so `substring(0, 3)` gives the first three characters.",
+      "A `char` uses single quotes and holds exactly one character, while a String uses double quotes and holds any number of them. Adding a char to a number gives a number: `'A' + 1` is 66, and `(char) ('A' + 1)` is B.",
+      "A StringBuilder is a mutable buffer. `append` changes the same object and returns it, so nothing is copied and there is no need to reassign the result.",
+      "Use StringBuilder when text is joined repeatedly, especially inside a loop, because String concatenation builds a new String on every pass while the builder keeps working on one buffer."
     ],
     "gotchas": [
-      "Note :- %n works only inside a format string. System.out.println(\"Hello %n\") prints Hello %n as it is.",
-      "Note :- the original String is never changed, because String is immutable. Every method of the String class returns a new String instead of changing the existing one.",
-      "note: new StringBuilder(String) starts with capacity 16 + the text length, so new StringBuilder(\"Hello\") has capacity 21 (16 + 5), not 16. new StringBuilder(int n) starts with capacity exactly n.",
-      "StringBuilder is mutable. Its append(), insert(), delete(), and replace() methods update the same character buffer and return the same builder object, which makes method chaining possible. This avoids creating a new String for every intermediate change and is usually the best choice for text built by one thread, especially inside a loop."
+      "A placeholder that does not match its argument throws at runtime, not at compile time, so `printf(\"%f\", 42)` looks fine until the line runs.",
+      "%n only has meaning inside a format string. `System.out.println(\"Hello %n\")` prints the characters `%n` literally, because println is not a formatter.",
+      "`\"Java\" + 10 + 20` gives Java1020 rather than Java30, because + starts joining as soon as one side is text. Wrap the arithmetic in parentheses to add it first.",
+      "`substring` and `charAt` throw StringIndexOutOfBoundsException at runtime when the index is outside the String, so bound the value before using it.",
+      "Comparing Strings with `==` can appear to work with literals and then fail as soon as one of them is built at runtime, because `==` never compares text.",
+      "`replaceAll` reads its first argument as a regular expression, so `replaceAll(\".\", \"-\")` replaces every character. Use `replace` when you mean a literal dot."
     ],
     "syntax": "public class TextBlockAndAdvancedOutputFormatting {\r\n\r\n    /*\r\n\r\n    * Text Block\r\n    * 1) A text block is just a special format for multi-line String literals\r\n    *\r\n    * 2) It's simply a String, with a new representation in the source code\r\n    *\r\n    * Escape Sequences",
     "badges": [
@@ -15645,19 +15752,49 @@ const QUICK_REVISION_BANK = {
             "Line separator of the platform: \\r\\n on Windows, \\n on Linux or macOS"
           ]
         ]
+      },
+      {
+        "headers": [
+          "Type",
+          "Can it change",
+          "Safe across threads",
+          "Use it when"
+        ],
+        "rows": [
+          [
+            "String",
+            "No",
+            "Yes, because it never changes",
+            "the text is fixed or rarely changed"
+          ],
+          [
+            "StringBuilder",
+            "Yes",
+            "No",
+            "one thread is doing lots of joining"
+          ],
+          [
+            "StringBuffer",
+            "Yes",
+            "Yes, methods are synchronised",
+            "several threads share the same buffer"
+          ]
+        ]
       }
     ]
   },
   "Chapter 15: Composition": {
     "takeaways": [
-      "Product is the base Class",
-      "Inheritence is a way to reuse functionality and attributes",
-      "Deep Problem: Computer Assembly — composition in practice.",
-      "All of the computer parts are going to be inherited from Product",
-      "Composition is a way to make the combination of classes act like a single coherent object",
-      "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase."
+      "Composition means a class holds other objects in its fields, so a PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase. The parts are ordinary fields, and the whole class works by asking them to do their jobs.",
+      "Inheritance models IS-A, so a Dog IS-A Animal and reuses the parent's fields and methods. Composition models HAS-A, so a computer HAS-A monitor, which is a part it owns rather than a kind of itself.",
+      "Composition keeps the parts independent, so a Monitor can be tested, replaced or reused without touching the computer class, while a change in a parent class can affect every subclass at once.",
+      "Delegation is the method that makes composition work: `drawPixel` on the computer simply calls `monitor.drawPixel(...)` and passes the arguments along.",
+      "The two relationships can exist together. In this example every part IS-A Product through inheritance, and the PersonalComputer HAS-A Monitor through composition."
     ],
-    "gotchas": [],
+    "gotchas": [
+      "A composed object is only usable once its parts exist, so a constructor that stores them must receive or create real objects. Otherwise the fields stay null and every delegated call throws a NullPointerException.",
+      "Composition and inheritance are not a choice you make once for a whole program. The same class can belong to both relationships, as Monitor does here."
+    ],
     "syntax": "public class ComputerCase extends Product{\r\n\r\n    private String powerSupply;\r\n\r\n    public ComputerCase(String model, String manufacturer){\r\n        super(model,manufacturer);\r\n    }\r\n\r\n    public ComputerCase(String model, String manufacturer, String powerSupply){\r\n        super(model,manufacturer);",
     "badges": [
       "ComputerCase",

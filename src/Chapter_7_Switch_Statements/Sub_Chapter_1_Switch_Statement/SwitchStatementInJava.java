@@ -10,6 +10,82 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println("1, 2 or 3");
 // The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through.
 
+// Switch in detail :-
+// 1) Which types the selector may use :-
+// The selector may be int, char, byte, short, their wrapper types, a String, or an enum value.
+// long x = 1L;
+// switch (x) { }                     // Compile Error :- long is not a valid selector
+// boolean b = true;
+// switch (b) { }                     // Compile Error :- boolean is not valid either
+// Note :- float and double are not allowed either. Use an if-else chain for those types.
+//
+// 2) Fall-through is exactly what break prevents :-
+// int x = 2;
+// switch (x) {
+//     case 1: System.out.print("A"); break;
+//     case 2: System.out.print("B");
+//     case 3: System.out.print("C"); break;
+//     default: System.out.print("D");
+// }
+// Output :- BC
+// Note :- case 2 matches and prints B, then execution falls into case 3 because case 2 has no break, so C is printed as well. default is never reached, because case 3 breaks.
+//
+// 3) Falling through deliberately groups cases :-
+// int x = 3;
+// switch (x) {
+//     case 1:
+//     case 2:
+//     case 3: System.out.println("low"); break;
+//     default: System.out.println("high");
+// }
+// Output :- low
+// Note :- stacked labels share one body, and only the last of them needs a break.
+//
+// 4) default is matched, not ordered :-
+// int x = 2;
+// switch (x) {
+//     default: System.out.print("D");
+//     case 1: System.out.print("A");
+//     case 2: System.out.print("B");
+// }
+// Output :- B
+// Note :- default is written first, but a matching case 2 is still where execution starts. Writing default first only changes what falls into it.
+//
+// 5) break leaves the switch, return leaves the method :-
+// static void check(int x) {
+//     switch (x) {
+//         case 1: System.out.println("one"); return;
+//         default: System.out.println("other");
+//     }
+//     System.out.println("after switch");
+// }
+// check(1);                          // prints one, and never reaches after switch
+//
+// 6) String cases are compared by content, and the comparison is case-sensitive :-
+// String day = "monday";
+// switch (day) {
+//     case "Monday": System.out.println("start of week"); break;
+//     default: System.out.println("unknown");
+// }
+// Output :- unknown
+// Note :- the switch compared the characters exactly, so lowercase monday did not match Monday.
+//
+// Pitfall :- two case labels with the same value do not compile, so a duplicated constant is caught while compiling rather than running twice.
+//
+// Parameter notes :-
+// - month (passed to getQuarter(String month)): the exact uppercase month name the case labels expect, such as "JANUARY" or "NOVEMBER". An unlisted spelling, a lowercase name, or null all fall through to the default branch.
+// - value (the selector of switchCaseWithoutUsingBreak): it only picks the case where execution STARTS. Without break statements the run continues into the later cases, so a value of 4 prints the output of 4 and everything after it.
+
+// @takeaway `switch` compares one value against a list of fixed constants. Reach for it when the possibilities are exact values rather than ranges, and use if-else when the conditions are ranges or combinations.
+// @takeaway The selector can be byte, short, char, int, their wrapper types, a String, or an enum value. long, float, double and boolean are rejected, so those need an if-else chain.
+// @takeaway `break` is what stops a case running into the next one. Without it execution falls straight through, which is why `case 2` with no break also prints what `case 3` prints.
+// @takeaway Fall-through is sometimes what you want. Stacking `case 1: case 2: case 3:` makes all three share one body, and only the last label needs a break.
+// @takeaway `default` is matched rather than ordered. It runs when nothing else matched, and writing it first only changes which cases fall into it.
+// @gotcha A missing `break` is the classic switch bug, and the code still compiles, so the mistake shows up as extra output rather than as a compiler error.
+// @gotcha Two case labels holding the same value do not compile, so a duplicated constant is caught at compile time.
+// @gotcha A `return` inside a case leaves the whole method rather than just the switch, so any statement written after the switch never runs.
+// @gotcha A String selector is matched by content and is case-sensitive, so "monday" does not match `case "Monday"` and quietly takes the default branch.
+
 // @quiz (INTERVIEW) What data types can be used in a traditional Java switch statement?
 // @answer switch supports byte, short, char, int, their wrapper types, enum types, and String.
 // @answer It does not support every type, so larger or unrelated types still need if-else logic.

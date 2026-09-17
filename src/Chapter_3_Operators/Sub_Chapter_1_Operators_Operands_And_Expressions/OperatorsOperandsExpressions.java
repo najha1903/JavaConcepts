@@ -257,6 +257,16 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // @why C: ! requires a boolean, and ready is one.
 // @why D: there is no numeric negation for boolean. For an int, the unary - is the operator that flips the sign.
 
+// @takeaway An operator is the symbol that does the work, such as `+` or `*`, and the values it works on are called operands. Put them together and you have an expression, which always works out to one value: `15 + 12` is an expression worth 27.
+// @takeaway `+` does two different jobs. While both sides are numbers it adds, so `10 + 20` is 30. The moment one side is text it joins instead, so `10 + 20 + "Java"` gives `30Java` because the two numbers were added first, while `"Java" + 10 + 20` gives `Java1020` because the text came first.
+// @takeaway Dividing two whole numbers throws the fraction away: `10 / 3` is 3 and not 3.33. The `%` operator hands you that thrown-away remainder instead, so `10 % 3` is 1. Write `10 / 3.0` when you want the decimal answer.
+// @takeaway `b += 5` is not just a shorthand for `b = b + 5`. The compound form quietly converts the result back to the type on the left, which is why `byte b = 10; b += 5;` compiles while `b = b + 5;` does not: `b + 5` has become an int, and Java will not put an int back into a byte unless it is told to.
+// @takeaway Multiply and divide happen before you add and subtract, so `2 + 3 * 4` is 14 and not 20. `i++` uses the value and then increases it, while `++i` increases first and then uses it: with `i = 5`, printing `i++` shows 5, and printing `++i` afterwards shows 7.
+// @gotcha Dividing an int by zero throws ArithmeticException, but dividing a double by zero gives Infinity and no error at all, so the same mistake behaves differently depending on the type.
+// @gotcha `a > b > c` does not compile. `a > b` gives you a boolean, and a boolean cannot be compared with a number using `>`. Write it as `a > b && b > c`.
+// @gotcha `=` puts a value into a variable, and `==` asks whether two values are the same. Because `x = 5` produces an int, `if (x = 5)` is a compile error, which is Java catching a mistake that would go unnoticed in other languages.
+// @gotcha A remainder keeps the sign of the number on the left, not the divisor: `-10 % 3` is -1 and not 1.
+
 public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {

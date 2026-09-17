@@ -9,6 +9,36 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
 // The semicolon after while(condition); is MANDATORY — forgetting it is a syntax error.
 // continue and break work the same way in do-while: continue jumps to the condition check; break exits the loop.
 // When using loops: always check for infinite loops (condition never becomes false) and never-executing loops (condition false from the very start — can't happen in do-while, but watch for it in while and for loops).
+
+// Seeing the difference between while and do-while :-
+// int n = 10;
+// while (n < 5) { System.out.println("while ran"); }        // prints nothing, the test is false from the start
+// int m = 10;
+// do { System.out.println("do-while ran"); } while (m < 5); // prints do-while ran once
+// Note :- this is the whole difference in one example. The while loop checks first and skips; the do-while runs first and then checks.
+//
+// Where a do-while earns its place — asking at least once :-
+// int number;
+// do {
+//     System.out.print("Enter a number between 1 and 10: ");
+//     number = Integer.parseInt(scanner.nextLine());
+// } while (number < 1 || number > 10);
+// Note :- the question must be asked at least once, so a while loop would need the same code duplicated before the loop. The do-while states the intent directly.
+//
+// The mandatory semicolon :-
+// do { System.out.println("hi"); } while (false)     // Compile Error :- ';' expected
+// do { System.out.println("hi"); } while (false);    // prints hi
+// Note :- the semicolon is what ends the do-while statement. Leaving it out is the single most common mistake with this loop.
+//
+// Pitfall :- a do-while always runs its body once, even when the condition is false from the start. That is a feature here, but it is a surprise if you meant to guard the work with the condition.
+
+// @takeaway A do-while runs its body first and tests the condition afterwards, so the body always runs at least once, while a while loop can skip its body completely.
+// @takeaway A do-while suits work that must happen once before it can be tested, such as asking for input and then repeating while the answer is out of range.
+// @takeaway The semicolon after `while (condition);` is part of the do-while statement. Leaving it out is a syntax error.
+// @gotcha A do-while always executes its body at least once, even when the condition is false from the very start, so it can never behave like a guarded while loop.
+// @gotcha `while (condition)` inside a do-while needs a statement terminator, unlike the `while` that starts a normal loop.
+// @gotcha `continue` inside a do-while jumps to the condition test rather than to the top of the body, so the body may run fewer times than you expect.
+
 // @quiz (INTERVIEW) What does the isReady value control in do { ... } while (isReady)?
 // @answer It controls whether another iteration starts after the body finishes; because it is checked after the body, the body runs at least once.
 //

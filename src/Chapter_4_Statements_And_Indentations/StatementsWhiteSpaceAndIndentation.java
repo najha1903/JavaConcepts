@@ -9,6 +9,54 @@ package Chapter_4_Statements_And_Indentations;
 // In IntelliJ IDEA: Code -> Reformat Code (Ctrl+Alt+L) will auto-indent and format your code.
 // Best practice: one statement per line, consistent indentation (usually 4 spaces or 1 tab per level).
 
+// What a statement is :-
+// - A statement is a complete unit of execution, and most statements end with a semicolon.
+// - The statement types you will write most often are a declaration (`int x = 5;`), an assignment (`x = 10;`), and a method call (`System.out.println(x);`).
+// - An expression produces a value, such as `2 + 3` or `x > 5`. A statement is the complete instruction. `int x = 5;` contains the expression `x = 5`, but the whole line is a declaration statement.
+// - A bare expression on its own line is not a statement, so `x > 5` by itself does not compile unless it is used somewhere.
+//
+// Rules that surprise people :-
+// - A statement is ended by the semicolon, not by the line break.
+// - Several statements may share one line, and one statement may be spread over several lines. Both compile.
+// - These do NOT end with a semicolon: a class declaration, a method declaration, the header of an `if`, `for` or `while`, and a block `{ ... }`.
+//
+// Worked examples :-
+// 1) One statement over several lines :-
+// String message = "Hello"
+//     + " World"
+//     + "!";
+// System.out.println(message);      // prints Hello World!
+// Note :- the semicolon is what ends the declaration, so the line breaks inside it are only whitespace.
+//
+// 2) Several statements on one line :-
+// int a = 1; int b = 2; System.out.println(a + b);   // prints 3
+// Note :- this compiles, but one statement per line is far easier to read and to debug.
+//
+// 3) Whitespace and indentation are ignored :-
+// int c=5     ;
+// int     d =    10;
+// System.out.println(c + d);        // prints 15
+// Note :- the compiler discards the extra spaces. Indentation exists to show the nesting to a human reader.
+//
+// 4) A variable declared in a block lives only in that block :-
+// if (true) {
+//     int inner = 10;
+//     System.out.println(inner);    // prints 10, inner is in scope here
+// }
+// System.out.println(inner);        // Compile Error :- cannot resolve symbol 'inner'
+// Note :- the closing brace ends the block, and `inner` stops existing with it. That is why the same name can be declared again in a later block.
+//
+// Pitfall :- a lone semicolon is a legal empty statement. That is why `if (x > 5);` compiles: the semicolon becomes the body of the if, and the block written after it runs no matter what the condition was.
+//
+// @takeaway A statement is one complete instruction. Most of them end with a semicolon, and it is the semicolon that ends them rather than the line break, which is why `int x = 5` on its own line does not compile even though it looks finished.
+// @takeaway An expression works out to a value, such as `2 + 3` or `x > 5`, and a statement is the complete instruction built around it. `int x = 5;` contains the expression `x = 5`, but the line as a whole is a declaration statement.
+// @takeaway Spaces, tabs and line breaks mean nothing to the compiler. `int     c     =      5;` compiles exactly like `int c = 5;`. Indentation is there so that you and I can see which lines sit inside which block.
+// @takeaway One statement can be spread across several lines, and several statements can share one line. Both compile. Write one statement per line anyway, because that is what makes a mistake easy to spot.
+// @takeaway A line holding nothing but a semicolon is a legal empty statement, and that is what makes `if (x > 5);` so dangerous: the semicolon becomes the body of the if, and the block you wrote underneath ends up belonging to nothing.
+// @gotcha A semicolon straight after `if (condition)` ends the if before its block, so the block runs no matter what the condition said. The code still compiles, which is what makes it easy to miss.
+// @gotcha A variable declared inside a block disappears at the closing brace. Using it afterwards gives "cannot resolve symbol", because the name no longer exists.
+// @gotcha Braces are not punctuation you can sprinkle anywhere. A class body, a method body, and the headers of `if` and `for` all end in `{` or `}`, and none of them takes a semicolon.
+
 // @quiz (INTERVIEW) What is the difference between a statement and an expression in Java?
 // @answer An expression produces a value, such as 2 + 3 or x > 5.
 // @answer A statement is a complete instruction, such as int x = 5; or System.out.println(x);.

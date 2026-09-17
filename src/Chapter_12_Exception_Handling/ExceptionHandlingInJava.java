@@ -22,6 +22,78 @@ package Chapter_12_Exception_Handling;
 
 // Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.
 
+// Handling exceptions in practice :-
+// 1) try, catch and finally together :-
+// try {
+//     int result = 10 / divisor;         // the risky line
+//     System.out.println(result);
+// } catch (ArithmeticException e) {
+//     System.out.println("Cannot divide by zero");
+// } finally {
+//     System.out.println("Done");        // runs whether or not anything went wrong
+// }
+// Output for divisor 0 :- Cannot divide by zero, then Done
+// Note :- try holds the code that might fail, catch runs only when that type of failure happens, and finally runs in both cases. This is why finally is used to close files and other resources.
+//
+// 2) Checked against unchecked :-
+// Checked, such as IOException: the compiler insists you either catch it or declare it with throws. It represents something outside your control, like a missing file.
+// Unchecked, such as NullPointerException or ArithmeticException: the compiler asks for nothing. These are usually mistakes in the program's own logic.
+// Note :- the rule of thumb is that checked problems are expected and recoverable, while unchecked ones are bugs to be fixed.
+//
+// 3) throw raises one now, throws warns the caller :-
+// static void checkAge(int age) {
+//     if (age < 0) {
+//         throw new IllegalArgumentException("Age cannot be negative");   // raised at this moment
+//     }
+// }
+// static void readFile() throws IOException {   // declares that this method may pass the problem on
+//     // ...
+// }
+// Note :- throw is a statement that fires the exception. throws is part of the method signature, telling callers that they may have to deal with one.
+//
+// 4) Catch the specific type first :-
+// try {
+//     // ...
+// } catch (NumberFormatException e) {     // narrower type first
+//     System.out.println("Bad number");
+// } catch (Exception e) {                 // broader type afterwards
+//     System.out.println("Something else");
+// }
+// Note :- reversing these two is a compile error, because the broader catch would already have handled everything and the narrower one could never be reached.
+//
+// 5) One catch for several types :-
+// try {
+//     // ...
+// } catch (NumberFormatException | NullPointerException e) {
+//     System.out.println("Bad input");
+// }
+// Note :- the pipe form handles two unrelated types in one block. The variable e is a common type, so it cannot be used to call methods that belong to only one of them.
+//
+// 6) Handling and re-throwing :-
+// try {
+//     Integer.parseInt(text);
+// } catch (NumberFormatException e) {
+//     System.out.println("Invalid input: " + e.getMessage());   // report it
+//     throw e;                                                  // and let the caller decide what to do
+// }
+// Note :- catching an exception does not mean you must swallow it. You can note what happened and pass it upwards.
+//
+// Pitfall :- a broad `catch (Exception e)` around a whole method hides programming mistakes. A NullPointerException caused by a bug then looks the same as a recoverable bad input, and the bug survives unnoticed.
+// Pitfall :- `Error` and its subclasses such as OutOfMemoryError are not meant to be caught. An application cannot reasonably carry on after them.
+// Pitfall :- an empty catch block is the worst version of the same problem. The failure disappears completely and nothing tells you why.
+
+// @takeaway An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace.
+// @takeaway `try` holds the risky code, `catch` deals with one chosen type of failure, and `finally` runs whatever happened, which is what makes it the right place for cleanup.
+// @takeaway Checked exceptions are the ones the compiler makes you deal with, such as IOException. Unchecked ones such as NullPointerException and ArithmeticException are usually mistakes and the compiler asks for nothing.
+// @takeaway `throw` raises an exception at the moment something is wrong, while `throws` in a method signature warns callers that this method may pass one on.
+// @takeaway Catch order matters. List the most specific type first, because a broader catch placed above a narrower one makes that narrower one unreachable and the file will not compile.
+// @gotcha A `catch (Exception e)` wrapped around everything treats a programming bug and a recoverable problem the same way, so real bugs survive unnoticed.
+// @gotcha An empty catch block makes the failure disappear silently, which is worse than not catching it at all.
+// @gotcha `finally` still runs when the try block returns, which is exactly why resources are closed there rather than after the try.
+// @gotcha `Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.
+// @gotcha The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened.
+
+
 // @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions?
 // @answer Checked exceptions (subclasses of Exception excluding RuntimeException) are checked at compile-time and must be caught or declared with `throws`.
 // @answer Unchecked exceptions (subclasses of RuntimeException) occur at runtime due to logic bugs and do not require explicit compiler handling.

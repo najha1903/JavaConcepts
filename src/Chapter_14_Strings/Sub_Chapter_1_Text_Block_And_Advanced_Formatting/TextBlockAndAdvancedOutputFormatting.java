@@ -78,6 +78,38 @@ import java.util.IllegalFormatConversionException;
 // @why C: repetition uses String.repeat, not a format flag.
 // @why D: decimal places are set by .precision, which applies to floating-point values.
 
+// Formatting in practice :-
+// 1) printf prints straight away, String.format hands the text back :-
+// System.out.printf("Age = %d%n", 42);                 // prints Age = 42 and moves to a new line
+// String line = String.format("Age = %d", 42);         // builds the text without printing it
+// System.out.println(line);                            // prints Age = 42 later
+// Note :- the placeholders and arguments work the same way in both. printf is `System.out.print(format(...))`, and format is the version you can store.
+//
+// 2) What the common placeholders mean :-
+// %d   a whole number        String.format("%d", 42)        -> 42
+// %f   a decimal number      String.format("%.2f", 3.14159) -> 3.14
+// %s   text                  String.format("%s", "hi")      -> hi
+// %5d  pad the number to width 5, right-aligned
+// %-5d pad to width 5 but left-aligned
+// %.2f keep two decimal places
+// %n   the platform's new line
+// Note :- %5d only pads when the value is shorter than the width. A longer value is printed in full and never truncated.
+//
+// 3) A mismatch between placeholder and argument throws :-
+// System.out.printf("%f", 42);    // IllegalFormatConversionException: %f != java.lang.Integer
+// Note :- the failure happens while printing, not while compiling, so the mistake appears when that line runs.
+//
+// 4) %n is not the same as a literal \n inside a plain String :-
+// System.out.printf("Hello %n");      // prints Hello and moves to a new line
+// System.out.println("Hello %n");     // prints Hello %n, because there is no format string here
+// Note :- %n only means anything inside a format string. For a plain print, use an escape such as \n.
+
+// @takeaway `System.out.printf` prints its result immediately, while `String.format` returns the same text as a String you can store, compare or print later. The placeholders and arguments behave identically.
+// @takeaway In a format string, %d is a whole number, %f is a decimal, %s is text, %.2f keeps two decimal places, %5d pads to width 5, and %n is the platform's new line.
+// @gotcha A placeholder that does not match its argument throws at runtime, not at compile time, so `printf("%f", 42)` looks fine until the line runs.
+// @gotcha %n only has meaning inside a format string. `System.out.println("Hello %n")` prints the characters `%n` literally, because println is not a formatter.
+
+
 public class TextBlockAndAdvancedOutputFormatting {
 
     /*

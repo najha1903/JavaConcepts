@@ -202,6 +202,40 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
 // @why C: objects are instances of the class, not members of it.
 // @why D: a package groups classes. It is not a member of any one class.
 
+// The four pillars, one line each :-
+// - Encapsulation: keep the fields private and let the outside world change them only through methods you control. This is the reason getters and setters exist.
+// - Inheritance: a child class reuses a parent's fields and methods with `extends`. It models an IS-A relationship, so a Dog IS-A Animal.
+// - Polymorphism: one reference type can hold different object types, and which version of a method runs depends on the actual object rather than on the reference.
+// - Abstraction: show what something does and hide how it does it, which is what an abstract class or an interface lets you write.
+
+// Static against instance, shown side by side :-
+// class Counter {
+//     static int shared = 0;      // ONE copy for the whole class
+//     int mine = 0;               // one copy in every object
+//
+//     void tick() { shared++; mine++; }
+//
+//     static void resetShared() { shared = 0; }   // fine, shared belongs to the class
+//     static void bad() { mine = 0; }             // Compile Error :- non-static variable mine cannot be referenced from a static context
+// }
+// Counter a = new Counter();
+// Counter b = new Counter();
+// a.tick(); a.tick(); b.tick();
+// System.out.println(Counter.shared);           // prints 3, all three ticks landed on the one shared copy
+// System.out.println(a.mine + " " + b.mine);    // prints 2 1, each object kept its own count
+// Note :- the compile error inside bad() is the whole reason a static method cannot touch instance fields. When resetShared runs there may be no object in existence for `mine` to belong to.
+
+ // @takeaway A class is a template listing the data (fields) and the behaviour (methods) of one kind of thing. An object is a created copy of that template, and it is the copy that holds actual values.
+ // @takeaway `static` means one copy shared by the whole class and reached through the class name, while an instance member means one copy per object reached through that object.
+ // @takeaway A static method has no object to work with, so it cannot read or change instance fields. The compiler refuses it at compile time rather than letting it fail later.
+ // @takeaway Inheritance lets a child class reuse a parent's fields and methods by writing `extends`. It models an IS-A relationship: a Dog IS-A Animal.
+ // @takeaway An access modifier narrows who can see a member: private is the class itself, nothing written means package, protected adds subclasses in other packages, and public is everyone.
+ // @gotcha Adding `extends` does not copy the parent's constructors, so the child still has to call one with `super(...)`. If the parent has no no-argument constructor, that call becomes compulsory.
+ // @gotcha A private field is not visible to a child class, so a subclass cannot read or set it directly even though it inherits it. It has to go through the parent's methods.
+ // @gotcha A top-level class can only be public or have no modifier at all. protected and private are not valid on a top-level class.
+ // @gotcha A static method called through an object reference compiles and works the same as calling it through the class name, which makes it look like an instance method when it is not.
+
+
 public class ClassesAndInheritance {
 
 

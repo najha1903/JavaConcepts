@@ -68,6 +68,38 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // Note :- Integer.MAX_VALUE and Integer.MIN_VALUE come from the wrapper class, not from the primitive.
 // Pitfall :- comparing two Integer objects with == compares references, not values, so use equals for the numbers.
 
+// The eight types, and how to choose between them :-
+// - Whole numbers: byte (8 bits), short (16), int (32), long (64). Use int by default, and long with an L suffix when the value is larger than about 2.1 billion.
+// - Decimals: float (32 bits, needs an f suffix) and double (64 bits). Use double everywhere, and switch to BigDecimal when the numbers are money.
+// - boolean: true or false, and nothing else. It cannot hold 0 or 1.
+// - char: one character in single quotes. It is a number underneath, so 'A' is 65.
+//
+// Reading a declaration out loud :-
+// int myNumber = 42;
+//    int      -> the type, which fixes how much space it takes and what values are allowed
+//    myNumber -> the name you use later, called the identifier
+//    = 42     -> the initialiser, which gives it its first value
+// Note :- a declaration describes the type and the name. A statement such as `myNumber = 50;` changes the value afterwards.
+//
+// Why the suffix letters matter :-
+// long big = 3000000000;      // Compile Error :- integer number too large
+// long big = 3000000000L;     // works, the L makes the literal a long
+// float f = 3.14;             // Compile Error :- incompatible types, double cannot be assigned to float
+// float f = 3.14f;            // works, the f makes the literal a float
+// Note :- whole-number literals are int, and decimal literals are double, unless a suffix says otherwise.
+
+// @takeaway Java has exactly eight primitive types: byte, short, int, long, float, double, boolean and char. Everything else is an object, including String.
+// @takeaway Use int for whole numbers and double for decimals by default. Reach for long with an L suffix when a whole number is bigger than about 2.1 billion, and for BigDecimal when the values are money.
+// @takeaway A declaration has three parts: the type, which decides the size and the allowed values, the name you will use, and the initialiser that gives the first value.
+// @takeaway A literal has a type of its own: whole numbers are int and decimals are double, unless a suffix changes them. That is what `long big = 3000000000L;` and `float f = 3.14f;` are for.
+// @takeaway A local variable must be assigned before it is read. Fields and array elements get a default of 0, 0.0, false or null, but locals get nothing at all.
+// @takeaway `char` is written in single quotes and holds exactly one character, and it is a number underneath, which is why `'A' + 1` gives 66 rather than B.
+// @gotcha Going past a type's range does not throw. It wraps around to the opposite end, so `Integer.MAX_VALUE + 1` is `Integer.MIN_VALUE` and the program carries on with a wrong number.
+// @gotcha Dividing two whole numbers keeps only the whole part, so `5 / 2` is 2. Make one side a decimal, as in `5 / 2.0`, when you want 2.5.
+// @gotcha A narrowing cast such as `(int) 9.8` truncates rather than rounds, so it gives 9 and not 10.
+// @gotcha Comparing two Integer objects with `==` compares references rather than values, so use `equals` for the numbers, or store them as int.
+
+
 // @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?
 // @answer Widening converts a smaller compatible type to a larger one, like int to long, and Java does it automatically.
 // @answer Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast.

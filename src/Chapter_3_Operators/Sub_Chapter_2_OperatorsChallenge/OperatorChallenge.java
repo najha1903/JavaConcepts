@@ -19,6 +19,36 @@ OPERATOR CHALLENGE
 
 */
 
+// What the challenge practises :-
+// 1) Order of operations without parentheses :-
+// double first = 20.00d;
+// double second = 80.00d;
+// double total = (first + second) * 100.00d;   // 100.00 is forced first by the parentheses
+// System.out.println("Total = " + total);      // prints Total = 10000.0
+// Note :- without the parentheses, 20.00 + 80.00 * 100.00 would be 8020.0, because * binds tighter than +.
+//
+// 2) The remainder operator works on double too :-
+// double remainder = total % 40.00d;
+// System.out.println("Remainder = " + remainder);   // prints Remainder = 0.0
+// Note :- the course used % on int only, but it is defined for double as well. 40.00 divides 10000.0 exactly, so the remainder is 0.0.
+//
+// 3) A comparison already produces a boolean :-
+// boolean isDivisible = (remainder == 0);
+// System.out.println("isDivisible = " + isDivisible);   // prints isDivisible = true
+// Note :- `remainder == 0` is the test, and the result is stored. There is no need for an if here.
+//
+// 4) The NOT operator inverts a boolean :-
+// if (!isDivisible) {
+//     System.out.println("Got some remainder");
+// }
+// Note :- !isDivisible is true only when the remainder was not 0, which is why the message is written inside the NOT branch.
+//
+// Pitfall :- comparing two double values with `==` is risky in general, because 0.1 + 0.2 is not exactly 0.3. It is safe here only because 40.00 divides 10000.0 exactly and no rounding is involved.
+//
+// Parameter notes :-
+// - first and second (the two double operands): represent the values being combined, so choose numbers whose sum is exactly divisible by the third value when you want the remainder branch to be skipped.
+// - divisor (the value on the right of the remainder operator): choose a non-zero divisor. A double divisor of 0.0 gives NaN instead of throwing, so the boolean test would silently become false.
+
 public class OperatorChallenge {
     public static void main(String[] args) {
 

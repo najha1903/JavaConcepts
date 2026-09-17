@@ -37,6 +37,57 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
   IMPORTANT: Always check your loop condition carefully.
   - An infinite loop (condition never becomes false, no break) will freeze or crash your program.
   - A never-executing loop (condition is false from the start) will silently skip all the loop code.
+
+  THE THREE SHAPES A WHILE LOOP TAKES
+
+  1) Count up to a limit, when you know how many passes you want:
+     int i = 0;
+     while (i < 5) {
+         System.out.println("pass " + i);   // pass 0, pass 1, pass 2, pass 3, pass 4
+         i++;                                // without this line the loop never ends
+     }
+
+  2) Keep going until a sentinel value arrives, when you do not know how many passes:
+     int total = 0;
+     int value = scanner.nextInt();
+     while (value != -1) {        // -1 is the sentinel that stops the loop
+         total += value;
+         value = scanner.nextInt();
+     }
+     Note :- -1 is called a sentinel. It is a value chosen only to mean "stop here", so it is never added to the total.
+
+  3) Keep asking until the input becomes valid:
+     int age = -1;
+     while (age < 0) {
+         System.out.print("Enter your age: ");
+         age = Integer.parseInt(scanner.nextLine());
+     }
+     Note :- the loop repeats while the data is wrong, so the code after it only ever sees a valid value.
+
+  THE DIGIT PATTERN — the idea behind most of the challenges in this chapter
+
+     `n % 10` gives the LAST digit of a number, and `n = n / 10` removes it, because integer division throws the fraction away.
+
+     int n = 1234;
+     while (n > 0) {
+         int digit = n % 10;      // 4, then 3, then 2, then 1
+         System.out.print(digit + " ");
+         n = n / 10;              // 123, then 12, then 1, then 0
+     }
+     Output :- 4 3 2 1
+     Note :- the digits arrive in reverse, because the last digit is the easiest one to reach. The loop stops when n reaches 0.
+     Note :- this single pattern is the basis of the digit sum, the palindrome check, the even digit sum and number-to-words.
+
+  Pitfall :- `while (condition);` with a semicolon gives the loop an empty body, so the condition is tested forever and the block you wrote underneath does not belong to the loop at all.
+  Pitfall :- in a while loop, `continue` jumps straight back to the condition without running the update, so a counter that is only incremented at the end of the body never advances.
+
+ @takeaway A while loop tests its condition before every pass, so when the condition is false to begin with the body never runs at all.
+ @takeaway Nothing is built into a while header. You set the counter up before the loop and change it inside the body, and forgetting to change it is what produces an infinite loop.
+ @takeaway Three shapes cover most while loops: count up to a limit, keep going until a sentinel value arrives, and keep asking until the input becomes valid.
+ @takeaway `n % 10` gives the last digit of a number and `n = n / 10` removes it. Repeat that while `n > 0` and the digits come out in reverse, which is the basis of digit sum, palindrome checks and number-to-words.
+ @gotcha A while loop whose body never changes the condition runs forever, and the program looks frozen rather than reporting anything.
+ @gotcha `while (condition);` with a stray semicolon gives the loop an empty body, so the condition is tested endlessly and the block underneath is outside the loop.
+ @gotcha `continue` in a while loop jumps back to the condition without running the update, so a counter incremented only at the end of the body never moves.
 */
 
 // @quiz (INTERVIEW) What is the difference between while and do-while in Java?

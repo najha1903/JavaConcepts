@@ -48,5 +48,20 @@ package Chapter_15_Composition.Sub_Chapter_2_Inheritence_Vs_Composition;
 // @why C: no conversion happens. A Monitor already is a Product.
 // @why D: they are different: IS-A is a kind of, HAS-A is made of parts.
 
+// Telling the two apart in one sentence :-
+// IS-A   -> inheritance: `class Monitor extends Product` means a Monitor is a kind of Product, so it can be used wherever a Product is expected.
+// HAS-A  -> composition: a PersonalComputer holds a Monitor in a field, so a computer is made of parts it owns.
+//
+// When to reach for which :-
+// Choose inheritance when the child really is a more specific version of the parent, and the parent's behaviour belongs to the child unchanged. A Monitor genuinely is a Product.
+// Choose composition when one thing is built from others, or when you only want to reuse behaviour without claiming to be a kind of the other type. A computer is not a kind of monitor.
+// Note :- inheritance ties the child to the parent's definition, so a change in the parent reaches every subclass. Composition leaves the parts independent, which is why "prefer composition over inheritance" is common advice.
+//
+// A class can be in both relationships at once :-
+// Monitor IS-A Product       (inheritance, through extends)
+// PersonalComputer HAS-A Monitor   (composition, through a field)
+// Note :- they are not competing choices for a whole program, and this example uses both together.
+
+
 public class InheritenceVsComposition {
 }

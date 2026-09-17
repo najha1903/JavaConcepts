@@ -124,6 +124,10 @@ function parseJavaFile(filePath, rootDir) {
     if (/^[A-Za-z_][\w$.]*\s*\([^)]*\)\s*;$/.test(n)) return true;
     // Java access-modifier declarations
     if (/^(public|private|protected)\s+(static\s+|final\s+)?[\w<>\[\],\s]+\s+\w+\s*[({]/.test(n)) return true;
+    // A control-statement header that opens a block, such as "switch (x) {" or
+    // "if (n > 0) {". Without this the header is treated as prose and the sample
+    // is split apart from the braces that belong to it.
+    if (/^(if|else\s+if|else|for|while|do|switch|try|catch|finally|synchronized)\b[^{};]*\{\s*$/.test(n)) return true;
     // Switch labels:  case 1:   case 'A':   case "x":   case ENUM_VALUE:   default:
     if (/^(case\s+([0-9]+|'\\?.'|"[^"]*"|[A-Za-z_$][\w$.]*)|default)\s*:\s*$/.test(n)) return true;
     // Starts with another comment marker

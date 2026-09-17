@@ -154,6 +154,29 @@ for (const chapter of concepts || []) {
   }
 }
 
+// ---- Tool markers must live inside a comment --------------------------------
+// A marker line that is not commented out is a compile error, because the
+// compiler reads "@takeaway ..." as Java. This happened when the marker was
+// written in the style of a block comment but placed among // note lines.
+const MARKER_LINE = /^\s*@(?:quiz|answer|option|explain|why|code|challenge|desc|hint|testcase|section|takeaway|gotcha)\b/;
+for (const chapter of concepts || []) {
+  for (const topic of chapter.topics || []) {
+    if (!topic.filePath || !fs.existsSync(path.join(root, topic.filePath))) continue;
+    const lines = fs.readFileSync(path.join(root, topic.filePath), 'utf8').split('\n');
+    let inBlock = false;
+    lines.forEach((line, index) => {
+      const t = line.trim();
+      const startsBlock = /\/\*/.test(t) && !/\*\//.test(t);
+      const isComment = /^\s*\/\//.test(line) || /^\s*\*/.test(line) || inBlock;
+      if (/\*\/\s*$/.test(t)) inBlock = false;
+      if (startsBlock) inBlock = true;
+      if (MARKER_LINE.test(line) && !isComment) {
+        failures.push(`${topic.filePath}:${index + 1}: marker is not inside a comment, so the file will not compile: ${t.slice(0, 60)}`);
+      }
+    });
+  }
+}
+
 for (const challenge of [...(practice || []), ...(deep || [])]) {
   if (!challenge.id || !challenge.title || !challenge.description) failures.push(`Challenge is incomplete: ${challenge.id || '(no id)'}`);
 }

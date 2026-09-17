@@ -117,6 +117,44 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 *    We can optionally pass arguments in those parentheses, as we saw with methods.
 *
 *    ClassName variableName = new ClassName(argument1, argument2);
+
+*    A VARIABLE OF A CLASS TYPE HOLDS A REFERENCE, NOT THE OBJECT
+*    Car myCar = new Car();      -- myCar does not contain a car. It holds the address of a Car object built on the heap.
+*    Car other = myCar;          -- now two variables point at the ONE object. Changing the car through either name is visible through both.
+*    Note :- this is why objects can be shared, and also why changing one can surprise you somewhere else in the program.
+
+*    AN OBJECT VARIABLE CAN BE null
+*    Car myCar = null;           -- the variable exists but points at nothing
+*    myCar.drive();              -- NullPointerException :- there is no object to run the method on
+*    Note :- null means "no object here". Always create the object with new before calling anything on the variable.
+
+*    FIELDS HAVE DEFAULTS BEFORE YOU ASSIGN THEM
+*    int      -> 0
+*    double   -> 0.0
+*    boolean  -> false
+*    String and every other object type -> null
+*    Note :- a String field left alone is null, not "", so calling a method on it throws. Local variables inside a method have NO default and must be assigned before use.
+
+*    == ON TWO OBJECT VARIABLES COMPARES REFERENCES
+*    Car a = new Car();
+*    Car b = new Car();
+*    System.out.println(a == b);        -- prints false, they are two different objects
+*    Car c = a;
+*    System.out.println(a == c);        -- prints true, both names point at the same object
+*    Note :- == asks "same object?", not "same values". Comparing the fields needs equals, or a comparison of each field.
+
+*    HOW LONG AN OBJECT LIVES
+*    An object stays in memory for as long as at least one reference points at it. When the last reference goes away, the object becomes
+*    eligible for garbage collection, and Java reclaims the memory by itself. There is nothing to free by hand.
+
+ @takeaway A class is a blueprint that lists the fields (the data) and the methods (the behaviour). An object is one filled-in copy of that blueprint, created with `new`.
+ @takeaway Every object gets its own copy of the instance fields, so two objects from the same class hold different values. A field you never assign keeps its default: 0, 0.0, false, or null for an object type.
+ @takeaway A variable of a class type holds a reference rather than the object itself. `Car myCar = new Car();` stores the address of an object on the heap, which is why two variables can point at the same one.
+ @takeaway `new` runs a constructor and hands back a reference. The object stays alive while some reference points at it, and Java reclaims it automatically once none does.
+ @takeaway `==` on two object variables asks whether they point at the same object, not whether their fields match, so two separately created cars compare as not equal.
+ @gotcha A field you never assign is not empty. It holds the type's default, so a String field is null and calling a method on it throws a NullPointerException.
+ @gotcha An object variable that has not been given an object holds null, and using it throws a NullPointerException rather than quietly creating something.
+ @gotcha Local variables declared inside a method have no default at all, so reading one before assigning it is a compile error, unlike a field.
 *
 *
 *

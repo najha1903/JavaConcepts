@@ -90,6 +90,41 @@ package Chapter_15_Composition.Sub_Chapter_1_Composition_Example_Computer_Packag
 // @why C: each subclass is free to add its own fields, such as ramSlots on MotherBoard.
 // @why D: they remain distinct types, which is what allows each to have its own behaviour.
 
+// Composition against inheritance, side by side :-
+// IS-A, which is inheritance :-
+// class Monitor extends Product { }        // a Monitor IS-A Product, so it reuses Product's fields and methods
+//
+// HAS-A, which is composition :-
+// class PersonalComputer {
+//     private Monitor monitor;             // the computer HAS-A monitor, held as an ordinary field
+//     private MotherBoard motherBoard;
+//     private ComputerCase computerCase;
+// }
+// Note :- the second relationship is just fields. There is no `extends`, and the parts are objects this class owns.
+
+// Delegation is what makes composition work :-
+// void drawPixel(int x, int y, String colour) {
+//     monitor.drawPixel(x, y, colour);      // the computer passes the job to the monitor
+// }
+// Note :- the calling code asks the computer, and the computer asks its part. Each class only knows its own job, which is what keeps the pieces separable.
+
+// Why the parts are easier to change than a deep inheritance tree :-
+// A Monitor can be replaced with a different model, or tested on its own, without touching the computer class, because it arrives as a field rather than as a superclass.
+// Changing a parent class, by contrast, can affect every subclass at once, because they all depend on the parent's definition.
+
+// Parameter notes :-
+// - model, manufacturer, width, height and depth (the Product constructor): the shared description every product has. They are inherited by Monitor, MotherBoard and ComputerCase, so they are passed up with super(...).
+// - monitor, motherBoard and computerCase (the PersonalComputer constructor): the parts this computer is made of. They are stored as fields, so the computer only works once real objects have been passed in rather than null.
+
+ // @takeaway Composition means a class holds other objects in its fields, so a PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase. The parts are ordinary fields, and the whole class works by asking them to do their jobs.
+ // @takeaway Inheritance models IS-A, so a Dog IS-A Animal and reuses the parent's fields and methods. Composition models HAS-A, so a computer HAS-A monitor, which is a part it owns rather than a kind of itself.
+ // @takeaway Composition keeps the parts independent, so a Monitor can be tested, replaced or reused without touching the computer class, while a change in a parent class can affect every subclass at once.
+ // @takeaway Delegation is the method that makes composition work: `drawPixel` on the computer simply calls `monitor.drawPixel(...)` and passes the arguments along.
+ // @takeaway The two relationships can exist together. In this example every part IS-A Product through inheritance, and the PersonalComputer HAS-A Monitor through composition.
+ // @gotcha A composed object is only usable once its parts exist, so a constructor that stores them must receive or create real objects. Otherwise the fields stay null and every delegated call throws a NullPointerException.
+ // @gotcha Composition and inheritance are not a choice you make once for a whole program. The same class can belong to both relationships, as Monitor does here.
+
+
 public class Product {
 
     private String model;

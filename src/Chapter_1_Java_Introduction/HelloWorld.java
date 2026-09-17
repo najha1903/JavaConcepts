@@ -192,6 +192,52 @@ package Chapter_1_Java_Introduction;
 // @why C: the JVM executes bytecode. Compiling is javac's job, and it is a separate step.
 // @why D: the existing .class stays valid. It simply does not contain your change.
 
+// Getting a program to run, from the beginning :-
+// 1) Source, bytecode, then the JVM :-
+// HelloWorld.java   --javac-->   HelloWorld.class   --java-->   runs on the JVM
+// Note :- javac is the compiler and it produces bytecode, not machine code. java starts the JVM and runs that bytecode. The JVM never reads your .java file.
+// Note :- this two-step arrangement is why Java is described as both compiled and interpreted: compiled to bytecode once, then the JVM runs that bytecode on whatever machine it is on.
+
+// 2) The two commands you actually type :-
+// javac HelloWorld.java      // compiles, and writes HelloWorld.class next to the source
+// java HelloWorld            // runs the class, with NO .java or .class on the end
+// Note :- `java HelloWorld.class` fails. The argument is a class name, not a file name.
+//
+// 3) The smallest complete program :-
+// public class HelloWorld {
+//     public static void main(String[] args) {
+//         System.out.println("Hello, Navneet!");
+//     }
+// }
+// Output :- Hello, Navneet!
+//
+// 4) Reading System.out.println in three parts :-
+// System  is a class that Java provides, holding the standard streams.
+// out     is the standard output stream inside that class, normally the console.
+// println is the method called on it, and the "ln" means it moves to a new line after printing.
+// Note :- print does the same without the new line, and printf takes a format string instead.
+//
+// 5) Four rules that decide whether the file even compiles :-
+// - The file name must match the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`.
+// - Java is case-sensitive: `system.out.println` and `String` written as `string` are both wrong.
+// - One file may hold several classes, but only one of them may be public.
+// - The class holding `main` must not be private or protected, or java cannot start it.
+//
+// What you should be able to do after this chapter :-
+// - Write, compile and run a class that prints something, and explain what javac did and what java did.
+// - Explain why a change to the source appears to be ignored until the file is compiled again.
+// - Read `System.out.println("...")` as a class, a stream and a method rather than as one magic word.
+
+// @takeaway `javac HelloWorld.java` compiles the source into bytecode, and `java HelloWorld` runs that bytecode on the JVM. The JVM never reads your .java file.
+// @takeaway Java is compiled and interpreted: javac turns source into bytecode once, and the JVM runs that bytecode on the machine it happens to be on.
+// @takeaway The file name has to match the public class inside it, so `public class HelloWorld` must live in HelloWorld.java.
+// @takeaway Java is case-sensitive, so `String` is not `string`, `System` is not `system`, and the capital letters in a name are part of the name.
+// @takeaway `System.out.println` is three separate things: the System class, its standard output stream `out`, and the `println` method, whose "ln" adds a new line at the end.
+// @gotcha Editing the source without compiling again appears to change nothing, because the JVM keeps running the previous bytecode that is already on disk.
+// @gotcha `java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.
+// @gotcha Only one class in a file may be public, and it must be the one whose name matches the file name.
+
+
 public class HelloWorld {
 
     public static void main(String[] args) {
