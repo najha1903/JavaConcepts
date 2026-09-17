@@ -1,106 +1,134 @@
 # JavaConcepts
 
-A structured Java learning repository with concept notes, interview preparation, OCJP exam questions, coding challenges, and deep coding problems — all powering an interactive revision dashboard.
+Java learning notes, runnable examples, interview preparation, OCJP-style questions, coding challenges, and deep problems powered by an interactive revision dashboard.
 
-🌐 **Live dashboard:** https://najha1903.github.io/JavaConcepts/revision-dashboard/
+Live dashboard: https://najha1903.github.io/JavaConcepts/revision-dashboard/
 
----
+## Quick Start
 
-## Project Structure
-
-```
-src/
-  Chapter_1_Java_Introduction/
-  Chapter_2_PrimitiveTypes/
-  Chapter_3_Operators/
-  Chapter_5_Statements_And_Indentations/
-  Chapter_6_If_Else_Statements/
-  Chapter_7_Methods_In_Java/
-  Chapter_8_Switch_Statements/
-  Chapter_9_Java_Looping_Concepts/
-  Chapter_10_WhileAndDoWhileLoopingConcepts/
-  Chapter_11_Class_Object_Static_And_Instance_Fields/
-  Chapter_12_Parsing_Values_Reading_Input/
-  Chapter_13_Exception_Handling/
-  Chapter_14_OOPSConcepts/
-  Chapter_15_Strings/
-revision-dashboard/     ← interactive quiz + practice dashboard (mobile-friendly)
-scripts/                ← auto-generates dashboard data from src/
-.github/workflows/      ← GitHub Pages auto-deploy
-```
-
-Each chapter follows this sub-chapter pattern:
-```
-Chapter_N_TopicName/
-  Sub_Chapter_1_ConceptFile/        ← concept notes + @quiz tags
-  Sub_Chapter_2_CodingChallenge/    ← beginner/intermediate challenges
-  Sub_Chapter_3_DeepProblems/       ← hard real-world problems
-```
-
----
-
-## What's Inside Each Chapter
-
-| Layer | What it contains |
-|---|---|
-| **Concept file** | Inline `//` notes, block comments, `@quiz (INTERVIEW)`, `@quiz (OCJP)` tags |
-| **Coding Challenges** | Standalone `.java` files — one problem per file, working solution included |
-| **Deep Problems** | Harder real-world problems (e.g. shape hierarchy, library system, robust calculator) |
-
----
-
-## Quiz Tag Format
-
-Write quiz questions directly in any `.java` file:
-
-```java
-// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?
-// @answer Java is ALWAYS pass-by-value.
-// @answer For objects, the reference value is copied — not the object itself.
-
-// @quiz (INTERVIEW TRAP) What prints: System.out.println(10 + 20 + "Java")?
-// @answer 30Java — + is left-to-right, so 10+20=30, then 30+"Java"="30Java".
-
-// @quiz (OCJP) What happens when byte b = 128?
-// @answer Compile error — 128 exceeds byte's max value of 127.
-```
-
-Tags: `(INTERVIEW)`, `(INTERVIEW TRAP)`, `(OCJP)` — all appear in the quiz bank filtered by type.
-
----
-
-## Revision Dashboard
+From the project root, run:
 
 ```bash
 npm run revise
 ```
 
-Then open `revision-dashboard/index.html` (or visit the [live GitHub Pages URL](https://najha1903.github.io/JavaConcepts/revision-dashboard/)). The dashboard auto-generates:
-- **Notes** — Overview + Key Takeaways from source comments (pipe-delimited tables render as HTML)
-- **Quiz Bank** — 1045+ questions: Interview, OCJP (47), Tricky, Concept, Predict — filtered by type & difficulty
-- **Quick Revision** — Anki-style spaced-repetition flashcards with gotcha highlights
-- **Practice Lab** — 44 coding challenges from `*Challenge.java` files (auto-verify + self-check)
-- **Deep Problems** — 21 large OOP/algorithm problems from `@challenge` annotations
-- **Wrong answer → Concept Review** — amber panel shows relevant notes inline after a wrong answer
+This command proposes the refresh, then asks you to approve it:
 
----
+1. Scans every Java file under `src/`.
+2. Extracts and organizes overview notes, inline explanations, code blocks, parameter notes, quizzes, and challenges.
+3. Clarifies common shorthand and joins wrapped sentences without changing the technical meaning of the source notes.
+4. **Compares the result with the last approved version.** When notes, inline notes or `@quiz` markers changed, it writes a readable diff to `revision-dashboard/content-changes.md` and asks `Apply these changes now? (y/N)`. Press `y` to apply, or `n` to leave everything untouched.
+5. Regenerates the dashboard data files.
+6. Runs the generated-data audit.
+7. Opens the dashboard in the browser.
 
-## Authoring Guide
+Nothing about your notes is ever changed without that review. A Java code edit on its own is applied straight away, so everyday practice is not interrupted.
 
-See [`rules.md`](rules.md) for the full guide on:
-- Where to put comments (overview vs inline)
-- Comment quality checklist (DO / DON'T)
-- Gotcha keywords that get highlighted in the dashboard
-- `@quiz` / `@answer` / `@challenge` tag rules
-- OCJP-style notes to include per topic
+When a change is waiting and you already know you want it, apply it directly:
 
----
+```bash
+npm run approve
+```
 
-## Adding a New Chapter — Quick Checklist
+Open `revision-dashboard/index.html` directly when you only want to read the last generated version.
 
-1. Create `src/Chapter_N_TopicName/Sub_Chapter_1_Concept/MyFile.java`
-2. Write overview comments **before** the `public class` line
-3. Add `// @quiz (INTERVIEW)` and `// @quiz (OCJP)` tags
-4. Create `Sub_Chapter_2_CodingChallenge/` with challenge files
-5. Create `Sub_Chapter_3_DeepProblems/` with a deep problem file
-6. Run `npm run revise` — everything appears in the dashboard automatically
+## Project Structure
+
+```text
+src/
+  Chapter_<N>_<TopicName>/
+    Sub_Chapter_<N>_<TopicName>/
+      ConceptOrChallenge.java
+revision-dashboard/
+  index.html              # Dashboard interface
+  app.js                  # Navigation, notes, quizzes, practice, and PDF printing
+  style.css               # Dashboard styling
+  data.js                 # Generated notes and source code
+  questions.js            # Generated quiz and Quick Revision data
+  practice.js             # Generated coding challenges
+  deep-challenges.js      # Generated deep problems
+  content-changes.md      # Generated review report of pending note changes
+scripts/
+  parse-concepts.js       # Source-to-dashboard generator
+  audit-generated.js      # Generated-data and note-quality checks
+  create-project.js       # Optional dashboard scaffolder
+```
+
+Generated files are disposable. Edit the Java source notes and then run `npm run revise`; do not edit generated dashboard files manually. Your source notes remain the core content: generation improves readability and adds supporting context without removing the original idea or examples.
+
+## What The Portal Provides
+
+- **Notes:** Readable overview explanations, inline takeaways, tables, parameter notes, and visible Java code examples.
+- **Quick Revision:** Flashcards with mastery tracking, gotcha highlights, and comparison tables kept as real tables.
+- **Revision Quizzes:** A menu instead of a single quiz, with the Grand Java Quiz, an OCJP-only quiz, a Tricky-only quiz, and every chapter and sub-chapter. Each question shows the chapter it came from, and the results screen breaks your score down chapter by chapter.
+- **Quiz This Topic:** Starts a quiz for the single topic open in Notes.
+- **Revision Bank:** One place for everything you have written notes for. Filter by chapter, free text, level and question type, read the notes, then start a quiz from exactly that selection.
+- **Practice Lab:** Coding challenges with automatic checks where supported and self-check workflows for the rest. Every challenge is labelled **Auto-checked** or **Self-check**, and code the checker cannot run is reported as "could not be checked" rather than as a wrong answer.
+- **Deep Problems:** Larger OOP and algorithm problems for deliberate practice.
+- **Concept Review:** Relevant notes appear after an incorrect quiz answer.
+- **Chapter PDF:** Select a chapter in Notes and print a readable chapter-wise PDF from the browser print dialog.
+
+## Adding Notes
+
+Add a `.java` file below `src/Chapter_<N>_<TopicName>/`. Put the main explanation before the class declaration and place short implementation insights beside the relevant code.
+
+Good notes answer:
+
+- What the concept is.
+- Why it matters.
+- How the code works.
+- What input or parameters mean.
+- What output or result to expect.
+- Which boundary cases, mistakes, or interview traps deserve attention.
+
+Use complete sentences. Keep one idea per bullet. Include a small code example when the idea is easier to understand by seeing the syntax. The generator preserves code-like comment lines as code blocks and keeps tables as tables.
+
+## Custom Quiz And Challenge Tags
+
+A written question, answered in your own words:
+
+```java
+// @quiz (INTERVIEW) Why is StringBuilder useful inside a loop?
+// @answer StringBuilder changes one mutable buffer instead of creating a new String for every concatenation.
+// @answer This usually reduces temporary objects and improves performance for repeated text changes.
+```
+
+An exam-style question with real options, which is what the Certified exam looks like. Mark the right choice with `[correct]`, and use `@why` to say why each wrong option is wrong:
+
+```java
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code System.out.println("abc".substring(0, 0));
+// @option abc
+// @option An empty line            [correct]
+// @option StringIndexOutOfBoundsException
+// @option Compilation fails
+// @explain substring(0, 0) is legal: beginIndex equals endIndex, so the range has length 0 and an empty String is printed.
+// @why A: "abc" is the original String; substring cannot return more text than it was given.
+// @why C: StringIndexOutOfBoundsException needs beginIndex > endIndex, or an index greater than length().
+// @why D: it compiles, because substring(int, int) is a valid method.
+```
+
+A coding challenge:
+
+```java
+// @challenge Implement a queue using an array
+// @desc Support enqueue, dequeue, peek, and isEmpty operations.
+// @hint Track the front and rear positions carefully and define the empty-queue behavior.
+// @testcase enqueue(4), enqueue(7), dequeue() -> 4
+```
+
+Supported markers are `@quiz`, `@answer`, `@code`, `@option`, `@explain`, `@why`, `@challenge`, `@desc`, `@hint`, and `@testcase`. These markers are intentionally kept out of ordinary topic notes and placed in their relevant dashboard features.
+
+The tag in parentheses is optional, and so is a level. Write `(OCJP)`, `(INTERVIEW)`, `(INTERVIEW TRAP)`, or combine them as `(OCJP, HARD)`. The tag drives the quiz filter pills and the level drives the Easy, Medium and Hard pills. A question with no level is Medium, except a trap, which is Hard.
+
+## Useful Commands
+
+```bash
+npm run revise   # propose changes, review them, then approve
+npm run approve  # apply the reviewed changes, audit, and open the dashboard
+npm run generate # regenerate generated files without the review step
+npm run audit    # validate the current generated files
+npm run check    # regenerate and validate without opening the dashboard
+```
+
+See [rules.md](rules.md) for the complete authoring contract and [TEMPLATE.md](TEMPLATE.md) for the optional cross-technology dashboard template.

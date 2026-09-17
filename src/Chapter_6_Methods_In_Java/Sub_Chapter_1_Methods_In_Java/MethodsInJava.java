@@ -1,0 +1,206 @@
+package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
+// A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.
+// Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.
+// Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }
+// The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.
+// If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.
+// Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.
+// You can call a method with literal values: calculateScore(true, 800, 5, 100)
+// Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.
+// Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.
+// A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.
+// This file evolves ONE method, calculateScore, through three stages, defined further down in this same file in this order:
+// Stage 1 — calculateScore() with no parameters: void, hard-coded values, only prints (see the method with empty parentheses).
+// Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a /* */ block to show the in-between step — it never compiles or runs.
+// Stage 3 — calculateScore(boolean, int, int, int): the final, real overload; same parameters as stage 2, but now returns an int so the caller can capture and reuse the result.
+
+// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?
+// @answer Java is ALWAYS pass-by-value.
+// @answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.
+// @answer For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.
+// @answer Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped.
+
+// @quiz (INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?
+// @answer Java resolves overloads at compile time and chooses the most specific applicable method.
+// @answer Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.
+// @answer If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order.
+
+// @quiz (INTERVIEW) What is the difference between a void method and a method with a return type?
+// @answer A void method performs work but does not return a value to the caller.
+// @answer A method with a return type must return a value of that declared type on every valid execution path.
+// @answer You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use.
+
+// @quiz (INTERVIEW) What is the difference between a static method and an instance method in Java?
+// @answer A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().
+// @answer An instance method belongs to a specific object and is called on an object reference.
+// @answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members.
+// Parameter notes (what each method/constructor argument means and how to choose it):
+// - main(String[] args): args is the zero-based command-line String array; choose values only when the program should receive startup input.
+// - calculateScore(boolean gameOver, int score, int levelCompleted, int bonus): gameOver tells the method whether to compute a final score; pass true when the game has ended and false to receive the error/sentinel result -1.
+// - calculateScore(...): score is the player's current points before bonus; choose the measured score value, usually non-negative in a game.
+// - calculateScore(...): levelCompleted is the number of completed levels used as a multiplier; choose a count, not a level index, and avoid negative counts unless intentionally modeling a penalty.
+// - calculateScore(...): bonus is points awarded per completed level; choose the per-level bonus amount, so finalScore adds levelCompleted * bonus plus 1000.
+// - System.out.println(String x): in this file x is always a label concatenated with a score result, e.g. "Your final score was " + highScore.
+// - calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them.
+//
+// @quiz (INTERVIEW) What does the gameOver parameter of calculateScore control?
+// @answer It decides whether the method calculates and returns a final score; if false, the method returns -1 as a sentinel for no valid score.
+//
+// @quiz (INTERVIEW) How should a caller choose levelCompleted and bonus for calculateScore?
+// @answer levelCompleted should be the number of levels completed, and bonus should be the points per level; the method multiplies them together.
+//
+// @quiz (INTERVIEW TRAP) Does calculateScore(gameOver, score, levelCompleted, bonus) receive the caller's variables themselves?
+// @answer No. Java passes argument values by value; parameter variables receive copies of those values in the declared order.
+//
+// @quiz (OCJP) Which overload is called by calculateScore(true, 800, 5, 100)?
+// @answer The int-returning overload with parameters (boolean, int, int, int) is called because the argument count and types match that signature.
+
+// @quiz (INTERVIEW, EASY) Which statement about method parameters in Java is correct?
+// @option A parameter is a local variable that is created on each call, holds a copy of the argument value, and is destroyed when the method returns. [correct]
+// @option A parameter is an alias for the caller's variable, so assigning a new value to the parameter also changes the caller's variable.
+// @option A parameter keeps the value from the previous call, because Java reuses the same variable for the same method.
+// @option A parameter must have exactly the same name as the variable that the caller passes in.
+// @explain Parameters are local variables that exist only for the duration of a call. They are initialised with copies of the argument values, which is why Java is described as pass-by-value.
+// @why B: Java always passes by value, so reassigning a parameter cannot affect the caller's variable.
+// @why C: Each call creates fresh parameters, and they are destroyed when the method returns, so nothing is retained.
+// @why D: The parameter name is local to the method; the caller's variable names have no effect on it.
+
+// @quiz (INTERVIEW, MEDIUM) A method is declared as public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus). What does the int return type require of this method?
+// @option Every valid execution path must return an int value, and this method uses -1 to signal that no valid score could be produced. [correct]
+// @option Nothing extra, because the int only documents the type of the value that is printed inside the method.
+// @option The method must return a double, because finalScore is increased by the constant 1000.
+// @option The method may finish without returning a value, as long as it prints the result first.
+// @explain A non-void return type is a promise that the method sends back a value of that declared type on every path that finishes normally. Here the promise is kept by returning finalScore, or -1 as the sentinel when no score is valid.
+// @why B: The return type describes the value sent back to the caller, not what is printed inside the method.
+// @why C: finalScore is an int and the declared return type stays int; adding 1000 does not widen it.
+// @why D: Printing is not returning, so a method with a non-void return type must still return a value.
+
+// @quiz (OCJP, MEDIUM) Given the overloads print(int x) and print(double x), which one runs for the call print(5)?
+// @option print(int), because the argument is already an int, so that overload is the most specific applicable one. [correct]
+// @option print(double), because Java widens to double before it looks for an exact match.
+// @option Neither, because the call is ambiguous and the code does not compile.
+// @option Java decides at runtime, by asking the argument which parameter type it prefers.
+// @explain Overload resolution happens at compile time and picks the most specific applicable method. The argument is exactly an int, so print(int) is a better match than print(double).
+// @why B: Widening is only considered when no more specific applicable overload exists, so the int version wins here.
+// @why C: The call is not ambiguous, because print(int) is strictly more specific than print(double).
+// @why D: Overload resolution is a compile-time decision based on the declared types of the arguments.
+
+// @quiz (INTERVIEW TRAP, MEDIUM) A classic swap(int a, int b) method exchanges the values of its two parameters. What does the caller see afterwards?
+// @option The caller's variables are unchanged, because the method swaps only its own copies of the two values. [correct]
+// @option The caller's variables are swapped, because int arguments are passed by reference.
+// @option The caller's variables are swapped, but only when the method is declared static.
+// @option The code does not compile, because Java cannot pass an int value to a method.
+// @explain Java passes arguments by value, so a and b are copies. Swapping the copies leaves the caller's variables exactly as they were, which is the classic Java trap.
+// @why B: Primitives are passed by value, so no link to the caller's variables is ever created.
+// @why C: Being static has no effect on argument passing; copies are made either way.
+// @why D: Passing int values to int parameters is completely legal; the values are simply copied.
+
+// @quiz (INTERVIEW, EASY) Which statement about a void method is correct?
+// @option A void method can be called as a statement but cannot be used inside an expression, because the call produces no value. [correct]
+// @option A void method must still return a value, and the usual choice is to return 0 as a placeholder.
+// @option A void method cannot declare parameters, because it has nothing to send back.
+// @option A void method can be assigned to any variable, and that variable then holds null.
+// @explain void means the method sends no value back to the caller. The call is therefore an action rather than an expression, so it cannot be used where a value is expected.
+// @why B: A void method may finish without any return statement at all.
+// @why C: void describes only the return type; a void method may take as many parameters as it needs.
+// @why D: There is no value to assign, so a void method call cannot appear on the right-hand side of an assignment.
+
+// @quiz (INTERVIEW, MEDIUM) Which statement correctly compares a static method with an instance method?
+// @option A static method has no current object, so it cannot directly access instance fields, while an instance method can access both instance and static members. [correct]
+// @option A static method is called on an object, while an instance method is called with the class name.
+// @option An instance method cannot read static fields, because static members belong only to the class.
+// @option A static method belongs to each object separately, so every object gets its own copy of it.
+// @explain A static method belongs to the class itself and is called through the class name, such as Math.max(). It has no current object, so instance fields are out of reach, whereas an instance method has a current object and can use both kinds of member.
+// @why B: It is the other way round: static members are used with the class name, and instance members with an object reference.
+// @why C: An instance method can access static members as well as instance members.
+// @why D: Static members belong to the class and are shared by all objects rather than copied for each object.
+
+// @quiz (OCJP, HARD) What is the value of result after this call?
+// @code int result = calculateScore(false, 800, 5, 100);
+// @option -1, because gameOver is false, so the calculation is skipped and the sentinel value is returned. [correct]
+// @option 2300, because 800 + (5 * 100) + 1000 is calculated from the arguments that were passed.
+// @option 0, because finalScore is still zero when the if block does not run.
+// @option The code does not compile, because an if block without an else block cannot return an int on every path.
+// @explain The whole calculation sits inside if(gameOver), so passing false skips it. Execution then reaches the final return -1, which is the documented sentinel meaning no valid score.
+// @why B: The arithmetic is never performed for a false gameOver, so 2300 cannot be returned here.
+// @why C: finalScore is declared inside the if block, so it does not exist at all when the block is skipped.
+// @why D: The return -1 after the if statement provides a value on every path, so the method compiles.
+
+// @quiz (INTERVIEW, EASY) Why can the first version of calculateScore be called as calculateScore() with no arguments?
+// @option Because that version declares an empty parameter list and hard-codes its own gameOver, score, levelCompleted and bonus values. [correct]
+// @option Because Java fills in a default value for every argument that is left out.
+// @option Because void methods are not allowed to declare parameters.
+// @option Because the other overload has already stored the four values for it to use.
+// @explain A no-argument method declares no parameters, so it must supply its own values inside the body. That is exactly why the caller of this version has no way to change gameOver, score, levelCompleted or bonus.
+// @why B: Java never invents arguments; the argument count and types must match a declared parameter list.
+// @why C: void methods can declare parameters, as the later versions of calculateScore show.
+// @why D: Overloading does not carry values between methods; the no-argument call simply matches the method with an empty parameter list.
+
+public class MethodsInJava {
+
+    public static void main(String[] args) {
+     calculateScore(); //method without any parameter
+     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters
+        // The parameters should be passed in the same order as it is defined in the method.
+
+        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.
+        System.out.println("Your final score was " + highScore);
+
+        // We can also pass the values to the method using variables
+
+        boolean gameOver = true;
+        int score = 800;
+        int levelCompleted = 5;
+        int bonus = 100;
+
+        int highScoreValue = calculateScore(gameOver,score,levelCompleted,bonus); // Here, the value supplied to the method is in the form of variables, which is also valid input to the method.
+        System.out.println("Your final score was " + highScoreValue);
+    }
+
+    public static void calculateScore(){
+
+        boolean gameOver = true;
+        int score = 800;
+        int levelCompleted = 5;
+        int bonus = 100;
+
+        if(gameOver){
+            int finalScore = score + (levelCompleted * bonus);
+            finalScore += 1000;
+            System.out.println("Your final score was " + finalScore);
+        }
+
+    }
+
+/*
+//    public static void calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){
+
+        // When we define parameters,Java will automatically create variables with appropriate data types, and it gets deleted, once process goes back to the line where method is called.
+        // void means don't send any value back.If we don 't the method to return any information, we use void as a return type of method.
+
+        if(gameOver){
+            int finalScore = score + (levelCompleted * bonus);
+            finalScore += 1000;
+            System.out.println("Your final score was " + finalScore);
+        }
+
+//    }
+*/
+
+    public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){
+
+        // Here, the data return type is int, which means method is returning a value of type int.
+        // If we have to return any information, and send the value(result) back to the method call, we can use the method with return type option
+
+        if(gameOver){
+            int finalScore = score + (levelCompleted * bonus);
+            finalScore += 1000;
+            return finalScore;
+        }
+      /*  else{
+            return -1;
+        }*/
+
+        return -1; // In programming terms, negative value indicates programming error.
+    }
+}

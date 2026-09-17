@@ -1,115 +1,144 @@
-# SDET Champion Revision Dashboard — Template Guide
+# Revision Dashboard Template Guide
 
-This document tells Copilot how to bootstrap a new SDET revision dashboard project
-from the JavaConcepts template.
+This repository can bootstrap the same notes-first revision dashboard for JavaScript, TypeScript, Cypress, Playwright, or Selenium projects. The Java project is the reference implementation.
 
-## Quick scaffold (automated)
+## Create A Project
+
+Run from the JavaConcepts project root:
 
 ```bash
 node scripts/create-project.js <ProjectName> <technology>
 ```
 
-Technologies: `javascript`, `typescript`, `cypress`, `playwright`, `selenium`
+Supported technologies:
 
-Example:
+- `javascript`
+- `typescript`
+- `cypress`
+- `playwright`
+- `selenium`
+
+Useful options:
+
 ```bash
-node scripts/create-project.js CypressConcepts cypress
-node scripts/create-project.js JavaScriptConcepts javascript
 node scripts/create-project.js PlaywrightConcepts playwright
+node scripts/create-project.js MyProject playwright --target "D:\Work\MyProject"
+node scripts/create-project.js MyProject playwright --target "D:\Work\MyProject" --dashboard-only
+node scripts/create-project.js --help
 ```
 
-## What gets created
+If the target already contains a project, the scaffolder updates the dashboard and parser while leaving the existing `src/` content untouched. The generated project includes a technology-specific parser, dashboard, `package.json`, `README.md`, and `rules.md`.
 
-```
-<ProjectName>/
-  src/
-    Chapter_1_<Tech>_Basics/
-      <ExampleFile>        ← starter concept file with example notes
-  scripts/
-    parse-concepts.js      ← parser adapted for the technology's file types
-  revision-dashboard/
-    index.html             ← dashboard (title updated for technology)
-    app.js                 ← full quiz engine (unchanged)
-    style.css              ← styles (unchanged)
-    data.js                ← GENERATED
-    questions.js           ← GENERATED
-    practice.js            ← GENERATED
-    deep-challenges.js     ← GENERATED
-  package.json             ← npm run revise command
-  rules.md                 ← technology-specific authoring guide
-  README.md                ← quick-start instructions
+## Source-To-Portal Flow
+
+The generated project follows this flow:
+
+```text
+Source files in src/
+        |
+        v
+Parser extracts notes, code, quizzes, and challenges
+        |
+        v
+Generated data files in revision-dashboard/
+        |
+        v
+Interactive notes, quizzes, practice, and chapter PDF printing
 ```
 
-## Comment format (same for ALL technologies)
+After every source change, run:
 
-### Overview → before first function/describe/class/export
+```bash
+npm run revise
+```
+
+The command should regenerate the data files, run the generated-content audit when available, and open the dashboard. Generated files must not be edited manually.
+
+## Authoring Contract
+
+The source comments are the core content, even when they are raw input. They should still contain the complete technical idea. The parser improves structure and common wording issues, adds supporting context, and preserves the original rules, examples, constraints, and expected behavior. It should not invent unrelated behavior or replace the author's explanation.
+
+Overview comments belong before the first function, `describe`, class, interface, record, or export:
+
 ```javascript
-// What this concept is — one clear sentence
-// Why it matters for SDET work
-// Best practice or common interview trap
-
-function myExample() { ... }
+// A locator identifies an element that a test wants to inspect or use.
+// Prefer stable user-facing or test-specific selectors so the test survives layout changes.
+// A selector that matches several elements can make a test act on the wrong target.
 ```
 
-### Key Takeaways → inline comments inside functions
+Inline comments belong beside important implementation lines:
+
 ```javascript
-function example() {
-  const selector = '[data-testid="btn"]'; // Use data-testid for stable selectors
-  cy.get(selector).click(); // cy.get() searches entire DOM
-}
+const submitButton = page.getByRole('button', { name: 'Submit' }); // Role-based locators express user-visible intent.
+await submitButton.click(); // The click waits for the locator to resolve before interacting.
 ```
 
-### Custom quiz questions
+Write complete sentences with a clear subject, action, and consequence. Explain what the concept is, why it matters, how the example works, and which boundary cases can fail. Keep code examples separate from prose so the parser can render them as code blocks.
+
+## Supported Markers
+
 ```javascript
-// @quiz What does cy.intercept() do?
-// @answer Stubs/spies on network requests before they reach the server.
-// @answer Use it instead of cy.wait(ms) for reliable async test handling.
+// @quiz Why should a test use a stable locator?
+// @answer A stable locator continues to identify the intended element when unrelated layout details change.
+// @answer Prefer role, label, or test-id locators according to the technology's recommended practice.
+
+// @challenge Build a reliable login workflow
+// @desc Create a reusable page object with navigation, field entry, submission, and validation methods.
+// @hint Keep locators together and wait on meaningful UI state rather than fixed time delays.
+// @testcase login("valid@example.com", "secret") -> dashboard is visible
 ```
 
-### Deep coding challenges
-```javascript
-// @challenge Implement a Page Object for a Login page
-// @desc Create a LoginPage class with: navigate(), enterEmail(email), enterPassword(pass), submit()
-// @hint Use By.id() or data-testid selectors; keep all locators as class fields
-// @testcase loginPage.login("valid@test.com", "pass") → navigates to /dashboard
-```
+`@quiz` and `@answer` create quiz-bank entries. `@challenge`, `@desc`, `@hint`, and `@testcase` create deep coding problems. These marker lines are excluded from ordinary topic notes.
 
-## SDET-specific notes to include per technology
+## Technology Focus
 
 ### Cypress
-- Difference between cy.get() and cy.find()
-- Why NOT to use cy.wait(ms) — use cy.intercept() instead
-- Difference between commands and assertions
-- How Cypress auto-retries work
-- beforeEach vs before hooks
+
+- `cy.get()` versus scoped queries such as `find()`.
+- Why fixed `cy.wait(milliseconds)` calls are unreliable.
+- Command chaining, assertions, and automatic retries.
+- `beforeEach` versus `before`.
+- Network interception with `cy.intercept()`.
 
 ### Playwright
-- Locator priority: getByRole > getByLabel > getByText > getByTestId > CSS
-- Difference from Cypress: multiple tabs/contexts, cross-browser, external process
-- page.waitForSelector() vs auto-waiting locators
-- fixtures, test.beforeAll, test.afterAll
+
+- Locator priority: role, label, text, test id, then CSS when appropriate.
+- Auto-waiting locators versus explicit waits.
+- Pages, contexts, multiple tabs, and fixtures.
+- `beforeAll`, `beforeEach`, and test isolation.
 
 ### JavaScript
-- var vs let vs const (hoisting, scope)
-- == vs === (type coercion traps)
-- async/await vs Promises
-- Array methods: map, filter, reduce, forEach
-- Closures and this binding
+
+- `var`, `let`, and `const` scope and hoisting.
+- `==` versus `===` and coercion traps.
+- Promises, `async`, and `await`.
+- `map`, `filter`, `reduce`, and `forEach`.
+- Closures and `this` binding.
 
 ### TypeScript
-- interface vs type
-- any vs unknown vs never
-- Generics
-- Type guards (typeof, instanceof, in)
-- readonly vs const
 
-### Selenium with Java
-- Implicit vs Explicit vs Fluent Wait
-- Page Object Model (POM) design pattern
-- findElement vs findElements (exception vs empty list)
-- Actions class (hover, drag-drop, right-click)
-- TestNG vs JUnit annotations
+- `interface` versus `type`.
+- `any`, `unknown`, and `never`.
+- Generics and type guards.
+- `readonly` versus `const`.
 
-## When to run npm run revise
+### Selenium With Java
 
-After EVERY change to source files. The dashboard is always a regeneration away.
+- Implicit, explicit, and fluent waits.
+- Page Object Model design.
+- `findElement` versus `findElements`.
+- Actions such as hover, drag-and-drop, and right-click.
+- TestNG and JUnit lifecycle annotations.
+
+## Quality Checklist
+
+Before running the generator, check that each topic has:
+
+- A meaningful overview before the main declaration.
+- Readable inline explanations near important code.
+- At least one expected result or concrete example.
+- Parameter meaning, valid values, and boundary cases where applicable.
+- One common mistake or technology-specific trap.
+- Custom quiz answers written as complete explanations.
+
+Then run `npm run revise` and inspect the generated topic in Notes, Quick Revision, Quiz, Practice, and PDF output as applicable.

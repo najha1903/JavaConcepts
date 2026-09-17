@@ -1,550 +1,297 @@
-# Java Revision Dashboard — Authoring & Mastery Rules
+# JavaConcepts Authoring Rules
 
-This file governs how to write Java source comments, how auto-generation works,
-and the philosophy behind the note and question quality standard.
-Read this before adding any new topic.
+This document defines the source-note format for the Java revision portal. Java files under `src/` are the source of truth. The dashboard files under `revision-dashboard/` are generated from them.
 
----
+## The Project Contract
 
-## Philosophy: Write to become a champion, not just to pass
+These rules come from the author and are binding for every change, by a person or by an assistant.
 
-> "Tell me and I forget. Teach me and I remember. Involve me and I learn." — Benjamin Franklin
+1. **The notes belong to the author.** They are written concept by concept so that they still make sense when revisited later. Their wording, tone and structure are the reference for everything else.
+2. **Keep the theme constant.** Every chapter added later must look and read like the chapters that already exist. Read a few existing files before writing anything new in a different style.
+3. **Polish, do not rewrite.** Improve clarity inside the existing theme. Do not restructure a topic, reorder sections, or reword sentences that are already clear, unless the author asks for it.
+4. **Adding is allowed, replacing is not.** Missing points related to a chapter may be added, including things understood only in a later chapter. Existing notes must not be silently dropped or overwritten.
+5. **Nothing lands without review.** See the approval gate below. Content changes are proposed first and applied only after the author approves.
+6. **Never invent content for chapters the author has not written.** If a topic has no source file, nothing is generated for it. Never suggest, scaffold, or pre-fill notes for a topic that has not been studied.
+7. **Anything generated must be identifiable as generated**, and must never overwrite the author's own words.
 
-The goal is **deep mastery**, not rote memorization. Every note should answer:
-- **What** is this concept?
-- **Why** does it exist?
-- **How** is it used in practice?
-- **Where** does it trip developers up? (gotchas)
-- **How** is it tested in interviews / OCJP exams?
+## The Required Workflow
 
----
-
-## Golden rule
-
-> **Write for a student, not a compiler.**
-> Every comment should explain *why* or *what it means*, not just *what the code says*.
-
----
-
-## Where to put comments
-
-### Overview / big-picture notes → BEFORE the class declaration
-
-```java
-// Java is a statically-typed, object-oriented language.
-// Every program starts execution from the main() method.
-// The JVM (Java Virtual Machine) compiles .java files to bytecode (.class).
-
-public class HelloWorld {
-    ...
-}
-```
-
-Block comments also work:
-
-```java
-/*
- * Variables must be declared with a type before use.
- * Java is strongly typed — you cannot assign a String to an int.
- * Primitive types (int, double, boolean) live on the stack.
- */
-public class VariablesInJava {
-    ...
-}
-```
-
-These become the **Overview** section in the dashboard.
-
----
-
-### Key Takeaways → inline `//` comments INSIDE the class body
-
-```java
-public class OperatorsInJava {
-    public static void main(String[] args) {
-        int result = 15 + 12; // 15 and 12 are operands; + (plus) is the operator
-        int myVar = 5;
-        myVar += 10; // += is shorthand for myVar = myVar + 10
-        myVar -= 3;  // -= is shorthand for myVar = myVar - 3
-    }
-}
-```
-
-These become **Key Takeaways & Annotations** bullets.
-
----
-
-## Comment quality checklist
-
-### DO
-- [x] Use complete sentences with subject + verb + meaning
-- [x] Explain WHY the concept matters, not just WHAT the code does
-- [x] Mention gotchas and common mistakes (parser flags them as callouts)
-- [x] Reference related concepts (e.g. "Unlike Python, Java requires explicit types")
-- [x] Use `/* */` block comment before the class for multi-line overview
-- [x] Keep each bullet to one clear, complete idea
-- [x] Include real-world analogies where helpful (Head First Java style)
-- [x] Note OCJP exam traps inline: "// OCJP trap: ..."
-
-### DON'T
-- [ ] Don't put bare method calls or signatures in comments
-- [ ] Don't use decorative dividers (`---`, `***`) as standalone lines
-- [ ] Don't write comments that just repeat the variable/method name
-- [ ] Don't leave `// TODO`, `// FIXME`, or URL-only lines — they are skipped
-- [ ] Don't leave `/* */` blocks that contain only code — filtered out
-
----
-
-## Gotcha / warning keywords (auto-flagged in Quick Revision)
-
-Lines containing these words become **gotcha callouts** (red highlight in dashboard):
-
-```
-gotcha  pitfall  warning  caution  note  remember
-important  trick  overflow  avoid  careful  trap  ocjp
-```
-
-Use them intentionally:
-```java
-// Important: integer division truncates; use (double) cast to get decimal results
-// Pitfall: String == String compares references, not values — use .equals() instead
-// Warning: overflow occurs silently when an int exceeds 2,147,483,647
-// OCJP trap: String.concat() returns a new String; the original is unchanged
-```
-
----
-
-## OCJP-style tricky notes to include per topic
-
-The OCJP/OCP exam tests edge cases. For each topic, include at least one note about the
-tricky exam-style behavior. Examples by chapter:
-
-### Strings / Primitives
-- `// OCJP trap: String literals share the String Pool — "hello" == "hello" is true, but new String("hello") == new String("hello") is false`
-- `// OCJP trap: String.concat() and toUpperCase() return NEW Strings; the original is unchanged`
-- `// OCJP trap: int division truncates — 5/2 = 2, not 2.5`
-- `// OCJP trap: Integer cache — Integer a = 127; Integer b = 127; a == b is true (cached). But Integer a = 128; a == b is false (different heap objects)`
-
-### Operators
-- `// OCJP trap: a++ uses then increments; ++a increments then uses — in expressions this matters`
-- `// OCJP trap: short-circuit — if left side of && is false, right side is NOT evaluated (no exception thrown)`
-
-### OOP / Inheritance
-- `// OCJP trap: method calls use runtime type (dynamic dispatch); field access uses compile-time (reference) type`
-- `// OCJP trap: constructors chain upward — super() is called implicitly if not written explicitly`
-- `// OCJP trap: overloading is resolved at compile time; overriding is resolved at runtime`
-- `// OCJP trap: Java is always pass-by-value — passing an object passes the reference value, not the object itself`
-
-### Exception Handling
-- `// OCJP trap: finally ALWAYS runs — even after a return statement`
-- `// OCJP trap: NullPointerException is unchecked (extends RuntimeException); IOException is checked`
-
-### Switch
-- `// OCJP trap: without break, execution falls through to the next case — classic switch pitfall`
-
-### Loops
-- `// OCJP trap: a variable declared in for(int i=...) is scoped to that loop only — not accessible outside`
-
----
-
-## Adding custom quiz questions with @quiz / @answer
-
-Write your own quiz questions directly in the Java source file.
-They appear in the quiz bank alongside auto-generated questions.
-
-```java
-// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?
-// @answer Java is ALWAYS pass-by-value.
-// @answer For objects, the reference value is copied — not the object itself.
-
-// @quiz (INTERVIEW TRAP) What prints: System.out.println(10 + 20 + "Java")?
-// @answer 30Java — + is left-to-right: 10+20=30 (int), then 30+"Java"="30Java" (concat).
-
-// @quiz (OCJP) What happens when byte b = 128?
-// @answer Compile error — 128 exceeds byte's max value of 127.
-// @answer Use int, short, or cast explicitly: byte b = (byte) 128; → gives -128 (overflow).
-```
-
-**Rules:**
-- `// @quiz <question>` — one line, starts the question
-- `// @answer <answer>` — one or more answer lines follow immediately
-- Multiple `@answer` lines → checklist items in the self-evaluation panel
-- `@quiz`/`@answer` lines are excluded from Notes/Key Takeaways — quiz bank only
-- Use `(INTERVIEW)` for standard interview questions
-- Use `(INTERVIEW TRAP)` for tricky gotcha-style questions
-- Use `(OCJP)` prefix on the question for exam-style tricky questions
-
----
-
-## OCJP questions — auto-generated by the system
-
-The generator automatically adds OCJP-style tricky questions for chapters that cover:
-- Primitive Types / Strings (string pool, immutability, type casting, integer cache)
-- Operators (prefix/postfix, short-circuit evaluation)
-- OOP / Classes / Inheritance (polymorphism, constructor chaining, overriding vs hiding)
-- Exception Handling (finally, checked vs unchecked)
-- Switch (fall-through without break)
-- Loops (scope of loop variable)
-- Methods (pass-by-value, overloading resolution)
-
-These require no action from you — they appear automatically in the quiz bank.
-
----
-
-## Wrong answer → Concept Review (auto feature)
-
-When you answer a question **incorrectly**, the dashboard automatically shows:
-- The relevant concept notes (up to 5 bullets from the topic's Overview)
-- A highlighted amber review panel below the wrong answer feedback
-
-This provides **immediate reinforcement** — you don't have to navigate away.
-After reviewing, click Next Question to continue.
-
----
-
-## Quick Revision — Anki-style flashcard flow
-
-Each topic has a flashcard in the Quick Revision tab:
-- Shows concept overview + gotcha highlights
-- **Show Answer** → **Know It** / **Didn't Know It** buttons
-- Tracks mastery per card in localStorage (spaced-repetition)
-- Due cards surface automatically on next session
-
----
-
-## Inspired by top Java resources
-
-When writing notes, aim for the depth these resources bring:
-- **Head First Java** — visual, analogy-based, story-driven explanations. Use analogies.
-- **Effective Java (Bloch)** — focus on WHY, best practices, and what NOT to do. Add "prefer X over Y" notes.
-- **Java: The Complete Reference (Schildt)** — precise, formal definitions. Keep accuracy high.
-- **OCJP/OCP Study Guides** — tricky edge cases, operator precedence, scope, type promotion rules.
-- **Baeldung / Oracle Docs** — practical examples; note API contract behaviours.
-
-Format that channels these books:
-```java
-// Analogy (Head First style): Think of a variable as a cup — the type is the cup size,
-// the value is what you pour into it. You can't pour a gallon into a teacup (int ≠ double without cast).
-
-// Best practice (Effective Java style): Prefer StringBuilder over String concatenation in loops.
-// Each + creates a new String object; StringBuilder modifies in place — far more efficient.
-
-// OCJP trap: Integer cache covers -128 to 127. Outside this range, == on Integer objects is false.
-```
-
----
-
-## Adding a new topic — complete checklist
-
-1. Create `.java` file under `src/Chapter_N_.../Sub_Chapter_1_.../`
-2. Write overview comments BEFORE the class declaration:
-   - What is this concept? (1-2 lines)
-   - Why does it matter / real-world use?
-   - At least one OCJP trap
-3. Write inline comments on key lines inside the class body
-4. Add `@quiz (INTERVIEW)` and `@quiz (OCJP)` pairs for tricky questions
-5. Create `Sub_Chapter_2_CodingChallenge/` with beginner challenge files
-6. Create `Sub_Chapter_3_DeepProblems/` with a `*DeepProblem.java` file
-7. Run: `npm run revise`
-8. Open `revision-dashboard/index.html` — your topic appears automatically with:
-   - Notes (Overview + Key Takeaways)
-   - Quick Revision flashcard (with gotchas highlighted)
-   - ~12 auto-generated quiz questions
-   - OCJP-style tricky questions (for matching chapter types)
-   - Your custom `@quiz` questions filtered by `(INTERVIEW)`, `(INTERVIEW TRAP)`, `(OCJP)`
-   - Inline concept review when you get answers wrong
-   - Practice Lab entry (if filename has "Challenge")
-   - Deep Problems entry (if filename has "DeepProblem")
-
----
-
-## Adding a custom deep coding challenge with @challenge
-
-For large programming problems (OOP design, algorithm challenges, multi-class systems):
-
-```java
-// @challenge Implement a Stack using an Array
-// @desc Create a generic stack with: push(int value), pop() → int, peek() → int, isEmpty() → boolean
-// @desc Stack should throw RuntimeException("Stack is empty") on pop/peek when empty
-// @hint Use an int[] array and an int top pointer (index of last pushed element, starts at -1)
-// @hint push: increment top, then assign. pop: return array[top], then decrement top
-// @testcase push(5), push(3), peek() → 3 (stack unchanged)
-// @testcase push(5), push(3), pop() → 3, then pop() → 5
-// @testcase pop() on empty stack → RuntimeException
-
-public class StackImplementation {
-    ...
-}
-```
-
-**Rules:**
-- `// @challenge <title>` — one line, names the challenge
-- `// @desc <line>` — one or more description lines (problem statement)
-- `// @hint <line>` — optional implementation hints
-- `// @testcase <input> → <expected>` — test cases shown in the Deep Problems panel
-- All `@challenge` lines are excluded from Notes — only appear in the Deep Problems tab
-- Deep challenges appear under the 🏆 Deep Problems tab in the Practice Lab
-
----
-
-## Tag/Label system (quiz filters)
-
-Every quiz question is automatically tagged. Use the filter pills in the quiz start screen:
-
-| Tag | What it contains |
-|---|---|
-| 🎓 **OCJP** | 31+ OCJP exam-style questions — click to drill only these |
-| 💼 **Interview** | 200+ open-ended technical questions |
-| ⚡ **Tricky** | Gotcha/pitfall questions — edge cases that trip people up |
-| 📚 **Concept** | Pure concept understanding (fill-blank, true/false) |
-| 🔮 **Predict** | Predict the output questions |
-
-**Combine with difficulty:** `OCJP` + `Hard` = only hard OCJP questions.
-
-Each question also shows its tags as colour-coded badges during the quiz.
-
----
-
-## Practice Lab overview
-
-The Practice Lab has two tabs:
-
-### ⌨ Coding Challenges
-- 6 handcrafted challenges + 40 auto-generated from `*Challenge.java` files = 46 total
-- Auto-verify: test cases run automatically in the browser (boolean/numeric return types)
-- Self-check: void methods → you run in your IDE, then click "Mark as Completed"
-- **Grows automatically**: every new `*Challenge.java` file → new coding challenge
-
-### 🏆 Deep Problems
-- 16 auto-generated large programming problems per chapter type
-- Topics: BankAccount OOP, Shape Polymorphism, Custom Exceptions, Loop Algorithms, String Mastery, etc.
-- Always self-check: implement in your IDE, verify test cases, mark done
-- **Grows with `@challenge` annotations**: write a `// @challenge` in any Java file → appears here
-
-```
-src/
-  Chapter_<N>_<TopicName>/           ← required prefix
-    Sub_Chapter_<N>_<SubTopicName>/  ← optional
-      MyJavaFile.java
-```
-
-Examples:
-- `Chapter_15_Collections/Sub_Chapter_1_ArrayList/ArrayListDemo.java`
-- `Chapter_16_Generics/GenericsBasics.java`
-
-The parser handles everything else automatically.
-
-
----
-
-## Golden rule
-
-> **Write for a student, not a compiler.**
-> Every comment should explain *why* or *what it means*, not just *what the code says*.
-
----
-
-## Where to put comments
-
-### Overview / big-picture notes → BEFORE the class declaration
-
-```java
-// Java is a statically-typed, object-oriented language.
-// Every program starts execution from the main() method.
-// The JVM (Java Virtual Machine) compiles .java files to bytecode (.class).
-
-public class HelloWorld {
-    ...
-}
-```
-
-Block comments work too:
-
-```java
-/*
- * Variables must be declared with a type before use.
- * Java is strongly typed — you cannot assign a String to an int.
- * Primitive types (int, double, boolean) live on the stack.
- */
-public class VariablesInJava {
-    ...
-}
-```
-
-These become the **Overview** section in the dashboard.
-
----
-
-### Key Takeaways → inline `//` comments INSIDE the class body
-
-```java
-public class OperatorsInJava {
-    public static void main(String[] args) {
-
-        int result = 15 + 12; // 15 and 12 are operands; + (plus) is the operator
-        // The result of addition is stored in the variable result
-
-        int myVar = 5;
-        myVar += 10; // += is shorthand for myVar = myVar + 10
-        myVar -= 3;  // -= is shorthand for myVar = myVar - 3
-    }
-}
-```
-
----
-
-## Extending to other SDET projects
-
-This entire system is plug-and-play. Use `scripts/create-project.js` to create a
-mirror of this dashboard for Playwright, Cypress, JavaScript, TypeScript, or Selenium.
+The author reviews before anything is applied:
 
 ```bash
-# New project (auto-placed as sibling of JavaConcepts):
-node scripts/create-project.js PlaywrightConcepts playwright
-
-# New project at any specific path:
-node scripts/create-project.js PlaywrightConcepts playwright --target "D:\Work\PlaywrightConcepts"
-
-# Add dashboard to an existing project (leaves src/ untouched):
-node scripts/create-project.js MyProject playwright --target "D:\Work\MyProject" --dashboard-only
-
-# See all options:
-node scripts/create-project.js --help
+npm run revise     # PROPOSES changes, then asks: Apply these changes now? (y/N)
+npm run approve    # APPLIES straight away, audits, and opens the dashboard
+npm run revise -- --yes   # applies without asking (for scripted runs)
 ```
 
-Supported technologies: `javascript`, `typescript`, `cypress`, `playwright`, `selenium`
+`npm run revise` compares a fresh parse against `revision-dashboard/data.js`, which is the baseline the author already approved.
 
-See `TEMPLATE.md` for the full bootstrap guide and technology-specific comment patterns.
+- **Notes, inline notes, or `@quiz` markers changed** → the summary is printed, a report is written to `revision-dashboard/content-changes.md`, and the command asks `Apply these changes now? (y/N)`.
+  - Press **y** → the changes are applied, the audit runs, and the dashboard opens.
+  - Press **n** or Enter → nothing is applied, so there is nothing to undo. Run `npm run revise` again after editing the notes.
+  - In a non-interactive run the answer defaults to **No**, so an automated run can never hang or apply silently.
+- **Only Java code changed** (everyday practice) → applied straight away and recorded in the same report, so routine edits do not need an approval each time.
+- **Nothing changed** → applied straight away, exactly as before.
 
-These become **Key Takeaways & Annotations** bullets.
+`npm run approve` regenerates everything and opens the dashboard, without asking. The generated files are:
 
----
+- `revision-dashboard/data.js`
+- `revision-dashboard/questions.js`
+- `revision-dashboard/practice.js`
+- `revision-dashboard/deep-challenges.js`
+- `revision-dashboard/content-changes.md` (the review report)
 
-## Comment quality checklist
+Never edit those generated files by hand. The next run will replace them.
 
-### DO
-- [ ] Use complete sentences with subject + verb + meaning
-- [ ] Explain WHY the concept matters, not just WHAT the code does
-- [ ] Mention gotchas or common mistakes (parser treats these as special callouts)
-- [ ] Reference related concepts (e.g. "Unlike Python, Java requires explicit types")
-- [ ] Use `/* */` block comment before the class for multi-line overview concepts
-- [ ] Keep bullet-level comments to one clear idea each
+## How The Note Converter Works
 
-### DON'T
-- [ ] Don't leave `/* */` blocks with only code inside them — these get filtered out
-- [ ] Don't put bare method calls or signatures in comments (`bark();`, `void run() {`)
-- [ ] Don't use decorative dividers (`---`, `***`, `===`) as standalone comment lines
-- [ ] Don't write comments that just repeat the variable/method name
-- [ ] Don't leave `// TODO`, `// FIXME`, or URL-only lines — they are skipped
+The parser keeps the core meaning of your comments and improves the reading experience in the generated portal. It:
 
----
+- Joins wrapped lines when a sentence clearly continues onto the next line.
+- Repairs common shorthand such as `:-` and `For Ex`.
+- Preserves Markdown-like inline code in readable form.
+- Detects Java-like lines inside comments and renders them as code blocks.
+- Preserves pipe-delimited tables as tables in Notes, Quick Revision, and PDF output.
+- Separates overview notes, inline code explanations, parameter notes, quizzes, and challenges.
+- Adds parameter guidance from actual method and constructor signatures when a topic has no relevant parameter explanation.
+- Keeps authored parameter explanations and only fills missing coverage.
 
-## Gotcha / warning keywords (auto-flagged in Quick Revision)
+This is a clarity and structure pass, not permission to invent new behavior. Write the technical idea yourself, especially when a rule has important exceptions or boundary cases. Any added context should support the source note and should never contradict or overshadow it.
 
-The parser treats lines containing these words as **gotchas** (shown in red in the dashboard):
+## File And Folder Naming
 
-```
-gotcha  pitfall  warning  caution  error  note  remember
-important  trick  overflow  avoid  careful  trap
-```
-
-Use them intentionally:
-
-```java
-// Important: integer division truncates; use (double) cast to get decimal results
-// Pitfall: String == String compares references, not values — use .equals() instead
-// Warning: overflow occurs silently when an int exceeds 2,147,483,647
-```
-
----
-
-## Adding custom quiz questions with @quiz / @answer
-
-You can write your own quiz questions directly in any Java source file.
-They appear in the quiz bank alongside the 5 auto-generated questions.
-
-```java
-// @quiz What does "immutable" mean for Strings in Java?
-// @answer A String cannot be changed after creation. Any modification creates a new String object.
-
-// @quiz What is the difference between == and .equals() for Strings?
-// @answer == compares object references in memory; .equals() compares the actual character content.
-// @answer Always use .equals() when comparing String values — == will fail for non-literal Strings.
-```
-
-**Rules:**
-- `// @quiz <your question>` — one line, starts the question
-- `// @answer <answer text>` — one or more lines immediately follow
-- Multiple `@answer` lines are joined as key points in the model answer checklist
-- You can add as many `@quiz`/`@answer` pairs as you want per file
-- `@quiz`/`@answer` lines are **excluded** from Notes/Key Takeaways — they only appear in the Quiz
-
----
-
-1. Create a new `.java` file under `src/Chapter_N_.../(Sub_Chapter_N_.../)`
-2. Write overview comments (as `//` lines or `/* */` block) BEFORE the class declaration
-3. Write inline `//` comments on key lines inside the class body
-4. Run: `npm run revise`
-5. Open `revision-dashboard/index.html` in a browser — your new chapter/topic appears automatically
-
-Everything is generated:
-- Notes (Overview + Key Takeaways)
-- Quick Revision flashcard
-- Quiz questions (SCQ, MCQ, code-fill, predict-output, interview)
-- Chapter sidebar entry
-- Practice Lab entry
-
----
-
-## Examples of good vs. bad comments
-
-### BAD (too thin / code-repeating)
-```java
-// set value
-int x = 10;
-// add
-int y = x + 5;
-```
-
-### GOOD (educational, meaningful)
-```java
-int x = 10; // x is an int variable storing the value 10
-int y = x + 5; // Addition: x and 5 are operands; + is the operator; result stored in y
-```
-
----
-
-### BAD (overview that just names things)
-```java
-// OperatorsInJava class
-public class OperatorsInJava {
-```
-
-### GOOD (overview that teaches)
-```java
-// Operators are special symbols that perform operations on operands (values/variables).
-// Java supports arithmetic (+, -, *, /, %), assignment (=, +=, -=), comparison (==, !=, <, >),
-// logical (&&, ||, !), and bitwise operators.
-// The order of operations follows standard mathematical precedence (BODMAS/PEMDAS).
-public class OperatorsInJava {
-```
-
----
-
-## Folder naming must follow the convention
-
-```
+```text
 src/
-  Chapter_<N>_<TopicName>/               ← required prefix
-    Sub_Chapter_1_<ConceptName>/         ← concept notes + @quiz tags
-    Sub_Chapter_2_<CodingChallenge>/     ← beginner/intermediate challenge files
-    Sub_Chapter_3_DeepProblems/          ← hard real-world problem files
-      MyTopicDeepProblem.java            ← naming: *DeepProblem.java
+  Chapter_<N>_<TopicName>/
+    Sub_Chapter_<N>_<TopicName>/       # optional
+      Concept.java
+      ExampleChallenge.java
+      LargerDeepProblem.java
 ```
 
-Examples:
-- `Chapter_1_Java_Introduction/` → sidebar shows "Chapter 1: Java Introduction"
-- `Chapter_15_Collections/Sub_Chapter_1_ArrayList/ArrayListDemo.java` → new chapter + sub-chapter + topic
-- `Chapter_15_Collections/CollectionsOverview.java` → new chapter with single topic
+The parser discovers `.java` files recursively. A file name becomes the topic name shown in the sidebar. Files whose names contain `Challenge` are eligible for the Practice Lab, and files whose names contain `DeepProblem` are included in deep-problem content where applicable.
 
-The parser handles everything else automatically.
+## Overview Notes
+
+Put the big-picture explanation before the first class, interface, record, or enum declaration. Use one clear idea per line or bullet.
+
+```java
+// StringBuilder is a mutable character sequence.
+// Its append() method changes the existing buffer instead of creating a new String for every addition.
+// It is usually the right choice for repeated text changes in single-threaded code.
+
+public class StringBuilderExample {
+    // implementation follows
+}
+```
+
+A strong overview usually covers:
+
+1. What the concept is.
+2. Why it exists or when it is useful.
+3. How the example works.
+4. The important parameters and expected result.
+5. A boundary case, common mistake, or interview trap.
+
+## Inline Notes And Code
+
+Place explanations beside the relevant code inside the class. Explain the reason or result, not only the variable name.
+
+```java
+int total = 10 + 20; // Both operands are int values, so + performs arithmetic addition.
+String label = "Total: " + total; // Once a String participates, + concatenates the remaining value.
+```
+
+If a multi-line code example is placed inside a comment, keep it recognizably Java-like and separate it from prose:
+
+```java
+/*
+ * Example:
+ * StringBuilder builder = new StringBuilder("Java");
+ * builder.append(" notes");
+ * System.out.println(builder); // Java notes
+ */
+```
+
+The dashboard displays recognized code blocks separately, so learners can see the syntax instead of reading it as prose.
+
+## Sentence Quality Standard
+
+Write for a learner seeing the concept for the first time. Every explanatory sentence should have a clear subject, action, and consequence.
+
+Prefer:
+
+```java
+// String.format() returns a new formatted String; it does not print the result automatically.
+```
+
+Avoid:
+
+```java
+// String.format same as printf but returned
+```
+
+Use precise wording:
+
+- Say “returns the completed String” instead of “does the same thing.”
+- Say “the end index is exclusive” instead of “end does not count.”
+- Say “the method accepts a percentage such as 7.5” instead of “pass interest.”
+- Explain whether an operation mutates the existing object or returns a new object.
+- Explain what happens for zero, negative, empty, null, maximum, and minimum inputs when those cases matter.
+- Avoid unexplained pronouns such as “this,” “it,” or “that” when the reader cannot tell what they refer to.
+
+The generator can repair common formatting and sentence-continuation mistakes, but it cannot reliably infer a missing technical explanation. A vague source note should be rewritten at the source.
+
+## Parameter Notes
+
+Add a parameter section when a method or constructor has important inputs. Explain both the meaning of the parameter and how a learner should choose or test it.
+
+```java
+// Parameter notes (what each argument means and how to choose it):
+// - text (reverseWords(String text)): the sentence to process; choose normal text, multiple spaces, and an empty string to test the method's behavior.
+// - fromIndex (indexOf(String value, int fromIndex)): the zero-based position where the search begins; choose 0 for the whole text or a later position to skip an earlier match.
+```
+
+Good parameter notes answer:
+
+- What value does the parameter represent?
+- What type and unit does it use?
+- What values are valid?
+- What boundary or invalid values should be tested?
+- Does the method mutate the value or return a result?
+
+The generator creates a parameter section from actual signatures only when relevant coverage is missing. It does not add boilerplate for a topic with no meaningful method or constructor parameters, and it does not add `main(String[] args)` unless you document it yourself.
+
+## Tables And Examples
+
+Use a pipe-delimited table when the learner needs to compare several related values.
+
+```text
+| Method | Behavior | Example |
+| append | Adds text to the end | builder.append("!") |
+| insert | Adds text at an index | builder.insert(0, ">> ") |
+```
+
+Keep examples close to the rule they demonstrate. State the expected output and explain why it occurs.
+
+## Gotchas And Boundary Cases
+
+Use a deliberate label when a point deserves attention. The dashboard highlights these in Quick Revision.
+
+```java
+// Important: integer division truncates the fractional part, so 5 / 2 evaluates to 2.
+// Pitfall: StringBuilder does not compare character content with equals(); compare toString() values instead.
+// OCJP trap: String literals may share the String pool, but new String("Java") creates a separate object.
+```
+
+Useful cases include:
+
+- Empty strings and empty collections.
+- Negative or zero values.
+- Inclusive versus exclusive boundaries.
+- Null references.
+- Integer overflow and narrowing conversions.
+- `break`, `continue`, and loop termination.
+- Overloading versus overriding.
+- Immutable versus mutable objects.
+- Checked versus unchecked exceptions.
+
+## Custom Quiz Questions
+
+A written question, answered in your own words:
+
+```java
+// @quiz (INTERVIEW) Why is StringBuilder usually preferred for repeated concatenation in a loop?
+// @answer StringBuilder changes one mutable buffer instead of creating a new String for every concatenation.
+// @answer This usually reduces temporary objects and improves performance.
+```
+
+An exam-style question with real options, which is what the Certified exam looks like:
+
+```java
+// @quiz (OCJP, MEDIUM) What is the result?
+// @code System.out.println("abc".substring(0, 0));
+// @option abc
+// @option An empty line            [correct]
+// @option StringIndexOutOfBoundsException
+// @option Compilation fails
+// @explain substring(0, 0) is legal: beginIndex equals endIndex, so the range has length 0 and an empty String is printed.
+// @why A: "abc" is the original String; substring cannot return more text than it was given.
+// @why C: StringIndexOutOfBoundsException needs beginIndex > endIndex, or an index greater than length().
+// @why D: it compiles, because substring(int, int) is a valid method.
+```
+
+Rules:
+
+- Start with `@quiz` followed by the complete question.
+- Use one or more `@answer` lines immediately after it.
+- Each answer should be a complete, self-contained explanation.
+- The tag in parentheses is optional, and so is a level. Write `(OCJP)`, `(INTERVIEW)`, `(INTERVIEW TRAP)`, or combine them as `(OCJP, HARD)`. The tag drives the quiz filter pills, and the level drives the Easy, Medium, and Hard pills.
+- `@code` adds a code snippet to the question.
+- `@option` adds one choice. Mark the correct choice with `[correct]`. One correct option makes a single-choice question; two or more make a "select all that apply" question.
+- `@explain` says why the right answer is right.
+- `@why` says why a wrong option is wrong. Start it with the option letter, such as `@why C: ...`, so there is no ambiguity. A `@why` line without a letter is given to the remaining wrong options in the order written.
+- A question with `@option` lines appears as A, B, C, D in the quiz. When a learner picks a wrong option, the matching `@why` is shown, so the mistake is explained rather than just marked.
+- Quiz markers are excluded from ordinary Notes and appear in the Quiz Bank.
+- Every generated question receives a stable ID and source-topic identity for progress tracking and concept review.
+
+## Quiz Levels
+
+A question's level must describe what the question asks. It is never taken from the position of the topic inside the chapter.
+
+```java
+// @quiz (OCJP, EASY) Which method returns true for a whitespace-only String?
+// @quiz (INTERVIEW TRAP, HARD) What does "hello".concat(null) do?
+```
+
+| Level | What it tests | Example |
+|---|---|---|
+| Easy | recall a single fact | which keyword fits a code line |
+| Medium | read and trace code | predict the output of a short snippet |
+| Hard | exam style traps | pick the trap, or select every true statement |
+
+An `@quiz` marker without a level is Medium, except a `(INTERVIEW TRAP)` marker, which is Hard.
+Auto-generated questions take their level from their kind: keyword and definition questions are Easy, code tracing is Medium, and gotcha and OCJP trap questions are Hard.
+
+## Coding Challenges And Deep Problems
+
+```java
+// @challenge Reverse each word in a sentence using StringBuilder
+// @desc Given "Java is fun", return "avaJ si nuf" while preserving word order.
+// @hint Use a StringBuilder for each word and append the results to one output builder.
+// @testcase reverseEachWord("Java is fun") -> "avaJ si nuf"
+```
+
+Keep challenge descriptions complete. State the inputs, expected output, constraints, and at least one edge case. Use `@hint` for guidance without giving away every line of the solution. Use `@testcase` for concrete behavior.
+
+## Dashboard Features
+
+The generated portal provides:
+
+- Notes with explanations, code blocks, tables, parameter notes, and inline annotations.
+- Detailed Study and Quick Revision modes; comparison tables keep their grid in both.
+- **Revision Bank**: one place for everything the author has written notes for. Filter by chapter, by free text, by level (Easy, Medium, Hard) and by type (OCJP, Tricky, Concept, Predict, Fill Blank, Written), read the notes, or start a quiz directly from the selection. It is built from `CONCEPTS_DATA`, so a chapter that has no source files can never appear in it.
+- Chapter and grand quizzes with interview, OCJP, concept, code-completion, and output-prediction questions.
+- **Revision Quizzes menu**: opens a choice instead of jumping straight into the Grand Quiz, with the Grand Quiz, an OCJP-only quiz, a Tricky-only quiz, a per-chapter list, and a link into the Revision Bank. Every question shows the chapter it came from.
+- **Quiz This Topic** starts a quiz from the single topic open in the Notes view.
+- Per-chapter score breakdown after a mixed quiz, weakest chapter first.
+- **Practice Lab honesty**: every challenge is labelled **Auto-checked** (your method is run against the recorded expected values) or **Self-check** (no automatic verification, verify it yourself). Code the checker cannot run is reported as "could not be checked", never as a wrong answer.
+- OCJP questions attached to the topic they belong to, so they can be revised topic by topic, chapter by chapter, or centrally from the Revision Bank.
+- Wrong-answer concept review linked back to the exact source topic.
+- Practice Lab and Deep Problems.
+- Chapter-wise PDF printing from the Notes view.
+- Local progress tracking in browser storage.
+
+## Verification
+
+Use these commands when troubleshooting:
+
+```bash
+npm run revise    # propose content changes, review them, then approve
+npm run approve   # apply, audit, and open the dashboard
+npm run generate  # regenerate the dashboard files without the review gate
+npm run audit     # validate generated structure and note quality
+npm run check     # regenerate and audit without opening the browser
+```
+
+The audit checks that topics, question IDs, question-to-topic links, answer shapes, challenges, and known incomplete-note patterns are valid. Java compilation should still be checked with your installed JDK after changing source code.

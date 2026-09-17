@@ -70,6 +70,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
             <span>Practice Lab</span>
           </button>
+          <button id="nav-bank-btn" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="m3 9 9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+            <span>Revision Bank</span>
+          </button>
           <button id="nav-notes-btn" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M4 19.5V5a2 2 0 0 1 2-2h10l4 4v12.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v4h4"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
             <span>Notes</span>
@@ -104,6 +108,20 @@
         <div class="view-header">
           <h1>Welcome to Java Revision Dashboard</h1>
           <p class="subtitle">Track your progress, study core concepts, and quiz yourself to mastery.</p>
+        </div>
+
+        <div class="dashboard-panel getting-started-panel">
+          <div class="panel-heading-row">
+            <div>
+              <h2>Start Here</h2>
+              <p class="panel-subtitle">A simple path for your first visit or your next revision session.</p>
+            </div>
+          </div>
+          <div class="getting-started-grid">
+            <button class="getting-started-step" id="btn-start-notes" type="button"><span class="step-number">1</span><span><strong>Read Notes</strong><small>Choose a chapter and study the explanations with the code examples.</small></span></button>
+            <button class="getting-started-step" id="btn-start-quiz" type="button"><span class="step-number">2</span><span><strong>Check Understanding</strong><small>Take a chapter quiz and revisit the concept when an answer is wrong.</small></span></button>
+            <button class="getting-started-step" id="btn-start-practice" type="button"><span class="step-number">3</span><span><strong>Practice in Code</strong><small>Use the Practice Lab for guided exercises and deeper challenges.</small></span></button>
+          </div>
         </div>
 
         <!-- Progress Overview Grid -->
@@ -165,7 +183,7 @@
             <div class="quick-actions">
               <div class="action-card">
                 <h3>Grand Java Quiz</h3>
-                <p>Test your knowledge across all 13 chapters in one comprehensive quiz.</p>
+                <p>Test your knowledge across every chapter in one comprehensive quiz.</p>
                 <button class="btn btn-primary" id="btn-grand-quiz">Start Grand Quiz</button>
               </div>
               <div class="action-card">
@@ -200,6 +218,9 @@
             </button>
             <button id="btn-quiz-this-chapter" class="btn btn-primary-outline">
               Quiz This Chapter
+            </button>
+            <button id="btn-quiz-this-topic" class="btn btn-primary-outline">
+              Quiz This Topic
             </button>
             <button id="btn-practice-this-section" class="btn btn-outline">
               Practice This Chapter
@@ -348,6 +369,9 @@
                   <ul id="quick-bullet-points" class="bullet-list">
                     <!-- Dynamic -->
                   </ul>
+                  <div id="quick-tables" class="quick-tables">
+                    <!-- Comparison tables from the notes render here -->
+                  </div>
                 </div>
               </div>
               
@@ -432,6 +456,7 @@
                 <button class="tag-pill" data-tag="tricky" onclick="setQuizTag('tricky', this)">⚡ Tricky</button>
                 <button class="tag-pill" data-tag="concept" onclick="setQuizTag('concept', this)">📚 Concept</button>
                 <button class="tag-pill" data-tag="predict" onclick="setQuizTag('predict', this)">🔮 Predict</button>
+                <button class="tag-pill" data-tag="codefill" onclick="setQuizTag('codefill', this)">✏️ Fill Blank</button>
               </div>
             </div>
 
@@ -569,6 +594,9 @@
               </div>
             </div>
 
+            <!-- Per-chapter strength breakdown -->
+            <div id="result-chapter-breakdown" class="result-chapter-breakdown"></div>
+
             <!-- Detailed Answers Review -->
             <div id="quiz-results-breakdown" style="width: 100%; text-align: left; margin-top: 16px; display: flex; flex-direction: column; gap: 14px; max-height: 250px; overflow-y: auto; padding-right: 4px; margin-bottom: 20px;">
               <!-- JS populated review list -->
@@ -618,6 +646,7 @@
                   <span class="difficulty-badge" id="practice-difficulty">Medium</span>
                 </div>
                 <div class="card-body">
+                  <p class="practice-check-note self" id="practice-check-note"></p>
                   <div id="practice-instructions" class="instructions-content">
                     <!-- Dynamic details -->
                   </div>
@@ -670,10 +699,106 @@
       </section>
 
       <!-- NOTES VIEW -->
+      <section id="quiz-menu-view" class="view-section">
+        <div class="view-header">
+          <h1>Revision Quizzes</h1>
+          <p class="subtitle">Pick how you want to be tested. Everything here comes from the chapters you have written notes for.</p>
+        </div>
+
+        <div class="quiz-menu-grid">
+          <div class="card quiz-menu-card">
+            <div class="card-body">
+              <h3>🎯 Grand Java Quiz</h3>
+              <p>A mixed set of 40 questions drawn from every chapter you have notes for.</p>
+              <button class="btn btn-primary" id="btn-menu-grand-quiz">Start Grand Quiz</button>
+            </div>
+          </div>
+          <div class="card quiz-menu-card">
+            <div class="card-body">
+              <h3>🎓 OCJP Only</h3>
+              <p>Exam style trap questions across all chapters. <span id="menu-ocjp-count">0</span> questions available.</p>
+              <button class="btn btn-primary-outline" id="btn-menu-ocjp-quiz">Start OCJP Quiz</button>
+            </div>
+          </div>
+          <div class="card quiz-menu-card">
+            <div class="card-body">
+              <h3>⚡ Tricky Questions</h3>
+              <p>The questions that catch people out. <span id="menu-tricky-count">0</span> questions available.</p>
+              <button class="btn btn-primary-outline" id="btn-menu-tricky-quiz">Start Tricky Quiz</button>
+            </div>
+          </div>
+          <div class="card quiz-menu-card">
+            <div class="card-body">
+              <h3>🔍 Choose Exactly What To Revise</h3>
+              <p>Filter by chapter, topic, level and question type, then start a quiz from your selection.</p>
+              <button class="btn btn-outline" id="btn-menu-open-bank">Open Revision Bank</button>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="bank-chapter-heading">Quiz a single chapter</h2>
+        <div id="quiz-menu-chapters" class="quiz-menu-chapters"></div>
+      </section>
+
+      <section id="bank-view" class="view-section">
+        <div class="view-header">
+          <h1>Revision Bank</h1>
+          <p class="subtitle">Everything you have written notes for, in one place. Filter it, revise the notes, or start a quiz from the selection.</p>
+        </div>
+
+        <div class="card bank-filter-card">
+          <div class="card-body">
+            <div class="bank-filter-row">
+              <label class="filter-label" for="bank-chapter-select">Chapter</label>
+              <select id="bank-chapter-select" class="notes-chapter-select" onchange="setBankChapter(this.value)"></select>
+            </div>
+            <div class="bank-filter-row">
+              <label class="filter-label" for="bank-search">Find a topic or a note</label>
+              <input id="bank-search" class="bank-search-input" type="search" placeholder="For example: StringBuilder, substring, immutable" oninput="setBankSearch(this.value)">
+            </div>
+            <div class="bank-filter-row">
+              <label class="filter-label">Level</label>
+              <div class="diff-pills" id="bank-level-pills">
+                <button class="diff-pill active" data-level="all" onclick="setBankLevel('all', this)">Any</button>
+                <button class="diff-pill" data-level="easy" onclick="setBankLevel('easy', this)">Easy</button>
+                <button class="diff-pill" data-level="medium" onclick="setBankLevel('medium', this)">Medium</button>
+                <button class="diff-pill" data-level="hard" onclick="setBankLevel('hard', this)">Hard</button>
+              </div>
+            </div>
+            <div class="bank-filter-row">
+              <label class="filter-label">Type</label>
+              <div class="tag-pills" id="bank-type-pills">
+                <button class="tag-pill active" data-banktag="all" onclick="setBankTag('all', this)">Everything</button>
+                <button class="tag-pill ocjp-pill" data-banktag="ocjp" onclick="setBankTag('ocjp', this)">🎓 OCJP</button>
+                <button class="tag-pill" data-banktag="tricky" onclick="setBankTag('tricky', this)">⚡ Tricky</button>
+                <button class="tag-pill" data-banktag="concept" onclick="setBankTag('concept', this)">📚 Concept</button>
+                <button class="tag-pill" data-banktag="predict" onclick="setBankTag('predict', this)">🔮 Predict</button>
+                <button class="tag-pill" data-banktag="codefill" onclick="setBankTag('codefill', this)">✏️ Fill Blank</button>
+                <button class="tag-pill" data-banktag="interview" onclick="setBankTag('interview', this)">💼 Written</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bank-summary-bar">
+          <span id="bank-summary">Loading…</span>
+          <button class="btn btn-primary" id="btn-bank-quiz" onclick="startBankQuiz()">Start quiz from this selection</button>
+        </div>
+
+        <div id="bank-results" class="bank-results"></div>
+      </section>
+
       <section id="notes-view" class="view-section">
         <div class="view-header">
           <h1>My Notes</h1>
           <p class="subtitle">Write revision notes for the full project or for each topic.</p>
+          <div class="notes-export-actions" aria-label="Print chapter notes">
+            <label class="notes-export-label" for="notes-chapter-select">Print chapter</label>
+            <select id="notes-chapter-select" class="notes-chapter-select"></select>
+            <button id="btn-print-chapter-notes" class="btn btn-primary btn-small" type="button">
+              <span aria-hidden="true">&#128438;</span> Print / Save PDF
+            </button>
+          </div>
         </div>
 
         <div class="notes-layout">

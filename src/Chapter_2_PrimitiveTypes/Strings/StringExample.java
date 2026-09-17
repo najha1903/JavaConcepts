@@ -159,6 +159,24 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.
 // @answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.
 // @answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.
+// Parameter notes (important method parameters and how to choose them):
+// - args (main): the command-line String array received by the program. Choose values by typing them after the
+//     class name when running Java; remember every value arrives as text, even if it looks like a number.
+// - x (System.out.println): the value printed to the console. In this file the argument is often a concatenation
+//     expression, so Java evaluates the whole expression first and passes the resulting String to println.
+// - str (String.concat): the text appended to the end of the original String. Choose the exact suffix to add;
+//     important pitfall: concat returns a new String and does not change the original object unless reassigned.
+// - target (String.valueOf): the value converted into text. Choose the char, number, boolean, object, or array
+//     whose textual form you need before joining it with other Strings.
+//
+// @quiz (INTERVIEW) In System.out.println("MyString is equal to " + myString), what is the println parameter?
+// @answer The parameter is the completed String produced after concatenation, not the separate pieces; Java builds it first, then println prints it.
+//
+// @quiz (INTERVIEW TRAP) If s.concat(" is fun") receives " is fun" as its parameter, why might printing s still show the old value?
+// @answer String is immutable, so concat returns a new String. If you avoid assigning the result back to s, the original reference still points to the old text.
+//
+// @quiz (OCJP) What should you remember about the args parameter when command-line input is numeric, such as 123?
+// @answer args stores every command-line value as a String, so "123" must be parsed before numeric arithmetic can be performed.
 public class StringExample {
 
     public static void main(String[] args) {

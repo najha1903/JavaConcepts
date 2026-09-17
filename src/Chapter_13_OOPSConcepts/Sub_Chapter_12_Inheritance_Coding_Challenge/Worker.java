@@ -1,0 +1,103 @@
+package Chapter_13_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
+
+
+/*  Inheritance Challenge Problem
+
+Create Worker Class -> This should be on top of the Hierarchy
+
+Create attributes :-
+name      : String
+birthDate : String
+endDate   : String
+intGetAge()
+double collectPay()
+terminate(String endDate)
+
+Below the Worker Class, introduce another Class named Employee which extends the Worker Class
+
+Create Attributes :-
+employeeId : long
+hireDate   : String
+
+Create Two more classes, SalariedEmployee Class and HourlyEmployee Class, both of them extends Employee
+
+For SalariedEmployee, Create Attributes :-
+annualSalary : double
+isRetired    : boolean
+retire()
+
+For HourlyEmployee, Create Attributes :-
+hourlyPayRate : double
+getDoublePay()
+
+*
+* */
+// Parameter notes (what each argument means and how to choose it):
+// - Worker(String name, String birthDate): name identifies the worker, and birthDate is later used by getAge().
+// - Choose birthDate in the expected dd/MM/yyyy-like format because getAge() reads birthDate.substring(6) and parses it as the year.
+// - Integer.parseInt(String value) receives the year text extracted from birthDate; warning, non-numeric year text will fail.
+// - terminate(String endDate): endDate is the worker's final date; choose the same date format used for other dates in this example.
+// - Subclasses call super(name, birthDate) to initialize the Worker part before adding their own fields.
+// @quiz (INTERVIEW) In Worker(String name, String birthDate), how is birthDate later used?
+// @answer getAge() extracts the year with substring(6), parses it, and subtracts it from the current year.
+// @quiz (INTERVIEW TRAP) What is the pitfall of passing birthDate in the wrong format?
+// @answer substring(6) or Integer.parseInt(...) can fail, or the calculated age can be incorrect.
+// @quiz (OCJP) What does terminate(String endDate) do with its parameter?
+// @answer It stores the provided endDate String in the protected endDate field.
+public class Worker {
+
+// Since name and birthDate are supposed to be used only by the worker class, it makes sense to make it private
+
+// Since, endDate value might get set either by this class, or subclass, it would make sense to make it protected
+    private String name;
+    private String birthDate;
+    protected String endDate;
+
+// In real world scenario, it would be highly unlikely that we would be knowing a worker's end date, hence in the arg constructor,
+// it would make sense, that we should only include two variables namely name and birthDate
+
+    public Worker(String name, String birthDate) {
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
+// Adding a no argument constructor can also provide more flexibility, hence adding 1 no arg constructor to this class
+
+    public Worker(){
+
+    }
+
+
+
+    public int getAge(){
+        int currentYear = 2025;
+        int birthYear = Integer.parseInt(birthDate.substring(6));
+
+        return (currentYear - birthYear);
+    }
+
+
+/* The idea is to override the collectPay and terminate method by the subclasses so that specific implementation
+   can be processed by the sub class */
+
+    public double collectPay(){
+        return 0.0;
+    }
+
+    public void terminate(String endDate){
+        this.endDate = endDate;
+    }
+
+/*
+* Here, the toString method is overridden, which overrides the toString method of the Object Class
+* */
+
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "name='" + name + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                '}';
+    }
+}

@@ -1,0 +1,46 @@
+package Chapter_13_OOPSConcepts.Sub_Chapter_12_Inheritance_Coding_Challenge;
+
+// Parameter notes (what each argument means and how to choose it):
+// - HourlyEmployee(String name, String birthDate, String hireDate, double hourlyRate): name, birthDate, and hireDate identify the employee; hourlyRate is pay per hour.
+// - super(name, birthDate, hireDate) passes employee identity and dates to Employee, which then passes name and birthDate up to Worker.
+// - Choose hourlyRate as a non-negative money amount per hour; collectPay() multiplies it by 40 hours.
+// - getDoublePay() takes no parameters because it doubles the current collectPay() result using the stored hourlyRate.
+// @quiz (INTERVIEW) In HourlyEmployee(String name, String birthDate, String hireDate, double hourlyRate), what does hourlyRate control?
+// @answer It controls weekly pay because collectPay() returns 40 multiplied by hourlyRate.
+// @quiz (INTERVIEW) What happens to name, birthDate, and hireDate when super(name, birthDate, hireDate) is called?
+// @answer They are passed to the Employee constructor; Employee stores hireDate and passes name and birthDate to Worker.
+// @quiz (INTERVIEW TRAP) Why should callers avoid a negative hourlyRate?
+// @answer The constructor stores it directly, so collectPay() would produce a negative paycheck.
+// The HourlyEmployee Class extends the Employee Class
+public class HourlyEmployee extends Employee {
+
+    /*
+     * Here, 1 new field is introduced for HourlyEmployee Class, namely hourlyRate
+     * */
+    private double hourlyRate;
+
+    /*
+     * An Hourly employee constructor is created, that accepts name, birthDate, hireDate and hourlyRate as the parameters
+     * */
+
+    public HourlyEmployee(String name, String birthDate, String hireDate, double hourlyRate) {
+        super(name, birthDate, hireDate); // With the help of super keyword, the Employee constructor is called, through constructor chaining
+        // The name and birthDate information gets set in the Worker class using constructor chaining using super keyword, whenever the Employee constructor is called as the Employee constructor then calls Worker constructor using super keyword (constructor chaining)
+        // The hireDate information gets set in the Employee class, using constructor chaining with super, whenever the HourlyEmployee constructor is called
+        this.hourlyRate = hourlyRate;
+    }
+
+    /*
+     * The Worker class collectPay() method is being overridden in the HourlyEmployee class
+     * */
+    @Override
+    public double collectPay() {
+        return 40 * hourlyRate;
+    }
+
+    public double getDoublePay(){
+        return 2 * collectPay();
+    }
+
+
+}

@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "revise": "node scripts/parse-concepts.js --propose && node scripts/audit-generated.js && start revision-dashboard/index.html",
+    "approve": "node scripts/parse-concepts.js && node scripts/audit-generated.js && start revision-dashboard/index.html",
+    "generate": "node scripts/parse-concepts.js",
+    "audit": "node scripts/audit-generated.js",
+    "check": "node scripts/parse-concepts.js && node scripts/audit-generated.js"
+  },
+  "dependencies": {
+    "wd": "^1.14.0"
+  }
+}

@@ -1,0 +1,77 @@
+package Chapter_8_Java_Looping_Concepts.Sub_Chapter_2_For_Loop_Coding_Challenge;
+// CODING CHALLENGE — For Loop with Method Decomposition
+// This challenge decomposes the problem into two methods: isOdd() checks a single number, sumOdd() uses a for loop to accumulate the sum.
+// Method decomposition: breaking a complex problem into smaller, single-purpose methods is a fundamental good programming practice.
+// Guard clauses: checking invalid input at the start of a method and returning early (-1) to signal invalid input.
+/*
+
+Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.
+
+Check that number is > 0, if it is not return false.
+
+If number is odd return true, otherwise return false.
+
+Write a second method called sumOdd that has 2 int parameters start and end, which represent a range of numbers.
+
+The method should use a for loop to sum all odd numbers in that range including the end and return the sum.
+
+It should call the method isOdd to check if each number is odd.
+
+The parameter end needs to be greater than or equal to start and both start and end parameters have to be greater than 0.
+
+If those conditions are not satisfied return -1 from the method to indicate invalid input.
+
+Example input/output:
+
+sumOdd(1, 100); → should return 2500
+
+sumOdd(-1, 100); → should return -1
+
+sumOdd(100, 100); → should return 0
+
+sumOdd(13, 13); → should return 13 (This set contains one number, 13, and it is odd)
+
+sumOdd(100, -100); → should return -1
+
+sumOdd(100, 1000); → should return 247500
+*
+*/
+
+public class SumOddChallenge {
+
+    public static void main(String[] args) {
+        System.out.println("sumOdd(1, 100) = " + sumOdd(1, 100));
+        System.out.println("sumOdd(-1, 100) = " + sumOdd(-1, 100));
+        System.out.println("sumOdd(100, 100) = " + sumOdd(100, 100));
+        System.out.println("sumOdd(13, 13) = " + sumOdd(13, 13));
+        System.out.println("sumOdd(100, -100) = " + sumOdd(100, -100));
+        System.out.println("sumOdd(100, 1000) = " + sumOdd(100, 1000));
+    }
+
+    public static boolean isOdd(int number){
+        if (number >= 0){
+            if(number % 2 == 0){
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static int sumOdd(int start,int end){
+
+        int sum = 0;
+
+        if(start > 0 && end > 0 && start <= end){
+            for(int i = start; i<=end ;i++){
+                if(isOdd(i)){
+                    sum = sum + i;
+                }
+            }
+        }else{
+            return -1;
+        }
+
+        return sum;
+    }
+}

@@ -1,0 +1,124 @@
+package Chapter_13_OOPSConcepts.Sub_Chapter_8_Static_And_Instance_Variables;
+// Understanding the difference between static and instance variables is crucial in OOP.
+// STATIC variable: one shared copy for the ENTIRE class. If any object changes it, ALL objects see the new value.
+// INSTANCE variable: each object has its OWN private copy. Changes to one object's instance variable don't affect other objects.
+// Typical uses for static variables: counters (counting how many objects were created), constants (Math.PI), shared resources.
+// Best practice: access static variables via the CLASS name, not via an object reference. Clarity: StaticAndInstanceVariables.name not obj.name.
+// This file demonstrates: two instances share the same static 'name' field — when the last one sets it to "Fluffy", BOTH print "Fluffy".
+// By contrast, instance variables 'instanceName' and 'age' are unique per object — obj1 can be "Rex/4" and obj2 can be "Fluffy/2" simultaneously.
+/*
+Static Variables
+
+1) A static variable is Declared by using the keyword static.
+
+2) Static variables are also known as static member variables. They belong to the class, not the instance
+
+3) Every instance of the class shares the same static variable.
+
+4) If changes are made to that variable, all other instances of that class will see the effect of that change.
+
+5) Static variables can be used to :-
+  i)   Storing counters
+  ii)  Generating unique IDs
+  iii) Storing constant value that doesn't change. For Ex :- value of pi
+  iv)  Creating and controlling access to a shared resource. For ex :- log file, a database, input stream, output stream etc
+
+Instance Variables
+
+1) Static keyword is not used
+2) They're also known as fields or member variables.
+3) Unlike a static variable, Instance variables belong to a specific instance of a class.
+4) Each instance(object) has its own copy of an instance variable.
+5) Every instance(object) can have a different value. Instance variables represent the state
+   of a specific instance(object) of a class.
+
+* */
+
+// Parameter notes (what each argument means and how to choose it):
+// - public StaticAndInstanceVariables(String instanceName, int age): instanceName is the per-object name and age is the per-object age. Choose values that describe that specific object; each new object gets its own copy of these instance fields.
+// - public StaticAndInstanceVariables(String name): name is assigned to the static class variable shared by all objects. Warning: choose this value carefully because every instance sees the latest static name.
+// - public StaticAndInstanceVariables(): no parameters are provided, so fields keep their default or already declared values.
+// - new StaticAndInstanceVariables("Rex") and new StaticAndInstanceVariables("Fluffy"): the String argument changes the shared static name; the later "Fluffy" call overwrites "Rex" for all instances.
+// - new StaticAndInstanceVariables("Rex", 4) and new StaticAndInstanceVariables("Fluffy", 2): the first argument becomes instanceName and the second becomes age for that specific object.
+// - printName() and printDogNameAndAge() take no parameters because they print values already stored in static or instance variables.
+// - System.out.println(value): value is the data to display; here it prints static fields and formatted instance state.
+//
+// @quiz (INTERVIEW) What is the difference between the name parameter and the instanceName parameter in the two constructors?
+// @answer name updates the shared static class variable, while instanceName initializes a separate instance field for one object.
+// @quiz (INTERVIEW TRAP) What is the pitfall of calling new StaticAndInstanceVariables("Fluffy") after new StaticAndInstanceVariables("Rex")?
+// @answer The second call overwrites the shared static name, so all instances that read the static variable see Fluffy.
+// @quiz (OCJP) In new StaticAndInstanceVariables("Rex", 4), which parameter receives 4?
+// @answer age receives 4 because it is the second parameter in the (String instanceName, int age) constructor.
+
+public class StaticAndInstanceVariables {
+
+    // Static variable example
+    static String name = "Bravo";
+
+    private String instanceName;
+
+    private int age;
+
+    public StaticAndInstanceVariables(String instanceName, int age) {
+        this.instanceName = instanceName;
+        this.age = age;
+    }
+
+    public StaticAndInstanceVariables(String name) {
+        StaticAndInstanceVariables.name = name;
+    }
+
+    public StaticAndInstanceVariables() {
+    }
+
+    public void printName(){
+        System.out.println("name = " + name);
+    }
+
+    public void printDogNameAndAge(){
+        System.out.println("name = " + instanceName);
+        System.out.println("age = " + age);
+    }
+
+    public static void main(String[] args) {
+
+        StaticAndInstanceVariables staticAndInstanceVariables = new StaticAndInstanceVariables();
+
+        /*
+        * It is considered best practice to use the Class name and not a reference variable
+        * to access a static variable. This makes it clearer that the
+        * variable is associated with the class and therefore not stored with the instance.
+        * An instance isn't required to exist to access the value of a static variable.
+        * */
+
+        // Although this line will compile and run successfully, it is not considered best practice to call static method with an instance(reference) variable
+        System.out.println(staticAndInstanceVariables.name);
+
+        // This is the correct way of calling a static variable
+        // This makes it clearer that the variable is associated with the class and therefore not stored with the instance
+        // An instance isn't required to exist to access the value of a static variable.
+        System.out.println(StaticAndInstanceVariables.name);
+
+
+        // When the first parameterised constructor is called, the value of static String name is set to "Rex"
+        StaticAndInstanceVariables staticAndInstanceVariables1 = new StaticAndInstanceVariables("Rex");
+        // When the second parameterised constructor is called, the value of static String name is now set to "Fluffy"
+
+        // Since, the static members are shared between the instances,once the changes are made to the static variable all instances will see the change that has been made.
+        StaticAndInstanceVariables staticAndInstanceVariables2 = new StaticAndInstanceVariables("Fluffy");
+
+        // Both the instances are sharing the same variable "name", hence the last modified value of static variable "name" which is set to "Fluffy" will be printed when the printName method is called by both the instances
+        staticAndInstanceVariables1.printName(); // Output :- name = Fluffy
+        staticAndInstanceVariables2.printName(); // Output :- name = Fluffy
+
+
+        // Each instance of the class has its own state or its own values for any variables that have been defined.
+        // Because instance variables are used, every object instance variables has its own value for the name field.
+        // It's not shared like it was before, when a static variable was used.
+        StaticAndInstanceVariables staticAndInstanceVariables3 = new StaticAndInstanceVariables("Rex",4); // Creates a new object, and update the instance variables values of that object [instanceName = "Rex" , age = 4]
+        StaticAndInstanceVariables staticAndInstanceVariables4 = new StaticAndInstanceVariables("Fluffy", 2); // Creates a new object, and update the instance variables values of that object [instanceName = "Fluffy" , age = 2]
+        staticAndInstanceVariables3.printDogNameAndAge(); // Output :- name = Rex, age = 4
+        staticAndInstanceVariables4.printDogNameAndAge(); // Output :- name = Fluffy, age = 2
+
+    }
+}

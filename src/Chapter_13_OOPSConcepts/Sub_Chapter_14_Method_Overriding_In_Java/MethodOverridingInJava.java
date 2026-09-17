@@ -1,0 +1,203 @@
+package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
+
+/*
+*    Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In
+*    other words, the same name, and same parameters).
+*
+*    By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.
+*
+*    Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.
+*
+*    When we override a method, it's recommended to put @Override immediately above the method definition.
+*    The @Override statement is not required, but it's a way to get the compiler to flag
+*    an error if you don't actually properly override this method.
+*    We'll get an error if we don't follow the overriding rules correctly for that method.
+*
+*     We can't override static methods,only instance methods can be overridden.
+*
+*     Method overriding rules
+*
+*     A method will be considered overridden if we follow these rules.
+*
+*     1) Firstly, It must have the same name and same arguments.
+*     2) The return type can be a subclass of the return type in the parent class.
+*     3) It can't have a lower access modifier. In other words, it
+*     can't have more restrictive access privileges. For example, if the parent's method is protected, then
+*     using private in the child's overridden method is not allowed. However, using public for the child's
+*     method would be allowed, in this example.
+*     4) Only inherited methods can be overridden, in other words, methods can be overridden only in child classes.
+*     5) Constructors and private methods cannot be overridden.
+*     6) And Methods that are final also cannot be overridden.
+*     7) A subclass can use super.methodName() to call the superclass version of an overridden method.
+*
+*
+*
+* */
+
+// @quiz (INTERVIEW) What is method overriding in Java?
+// @answer Defining a method in a child class with the SAME name, SAME parameters, and compatible return type as a method in the parent class.
+// @answer The child's version replaces the parent's version when called on a child object — this is Runtime Polymorphism (Dynamic Method Dispatch).
+// @answer The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type.
+
+// @quiz (INTERVIEW) What is the difference between method overloading and method overriding?
+// @answer Overloading: SAME class, SAME name, DIFFERENT parameters. Resolved at COMPILE TIME (static polymorphism).
+// @answer Overriding: CHILD class, SAME name, SAME parameters. Resolved at RUNTIME (dynamic polymorphism).
+// @answer Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical.
+
+// @quiz (INTERVIEW) What are the rules for method overriding in Java?
+// @answer 1) Same method name and same parameters (signature must match exactly).
+// @answer 2) Return type must be the same OR a subclass (covariant return type — Java 5+).
+// @answer 3) Access modifier cannot be MORE restrictive (public > protected > default > private). Can be less restrictive.
+// @answer 4) Only inherited (non-private, non-static, non-final) methods can be overridden.
+// @answer 5) Constructors and private methods CANNOT be overridden.
+// @answer 6) final methods CANNOT be overridden — compiler error.
+// @answer 7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden.
+
+// @quiz (OCJP TRAP) What is the output? class Animal { void speak(){ System.out.println("Animal"); } } class Dog extends Animal { void speak(){ System.out.println("Dog"); } } Animal a = new Dog(); a.speak();
+// @answer Output: Dog
+// @answer Even though the reference type is Animal, the ACTUAL object is Dog. Java uses dynamic dispatch — the JVM calls Dog's speak() at runtime. This is the core of runtime polymorphism.
+// @answer TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method.
+
+// @quiz (OCJP TRAP) Can you override a static method in Java?
+// @answer NO. Static methods belong to the class, not the object. You can declare a static method with the same name in a subclass, but this is called METHOD HIDING, not overriding.
+// @answer With hiding: the method called depends on the REFERENCE type (compile-time). With overriding: it depends on the OBJECT type (runtime). This is the key difference.
+// @answer @Override annotation on a static method causes a COMPILE ERROR.
+
+// @quiz (OCJP TRAP) What is the output? class Parent { String name = "Parent"; void show() { System.out.println("Parent show"); } } class Child extends Parent { String name = "Child"; void show() { System.out.println("Child show"); } } Parent p = new Child(); System.out.println(p.name); p.show();
+// @answer Output: Parent (then) Child show
+// @answer Fields are resolved at COMPILE TIME based on reference type → p.name uses Parent's name field.
+// @answer Methods are resolved at RUNTIME based on object type → p.show() calls Child's show().
+// @answer CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object).
+
+// @quiz (INTERVIEW) What is covariant return type in method overriding?
+// @answer Java 5+ allows the overriding method to return a subtype of the parent method's return type.
+// @answer Example: Parent returns Animal, Child can override to return Dog (Dog IS-A Animal). This is valid.
+// @answer Why useful: allows more specific return types without breaking the contract.
+
+// @quiz (INTERVIEW) What is the purpose of the @Override annotation?
+// @answer It tells the compiler you INTEND to override a method. If the signatures don't match (e.g., you made a typo), the compiler gives an error instead of silently creating an overloaded method.
+// @answer Best practice: ALWAYS use @Override when overriding — it's a safety net against bugs.
+// @answer Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't.
+
+// @quiz (INTERVIEW) Can a private method be overridden?
+// @answer NO. Private methods are not inherited — the child class cannot see them. If you define a method with the same name in the child class, it's a completely NEW method, not an override.
+// @answer @Override on a "private method override" will cause a compile error.
+
+// @quiz (INTERVIEW) What happens when you call super.methodName() inside an overriding method?
+// @answer It explicitly calls the PARENT class's version of the method. This is used to extend (not replace) the parent's behaviour.
+// @answer Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields.
+
+// @quiz (INTERVIEW) Can a constructor be overridden?
+// @answer NO. Constructors are not inherited — they cannot be overridden. Each class has its own constructor(s).
+// @answer Constructors can be OVERLOADED (same class, different parameters) but not overridden.
+
+// @challenge Design a Shape hierarchy demonstrating method overriding
+// @desc Create a Shape base class with area() and perimeter() methods. Override in Circle, Rectangle, and Triangle subclasses. Add a printInfo() method in Shape that calls area() and perimeter() — demonstrate polymorphism by storing all shapes in a Shape[] array and calling printInfo() on each.
+// @hint area() and perimeter() in Shape should either be abstract or return 0.0. Each subclass overrides with real formula. Circle: area = π*r², perimeter = 2*π*r. Rectangle: area = l*w, perimeter = 2*(l+w).
+// @testcase Shape[] shapes = {new Circle(5), new Rectangle(4,6), new Triangle(3,4,5)}; for(Shape s: shapes) s.printInfo(); — should print area and perimeter of each
+
+// @challenge Demonstrate the field hiding vs method overriding trap
+// @desc Create a Parent class with a String field name="Parent" and void display(). Create Child extending Parent with name="Child" and override display(). Show that: (1) Parent ref = new Child() — which name is accessed? (2) which display() is called? Explain why.
+// @hint Fields use compile-time (reference) binding. Methods use runtime (object) binding. This is one of the most common OCJP traps.
+// @testcase Parent p = new Child(); p.name should be "Parent". p.display() should call Child's version.
+
+// @challenge Implement a polymorphic payment system using method overriding
+// @desc Create Payment base class with processPayment(double amount). Override in CreditCardPayment, UPIPayment, NetBankingPayment. Each adds its own processing fee logic. Process a list of mixed payments polymorphically.
+// @hint Store all payment types as Payment[] array. Call processPayment() on each — Java will dispatch to the right subclass at runtime. This is real-world polymorphism.
+// @testcase payments[0] = new CreditCardPayment(); payments[1] = new UPIPayment(); for(Payment p: payments) p.processPayment(1000.0);
+
+// Parameter notes (what each argument means and how the parameter list matters):
+// - An overriding method must repeat the parent method's parameter list exactly: same number, same types, and same order.
+// - In the challenge example processPayment(double amount), amount means the payment value to process; choose a double that represents the transaction amount.
+// important: CreditCardPayment.processPayment(double amount) overrides Payment.processPayment(double amount) only because the parameter list is identical.
+// trap: processPayment(int amount), processPayment(double amount, String currency), or processPayment(Double amount) would be overloads, not overrides.
+// - For overriding, Java decides which implementation runs at runtime from the actual object type.
+// - For overloading, Java decides which parameter list matches at compile time from the reference type and argument expressions.
+// warning: changing parameter type by boxing, widening, or adding parameters breaks overriding even if the method name looks correct.
+// remember: a covariant return type may be allowed in overriding, but the parameters must still match exactly.
+
+// @quiz (INTERVIEW) For a child method to override a parent method, what must be true about its parameters?
+// @answer The parameter list must be identical: same count, same types, and same order.
+// @quiz (INTERVIEW TRAP) Does processPayment(int amount) override processPayment(double amount)?
+// @answer No. int and double are different parameter types, so this creates an overload instead of an override.
+// @quiz (OCJP) When is an overloaded method selected versus an overridden method selected?
+// @answer Overloading is selected at compile time by the argument list; overriding is selected at runtime by the actual object type.
+// @quiz (INTERVIEW TRAP) Can @Override catch a parameter-list mismatch?
+// @answer Yes. If the child method's parameters do not exactly match an inherited method, @Override causes a compile-time error.
+
+// @quiz (INTERVIEW, MEDIUM) What is method overriding, and when is the choice of method made?
+// @option Defining a method in a child class with the same name and parameters as the parent's, with the version chosen at runtime. [correct]
+// @option Defining two methods with the same name but different parameters in one class.
+// @option Replacing a method in the same class so the old one no longer exists.
+// @option Choosing the method at compile time, based on the reference type.
+// @explain Overriding is runtime polymorphism, also called dynamic method dispatch. The JVM looks at the actual object, not the declared type of the reference, when deciding which version to run.
+// @why B: same name and different parameters in one class is overloading.
+// @why C: you cannot replace a method in the same class. Overriding happens in a child class.
+// @why D: compile-time resolution based on the reference type describes overloading.
+
+// @quiz (INTERVIEW, MEDIUM) What is the key difference between overloading and overriding?
+// @option Overloading is in the same class with different parameters and is resolved at compile time. Overriding is in a child class with the same parameters and is resolved at runtime. [correct]
+// @option Overloading happens in a child class, and overriding happens in the same class.
+// @option Overloading is resolved at runtime, and overriding at compile time.
+// @option They are the same thing with different names.
+// @explain The distinction interviewers look for is which one the compiler decides and which one the JVM decides. Changing the parameters means a new overload; keeping them identical means an override.
+// @why B: this is reversed. Overloading stays within one class.
+// @why C: this is also reversed. Overloading is the compile-time one.
+// @why D: they differ in where they happen, in their parameters, and in when they are resolved.
+
+// @quiz (OCJP, HARD) A parent method is declared protected. Which access modifier in the overriding child method is invalid?
+// @option private, because an override cannot be more restrictive than the method it overrides. [correct]
+// @option public, because it is more accessible.
+// @option protected, because it is identical.
+// @option No modifier at all, because that gives package access.
+// @explain An override may widen access but never narrow it. protected can become public, but it cannot become private, because callers that could reach the parent's method would suddenly be locked out.
+// @why B: public is allowed, because it is less restrictive.
+// @why C: the same modifier is always allowed.
+// @why D: package-private is more restrictive than protected, so it is not allowed here either, but private is the clearly invalid one being asked for.
+
+// @quiz (OCJP, HARD) What is printed?
+// @code class Animal { void speak() { System.out.println("Animal"); } }
+// @code class Dog extends Animal { void speak() { System.out.println("Dog"); } }
+// @code Animal a = new Dog();
+// @code a.speak();
+// @option Dog, because the JVM uses the actual object type at runtime. [correct]
+// @option Animal, because the reference is declared as Animal.
+// @option Both lines, Animal then Dog.
+// @option It does not compile, because the types do not match.
+// @explain This is the heart of runtime polymorphism. The reference type only decides what you are allowed to call; the object type decides which version actually runs. Assigning a Dog to an Animal reference is legal because a Dog is an Animal.
+// @why B: this is the classic trap. The reference type does not choose the method at runtime.
+// @why C: only one version runs, not both.
+// @why D: the assignment is allowed, because Dog extends Animal.
+
+// @quiz (OCJP, HARD) Which methods can NOT be overridden?
+// @option static methods, private methods, final methods and constructors. [correct]
+// @option Only final methods.
+// @option Any method that returns void.
+// @option Any method that takes parameters.
+// @explain static methods are hidden rather than overridden, private methods are not inherited at all, final methods are locked down by the compiler, and constructors are not inherited methods. A method must be inheritable before it can be overridden.
+// @why B: final is only one of several cases.
+// @why C: a void return type has no bearing on whether a method can be overridden.
+// @why D: overridden methods have parameters all the time. The signature simply has to match the parent's.
+
+// @quiz (INTERVIEW, MEDIUM) Why is @Override recommended, even though it is optional?
+// @option It makes the compiler flag the method if it does not actually override anything, which catches a mistyped signature. [correct]
+// @option It makes the method run faster.
+// @option It is required for runtime polymorphism to work.
+// @option It marks the method as final.
+// @explain The annotation is a promise to the compiler. If the signature does not match a parent method, the compiler reports an error instead of silently creating a new method that never gets called.
+// @why B: the annotation has no effect on performance.
+// @why C: polymorphism works without it. The annotation is a safety check.
+// @why D: final does the opposite, preventing further overrides.
+
+// @quiz (INTERVIEW, MEDIUM) What is a covariant return type in an overriding method?
+// @option The overriding method may return a subclass of the return type declared by the parent. [correct]
+// @option The overriding method must change the return type.
+// @option The overriding method may return a supertype of the parent's return type.
+// @option The return type must always match exactly, with no exceptions.
+// @explain Covariance lets an override narrow the return type, which is more specific and therefore safe. If the parent returns Animal, the child may return Dog, because a Dog is an Animal.
+// @why B: the return type may stay exactly the same. Changing it is optional.
+// @why C: widening to a supertype would break callers who expect the narrower type.
+// @why D: an exact match is always allowed, but it is not the only option.
+
+public class MethodOverridingInJava {
+}

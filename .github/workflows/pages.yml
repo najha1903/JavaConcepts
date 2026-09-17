@@ -9,6 +9,9 @@ on:
     branches: [main]
     paths:
       - 'revision-dashboard/**'
+      - 'src/**'
+      - 'scripts/**'
+      - 'package.json'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -35,6 +38,11 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
+      - name: Generate and audit dashboard data
+        run: |
+          node scripts/parse-concepts.js
+          node scripts/audit-generated.js
 
       - name: Upload dashboard as Pages artifact
         uses: actions/upload-pages-artifact@v3

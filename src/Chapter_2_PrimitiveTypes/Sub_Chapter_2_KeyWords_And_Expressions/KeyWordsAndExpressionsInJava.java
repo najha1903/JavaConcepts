@@ -7,6 +7,22 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 // Control flow keywords like 'if', 'for', 'while' and their surrounding parentheses are NOT part of the expression — only the content inside the parentheses forms the expression.
 // For example: if(highScore == 50) — the keyword 'if' and the brackets are not part of the expression. The expression is 'highScore == 50'.
 // Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.
+// Parameter notes (important method parameters and how to choose them):
+// - args (main): command-line input values passed by the JVM as a String array. Choose values when running the
+//     class; each value is text and must be converted if the expression needs a number.
+// - condition (if): the boolean expression inside if(...). Choose an expression that evaluates to true when the
+//     block should run; warning: = assigns, while == compares primitive values.
+// - x (System.out.println): the value printed when the if condition is true. Choose the message or expression
+//     that explains the result; in this file the String literal is printed only when highScore == 50.
+//
+// @quiz (INTERVIEW) What does the parameter highScore == 50 mean inside if(...)?
+// @answer It is the condition argument that controls the if block; the block runs only when the comparison evaluates to true.
+//
+// @quiz (INTERVIEW TRAP) Why is if(highScore = 50) not the right parameter for checking equality?
+// @answer = is assignment, not comparison. Use == when the condition should test whether highScore already equals 50.
+//
+// @quiz (INTERVIEW) In System.out.println("You got the high score!"), what is the method parameter?
+// @answer The parameter is the String message to display; choose text that should appear when the surrounding condition is satisfied.
 public class KeyWordsAndExpressionsInJava {
 
     // Link For Java Keywords :- https://en.wikipedia.org/wiki/List_of_Java_keywords

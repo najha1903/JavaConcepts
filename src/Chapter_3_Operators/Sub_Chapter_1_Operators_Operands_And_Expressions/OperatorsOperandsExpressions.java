@@ -1,48 +1,23 @@
 package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
-// Operators in Java are special symbols that perform specific operations on one or more values (operands) and produce a result.
-// An operand is any value, variable, or expression that an operator acts upon. Example: in '15 + 12', 15 and 12 are operands, + is the operator.
-// An expression is a combination of variables, literals, operators, and method calls that evaluates to a single value.
-// Java supports arithmetic, comparison (relational), logical, bitwise, assignment, and other operators.
-// Shorthand (compound assignment) operators combine an operation with assignment: += (add and assign), -= (subtract and assign), *= (multiply and assign), /= (divide and assign).
-// Increment (++) adds 1 to a variable: myVar++ is equivalent to myVar = myVar + 1.
-// Decrement (--) subtracts 1 from a variable: myVar-- is equivalent to myVar = myVar - 1.
-// Operator precedence determines the order in which operators are evaluated in an expression (like BODMAS/PEMDAS in maths). Use parentheses to override precedence.
-// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html
-/*
-*  Summary of Operators
-*
-* 1) Operator --> (+) plus operator
-*  For Numeric types --> Addition
-*  For char          --> Addition
-*  For boolean       --> Not Applicable
-*  For String        --> Concatenation
-*
-* 2) Operator --> (-) Subtraction
-*  For Numeric types --> Subtraction
-*  For char          --> Subtraction
-*  For boolean       --> Not Applicable
-*  For String        --> Not Applicable
-*
-* 3) Operator --> (*) Multiplication
-*  For Numeric Types  --> Multiplication
-*  For char           --> Multiplication
-*  For boolean        --> Not Applicable
-*  For String         --> Not Applicable
-*
-* 4) Operator --> ( / ) Division
-*  For Numeric Types --> Division
-*  For char          --> Division
-*  For boolean       --> Not Applicable
-*  For String        --> Not Applicable
-*
-* 5) Operator --> ( % ) Modulus (Remainder)
-*  For Numeric Types --> Remainder (Modulus)
-*  For char          --> Remainder (Modulus)
-*  For boolean       --> Not Applicable
-*  For String        --> Not Applicable
-*
-*
-* */
+// Core Concepts: Operators, Operands & Expression Evaluation
+// - Operator: A special symbol that performs operations on one or more operands and evaluates to a result.
+// - Operand: A value, variable, or sub-expression acted upon by an operator (e.g. in `15 + 12`, `15` and `12` are operands).
+// - Expression: A combination of variables, literals, operators, and method calls that evaluates to a single output value.
+//
+// Operator Summary Table:
+// | Operator | Target Type | Behavior | Code Example |
+// |---|---|---|---|
+// | `+` | Numeric / String | Addition for numbers, Concatenation if any operand is String | `10 + 20` -> `30`, `"Score: " + 10` -> `"Score: 10"` |
+// | `-` | Numeric | Subtraction | `20 - 5` -> `15` |
+// | `*` | Numeric | Multiplication | `4 * 5` -> `20` |
+// | `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |
+// | `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |
+//
+// Critical Gotchas & Precedence Rules:
+// - Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.
+// - Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.
+// - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.
+
 
 // @quiz (INTERVIEW TRAP) What is the output of: System.out.println(10 + 20 + "Java");
 // @answer Output: 30Java
@@ -80,6 +55,94 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // @answer & on booleans still performs AND, but it always evaluates BOTH sides even when the left side is false.
 // @answer This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady().
 
+// Parameter notes (important method parameters and how to choose them):
+// - args (main): the command-line String array supplied by the JVM. Choose values at launch time if the operator
+//     examples should use external input; otherwise it can remain unused.
+// - x (System.out.println): the value printed after each operator example. Passing myVar prints its current value
+//     after increment, decrement, or compound assignment has already changed it.
+// - leftOperand/rightOperand (operators): the values around an operator determine the operation. Choose numeric
+//     operands for arithmetic, boolean operands for logical operators, and remember the pitfall that + concatenates when a String is involved.
+//
+// @quiz (INTERVIEW) In System.out.println(myVar), what does the println parameter show after myVar++?
+// @answer It shows the updated value of myVar, because myVar++ has already executed before println receives the variable's current int value.
+//
+// @quiz (INTERVIEW TRAP) How do the operands you choose affect the + operator?
+// @answer If both operands are numeric, + performs addition. If either operand is a String, + performs concatenation for that operation.
+//
+// @quiz (OCJP) What is important about the right-hand value in myVar += 2?
+// @answer The right-hand value is the amount added before assigning back to myVar; compound assignment also performs an implicit cast when needed.
+// @quiz (INTERVIEW, EASY) Which statement correctly defines an operator, an operand, and an expression?
+// @option An operator is the symbol that performs an operation, an operand is a value or variable it acts on, and an expression is a combination that evaluates to one value. [correct]
+// @option An operator is the value being calculated, and an operand is the symbol that calculates it.
+// @option An expression is any line of code that ends with a semicolon.
+// @option An operand is always a literal value and can never be a variable or a method call.
+// @explain In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.
+// @why B: the two are the other way round. The symbol is the operator and the values are the operands.
+// @why C: a line ending in a semicolon is a statement. An expression is defined by producing a value, not by the semicolon.
+// @why D: an operand may be a literal, a variable, or a whole sub-expression such as (a + b).
+
+// @quiz (INTERVIEW TRAP, MEDIUM) Reading strictly left to right, what is printed by this statement?
+// @code System.out.println(10 + 20 + "Java");
+// @option 30Java [correct]
+// @option 1020Java
+// @option Java30
+// @option It does not compile, because + cannot mix int and String.
+// @explain Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + "Java" involves a String, so it becomes concatenation and produces 30Java.
+// @why B: 1020Java is what you get when the String appears first, as in "Java" + 10 + 20.
+// @why C: the string is on the right here, so it cannot come out in front of the number.
+// @why D: + with a String operand is legal. It concatenates rather than adding.
+
+// @quiz (INTERVIEW TRAP, MEDIUM) What is printed when the String operand comes first?
+// @code System.out.println("Java" + 10 + 20);
+// @option Java1020 [correct]
+// @option Java30
+// @option 30Java
+// @option It does not compile.
+// @explain Once the left operand is a String, every following + is concatenation. "Java" + 10 gives "Java10", and "Java10" + 20 gives "Java1020".
+// @why B: to get Java30 the addition must be forced first with parentheses: "Java" + (10 + 20).
+// @why C: the String is first, so the digits cannot appear before the word.
+// @why D: this is valid Java. It simply concatenates instead of adding.
+
+// @quiz (OCJP, HARD) Why does `byte b = 10; b += 5;` compile, while `b = b + 5;` does not?
+// @option Compound assignment performs an implicit narrowing cast back to byte, while b + 5 is promoted to int and cannot be assigned to byte without a cast. [correct]
+// @option += is only allowed on byte variables.
+// @option b + 5 is evaluated at runtime, so the compiler cannot check it.
+// @option The two forms are identical, and both compile.
+// @explain A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.
+// @why B: += works on every numeric type, not only byte.
+// @why C: the compiler resolves types at compile time, which is exactly why it rejects the plain addition.
+// @why D: only the compound form compiles. The plain form is a compile-time error unless you write b = (byte)(b + 5);
+
+// @quiz (OCJP, HARD) What is the difference between & and && for boolean expressions?
+// @option && short-circuits, so the right side is skipped when the left side is false. & always evaluates both sides. [correct]
+// @option & short-circuits, and && always evaluates both sides.
+// @option Both short-circuit in exactly the same way.
+// @option && can only be used with numbers, not with booleans.
+// @explain Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.
+// @why B: the behaviour is the other way round. & is the non-short-circuiting form.
+// @why C: they differ precisely in whether the right operand is evaluated.
+// @why D: && is a logical operator for booleans. The bitwise form & also works on integers, but that is a separate use.
+
+// @quiz (INTERVIEW, MEDIUM) What are the results of 10 / 3 and 10 % 3?
+// @option 3 and 1 [correct]
+// @option 3.33 and 1
+// @option 3 and 0
+// @option 1 and 3
+// @explain With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.
+// @why B: 10 / 3 cannot produce 3.33, because both operands are int.
+// @why C: the remainder is 1, not 0. 3 * 3 is 9, and 10 - 9 = 1.
+// @why D: the two results are swapped. / gives the whole part and % gives the remainder.
+
+// @quiz (OCJP, HARD) What happens with `int x = 5; if (x = 5) { ... }`?
+// @option It does not compile, because x = 5 is an int assignment and if requires a boolean condition. [correct]
+// @option It compiles and the block always runs.
+// @option It compiles but the block never runs.
+// @option It compiles and prints a warning only.
+// @explain = assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.
+// @why B: it never reaches runtime. The type error is found while compiling.
+// @why C: the code does not compile at all, so nothing runs.
+// @why D: Java reports this as an error, not a warning.
+
 public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {
@@ -88,6 +151,7 @@ public class OperatorsOperandsExpressions {
         double hoursWorked = 9.5d;
         double hourlyRate = 5d;
         double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.
+        System.out.println(mySalary);
 
         // myVar = myVar + 1 is equivalent to myVar++ (increment by 1).
         myVar++;

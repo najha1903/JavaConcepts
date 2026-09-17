@@ -61,6 +61,22 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
     System.out.println(j);        // ERROR: j is out of scope outside the switch
   }
 */
+// Parameter notes (important method parameters and how to choose them):
+// - args (main): the command-line String array for the whole program. Use it when external input should affect
+//     local variables; remember indexes are 0-based and args.length tells how many values were supplied.
+// - x (System.out.println): the value or expression to print. Here secondVariable is passed, so Java chooses the
+//     int overload and prints the current in-scope value of that local variable.
+// - condition (if): the boolean expression inside if(...). Choose an expression that answers the yes/no question
+//     controlling the block; careful, variables declared inside the block exist only inside that block.
+//
+// @quiz (INTERVIEW) What does the println parameter secondVariable mean in this scope example?
+// @answer It is the local variable value currently in scope; println receives that int value and prints it on its own line.
+//
+// @quiz (INTERVIEW TRAP) Can System.out.println(thirdVariable) use thirdVariable as a parameter outside the if block?
+// @answer No. thirdVariable was declared inside the if block, so it is out of scope outside that block and cannot be passed to println there.
+//
+// @quiz (OCJP) What must the parameter inside if(firstVariable > 0) evaluate to?
+// @answer The if condition must evaluate to a boolean. firstVariable > 0 is valid because comparison produces true or false.
 public class LocalVariablesAndScope {
 
     /*

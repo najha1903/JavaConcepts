@@ -110,7 +110,7 @@ function recordQuestionResult(qid, isCorrect) {
 }
 
 function getQuestionWeight(qid, history) {
-  if (!qid || !history[qid]) return 10; // never seen — highest priority
+  if (!qid || !history[qid]) return 10; // never seen â€” highest priority
   const h = history[qid];
   const daysSince = (Date.now() - h.lastSeenMs) / (1000 * 60 * 60 * 24);
   if (h.wrong > h.correct && daysSince < 7) return 8;  // recently wrong
@@ -259,6 +259,10 @@ function showView(viewId) {
     document.getElementById('nav-practice-btn').classList.add('active');
   } else if (viewId === 'notes-view') {
     document.getElementById('nav-notes-btn').classList.add('active');
+  } else if (viewId === 'bank-view') {
+    document.getElementById('nav-bank-btn').classList.add('active');
+  } else if (viewId === 'quiz-menu-view') {
+    document.getElementById('nav-quiz-menu-btn').classList.add('active');
   }
 }
 
@@ -311,26 +315,21 @@ function shuffleArray(items) {
   return arr;
 }
 
-function pickRandomQuestions(pool, count) {
-  const shuffled = shuffleArray(pool);
-  if (count >= shuffled.length) {
-    return shuffled;
-  }
-  return shuffled.slice(0, count);
-}
-
 function pickSmartQuestions(pool, count, difficultyFilter, tagFilter) {
   const history = getQuestionHistory();
   let filtered = [...pool];
 
+  // An explicit filter is honoured. The old code silently fell back to the whole
+  // pool when fewer than 5 questions matched, so "Easy" could still serve hard
+  // questions. Now the quiz simply gets shorter when few questions match.
   if (difficultyFilter && difficultyFilter !== 'all') {
-    const filtered2 = filtered.filter(q => (q.difficulty || 'easy') === difficultyFilter);
-    if (filtered2.length >= Math.min(count, 5)) filtered = filtered2;
+    const byLevel = filtered.filter(q => (q.difficulty || 'medium') === difficultyFilter);
+    if (byLevel.length > 0) filtered = byLevel;
   }
 
   if (tagFilter && tagFilter !== 'all') {
-    const filtered3 = filtered.filter(q => q.tags && q.tags.includes(tagFilter));
-    if (filtered3.length >= Math.min(count, 3)) filtered = filtered3;
+    const byTag = filtered.filter(q => q.tags && q.tags.includes(tagFilter));
+    if (byTag.length > 0) filtered = byTag;
   }
 
   const weighted = filtered.map(q => ({ q, w: getQuestionWeight(q.qid, history) }));
@@ -389,13 +388,13 @@ function getQuestionsForScope(chapterName, subChapterName) {
 
   const scopedTopics = chapter.topics
     .filter(topic => topic.subChapter === subChapterName)
-    .map(topic => topic.topicName);
+    .map(topic => topic.filePath);
 
   if (scopedTopics.length === 0) {
     return chapterQuestions;
   }
 
-  return chapterQuestions.filter(question => scopedTopics.includes(question.topic));
+  return chapterQuestions.filter(question => scopedTopics.includes(question.topicPath));
 }
 
 function getQuestionScope(question) {
@@ -403,14 +402,16 @@ function getQuestionScope(question) {
     return {
       chapterName: question.chapter || currentQuizScope.chapterName,
       subChapterName: currentQuizScope.subChapterName || null,
-      topicName: question.topic || null
+      topicName: question.topic || null,
+      topicPath: question.topicPath || null
     };
   }
 
   return {
     chapterName: currentQuizScope.chapterName,
     subChapterName: currentQuizScope.subChapterName,
-    topicName: null
+    topicName: null,
+    topicPath: null
   };
 }
 
@@ -425,7 +426,10 @@ function openQuizRevisit(scope) {
   }
 
   let topicIndex = 0;
-  if (scope.topicName) {
+  if (scope.topicPath) {
+    const foundIndex = chapter.topics.findIndex(t => t.filePath === scope.topicPath);
+    if (foundIndex >= 0) topicIndex = foundIndex;
+  } else if (scope.topicName) {
     const foundIndex = chapter.topics.findIndex(t => t.topicName === scope.topicName);
     if (foundIndex >= 0) {
       topicIndex = foundIndex;
@@ -470,7 +474,8 @@ function setupEventListeners() {
   });
   
   document.getElementById('nav-quiz-menu-btn').addEventListener('click', () => {
-    startChapterQuiz("Grand Java Quiz");
+    renderQuizMenu();
+    showView('quiz-menu-view');
   });
 
   document.getElementById('nav-practice-btn').addEventListener('click', () => {
@@ -480,10 +485,52 @@ function setupEventListeners() {
   document.getElementById('nav-notes-btn').addEventListener('click', () => {
     openNotesView();
   });
+
+  document.getElementById('nav-bank-btn').addEventListener('click', () => {
+    initBankChapterSelect();
+    renderRevisionBank();
+    showView('bank-view');
+  });
   
   // Dashboard buttons
   document.getElementById('btn-grand-quiz').addEventListener('click', () => {
     startChapterQuiz("Grand Java Quiz");
+  });
+
+  const menuGrand = document.getElementById('btn-menu-grand-quiz');
+  if (menuGrand) menuGrand.addEventListener('click', () => startChapterQuiz("Grand Java Quiz"));
+  const menuOcjp = document.getElementById('btn-menu-ocjp-quiz');
+  if (menuOcjp) menuOcjp.addEventListener('click', () => {
+    const pool = [];
+    Object.keys(QUESTIONS_BANK).forEach(ch => QUESTIONS_BANK[ch].forEach(q => {
+      if ((q.tags || []).includes('ocjp')) pool.push(q);
+    }));
+    startSelectionQuiz(pool, 'OCJP questions: all chapters', 25);
+  });
+  const menuTricky = document.getElementById('btn-menu-tricky-quiz');
+  if (menuTricky) menuTricky.addEventListener('click', () => {
+    const pool = [];
+    Object.keys(QUESTIONS_BANK).forEach(ch => QUESTIONS_BANK[ch].forEach(q => {
+      if ((q.tags || []).includes('tricky')) pool.push(q);
+    }));
+    startSelectionQuiz(pool, 'Tricky questions: all chapters', 25);
+  });
+  const menuBank = document.getElementById('btn-menu-open-bank');
+  if (menuBank) menuBank.addEventListener('click', () => {
+    initBankChapterSelect();
+    renderRevisionBank();
+    showView('bank-view');
+  });
+  const topicQuizBtn = document.getElementById('btn-quiz-this-topic');
+  if (topicQuizBtn) topicQuizBtn.addEventListener('click', startTopicQuiz);
+  document.getElementById('btn-start-notes').addEventListener('click', () => {
+    openNotesView(CONCEPTS_DATA[0]?.topics?.[0]?.filePath);
+  });
+  document.getElementById('btn-start-quiz').addEventListener('click', () => {
+    startChapterQuiz(CONCEPTS_DATA[0]?.name);
+  });
+  document.getElementById('btn-start-practice').addEventListener('click', () => {
+    showPracticeLab({ chapterName: null, subChapterName: null });
   });
   
   document.getElementById('btn-reset-data').addEventListener('click', () => {
@@ -521,6 +568,10 @@ function setupEventListeners() {
     if (topicInfo) {
       selectTopic(topicInfo.chIdx, topicInfo.tpIdx);
     }
+  });
+  document.getElementById('btn-print-chapter-notes').addEventListener('click', () => {
+    const select = document.getElementById('notes-chapter-select');
+    printChapterNotes(select ? select.value : currentChapterIndex);
   });
   
   document.getElementById('btn-prev-topic').addEventListener('click', loadPrevTopic);
@@ -617,7 +668,7 @@ function renderSidebar() {
       renderTopicItem(topic, content, chIdx, topic.originalIdx, revised);
     });
     
-    // Render sub-chapters — sorted numerically by Sub_Chapter_N from filePath
+    // Render sub-chapters â€” sorted numerically by Sub_Chapter_N from filePath
     const sortedSubChapterNames = Object.keys(subChaptersMap).sort((a, b) => {
       const aNum = parseInt((subChaptersMap[a][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
       const bNum = parseInt((subChaptersMap[b][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
@@ -651,7 +702,7 @@ function renderSidebar() {
       document.querySelectorAll('.chapter-accordion').forEach(a => a.classList.remove('open'));
       if (!isOpen) {
         accordion.classList.add('open');
-        // Auto-select first topic so one click navigates directly — no second click needed
+        // Auto-select first topic so one click navigates directly â€” no second click needed
         selectTopic(chIdx, 0);
       }
     });
@@ -803,6 +854,166 @@ function openNotesView(filePath) {
   showView('notes-view');
 }
 
+function escapePrintHtml(value) {
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatPrintInline(value) {
+  return escapePrintHtml(value).replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+
+function renderPrintTopicNotes(topic) {
+  const blocks = topic.headerComments || [];
+  let html = '';
+  let listItems = [];
+
+  const flushList = () => {
+    if (!listItems.length) return;
+    html += `<ul>${listItems.map(item => `<li>${formatPrintInline(item.replace(/^[-*â€¢]\s*/, ''))}</li>`).join('')}</ul>`;
+    listItems = [];
+  };
+
+  blocks.forEach(block => {
+    if (block.type === 'table') {
+      flushList();
+      html += '<div class="print-table-wrap"><table><thead><tr>';
+      (block.headers || []).forEach(header => { html += `<th>${formatPrintInline(header)}</th>`; });
+      html += '</tr></thead><tbody>';
+      (block.rows || []).forEach(row => {
+        html += '<tr>';
+        row.forEach(cell => { html += `<td>${formatPrintInline(cell)}</td>`; });
+        html += '</tr>';
+      });
+      html += '</tbody></table></div>';
+      return;
+    }
+
+    if (block.type === 'code' && block.code) {
+      flushList();
+      html += `<pre><code>${escapePrintHtml(block.code)}</code></pre>`;
+      return;
+    }
+
+    (block.lines || []).forEach(rawLine => {
+      const line = String(rawLine || '').trim();
+      if (!line) return;
+      const callout = line.match(/^(Warning|OCJP [Tt]rap|Interview [Tt]rap|Pitfall|Important|CAUTION|NOTE)\s*:\s*(.*)/i);
+      const heading = /^(Parameter notes|Key Takeaways|Core Concepts|Syntax|Rules|Exception Hierarchy|Method Overview|Good Practices)\b/i.test(line) ||
+        ((line.endsWith(':') || line.endsWith(':-')) && line.length < 80 && !line.startsWith('-'));
+
+      if (callout) {
+        flushList();
+        html += `<aside><strong>${formatPrintInline(callout[1])}</strong> ${formatPrintInline(callout[2])}</aside>`;
+      } else if (heading) {
+        flushList();
+        html += `<h4>${formatPrintInline(line.replace(/[:-]+$/, ''))}</h4>`;
+      } else {
+        listItems.push(line);
+      }
+    });
+  });
+  flushList();
+
+  if (!html && topic.inlineComments && topic.inlineComments.length) {
+    html = `<ul>${topic.inlineComments.map(item => `<li>${formatPrintInline(item)}</li>`).join('')}</ul>`;
+  }
+  return html || '<p class="muted">No generated overview notes are available for this topic.</p>';
+}
+
+function isCodeChallengeTopic(topic) {
+  return /(challenge|deep\s*problem|deepproblems)/i.test(`${topic.topicName || ''} ${topic.fileName || ''} ${topic.filePath || ''}`);
+}
+
+function getChallengeCode(topic) {
+  return String(topic.code || '// No solution code available.')
+    .replace(/^\s*package[^;]+;\s*/m, '')
+    .replace(/^\s*\/\*[\s\S]*?\*\/\s*/, '')
+    .trim();
+}
+
+function printChapterNotes(chapterIndex) {
+  const chapter = CONCEPTS_DATA[Number(chapterIndex)];
+  if (!chapter) return;
+
+  const printUrl = new URL(window.location.href);
+  printUrl.hash = 'chapter-print';
+  const printWindow = window.open(printUrl.href, '_blank');
+  if (!printWindow) {
+    window.alert('Please allow pop-ups to print chapter notes.');
+    return;
+  }
+
+  const topics = chapter.topics || [];
+  const topicHtml = topics.map((topic, index) => `
+    <article class="topic">
+      <div class="topic-kicker">Topic ${index + 1} of ${topics.length}</div>
+      <h2>${escapePrintHtml(topic.topicName)}</h2>
+      <section class="notes-content">${renderPrintTopicNotes(topic)}</section>
+      ${isCodeChallengeTopic(topic) && topic.code ? `<section class="challenge-code"><h3>Implementation</h3><pre><code>${escapePrintHtml(getChallengeCode(topic))}</code></pre></section>` : ''}
+    </article>`).join('');
+
+  const projectNote = getProjectNotes().trim();
+  const projectHtml = projectNote ? `
+    <section class="project-notes">
+      <h2>Project Notes</h2>
+      <div>${formatPrintInline(projectNote).replace(/\r?\n/g, '<br>')}</div>
+    </section>` : '';
+
+  printWindow.document.write(`<!doctype html><html><head><meta charset="utf-8"><title></title>
+    <style>
+      @page { size: A4; margin: 0; }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 18mm 16mm; color: #172033; background: #fff; font-family: Arial, Helvetica, sans-serif; font-size: 11pt; line-height: 1.55; }
+      .cover { min-height: 261mm; display: flex; flex-direction: column; justify-content: center; border-bottom: 2px solid #d8dee9; page-break-after: always; }
+      .eyebrow, .topic-kicker { color: #52627a; text-transform: uppercase; letter-spacing: .08em; font-size: 9pt; font-weight: 700; }
+      h1 { margin: 10pt 0; color: #102a43; font-size: 28pt; line-height: 1.15; }
+      h2 { margin: 0 0 14pt; padding-bottom: 6pt; color: #102a43; font-size: 19pt; line-height: 1.2; border-bottom: 1px solid #cbd5e1; }
+      h3 { margin: 18pt 0 7pt; color: #1f4e79; font-size: 13pt; }
+      h4 { margin: 14pt 0 5pt; color: #1f4e79; font-size: 11.5pt; page-break-after: avoid; }
+      .cover p { color: #52627a; font-size: 12pt; }
+      .topic { page-break-before: always; break-inside: auto; }
+      .topic:first-of-type { page-break-before: auto; }
+      .topic-kicker { margin-bottom: 6pt; }
+      .notes-content p, .notes-content li, .project-notes div { orphans: 3; widows: 3; }
+      ul { margin: 6pt 0 12pt; padding-left: 20pt; }
+      li { margin: 3pt 0; }
+      code { font-family: Consolas, 'Courier New', monospace; }
+      :not(pre) > code { padding: 1pt 3pt; background: #eef2f7; border-radius: 3pt; }
+      pre { margin: 10pt 0 14pt; padding: 10pt 12pt; background: #f4f6f8; border: 1px solid #d5dce5; border-radius: 4pt; color: #18212f; font: 9pt/1.5 Consolas, 'Courier New', monospace; white-space: pre-wrap; overflow-wrap: anywhere; break-inside: auto; }
+      .notes-content > pre { break-inside: avoid; }
+      .challenge-code { margin-top: 18pt; }
+      .challenge-code h3 { border-bottom: 1px solid #d8dee9; padding-bottom: 4pt; page-break-after: avoid; break-after: avoid; }
+      aside { margin: 10pt 0; padding: 8pt 10pt; background: #fff8e6; border-left: 4px solid #d48a00; break-inside: avoid; }
+      aside strong { color: #8a5700; }
+      .print-table-wrap { margin: 10pt 0 14pt; overflow: visible; break-inside: auto; }
+      table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+      th, td { padding: 6pt 7pt; border: 1px solid #cbd5e1; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+      th { color: #102a43; background: #e8eef5; font-weight: 700; }
+      tr { break-inside: avoid; }
+      .project-notes { page-break-before: always; }
+      .muted { color: #64748b; font-style: italic; }
+      @media print { a { color: inherit; text-decoration: none; } }
+    </style></head><body>
+    <header class="cover"><div class="eyebrow">Java Concepts Revision Notes</div><h1>${escapePrintHtml(chapter.name)}</h1><p>${topics.length} topic${topics.length === 1 ? '' : 's'} in this chapter</p></header>
+    ${topicHtml}${projectHtml}
+    </body></html>`);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.setTimeout(() => printWindow.print(), 350);
+}
+
+function populateNotesChapterExport() {
+  const select = document.getElementById('notes-chapter-select');
+  if (!select) return;
+  select.innerHTML = CONCEPTS_DATA.map((chapter, index) => `<option value="${index}">${escapePrintHtml(chapter.name)}</option>`).join('');
+  select.value = String(currentChapterIndex || 0);
+}
+
 function renderNotesView() {
   const projectTextarea = document.getElementById('project-notes-textarea');
   const topicTextarea = document.getElementById('topic-notes-textarea');
@@ -820,7 +1031,7 @@ function renderNotesView() {
 
   const topicInfo = currentNotesTopicPath ? findTopicByFilePath(currentNotesTopicPath) : null;
   if (topicInfo && topicTitle) {
-    topicTitle.innerText = `${topicInfo.chapter.name} — ${topicInfo.topic.topicName}`;
+    topicTitle.innerText = `${topicInfo.chapter.name} â€” ${topicInfo.topic.topicName}`;
   } else if (topicTitle) {
     topicTitle.innerText = 'Topic Notes';
   }
@@ -840,6 +1051,7 @@ function renderNotesView() {
     topicMeta.innerText = topicInfo ? 'Autosaved locally' : 'Select a topic to start writing';
   }
 
+  populateNotesChapterExport();
   renderNotesTopicList();
 }
 
@@ -992,26 +1204,92 @@ function selectTopic(chIdx, tpIdx) {
         return;
       }
 
-      if (!currentList) {
-        currentList = document.createElement('ul');
-        currentList.className = 'bullet-list concept-bullet-list';
+      if (commentBlock.type === 'code' && commentBlock.code) {
+        flushList();
+        const pre = document.createElement('pre');
+        pre.className = 'note-code-block';
+        const code = document.createElement('code');
+        code.className = `language-${commentBlock.language || 'java'}`;
+        code.innerHTML = highlightJava(commentBlock.code);
+        pre.appendChild(code);
+        explanationsContainer.appendChild(pre);
+        return;
       }
 
-      (commentBlock.lines || []).forEach(line => {
-        const li = document.createElement('li');
+      (commentBlock.lines || []).forEach(rawLine => {
+        const trimmedLine = rawLine.trim();
 
-        // Escape HTML entities first, then apply safe markup
-        const escaped = line
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;');
+        // Safe HTML escaping helper
+        const formatInlineText = (str) => {
+          return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/`([^`]+)`/g, '<code>$1</code>');
+        };
 
-        // Apply backtick → <code> and bold label formatting
-        let formattedLine = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
-        if (formattedLine.endsWith(':-') || formattedLine.endsWith(':')) {
-          formattedLine = `<strong>${formattedLine}</strong>`;
+        // 1. Check for Warning / Gotcha Callouts
+        const calloutMatch = trimmedLine.match(/^(Warning|OCJP [Tt]rap|Interview [Tt]rap|Pitfall|Important|CAUTION|NOTE)\s*:\s*(.*)/i);
+        if (calloutMatch) {
+          flushList();
+          const badgeType = calloutMatch[1];
+          const textBody = calloutMatch[2];
+          const calloutDiv = document.createElement('div');
+          calloutDiv.className = 'note-callout note-callout-warning';
+          calloutDiv.innerHTML = `
+            <div class="callout-header">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="callout-icon"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <strong>${badgeType}:</strong>
+            </div>
+            <div class="callout-body">${formatInlineText(textBody)}</div>
+          `;
+          explanationsContainer.appendChild(calloutDiv);
+          return;
         }
-        li.innerHTML = formattedLine;
+
+        // 2. Check for Section Headers (e.g., "Parameter notes (what each argument means...):" or "Exception Hierarchy:")
+        const isHeaderLine = /^(Parameter notes|Key Takeaways|Core Concepts|Syntax|Rules|Exception Hierarchy|Method Overview|Good Practices)\b/i.test(trimmedLine) ||
+          ((trimmedLine.endsWith(':') || trimmedLine.endsWith(':-')) && trimmedLine.length < 80 && !trimmedLine.startsWith('-'));
+
+        if (isHeaderLine) {
+          flushList();
+          const headingDiv = document.createElement('h4');
+          headingDiv.className = 'note-section-title';
+          headingDiv.innerHTML = formatInlineText(trimmedLine.replace(/[:-]+$/, ''));
+          explanationsContainer.appendChild(headingDiv);
+          return;
+        }
+
+        // 3. Check for Parameter Note Items (e.g. "- args (main): ...")
+        const paramMatch = trimmedLine.match(/^[-*â€¢]\s*([a-zA-Z0-9_$]+)\s*(?:\(([^)]+)\))?\s*:\s*(.*)/);
+        if (paramMatch) {
+          flushList();
+          const paramName = paramMatch[1];
+          const paramContext = paramMatch[2];
+          const paramDesc = paramMatch[3];
+
+          const paramCard = document.createElement('div');
+          paramCard.className = 'param-note-card';
+          paramCard.innerHTML = `
+            <div class="param-card-header">
+              <code>${paramName}</code>
+              ${paramContext ? `<span class="param-context">(${formatInlineText(paramContext)})</span>` : ''}
+            </div>
+            <div class="param-card-body">${formatInlineText(paramDesc)}</div>
+          `;
+          explanationsContainer.appendChild(paramCard);
+          return;
+        }
+
+        // 4. Regular Bullet Point Note
+        if (!currentList) {
+          currentList = document.createElement('ul');
+          currentList.className = 'bullet-list concept-bullet-list';
+        }
+
+        const cleanBulletText = trimmedLine.replace(/^[-*â€¢]\s*/, '');
+        const li = document.createElement('li');
+        li.innerHTML = formatInlineText(cleanBulletText);
         currentList.appendChild(li);
       });
     });
@@ -1158,8 +1436,8 @@ function ensureAnkiDeck() {
   const titleEl = document.getElementById('anki-deck-title');
   if (titleEl) {
     titleEl.textContent = ankiScope === 'all'
-      ? `All Chapters · ${ankiDeck.length} cards`
-      : `${CONCEPTS_DATA[currentChapterIndex].name} · ${ankiDeck.length} cards`;
+      ? `All Chapters Â· ${ankiDeck.length} cards`
+      : `${CONCEPTS_DATA[currentChapterIndex].name} Â· ${ankiDeck.length} cards`;
   }
   startAnkiSession();
 }
@@ -1182,7 +1460,7 @@ function ankiCleanText(text) {
   return String(text)
     .replace(/@quiz\s*(\(INTERVIEW TRAP\))?/gi, '')
     .replace(/@answer/gi, '')
-    .replace(/^\s*[-*•]\s*/, '')
+    .replace(/^\s*[-*â€¢]\s*/, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -1249,7 +1527,7 @@ function buildAnkiDeck(scope) {
       });
 
       (rev.gotchas || []).forEach(g => {
-        // Skip raw @quiz traps — already represented as interview Q&A cards
+        // Skip raw @quiz traps â€” already represented as interview Q&A cards
         if (/output of:|INTERVIEW TRAP|what is wrong with|what is the result|what happens/i.test(g)) return;
         const clean = ankiCleanText(g);
         if (clean.length < 20) return;
@@ -1266,7 +1544,7 @@ function buildAnkiDeck(scope) {
           cards.push({
             id: ankiHash(chapterName + '::gr::' + clean),
             chapter: chapterName, topic: 'Gotcha',
-            type: 'gotcha', front: '⚠️ Recall this pitfall / best-practice:', back: clean
+            type: 'gotcha', front: 'âš ï¸ Recall this pitfall / best-practice:', back: clean
           });
         }
       });
@@ -1450,7 +1728,7 @@ function renderAnkiArea() {
   if (!area) return;
 
   if (ankiDeck.length === 0) {
-    area.innerHTML = `<div class="anki-empty"><div style="font-size:34px">🗂️</div>
+    area.innerHTML = `<div class="anki-empty"><div style="font-size:34px">ðŸ—‚ï¸</div>
       <p>No flashcards available for this scope yet.</p>
       <p style="font-size:12px">Add notes / <code>@quiz</code> markers in the source files and run <code>npm run revise</code>.</p></div>`;
     return;
@@ -1460,12 +1738,12 @@ function renderAnkiArea() {
     const nextDue = ankiNextDueLabel();
     area.innerHTML = `
       <div class="anki-complete">
-        <div class="anki-complete-emoji">🎉</div>
+        <div class="anki-complete-emoji">ðŸŽ‰</div>
         <h3>Deck complete!</h3>
         <p>You reviewed <b>${ankiSessionReviewed}</b> card${ankiSessionReviewed === 1 ? '' : 's'} this session.</p>
         ${nextDue ? `<p class="anki-next-due">Next review due: <b>${nextDue}</b></p>` : ''}
         <div class="anki-complete-actions">
-          <button class="btn btn-primary" onclick="cramAnkiDeck()">🔁 Study all again (cram)</button>
+          <button class="btn btn-primary" onclick="cramAnkiDeck()">ðŸ” Study all again (cram)</button>
         </div>
       </div>`;
     return;
@@ -1485,12 +1763,12 @@ function renderAnkiArea() {
     <div class="flashcard-scene anki-scene" onclick="flipAnkiCard()">
       <div class="flashcard anki-flashcard ${ankiFlipped ? 'is-flipped' : ''}">
         <div class="flashcard-face flashcard-front anki-face-front">
-          <div class="flashcard-chip">${ankiTypeLabel(card.type)}${card.topic ? ' · ' + ankiEscape(card.topic) : ''}</div>
+          <div class="flashcard-chip">${ankiTypeLabel(card.type)}${card.topic ? ' Â· ' + ankiEscape(card.topic) : ''}</div>
           <div class="anki-card-text">${renderAnkiFrontText(card)}</div>
           <div class="flashcard-hint">Tap card or press Space to reveal</div>
         </div>
         <div class="flashcard-face flashcard-back anki-face-back">
-          <div class="flashcard-chip flashcard-chip-back">Answer${card.answer ? ' · ' + ankiEscape(card.answer) : ''}</div>
+          <div class="flashcard-chip flashcard-chip-back">Answer${card.answer ? ' Â· ' + ankiEscape(card.answer) : ''}</div>
           <div class="anki-card-text anki-card-back-text">${renderAnkiBackText(card)}</div>
         </div>
       </div>
@@ -1561,10 +1839,12 @@ function renderQuickRevision(topic) {
   const gotchasContainer = document.getElementById('quick-gotchas-list');
   const badgeContainer = document.getElementById('quick-syntax-badges');
   const syntaxCode = document.getElementById('quick-syntax-code');
+  const tablesContainer = document.getElementById('quick-tables');
   
   bulletContainer.innerHTML = '';
   gotchasContainer.innerHTML = '';
   badgeContainer.innerHTML = '';
+  if (tablesContainer) tablesContainer.innerHTML = '';
   
   const chapter = CONCEPTS_DATA[currentChapterIndex];
   
@@ -1604,6 +1884,13 @@ function renderQuickRevision(topic) {
       li.innerHTML = gotcha.replace(/`([^`]+)`/g, '<code>$1</code>');
       gotchasContainer.appendChild(li);
     });
+
+    // Comparison tables render as real tables, never as flattened text rows.
+    if (tablesContainer) {
+      (curated.tables || []).forEach(table => {
+        tablesContainer.appendChild(buildNoteTable(table));
+      });
+    }
     
     if (curated.badges) {
       curated.badges.forEach(b => {
@@ -1619,19 +1906,18 @@ function renderQuickRevision(topic) {
     // Dynamic Fallback
     const coreRules = [];
     const gotchas = [];
+    const fallbackTables = [];
     const gotchasKeywords = ["gotcha", "pitfall", "warning", "caution", "error", "note", "remember", "important", "trick", "overflow", "bounds", "trap", "avoid"];
     
     if (topic.headerComments && topic.headerComments.length > 0) {
       topic.headerComments.forEach(block => {
-        if (block.type === 'table' && block.rows) {
-          block.rows.forEach(row => {
-            const line = row.map(c => (c || '').trim()).filter(Boolean).join(' — ');
-            if (!line) return;
-            const escapedLine = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            coreRules.push(escapedLine.replace(/`([^`]+)`/g, '<code>$1</code>'));
-          });
+        // Keep the grid intact for the Quick Revision panel instead of
+        // squashing each row into "cell â€” cell â€” cell" text.
+        if (block.type === 'table' && (block.headers || block.rows)) {
+          fallbackTables.push(block);
           return;
         }
+        if (block.type === 'code') return;
         (block.lines || []).forEach(line => {
           const lowerLine = line.toLowerCase();
           const isGotcha = gotchasKeywords.some(keyword => lowerLine.includes(keyword));
@@ -1667,6 +1953,12 @@ function renderQuickRevision(topic) {
       li.innerHTML = gotcha;
       gotchasContainer.appendChild(li);
     });
+    
+    if (tablesContainer) {
+      fallbackTables.forEach(table => {
+        tablesContainer.appendChild(buildNoteTable(table));
+      });
+    }
     
     const code = topic.code;
     const signatureRegex = /(public|private|protected)?\s*(static\s+)?(class|interface|record|enum|[\w<>]+)\s+(\w+)\s*(\([^)]*\))?\s*(?:extends|implements|\{)/g;
@@ -1762,192 +2054,6 @@ function copyCodeSnippet() {
 }
 
 // ==========================================================================
-// Dynamic Question Generators (Infinite random pool matching user concepts)
-// ==========================================================================
-
-function generateDynamicLoopQuestion() {
-  const loopTypes = ["for", "while", "do-while"];
-  const type = loopTypes[Math.floor(Math.random() * loopTypes.length)];
-  const start = Math.floor(Math.random() * 5); // 0 to 4
-  const step = Math.floor(Math.random() * 2) + 2; // 2 or 3
-  const limit = start + step * (Math.floor(Math.random() * 3) + 3); // 3 to 5 iterations
-  
-  let code = "";
-  let answerVal = 0;
-  
-  if (type === "for") {
-    code = `int sum = 0;\nfor (int i = ${start}; i < ${limit}; i += ${step}) {\n    sum += i;\n}\nSystem.out.println(sum);`;
-    for (let i = start; i < limit; i += step) {
-      answerVal += i;
-    }
-  } else if (type === "while") {
-    code = `int sum = 0;\nint i = ${start};\nwhile (i < ${limit}) {\n    sum += i;\n    i += ${step};\n}\nSystem.out.println(sum);`;
-    let i = start;
-    while (i < limit) {
-      answerVal += i;
-      i += step;
-    }
-  } else { // do-while
-    code = `int sum = 0;\nint i = ${start};\ndo {\n    sum += i;\n    i += ${step};\n} while (i < ${limit});\nSystem.out.println(sum);`;
-    let i = start;
-    do {
-      answerVal += i;
-      i += step;
-    } while (i < limit);
-  }
-  
-        return {
-          type: "predict",
-          difficulty: "medium",
-          chapter: chapterName,
-          question: `Trace the loop execution and predict the exact console output printed by System.out.println(sum):`,
-    code: code,
-    answer: [String(answerVal)],
-    explanation: `The loop starts at i = ${start}, increments by ${step} on each iteration, and executes while i < ${limit}. The final sum of the values is ${answerVal}.`
-  };
-}
-
-function generateDynamicIncrementQuestion() {
-  const xStart = Math.floor(Math.random() * 5) + 1; // 1 to 5
-  const yStart = Math.floor(Math.random() * 5) + 1; // 1 to 5
-  const patterns = [
-    {
-      expr: "x++ + ++y",
-      calc: (x, y) => {
-        const result = x + (y + 1);
-        return { res: result, newX: x + 1, newY: y + 1 };
-      }
-    },
-    {
-      expr: "++x + y++",
-      calc: (x, y) => {
-        const result = (x + 1) + y;
-        return { res: result, newX: x + 1, newY: y + 1 };
-      }
-    },
-    {
-      expr: "x++ - --y",
-      calc: (x, y) => {
-        const result = x - (y - 1);
-        return { res: result, newX: x + 1, newY: y - 1 };
-      }
-    },
-    {
-      expr: "++x - y--",
-      calc: (x, y) => {
-        const result = (x + 1) - y;
-        return { res: result, newX: x + 1, newY: y - 1 };
-      }
-    }
-  ];
-  
-  const pattern = patterns[Math.floor(Math.random() * patterns.length)];
-  const { res, newX, newY } = pattern.calc(xStart, yStart);
-  
-  const code = `int x = ${xStart};\nint y = ${yStart};\nint z = ${pattern.expr};\nSystem.out.println(x + \",\" + y + \",\" + z);`;
-  const answerStr = `${newX},${newY},${res}`;
-  const answerAlt = `${newX}, ${newY}, ${res}`;
-  
-    return {
-      type: "predict",
-      difficulty: "hard",
-      chapter: "Chapter 3: Operators",
-      question: `Predict the output of the print statement. Pay close attention to pre/post-increment semantics:`,
-    code: code,
-    answer: [answerStr, answerAlt],
-    explanation: `Initial: x=${xStart}, y=${yStart}. Evaluating '${pattern.expr}' yields z=${res}. In memory, variables update to x=${newX}, y=${newY}. The print outputs 'x,y,z' resulting in '${answerStr}'.`
-  };
-}
-
-function generateDynamicKeywordQuestion(chapter) {
-  if (!chapter || !chapter.topics || chapter.topics.length === 0) return null;
-  
-  const topics = chapter.topics.slice().sort(() => 0.5 - Math.random());
-  const targetKeywords = ["static", "void", "public", "extends", "implements", "finally", "super", "this", "new", "throws", "class", "interface", "record", "enum"];
-  
-  for (const topic of topics) {
-    const code = topic.code;
-    const lines = code.split('\n');
-    
-    for (let lineIdx = 0; lineIdx < lines.length; lineIdx++) {
-      const line = lines[lineIdx];
-      if (line.trim().startsWith('import') || line.trim().startsWith('package') || line.trim().startsWith('//') || line.trim().startsWith('*')) continue;
-      
-      const words = line.split(/\b/);
-      const foundKeywords = words.filter(word => targetKeywords.includes(word));
-      
-      if (foundKeywords.length > 0) {
-        const targetKw = foundKeywords[Math.floor(Math.random() * foundKeywords.length)];
-        const regex = new RegExp(`\\b${targetKw}\\b`, 'g');
-        const maskedLine = line.replace(regex, '[___]');
-        
-        const startLine = Math.max(0, lineIdx - 2);
-        const endLine = Math.min(lines.length - 1, lineIdx + 2);
-        
-        const contextLines = [];
-        for (let j = startLine; j <= endLine; j++) {
-          if (j === lineIdx) {
-            contextLines.push(maskedLine);
-          } else {
-            contextLines.push(lines[j]);
-          }
-        }
-        
-        const contextCode = contextLines.join('\n');
-        const distractors = targetKeywords.filter(kw => kw !== targetKw).sort(() => 0.5 - Math.random()).slice(0, 3);
-        const options = [targetKw, ...distractors].sort(() => 0.5 - Math.random());
-        const correctIdx = options.indexOf(targetKw);
-        
-        return {
-          type: "scq",
-          difficulty: "easy",
-          chapter: chapter.name,
-          question: `Identify the missing Java keyword marked as [___] in this code snippet from "${topic.fileName}":`,
-          code: contextCode,
-          options: options,
-          answer: correctIdx,
-          explanation: `The correct keyword is '${targetKw}' which fits the syntax of this Java statement. File source: ${topic.fileName}.`
-        };
-      }
-    }
-  }
-  return null;
-}
-
-function getDynamicQuestionsForChapter(chapterName, count) {
-  const list = [];
-  const chapter = CONCEPTS_DATA.find(c => c.name === chapterName);
-  if (!chapter) return list;
-
-  for (let i = 0; i < count; i++) {
-    const rand = Math.random();
-    let q = null;
-    
-    if (chapterName.includes("Loop") || chapterName.includes("While")) {
-      q = generateDynamicLoopQuestion();
-    } else if (chapterName.includes("Operator")) {
-      q = generateDynamicIncrementQuestion();
-    } else {
-      q = generateDynamicKeywordQuestion(chapter);
-    }
-    
-    if (!q) {
-      if (Math.random() > 0.5) {
-        q = generateDynamicLoopQuestion();
-      } else {
-        q = generateDynamicIncrementQuestion();
-      }
-    }
-    
-    if (q) list.push(q);
-    if (q && !q.chapter) {
-      q.chapter = chapterName;
-    }
-  }
-  return list;
-}
-
-// ==========================================================================
 // Quiz Gameplay Engine (Upgraded to SCQ, MCQ, Predict, and Conceptual Interview formats)
 // ==========================================================================
 
@@ -1963,30 +2069,30 @@ function startChapterQuiz(chapterName, subChapterName) {
     Object.keys(QUESTIONS_BANK).forEach(ch => {
       allQuestions.push(...QUESTIONS_BANK[ch]);
     });
-    
-    // Shuffle from the full pool every time; no answered-question filtering.
-    questions = pickSmartQuestions(allQuestions, 40, currentDifficultyFilter, currentTagFilter);
-    
-    // Generate 6 random dynamic questions across chapters to keep it fresh
-    const allChapters = Object.keys(QUESTIONS_BANK);
-    for (let i = 0; i < 6; i++) {
-      const randCh = allChapters[Math.floor(Math.random() * allChapters.length)];
-      const dynQs = getDynamicQuestionsForChapter(randCh, 1);
-      if (dynQs.length > 0) questions.push(dynQs[0]);
-    }
 
-    questions = shuffleArray(questions); // Shuffle mixed pool
-    
+    // The same question can legitimately belong to two chapters, for example the
+    // String pool traps. In a mixed quiz it must still appear only once.
+    const seenInGrand = new Set();
+    const uniqueQuestions = allQuestions.filter(q => {
+      const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;
+      if (seenInGrand.has(key)) return false;
+      seenInGrand.add(key);
+      return true;
+    });
+
+    // Shuffle from the full pool every time; no answered-question filtering.
+    questions = pickSmartQuestions(uniqueQuestions, 40, currentDifficultyFilter, currentTagFilter);
+
     document.getElementById('quiz-start-title').innerText = "Grand Java Revision Quiz";
     document.getElementById('quiz-start-desc').innerText = "Test your grasp on all concepts in this Java project. Includes randomized logic predictions, multi-select questions, and technical interview scenarios.";
   } else {
-    // Chapter specific questions: combine the full chapter bank with a few dynamic syntax tests
+    // Chapter specific questions, taken from the chapter bank only. Invented
+    // filler questions are not added any more: every question here comes from
+    // the author's own notes.
     const staticQs = getQuestionsForScope(chapterName, subChapterName);
-    const dynamicQs = subChapterName ? [] : getDynamicQuestionsForChapter(chapterName, 4);
     const chapterLabel = subChapterName ? `${chapterName} > ${subChapterName}` : chapterName;
     
-    // Shuffle from the full scoped pool every time; no tracking of previously answered items.
-    questions = pickSmartQuestions([...staticQs, ...dynamicQs], 20, currentDifficultyFilter, currentTagFilter);
+    questions = pickSmartQuestions(staticQs, 20, currentDifficultyFilter, currentTagFilter);
     
     document.getElementById('quiz-start-title').innerText = `${chapterLabel} Revision Quiz`;
     document.getElementById('quiz-start-desc').innerText = `Review the core concepts in ${chapterLabel} through dynamic logic tracking, multiple-choice questions, and conceptual mock interviews.`;
@@ -2063,10 +2169,19 @@ function renderQuizQuestion() {
   const tagsContainer = document.getElementById('quiz-question-tags');
   if (tagsContainer) {
     tagsContainer.innerHTML = '';
+    // Say where the question came from. In a mixed quiz this is the difference
+    // between knowing your weak area and guessing at it.
+    if (question.chapter) {
+      const sourceSpan = document.createElement('span');
+      sourceSpan.className = 'question-tag tag-source';
+      const topicPart = (question.topic && question.topic !== 'OCJP Tricky') ? ` â€º ${question.topic}` : '';
+      sourceSpan.textContent = `ðŸ“˜ ${question.chapter}${topicPart}`;
+      tagsContainer.appendChild(sourceSpan);
+    }
     (question.tags || []).forEach(tag => {
       const span = document.createElement('span');
       span.className = `question-tag tag-${tag}`;
-      const tagLabels = { ocjp: '🎓 OCJP', interview: '💼 Interview', tricky: '⚡ Tricky', concept: '📚 Concept', predict: '🔮 Predict', codefill: '⌨ Code Fill' };
+      const tagLabels = { ocjp: 'ðŸŽ“ OCJP', interview: 'ðŸ’¼ Interview', tricky: 'âš¡ Tricky', concept: 'ðŸ“š Concept', predict: 'ðŸ”® Predict', codefill: 'âŒ¨ Code Fill' };
       span.textContent = tagLabels[tag] || tag;
       tagsContainer.appendChild(span);
     });
@@ -2103,8 +2218,12 @@ function renderQuizQuestion() {
   evalWrapper.style.display = 'none';
   
   // Action buttons
-  document.getElementById('quiz-feedback-text').innerText = '';
-  document.getElementById('quiz-feedback-text').className = 'answer-feedback';
+  // innerText does not remove child nodes, so the "why was this wrong" note from
+  // the previous question used to stay on screen. Clear the contents properly.
+  const feedbackEl = document.getElementById('quiz-feedback-text');
+  feedbackEl.replaceChildren();
+  feedbackEl.innerText = '';
+  feedbackEl.className = 'answer-feedback';
   const submitBtn = document.getElementById('btn-submit-answer');
   submitBtn.style.display = 'inline-flex';
   submitBtn.innerText = (question.type === 'interview') ? 'Submit & Reveal Answer' : 'Submit Answer';
@@ -2178,10 +2297,17 @@ function getNotesForQuestion(question) {
   if (!question || !question.chapter || !question.topic) return null;
   const chapter = CONCEPTS_DATA.find(c => c.name === question.chapter);
   if (!chapter) return null;
-  let topic = chapter.topics.find(t => t.topicName === question.topic);
+  let topic = question.topicPath
+    ? chapter.topics.find(t => t.filePath === question.topicPath)
+    : null;
+  if (!topic) topic = chapter.topics.find(t => t.topicName === question.topic);
   if (!topic) topic = chapter.topics.find(t => t.topicName && t.topicName.toLowerCase().includes(question.topic.toLowerCase().substring(0, 10)));
   if (!topic) return null;
-  const overviewLines = (topic.headerComments || []).flatMap(b => b.lines || []);
+  // Tables and code blocks carry no prose bullets, so they are skipped here.
+  const overviewLines = (topic.headerComments || [])
+    .filter(block => block.type !== 'table' && block.type !== 'code')
+    .flatMap(block => block.lines || [])
+    .filter(Boolean);
   const inlineLines = (topic.inlineComments || []).slice(0, 5);
   return { topicName: topic.topicName, overview: overviewLines, inline: inlineLines };
 }
@@ -2286,10 +2412,10 @@ function submitQuizAnswer() {
       recordQuestionResult(question.qid, isCorrect);
       
       if (isCorrect) {
-        feedback.innerText = `✓ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
+        feedback.innerText = `âœ“ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
         feedback.className = "answer-feedback text-success";
       } else {
-        feedback.innerHTML = `✗ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Try to include more core details. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+        feedback.innerHTML = `âœ— Evaluated: Covered ${checkedCount}/${totalPoints} key points. Try to include more core details. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
         feedback.className = "answer-feedback text-danger";
         const revisitBtn = document.getElementById('btn-revisit-missed-topic');
         if (revisitBtn && revisitScope.chapterName) {
@@ -2378,15 +2504,36 @@ function submitQuizAnswer() {
     
     if (isCorrect) {
       quizScore++;
-      feedback.innerText = "✓ Correct! " + question.explanation;
+      feedback.innerText = "âœ“ Correct! " + question.explanation;
       feedback.className = "answer-feedback text-success";
     } else {
+      // When the question explains why a wrong option is wrong, say so: that is
+      // where the learning happens.
+      let whyMine = "";
+      if (question.whyByOption) {
+        // A single-choice question stores its pick in selectedOptionIndex; a
+        // multi-select question stores an array. Reading the wrong one is why the
+        // explanation used to go missing for single-choice questions.
+        const chosen = question.type === 'mcq'
+          ? (selectedOptionIndices || [])
+          : [selectedOptionIndex];
+        const reasons = chosen
+          .map(i => question.whyByOption[i])
+          .filter(Boolean);
+        if (reasons.length) whyMine = reasons.join(" ");
+      }
       let correctAnsStr = "";
       if (question.type === 'predict' || question.type === 'codefill') {
         correctAnsStr = ` Correct answer: "${question.answer[0]}".`;
       }
-      feedback.innerHTML = `✗ Incorrect.${correctAnsStr} ${question.explanation} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+      feedback.innerHTML = `âœ— Incorrect.${correctAnsStr} ${question.explanation} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
       feedback.className = "answer-feedback text-danger";
+      if (whyMine) {
+        const whyPara = document.createElement('div');
+        whyPara.className = 'why-note';
+        whyPara.textContent = whyMine;
+        feedback.appendChild(whyPara);
+      }
       const revisitBtn = document.getElementById('btn-revisit-missed-topic');
       if (revisitBtn && revisitScope.chapterName) {
         revisitBtn.addEventListener('click', () => openQuizRevisit(revisitScope));
@@ -2429,7 +2576,40 @@ function showQuizResults() {
   circle.setAttribute('stroke-dasharray', `${percentage}, 100`);
   
   saveQuizResult(chapterName, quizScore, total);
-  
+
+  // Per-chapter strengths: shows which chapter needs another pass.
+  const chapterBreakdown = document.getElementById('result-chapter-breakdown');
+  if (chapterBreakdown) {
+    chapterBreakdown.innerHTML = '';
+    const perChapter = new Map();
+    answeredQuestions.forEach((ans, idx) => {
+      const question = activeQuizQuestions[idx];
+      const key = question && question.chapter ? question.chapter : 'General';
+      if (!perChapter.has(key)) perChapter.set(key, { correct: 0, total: 0 });
+      const entry = perChapter.get(key);
+      entry.total++;
+      if (ans.isCorrect) entry.correct++;
+    });
+    if (perChapter.size > 1) {
+      const heading = document.createElement('h3');
+      heading.className = 'result-breakdown-heading';
+      heading.textContent = 'Where you stand, chapter by chapter';
+      chapterBreakdown.appendChild(heading);
+      Array.from(perChapter.entries())
+        .sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total))
+        .forEach(([name, stats]) => {
+          const percent = Math.round((stats.correct / stats.total) * 100);
+          const row = document.createElement('div');
+          row.className = 'result-breakdown-row';
+          row.innerHTML = `
+            <span class="result-breakdown-name">${name}</span>
+            <span class="result-breakdown-score ${percent >= 70 ? 'good' : percent >= 40 ? 'mid' : 'weak'}">${stats.correct}/${stats.total} Â· ${percent}%</span>
+          `;
+          chapterBreakdown.appendChild(row);
+        });
+    }
+  }
+
   // Detailed review breakdown populate
   const breakdown = document.getElementById('quiz-results-breakdown');
   breakdown.innerHTML = '';
@@ -2463,6 +2643,7 @@ function showQuizResults() {
         <div><span class="review-label">Expected Output / Answer:</span><span class="review-value">${correctText}</span></div>
       </div>
       <div class="review-explanation">${q.explanation || ""}</div>
+      ${(!ans.isCorrect && q.whyByOption) ? `<div class="why-note">${(q.type === 'mcq' ? (Array.isArray(ans.selected) ? ans.selected : []) : [ans.selected]).map(i => q.whyByOption[i]).filter(Boolean).join(' ')}</div>` : ''}
       ${(!ans.isCorrect && ans.scope && ans.scope.chapterName) ? `<button class="btn btn-outline btn-small revisit-topic-btn" data-review-idx="${idx}">Revisit Topic Again</button>` : ''}
     `;
     
@@ -2523,11 +2704,15 @@ function handleSearch(query) {
         score += 5;
       }
       
-      // Match in explanations
+      // Match in explanations. Table blocks have no lines array, so their cells
+      // are searched as joined row text and code blocks are skipped safely.
       let explanationMatch = false;
       if (topic.headerComments) {
         topic.headerComments.forEach(block => {
-          block.lines.forEach(line => {
+          const searchableLines = block.type === 'table'
+            ? [...(block.headers || []), ...(block.rows || []).flat()].filter(Boolean)
+            : (block.lines || []);
+          searchableLines.forEach(line => {
             if (line.toLowerCase().includes(trimmed)) {
               score += 2;
               if (!snippet) {
@@ -2627,6 +2812,314 @@ function renderSearchResults(results, query) {
 }
 
 // ==========================================================================
+// Quiz menu
+// ==========================================================================
+// Choosing how to be tested, instead of being dropped straight into the Grand
+// Quiz. Every option is built from the chapters the author has notes for.
+function renderQuizMenu() {
+  const chaptersContainer = document.getElementById('quiz-menu-chapters');
+  if (!chaptersContainer) return;
+
+  const allQuestions = [];
+  Object.keys(QUESTIONS_BANK).forEach(chapter => allQuestions.push(...QUESTIONS_BANK[chapter]));
+  const ocjpCount = allQuestions.filter(q => (q.tags || []).includes('ocjp')).length;
+  const trickyCount = allQuestions.filter(q => (q.tags || []).includes('tricky')).length;
+  const ocjpEl = document.getElementById('menu-ocjp-count');
+  const trickyEl = document.getElementById('menu-tricky-count');
+  if (ocjpEl) ocjpEl.textContent = ocjpCount;
+  if (trickyEl) trickyEl.textContent = trickyCount;
+
+  chaptersContainer.innerHTML = '';
+  CONCEPTS_DATA.forEach((chapter, index) => {
+    const questions = QUESTIONS_BANK[chapter.name] || [];
+    const subChapters = Array.from(new Set(chapter.topics.map(t => t.subChapter).filter(Boolean)));
+    const row = document.createElement('div');
+    row.className = 'quiz-menu-chapter-row';
+    row.innerHTML = `
+      <div class="quiz-menu-chapter-info">
+        <span class="quiz-menu-chapter-name">${chapter.name}</span>
+        <span class="bank-topic-meta">${chapter.topics.length} topic(s) Â· ${questions.length} question(s)</span>
+      </div>
+      <div class="quiz-menu-chapter-actions"></div>
+    `;
+    const actions = row.querySelector('.quiz-menu-chapter-actions');
+    const chapterBtn = document.createElement('button');
+    chapterBtn.className = 'btn btn-primary-outline btn-small';
+    chapterBtn.textContent = 'Quiz chapter';
+    chapterBtn.addEventListener('click', () => startChapterQuiz(chapter.name));
+    actions.appendChild(chapterBtn);
+    subChapters.forEach(subChapter => {
+      const subBtn = document.createElement('button');
+      subBtn.className = 'btn btn-outline btn-small';
+      subBtn.textContent = subChapter;
+      subBtn.addEventListener('click', () => startChapterQuiz(chapter.name, subChapter));
+      actions.appendChild(subBtn);
+    });
+    chaptersContainer.appendChild(row);
+  });
+}
+
+// Starts a quiz for the single topic currently open in the Notes view.
+function startTopicQuiz() {
+  const chapter = CONCEPTS_DATA[currentChapterIndex];
+  const topic = chapter && chapter.topics[currentTopicIndex];
+  if (!chapter || !topic) {
+    alert('Open a topic first, then start a topic quiz.');
+    return;
+  }
+  const pool = (QUESTIONS_BANK[chapter.name] || []).filter(q => q.topicPath === topic.filePath);
+  if (pool.length === 0) {
+    alert(`No questions have been written for "${topic.topicName}" yet.`);
+    return;
+  }
+  currentQuizScope = { chapterName: chapter.name, subChapterName: topic.subChapter || null };
+  activeQuizQuestions = pickSmartQuestions(pool, 15, 'all', 'all');
+  currentQuizQuestionIndex = 0;
+  quizScore = 0;
+  answeredQuestions = [];
+
+  document.getElementById('quiz-question-count').innerText = `${activeQuizQuestions.length} Questions`;
+  document.getElementById('quiz-est-time').innerText = `${Math.ceil(activeQuizQuestions.length * 1.5)} Mins`;
+  document.getElementById('quiz-subtitle').innerText = `${chapter.name} > ${topic.topicName}`;
+  document.getElementById('quiz-start-container').style.display = 'none';
+  document.getElementById('quiz-active-container').style.display = 'block';
+  document.getElementById('quiz-result-container').style.display = 'none';
+  showView('quiz-view');
+  renderQuizQuestion();
+}
+
+// Starts a quiz from a whole filtered selection, used by the bank and the menu.
+function startSelectionQuiz(questions, label, maxQuestions) {
+  if (!questions || questions.length === 0) {
+    alert('No questions match this selection yet. Try another filter.');
+    return false;
+  }
+  currentQuizScope = { chapterName: label || 'Revision Bank', subChapterName: null };
+  activeQuizQuestions = pickSmartQuestions(questions, maxQuestions || 20, 'all', 'all');
+  currentQuizQuestionIndex = 0;
+  quizScore = 0;
+  answeredQuestions = [];
+
+  document.getElementById('quiz-question-count').innerText = `${activeQuizQuestions.length} Questions`;
+  document.getElementById('quiz-est-time').innerText = `${Math.ceil(activeQuizQuestions.length * 1.5)} Mins`;
+  document.getElementById('quiz-subtitle').innerText = label || 'Revision Bank selection';
+  document.getElementById('quiz-start-container').style.display = 'none';
+  document.getElementById('quiz-active-container').style.display = 'block';
+  document.getElementById('quiz-result-container').style.display = 'none';
+  showView('quiz-view');
+  renderQuizQuestion();
+  return true;
+}
+
+// ==========================================================================
+// Central Revision Bank
+// ==========================================================================
+// One place to revise everything the author has written notes for. It is built
+// from CONCEPTS_DATA, so only topics that exist under src/ can ever appear here.
+let bankFilters = { chapter: 'all', search: '', level: 'all', tag: 'all' };
+
+function initBankChapterSelect() {
+  const select = document.getElementById('bank-chapter-select');
+  if (!select) return;
+  select.innerHTML = '';
+  const all = document.createElement('option');
+  all.value = 'all';
+  all.textContent = 'All chapters';
+  select.appendChild(all);
+  CONCEPTS_DATA.forEach((chapter, index) => {
+    const option = document.createElement('option');
+    option.value = String(index);
+    option.textContent = chapter.name;
+    select.appendChild(option);
+  });
+}
+
+function setBankChapter(value) {
+  bankFilters.chapter = value;
+  renderRevisionBank();
+}
+
+function setBankSearch(value) {
+  bankFilters.search = String(value || '').toLowerCase().trim();
+  renderRevisionBank();
+}
+
+function setBankLevel(level, btn) {
+  bankFilters.level = level;
+  document.querySelectorAll('#bank-level-pills .diff-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderRevisionBank();
+}
+
+function setBankTag(tag, btn) {
+  bankFilters.tag = tag;
+  document.querySelectorAll('#bank-type-pills .tag-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderRevisionBank();
+}
+
+function topicSearchText(topic) {
+  const notes = (topic.headerComments || []).flatMap(b => b.lines || []).join(' ');
+  return `${topic.topicName} ${topic.fileName} ${topic.subChapter || ''} ${notes}`.toLowerCase();
+}
+
+function questionMatchesBankFilters(question) {
+  if (bankFilters.level !== 'all' && (question.difficulty || 'medium') !== bankFilters.level) return false;
+  if (bankFilters.tag !== 'all' && !(question.tags || []).includes(bankFilters.tag)) return false;
+  return true;
+}
+
+// Collects the topics and questions matching the current filters.
+function collectBankSelection() {
+  const chapters = CONCEPTS_DATA.filter((chapter, index) =>
+    bankFilters.chapter === 'all' || String(index) === bankFilters.chapter);
+
+  const topics = [];
+  chapters.forEach(chapter => {
+    chapter.topics.forEach(topic => {
+      if (bankFilters.search && !topicSearchText(topic).includes(bankFilters.search)) return;
+      topics.push({ chapter: chapter.name, topic });
+    });
+  });
+
+  const includedPaths = new Set(topics.map(entry => entry.topic.filePath));
+  const questions = [];
+  const seen = new Set();
+  chapters.forEach(chapter => {
+    (QUESTIONS_BANK[chapter.name] || []).forEach(question => {
+      // A question belongs here when its topic is selected, or when it is a
+      // chapter-level question that has no topic of its own.
+      const inSelectedTopic = question.topicPath && includedPaths.has(question.topicPath);
+      const isChapterLevel = !question.topicPath;
+      if (!inSelectedTopic && !isChapterLevel) return;
+      if (!isChapterLevel && bankFilters.search && !includedPaths.has(question.topicPath)) return;
+      if (seen.has(question.qid)) return;
+      if (!questionMatchesBankFilters(question)) return;
+      seen.add(question.qid);
+      questions.push(question);
+    });
+  });
+
+  return { topics, questions };
+}
+
+function bankNoteLines(topic) {
+  const lines = [];
+  (topic.headerComments || []).forEach(block => {
+    if (block.type === 'table') {
+      lines.push('| ' + (block.headers || []).join(' | '));
+      (block.rows || []).forEach(row => lines.push('| ' + row.join(' | ')));
+      return;
+    }
+    if (block.type === 'code') {
+      (block.code || '').split('\n').forEach(codeLine => lines.push(codeLine));
+      return;
+    }
+    (block.lines || []).forEach(line => lines.push(line));
+  });
+  return lines.filter(Boolean);
+}
+
+function renderRevisionBank() {
+  const container = document.getElementById('bank-results');
+  const summary = document.getElementById('bank-summary');
+  if (!container) return;
+
+  const { topics, questions } = collectBankSelection();
+  const noteLineCount = topics.reduce((total, entry) => total + bankNoteLines(entry.topic).length, 0);
+  const questionsByPath = new Map();
+  questions.forEach(question => {
+    const key = question.topicPath || '(chapter level)';
+    if (!questionsByPath.has(key)) questionsByPath.set(key, []);
+    questionsByPath.get(key).push(question);
+  });
+
+  if (summary) {
+    summary.textContent = `${topics.length} topic(s) Â· ${noteLineCount} note line(s) Â· ${questions.length} question(s)`;
+  }
+  const quizBtn = document.getElementById('btn-bank-quiz');
+  if (quizBtn) {
+    quizBtn.disabled = questions.length === 0;
+    quizBtn.textContent = questions.length > 0
+      ? `Start quiz from this selection (${questions.length})`
+      : 'No questions match this selection';
+  }
+
+  container.innerHTML = '';
+  if (topics.length === 0) {
+    container.innerHTML = '<div class="card"><div class="card-body">Nothing matches this filter. Try clearing the search box.</div></div>';
+    return;
+  }
+
+  let currentChapter = null;
+  topics.forEach(({ chapter, topic }) => {
+    if (chapter !== currentChapter) {
+      currentChapter = chapter;
+      const heading = document.createElement('h2');
+      heading.className = 'bank-chapter-heading';
+      heading.textContent = chapter;
+      container.appendChild(heading);
+    }
+
+    const topicQuestions = questionsByPath.get(topic.filePath) || [];
+    const details = document.createElement('details');
+    details.className = 'bank-topic';
+
+    const summaryEl = document.createElement('summary');
+    summaryEl.innerHTML = `<span class="bank-topic-name">${topic.topicName}</span>
+      <span class="bank-topic-meta">${bankNoteLines(topic).length} note line(s) Â· ${topicQuestions.length} question(s)</span>`;
+    details.appendChild(summaryEl);
+
+    const body = document.createElement('div');
+    body.className = 'bank-topic-body';
+
+    const notesList = document.createElement('ul');
+    notesList.className = 'bullet-list';
+    bankNoteLines(topic).forEach(line => {
+      const li = document.createElement('li');
+      li.textContent = line;
+      notesList.appendChild(li);
+    });
+    body.appendChild(notesList);
+
+    if (topicQuestions.length > 0) {
+      const questionHeading = document.createElement('h4');
+      questionHeading.textContent = 'Questions for this topic';
+      body.appendChild(questionHeading);
+      topicQuestions.forEach(question => {
+        const block = document.createElement('div');
+        block.className = 'bank-question';
+        const badges = [];
+        badges.push(`<span class="difficulty-badge ${(question.difficulty || 'medium').toLowerCase()}">${(question.difficulty || 'medium')}</span>`);
+        (question.tags || []).forEach(tag => badges.push(`<span class="syntax-badge">${tag}</span>`));
+        const answer = question.options
+          ? (Array.isArray(question.answer)
+              ? question.answer.map(i => question.options[i]).join(' / ')
+              : question.options[question.answer])
+          : (question.answer ? question.answer.join(' / ') : (question.modelAnswer || ''));
+        block.innerHTML = `<div class="bank-question-head">${badges.join('')}</div>
+          <div class="bank-question-text">${question.question}</div>
+          ${question.code ? `<pre class="bank-question-code"><code>${highlightJava(question.code)}</code></pre>` : ''}
+          <div class="bank-question-answer"><strong>Answer:</strong> ${answer || '(written answer)'}</div>
+          ${question.explanation ? `<div class="bank-question-why">${question.explanation}</div>` : ''}`;
+        body.appendChild(block);
+      });
+    }
+
+    details.appendChild(body);
+    container.appendChild(details);
+  });
+}
+
+function startBankQuiz() {
+  const { questions } = collectBankSelection();
+  const bankLabel = bankFilters.chapter === 'all'
+    ? 'Revision Bank: all chapters'
+    : `Revision Bank: ${CONCEPTS_DATA[Number(bankFilters.chapter)]?.name || ''}`;
+  startSelectionQuiz(questions, bankLabel, 20);
+}
+
+// ==========================================================================
 // Practice Lab Coding Challenges & Simulated Compiler
 // ==========================================================================
 
@@ -2695,7 +3188,7 @@ const PRACTICE_CHALLENGES = [
     id: "leapyear",
     title: "Perfect Leap Year Checker",
     difficulty: "Medium",
-    chapter: "Chapter 7: Methods In Java",
+    chapter: "Chapter 6: Methods In Java",
     description: `
       <p>Write a method <code>public static boolean isLeapYear(int year)</code> that returns <code>true</code> if the parameter <code>year</code> is a leap year, and <code>false</code> otherwise.</p>
       <p>A year is a leap year if it is divisible by 4, but not by 100, unless it is also divisible by 400.</p>
@@ -2719,7 +3212,7 @@ const PRACTICE_CHALLENGES = [
     id: "palindrome",
     title: "Tricky Palindrome Numbers",
     difficulty: "Medium",
-    chapter: "Chapter 9: Java Looping Concepts",
+    chapter: "Chapter 8: Java Looping Concepts",
     description: `
       <p>Write a method <code>public static boolean isPalindrome(int number)</code> that returns <code>true</code> if the number is a palindrome, and <code>false</code> otherwise.</p>
       <p>A palindrome number reads the same forwards and backwards. Negative numbers should be supported by ignoring their negative sign (e.g. <code>-121</code> is a palindrome).</p>
@@ -2742,7 +3235,7 @@ const PRACTICE_CHALLENGES = [
     id: "statictracking",
     title: "Static Instance Tracking",
     difficulty: "Medium",
-    chapter: "Chapter 11: Class Object Static And Instance Fields",
+    chapter: "Chapter 10: Class Object Static And Instance Fields",
     description: `
       <p>Create a static variable tracker. Write a method <code>public static int track(int countToCreate)</code> that simulates instantiating a class multiple times.</p>
       <p>Each instantiation increments a static counter. Return the total instances created.</p>
@@ -2779,7 +3272,7 @@ const PRACTICE_CHALLENGES = [
     id: "polymorphism",
     title: "Method Overriding with super()",
     difficulty: "Hard",
-    chapter: "Chapter 14: OOP Concepts",
+    chapter: "Chapter 13: OOP Concepts",
     description: `
       <p>In OOP, overriding allows a child class to provide a specific implementation of a method that is already provided by its parent class.</p>
       <p>Write a method <code>public static String getPolymorphicMessage()</code> inside a subclass <code>Child</code> that overrides the parent <code>Parent</code>'s method <code>public String getMessage()</code>.</p>
@@ -2873,8 +3366,8 @@ function selectDeepChallenge(challenge) {
   const hintsHtml = challenge.hints && challenge.hints.length > 0
     ? `<div class="dc-section" id="dc-hints">
         <button class="dc-section-toggle" onclick="toggleDcSection('dc-hints')">
-          <span>💡 Hints <span class="dc-count">${challenge.hints.length}</span></span>
-          <span class="dc-chevron">▼</span>
+          <span>ðŸ’¡ Hints <span class="dc-count">${challenge.hints.length}</span></span>
+          <span class="dc-chevron">â–¼</span>
         </button>
         <div class="dc-section-body">
           <ul>${challenge.hints.map(h => `<li>${h}</li>`).join('')}</ul>
@@ -2885,8 +3378,8 @@ function selectDeepChallenge(challenge) {
   const testcasesHtml = challenge.testcases && challenge.testcases.length > 0
     ? `<div class="dc-section" id="dc-testcases">
         <button class="dc-section-toggle" onclick="toggleDcSection('dc-testcases')">
-          <span>🧪 Test Cases <span class="dc-count">${challenge.testcases.length}</span></span>
-          <span class="dc-chevron">▼</span>
+          <span>ðŸ§ª Test Cases <span class="dc-count">${challenge.testcases.length}</span></span>
+          <span class="dc-chevron">â–¼</span>
         </button>
         <div class="dc-section-body">
           <ul>${challenge.testcases.map(t => `<li><code>${t}</code></li>`).join('')}</ul>
@@ -2900,8 +3393,8 @@ function selectDeepChallenge(challenge) {
 
     <div class="dc-section dc-open" id="dc-desc">
       <button class="dc-section-toggle" onclick="toggleDcSection('dc-desc')">
-        <span>📋 Problem Description</span>
-        <span class="dc-chevron">▼</span>
+        <span>ðŸ“‹ Problem Description</span>
+        <span class="dc-chevron">â–¼</span>
       </button>
       <div class="dc-section-body">
         <div class="deep-challenge-body">${challenge.description.replace(/\n/g, '<br>')}</div>
@@ -2913,13 +3406,13 @@ function selectDeepChallenge(challenge) {
 
     <div class="dc-section dc-open" id="dc-submit">
       <button class="dc-section-toggle" onclick="toggleDcSection('dc-submit')">
-        <span>✍ Submit</span>
-        <span class="dc-chevron">▼</span>
+        <span>âœ Submit</span>
+        <span class="dc-chevron">â–¼</span>
       </button>
       <div class="dc-section-body">
         <div class="deep-self-check">
           <p>Implement this in your IDE or in the editor below, then mark as complete when done.</p>
-          <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">✓ Mark as Completed</button>
+          <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">âœ“ Mark as Completed</button>
         </div>
       </div>
     </div>
@@ -2933,7 +3426,7 @@ function selectDeepChallenge(challenge) {
 
   const casesContainer = document.getElementById('test-cases-grid');
   if (casesContainer) {
-    casesContainer.innerHTML = '<p class="self-check-note">📋 This is a self-check challenge. Implement in your IDE, verify your test cases, then mark as completed.</p>';
+    casesContainer.innerHTML = '<p class="self-check-note">ðŸ“‹ This is a self-check challenge. Implement in your IDE, verify your test cases, then mark as completed.</p>';
   }
 
   logToConsole(`SYSTEM READY: Loaded deep challenge "${challenge.title}". Implement in your IDE, then mark as completed.`);
@@ -2942,7 +3435,7 @@ function selectDeepChallenge(challenge) {
 function markDeepChallengeDone(id) {
   saveChallengePassed(id);
   const btn = document.querySelector(`button[onclick="markDeepChallengeDone('${id}')"]`);
-  if (btn) { btn.textContent = '✓ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
+  if (btn) { btn.textContent = 'âœ“ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
 }
 
 function toggleDcSection(id) {
@@ -2987,6 +3480,39 @@ function initPracticeLab() {
       document.getElementById('console-output').innerText = '';
     });
   }
+}
+
+// Exact integer division when both values are whole numbers, plain division
+// otherwise, so Java's "int / int" behaviour is preserved without breaking
+// floating point maths such as "kilometers / 1.609344".
+function javaDiv(left, right) {
+  if (Number.isInteger(left) && Number.isInteger(right)) return Math.trunc(left / right);
+  return left / right;
+}
+
+// The practice checker runs the learner's method body in the browser, so ordinary
+// Java syntax has to be translated first. Without this, correct Java code such as
+// "double circleArea = ...;" would throw and be reported as a wrong answer.
+function prepareJavaBody(body) {
+  let code = String(body || '');
+  code = code.replace(/System\.out\.print(?:ln)?\s*\(/g, 'console.log(');
+  code = code.replace(/\bInteger\.parseInt\s*\(/g, 'parseInt(');
+  code = code.replace(/\bLong\.parseLong\s*\(/g, 'parseInt(');
+  code = code.replace(/\bDouble\.parseDouble\s*\(/g, 'parseFloat(');
+  code = code.replace(/\bFloat\.parseFloat\s*\(/g, 'parseFloat(');
+  code = code.replace(/\bString\.valueOf\s*\(/g, 'String(');
+  code = code.replace(/\bMath\.pow\s*\(/g, 'Math.pow(');
+  code = code.replace(/\.length\s*\(\s*\)/g, '.length');
+  code = code.replace(/([A-Za-z_$][\w.$\[\]'"]*)\.equalsIgnoreCase\s*\(([^()]*)\)/g,
+    '($1.toLowerCase() === String($2).toLowerCase())');
+  code = code.replace(/([A-Za-z_$][\w.$\[\]'"]*)\.equals\s*\(([^()]*)\)/g, '($1 === $2)');
+  code = code.replace(/([A-Za-z_$][\w.$\[\]'"]*)\.isEmpty\s*\(\s*\)/g, '($1.length === 0)');
+  // Local variable declarations, including the one inside "for (int i = 0; ...)".
+  code = code.replace(/\b(?:int|long|short|byte|double|float|boolean|char|String)\s+([A-Za-z_$][\w$]*)\s*=/g, 'var $1 =');
+  code = code.replace(/\b(?:int|long|short|byte|double|float|boolean|char|String)\s+([A-Za-z_$][\w$]*)\s*;/g, 'var $1;');
+  // Division keeps Java semantics through javaDiv.
+  code = code.replace(/([A-Za-z0-9_$()\[\].]+)\s*\/\s*([A-Za-z0-9_$()\[\].]+)/g, 'javaDiv($1, $2)');
+  return code;
 }
 
 function showPracticeLab(scope) {
@@ -3037,6 +3563,7 @@ function renderChallengesList() {
       <span class="challenge-item-title">${ch.title}</span>
       <div class="challenge-item-meta">
         <span class="difficulty-badge ${ch.difficulty.toLowerCase()}">${ch.difficulty}</span>
+        <span class="check-badge ${ch.selfCheck ? 'self' : 'auto'}">${ch.selfCheck ? 'Self-check' : 'Auto-checked'}</span>
         <span class="challenge-item-status ${isPassed ? 'passed' : 'unresolved'}">${isPassed ? 'Passed' : 'Pending'}</span>
       </div>
     `;
@@ -3065,6 +3592,15 @@ function selectChallenge(index) {
   diffBadge.className = `difficulty-badge ${challenge.difficulty.toLowerCase()}`;
   
   document.getElementById('practice-instructions').innerHTML = challenge.description;
+
+  // Be honest about whether this challenge is verified or must be self-checked.
+  const checkNote = document.getElementById('practice-check-note');
+  if (checkNote) {
+    checkNote.textContent = challenge.selfCheck
+      ? 'Self-check: no automatic verification. Run it in your IDE and compare with the examples.'
+      : 'Auto-checked: your method is run against the expected values below.';
+    checkNote.className = `practice-check-note ${challenge.selfCheck ? 'self' : 'auto'}`;
+  }
   
   const textarea = document.getElementById('practice-code-textarea');
   textarea.value = challenge.template;
@@ -3078,11 +3614,11 @@ function selectChallenge(index) {
     // Self-check mode: show examples and a "Mark as Completed" button
     const noteDiv = document.createElement('div');
     noteDiv.className = 'test-case-card self-check-card';
-    noteDiv.innerHTML = '<p class="self-check-note">📋 Self-check: Implement the method, run it in your IDE and verify the output matches the examples in the description, then mark as completed.</p>';
+    noteDiv.innerHTML = '<p class="self-check-note">ðŸ“‹ Self-check: Implement the method, run it in your IDE and verify the output matches the examples in the description, then mark as completed.</p>';
     casesContainer.appendChild(noteDiv);
     const markBtn = document.createElement('button');
     markBtn.className = 'btn btn-success btn-small';
-    markBtn.innerText = '✓ Mark as Completed';
+    markBtn.innerText = 'âœ“ Mark as Completed';
     markBtn.onclick = () => { saveChallengePassed(challenge.id); };
     casesContainer.appendChild(markBtn);
   } else {
@@ -3156,18 +3692,51 @@ function compileJavaCode(code, challengeId) {
     errors.push("error: mismatched parentheses '(' or ')'");
   }
   
+  // Statements may be wrapped across several lines, which is normal Java style.
+  // So statements are rebuilt first and only a statement that genuinely never ends
+  // is reported, instead of flagging every continuation line.
   const lines = code.split('\n');
+  const endsWithOperator = text => /(\+|-|\*|\/|%|&&|\|\||,|=|<|>|&|\|)\s*$/.test(text);
+  const isControlStart = text => /^(if|else|for|while|do|switch|try|catch|finally|case|default)\b/.test(text);
+  const isCompleteStatement = text => /[;{}:]\s*$/.test(text);
+
+  let statement = '';
+  let statementStartLine = 0;
+  let depth = 0;
+
   lines.forEach((line, idx) => {
     const trimmed = line.trim();
     if (trimmed.length === 0) return;
     if (trimmed.startsWith('//') || trimmed.startsWith('/*') || trimmed.startsWith('*') || trimmed.endsWith('*/')) return;
     if (trimmed.startsWith('@') || trimmed.includes('class ') || trimmed.includes('interface ')) return;
-    if (trimmed.endsWith('{') || trimmed.endsWith('}') || trimmed.endsWith(';')) return;
-    
-    if (trimmed.includes('=') || trimmed.includes('return') || trimmed.includes('System.out') || trimmed.includes('instanceCount++')) {
-      errors.push(`line ${idx + 1}: error: ';' expected`);
+
+    const pending = statement.trim();
+    const startsFreshStatement = /^(public|private|protected|static|final|return|throw|System\.|\w[\w<>\[\].]*\s*[=(])/.test(trimmed);
+    if (pending && depth === 0 && startsFreshStatement &&
+        !/[;{}:]\s*$/.test(pending) && !endsWithOperator(pending) && !isControlStart(pending)) {
+      errors.push(`line ${statementStartLine + 1}: error: ';' expected`);
+      statement = '';
+    }
+
+    if (statement === '') {
+      statementStartLine = idx;
+      depth = 0;
+    }
+    statement += (statement ? ' ' : '') + trimmed;
+    // Only parentheses and brackets mean "continues on the next line". Braces
+    // close a block, so counting them here used to disable the check completely
+    // once inside a method body.
+    depth += (trimmed.match(/[(\[]/g) || []).length - (trimmed.match(/[)\]]/g) || []).length;
+    if (depth <= 0 && /[;{}]\s*$/.test(trimmed)) {
+      statement = '';
+      depth = 0;
     }
   });
+
+  const leftover = statement.trim();
+  if (leftover && depth === 0 && !isCompleteStatement(leftover) && !endsWithOperator(leftover) && !isControlStart(leftover)) {
+    errors.push(`line ${statementStartLine + 1}: error: ';' expected`);
+  }
 
   const doubleToIntRegex = /\bint\s+\w+\s*=\s*\d+\.\d+/;
   if (doubleToIntRegex.test(code)) {
@@ -3262,6 +3831,7 @@ function runPracticeChallenge() {
   logToConsole("COMPILATION SUCCESSFUL. Executing test cases...");
   
   let allPassed = true;
+  let anyUnverified = false;
   challenge.testCases.forEach((tc, idx) => {
     const statusEl = document.getElementById(`test-case-status-${idx}`);
     try {
@@ -3269,8 +3839,14 @@ function runPracticeChallenge() {
         challenge.accumulated = 0;
       }
       
-      const passed = challenge.verify(code, tc);
-      if (passed) {
+      const outcome = challenge.verify(code, tc);
+      if (outcome === null || outcome === undefined) {
+        // The checker could not run this code. That is not a wrong answer, so it
+        // must never be reported as one.
+        anyUnverified = true;
+        statusEl.className = 'test-case-status pending';
+        logToConsole(`Test Case ${idx + 1}: could not be checked automatically (unsupported syntax). Compare your result with the expected value by hand.`);
+      } else if (outcome) {
         statusEl.className = 'test-case-status pass';
         logToConsole(`Test Case ${idx + 1}: Passed.`);
       } else {
@@ -3279,17 +3855,19 @@ function runPracticeChallenge() {
         logToConsole(`Test Case ${idx + 1}: Failed. Output mismatch.`, "error");
       }
     } catch (err) {
-      statusEl.className = 'test-case-status fail';
-      allPassed = false;
-      logToConsole(`Test Case ${idx + 1}: Failed with Exception: ${err.message}`, "error");
+      anyUnverified = true;
+      statusEl.className = 'test-case-status pending';
+      logToConsole(`Test Case ${idx + 1}: could not be checked automatically (${err.message}).`, "error");
     }
   });
   
-  if (allPassed) {
-    logToConsole("\n✓ SUCCESS: ALL TEST CASES PASSED!", "success");
+  if (allPassed && anyUnverified) {
+    logToConsole("\nSome test cases could not be checked automatically. Verify them by hand before marking this complete.");
+  } else if (allPassed) {
+    logToConsole("\nâœ“ SUCCESS: ALL TEST CASES PASSED!", "success");
     logToConsole("Saving challenge completed status... Great job!");
     saveChallengePassed(challenge.id);
   } else {
-    logToConsole("\n✗ FAILURE: Some test cases did not pass. Debug your logic and try again.", "error");
+    logToConsole("\nâœ— FAILURE: Some test cases did not pass. Debug your logic and try again.", "error");
   }
 }

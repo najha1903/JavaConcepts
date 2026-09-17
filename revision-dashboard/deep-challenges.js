@@ -47,9 +47,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-5-statements-and-indentations-grading",
+    "id": "deep-chapter-4-statements-and-indentations-grading",
     "title": "Grade & Decision Engine",
-    "chapter": "Chapter 5: Statements And Indentations",
+    "chapter": "Chapter 4: Statements And Indentations",
     "topic": "Control Flow Deep Challenge",
     "difficulty": "Easy",
     "tags": [
@@ -71,9 +71,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-6-if-else-statements-grading",
+    "id": "deep-chapter-5-if-else-statements-grading",
     "title": "Grade & Decision Engine",
-    "chapter": "Chapter 6: If Else Statements",
+    "chapter": "Chapter 5: If Else Statements",
     "topic": "Control Flow Deep Challenge",
     "difficulty": "Easy",
     "tags": [
@@ -95,9 +95,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-7-methods-in-java-calculator",
+    "id": "deep-chapter-6-methods-in-java-calculator",
     "title": "Build a Multi-Operation Calculator",
-    "chapter": "Chapter 7: Methods In Java",
+    "chapter": "Chapter 6: Methods In Java",
     "topic": "Methods Deep Challenge",
     "difficulty": "Medium",
     "tags": [
@@ -119,9 +119,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-8-switch-statements-grading",
+    "id": "deep-chapter-7-switch-statements-grading",
     "title": "Grade & Decision Engine",
-    "chapter": "Chapter 8: Switch Statements",
+    "chapter": "Chapter 7: Switch Statements",
     "topic": "Control Flow Deep Challenge",
     "difficulty": "Easy",
     "tags": [
@@ -143,61 +143,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-9-java-looping-concepts-bank",
-    "title": "Design a BankAccount System (OOP)",
-    "chapter": "Chapter 9: Java Looping Concepts",
-    "topic": "OOP Deep Challenge",
-    "difficulty": "Hard",
-    "tags": [
-      "deep",
-      "coding",
-      "oop",
-      "interview"
-    ],
-    "source": "auto",
-    "description": "Design three classes:\n\n1. BankAccount (base class)\n   - Fields: accountNumber (String), balance (double), ownerName (String)\n   - Constructor: BankAccount(String accountNumber, String ownerName)\n   - Methods: deposit(double amount), withdraw(double amount) throws InsufficientFundsException, getBalance(), toString()\n\n2. SavingsAccount extends BankAccount\n   - Extra field: interestRate (double)\n   - Method: applyInterest() — adds balance * interestRate to balance\n\n3. CurrentAccount extends BankAccount\n   - Extra field: overdraftLimit (double)\n   - Override withdraw() to allow overdraft up to overdraftLimit\n\nThis tests: inheritance, method overriding, constructors, exceptions, encapsulation.",
-    "hints": [
-      "Call super(accountNumber, ownerName) in subclass constructors",
-      "In CurrentAccount.withdraw(), check balance + overdraftLimit >= amount",
-      "Use private fields with public getters"
-    ],
-    "testcases": [
-      "new SavingsAccount(\"S001\", \"Alice\").deposit(1000) → balance=1000",
-      "applyInterest() at 5% on 1000 → balance=1050",
-      "new CurrentAccount(\"C001\", \"Bob\", 500.0).withdraw(600) on empty account → throws if > overdraftLimit"
-    ],
-    "selfCheck": true
-  },
-  {
-    "id": "deep-chapter-9-java-looping-concepts-shape",
-    "title": "Polymorphism: Shape Area Calculator",
-    "chapter": "Chapter 9: Java Looping Concepts",
-    "topic": "Polymorphism Deep Challenge",
-    "difficulty": "Hard",
-    "tags": [
-      "deep",
-      "coding",
-      "oop",
-      "ocjp"
-    ],
-    "source": "auto",
-    "description": "Create an abstract class Shape with:\n- abstract double area()\n- abstract double perimeter()\n- toString() returns \"ShapeType: area=X, perimeter=Y\"\n\nImplement:\n- Circle(double radius) — area = π*r², perimeter = 2*π*r\n- Rectangle(double width, double height)\n- Triangle(double a, double b, double c) — use Heron's formula for area\n\nStore shapes in a Shape[] array and print each. Demonstrate runtime polymorphism.\n\nOCJP focus: abstract classes, method overriding, runtime dispatch, array of parent type.",
-    "hints": [
-      "Math.PI for π, Math.sqrt() for Heron formula",
-      "Shape[] shapes = {new Circle(5), new Rectangle(4,3)}; — runtime dispatch",
-      "Abstract class cannot be instantiated directly"
-    ],
-    "testcases": [
-      "new Circle(5).area() → ~78.54",
-      "new Rectangle(4,3).perimeter() → 14.0",
-      "Heron Triangle(3,4,5) → area = 6.0"
-    ],
-    "selfCheck": true
-  },
-  {
-    "id": "deep-chapter-9-java-looping-concepts-patterns",
+    "id": "deep-chapter-8-java-looping-concepts-patterns",
     "title": "Number Patterns & Algorithm Challenges",
-    "chapter": "Chapter 9: Java Looping Concepts",
+    "chapter": "Chapter 8: Java Looping Concepts",
     "topic": "Loops Deep Challenge",
     "difficulty": "Medium",
     "tags": [
@@ -221,61 +169,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-10-while-and-do-while-looping-concepts-bank",
-    "title": "Design a BankAccount System (OOP)",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "topic": "OOP Deep Challenge",
-    "difficulty": "Hard",
-    "tags": [
-      "deep",
-      "coding",
-      "oop",
-      "interview"
-    ],
-    "source": "auto",
-    "description": "Design three classes:\n\n1. BankAccount (base class)\n   - Fields: accountNumber (String), balance (double), ownerName (String)\n   - Constructor: BankAccount(String accountNumber, String ownerName)\n   - Methods: deposit(double amount), withdraw(double amount) throws InsufficientFundsException, getBalance(), toString()\n\n2. SavingsAccount extends BankAccount\n   - Extra field: interestRate (double)\n   - Method: applyInterest() — adds balance * interestRate to balance\n\n3. CurrentAccount extends BankAccount\n   - Extra field: overdraftLimit (double)\n   - Override withdraw() to allow overdraft up to overdraftLimit\n\nThis tests: inheritance, method overriding, constructors, exceptions, encapsulation.",
-    "hints": [
-      "Call super(accountNumber, ownerName) in subclass constructors",
-      "In CurrentAccount.withdraw(), check balance + overdraftLimit >= amount",
-      "Use private fields with public getters"
-    ],
-    "testcases": [
-      "new SavingsAccount(\"S001\", \"Alice\").deposit(1000) → balance=1000",
-      "applyInterest() at 5% on 1000 → balance=1050",
-      "new CurrentAccount(\"C001\", \"Bob\", 500.0).withdraw(600) on empty account → throws if > overdraftLimit"
-    ],
-    "selfCheck": true
-  },
-  {
-    "id": "deep-chapter-10-while-and-do-while-looping-concepts-shape",
-    "title": "Polymorphism: Shape Area Calculator",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
-    "topic": "Polymorphism Deep Challenge",
-    "difficulty": "Hard",
-    "tags": [
-      "deep",
-      "coding",
-      "oop",
-      "ocjp"
-    ],
-    "source": "auto",
-    "description": "Create an abstract class Shape with:\n- abstract double area()\n- abstract double perimeter()\n- toString() returns \"ShapeType: area=X, perimeter=Y\"\n\nImplement:\n- Circle(double radius) — area = π*r², perimeter = 2*π*r\n- Rectangle(double width, double height)\n- Triangle(double a, double b, double c) — use Heron's formula for area\n\nStore shapes in a Shape[] array and print each. Demonstrate runtime polymorphism.\n\nOCJP focus: abstract classes, method overriding, runtime dispatch, array of parent type.",
-    "hints": [
-      "Math.PI for π, Math.sqrt() for Heron formula",
-      "Shape[] shapes = {new Circle(5), new Rectangle(4,3)}; — runtime dispatch",
-      "Abstract class cannot be instantiated directly"
-    ],
-    "testcases": [
-      "new Circle(5).area() → ~78.54",
-      "new Rectangle(4,3).perimeter() → 14.0",
-      "Heron Triangle(3,4,5) → area = 6.0"
-    ],
-    "selfCheck": true
-  },
-  {
-    "id": "deep-chapter-10-while-and-do-while-looping-concepts-patterns",
+    "id": "deep-chapter-9-while-and-do-while-looping-concepts-patterns",
     "title": "Number Patterns & Algorithm Challenges",
-    "chapter": "Chapter 10: While And Do While Looping Concepts",
+    "chapter": "Chapter 9: While And Do While Looping Concepts",
     "topic": "Loops Deep Challenge",
     "difficulty": "Medium",
     "tags": [
@@ -299,9 +195,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-11-class-object-static-and-instance-fields-bank",
+    "id": "deep-chapter-10-class-object-static-and-instance-fields-bank",
     "title": "Design a BankAccount System (OOP)",
-    "chapter": "Chapter 11: Class Object Static And Instance Fields",
+    "chapter": "Chapter 10: Class Object Static And Instance Fields",
     "topic": "OOP Deep Challenge",
     "difficulty": "Hard",
     "tags": [
@@ -325,9 +221,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-11-class-object-static-and-instance-fields-shape",
+    "id": "deep-chapter-10-class-object-static-and-instance-fields-shape",
     "title": "Polymorphism: Shape Area Calculator",
-    "chapter": "Chapter 11: Class Object Static And Instance Fields",
+    "chapter": "Chapter 10: Class Object Static And Instance Fields",
     "topic": "Polymorphism Deep Challenge",
     "difficulty": "Hard",
     "tags": [
@@ -351,9 +247,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-13-exception-handling-validation",
+    "id": "deep-chapter-12-exception-handling-validation",
     "title": "Custom Exception Hierarchy & Input Validation",
-    "chapter": "Chapter 13: Exception Handling",
+    "chapter": "Chapter 12: Exception Handling",
     "topic": "Exception Handling Deep Challenge",
     "difficulty": "Hard",
     "tags": [
@@ -377,9 +273,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-14-oop-concepts-design-a-shape-hierarchy-demonstrating-method-overriding",
+    "id": "deep-chapter-13-oop-concepts-design-a-shape-hierarchy-demonstrating-method-overriding",
     "title": "Design a Shape hierarchy demonstrating method overriding",
-    "chapter": "Chapter 14: OOP Concepts",
+    "chapter": "Chapter 13: OOP Concepts",
     "topic": "Method Overriding In Java",
     "difficulty": "Hard",
     "tags": [
@@ -397,9 +293,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-14-oop-concepts-demonstrate-the-field-hiding-vs-method-overriding-trap",
+    "id": "deep-chapter-13-oop-concepts-demonstrate-the-field-hiding-vs-method-overriding-trap",
     "title": "Demonstrate the field hiding vs method overriding trap",
-    "chapter": "Chapter 14: OOP Concepts",
+    "chapter": "Chapter 13: OOP Concepts",
     "topic": "Method Overriding In Java",
     "difficulty": "Hard",
     "tags": [
@@ -417,9 +313,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-14-oop-concepts-implement-a-polymorphic-payment-system-using-method-overriding",
+    "id": "deep-chapter-13-oop-concepts-implement-a-polymorphic-payment-system-using-method-overriding",
     "title": "Implement a polymorphic payment system using method overriding",
-    "chapter": "Chapter 14: OOP Concepts",
+    "chapter": "Chapter 13: OOP Concepts",
     "topic": "Method Overriding In Java",
     "difficulty": "Hard",
     "tags": [
@@ -437,9 +333,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-14-oop-concepts-bank",
+    "id": "deep-chapter-13-oop-concepts-bank",
     "title": "Design a BankAccount System (OOP)",
-    "chapter": "Chapter 14: OOP Concepts",
+    "chapter": "Chapter 13: OOP Concepts",
     "topic": "OOP Deep Challenge",
     "difficulty": "Hard",
     "tags": [
@@ -463,9 +359,9 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-14-oop-concepts-shape",
+    "id": "deep-chapter-13-oop-concepts-shape",
     "title": "Polymorphism: Shape Area Calculator",
-    "chapter": "Chapter 14: OOP Concepts",
+    "chapter": "Chapter 13: OOP Concepts",
     "topic": "Polymorphism Deep Challenge",
     "difficulty": "Hard",
     "tags": [
@@ -489,9 +385,32 @@ const DEEP_CHALLENGES = [
     "selfCheck": true
   },
   {
-    "id": "deep-chapter-15-strings-string-ops",
+    "id": "deep-chapter-14-strings-reverse-each-word-in-a-sentence-using-stringbuilder",
+    "title": "Reverse each word in a sentence using StringBuilder",
+    "chapter": "Chapter 14: Strings",
+    "topic": "String Builder Concepts",
+    "difficulty": "Hard",
+    "tags": [
+      "deep",
+      "coding"
+    ],
+    "source": "custom",
+    "description": "Given a sentence like \"Java is fun\", return \"avaJ si nuf\" (each word reversed, word order preserved).",
+    "hints": [
+      "Split on spaces, wrap each word in a new StringBuilder, call reverse(), and join with a single space.",
+      "Use one result StringBuilder and append(word).append(\" \") to avoid String + concatenation in the loop."
+    ],
+    "testcases": [
+      "reverseEachWord(\"Java is fun\") -> \"avaJ si nuf\"",
+      "reverseEachWord(\"hello\") -> \"olleh\"",
+      "reverseEachWord(\"\") -> \"\""
+    ],
+    "selfCheck": true
+  },
+  {
+    "id": "deep-chapter-14-strings-string-ops",
     "title": "String Manipulation Mastery",
-    "chapter": "Chapter 15: Strings",
+    "chapter": "Chapter 14: Strings",
     "topic": "Strings Deep Challenge",
     "difficulty": "Medium",
     "tags": [

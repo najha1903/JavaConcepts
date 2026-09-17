@@ -1,6 +1,10 @@
 /.idea/
 /node_modules/
 /JavaConcepts.iml
-/package.json
-/package-lock.json
 /out/
+
+# The package files carry the project workflow (npm run revise / approve / audit),
+# so they must be tracked for the project to be reproducible from a clone.
+
+# Java compiled output - never commit .class files
+**/*.class

@@ -79,11 +79,116 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // @answer Yes, it is valid in Java 7 and later, and the value is still one million.
 // @answer Underscores in numeric literals are ignored by the compiler and exist only to improve human readability.
 // @answer They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F.
+// @quiz (INTERVIEW, EASY) Which statement about primitive type sizes and ranges is correct?
+// @option int is 32-bit, covering -2,147,483,648 to 2,147,483,647. [correct]
+// @option byte is 8-bit, covering -128 to 128.
+// @option short is 16-bit, covering -32,768 to 32,768.
+// @option long is 32-bit, the same width as int.
+// @explain Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.
+// @why B: byte covers -128 to 127. The upper bound is 127, not 128, because 0 occupies one of the 256 values.
+// @why C: short covers -32,768 to 32,767. The upper bound is 32,767, not 32,768.
+// @why D: long is 64-bit. int is 32-bit. That is why a literal such as 100L is written with the L suffix.
+
+// @quiz (INTERVIEW, MEDIUM) What is the difference between widening and narrowing conversion?
+// @option Widening goes from a smaller type to a larger compatible type and is automatic. Narrowing goes the other way and requires an explicit cast. [correct]
+// @option Widening requires a cast because the larger type needs more memory.
+// @option Both directions are automatic, and Java truncates silently when needed.
+// @option Narrowing never loses information because Java rounds the value.
+// @explain Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.
+// @why B: requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.
+// @why C: if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents.
+// @why D: narrowing can lose information. A cast truncates rather than rounds, so 9.8 becomes 9, not 10.
+
+// @quiz (OCJP, MEDIUM) What is printed by these two statements?
+// @code System.out.println(5 / 2);
+// @code System.out.println(5 / 2.0);
+// @option 2 and 2.5 [correct]
+// @option 2.5 and 2.5
+// @option 2 and 2
+// @option 3 and 2.5
+// @explain When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.
+// @why B: the first line has two int operands, so it cannot produce 2.5.
+// @why C: the second line has a double operand, so it cannot produce 2.
+// @why D: integer division truncates towards zero, it does not round up. 5 / 2 is 2, never 3.
+
+// @quiz (OCJP, HARD) What is the value of x after this code runs?
+// @code int x = Integer.MAX_VALUE;
+// @code x++;
+// @option -2147483648, because the value wraps around to Integer.MIN_VALUE. [correct]
+// @option 2147483648, because int is promoted to long automatically.
+// @option It throws ArithmeticException.
+// @option It stays at 2147483647 and the increment is ignored.
+// @explain int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.
+// @why B: no promotion happens on overflow. The result is stored back into an int, so there is nowhere to hold 2147483648.
+// @why C: Java does not raise an exception for primitive integer overflow. Only integer division by zero throws ArithmeticException.
+// @why D: the value does change. The carry bit is discarded, which is what makes the value wrap to the opposite end of the range.
+
+// @quiz (INTERVIEW, EASY) Which statement about numeric literal suffixes is correct?
+// @option 100L creates a long, 3.14f creates a float, and a plain decimal literal such as 3.14 is a double. [correct]
+// @option 100L creates an int, and a plain decimal literal such as 3.14 is a float.
+// @option The suffix d is compulsory for every double literal.
+// @option A decimal literal such as 3.14 is treated as a float by default.
+// @explain Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.
+// @why B: L means long, not int, and a decimal literal is double, not float.
+// @why C: double is the default for decimals, so the d suffix is optional. float is the type that needs a suffix.
+// @why D: decimals default to double. Writing float f = 3.14; fails to compile without the f suffix.
+
+// @quiz (INTERVIEW, MEDIUM) Which statement about default values in Java is correct?
+// @option Instance and static fields receive type defaults such as 0 and false, while local variables must be assigned before they are read. [correct]
+// @option Every variable, including a local variable, receives a default value.
+// @option Local variables default to null.
+// @option Only static fields receive default values.
+// @explain Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.
+// @why B: locals are the exception. Reading an unassigned local variable is a compile-time error.
+// @why C: a local primitive is not set to null, and null is not even a valid value for a primitive. It simply has no value yet.
+// @why D: instance fields receive defaults too, not only static fields.
+
+// @quiz (INTERVIEW, MEDIUM) Which statement about char is correct?
+// @option The escape written as backslash-u 0044 is the character 'D', because char is 16-bit and Unicode-based. [correct]
+// @option char is 8-bit and holds one ASCII character.
+// @option char uses double quotes, just like a String.
+// @option The escape backslash-u 0044 is decimal 44, which is the comma character.
+// @explain A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.
+// @why B: char is 16-bit so it can represent Unicode, not just 8-bit ASCII.
+// @why C: double quotes create a String. A char literal always uses single quotes, as in 'D'.
+// @why D: the escape is hexadecimal, not decimal. 0x44 is 68, which is 'D'; decimal 44 is the comma.
+
+// @quiz (OCJP, HARD) What is the value of n?
+// @code double d = 9.8;
+// @code int n = (int) d;
+// @option 9, because the cast truncates towards zero. [correct]
+// @option 10, because the cast rounds to the nearest whole number.
+// @option 9.8, because int keeps the fractional part.
+// @option It does not compile, because a double can never be converted to an int.
+// @explain Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.
+// @why B: a cast truncates. To round 9.8 up to 10 you would need Math.round(d).
+// @why C: an int cannot hold a fraction at all, which is why precision is lost here.
+// @why D: the conversion is legal once the explicit (int) cast is present. Without the cast it would fail to compile.
+
+// Parameter notes (important method parameters and how to choose them):
+// - args (main): the command-line String array. Use it only when program input should come from launch arguments;
+//     remember every element is text and must be parsed before numeric primitive calculations.
+// - x (System.out.println): the value printed to the console. In this file the argument is usually a String created
+//     by concatenating a label with a primitive value; Java converts primitives to text before printing.
+// - target type (casts such as (byte)): the type written in parentheses tells Java the destination type for a
+//     narrowing conversion. Choose it only when you accept possible truncation, overflow, or precision loss.
+// - numeric literal suffix (L, f, d): the suffix tells Java which primitive literal type to create. Use L for long,
+//     f for float, and d for double when you want to be explicit; note that decimal literals default to double.
+//
+// @quiz (INTERVIEW) In System.out.println("The max Value of the integer is = " + intMaxValue), what parameter is passed?
+// @answer The parameter is one final String formed by concatenating the label with intMaxValue; println receives that String and prints it.
+//
+// @quiz (INTERVIEW TRAP) What does the (byte) parameter-like target in (byte) (intMinValue / 2) tell Java?
+// @answer It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information.
+//
+// @quiz (OCJP) Why choose 5f instead of 5 in floatValue = (5f / 2f)?
+// @answer The f suffix makes each literal a float, so Java performs floating-point division and keeps the decimal result instead of integer division.
 public class PrimitiveDataTypes {
 
     public static void main(String[] args) {
 
-        // int myValue = 10000; // A variable named myValue is created which is of datatype int and the value initialised = 10000;
+        int myValue = 10000; // A plain int declaration: datatype int, identifier myValue, value 10000.
+        System.out.println("myValue is = " + myValue); //myValue is = 10000
 
         int intMaxValue = Integer.MAX_VALUE; //int is a primitive data type and Integer is its wrapper class.
 
@@ -119,6 +224,7 @@ public class PrimitiveDataTypes {
         System.out.println("The min Value of Long is = " + myLongMinValue); //The min Value of Long is = -9223372036854775808
 
         byte myNewByteValue = (byte) (intMinValue / 2); //By Casting, we tell/instruct java to treat the int value as byte
+        System.out.println("myNewByteValue is = " + myNewByteValue);
 
         float myMaxFloatValue = Float.MAX_VALUE;
         float myMinFloatValue = Float.MIN_VALUE;
@@ -160,9 +266,10 @@ public class PrimitiveDataTypes {
         System.out.println("myUnicodeChar value is " + myUnicodeChar);
 
         boolean myTrueBooleanValue = true;
-       boolean myFalseBooleanValue = false;
+        boolean myFalseBooleanValue = false;
 
-
+        System.out.println("myTrueBooleanValue is = " + myTrueBooleanValue);   //myTrueBooleanValue is = true
+        System.out.println("myFalseBooleanValue is = " + myFalseBooleanValue); //myFalseBooleanValue is = false
     }
 
 }

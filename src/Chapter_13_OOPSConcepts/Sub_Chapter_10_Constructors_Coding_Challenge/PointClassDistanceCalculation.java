@@ -1,0 +1,98 @@
+package Chapter_13_OOPSConcepts.Sub_Chapter_10_Constructors_Coding_Challenge;
+
+
+/*
+* Point Class and Distance Calculation
+You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.
+
+The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.
+
+Write the following methods (instance methods):
+
+Method named getX without any parameters, it needs to return the value of x field.
+
+Method named getY without any parameters, it needs to return the value of y field.
+
+Method named setX with one parameter of type int, it needs to set the value of the x field.
+
+Method named setY with one parameter of type int, it needs to set the value of the y field.
+
+Method named distance without any parameters, it needs to return the distance between this Point and Point (0, 0) as a double.
+
+Method named distance with parameter of type Point, it needs to return the distance between this Point and the parameter Point as a double.
+
+Method named distance with two parameters x, y both of type int, it needs to return the distance between this Point and Point x, y as a double.
+
+
+
+How to find the distance between two points?
+To find a distance between points A(xA,yA) and B(xB,yB), we use the formula:
+
+d(A,B)=√ (xB − xA) * (xB - xA) + (yB − yA) * (yB - yA)
+
+Where √ represents square root.
+*
+* */
+
+import java.awt.*;
+
+// Parameter notes (what each argument means and how to choose it):
+// - PointClassDistanceCalculation(int x, int y): x is the horizontal coordinate and y is the vertical coordinate of the point.
+// - setX(int x): pass the new horizontal coordinate; choose any int that represents the point's position on the x-axis.
+// - setY(int y): pass the new vertical coordinate; choose any int that represents the point's position on the y-axis.
+// - distance(int a, int b): a and b are the target point's x and y coordinates; remember the order is x first, y second.
+// - distance(Point a): a is the other Point object to measure from; avoid passing null because the method calls a.getX() and a.getY().
+// - Math.sqrt(double value): the value is the squared distance total, so it should be non-negative before taking the square root.
+// @quiz (INTERVIEW) In PointClassDistanceCalculation(int x, int y), what do x and y represent?
+// @answer x is the horizontal coordinate and y is the vertical coordinate used to initialize the point's fields.
+// @quiz (INTERVIEW TRAP) What is the pitfall in calling distance(Point a) with a null argument?
+// @answer It causes a NullPointerException because the method reads a.getX() and a.getY().
+// @quiz (OCJP) In distance(int a, int b), why is parameter order important?
+// @answer The first int is treated as the target x-coordinate and the second int as the target y-coordinate.
+public class PointClassDistanceCalculation {
+
+    private int x;
+
+    private int y;
+
+    public PointClassDistanceCalculation(){
+
+    }
+
+    public PointClassDistanceCalculation(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public void setY(int y){
+        this.y = y;
+    }
+
+    public double distance(){
+        double distance = Math.sqrt(((getX() - 0) * (getX() - 0)) + ((getY() - 0) * (getY() - 0)));
+        return distance;
+    }
+
+    public double distance(int a, int b){
+        double distance = Math.sqrt(((getX() - a) * (getX() - a)) + ((getY() - b) * (getY() - b)));
+        return distance;
+    }
+
+    public double distance(Point a){
+        double distance =  Math.sqrt(((getX() - a.getX()) * (getX() - a.getX())) + ((getY() - a.getY()) * (getY() - a.getY())));;
+        return distance;
+    }
+
+}

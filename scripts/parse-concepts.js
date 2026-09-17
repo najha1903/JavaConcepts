@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 
 // ==========================================================================
 // Helper: Recursively list all .java files
@@ -114,8 +115,9 @@ function parseJavaFile(filePath, rootDir) {
     return false;
   }
 
-  // Joins lines where the previous line is clearly a continuation (ends with comma
-  // or ends without sentence-ending punctuation and the next line starts lowercase).
+  // Joins lines where the previous line is clearly a continuation. Besides a
+  // comma or lowercase continuation, recognize grammatical connector words so
+  // wrapped prose such as "the same API as / StringBuilder" stays together.
   function joinContinuationLines(lines) {
     if (lines.length <= 1) return lines;
     const result = [];
@@ -128,6 +130,7 @@ function parseJavaFile(filePath, rootDir) {
       const accEndsPunctuation = /[.!?]$/.test(acc) || /:-?$/.test(acc);
       const accEndsComma = /,\s*$/.test(acc);
       const nextStartsLower = /^[a-z]/.test(line);
+      const endsWithConnector = /\b(?:as|and|or|but|because|with|from|to|of|for|in|on|is|are|the|a|an|that|which|when|if|than|into|while|until|this|its|their|same|nearly)$/i.test(acc.trim());
 
       if (startsNewItem) {
         result.push(acc);
@@ -135,8 +138,8 @@ function parseJavaFile(filePath, rootDir) {
       } else if (accEndsComma) {
         // Continuation after comma (unless next is a numbered item — already handled)
         acc = acc.trimEnd() + ' ' + line;
-      } else if (!accEndsPunctuation && nextStartsLower) {
-        // Incomplete line, continuation starts lowercase → join
+      } else if (!accEndsPunctuation && (nextStartsLower || endsWithConnector)) {
+        // Incomplete line → join the next source-comment line.
         acc = acc.trimEnd() + ' ' + line;
       } else {
         result.push(acc);
@@ -150,6 +153,78 @@ function parseJavaFile(filePath, rootDir) {
   // Strips trailing comma (with optional space) from a line and replaces with period.
   function fixTrailingComma(line) {
     return /,\s*$/.test(line) ? line.trimEnd().replace(/,\s*$/, '.') : line;
+  }
+
+  // Keep the author's note as the source of truth. These narrow rewrites only
+  // improve grammar or add clarifying context around the same technical idea.
+  function clarifyNoteLine(line) {
+    let clarified = String(line || '').trim();
+    if (!clarified) return clarified;
+    const bulletMatch = clarified.match(/^([-*•]\s*)/);
+    const bulletPrefix = bulletMatch ? bulletMatch[1] : '';
+    clarified = bulletMatch ? clarified.slice(bulletMatch[0].length).trim() : clarified;
+
+    const exactRewrites = [
+      [/^String\.format\(String format, Object\.\.\. args\):\s*parameters mean the same as printf, but the formatted result is returned instead of printed\.?$/i,
+        'String.format(String format, Object... args) accepts the same format string and replacement values as printf. Instead of printing the result to the console, it returns the completed text as a String, so you can store it, combine it with other text, or print it later.'],
+      [/^A class can be described as\s*[:-]*$/i,
+        'A class is a blueprint that defines the data and behavior that its objects will have.'],
+      [/^Looping\s*[:-]*\s*Looping let us execute the code multiple number of times\.?$/i,
+        'Looping lets a program execute the same block of code repeatedly while a condition remains true.'],
+      [/^Value of the field always stays with the class$/i,
+        'A static field has one shared value that belongs to the class, rather than a separate value for each object.'],
+      [/^Creation of the object can be called as instantiation or instantiating a class\.?$/i,
+        'Creating an object is called instantiation, or instantiating the class.'],
+      [/^There is no limit on number of object one can create from a class\.?$/i,
+        'A class can be used to create any number of objects, as long as the program has enough memory.'],
+      [/^In its simplest form, it'?s the word new, followed by class name, and empty parenthesis\.?$/i,
+        'In its simplest form, object creation uses the new keyword followed by the class name and parentheses, such as new Person().'],
+      [/^The empty form, the class is the template for the data to be collected\.?$/i,
+        'An empty form is like a class: it is a template that describes the data an object will hold.'],
+      [/^The class provides a shape or framework that describes the object being created\.?$/i,
+        'The class provides the structure and behavior that describe each object created from it.'],
+      [/^Object and instance can be used interchangeably\.?$/i,
+        'In everyday Java terminology, object and instance usually refer to the same created value.'],
+      [/^A Class is like a blueprint\.?$/i,
+        'A class is a blueprint that defines the fields and methods available on its objects.'],
+      [/^Using blueprint, we can create as many objects that we want\.?$/i,
+        'Using one class blueprint, a program can create as many objects as it needs.'],
+      [/^Value of the field always stays with the class\s+iii\)\s*Value is accessed by ClassName\.fieldname\.?$/i,
+        'A static field has one shared value for the class, and you access it through ClassName.fieldName.'],
+      [/^iii\)\s*Value is accessed by ObjectVariable\.fieldname\.?$/i,
+        'An instance field is accessed through an object reference, such as objectVariable.fieldName.'],
+      [/^i\)\s*Storing counters\s+ii\)\s*Generating unique IDs\s+iii\)\s*Storing constant value that does not change\.\s*For example:\s*value of pi\s+iv\)\s*Creating and controlling access to a shared resource\.\s*For example:\s*log file, a database, input stream, output stream etc\.?$/i,
+        'Common uses for static variables include counting objects, generating unique IDs, storing constants such as pi, and sharing resources such as log files, databases, or streams.'],
+      [/^POJO parameter pattern to remember:\s*(.*)\s+For exactly one field\.?$/i,
+        'POJO parameter pattern to remember: an all-arguments constructor receives one value for each field, while each setter receives the replacement value for exactly one field.']
+    ];
+    for (const [pattern, replacement] of exactRewrites) {
+      if (pattern.test(clarified)) return bulletPrefix + replacement;
+    }
+
+    clarified = clarified
+      .replace(/\s*:-\s*/g, ': ')
+      .replace(/\bFor Ex\s*[:-]+/gi, 'For example:')
+      .replace(/\bEx\s*:-\s*/gi, 'Example: ')
+      .replace(/\bFor ex\s*[:-]+/gi, 'For example:')
+      .replace(/\bdoesn't\b/gi, 'does not')
+      .replace(/\bcan't\b/gi, 'cannot')
+      .replace(/\bwon't\b/gi, 'will not')
+      .replace(/\bshould return\b/gi, 'should return')
+      .replace(/\bnumber of object\b/gi, 'number of objects')
+      .replace(/\bmultiple number of times\b/gi, 'multiple times')
+      .replace(/\bmethod is accessed by\b/gi, 'call the method through')
+      .replace(/\bMethod is accessible by\b/gi, 'Call the method through')
+      .replace(/\bbelong to Class\b/gi, 'belong to the class')
+      .replace(/\bbelong to class\b/gi, 'belong to the class')
+      .replace(/\bthe class itself\b/gi, 'the class')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+
+    if (/^String\.format\(/i.test(clarified) && /formatted result is returned/i.test(clarified)) {
+      return bulletPrefix + 'String.format accepts a format string and replacement values, then returns the completed text as a String instead of printing it immediately.';
+    }
+    return bulletPrefix + clarified;
   }
 
   // ---- ASCII / markdown table detection --------------------------------------
@@ -166,6 +241,173 @@ function parseJavaFile(filePath, rootDir) {
   function splitCells(line) {
     return line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
   }
+
+  function isLikelyCommentCodeLine(line, inCode = false) {
+    const t = line.trim();
+    if (!t) return inCode;
+    if (/^\/\/\s*@/.test(t)) return false;
+    if (/^\w[\w\s-]*--?>/.test(t)) return false;
+    // A genuine table row (cells separated by single pipes, not a || operator,
+    // and not ending like a statement) is prose, never code. This keeps tables
+    // whose rows start with System./type keywords from being split into code.
+    if (isTableRow(t) && !/\|\|/.test(t) && !/[;{}]\s*$/.test(t)) return false;
+    return /[{}]/.test(t) ||
+      /;\s*(\/\/.*)?$/.test(t) ||
+      isCodeFragment(t) ||
+      /^(while|for|if|switch|try|catch)\s*\(/.test(t) ||
+      /^}?\s*else\b/.test(t) ||
+      /^(case\s+.+:|default:|break\s*;|continue\s*;|return\b|finally\b|System\.)/.test(t) ||
+      /^(int|long|double|float|boolean|char|String|StringBuilder|var)\s+[\w\[\]]+\s*(=|;|,)/.test(t) ||
+      /^[A-Z]\w*(?:<[^>]+>)?\s+\w+\s*(=|;)/.test(t) ||
+      /^[a-zA-Z_$][\w$]*\s*(=|\+\+|--)/.test(t);
+  }
+
+  function appendProseSegments(lines, results, type = 'lines') {
+    const meaningful = lines
+      .map(l => l.trim())
+      .filter(isMeaningfulLine)
+      .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))
+      .filter(l => isTableRow(l) || !isCodeFragment(l));
+
+    for (const seg of segmentTables(meaningful)) {
+      if (seg.type === 'table') {
+        results.push(seg);
+      } else {
+        const joined = joinContinuationLines(seg.lines).map(fixTrailingComma).map(clarifyNoteLine);
+        if (joined.length > 0) results.push({ type, lines: joined });
+      }
+    }
+  }
+
+  function appendCodeSegment(lines, results) {
+    const code = lines.join('\n').replace(/^\s+|\s+$/g, '');
+    if (code) results.push({ type: 'code', language: 'java', code, lines: [] });
+  }
+
+  // Extract method and constructor parameters from the actual Java source so
+  // every topic can explain the values its public API accepts. This is used
+  // only as a fallback when a file does not already document its parameters.
+  function extractParameterSignatures(source) {
+    const withoutComments = source
+      .replace(/\/\*[\s\S]*?\*\//g, ' ')
+      .replace(/\/\/.*$/gm, '');
+    const signatures = [];
+    const signatureRegex = /^\s*(?:(?:public|private|protected|static|final|abstract|synchronized|native|strictfp)\s+)*(?:[\w$<>.,?\[\] ]+\s+)?([A-Za-z_$][\w$]*)\s*\(([^()]*)\)\s*(?:throws\s+[^\{]+)?\{/gm;
+    const ignoredNames = new Set(['if', 'for', 'while', 'switch', 'catch', 'do', 'try', 'return']);
+
+    const splitParameters = value => {
+      const parts = [];
+      let start = 0;
+      let angleDepth = 0;
+      for (let i = 0; i < value.length; i++) {
+        if (value[i] === '<') angleDepth++;
+        else if (value[i] === '>') angleDepth = Math.max(0, angleDepth - 1);
+        else if (value[i] === ',' && angleDepth === 0) {
+          parts.push(value.slice(start, i).trim());
+          start = i + 1;
+        }
+      }
+      if (value.slice(start).trim()) parts.push(value.slice(start).trim());
+      return parts;
+    };
+
+    let match;
+    while ((match = signatureRegex.exec(withoutComments)) !== null) {
+      const methodName = match[1];
+      if (ignoredNames.has(methodName)) continue;
+      const parameters = splitParameters(match[2]).map(parameter => {
+        const cleaned = parameter
+          .replace(/@\w+(?:\([^)]*\))?\s*/g, '')
+          .replace(/\bfinal\s+/g, '')
+          .trim();
+        const nameMatch = cleaned.match(/([A-Za-z_$][\w$]*)\s*$/);
+        if (!nameMatch) return null;
+        const name = nameMatch[1];
+        const type = cleaned.slice(0, nameMatch.index).trim() || 'value';
+        return { name, type };
+      }).filter(Boolean);
+      // main(String[] args) is the JVM entry point, not part of the example's
+      // teaching API. Keep it out of generated fallback notes unless the
+      // author has explicitly documented it in the source comments.
+      if (methodName === 'main' && parameters.length === 1 && parameters[0].name === 'args') continue;
+      if (parameters.length) signatures.push({ methodName, parameters });
+    }
+    return signatures;
+  }
+
+  function parameterDescription(name, type, methodName) {
+    const lower = name.toLowerCase();
+    const typeLabel = type.replace(/\s+/g, ' ').trim();
+    if (name === 'args') return `the command-line ${typeLabel} supplied to main; choose values only when this example needs launch-time input.`;
+    const specificDescriptions = {
+      celsius: `the Celsius temperature supplied to ${methodName}(); choose the temperature you want to convert, such as 25 for 25°C.`,
+      fahrenheit: `the Fahrenheit temperature supplied to ${methodName}(); choose the temperature in degrees Fahrenheit.`,
+      count: `the number of items or terms that ${methodName}() should process; choose a non-negative count and check the zero case.`,
+      target: `the value that ${methodName}() must locate, compare, or classify; choose a value that exercises both matching and non-matching paths.`,
+      score: `the score supplied to ${methodName}(); choose a value within the documented scoring range, including boundary values when testing conditions.`,
+      year: `the calendar year supplied to ${methodName}(); choose a four-digit year and include leap-year boundaries when testing.`,
+      month: `the month value supplied to ${methodName}(); choose a valid month number or name and test the invalid/default case too.`,
+      radius: `the circle radius supplied to ${methodName}(); choose a non-negative measurement because area depends on radius squared.`,
+      width: `the width supplied to ${methodName}(); choose a non-negative measurement that matches the unit used by the related dimensions.`,
+      height: `the height supplied to ${methodName}(); choose a non-negative measurement that matches the unit used by the related dimensions.`,
+      amount: `the numeric amount supplied to ${methodName}(); choose a value that respects the operation's limits, such as a non-negative deposit or a valid withdrawal.`,
+      minutes: `the total minutes supplied to ${methodName}(); choose a non-negative duration so it can be converted into years and remaining days.`,
+      temperature: `the temperature supplied to ${methodName}(); choose a value at or around the documented seasonal or comparison boundary.`,
+      limit: `the upper limit supplied to ${methodName}(); choose a positive boundary that controls how far the algorithm iterates.`,
+      size: `the requested size supplied to ${methodName}(); choose a positive dimension and test the smallest valid size.`,
+      operator: `the operator supplied to ${methodName}(); choose one of the operators supported by the implementation and test the invalid case.`,
+      expression: `the expression text supplied to ${methodName}(); choose input that follows the parser's supported format and include invalid input when testing.`,
+      sequence: `the ${typeLabel} supplied to ${methodName}(); choose the generated or expected sequence whose elements the method should process.`,
+      remaining: `the remaining value supplied to ${methodName}(); choose the unprocessed portion passed into the recursive step.`,
+      reversed: `the reversed accumulator supplied to ${methodName}(); start with the neutral value and let each recursive step append the next digit.`,
+      base: `the base value supplied to ${methodName}(); choose the number that will be raised to the requested exponent.`,
+      exponent: `the exponent supplied to ${methodName}(); choose the power to apply and test zero, positive, and boundary values.`,
+      minimum: `the lower bound supplied to ${methodName}(); choose the smallest accepted value in the validation range.`,
+      maximum: `the upper bound supplied to ${methodName}(); choose the largest accepted value in the validation range.`,
+      firstnumber: `the first numeric operand supplied to ${methodName}(); choose the first value in the comparison or calculation.`,
+      secondnumber: `the second numeric operand supplied to ${methodName}(); choose the second value in the comparison or calculation.`,
+      thirdnumber: `the third numeric operand supplied to ${methodName}(); choose the final value in the comparison or calculation.`
+    };
+    if (specificDescriptions[lower]) return specificDescriptions[lower];
+    if (/^(first|second|third|left|right|a|b|x|y|z)$/.test(lower)) return `the ${lower} operand supplied to ${methodName}(); choose a value that represents this operation's ${lower} input.`;
+    if (/count|size|limit|length|index|position|number|year|month|day|hour|minute|second|score|temperature|radius|width|height|amount|goal|capacity|target/.test(lower)) return `the ${typeLabel} input used by ${methodName}(); choose a value that matches the method's range and boundary rules.`;
+    if (/flag|valid|summer|barking|enabled|open|closed|developer/.test(lower) || /^boolean$/i.test(typeLabel)) return `the boolean condition used by ${methodName}(); choose true or false to exercise the relevant branch.`;
+    if (/text|string|name|title|author|isbn|input|expression|sentence|operator|unit|scenario|code/.test(lower) || /String/.test(typeLabel)) return `the ${typeLabel} text supplied to ${methodName}(); choose content that matches the method's expected format.`;
+    if (/converter|function|predicate|mapper/.test(lower) || /FunctionalInterface|Operator|Function/.test(typeLabel)) return `the conversion or callback logic supplied to ${methodName}(); choose an implementation that matches the expected input and output types.`;
+    return `the ${typeLabel} value supplied to ${methodName}(); choose a representative value, then test a boundary or invalid value to observe how the method responds.`;
+  }
+
+  function addGeneratedParameterNotes() {
+    const signatures = extractParameterSignatures(content);
+    if (!signatures.length) return;
+
+    const existingText = headerComments.flatMap(block => block.lines || []).join('\n');
+    const parameterBlock = headerComments.find(block => (block.lines || []).some(line => /parameter notes/i.test(line)));
+    const missingEntries = [];
+    signatures.forEach(signature => {
+      signature.parameters.forEach(parameter => {
+        const parameterPattern = new RegExp(`\\b${parameter.name.replace(/[$]/g, '\\$&')}\\b`);
+        if (!parameterBlock || !parameterPattern.test(existingText)) {
+          missingEntries.push(`- ${parameter.name} (${signature.methodName}(${signature.parameters.map(p => `${p.type} ${p.name}`).join(', ')})): ${parameterDescription(parameter.name, parameter.type, signature.methodName)}`);
+        }
+      });
+    });
+    if (!missingEntries.length) return;
+
+    if (parameterBlock) {
+      const headingIndex = parameterBlock.lines.findIndex(line => /parameter notes/i.test(line));
+      parameterBlock.lines.splice(headingIndex + 1, 0, ...missingEntries);
+    } else {
+      headerComments.push({
+        type: 'generated-parameters',
+        lines: [
+          'Parameter notes (generated from the method signatures in this file):',
+          ...missingEntries
+        ]
+      });
+    }
+  }
+
   // Returns the non-separator rows of a consecutive table run starting at `start`.
   function tableRunInfo(lines, start) {
     let j = start;
@@ -215,25 +457,52 @@ function parseJavaFile(filePath, rootDir) {
     const results = [];
     let m;
     while ((m = re.exec(text)) !== null) {
-      const rawLines = m[1].split('\n')
-        .map(l => l.replace(/^\s*\*\s?/, '').trim())
-        .filter(isMeaningfulLine)
-        .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))
-        // Lines containing '//' inside a block comment are code examples, not prose.
-        .filter(l => !l.includes('//'))
-        // Lines with braces or ending semicolons are code examples (but keep table rows).
-        .filter(l => isTableRow(l) || !/[{}]/.test(l))
-        .filter(l => isTableRow(l) || !/;\s*$/.test(l))
-        // Switch labels, lone declarations, and other code fragments.
-        .filter(l => isTableRow(l) || !isCodeFragment(l));
-      for (const seg of segmentTables(rawLines)) {
-        if (seg.type === 'table') {
-          results.push(seg);
+      const cleaned = m[1].split('\n')
+        .map(l => l.replace(/^\s*\*\s?/, '').replace(/\s+$/, ''));
+
+      while (cleaned.length && cleaned[0].trim() === '') cleaned.shift();
+      while (cleaned.length && cleaned[cleaned.length - 1].trim() === '') cleaned.pop();
+
+      const nonBlank = cleaned.filter(l => l.trim() !== '');
+      const baseIndent = nonBlank.length
+        ? Math.min(...nonBlank.map(l => (l.match(/^\s*/) || [''])[0].length))
+        : 0;
+      const lines = cleaned.map(l => l.slice(Math.min(baseIndent, (l.match(/^\s*/) || [''])[0].length)));
+
+      const flushProse = proseLines => appendProseSegments(proseLines, results, 'block');
+      const flushCode = codeLines => appendCodeSegment(codeLines, results);
+
+      let proseBuffer = [];
+      let codeBuffer = [];
+      let inCode = false;
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (/^\/\/\s*@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(trimmed)) {
+          if (inCode) { flushCode(codeBuffer); codeBuffer = []; inCode = false; }
+          flushProse(proseBuffer); proseBuffer = [];
+          continue;
+        }
+
+        if (isLikelyCommentCodeLine(line, inCode)) {
+          if (!inCode) {
+            flushProse(proseBuffer);
+            proseBuffer = [];
+            inCode = true;
+          }
+          codeBuffer.push(line);
+        } else if (inCode) {
+          flushCode(codeBuffer);
+          codeBuffer = [];
+          inCode = false;
+          proseBuffer.push(line);
         } else {
-          const joined = joinContinuationLines(seg.lines).map(fixTrailingComma);
-          if (joined.length > 0) results.push({ type: 'block', lines: joined });
+          proseBuffer.push(line);
         }
       }
+
+      if (inCode) flushCode(codeBuffer);
+      else flushProse(proseBuffer);
     }
     return results;
   }
@@ -247,29 +516,42 @@ function parseJavaFile(filePath, rootDir) {
 
   // Line comments before the class declaration (strip block-comment regions first)
   const cleanHeader = headerContent.replace(/\/\*([\s\S]*?)\*\//g, '');
-  const rawLineComments = cleanHeader.split('\n')
-    .map(l => l.trim())
-    .filter(l => l.startsWith('//'))
-    .filter(l => !/^\/\/\s*@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))  // skip annotation markers
-    .map(l => l.replace(/^\/\/\s*/, '').replace(/^\/\/\s*/, '').trim())  // strip nested //
-    .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l))  // belt-and-suspenders
-    .filter(l => !/https?:\/\//.test(l))   // skip URL-only reference lines
-    .filter(isMeaningfulLine)
-    .filter(l => isTableRow(l) || !isCodeFragment(l));
-  for (const seg of segmentTables(rawLineComments)) {
-    if (seg.type === 'table') {
-      headerComments.push(seg);
+  const lineCommentLines = cleanHeader.split('\n')
+    .filter(l => l.trim().startsWith('//'))
+    .map(l => l.replace(/^\s*\/\/ ?/, '').replace(/^\/\/ ?/, ''))
+    .filter(l => !/^@(quiz|answer|challenge|desc|hint|testcase)\b/i.test(l.trim()))
+    .filter(l => !/https?:\/\//.test(l));
+
+  let lineProseBuffer = [];
+  let lineCodeBuffer = [];
+  let inLineCode = false;
+  for (const line of lineCommentLines) {
+    if (isLikelyCommentCodeLine(line, inLineCode)) {
+      if (!inLineCode) {
+        appendProseSegments(lineProseBuffer, headerComments, 'lines');
+        lineProseBuffer = [];
+        inLineCode = true;
+      }
+      lineCodeBuffer.push(line);
+    } else if (inLineCode) {
+      appendCodeSegment(lineCodeBuffer, headerComments);
+      lineCodeBuffer = [];
+      inLineCode = false;
+      lineProseBuffer.push(line);
     } else {
-      const joined = joinContinuationLines(seg.lines).map(fixTrailingComma);
-      if (joined.length > 0) headerComments.push({ type: 'lines', lines: joined });
+      lineProseBuffer.push(line);
     }
   }
+  if (inLineCode) appendCodeSegment(lineCodeBuffer, headerComments);
+  else appendProseSegments(lineProseBuffer, headerComments, 'lines');
 
   // Fallback: try block comments inside the class body when header has nothing.
   if (headerComments.length === 0 && match) {
     const bodyComments = extractBlockComments(content.substring(match.index));
     headerComments.push(...bodyComments);
   }
+
+  addGeneratedParameterNotes();
 
   // ---- collect inline comments ------------------------------------------------
   // Group consecutive // comment lines so multi-line explanations get joined.
@@ -280,24 +562,76 @@ function parseJavaFile(filePath, rootDir) {
 
   // ---- parse @quiz / @answer markers -----------------------------------------
   // Syntax:  // @quiz  <question text>
-  //          // @answer <answer line>   (one or more lines)
-  // These are excluded from Key Takeaway bullets and added to the quiz bank.
+  //          // @quiz  (OCJP, HARD) <question text>      <- tag and level are optional
+  //          // @code  <a line of code shown with the question>   (optional, repeatable)
+  //          // @option <one possible answer>          (optional; [correct] marks it)
+  //          // @explain <why the right answer is right>          (optional)
+  //          // @why <why one of the WRONG options is wrong>      (optional, in order)
+  //          // @answer <answer line>   (for a written question, one or more lines)
+  // The optional parentheses carry a tag such as OCJP, INTERVIEW or INTERVIEW TRAP
+  // and/or a level such as EASY, MEDIUM or HARD. Both are removed from the question
+  // text and used to drive the quiz filters.
+  //
+  // A question with @option lines becomes a real multiple-choice question, which is
+  // what an exam actually looks like. @why lines are matched to the wrong options in
+  // the order they are written, so the learner is told why their choice was wrong.
   const customQuizzes = [];
   let currentQuiz = null;
+  const quizHasContent = (quiz) => Boolean(quiz && (quiz.answers.length > 0 || (quiz.options && quiz.options.length > 0)));
+  const closeQuiz = () => {
+    if (quizHasContent(currentQuiz)) {
+      // Attach the why-notes to the wrong options. A note may name its option
+      // ("A: ..." or "B) ..."), which is unambiguous. Any note without a letter is
+      // given to the remaining wrong options in the order they were written.
+      if (currentQuiz.options && currentQuiz.whyNotes && currentQuiz.whyNotes.length) {
+        const wrongIdx = currentQuiz.options.map((o, i) => (o.correct ? -1 : i)).filter(i => i >= 0);
+        const leftovers = [];
+        currentQuiz.whyNotes.forEach(note => {
+          const match = note.match(/^([A-Ha-h])\s*[):\-.]\s*(.+)$/);
+          if (match) {
+            const optionIndex = match[1].toUpperCase().charCodeAt(0) - 65;
+            if (currentQuiz.options[optionIndex]) {
+              currentQuiz.options[optionIndex].why = match[2].trim();
+              return;
+            }
+          }
+          leftovers.push(note);
+        });
+        const remaining = wrongIdx.filter(i => !currentQuiz.options[i].why);
+        remaining.forEach((optionIndex, n) => {
+          if (leftovers[n]) currentQuiz.options[optionIndex].why = leftovers[n];
+        });
+      }
+      customQuizzes.push(currentQuiz);
+    }
+    currentQuiz = null;
+  };
   for (const rawLine of allSourceLines) {
     const trimmed = rawLine.trim();
     if (/^\/\/\s*@quiz\s+/.test(trimmed)) {
-      if (currentQuiz && currentQuiz.answers.length > 0) customQuizzes.push(currentQuiz);
-      currentQuiz = { question: trimmed.replace(/^\/\/\s*@quiz\s+/, '').trim(), answers: [] };
+      closeQuiz();
+      const parsedHeader = parseQuizHeader(trimmed.replace(/^\/\/\s*@quiz\s+/, '').trim());
+      currentQuiz = { question: parsedHeader.text, answers: [], quizTag: parsedHeader.tag, quizLevel: parsedHeader.level, options: [], code: [], explain: '', whyNotes: [] };
     } else if (/^\/\/\s*@answer\s+/.test(trimmed) && currentQuiz) {
       currentQuiz.answers.push(trimmed.replace(/^\/\/\s*@answer\s+/, '').trim());
-    } else if (currentQuiz && currentQuiz.answers.length > 0 && !/^\/\//.test(trimmed) && trimmed !== '') {
-      // Non-comment, non-blank line after answers closes the quiz entry
-      customQuizzes.push(currentQuiz);
-      currentQuiz = null;
+    } else if (/^\/\/\s*@code\s+/.test(trimmed) && currentQuiz) {
+      currentQuiz.code.push(trimmed.replace(/^\/\/\s*@code\s+/, '').trim());
+    } else if (/^\/\/\s*@option\s+/.test(trimmed) && currentQuiz) {
+      let optionText = trimmed.replace(/^\/\/\s*@option\s+/, '').trim();
+      const isCorrect = /\[correct\]\s*$/i.test(optionText);
+      optionText = optionText.replace(/\s*\[correct\]\s*$/i, '').trim();
+      if (optionText) currentQuiz.options.push({ text: optionText, correct: isCorrect });
+    } else if (/^\/\/\s*@explain\s+/.test(trimmed) && currentQuiz) {
+      const text = trimmed.replace(/^\/\/\s*@explain\s+/, '').trim();
+      currentQuiz.explain = currentQuiz.explain ? `${currentQuiz.explain} ${text}` : text;
+    } else if (/^\/\/\s*@why\s+/.test(trimmed) && currentQuiz) {
+      currentQuiz.whyNotes.push(trimmed.replace(/^\/\/\s*@why\s+/, '').trim());
+    } else if (quizHasContent(currentQuiz) && !/^\/\//.test(trimmed) && trimmed !== '') {
+      // A non-comment, non-blank line ends the question block.
+      closeQuiz();
     }
   }
-  if (currentQuiz && currentQuiz.answers.length > 0) customQuizzes.push(currentQuiz);
+  closeQuiz();
 
   // ---- parse @challenge annotations for deep coding problems -----------------
   // Syntax:
@@ -391,13 +725,13 @@ function parseJavaFile(filePath, rootDir) {
   if (currentGroup) inlineGroups.push(currentGroup);
 
   // Flatten groups, join continuations, deduplicate
-  const headerLineSet = new Set(headerComments.flatMap(b => b.lines));
+  const headerLineSet = new Set(headerComments.flatMap(b => b.lines || []));
   const seenInline = new Set();
   const inlineComments = [];
   for (const group of inlineGroups) {
     const joined = joinContinuationLines(group.lines);
     for (const line of joined) {
-        const cleanLine = fixTrailingComma(line);
+        const cleanLine = clarifyNoteLine(fixTrailingComma(line));
         if (!headerLineSet.has(cleanLine) && !seenInline.has(cleanLine)) {
           seenInline.add(cleanLine);
           inlineComments.push(cleanLine);
@@ -425,30 +759,129 @@ function parseJavaFile(filePath, rootDir) {
   return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments, customQuizzes, deepChallenges, code: content };
 }
 
+// A parameter note is a bullet that names a parameter and then explains it, such
+// as "- text.charAt(int index): index is 0 - based". Those lines belong in the
+// Notes view. In the concept revision panel they crowd out the real concepts.
+function isParameterNoteLine(line) {
+  const raw = String(line || '').trim();
+  if (!/^[-*•]\s+/.test(raw)) return false;
+  const body = raw.replace(/^[-*•]\s+/, '');
+  const colonIdx = body.search(/:-?\s/);
+  if (colonIdx === -1) return false;
+  const head = body.slice(0, colonIdx);
+  return head.includes('(') && /\)$/.test(head);
+}
+
+// Takes up to `limit` lines, one round at a time, so every topic is represented
+// before any single topic contributes a second line.
+function takeRoundRobin(buckets, limit) {
+  const out = [];
+  let round = 0;
+  while (out.length < limit) {
+    let added = 0;
+    for (const bucket of buckets) {
+      if (out.length >= limit) break;
+      if (round < bucket.length) {
+        out.push(bucket[round]);
+        added++;
+      }
+    }
+    if (added === 0) break;
+    round++;
+  }
+  return out;
+}
+
+// True when a line is a title or a label rather than a statement that can be
+// explained, for example "STRING METHODS AND BEST PRACTICES", "Parameters:-" or
+// "Challenge: Build a calculator".
+function isTitleOrLabel(line) {
+  const text = String(line || '').trim();
+  if (!text) return true;
+  // A heading: capitalised words with no ordinary sentence text.
+  if (!/[a-z]/.test(text) && /[A-Z]/.test(text)) return true;
+  // A label ending in a colon, such as "Escape Sequences:-" or "Strong points :".
+  if (/^[A-Z][\w\s&'()\/.,-]{0,60}:\s*-?\s*$/.test(text)) return true;
+  if (/^(challenge|deep problem|hint|testcase|print|write|create|use|build|example|note|output)\s*[:\-]/i.test(text)) return true;
+  if (/^output\b/i.test(text)) return true;
+  return false;
+}
+
+// True when a line is a parameter note, for example
+// "- text.charAt(int index): index is 0-based ..." or the "Parameter notes" heading.
+function looksLikeParameterNote(line) {
+  const raw = String(line || '').trim();
+  if (/^parameter notes\b/i.test(raw)) return true;
+  if (/what each (argument|constructor|parameter)/i.test(raw)) return true;
+  if (/^[A-Za-z0-9_$].*\bhow to choose it\b/i.test(raw)) return true;
+  return isParameterNoteLine(raw);
+}
+
+// The single gate every generated quiz option and answer must pass. A title, a
+// heading, a code line, a parameter note or a fragment can never be a valid
+// answer or a valid wrong option: scraped text like "." or a challenge title is
+// what used to mark a learner wrong for a correct answer.
+function isUsableQuizStatement(line) {
+  const text = String(line || '').trim();
+  if (text.length < 25) return false;
+  if (isTitleOrLabel(text)) return false;
+  if (looksLikeParameterNote(text)) return false;
+  // Must read like a sentence, not a code line or a path.
+  if (!/[a-z]{2,}/.test(text)) return false;
+  if (/[{};]\s*$/.test(text)) return false;
+  if (/^(package|import)\s/.test(text)) return false;
+  if (/\.java\b/.test(text)) return false;
+  if (!/\s/.test(text)) return false;
+  return true;
+}
+
 // ==========================================================================
 // Auto-generate QUICK_REVISION_BANK entry from parsed chapter topics
 // ==========================================================================
 function buildQuickRevisionEntry(chapterName, topics) {
   const gotchaKeywords = ['gotcha', 'pitfall', 'warning', 'caution', 'error', 'note', 'remember', 'important', 'trick', 'overflow', 'avoid', 'careful', 'trap'];
-  const takeaways = [];
-  const gotchas = [];
   const codeSnippets = [];
   const badges = new Set();
+  // Comparison tables keep their grid in the Quick Revision panel, so they are
+  // carried across as structured rows instead of flattened "cell — cell" text.
+  const tables = [];
+  // Concept lines are collected per topic so that every topic contributes,
+  // instead of the first topic filling every slot with its parameter notes.
+  const conceptsByTopic = [];
+  const gotchasByTopic = [];
 
   topics.forEach(topic => {
-    // Collect lines from header comments
+    const conceptLines = [];
+    const gotchaLines = [];
+
     topic.headerComments.forEach(block => {
-      block.lines.forEach(line => {
-        if (line.length < 10) return;
-        const lowerLine = line.toLowerCase();
-        const isGotcha = gotchaKeywords.some(kw => lowerLine.includes(kw));
-        if (isGotcha) {
-          if (gotchas.length < 4) gotchas.push(line);
-        } else {
-          if (takeaways.length < 6) takeaways.push(line);
+      if (block.type === 'code' || block.type === 'generated' || block.type === 'generated-parameters') return;
+      if (block.type === 'table' && (block.rows || []).length > 0) {
+        if (tables.length < 3) {
+          tables.push({
+            headers: (block.headers || []).slice(),
+            rows: (block.rows || []).map(row => row.slice())
+          });
         }
+        return;
+      }
+      if (!Array.isArray(block.lines)) return;
+      // Skip a whole parameter-notes block. It explains arguments, not concepts.
+      if (block.lines.length && /parameter notes/i.test(block.lines[0])) return;
+      block.lines.forEach(line => {
+        if (!line || line.length < 10) return;
+        if (isParameterNoteLine(line)) return;
+        // A bare heading such as "STRING METHODS AND BEST PRACTICES" is a title,
+        // not a concept, so it is not revision material.
+        if (!/[a-z]/.test(line)) return;
+        const lowerLine = line.toLowerCase();
+        if (gotchaKeywords.some(kw => lowerLine.includes(kw))) gotchaLines.push(line);
+        else conceptLines.push(line);
       });
     });
+
+    conceptsByTopic.push(conceptLines);
+    gotchasByTopic.push(gotchaLines);
 
     // Extract class/method signature badges
     const sigRegex = /\b(public|private|protected)?\s*(static\s+)?(\w+)\s+(\w+)\s*\([^)]*\)\s*\{/g;
@@ -470,6 +903,9 @@ function buildQuickRevisionEntry(chapterName, topics) {
     }
   });
 
+  const takeaways = takeRoundRobin(conceptsByTopic, 6);
+  const gotchas = takeRoundRobin(gotchasByTopic, 4);
+
   // Fallbacks if no comments found
   if (takeaways.length === 0) {
     takeaways.push(`Study the ${chapterName} concepts and their practical applications.`);
@@ -482,7 +918,7 @@ function buildQuickRevisionEntry(chapterName, topics) {
   const syntax = codeSnippets[0] || `// See source files in ${chapterName}`;
   const badgeList = Array.from(badges).slice(0, 5);
 
-  return { takeaways, gotchas, syntax, badges: badgeList };
+  return { takeaways, gotchas, syntax, badges: badgeList, tables };
 }
 
 // ==========================================================================
@@ -493,13 +929,39 @@ function makeQid(chapter, topic, type, index) {
   return `${slug(chapter)}_${slug(topic)}_${type}_${index}`;
 }
 
-function shuffleArr(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+// Deterministic string hash, so generated content is reproducible between runs.
+function stableHash(value) {
+  const text = String(value);
+  let result = 2166136261;
+  for (let i = 0; i < text.length; i++) {
+    result ^= text.charCodeAt(i);
+    result = Math.imul(result, 16777619);
   }
-  return a;
+  return result >>> 0;
+}
+
+function shuffleArr(arr) {
+  // Generated artifacts must be reproducible. Runtime quiz selection is still
+  // randomized in the dashboard; only build-time option ordering is fixed.
+  return arr.slice().sort((a, b) => {
+    const textA = String(a);
+    const textB = String(b);
+    return stableHash(textA) - stableHash(textB) || textA.localeCompare(textB);
+  });
+}
+
+// Puts the answer options in a stable but non-obvious order. Without this, every
+// authored answer sat in position A, so a learner could score 100% by always
+// picking the first option.
+function orderOptionsForQuestion(options, seed) {
+  return options
+    .map((option, index) => ({ option, index }))
+    .sort((a, b) => {
+      const hashA = stableHash(`${seed}|${a.option.text}`);
+      const hashB = stableHash(`${seed}|${b.option.text}`);
+      return hashA - hashB || a.index - b.index;
+    })
+    .map(entry => entry.option);
 }
 
 // Helper: create a simple slug for qid
@@ -508,13 +970,90 @@ function slugify(s) {
 }
 
 // ==========================================================================
+// Quiz levels and tags
+// ==========================================================================
+// A question's level is decided by WHAT THE QUESTION ASKS. It is never derived
+// from the position of its topic inside the chapter, because that produced
+// meaningless levels (first topic = easy, last topic = hard).
+const KIND_LEVELS = {
+  'mask-keyword': 'easy',     // recognise the right keyword in a code line
+  'concept': 'easy',          // recognise the correct description of a topic
+  'fill-blank': 'easy',       // recall a word from the notes
+  'return-type': 'easy',      // read a method signature
+  'class-relation': 'medium', // read the class declaration
+  'true-false': 'medium',     // multi-select over mixed statements
+  'predict': 'medium',        // trace a small snippet
+  'codefill': 'medium',       // recall a keyword in a code context
+  'explain': 'medium',        // open written explanation
+  'gotcha': 'hard',           // pick the trap
+  'ocjp-tricky': 'hard'       // exam style trap
+};
+
+function levelForKind(kind) {
+  return KIND_LEVELS[kind] || 'medium';
+}
+
+// Accepts EASY / MEDIUM / HARD and the common synonyms.
+function normalizeLevel(value) {
+  const v = String(value || '').trim().toLowerCase();
+  if (v === 'easy' || v === 'e') return 'easy';
+  if (v === 'medium' || v === 'm') return 'medium';
+  if (v === 'hard' || v === 'difficult' || v === 'h' || v === 'd') return 'hard';
+  return null;
+}
+
+// Level for an authored @quiz marker: use the authored level when present,
+// otherwise a trap question is hard and everything else is medium.
+function levelForCustomQuiz(quiz) {
+  if (quiz.quizLevel) return quiz.quizLevel;
+  if (/trap/i.test(quiz.quizTag || '')) return 'hard';
+  return 'medium';
+}
+
+// Words that may start a @quiz tag, so ordinary parentheses in a question
+// text are never mistaken for a tag.
+const QUIZ_TAG_WORDS = ['OCJP', 'INTERVIEW', 'EXAM', 'TRAP', 'SCJP'];
+
+// Splits "(OCJP, HARD) What is the result?" into { tag, level, text }.
+function parseQuizHeader(raw) {
+  const match = String(raw || '').match(/^\(([^)]*)\)\s*(.*)$/);
+  if (!match) return { tag: null, level: null, text: String(raw || '').trim() };
+  const inside = match[1];
+  const rest = (match[2] || '').trim();
+  const looksLikeTag = QUIZ_TAG_WORDS.some(w => new RegExp(`\\b${w}\\b`, 'i').test(inside));
+  if (!/\b(easy|medium|hard|difficult)\b/i.test(inside) && !looksLikeTag) {
+    return { tag: null, level: null, text: String(raw || '').trim() };
+  }
+  let tag = null;
+  let level = null;
+  inside.split(',').forEach(part => {
+    const lv = normalizeLevel(part);
+    if (lv) { level = lv; return; }
+    const t = part.trim();
+    if (t) tag = tag ? `${tag}, ${t}` : t;
+  });
+  return { tag, level, text: rest };
+}
+
+// Word-boundary chapter matching. Plain substring matching is dangerous here:
+// "looping" contains "oop", which is how the Looping chapters used to receive
+// the whole OOP exam block.
+function labelHas(label, word) {
+  return new RegExp(`\\b${word}(s|es|ing|ance|ed)?\\b`).test(label);
+}
+
+// ==========================================================================
 // Tag assignment for quiz questions
 // ==========================================================================
 function assignTags(q) {
   const tags = [...(q.tags || [])];
+  const kind = q.kind || '';
   if (q.type === 'interview') tags.push('interview');
-  if (q.type === 'predict') tags.push('predict');
-  if (q.type === 'codefill') tags.push('codefill');
+  if (q.type === 'predict' || kind === 'predict') tags.push('predict');
+  if (q.type === 'codefill' || kind === 'codefill') tags.push('codefill');
+  if (q.type === 'mcq') tags.push('concept');
+  if (['mask-keyword', 'concept', 'fill-blank', 'return-type', 'class-relation', 'true-false'].includes(kind)) tags.push('concept');
+  if (kind === 'gotcha' || kind === 'ocjp-tricky') tags.push('tricky');
   if (['concept-scq', 'true-false-mcq', 'fill-blank'].includes(q.type)) tags.push('concept');
   if (q.type === 'gotcha-scq') tags.push('tricky');
   const qText = (q.question || '').toLowerCase();
@@ -528,12 +1067,59 @@ function assignTags(q) {
 // ==========================================================================
 // OCJP-style tricky questions per chapter type
 // ==========================================================================
+// Each OCJP template belongs to a kind of topic, so it can be revised topic by
+// topic instead of only chapter by chapter. The key is matched against the end of
+// the question id, for example "...-string-pool-1" -> "string-pool".
+const OCJP_TOPIC_HINTS = {
+  'string-pool': ['string'],
+  'string-concat': ['string'],
+  'int-cast': ['operator', 'primitive'],
+  'prefix-postfix': ['operator'],
+  'short-circuit': ['operator'],
+  'polymorphism': ['inherit', 'overrid', 'oops'],
+  'constructor-chain': ['constructor'],
+  'override-overload': ['overrid', 'overload'],
+  'final-keyword': ['inherit', 'class'],
+  'static-hiding': ['static', 'class'],
+  'covariant-return': ['overrid', 'inherit'],
+  'access-modifier-override': ['overrid', 'encapsul'],
+  'finally': ['exception'],
+  'checked-unchecked': ['exception'],
+  'switch-fallthrough': ['switch', 'if'],
+  'for-scope': ['for', 'loop', 'while'],
+  'pass-by-value': ['method'],
+  'overload-resolution': ['overload', 'method']
+};
+
+// Finds the topics an OCJP question belongs to. The best scoring topics are
+// returned, so several questions of the same kind can be spread across the
+// related topics of a chapter instead of all landing on one.
+function ocjpCandidateTopics(qid, hintKeys, topics) {
+  const bare = String(qid || '').replace(/-\d+$/, '');
+  const key = hintKeys.find(k => bare.endsWith('-' + k));
+  if (!key) return [];
+  const hints = OCJP_TOPIC_HINTS[key];
+  const scored = topics.map(topic => {
+    const headings = `${topic.topicName} ${topic.fileName} ${topic.subChapter || ''}`.toLowerCase();
+    const notes = (topic.headerComments || []).flatMap(b => b.lines || []).join(' ').toLowerCase();
+    let score = 0;
+    hints.forEach(hint => {
+      if (headings.includes(hint)) score += 3;
+      else if (notes.includes(hint)) score += 1;
+    });
+    return { topic, score };
+  }).filter(entry => entry.score > 0);
+  if (scored.length === 0) return [];
+  const best = Math.max(...scored.map(entry => entry.score));
+  return scored.filter(entry => entry.score === best).map(entry => entry.topic);
+}
+
 function buildOCJPQuestions(chapterName, topics) {
   const label = chapterName.toLowerCase();
   const questions = [];
 
   // ── String / Primitives ──────────────────────────────────────────────────
-  if (label.includes('primitive') || label.includes('string')) {
+  if (labelHas(label, 'primitive') || labelHas(label, 'string')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-string-pool-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -569,7 +1155,7 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── Operators ───────────────────────────────────────────────────────────
-  if (label.includes('operator')) {
+  if (labelHas(label, 'operator')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-prefix-postfix-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -589,7 +1175,9 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── OOP / Inheritance ───────────────────────────────────────────────────
-  if (label.includes('oop') || label.includes('inherit') || label.includes('class') || label.includes('override') || label.includes('overload')) {
+  // These must match whole words. "looping" contains "oop", which is why the
+  // looping chapters used to be given the whole OOP exam block.
+  if (labelHas(label, 'oop') || labelHas(label, 'inherit') || labelHas(label, 'class') || labelHas(label, 'override') || labelHas(label, 'overload')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-polymorphism-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -674,7 +1262,7 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── Exception Handling ──────────────────────────────────────────────────
-  if (label.includes('exception')) {
+  if (labelHas(label, 'exception')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-finally-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -699,7 +1287,7 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── Switch / Control Flow ───────────────────────────────────────────────
-  if (label.includes('switch') || label.includes('statement') || label.includes('if')) {
+  if (labelHas(label, 'switch') || labelHas(label, 'statement') || labelHas(label, 'if')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-switch-fallthrough-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -711,7 +1299,7 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── Loops ────────────────────────────────────────────────────────────────
-  if (label.includes('loop') || label.includes('while') || label.includes('for')) {
+  if (labelHas(label, 'loop') || labelHas(label, 'while') || labelHas(label, 'for')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-for-scope-1`,
       type: 'scq', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -728,7 +1316,7 @@ function buildOCJPQuestions(chapterName, topics) {
   }
 
   // ── Methods ──────────────────────────────────────────────────────────────
-  if (label.includes('method')) {
+  if (labelHas(label, 'method')) {
     questions.push({
       qid: `ocjp-${slugify(chapterName)}-pass-by-value-1`,
       type: 'predict', difficulty: 'hard', chapter: chapterName, topic: 'OCJP Tricky',
@@ -752,7 +1340,25 @@ function buildOCJPQuestions(chapterName, topics) {
     });
   }
 
+  const hintKeys = Object.keys(OCJP_TOPIC_HINTS).sort((a, b) => b.length - a.length);
+  const groups = new Map();
+  questions.forEach(q => {
+    const candidates = ocjpCandidateTopics(q.qid, hintKeys, topics);
+    if (candidates.length === 0) return;
+    const key = q.qid.replace(/-\d+$/, '').split('-').slice(-1)[0];
+    const groupKey = candidates.map(t => t.filePath).join('|');
+    if (!groups.has(groupKey)) groups.set(groupKey, { candidates, questions: [] });
+    groups.get(groupKey).questions.push(q);
+  });
+  groups.forEach(({ candidates, questions: groupQuestions }) => {
+    groupQuestions.forEach((q, index) => {
+      const target = candidates[index % candidates.length];
+      q.topicPath = target.filePath;
+    });
+  });
+
   return questions.map(q => {
+    q.kind = q.kind || 'ocjp-tricky';
     if (!q.tags) q.tags = ['ocjp', 'tricky'];
     else { q.tags.push('ocjp', 'tricky'); }
     return assignTags(q);
@@ -768,8 +1374,13 @@ function buildStarterQuestions(chapterName, topics) {
   const questions = [];
   const quickRevision = buildQuickRevisionEntry(chapterName, topics);
 
-  // Pre-collect all header comment lines per topic (index == topics array index)
-  const allTopicNoteLines = topics.map(t => t.headerComments.flatMap(b => b.lines));
+  // Pre-collect all header comment lines per topic (index == topics array index).
+  // Table rows are excluded: their flattened "cell — cell" form is display text,
+  // not a sentence, so it must not become a quiz option or distractor.
+  const allTopicNoteLines = topics.map(t => t.headerComments
+    .filter(block => block.type !== 'table')
+    .flatMap(block => block.lines || [])
+    .filter(Boolean));
 
   const stopWords = new Set(['this', 'that', 'these', 'those', 'their', 'which', 'where', 'there', 'would', 'could', 'should', 'about', 'after', 'every', 'other', 'first', 'being', 'using']);
   const gotchaKeywords = ['important', 'note', 'pitfall', 'warning', 'caution', 'remember', 'avoid', 'careful', 'never', 'always'];
@@ -780,11 +1391,39 @@ function buildStarterQuestions(chapterName, topics) {
     'encapsulated', 'polymorphic', 'abstract', 'synchronized', 'serialized', 'generic'
   ];
 
+  // Several sub-chapters contain a file with the same name, for example Main.java
+  // and Dog.java. Those topics then share one label, which produced questions such
+  // as "Explain the main ideas in Main." six times in one chapter. Where a label
+  // repeats inside the chapter, the sub-chapter is added to keep it unambiguous.
+  const labelCounts = new Map();
+  topics.forEach(topic => {
+    const base = topic.topicName || topic.fileName.replace('.java', '');
+    labelCounts.set(base, (labelCounts.get(base) || 0) + 1);
+  });
+  const uniqueLabel = (topic) => {
+    const base = topic.topicName || topic.fileName.replace('.java', '');
+    if ((labelCounts.get(base) || 0) <= 1) return base;
+    return topic.subChapter ? `${base} (${topic.subChapter})` : `${base} (${topic.fileName.replace('.java', '')})`;
+  };
+
   topics.forEach((topic, topicIndex) => {
-    const topicLabel = topic.topicName || topic.fileName.replace('.java', '');
-    const difficulty = topicIndex === 0 ? 'easy' : (topicIndex === topics.length - 1 ? 'hard' : 'medium');
+    const topicLabel = uniqueLabel(topic);
+    const topicIdentity = topic.filePath || topic.fileName || topicLabel;
+    const addQuestion = (question) => {
+      question.topicPath = topicIdentity;
+      question.qid = question.qid || makeQid(chapterName, topicIdentity, question.type, questions.length);
+      questions.push(question);
+    };
+    // Levels come from the question kind (see KIND_LEVELS), never from the
+    // topic's position in the chapter.
     const lines = topic.code.split('\n');
-    const topicNotes = allTopicNoteLines[topicIndex] || [];
+    // A bare heading such as "STRING METHODS AND BEST PRACTICES" is a title, not a
+    // statement, so it must never become a quiz option or a blank to fill in.
+    const isHeadingLine = (line) => {
+      const text = String(line || '').trim();
+      return text.length > 0 && !/[a-z]/.test(text) && /[A-Z]/.test(text);
+    };
+    const topicNotes = (allTopicNoteLines[topicIndex] || []).filter(line => !isHeadingLine(line));
 
     // ---- Existing 5 question types (qid added) ----------------------------------------
 
@@ -840,13 +1479,14 @@ function buildStarterQuestions(chapterName, topics) {
     const distractors = targetKeywords.filter(k => k !== keyword).slice(0, 3);
     const scqOptions = [keyword, ...distractors];
 
-    questions.push({
+    addQuestion({
       type: 'scq',
-      qid: makeQid(chapterName, topicLabel, 'scq', 0),
-      difficulty: 'easy',
+      kind: 'mask-keyword',
+      qid: makeQid(chapterName, topicIdentity, 'scq', 0),
+      difficulty: levelForKind('mask-keyword'),
       chapter: chapterName,
       topic: topicLabel,
-      question: `Which Java keyword correctly fills in the blank in this code from "${topic.fileName}"?\n\n${masked.trim()}`,
+      question: `Which Java keyword correctly fills in the blank in this code from "${topicLabel}"?\n\n${masked.trim()}`,
       options: scqOptions,
       answer: scqOptions.indexOf(keyword),
       explanation: `The correct keyword is '${keyword}'. It fits the syntax and semantics of this Java statement.`
@@ -879,13 +1519,14 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     if (codefillLine && codefillKeyword && codefillLine.trim() !== keywordLine.trim()) {
-      questions.push({
+      addQuestion({
         type: 'codefill',
-        qid: makeQid(chapterName, topicLabel, 'codefill', 2),
-        difficulty: difficulty,
+        kind: 'codefill',
+        qid: makeQid(chapterName, topicIdentity, 'codefill', 2),
+        difficulty: levelForKind('codefill'),
         chapter: chapterName,
         topic: topicLabel,
-        question: `Complete the missing keyword in this snippet from "${topic.fileName}".`,
+        question: `Complete the missing keyword in this snippet from "${topicLabel}".`,
         code: codefillLine.replace(new RegExp(`\\b${codefillKeyword}\\b`, 'g'), '___'),
         answer: [codefillKeyword],
         explanation: `The missing keyword is '${codefillKeyword}', taken from the parsed source for ${topic.fileName}.`
@@ -918,10 +1559,11 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     if (printLine && printAnswer) {
-      questions.push({
+      addQuestion({
         type: 'predict',
-        qid: makeQid(chapterName, topicLabel, 'predict', 3),
-        difficulty: difficulty,
+        kind: 'predict',
+        qid: makeQid(chapterName, topicIdentity, 'predict', 3),
+        difficulty: levelForKind('predict'),
         chapter: chapterName,
         topic: topicLabel,
         question: `What does this code print?`,
@@ -932,14 +1574,15 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     const topicHeaderLines = topic.headerComments.flatMap(block => block.lines)
-      .filter(l => l && l.length > 5 && !l.startsWith('@'));
+      .filter(l => isUsableQuizStatement(l));
     const topicModelAnswer = topicHeaderLines.slice(0, 3).join(' ') ||
       `This topic covers ${topicLabel}. Refer to the source file for implementation details.`;
 
-    questions.push({
+    addQuestion({
       type: 'interview',
-      qid: makeQid(chapterName, topicLabel, 'interview', 4),
-      difficulty: 'hard',
+      kind: 'explain',
+      qid: makeQid(chapterName, topicIdentity, 'interview', 4),
+      difficulty: levelForKind('explain'),
       chapter: chapterName,
       topic: topicLabel,
       question: `Explain the main ideas in ${topicLabel}.`,
@@ -951,64 +1594,113 @@ function buildStarterQuestions(chapterName, topics) {
     });
 
     // ---- @quiz / @answer custom questions from Java source comments -----------
-    (topic.customQuizzes || []).forEach(q => {
-      questions.push({
+    (topic.customQuizzes || []).forEach((q, customIndex) => {
+      const qidBase = makeQid(chapterName, topicIdentity, 'custom', `${customIndex}-${slugify(q.question).slice(0, 40)}`);
+      const tagList = [
+        ...(q.quizTag && /ocjp/i.test(q.quizTag) ? ['ocjp'] : []),
+        ...(q.quizTag && /trap/i.test(q.quizTag) ? ['tricky'] : []),
+        ...(q.quizTag && /interview|exam/i.test(q.quizTag) ? ['interview'] : []),
+        ...(q.quizTag && /concept/i.test(q.quizTag) ? ['concept'] : [])
+      ];
+
+      // A question written with @option lines becomes a real multiple-choice
+      // question, which is what an exam actually looks like.
+      if (Array.isArray(q.options) && q.options.length >= 2) {
+        // Reorder the options so the correct answer is not always first. The
+        // correct flag and the "why this is wrong" note travel with their option.
+        const orderedOptions = orderOptionsForQuestion(q.options, `${topicIdentity}|${q.question}`);
+        const answerIndices = orderedOptions.map((o, i) => (o.correct ? i : -1)).filter(i => i >= 0);
+        if (answerIndices.length > 0) {
+          const isMulti = answerIndices.length > 1;
+          const whyByOption = {};
+          orderedOptions.forEach((o, i) => { if (!o.correct && o.why) whyByOption[i] = o.why; });
+          addQuestion({
+            type: isMulti ? 'mcq' : 'scq',
+            kind: 'custom',
+            qid: qidBase,
+            difficulty: levelForCustomQuiz(q),
+            chapter: chapterName,
+            topic: topicLabel,
+            tags: tagList,
+            question: q.question,
+            code: q.code && q.code.length ? q.code.join('\n') : undefined,
+            options: orderedOptions.map(o => o.text),
+            answer: isMulti ? answerIndices : answerIndices[0],
+            whyByOption: Object.keys(whyByOption).length ? whyByOption : undefined,
+            explanation: q.explain || (q.answers || []).join(' ') || `Written in the source file with the @quiz marker.`
+          });
+          return;
+        }
+      }
+
+      // Otherwise it stays a written question, exactly as before.
+      addQuestion({
         type: 'interview',
-        difficulty: 'medium',
+        kind: 'custom',
+        qid: qidBase,
+        difficulty: levelForCustomQuiz(q),
         chapter: chapterName,
         topic: topicLabel,
-        tags: ['interview'],
+        tags: tagList,
         question: q.question,
+        code: q.code && q.code.length ? q.code.join('\n') : undefined,
         modelAnswer: q.answers.join(' '),
         keyPoints: q.answers,
-        explanation: `This question was authored directly in the source file using @quiz/@answer markers.`
+        explanation: q.quizTag
+          ? `This question was authored directly in the source file with the @quiz marker, tagged ${q.quizTag}.`
+          : `This question was authored directly in the source file using @quiz/@answer markers.`
       });
     });
 
     // ---- New question types A–F ------------------------------------------------
 
     // A. Concept SCQ from notes
-    const currentFirstBullet = topicNotes[0];
-    if (currentFirstBullet && currentFirstBullet.length > 10) {
+    // The answer and every wrong option must be a real statement. Titles,
+    // headings and parameter notes are refused, and a generic philosophical word
+    // is only used when there is nothing better, because a word is not a
+    // description of a topic.
+    const conceptPool = topicNotes.filter(isUsableQuizStatement);
+    const currentFirstBullet = conceptPool[0];
+    if (currentFirstBullet) {
       const otherBullets = [];
       for (let i = 0; i < topics.length; i++) {
         if (i === topicIndex) continue;
-        const otLines = allTopicNoteLines[i] || [];
-        if (otLines.length > 0 && otLines[0] && otLines[0].length > 10 && otLines[0] !== currentFirstBullet) {
+        const otLines = (allTopicNoteLines[i] || []).filter(isUsableQuizStatement);
+        if (otLines.length > 0 && otLines[0] !== currentFirstBullet) {
           otherBullets.push(otLines[0]);
         }
         if (otherBullets.length >= 3) break;
       }
-      const genericDistr = conceptFallbacks.filter(d => d !== currentFirstBullet);
-      let gdi = 0;
-      while (otherBullets.length < 3 && gdi < genericDistr.length) {
-        if (!otherBullets.includes(genericDistr[gdi])) otherBullets.push(genericDistr[gdi]);
-        gdi++;
-      }
-      const conceptOptions = shuffleArr([currentFirstBullet, ...otherBullets.slice(0, 3)]);
-      const conceptAnswer = conceptOptions.indexOf(currentFirstBullet);
-      if (conceptAnswer >= 0) {
-        questions.push({
-          type: 'scq',
-          qid: makeQid(chapterName, topicLabel, 'concept-scq', 5),
-          difficulty: 'easy',
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `Which statement best describes ${topicLabel}?`,
-          options: conceptOptions,
-          answer: conceptAnswer,
-          explanation: `This is drawn directly from the notes for ${topicLabel}.`
-        });
+      // Only ask the question when there are three genuine competing statements.
+      // Without them the "wrong" options would be nonsense, which is how this
+      // question type used to mark a heading as the correct answer.
+      if (otherBullets.length >= 3) {
+        const conceptOptions = shuffleArr([currentFirstBullet, ...otherBullets.slice(0, 3)]);
+        const conceptAnswer = conceptOptions.indexOf(currentFirstBullet);
+        if (conceptAnswer >= 0) {
+          addQuestion({
+            type: 'scq',
+            kind: 'concept',
+            qid: makeQid(chapterName, topicIdentity, 'concept-scq', 5),
+            difficulty: levelForKind('concept'),
+            chapter: chapterName,
+            topic: topicLabel,
+            question: `Which statement best describes ${topicLabel}?`,
+            options: conceptOptions,
+            answer: conceptAnswer,
+            explanation: `This is drawn directly from the notes for ${topicLabel}.`
+          });
+        }
       }
     }
 
     // B. Multi-select True/False MCQ (only when topic has enough notes to provide quality distractors)
-    const trueOptions = topicNotes.slice(0, 3).filter(l => l && l.length > 10);
+    const trueOptions = conceptPool.slice(0, 3);
     const falseOptions = [];
     for (let i = 0; i < topics.length; i++) {
       if (i === topicIndex) continue;
-      const otLines = allTopicNoteLines[i] || [];
-      if (otLines.length > 0 && otLines[0] && otLines[0].length > 10) {
+      const otLines = (allTopicNoteLines[i] || []).filter(isUsableQuizStatement);
+      if (otLines.length > 0) {
         falseOptions.push(otLines[0]);
         if (falseOptions.length >= 2) break;
       }
@@ -1023,10 +1715,11 @@ function buildStarterQuestions(chapterName, topics) {
         .map((opt, idx) => selectedTrue.includes(opt) ? idx : -1)
         .filter(idx => idx >= 0);
       if (correctIndices.length > 0) {
-        questions.push({
+        addQuestion({
           type: 'mcq',
-          qid: makeQid(chapterName, topicLabel, 'true-false-mcq', 5),
-          difficulty: 'medium',
+          kind: 'true-false',
+          qid: makeQid(chapterName, topicIdentity, 'true-false-mcq', 5),
+          difficulty: levelForKind('true-false'),
           chapter: chapterName,
           topic: topicLabel,
           question: `Which of the following are TRUE about ${topicLabel}? Select all that apply.`,
@@ -1038,21 +1731,31 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     // C. Note fill-blank SCQ
+    // The blank is placed on a real technical term. Blanks on the first word of a
+    // sentence produced nonsense such as "___ notes (what each argument means...)"
+    // or "___ Variables", so a line without a recognised term is skipped instead.
+    const technicalTerms = [
+      'static', 'void', 'public', 'private', 'protected', 'extends', 'implements', 'final', 'super', 'this',
+      'new', 'throws', 'throw', 'class', 'interface', 'return', 'try', 'catch', 'finally', 'abstract', 'synchronized',
+      'String', 'StringBuilder', 'StringBuffer', 'immutable', 'mutable', 'method', 'constructor', 'object', 'instance',
+      'parameter', 'argument', 'overloading', 'overriding', 'inheritance', 'polymorphism', 'encapsulation', 'exception',
+      'compile', 'runtime', 'loop', 'array', 'operator', 'operand', 'expression', 'variable', 'field', 'constant',
+      'unchecked', 'checked', 'cast', 'pool', 'literal', 'recursion', 'iterator', 'generics', 'lambda', 'stream'
+    ];
     let fillBlankGenerated = false;
     for (const noteLine of topicNotes) {
       if (fillBlankGenerated) break;
       if (!noteLine || noteLine.length < 15) continue;
-      const words = noteLine.split(/\s+/);
-      let fillWord = null;
-      for (const w of words) {
-        const clean = w.replace(/[^a-zA-Z]/g, '');
-        if (clean.length >= 5 && !stopWords.has(clean.toLowerCase())) {
-          fillWord = clean;
-          break;
-        }
-      }
-      if (!fillWord) continue;
-      const blanked = noteLine.replace(new RegExp(`\\b${fillWord}\\b`), '___');
+      // Skip challenge descriptions and generated parameter notes, which are not
+      // concepts to be recalled.
+      if (/^(challenge|deep problem|hint|testcase|print|write|create|use|build)\b/i.test(noteLine)) continue;
+      if (/parameter notes|what each (argument|constructor)/i.test(noteLine)) continue;
+      if (!isUsableQuizStatement(noteLine)) continue;
+      const lowerLine = noteLine.toLowerCase();
+      const fillTerm = technicalTerms.find(term => new RegExp(`\\b${term}\\b`, 'i').test(noteLine));
+      if (!fillTerm) continue;
+      const fillWord = fillTerm;
+      const blanked = noteLine.replace(new RegExp(`\\b${fillWord}\\b`, 'i'), '___');
       if (blanked === noteLine) continue;
 
       const fillDistractors = [];
@@ -1083,10 +1786,11 @@ function buildStarterQuestions(chapterName, topics) {
       const fillOptions = shuffleArr([fillWord, ...fillDistractors.slice(0, 3)]);
       const fillAnswer = fillOptions.indexOf(fillWord);
       if (fillAnswer >= 0) {
-        questions.push({
+        addQuestion({
           type: 'scq',
-          qid: makeQid(chapterName, topicLabel, 'fill-blank', 5),
-          difficulty: 'medium',
+          kind: 'fill-blank',
+          qid: makeQid(chapterName, topicIdentity, 'fill-blank', 5),
+          difficulty: levelForKind('fill-blank'),
           chapter: chapterName,
           topic: topicLabel,
           question: `Complete the blank: "${blanked}"`,
@@ -1099,14 +1803,17 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     // D. Gotcha SCQ
-    const gotchaLine = topicNotes.find(l => l && gotchaKeywords.some(kw => l.toLowerCase().includes(kw)));
+    // Both the answer and the wrong options must be real statements. This kind
+    // was the worst offender: it selected a heading as the "important
+    // consideration", which is not an answer at all.
+    const gotchaLine = conceptPool.find(l => gotchaKeywords.some(kw => l.toLowerCase().includes(kw)));
     if (gotchaLine) {
       const gotchaDistractors = [];
       for (let i = 0; i < topics.length; i++) {
         if (i === topicIndex) continue;
-        const otLines = allTopicNoteLines[i] || [];
+        const otLines = (allTopicNoteLines[i] || []).filter(isUsableQuizStatement);
         for (const ol of otLines) {
-          if (ol && ol !== gotchaLine && ol.length > 10 && !gotchaDistractors.includes(ol)) {
+          if (ol !== gotchaLine && !gotchaDistractors.includes(ol)) {
             gotchaDistractors.push(ol);
             break;
           }
@@ -1122,10 +1829,11 @@ function buildStarterQuestions(chapterName, topics) {
       const gotchaOptions = shuffleArr([gotchaLine, ...gotchaDistractors.slice(0, 3)]);
       const gotchaAnswer = gotchaOptions.indexOf(gotchaLine);
       if (gotchaAnswer >= 0) {
-        questions.push({
+        addQuestion({
           type: 'scq',
-          qid: makeQid(chapterName, topicLabel, 'gotcha-scq', 5),
-          difficulty: 'hard',
+          kind: 'gotcha',
+          qid: makeQid(chapterName, topicIdentity, 'gotcha-scq', 5),
+          difficulty: levelForKind('gotcha'),
           chapter: chapterName,
           topic: topicLabel,
           question: `What is an important consideration when working with ${topicLabel}?`,
@@ -1151,13 +1859,14 @@ function buildStarterQuestions(chapterName, topics) {
       const rtOptions = shuffleArr([returnType, ...rtDistractors]);
       const rtAnswer = rtOptions.indexOf(returnType);
       if (rtAnswer >= 0) {
-        questions.push({
+        addQuestion({
           type: 'scq',
-          qid: makeQid(chapterName, topicLabel, 'return-type', 5),
-          difficulty: 'medium',
+          kind: 'return-type',
+          qid: makeQid(chapterName, topicIdentity, 'return-type', 5),
+          difficulty: levelForKind('return-type'),
           chapter: chapterName,
           topic: topicLabel,
-          question: `In ${topic.fileName}, what does the method ${methodName}() return?`,
+          question: `In ${topicLabel}, what does the method ${methodName}() return?`,
           options: rtOptions,
           answer: rtAnswer,
           explanation: `The method ${methodName}() is declared with return type '${returnType}' in ${topic.fileName}.`
@@ -1179,10 +1888,11 @@ function buildStarterQuestions(chapterName, topics) {
       const crOptions = shuffleArr(crPadded);
       const crAnswer = crOptions.indexOf(parentName);
       if (crAnswer >= 0) {
-        questions.push({
+        addQuestion({
           type: 'scq',
-          qid: makeQid(chapterName, topicLabel, 'class-relation', 5),
-          difficulty: 'hard',
+          kind: 'class-relation',
+          qid: makeQid(chapterName, topicIdentity, 'class-relation', 5),
+          difficulty: levelForKind('class-relation'),
           chapter: chapterName,
           topic: topicLabel,
           question: `What does class ${className} extend?`,
@@ -1200,10 +1910,11 @@ function buildStarterQuestions(chapterName, topics) {
       const crOptions = shuffleArr(crPadded);
       const crAnswer = crOptions.indexOf(interfaceName);
       if (crAnswer >= 0) {
-        questions.push({
+        addQuestion({
           type: 'scq',
-          qid: makeQid(chapterName, topicLabel, 'class-relation', 5),
-          difficulty: 'hard',
+          kind: 'class-relation',
+          qid: makeQid(chapterName, topicIdentity, 'class-relation', 5),
+          difficulty: levelForKind('class-relation'),
           chapter: chapterName,
           topic: topicLabel,
           question: `What interface does class ${className} implement?`,
@@ -1220,6 +1931,33 @@ function buildStarterQuestions(chapterName, topics) {
 
 // ==========================================================================
 // Build practice challenges from *Challenge*.java files
+// ==========================================================================
+// Rejects a scraped test case that is not trustworthy. An expectation of "." or a
+// value whose type cannot match the method's return type means the pattern caught
+// prose rather than a result, and such a case must never be used to mark a learner
+// wrong.
+function isPlausibleTestCase(testCase, returnType) {
+  const args = testCase.args || [];
+  if (args.length === 0) return false;
+  // A type declaration such as "double radius" is a signature, not an argument.
+  if (args.some(arg => typeof arg === 'string' && /\s/.test(arg))) return false;
+  const expected = testCase.expected;
+  if (expected === null || expected === undefined) return false;
+  if (typeof expected === 'string') {
+    if (expected.trim() === '') return false;
+    // Punctuation only, for example ".", means the regex caught prose.
+    if (/^[\s.,;:!?"'\-]*$/.test(expected)) return false;
+  }
+  if (returnType === 'boolean') return typeof expected === 'boolean';
+  if (['int', 'long', 'short', 'byte', 'double', 'float'].includes(returnType)) {
+    return typeof expected === 'number' && Number.isFinite(expected);
+  }
+  if (returnType === 'String') return typeof expected === 'string';
+  return true;
+}
+
+// ==========================================================================
+// Practice challenges
 // ==========================================================================
 function buildPracticeChallenges(parsedData) {
   const challenges = [];
@@ -1241,9 +1979,8 @@ function buildPracticeChallenges(parsedData) {
       .trim()
       .replace(/\s+/g, ' ');
 
-    // Difficulty based on chapter number
-    const chNum = parseInt(topic.chapter.match(/Chapter\s+(\d+)/)?.[1] || '5', 10);
-    const difficulty = chNum <= 7 ? 'Easy' : chNum <= 10 ? 'Medium' : 'Hard';
+    // Difficulty is judged from the problem itself (see the block after the
+    // method signature is parsed), never from the chapter number.
 
     // Problem description from header comments
     const descLines = topic.headerComments.flatMap(b => b.lines);
@@ -1265,6 +2002,24 @@ function buildPracticeChallenges(parsedData) {
     const methodName = methodMatch[2];
     const params = methodMatch[3];
 
+    // Difficulty from the problem itself: extra parameters, loops, branches and
+    // recursion all make a coding challenge harder. The old rule used the chapter
+    // number, so every challenge in a late chapter was "Hard" even when trivial.
+    const argCount = params.split(',').filter(p => p.trim()).length;
+    const bodyStart = code.indexOf('{', methodMatch.index);
+    const body = bodyStart === -1 ? code : code.slice(bodyStart);
+    const loopCount = (body.match(/\b(for|while|do)\s*\(/g) || []).length;
+    const branchCount = (body.match(/\b(if|switch)\s*\(/g) || []).length;
+    const helperCount = (body.match(/(public|private|protected)\s+static\s+\w[\w<>\[\]]*\s+\w+\s*\(/g) || []).length;
+    let diffScore = 0;
+    if (argCount >= 2) diffScore++;
+    if (argCount >= 4) diffScore++;
+    if (loopCount >= 1) diffScore++;
+    if (loopCount >= 2) diffScore++;
+    if (branchCount >= 2) diffScore++;
+    if (helperCount >= 1) diffScore++;
+    const difficulty = diffScore <= 1 ? 'Easy' : diffScore <= 3 ? 'Medium' : 'Hard';
+
     // Default return value
     let defaultReturn = '';
     if (returnType === 'boolean') defaultReturn = 'return false;';
@@ -1284,37 +2039,39 @@ function buildPracticeChallenges(parsedData) {
     const returnLine = defaultReturn ? `\n        ${defaultReturn}` : '';
     const template = `public class PracticeWorkspace {\n    public static ${returnType} ${methodName}(${paramStr}) {\n        // Write your code here${returnLine}\n    }\n}`;
 
-    // Extract test cases from comments
+    // Extract test cases from the notes.
+    // Only an explicit arrow or the word "returns" directly after the call is
+    // trusted. The looser pattern this replaced scraped a method signature as the
+    // arguments and a stray "." as the expected value, which told learners their
+    // correct code was wrong.
     const testCases = [];
     const commentText = topic.headerComments.flatMap(b => b.lines).join('\n');
     const rawCode = code;
 
-    // Pattern: methodName(args) → should return value X  OR  → X
+    const normalizeValue = (value) => {
+      const v = String(value || '').trim();
+      if (v === 'true') return true;
+      if (v === 'false') return false;
+      if (/^-?\d+\.\d+$/.test(v)) return parseFloat(v);
+      if (/^-?\d+$/.test(v)) return parseInt(v, 10);
+      return v.replace(/^["']|["']$/g, '');
+    };
+
     const testPattern = new RegExp(
       methodName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
-      '\\s*\\(([^)]+)\\)[^\\n→\\-]*[→\\->]+[^\\n]*?(-?[\\d.]+|true|false|"[^"]*")',
+      '\\(([^()]*)\\)\\s*;?\\s*(?:→|->|=>|returns?|gives)\\s+[^\\n]*?(?<![\\w.])(-?\\d+(?:\\.\\d+)?|true|false|"[^"]*")(?!\\d)',
       'g'
     );
     let tm;
     while ((tm = testPattern.exec(commentText)) !== null && testCases.length < 4) {
-      try {
-        const rawArgs = tm[1].split(',').map(a => {
-          const v = a.trim();
-          if (v === 'true') return true;
-          if (v === 'false') return false;
-          if (/^-?\d+\.\d+$/.test(v)) return parseFloat(v);
-          if (/^-?\d+$/.test(v)) return parseInt(v, 10);
-          return v.replace(/^["']|["']$/g, '');
-        });
-        let rawExpected = tm[2].trim();
-        let expected;
-        if (rawExpected === 'true') expected = true;
-        else if (rawExpected === 'false') expected = false;
-        else if (/^-?\d+$/.test(rawExpected)) expected = parseInt(rawExpected, 10);
-        else if (/^-?\d+\.\d+$/.test(rawExpected)) expected = parseFloat(rawExpected);
-        else expected = rawExpected.replace(/^["']|["']$/g, '');
-        testCases.push({ args: rawArgs, expected });
-      } catch (e) { /* skip malformed */ }
+      const candidate = {
+        args: tm[1].split(',').map(normalizeValue),
+        expected: normalizeValue(tm[2])
+      };
+      // Only cases written for THIS overload are usable. A case for a different
+      // overload can never match, and would mark a correct answer as wrong.
+      if (candidate.args.length !== paramNames.length) continue;
+      if (isPlausibleTestCase(candidate, returnType)) testCases.push(candidate);
     }
 
     // Fallback: extract from System.out.println(methodName(...)) calls in main()
@@ -1344,7 +2101,9 @@ function buildPracticeChallenges(parsedData) {
     const selfCheck = returnType === 'void' || testCases.length === 0 ||
       testCases.every(tc => tc.expected === null);
 
-    // Build verifyFn string (evaluated in browser context)
+    // Build verifyFn string (evaluated in browser context). It returns true, false,
+    // or null. null means the code could not be run automatically, which must be
+    // reported as "not checked" rather than as a wrong answer.
     let verifyFnStr = null;
     if (!selfCheck && paramNames.length > 0) {
       const argAccess = paramNames.map((_, i) => `testCase.args[${i}]`).join(', ');
@@ -1352,10 +2111,18 @@ function buildPracticeChallenges(parsedData) {
       verifyFnStr = `function(userCode, testCase) {
         try {
           const body = extractMethodBody(userCode, "${methodName}");
-          const fn = new Function(${paramQuoted}, body);
+          const prepared = (typeof prepareJavaBody === "function") ? prepareJavaBody(body) : body;
+          const fn = new Function(${paramQuoted}, prepared);
           const result = fn(${argAccess});
-          return result === testCase.expected;
-        } catch(e) { return false; }
+          const expected = testCase.expected;
+          // Floating point results are compared with a small tolerance, because a
+          // note such as "returns about 78.53975" is a rounded value.
+          if (typeof result === "number" && typeof expected === "number") {
+            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);
+            return Math.abs(result - expected) <= tolerance;
+          }
+          return result === expected;
+        } catch(e) { return null; }
       }`;
     }
 
@@ -1404,7 +2171,7 @@ function buildDeepChallenges(chapterName, topics) {
 
   // --- Auto-generated deep challenges per chapter type ---
 
-  if (label.includes('method')) {
+  if (labelHas(label, 'method')) {
     challenges.push({
       id: `deep-${slugify(chapterName)}-calculator`,
       title: 'Build a Multi-Operation Calculator',
@@ -1418,7 +2185,10 @@ function buildDeepChallenges(chapterName, topics) {
     });
   }
 
-  if (label.includes('oop') || label.includes('class') || label.includes('inherit')) {
+  // Word-boundary matching: "looping" contains "oop", which is how the Looping
+  // chapters used to receive abstract class and polymorphism challenges before
+  // that topic had been studied.
+  if (labelHas(label, 'oop') || labelHas(label, 'class') || labelHas(label, 'inherit')) {
     challenges.push({
       id: `deep-${slugify(chapterName)}-bank`,
       title: 'Design a BankAccount System (OOP)',
@@ -1444,7 +2214,7 @@ function buildDeepChallenges(chapterName, topics) {
     });
   }
 
-  if (label.includes('exception')) {
+  if (labelHas(label, 'exception')) {
     challenges.push({
       id: `deep-${slugify(chapterName)}-validation`,
       title: 'Custom Exception Hierarchy & Input Validation',
@@ -1458,7 +2228,7 @@ function buildDeepChallenges(chapterName, topics) {
     });
   }
 
-  if (label.includes('loop') || label.includes('while') || label.includes('for')) {
+  if (labelHas(label, 'loop') || labelHas(label, 'while') || labelHas(label, 'for')) {
     challenges.push({
       id: `deep-${slugify(chapterName)}-patterns`,
       title: 'Number Patterns & Algorithm Challenges',
@@ -1472,7 +2242,7 @@ function buildDeepChallenges(chapterName, topics) {
     });
   }
 
-  if (label.includes('switch') || label.includes('if') || label.includes('statement')) {
+  if (labelHas(label, 'switch') || labelHas(label, 'if') || labelHas(label, 'statement')) {
     challenges.push({
       id: `deep-${slugify(chapterName)}-grading`,
       title: 'Grade & Decision Engine',
@@ -1486,7 +2256,7 @@ function buildDeepChallenges(chapterName, topics) {
     });
   }
 
-  if (label.includes('primitive') || label.includes('string')) {
+  if (labelHas(label, 'primitive') || labelHas(label, 'string')) {
     challenges.push({
       id: `deep-${slugify(chapterName)}-string-ops`,
       title: 'String Manipulation Mastery',
@@ -1506,8 +2276,229 @@ function buildDeepChallenges(chapterName, topics) {
 // ==========================================================================
 // Main pipeline
 // ==========================================================================
-function main() {
+// ==========================================================================
+// Content change review (the approval gate)
+// ==========================================================================
+// Nothing about the notes is ever changed behind the author's back. The applied
+// data.js is the baseline that was already approved, so a fresh parse is compared
+// against it. When something differs, a readable report is written and the run
+// stops, so the author can review the change and then run 'npm run approve'.
+
+function readApprovedData(dashboardDir) {
+  const dataFile = path.join(dashboardDir, 'data.js');
+  if (!fs.existsSync(dataFile)) return null;
+  const source = fs.readFileSync(dataFile, 'utf8');
+  const context = {};
+  try {
+    vm.runInNewContext(`${source}\nthis.__value = CONCEPTS_DATA;`, context, { filename: 'data.js' });
+  } catch (err) {
+    return null;
+  }
+  return Array.isArray(context.__value) ? context.__value : null;
+}
+
+// Flattens one comment block into plain text lines for comparison.
+function notesOfBlock(block) {
+  if (!block) return [];
+  if (block.type === 'table') {
+    return ['| ' + (block.headers || []).join(' | ')].concat((block.rows || []).map(r => '| ' + r.join(' | ')));
+  }
+  if (block.type === 'code') return ['```'].concat((block.code || '').split('\n')).concat(['```']);
+  return (block.lines || []).filter(Boolean);
+}
+
+function notesOfTopic(topic) {
+  return (topic.headerComments || []).flatMap(notesOfBlock);
+}
+
+function quizzesOfTopic(topic) {
+  return (topic.customQuizzes || []).map(q =>
+    `[${q.quizTag || 'untagged'}${q.quizLevel ? ', ' + q.quizLevel.toUpperCase() : ''}] ${q.question} -> ${(q.answers || []).join(' ')}`);
+}
+
+// Multiset difference: what was removed and what was added, ignoring order.
+function diffLines(oldLines, newLines) {
+  const tally = arr => {
+    const map = new Map();
+    arr.forEach(l => map.set(l, (map.get(l) || 0) + 1));
+    return map;
+  };
+  const oldTally = tally(oldLines);
+  const newTally = tally(newLines);
+  const removed = [];
+  const added = [];
+  oldTally.forEach((n, line) => {
+    const now = newTally.get(line) || 0;
+    for (let i = 0; i < n - now; i++) removed.push(line);
+  });
+  newTally.forEach((n, line) => {
+    const before = oldTally.get(line) || 0;
+    for (let i = 0; i < n - before; i++) added.push(line);
+  });
+  return { removed, added };
+}
+
+function indexByFile(chapters) {
+  const map = new Map();
+  (chapters || []).forEach(chapter => {
+    (chapter.topics || []).forEach(topic => {
+      map.set(topic.filePath, { chapter: chapter.name, topic });
+    });
+  });
+  return map;
+}
+
+// Builds the full change report between the approved baseline and a fresh parse.
+function collectContentChanges(chaptersList, approved) {
+  const changes = [];
+  if (!approved) return changes;
+  const oldIndex = indexByFile(approved);
+  const newIndex = indexByFile(chaptersList);
+
+  newIndex.forEach((entry, filePath) => {
+    const previous = oldIndex.get(filePath);
+    if (!previous) {
+      changes.push({ filePath, chapter: entry.chapter, topic: entry.topic.topicName, isNew: true, noteChanges: diffLines([], notesOfTopic(entry.topic)), quizChanges: diffLines([], quizzesOfTopic(entry.topic)), codeChanged: true });
+      return;
+    }
+    const noteChanges = diffLines(notesOfTopic(previous.topic), notesOfTopic(entry.topic));
+    const quizChanges = diffLines(quizzesOfTopic(previous.topic), quizzesOfTopic(entry.topic));
+    const oldInline = (previous.topic.inlineComments || []).join('\n');
+    const newInline = (entry.topic.inlineComments || []).join('\n');
+    const inlineChanges = diffLines(oldInline ? oldInline.split('\n') : [], newInline ? newInline.split('\n') : []);
+    const codeChanged = String(previous.topic.code || '') !== String(entry.topic.code || '');
+    const moved = previous.chapter !== entry.chapter;
+    const hasChange = noteChanges.added.length || noteChanges.removed.length ||
+      quizChanges.added.length || quizChanges.removed.length ||
+      inlineChanges.added.length || inlineChanges.removed.length || codeChanged || moved;
+    if (hasChange) {
+      changes.push({ filePath, chapter: entry.chapter, previousChapter: previous.chapter, topic: entry.topic.topicName, isNew: false, noteChanges, quizChanges, inlineChanges, codeChanged, moved });
+    }
+  });
+
+  oldIndex.forEach((entry, filePath) => {
+    if (!newIndex.has(filePath)) {
+      changes.push({ filePath, chapter: entry.chapter, topic: entry.topic.topicName, isRemoved: true, noteChanges: { added: [], removed: notesOfTopic(entry.topic) }, quizChanges: { added: [], removed: quizzesOfTopic(entry.topic) } });
+    }
+  });
+
+  return changes;
+}
+
+// A change to notes or @quiz markers is authored content, so it must be reviewed.
+// A change to Java code alone is normally just practising, so it is reported and
+// applied without blocking the dashboard refresh.
+function isAuthoredChange(change) {
+  return Boolean(change.isNew || change.isRemoved || change.moved ||
+    (change.noteChanges && (change.noteChanges.added.length || change.noteChanges.removed.length)) ||
+    (change.quizChanges && (change.quizChanges.added.length || change.quizChanges.removed.length)) ||
+    (change.inlineChanges && (change.inlineChanges.added.length || change.inlineChanges.removed.length)));
+}
+
+function writeChangeReport(changes, dashboardDir, awaitingReview) {
+  const out = [];
+  const totals = { notesAdded: 0, notesRemoved: 0, quizzesAdded: 0, quizzesRemoved: 0, code: 0, added: 0, removed: 0, moved: 0 };
+  changes.forEach(c => {
+    totals.notesAdded += c.noteChanges.added.length;
+    totals.notesRemoved += c.noteChanges.removed.length;
+    totals.quizzesAdded += c.quizChanges.added.length;
+    totals.quizzesRemoved += c.quizChanges.removed.length;
+    if (c.codeChanged) totals.code++;
+    if (c.isNew) totals.added++;
+    if (c.isRemoved) totals.removed++;
+    if (c.moved) totals.moved++;
+  });
+
+  out.push(awaitingReview ? '# Content changes waiting for review' : '# Content changes (already applied)');
+  out.push('');
+  out.push(`Generated: ${(() => { const d = new Date(); const p = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`; })()}`);
+  out.push('');
+  out.push('Baseline: `revision-dashboard/data.js` (your last approved version).');
+  out.push('');
+  out.push('## Summary');
+  out.push('');
+  out.push(`- Topics changed: **${changes.length}** (new: ${totals.added}, removed: ${totals.removed}, moved chapter: ${totals.moved})`);
+  out.push(`- Note lines: **+${totals.notesAdded} / -${totals.notesRemoved}**`);
+  out.push(`- @quiz questions: **+${totals.quizzesAdded} / -${totals.quizzesRemoved}**`);
+  out.push(`- Topics whose Java code was edited: **${totals.code}**`);
+  out.push('');
+  if (awaitingReview) {
+    out.push('Nothing has been applied yet. Review the changes below, then run:');
+    out.push('');
+    out.push('```bash');
+    out.push('npm run approve');
+    out.push('```');
+    out.push('');
+    out.push('Nothing about your notes is ever changed without this review.');
+  } else {
+    out.push('Only Java code changed, so these were applied automatically. No note or @quiz text was touched,');
+    out.push('so there is nothing to approve. This file is kept as a record.');
+  }
+  out.push('');
+  out.push('---');
+
+  let currentChapter = null;
+  changes.forEach(c => {
+    if (c.chapter !== currentChapter) {
+      currentChapter = c.chapter;
+      out.push('');
+      out.push(`## ${currentChapter}`);
+    }
+    out.push('');
+    out.push(`### ${c.topic}`);
+    out.push('');
+    out.push('`' + c.filePath + '`');
+    out.push('');
+    if (c.isNew) out.push('**NEW topic** — none of this was in the approved version.');
+    if (c.isRemoved) out.push('**REMOVED topic** — this file is gone from src/.');
+    if (c.moved) out.push(`**Moved** from "${c.previousChapter}" to "${c.chapter}".`);
+
+    const section = (title, diff) => {
+      if (!diff || (!diff.added.length && !diff.removed.length)) return;
+      out.push('');
+      out.push(`**${title}**`);
+      out.push('');
+      out.push('```diff');
+      diff.removed.forEach(l => out.push('- ' + l));
+      diff.added.forEach(l => out.push('+ ' + l));
+      out.push('```');
+    };
+    section('Notes', c.noteChanges);
+    section('Inline notes', c.inlineChanges);
+    section('@quiz questions', c.quizChanges);
+    if (c.codeChanged && !c.isNew) {
+      out.push('');
+      out.push('_Java code edited (the dashboard code view will update)._');
+    }
+  });
+
+  out.push('');
+  const reportFile = path.join(dashboardDir, 'content-changes.md');
+  fs.writeFileSync(reportFile, out.join('\n') + '\n', 'utf8');
+  return { reportFile, totals };
+}
+
+// Asks the author to confirm before anything is applied. Returns false when the
+// run is not interactive, so a piped or automated run can never hang waiting.
+function askApplyChanges(promptText) {
+  return new Promise(resolve => {
+    if (!process.stdin.isTTY) {
+      resolve(false);
+      return;
+    }
+    const readline = require('readline');
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    rl.question(promptText, answer => {
+      rl.close();
+      resolve(/^y(es)?$/i.test(String(answer || '').trim()));
+    });
+  });
+}
+
+async function main() {
   const rootDir = path.resolve(__dirname, '..');
+  const proposeOnly = process.argv.includes('--propose');
+  const autoApprove = process.argv.includes('--yes') || process.argv.includes('-y');
   const srcDir = path.join(rootDir, 'src');
   const dashboardDir = path.join(rootDir, 'revision-dashboard');
   const questionsFile = path.join(dashboardDir, 'questions.js');
@@ -1549,6 +2540,50 @@ function main() {
     });
   });
 
+  // ── Step 1b: Review gate ───────────────────────────────────────────────────
+  // 'npm run revise' proposes. Changes to notes, inline notes or @quiz markers are
+  // authored content, so they are reported and nothing is written until the author
+  // approves. A Java code edit on its own is reported and applied immediately, so
+  // everyday practice does not need an approval each time.
+  if (proposeOnly) {
+    const approved = readApprovedData(dashboardDir);
+    const changes = collectContentChanges(chaptersList, approved);
+    const authored = changes.filter(isAuthoredChange);
+    const codeOnly = changes.filter(c => !isAuthoredChange(c));
+
+    if (authored.length > 0) {
+      const { reportFile, totals } = writeChangeReport(changes, dashboardDir, true);
+      console.log('\n🔎 CONTENT CHANGES WAITING FOR REVIEW');
+      console.log(`   Topics changed : ${authored.length} (new: ${totals.added}, removed: ${totals.removed})`);
+      console.log(`   Note lines     : +${totals.notesAdded} / -${totals.notesRemoved}`);
+      console.log(`   @quiz changes  : +${totals.quizzesAdded} / -${totals.quizzesRemoved}`);
+      if (codeOnly.length > 0) console.log(`   Plus code-only edits in ${codeOnly.length} topic(s)`);
+      console.log(`\n   Read the full review here:  ${path.relative(rootDir, reportFile)}`);
+
+      if (autoApprove) {
+        console.log('   --yes given, applying the changes.\n');
+      } else {
+        const apply = await askApplyChanges('\n   Apply these changes now? (y/N) ');
+        if (!apply) {
+          console.log('\n   Nothing was applied. Your dashboard still shows the last approved version.');
+          console.log('   To apply: press y next time, or run  npm run approve\n');
+          process.exit(1);
+        }
+        console.log('\n   Applying the reviewed changes...\n');
+      }
+    } else if (codeOnly.length > 0) {
+      const { reportFile } = writeChangeReport(codeOnly, dashboardDir, false);
+      console.log(`\n📝 Java code edited in ${codeOnly.length} topic(s) — no note or @quiz text changed, so this was applied.`);
+      console.log(`   Record kept here: ${path.relative(rootDir, reportFile)}\n`);
+    } else {
+      // Nothing pending: clear any report left over from an earlier run so a stale
+      // "waiting for review" file can never mislead.
+      const staleReport = path.join(dashboardDir, 'content-changes.md');
+      if (fs.existsSync(staleReport)) fs.unlinkSync(staleReport);
+      console.log('✅ No content changes to review — regenerating as usual.');
+    }
+  }
+
   // ── Step 2: Write data.js ──────────────────────────────────────────────────
   if (!fs.existsSync(dashboardDir)) {
     fs.mkdirSync(dashboardDir, { recursive: true });
@@ -1567,8 +2602,18 @@ function main() {
     sortedQRBank[chName] = buildQuickRevisionEntry(chName, chapter.topics);
     const starterQs = buildStarterQuestions(chName, chapter.topics);
     const ocjpQs = buildOCJPQuestions(chName, chapter.topics);
-    sortedQBank[chName] = [...starterQs, ...ocjpQs];
-    console.log(`  🃏 Regenerated Quick Revision and question sets for: ${chName} (${sortedQBank[chName].length} questions, ${ocjpQs.length} OCJP)`);
+    // A quiz must never show the same question twice. Several sub-chapters share a
+    // file name, so without this a chapter could repeat one question many times.
+    const combined = [...starterQs, ...ocjpQs];
+    const seenQuestions = new Set();
+    const deduped = combined.filter(q => {
+      const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;
+      if (seenQuestions.has(key)) return false;
+      seenQuestions.add(key);
+      return true;
+    });
+    sortedQBank[chName] = deduped;
+    console.log(`  🃏 Regenerated Quick Revision and question sets for: ${chName} (${deduped.length} questions, ${ocjpQs.length} OCJP)`);
   });
 
   console.log(`\n📝 Summary: ${chaptersList.length} regenerated chapter question set(s), ${chaptersList.length} regenerated quick revision entry/entries.`);
@@ -1633,4 +2678,7 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
   console.log(`✅ deep-challenges.js regenerated with ${allDeepChallenges.length} deep challenges.`);
 }
 
-main();
+main().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});
