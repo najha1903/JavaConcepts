@@ -180,6 +180,72 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
 // @why C: Java does not require the body to modify the loop variable; the code compiles but loops for ever.
 // @why D: The condition is true when j is 1, so the body does run; it simply never stops.
 
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int j = 10;
+// @code do {
+// @code     System.out.println("body");
+// @code } while (j < 5);
+// @option body, printed once, because a do-while tests its condition after the body. [correct]
+// @option nothing, because j < 5 is false.
+// @option body printed repeatedly, because the condition is false.
+// @option It does not compile, because the condition is false.
+// @explain A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.
+// @why B: that is the behaviour of a while loop, which tests before the body.
+// @why C: the false condition ends the loop after the first pass.
+// @why D: a condition that is false at runtime is perfectly legal.
+
+// @quiz (OCJP, HARD) What is wrong with this loop?
+// @code int j = 1;
+// @code while (j <= 5) {
+// @code     System.out.println(j);
+// @code }
+// @option It never ends, because j is never changed inside the body. [correct]
+// @option It ends after five iterations.
+// @option It does not compile, because j is declared outside the loop.
+// @option It prints nothing, because the condition is false.
+// @explain A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.
+// @why B: the condition never becomes false, so it cannot stop after five passes.
+// @why C: declaring the counter before the loop is exactly how while loops are written.
+// @why D: 1 <= 5 is true, so the body runs and prints.
+
+// @quiz (INTERVIEW TRAP, HARD) What is the effect of this loop?
+// @code int j = 0;
+// @code while (j < 5) {
+// @code     if (j == 2) { continue; }
+// @code     j++;
+// @code }
+// @option It hangs forever, because when j is 2 the continue skips the increment. [correct]
+// @option It finishes normally after five increments.
+// @option It skips the value 2 and then finishes.
+// @option It does not compile, because continue cannot be used in a while.
+// @explain When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.
+// @why B: the increment is skipped exactly when it is needed most.
+// @why C: nothing raises j past 2, so it cannot finish.
+// @why D: continue is valid in a while; the problem is where it was placed.
+
+// @quiz (INTERVIEW, MEDIUM) How many times does this loop run?
+// @code int j = 1;
+// @code int count = 0;
+// @code while (j <= 4) { count++; j += 2; }
+// @option 2 times, for j = 1 and j = 3. [correct]
+// @option 4 times, for j = 1, 2, 3 and 4.
+// @option 3 times, for j = 1, 3 and 5.
+// @option Once, because j += 2 ends the loop.
+// @explain j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.
+// @why B: the step is 2, so the even values are never used.
+// @why C: when j is 5 the condition is false, so there is no third pass.
+// @why D: the loop continues while the condition holds, which it does for 1 and 3.
+
+// @quiz (INTERVIEW, MEDIUM) When should you prefer a do-while over a while loop?
+// @option When the body must run at least once, such as showing a menu before checking the choice. [correct]
+// @option When the number of iterations is known in advance.
+// @option When the condition must be tested before the body.
+// @option When the loop must be able to run zero times.
+// @explain do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.
+// @why B: a known count is the strength of a for loop.
+// @why C: testing first is what a while loop does.
+// @why D: running zero times is impossible with do-while, which is the point of the question.
+
 public class WhileLoops {
 
     /* while loop simply has expression

@@ -136,6 +136,73 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // @why C: void methods can declare parameters, as the later versions of calculateScore show.
 // @why D: Overloading does not carry values between methods; the no-argument call simply matches the method with an empty parameter list.
 
+// @quiz (INTERVIEW, MEDIUM) What is printed by this code?
+// @code static void update(int[] data) { data[0] = 99; }
+// @code int[] nums = {1, 2, 3};
+// @code update(nums);
+// @code System.out.println(nums[0]);
+// @option 99, because the method receives a copy of the reference and changes the same array object. [correct]
+// @option 1, because Java passes a copy of the array so the original is untouched.
+// @option It does not compile, because arrays cannot be passed to methods.
+// @option 0, because the array is reset when the method returns.
+// @explain Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.
+// @why B: the reference is copied, not the contents. The copy still points at the same array.
+// @why C: arrays are objects and can be passed freely.
+// @why D: nothing is reset. The change made inside the method persists.
+
+// @quiz (INTERVIEW, HARD) What is printed by this code?
+// @code static void reset(int[] data) { data = new int[]{0, 0, 0}; }
+// @code int[] nums = {1, 2, 3};
+// @code reset(nums);
+// @code System.out.println(nums[0]);
+// @option 1, because reassigning the parameter only changes the local copy of the reference. [correct]
+// @option 0, because the method replaces the array with zeros.
+// @option It does not compile, because data cannot be reassigned.
+// @option 99, because the old value is retained.
+// @explain The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.
+// @why B: the new array is local to the method and is discarded when it returns.
+// @why C: reassigning a parameter is allowed; it simply has no effect on the caller.
+// @why D: 99 was never involved in this code.
+
+// @quiz (OCJP, MEDIUM) Does this method compile?
+// @code public static int sign(int n) {
+// @code     if (n > 0) { return 1; }
+// @code }
+// @option No. A non-void method must return a value on every path, and the case where n is not positive has no return. [correct]
+// @option Yes, and it returns 0 when n is not positive.
+// @option Yes, because Java supplies a default return value of 0.
+// @option Yes, and it returns 1 in every case.
+// @explain The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.
+// @why B: there is no implicit 0. The method would have to say so.
+// @why C: Java never supplies a default return value for a method.
+// @why D: the return sits inside the if, so it does not cover every case.
+
+// @quiz (OCJP, MEDIUM) Does this line compile?
+// @code public static void printScore(int score) { System.out.println(score); }
+// @code int result = printScore(10);
+// @option No. A void method produces no value, so there is nothing to assign to result. [correct]
+// @option Yes, and result becomes 10.
+// @option Yes, and result becomes 0.
+// @option Yes, because Java converts the printed value into an int.
+// @explain void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.
+// @why B: the score inside the method is a parameter, not a return value.
+// @why C: an absent value is not the same as zero.
+// @why D: printing is output, not a return.
+
+// @quiz (INTERVIEW TRAP, HARD) What is printed by this code?
+// @code static void swap(int a, int b) { int t = a; a = b; b = t; }
+// @code int x = 1, y = 2;
+// @code swap(x, y);
+// @code System.out.println(x + " " + y);
+// @option 1 2, because the method swaps only its own copies of the values. [correct]
+// @option 2 1, because the swap is applied to the caller's variables.
+// @option It does not compile, because a and b cannot be reassigned.
+// @option 1 1, because both variables end up with the same value.
+// @explain Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.
+// @why B: reaching the caller's variables would need pass-by-reference, which Java does not do.
+// @why C: reassigning parameters is perfectly legal.
+// @why D: the method works correctly on its own copies; the caller simply never sees it.
+
 public class MethodsInJava {
 
     public static void main(String[] args) {

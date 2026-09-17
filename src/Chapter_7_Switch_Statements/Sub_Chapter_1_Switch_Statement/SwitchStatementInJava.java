@@ -138,6 +138,87 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // @why C: Execution starts at the label that matched, so the earlier messages for case 1 and case 2 are not printed.
 // @why D: A switch without break is legal; it falls through instead of failing.
 
+// @quiz (OCJP, MEDIUM) Does this switch compile?
+// @code int x = 2;
+// @code switch (x) {
+// @code     case 1: System.out.println("one"); break;
+// @code     case 1: System.out.println("again"); break;
+// @code }
+// @option No. A duplicate case label is a compile error. [correct]
+// @option Yes, and the first case 1 runs.
+// @option Yes, and the second case 1 runs.
+// @option Yes, and both of them run.
+// @explain The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.
+// @why B: the file does not compile, so nothing runs.
+// @why C: for the same reason, the duplicate is rejected first.
+// @why D: it never gets that far.
+
+// @quiz (INTERVIEW, MEDIUM) What is printed by this code?
+// @code String day = "monday";
+// @code switch (day) {
+// @code     case "Monday": System.out.println("start of week"); break;
+// @code     default: System.out.println("unknown");
+// @code }
+// @option unknown, because the case label is compared exactly and "monday" does not match "Monday". [correct]
+// @option start of week, because switch ignores letter case.
+// @option It does not compile, because a switch cannot use a String.
+// @option It does not compile, because case labels must be int values.
+// @explain A switch on a String compares with equals, which is case-sensitive. Since "monday" differs from "Monday", no label matches and the default branch runs.
+// @why B: switch does not normalise case. Lowercase the value first if case must be ignored.
+// @why C: String has been a valid switch selector since Java 7.
+// @why D: String labels are allowed; the values simply have to match exactly.
+
+// @quiz (INTERVIEW, MEDIUM) What is printed by this code?
+// @code int x = 3;
+// @code switch (x) {
+// @code     case 1:
+// @code     case 2:
+// @code     case 3: System.out.println("low"); break;
+// @code     default: System.out.println("high");
+// @code }
+// @option low, because cases 1, 2 and 3 all lead to the same block. [correct]
+// @option low then high, because case 3 falls through into default.
+// @option high, because 3 has no block of its own.
+// @option It does not compile, because case 1 and case 2 have no statements.
+// @explain Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.
+// @why B: after printing low, break leaves the switch, so default never runs.
+// @why C: the grouping means 3 has a block, the shared one.
+// @why D: a label with no statements is exactly how grouping is written.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code static void check(int x) {
+// @code     switch (x) {
+// @code         case 1: System.out.println("one"); return;
+// @code         default: System.out.println("other");
+// @code     }
+// @code     System.out.println("after switch");
+// @code }
+// @code check(1);
+// @option one, and nothing else, because return exits the whole method. [correct]
+// @option one, then after switch.
+// @option one, other, then after switch.
+// @option after switch only.
+// @explain return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.
+// @why B: after switch is not reached, because the method has already returned.
+// @why C: only the matching branch runs, and the method returns from it.
+// @why D: case 1 matches, so one is printed before the return.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code int x = 2;
+// @code switch (x) {
+// @code     default: System.out.print("D");
+// @code     case 1: System.out.print("A");
+// @code     case 2: System.out.print("B");
+// @code }
+// @option B, because case 2 matches and execution begins at the matching label. [correct]
+// @option DB, because default is written first and falls through.
+// @option DAB, because execution always starts at default.
+// @option D, because default runs before the cases are tested.
+// @explain default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.
+// @why B: putting default first does not make it run. It is used only when nothing matches.
+// @why C: execution starts at the matching case, not at default.
+// @why D: x is 2, so case 2 matches and default is not needed.
+
 public class SwitchStatementInJava {
 
     public static void main(String[] args) {

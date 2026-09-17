@@ -5302,12 +5302,122 @@ const CONCEPTS_DATA = [
               "@why C: void methods can declare parameters, as the later versions of calculateScore show.",
               "@why D: Overloading does not carry values between methods; the no-argument call simply matches the method with an empty parameter list."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code static void update(int[] data) { data[0] = 99; }\r\n@code int[] nums = {1, 2, 3};\r\n@code update(nums);\r\n@code System.out.println(nums[0]);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 99, because the method receives a copy of the reference and changes the same array object. [correct]",
+              "@option 1, because Java passes a copy of the array so the original is untouched.",
+              "@option It does not compile, because arrays cannot be passed to methods.",
+              "@option 0, because the array is reset when the method returns.",
+              "@explain Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.",
+              "@why B: the reference is copied, not the contents. The copy still points at the same array.",
+              "@why C: arrays are objects and can be passed freely.",
+              "@why D: nothing is reset. The change made inside the method persists."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code static void reset(int[] data) { data = new int[]{0, 0, 0}; }\r\n@code int[] nums = {1, 2, 3};\r\n@code reset(nums);\r\n@code System.out.println(nums[0]);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 1, because reassigning the parameter only changes the local copy of the reference. [correct]",
+              "@option 0, because the method replaces the array with zeros.",
+              "@option It does not compile, because data cannot be reassigned.",
+              "@option 99, because the old value is retained.",
+              "@explain The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.",
+              "@why B: the new array is local to the method and is discarded when it returns.",
+              "@why C: reassigning a parameter is allowed; it simply has no effect on the caller.",
+              "@why D: 99 was never involved in this code."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code public static int sign(int n) {\r\n@code     if (n > 0) { return 1; }\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. A non-void method must return a value on every path, and the case where n is not positive has no return. [correct]",
+              "@option Yes, and it returns 0 when n is not positive.",
+              "@option Yes, because Java supplies a default return value of 0.",
+              "@option Yes, and it returns 1 in every case.",
+              "@explain The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.",
+              "@why B: there is no implicit 0. The method would have to say so.",
+              "@why C: Java never supplies a default return value for a method.",
+              "@why D: the return sits inside the if, so it does not cover every case."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code public static void printScore(int score) { System.out.println(score); }\r\n@code int result = printScore(10);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. A void method produces no value, so there is nothing to assign to result. [correct]",
+              "@option Yes, and result becomes 10.",
+              "@option Yes, and result becomes 0.",
+              "@option Yes, because Java converts the printed value into an int.",
+              "@explain void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.",
+              "@why B: the score inside the method is a parameter, not a return value.",
+              "@why C: an absent value is not the same as zero.",
+              "@why D: printing is output, not a return."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code static void swap(int a, int b) { int t = a; a = b; b = t; }\r\n@code int x = 1, y = 2;\r\n@code swap(x, y);\r\n@code System.out.println(x + \" \" + y);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 1 2, because the method swaps only its own copies of the values. [correct]",
+              "@option 2 1, because the swap is applied to the caller's variables.",
+              "@option It does not compile, because a and b cannot be reassigned.",
+              "@option 1 1, because both variables end up with the same value.",
+              "@explain Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.",
+              "@why B: reaching the caller's variables would need pass-by-reference, which Java does not do.",
+              "@why C: reassigning parameters is perfectly legal.",
+              "@why D: the method works correctly on its own copies; the caller simply never sees it."
+            ]
           }
         ],
         "inlineComments": [
           "Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }",
           "Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a /* */ block to show the in-between step — it never compiles or runs.",
           "@code int result = calculateScore(false, 800, 5, 100);",
+          "@code static void update(int[] data) { data[0] = 99; }",
+          "@code int[] nums = {1, 2, 3};",
+          "@code update(nums);",
+          "@code System.out.println(nums[0]);",
+          "@code static void reset(int[] data) { data = new int[]{0, 0, 0}; }",
+          "@code reset(nums);",
+          "@code public static int sign(int n) {",
+          "@code if (n > 0) { return 1; }",
+          "@code }",
+          "@code public static void printScore(int score) { System.out.println(score); }",
+          "@code int result = printScore(10);",
+          "@code static void swap(int a, int b) { int t = a; a = b; b = t; }",
+          "@code int x = 1, y = 2;",
+          "@code swap(x, y);",
+          "@code System.out.println(x + \" \" + y);",
           "Calling the overloaded method with parameters",
           "The parameters should be passed in the same order as it is defined in the method.",
           "We can also pass the values to the method using variables",
@@ -5695,10 +5805,202 @@ const CONCEPTS_DATA = [
               "C: void methods can declare parameters, as the later versions of calculateScore show.",
               "D: Overloading does not carry values between methods; the no-argument call simply matches the method with an empty parameter list."
             ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "99, because the method receives a copy of the reference and changes the same array object.",
+                "correct": true
+              },
+              {
+                "text": "1, because Java passes a copy of the array so the original is untouched.",
+                "correct": false,
+                "why": "the reference is copied, not the contents. The copy still points at the same array."
+              },
+              {
+                "text": "It does not compile, because arrays cannot be passed to methods.",
+                "correct": false,
+                "why": "arrays are objects and can be passed freely."
+              },
+              {
+                "text": "0, because the array is reset when the method returns.",
+                "correct": false,
+                "why": "nothing is reset. The change made inside the method persists."
+              }
+            ],
+            "code": [
+              "static void update(int[] data) { data[0] = 99; }",
+              "int[] nums = {1, 2, 3};",
+              "update(nums);",
+              "System.out.println(nums[0]);"
+            ],
+            "explain": "Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.",
+            "whyNotes": [
+              "B: the reference is copied, not the contents. The copy still points at the same array.",
+              "C: arrays are objects and can be passed freely.",
+              "D: nothing is reset. The change made inside the method persists."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "1, because reassigning the parameter only changes the local copy of the reference.",
+                "correct": true
+              },
+              {
+                "text": "0, because the method replaces the array with zeros.",
+                "correct": false,
+                "why": "the new array is local to the method and is discarded when it returns."
+              },
+              {
+                "text": "It does not compile, because data cannot be reassigned.",
+                "correct": false,
+                "why": "reassigning a parameter is allowed; it simply has no effect on the caller."
+              },
+              {
+                "text": "99, because the old value is retained.",
+                "correct": false,
+                "why": "99 was never involved in this code."
+              }
+            ],
+            "code": [
+              "static void reset(int[] data) { data = new int[]{0, 0, 0}; }",
+              "int[] nums = {1, 2, 3};",
+              "reset(nums);",
+              "System.out.println(nums[0]);"
+            ],
+            "explain": "The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.",
+            "whyNotes": [
+              "B: the new array is local to the method and is discarded when it returns.",
+              "C: reassigning a parameter is allowed; it simply has no effect on the caller.",
+              "D: 99 was never involved in this code."
+            ]
+          },
+          {
+            "question": "Does this method compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. A non-void method must return a value on every path, and the case where n is not positive has no return.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and it returns 0 when n is not positive.",
+                "correct": false,
+                "why": "there is no implicit 0. The method would have to say so."
+              },
+              {
+                "text": "Yes, because Java supplies a default return value of 0.",
+                "correct": false,
+                "why": "Java never supplies a default return value for a method."
+              },
+              {
+                "text": "Yes, and it returns 1 in every case.",
+                "correct": false,
+                "why": "the return sits inside the if, so it does not cover every case."
+              }
+            ],
+            "code": [
+              "public static int sign(int n) {",
+              "if (n > 0) { return 1; }",
+              "}"
+            ],
+            "explain": "The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.",
+            "whyNotes": [
+              "B: there is no implicit 0. The method would have to say so.",
+              "C: Java never supplies a default return value for a method.",
+              "D: the return sits inside the if, so it does not cover every case."
+            ]
+          },
+          {
+            "question": "Does this line compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. A void method produces no value, so there is nothing to assign to result.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and result becomes 10.",
+                "correct": false,
+                "why": "the score inside the method is a parameter, not a return value."
+              },
+              {
+                "text": "Yes, and result becomes 0.",
+                "correct": false,
+                "why": "an absent value is not the same as zero."
+              },
+              {
+                "text": "Yes, because Java converts the printed value into an int.",
+                "correct": false,
+                "why": "printing is output, not a return."
+              }
+            ],
+            "code": [
+              "public static void printScore(int score) { System.out.println(score); }",
+              "int result = printScore(10);"
+            ],
+            "explain": "void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.",
+            "whyNotes": [
+              "B: the score inside the method is a parameter, not a return value.",
+              "C: an absent value is not the same as zero.",
+              "D: printing is output, not a return."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "INTERVIEW TRAP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "1 2, because the method swaps only its own copies of the values.",
+                "correct": true
+              },
+              {
+                "text": "2 1, because the swap is applied to the caller's variables.",
+                "correct": false,
+                "why": "reaching the caller's variables would need pass-by-reference, which Java does not do."
+              },
+              {
+                "text": "It does not compile, because a and b cannot be reassigned.",
+                "correct": false,
+                "why": "reassigning parameters is perfectly legal."
+              },
+              {
+                "text": "1 1, because both variables end up with the same value.",
+                "correct": false,
+                "why": "the method works correctly on its own copies; the caller simply never sees it."
+              }
+            ],
+            "code": [
+              "static void swap(int a, int b) { int t = a; a = b; b = t; }",
+              "int x = 1, y = 2;",
+              "swap(x, y);",
+              "System.out.println(x + \" \" + y);"
+            ],
+            "explain": "Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.",
+            "whyNotes": [
+              "B: reaching the caller's variables would need pass-by-reference, which Java does not do.",
+              "C: reassigning parameters is perfectly legal.",
+              "D: the method works correctly on its own copies; the caller simply never sees it."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;\r\n// A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.\r\n// Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.\r\n// Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }\r\n// The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.\r\n// If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.\r\n// Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.\r\n// You can call a method with literal values: calculateScore(true, 800, 5, 100)\r\n// Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.\r\n// Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.\r\n// A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.\r\n// This file evolves ONE method, calculateScore, through three stages, defined further down in this same file in this order:\r\n// Stage 1 — calculateScore() with no parameters: void, hard-coded values, only prints (see the method with empty parentheses).\r\n// Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a /* */ block to show the in-between step — it never compiles or runs.\r\n// Stage 3 — calculateScore(boolean, int, int, int): the final, real overload; same parameters as stage 2, but now returns an int so the caller can capture and reuse the result.\r\n\r\n// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?\r\n// @answer Java is ALWAYS pass-by-value.\r\n// @answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.\r\n// @answer For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.\r\n// @answer Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped.\r\n\r\n// @quiz (INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?\r\n// @answer Java resolves overloads at compile time and chooses the most specific applicable method.\r\n// @answer Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.\r\n// @answer If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order.\r\n\r\n// @quiz (INTERVIEW) What is the difference between a void method and a method with a return type?\r\n// @answer A void method performs work but does not return a value to the caller.\r\n// @answer A method with a return type must return a value of that declared type on every valid execution path.\r\n// @answer You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use.\r\n\r\n// @quiz (INTERVIEW) What is the difference between a static method and an instance method in Java?\r\n// @answer A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().\r\n// @answer An instance method belongs to a specific object and is called on an object reference.\r\n// @answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args is the zero-based command-line String array; choose values only when the program should receive startup input.\r\n// - calculateScore(boolean gameOver, int score, int levelCompleted, int bonus): gameOver tells the method whether to compute a final score; pass true when the game has ended and false to receive the error/sentinel result -1.\r\n// - calculateScore(...): score is the player's current points before bonus; choose the measured score value, usually non-negative in a game.\r\n// - calculateScore(...): levelCompleted is the number of completed levels used as a multiplier; choose a count, not a level index, and avoid negative counts unless intentionally modeling a penalty.\r\n// - calculateScore(...): bonus is points awarded per completed level; choose the per-level bonus amount, so finalScore adds levelCompleted * bonus plus 1000.\r\n// - System.out.println(String x): in this file x is always a label concatenated with a score result, e.g. \"Your final score was \" + highScore.\r\n// - calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them.\r\n//\r\n// @quiz (INTERVIEW) What does the gameOver parameter of calculateScore control?\r\n// @answer It decides whether the method calculates and returns a final score; if false, the method returns -1 as a sentinel for no valid score.\r\n//\r\n// @quiz (INTERVIEW) How should a caller choose levelCompleted and bonus for calculateScore?\r\n// @answer levelCompleted should be the number of levels completed, and bonus should be the points per level; the method multiplies them together.\r\n//\r\n// @quiz (INTERVIEW TRAP) Does calculateScore(gameOver, score, levelCompleted, bonus) receive the caller's variables themselves?\r\n// @answer No. Java passes argument values by value; parameter variables receive copies of those values in the declared order.\r\n//\r\n// @quiz (OCJP) Which overload is called by calculateScore(true, 800, 5, 100)?\r\n// @answer The int-returning overload with parameters (boolean, int, int, int) is called because the argument count and types match that signature.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about method parameters in Java is correct?\r\n// @option A parameter is a local variable that is created on each call, holds a copy of the argument value, and is destroyed when the method returns. [correct]\r\n// @option A parameter is an alias for the caller's variable, so assigning a new value to the parameter also changes the caller's variable.\r\n// @option A parameter keeps the value from the previous call, because Java reuses the same variable for the same method.\r\n// @option A parameter must have exactly the same name as the variable that the caller passes in.\r\n// @explain Parameters are local variables that exist only for the duration of a call. They are initialised with copies of the argument values, which is why Java is described as pass-by-value.\r\n// @why B: Java always passes by value, so reassigning a parameter cannot affect the caller's variable.\r\n// @why C: Each call creates fresh parameters, and they are destroyed when the method returns, so nothing is retained.\r\n// @why D: The parameter name is local to the method; the caller's variable names have no effect on it.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) A method is declared as public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus). What does the int return type require of this method?\r\n// @option Every valid execution path must return an int value, and this method uses -1 to signal that no valid score could be produced. [correct]\r\n// @option Nothing extra, because the int only documents the type of the value that is printed inside the method.\r\n// @option The method must return a double, because finalScore is increased by the constant 1000.\r\n// @option The method may finish without returning a value, as long as it prints the result first.\r\n// @explain A non-void return type is a promise that the method sends back a value of that declared type on every path that finishes normally. Here the promise is kept by returning finalScore, or -1 as the sentinel when no score is valid.\r\n// @why B: The return type describes the value sent back to the caller, not what is printed inside the method.\r\n// @why C: finalScore is an int and the declared return type stays int; adding 1000 does not widen it.\r\n// @why D: Printing is not returning, so a method with a non-void return type must still return a value.\r\n\r\n// @quiz (OCJP, MEDIUM) Given the overloads print(int x) and print(double x), which one runs for the call print(5)?\r\n// @option print(int), because the argument is already an int, so that overload is the most specific applicable one. [correct]\r\n// @option print(double), because Java widens to double before it looks for an exact match.\r\n// @option Neither, because the call is ambiguous and the code does not compile.\r\n// @option Java decides at runtime, by asking the argument which parameter type it prefers.\r\n// @explain Overload resolution happens at compile time and picks the most specific applicable method. The argument is exactly an int, so print(int) is a better match than print(double).\r\n// @why B: Widening is only considered when no more specific applicable overload exists, so the int version wins here.\r\n// @why C: The call is not ambiguous, because print(int) is strictly more specific than print(double).\r\n// @why D: Overload resolution is a compile-time decision based on the declared types of the arguments.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) A classic swap(int a, int b) method exchanges the values of its two parameters. What does the caller see afterwards?\r\n// @option The caller's variables are unchanged, because the method swaps only its own copies of the two values. [correct]\r\n// @option The caller's variables are swapped, because int arguments are passed by reference.\r\n// @option The caller's variables are swapped, but only when the method is declared static.\r\n// @option The code does not compile, because Java cannot pass an int value to a method.\r\n// @explain Java passes arguments by value, so a and b are copies. Swapping the copies leaves the caller's variables exactly as they were, which is the classic Java trap.\r\n// @why B: Primitives are passed by value, so no link to the caller's variables is ever created.\r\n// @why C: Being static has no effect on argument passing; copies are made either way.\r\n// @why D: Passing int values to int parameters is completely legal; the values are simply copied.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about a void method is correct?\r\n// @option A void method can be called as a statement but cannot be used inside an expression, because the call produces no value. [correct]\r\n// @option A void method must still return a value, and the usual choice is to return 0 as a placeholder.\r\n// @option A void method cannot declare parameters, because it has nothing to send back.\r\n// @option A void method can be assigned to any variable, and that variable then holds null.\r\n// @explain void means the method sends no value back to the caller. The call is therefore an action rather than an expression, so it cannot be used where a value is expected.\r\n// @why B: A void method may finish without any return statement at all.\r\n// @why C: void describes only the return type; a void method may take as many parameters as it needs.\r\n// @why D: There is no value to assign, so a void method call cannot appear on the right-hand side of an assignment.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement correctly compares a static method with an instance method?\r\n// @option A static method has no current object, so it cannot directly access instance fields, while an instance method can access both instance and static members. [correct]\r\n// @option A static method is called on an object, while an instance method is called with the class name.\r\n// @option An instance method cannot read static fields, because static members belong only to the class.\r\n// @option A static method belongs to each object separately, so every object gets its own copy of it.\r\n// @explain A static method belongs to the class itself and is called through the class name, such as Math.max(). It has no current object, so instance fields are out of reach, whereas an instance method has a current object and can use both kinds of member.\r\n// @why B: It is the other way round: static members are used with the class name, and instance members with an object reference.\r\n// @why C: An instance method can access static members as well as instance members.\r\n// @why D: Static members belong to the class and are shared by all objects rather than copied for each object.\r\n\r\n// @quiz (OCJP, HARD) What is the value of result after this call?\r\n// @code int result = calculateScore(false, 800, 5, 100);\r\n// @option -1, because gameOver is false, so the calculation is skipped and the sentinel value is returned. [correct]\r\n// @option 2300, because 800 + (5 * 100) + 1000 is calculated from the arguments that were passed.\r\n// @option 0, because finalScore is still zero when the if block does not run.\r\n// @option The code does not compile, because an if block without an else block cannot return an int on every path.\r\n// @explain The whole calculation sits inside if(gameOver), so passing false skips it. Execution then reaches the final return -1, which is the documented sentinel meaning no valid score.\r\n// @why B: The arithmetic is never performed for a false gameOver, so 2300 cannot be returned here.\r\n// @why C: finalScore is declared inside the if block, so it does not exist at all when the block is skipped.\r\n// @why D: The return -1 after the if statement provides a value on every path, so the method compiles.\r\n\r\n// @quiz (INTERVIEW, EASY) Why can the first version of calculateScore be called as calculateScore() with no arguments?\r\n// @option Because that version declares an empty parameter list and hard-codes its own gameOver, score, levelCompleted and bonus values. [correct]\r\n// @option Because Java fills in a default value for every argument that is left out.\r\n// @option Because void methods are not allowed to declare parameters.\r\n// @option Because the other overload has already stored the four values for it to use.\r\n// @explain A no-argument method declares no parameters, so it must supply its own values inside the body. That is exactly why the caller of this version has no way to change gameOver, score, levelCompleted or bonus.\r\n// @why B: Java never invents arguments; the argument count and types must match a declared parameter list.\r\n// @why C: void methods can declare parameters, as the later versions of calculateScore show.\r\n// @why D: Overloading does not carry values between methods; the no-argument call simply matches the method with an empty parameter list.\r\n\r\npublic class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);\r\n\r\n        // We can also pass the values to the method using variables\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        int highScoreValue = calculateScore(gameOver,score,levelCompleted,bonus); // Here, the value supplied to the method is in the form of variables, which is also valid input to the method.\r\n        System.out.println(\"Your final score was \" + highScoreValue);\r\n    }\r\n\r\n    public static void calculateScore(){\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n    }\r\n\r\n/*\r\n//    public static void calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // When we define parameters,Java will automatically create variables with appropriate data types, and it gets deleted, once process goes back to the line where method is called.\r\n        // void means don't send any value back.If we don 't the method to return any information, we use void as a return type of method.\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n//    }\r\n*/\r\n\r\n    public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // Here, the data return type is int, which means method is returning a value of type int.\r\n        // If we have to return any information, and send the value(result) back to the method call, we can use the method with return type option\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            return finalScore;\r\n        }\r\n      /*  else{\r\n            return -1;\r\n        }*/\r\n\r\n        return -1; // In programming terms, negative value indicates programming error.\r\n    }\r\n}\r\n"
+        "code": "package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;\r\n// A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.\r\n// Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.\r\n// Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }\r\n// The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.\r\n// If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.\r\n// Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.\r\n// You can call a method with literal values: calculateScore(true, 800, 5, 100)\r\n// Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.\r\n// Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.\r\n// A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.\r\n// This file evolves ONE method, calculateScore, through three stages, defined further down in this same file in this order:\r\n// Stage 1 — calculateScore() with no parameters: void, hard-coded values, only prints (see the method with empty parentheses).\r\n// Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a /* */ block to show the in-between step — it never compiles or runs.\r\n// Stage 3 — calculateScore(boolean, int, int, int): the final, real overload; same parameters as stage 2, but now returns an int so the caller can capture and reuse the result.\r\n\r\n// @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?\r\n// @answer Java is ALWAYS pass-by-value.\r\n// @answer For primitives, the actual value is copied into the method parameter, so changing the parameter does not change the caller's variable.\r\n// @answer For objects, the value being copied is the reference. That means the method receives a copy of the reference to the same object, so it can modify the object's fields, but reassigning the parameter to a new object does NOT change the caller's reference.\r\n// @answer Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped.\r\n\r\n// @quiz (INTERVIEW) How does Java choose between overloaded methods such as print(int x) and print(double x)?\r\n// @answer Java resolves overloads at compile time and chooses the most specific applicable method.\r\n// @answer Calling print(5) picks print(int) because the argument is already an int, so that overload is a better match than widening to double.\r\n// @answer If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order.\r\n\r\n// @quiz (INTERVIEW) What is the difference between a void method and a method with a return type?\r\n// @answer A void method performs work but does not return a value to the caller.\r\n// @answer A method with a return type must return a value of that declared type on every valid execution path.\r\n// @answer You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use.\r\n\r\n// @quiz (INTERVIEW) What is the difference between a static method and an instance method in Java?\r\n// @answer A static method belongs to the class itself and is typically called with the class name, such as Math.max() or MyClass.doWork().\r\n// @answer An instance method belongs to a specific object and is called on an object reference.\r\n// @answer Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args is the zero-based command-line String array; choose values only when the program should receive startup input.\r\n// - calculateScore(boolean gameOver, int score, int levelCompleted, int bonus): gameOver tells the method whether to compute a final score; pass true when the game has ended and false to receive the error/sentinel result -1.\r\n// - calculateScore(...): score is the player's current points before bonus; choose the measured score value, usually non-negative in a game.\r\n// - calculateScore(...): levelCompleted is the number of completed levels used as a multiplier; choose a count, not a level index, and avoid negative counts unless intentionally modeling a penalty.\r\n// - calculateScore(...): bonus is points awarded per completed level; choose the per-level bonus amount, so finalScore adds levelCompleted * bonus plus 1000.\r\n// - System.out.println(String x): in this file x is always a label concatenated with a score result, e.g. \"Your final score was \" + highScore.\r\n// - calculateScore() (no parameters, stage 1): takes no arguments at all — that is why it is called as calculateScore(); its gameOver/score/levelCompleted/bonus values are hard-coded inside the method, so the caller has no way to change them.\r\n//\r\n// @quiz (INTERVIEW) What does the gameOver parameter of calculateScore control?\r\n// @answer It decides whether the method calculates and returns a final score; if false, the method returns -1 as a sentinel for no valid score.\r\n//\r\n// @quiz (INTERVIEW) How should a caller choose levelCompleted and bonus for calculateScore?\r\n// @answer levelCompleted should be the number of levels completed, and bonus should be the points per level; the method multiplies them together.\r\n//\r\n// @quiz (INTERVIEW TRAP) Does calculateScore(gameOver, score, levelCompleted, bonus) receive the caller's variables themselves?\r\n// @answer No. Java passes argument values by value; parameter variables receive copies of those values in the declared order.\r\n//\r\n// @quiz (OCJP) Which overload is called by calculateScore(true, 800, 5, 100)?\r\n// @answer The int-returning overload with parameters (boolean, int, int, int) is called because the argument count and types match that signature.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about method parameters in Java is correct?\r\n// @option A parameter is a local variable that is created on each call, holds a copy of the argument value, and is destroyed when the method returns. [correct]\r\n// @option A parameter is an alias for the caller's variable, so assigning a new value to the parameter also changes the caller's variable.\r\n// @option A parameter keeps the value from the previous call, because Java reuses the same variable for the same method.\r\n// @option A parameter must have exactly the same name as the variable that the caller passes in.\r\n// @explain Parameters are local variables that exist only for the duration of a call. They are initialised with copies of the argument values, which is why Java is described as pass-by-value.\r\n// @why B: Java always passes by value, so reassigning a parameter cannot affect the caller's variable.\r\n// @why C: Each call creates fresh parameters, and they are destroyed when the method returns, so nothing is retained.\r\n// @why D: The parameter name is local to the method; the caller's variable names have no effect on it.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) A method is declared as public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus). What does the int return type require of this method?\r\n// @option Every valid execution path must return an int value, and this method uses -1 to signal that no valid score could be produced. [correct]\r\n// @option Nothing extra, because the int only documents the type of the value that is printed inside the method.\r\n// @option The method must return a double, because finalScore is increased by the constant 1000.\r\n// @option The method may finish without returning a value, as long as it prints the result first.\r\n// @explain A non-void return type is a promise that the method sends back a value of that declared type on every path that finishes normally. Here the promise is kept by returning finalScore, or -1 as the sentinel when no score is valid.\r\n// @why B: The return type describes the value sent back to the caller, not what is printed inside the method.\r\n// @why C: finalScore is an int and the declared return type stays int; adding 1000 does not widen it.\r\n// @why D: Printing is not returning, so a method with a non-void return type must still return a value.\r\n\r\n// @quiz (OCJP, MEDIUM) Given the overloads print(int x) and print(double x), which one runs for the call print(5)?\r\n// @option print(int), because the argument is already an int, so that overload is the most specific applicable one. [correct]\r\n// @option print(double), because Java widens to double before it looks for an exact match.\r\n// @option Neither, because the call is ambiguous and the code does not compile.\r\n// @option Java decides at runtime, by asking the argument which parameter type it prefers.\r\n// @explain Overload resolution happens at compile time and picks the most specific applicable method. The argument is exactly an int, so print(int) is a better match than print(double).\r\n// @why B: Widening is only considered when no more specific applicable overload exists, so the int version wins here.\r\n// @why C: The call is not ambiguous, because print(int) is strictly more specific than print(double).\r\n// @why D: Overload resolution is a compile-time decision based on the declared types of the arguments.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) A classic swap(int a, int b) method exchanges the values of its two parameters. What does the caller see afterwards?\r\n// @option The caller's variables are unchanged, because the method swaps only its own copies of the two values. [correct]\r\n// @option The caller's variables are swapped, because int arguments are passed by reference.\r\n// @option The caller's variables are swapped, but only when the method is declared static.\r\n// @option The code does not compile, because Java cannot pass an int value to a method.\r\n// @explain Java passes arguments by value, so a and b are copies. Swapping the copies leaves the caller's variables exactly as they were, which is the classic Java trap.\r\n// @why B: Primitives are passed by value, so no link to the caller's variables is ever created.\r\n// @why C: Being static has no effect on argument passing; copies are made either way.\r\n// @why D: Passing int values to int parameters is completely legal; the values are simply copied.\r\n\r\n// @quiz (INTERVIEW, EASY) Which statement about a void method is correct?\r\n// @option A void method can be called as a statement but cannot be used inside an expression, because the call produces no value. [correct]\r\n// @option A void method must still return a value, and the usual choice is to return 0 as a placeholder.\r\n// @option A void method cannot declare parameters, because it has nothing to send back.\r\n// @option A void method can be assigned to any variable, and that variable then holds null.\r\n// @explain void means the method sends no value back to the caller. The call is therefore an action rather than an expression, so it cannot be used where a value is expected.\r\n// @why B: A void method may finish without any return statement at all.\r\n// @why C: void describes only the return type; a void method may take as many parameters as it needs.\r\n// @why D: There is no value to assign, so a void method call cannot appear on the right-hand side of an assignment.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement correctly compares a static method with an instance method?\r\n// @option A static method has no current object, so it cannot directly access instance fields, while an instance method can access both instance and static members. [correct]\r\n// @option A static method is called on an object, while an instance method is called with the class name.\r\n// @option An instance method cannot read static fields, because static members belong only to the class.\r\n// @option A static method belongs to each object separately, so every object gets its own copy of it.\r\n// @explain A static method belongs to the class itself and is called through the class name, such as Math.max(). It has no current object, so instance fields are out of reach, whereas an instance method has a current object and can use both kinds of member.\r\n// @why B: It is the other way round: static members are used with the class name, and instance members with an object reference.\r\n// @why C: An instance method can access static members as well as instance members.\r\n// @why D: Static members belong to the class and are shared by all objects rather than copied for each object.\r\n\r\n// @quiz (OCJP, HARD) What is the value of result after this call?\r\n// @code int result = calculateScore(false, 800, 5, 100);\r\n// @option -1, because gameOver is false, so the calculation is skipped and the sentinel value is returned. [correct]\r\n// @option 2300, because 800 + (5 * 100) + 1000 is calculated from the arguments that were passed.\r\n// @option 0, because finalScore is still zero when the if block does not run.\r\n// @option The code does not compile, because an if block without an else block cannot return an int on every path.\r\n// @explain The whole calculation sits inside if(gameOver), so passing false skips it. Execution then reaches the final return -1, which is the documented sentinel meaning no valid score.\r\n// @why B: The arithmetic is never performed for a false gameOver, so 2300 cannot be returned here.\r\n// @why C: finalScore is declared inside the if block, so it does not exist at all when the block is skipped.\r\n// @why D: The return -1 after the if statement provides a value on every path, so the method compiles.\r\n\r\n// @quiz (INTERVIEW, EASY) Why can the first version of calculateScore be called as calculateScore() with no arguments?\r\n// @option Because that version declares an empty parameter list and hard-codes its own gameOver, score, levelCompleted and bonus values. [correct]\r\n// @option Because Java fills in a default value for every argument that is left out.\r\n// @option Because void methods are not allowed to declare parameters.\r\n// @option Because the other overload has already stored the four values for it to use.\r\n// @explain A no-argument method declares no parameters, so it must supply its own values inside the body. That is exactly why the caller of this version has no way to change gameOver, score, levelCompleted or bonus.\r\n// @why B: Java never invents arguments; the argument count and types must match a declared parameter list.\r\n// @why C: void methods can declare parameters, as the later versions of calculateScore show.\r\n// @why D: Overloading does not carry values between methods; the no-argument call simply matches the method with an empty parameter list.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is printed by this code?\r\n// @code static void update(int[] data) { data[0] = 99; }\r\n// @code int[] nums = {1, 2, 3};\r\n// @code update(nums);\r\n// @code System.out.println(nums[0]);\r\n// @option 99, because the method receives a copy of the reference and changes the same array object. [correct]\r\n// @option 1, because Java passes a copy of the array so the original is untouched.\r\n// @option It does not compile, because arrays cannot be passed to methods.\r\n// @option 0, because the array is reset when the method returns.\r\n// @explain Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.\r\n// @why B: the reference is copied, not the contents. The copy still points at the same array.\r\n// @why C: arrays are objects and can be passed freely.\r\n// @why D: nothing is reset. The change made inside the method persists.\r\n\r\n// @quiz (INTERVIEW, HARD) What is printed by this code?\r\n// @code static void reset(int[] data) { data = new int[]{0, 0, 0}; }\r\n// @code int[] nums = {1, 2, 3};\r\n// @code reset(nums);\r\n// @code System.out.println(nums[0]);\r\n// @option 1, because reassigning the parameter only changes the local copy of the reference. [correct]\r\n// @option 0, because the method replaces the array with zeros.\r\n// @option It does not compile, because data cannot be reassigned.\r\n// @option 99, because the old value is retained.\r\n// @explain The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.\r\n// @why B: the new array is local to the method and is discarded when it returns.\r\n// @why C: reassigning a parameter is allowed; it simply has no effect on the caller.\r\n// @why D: 99 was never involved in this code.\r\n\r\n// @quiz (OCJP, MEDIUM) Does this method compile?\r\n// @code public static int sign(int n) {\r\n// @code     if (n > 0) { return 1; }\r\n// @code }\r\n// @option No. A non-void method must return a value on every path, and the case where n is not positive has no return. [correct]\r\n// @option Yes, and it returns 0 when n is not positive.\r\n// @option Yes, because Java supplies a default return value of 0.\r\n// @option Yes, and it returns 1 in every case.\r\n// @explain The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.\r\n// @why B: there is no implicit 0. The method would have to say so.\r\n// @why C: Java never supplies a default return value for a method.\r\n// @why D: the return sits inside the if, so it does not cover every case.\r\n\r\n// @quiz (OCJP, MEDIUM) Does this line compile?\r\n// @code public static void printScore(int score) { System.out.println(score); }\r\n// @code int result = printScore(10);\r\n// @option No. A void method produces no value, so there is nothing to assign to result. [correct]\r\n// @option Yes, and result becomes 10.\r\n// @option Yes, and result becomes 0.\r\n// @option Yes, because Java converts the printed value into an int.\r\n// @explain void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.\r\n// @why B: the score inside the method is a parameter, not a return value.\r\n// @why C: an absent value is not the same as zero.\r\n// @why D: printing is output, not a return.\r\n\r\n// @quiz (INTERVIEW TRAP, HARD) What is printed by this code?\r\n// @code static void swap(int a, int b) { int t = a; a = b; b = t; }\r\n// @code int x = 1, y = 2;\r\n// @code swap(x, y);\r\n// @code System.out.println(x + \" \" + y);\r\n// @option 1 2, because the method swaps only its own copies of the values. [correct]\r\n// @option 2 1, because the swap is applied to the caller's variables.\r\n// @option It does not compile, because a and b cannot be reassigned.\r\n// @option 1 1, because both variables end up with the same value.\r\n// @explain Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.\r\n// @why B: reaching the caller's variables would need pass-by-reference, which Java does not do.\r\n// @why C: reassigning parameters is perfectly legal.\r\n// @why D: the method works correctly on its own copies; the caller simply never sees it.\r\n\r\npublic class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);\r\n\r\n        // We can also pass the values to the method using variables\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        int highScoreValue = calculateScore(gameOver,score,levelCompleted,bonus); // Here, the value supplied to the method is in the form of variables, which is also valid input to the method.\r\n        System.out.println(\"Your final score was \" + highScoreValue);\r\n    }\r\n\r\n    public static void calculateScore(){\r\n\r\n        boolean gameOver = true;\r\n        int score = 800;\r\n        int levelCompleted = 5;\r\n        int bonus = 100;\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n    }\r\n\r\n/*\r\n//    public static void calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // When we define parameters,Java will automatically create variables with appropriate data types, and it gets deleted, once process goes back to the line where method is called.\r\n        // void means don't send any value back.If we don 't the method to return any information, we use void as a return type of method.\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            System.out.println(\"Your final score was \" + finalScore);\r\n        }\r\n\r\n//    }\r\n*/\r\n\r\n    public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus){\r\n\r\n        // Here, the data return type is int, which means method is returning a value of type int.\r\n        // If we have to return any information, and send the value(result) back to the method call, we can use the method with return type option\r\n\r\n        if(gameOver){\r\n            int finalScore = score + (levelCompleted * bonus);\r\n            finalScore += 1000;\r\n            return finalScore;\r\n        }\r\n      /*  else{\r\n            return -1;\r\n        }*/\r\n\r\n        return -1; // In programming terms, negative value indicates programming error.\r\n    }\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/AreaCalculatorCodingChallenge.java",
@@ -6286,6 +6588,114 @@ const CONCEPTS_DATA = [
               "@why C: Execution starts at the label that matched, so the earlier messages for case 1 and case 2 are not printed.",
               "@why D: A switch without break is legal; it falls through instead of failing."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int x = 2;\r\n@code switch (x) {\r\n@code     case 1: System.out.println(\"one\"); break;\r\n@code     case 1: System.out.println(\"again\"); break;\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. A duplicate case label is a compile error. [correct]",
+              "@option Yes, and the first case 1 runs.",
+              "@option Yes, and the second case 1 runs.",
+              "@option Yes, and both of them run.",
+              "@explain The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.",
+              "@why B: the file does not compile, so nothing runs.",
+              "@why C: for the same reason, the duplicate is rejected first.",
+              "@why D: it never gets that far."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code String day = \"monday\";\r\n@code switch (day) {\r\n@code     case \"Monday\": System.out.println(\"start of week\"); break;\r\n@code     default: System.out.println(\"unknown\");\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option unknown, because the case label is compared exactly and \"monday\" does not match \"Monday\". [correct]",
+              "@option start of week, because switch ignores letter case.",
+              "@option It does not compile, because a switch cannot use a String.",
+              "@option It does not compile, because case labels must be int values.",
+              "@explain A switch on a String compares with equals, which is case-sensitive. Since \"monday\" differs from \"Monday\", no label matches and the default branch runs.",
+              "@why B: switch does not normalise case. Lowercase the value first if case must be ignored.",
+              "@why C: String has been a valid switch selector since Java 7.",
+              "@why D: String labels are allowed; the values simply have to match exactly."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int x = 3;\r\n@code switch (x) {",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@code case 1:",
+              "@code case 2:"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code     case 3: System.out.println(\"low\"); break;\r\n@code     default: System.out.println(\"high\");\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option low, because cases 1, 2 and 3 all lead to the same block. [correct]",
+              "@option low then high, because case 3 falls through into default.",
+              "@option high, because 3 has no block of its own.",
+              "@option It does not compile, because case 1 and case 2 have no statements.",
+              "@explain Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.",
+              "@why B: after printing low, break leaves the switch, so default never runs.",
+              "@why C: the grouping means 3 has a block, the shared one.",
+              "@why D: a label with no statements is exactly how grouping is written."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code static void check(int x) {\r\n@code     switch (x) {\r\n@code         case 1: System.out.println(\"one\"); return;\r\n@code         default: System.out.println(\"other\");\r\n@code     }\r\n@code     System.out.println(\"after switch\");\r\n@code }\r\n@code check(1);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option one, and nothing else, because return exits the whole method. [correct]",
+              "@option one, then after switch.",
+              "@option one, other, then after switch.",
+              "@option after switch only.",
+              "@explain return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.",
+              "@why B: after switch is not reached, because the method has already returned.",
+              "@why C: only the matching branch runs, and the method returns from it.",
+              "@why D: case 1 matches, so one is printed before the return."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int x = 2;\r\n@code switch (x) {\r\n@code     default: System.out.print(\"D\");\r\n@code     case 1: System.out.print(\"A\");\r\n@code     case 2: System.out.print(\"B\");\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option B, because case 2 matches and execution begins at the matching label. [correct]",
+              "@option DB, because default is written first and falls through.",
+              "@option DAB, because execution always starts at default.",
+              "@option D, because default runs before the cases are tested.",
+              "@explain default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.",
+              "@why B: putting default first does not make it run. It is used only when nothing matches.",
+              "@why C: execution starts at the matching case, not at default.",
+              "@why D: x is 2, so case 2 matches and default is not needed."
+            ]
           }
         ],
         "inlineComments": [
@@ -6297,6 +6707,22 @@ const CONCEPTS_DATA = [
           "@code case 3: System.out.print(\"C\"); break;",
           "@code default: System.out.print(\"D\");",
           "@code }",
+          "@code int x = 2;",
+          "@code case 1: System.out.println(\"one\"); break;",
+          "@code case 1: System.out.println(\"again\"); break;",
+          "@code String day = \"monday\";",
+          "@code switch (day) {",
+          "@code case \"Monday\": System.out.println(\"start of week\"); break;",
+          "@code default: System.out.println(\"unknown\");",
+          "@code int x = 3;",
+          "@code case 3: System.out.println(\"low\"); break;",
+          "@code default: System.out.println(\"high\");",
+          "@code static void check(int x) {",
+          "@code case 1: System.out.println(\"one\"); return;",
+          "@code default: System.out.println(\"other\");",
+          "@code System.out.println(\"after switch\");",
+          "@code check(1);",
+          "@code case 1: System.out.print(\"A\");",
           "The same logic can be written using if-else; switch is cleaner when testing one variable against many values.",
           "The switch expression is matched against each case label. When a match is found, its code block executes. Without break, execution 'falls through' to the next case.",
           "The condition is provided as parameter to switch statement, which is then matched to the case statement.",
@@ -6703,10 +7129,216 @@ const CONCEPTS_DATA = [
               "C: Execution starts at the label that matched, so the earlier messages for case 1 and case 2 are not printed.",
               "D: A switch without break is legal; it falls through instead of failing."
             ]
+          },
+          {
+            "question": "Does this switch compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "No. A duplicate case label is a compile error.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and the first case 1 runs.",
+                "correct": false,
+                "why": "the file does not compile, so nothing runs."
+              },
+              {
+                "text": "Yes, and the second case 1 runs.",
+                "correct": false,
+                "why": "for the same reason, the duplicate is rejected first."
+              },
+              {
+                "text": "Yes, and both of them run.",
+                "correct": false,
+                "why": "it never gets that far."
+              }
+            ],
+            "code": [
+              "int x = 2;",
+              "switch (x) {",
+              "case 1: System.out.println(\"one\"); break;",
+              "case 1: System.out.println(\"again\"); break;",
+              "}"
+            ],
+            "explain": "The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.",
+            "whyNotes": [
+              "B: the file does not compile, so nothing runs.",
+              "C: for the same reason, the duplicate is rejected first.",
+              "D: it never gets that far."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "unknown, because the case label is compared exactly and \"monday\" does not match \"Monday\".",
+                "correct": true
+              },
+              {
+                "text": "start of week, because switch ignores letter case.",
+                "correct": false,
+                "why": "switch does not normalise case. Lowercase the value first if case must be ignored."
+              },
+              {
+                "text": "It does not compile, because a switch cannot use a String.",
+                "correct": false,
+                "why": "String has been a valid switch selector since Java 7."
+              },
+              {
+                "text": "It does not compile, because case labels must be int values.",
+                "correct": false,
+                "why": "String labels are allowed; the values simply have to match exactly."
+              }
+            ],
+            "code": [
+              "String day = \"monday\";",
+              "switch (day) {",
+              "case \"Monday\": System.out.println(\"start of week\"); break;",
+              "default: System.out.println(\"unknown\");",
+              "}"
+            ],
+            "explain": "A switch on a String compares with equals, which is case-sensitive. Since \"monday\" differs from \"Monday\", no label matches and the default branch runs.",
+            "whyNotes": [
+              "B: switch does not normalise case. Lowercase the value first if case must be ignored.",
+              "C: String has been a valid switch selector since Java 7.",
+              "D: String labels are allowed; the values simply have to match exactly."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "low, because cases 1, 2 and 3 all lead to the same block.",
+                "correct": true
+              },
+              {
+                "text": "low then high, because case 3 falls through into default.",
+                "correct": false,
+                "why": "after printing low, break leaves the switch, so default never runs."
+              },
+              {
+                "text": "high, because 3 has no block of its own.",
+                "correct": false,
+                "why": "the grouping means 3 has a block, the shared one."
+              },
+              {
+                "text": "It does not compile, because case 1 and case 2 have no statements.",
+                "correct": false,
+                "why": "a label with no statements is exactly how grouping is written."
+              }
+            ],
+            "code": [
+              "int x = 3;",
+              "switch (x) {",
+              "case 1:",
+              "case 2:",
+              "case 3: System.out.println(\"low\"); break;",
+              "default: System.out.println(\"high\");",
+              "}"
+            ],
+            "explain": "Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.",
+            "whyNotes": [
+              "B: after printing low, break leaves the switch, so default never runs.",
+              "C: the grouping means 3 has a block, the shared one.",
+              "D: a label with no statements is exactly how grouping is written."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "one, and nothing else, because return exits the whole method.",
+                "correct": true
+              },
+              {
+                "text": "one, then after switch.",
+                "correct": false,
+                "why": "after switch is not reached, because the method has already returned."
+              },
+              {
+                "text": "one, other, then after switch.",
+                "correct": false,
+                "why": "only the matching branch runs, and the method returns from it."
+              },
+              {
+                "text": "after switch only.",
+                "correct": false,
+                "why": "case 1 matches, so one is printed before the return."
+              }
+            ],
+            "code": [
+              "static void check(int x) {",
+              "switch (x) {",
+              "case 1: System.out.println(\"one\"); return;",
+              "default: System.out.println(\"other\");",
+              "}",
+              "System.out.println(\"after switch\");",
+              "}",
+              "check(1);"
+            ],
+            "explain": "return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.",
+            "whyNotes": [
+              "B: after switch is not reached, because the method has already returned.",
+              "C: only the matching branch runs, and the method returns from it.",
+              "D: case 1 matches, so one is printed before the return."
+            ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "B, because case 2 matches and execution begins at the matching label.",
+                "correct": true
+              },
+              {
+                "text": "DB, because default is written first and falls through.",
+                "correct": false,
+                "why": "putting default first does not make it run. It is used only when nothing matches."
+              },
+              {
+                "text": "DAB, because execution always starts at default.",
+                "correct": false,
+                "why": "execution starts at the matching case, not at default."
+              },
+              {
+                "text": "D, because default runs before the cases are tested.",
+                "correct": false,
+                "why": "x is 2, so case 2 matches and default is not needed."
+              }
+            ],
+            "code": [
+              "int x = 2;",
+              "switch (x) {",
+              "default: System.out.print(\"D\");",
+              "case 1: System.out.print(\"A\");",
+              "case 2: System.out.print(\"B\");",
+              "}"
+            ],
+            "explain": "default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.",
+            "whyNotes": [
+              "B: putting default first does not make it run. It is used only when nothing matches.",
+              "C: execution starts at the matching case, not at default.",
+              "D: x is 2, so case 2 matches and default is not needed."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;\r\n// The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.\r\n// Switch is cleaner and more readable than nested if-else when you have many possible values to test.\r\n// switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.\r\n// Structure: switch(variable) { case value1: code; break; case value2: code; break; default: code; }\r\n// The 'break' statement is critical — without it, execution \"falls through\" to the next case and continues running (even if that case's value doesn't match).\r\n// Fall-through can sometimes be useful (grouping multiple cases together), but is mostly a source of bugs if not intended.\r\n// The 'default' case is like the 'else' in an if-else — it runs when no case matches. It is optional but recommended.\r\n// A return statement inside a switch also acts like a break — it exits both the switch AND the method.\r\n// Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println(\"1, 2 or 3\");\r\n// The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through.\r\n\r\n// @quiz (INTERVIEW) What data types can be used in a traditional Java switch statement?\r\n// @answer switch supports byte, short, char, int, their wrapper types, enum types, and String.\r\n// @answer It does not support every type, so larger or unrelated types still need if-else logic.\r\n\r\n// @quiz (INTERVIEW) What is fall-through in a switch statement, and when is it useful?\r\n// @answer Fall-through means execution continues into the next case when break is omitted.\r\n// @answer It is useful when multiple cases should share the same logic, but accidental fall-through is a common bug.\r\n\r\n// @quiz (INTERVIEW) What is the default case in a switch statement, and is it required?\r\n// @answer default runs when no case label matches the switch value.\r\n// @answer It is optional, but it is often useful for invalid or unexpected values.\r\n\r\n// @quiz (INTERVIEW) When is switch usually preferred over a long if-else chain?\r\n// @answer switch is cleaner when one expression is compared against many fixed constant values.\r\n// @answer if-else is better when conditions are ranges, combinations, or more complex boolean expressions.\r\n\r\n// @quiz (OCJP) What prints here: int x = 2; switch (x) { case 1: System.out.print(\"A\"); case 2: System.out.print(\"B\"); default: System.out.print(\"C\"); }?\r\n// @answer It prints BC.\r\n// @answer Execution starts at case 2 and falls through to default because there are no break statements.\r\n\r\n// @quiz (OCJP) Can a traditional switch use long or boolean as the selector?\r\n// @answer No. long and boolean are not valid selector types for a traditional switch statement.\r\n// @answer For those cases, use if-else instead.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args holds optional command-line Strings; choose values when launch-time input is needed, otherwise it may be unused.\r\n// - ifElseExample(int value): value is the number to compare against 1 and 2; choose an int whose exact value should select a message.\r\n// - switchCase(int value): value is the switch selector matched against case labels 1, 2, and 3; choose one of those values for a specific branch or another int for default.\r\n// - switchCaseMultipleCasesTogether(int value): value selects case 1, 2, or the grouped 3/4/5 branch; careful, grouped labels all run the same code.\r\n// - switchCaseWithoutUsingBreak(int value): value chooses the starting case, but missing breaks cause fall-through; warning: choose 1 only if you expect all later messages too.\r\n// - getQuarter(String month): month is expected to be an uppercase English month name such as \"NOVEMBER\"; choose exactly one of the listed names to avoid \"INVALID MONTH\".\r\n// - quarterValue.equals(\"INVALID MONTH\"): the argument is the Object/String to compare with quarterValue; choose the exact text you want to test, and remember equals is case-sensitive.\r\n// - System.out.println(String x): x is the line printed with a newline; choose either the result alone or a concatenated explanatory sentence.\r\n//\r\n// @quiz (INTERVIEW) What values should be passed to getQuarter(String month)?\r\n// @answer Pass an exact uppercase month name like \"JANUARY\" or \"NOVEMBER\"; any unlisted spelling, case, or null fails to match the cases.\r\n//\r\n// @quiz (INTERVIEW TRAP) What is dangerous about the value parameter in switchCaseWithoutUsingBreak?\r\n// @answer It selects the starting case only; without break statements, execution falls through and runs later cases too.\r\n//\r\n// @quiz (OCJP) In quarterValue.equals(\"INVALID MONTH\"), what does the parameter represent?\r\n// @answer It is the value being compared to quarterValue; equals returns true only when the contents match exactly.\r\n\r\n// @quiz (INTERVIEW, EASY) Which types can be used as the selector of a traditional switch statement?\r\n// @option byte, short, char and int, plus their wrapper types, together with String and enum types. [correct]\r\n// @option Every primitive type, including long, float, double and boolean.\r\n// @option Any object type, because switch compares the selector with the case labels using equals.\r\n// @option Only int and enum, because every case label must be an int constant.\r\n// @explain A traditional switch accepts the smaller integral types byte, short, char and int, their wrapper classes, String from Java 7 onwards, and enum types. Nothing larger than int is allowed, and unrelated object types are not allowed either.\r\n// @why B: long, float, double and boolean are primitives too, but none of them is a valid selector type, so such a switch would not compile.\r\n// @why C: switch does not call equals on arbitrary objects; String and enum are the only reference types it accepts.\r\n// @why D: char, byte, short and String are all valid selectors, so limiting switch to int and enum is wrong.\r\n\r\n// @quiz (OCJP, MEDIUM) What does this code print when x is 2?\r\n// @code switch (x) {\r\n// @code     case 1: System.out.print(\"A\"); break;\r\n// @code     case 2: System.out.print(\"B\");\r\n// @code     case 3: System.out.print(\"C\"); break;\r\n// @code     default: System.out.print(\"D\");\r\n// @code }\r\n// @option BC, because execution starts at case 2 and falls through into case 3 before that break stops it. [correct]\r\n// @option B, because the matching case finishes as soon as its statement has run.\r\n// @option BCD, because the default case always runs after the matching case.\r\n// @option The code does not compile, because case 2 has no break statement.\r\n// @explain The matching label is case 2, so B is printed. With no break there, execution falls through into the next case and prints C, and the break in case 3 then leaves the switch. default is never reached because a case did match.\r\n// @why B: B on its own would need a break straight after case 2; the missing break causes fall-through into case 3.\r\n// @why C: default runs only when no case label matches, and here case 2 matched.\r\n// @why D: Omitting break is legal in a traditional switch; it causes fall-through rather than a compile error.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about the default label of a switch is correct?\r\n// @option It is optional, and it runs when no case label matches the selector. [correct]\r\n// @option It is mandatory, because a switch written without default does not compile.\r\n// @option It must be written before the first case, so that it is checked first.\r\n// @option It is needed only when the selector is a String.\r\n// @explain default is the switch equivalent of the final else: it is chosen only when the selector matches none of the case labels. Java lets you leave it out, but including it handles unexpected values.\r\n// @why B: A switch compiles without default; it is recommended rather than required.\r\n// @why C: A case label is still matched first wherever default is written, so there is no rule that it must come first.\r\n// @why D: default is unrelated to the selector type; it applies to every form of switch.\r\n\r\n// @quiz (OCJP, MEDIUM) Which of these types cannot be used as the selector of a traditional switch statement?\r\n// @option long [correct]\r\n// @option char\r\n// @option String\r\n// @option enum\r\n// @explain A traditional switch accepts byte, short, char, int and their wrapper types, plus String and enum types. long is not in that list, so a switch on a long would not compile, and the same is true of float, double and boolean.\r\n// @why B: char is a valid selector type and has been since the earliest version of the language.\r\n// @why C: String has been allowed since Java 7, which is why the month lookup in this file works.\r\n// @why D: enum types are valid selectors and are commonly combined with switch.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) Given getQuarter(String month), what does the call getQuarter(\"november\") return?\r\n// @option \"INVALID MONTH\", because the case labels are uppercase and String matching in a switch is case-sensitive. [correct]\r\n// @option \"4th Quarter\", because a switch comparison ignores the case of a String.\r\n// @option The code does not compile, because getQuarter has no default label.\r\n// @option null, because an unmatched switch with no default produces no value.\r\n// @explain String matching in a switch is exact and case-sensitive, so lowercase \"november\" matches none of the uppercase labels. Execution falls past every case to the final return, which supplies the text \"INVALID MONTH\".\r\n// @why B: The comparison is case-sensitive, so the label \"NOVEMBER\" does not match the argument \"november\".\r\n// @why C: The code compiles without default, because the return statement after the switch provides a value on that path.\r\n// @why D: Nothing returns null here; the statement after the switch always returns the literal \"INVALID MONTH\".\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What happens when a return statement is executed inside a case block?\r\n// @option It exits both the switch and the method, so no break is needed after it. [correct]\r\n// @option It exits only the switch, and the rest of the method continues to run.\r\n// @option It is not allowed inside a switch, where only break may be used.\r\n// @option It behaves like break but still needs a following break to stop fall-through.\r\n// @explain return leaves the method altogether, so control never comes back to the switch. That is why getQuarter can return from each group of cases without writing any break.\r\n// @why B: return ends the whole method, not just the switch statement.\r\n// @why C: Returning from inside a case is legal and is used in getQuarter.\r\n// @why D: Once the method has returned, no later case can execute, so a following break would be unreachable.\r\n\r\n// @quiz (INTERVIEW, EASY) In switchCaseMultipleCasesTogether, what does a call with value 4 print?\r\n// @option \"Value is 3 or 4 or 5\", because case 3, case 4 and case 5 share the same code block. [correct]\r\n// @option \"Neither numbers are provided\", because case 4 has no statements of its own.\r\n// @option Nothing, because only the first label of a group of cases can match.\r\n// @option The code does not compile, because an empty case label is not allowed.\r\n// @explain Labels written one after another share the single block that follows them, so any of 3, 4 or 5 starts the same message. The shared block ends with a break, so there is no fall-through beyond it.\r\n// @why B: default is chosen only when no label matches, and case 4 does match here.\r\n// @why C: Every label in the group is a real match, so 4 selects the shared block.\r\n// @why D: An empty case label is legal, and that is exactly how cases are grouped to share one block.\r\n\r\n// @quiz (OCJP, HARD) What does switchCaseWithoutUsingBreak(4) print?\r\n// @option \"Value is 3 or 4 or 5\" followed by \"Neither numbers are provided\". [correct]\r\n// @option Only \"Value is 3 or 4 or 5\", because the switch stops once a matching case has run.\r\n// @option \"Value is 1\", \"Value is 2\", \"Value is 3 or 4 or 5\" and \"Neither numbers are provided\", because every case runs when there is no break.\r\n// @option Nothing, because a switch that contains no break statement cannot execute.\r\n// @explain With no break anywhere, execution starts at the matching label and then falls through every following label. Starting at the grouped case 3/4/5, it prints that message and then falls into default.\r\n// @why B: Nothing stops the flow at the end of the matched block, so default also runs.\r\n// @why C: Execution starts at the label that matched, so the earlier messages for case 1 and case 2 are not printed.\r\n// @why D: A switch without break is legal; it falls through instead of failing.\r\n\r\npublic class SwitchStatementInJava {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"If-else example:\");\r\n        ifElseExample(3);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Traditional switch example:\");\r\n        switchCase(2);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Grouped cases example:\");\r\n        switchCaseMultipleCasesTogether(4);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Switch without break example:\");\r\n        switchCaseWithoutUsingBreak(1);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Quarter lookup:\");\r\n\r\n        String month = \"NOVEMBER\";\r\n\r\n        String quarterValue = getQuarter(month);\r\n\r\n        if(quarterValue.equals(\"INVALID MONTH\")){\r\n            System.out.println(quarterValue);\r\n        }else {\r\n            System.out.println(month + \" is in \" + quarterValue);\r\n        }\r\n    }\r\n\r\n    // The same logic can be written using if-else; switch is cleaner when testing one variable against many values.\r\n\r\n    public static void ifElseExample(int value){\r\n        if(value == 1){\r\n            System.out.println(\"Value is 1\");\r\n        }else if(value == 2){\r\n            System.out.println(\"Value is 2\");\r\n        }else {\r\n            System.out.println(\"Is not 1 or 2\");\r\n        }\r\n\r\n    }\r\n\r\n     // The switch expression is matched against each case label. When a match is found, its code block executes. Without break, execution 'falls through' to the next case.\r\n\r\n    // The condition is provided as parameter to switch statement, which is then matched to the case statement.\r\n    // If the condition provided in the switch statement, matches the condition provided in case statement,\r\n    // the code mentioned in that case statement gets executed.\r\n\r\n    public static void switchCase(int value){\r\n        switch (value){ // Similar to if statement\r\n            case 1: // Similar to else if statement\r\n                System.out.println(\"Value is 1\");\r\n                break; // Once the condition is met, the break statement forces the program to come out of switch condition\r\n            case 2: // Similar to else if statement\r\n                System.out.println(\"Value is 2\");\r\n                break;\r\n            case 3: // Similar to else if statement\r\n                System.out.println(\"Value is 3\");\r\n                break;\r\n            default: // It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.\r\n                System.out.println(\"Neither numbers are provided\"); // It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.\r\n        }\r\n    }\r\n\r\n    // Multiple case labels can share the same code block. If any of the listed values match, the shared code block executes.\r\n\r\n    public static void switchCaseMultipleCasesTogether(int value){\r\n        switch (value){  // Similar to if statement\r\n            case 1: // Similar to else if statement\r\n                System.out.println(\"Value is 1\");\r\n                break; // Once the condition is met, the break statement forces the program to come out of switch condition\r\n            case 2: // Similar to else if statement\r\n                System.out.println(\"Value is 2\");\r\n                break;\r\n            case 3: case 4: case 5: // We can club multiple case statements together\r\n                System.out.println(\"Value is 3 or 4 or 5\");\r\n                break;\r\n            default: // It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.\r\n                System.out.println(\"Neither numbers are provided\");\r\n        }\r\n    }\r\n\r\n    // Program in switch case without any break statement\r\n\r\n    // We should always use break statements, after the case statements.\r\n    // If break statements are not used, it will result in fall-through behaviour.\r\n\r\n    // For example, in below method, in the worst case scenario if value is provided as 1, the case matches with the 1, it will execute all statements mentioned in case 1.\r\n    // Since, there is no break statement, it will execute all statements of case 2, case 3, case 4, case 5 and the default case as neither of them have break statement.\r\n\r\n    public static void switchCaseWithoutUsingBreak(int value){\r\n        switch (value){\r\n                case 1:\r\n                System.out.println(\"Value is 1\");\r\n                case 2:\r\n                System.out.println(\"Value is 2\");\r\n                case 3: case 4: case 5: // We can club multiple case statements together\r\n                System.out.println(\"Value is 3 or 4 or 5\");\r\n                default:\r\n                System.out.println(\"Neither numbers are provided\");\r\n        }\r\n    }\r\n\r\n    // Returning a value from a switch: instead of printing inside the switch, the switch can return a String result. A return statement acts like a break — it exits both the switch and the method.\r\n    public static String getQuarter(String month){\r\n\r\n        // The traditional switch uses colon after each case and requires an explicit break statement to stop fall-through.\r\n\r\n        switch (month){\r\n            case \"JANUARY\": case \"FEBRUARY\": case \"MARCH\":\r\n                return \"1st Quarter\"; // Return statement acts like break, since the code wil exit both out of switch statement and the method\r\n            case \"APRIL\": case \"MAY\": case \"JUNE\":\r\n                return \"2nd Quarter\";\r\n            case \"JULY\": case \"AUGUST\": case \"SEPTEMBER\":\r\n                return \"3rd Quarter\";\r\n            case \"OCTOBER\": case \"NOVEMBER\": case \"DECEMBER\":\r\n                return \"4th Quarter\";\r\n        }\r\n\r\n        return \"INVALID MONTH\"; // We also don't need the default statement, as if the value is not found, the code will fall through the last statement and this value is returned.\r\n    }\r\n\r\n}\r\n"
+        "code": "package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;\r\n// The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.\r\n// Switch is cleaner and more readable than nested if-else when you have many possible values to test.\r\n// switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.\r\n// Structure: switch(variable) { case value1: code; break; case value2: code; break; default: code; }\r\n// The 'break' statement is critical — without it, execution \"falls through\" to the next case and continues running (even if that case's value doesn't match).\r\n// Fall-through can sometimes be useful (grouping multiple cases together), but is mostly a source of bugs if not intended.\r\n// The 'default' case is like the 'else' in an if-else — it runs when no case matches. It is optional but recommended.\r\n// A return statement inside a switch also acts like a break — it exits both the switch AND the method.\r\n// Multiple case labels can share the same code block: case 1: case 2: case 3: System.out.println(\"1, 2 or 3\");\r\n// The traditional switch uses colon (:) after each case and requires explicit break statements to stop fall-through.\r\n\r\n// @quiz (INTERVIEW) What data types can be used in a traditional Java switch statement?\r\n// @answer switch supports byte, short, char, int, their wrapper types, enum types, and String.\r\n// @answer It does not support every type, so larger or unrelated types still need if-else logic.\r\n\r\n// @quiz (INTERVIEW) What is fall-through in a switch statement, and when is it useful?\r\n// @answer Fall-through means execution continues into the next case when break is omitted.\r\n// @answer It is useful when multiple cases should share the same logic, but accidental fall-through is a common bug.\r\n\r\n// @quiz (INTERVIEW) What is the default case in a switch statement, and is it required?\r\n// @answer default runs when no case label matches the switch value.\r\n// @answer It is optional, but it is often useful for invalid or unexpected values.\r\n\r\n// @quiz (INTERVIEW) When is switch usually preferred over a long if-else chain?\r\n// @answer switch is cleaner when one expression is compared against many fixed constant values.\r\n// @answer if-else is better when conditions are ranges, combinations, or more complex boolean expressions.\r\n\r\n// @quiz (OCJP) What prints here: int x = 2; switch (x) { case 1: System.out.print(\"A\"); case 2: System.out.print(\"B\"); default: System.out.print(\"C\"); }?\r\n// @answer It prints BC.\r\n// @answer Execution starts at case 2 and falls through to default because there are no break statements.\r\n\r\n// @quiz (OCJP) Can a traditional switch use long or boolean as the selector?\r\n// @answer No. long and boolean are not valid selector types for a traditional switch statement.\r\n// @answer For those cases, use if-else instead.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args holds optional command-line Strings; choose values when launch-time input is needed, otherwise it may be unused.\r\n// - ifElseExample(int value): value is the number to compare against 1 and 2; choose an int whose exact value should select a message.\r\n// - switchCase(int value): value is the switch selector matched against case labels 1, 2, and 3; choose one of those values for a specific branch or another int for default.\r\n// - switchCaseMultipleCasesTogether(int value): value selects case 1, 2, or the grouped 3/4/5 branch; careful, grouped labels all run the same code.\r\n// - switchCaseWithoutUsingBreak(int value): value chooses the starting case, but missing breaks cause fall-through; warning: choose 1 only if you expect all later messages too.\r\n// - getQuarter(String month): month is expected to be an uppercase English month name such as \"NOVEMBER\"; choose exactly one of the listed names to avoid \"INVALID MONTH\".\r\n// - quarterValue.equals(\"INVALID MONTH\"): the argument is the Object/String to compare with quarterValue; choose the exact text you want to test, and remember equals is case-sensitive.\r\n// - System.out.println(String x): x is the line printed with a newline; choose either the result alone or a concatenated explanatory sentence.\r\n//\r\n// @quiz (INTERVIEW) What values should be passed to getQuarter(String month)?\r\n// @answer Pass an exact uppercase month name like \"JANUARY\" or \"NOVEMBER\"; any unlisted spelling, case, or null fails to match the cases.\r\n//\r\n// @quiz (INTERVIEW TRAP) What is dangerous about the value parameter in switchCaseWithoutUsingBreak?\r\n// @answer It selects the starting case only; without break statements, execution falls through and runs later cases too.\r\n//\r\n// @quiz (OCJP) In quarterValue.equals(\"INVALID MONTH\"), what does the parameter represent?\r\n// @answer It is the value being compared to quarterValue; equals returns true only when the contents match exactly.\r\n\r\n// @quiz (INTERVIEW, EASY) Which types can be used as the selector of a traditional switch statement?\r\n// @option byte, short, char and int, plus their wrapper types, together with String and enum types. [correct]\r\n// @option Every primitive type, including long, float, double and boolean.\r\n// @option Any object type, because switch compares the selector with the case labels using equals.\r\n// @option Only int and enum, because every case label must be an int constant.\r\n// @explain A traditional switch accepts the smaller integral types byte, short, char and int, their wrapper classes, String from Java 7 onwards, and enum types. Nothing larger than int is allowed, and unrelated object types are not allowed either.\r\n// @why B: long, float, double and boolean are primitives too, but none of them is a valid selector type, so such a switch would not compile.\r\n// @why C: switch does not call equals on arbitrary objects; String and enum are the only reference types it accepts.\r\n// @why D: char, byte, short and String are all valid selectors, so limiting switch to int and enum is wrong.\r\n\r\n// @quiz (OCJP, MEDIUM) What does this code print when x is 2?\r\n// @code switch (x) {\r\n// @code     case 1: System.out.print(\"A\"); break;\r\n// @code     case 2: System.out.print(\"B\");\r\n// @code     case 3: System.out.print(\"C\"); break;\r\n// @code     default: System.out.print(\"D\");\r\n// @code }\r\n// @option BC, because execution starts at case 2 and falls through into case 3 before that break stops it. [correct]\r\n// @option B, because the matching case finishes as soon as its statement has run.\r\n// @option BCD, because the default case always runs after the matching case.\r\n// @option The code does not compile, because case 2 has no break statement.\r\n// @explain The matching label is case 2, so B is printed. With no break there, execution falls through into the next case and prints C, and the break in case 3 then leaves the switch. default is never reached because a case did match.\r\n// @why B: B on its own would need a break straight after case 2; the missing break causes fall-through into case 3.\r\n// @why C: default runs only when no case label matches, and here case 2 matched.\r\n// @why D: Omitting break is legal in a traditional switch; it causes fall-through rather than a compile error.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about the default label of a switch is correct?\r\n// @option It is optional, and it runs when no case label matches the selector. [correct]\r\n// @option It is mandatory, because a switch written without default does not compile.\r\n// @option It must be written before the first case, so that it is checked first.\r\n// @option It is needed only when the selector is a String.\r\n// @explain default is the switch equivalent of the final else: it is chosen only when the selector matches none of the case labels. Java lets you leave it out, but including it handles unexpected values.\r\n// @why B: A switch compiles without default; it is recommended rather than required.\r\n// @why C: A case label is still matched first wherever default is written, so there is no rule that it must come first.\r\n// @why D: default is unrelated to the selector type; it applies to every form of switch.\r\n\r\n// @quiz (OCJP, MEDIUM) Which of these types cannot be used as the selector of a traditional switch statement?\r\n// @option long [correct]\r\n// @option char\r\n// @option String\r\n// @option enum\r\n// @explain A traditional switch accepts byte, short, char, int and their wrapper types, plus String and enum types. long is not in that list, so a switch on a long would not compile, and the same is true of float, double and boolean.\r\n// @why B: char is a valid selector type and has been since the earliest version of the language.\r\n// @why C: String has been allowed since Java 7, which is why the month lookup in this file works.\r\n// @why D: enum types are valid selectors and are commonly combined with switch.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) Given getQuarter(String month), what does the call getQuarter(\"november\") return?\r\n// @option \"INVALID MONTH\", because the case labels are uppercase and String matching in a switch is case-sensitive. [correct]\r\n// @option \"4th Quarter\", because a switch comparison ignores the case of a String.\r\n// @option The code does not compile, because getQuarter has no default label.\r\n// @option null, because an unmatched switch with no default produces no value.\r\n// @explain String matching in a switch is exact and case-sensitive, so lowercase \"november\" matches none of the uppercase labels. Execution falls past every case to the final return, which supplies the text \"INVALID MONTH\".\r\n// @why B: The comparison is case-sensitive, so the label \"NOVEMBER\" does not match the argument \"november\".\r\n// @why C: The code compiles without default, because the return statement after the switch provides a value on that path.\r\n// @why D: Nothing returns null here; the statement after the switch always returns the literal \"INVALID MONTH\".\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What happens when a return statement is executed inside a case block?\r\n// @option It exits both the switch and the method, so no break is needed after it. [correct]\r\n// @option It exits only the switch, and the rest of the method continues to run.\r\n// @option It is not allowed inside a switch, where only break may be used.\r\n// @option It behaves like break but still needs a following break to stop fall-through.\r\n// @explain return leaves the method altogether, so control never comes back to the switch. That is why getQuarter can return from each group of cases without writing any break.\r\n// @why B: return ends the whole method, not just the switch statement.\r\n// @why C: Returning from inside a case is legal and is used in getQuarter.\r\n// @why D: Once the method has returned, no later case can execute, so a following break would be unreachable.\r\n\r\n// @quiz (INTERVIEW, EASY) In switchCaseMultipleCasesTogether, what does a call with value 4 print?\r\n// @option \"Value is 3 or 4 or 5\", because case 3, case 4 and case 5 share the same code block. [correct]\r\n// @option \"Neither numbers are provided\", because case 4 has no statements of its own.\r\n// @option Nothing, because only the first label of a group of cases can match.\r\n// @option The code does not compile, because an empty case label is not allowed.\r\n// @explain Labels written one after another share the single block that follows them, so any of 3, 4 or 5 starts the same message. The shared block ends with a break, so there is no fall-through beyond it.\r\n// @why B: default is chosen only when no label matches, and case 4 does match here.\r\n// @why C: Every label in the group is a real match, so 4 selects the shared block.\r\n// @why D: An empty case label is legal, and that is exactly how cases are grouped to share one block.\r\n\r\n// @quiz (OCJP, HARD) What does switchCaseWithoutUsingBreak(4) print?\r\n// @option \"Value is 3 or 4 or 5\" followed by \"Neither numbers are provided\". [correct]\r\n// @option Only \"Value is 3 or 4 or 5\", because the switch stops once a matching case has run.\r\n// @option \"Value is 1\", \"Value is 2\", \"Value is 3 or 4 or 5\" and \"Neither numbers are provided\", because every case runs when there is no break.\r\n// @option Nothing, because a switch that contains no break statement cannot execute.\r\n// @explain With no break anywhere, execution starts at the matching label and then falls through every following label. Starting at the grouped case 3/4/5, it prints that message and then falls into default.\r\n// @why B: Nothing stops the flow at the end of the matched block, so default also runs.\r\n// @why C: Execution starts at the label that matched, so the earlier messages for case 1 and case 2 are not printed.\r\n// @why D: A switch without break is legal; it falls through instead of failing.\r\n\r\n// @quiz (OCJP, MEDIUM) Does this switch compile?\r\n// @code int x = 2;\r\n// @code switch (x) {\r\n// @code     case 1: System.out.println(\"one\"); break;\r\n// @code     case 1: System.out.println(\"again\"); break;\r\n// @code }\r\n// @option No. A duplicate case label is a compile error. [correct]\r\n// @option Yes, and the first case 1 runs.\r\n// @option Yes, and the second case 1 runs.\r\n// @option Yes, and both of them run.\r\n// @explain The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.\r\n// @why B: the file does not compile, so nothing runs.\r\n// @why C: for the same reason, the duplicate is rejected first.\r\n// @why D: it never gets that far.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is printed by this code?\r\n// @code String day = \"monday\";\r\n// @code switch (day) {\r\n// @code     case \"Monday\": System.out.println(\"start of week\"); break;\r\n// @code     default: System.out.println(\"unknown\");\r\n// @code }\r\n// @option unknown, because the case label is compared exactly and \"monday\" does not match \"Monday\". [correct]\r\n// @option start of week, because switch ignores letter case.\r\n// @option It does not compile, because a switch cannot use a String.\r\n// @option It does not compile, because case labels must be int values.\r\n// @explain A switch on a String compares with equals, which is case-sensitive. Since \"monday\" differs from \"Monday\", no label matches and the default branch runs.\r\n// @why B: switch does not normalise case. Lowercase the value first if case must be ignored.\r\n// @why C: String has been a valid switch selector since Java 7.\r\n// @why D: String labels are allowed; the values simply have to match exactly.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is printed by this code?\r\n// @code int x = 3;\r\n// @code switch (x) {\r\n// @code     case 1:\r\n// @code     case 2:\r\n// @code     case 3: System.out.println(\"low\"); break;\r\n// @code     default: System.out.println(\"high\");\r\n// @code }\r\n// @option low, because cases 1, 2 and 3 all lead to the same block. [correct]\r\n// @option low then high, because case 3 falls through into default.\r\n// @option high, because 3 has no block of its own.\r\n// @option It does not compile, because case 1 and case 2 have no statements.\r\n// @explain Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.\r\n// @why B: after printing low, break leaves the switch, so default never runs.\r\n// @why C: the grouping means 3 has a block, the shared one.\r\n// @why D: a label with no statements is exactly how grouping is written.\r\n\r\n// @quiz (OCJP, HARD) What is printed by this code?\r\n// @code static void check(int x) {\r\n// @code     switch (x) {\r\n// @code         case 1: System.out.println(\"one\"); return;\r\n// @code         default: System.out.println(\"other\");\r\n// @code     }\r\n// @code     System.out.println(\"after switch\");\r\n// @code }\r\n// @code check(1);\r\n// @option one, and nothing else, because return exits the whole method. [correct]\r\n// @option one, then after switch.\r\n// @option one, other, then after switch.\r\n// @option after switch only.\r\n// @explain return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.\r\n// @why B: after switch is not reached, because the method has already returned.\r\n// @why C: only the matching branch runs, and the method returns from it.\r\n// @why D: case 1 matches, so one is printed before the return.\r\n\r\n// @quiz (OCJP, HARD) What is printed by this code?\r\n// @code int x = 2;\r\n// @code switch (x) {\r\n// @code     default: System.out.print(\"D\");\r\n// @code     case 1: System.out.print(\"A\");\r\n// @code     case 2: System.out.print(\"B\");\r\n// @code }\r\n// @option B, because case 2 matches and execution begins at the matching label. [correct]\r\n// @option DB, because default is written first and falls through.\r\n// @option DAB, because execution always starts at default.\r\n// @option D, because default runs before the cases are tested.\r\n// @explain default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.\r\n// @why B: putting default first does not make it run. It is used only when nothing matches.\r\n// @why C: execution starts at the matching case, not at default.\r\n// @why D: x is 2, so case 2 matches and default is not needed.\r\n\r\npublic class SwitchStatementInJava {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"If-else example:\");\r\n        ifElseExample(3);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Traditional switch example:\");\r\n        switchCase(2);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Grouped cases example:\");\r\n        switchCaseMultipleCasesTogether(4);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Switch without break example:\");\r\n        switchCaseWithoutUsingBreak(1);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Quarter lookup:\");\r\n\r\n        String month = \"NOVEMBER\";\r\n\r\n        String quarterValue = getQuarter(month);\r\n\r\n        if(quarterValue.equals(\"INVALID MONTH\")){\r\n            System.out.println(quarterValue);\r\n        }else {\r\n            System.out.println(month + \" is in \" + quarterValue);\r\n        }\r\n    }\r\n\r\n    // The same logic can be written using if-else; switch is cleaner when testing one variable against many values.\r\n\r\n    public static void ifElseExample(int value){\r\n        if(value == 1){\r\n            System.out.println(\"Value is 1\");\r\n        }else if(value == 2){\r\n            System.out.println(\"Value is 2\");\r\n        }else {\r\n            System.out.println(\"Is not 1 or 2\");\r\n        }\r\n\r\n    }\r\n\r\n     // The switch expression is matched against each case label. When a match is found, its code block executes. Without break, execution 'falls through' to the next case.\r\n\r\n    // The condition is provided as parameter to switch statement, which is then matched to the case statement.\r\n    // If the condition provided in the switch statement, matches the condition provided in case statement,\r\n    // the code mentioned in that case statement gets executed.\r\n\r\n    public static void switchCase(int value){\r\n        switch (value){ // Similar to if statement\r\n            case 1: // Similar to else if statement\r\n                System.out.println(\"Value is 1\");\r\n                break; // Once the condition is met, the break statement forces the program to come out of switch condition\r\n            case 2: // Similar to else if statement\r\n                System.out.println(\"Value is 2\");\r\n                break;\r\n            case 3: // Similar to else if statement\r\n                System.out.println(\"Value is 3\");\r\n                break;\r\n            default: // It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.\r\n                System.out.println(\"Neither numbers are provided\"); // It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.\r\n        }\r\n    }\r\n\r\n    // Multiple case labels can share the same code block. If any of the listed values match, the shared code block executes.\r\n\r\n    public static void switchCaseMultipleCasesTogether(int value){\r\n        switch (value){  // Similar to if statement\r\n            case 1: // Similar to else if statement\r\n                System.out.println(\"Value is 1\");\r\n                break; // Once the condition is met, the break statement forces the program to come out of switch condition\r\n            case 2: // Similar to else if statement\r\n                System.out.println(\"Value is 2\");\r\n                break;\r\n            case 3: case 4: case 5: // We can club multiple case statements together\r\n                System.out.println(\"Value is 3 or 4 or 5\");\r\n                break;\r\n            default: // It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.\r\n                System.out.println(\"Neither numbers are provided\");\r\n        }\r\n    }\r\n\r\n    // Program in switch case without any break statement\r\n\r\n    // We should always use break statements, after the case statements.\r\n    // If break statements are not used, it will result in fall-through behaviour.\r\n\r\n    // For example, in below method, in the worst case scenario if value is provided as 1, the case matches with the 1, it will execute all statements mentioned in case 1.\r\n    // Since, there is no break statement, it will execute all statements of case 2, case 3, case 4, case 5 and the default case as neither of them have break statement.\r\n\r\n    public static void switchCaseWithoutUsingBreak(int value){\r\n        switch (value){\r\n                case 1:\r\n                System.out.println(\"Value is 1\");\r\n                case 2:\r\n                System.out.println(\"Value is 2\");\r\n                case 3: case 4: case 5: // We can club multiple case statements together\r\n                System.out.println(\"Value is 3 or 4 or 5\");\r\n                default:\r\n                System.out.println(\"Neither numbers are provided\");\r\n        }\r\n    }\r\n\r\n    // Returning a value from a switch: instead of printing inside the switch, the switch can return a String result. A return statement acts like a break — it exits both the switch and the method.\r\n    public static String getQuarter(String month){\r\n\r\n        // The traditional switch uses colon after each case and requires an explicit break statement to stop fall-through.\r\n\r\n        switch (month){\r\n            case \"JANUARY\": case \"FEBRUARY\": case \"MARCH\":\r\n                return \"1st Quarter\"; // Return statement acts like break, since the code wil exit both out of switch statement and the method\r\n            case \"APRIL\": case \"MAY\": case \"JUNE\":\r\n                return \"2nd Quarter\";\r\n            case \"JULY\": case \"AUGUST\": case \"SEPTEMBER\":\r\n                return \"3rd Quarter\";\r\n            case \"OCTOBER\": case \"NOVEMBER\": case \"DECEMBER\":\r\n                return \"4th Quarter\";\r\n        }\r\n\r\n        return \"INVALID MONTH\"; // We also don't need the default statement, as if the value is not found, the code will fall through the last statement and this value is returned.\r\n    }\r\n\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
@@ -7249,6 +7881,90 @@ const CONCEPTS_DATA = [
               "@why C: break leaves the loop immediately, so rates above 8.5 are never reached.",
               "@why D: The first interest amount is 7.5, which is below the cutoff, so several rates are printed before the break."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int number = 0;\r\n@code while (number < 50) {\r\n@code     number = number + 5;\r\n@code     if (number % 25 == 0) { continue; }\r\n@code     System.out.print(number + \" \");\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 5 10 15 20 30 35 40 45, because 25 and 50 are skipped. [correct]",
+              "@option 5 10 15 20 25 30 35 40 45 50",
+              "@option 5 10 15 20, because the loop stops at 25.",
+              "@option nothing, because continue ends the loop.",
+              "@explain continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.",
+              "@why B: the continue prevents 25 and 50 from being printed.",
+              "@why C: the loop does not stop. continue is not break.",
+              "@why D: continue skips one iteration, not the whole loop."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code for (int i = 0; i <= 5; i++) { System.out.println(i); }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 6, printing 0 to 5. [correct]",
+              "@option 5, printing 0 to 4.",
+              "@option 5, printing 1 to 5.",
+              "@option 6, printing 1 to 6.",
+              "@explain i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.",
+              "@why B: i <= 5 includes 5, so there is one more iteration than i < 5 would give.",
+              "@why C: i begins at 0, not 1.",
+              "@why D: i never reaches 6, and the first value printed is 0."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code for (;;) { System.out.println(\"tick\"); }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option It runs forever, because an absent condition is treated as always true. [correct]",
+              "@option It does not compile, because a for header needs all three parts.",
+              "@option It runs exactly once.",
+              "@option It never runs at all.",
+              "@explain All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.",
+              "@why B: the parts are optional, so for(;;) is legal Java.",
+              "@why C: nothing limits it to a single pass.",
+              "@why D: an empty condition is true, so the body does run.",
+              "@option break ends the loop, while continue skips the rest of this iteration and moves to the next. [correct]",
+              "@option break skips one iteration, while continue ends the loop.",
+              "@option Both end the loop immediately.",
+              "@option Both only skip the current iteration.",
+              "@explain break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.",
+              "@why B: the two are swapped.",
+              "@why C: only break ends the loop.",
+              "@why D: only continue behaves that way."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code for (int i = 0; i < 3; i++) { System.out.print(i); }\r\n@code System.out.println(i);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option No. i is declared in the for header, so its scope ends with the loop. [correct]",
+              "@option Yes, and it prints the final value of i.",
+              "@option Yes, and it prints 0.",
+              "@option Yes, because i defaults to 0 after the loop.",
+              "@explain A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.",
+              "@why B: the name is out of scope, so the line does not compile.",
+              "@why C: the same scope error applies.",
+              "@why D: the variable is not reset. It simply no longer exists."
+            ]
           }
         ],
         "inlineComments": [
@@ -7262,7 +7978,15 @@ const CONCEPTS_DATA = [
           "@code double interestAmount = calculateInterest(100.00, rate);",
           "@code if (interestAmount > 8.5) {",
           "@code break;",
-          "@code System.out.println(rate + \"% interest on 100 = \" + interestAmount);"
+          "@code System.out.println(rate + \"% interest on 100 = \" + interestAmount);",
+          "@code int number = 0;",
+          "@code while (number < 50) {",
+          "@code number = number + 5;",
+          "@code if (number % 25 == 0) { continue; }",
+          "@code System.out.print(number + \" \");",
+          "@code for (int i = 0; i <= 5; i++) { System.out.println(i); }",
+          "@code for (;;) { System.out.println(\"tick\"); }",
+          "@code for (int i = 0; i < 3; i++) { System.out.print(i); }"
         ],
         "customQuizzes": [
           {
@@ -7554,10 +8278,194 @@ const CONCEPTS_DATA = [
               "C: break leaves the loop immediately, so rates above 8.5 are never reached.",
               "D: The first interest amount is 7.5, which is below the cutoff, so several rates are printed before the break."
             ]
+          },
+          {
+            "question": "What is printed by this loop?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "5 10 15 20 30 35 40 45, because 25 and 50 are skipped.",
+                "correct": true
+              },
+              {
+                "text": "5 10 15 20 25 30 35 40 45 50",
+                "correct": false,
+                "why": "the continue prevents 25 and 50 from being printed."
+              },
+              {
+                "text": "5 10 15 20, because the loop stops at 25.",
+                "correct": false,
+                "why": "the loop does not stop. continue is not break."
+              },
+              {
+                "text": "nothing, because continue ends the loop.",
+                "correct": false,
+                "why": "continue skips one iteration, not the whole loop."
+              }
+            ],
+            "code": [
+              "int number = 0;",
+              "while (number < 50) {",
+              "number = number + 5;",
+              "if (number % 25 == 0) { continue; }",
+              "System.out.print(number + \" \");",
+              "}"
+            ],
+            "explain": "continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.",
+            "whyNotes": [
+              "B: the continue prevents 25 and 50 from being printed.",
+              "C: the loop does not stop. continue is not break.",
+              "D: continue skips one iteration, not the whole loop."
+            ]
+          },
+          {
+            "question": "How many numbers does this loop print?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "6, printing 0 to 5.",
+                "correct": true
+              },
+              {
+                "text": "5, printing 0 to 4.",
+                "correct": false,
+                "why": "i <= 5 includes 5, so there is one more iteration than i < 5 would give."
+              },
+              {
+                "text": "5, printing 1 to 5.",
+                "correct": false,
+                "why": "i begins at 0, not 1."
+              },
+              {
+                "text": "6, printing 1 to 6.",
+                "correct": false,
+                "why": "i never reaches 6, and the first value printed is 0."
+              }
+            ],
+            "code": [
+              "for (int i = 0; i <= 5; i++) { System.out.println(i); }"
+            ],
+            "explain": "i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.",
+            "whyNotes": [
+              "B: i <= 5 includes 5, so there is one more iteration than i < 5 would give.",
+              "C: i begins at 0, not 1.",
+              "D: i never reaches 6, and the first value printed is 0."
+            ]
+          },
+          {
+            "question": "What does this loop do?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It runs forever, because an absent condition is treated as always true.",
+                "correct": true
+              },
+              {
+                "text": "It does not compile, because a for header needs all three parts.",
+                "correct": false,
+                "why": "the parts are optional, so for(;;) is legal Java."
+              },
+              {
+                "text": "It runs exactly once.",
+                "correct": false,
+                "why": "nothing limits it to a single pass."
+              },
+              {
+                "text": "It never runs at all.",
+                "correct": false,
+                "why": "an empty condition is true, so the body does run."
+              }
+            ],
+            "code": [
+              "for (;;) { System.out.println(\"tick\"); }"
+            ],
+            "explain": "All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.",
+            "whyNotes": [
+              "B: the parts are optional, so for(;;) is legal Java.",
+              "C: nothing limits it to a single pass.",
+              "D: an empty condition is true, so the body does run."
+            ]
+          },
+          {
+            "question": "What is the difference between break and continue inside a loop?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "break ends the loop, while continue skips the rest of this iteration and moves to the next.",
+                "correct": true
+              },
+              {
+                "text": "break skips one iteration, while continue ends the loop.",
+                "correct": false,
+                "why": "the two are swapped."
+              },
+              {
+                "text": "Both end the loop immediately.",
+                "correct": false,
+                "why": "only break ends the loop."
+              },
+              {
+                "text": "Both only skip the current iteration.",
+                "correct": false,
+                "why": "only continue behaves that way."
+              }
+            ],
+            "code": [],
+            "explain": "break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.",
+            "whyNotes": [
+              "B: the two are swapped.",
+              "C: only break ends the loop.",
+              "D: only continue behaves that way."
+            ]
+          },
+          {
+            "question": "Does this code compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "No. i is declared in the for header, so its scope ends with the loop.",
+                "correct": true
+              },
+              {
+                "text": "Yes, and it prints the final value of i.",
+                "correct": false,
+                "why": "the name is out of scope, so the line does not compile."
+              },
+              {
+                "text": "Yes, and it prints 0.",
+                "correct": false,
+                "why": "the same scope error applies."
+              },
+              {
+                "text": "Yes, because i defaults to 0 after the loop.",
+                "correct": false,
+                "why": "the variable is not reset. It simply no longer exists."
+              }
+            ],
+            "code": [
+              "for (int i = 0; i < 3; i++) { System.out.print(i); }",
+              "System.out.println(i);"
+            ],
+            "explain": "A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.",
+            "whyNotes": [
+              "B: the name is out of scope, so the line does not compile.",
+              "C: the same scope error applies.",
+              "D: the variable is not reset. It simply no longer exists."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_8_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;\r\n/*\r\n Loops let us execute the same block of code multiple times without writing that code again and again.\r\n Java supports several looping statements for repetitive execution:\r\n - for --> best when you are iterating over a known range or set of values.\r\n - while --> runs until a specified condition becomes false.\r\n - do while --> always runs at least once, then continues until the condition becomes false.\r\n\r\n The for statement is often referred to as the for loop.\r\n It repeatedly loops until a condition is no longer satisfied.\r\n\r\n for(initialisation; condition; update) {\r\n     // block of statements\r\n }\r\n\r\n - Initialisation runs once before the loop starts and usually declares or sets a loop variable.\r\n - Condition is checked before each iteration. If it becomes false, the loop ends.\r\n - Update runs after each iteration body and usually increments or decrements the loop variable.\r\n - A variable declared inside for(int i = ...) is local to that loop and does not exist outside it.\r\n\r\n Break Statement :-\r\n A break statement transfers control out of an enclosing statement.\r\n It can also be used inside a loop to exit immediately.\r\n\r\n Continue Statement :-\r\n The continue statement stops the current iteration, skips the remaining code in that iteration, and starts the next one.\r\n It is useful when you want to keep looping but skip certain values or partially execute some iterations.\r\n\r\n Example of continue statement:\r\n int number = 0;\r\n\r\n while (number < 50) {\r\n     number = number + 5;\r\n\r\n     if (number % 25 == 0) {  // 25 and 50 get skipped.\r\n        continue;\r\n     }\r\n\r\n     if (number < 50) {\r\n        System.out.print(number + \" \");\r\n     } else {\r\n        System.out.print(number);\r\n     }\r\n }\r\n\r\n Output :- 5 10 15 20 30 35 40 45 [Numbers 25 and 50 are not printed]\r\n\r\n @quiz (INTERVIEW) What is the difference between for, while, and do-while loops in Java?\r\n @answer for is best when initialization, condition, and update belong together, while while is better for condition-driven loops.\r\n @answer do-while checks the condition after the body, so it runs at least once.\r\n\r\n @quiz (INTERVIEW) What is an enhanced for-each loop, and when can you not use it?\r\n @answer The enhanced for loop iterates over arrays or collections without managing an index manually.\r\n @answer It is not suitable when you need the index, need to skip backward, or need structural modification during iteration.\r\n\r\n @quiz (INTERVIEW) Can you declare multiple variables in a for loop initializer?\r\n @answer Yes, but they must be of the same declared type in that initializer.\r\n @answer For example, for (int i = 0, j = 10; i < j; i++, j--) is valid.\r\n\r\n @quiz (INTERVIEW) When is a for loop usually preferred over a while loop?\r\n @answer A for loop is preferred when the loop count or iteration pattern is known up front.\r\n @answer It keeps loop setup in one place and is often easier to read for counter-based logic.\r\n\r\n @quiz (OCJP) What does for (;;) do in Java?\r\n @answer It creates an infinite loop because all three sections are omitted.\r\n @answer The loop stops only with break, return, an exception, or external termination.\r\n\r\n @quiz (OCJP) What prints here: for (int i = 0; i < 3; i++) { i++; System.out.print(i); }?\r\n @answer It prints 13.\r\n @answer Modifying the loop variable inside the body is legal, but it changes the loop flow and can be tricky.\r\n\r\n Parameter notes (what each method/constructor argument means and how to choose it):\r\n - main(String[] args): args is the command-line String array; use it only if this loop demo should receive launch-time input.\r\n - calculateInterest(double amount, double interestRate): amount is the principal amount used in this file's examples, such as 10000 for yearly interest demos or 100 for the quarter-percent loop.\r\n - calculateInterest(...): interestRate is a percent value, not a decimal fraction; pass 7.5 for 7.5%, not 0.075, because the method divides by 100.\r\n - for(double rate = start; rate <= end; rate += step): start is the first interest rate tested, end is inclusive because <= is used, and step is how much the rate increases each iteration.\r\n - System.out.println(...): print the loop counter, the calculated interest, or both together so the demo output is visible to the reader.\r\n - break has no parameter, but here it depends on the condition interestAmount > 8.5; that exclusive cutoff stops the final loop once the interest becomes larger than 8.5.\r\n\r\n @quiz (INTERVIEW) In calculateInterest(amount, interestRate), should interestRate be 7.5 or 0.075 for 7.5 percent?\r\n @answer Pass 7.5 because the method treats the parameter as a percent and divides it by 100 internally.\r\n\r\n @quiz (INTERVIEW) What do the start, end, and step values mean in for(double rate = 7.5; rate <= 10; rate += 0.25)?\r\n @answer The loop starts at 7.5, includes values up to 10 because of <=, and increases by 0.25 each iteration.\r\n\r\n @quiz (OCJP) What happens if amount is 100 and interestRate is 2 in calculateInterest?\r\n @answer The method returns 2.0 because it computes 100 * (2 / 100), treating 2 as 2 percent.\r\n */\r\n\r\n// @quiz (INTERVIEW, EASY) In what order does Java execute the three parts of a for statement?\r\n// @option Initialisation once before the loop starts, then the condition before each iteration, then the update after each iteration body. [correct]\r\n// @option Initialisation, condition and update once each, all before the first iteration begins.\r\n// @option The condition once, followed by the initialisation and the update on every iteration.\r\n// @option The update first, then the condition, then the initialisation on every pass.\r\n// @explain The header reads for(initialisation; condition; update). The initialisation runs a single time, the condition is re-tested before every iteration, and the update runs after the body of each iteration.\r\n// @why B: Only the initialisation runs once; the condition and the update are repeated.\r\n// @why C: The condition is tested before every iteration, not just once.\r\n// @why D: The parts always run in the written order, with the update last.\r\n\r\n// @quiz (OCJP, MEDIUM) What is the result of this code?\r\n// @code for (int i = 0; i < 3; i++) {\r\n// @code     System.out.println(i);\r\n// @code }\r\n// @code System.out.println(i);\r\n// @option It does not compile, because a variable declared in the for initialiser is local to the loop and is not visible after it. [correct]\r\n// @option It prints 3, the value i held when the loop ended.\r\n// @option It prints 2, because the update does not run after the final iteration.\r\n// @option It prints 0, because i is re-initialised once the loop has finished.\r\n// @explain A variable declared in for(int i = ...) is scoped to the loop, so i no longer exists at the println after the closing brace. The value would have been 3 if the name were still in scope.\r\n// @why B: The value 3 is never printed, because the name i is out of scope at that point.\r\n// @why C: The update does run at the end of each completed iteration, but the real problem is scope rather than the value.\r\n// @why D: There is no re-initialisation; the name is simply not declared in the enclosing block.\r\n\r\n// @quiz (OCJP, HARD) What does this loop print?\r\n// @code for (int i = 0; i < 3; i++) {\r\n// @code     i++;\r\n// @code     System.out.print(i);\r\n// @code }\r\n// @option 13 [correct]\r\n// @option 012\r\n// @option 123\r\n// @option It does not compile, because a loop variable may not be modified inside the body.\r\n// @explain The body increments the loop variable as well as the update does, so the printed values are 1 and then 3, and the loop ends when i reaches 4. Modifying the loop variable inside the body is legal, but it changes the loop flow and is easy to get wrong.\r\n// @why B: The body increments i before printing, so 0 is never printed.\r\n// @why C: The first printed value is 1, but the second is 3, because i is incremented twice per iteration.\r\n// @why D: Java allows the loop variable to be modified inside the body; it is legal but confusing.\r\n\r\n// @quiz (OCJP, MEDIUM) What does for (;;) do in Java?\r\n// @option It creates an infinite loop, because all three sections are omitted, and it stops only with break, return, an exception or external termination. [correct]\r\n// @option It does not compile, because the header of a for statement may not be empty.\r\n// @option It runs its body exactly once, because a missing condition counts as false after the first pass.\r\n// @option It is an infinite loop that ignores any break statement inside its body.\r\n// @explain Leaving the initialisation, condition and update empty gives a header that is always true, so the loop repeats until something inside it ends it. This is a deliberate way of writing \"loop until done\".\r\n// @why B: An empty header is legal Java and is a recognised way to write an infinite loop.\r\n// @why C: A missing condition is treated as permanently true, not as false after one pass.\r\n// @why D: break, return and exceptions inside the body all end the loop as usual.\r\n\r\n// @quiz (INTERVIEW, EASY) In which situation is the enhanced for loop unsuitable?\r\n// @option When you need the element index, need to iterate backwards, or need to change the structure of the array or collection while iterating. [correct]\r\n// @option When the array holds double values instead of int values.\r\n// @option When you only want to read the elements and not change them.\r\n// @option When the collection is declared as an interface rather than a class.\r\n// @explain The enhanced for loop hides the index and always walks forward, so it cannot give you positions or move backwards, and it is not suitable when the structure is modified during iteration. A counted for loop is used for those tasks.\r\n// @why B: The enhanced for loop works with arrays of any element type, including double.\r\n// @why C: Reading the elements without changing them is exactly what the enhanced for loop is designed for.\r\n// @why D: It works with any array or collection, whether the variable is declared as an interface or a class.\r\n\r\n// @quiz (OCJP, MEDIUM) Which of these for headers is valid Java?\r\n// @option for (int i = 0, j = 10; i < j; i++, j--) [correct]\r\n// @option for (int i = 0, double j = 10; i < j; i++, j--)\r\n// @option for (int i = 0, j = 10.0; i < j; i++, j--)\r\n// @option for (int i = 0; j = 10; i < j; i++, j--)\r\n// @explain The initialiser may declare several variables as long as they share the single declared type, and the update section may hold several comma-separated expressions. Here both i and j are int, and the loop runs while i is less than j.\r\n// @why B: One declaration cannot mix types, so declaring int i and double j in the same initialiser does not compile.\r\n// @why C: 10.0 is a double literal, so it cannot initialise the int variable j in that declaration.\r\n// @why D: A for header has exactly three sections separated by two semicolons, so the third semicolon is a syntax error.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Why should a caller pass 7.5 rather than 0.075 to mean 7.5 percent to calculateInterest?\r\n// @option Because the parameter is treated as a percentage and the method divides it by 100 internally. [correct]\r\n// @option Because the method expects a fraction and multiplies the parameter by 100 internally.\r\n// @option Because the method rounds every rate up to the nearest whole number.\r\n// @option Because the parameter is an int, so 0.075 would not compile.\r\n// @explain calculateInterest computes amount * (interestRate / 100), so the parameter is a percent value. Passing 0.075 would divide twice and give a rate far too small.\r\n// @why B: The method divides by 100 and never multiplies by 100, so a fraction is the wrong scale.\r\n// @why C: There is no rounding anywhere, only a multiplication and a division.\r\n// @why D: The parameter is declared as double, so 0.075 compiles but produces a wrong, very small result.\r\n\r\n// @quiz (OCJP, HARD) This loop breaks as soon as the interest is greater than 8.5. Which rate is the last one for which interest is printed?\r\n// @code for (double rate = 7.5; rate <= 10; rate += 0.25) {\r\n// @code     double interestAmount = calculateInterest(100.00, rate);\r\n// @code     if (interestAmount > 8.5) {\r\n// @code         break;\r\n// @code     }\r\n// @code     System.out.println(rate + \"% interest on 100 = \" + interestAmount);\r\n// @code }\r\n// @option 8.5, because the comparison is strictly greater than, so a rate of 8.5 is still printed. [correct]\r\n// @option 8.25, because a rate of 8.5 counts as reaching the cutoff.\r\n// @option 10.0, because break only ends the loop after the last iteration.\r\n// @option No rate is printed, because the break runs on the very first iteration.\r\n// @explain calculateInterest(100, rate) is just rate, so the interest amount equals the rate. 8.5 is not greater than 8.5, so it is printed, and the next rate of 8.75 triggers the break.\r\n// @why B: The cutoff is exclusive, so 8.25 is not the last printed rate; 8.5 is printed after it.\r\n// @why C: break leaves the loop immediately, so rates above 8.5 are never reached.\r\n// @why D: The first interest amount is 7.5, which is below the cutoff, so several rates are printed before the break.\r\n\r\npublic class ForStatement {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Counting from 1 to 5:\");\r\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\r\n           System.out.println(counter);\r\n        }\r\n\r\n        System.out.println();\r\n        System.out.println(\"Interest on 10000 for rates 2.0% to 5.0%:\");\r\n        for(double rate = 2.0; rate<=5.0; rate++){\r\n           System.out.println(rate + \"% interest on 10000 = \" + calculateInterest(10000, rate));\r\n        }\r\n\r\n        System.out.println();\r\n        System.out.println(\"Interest on 10000 at 2.0% = \" + calculateInterest(10000, 2));\r\n\r\n        /* Using a new for statement, call the calculateInterest method with the dollar amount of 100\r\n\r\n           Use the interest rate between 7.5 to 10, but increment by a quarter of percent each time, meaning 0.25 percent\r\n        */\r\n        System.out.println();\r\n        System.out.println(\"Interest on 100 for rates 7.5% to 10.0%:\");\r\n        for(double rate = 7.5; rate<=10; rate+=0.25){\r\n           System.out.println(rate + \"% interest on 100 = \" + calculateInterest(100, rate));\r\n        }\r\n\r\n\r\n        System.out.println();\r\n        System.out.println(\"For statement with break keyword:\");\r\n        for(double rate = 7.5; rate<=10; rate+=0.25){\r\n           double interestAmount = calculateInterest(100.00,rate);\r\n           if(interestAmount > 8.5){\r\n               break;\r\n           }\r\n           System.out.println(rate + \"% interest on 100 = \" + interestAmount);\r\n        }\r\n    }\r\n\r\n    public static double calculateInterest(double amount, double interestRate){\r\n\r\n        return (amount * (interestRate / 100));\r\n    }\r\n\r\n}\r\n"
+        "code": "package Chapter_8_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;\r\n/*\r\n Loops let us execute the same block of code multiple times without writing that code again and again.\r\n Java supports several looping statements for repetitive execution:\r\n - for --> best when you are iterating over a known range or set of values.\r\n - while --> runs until a specified condition becomes false.\r\n - do while --> always runs at least once, then continues until the condition becomes false.\r\n\r\n The for statement is often referred to as the for loop.\r\n It repeatedly loops until a condition is no longer satisfied.\r\n\r\n for(initialisation; condition; update) {\r\n     // block of statements\r\n }\r\n\r\n - Initialisation runs once before the loop starts and usually declares or sets a loop variable.\r\n - Condition is checked before each iteration. If it becomes false, the loop ends.\r\n - Update runs after each iteration body and usually increments or decrements the loop variable.\r\n - A variable declared inside for(int i = ...) is local to that loop and does not exist outside it.\r\n\r\n Break Statement :-\r\n A break statement transfers control out of an enclosing statement.\r\n It can also be used inside a loop to exit immediately.\r\n\r\n Continue Statement :-\r\n The continue statement stops the current iteration, skips the remaining code in that iteration, and starts the next one.\r\n It is useful when you want to keep looping but skip certain values or partially execute some iterations.\r\n\r\n Example of continue statement:\r\n int number = 0;\r\n\r\n while (number < 50) {\r\n     number = number + 5;\r\n\r\n     if (number % 25 == 0) {  // 25 and 50 get skipped.\r\n        continue;\r\n     }\r\n\r\n     if (number < 50) {\r\n        System.out.print(number + \" \");\r\n     } else {\r\n        System.out.print(number);\r\n     }\r\n }\r\n\r\n Output :- 5 10 15 20 30 35 40 45 [Numbers 25 and 50 are not printed]\r\n\r\n @quiz (INTERVIEW) What is the difference between for, while, and do-while loops in Java?\r\n @answer for is best when initialization, condition, and update belong together, while while is better for condition-driven loops.\r\n @answer do-while checks the condition after the body, so it runs at least once.\r\n\r\n @quiz (INTERVIEW) What is an enhanced for-each loop, and when can you not use it?\r\n @answer The enhanced for loop iterates over arrays or collections without managing an index manually.\r\n @answer It is not suitable when you need the index, need to skip backward, or need structural modification during iteration.\r\n\r\n @quiz (INTERVIEW) Can you declare multiple variables in a for loop initializer?\r\n @answer Yes, but they must be of the same declared type in that initializer.\r\n @answer For example, for (int i = 0, j = 10; i < j; i++, j--) is valid.\r\n\r\n @quiz (INTERVIEW) When is a for loop usually preferred over a while loop?\r\n @answer A for loop is preferred when the loop count or iteration pattern is known up front.\r\n @answer It keeps loop setup in one place and is often easier to read for counter-based logic.\r\n\r\n @quiz (OCJP) What does for (;;) do in Java?\r\n @answer It creates an infinite loop because all three sections are omitted.\r\n @answer The loop stops only with break, return, an exception, or external termination.\r\n\r\n @quiz (OCJP) What prints here: for (int i = 0; i < 3; i++) { i++; System.out.print(i); }?\r\n @answer It prints 13.\r\n @answer Modifying the loop variable inside the body is legal, but it changes the loop flow and can be tricky.\r\n\r\n Parameter notes (what each method/constructor argument means and how to choose it):\r\n - main(String[] args): args is the command-line String array; use it only if this loop demo should receive launch-time input.\r\n - calculateInterest(double amount, double interestRate): amount is the principal amount used in this file's examples, such as 10000 for yearly interest demos or 100 for the quarter-percent loop.\r\n - calculateInterest(...): interestRate is a percent value, not a decimal fraction; pass 7.5 for 7.5%, not 0.075, because the method divides by 100.\r\n - for(double rate = start; rate <= end; rate += step): start is the first interest rate tested, end is inclusive because <= is used, and step is how much the rate increases each iteration.\r\n - System.out.println(...): print the loop counter, the calculated interest, or both together so the demo output is visible to the reader.\r\n - break has no parameter, but here it depends on the condition interestAmount > 8.5; that exclusive cutoff stops the final loop once the interest becomes larger than 8.5.\r\n\r\n @quiz (INTERVIEW) In calculateInterest(amount, interestRate), should interestRate be 7.5 or 0.075 for 7.5 percent?\r\n @answer Pass 7.5 because the method treats the parameter as a percent and divides it by 100 internally.\r\n\r\n @quiz (INTERVIEW) What do the start, end, and step values mean in for(double rate = 7.5; rate <= 10; rate += 0.25)?\r\n @answer The loop starts at 7.5, includes values up to 10 because of <=, and increases by 0.25 each iteration.\r\n\r\n @quiz (OCJP) What happens if amount is 100 and interestRate is 2 in calculateInterest?\r\n @answer The method returns 2.0 because it computes 100 * (2 / 100), treating 2 as 2 percent.\r\n */\r\n\r\n// @quiz (INTERVIEW, EASY) In what order does Java execute the three parts of a for statement?\r\n// @option Initialisation once before the loop starts, then the condition before each iteration, then the update after each iteration body. [correct]\r\n// @option Initialisation, condition and update once each, all before the first iteration begins.\r\n// @option The condition once, followed by the initialisation and the update on every iteration.\r\n// @option The update first, then the condition, then the initialisation on every pass.\r\n// @explain The header reads for(initialisation; condition; update). The initialisation runs a single time, the condition is re-tested before every iteration, and the update runs after the body of each iteration.\r\n// @why B: Only the initialisation runs once; the condition and the update are repeated.\r\n// @why C: The condition is tested before every iteration, not just once.\r\n// @why D: The parts always run in the written order, with the update last.\r\n\r\n// @quiz (OCJP, MEDIUM) What is the result of this code?\r\n// @code for (int i = 0; i < 3; i++) {\r\n// @code     System.out.println(i);\r\n// @code }\r\n// @code System.out.println(i);\r\n// @option It does not compile, because a variable declared in the for initialiser is local to the loop and is not visible after it. [correct]\r\n// @option It prints 3, the value i held when the loop ended.\r\n// @option It prints 2, because the update does not run after the final iteration.\r\n// @option It prints 0, because i is re-initialised once the loop has finished.\r\n// @explain A variable declared in for(int i = ...) is scoped to the loop, so i no longer exists at the println after the closing brace. The value would have been 3 if the name were still in scope.\r\n// @why B: The value 3 is never printed, because the name i is out of scope at that point.\r\n// @why C: The update does run at the end of each completed iteration, but the real problem is scope rather than the value.\r\n// @why D: There is no re-initialisation; the name is simply not declared in the enclosing block.\r\n\r\n// @quiz (OCJP, HARD) What does this loop print?\r\n// @code for (int i = 0; i < 3; i++) {\r\n// @code     i++;\r\n// @code     System.out.print(i);\r\n// @code }\r\n// @option 13 [correct]\r\n// @option 012\r\n// @option 123\r\n// @option It does not compile, because a loop variable may not be modified inside the body.\r\n// @explain The body increments the loop variable as well as the update does, so the printed values are 1 and then 3, and the loop ends when i reaches 4. Modifying the loop variable inside the body is legal, but it changes the loop flow and is easy to get wrong.\r\n// @why B: The body increments i before printing, so 0 is never printed.\r\n// @why C: The first printed value is 1, but the second is 3, because i is incremented twice per iteration.\r\n// @why D: Java allows the loop variable to be modified inside the body; it is legal but confusing.\r\n\r\n// @quiz (OCJP, MEDIUM) What does for (;;) do in Java?\r\n// @option It creates an infinite loop, because all three sections are omitted, and it stops only with break, return, an exception or external termination. [correct]\r\n// @option It does not compile, because the header of a for statement may not be empty.\r\n// @option It runs its body exactly once, because a missing condition counts as false after the first pass.\r\n// @option It is an infinite loop that ignores any break statement inside its body.\r\n// @explain Leaving the initialisation, condition and update empty gives a header that is always true, so the loop repeats until something inside it ends it. This is a deliberate way of writing \"loop until done\".\r\n// @why B: An empty header is legal Java and is a recognised way to write an infinite loop.\r\n// @why C: A missing condition is treated as permanently true, not as false after one pass.\r\n// @why D: break, return and exceptions inside the body all end the loop as usual.\r\n\r\n// @quiz (INTERVIEW, EASY) In which situation is the enhanced for loop unsuitable?\r\n// @option When you need the element index, need to iterate backwards, or need to change the structure of the array or collection while iterating. [correct]\r\n// @option When the array holds double values instead of int values.\r\n// @option When you only want to read the elements and not change them.\r\n// @option When the collection is declared as an interface rather than a class.\r\n// @explain The enhanced for loop hides the index and always walks forward, so it cannot give you positions or move backwards, and it is not suitable when the structure is modified during iteration. A counted for loop is used for those tasks.\r\n// @why B: The enhanced for loop works with arrays of any element type, including double.\r\n// @why C: Reading the elements without changing them is exactly what the enhanced for loop is designed for.\r\n// @why D: It works with any array or collection, whether the variable is declared as an interface or a class.\r\n\r\n// @quiz (OCJP, MEDIUM) Which of these for headers is valid Java?\r\n// @option for (int i = 0, j = 10; i < j; i++, j--) [correct]\r\n// @option for (int i = 0, double j = 10; i < j; i++, j--)\r\n// @option for (int i = 0, j = 10.0; i < j; i++, j--)\r\n// @option for (int i = 0; j = 10; i < j; i++, j--)\r\n// @explain The initialiser may declare several variables as long as they share the single declared type, and the update section may hold several comma-separated expressions. Here both i and j are int, and the loop runs while i is less than j.\r\n// @why B: One declaration cannot mix types, so declaring int i and double j in the same initialiser does not compile.\r\n// @why C: 10.0 is a double literal, so it cannot initialise the int variable j in that declaration.\r\n// @why D: A for header has exactly three sections separated by two semicolons, so the third semicolon is a syntax error.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Why should a caller pass 7.5 rather than 0.075 to mean 7.5 percent to calculateInterest?\r\n// @option Because the parameter is treated as a percentage and the method divides it by 100 internally. [correct]\r\n// @option Because the method expects a fraction and multiplies the parameter by 100 internally.\r\n// @option Because the method rounds every rate up to the nearest whole number.\r\n// @option Because the parameter is an int, so 0.075 would not compile.\r\n// @explain calculateInterest computes amount * (interestRate / 100), so the parameter is a percent value. Passing 0.075 would divide twice and give a rate far too small.\r\n// @why B: The method divides by 100 and never multiplies by 100, so a fraction is the wrong scale.\r\n// @why C: There is no rounding anywhere, only a multiplication and a division.\r\n// @why D: The parameter is declared as double, so 0.075 compiles but produces a wrong, very small result.\r\n\r\n// @quiz (OCJP, HARD) This loop breaks as soon as the interest is greater than 8.5. Which rate is the last one for which interest is printed?\r\n// @code for (double rate = 7.5; rate <= 10; rate += 0.25) {\r\n// @code     double interestAmount = calculateInterest(100.00, rate);\r\n// @code     if (interestAmount > 8.5) {\r\n// @code         break;\r\n// @code     }\r\n// @code     System.out.println(rate + \"% interest on 100 = \" + interestAmount);\r\n// @code }\r\n// @option 8.5, because the comparison is strictly greater than, so a rate of 8.5 is still printed. [correct]\r\n// @option 8.25, because a rate of 8.5 counts as reaching the cutoff.\r\n// @option 10.0, because break only ends the loop after the last iteration.\r\n// @option No rate is printed, because the break runs on the very first iteration.\r\n// @explain calculateInterest(100, rate) is just rate, so the interest amount equals the rate. 8.5 is not greater than 8.5, so it is printed, and the next rate of 8.75 triggers the break.\r\n// @why B: The cutoff is exclusive, so 8.25 is not the last printed rate; 8.5 is printed after it.\r\n// @why C: break leaves the loop immediately, so rates above 8.5 are never reached.\r\n// @why D: The first interest amount is 7.5, which is below the cutoff, so several rates are printed before the break.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this loop?\r\n// @code int number = 0;\r\n// @code while (number < 50) {\r\n// @code     number = number + 5;\r\n// @code     if (number % 25 == 0) { continue; }\r\n// @code     System.out.print(number + \" \");\r\n// @code }\r\n// @option 5 10 15 20 30 35 40 45, because 25 and 50 are skipped. [correct]\r\n// @option 5 10 15 20 25 30 35 40 45 50\r\n// @option 5 10 15 20, because the loop stops at 25.\r\n// @option nothing, because continue ends the loop.\r\n// @explain continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.\r\n// @why B: the continue prevents 25 and 50 from being printed.\r\n// @why C: the loop does not stop. continue is not break.\r\n// @why D: continue skips one iteration, not the whole loop.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) How many numbers does this loop print?\r\n// @code for (int i = 0; i <= 5; i++) { System.out.println(i); }\r\n// @option 6, printing 0 to 5. [correct]\r\n// @option 5, printing 0 to 4.\r\n// @option 5, printing 1 to 5.\r\n// @option 6, printing 1 to 6.\r\n// @explain i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.\r\n// @why B: i <= 5 includes 5, so there is one more iteration than i < 5 would give.\r\n// @why C: i begins at 0, not 1.\r\n// @why D: i never reaches 6, and the first value printed is 0.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What does this loop do?\r\n// @code for (;;) { System.out.println(\"tick\"); }\r\n// @option It runs forever, because an absent condition is treated as always true. [correct]\r\n// @option It does not compile, because a for header needs all three parts.\r\n// @option It runs exactly once.\r\n// @option It never runs at all.\r\n// @explain All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.\r\n// @why B: the parts are optional, so for(;;) is legal Java.\r\n// @why C: nothing limits it to a single pass.\r\n// @why D: an empty condition is true, so the body does run.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) What is the difference between break and continue inside a loop?\r\n// @option break ends the loop, while continue skips the rest of this iteration and moves to the next. [correct]\r\n// @option break skips one iteration, while continue ends the loop.\r\n// @option Both end the loop immediately.\r\n// @option Both only skip the current iteration.\r\n// @explain break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.\r\n// @why B: the two are swapped.\r\n// @why C: only break ends the loop.\r\n// @why D: only continue behaves that way.\r\n\r\n// @quiz (OCJP, HARD) Does this code compile?\r\n// @code for (int i = 0; i < 3; i++) { System.out.print(i); }\r\n// @code System.out.println(i);\r\n// @option No. i is declared in the for header, so its scope ends with the loop. [correct]\r\n// @option Yes, and it prints the final value of i.\r\n// @option Yes, and it prints 0.\r\n// @option Yes, because i defaults to 0 after the loop.\r\n// @explain A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.\r\n// @why B: the name is out of scope, so the line does not compile.\r\n// @why C: the same scope error applies.\r\n// @why D: the variable is not reset. It simply no longer exists.\r\n\r\npublic class ForStatement {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Counting from 1 to 5:\");\r\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\r\n           System.out.println(counter);\r\n        }\r\n\r\n        System.out.println();\r\n        System.out.println(\"Interest on 10000 for rates 2.0% to 5.0%:\");\r\n        for(double rate = 2.0; rate<=5.0; rate++){\r\n           System.out.println(rate + \"% interest on 10000 = \" + calculateInterest(10000, rate));\r\n        }\r\n\r\n        System.out.println();\r\n        System.out.println(\"Interest on 10000 at 2.0% = \" + calculateInterest(10000, 2));\r\n\r\n        /* Using a new for statement, call the calculateInterest method with the dollar amount of 100\r\n\r\n           Use the interest rate between 7.5 to 10, but increment by a quarter of percent each time, meaning 0.25 percent\r\n        */\r\n        System.out.println();\r\n        System.out.println(\"Interest on 100 for rates 7.5% to 10.0%:\");\r\n        for(double rate = 7.5; rate<=10; rate+=0.25){\r\n           System.out.println(rate + \"% interest on 100 = \" + calculateInterest(100, rate));\r\n        }\r\n\r\n\r\n        System.out.println();\r\n        System.out.println(\"For statement with break keyword:\");\r\n        for(double rate = 7.5; rate<=10; rate+=0.25){\r\n           double interestAmount = calculateInterest(100.00,rate);\r\n           if(interestAmount > 8.5){\r\n               break;\r\n           }\r\n           System.out.println(rate + \"% interest on 100 = \" + interestAmount);\r\n        }\r\n    }\r\n\r\n    public static double calculateInterest(double amount, double interestRate){\r\n\r\n        return (amount * (interestRate / 100));\r\n    }\r\n\r\n}\r\n"
       },
       {
         "filePath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
@@ -7876,6 +8784,90 @@ const CONCEPTS_DATA = [
               "@why C: Java does not require the body to modify the loop variable; the code compiles but loops for ever.",
               "@why D: The condition is true when j is 1, so the body does run; it simply never stops."
             ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int j = 10;\r\n@code do {\r\n@code     System.out.println(\"body\");\r\n@code } while (j < 5);",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option body, printed once, because a do-while tests its condition after the body. [correct]",
+              "@option nothing, because j < 5 is false.",
+              "@option body printed repeatedly, because the condition is false.",
+              "@option It does not compile, because the condition is false.",
+              "@explain A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.",
+              "@why B: that is the behaviour of a while loop, which tests before the body.",
+              "@why C: the false condition ends the loop after the first pass.",
+              "@why D: a condition that is false at runtime is perfectly legal."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int j = 1;\r\n@code while (j <= 5) {\r\n@code     System.out.println(j);\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option It never ends, because j is never changed inside the body. [correct]",
+              "@option It ends after five iterations.",
+              "@option It does not compile, because j is declared outside the loop.",
+              "@option It prints nothing, because the condition is false.",
+              "@explain A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.",
+              "@why B: the condition never becomes false, so it cannot stop after five passes.",
+              "@why C: declaring the counter before the loop is exactly how while loops are written.",
+              "@why D: 1 <= 5 is true, so the body runs and prints."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int j = 0;\r\n@code while (j < 5) {\r\n@code     if (j == 2) { continue; }\r\n@code     j++;\r\n@code }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option It hangs forever, because when j is 2 the continue skips the increment. [correct]",
+              "@option It finishes normally after five increments.",
+              "@option It skips the value 2 and then finishes.",
+              "@option It does not compile, because continue cannot be used in a while.",
+              "@explain When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.",
+              "@why B: the increment is skipped exactly when it is needed most.",
+              "@why C: nothing raises j past 2, so it cannot finish.",
+              "@why D: continue is valid in a while; the problem is where it was placed."
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "@code int j = 1;\r\n@code int count = 0;\r\n@code while (j <= 4) { count++; j += 2; }",
+            "lines": []
+          },
+          {
+            "type": "lines",
+            "lines": [
+              "@option 2 times, for j = 1 and j = 3. [correct]",
+              "@option 4 times, for j = 1, 2, 3 and 4.",
+              "@option 3 times, for j = 1, 3 and 5.",
+              "@option Once, because j += 2 ends the loop.",
+              "@explain j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.",
+              "@why B: the step is 2, so the even values are never used.",
+              "@why C: when j is 5 the condition is false, so there is no third pass.",
+              "@why D: the loop continues while the condition holds, which it does for 1 and 3.",
+              "@option When the body must run at least once, such as showing a menu before checking the choice. [correct]",
+              "@option When the number of iterations is known in advance.",
+              "@option When the condition must be tested before the body.",
+              "@option When the loop must be able to run zero times.",
+              "@explain do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.",
+              "@why B: a known count is the strength of a for loop.",
+              "@why C: testing first is what a while loop does.",
+              "@why D: running zero times is impossible with do-while, which is the point of the question."
+            ]
           }
         ],
         "inlineComments": [
@@ -7895,6 +8887,14 @@ const CONCEPTS_DATA = [
           "@code break;",
           "@code System.out.println(number);",
           "@code int j = 1;",
+          "@code do {",
+          "@code System.out.println(\"body\");",
+          "@code } while (j < 5);",
+          "@code int j = 0;",
+          "@code while (j < 5) {",
+          "@code if (j == 2) { continue; }",
+          "@code int count = 0;",
+          "@code while (j <= 4) { count++; j += 2; }",
           "block of statements",
           "Another common way to program while loop is:",
           "while statement with continue and break: 'continue' skips to the next iteration, 'break' exits the loop entirely."
@@ -8310,10 +9310,200 @@ const CONCEPTS_DATA = [
               "C: Java does not require the body to modify the loop variable; the code compiles but loops for ever.",
               "D: The condition is true when j is 1, so the body does run; it simply never stops."
             ]
+          },
+          {
+            "question": "What is printed by this code?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "body, printed once, because a do-while tests its condition after the body.",
+                "correct": true
+              },
+              {
+                "text": "nothing, because j < 5 is false.",
+                "correct": false,
+                "why": "that is the behaviour of a while loop, which tests before the body."
+              },
+              {
+                "text": "body printed repeatedly, because the condition is false.",
+                "correct": false,
+                "why": "the false condition ends the loop after the first pass."
+              },
+              {
+                "text": "It does not compile, because the condition is false.",
+                "correct": false,
+                "why": "a condition that is false at runtime is perfectly legal."
+              }
+            ],
+            "code": [
+              "int j = 10;",
+              "do {",
+              "System.out.println(\"body\");",
+              "} while (j < 5);"
+            ],
+            "explain": "A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.",
+            "whyNotes": [
+              "B: that is the behaviour of a while loop, which tests before the body.",
+              "C: the false condition ends the loop after the first pass.",
+              "D: a condition that is false at runtime is perfectly legal."
+            ]
+          },
+          {
+            "question": "What is wrong with this loop?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "It never ends, because j is never changed inside the body.",
+                "correct": true
+              },
+              {
+                "text": "It ends after five iterations.",
+                "correct": false,
+                "why": "the condition never becomes false, so it cannot stop after five passes."
+              },
+              {
+                "text": "It does not compile, because j is declared outside the loop.",
+                "correct": false,
+                "why": "declaring the counter before the loop is exactly how while loops are written."
+              },
+              {
+                "text": "It prints nothing, because the condition is false.",
+                "correct": false,
+                "why": "1 <= 5 is true, so the body runs and prints."
+              }
+            ],
+            "code": [
+              "int j = 1;",
+              "while (j <= 5) {",
+              "System.out.println(j);",
+              "}"
+            ],
+            "explain": "A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.",
+            "whyNotes": [
+              "B: the condition never becomes false, so it cannot stop after five passes.",
+              "C: declaring the counter before the loop is exactly how while loops are written.",
+              "D: 1 <= 5 is true, so the body runs and prints."
+            ]
+          },
+          {
+            "question": "What is the effect of this loop?",
+            "answers": [],
+            "quizTag": "INTERVIEW TRAP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "It hangs forever, because when j is 2 the continue skips the increment.",
+                "correct": true
+              },
+              {
+                "text": "It finishes normally after five increments.",
+                "correct": false,
+                "why": "the increment is skipped exactly when it is needed most."
+              },
+              {
+                "text": "It skips the value 2 and then finishes.",
+                "correct": false,
+                "why": "nothing raises j past 2, so it cannot finish."
+              },
+              {
+                "text": "It does not compile, because continue cannot be used in a while.",
+                "correct": false,
+                "why": "continue is valid in a while; the problem is where it was placed."
+              }
+            ],
+            "code": [
+              "int j = 0;",
+              "while (j < 5) {",
+              "if (j == 2) { continue; }",
+              "j++;",
+              "}"
+            ],
+            "explain": "When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.",
+            "whyNotes": [
+              "B: the increment is skipped exactly when it is needed most.",
+              "C: nothing raises j past 2, so it cannot finish.",
+              "D: continue is valid in a while; the problem is where it was placed."
+            ]
+          },
+          {
+            "question": "How many times does this loop run?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "2 times, for j = 1 and j = 3.",
+                "correct": true
+              },
+              {
+                "text": "4 times, for j = 1, 2, 3 and 4.",
+                "correct": false,
+                "why": "the step is 2, so the even values are never used."
+              },
+              {
+                "text": "3 times, for j = 1, 3 and 5.",
+                "correct": false,
+                "why": "when j is 5 the condition is false, so there is no third pass."
+              },
+              {
+                "text": "Once, because j += 2 ends the loop.",
+                "correct": false,
+                "why": "the loop continues while the condition holds, which it does for 1 and 3."
+              }
+            ],
+            "code": [
+              "int j = 1;",
+              "int count = 0;",
+              "while (j <= 4) { count++; j += 2; }"
+            ],
+            "explain": "j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.",
+            "whyNotes": [
+              "B: the step is 2, so the even values are never used.",
+              "C: when j is 5 the condition is false, so there is no third pass.",
+              "D: the loop continues while the condition holds, which it does for 1 and 3."
+            ]
+          },
+          {
+            "question": "When should you prefer a do-while over a while loop?",
+            "answers": [],
+            "quizTag": "INTERVIEW",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "When the body must run at least once, such as showing a menu before checking the choice.",
+                "correct": true
+              },
+              {
+                "text": "When the number of iterations is known in advance.",
+                "correct": false,
+                "why": "a known count is the strength of a for loop."
+              },
+              {
+                "text": "When the condition must be tested before the body.",
+                "correct": false,
+                "why": "testing first is what a while loop does."
+              },
+              {
+                "text": "When the loop must be able to run zero times.",
+                "correct": false,
+                "why": "running zero times is impossible with do-while, which is the point of the question."
+              }
+            ],
+            "code": [],
+            "explain": "do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.",
+            "whyNotes": [
+              "B: a known count is the strength of a for loop.",
+              "C: testing first is what a while loop does.",
+              "D: running zero times is impossible with do-while, which is the point of the question."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;\r\n/*\r\n  WHILE LOOPS\r\n\r\n  The while loop repeatedly executes its body as long as a condition remains true.\r\n  Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.\r\n  You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body.\r\n\r\n  Syntax:\r\n    while (condition) {\r\n        // body\r\n        // must update loop variable here, or you get an infinite loop!\r\n    }\r\n\r\n  Key difference from for loop:\r\n  - for loop: initialisation, condition, and update are all in one line — ideal when you know the count upfront.\r\n  - while loop: only the condition is in the declaration — ideal when you don't know upfront how many times to loop.\r\n\r\n  EXAMPLE 1 — Basic counting with while:\r\n    int j = 1;           // initialisation happens OUTSIDE the while\r\n    while (j <= 5) {     // condition\r\n        System.out.println(j);\r\n        j++;             // update happens INSIDE the while\r\n    }\r\n\r\n  EXAMPLE 2 — while(true) with break (common pattern for \"loop until done\"):\r\n    while (true) {       // infinite loop — will loop forever unless break is used\r\n        if (j > 5) {\r\n            break;       // exits the loop when j exceeds 5\r\n        }\r\n    }\r\n\r\n  CONTINUE and BREAK:\r\n  - continue: skips the REMAINING code in the current iteration and starts the next iteration immediately.\r\n  - break: exits the loop entirely at the point it is executed. No further iterations run.\r\n\r\n  IMPORTANT: Always check your loop condition carefully.\r\n  - An infinite loop (condition never becomes false, no break) will freeze or crash your program.\r\n  - A never-executing loop (condition is false from the start) will silently skip all the loop code.\r\n*/\r\n\r\n// @quiz (INTERVIEW) What is the difference between while and do-while in Java?\r\n// @answer while checks its condition before the body, so it may run zero times.\r\n// @answer do-while checks after the body, so it always runs at least once.\r\n\r\n// @quiz (INTERVIEW) What is an infinite loop, and how do you break out of one?\r\n// @answer An infinite loop is a loop whose condition never becomes false or that intentionally uses while(true).\r\n// @answer You exit it with break, return, an exception, or by changing the condition from inside the loop.\r\n\r\n// @quiz (INTERVIEW) When would you prefer while over for?\r\n// @answer Prefer while when the number of iterations is not known in advance and the loop depends on a changing condition.\r\n// @answer It is common for input-reading, waiting, and sentinel-controlled loops.\r\n\r\n// @quiz (INTERVIEW) What do break and continue do inside a while loop?\r\n// @answer break exits the loop immediately, while continue skips the rest of the current iteration and reevaluates the condition.\r\n// @answer Both change control flow without waiting for the loop body to finish normally.\r\n\r\n// @quiz (OCJP) What prints here: int x = 0; do { x++; } while (x < 0); System.out.println(x);?\r\n// @answer It prints 1.\r\n// @answer A do-while loop always executes its body once before checking the condition.\r\n\r\n// @quiz (OCJP) Which is usually clearer: while (condition) { ... } or while (true) { if (condition) break; }?\r\n// @answer The explicit condition form is usually clearer when the exit rule is known up front.\r\n// @answer while (true) with break is fine when the exit depends on logic inside the loop body.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args contains zero-based command-line Strings supplied at launch; choose them only when this loop example needs external input.\r\n// - System.out.println(String x) and System.out.println(int x): x is the value printed followed by a newline; choose a String for explanatory messages or an int for raw numeric output.\r\n// - while(number < 15): the expression is the loop's controlling input; choose a condition that eventually becomes false to avoid an infinite loop.\r\n// - if(number <= 5) with continue uses 5 as an inclusive skip limit; choose the boundary so every value up to and including it is skipped.\r\n// - if(number >= 10) with break uses 10 as an inclusive stop limit; choose the boundary so the loop exits as soon as the value reaches or passes it.\r\n//\r\n// @quiz (INTERVIEW) What parameter-like value controls when while(number < 15) stops?\r\n// @answer The boolean condition number < 15 controls the loop; it stops when that expression becomes false.\r\n//\r\n// @quiz (INTERVIEW TRAP) In if(number <= 5), is 5 skipped or printed?\r\n// @answer 5 is skipped because <= is inclusive, and continue jumps to the next iteration before the plain number print.\r\n//\r\n// @quiz (OCJP) What is passed to println in System.out.println(\"Skipping number \" + number)?\r\n// @answer The concatenation creates one String argument, such as \"Skipping number 6\", and println prints that String with a newline.\r\n\r\n// @quiz (INTERVIEW, EASY) Where do the declaration and the update of the counter go in a while loop?\r\n// @option The counter is declared and initialised before the loop, and updated inside the loop body. [correct]\r\n// @option The counter is declared in the while header, exactly as it would be in a for loop.\r\n// @option The counter is updated inside the condition, for example while (j++ <= 5).\r\n// @option Java updates the counter automatically after each iteration.\r\n// @explain A while header holds only a boolean condition, so unlike a for loop it has no initialisation or update section. The counter must be prepared before the loop and changed inside the body, otherwise the condition never becomes false.\r\n// @why B: There is no initialisation part in a while header; only the condition is written there.\r\n// @why C: The condition is a test, not the place for the required update; changing it there also changes the test itself.\r\n// @why D: Java never updates loop variables automatically, which is exactly why a missing update causes an infinite loop.\r\n\r\n// @quiz (OCJP, MEDIUM) How many times does the body of this loop execute?\r\n// @code int j = 10;\r\n// @code while (j <= 5) {\r\n// @code     System.out.println(j);\r\n// @code     j++;\r\n// @code }\r\n// @option Zero times, because the condition is tested before the body and is already false. [correct]\r\n// @option Once, because a while loop always runs its body at least once.\r\n// @option Forever, because the condition is never tested again once j is above the bound.\r\n// @option The code does not compile, because j is declared outside the loop.\r\n// @explain A while loop tests its condition first, so when the condition is false from the start the body is skipped entirely and control continues after the loop. This is the \"never-executing loop\" case.\r\n// @why B: Running the body at least once is the behaviour of a do-while loop, not a while loop.\r\n// @why C: The condition is re-tested every time, and it is false on the very first test.\r\n// @why D: Declaring the counter before the loop is exactly what a while loop requires.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about while (true) is correct?\r\n// @option It repeats until something inside the body ends it, such as break, return or an exception. [correct]\r\n// @option It does not compile, because the condition must be a variable rather than a literal.\r\n// @option It runs exactly one iteration, because true is only tested once.\r\n// @option It must contain a continue statement, otherwise it is a syntax error.\r\n// @explain while (true) is a deliberate infinite loop whose condition never becomes false. It is a common \"loop until done\" pattern, and the exit has to come from inside the body.\r\n// @why B: A boolean literal is a valid condition, and while (true) compiles.\r\n// @why C: The condition is re-tested before every iteration and stays true, so it does not stop after one pass.\r\n// @why D: continue only skips the rest of the current iteration; the statements that actually end the loop are break and return.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) In this file's loop, is the value 5 printed as a bare number?\r\n// @option No, because the test number <= 5 includes 5, and continue skips the rest of that iteration. [correct]\r\n// @option Yes, because continue only applies to even numbers.\r\n// @option Yes, because <= stops just below 5 and lets 5 through to the plain print.\r\n// @option No, because continue exits the loop entirely before 5 is reached.\r\n// @explain The test number <= 5 is inclusive, so 1 through 5 all take the continue branch and print the Skipping message instead of the bare number. The first bare number printed is 6.\r\n// @why B: There is no test on even or odd numbers here; every value up to and including 5 is skipped.\r\n// @why C: <= is inclusive, so 5 satisfies the condition and is skipped along with 1 to 4.\r\n// @why D: continue skips only the current iteration; it is break that leaves the loop.\r\n\r\n// @quiz (INTERVIEW, EASY) When is a while loop usually a better choice than a for loop?\r\n// @option When the number of iterations is not known in advance and the loop depends on a condition that changes. [correct]\r\n// @option When the exact number of iterations is known before the loop starts.\r\n// @option When the loop must run at least once whatever the condition says.\r\n// @option When the counter needs to be initialised inside the loop header.\r\n// @explain A while loop keeps only the condition in its declaration, which suits sentinel-controlled and input-reading loops where the count is unknown. A for loop is preferred when the count is known up front.\r\n// @why B: A known iteration count is the case where a for loop fits better, because its setup stays in one line.\r\n// @why C: Running at least once regardless of the condition is the job of a do-while loop.\r\n// @why D: A while header holds only the condition, so there is nowhere to initialise a counter in it.\r\n\r\n// @quiz (OCJP, HARD) In this loop, which values reach the final System.out.println(number)?\r\n// @code int number = 0;\r\n// @code while (number < 15) {\r\n// @code     number++;\r\n// @code     if (number <= 5) {\r\n// @code         System.out.println(\"Skipping number \" + number);\r\n// @code         continue;\r\n// @code     }\r\n// @code     if (number >= 10) {\r\n// @code         System.out.println(\"Skipping number \" + number);\r\n// @code         break;\r\n// @code     }\r\n// @code     System.out.println(number);\r\n// @code }\r\n// @option 6, 7, 8 and 9 [correct]\r\n// @option 1, 2, 3, 4 and 5\r\n// @option 6, 7, 8, 9 and 10\r\n// @option 5, 6, 7, 8, 9 and 10\r\n// @explain Values 1 to 5 are caught by the first test, print the Skipping message and continue, and 10 is caught by the second test and breaks. Only 6, 7, 8 and 9 fall through both tests to the plain println.\r\n// @why B: Those values print the Skipping message and continue, so they never reach the bare print.\r\n// @why C: 10 prints the Skipping message and then breaks, so it is not printed as a bare number.\r\n// @why D: 5 is skipped by the <= 5 test and 10 is stopped by break, so neither reaches the final print.\r\n\r\n// @quiz (INTERVIEW, EASY) Which loop always executes its body at least once?\r\n// @option do-while, because it tests the condition after the body. [correct]\r\n// @option while, because it re-tests the condition after every iteration.\r\n// @option for, because its initialisation always runs before the condition.\r\n// @option The enhanced for loop, because it visits each element in turn.\r\n// @explain A do-while loop checks its condition after the body has run, so the body executes once even when the condition is false from the start. while and for test before the body and may run it zero times.\r\n// @why B: A while loop tests first, so a false condition means the body never runs.\r\n// @why C: The initialisation of a for loop runs once, but the body is still skipped when the condition is false.\r\n// @why D: An enhanced for loop runs zero times when the array or collection is empty.\r\n\r\n// @quiz (OCJP, MEDIUM) What happens when this code runs?\r\n// @code int j = 1;\r\n// @code while (j <= 5) {\r\n// @code     System.out.println(j);\r\n// @code }\r\n// @option It prints 1 again and again and never stops, because the condition stays true. [correct]\r\n// @option It prints 1, 2, 3, 4 and 5 and then stops normally.\r\n// @option It does not compile, because the body must change the loop variable.\r\n// @option It prints nothing, because the condition is false from the start.\r\n// @explain The body never changes j, so j stays 1 and j <= 5 remains true for ever. Every while loop depends on the body updating its counter.\r\n// @why B: Nothing increments j, so the loop never reaches 5 and never ends.\r\n// @why C: Java does not require the body to modify the loop variable; the code compiles but loops for ever.\r\n// @why D: The condition is true when j is 1, so the body does run; it simply never stops.\r\n\r\npublic class WhileLoops {\r\n\r\n    /* while loop simply has expression\r\n\r\n    While loop code format :-\r\n\r\n    while(expression)  {\r\n    // block of statements\r\n\r\n    } */\r\n\r\n    /*\r\nUnlike the for loop, there is no place for the declaration of a temporary variable, in\r\n    the declaration of the while statement.\r\n    So we have to declare any iteration variables, outside the loop.\r\n */\r\n\r\n    public static void main(String[] args) {\r\n/*        int j = 1; // In while loop the initialisation of the variable happens outside the while loop\r\n\r\n        while (j <= 5) { // condition\r\n            System.out.println(j);\r\n            j++;   // Iteration\r\n        }\r\n\r\n        // Another common way to program while loop is :-\r\n\r\n        while(true){ // If break condition is not put, it will lead to infinite loop condition\r\n            if(j > 5){ // Here in this code, we are breaking the loop, as soon as the condition is met.\r\n                break;\r\n            }\r\n        }*/\r\n\r\n        int number = 0;\r\n\r\n        while(number < 15){\r\n            number++;\r\n\r\n            if(number <= 5){\r\n                System.out.println(\"Skipping number \" + number);\r\n                continue;\r\n            }\r\n\r\n            if(number >= 10){\r\n                System.out.println(\"Skipping number \" + number);\r\n                break;\r\n            }\r\n\r\n            System.out.println(number);\r\n        }\r\n\r\n    }\r\n\r\n// while statement with continue and break: 'continue' skips to the next iteration, 'break' exits the loop entirely.\r\n\r\n}\r\n\r\n"
+        "code": "package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;\r\n/*\r\n  WHILE LOOPS\r\n\r\n  The while loop repeatedly executes its body as long as a condition remains true.\r\n  Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.\r\n  You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body.\r\n\r\n  Syntax:\r\n    while (condition) {\r\n        // body\r\n        // must update loop variable here, or you get an infinite loop!\r\n    }\r\n\r\n  Key difference from for loop:\r\n  - for loop: initialisation, condition, and update are all in one line — ideal when you know the count upfront.\r\n  - while loop: only the condition is in the declaration — ideal when you don't know upfront how many times to loop.\r\n\r\n  EXAMPLE 1 — Basic counting with while:\r\n    int j = 1;           // initialisation happens OUTSIDE the while\r\n    while (j <= 5) {     // condition\r\n        System.out.println(j);\r\n        j++;             // update happens INSIDE the while\r\n    }\r\n\r\n  EXAMPLE 2 — while(true) with break (common pattern for \"loop until done\"):\r\n    while (true) {       // infinite loop — will loop forever unless break is used\r\n        if (j > 5) {\r\n            break;       // exits the loop when j exceeds 5\r\n        }\r\n    }\r\n\r\n  CONTINUE and BREAK:\r\n  - continue: skips the REMAINING code in the current iteration and starts the next iteration immediately.\r\n  - break: exits the loop entirely at the point it is executed. No further iterations run.\r\n\r\n  IMPORTANT: Always check your loop condition carefully.\r\n  - An infinite loop (condition never becomes false, no break) will freeze or crash your program.\r\n  - A never-executing loop (condition is false from the start) will silently skip all the loop code.\r\n*/\r\n\r\n// @quiz (INTERVIEW) What is the difference between while and do-while in Java?\r\n// @answer while checks its condition before the body, so it may run zero times.\r\n// @answer do-while checks after the body, so it always runs at least once.\r\n\r\n// @quiz (INTERVIEW) What is an infinite loop, and how do you break out of one?\r\n// @answer An infinite loop is a loop whose condition never becomes false or that intentionally uses while(true).\r\n// @answer You exit it with break, return, an exception, or by changing the condition from inside the loop.\r\n\r\n// @quiz (INTERVIEW) When would you prefer while over for?\r\n// @answer Prefer while when the number of iterations is not known in advance and the loop depends on a changing condition.\r\n// @answer It is common for input-reading, waiting, and sentinel-controlled loops.\r\n\r\n// @quiz (INTERVIEW) What do break and continue do inside a while loop?\r\n// @answer break exits the loop immediately, while continue skips the rest of the current iteration and reevaluates the condition.\r\n// @answer Both change control flow without waiting for the loop body to finish normally.\r\n\r\n// @quiz (OCJP) What prints here: int x = 0; do { x++; } while (x < 0); System.out.println(x);?\r\n// @answer It prints 1.\r\n// @answer A do-while loop always executes its body once before checking the condition.\r\n\r\n// @quiz (OCJP) Which is usually clearer: while (condition) { ... } or while (true) { if (condition) break; }?\r\n// @answer The explicit condition form is usually clearer when the exit rule is known up front.\r\n// @answer while (true) with break is fine when the exit depends on logic inside the loop body.\r\n// Parameter notes (what each method/constructor argument means and how to choose it):\r\n// - main(String[] args): args contains zero-based command-line Strings supplied at launch; choose them only when this loop example needs external input.\r\n// - System.out.println(String x) and System.out.println(int x): x is the value printed followed by a newline; choose a String for explanatory messages or an int for raw numeric output.\r\n// - while(number < 15): the expression is the loop's controlling input; choose a condition that eventually becomes false to avoid an infinite loop.\r\n// - if(number <= 5) with continue uses 5 as an inclusive skip limit; choose the boundary so every value up to and including it is skipped.\r\n// - if(number >= 10) with break uses 10 as an inclusive stop limit; choose the boundary so the loop exits as soon as the value reaches or passes it.\r\n//\r\n// @quiz (INTERVIEW) What parameter-like value controls when while(number < 15) stops?\r\n// @answer The boolean condition number < 15 controls the loop; it stops when that expression becomes false.\r\n//\r\n// @quiz (INTERVIEW TRAP) In if(number <= 5), is 5 skipped or printed?\r\n// @answer 5 is skipped because <= is inclusive, and continue jumps to the next iteration before the plain number print.\r\n//\r\n// @quiz (OCJP) What is passed to println in System.out.println(\"Skipping number \" + number)?\r\n// @answer The concatenation creates one String argument, such as \"Skipping number 6\", and println prints that String with a newline.\r\n\r\n// @quiz (INTERVIEW, EASY) Where do the declaration and the update of the counter go in a while loop?\r\n// @option The counter is declared and initialised before the loop, and updated inside the loop body. [correct]\r\n// @option The counter is declared in the while header, exactly as it would be in a for loop.\r\n// @option The counter is updated inside the condition, for example while (j++ <= 5).\r\n// @option Java updates the counter automatically after each iteration.\r\n// @explain A while header holds only a boolean condition, so unlike a for loop it has no initialisation or update section. The counter must be prepared before the loop and changed inside the body, otherwise the condition never becomes false.\r\n// @why B: There is no initialisation part in a while header; only the condition is written there.\r\n// @why C: The condition is a test, not the place for the required update; changing it there also changes the test itself.\r\n// @why D: Java never updates loop variables automatically, which is exactly why a missing update causes an infinite loop.\r\n\r\n// @quiz (OCJP, MEDIUM) How many times does the body of this loop execute?\r\n// @code int j = 10;\r\n// @code while (j <= 5) {\r\n// @code     System.out.println(j);\r\n// @code     j++;\r\n// @code }\r\n// @option Zero times, because the condition is tested before the body and is already false. [correct]\r\n// @option Once, because a while loop always runs its body at least once.\r\n// @option Forever, because the condition is never tested again once j is above the bound.\r\n// @option The code does not compile, because j is declared outside the loop.\r\n// @explain A while loop tests its condition first, so when the condition is false from the start the body is skipped entirely and control continues after the loop. This is the \"never-executing loop\" case.\r\n// @why B: Running the body at least once is the behaviour of a do-while loop, not a while loop.\r\n// @why C: The condition is re-tested every time, and it is false on the very first test.\r\n// @why D: Declaring the counter before the loop is exactly what a while loop requires.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) Which statement about while (true) is correct?\r\n// @option It repeats until something inside the body ends it, such as break, return or an exception. [correct]\r\n// @option It does not compile, because the condition must be a variable rather than a literal.\r\n// @option It runs exactly one iteration, because true is only tested once.\r\n// @option It must contain a continue statement, otherwise it is a syntax error.\r\n// @explain while (true) is a deliberate infinite loop whose condition never becomes false. It is a common \"loop until done\" pattern, and the exit has to come from inside the body.\r\n// @why B: A boolean literal is a valid condition, and while (true) compiles.\r\n// @why C: The condition is re-tested before every iteration and stays true, so it does not stop after one pass.\r\n// @why D: continue only skips the rest of the current iteration; the statements that actually end the loop are break and return.\r\n\r\n// @quiz (INTERVIEW TRAP, MEDIUM) In this file's loop, is the value 5 printed as a bare number?\r\n// @option No, because the test number <= 5 includes 5, and continue skips the rest of that iteration. [correct]\r\n// @option Yes, because continue only applies to even numbers.\r\n// @option Yes, because <= stops just below 5 and lets 5 through to the plain print.\r\n// @option No, because continue exits the loop entirely before 5 is reached.\r\n// @explain The test number <= 5 is inclusive, so 1 through 5 all take the continue branch and print the Skipping message instead of the bare number. The first bare number printed is 6.\r\n// @why B: There is no test on even or odd numbers here; every value up to and including 5 is skipped.\r\n// @why C: <= is inclusive, so 5 satisfies the condition and is skipped along with 1 to 4.\r\n// @why D: continue skips only the current iteration; it is break that leaves the loop.\r\n\r\n// @quiz (INTERVIEW, EASY) When is a while loop usually a better choice than a for loop?\r\n// @option When the number of iterations is not known in advance and the loop depends on a condition that changes. [correct]\r\n// @option When the exact number of iterations is known before the loop starts.\r\n// @option When the loop must run at least once whatever the condition says.\r\n// @option When the counter needs to be initialised inside the loop header.\r\n// @explain A while loop keeps only the condition in its declaration, which suits sentinel-controlled and input-reading loops where the count is unknown. A for loop is preferred when the count is known up front.\r\n// @why B: A known iteration count is the case where a for loop fits better, because its setup stays in one line.\r\n// @why C: Running at least once regardless of the condition is the job of a do-while loop.\r\n// @why D: A while header holds only the condition, so there is nowhere to initialise a counter in it.\r\n\r\n// @quiz (OCJP, HARD) In this loop, which values reach the final System.out.println(number)?\r\n// @code int number = 0;\r\n// @code while (number < 15) {\r\n// @code     number++;\r\n// @code     if (number <= 5) {\r\n// @code         System.out.println(\"Skipping number \" + number);\r\n// @code         continue;\r\n// @code     }\r\n// @code     if (number >= 10) {\r\n// @code         System.out.println(\"Skipping number \" + number);\r\n// @code         break;\r\n// @code     }\r\n// @code     System.out.println(number);\r\n// @code }\r\n// @option 6, 7, 8 and 9 [correct]\r\n// @option 1, 2, 3, 4 and 5\r\n// @option 6, 7, 8, 9 and 10\r\n// @option 5, 6, 7, 8, 9 and 10\r\n// @explain Values 1 to 5 are caught by the first test, print the Skipping message and continue, and 10 is caught by the second test and breaks. Only 6, 7, 8 and 9 fall through both tests to the plain println.\r\n// @why B: Those values print the Skipping message and continue, so they never reach the bare print.\r\n// @why C: 10 prints the Skipping message and then breaks, so it is not printed as a bare number.\r\n// @why D: 5 is skipped by the <= 5 test and 10 is stopped by break, so neither reaches the final print.\r\n\r\n// @quiz (INTERVIEW, EASY) Which loop always executes its body at least once?\r\n// @option do-while, because it tests the condition after the body. [correct]\r\n// @option while, because it re-tests the condition after every iteration.\r\n// @option for, because its initialisation always runs before the condition.\r\n// @option The enhanced for loop, because it visits each element in turn.\r\n// @explain A do-while loop checks its condition after the body has run, so the body executes once even when the condition is false from the start. while and for test before the body and may run it zero times.\r\n// @why B: A while loop tests first, so a false condition means the body never runs.\r\n// @why C: The initialisation of a for loop runs once, but the body is still skipped when the condition is false.\r\n// @why D: An enhanced for loop runs zero times when the array or collection is empty.\r\n\r\n// @quiz (OCJP, MEDIUM) What happens when this code runs?\r\n// @code int j = 1;\r\n// @code while (j <= 5) {\r\n// @code     System.out.println(j);\r\n// @code }\r\n// @option It prints 1 again and again and never stops, because the condition stays true. [correct]\r\n// @option It prints 1, 2, 3, 4 and 5 and then stops normally.\r\n// @option It does not compile, because the body must change the loop variable.\r\n// @option It prints nothing, because the condition is false from the start.\r\n// @explain The body never changes j, so j stays 1 and j <= 5 remains true for ever. Every while loop depends on the body updating its counter.\r\n// @why B: Nothing increments j, so the loop never reaches 5 and never ends.\r\n// @why C: Java does not require the body to modify the loop variable; the code compiles but loops for ever.\r\n// @why D: The condition is true when j is 1, so the body does run; it simply never stops.\r\n\r\n// @quiz (OCJP, MEDIUM) What is printed by this code?\r\n// @code int j = 10;\r\n// @code do {\r\n// @code     System.out.println(\"body\");\r\n// @code } while (j < 5);\r\n// @option body, printed once, because a do-while tests its condition after the body. [correct]\r\n// @option nothing, because j < 5 is false.\r\n// @option body printed repeatedly, because the condition is false.\r\n// @option It does not compile, because the condition is false.\r\n// @explain A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.\r\n// @why B: that is the behaviour of a while loop, which tests before the body.\r\n// @why C: the false condition ends the loop after the first pass.\r\n// @why D: a condition that is false at runtime is perfectly legal.\r\n\r\n// @quiz (OCJP, HARD) What is wrong with this loop?\r\n// @code int j = 1;\r\n// @code while (j <= 5) {\r\n// @code     System.out.println(j);\r\n// @code }\r\n// @option It never ends, because j is never changed inside the body. [correct]\r\n// @option It ends after five iterations.\r\n// @option It does not compile, because j is declared outside the loop.\r\n// @option It prints nothing, because the condition is false.\r\n// @explain A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.\r\n// @why B: the condition never becomes false, so it cannot stop after five passes.\r\n// @why C: declaring the counter before the loop is exactly how while loops are written.\r\n// @why D: 1 <= 5 is true, so the body runs and prints.\r\n\r\n// @quiz (INTERVIEW TRAP, HARD) What is the effect of this loop?\r\n// @code int j = 0;\r\n// @code while (j < 5) {\r\n// @code     if (j == 2) { continue; }\r\n// @code     j++;\r\n// @code }\r\n// @option It hangs forever, because when j is 2 the continue skips the increment. [correct]\r\n// @option It finishes normally after five increments.\r\n// @option It skips the value 2 and then finishes.\r\n// @option It does not compile, because continue cannot be used in a while.\r\n// @explain When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.\r\n// @why B: the increment is skipped exactly when it is needed most.\r\n// @why C: nothing raises j past 2, so it cannot finish.\r\n// @why D: continue is valid in a while; the problem is where it was placed.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) How many times does this loop run?\r\n// @code int j = 1;\r\n// @code int count = 0;\r\n// @code while (j <= 4) { count++; j += 2; }\r\n// @option 2 times, for j = 1 and j = 3. [correct]\r\n// @option 4 times, for j = 1, 2, 3 and 4.\r\n// @option 3 times, for j = 1, 3 and 5.\r\n// @option Once, because j += 2 ends the loop.\r\n// @explain j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.\r\n// @why B: the step is 2, so the even values are never used.\r\n// @why C: when j is 5 the condition is false, so there is no third pass.\r\n// @why D: the loop continues while the condition holds, which it does for 1 and 3.\r\n\r\n// @quiz (INTERVIEW, MEDIUM) When should you prefer a do-while over a while loop?\r\n// @option When the body must run at least once, such as showing a menu before checking the choice. [correct]\r\n// @option When the number of iterations is known in advance.\r\n// @option When the condition must be tested before the body.\r\n// @option When the loop must be able to run zero times.\r\n// @explain do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.\r\n// @why B: a known count is the strength of a for loop.\r\n// @why C: testing first is what a while loop does.\r\n// @why D: running zero times is impossible with do-while, which is the point of the question.\r\n\r\npublic class WhileLoops {\r\n\r\n    /* while loop simply has expression\r\n\r\n    While loop code format :-\r\n\r\n    while(expression)  {\r\n    // block of statements\r\n\r\n    } */\r\n\r\n    /*\r\nUnlike the for loop, there is no place for the declaration of a temporary variable, in\r\n    the declaration of the while statement.\r\n    So we have to declare any iteration variables, outside the loop.\r\n */\r\n\r\n    public static void main(String[] args) {\r\n/*        int j = 1; // In while loop the initialisation of the variable happens outside the while loop\r\n\r\n        while (j <= 5) { // condition\r\n            System.out.println(j);\r\n            j++;   // Iteration\r\n        }\r\n\r\n        // Another common way to program while loop is :-\r\n\r\n        while(true){ // If break condition is not put, it will lead to infinite loop condition\r\n            if(j > 5){ // Here in this code, we are breaking the loop, as soon as the condition is met.\r\n                break;\r\n            }\r\n        }*/\r\n\r\n        int number = 0;\r\n\r\n        while(number < 15){\r\n            number++;\r\n\r\n            if(number <= 5){\r\n                System.out.println(\"Skipping number \" + number);\r\n                continue;\r\n            }\r\n\r\n            if(number >= 10){\r\n                System.out.println(\"Skipping number \" + number);\r\n                break;\r\n            }\r\n\r\n            System.out.println(number);\r\n        }\r\n\r\n    }\r\n\r\n// while statement with continue and break: 'continue' skips to the next iteration, 'break' exits the loop entirely.\r\n\r\n}\r\n\r\n"
       },
       {
         "filePath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",

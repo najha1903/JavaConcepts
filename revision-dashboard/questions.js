@@ -4167,6 +4167,142 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_16-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "static void update(int[] data) { data[0] = 99; }\nint[] nums = {1, 2, 3};\nupdate(nums);\nSystem.out.println(nums[0]);",
+      "options": [
+        "1, because Java passes a copy of the array so the original is untouched.",
+        "It does not compile, because arrays cannot be passed to methods.",
+        "99, because the method receives a copy of the reference and changes the same array object.",
+        "0, because the array is reset when the method returns."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the reference is copied, not the contents. The copy still points at the same array.",
+        "1": "arrays are objects and can be passed freely.",
+        "3": "nothing is reset. The change made inside the method persists."
+      },
+      "explanation": "Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_17-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "static void reset(int[] data) { data = new int[]{0, 0, 0}; }\nint[] nums = {1, 2, 3};\nreset(nums);\nSystem.out.println(nums[0]);",
+      "options": [
+        "99, because the old value is retained.",
+        "0, because the method replaces the array with zeros.",
+        "1, because reassigning the parameter only changes the local copy of the reference.",
+        "It does not compile, because data cannot be reassigned."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "99 was never involved in this code.",
+        "1": "the new array is local to the method and is discarded when it returns.",
+        "3": "reassigning a parameter is allowed; it simply has no effect on the caller."
+      },
+      "explanation": "The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_18-does-this-method-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this method compile?",
+      "code": "public static int sign(int n) {\nif (n > 0) { return 1; }\n}",
+      "options": [
+        "No. A non-void method must return a value on every path, and the case where n is not positive has no return.",
+        "Yes, and it returns 0 when n is not positive.",
+        "Yes, and it returns 1 in every case.",
+        "Yes, because Java supplies a default return value of 0."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "there is no implicit 0. The method would have to say so.",
+        "2": "the return sits inside the if, so it does not cover every case.",
+        "3": "Java never supplies a default return value for a method."
+      },
+      "explanation": "The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_19-does-this-line-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this line compile?",
+      "code": "public static void printScore(int score) { System.out.println(score); }\nint result = printScore(10);",
+      "options": [
+        "Yes, and result becomes 10.",
+        "Yes, and result becomes 0.",
+        "No. A void method produces no value, so there is nothing to assign to result.",
+        "Yes, because Java converts the printed value into an int."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the score inside the method is a parameter, not a return value.",
+        "1": "an absent value is not the same as zero.",
+        "3": "printing is output, not a return."
+      },
+      "explanation": "void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_20-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "tricky",
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "static void swap(int a, int b) { int t = a; a = b; b = t; }\nint x = 1, y = 2;\nswap(x, y);\nSystem.out.println(x + \" \" + y);",
+      "options": [
+        "It does not compile, because a and b cannot be reassigned.",
+        "1 2, because the method swaps only its own copies of the values.",
+        "2 1, because the swap is applied to the caller's variables.",
+        "1 1, because both variables end up with the same value."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "reassigning parameters is perfectly legal.",
+        "2": "reaching the caller's variables would need pass-by-reference, which Java does not do.",
+        "3": "the method works correctly on its own copies; the caller simply never sees it."
+      },
+      "explanation": "Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_true-false-mcq_5",
@@ -5029,6 +5165,141 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_17-does-this-switch-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this switch compile?",
+      "code": "int x = 2;\nswitch (x) {\ncase 1: System.out.println(\"one\"); break;\ncase 1: System.out.println(\"again\"); break;\n}",
+      "options": [
+        "Yes, and the second case 1 runs.",
+        "No. A duplicate case label is a compile error.",
+        "Yes, and both of them run.",
+        "Yes, and the first case 1 runs."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "for the same reason, the duplicate is rejected first.",
+        "2": "it never gets that far.",
+        "3": "the file does not compile, so nothing runs."
+      },
+      "explanation": "The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_18-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "String day = \"monday\";\nswitch (day) {\ncase \"Monday\": System.out.println(\"start of week\"); break;\ndefault: System.out.println(\"unknown\");\n}",
+      "options": [
+        "It does not compile, because case labels must be int values.",
+        "It does not compile, because a switch cannot use a String.",
+        "unknown, because the case label is compared exactly and \"monday\" does not match \"Monday\".",
+        "start of week, because switch ignores letter case."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "String labels are allowed; the values simply have to match exactly.",
+        "1": "String has been a valid switch selector since Java 7.",
+        "3": "switch does not normalise case. Lowercase the value first if case must be ignored."
+      },
+      "explanation": "A switch on a String compares with equals, which is case-sensitive. Since \"monday\" differs from \"Monday\", no label matches and the default branch runs.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_19-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 3;\nswitch (x) {\ncase 1:\ncase 2:\ncase 3: System.out.println(\"low\"); break;\ndefault: System.out.println(\"high\");\n}",
+      "options": [
+        "low, because cases 1, 2 and 3 all lead to the same block.",
+        "low then high, because case 3 falls through into default.",
+        "It does not compile, because case 1 and case 2 have no statements.",
+        "high, because 3 has no block of its own."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "after printing low, break leaves the switch, so default never runs.",
+        "2": "a label with no statements is exactly how grouping is written.",
+        "3": "the grouping means 3 has a block, the shared one."
+      },
+      "explanation": "Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_20-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "static void check(int x) {\nswitch (x) {\ncase 1: System.out.println(\"one\"); return;\ndefault: System.out.println(\"other\");\n}\nSystem.out.println(\"after switch\");\n}\ncheck(1);",
+      "options": [
+        "one, then after switch.",
+        "one, and nothing else, because return exits the whole method.",
+        "after switch only.",
+        "one, other, then after switch."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "after switch is not reached, because the method has already returned.",
+        "2": "case 1 matches, so one is printed before the return.",
+        "3": "only the matching branch runs, and the method returns from it."
+      },
+      "explanation": "return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_21-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 2;\nswitch (x) {\ndefault: System.out.print(\"D\");\ncase 1: System.out.print(\"A\");\ncase 2: System.out.print(\"B\");\n}",
+      "options": [
+        "B, because case 2 matches and execution begins at the matching label.",
+        "DB, because default is written first and falls through.",
+        "DAB, because execution always starts at default.",
+        "D, because default runs before the cases are tested."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "putting default first does not make it run. It is used only when nothing matches.",
+        "2": "execution starts at the matching case, not at default.",
+        "3": "x is 2, so case 2 matches and default is not needed."
+      },
+      "explanation": "default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_true-false-mcq_5",
@@ -5659,6 +5930,140 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_8-what-is-printed-by-this-loop",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this loop?",
+      "code": "int number = 0;\nwhile (number < 50) {\nnumber = number + 5;\nif (number % 25 == 0) { continue; }\nSystem.out.print(number + \" \");\n}",
+      "options": [
+        "5 10 15 20, because the loop stops at 25.",
+        "5 10 15 20 30 35 40 45, because 25 and 50 are skipped.",
+        "5 10 15 20 25 30 35 40 45 50",
+        "nothing, because continue ends the loop."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the loop does not stop. continue is not break.",
+        "2": "the continue prevents 25 and 50 from being printed.",
+        "3": "continue skips one iteration, not the whole loop."
+      },
+      "explanation": "continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_9-how-many-numbers-does-this-loop-print",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "interview"
+      ],
+      "question": "How many numbers does this loop print?",
+      "code": "for (int i = 0; i <= 5; i++) { System.out.println(i); }",
+      "options": [
+        "6, printing 1 to 6.",
+        "5, printing 0 to 4.",
+        "5, printing 1 to 5.",
+        "6, printing 0 to 5."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "i never reaches 6, and the first value printed is 0.",
+        "1": "i <= 5 includes 5, so there is one more iteration than i < 5 would give.",
+        "2": "i begins at 0, not 1."
+      },
+      "explanation": "i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_10-what-does-this-loop-do",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "interview"
+      ],
+      "question": "What does this loop do?",
+      "code": "for (;;) { System.out.println(\"tick\"); }",
+      "options": [
+        "It never runs at all.",
+        "It runs forever, because an absent condition is treated as always true.",
+        "It does not compile, because a for header needs all three parts.",
+        "It runs exactly once."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "an empty condition is true, so the body does run.",
+        "2": "the parts are optional, so for(;;) is legal Java.",
+        "3": "nothing limits it to a single pass."
+      },
+      "explanation": "All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_11-what-is-the-difference-between-break-and",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is the difference between break and continue inside a loop?",
+      "options": [
+        "break skips one iteration, while continue ends the loop.",
+        "break ends the loop, while continue skips the rest of this iteration and moves to the next.",
+        "Both end the loop immediately.",
+        "Both only skip the current iteration."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the two are swapped.",
+        "2": "only break ends the loop.",
+        "3": "only continue behaves that way."
+      },
+      "explanation": "break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_12-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "for (int i = 0; i < 3; i++) { System.out.print(i); }\nSystem.out.println(i);",
+      "options": [
+        "Yes, because i defaults to 0 after the loop.",
+        "Yes, and it prints 0.",
+        "No. i is declared in the for header, so its scope ends with the loop.",
+        "Yes, and it prints the final value of i."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the variable is not reset. It simply no longer exists.",
+        "1": "the same scope error applies.",
+        "3": "the name is out of scope, so the line does not compile."
+      },
+      "explanation": "A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_true-false-mcq_5",
@@ -6186,6 +6591,141 @@ const QUESTIONS_BANK = {
         "3": "The condition is true when j is 1, so the body does run; it simply never stops."
       },
       "explanation": "The body never changes j, so j stays 1 and j <= 5 remains true for ever. Every while loop depends on the body updating its counter.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_17-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int j = 10;\ndo {\nSystem.out.println(\"body\");\n} while (j < 5);",
+      "options": [
+        "body printed repeatedly, because the condition is false.",
+        "It does not compile, because the condition is false.",
+        "nothing, because j < 5 is false.",
+        "body, printed once, because a do-while tests its condition after the body."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the false condition ends the loop after the first pass.",
+        "1": "a condition that is false at runtime is perfectly legal.",
+        "2": "that is the behaviour of a while loop, which tests before the body."
+      },
+      "explanation": "A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_18-what-is-wrong-with-this-loop",
+      "difficulty": "hard",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is wrong with this loop?",
+      "code": "int j = 1;\nwhile (j <= 5) {\nSystem.out.println(j);\n}",
+      "options": [
+        "It prints nothing, because the condition is false.",
+        "It never ends, because j is never changed inside the body.",
+        "It ends after five iterations.",
+        "It does not compile, because j is declared outside the loop."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "1 <= 5 is true, so the body runs and prints.",
+        "2": "the condition never becomes false, so it cannot stop after five passes.",
+        "3": "declaring the counter before the loop is exactly how while loops are written."
+      },
+      "explanation": "A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_19-what-is-the-effect-of-this-loop",
+      "difficulty": "hard",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "tricky",
+        "interview"
+      ],
+      "question": "What is the effect of this loop?",
+      "code": "int j = 0;\nwhile (j < 5) {\nif (j == 2) { continue; }\nj++;\n}",
+      "options": [
+        "It finishes normally after five increments.",
+        "It skips the value 2 and then finishes.",
+        "It does not compile, because continue cannot be used in a while.",
+        "It hangs forever, because when j is 2 the continue skips the increment."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the increment is skipped exactly when it is needed most.",
+        "1": "nothing raises j past 2, so it cannot finish.",
+        "2": "continue is valid in a while; the problem is where it was placed."
+      },
+      "explanation": "When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_20-how-many-times-does-this-loop-run",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "interview"
+      ],
+      "question": "How many times does this loop run?",
+      "code": "int j = 1;\nint count = 0;\nwhile (j <= 4) { count++; j += 2; }",
+      "options": [
+        "3 times, for j = 1, 3 and 5.",
+        "2 times, for j = 1 and j = 3.",
+        "4 times, for j = 1, 2, 3 and 4.",
+        "Once, because j += 2 ends the loop."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "when j is 5 the condition is false, so there is no third pass.",
+        "2": "the step is 2, so the even values are never used.",
+        "3": "the loop continues while the condition holds, which it does for 1 and 3."
+      },
+      "explanation": "j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_21-when-should-you-prefer-a-do-while-over-a",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "interview"
+      ],
+      "question": "When should you prefer a do-while over a while loop?",
+      "options": [
+        "When the body must run at least once, such as showing a menu before checking the choice.",
+        "When the condition must be tested before the body.",
+        "When the loop must be able to run zero times.",
+        "When the number of iterations is known in advance."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "testing first is what a while loop does.",
+        "2": "running zero times is impossible with do-while, which is the point of the question.",
+        "3": "a known count is the strength of a for loop."
+      },
+      "explanation": "do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
     },
     {
@@ -14200,10 +14740,10 @@ const QUICK_REVISION_BANK = {
     "syntax": "public class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);",
     "badges": [
       "methodName",
-      "main",
-      "calculateScore",
-      "area",
-      "shouldWakeUp"
+      "update",
+      "reset",
+      "sign",
+      "printScore"
     ],
     "tables": []
   },
@@ -14224,11 +14764,11 @@ const QUICK_REVISION_BANK = {
     ],
     "syntax": "public class SwitchStatementInJava {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"If-else example:\");\r\n        ifElseExample(3);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Traditional switch example:\");\r\n        switchCase(2);",
     "badges": [
+      "check",
       "main",
       "ifElseExample",
       "switchCase",
-      "switchCaseMultipleCasesTogether",
-      "switchCaseWithoutUsingBreak"
+      "switchCaseMultipleCasesTogether"
     ],
     "tables": []
   },
@@ -14242,7 +14782,8 @@ const QUICK_REVISION_BANK = {
       "Java supports several looping statements for repetitive execution:"
     ],
     "gotchas": [
-      "@why D: A for header has exactly three sections separated by two semicolons, so the third semicolon is a syntax error."
+      "@why D: A for header has exactly three sections separated by two semicolons, so the third semicolon is a syntax error.",
+      "@why C: the same scope error applies."
     ],
     "syntax": "public class ForStatement {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Counting from 1 to 5:\");\r\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\r\n           System.out.println(counter);\r\n        }\r\n\r\n        System.out.println();",
     "badges": [

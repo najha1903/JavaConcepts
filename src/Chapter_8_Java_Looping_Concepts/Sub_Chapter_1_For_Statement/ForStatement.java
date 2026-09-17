@@ -182,6 +182,66 @@ package Chapter_8_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
 // @why C: break leaves the loop immediately, so rates above 8.5 are never reached.
 // @why D: The first interest amount is 7.5, which is below the cutoff, so several rates are printed before the break.
 
+// @quiz (OCJP, MEDIUM) What is printed by this loop?
+// @code int number = 0;
+// @code while (number < 50) {
+// @code     number = number + 5;
+// @code     if (number % 25 == 0) { continue; }
+// @code     System.out.print(number + " ");
+// @code }
+// @option 5 10 15 20 30 35 40 45, because 25 and 50 are skipped. [correct]
+// @option 5 10 15 20 25 30 35 40 45 50
+// @option 5 10 15 20, because the loop stops at 25.
+// @option nothing, because continue ends the loop.
+// @explain continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.
+// @why B: the continue prevents 25 and 50 from being printed.
+// @why C: the loop does not stop. continue is not break.
+// @why D: continue skips one iteration, not the whole loop.
+
+// @quiz (INTERVIEW, MEDIUM) How many numbers does this loop print?
+// @code for (int i = 0; i <= 5; i++) { System.out.println(i); }
+// @option 6, printing 0 to 5. [correct]
+// @option 5, printing 0 to 4.
+// @option 5, printing 1 to 5.
+// @option 6, printing 1 to 6.
+// @explain i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.
+// @why B: i <= 5 includes 5, so there is one more iteration than i < 5 would give.
+// @why C: i begins at 0, not 1.
+// @why D: i never reaches 6, and the first value printed is 0.
+
+// @quiz (INTERVIEW, MEDIUM) What does this loop do?
+// @code for (;;) { System.out.println("tick"); }
+// @option It runs forever, because an absent condition is treated as always true. [correct]
+// @option It does not compile, because a for header needs all three parts.
+// @option It runs exactly once.
+// @option It never runs at all.
+// @explain All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.
+// @why B: the parts are optional, so for(;;) is legal Java.
+// @why C: nothing limits it to a single pass.
+// @why D: an empty condition is true, so the body does run.
+
+// @quiz (INTERVIEW, MEDIUM) What is the difference between break and continue inside a loop?
+// @option break ends the loop, while continue skips the rest of this iteration and moves to the next. [correct]
+// @option break skips one iteration, while continue ends the loop.
+// @option Both end the loop immediately.
+// @option Both only skip the current iteration.
+// @explain break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.
+// @why B: the two are swapped.
+// @why C: only break ends the loop.
+// @why D: only continue behaves that way.
+
+// @quiz (OCJP, HARD) Does this code compile?
+// @code for (int i = 0; i < 3; i++) { System.out.print(i); }
+// @code System.out.println(i);
+// @option No. i is declared in the for header, so its scope ends with the loop. [correct]
+// @option Yes, and it prints the final value of i.
+// @option Yes, and it prints 0.
+// @option Yes, because i defaults to 0 after the loop.
+// @explain A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.
+// @why B: the name is out of scope, so the line does not compile.
+// @why C: the same scope error applies.
+// @why D: the variable is not reset. It simply no longer exists.
+
 public class ForStatement {
 
     public static void main(String[] args) {
