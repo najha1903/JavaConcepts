@@ -110,7 +110,7 @@ function recordQuestionResult(qid, isCorrect) {
 }
 
 function getQuestionWeight(qid, history) {
-  if (!qid || !history[qid]) return 10; // never seen â€” highest priority
+  if (!qid || !history[qid]) return 10; // never seen Ã¢â‚¬â€ highest priority
   const h = history[qid];
   const daysSince = (Date.now() - h.lastSeenMs) / (1000 * 60 * 60 * 24);
   if (h.wrong > h.correct && daysSince < 7) return 8;  // recently wrong
@@ -668,7 +668,7 @@ function renderSidebar() {
       renderTopicItem(topic, content, chIdx, topic.originalIdx, revised);
     });
     
-    // Render sub-chapters â€” sorted numerically by Sub_Chapter_N from filePath
+    // Render sub-chapters Ã¢â‚¬â€ sorted numerically by Sub_Chapter_N from filePath
     const sortedSubChapterNames = Object.keys(subChaptersMap).sort((a, b) => {
       const aNum = parseInt((subChaptersMap[a][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
       const bNum = parseInt((subChaptersMap[b][0]?.filePath || '').match(/Sub_Chapter_(\d+)/)?.[1] || '0', 10);
@@ -702,7 +702,7 @@ function renderSidebar() {
       document.querySelectorAll('.chapter-accordion').forEach(a => a.classList.remove('open'));
       if (!isOpen) {
         accordion.classList.add('open');
-        // Auto-select first topic so one click navigates directly â€” no second click needed
+        // Auto-select first topic so one click navigates directly Ã¢â‚¬â€ no second click needed
         selectTopic(chIdx, 0);
       }
     });
@@ -874,7 +874,7 @@ function renderPrintTopicNotes(topic) {
 
   const flushList = () => {
     if (!listItems.length) return;
-    html += `<ul>${listItems.map(item => `<li>${formatPrintInline(item.replace(/^[-*â€¢]\s*/, ''))}</li>`).join('')}</ul>`;
+    html += `<ul>${listItems.map(item => `<li>${formatPrintInline(item.replace(/^[-*Ã¢â‚¬Â¢]\s*/, ''))}</li>`).join('')}</ul>`;
     listItems = [];
   };
 
@@ -1031,7 +1031,7 @@ function renderNotesView() {
 
   const topicInfo = currentNotesTopicPath ? findTopicByFilePath(currentNotesTopicPath) : null;
   if (topicInfo && topicTitle) {
-    topicTitle.innerText = `${topicInfo.chapter.name} â€” ${topicInfo.topic.topicName}`;
+    topicTitle.innerText = `${topicInfo.chapter.name} Ã¢â‚¬â€ ${topicInfo.topic.topicName}`;
   } else if (topicTitle) {
     topicTitle.innerText = 'Topic Notes';
   }
@@ -1261,7 +1261,7 @@ function selectTopic(chIdx, tpIdx) {
         }
 
         // 3. Check for Parameter Note Items (e.g. "- args (main): ...")
-        const paramMatch = trimmedLine.match(/^[-*â€¢]\s*([a-zA-Z0-9_$]+)\s*(?:\(([^)]+)\))?\s*:\s*(.*)/);
+        const paramMatch = trimmedLine.match(/^[-*Ã¢â‚¬Â¢]\s*([a-zA-Z0-9_$]+)\s*(?:\(([^)]+)\))?\s*:\s*(.*)/);
         if (paramMatch) {
           flushList();
           const paramName = paramMatch[1];
@@ -1287,7 +1287,7 @@ function selectTopic(chIdx, tpIdx) {
           currentList.className = 'bullet-list concept-bullet-list';
         }
 
-        const cleanBulletText = trimmedLine.replace(/^[-*â€¢]\s*/, '');
+        const cleanBulletText = trimmedLine.replace(/^[-*Ã¢â‚¬Â¢]\s*/, '');
         const li = document.createElement('li');
         li.innerHTML = formatInlineText(cleanBulletText);
         currentList.appendChild(li);
@@ -1436,8 +1436,8 @@ function ensureAnkiDeck() {
   const titleEl = document.getElementById('anki-deck-title');
   if (titleEl) {
     titleEl.textContent = ankiScope === 'all'
-      ? `All Chapters Â· ${ankiDeck.length} cards`
-      : `${CONCEPTS_DATA[currentChapterIndex].name} Â· ${ankiDeck.length} cards`;
+      ? `All Chapters Ã‚Â· ${ankiDeck.length} cards`
+      : `${CONCEPTS_DATA[currentChapterIndex].name} Ã‚Â· ${ankiDeck.length} cards`;
   }
   startAnkiSession();
 }
@@ -1460,7 +1460,7 @@ function ankiCleanText(text) {
   return String(text)
     .replace(/@quiz\s*(\(INTERVIEW TRAP\))?/gi, '')
     .replace(/@answer/gi, '')
-    .replace(/^\s*[-*â€¢]\s*/, '')
+    .replace(/^\s*[-*Ã¢â‚¬Â¢]\s*/, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -1527,7 +1527,7 @@ function buildAnkiDeck(scope) {
       });
 
       (rev.gotchas || []).forEach(g => {
-        // Skip raw @quiz traps â€” already represented as interview Q&A cards
+        // Skip raw @quiz traps Ã¢â‚¬â€ already represented as interview Q&A cards
         if (/output of:|INTERVIEW TRAP|what is wrong with|what is the result|what happens/i.test(g)) return;
         const clean = ankiCleanText(g);
         if (clean.length < 20) return;
@@ -1544,7 +1544,7 @@ function buildAnkiDeck(scope) {
           cards.push({
             id: ankiHash(chapterName + '::gr::' + clean),
             chapter: chapterName, topic: 'Gotcha',
-            type: 'gotcha', front: 'âš ï¸ Recall this pitfall / best-practice:', back: clean
+            type: 'gotcha', front: 'Ã¢Å¡Â Ã¯Â¸Â Recall this pitfall / best-practice:', back: clean
           });
         }
       });
@@ -1728,7 +1728,7 @@ function renderAnkiArea() {
   if (!area) return;
 
   if (ankiDeck.length === 0) {
-    area.innerHTML = `<div class="anki-empty"><div style="font-size:34px">ðŸ—‚ï¸</div>
+    area.innerHTML = `<div class="anki-empty"><div style="font-size:34px">Ã°Å¸â€”â€šÃ¯Â¸Â</div>
       <p>No flashcards available for this scope yet.</p>
       <p style="font-size:12px">Add notes / <code>@quiz</code> markers in the source files and run <code>npm run revise</code>.</p></div>`;
     return;
@@ -1738,12 +1738,12 @@ function renderAnkiArea() {
     const nextDue = ankiNextDueLabel();
     area.innerHTML = `
       <div class="anki-complete">
-        <div class="anki-complete-emoji">ðŸŽ‰</div>
+        <div class="anki-complete-emoji">Ã°Å¸Å½â€°</div>
         <h3>Deck complete!</h3>
         <p>You reviewed <b>${ankiSessionReviewed}</b> card${ankiSessionReviewed === 1 ? '' : 's'} this session.</p>
         ${nextDue ? `<p class="anki-next-due">Next review due: <b>${nextDue}</b></p>` : ''}
         <div class="anki-complete-actions">
-          <button class="btn btn-primary" onclick="cramAnkiDeck()">ðŸ” Study all again (cram)</button>
+          <button class="btn btn-primary" onclick="cramAnkiDeck()">Ã°Å¸â€Â Study all again (cram)</button>
         </div>
       </div>`;
     return;
@@ -1763,12 +1763,12 @@ function renderAnkiArea() {
     <div class="flashcard-scene anki-scene" onclick="flipAnkiCard()">
       <div class="flashcard anki-flashcard ${ankiFlipped ? 'is-flipped' : ''}">
         <div class="flashcard-face flashcard-front anki-face-front">
-          <div class="flashcard-chip">${ankiTypeLabel(card.type)}${card.topic ? ' Â· ' + ankiEscape(card.topic) : ''}</div>
+          <div class="flashcard-chip">${ankiTypeLabel(card.type)}${card.topic ? ' Ã‚Â· ' + ankiEscape(card.topic) : ''}</div>
           <div class="anki-card-text">${renderAnkiFrontText(card)}</div>
           <div class="flashcard-hint">Tap card or press Space to reveal</div>
         </div>
         <div class="flashcard-face flashcard-back anki-face-back">
-          <div class="flashcard-chip flashcard-chip-back">Answer${card.answer ? ' Â· ' + ankiEscape(card.answer) : ''}</div>
+          <div class="flashcard-chip flashcard-chip-back">Answer${card.answer ? ' Ã‚Â· ' + ankiEscape(card.answer) : ''}</div>
           <div class="anki-card-text anki-card-back-text">${renderAnkiBackText(card)}</div>
         </div>
       </div>
@@ -1912,7 +1912,7 @@ function renderQuickRevision(topic) {
     if (topic.headerComments && topic.headerComments.length > 0) {
       topic.headerComments.forEach(block => {
         // Keep the grid intact for the Quick Revision panel instead of
-        // squashing each row into "cell â€” cell â€” cell" text.
+        // squashing each row into "cell Ã¢â‚¬â€ cell Ã¢â‚¬â€ cell" text.
         if (block.type === 'table' && (block.headers || block.rows)) {
           fallbackTables.push(block);
           return;
@@ -2174,14 +2174,14 @@ function renderQuizQuestion() {
     if (question.chapter) {
       const sourceSpan = document.createElement('span');
       sourceSpan.className = 'question-tag tag-source';
-      const topicPart = (question.topic && question.topic !== 'OCJP Tricky') ? ` â€º ${question.topic}` : '';
-      sourceSpan.textContent = `ðŸ“˜ ${question.chapter}${topicPart}`;
+      const topicPart = (question.topic && question.topic !== 'OCJP Tricky') ? ` Ã¢â‚¬Âº ${question.topic}` : '';
+      sourceSpan.textContent = `Ã°Å¸â€œËœ ${question.chapter}${topicPart}`;
       tagsContainer.appendChild(sourceSpan);
     }
     (question.tags || []).forEach(tag => {
       const span = document.createElement('span');
       span.className = `question-tag tag-${tag}`;
-      const tagLabels = { ocjp: 'ðŸŽ“ OCJP', interview: 'ðŸ’¼ Interview', tricky: 'âš¡ Tricky', concept: 'ðŸ“š Concept', predict: 'ðŸ”® Predict', codefill: 'âŒ¨ Code Fill' };
+      const tagLabels = { ocjp: 'Ã°Å¸Å½â€œ OCJP', interview: 'Ã°Å¸â€™Â¼ Interview', tricky: 'Ã¢Å¡Â¡ Tricky', concept: 'Ã°Å¸â€œÅ¡ Concept', predict: 'Ã°Å¸â€Â® Predict', codefill: 'Ã¢Å’Â¨ Code Fill' };
       span.textContent = tagLabels[tag] || tag;
       tagsContainer.appendChild(span);
     });
@@ -2412,10 +2412,10 @@ function submitQuizAnswer() {
       recordQuestionResult(question.qid, isCorrect);
       
       if (isCorrect) {
-        feedback.innerText = `âœ“ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
+        feedback.innerText = `Ã¢Å“â€œ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
         feedback.className = "answer-feedback text-success";
       } else {
-        feedback.innerHTML = `âœ— Evaluated: Covered ${checkedCount}/${totalPoints} key points. Try to include more core details. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+        feedback.innerHTML = `Ã¢Å“â€” Evaluated: Covered ${checkedCount}/${totalPoints} key points. Try to include more core details. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
         feedback.className = "answer-feedback text-danger";
         const revisitBtn = document.getElementById('btn-revisit-missed-topic');
         if (revisitBtn && revisitScope.chapterName) {
@@ -2504,7 +2504,7 @@ function submitQuizAnswer() {
     
     if (isCorrect) {
       quizScore++;
-      feedback.innerText = "âœ“ Correct! " + question.explanation;
+      feedback.innerText = "Ã¢Å“â€œ Correct! " + question.explanation;
       feedback.className = "answer-feedback text-success";
     } else {
       // When the question explains why a wrong option is wrong, say so: that is
@@ -2526,7 +2526,7 @@ function submitQuizAnswer() {
       if (question.type === 'predict' || question.type === 'codefill') {
         correctAnsStr = ` Correct answer: "${question.answer[0]}".`;
       }
-      feedback.innerHTML = `âœ— Incorrect.${correctAnsStr} ${question.explanation} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+      feedback.innerHTML = `Ã¢Å“â€” Incorrect.${correctAnsStr} ${question.explanation} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
       feedback.className = "answer-feedback text-danger";
       if (whyMine) {
         const whyPara = document.createElement('div');
@@ -2603,7 +2603,7 @@ function showQuizResults() {
           row.className = 'result-breakdown-row';
           row.innerHTML = `
             <span class="result-breakdown-name">${name}</span>
-            <span class="result-breakdown-score ${percent >= 70 ? 'good' : percent >= 40 ? 'mid' : 'weak'}">${stats.correct}/${stats.total} Â· ${percent}%</span>
+            <span class="result-breakdown-score ${percent >= 70 ? 'good' : percent >= 40 ? 'mid' : 'weak'}">${stats.correct}/${stats.total} Ã‚Â· ${percent}%</span>
           `;
           chapterBreakdown.appendChild(row);
         });
@@ -2838,7 +2838,7 @@ function renderQuizMenu() {
     row.innerHTML = `
       <div class="quiz-menu-chapter-info">
         <span class="quiz-menu-chapter-name">${chapter.name}</span>
-        <span class="bank-topic-meta">${chapter.topics.length} topic(s) Â· ${questions.length} question(s)</span>
+        <span class="bank-topic-meta">${chapter.topics.length} topic(s) Ã‚Â· ${questions.length} question(s)</span>
       </div>
       <div class="quiz-menu-chapter-actions"></div>
     `;
@@ -3003,21 +3003,75 @@ function collectBankSelection() {
   return { topics, questions };
 }
 
-function bankNoteLines(topic) {
+// The bank is for revision, so it shows the CONCEPT lines. Parameter notes, bare
+// headings, table rows and code lines are skipped: they belong in the Notes view,
+// and dumping them here made the bank read like a wall of argument descriptions.
+function bankConceptLines(topic) {
   const lines = [];
   (topic.headerComments || []).forEach(block => {
-    if (block.type === 'table') {
-      lines.push('| ' + (block.headers || []).join(' | '));
-      (block.rows || []).forEach(row => lines.push('| ' + row.join(' | ')));
-      return;
-    }
-    if (block.type === 'code') {
-      (block.code || '').split('\n').forEach(codeLine => lines.push(codeLine));
-      return;
-    }
-    (block.lines || []).forEach(line => lines.push(line));
+    if (block.type === 'table' || block.type === 'code') return;
+    if (block.type === 'generated' || block.type === 'generated-parameters') return;
+    const blockLines = block.lines || [];
+    if (blockLines.length && /parameter notes/i.test(blockLines[0])) return;
+    blockLines.forEach(line => {
+      const text = String(line || '').trim();
+      if (text.length < 25) return;
+      if (!/[a-z]/.test(text)) return;
+      if (/^[-*\u2022]\s+/.test(text) && /\)\s*:/.test(text)) return;
+      if (/what each (argument|constructor|parameter)/i.test(text)) return;
+      if (/^(parameter notes|challenge|deep problem|hint|testcase)\b/i.test(text)) return;
+      if (/^\s*-{3,}.*-{3,}\s*$/.test(text)) return;
+      if (/^\s*={3,}.*={3,}\s*$/.test(text)) return;
+      if (/^\s*\|/.test(text)) return;
+      if (/[{};]\s*$/.test(text)) return;
+      if (lines.includes(text)) return;
+      lines.push(text);
+    });
   });
-  return lines.filter(Boolean);
+  return lines;
+}
+
+// A compact picture of a topic's questions, so a long answer key is not needed.
+function bankTopicStats(questions) {
+  const stats = { total: questions.length, easy: 0, medium: 0, hard: 0, ocjp: 0, tricky: 0, written: 0, choices: 0 };
+  questions.forEach(q => {
+    const level = (q.difficulty || 'medium').toLowerCase();
+    if (stats[level] !== undefined) stats[level]++;
+    if ((q.tags || []).includes('ocjp')) stats.ocjp++;
+    if ((q.tags || []).includes('tricky')) stats.tricky++;
+    if (q.options) stats.choices++; else stats.written++;
+  });
+  return stats;
+}
+
+function findTopicLocation(filePath) {
+  for (let ci = 0; ci < CONCEPTS_DATA.length; ci++) {
+    const ti = CONCEPTS_DATA[ci].topics.findIndex(t => t.filePath === filePath);
+    if (ti !== -1) return { chapterIndex: ci, topicIndex: ti };
+  }
+  return null;
+}
+
+// Opens the Notes view on the topic, so the full explanation and code are one click
+// away instead of being duplicated inside the bank.
+function reviseTopicFromBank(filePath) {
+  const loc = findTopicLocation(filePath);
+  if (!loc) return;
+  currentChapterIndex = loc.chapterIndex;
+  currentTopicIndex = loc.topicIndex;
+  document.querySelectorAll('.chapter-accordion').forEach(a => a.classList.remove('open'));
+  const accordion = document.querySelector('.chapter-accordion.ch-' + loc.chapterIndex);
+  if (accordion) accordion.classList.add('open');
+  showView('notes-view');
+  selectTopic(loc.chapterIndex, loc.topicIndex);
+}
+
+function quizTopicFromBank(filePath) {
+  const loc = findTopicLocation(filePath);
+  if (!loc) return;
+  currentChapterIndex = loc.chapterIndex;
+  currentTopicIndex = loc.topicIndex;
+  startTopicQuiz();
 }
 
 function renderRevisionBank() {
@@ -3025,33 +3079,47 @@ function renderRevisionBank() {
   const summary = document.getElementById('bank-summary');
   if (!container) return;
 
-  const { topics, questions } = collectBankSelection();
-  const noteLineCount = topics.reduce((total, entry) => total + bankNoteLines(entry.topic).length, 0);
+  const selection = collectBankSelection();
+  const revised = getRevisedTopics();
   const questionsByPath = new Map();
-  questions.forEach(question => {
-    const key = question.topicPath || '(chapter level)';
+  selection.questions.forEach(question => {
+    const key = question.topicPath;
+    if (!key) return;
     if (!questionsByPath.has(key)) questionsByPath.set(key, []);
     questionsByPath.get(key).push(question);
   });
 
+  // When a level or type filter is active, a topic with nothing matching is hidden
+  // rather than shown empty, so the list reflects the filter.
+  const filtering = bankFilters.level !== 'all' || bankFilters.tag !== 'all';
+  const topics = selection.topics.filter(entry => {
+    if (!filtering) return true;
+    return (questionsByPath.get(entry.topic.filePath) || []).length > 0;
+  });
+
+  const totalConceptLines = topics.reduce((n, e) => n + bankConceptLines(e.topic).length, 0);
+  const revisedCount = topics.filter(e => revised[e.topic.filePath]).length;
+
   if (summary) {
-    summary.textContent = `${topics.length} topic(s) Â· ${noteLineCount} note line(s) Â· ${questions.length} question(s)`;
+    summary.textContent = topics.length + ' topics | ' + totalConceptLines + ' concept lines available | ' +
+      selection.questions.length + ' questions | ' + revisedCount + ' marked revised';
   }
   const quizBtn = document.getElementById('btn-bank-quiz');
   if (quizBtn) {
-    quizBtn.disabled = questions.length === 0;
-    quizBtn.textContent = questions.length > 0
-      ? `Start quiz from this selection (${questions.length})`
+    quizBtn.disabled = selection.questions.length === 0;
+    quizBtn.textContent = selection.questions.length > 0
+      ? 'Start quiz from this selection (' + selection.questions.length + ')'
       : 'No questions match this selection';
   }
 
   container.innerHTML = '';
   if (topics.length === 0) {
-    container.innerHTML = '<div class="card"><div class="card-body">Nothing matches this filter. Try clearing the search box.</div></div>';
+    container.innerHTML = '<div class="card"><div class="card-body">Nothing matches this filter. Try clearing the search box, or set the level and type back to Any and Everything.</div></div>';
     return;
   }
 
   let currentChapter = null;
+  const shownConceptLines = new Set();
   topics.forEach(({ chapter, topic }) => {
     if (chapter !== currentChapter) {
       currentChapter = chapter;
@@ -3062,55 +3130,149 @@ function renderRevisionBank() {
     }
 
     const topicQuestions = questionsByPath.get(topic.filePath) || [];
-    const details = document.createElement('details');
-    details.className = 'bank-topic';
-
-    const summaryEl = document.createElement('summary');
-    summaryEl.innerHTML = `<span class="bank-topic-name">${topic.topicName}</span>
-      <span class="bank-topic-meta">${bankNoteLines(topic).length} note line(s) Â· ${topicQuestions.length} question(s)</span>`;
-    details.appendChild(summaryEl);
-
-    const body = document.createElement('div');
-    body.className = 'bank-topic-body';
-
-    const notesList = document.createElement('ul');
-    notesList.className = 'bullet-list';
-    bankNoteLines(topic).forEach(line => {
-      const li = document.createElement('li');
-      li.textContent = line;
-      notesList.appendChild(li);
+    const stats = bankTopicStats(topicQuestions);
+    // The same sentence can appear in more than one topic file. It is shown once,
+    // the first time it appears, so the bank is not repetitive.
+    const lines = bankConceptLines(topic).filter(line => {
+      if (shownConceptLines.has(line)) return false;
+      return true;
     });
-    body.appendChild(notesList);
+    lines.forEach(line => shownConceptLines.add(line));
+
+    const card = document.createElement('div');
+    card.className = 'bank-card' + (revised[topic.filePath] ? ' is-revised' : '');
+
+    const head = document.createElement('div');
+    head.className = 'bank-card-head';
+    head.innerHTML =
+      '<div class="bank-card-title">' +
+        '<span class="bank-topic-name">' + topic.topicName + '</span>' +
+        (topic.subChapter ? '<span class="bank-sub">' + topic.subChapter + '</span>' : '') +
+      '</div>' +
+      '<div class="bank-card-counts">' +
+        (stats.easy ? '<span class="count-chip easy">' + stats.easy + ' easy</span>' : '') +
+        (stats.medium ? '<span class="count-chip medium">' + stats.medium + ' medium</span>' : '') +
+        (stats.hard ? '<span class="count-chip hard">' + stats.hard + ' hard</span>' : '') +
+        (stats.ocjp ? '<span class="count-chip ocjp">' + stats.ocjp + ' OCJP</span>' : '') +
+        (stats.tricky ? '<span class="count-chip tricky">' + stats.tricky + ' tricky</span>' : '') +
+        (revised[topic.filePath] ? '<span class="count-chip revised">revised</span>' : '') +
+      '</div>';
+    card.appendChild(head);
+
+    const conceptList = document.createElement('ul');
+    conceptList.className = 'bank-concept-list';
+    if (lines.length === 0) {
+      // Say why there is nothing to show, rather than repeating one vague message
+      // for every topic that has no concept notes of its own.
+      const li = document.createElement('li');
+      li.className = 'bank-empty';
+      const blocks = topic.headerComments || [];
+      const onlyParameterNotes = blocks.length > 0 && blocks.every(b =>
+        b.type === 'generated-parameters' || b.type === 'generated' ||
+        (b.lines || []).every(l => /^-?\s*\S+\s*\)\s*:|what each (argument|constructor|parameter)|^parameter notes/i.test(String(l || '').trim())));
+      const isChallenge = /(Challenge|DeepProblem)/.test(topic.fileName);
+      if (isChallenge) {
+        li.textContent = 'This is a challenge topic, so it has a task rather than concept notes. Open the full notes to read the brief.';
+      } else if (onlyParameterNotes) {
+        li.textContent = 'This topic only has generated parameter notes so far. Add a concept note in the .java file and it will appear here.';
+      } else {
+        li.textContent = 'No concept notes recorded for this topic yet.';
+      }
+      conceptList.appendChild(li);
+    } else {
+      const showLine = (line, extra) => {
+        const li = document.createElement('li');
+        if (extra) li.className = 'bank-extra-line';
+        li.textContent = line;
+        conceptList.appendChild(li);
+      };
+      const firstBatch = 8;
+      lines.slice(0, firstBatch).forEach(line => showLine(line, false));
+      if (lines.length > firstBatch) {
+        let expanded = false;
+        const toggle = document.createElement('button');
+        toggle.className = 'btn btn-outline btn-small bank-more-btn';
+        toggle.textContent = `Show all ${lines.length} lines`;
+        toggle.addEventListener('click', () => {
+          if (expanded) return;
+          lines.slice(firstBatch).forEach(line => showLine(line, true));
+          expanded = true;
+          toggle.remove();
+        });
+        conceptList.appendChild(toggle);
+      }
+    }
+    card.appendChild(conceptList);
+
+    const actions = document.createElement('div');
+    actions.className = 'bank-card-actions';
+    if (topicQuestions.length > 0) {
+      const quizTopicBtn = document.createElement('button');
+      quizTopicBtn.className = 'btn btn-primary-outline btn-small';
+      quizTopicBtn.textContent = 'Quiz this topic (' + topicQuestions.length + ')';
+      quizTopicBtn.addEventListener('click', () => quizTopicFromBank(topic.filePath));
+      actions.appendChild(quizTopicBtn);
+    }
+    const notesBtn = document.createElement('button');
+    notesBtn.className = 'btn btn-outline btn-small';
+    notesBtn.textContent = 'Open full notes';
+    notesBtn.addEventListener('click', () => reviseTopicFromBank(topic.filePath));
+    actions.appendChild(notesBtn);
+    card.appendChild(actions);
 
     if (topicQuestions.length > 0) {
-      const questionHeading = document.createElement('h4');
-      questionHeading.textContent = 'Questions for this topic';
-      body.appendChild(questionHeading);
-      topicQuestions.forEach(question => {
-        const block = document.createElement('div');
-        block.className = 'bank-question';
-        const badges = [];
-        badges.push(`<span class="difficulty-badge ${(question.difficulty || 'medium').toLowerCase()}">${(question.difficulty || 'medium')}</span>`);
-        (question.tags || []).forEach(tag => badges.push(`<span class="syntax-badge">${tag}</span>`));
-        const answer = question.options
-          ? (Array.isArray(question.answer)
-              ? question.answer.map(i => question.options[i]).join(' / ')
-              : question.options[question.answer])
-          : (question.answer ? question.answer.join(' / ') : (question.modelAnswer || ''));
-        block.innerHTML = `<div class="bank-question-head">${badges.join('')}</div>
-          <div class="bank-question-text">${question.question}</div>
-          ${question.code ? `<pre class="bank-question-code"><code>${highlightJava(question.code)}</code></pre>` : ''}
-          <div class="bank-question-answer"><strong>Answer:</strong> ${answer || '(written answer)'}</div>
-          ${question.explanation ? `<div class="bank-question-why">${question.explanation}</div>` : ''}`;
-        body.appendChild(block);
-      });
+      const details = document.createElement('details');
+      details.className = 'bank-questions';
+      const sum = document.createElement('summary');
+      sum.textContent = 'Preview the ' + topicQuestions.length + ' question(s), answers hidden';
+      details.appendChild(sum);
+      topicQuestions.forEach(question => details.appendChild(buildBankQuestion(question)));
+      card.appendChild(details);
     }
 
-    details.appendChild(body);
-    container.appendChild(details);
+    container.appendChild(card);
   });
 }
 
+// A question card whose answer stays hidden until the learner asks for it, so the
+// bank can be used to test yourself rather than only to read.
+function buildBankQuestion(question) {
+  const wrap = document.createElement('div');
+  wrap.className = 'bank-q';
+
+  const level = (question.difficulty || 'medium').toLowerCase();
+  const badges = ['<span class="difficulty-badge ' + level + '">' + level + '</span>'];
+  (question.tags || []).forEach(tag => badges.push('<span class="syntax-badge">' + tag + '</span>'));
+
+  const correctText = question.options
+    ? (Array.isArray(question.answer)
+        ? question.answer.map(i => question.options[i]).join('  |  ')
+        : question.options[question.answer])
+    : (question.answer ? question.answer.join(' ') : (question.modelAnswer || '(written answer)'));
+
+  wrap.innerHTML =
+    '<div class="bank-q-head">' + badges.join('') + '</div>' +
+    '<div class="bank-q-text">' + question.question + '</div>' +
+    (question.code ? '<pre class="bank-q-code"><code>' + highlightJava(question.code) + '</code></pre>' : '');
+
+  const reveal = document.createElement('button');
+  reveal.className = 'btn btn-outline btn-small bank-reveal';
+  reveal.textContent = 'Show answer';
+  const answerBox = document.createElement('div');
+  answerBox.className = 'bank-q-answer';
+  answerBox.style.display = 'none';
+  answerBox.innerHTML = '<div><strong>Answer:</strong> ' + (correctText || '(none recorded)') + '</div>' +
+    (question.explanation ? '<div class="bank-q-explain">' + question.explanation + '</div>' : '');
+  reveal.addEventListener('click', () => {
+    const showing = answerBox.style.display !== 'none';
+    answerBox.style.display = showing ? 'none' : 'block';
+    reveal.textContent = showing ? 'Show answer' : 'Hide answer';
+  });
+
+  wrap.appendChild(reveal);
+  wrap.appendChild(answerBox);
+  return wrap;
+}
 function startBankQuiz() {
   const { questions } = collectBankSelection();
   const bankLabel = bankFilters.chapter === 'all'
@@ -3366,8 +3528,8 @@ function selectDeepChallenge(challenge) {
   const hintsHtml = challenge.hints && challenge.hints.length > 0
     ? `<div class="dc-section" id="dc-hints">
         <button class="dc-section-toggle" onclick="toggleDcSection('dc-hints')">
-          <span>ðŸ’¡ Hints <span class="dc-count">${challenge.hints.length}</span></span>
-          <span class="dc-chevron">â–¼</span>
+          <span>Ã°Å¸â€™Â¡ Hints <span class="dc-count">${challenge.hints.length}</span></span>
+          <span class="dc-chevron">Ã¢â€“Â¼</span>
         </button>
         <div class="dc-section-body">
           <ul>${challenge.hints.map(h => `<li>${h}</li>`).join('')}</ul>
@@ -3378,8 +3540,8 @@ function selectDeepChallenge(challenge) {
   const testcasesHtml = challenge.testcases && challenge.testcases.length > 0
     ? `<div class="dc-section" id="dc-testcases">
         <button class="dc-section-toggle" onclick="toggleDcSection('dc-testcases')">
-          <span>ðŸ§ª Test Cases <span class="dc-count">${challenge.testcases.length}</span></span>
-          <span class="dc-chevron">â–¼</span>
+          <span>Ã°Å¸Â§Âª Test Cases <span class="dc-count">${challenge.testcases.length}</span></span>
+          <span class="dc-chevron">Ã¢â€“Â¼</span>
         </button>
         <div class="dc-section-body">
           <ul>${challenge.testcases.map(t => `<li><code>${t}</code></li>`).join('')}</ul>
@@ -3393,8 +3555,8 @@ function selectDeepChallenge(challenge) {
 
     <div class="dc-section dc-open" id="dc-desc">
       <button class="dc-section-toggle" onclick="toggleDcSection('dc-desc')">
-        <span>ðŸ“‹ Problem Description</span>
-        <span class="dc-chevron">â–¼</span>
+        <span>Ã°Å¸â€œâ€¹ Problem Description</span>
+        <span class="dc-chevron">Ã¢â€“Â¼</span>
       </button>
       <div class="dc-section-body">
         <div class="deep-challenge-body">${challenge.description.replace(/\n/g, '<br>')}</div>
@@ -3406,13 +3568,13 @@ function selectDeepChallenge(challenge) {
 
     <div class="dc-section dc-open" id="dc-submit">
       <button class="dc-section-toggle" onclick="toggleDcSection('dc-submit')">
-        <span>âœ Submit</span>
-        <span class="dc-chevron">â–¼</span>
+        <span>Ã¢Å“Â Submit</span>
+        <span class="dc-chevron">Ã¢â€“Â¼</span>
       </button>
       <div class="dc-section-body">
         <div class="deep-self-check">
           <p>Implement this in your IDE or in the editor below, then mark as complete when done.</p>
-          <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">âœ“ Mark as Completed</button>
+          <button class="btn btn-success" onclick="markDeepChallengeDone('${challenge.id}')">Ã¢Å“â€œ Mark as Completed</button>
         </div>
       </div>
     </div>
@@ -3426,7 +3588,7 @@ function selectDeepChallenge(challenge) {
 
   const casesContainer = document.getElementById('test-cases-grid');
   if (casesContainer) {
-    casesContainer.innerHTML = '<p class="self-check-note">ðŸ“‹ This is a self-check challenge. Implement in your IDE, verify your test cases, then mark as completed.</p>';
+    casesContainer.innerHTML = '<p class="self-check-note">Ã°Å¸â€œâ€¹ This is a self-check challenge. Implement in your IDE, verify your test cases, then mark as completed.</p>';
   }
 
   logToConsole(`SYSTEM READY: Loaded deep challenge "${challenge.title}". Implement in your IDE, then mark as completed.`);
@@ -3435,7 +3597,7 @@ function selectDeepChallenge(challenge) {
 function markDeepChallengeDone(id) {
   saveChallengePassed(id);
   const btn = document.querySelector(`button[onclick="markDeepChallengeDone('${id}')"]`);
-  if (btn) { btn.textContent = 'âœ“ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
+  if (btn) { btn.textContent = 'Ã¢Å“â€œ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
 }
 
 function toggleDcSection(id) {
@@ -3614,11 +3776,11 @@ function selectChallenge(index) {
     // Self-check mode: show examples and a "Mark as Completed" button
     const noteDiv = document.createElement('div');
     noteDiv.className = 'test-case-card self-check-card';
-    noteDiv.innerHTML = '<p class="self-check-note">ðŸ“‹ Self-check: Implement the method, run it in your IDE and verify the output matches the examples in the description, then mark as completed.</p>';
+    noteDiv.innerHTML = '<p class="self-check-note">Ã°Å¸â€œâ€¹ Self-check: Implement the method, run it in your IDE and verify the output matches the examples in the description, then mark as completed.</p>';
     casesContainer.appendChild(noteDiv);
     const markBtn = document.createElement('button');
     markBtn.className = 'btn btn-success btn-small';
-    markBtn.innerText = 'âœ“ Mark as Completed';
+    markBtn.innerText = 'Ã¢Å“â€œ Mark as Completed';
     markBtn.onclick = () => { saveChallengePassed(challenge.id); };
     casesContainer.appendChild(markBtn);
   } else {
@@ -3864,10 +4026,10 @@ function runPracticeChallenge() {
   if (allPassed && anyUnverified) {
     logToConsole("\nSome test cases could not be checked automatically. Verify them by hand before marking this complete.");
   } else if (allPassed) {
-    logToConsole("\nâœ“ SUCCESS: ALL TEST CASES PASSED!", "success");
+    logToConsole("\nÃ¢Å“â€œ SUCCESS: ALL TEST CASES PASSED!", "success");
     logToConsole("Saving challenge completed status... Great job!");
     saveChallengePassed(challenge.id);
   } else {
-    logToConsole("\nâœ— FAILURE: Some test cases did not pass. Debug your logic and try again.", "error");
+    logToConsole("\nÃ¢Å“â€” FAILURE: Some test cases did not pass. Debug your logic and try again.", "error");
   }
 }
