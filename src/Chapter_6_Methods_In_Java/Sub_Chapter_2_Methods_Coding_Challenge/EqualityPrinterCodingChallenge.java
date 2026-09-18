@@ -8,6 +8,11 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_2_Methods_Coding_Challenge;
 // All remaining valid combinations print "Neither all are equal or different".
 // Important: exact output text matters in coding challenge platforms, including capitalization and spaces.
 
+// @testcase printEqual(1, 1, 1) -> All numbers are equal
+// @testcase printEqual(1, 2, 3) -> All numbers are different
+// @testcase printEqual(1, 1, 2) -> Neither all are equal or different
+// @testcase printEqual(-1, -1, -1) -> Invalid Value
+
 public class EqualityPrinterCodingChallenge {
 
 

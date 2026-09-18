@@ -8,6 +8,9 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_2_Methods_Coding_Challenge;
 // Example results: 525600 prints "525600 min = 1 y and 0 d", and 561600 prints "561600 min = 1 y and 25 d".
 // Important: exact spacing and capitalization matter because this kind of challenge often checks output text literally.
 
+// @testcase printYearsAndDays(525600) -> 525600 min = 1 y and 0 d
+// @testcase printYearsAndDays(561600) -> 561600 min = 1 y and 25 d
+
 public class MinutesToYearsAndDaysCalculatorCodingChallenge {
 
     public static void main(String[] args) {

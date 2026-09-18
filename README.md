@@ -131,7 +131,8 @@ npm run revise:cli  # the same proposal with a yes/no question in the terminal
 npm run approve  # apply the reviewed changes, audit, and open the dashboard
 npm run generate # regenerate generated files without the review step
 npm run audit    # validate the current generated files
-npm run check    # regenerate and validate without opening the dashboard
+npm run check:practice  # confirm no practice verifier rejects a correct solution
+npm run check    # regenerate, validate, and check the practice verifiers
 ```
 
 See [rules.md](rules.md) for the complete authoring contract and [TEMPLATE.md](TEMPLATE.md) for the optional cross-technology dashboard template.

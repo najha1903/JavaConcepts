@@ -8,6 +8,10 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_2_Methods_Coding_Challenge;
 // Important: output formatting is part of the requirement, so extra spaces can make an otherwise correct calculation fail.
 // Example results: 2500 prints "2500 KB = 2 MB and 452 KB", and 5000 prints "5000 KB = 4 MB and 904 KB".
 
+// @testcase printMegaBytesAndKiloBytes(2500) -> 2500 KB = 2 MB and 452 KB
+// @testcase printMegaBytesAndKiloBytes(5000) -> 5000 KB = 4 MB and 904 KB
+// @testcase printMegaBytesAndKiloBytes(-1024) -> Invalid Value
+
 public class MegaBytesConverterCodingChallenge {
 
     public static void main(String[] args) {

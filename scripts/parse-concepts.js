@@ -1741,13 +1741,24 @@ function buildPracticeChallenges(parsedData) {
       const match = line.match(new RegExp(`(?:^|\\W)${methodName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\(([^()]*)\\)\\s*(?:->|→|=>|returns?|gives)\\s*(.+)$`, 'i'));
       if (!match) return;
       const args = match[1].trim() === '' ? [] : match[1].split(',').map(normalizeValue);
+      // A void method communicates through what it prints, so its expected value is
+      // the text the call should produce, not a returned value. The quotes around a
+      // quoted expectation are removed so both forms read the same way.
       const expectedText = match[2].trim().replace(/\s*;+\s*$/, '');
-      const expected = normalizeValue(expectedText);
+      const expected = returnType === 'void'
+        ? expectedText.replace(/^["']|["']$/g, '')
+        : normalizeValue(expectedText);
       const candidate = { args, expected };
       if (isPlausibleTestCase(candidate, returnType)) testCases.push(candidate);
     });
 
-    const testPattern = new RegExp(
+    // A void method returns nothing, so the only reliable expectation is one the
+    // author wrote with an explicit @testcase line. Scraping prose for a printed
+    // result would guess, and a guess can mark correct code as wrong.
+    const capturesOutput = returnType === 'void';
+
+    if (!capturesOutput) {
+      const testPattern = new RegExp(
       methodName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
       '\\(([^()]*)\\)\\s*;?\\s*(?:→|->|=>|returns?|gives)\\s+[^\\n]*?(?<![\\w.])(-?\\d+(?:\\.\\d+)?|true|false|"[^"]*")(?!\\d)',
       'g'
@@ -1787,15 +1798,37 @@ function buildPracticeChallenges(parsedData) {
         } catch (e) { /* skip */ }
       }
     }
+    }
 
-    const selfCheck = returnType === 'void' || testCases.length === 0 ||
+    const selfCheck = testCases.length === 0 ||
       testCases.every(tc => tc.expected === null);
 
     // Build verifyFn string (evaluated in browser context). It returns true, false,
     // or null. null means the code could not be run automatically, which must be
     // reported as "not checked" rather than as a wrong answer.
     let verifyFnStr = null;
-    if (!selfCheck && paramNames.length > 0) {
+    if (!selfCheck && paramNames.length > 0 && capturesOutput) {
+      // A void method is checked by what it prints. print and println are routed to
+      // two helpers so the newline a println adds is captured exactly, and the
+      // comparison is then against the text the author wrote.
+      const argAccess = paramNames.map((_, i) => `testCase.args[${i}]`).join(', ');
+      const paramQuoted = paramNames.map(p => `"${p}"`).join(', ');
+      verifyFnStr = `function(userCode, testCase) {
+        try {
+          if (typeof prepareJavaBody !== "function") return null;
+          const body = extractMethodBody(userCode, "${methodName}");
+          const prepared = prepareJavaBody(body, true);
+          const out = [];
+          const __print = (v) => { out.push(String(v)); };
+          const __printLn = (v) => { out.push(String(v) + "\\n"); };
+          const fn = new Function("__print", "__printLn", ${paramQuoted}, prepared);
+          fn(__print, __printLn, ${argAccess});
+          const actual = out.join("").replace(/\\s+$/, "");
+          const expected = String(testCase.expected).replace(/\\s+$/, "");
+          return actual === expected;
+        } catch(e) { return null; }
+      }`;
+    } else if (!selfCheck && paramNames.length > 0) {
       const argAccess = paramNames.map((_, i) => `testCase.args[${i}]`).join(', ');
       const paramQuoted = paramNames.map(p => `"${p}"`).join(', ');
       verifyFnStr = `function(userCode, testCase) {

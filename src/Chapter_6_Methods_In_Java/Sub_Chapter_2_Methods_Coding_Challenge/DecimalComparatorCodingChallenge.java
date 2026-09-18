@@ -5,6 +5,10 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_2_Methods_Coding_Challenge;
 // Casting the shifted double to int truncates the remaining decimal portion instead of rounding it.
 // If the two truncated int values are equal, the original numbers match to three decimal places.
 // Example results: -3.1756 and -3.175 match, 3.175 and 3.176 do not match, and -3.123 and 3.123 do not match.
+
+// @testcase areEqualByThreeDecimalPlaces(-3.1756, -3.175) -> true
+// @testcase areEqualByThreeDecimalPlaces(3.175, 3.176) -> false
+// @testcase areEqualByThreeDecimalPlaces(-3.123, 3.123) -> false
 // Important: this exercise intentionally uses casting and truncation, so it is checking decimal-place equality rather than true mathematical closeness.
 
 public class DecimalComparatorCodingChallenge {

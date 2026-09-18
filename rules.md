@@ -309,6 +309,26 @@ Auto-generated questions take their level from their kind: keyword and definitio
 
 Keep challenge descriptions complete. State the inputs, expected output, constraints, and at least one edge case. Use `@hint` for guidance without giving away every line of the solution. Use `@testcase` for concrete behavior.
 
+### What The Practice Lab Can Check
+
+A challenge that returns a value is checked by running the method and comparing what comes back:
+
+```java
+// @testcase sumOdd(1, 100) -> 2500
+```
+
+A challenge whose method is `void` is checked by what it PRINTS. Write the expected output after the arrow, exactly as the console would show it, because a space or a capital letter is part of the answer:
+
+```java
+// @testcase printMegaBytesAndKiloBytes(2500) -> 2500 KB = 2 MB and 452 KB
+// @testcase printMegaBytesAndKiloBytes(-1024) -> Invalid Value
+// @testcase printEqual(1, 2, 3) -> All numbers are different
+```
+
+A void method outputs nothing else, so only an explicit `@testcase` line can make it checkable. Its printed result is never guessed from prose, because a guess can mark correct code as wrong. A challenge with no `@testcase` is offered as **Self-check**, which the lab labels clearly.
+
+`npm run check:practice` runs every auto-checked challenge against the solution in its own source file and fails if any verifier rejects that solution. It exists because the worst thing the lab can do is tell a learner their correct code is wrong.
+
 ## Dashboard Features
 
 The generated portal provides:

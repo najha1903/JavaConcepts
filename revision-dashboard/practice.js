@@ -228,14 +228,31 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean areEqualByThreeDecimalPlaces(double firstNumber, double secondNumber) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "args": [
+          -3.1756,
+          -3.175
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          3.175,
+          3.176
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          -3.123,
+          3.123
+        ],
+        "expected": false
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "areEqualByThreeDecimalPlaces",
-    "hasVerify": false,
-    "verifyFnStr": null
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"areEqualByThreeDecimalPlaces\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "equalityprintercodingchallenge",
@@ -246,14 +263,42 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static void printEqual(int firstNumber, int secondNumber, int thirdNumber) {\n        // Write your code here\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "args": [
+          1,
+          1,
+          1
+        ],
+        "expected": "All numbers are equal"
+      },
+      {
+        "args": [
+          1,
+          2,
+          3
+        ],
+        "expected": "All numbers are different"
+      },
+      {
+        "args": [
+          1,
+          1,
+          2
+        ],
+        "expected": "Neither all are equal or different"
+      },
+      {
+        "args": [
+          -1,
+          -1,
+          -1
+        ],
+        "expected": "Invalid Value"
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "printEqual",
-    "hasVerify": false,
-    "verifyFnStr": null
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printEqual\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(String(v)); };\n          const __printLn = (v) => { out.push(String(v) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1], testCase.args[2]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "equalsumcheckercodingchallenge",
@@ -334,14 +379,28 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static void printMegaBytesAndKiloBytes(int kilobytes) {\n        // Write your code here\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "args": [
+          2500
+        ],
+        "expected": "2500 KB = 2 MB and 452 KB"
+      },
+      {
+        "args": [
+          5000
+        ],
+        "expected": "5000 KB = 4 MB and 904 KB"
+      },
+      {
+        "args": [
+          -1024
+        ],
+        "expected": "Invalid Value"
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "printMegaBytesAndKiloBytes",
-    "hasVerify": false,
-    "verifyFnStr": null
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printMegaBytesAndKiloBytes\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(String(v)); };\n          const __printLn = (v) => { out.push(String(v) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"kilobytes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodschallengeproblem",
@@ -370,14 +429,22 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static void printYearsAndDays(long minutes) {\n        // Write your code here\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "args": [
+          525600
+        ],
+        "expected": "525600 min = 1 y and 0 d"
+      },
+      {
+        "args": [
+          561600
+        ],
+        "expected": "561600 min = 1 y and 25 d"
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "printYearsAndDays",
-    "hasVerify": false,
-    "verifyFnStr": null
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printYearsAndDays\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(String(v)); };\n          const __printLn = (v) => { out.push(String(v) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"minutes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "playingcatcodingchallenge",
@@ -423,14 +490,28 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static void checkNumber(int number) {\n        // Write your code here\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "args": [
+          1
+        ],
+        "expected": "positive"
+      },
+      {
+        "args": [
+          -1
+        ],
+        "expected": "negative"
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": "zero"
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "checkNumber",
-    "hasVerify": false,
-    "verifyFnStr": null
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"checkNumber\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(String(v)); };\n          const __printLn = (v) => { out.push(String(v) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "speedconvertercodingchallenge",
@@ -675,14 +756,34 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean isOdd(int number) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "args": [
+          3
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          -3
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": false
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "isOdd",
-    "hasVerify": false,
-    "verifyFnStr": null
+    "hasVerify": true,
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "patternprinterdeepproblem",

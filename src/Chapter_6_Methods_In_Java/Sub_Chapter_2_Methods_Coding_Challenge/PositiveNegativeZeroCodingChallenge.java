@@ -5,6 +5,10 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_2_Methods_Coding_Challenge;
  * checkNumber(int number) classifies one integer and prints the matching label.
  * A value greater than 0 prints "positive", a value less than 0 prints "negative", and 0 prints "zero".
  * The method does not return a value because the result is communicated through console output.
+
+ // @testcase checkNumber(1) -> positive
+ // @testcase checkNumber(-1) -> negative
+ // @testcase checkNumber(0) -> zero
  * Important: the zero case must be handled separately because zero is neither positive nor negative.
  */
 

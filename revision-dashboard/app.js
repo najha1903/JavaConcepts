@@ -3652,12 +3652,83 @@ function javaDiv(left, right) {
   return left / right;
 }
 
+// Java's String.replace(CharSequence, CharSequence) replaces EVERY occurrence.
+// JavaScript's String.replace with a string replaces only the first, so
+// "A man a plan a canal Panama" lost just one space and the palindrome check was
+// told the answer was wrong. This restores the Java meaning for that overload.
+function javaReplaceAll(text, find, replacement) {
+  return String(text).split(String(find)).join(String(replacement));
+}
+
 // The practice checker runs the learner's method body in the browser, so ordinary
 // Java syntax has to be translated first. Without this, correct Java code such as
 // "double circleArea = ...;" would throw and be reported as a wrong answer.
-function prepareJavaBody(body) {
+// A Java cast such as "(int) (value * 1000)" is not valid JavaScript, so it has to
+// be translated before the checker can run the body. The operand is taken as either
+// a parenthesised group or a single primary expression, which covers the casts that
+// appear in practice: "(int) x", "(int) (a * b)", "(long) minutes / 1000".
+function translateJavaCasts(code) {
+  const CAST = /\((int|long|short|byte|float|double|char)\)/g;
+  let out = '';
+  let last = 0;
+  let match;
+  while ((match = CAST.exec(code)) !== null) {
+    const type = match[1];
+    let i = match.index + match[0].length;
+    while (i < code.length && /\s/.test(code[i])) i++;
+
+    let end = i;
+    if (code[i] === '(') {
+      let depth = 0;
+      for (; end < code.length; end++) {
+        if (code[end] === '(') depth++;
+        else if (code[end] === ')') { depth--; if (depth === 0) { end++; break; } }
+      }
+    } else {
+      // A primary expression: names, dots, indexes, and any call or group it applies.
+      while (end < code.length) {
+        const ch = code[end];
+        if (/[\w$.\[\]]/.test(ch)) { end++; continue; }
+        if (ch === '(') {
+          let depth = 0;
+          for (; end < code.length; end++) {
+            if (code[end] === '(') depth++;
+            else if (code[end] === ')') { depth--; if (depth === 0) { end++; break; } }
+          }
+          continue;
+        }
+        break;
+      }
+    }
+    if (end === i) continue;                       // nothing to wrap, leave it alone
+
+    const operand = code.slice(i, end);
+    const wrapper = type === 'char' ? 'String.fromCharCode'
+      : (type === 'double' || type === 'float') ? 'Number'
+      : 'Math.trunc';                              // int, long, short and byte truncate
+    out += code.slice(last, match.index) + `${wrapper}(${operand})`;
+    last = end;
+    CAST.lastIndex = end;
+  }
+  return out + code.slice(last);
+}
+
+// Translates a Java method body into JavaScript so the practice checker can run it.
+//
+// captureOutput routes printing to the two helpers the checker provides instead of
+// the console, so the text a void method prints can be compared with what the
+// notes say it should print. print and println are handled separately because a
+// println adds a newline and a print does not, and that difference is part of the
+// expected output.
+function prepareJavaBody(body, captureOutput) {
   let code = String(body || '');
-  code = code.replace(/System\.out\.print(?:ln)?\s*\(/g, 'console.log(');
+  code = translateJavaCasts(code);
+  if (captureOutput) {
+    code = code.replace(/System\.out\.println\s*\(/g, '__printLn(');
+    code = code.replace(/System\.out\.print\s*\(/g, '__print(');
+  } else {
+    code = code.replace(/System\.out\.print(?:ln)?\s*\(/g, 'console.log(');
+  }
   code = code.replace(/\bInteger\.parseInt\s*\(/g, 'parseInt(');
   code = code.replace(/\bLong\.parseLong\s*\(/g, 'parseInt(');
   code = code.replace(/\bDouble\.parseDouble\s*\(/g, 'parseFloat(');
@@ -3665,7 +3736,16 @@ function prepareJavaBody(body) {
   code = code.replace(/\bString\.valueOf\s*\(/g, 'String(');
   code = code.replace(/\bMath\.pow\s*\(/g, 'Math.pow(');
   code = code.replace(/\.length\s*\(\s*\)/g, '.length');
-  code = code.replace(/([A-Za-z_$][\w.$\[\]'"]*)\.equalsIgnoreCase\s*\(([^()]*)\)/g,
+  // charAt(i) is index access on a JavaScript string. Without this the method call
+  // does not exist, and a verifier that silently throws gives no verdict at all.
+  code = code.replace(/([A-Za-z_$][\w$.\[\]]*)\.charAt\s*\(\s*([^()]+?)\s*\)/g, '$1[$2]');
+  code = code.replace(/([A-Za-z_$][\w$.\[\]]*)\.toCharArray\s*\(\s*\)/g, '$1.split("")');
+  // Java replaces every occurrence when the first argument is plain text, and
+  // JavaScript replaces only the first, so the two-argument string form is routed
+  // through a helper that matches Java.
+  code = code.replace(/([A-Za-z_$][\w$.\[\]]*)\.replace\s*\(\s*("(?:[^"\\]|\\.)*")\s*,\s*(("(?:[^"\\]|\\.)*")|[^()]*?)\s*\)/g,
+    'javaReplaceAll($1, $2, $3)');
+  code = code.replace(/([A-Za-z_$][\w$.\[\]]*)\.equalsIgnoreCase\s*\(([^()]*)\)/g,
     '($1.toLowerCase() === String($2).toLowerCase())');
   code = code.replace(/([A-Za-z_$][\w.$\[\]'"]*)\.equals\s*\(([^()]*)\)/g, '($1 === $2)');
   code = code.replace(/([A-Za-z_$][\w.$\[\]'"]*)\.isEmpty\s*\(\s*\)/g, '($1.length === 0)');
@@ -3673,7 +3753,13 @@ function prepareJavaBody(body) {
   code = code.replace(/\b(?:int|long|short|byte|double|float|boolean|char|String)\s+([A-Za-z_$][\w$]*)\s*=/g, 'var $1 =');
   code = code.replace(/\b(?:int|long|short|byte|double|float|boolean|char|String)\s+([A-Za-z_$][\w$]*)\s*;/g, 'var $1;');
   // Division keeps Java semantics through javaDiv.
-  code = code.replace(/([A-Za-z0-9_$()\[\].]+)\s*\/\s*([A-Za-z0-9_$()\[\].]+)/g, 'javaDiv($1, $2)');
+  //
+  // The operands are restricted to a number, an identifier chain, or a call on one,
+  // so the pattern can never swallow a bracket. It used to include brackets in the
+  // character class, which turned "Math.trunc((minutes / 60))" into
+  // "javaDiv(Math.trunc((minutes, 60)))" and produced NaN instead of a number.
+  const TERM = '(?:\\d+(?:\\.\\d+)?|[A-Za-z_$][\\w$]*(?:\\.[A-Za-z_$][\\w$]*)*(?:\\([^()]*\\))?)';
+  code = code.replace(new RegExp(`(${TERM})\\s*/\\s*(${TERM})`, 'g'), 'javaDiv($1, $2)');
   return code;
 }
 
