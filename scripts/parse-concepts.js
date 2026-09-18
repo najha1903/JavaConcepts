@@ -786,22 +786,73 @@ function isParameterNoteLine(line) {
   return head.includes('(') && /\)$/.test(head);
 }
 
-// Takes up to `limit` lines, one round at a time, so every topic is represented
-// before any single topic contributes a second line.
-function takeRoundRobin(buckets, limit) {
+// A key point should state a general rule about the topic. A line that refers to
+// the file it came from, or that describes one particular example, is a note
+// rather than a key point, so it scores lower and is passed over.
+function scoreKeyPoint(line, fileName, isGotcha) {
+  const text = String(line || '');
+  let score = 0;
+
+  // A rule reads like a rule.
+  if (/\b(must|cannot|can't|never|always|only|throws?|compile error|does not compile|is not allowed|is required)\b/i.test(text)) score += 4;
+  // A definition explains what something is, which is what a key point is for.
+  if (/^[A-Z][\w\s]{2,40}\s+(is|are|means|refers to)\b/.test(text)) score += 3;
+  else if (/\b(is a|are a|means|refers to)\b/.test(text)) score += 2;
+  // An explanation gives a reason, which is more useful than a bare statement.
+  if (/\b(because|so that|which is why|otherwise)\b/i.test(text)) score += 2;
+
+  // A line about this particular file is not a key point for the chapter.
+  if (/\b(this file|this example|the code below|in this topic|we will|we'll|here we|the example below|as we saw)\b/i.test(text)) score -= 5;
+  if (/^(note|important|tip)\b/i.test(text)) score -= 1;
+  // A question is not a key point.
+  if (/\?\s*$/.test(text)) score -= 6;
+  // An exercise file describes a task, so its lines are weaker key points.
+  if (/challenge|problem/i.test(String(fileName || ''))) score -= 3;
+  // A gotcha line belongs in the gotchas list, so it is not a concept.
+  if (isGotcha) score -= 1;
+
+  // Long enough to explain, short enough to scan.
+  const length = text.length;
+  if (length >= 60 && length <= 190) score += 2;
+  else if (length < 40) score -= 1;
+  else if (length > 260) score -= 1;
+
+  return score;
+}
+
+// Picks the best candidates while still covering every topic, so one long topic
+// cannot fill the whole list. Within a topic the highest score wins, and between
+// topics the pick moves round so each contributes in turn.
+function pickBestKeyPoints(buckets, limit) {
+  const ranked = buckets.map(bucket =>
+    bucket.slice().sort((a, b) => b.score - a.score));
   const out = [];
+  const seen = new Set();
+  const takeFrom = bucket => {
+    while (bucket.length) {
+      const candidate = bucket.shift();
+      const key = candidate.line.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      return candidate;
+    }
+    return null;
+  };
   let round = 0;
   while (out.length < limit) {
-    let added = 0;
-    for (const bucket of buckets) {
+    let addedThisRound = false;
+    for (const bucket of ranked) {
       if (out.length >= limit) break;
-      if (round < bucket.length) {
-        out.push(bucket[round]);
-        added++;
+      if (bucket.length === 0) continue;
+      const candidate = takeFrom(bucket);
+      if (candidate) {
+        out.push(candidate.line);
+        addedThisRound = true;
       }
     }
-    if (added === 0) break;
+    if (!addedThisRound) break;
     round++;
+    if (round > 40) break;
   }
   return out;
 }
@@ -940,9 +991,13 @@ function buildQuickRevisionEntry(chapterName, topics) {
         // that has no authored @takeaway from filling the panel with "Print the
         // result in the format..." and other instructions from its challenges.
         if (!isClaimStatement(line)) return;
+        // Each candidate keeps its score, so the best lines can be chosen rather
+        // than whichever one happened to come first in the file.
         const lowerLine = line.toLowerCase();
-        if (gotchaKeywords.some(kw => lowerLine.includes(kw))) gotchaLines.push(line);
-        else conceptLines.push(line);
+        const isGotcha = gotchaKeywords.some(kw => lowerLine.includes(kw));
+        const entry = { line, score: scoreKeyPoint(line, topic.fileName, isGotcha) };
+        if (isGotcha) gotchaLines.push(entry);
+        else conceptLines.push(entry);
       });
     });
 
@@ -970,14 +1025,14 @@ function buildQuickRevisionEntry(chapterName, topics) {
   });
 
   // Authored lines win. Only a chapter with none of its own falls back to the
-  // derived round-robin pick. The caps are generous enough that a chapter
-  // writing its own points does not silently lose the last few.
+  // derived pick. The caps are generous enough that a chapter writing its own
+  // points does not silently lose the last few.
   const takeaways = authoredTakeaways.length
     ? authoredTakeaways.slice(0, 12)
-    : takeRoundRobin(conceptsByTopic, 6);
+    : pickBestKeyPoints(conceptsByTopic, 8);
   const gotchas = authoredGotchas.length
     ? authoredGotchas.slice(0, 10)
-    : takeRoundRobin(gotchasByTopic, 4);
+    : pickBestKeyPoints(gotchasByTopic, 6);
 
   // A chapter with no authored points and nothing worth deriving says so, rather
   // than leaving the panel empty. This is a prompt to the author, and it appears

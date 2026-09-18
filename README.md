@@ -35,9 +35,9 @@ Open `revision-dashboard/index.html` directly when you only want to read the las
 
 Write the file the way you write the rest of your notes and run `npm run revise`. Nothing regresses: every rule that shapes the notes lives in the parser, not in the generated files, so a file written next week is read with the same rules as one written today.
 
-Three things are authored rather than generated, so a brand-new file has to supply them:
+Three things behave differently in a brand-new file:
 
-- A new **chapter** needs `@takeaway` and `@gotcha` lines for its Quick Revision panel. Without them the tool falls back to picking note lines, and if it finds nothing worth keeping the panel says so instead of showing junk.
+- A new **chapter's key points are generated automatically** from its own notes, so there is nothing to write. Add `@takeaway` and `@gotcha` lines only when you want a point phrased your way.
 - **Practice** only comes from files named `*Challenge*` or `*Problem*`.
 - A **`void` method** can only be auto-checked if you give it a `@testcase` line, because it has no return value to compare. Use `\n` when it prints several lines: `@testcase countdown(5) -> 5\n4\n3\n2\n1`.
 

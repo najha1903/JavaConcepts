@@ -53,18 +53,28 @@ Verified by adding a new chapter with notes, a quiz and a challenge, running the
 
 Three things a new file does NOT inherit, because they are authored rather than generated:
 
-### 1. A new chapter needs `@takeaway` lines
+### 1. A new chapter's key points are written for you, and `@takeaway` refines them
 
-The Quick Revision panel prefers the `@takeaway` and `@gotcha` lines written in the chapter. When a chapter has none, the tool falls back to picking note lines, which is how a chapter's key points used to read as challenge instructions and headings. The fallback is now filtered by the same rule the quiz options use, so it can only pick a real statement about the topic.
+The Quick Revision panel is built automatically. It scores every statement in the chapter's notes and keeps the best ones: a rule ("must", "cannot", "throws", "does not compile") scores high, a definition or an explanation scores well, and a line that talks about *this file* or *this example*, or that asks a question, is passed over. Exercise files score lower than concept files, because their lines describe a task. The pick then moves round the topics, so one long topic cannot fill the whole list.
 
-If a new chapter has nothing worth deriving, the panel says so instead of showing junk:
+This means a new chapter arrives with usable key points and no work from you. Verified by removing the `@takeaway` lines from Chapter 12 and regenerating: the derived list was
+
+```text
+Without handling, an exception immediately terminates execution and prints a stack trace.
+Checked, such as IOException: the compiler insists you either catch it or declare it with throws.
+`finally` block: Guarantees execution regardless of whether an exception was thrown or caught.
+```
+
+against the authored *"An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace."* Close, and all five derived gotchas were the authored ones.
+
+Write `@takeaway` and `@gotcha` lines when you want the point phrased your way, or when you want to state something the notes do not already say. Yours are used verbatim and the derived ones are not shown at all. If a chapter has nothing worth deriving, the panel says so rather than showing junk:
 
 ```text
 No key points are written for Chapter 16 yet. Add // @takeaway lines to state them,
 and they will appear here instead of this note.
 ```
 
-Add two or three `@takeaway` lines and the prompt disappears. Write them to explain, not to remind — see [Key Takeaways And Gotchas](#key-takeaways-and-gotchas).
+See [Key Takeaways And Gotchas](#key-takeaways-and-gotchas) for how to write one.
 
 ### 2. Practice only comes from files named `*Challenge*` or `*Problem*`
 
