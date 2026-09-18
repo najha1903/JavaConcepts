@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "revise": "node scripts/parse-concepts.js --propose && node scripts/audit-generated.js && start revision-dashboard/index.html",
+    "revise": "node scripts/revise.js",
+    "revise:cli": "node scripts/parse-concepts.js --propose && node scripts/audit-generated.js && start revision-dashboard/index.html",
     "approve": "node scripts/parse-concepts.js && node scripts/audit-generated.js && start revision-dashboard/index.html",
     "generate": "node scripts/parse-concepts.js",
     "audit": "node scripts/audit-generated.js",

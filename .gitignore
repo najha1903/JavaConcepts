@@ -8,3 +8,9 @@
 
 # Java compiled output - never commit .class files
 **/*.class
+
+# The proposal written by `npm run revise` while a review is open. It is cleared
+# as soon as the changes are applied or discarded, and it describes a state that
+# only exists between those two moments.
+/revision-dashboard/content-changes.md
+/revision-dashboard/content-changes.json

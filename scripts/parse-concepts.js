@@ -2165,6 +2165,34 @@ function writeChangeReport(changes, dashboardDir, awaitingReview) {
   out.push('');
   const reportFile = path.join(dashboardDir, 'content-changes.md');
   fs.writeFileSync(reportFile, out.join('\n') + '\n', 'utf8');
+
+  // The same review in a machine-readable form, so the browser review page can
+  // render it with Apply and Discard buttons instead of the author having to read
+  // a markdown file and then type a command.
+  const jsonFile = path.join(dashboardDir, 'content-changes.json');
+  if (awaitingReview) {
+    fs.writeFileSync(jsonFile, JSON.stringify({
+      generated: new Date().toISOString(),
+      awaitingReview: true,
+      totals,
+      changes: changes.map(c => ({
+        filePath: c.filePath,
+        chapter: c.chapter,
+        previousChapter: c.previousChapter || null,
+        topic: c.topic,
+        isNew: Boolean(c.isNew),
+        isRemoved: Boolean(c.isRemoved),
+        moved: Boolean(c.moved),
+        codeChanged: Boolean(c.codeChanged),
+        noteChanges: c.noteChanges || { added: [], removed: [] },
+        inlineChanges: c.inlineChanges || { added: [], removed: [] },
+        quizChanges: c.quizChanges || { added: [], removed: [] }
+      }))
+    }, null, 2), 'utf8');
+  } else if (fs.existsSync(jsonFile)) {
+    fs.unlinkSync(jsonFile);
+  }
+
   return { reportFile, totals };
 }
 
@@ -2189,6 +2217,7 @@ async function main() {
   const rootDir = path.resolve(__dirname, '..');
   const proposeOnly = process.argv.includes('--propose');
   const autoApprove = process.argv.includes('--yes') || process.argv.includes('-y');
+  const noPrompt = process.argv.includes('--no-prompt');
   const srcDir = path.join(rootDir, 'src');
   const dashboardDir = path.join(rootDir, 'revision-dashboard');
   const questionsFile = path.join(dashboardDir, 'questions.js');
@@ -2252,6 +2281,11 @@ async function main() {
 
       if (autoApprove) {
         console.log('   --yes given, applying the changes.\n');
+      } else if (noPrompt) {
+        // The browser review page takes over: it shows the same changes and offers
+        // Apply and Discard, so the terminal must not block waiting for a keypress.
+        console.log('\n   Review them in the browser. Nothing is applied until you choose Apply.\n');
+        process.exit(0);
       } else {
         const apply = await askApplyChanges('\n   Apply these changes now? (y/N) ');
         if (!apply) {
@@ -2270,6 +2304,8 @@ async function main() {
       // "waiting for review" file can never mislead.
       const staleReport = path.join(dashboardDir, 'content-changes.md');
       if (fs.existsSync(staleReport)) fs.unlinkSync(staleReport);
+      const staleProposal = path.join(dashboardDir, 'content-changes.json');
+      if (fs.existsSync(staleProposal)) fs.unlinkSync(staleProposal);
       console.log('✅ No content changes to review — regenerating as usual.');
     }
   }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review proposed changes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Fira Code joins ==, != and -> into single glyphs, which is misleading in
+       notes about those characters. Ligatures stay off here for the same reason
+       they are off in the dashboard. */
+    code, pre, .diff-line {
+      font-variant-ligatures: none;
+      font-feature-settings: "liga" 0, "clig" 0, "calt" 0, "dlig" 0;
+    }
+    body { padding: 0; }
+    .review-shell { max-width: 1000px; margin: 0 auto; padding: 32px 20px 96px; }
+    .review-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 8px; }
+    .review-head h1 { font-size: 24px; margin: 0 0 6px; }
+    .review-sub { color: var(--text-muted); font-size: 14px; margin: 0; }
+    .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .chip { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 999px; padding: 7px 14px; font-size: 13px; color: var(--text-muted); }
+    .chip strong { color: var(--text-primary); font-weight: 600; }
+    .chip.add strong { color: #4ade80; }
+    .chip.del strong { color: #f87171; }
+    .chapter-block { margin-bottom: 28px; }
+    .chapter-block h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin: 0 0 12px; }
+    .topic-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; }
+    .topic-card h3 { font-size: 16px; margin: 0 0 4px; }
+    .topic-path { font-family: 'Fira Code', monospace; font-size: 11.5px; color: var(--text-muted); word-break: break-all; margin: 0 0 12px; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; margin-right: 6px; vertical-align: middle; }
+    .tag.new { background: rgba(74, 222, 128, 0.16); color: #4ade80; }
+    .tag.removed { background: rgba(248, 113, 113, 0.16); color: #f87171; }
+    .tag.moved { background: rgba(96, 165, 250, 0.16); color: #60a5fa; }
+    .section-title { font-size: 12px; font-weight: 600; color: var(--text-muted); margin: 14px 0 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .diff { background: var(--code-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow-x: auto; }
+    .diff-line { font-family: 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre; padding: 1px 12px; display: block; }
+    .diff-line.add { background: rgba(74, 222, 128, 0.10); color: #86efac; }
+    .diff-line.del { background: rgba(248, 113, 113, 0.10); color: #fca5a5; }
+    .code-note { font-size: 13px; color: var(--text-muted); font-style: italic; }
+    .review-actions { position: fixed; left: 0; right: 0; bottom: 0; background: var(--bg-card); border-top: 1px solid var(--border-color); padding: 14px 20px; display: flex; gap: 12px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
+    .review-actions .spacer { margin-right: auto; font-size: 13px; color: var(--text-muted); }
+    button { font-family: inherit; font-size: 14px; font-weight: 600; border-radius: 8px; padding: 10px 20px; cursor: pointer; border: 1px solid var(--border-color); background: transparent; color: var(--text-primary); }
+    button:hover { border-color: var(--accent-secondary); }
+    button.primary { background: var(--accent-secondary); border-color: var(--accent-secondary); color: #08111a; }
+    button:disabled { opacity: 0.5; cursor: default; }
+    .result { margin: 0 0 20px; padding: 14px 16px; border-radius: 10px; font-size: 13.5px; white-space: pre-wrap; border: 1px solid var(--border-color); background: var(--code-bg); display: none; }
+    .result.ok { border-color: rgba(74, 222, 128, 0.4); }
+    .result.bad { border-color: rgba(248, 113, 113, 0.4); }
+    .empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="review-shell">
+    <div class="review-head">
+      <div>
+        <h1>Review proposed changes</h1>
+        <p class="review-sub" id="review-sub">Checking what is waiting&hellip;</p>
+      </div>
+      <a href="index.html" style="font-size:13px;color:var(--text-muted);">Open the dashboard &rarr;</a>
+    </div>
+
+    <div class="result" id="result"></div>
+    <div id="chips" class="chip-row"></div>
+    <div id="body"></div>
+  </div>
+
+  <div class="review-actions" id="actions" style="display:none;">
+    <span class="spacer" id="action-note">Nothing has been applied yet.</span>
+    <button id="discard">Discard</button>
+    <button id="apply" class="primary">Apply</button>
+  </div>
+
+  <script>
+    const chips = document.getElementById('chips');
+    const body = document.getElementById('body');
+    const sub = document.getElementById('review-sub');
+    const actions = document.getElementById('actions');
+    const result = document.getElementById('result');
+
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    function diffBlock(lines) {
+      const rows = lines.removed.map(l => `<span class="diff-line del">- ${escapeHtml(l)}</span>`)
+        .concat(lines.added.map(l => `<span class="diff-line add">+ ${escapeHtml(l)}</span>`));
+      return `<div class="diff">${rows.join('')}</div>`;
+    }
+
+    function section(title, lines) {
+      if (!lines || (!lines.added.length && !lines.removed.length)) return '';
+      return `<div class="section-title">${title}</div>${diffBlock(lines)}`;
+    }
+
+    function render(pending) {
+      const t = pending.totals || {};
+      chips.innerHTML = [
+        `<span class="chip">Topics changed <strong>${pending.changes.length}</strong></span>`,
+        `<span class="chip add">Notes <strong>+${t.notesAdded || 0}</strong></span>`,
+        `<span class="chip del">Notes <strong>-${t.notesRemoved || 0}</strong></span>`,
+        `<span class="chip add">Questions <strong>+${t.quizzesAdded || 0}</strong></span>`,
+        `<span class="chip del">Questions <strong>-${t.quizzesRemoved || 0}</strong></span>`,
+        `<span class="chip">Topics whose code was edited <strong>${t.code || 0}</strong></span>`
+      ].join('');
+
+      const byChapter = new Map();
+      pending.changes.forEach(c => {
+        if (!byChapter.has(c.chapter)) byChapter.set(c.chapter, []);
+        byChapter.get(c.chapter).push(c);
+      });
+
+      body.innerHTML = [...byChapter.entries()].map(([chapter, list]) => `
+        <div class="chapter-block">
+          <h2>${escapeHtml(chapter)}</h2>
+          ${list.map(c => `
+            <div class="topic-card">
+              <h3>
+                ${c.isNew ? '<span class="tag new">NEW</span>' : ''}
+                ${c.isRemoved ? '<span class="tag removed">REMOVED</span>' : ''}
+                ${c.moved ? '<span class="tag moved">MOVED</span>' : ''}
+                ${escapeHtml(c.topic)}
+              </h3>
+              <p class="topic-path">${escapeHtml(c.filePath)}</p>
+              ${c.moved ? `<p class="code-note">Moved from &ldquo;${escapeHtml(c.previousChapter)}&rdquo;.</p>` : ''}
+              ${section('Notes', c.noteChanges)}
+              ${section('Inline notes', c.inlineChanges)}
+              ${section('Questions', c.quizChanges)}
+              ${c.codeChanged && !c.isNew ? '<p class="code-note">Java code was edited, so the dashboard code view will update.</p>' : ''}
+            </div>`).join('')}
+        </div>`).join('');
+    }
+
+    async function load() {
+      let pending;
+      try {
+        pending = await (await fetch('/api/pending')).json();
+      } catch (error) {
+        sub.textContent = 'This page has to be opened through npm run revise, because it needs the local review server.';
+        return;
+      }
+      if (!pending.pending) {
+        sub.textContent = 'There is nothing waiting for review.';
+        body.innerHTML = '<div class="empty">Everything in the dashboard already matches your notes.<br><br><a href="index.html">Open the dashboard</a></div>';
+        return;
+      }
+      const when = pending.generated ? new Date(pending.generated).toLocaleString() : '';
+      sub.textContent = `Proposed ${when}. Nothing has been applied yet.`;
+      render(pending);
+      actions.style.display = 'flex';
+    }
+
+    async function act(endpoint) {
+      const buttons = [document.getElementById('apply'), document.getElementById('discard')];
+      buttons.forEach(b => { b.disabled = true; });
+      result.style.display = 'block';
+      result.className = 'result';
+      result.textContent = endpoint === 'apply' ? 'Applying the changes...' : 'Discarding...';
+      try {
+        const response = await fetch(`/api/${endpoint}`, { method: 'POST' });
+        const payload = await response.json();
+        if (endpoint === 'discard') {
+          result.className = 'result ok';
+          result.textContent = 'Nothing was applied. Your dashboard still shows the last approved version.';
+          actions.style.display = 'none';
+          sub.textContent = 'Nothing is waiting for review.';
+          return;
+        }
+        result.className = payload.ok ? 'result ok' : 'result bad';
+        result.textContent = payload.ok
+          ? `Applied and verified.\n\n${payload.output}\n\nYou can close this window and open the dashboard.`
+          : `The changes were not applied.\n\n${payload.output || 'The generator reported an error.'}`;
+        if (payload.ok) {
+          actions.style.display = 'none';
+          sub.textContent = 'Applied. Opening the dashboard...';
+          setTimeout(() => { window.location.href = 'index.html'; }, 2500);
+        } else {
+          buttons.forEach(b => { b.disabled = false; });
+        }
+      } catch (error) {
+        result.className = 'result bad';
+        result.textContent = 'The review server did not answer. Is the revise window still open?';
+        buttons.forEach(b => { b.disabled = false; });
+      }
+    }
+
+    document.getElementById('apply').addEventListener('click', () => act('apply'));
+    document.getElementById('discard').addEventListener('click', () => act('discard'));
+    load();
+  </script>
+</body>
+</html>

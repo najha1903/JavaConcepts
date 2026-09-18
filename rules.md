@@ -19,19 +19,21 @@ These rules come from the author and are binding for every change, by a person o
 The author reviews before anything is applied:
 
 ```bash
-npm run revise     # PROPOSES changes, then asks: Apply these changes now? (y/N)
-npm run approve    # APPLIES straight away, audits, and opens the dashboard
+npm run revise      # PROPOSES changes and opens the review in the browser
+npm run revise:cli  # the same proposal with a yes/no question in the terminal
+npm run approve     # APPLIES straight away, audits, and opens the dashboard
 npm run revise -- --yes   # applies without asking (for scripted runs)
 ```
 
 `npm run revise` compares a fresh parse against `revision-dashboard/data.js`, which is the baseline the author already approved.
 
-- **Notes, inline notes, or `@quiz` markers changed** → the summary is printed, a report is written to `revision-dashboard/content-changes.md`, and the command asks `Apply these changes now? (y/N)`.
-  - Press **y** → the changes are applied, the audit runs, and the dashboard opens.
-  - Press **n** or Enter → nothing is applied, so there is nothing to undo. Run `npm run revise` again after editing the notes.
-  - In a non-interactive run the answer defaults to **No**, so an automated run can never hang or apply silently.
+- **Notes, inline notes, or `@quiz` markers changed** → the summary is printed, a report is written to `revision-dashboard/content-changes.md`, and a review page opens in the browser with the same changes and two buttons.
+  - **Apply** → the changes are applied, the audit runs, and the page opens the dashboard.
+  - **Discard** → nothing is applied, so there is nothing to undo. Run `npm run revise` again after editing the notes.
+  - The review is served by a small local server (`scripts/review-server.js`) on the loopback interface. It exists only while the review is open, and the approve step it runs is the same path `npm run approve` takes, so the two can never drift apart.
+  - When the author prefers the terminal, `npm run revise:cli` asks `Apply these changes now? (y/N)`. In a non-interactive run the answer defaults to **No**, so an automated run can never hang or apply silently.
 - **Only Java code changed** (everyday practice) → applied straight away and recorded in the same report, so routine edits do not need an approval each time.
-- **Nothing changed** → applied straight away, exactly as before.
+- **Nothing changed** → applied straight away, exactly as before, and the dashboard opens.
 
 `npm run approve` regenerates everything and opens the dashboard, without asking. The generated files are:
 

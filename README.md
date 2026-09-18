@@ -12,15 +12,14 @@ From the project root, run:
 npm run revise
 ```
 
-This command proposes the refresh, then asks you to approve it:
+This command proposes the refresh, then opens it for review in your browser:
 
 1. Scans every Java file under `src/`.
 2. Extracts and organizes overview notes, inline explanations, code blocks, parameter notes, quizzes, and challenges.
-3. Clarifies common shorthand and joins wrapped sentences without changing the technical meaning of the source notes.
-4. **Compares the result with the last approved version.** When notes, inline notes or `@quiz` markers changed, it writes a readable diff to `revision-dashboard/content-changes.md` and asks `Apply these changes now? (y/N)`. Press `y` to apply, or `n` to leave everything untouched.
-5. Regenerates the dashboard data files.
-6. Runs the generated-data audit.
-7. Opens the dashboard in the browser.
+3. Clarifies a small set of shorthand and joins wrapped sentences without changing the technical meaning of the source notes.
+4. **Compares the result with the last approved version.** When notes, inline notes or `@quiz` markers changed, it writes a readable diff to `revision-dashboard/content-changes.md` and opens a review page in your browser that shows the same changes with **Apply** and **Discard** buttons. Nothing is written until you choose Apply; Discard leaves everything exactly as it was, so there is nothing to undo either way.
+5. Applies the changes, regenerates the dashboard data files, and runs the generated-data audit.
+6. Opens the dashboard in the browser.
 
 Nothing about your notes is ever changed without that review. A Java code edit on its own is applied straight away, so everyday practice is not interrupted.
 
@@ -48,8 +47,11 @@ revision-dashboard/
   practice.js             # Generated coding challenges
   deep-challenges.js      # Generated deep problems
   content-changes.md      # Generated review report of pending note changes
+  review.html             # Browser page for reviewing and applying those changes
 scripts/
   parse-concepts.js       # Source-to-dashboard generator
+  revise.js               # Runs the proposal and opens the review
+  review-server.js        # Local server behind the review page
   audit-generated.js      # Generated-data and note-quality checks
   create-project.js       # Optional dashboard scaffolder
 ```
@@ -124,7 +126,8 @@ The tag in parentheses is optional, and so is a level. Write `(OCJP)`, `(INTERVI
 ## Useful Commands
 
 ```bash
-npm run revise   # propose changes, review them, then approve
+npm run revise   # propose changes, open them for review, then apply or discard
+npm run revise:cli  # the same proposal with a yes/no question in the terminal
 npm run approve  # apply the reviewed changes, audit, and open the dashboard
 npm run generate # regenerate generated files without the review step
 npm run audit    # validate the current generated files
