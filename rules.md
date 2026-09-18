@@ -45,17 +45,57 @@ npm run revise -- --yes   # applies without asking (for scripted runs)
 
 Never edit those generated files by hand. The next run will replace them.
 
+## Adding New Content Tomorrow
+
+**Nothing regresses.** Every rule that shapes the notes lives in `scripts/parse-concepts.js`, not in the generated files, so a file written next week is parsed with the same rules as the ones written today. `npm run revise` reads the source again from scratch each time; it does not carry the old format forward.
+
+Verified by adding a new chapter with notes, a quiz and a challenge, running the full revise → review → apply cycle, and confirming that the `:-` signposts survived, the contractions were not rewritten, no parameter section was invented, no marker leaked into the notes, the code sample kept its indentation, the quiz parsed, and the challenge became auto-checked.
+
+Three things a new file does NOT inherit, because they are authored rather than generated:
+
+### 1. A new chapter needs `@takeaway` lines
+
+The Quick Revision panel prefers the `@takeaway` and `@gotcha` lines written in the chapter. When a chapter has none, the tool falls back to picking note lines, which is how a chapter's key points used to read as challenge instructions and headings. The fallback is now filtered by the same rule the quiz options use, so it can only pick a real statement about the topic.
+
+If a new chapter has nothing worth deriving, the panel says so instead of showing junk:
+
+```text
+No key points are written for Chapter 16 yet. Add // @takeaway lines to state them,
+and they will appear here instead of this note.
+```
+
+Add two or three `@takeaway` lines and the prompt disappears. Write them to explain, not to remind — see [Key Takeaways And Gotchas](#key-takeaways-and-gotchas).
+
+### 2. Practice only comes from files named `*Challenge*` or `*Problem*`
+
+A file called `Loops.java` contributes notes and quiz questions but no practice challenge. Name the exercise file `LoopsChallenge.java` or `LoopsDeepProblem.java` and it appears in the Practice Lab.
+
+### 3. A `void` challenge needs `@testcase`, and multi-line output uses `\n`
+
+A method that returns a value is checked automatically from its `@testcase` line. A method that PRINTS has no return value to compare, so its printed output is what gets checked, and only an explicit `@testcase` can supply it:
+
+```java
+// @testcase countdown(5) -> 5\n4\n3\n2\n1
+// @testcase printEqual(1, 2, 3) -> All numbers are different
+// @testcase printMegaBytesAndKiloBytes(-1024) -> Invalid Value
+```
+
+`\n` in the expectation becomes a real newline, so a method that prints several lines can be checked. Without a `@testcase` the challenge is offered as **Self-check**, which the lab labels clearly.
+
 ## How The Note Converter Works
 
 The parser keeps the core meaning of your comments and improves the reading experience in the generated portal. It:
 
-- Joins wrapped lines when a sentence clearly continues onto the next line.
-- Repairs a small set of known shorthand, such as `For Ex :-` to `For example:` and `can't` to `cannot`.
+- Joins wrapped lines when a sentence clearly continues onto the next line, and keeps a run of complete entries (such as a list of test cases) on separate lines rather than merging them into one paragraph.
+- Repairs exactly three pieces of shorthand: `For Ex :-`, `For ex :-` and `Ex:-` become `For example:` and `Example: `. Nothing else is rewritten.
 - Leaves the author's `:-` signposts alone. `Note :-`, `Output :-`, and `Pitfall :-` are his voice, and are never rewritten to a colon.
+- Never expands a contraction. `doesn't`, `can't` and `won't` are written that way in the source and appear that way in the notes.
+- Never replaces a sentence with a rewritten version of itself. A previous version did, which quietly reworded the author's own headings and explanations.
 - Preserves Markdown-like inline code in readable form.
-- Detects Java-like lines inside comments and renders them as code blocks.
+- Detects Java-like lines inside comments and renders them as code blocks, keeping the indentation of a wrapped statement and of an ASCII diagram intact.
 - Preserves pipe-delimited tables as tables in Notes, Quick Revision, and PDF output.
 - Separates overview notes, inline code explanations, parameter notes, quizzes, and challenges.
+- Never invents parameter notes. The section is written by the author or it does not exist.
 - Filters every marker it understands out of the notes, so tool syntax never appears as an authored note. New markers are registered in `MARKER_KEYWORDS` in `scripts/parse-concepts.js`, which is the single list all four filter sites read.
 
 This is a clarity and structure pass, not permission to invent new behavior. Write the technical idea yourself, especially when a rule has important exceptions or boundary cases. Any added context should support the source note and should never contradict or overshadow it.

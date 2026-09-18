@@ -924,12 +924,22 @@ function buildQuickRevisionEntry(chapterName, topics) {
       if (!Array.isArray(block.lines)) return;
       // Skip a whole parameter-notes block. It explains arguments, not concepts.
       if (block.lines.length && /parameter notes/i.test(block.lines[0])) return;
-      block.lines.forEach(line => {
+      block.lines.forEach(rawLine => {
+        // A bullet is presentation, not part of the statement.
+        const line = String(rawLine || '').replace(/^[-*•]\s+/, '').trim();
         if (!line || line.length < 10) return;
         if (isParameterNoteLine(line)) return;
         // A bare heading such as "STRING METHODS AND BEST PRACTICES" is a title,
         // not a concept, so it is not revision material.
         if (!/[a-z]/.test(line)) return;
+        // A line ending in ":-" or ":" introduces what follows rather than stating
+        // a concept, so "Types of loop in Java :-" must never become a key point.
+        if (/[:-]\s*$/.test(line)) return;
+        // The same rule the quiz options use: an instruction, a heading or a note
+        // fragment is not a statement about the topic. This is what stops a chapter
+        // that has no authored @takeaway from filling the panel with "Print the
+        // result in the format..." and other instructions from its challenges.
+        if (!isClaimStatement(line)) return;
         const lowerLine = line.toLowerCase();
         if (gotchaKeywords.some(kw => lowerLine.includes(kw))) gotchaLines.push(line);
         else conceptLines.push(line);
@@ -968,6 +978,13 @@ function buildQuickRevisionEntry(chapterName, topics) {
   const gotchas = authoredGotchas.length
     ? authoredGotchas.slice(0, 10)
     : takeRoundRobin(gotchasByTopic, 4);
+
+  // A chapter with no authored points and nothing worth deriving says so, rather
+  // than leaving the panel empty. This is a prompt to the author, and it appears
+  // only in that case, so a chapter that has written its own points never shows it.
+  if (!takeaways.length) {
+    takeaways.push(`No key points are written for ${chapterName} yet. Add // @takeaway lines to state them, and they will appear here instead of this note.`);
+  }
 
   const syntax = codeSnippets[0] || `// See source files in ${chapterName}`;
   const badgeList = Array.from(badges).slice(0, 5);
@@ -1785,9 +1802,14 @@ function buildPracticeChallenges(parsedData) {
       // A void method communicates through what it prints, so its expected value is
       // the text the call should produce, not a returned value. The quotes around a
       // quoted expectation are removed so both forms read the same way.
+      //
+      // A method that prints several lines needs several lines of expectation, and a
+      // @testcase marker is a single comment line, so "\n" in the expectation is
+      // turned into a real newline. Without this, a multi-line challenge could never
+      // be checked at all.
       const expectedText = match[2].trim().replace(/\s*;+\s*$/, '');
       const expected = returnType === 'void'
-        ? expectedText.replace(/^["']|["']$/g, '')
+        ? expectedText.replace(/^["']|["']$/g, '').replace(/\\n/g, '\n').replace(/\\t/g, '\t')
         : normalizeValue(expectedText);
       const candidate = { args, expected };
       if (isPlausibleTestCase(candidate, returnType)) testCases.push(candidate);

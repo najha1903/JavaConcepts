@@ -31,6 +31,18 @@ npm run approve
 
 Open `revision-dashboard/index.html` directly when you only want to read the last generated version.
 
+### Adding New Content
+
+Write the file the way you write the rest of your notes and run `npm run revise`. Nothing regresses: every rule that shapes the notes lives in the parser, not in the generated files, so a file written next week is read with the same rules as one written today.
+
+Three things are authored rather than generated, so a brand-new file has to supply them:
+
+- A new **chapter** needs `@takeaway` and `@gotcha` lines for its Quick Revision panel. Without them the tool falls back to picking note lines, and if it finds nothing worth keeping the panel says so instead of showing junk.
+- **Practice** only comes from files named `*Challenge*` or `*Problem*`.
+- A **`void` method** can only be auto-checked if you give it a `@testcase` line, because it has no return value to compare. Use `\n` when it prints several lines: `@testcase countdown(5) -> 5\n4\n3\n2\n1`.
+
+See [rules.md](rules.md#adding-new-content-tomorrow) for the detail.
+
 ## Project Structure
 
 ```text
@@ -131,8 +143,9 @@ npm run revise:cli  # the same proposal with a yes/no question in the terminal
 npm run approve  # apply the reviewed changes, audit, and open the dashboard
 npm run generate # regenerate generated files without the review step
 npm run audit    # validate the current generated files
-npm run check:practice  # confirm no practice verifier rejects a correct solution
-npm run check    # regenerate, validate, and check the practice verifiers
+npm run check:practice   # confirm no practice verifier rejects a correct solution
+npm run check:questions  # run every code question and compare its real output
+npm run check    # regenerate, validate, and run both checks above
 ```
 
 See [rules.md](rules.md) for the complete authoring contract and [TEMPLATE.md](TEMPLATE.md) for the optional cross-technology dashboard template.
