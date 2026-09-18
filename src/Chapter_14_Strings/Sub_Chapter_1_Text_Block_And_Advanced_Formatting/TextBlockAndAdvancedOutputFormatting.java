@@ -86,13 +86,15 @@ import java.util.IllegalFormatConversionException;
 // Note :- the placeholders and arguments work the same way in both. printf is `System.out.print(format(...))`, and format is the version you can store.
 //
 // 2) What the common placeholders mean :-
-// %d   a whole number        String.format("%d", 42)        -> 42
-// %f   a decimal number      String.format("%.2f", 3.14159) -> 3.14
-// %s   text                  String.format("%s", "hi")      -> hi
-// %5d  pad the number to width 5, right-aligned
-// %-5d pad to width 5 but left-aligned
-// %.2f keep two decimal places
-// %n   the platform's new line
+// | Placeholder | Meaning | Example |
+// |---|---|---|
+// | `%d` | a whole number | `String.format("%d", 42)` gives `42` |
+// | `%f` | a decimal number | `String.format("%.2f", 3.14159)` gives `3.14` |
+// | `%s` | text | `String.format("%s", "hi")` gives `hi` |
+// | `%5d` | pad to width 5, right-aligned | a 2-digit number is padded on the left |
+// | `%-5d` | pad to width 5, left-aligned | a 2-digit number is padded on the right |
+// | `%.2f` | keep two decimal places | `3.14159` becomes `3.14` |
+// | `%n` | the platform's new line | `printf("Hi %n")` moves to a new line |
 // Note :- %5d only pads when the value is shorter than the width. A longer value is printed in full and never truncated.
 //
 // 3) A mismatch between placeholder and argument throws :-

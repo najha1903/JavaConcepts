@@ -61,7 +61,11 @@ function formatName(name) {
 // Helper: Parse a Java file into structured data
 // ==========================================================================
 function parseJavaFile(filePath, rootDir) {
-  const content = fs.readFileSync(filePath, 'utf8');
+  // The source files use CRLF. Splitting on \n alone leaves a stray \r at the end
+  // of every line, and a \r inside a code sample makes the browser carry the
+  // caret back to the start of the line, which overlaps the text that follows.
+  // Normalising once, here, keeps every later stage line-based.
+  const content = fs.readFileSync(filePath, 'utf8').replace(/\r\n?/g, '\n');
   const relativePath = path.relative(rootDir, filePath).replace(/\\/g, '/');
 
   const parts = relativePath.split('/');
@@ -157,6 +161,23 @@ function parseJavaFile(filePath, rootDir) {
       const nextStartsLower = /^[a-z]/.test(line);
       const endsWithConnector = /\b(?:as|and|or|but|because|with|from|to|of|for|in|on|is|are|the|a|an|that|which|when|if|than|into|while|until|this|its|their|same|nearly)$/i.test(acc.trim());
 
+      // A run of complete entries is a list, not one wrapped sentence. The
+      // challenge files write test cases one per line, such as
+      // "sumOdd(1, 100); should return 2500" followed by
+      // "sumOdd(-1, 100); should return -1", and each of those is a whole item.
+      // Joining them produced one run-on paragraph several hundred characters long.
+      // A line counts as an entry when it opens with a call, or when it contains a
+      // call followed by an arrow, which catches lists that begin with a heading
+      // such as "Example input/output" before the first test case.
+      const isEntry = text =>
+        /^\w[\w.$]*\s*\([^)]*\)\s*(?:;|,|:|\s*$)/.test(text) ||
+        /(?:^|\s)\w[\w.$]*\s*\([^)]*\)\s*[;,]?\s*(?:→|->)/.test(text);
+      if (isEntry(acc) && isEntry(line)) {
+        result.push(acc);
+        acc = line;
+        continue;
+      }
+
       if (startsNewItem) {
         result.push(acc);
         acc = line;
@@ -227,6 +248,18 @@ function parseJavaFile(filePath, rootDir) {
     if (!t) return inCode;
     if (/^\/\/\s*@/.test(t)) return false;
     if (/^\w[\w\s-]*--?>/.test(t)) return false;
+    // A bullet is the author's prose. His notes are written as "- ..." lines, so a
+    // bullet is never code even when it mentions braces or ends with a semicolon,
+    // which is what turned "- These do NOT end with a semicolon: ... a block { }
+    // into a code block.
+    if (/^[-*•]\s+\S/.test(t)) return false;
+    // A wrapped statement continues the code block: it starts with an operator, a
+    // dot, or a closing bracket. Without this, "String message = ..." followed by
+    // '    + " World"' broke the sample into alternating code and prose, and the
+    // continuation lost its indentation when it was trimmed as a note.
+    if (inCode && /^[+\-*/%]|^(?:&&|\|\||==|!=|<=|>=|\?|:)|^[)\]}],?$/.test(t)) {
+      if (!/^[-*•]\s+\S/.test(t) && t.split(/\s+/).length <= 8) return true;
+    }
     // A genuine table row (cells separated by single pipes, not a || operator,
     // and not ending like a statement) is prose, never code. This keeps tables
     // whose rows start with System./type keywords from being split into code.
@@ -251,7 +284,10 @@ function parseJavaFile(filePath, rootDir) {
       /^}?\s*else\b/.test(codePart) ||
       /^[-*•]\s*\w+\s*[=;]/.test(codePart);
     if (wordCount >= 8 && !looksLikeStatement && !/[{}]/.test(codePart)) return false;
-    return /[{}]/.test(t) ||
+    // Braces on their own are not enough to make a line code: a note that happens
+    // to mention "{ }" is still a note. Braces count only alongside a statement
+    // shape, which is what a real declaration, call or block header has.
+    return (looksLikeStatement && /[{}]/.test(t)) ||
       /;\s*(\/\/.*)?$/.test(t) ||
       isCodeFragment(t) ||
       /^(while|for|if|switch|try|catch)\s*\(/.test(t) ||
@@ -314,8 +350,18 @@ function parseJavaFile(filePath, rootDir) {
     }
   }
 
+  // A code sample is shown in a <pre>, so its indentation is part of the meaning.
+  // Trailing spaces are dropped, and the whole sample is dedented by its smallest
+  // indent so it starts at the left edge while the nesting inside it survives.
   function appendCodeSegment(lines, results) {
-    const code = lines.join('\n').replace(/^\s+|\s+$/g, '');
+    const trimmed = lines.map(line => String(line || '').replace(/\s+$/, ''));
+    while (trimmed.length && trimmed[0].trim() === '') trimmed.shift();
+    while (trimmed.length && trimmed[trimmed.length - 1].trim() === '') trimmed.pop();
+    const indents = trimmed
+      .filter(line => line.trim() !== '')
+      .map(line => (line.match(/^\s*/) || [''])[0].length);
+    const base = indents.length ? Math.min(...indents) : 0;
+    const code = trimmed.map(line => line.slice(Math.min(base, (line.match(/^\s*/) || [''])[0].length))).join('\n');
     if (code) results.push({ type: 'code', language: 'java', code, lines: [] });
   }
 

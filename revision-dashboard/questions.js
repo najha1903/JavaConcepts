@@ -1266,16 +1266,16 @@ const QUESTIONS_BANK = {
       "topic": "Local Variables And Scope",
       "question": "Which of the following are TRUE about Local Variables And Scope? Select all that apply.",
       "options": [
-        "--- SWITCH SCOPE (special rule!) ---",
         "Variables declared inside an if block are NOT accessible in else or outside the if.",
         "Variables declared inside the for loop init section are local to the loop only.",
         "Core Concepts: Java Variables & Initialization",
+        "{ // outer block (e.g., a method)",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
         0,
         1,
-        2
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Local Variables And Scope.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
@@ -15204,7 +15204,7 @@ const QUICK_REVISION_BANK = {
       "`java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.",
       "Only one class in a file may be public, and it must be the one whose name matches the file name."
     ],
-    "syntax": "public class HelloWorld {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Hello World\");\r\n    }\r\n\r\n}",
+    "syntax": "public class HelloWorld {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"Hello World\");\n    }\n\n}",
     "badges": [
       "main",
       "toFahrenheit",
@@ -15228,7 +15228,7 @@ const QUICK_REVISION_BANK = {
       "A narrowing cast such as `(int) 9.8` truncates rather than rounds, so it gives 9 and not 10.",
       "Comparing two Integer objects with `==` compares references rather than values, so use `equals` for the numbers, or store them as int."
     ],
-    "syntax": "public class StringExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        String myString = \"This is a string\";\r\n        System.out.println(\"MyString is equal to \" + myString);\r\n        myString = myString  + \", and this is more.\";\r\n        System.out.println(\"myString is equal to \" + myString);\r\n        myString = myString + \" \\u00A9 2022\";\r\n        System.out.println(\"myString is equal to \" + myString);",
+    "syntax": "public class StringExample {\n\n    public static void main(String[] args) {\n\n        String myString = \"This is a string\";\n        System.out.println(\"MyString is equal to \" + myString);\n        myString = myString  + \", and this is more.\";\n        System.out.println(\"myString is equal to \" + myString);\n        myString = myString + \" \\u00A9 2022\";\n        System.out.println(\"myString is equal to \" + myString);",
     "badges": [
       "main",
       "aMethod",
@@ -15301,7 +15301,7 @@ const QUICK_REVISION_BANK = {
       "`=` puts a value into a variable, and `==` asks whether two values are the same. Because `x = 5` produces an int, `if (x = 5)` is a compile error, which is Java catching a mistake that would go unnoticed in other languages.",
       "A remainder keeps the sign of the number on the left, not the divisor: `-10 % 3` is -1 and not 1."
     ],
-    "syntax": "public class OperatorsOperandsExpressions {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\r\n        double hoursWorked = 9.5d;\r\n        double hourlyRate = 5d;\r\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\r\n        System.out.println(mySalary);",
+    "syntax": "public class OperatorsOperandsExpressions {\n\n    public static void main(String[] args) {\n\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\n        double hoursWorked = 9.5d;\n        double hourlyRate = 5d;\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\n        System.out.println(mySalary);",
     "badges": [
       "main",
       "power",
@@ -15409,7 +15409,7 @@ const QUICK_REVISION_BANK = {
       "A variable declared inside a block disappears at the closing brace. Using it afterwards gives \"cannot resolve symbol\", because the name no longer exists.",
       "Braces are not punctuation you can sprinkle anywhere. A class body, a method body, and the headers of `if` and `for` all end in `{` or `}`, and none of them takes a semicolon."
     ],
-    "syntax": "public class StatementsWhiteSpaceAndIndentation {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\r\n        myVariable++; // This also represents complete statement\r\n        System.out.println(myVariable); // Shows the incremented value: 51\r\n        System.out.println(\"This is a test\"); // This also represents complete statement.\r\n\r\n        System.out.println(\"This is\" +",
+    "syntax": "public class StatementsWhiteSpaceAndIndentation {\n\n    public static void main(String[] args) {\n\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\n        myVariable++; // This also represents complete statement\n        System.out.println(myVariable); // Shows the incremented value: 51\n        System.out.println(\"This is a test\"); // This also represents complete statement.\n\n        System.out.println(\"This is\" +",
     "badges": [
       "main",
       "kilometersToMiles",
@@ -15433,7 +15433,7 @@ const QUICK_REVISION_BANK = {
       "Comparing two Strings with `==` asks whether they are the same object rather than whether they hold the same text, so `new String(\"hello\") == \"hello\"` is false. Use `.equals()` for content.",
       "`&&` and `||` stop as soon as the answer is settled, and that is exactly what makes `name != null && name.length() > 5` safe: when name is null the left side is already false, so the method call that would throw never happens."
     ],
-    "syntax": "public class IfExample {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        boolean isAlien = false;\r\n\r\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\r\n        if(isAlien == false){ // condition check\r\n            System.out.println(\"It is not an alien!\");\r\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.",
+    "syntax": "public class IfExample {\n\n    public static void main(String[] args) {\n\n        boolean isAlien = false;\n\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\n        if(isAlien == false){ // condition check\n            System.out.println(\"It is not an alien!\");\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.",
     "badges": [
       "main",
       "classify",
@@ -15457,7 +15457,7 @@ const QUICK_REVISION_BANK = {
       "The return type is not part of a method's signature, so two methods that differ only in their return type cannot overload each other.",
       "The compiler checks every path of a non-void method, so one branch that can finish without a return fails the whole file rather than compiling and returning a surprise at runtime."
     ],
-    "syntax": "public class MethodsInJava {\r\n\r\n    public static void main(String[] args) {\r\n     calculateScore(); //method without any parameter\r\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\r\n        // The parameters should be passed in the same order as it is defined in the method.\r\n\r\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\r\n        System.out.println(\"Your final score was \" + highScore);",
+    "syntax": "public class MethodsInJava {\n\n    public static void main(String[] args) {\n     calculateScore(); //method without any parameter\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\n        // The parameters should be passed in the same order as it is defined in the method.\n\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\n        System.out.println(\"Your final score was \" + highScore);",
     "badges": [
       "methodName",
       "tryToChange",
@@ -15486,7 +15486,7 @@ const QUICK_REVISION_BANK = {
       "A switch expression requires a `default` arm, because the expression has to produce a value for every possible input.",
       "`yield` is valid only inside a switch expression, and it is what returns the value from an arm that needs more than one statement."
     ],
-    "syntax": "public class SwitchStatementInJava {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"If-else example:\");\r\n        ifElseExample(3);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Traditional switch example:\");\r\n        switchCase(2);",
+    "syntax": "public class SwitchStatementInJava {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"If-else example:\");\n        ifElseExample(3);\n\n        System.out.println();\n        System.out.println(\"Traditional switch example:\");\n        switchCase(2);",
     "badges": [
       "check",
       "main",
@@ -15509,7 +15509,7 @@ const QUICK_REVISION_BANK = {
       "`break` on its own leaves only the innermost loop. Leaving two loops needs a label, or a flag that the outer loop tests.",
       "If `continue` runs before the counter update in a while loop, the counter never advances and the loop spins forever. In a for loop the update still runs, so the same mistake is harmless there."
     ],
-    "syntax": "public class ForStatement {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        System.out.println(\"Counting from 1 to 5:\");\r\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\r\n           System.out.println(counter);\r\n        }\r\n\r\n        System.out.println();",
+    "syntax": "public class ForStatement {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"Counting from 1 to 5:\");\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\n           System.out.println(counter);\n        }\n\n        System.out.println();",
     "badges": [
       "main",
       "calculateInterest",
@@ -15537,7 +15537,7 @@ const QUICK_REVISION_BANK = {
       "`while (condition)` inside a do-while needs a statement terminator, unlike the `while` that starts a normal loop.",
       "`continue` inside a do-while jumps to the condition test rather than to the top of the body, so the body may run fewer times than you expect."
     ],
-    "syntax": "public class WhileLoops {\r\n\r\n    /* while loop simply has expression\r\n\r\n    While loop code format :-\r\n\r\n    while(expression)  {\r\n    // block of statements\r\n\r\n    } */",
+    "syntax": "public class WhileLoops {\n\n    /* while loop simply has expression\n\n    While loop code format :-\n\n    while(expression)  {\n    // block of statements\n\n    } */",
     "badges": [
       "main",
       "checkIfNumberIsPalindrome",
@@ -15560,7 +15560,7 @@ const QUICK_REVISION_BANK = {
       "An object variable that has not been given an object holds null, and using it throws a NullPointerException rather than quietly creating something.",
       "Local variables declared inside a method have no default at all, so reading one before assigning it is a compile error, unlike a field."
     ],
-    "syntax": "public class ClassExample {\r\n\r\n    public static void main(String[] args) {\r\n        //  We can create String using 2 ways\r\n\r\n         // 1) Literal form\r\n\r\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\r\n           System.out.println(\"Literal String = \" + s);",
+    "syntax": "public class ClassExample {\n\n    public static void main(String[] args) {\n        //  We can create String using 2 ways\n\n         // 1) Literal form\n\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\n           System.out.println(\"Literal String = \" + s);",
     "badges": [
       "Counter",
       "read",
@@ -15634,7 +15634,7 @@ const QUICK_REVISION_BANK = {
       "`Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.",
       "The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened."
     ],
-    "syntax": "public class ExceptionHandlingInJava {\r\n    public static void main(String[] args) {\r\n\r\n        try{ // The try block wraps any code that might throw an exception at runtime.\r\n            // Place only the risky code here — keep try blocks as small as possible.\r\n        } // The try block ends here; the catch block immediately follows.\r\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\r\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\r\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\r\n        }",
+    "syntax": "public class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }",
     "badges": [
       "checkAge",
       "test",
@@ -15666,7 +15666,7 @@ const QUICK_REVISION_BANK = {
       "A private method in the parent cannot be overridden, because the child cannot even see it. A same-named method in the child is a separate, unrelated method.",
       "Through a parent reference you can only call the methods the parent declares, so calling a child-only method needs a child reference or a cast."
     ],
-    "syntax": "public class ClassesAndInheritance {\r\n\r\n\r\n\r\n}",
+    "syntax": "public class ClassesAndInheritance {\n\n\n\n}",
     "badges": [
       "show",
       "tick",
@@ -15730,7 +15730,7 @@ const QUICK_REVISION_BANK = {
       "`new StringBuilder(\"Hello\")` starts with a capacity of 16 plus the text length, so 21 here. Capacity is the room available before the buffer has to grow, not the length of the text.",
       "Building a long String with `+` inside a loop creates a new object on every pass and leaves the earlier ones for the garbage collector, which is exactly the cost StringBuilder avoids."
     ],
-    "syntax": "public class TextBlockAndAdvancedOutputFormatting {\r\n\r\n    /*\r\n\r\n    * Text Block\r\n    * 1) A text block is just a special format for multi-line String literals\r\n    *\r\n    * 2) It's simply a String, with a new representation in the source code\r\n    *\r\n    * Escape Sequences",
+    "syntax": "public class TextBlockAndAdvancedOutputFormatting {\n\n    /*\n\n    * Text Block\n    * 1) A text block is just a special format for multi-line String literals\n    *\n    * 2) It's simply a String, with a new representation in the source code\n    *\n    * Escape Sequences",
     "badges": [
       "main",
       "StringInspectionMethods",
@@ -15758,6 +15758,50 @@ const QUICK_REVISION_BANK = {
             "Format specifier, converted by the Formatter at run time",
             "Only a format string",
             "Line separator of the platform: \\r\\n on Windows, \\n on Linux or macOS"
+          ]
+        ]
+      },
+      {
+        "headers": [
+          "Placeholder",
+          "Meaning",
+          "Example"
+        ],
+        "rows": [
+          [
+            "`%d`",
+            "a whole number",
+            "`String.format(\"%d\", 42)` gives `42`"
+          ],
+          [
+            "`%f`",
+            "a decimal number",
+            "`String.format(\"%.2f\", 3.14159)` gives `3.14`"
+          ],
+          [
+            "`%s`",
+            "text",
+            "`String.format(\"%s\", \"hi\")` gives `hi`"
+          ],
+          [
+            "`%5d`",
+            "pad to width 5, right-aligned",
+            "a 2-digit number is padded on the left"
+          ],
+          [
+            "`%-5d`",
+            "pad to width 5, left-aligned",
+            "a 2-digit number is padded on the right"
+          ],
+          [
+            "`%.2f`",
+            "keep two decimal places",
+            "`3.14159` becomes `3.14`"
+          ],
+          [
+            "`%n`",
+            "the platform's new line",
+            "`printf(\"Hi %n\")` moves to a new line"
           ]
         ]
       },
@@ -15803,7 +15847,7 @@ const QUICK_REVISION_BANK = {
       "A composed object is only usable once its parts exist, so a constructor that stores them must receive or create real objects. Otherwise the fields stay null and every delegated call throws a NullPointerException.",
       "Composition and inheritance are not a choice you make once for a whole program. The same class can belong to both relationships, as Monitor does here."
     ],
-    "syntax": "public class ComputerCase extends Product{\r\n\r\n    private String powerSupply;\r\n\r\n    public ComputerCase(String model, String manufacturer){\r\n        super(model,manufacturer);\r\n    }\r\n\r\n    public ComputerCase(String model, String manufacturer, String powerSupply){\r\n        super(model,manufacturer);",
+    "syntax": "public class ComputerCase extends Product{\n\n    private String powerSupply;\n\n    public ComputerCase(String model, String manufacturer){\n        super(model,manufacturer);\n    }\n\n    public ComputerCase(String model, String manufacturer, String powerSupply){\n        super(model,manufacturer);",
     "badges": [
       "ComputerCase",
       "pressPowerButton",

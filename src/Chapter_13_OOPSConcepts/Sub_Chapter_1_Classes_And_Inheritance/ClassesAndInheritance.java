@@ -216,7 +216,7 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
 //     void tick() { shared++; mine++; }
 //
 //     static void resetShared() { shared = 0; }   // fine, shared belongs to the class
-//     static void bad() { mine = 0; }             // Compile Error :- non-static variable mine cannot be referenced from a static context
+//     static void bad() { mine = 0; }   // Compile Error :- mine is not static
 // }
 // Counter a = new Counter();
 // Counter b = new Counter();

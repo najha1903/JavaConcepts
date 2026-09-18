@@ -119,8 +119,9 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 *    ClassName variableName = new ClassName(argument1, argument2);
 
 *    A VARIABLE OF A CLASS TYPE HOLDS A REFERENCE, NOT THE OBJECT
-*    Car myCar = new Car();      -- myCar does not contain a car. It holds the address of a Car object built on the heap.
-*    Car other = myCar;          -- now two variables point at the ONE object. Changing the car through either name is visible through both.
+*    Car myCar = new Car();      -- holds the address of the object, not the object
+*    Car other = myCar;          -- two names, one object
+*    Note :- changing the car through either name is visible through both, because there is only one Car object and both variables point at it.
 *    Note :- this is why objects can be shared, and also why changing one can surprise you somewhere else in the program.
 
 *    AN OBJECT VARIABLE CAN BE null

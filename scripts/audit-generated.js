@@ -177,6 +177,38 @@ for (const chapter of concepts || []) {
   }
 }
 
+// ---- Generated text must be clean -------------------------------------------
+// Two defects that were invisible until a code sample was read on screen:
+//
+// 1) A stray carriage return. The source files are CRLF, and splitting on \n left
+//    a \r at the end of every code line. In a <pre> the browser treats that as a
+//    line break, so rows were doubled and the caret jumped back to the column 0,
+//    which overlapped the text that followed.
+// 2) Trailing spaces in a code sample, which add nothing and shift the caret.
+let strayCr = 0;
+let trailingSpace = 0;
+for (const chapter of concepts || []) {
+  for (const topic of chapter.topics || []) {
+    for (const block of topic.headerComments || []) {
+      const texts = block.type === 'code' ? [block.code || ''] : (block.lines || []);
+      for (const text of texts) {
+        if (/\r/.test(text)) {
+          strayCr++;
+          if (strayCr <= 3) failures.push(`${topic.filePath}: generated text contains a carriage return: ${JSON.stringify(text.slice(0, 60))}`);
+        }
+      }
+      if (block.type === 'code') {
+        for (const line of (block.code || '').split('\n')) {
+          if (/\s+$/.test(line)) {
+            trailingSpace++;
+            if (trailingSpace <= 3) failures.push(`${topic.filePath}: code line has trailing whitespace: ${JSON.stringify(line.slice(0, 60))}`);
+          }
+        }
+      }
+    }
+  }
+}
+
 for (const challenge of [...(practice || []), ...(deep || [])]) {
   if (!challenge.id || !challenge.title || !challenge.description) failures.push(`Challenge is incomplete: ${challenge.id || '(no id)'}`);
 }

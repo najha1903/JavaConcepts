@@ -3613,3 +3613,29 @@ h1, h2, h3, h4, .logo span {
 .bank-concept-list li.bank-extra-line {
   animation: none;
 }
+
+/* --------------------------------------------------------------------------
+   Fira Code is a programming font with optional ligatures. When they are on,
+   `==` is drawn as a single long equals sign, `!=` as a struck-through one,
+   `->` as an arrow, and `<=`, `>=` and `=>` are joined too. These notes talk
+   about those exact characters, so a ligature hides the difference between
+   `=` and `==` and makes the text the reader is studying misleading.
+
+   Ligatures are therefore switched off everywhere code or notes are shown.
+   Every property is set explicitly because `font-feature-settings` and
+   `font-variant-ligatures` are honoured by different browsers.
+   -------------------------------------------------------------------------- */
+code,
+pre,
+kbd,
+samp,
+.note-code-block code,
+.note-table code,
+.question-code-block code,
+.code-wrapper code,
+.bank-question-code,
+.explanations-content code,
+.quiz-text-input {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0, "calt" 0, "dlig" 0, "hlig" 0;
+}
