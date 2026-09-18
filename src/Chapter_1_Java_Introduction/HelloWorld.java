@@ -50,11 +50,71 @@ package Chapter_1_Java_Introduction;
 // @quiz (INTERVIEW) Why is Java called platform-independent?
 // @answer Java source code compiles to platform-neutral bytecode (.class), which runs on any system equipped with a compatible JVM.
 
-// @quiz (OCJP) What happens if the main method is declared without the `static` keyword?
-// @answer The code compiles cleanly, but running the class throws a runtime error indicating no entry-point main method was found.
+// @quiz (OCJP, MEDIUM) The class below compiles successfully. What happens when it is run with `java Startup`?
+// @code public class Startup {
+// @code     public void main(String[] args) {
+// @code         System.out.println("started");
+// @code     }
+// @code }
+// @option The JVM reports that the main method is missing, because no valid entry point exists. [correct]
+// @option It prints started.
+// @option It does not compile, because main must be static.
+// @option It prints started once for each argument in args.
+// @explain Compilation succeeds, because a non-static main is a legal method like any other. The launcher, however, looks for `public static void main(String[])`, does not find it, and reports that no main method could be found.
+// @why B: the method is never called, so nothing is printed.
+// @why C: the compiler has no objection. `static` is required by the launcher, not by the language.
+// @why D: args is never supplied, because the method is never reached.
 
-// @quiz (OCJP) Is `public static void main(String... args)` a valid Java entry point?
-// @answer Yes. Varargs syntax (`String...`) is treated as `String[]` by the JVM and is recognized as a valid main method signature.
+// @quiz (OCJP, MEDIUM) Which main method signatures let the class be started with `java Startup`?
+// @option `public static void main(String[] args)` and `public static void main(String... args)` [correct]
+// @option Only `public static void main(String[] args)`.
+// @option Only `public static void main(String... args)`.
+// @option Any method named main that takes one parameter.
+// @explain Both forms are accepted, because `String...` is compiled to `String[]`, so the two are the same signature once compiled. Nothing else qualifies: the method must be public, static, void, and take exactly one String array.
+// @why B: the varargs form is equally valid and is common in modern code.
+// @why C: the array form is the classic signature and still the one the launcher expects.
+// @why D: the return type and the parameter type matter. `private void main(int)` is not an entry point.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code public class Trace {
+// @code     public static void main(String[] args) {
+// @code         int a = 10;
+// @code         System.out.print("A" + a + 5);
+// @code         System.out.println();
+// @code         System.out.println(a + 5 + "B");
+// @code     }
+// @code }
+// @option A105 on one line, then 15B on the next. [correct]
+// @option A15 on one line, then 15B on the next.
+// @option A105 on one line, then 105B on the next.
+// @option A155 on one line, then 155B on the next.
+// @explain `+` is evaluated left to right. In `"A" + a + 5` the text comes first, so both numbers are joined: A105. In `a + 5 + "B"` the arithmetic comes first, so 10 + 5 is 15 and then the text is joined: 15B. The empty println only ends the line.
+// @why B: this would need parentheses, as in `"A" + (a + 5)`.
+// @why C: the second expression is arithmetic first, so 10 + 5 is 15 and not 105.
+// @why D: nothing here adds 155. The digits are 10 and 5, never 15 and 5.
+
+// @quiz (OCJP, HARD) Two files are created in the same folder. What happens when they are compiled?
+// @code // File One.java
+// @code public class One { }
+// @code public class Two { }
+// @option It does not compile, because only one class in a file may be public. [correct]
+// @option It compiles, and both classes are usable.
+// @option It compiles only if Two is also declared in its own file.
+// @option It compiles, and One.java is renamed to Two.java automatically.
+// @explain A source file may hold several classes, but only one of them may be public, and its name must match the file name. Two public classes in one file is a compile-time error.
+// @why B: the second public declaration is rejected before anything is produced.
+// @why C: declaring Two in its own file is exactly the fix. It is not an additional condition on this file.
+// @why D: the compiler never renames files.
+
+// @quiz (OCJP, MEDIUM) A file is saved as `Start.java` and contains `public class Startup { }`. What is the result?
+// @option It does not compile, because the public class name must match the file name. [correct]
+// @option It compiles, and produces Start.class.
+// @option It compiles, and produces Startup.class.
+// @option It compiles only if Startup is also mentioned in a package statement.
+// @explain A public class must live in a file of the same name, so `public class Startup` has to be in Startup.java. The compiler reports this before producing any bytecode.
+// @why B: no bytecode is produced from this file.
+// @why C: the class name is fine; the mismatch between the class name and the file name is what fails.
+// @why D: a package statement is unrelated to this rule.
 
 // @quiz (INTERVIEW, EASY) Which statement correctly describes how JDK, JRE, and JVM relate to each other?
 // @option The JDK contains the development tools and the JRE, and the JRE contains the core libraries and the JVM. [correct]

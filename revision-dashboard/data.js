@@ -166,28 +166,193 @@ const CONCEPTS_DATA = [
             "whyNotes": []
           },
           {
-            "question": "What happens if the main method is declared without the `static` keyword?",
-            "answers": [
-              "The code compiles cleanly, but running the class throws a runtime error indicating no entry-point main method was found."
-            ],
+            "question": "The class below compiles successfully. What happens when it is run with `java Startup`?",
+            "answers": [],
             "quizTag": "OCJP",
-            "quizLevel": null,
-            "options": [],
-            "code": [],
-            "explain": "",
-            "whyNotes": []
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "The JVM reports that the main method is missing, because no valid entry point exists.",
+                "correct": true
+              },
+              {
+                "text": "It prints started.",
+                "correct": false,
+                "why": "the method is never called, so nothing is printed."
+              },
+              {
+                "text": "It does not compile, because main must be static.",
+                "correct": false,
+                "why": "the compiler has no objection. `static` is required by the launcher, not by the language."
+              },
+              {
+                "text": "It prints started once for each argument in args.",
+                "correct": false,
+                "why": "args is never supplied, because the method is never reached."
+              }
+            ],
+            "code": [
+              "public class Startup {",
+              "public void main(String[] args) {",
+              "System.out.println(\"started\");",
+              "}",
+              "}"
+            ],
+            "explain": "Compilation succeeds, because a non-static main is a legal method like any other. The launcher, however, looks for `public static void main(String[])`, does not find it, and reports that no main method could be found.",
+            "whyNotes": [
+              "B: the method is never called, so nothing is printed.",
+              "C: the compiler has no objection. `static` is required by the launcher, not by the language.",
+              "D: args is never supplied, because the method is never reached."
+            ]
           },
           {
-            "question": "Is `public static void main(String... args)` a valid Java entry point?",
-            "answers": [
-              "Yes. Varargs syntax (`String...`) is treated as `String[]` by the JVM and is recognized as a valid main method signature."
-            ],
+            "question": "Which main method signatures let the class be started with `java Startup`?",
+            "answers": [],
             "quizTag": "OCJP",
-            "quizLevel": null,
-            "options": [],
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "`public static void main(String[] args)` and `public static void main(String... args)`",
+                "correct": true
+              },
+              {
+                "text": "Only `public static void main(String[] args)`.",
+                "correct": false,
+                "why": "the varargs form is equally valid and is common in modern code."
+              },
+              {
+                "text": "Only `public static void main(String... args)`.",
+                "correct": false,
+                "why": "the array form is the classic signature and still the one the launcher expects."
+              },
+              {
+                "text": "Any method named main that takes one parameter.",
+                "correct": false,
+                "why": "the return type and the parameter type matter. `private void main(int)` is not an entry point."
+              }
+            ],
             "code": [],
-            "explain": "",
-            "whyNotes": []
+            "explain": "Both forms are accepted, because `String...` is compiled to `String[]`, so the two are the same signature once compiled. Nothing else qualifies: the method must be public, static, void, and take exactly one String array.",
+            "whyNotes": [
+              "B: the varargs form is equally valid and is common in modern code.",
+              "C: the array form is the classic signature and still the one the launcher expects.",
+              "D: the return type and the parameter type matter. `private void main(int)` is not an entry point."
+            ]
+          },
+          {
+            "question": "What is printed by this program?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "A105 on one line, then 15B on the next.",
+                "correct": true
+              },
+              {
+                "text": "A15 on one line, then 15B on the next.",
+                "correct": false,
+                "why": "this would need parentheses, as in `\"A\" + (a + 5)`."
+              },
+              {
+                "text": "A105 on one line, then 105B on the next.",
+                "correct": false,
+                "why": "the second expression is arithmetic first, so 10 + 5 is 15 and not 105."
+              },
+              {
+                "text": "A155 on one line, then 155B on the next.",
+                "correct": false,
+                "why": "nothing here adds 155. The digits are 10 and 5, never 15 and 5."
+              }
+            ],
+            "code": [
+              "public class Trace {",
+              "public static void main(String[] args) {",
+              "int a = 10;",
+              "System.out.print(\"A\" + a + 5);",
+              "System.out.println();",
+              "System.out.println(a + 5 + \"B\");",
+              "}",
+              "}"
+            ],
+            "explain": "`+` is evaluated left to right. In `\"A\" + a + 5` the text comes first, so both numbers are joined: A105. In `a + 5 + \"B\"` the arithmetic comes first, so 10 + 5 is 15 and then the text is joined: 15B. The empty println only ends the line.",
+            "whyNotes": [
+              "B: this would need parentheses, as in `\"A\" + (a + 5)`.",
+              "C: the second expression is arithmetic first, so 10 + 5 is 15 and not 105.",
+              "D: nothing here adds 155. The digits are 10 and 5, never 15 and 5."
+            ]
+          },
+          {
+            "question": "Two files are created in the same folder. What happens when they are compiled?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "It does not compile, because only one class in a file may be public.",
+                "correct": true
+              },
+              {
+                "text": "It compiles, and both classes are usable.",
+                "correct": false,
+                "why": "the second public declaration is rejected before anything is produced."
+              },
+              {
+                "text": "It compiles only if Two is also declared in its own file.",
+                "correct": false,
+                "why": "declaring Two in its own file is exactly the fix. It is not an additional condition on this file."
+              },
+              {
+                "text": "It compiles, and One.java is renamed to Two.java automatically.",
+                "correct": false,
+                "why": "the compiler never renames files."
+              }
+            ],
+            "code": [
+              "// File One.java",
+              "public class One { }",
+              "public class Two { }"
+            ],
+            "explain": "A source file may hold several classes, but only one of them may be public, and its name must match the file name. Two public classes in one file is a compile-time error.",
+            "whyNotes": [
+              "B: the second public declaration is rejected before anything is produced.",
+              "C: declaring Two in its own file is exactly the fix. It is not an additional condition on this file.",
+              "D: the compiler never renames files."
+            ]
+          },
+          {
+            "question": "A file is saved as `Start.java` and contains `public class Startup { }`. What is the result?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It does not compile, because the public class name must match the file name.",
+                "correct": true
+              },
+              {
+                "text": "It compiles, and produces Start.class.",
+                "correct": false,
+                "why": "no bytecode is produced from this file."
+              },
+              {
+                "text": "It compiles, and produces Startup.class.",
+                "correct": false,
+                "why": "the class name is fine; the mismatch between the class name and the file name is what fails."
+              },
+              {
+                "text": "It compiles only if Startup is also mentioned in a package statement.",
+                "correct": false,
+                "why": "a package statement is unrelated to this rule."
+              }
+            ],
+            "code": [],
+            "explain": "A public class must live in a file of the same name, so `public class Startup` has to be in Startup.java. The compiler reports this before producing any bytecode.",
+            "whyNotes": [
+              "B: no bytecode is produced from this file.",
+              "C: the class name is fine; the mismatch between the class name and the file name is what fails.",
+              "D: a package statement is unrelated to this rule."
+            ]
           },
           {
             "question": "Which statement correctly describes how JDK, JRE, and JVM relate to each other?",
@@ -618,7 +783,7 @@ const CONCEPTS_DATA = [
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_1_Java_Introduction;\n\n// Core Concepts: Java Architecture & Execution Flow\n// Java is both a compiled and interpreted language.\n// Source code (.java) is compiled by `javac` into intermediate bytecode (.class files),\n// which is then executed by the Java Virtual Machine (JVM) on any platform (\"Write Once, Run Anywhere\").\n//\n// Those two steps, in order:\n// - javac HelloWorld.java :- writes HelloWorld.class, the bytecode\n// - java HelloWorld :- starts the JVM, which runs HelloWorld.class\n//\n// Note :- the file name must match the name of the public class inside it, so this file is\n// HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.\n// Note :- Java is case-sensitive. `HelloWorld` and `helloworld` are two different names.\n//\n// Key Components of Java Ecosystem:\n// - JDK (Java Development Kit): Contains development tools (`javac`, `javadoc`, debugger) + JRE.\n// - JRE (Java Runtime Environment): Contains core libraries + JVM for running applications.\n// - JVM (Java Virtual Machine): The execution engine that translates bytecode into native machine instructions.\n//\n// Main Method Signature Breakdown (`public static void main(String[] args)`):\n// - `public`: The launcher has to call `main`, so the method must be visible outside its own class.\n// - `static`: Allows the JVM to invoke `main` directly on the class without instantiating an object first.\n// - `void`: Indicates that the method returns no value to the caller.\n// - `main`: The exact identifier search target for the JVM application entry point.\n// - `String[] args`: Parameter array that captures command-line arguments passed during execution.\n//\n// The smallest complete program, with each part labelled:\n// public class HelloWorld {                       // the class name matches the file name\n//     public static void main(String[] args) {    // the entry point the JVM looks for\n//         System.out.println(\"Hello World\");      // prints the text, then moves to a new line\n//     }\n// }\n//\n// `System.out.println` is three parts joined by dots :-\n// - `System`  :- the class that gives access to the machine's standard streams.\n// - `out`     :- the standard output stream, normally the console.\n// - `println` :- prints the value it is given, then a newline. Use `print` when no newline is wanted.\n// Note :- the text inside the quotes is a String literal, and `println` accepts any value, not only text.\n//\n// What you should be able to do after this topic :-\n// - Compile a .java file and run the resulting .class file from the terminal.\n// - Say what the JDK, the JRE and the JVM each provide.\n// - Explain why `main` is public, static and void.\n\n\n// @quiz (INTERVIEW) What is the difference between JVM, JRE, and JDK?\n// @answer JDK is for development (contains compiler javac), JRE is for running Java programs (libraries + JVM), and JVM is the execution engine.\n\n// @quiz (INTERVIEW) Why is Java called platform-independent?\n// @answer Java source code compiles to platform-neutral bytecode (.class), which runs on any system equipped with a compatible JVM.\n\n// @quiz (OCJP) What happens if the main method is declared without the `static` keyword?\n// @answer The code compiles cleanly, but running the class throws a runtime error indicating no entry-point main method was found.\n\n// @quiz (OCJP) Is `public static void main(String... args)` a valid Java entry point?\n// @answer Yes. Varargs syntax (`String...`) is treated as `String[]` by the JVM and is recognized as a valid main method signature.\n\n// @quiz (INTERVIEW, EASY) Which statement correctly describes how JDK, JRE, and JVM relate to each other?\n// @option The JDK contains the development tools and the JRE, and the JRE contains the core libraries and the JVM. [correct]\n// @option The JRE contains the JDK and the javac compiler.\n// @option The JVM contains the JRE and the core libraries.\n// @option The three are unrelated components installed separately.\n// @explain The nesting is JDK > JRE > JVM. The JDK adds development tools such as javac on top of the JRE, and the JRE provides the libraries and the JVM that runs a program.\n// @why B: it is the other way round. The JDK contains the JRE, and javac lives in the JDK, not the JRE.\n// @why C: the JVM is the innermost piece. The JRE contains the JVM, and the JVM does not contain the libraries.\n// @why D: they are nested, not independent. Installing a JDK also gives you a JRE and a JVM.\n\n// @quiz (INTERVIEW, EASY) What does javac produce, and what runs it?\n// @option It compiles .java source into platform-neutral bytecode in .class files, which the JVM executes. [correct]\n// @option It compiles .java source straight into native machine code for the current operating system.\n// @option It interprets the .java source line by line, leaving no intermediate file.\n// @option It produces a stand-alone .exe that runs without a JVM.\n// @explain javac turns source into bytecode, and the JVM translates that bytecode into the native instructions of whatever machine it is running on.\n// @why B: producing native code directly is not what javac does. Bytecode is the intermediate step, and that is exactly what makes the same .class file portable.\n// @why C: javac is a compiler, not an interpreter, and it does write .class files to disk.\n// @why D: a .class file is not an executable. It needs a JVM to run.\n\n// @quiz (INTERVIEW, MEDIUM) Why must the main method be static?\n// @option So the JVM can call it on the class itself, without creating an object first. [correct]\n// @option So that other classes are allowed to call it.\n// @option So that no subclass is able to override it.\n// @option So that the method is not allowed to return a value.\n// @explain A program needs an entry point before any object exists, so main must be callable without an instance. That is what static provides.\n// @why B: being callable from other classes is the job of public, not static.\n// @why C: preventing overriding is the job of final, not static.\n// @why D: returning nothing is the job of void, not static.\n\n// @quiz (OCJP, HARD) Which single change to `public static void main(String[] args)` still leaves a valid entry point?\n// @option Adding final, as in `public static final void main(String[] args)` [correct]\n// @option Removing static\n// @option Removing public\n// @option Changing the return type to int\n// @explain The launcher requires a method named main that is public, static, and void, with one String[] parameter. Extra modifiers such as final are allowed, so the method is still a valid entry point.\n// @why B: without static it becomes an instance method, so the launcher finds no entry point and the program fails at runtime.\n// @why C: the launcher requires main to be public, so removing public breaks it.\n// @why D: the return type must be void. A static int main compiles, but it is not accepted as the entry point.\n\n// @quiz (INTERVIEW, EASY) What does the String[] args parameter of main actually receive?\n// @option The command-line arguments passed after the class name, each as a String. [correct]\n// @option The name of the class that is being run.\n// @option The lines of output the program has printed so far.\n// @option The list of methods declared in the class.\n// @explain args carries the values typed after the class name, for example `java HelloWorld Navneet 25` gives args[0] = \"Navneet\" and args[1] = \"25\". They are Strings, not numbers.\n// @why B: the class name is used by the launcher to find the class; it is not placed inside args.\n// @why C: args is input to the program, not a record of its output.\n// @why D: args holds data values only. Reflection is the tool for inspecting methods.\n\n// @quiz (OCJP, HARD) What actually makes \"Write Once, Run Anywhere\" possible?\n// @option The compiler produces platform-neutral bytecode, and each platform's own JVM translates it into that machine's instructions. [correct]\n// @option The .java source file is copied to the new machine and compiled there by javac.\n// @option The JVM is a single build that runs on every operating system unchanged.\n// @option Bytecode is already native machine code, so nothing has to be translated.\n// @explain The portable artefact is the .class file. The JVM is platform-specific, and that is the piece that adapts the same bytecode to each operating system.\n// @why B: copying source and recompiling is possible, but it is not the mechanism. The whole point is that the compiled .class file is already portable.\n// @why C: the JVM itself is not portable in that sense; there is a different JVM implementation for each platform, and installing one is how a machine gains the ability to run Java.\n// @why D: bytecode is an intermediate form, not native code. Translating it is precisely what the JVM does.\n\n// @quiz (INTERVIEW, MEDIUM) The program below is run with:  java HelloWorld Java notes\n// @code public class HelloWorld {\n// @code     public static void main(String[] args) {\n// @code         System.out.println(args.length);\n// @code         System.out.println(args[0]);\n// @code     }\n// @code }\n// @option It prints 2 and then Java. [correct]\n// @option It prints 2 and then notes.\n// @option It prints 1 and then Java.\n// @option It does not compile, because args is never assigned a value.\n// @explain args receives the words typed after the class name, in order. Two words were supplied, so the length is 2, and args[0] is the first one, \"Java\".\n// @why B: args[1] is \"notes\". Index 0 is always the first argument.\n// @why C: the length counts every argument, and two were given.\n// @why D: the JVM creates args and fills it in. You never assign it yourself.\n\n// @quiz (INTERVIEW, MEDIUM) This source is saved and you run javac HelloWorld.java. What happens?\n// @code public class HelloWorld {\n// @code     public static void main(String[] args) {\n// @code         System.out.println(\"Hello\")   // semicolon missing\n// @code     }\n// @code }\n// @option javac reports a compile error, no .class file is produced, and nothing runs. [correct]\n// @option javac still produces the .class file and the error appears only when you run it.\n// @option The .class file is produced and the program runs, printing Hello.\n// @option The compiler inserts the missing semicolon and compiles normally.\n// @explain Compilation is a separate stage that happens before anything runs. A syntax problem stops javac, so the bytecode is never created and there is nothing to execute.\n// @why B: javac only writes the .class when the whole file is valid, so the failure comes first.\n// @why C: the file never reaches the point of producing bytecode.\n// @why D: the compiler never repairs syntax. It reports the problem and stops.\n\n// @quiz (INTERVIEW, MEDIUM) A colleague's machine has the JRE installed, but no JDK. Which task can they do?\n// @option Run an existing .class file, but not compile .java source. [correct]\n// @option Compile .java source, but not run the result.\n// @option Both compile and run, because the JVM ships in the JRE.\n// @option Neither, because the JVM is only installed with the JDK.\n// @explain The JRE contains the core libraries and the JVM, which is everything needed to run a program. The development tools, including javac, live in the JDK, which is the larger set that contains the JRE.\n// @why B: compiling needs javac, and javac is part of the JDK, not the JRE.\n// @why C: the JVM is present, but the compiler is not, so compiling is not possible.\n// @why D: the JVM is precisely what the JRE provides.\n\n// @quiz (INTERVIEW, MEDIUM) You compile a program on Windows, then copy only the .class files to a Mac. What happens when a Java program is started there?\n// @option The Mac's JVM runs the same bytecode, because the JVM translates it for that machine. [correct]\n// @option It fails, because the .class files were produced for Windows.\n// @option It fails, because the .java source has to be copied as well.\n// @option It runs only after javac is used again on the Mac.\n// @explain The compiled .class file is the portable part. It contains bytecode, not machine code, and each platform's JVM turns that bytecode into instructions its own processor understands.\n// @why B: bytecode is platform-neutral. That is what makes the same file usable elsewhere.\n// @why C: the source is not needed to run. It is needed only to compile.\n// @why D: compiling again is unnecessary. That would defeat the purpose of bytecode.\n\n// @quiz (OCJP, HARD) The class below compiles successfully. What happens when you try to run it?\n// @code public class Start {\n// @code     public static int main(String[] args) {\n// @code         return 42;\n// @code     }\n// @code }\n// @option It compiles but the launcher reports that no main method was found, because the return type must be void. [correct]\n// @option It runs and prints 42.\n// @option It does not compile, because main may not return an int.\n// @option It runs and ignores the returned value.\n// @explain A static int method named main is a perfectly legal Java method, so the compiler accepts it. The launcher, however, looks for public static void main with a single String[] parameter, so it finds no entry point and refuses to start.\n// @why B: nothing calls the method, so nothing prints, and the JVM stops before main runs.\n// @why C: the compiler allows it. Only the launcher's rule rejects it.\n// @why D: the method is never reached. The failure happens before it is invoked.\n\n// @quiz (INTERVIEW, HARD) You change a message inside HelloWorld.java, then run `java HelloWorld` without running javac first. What is the effect of the change?\n// @option The old .class file still runs, so the change does not appear yet. [correct]\n// @option The new source is used automatically, so the change appears.\n// @option It fails, because the JVM always compiles the source first.\n// @option It fails, because the .class file becomes invalid once the source changes.\n// @explain java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.\n// @why B: the source is not consulted at run time, so the new text cannot take effect.\n// @why C: the JVM executes bytecode. Compiling is javac's job, and it is a separate step.\n// @why D: the existing .class stays valid. It simply does not contain your change.\n\n// Getting a program to run, from the beginning :-\n// 1) Source, bytecode, then the JVM :-\n// HelloWorld.java   --javac-->   HelloWorld.class   --java-->   runs on the JVM\n// Note :- javac is the compiler and it produces bytecode, not machine code. java starts the JVM and runs that bytecode. The JVM never reads your .java file.\n// Note :- this two-step arrangement is why Java is described as both compiled and interpreted: compiled to bytecode once, then the JVM runs that bytecode on whatever machine it is on.\n\n// 2) The two commands you actually type :-\n// javac HelloWorld.java      // compiles, and writes HelloWorld.class next to the source\n// java HelloWorld            // runs the class, with NO .java or .class on the end\n// Note :- `java HelloWorld.class` fails. The argument is a class name, not a file name.\n//\n// 3) The smallest complete program :-\n// public class HelloWorld {\n//     public static void main(String[] args) {\n//         System.out.println(\"Hello, Navneet!\");\n//     }\n// }\n// Output :- Hello, Navneet!\n//\n// 4) Reading System.out.println in three parts :-\n// System  is a class that Java provides, holding the standard streams.\n// out     is the standard output stream inside that class, normally the console.\n// println is the method called on it, and the \"ln\" means it moves to a new line after printing.\n// Note :- print does the same without the new line, and printf takes a format string instead.\n//\n// 5) Four rules that decide whether the file even compiles :-\n// - The file name must match the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`.\n// - Java is case-sensitive: `system.out.println` and `String` written as `string` are both wrong.\n// - One file may hold several classes, but only one of them may be public.\n// - The class holding `main` must not be private or protected, or java cannot start it.\n//\n// What you should be able to do after this chapter :-\n// - Write, compile and run a class that prints something, and explain what javac did and what java did.\n// - Explain why a change to the source appears to be ignored until the file is compiled again.\n// - Read `System.out.println(\"...\")` as a class, a stream and a method rather than as one magic word.\n\n// @takeaway `javac HelloWorld.java` compiles the source into bytecode, and `java HelloWorld` runs that bytecode on the JVM. The JVM never reads your .java file.\n// @takeaway Java is compiled and interpreted: javac turns source into bytecode once, and the JVM runs that bytecode on the machine it happens to be on.\n// @takeaway The file name has to match the public class inside it, so `public class HelloWorld` must live in HelloWorld.java.\n// @takeaway Java is case-sensitive, so `String` is not `string`, `System` is not `system`, and the capital letters in a name are part of the name.\n// @takeaway `System.out.println` is three separate things: the System class, its standard output stream `out`, and the `println` method, whose \"ln\" adds a new line at the end.\n// @gotcha Editing the source without compiling again appears to change nothing, because the JVM keeps running the previous bytecode that is already on disk.\n// @gotcha `java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.\n// @gotcha Only one class in a file may be public, and it must be the one whose name matches the file name.\n\n\npublic class HelloWorld {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"Hello World\");\n    }\n\n}\n"
+        "code": "package Chapter_1_Java_Introduction;\n\n// Core Concepts: Java Architecture & Execution Flow\n// Java is both a compiled and interpreted language.\n// Source code (.java) is compiled by `javac` into intermediate bytecode (.class files),\n// which is then executed by the Java Virtual Machine (JVM) on any platform (\"Write Once, Run Anywhere\").\n//\n// Those two steps, in order:\n// - javac HelloWorld.java :- writes HelloWorld.class, the bytecode\n// - java HelloWorld :- starts the JVM, which runs HelloWorld.class\n//\n// Note :- the file name must match the name of the public class inside it, so this file is\n// HelloWorld.java and it declares `public class HelloWorld`. A mismatch is a compile error.\n// Note :- Java is case-sensitive. `HelloWorld` and `helloworld` are two different names.\n//\n// Key Components of Java Ecosystem:\n// - JDK (Java Development Kit): Contains development tools (`javac`, `javadoc`, debugger) + JRE.\n// - JRE (Java Runtime Environment): Contains core libraries + JVM for running applications.\n// - JVM (Java Virtual Machine): The execution engine that translates bytecode into native machine instructions.\n//\n// Main Method Signature Breakdown (`public static void main(String[] args)`):\n// - `public`: The launcher has to call `main`, so the method must be visible outside its own class.\n// - `static`: Allows the JVM to invoke `main` directly on the class without instantiating an object first.\n// - `void`: Indicates that the method returns no value to the caller.\n// - `main`: The exact identifier search target for the JVM application entry point.\n// - `String[] args`: Parameter array that captures command-line arguments passed during execution.\n//\n// The smallest complete program, with each part labelled:\n// public class HelloWorld {                       // the class name matches the file name\n//     public static void main(String[] args) {    // the entry point the JVM looks for\n//         System.out.println(\"Hello World\");      // prints the text, then moves to a new line\n//     }\n// }\n//\n// `System.out.println` is three parts joined by dots :-\n// - `System`  :- the class that gives access to the machine's standard streams.\n// - `out`     :- the standard output stream, normally the console.\n// - `println` :- prints the value it is given, then a newline. Use `print` when no newline is wanted.\n// Note :- the text inside the quotes is a String literal, and `println` accepts any value, not only text.\n//\n// What you should be able to do after this topic :-\n// - Compile a .java file and run the resulting .class file from the terminal.\n// - Say what the JDK, the JRE and the JVM each provide.\n// - Explain why `main` is public, static and void.\n\n\n// @quiz (INTERVIEW) What is the difference between JVM, JRE, and JDK?\n// @answer JDK is for development (contains compiler javac), JRE is for running Java programs (libraries + JVM), and JVM is the execution engine.\n\n// @quiz (INTERVIEW) Why is Java called platform-independent?\n// @answer Java source code compiles to platform-neutral bytecode (.class), which runs on any system equipped with a compatible JVM.\n\n// @quiz (OCJP, MEDIUM) The class below compiles successfully. What happens when it is run with `java Startup`?\n// @code public class Startup {\n// @code     public void main(String[] args) {\n// @code         System.out.println(\"started\");\n// @code     }\n// @code }\n// @option The JVM reports that the main method is missing, because no valid entry point exists. [correct]\n// @option It prints started.\n// @option It does not compile, because main must be static.\n// @option It prints started once for each argument in args.\n// @explain Compilation succeeds, because a non-static main is a legal method like any other. The launcher, however, looks for `public static void main(String[])`, does not find it, and reports that no main method could be found.\n// @why B: the method is never called, so nothing is printed.\n// @why C: the compiler has no objection. `static` is required by the launcher, not by the language.\n// @why D: args is never supplied, because the method is never reached.\n\n// @quiz (OCJP, MEDIUM) Which main method signatures let the class be started with `java Startup`?\n// @option `public static void main(String[] args)` and `public static void main(String... args)` [correct]\n// @option Only `public static void main(String[] args)`.\n// @option Only `public static void main(String... args)`.\n// @option Any method named main that takes one parameter.\n// @explain Both forms are accepted, because `String...` is compiled to `String[]`, so the two are the same signature once compiled. Nothing else qualifies: the method must be public, static, void, and take exactly one String array.\n// @why B: the varargs form is equally valid and is common in modern code.\n// @why C: the array form is the classic signature and still the one the launcher expects.\n// @why D: the return type and the parameter type matter. `private void main(int)` is not an entry point.\n\n// @quiz (OCJP, HARD) What is printed by this program?\n// @code public class Trace {\n// @code     public static void main(String[] args) {\n// @code         int a = 10;\n// @code         System.out.print(\"A\" + a + 5);\n// @code         System.out.println();\n// @code         System.out.println(a + 5 + \"B\");\n// @code     }\n// @code }\n// @option A105 on one line, then 15B on the next. [correct]\n// @option A15 on one line, then 15B on the next.\n// @option A105 on one line, then 105B on the next.\n// @option A155 on one line, then 155B on the next.\n// @explain `+` is evaluated left to right. In `\"A\" + a + 5` the text comes first, so both numbers are joined: A105. In `a + 5 + \"B\"` the arithmetic comes first, so 10 + 5 is 15 and then the text is joined: 15B. The empty println only ends the line.\n// @why B: this would need parentheses, as in `\"A\" + (a + 5)`.\n// @why C: the second expression is arithmetic first, so 10 + 5 is 15 and not 105.\n// @why D: nothing here adds 155. The digits are 10 and 5, never 15 and 5.\n\n// @quiz (OCJP, HARD) Two files are created in the same folder. What happens when they are compiled?\n// @code // File One.java\n// @code public class One { }\n// @code public class Two { }\n// @option It does not compile, because only one class in a file may be public. [correct]\n// @option It compiles, and both classes are usable.\n// @option It compiles only if Two is also declared in its own file.\n// @option It compiles, and One.java is renamed to Two.java automatically.\n// @explain A source file may hold several classes, but only one of them may be public, and its name must match the file name. Two public classes in one file is a compile-time error.\n// @why B: the second public declaration is rejected before anything is produced.\n// @why C: declaring Two in its own file is exactly the fix. It is not an additional condition on this file.\n// @why D: the compiler never renames files.\n\n// @quiz (OCJP, MEDIUM) A file is saved as `Start.java` and contains `public class Startup { }`. What is the result?\n// @option It does not compile, because the public class name must match the file name. [correct]\n// @option It compiles, and produces Start.class.\n// @option It compiles, and produces Startup.class.\n// @option It compiles only if Startup is also mentioned in a package statement.\n// @explain A public class must live in a file of the same name, so `public class Startup` has to be in Startup.java. The compiler reports this before producing any bytecode.\n// @why B: no bytecode is produced from this file.\n// @why C: the class name is fine; the mismatch between the class name and the file name is what fails.\n// @why D: a package statement is unrelated to this rule.\n\n// @quiz (INTERVIEW, EASY) Which statement correctly describes how JDK, JRE, and JVM relate to each other?\n// @option The JDK contains the development tools and the JRE, and the JRE contains the core libraries and the JVM. [correct]\n// @option The JRE contains the JDK and the javac compiler.\n// @option The JVM contains the JRE and the core libraries.\n// @option The three are unrelated components installed separately.\n// @explain The nesting is JDK > JRE > JVM. The JDK adds development tools such as javac on top of the JRE, and the JRE provides the libraries and the JVM that runs a program.\n// @why B: it is the other way round. The JDK contains the JRE, and javac lives in the JDK, not the JRE.\n// @why C: the JVM is the innermost piece. The JRE contains the JVM, and the JVM does not contain the libraries.\n// @why D: they are nested, not independent. Installing a JDK also gives you a JRE and a JVM.\n\n// @quiz (INTERVIEW, EASY) What does javac produce, and what runs it?\n// @option It compiles .java source into platform-neutral bytecode in .class files, which the JVM executes. [correct]\n// @option It compiles .java source straight into native machine code for the current operating system.\n// @option It interprets the .java source line by line, leaving no intermediate file.\n// @option It produces a stand-alone .exe that runs without a JVM.\n// @explain javac turns source into bytecode, and the JVM translates that bytecode into the native instructions of whatever machine it is running on.\n// @why B: producing native code directly is not what javac does. Bytecode is the intermediate step, and that is exactly what makes the same .class file portable.\n// @why C: javac is a compiler, not an interpreter, and it does write .class files to disk.\n// @why D: a .class file is not an executable. It needs a JVM to run.\n\n// @quiz (INTERVIEW, MEDIUM) Why must the main method be static?\n// @option So the JVM can call it on the class itself, without creating an object first. [correct]\n// @option So that other classes are allowed to call it.\n// @option So that no subclass is able to override it.\n// @option So that the method is not allowed to return a value.\n// @explain A program needs an entry point before any object exists, so main must be callable without an instance. That is what static provides.\n// @why B: being callable from other classes is the job of public, not static.\n// @why C: preventing overriding is the job of final, not static.\n// @why D: returning nothing is the job of void, not static.\n\n// @quiz (OCJP, HARD) Which single change to `public static void main(String[] args)` still leaves a valid entry point?\n// @option Adding final, as in `public static final void main(String[] args)` [correct]\n// @option Removing static\n// @option Removing public\n// @option Changing the return type to int\n// @explain The launcher requires a method named main that is public, static, and void, with one String[] parameter. Extra modifiers such as final are allowed, so the method is still a valid entry point.\n// @why B: without static it becomes an instance method, so the launcher finds no entry point and the program fails at runtime.\n// @why C: the launcher requires main to be public, so removing public breaks it.\n// @why D: the return type must be void. A static int main compiles, but it is not accepted as the entry point.\n\n// @quiz (INTERVIEW, EASY) What does the String[] args parameter of main actually receive?\n// @option The command-line arguments passed after the class name, each as a String. [correct]\n// @option The name of the class that is being run.\n// @option The lines of output the program has printed so far.\n// @option The list of methods declared in the class.\n// @explain args carries the values typed after the class name, for example `java HelloWorld Navneet 25` gives args[0] = \"Navneet\" and args[1] = \"25\". They are Strings, not numbers.\n// @why B: the class name is used by the launcher to find the class; it is not placed inside args.\n// @why C: args is input to the program, not a record of its output.\n// @why D: args holds data values only. Reflection is the tool for inspecting methods.\n\n// @quiz (OCJP, HARD) What actually makes \"Write Once, Run Anywhere\" possible?\n// @option The compiler produces platform-neutral bytecode, and each platform's own JVM translates it into that machine's instructions. [correct]\n// @option The .java source file is copied to the new machine and compiled there by javac.\n// @option The JVM is a single build that runs on every operating system unchanged.\n// @option Bytecode is already native machine code, so nothing has to be translated.\n// @explain The portable artefact is the .class file. The JVM is platform-specific, and that is the piece that adapts the same bytecode to each operating system.\n// @why B: copying source and recompiling is possible, but it is not the mechanism. The whole point is that the compiled .class file is already portable.\n// @why C: the JVM itself is not portable in that sense; there is a different JVM implementation for each platform, and installing one is how a machine gains the ability to run Java.\n// @why D: bytecode is an intermediate form, not native code. Translating it is precisely what the JVM does.\n\n// @quiz (INTERVIEW, MEDIUM) The program below is run with:  java HelloWorld Java notes\n// @code public class HelloWorld {\n// @code     public static void main(String[] args) {\n// @code         System.out.println(args.length);\n// @code         System.out.println(args[0]);\n// @code     }\n// @code }\n// @option It prints 2 and then Java. [correct]\n// @option It prints 2 and then notes.\n// @option It prints 1 and then Java.\n// @option It does not compile, because args is never assigned a value.\n// @explain args receives the words typed after the class name, in order. Two words were supplied, so the length is 2, and args[0] is the first one, \"Java\".\n// @why B: args[1] is \"notes\". Index 0 is always the first argument.\n// @why C: the length counts every argument, and two were given.\n// @why D: the JVM creates args and fills it in. You never assign it yourself.\n\n// @quiz (INTERVIEW, MEDIUM) This source is saved and you run javac HelloWorld.java. What happens?\n// @code public class HelloWorld {\n// @code     public static void main(String[] args) {\n// @code         System.out.println(\"Hello\")   // semicolon missing\n// @code     }\n// @code }\n// @option javac reports a compile error, no .class file is produced, and nothing runs. [correct]\n// @option javac still produces the .class file and the error appears only when you run it.\n// @option The .class file is produced and the program runs, printing Hello.\n// @option The compiler inserts the missing semicolon and compiles normally.\n// @explain Compilation is a separate stage that happens before anything runs. A syntax problem stops javac, so the bytecode is never created and there is nothing to execute.\n// @why B: javac only writes the .class when the whole file is valid, so the failure comes first.\n// @why C: the file never reaches the point of producing bytecode.\n// @why D: the compiler never repairs syntax. It reports the problem and stops.\n\n// @quiz (INTERVIEW, MEDIUM) A colleague's machine has the JRE installed, but no JDK. Which task can they do?\n// @option Run an existing .class file, but not compile .java source. [correct]\n// @option Compile .java source, but not run the result.\n// @option Both compile and run, because the JVM ships in the JRE.\n// @option Neither, because the JVM is only installed with the JDK.\n// @explain The JRE contains the core libraries and the JVM, which is everything needed to run a program. The development tools, including javac, live in the JDK, which is the larger set that contains the JRE.\n// @why B: compiling needs javac, and javac is part of the JDK, not the JRE.\n// @why C: the JVM is present, but the compiler is not, so compiling is not possible.\n// @why D: the JVM is precisely what the JRE provides.\n\n// @quiz (INTERVIEW, MEDIUM) You compile a program on Windows, then copy only the .class files to a Mac. What happens when a Java program is started there?\n// @option The Mac's JVM runs the same bytecode, because the JVM translates it for that machine. [correct]\n// @option It fails, because the .class files were produced for Windows.\n// @option It fails, because the .java source has to be copied as well.\n// @option It runs only after javac is used again on the Mac.\n// @explain The compiled .class file is the portable part. It contains bytecode, not machine code, and each platform's JVM turns that bytecode into instructions its own processor understands.\n// @why B: bytecode is platform-neutral. That is what makes the same file usable elsewhere.\n// @why C: the source is not needed to run. It is needed only to compile.\n// @why D: compiling again is unnecessary. That would defeat the purpose of bytecode.\n\n// @quiz (OCJP, HARD) The class below compiles successfully. What happens when you try to run it?\n// @code public class Start {\n// @code     public static int main(String[] args) {\n// @code         return 42;\n// @code     }\n// @code }\n// @option It compiles but the launcher reports that no main method was found, because the return type must be void. [correct]\n// @option It runs and prints 42.\n// @option It does not compile, because main may not return an int.\n// @option It runs and ignores the returned value.\n// @explain A static int method named main is a perfectly legal Java method, so the compiler accepts it. The launcher, however, looks for public static void main with a single String[] parameter, so it finds no entry point and refuses to start.\n// @why B: nothing calls the method, so nothing prints, and the JVM stops before main runs.\n// @why C: the compiler allows it. Only the launcher's rule rejects it.\n// @why D: the method is never reached. The failure happens before it is invoked.\n\n// @quiz (INTERVIEW, HARD) You change a message inside HelloWorld.java, then run `java HelloWorld` without running javac first. What is the effect of the change?\n// @option The old .class file still runs, so the change does not appear yet. [correct]\n// @option The new source is used automatically, so the change appears.\n// @option It fails, because the JVM always compiles the source first.\n// @option It fails, because the .class file becomes invalid once the source changes.\n// @explain java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.\n// @why B: the source is not consulted at run time, so the new text cannot take effect.\n// @why C: the JVM executes bytecode. Compiling is javac's job, and it is a separate step.\n// @why D: the existing .class stays valid. It simply does not contain your change.\n\n// Getting a program to run, from the beginning :-\n// 1) Source, bytecode, then the JVM :-\n// HelloWorld.java   --javac-->   HelloWorld.class   --java-->   runs on the JVM\n// Note :- javac is the compiler and it produces bytecode, not machine code. java starts the JVM and runs that bytecode. The JVM never reads your .java file.\n// Note :- this two-step arrangement is why Java is described as both compiled and interpreted: compiled to bytecode once, then the JVM runs that bytecode on whatever machine it is on.\n\n// 2) The two commands you actually type :-\n// javac HelloWorld.java      // compiles, and writes HelloWorld.class next to the source\n// java HelloWorld            // runs the class, with NO .java or .class on the end\n// Note :- `java HelloWorld.class` fails. The argument is a class name, not a file name.\n//\n// 3) The smallest complete program :-\n// public class HelloWorld {\n//     public static void main(String[] args) {\n//         System.out.println(\"Hello, Navneet!\");\n//     }\n// }\n// Output :- Hello, Navneet!\n//\n// 4) Reading System.out.println in three parts :-\n// System  is a class that Java provides, holding the standard streams.\n// out     is the standard output stream inside that class, normally the console.\n// println is the method called on it, and the \"ln\" means it moves to a new line after printing.\n// Note :- print does the same without the new line, and printf takes a format string instead.\n//\n// 5) Four rules that decide whether the file even compiles :-\n// - The file name must match the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`.\n// - Java is case-sensitive: `system.out.println` and `String` written as `string` are both wrong.\n// - One file may hold several classes, but only one of them may be public.\n// - The class holding `main` must not be private or protected, or java cannot start it.\n//\n// What you should be able to do after this chapter :-\n// - Write, compile and run a class that prints something, and explain what javac did and what java did.\n// - Explain why a change to the source appears to be ignored until the file is compiled again.\n// - Read `System.out.println(\"...\")` as a class, a stream and a method rather than as one magic word.\n\n// @takeaway `javac HelloWorld.java` compiles the source into bytecode, and `java HelloWorld` runs that bytecode on the JVM. The JVM never reads your .java file.\n// @takeaway Java is compiled and interpreted: javac turns source into bytecode once, and the JVM runs that bytecode on the machine it happens to be on.\n// @takeaway The file name has to match the public class inside it, so `public class HelloWorld` must live in HelloWorld.java.\n// @takeaway Java is case-sensitive, so `String` is not `string`, `System` is not `system`, and the capital letters in a name are part of the name.\n// @takeaway `System.out.println` is three separate things: the System class, its standard output stream `out`, and the `println` method, whose \"ln\" adds a new line at the end.\n// @gotcha Editing the source without compiling again appears to change nothing, because the JVM keeps running the previous bytecode that is already on disk.\n// @gotcha `java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.\n// @gotcha Only one class in a file may be public, and it must be the one whose name matches the file name.\n\n\npublic class HelloWorld {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"Hello World\");\n    }\n\n}\n"
       },
       {
         "filePath": "src/Chapter_1_Java_Introduction/Sub_Chapter_2_Java_Intro_CodingChallenge/HelloWorldVariationChallenge.java",
@@ -17958,7 +18123,8 @@ const CONCEPTS_DATA = [
           {
             "type": "lines",
             "lines": [
-              "Note :- they are not competing choices for a whole program, and this example uses both together."
+              "Note :- they are not competing choices for a whole program, and this example uses both together.",
+              "Exam practice :-"
             ]
           }
         ],
@@ -18102,10 +18268,159 @@ const CONCEPTS_DATA = [
               "C: no conversion happens. A Monitor already is a Product.",
               "D: they are different: IS-A is a kind of, HAS-A is made of parts."
             ]
+          },
+          {
+            "question": "Which statement about the two relationships is correct?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "`extends` creates an IS-A relationship, and holding an object in a field creates a HAS-A relationship.",
+                "correct": true
+              },
+              {
+                "text": "`extends` creates a HAS-A relationship, and holding an object in a field creates an IS-A relationship.",
+                "correct": false,
+                "why": "the two are the wrong way round."
+              },
+              {
+                "text": "Both create an IS-A relationship, and HAS-A needs an interface.",
+                "correct": false,
+                "why": "composition needs no interface. A field is enough, which is what makes it so flexible."
+              },
+              {
+                "text": "Neither creates a relationship until the code is run.",
+                "correct": false,
+                "why": "relationships between types are fixed when the code compiles, not when it runs."
+              }
+            ],
+            "code": [],
+            "explain": "The keyword decides the relationship. `class Monitor extends Product` claims a Monitor IS-A Product, so a Monitor can be used wherever a Product is expected. Storing a Monitor in a field of PersonalComputer makes it a part, which is HAS-A.",
+            "whyNotes": [
+              "B: the two are the wrong way round.",
+              "C: composition needs no interface. A field is enough, which is what makes it so flexible.",
+              "D: relationships between types are fixed when the code compiles, not when it runs."
+            ]
+          },
+          {
+            "question": "What is printed by this program?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "car with petrol",
+                "correct": true
+              },
+              {
+                "text": "It does not compile, because Car does not extend Engine.",
+                "correct": false,
+                "why": "extending Engine is one way to reuse it, not a requirement. Composition reuses it through a field."
+              },
+              {
+                "text": "It does not compile, because engine is private.",
+                "correct": false,
+                "why": "private restricts access from outside the class, and describe() is inside Car."
+              },
+              {
+                "text": "car with null",
+                "correct": false,
+                "why": "the field is initialised with new Engine(), so it is never null."
+              }
+            ],
+            "code": [
+              "class Engine {",
+              "String type() { return \"petrol\"; }",
+              "}",
+              "class Car {",
+              "private Engine engine = new Engine();",
+              "String describe() { return \"car with \" + engine.type(); }",
+              "}",
+              "public class Main {",
+              "public static void main(String[] args) {",
+              "System.out.println(new Car().describe());",
+              "}",
+              "}"
+            ],
+            "explain": "Car HAS-A Engine rather than IS-A Engine, so it reaches the engine's behaviour by calling through the field. That call is delegation: Car asks its own Engine to answer. A private field is freely usable inside the class that declares it.",
+            "whyNotes": [
+              "B: extending Engine is one way to reuse it, not a requirement. Composition reuses it through a field.",
+              "C: private restricts access from outside the class, and describe() is inside Car.",
+              "D: the field is initialised with new Engine(), so it is never null."
+            ]
+          },
+          {
+            "question": "A class needs the behaviour of another class but is not a kind of it. Which change is safest?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "Hold an instance of that class in a field and call its methods from yours.",
+                "correct": true
+              },
+              {
+                "text": "Extend that class with `extends`.",
+                "correct": false,
+                "why": "extending asserts an IS-A relationship. Using it only to borrow code is the mistake the advice about composition is warning against."
+              },
+              {
+                "text": "Copy the methods into your class.",
+                "correct": false,
+                "why": "copying the methods duplicates logic, so a fix has to be made in more than one place."
+              },
+              {
+                "text": "Make every method of the other class static.",
+                "correct": false,
+                "why": "making methods static removes them from the object and prevents the other class from being replaced or tested separately."
+              }
+            ],
+            "code": [],
+            "explain": "Composition reuses behaviour without claiming a relationship that does not exist. Extending a class you are not a kind of misleads every reader, and it also ties your class to the parent's implementation, so a change in the parent can break you.",
+            "whyNotes": [
+              "B: extending asserts an IS-A relationship. Using it only to borrow code is the mistake the advice about composition is warning against.",
+              "C: copying the methods duplicates logic, so a fix has to be made in more than one place.",
+              "D: making methods static removes them from the object and prevents the other class from being replaced or tested separately."
+            ]
+          },
+          {
+            "question": "Which of these is a HAS-A relationship?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "A Library that keeps a list of Book objects.",
+                "correct": true
+              },
+              {
+                "text": "A Novel that extends Book.",
+                "correct": false,
+                "why": "Novel IS-A Book, which is inheritance."
+              },
+              {
+                "text": "A Book that implements Printable.",
+                "correct": false,
+                "why": "implementing an interface is not a HAS-A relationship. It is a promise to provide the interface's methods."
+              },
+              {
+                "text": "A Book whose class is declared final.",
+                "correct": false,
+                "why": "final prevents subclassing. It says nothing about composition."
+              }
+            ],
+            "code": [],
+            "explain": "Holding Book objects inside Library is composition, so a Library HAS-A collection of Books. Extending a class is IS-A, and implementing an interface is a can-do relationship.",
+            "whyNotes": [
+              "B: Novel IS-A Book, which is inheritance.",
+              "C: implementing an interface is not a HAS-A relationship. It is a promise to provide the interface's methods.",
+              "D: final prevents subclassing. It says nothing about composition."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_15_Composition.Sub_Chapter_2_Inheritence_Vs_Composition;\n\n/*\n*  Inheritence is a way to reuse functionality and attributes\n*\n*  Composition is a way to make the combination of classes act like a single coherent object\n* */\n\n// @quiz (INTERVIEW, MEDIUM) How is inheritance described in these notes?\n// @option Inheritance is a way to reuse functionality and attributes from a parent class. [correct]\n// @option Inheritance is a way to make several objects act as one.\n// @option Inheritance means copying the source code of one class into another.\n// @option Inheritance is only possible between classes in the same package.\n// @explain Inheritance lets a subclass reuse what the parent already defines, and then add to it or change it. It is reuse through a parent-child relationship, not copying.\n// @why B: making a combination of classes act as one coherent object is the description of composition.\n// @why C: the subclass reuses the parent's definition. Nothing is copied into the file.\n// @why D: a subclass may extend a class from another package, provided the class is visible.\n\n// @quiz (INTERVIEW, MEDIUM) How is composition described in these notes?\n// @option Composition is a way to make a combination of classes act like a single coherent object. [correct]\n// @option Composition is a way to reuse attributes through a parent-child hierarchy.\n// @option Composition means one class can have only one field.\n// @option Composition is another word for inheritance.\n// @explain Composition is about building one thing out of others and presenting the result as a single object. The containing class delegates work to the parts it holds.\n// @why B: reusing attributes through a parent-child hierarchy is inheritance.\n// @why C: a composed class can hold as many parts as it needs.\n// @why D: they are different approaches, which is why this topic compares them.\n\n// @quiz (INTERVIEW, MEDIUM) A PersonalComputer holds a Monitor, a MotherBoard and a ComputerCase as fields. Which relationship is that?\n// @option HAS-A, which is composition, because the parts are held inside the whole. [correct]\n// @option IS-A, because the parts are all products.\n// @option IS-A, because the computer uses the parts.\n// @option Neither. Holding a field is not a relationship between classes.\n// @explain The computer is built from those objects, so it has them. IS-A describes inheritance, where one class is a kind of another, which is a different relationship.\n// @why B: the parts being Products is a separate IS-A relationship, and it is not what the fields express.\n// @why C: using a part is still HAS-A. The whole contains it.\n// @why D: one object holding another as a field is exactly how composition is expressed.\n\n// @quiz (OCJP, HARD) Why can a Monitor be used in both of these ways?\n// @code Product p = new Monitor();          // IS-A\n// @code personalComputer.setMonitor(m);    // HAS-A\n// @option Because Monitor is a kind of Product and is also able to be held as a part of another object. [correct]\n// @option Because Monitor inherits from PersonalComputer.\n// @option Because setMonitor converts the Monitor into a Product.\n// @option Because composition and inheritance are the same relationship.\n// @explain Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.\n// @why B: the inheritance runs the other way, from Monitor up to Product.\n// @why C: no conversion happens. A Monitor already is a Product.\n// @why D: they are different: IS-A is a kind of, HAS-A is made of parts.\n\n// Telling the two apart in one sentence :-\n// IS-A   -> inheritance: `class Monitor extends Product` means a Monitor is a kind of Product, so it can be used wherever a Product is expected.\n// HAS-A  -> composition: a PersonalComputer holds a Monitor in a field, so a computer is made of parts it owns.\n//\n// When to reach for which :-\n// Choose inheritance when the child really is a more specific version of the parent, and the parent's behaviour belongs to the child unchanged. A Monitor genuinely is a Product.\n// Choose composition when one thing is built from others, or when you only want to reuse behaviour without claiming to be a kind of the other type. A computer is not a kind of monitor.\n// Note :- inheritance ties the child to the parent's definition, so a change in the parent reaches every subclass. Composition leaves the parts independent, which is why \"prefer composition over inheritance\" is common advice.\n//\n// A class can be in both relationships at once :-\n// Monitor IS-A Product       (inheritance, through extends)\n// PersonalComputer HAS-A Monitor   (composition, through a field)\n// Note :- they are not competing choices for a whole program, and this example uses both together.\n\n\npublic class InheritenceVsComposition {\n}\n"
+        "code": "package Chapter_15_Composition.Sub_Chapter_2_Inheritence_Vs_Composition;\n\n/*\n*  Inheritence is a way to reuse functionality and attributes\n*\n*  Composition is a way to make the combination of classes act like a single coherent object\n* */\n\n// @quiz (INTERVIEW, MEDIUM) How is inheritance described in these notes?\n// @option Inheritance is a way to reuse functionality and attributes from a parent class. [correct]\n// @option Inheritance is a way to make several objects act as one.\n// @option Inheritance means copying the source code of one class into another.\n// @option Inheritance is only possible between classes in the same package.\n// @explain Inheritance lets a subclass reuse what the parent already defines, and then add to it or change it. It is reuse through a parent-child relationship, not copying.\n// @why B: making a combination of classes act as one coherent object is the description of composition.\n// @why C: the subclass reuses the parent's definition. Nothing is copied into the file.\n// @why D: a subclass may extend a class from another package, provided the class is visible.\n\n// @quiz (INTERVIEW, MEDIUM) How is composition described in these notes?\n// @option Composition is a way to make a combination of classes act like a single coherent object. [correct]\n// @option Composition is a way to reuse attributes through a parent-child hierarchy.\n// @option Composition means one class can have only one field.\n// @option Composition is another word for inheritance.\n// @explain Composition is about building one thing out of others and presenting the result as a single object. The containing class delegates work to the parts it holds.\n// @why B: reusing attributes through a parent-child hierarchy is inheritance.\n// @why C: a composed class can hold as many parts as it needs.\n// @why D: they are different approaches, which is why this topic compares them.\n\n// @quiz (INTERVIEW, MEDIUM) A PersonalComputer holds a Monitor, a MotherBoard and a ComputerCase as fields. Which relationship is that?\n// @option HAS-A, which is composition, because the parts are held inside the whole. [correct]\n// @option IS-A, because the parts are all products.\n// @option IS-A, because the computer uses the parts.\n// @option Neither. Holding a field is not a relationship between classes.\n// @explain The computer is built from those objects, so it has them. IS-A describes inheritance, where one class is a kind of another, which is a different relationship.\n// @why B: the parts being Products is a separate IS-A relationship, and it is not what the fields express.\n// @why C: using a part is still HAS-A. The whole contains it.\n// @why D: one object holding another as a field is exactly how composition is expressed.\n\n// @quiz (OCJP, HARD) Why can a Monitor be used in both of these ways?\n// @code Product p = new Monitor();          // IS-A\n// @code personalComputer.setMonitor(m);    // HAS-A\n// @option Because Monitor is a kind of Product and is also able to be held as a part of another object. [correct]\n// @option Because Monitor inherits from PersonalComputer.\n// @option Because setMonitor converts the Monitor into a Product.\n// @option Because composition and inheritance are the same relationship.\n// @explain Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.\n// @why B: the inheritance runs the other way, from Monitor up to Product.\n// @why C: no conversion happens. A Monitor already is a Product.\n// @why D: they are different: IS-A is a kind of, HAS-A is made of parts.\n\n// Telling the two apart in one sentence :-\n// IS-A   -> inheritance: `class Monitor extends Product` means a Monitor is a kind of Product, so it can be used wherever a Product is expected.\n// HAS-A  -> composition: a PersonalComputer holds a Monitor in a field, so a computer is made of parts it owns.\n//\n// When to reach for which :-\n// Choose inheritance when the child really is a more specific version of the parent, and the parent's behaviour belongs to the child unchanged. A Monitor genuinely is a Product.\n// Choose composition when one thing is built from others, or when you only want to reuse behaviour without claiming to be a kind of the other type. A computer is not a kind of monitor.\n// Note :- inheritance ties the child to the parent's definition, so a change in the parent reaches every subclass. Composition leaves the parts independent, which is why \"prefer composition over inheritance\" is common advice.\n//\n// A class can be in both relationships at once :-\n// Monitor IS-A Product       (inheritance, through extends)\n// PersonalComputer HAS-A Monitor   (composition, through a field)\n// Note :- they are not competing choices for a whole program, and this example uses both together.\n\n// Exam practice :-\n// @quiz (OCJP, MEDIUM) Which statement about the two relationships is correct?\n// @option `extends` creates an IS-A relationship, and holding an object in a field creates a HAS-A relationship. [correct]\n// @option `extends` creates a HAS-A relationship, and holding an object in a field creates an IS-A relationship.\n// @option Both create an IS-A relationship, and HAS-A needs an interface.\n// @option Neither creates a relationship until the code is run.\n// @explain The keyword decides the relationship. `class Monitor extends Product` claims a Monitor IS-A Product, so a Monitor can be used wherever a Product is expected. Storing a Monitor in a field of PersonalComputer makes it a part, which is HAS-A.\n// @why B: the two are the wrong way round.\n// @why C: composition needs no interface. A field is enough, which is what makes it so flexible.\n// @why D: relationships between types are fixed when the code compiles, not when it runs.\n\n// @quiz (OCJP, HARD) What is printed by this program?\n// @code class Engine {\n// @code     String type() { return \"petrol\"; }\n// @code }\n// @code class Car {\n// @code     private Engine engine = new Engine();\n// @code     String describe() { return \"car with \" + engine.type(); }\n// @code }\n// @code public class Main {\n// @code     public static void main(String[] args) {\n// @code         System.out.println(new Car().describe());\n// @code     }\n// @code }\n// @option car with petrol [correct]\n// @option It does not compile, because Car does not extend Engine.\n// @option It does not compile, because engine is private.\n// @option car with null\n// @explain Car HAS-A Engine rather than IS-A Engine, so it reaches the engine's behaviour by calling through the field. That call is delegation: Car asks its own Engine to answer. A private field is freely usable inside the class that declares it.\n// @why B: extending Engine is one way to reuse it, not a requirement. Composition reuses it through a field.\n// @why C: private restricts access from outside the class, and describe() is inside Car.\n// @why D: the field is initialised with new Engine(), so it is never null.\n\n// @quiz (OCJP, HARD) A class needs the behaviour of another class but is not a kind of it. Which change is safest?\n// @option Hold an instance of that class in a field and call its methods from yours. [correct]\n// @option Extend that class with `extends`.\n// @option Copy the methods into your class.\n// @option Make every method of the other class static.\n// @explain Composition reuses behaviour without claiming a relationship that does not exist. Extending a class you are not a kind of misleads every reader, and it also ties your class to the parent's implementation, so a change in the parent can break you.\n// @why B: extending asserts an IS-A relationship. Using it only to borrow code is the mistake the advice about composition is warning against.\n// @why C: copying the methods duplicates logic, so a fix has to be made in more than one place.\n// @why D: making methods static removes them from the object and prevents the other class from being replaced or tested separately.\n\n// @quiz (OCJP, MEDIUM) Which of these is a HAS-A relationship?\n// @option A Library that keeps a list of Book objects. [correct]\n// @option A Novel that extends Book.\n// @option A Book that implements Printable.\n// @option A Book whose class is declared final.\n// @explain Holding Book objects inside Library is composition, so a Library HAS-A collection of Books. Extending a class is IS-A, and implementing an interface is a can-do relationship.\n// @why B: Novel IS-A Book, which is inheritance.\n// @why C: implementing an interface is not a HAS-A relationship. It is a promise to provide the interface's methods.\n// @why D: final prevents subclassing. It says nothing about composition.\n\n\npublic class InheritenceVsComposition {\n}\n"
       },
       {
         "filePath": "src/Chapter_15_Composition/Sub_Chapter_3_DeepProblems/CompositionDeepProblem.java",

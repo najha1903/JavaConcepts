@@ -62,6 +62,59 @@ package Chapter_15_Composition.Sub_Chapter_2_Inheritence_Vs_Composition;
 // PersonalComputer HAS-A Monitor   (composition, through a field)
 // Note :- they are not competing choices for a whole program, and this example uses both together.
 
+// Exam practice :-
+// @quiz (OCJP, MEDIUM) Which statement about the two relationships is correct?
+// @option `extends` creates an IS-A relationship, and holding an object in a field creates a HAS-A relationship. [correct]
+// @option `extends` creates a HAS-A relationship, and holding an object in a field creates an IS-A relationship.
+// @option Both create an IS-A relationship, and HAS-A needs an interface.
+// @option Neither creates a relationship until the code is run.
+// @explain The keyword decides the relationship. `class Monitor extends Product` claims a Monitor IS-A Product, so a Monitor can be used wherever a Product is expected. Storing a Monitor in a field of PersonalComputer makes it a part, which is HAS-A.
+// @why B: the two are the wrong way round.
+// @why C: composition needs no interface. A field is enough, which is what makes it so flexible.
+// @why D: relationships between types are fixed when the code compiles, not when it runs.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code class Engine {
+// @code     String type() { return "petrol"; }
+// @code }
+// @code class Car {
+// @code     private Engine engine = new Engine();
+// @code     String describe() { return "car with " + engine.type(); }
+// @code }
+// @code public class Main {
+// @code     public static void main(String[] args) {
+// @code         System.out.println(new Car().describe());
+// @code     }
+// @code }
+// @option car with petrol [correct]
+// @option It does not compile, because Car does not extend Engine.
+// @option It does not compile, because engine is private.
+// @option car with null
+// @explain Car HAS-A Engine rather than IS-A Engine, so it reaches the engine's behaviour by calling through the field. That call is delegation: Car asks its own Engine to answer. A private field is freely usable inside the class that declares it.
+// @why B: extending Engine is one way to reuse it, not a requirement. Composition reuses it through a field.
+// @why C: private restricts access from outside the class, and describe() is inside Car.
+// @why D: the field is initialised with new Engine(), so it is never null.
+
+// @quiz (OCJP, HARD) A class needs the behaviour of another class but is not a kind of it. Which change is safest?
+// @option Hold an instance of that class in a field and call its methods from yours. [correct]
+// @option Extend that class with `extends`.
+// @option Copy the methods into your class.
+// @option Make every method of the other class static.
+// @explain Composition reuses behaviour without claiming a relationship that does not exist. Extending a class you are not a kind of misleads every reader, and it also ties your class to the parent's implementation, so a change in the parent can break you.
+// @why B: extending asserts an IS-A relationship. Using it only to borrow code is the mistake the advice about composition is warning against.
+// @why C: copying the methods duplicates logic, so a fix has to be made in more than one place.
+// @why D: making methods static removes them from the object and prevents the other class from being replaced or tested separately.
+
+// @quiz (OCJP, MEDIUM) Which of these is a HAS-A relationship?
+// @option A Library that keeps a list of Book objects. [correct]
+// @option A Novel that extends Book.
+// @option A Book that implements Printable.
+// @option A Book whose class is declared final.
+// @explain Holding Book objects inside Library is composition, so a Library HAS-A collection of Books. Extending a class is IS-A, and implementing an interface is a can-do relationship.
+// @why B: Novel IS-A Book, which is inheritance.
+// @why C: implementing an interface is not a HAS-A relationship. It is a promise to provide the interface's methods.
+// @why D: final prevents subclassing. It says nothing about composition.
+
 
 public class InheritenceVsComposition {
 }

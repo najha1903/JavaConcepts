@@ -74,47 +74,142 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
     },
     {
-      "type": "interview",
+      "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_2-what-happens-if-the-main-method-is-decla",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_2-the-class-below-compiles-successfully-wh",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
       "tags": [
-        "ocjp",
-        "interview"
+        "ocjp"
       ],
-      "question": "What happens if the main method is declared without the `static` keyword?",
-      "modelAnswer": "The code compiles cleanly, but running the class throws a runtime error indicating no entry-point main method was found.",
-      "keyPoints": [
-        "The code compiles cleanly, but running the class throws a runtime error indicating no entry-point main method was found."
+      "question": "The class below compiles successfully. What happens when it is run with `java Startup`?",
+      "code": "public class Startup {\npublic void main(String[] args) {\nSystem.out.println(\"started\");\n}\n}",
+      "options": [
+        "It prints started.",
+        "It does not compile, because main must be static.",
+        "The JVM reports that the main method is missing, because no valid entry point exists.",
+        "It prints started once for each argument in args."
       ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
-    },
-    {
-      "type": "interview",
-      "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_3-is-public-static-void-main-string-args-a",
-      "difficulty": "medium",
-      "chapter": "Chapter 1: Java Introduction",
-      "topic": "Hello World",
-      "tags": [
-        "ocjp",
-        "interview"
-      ],
-      "question": "Is `public static void main(String... args)` a valid Java entry point?",
-      "modelAnswer": "Yes. Varargs syntax (`String...`) is treated as `String[]` by the JVM and is recognized as a valid main method signature.",
-      "keyPoints": [
-        "Yes. Varargs syntax (`String...`) is treated as `String[]` by the JVM and is recognized as a valid main method signature."
-      ],
-      "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
+      "answer": 2,
+      "whyByOption": {
+        "0": "the method is never called, so nothing is printed.",
+        "1": "the compiler has no objection. `static` is required by the launcher, not by the language.",
+        "3": "args is never supplied, because the method is never reached."
+      },
+      "explanation": "Compilation succeeds, because a non-static main is a legal method like any other. The launcher, however, looks for `public static void main(String[])`, does not find it, and reports that no main method could be found.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_4-which-statement-correctly-describes-how-",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_3-which-main-method-signatures-let-the-cla",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which main method signatures let the class be started with `java Startup`?",
+      "options": [
+        "`public static void main(String[] args)` and `public static void main(String... args)`",
+        "Only `public static void main(String[] args)`.",
+        "Any method named main that takes one parameter.",
+        "Only `public static void main(String... args)`."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the varargs form is equally valid and is common in modern code.",
+        "2": "the return type and the parameter type matter. `private void main(int)` is not an entry point.",
+        "3": "the array form is the classic signature and still the one the launcher expects."
+      },
+      "explanation": "Both forms are accepted, because `String...` is compiled to `String[]`, so the two are the same signature once compiled. Nothing else qualifies: the method must be public, static, void, and take exactly one String array.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_4-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class Trace {\npublic static void main(String[] args) {\nint a = 10;\nSystem.out.print(\"A\" + a + 5);\nSystem.out.println();\nSystem.out.println(a + 5 + \"B\");\n}\n}",
+      "options": [
+        "A105 on one line, then 15B on the next.",
+        "A15 on one line, then 15B on the next.",
+        "A155 on one line, then 155B on the next.",
+        "A105 on one line, then 105B on the next."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "this would need parentheses, as in `\"A\" + (a + 5)`.",
+        "2": "nothing here adds 155. The digits are 10 and 5, never 15 and 5.",
+        "3": "the second expression is arithmetic first, so 10 + 5 is 15 and not 105."
+      },
+      "explanation": "`+` is evaluated left to right. In `\"A\" + a + 5` the text comes first, so both numbers are joined: A105. In `a + 5 + \"B\"` the arithmetic comes first, so 10 + 5 is 15 and then the text is joined: 15B. The empty println only ends the line.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_5-two-files-are-created-in-the-same-folder",
+      "difficulty": "hard",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Two files are created in the same folder. What happens when they are compiled?",
+      "code": "// File One.java\npublic class One { }\npublic class Two { }",
+      "options": [
+        "It compiles, and both classes are usable.",
+        "It does not compile, because only one class in a file may be public.",
+        "It compiles, and One.java is renamed to Two.java automatically.",
+        "It compiles only if Two is also declared in its own file."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the second public declaration is rejected before anything is produced.",
+        "2": "the compiler never renames files.",
+        "3": "declaring Two in its own file is exactly the fix. It is not an additional condition on this file."
+      },
+      "explanation": "A source file may hold several classes, but only one of them may be public, and its name must match the file name. Two public classes in one file is a compile-time error.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_6-a-file-is-saved-as-start-java-and-contai",
+      "difficulty": "medium",
+      "chapter": "Chapter 1: Java Introduction",
+      "topic": "Hello World",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "A file is saved as `Start.java` and contains `public class Startup { }`. What is the result?",
+      "options": [
+        "It compiles, and produces Startup.class.",
+        "It compiles, and produces Start.class.",
+        "It does not compile, because the public class name must match the file name.",
+        "It compiles only if Startup is also mentioned in a package statement."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the class name is fine; the mismatch between the class name and the file name is what fails.",
+        "1": "no bytecode is produced from this file.",
+        "3": "a package statement is unrelated to this rule."
+      },
+      "explanation": "A public class must live in a file of the same name, so `public class Startup` has to be in Startup.java. The compiler reports this before producing any bytecode.",
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_7-which-statement-correctly-describes-how-",
       "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -140,7 +235,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_5-what-does-javac-produce-and-what-runs-it",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_8-what-does-javac-produce-and-what-runs-it",
       "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -166,7 +261,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_6-why-must-the-main-method-be-static",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_9-why-must-the-main-method-be-static",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -192,7 +287,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_7-which-single-change-to-public-static-voi",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_10-which-single-change-to-public-static-voi",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -218,7 +313,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_8-what-does-the-string-args-parameter-of-m",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_11-what-does-the-string-args-parameter-of-m",
       "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -244,7 +339,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_9-what-actually-makes-write-once-run-anywh",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_12-what-actually-makes-write-once-run-anywh",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -270,7 +365,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_10-the-program-below-is-run-with-java-hello",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_13-the-program-below-is-run-with-java-hello",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -297,7 +392,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_11-this-source-is-saved-and-you-run-javac-h",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_14-this-source-is-saved-and-you-run-javac-h",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -324,7 +419,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_12-a-colleague-s-machine-has-the-jre-instal",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_15-a-colleague-s-machine-has-the-jre-instal",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -350,7 +445,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_13-you-compile-a-program-on-windows-then-co",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_16-you-compile-a-program-on-windows-then-co",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -376,7 +471,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_14-the-class-below-compiles-successfully-wh",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_17-the-class-below-compiles-successfully-wh",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -403,7 +498,7 @@ const QUESTIONS_BANK = {
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_15-you-change-a-message-inside-helloworld-j",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_18-you-change-a-message-inside-helloworld-j",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -15133,6 +15228,111 @@ const QUESTIONS_BANK = {
         "3": "they are different: IS-A is a kind of, HAS-A is made of parts."
       },
       "explanation": "Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_4-which-statement-about-the-two-relationsh",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Inheritence Vs Composition",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which statement about the two relationships is correct?",
+      "options": [
+        "Both create an IS-A relationship, and HAS-A needs an interface.",
+        "`extends` creates an IS-A relationship, and holding an object in a field creates a HAS-A relationship.",
+        "Neither creates a relationship until the code is run.",
+        "`extends` creates a HAS-A relationship, and holding an object in a field creates an IS-A relationship."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "composition needs no interface. A field is enough, which is what makes it so flexible.",
+        "2": "relationships between types are fixed when the code compiles, not when it runs.",
+        "3": "the two are the wrong way round."
+      },
+      "explanation": "The keyword decides the relationship. `class Monitor extends Product` claims a Monitor IS-A Product, so a Monitor can be used wherever a Product is expected. Storing a Monitor in a field of PersonalComputer makes it a part, which is HAS-A.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_5-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Inheritence Vs Composition",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "class Engine {\nString type() { return \"petrol\"; }\n}\nclass Car {\nprivate Engine engine = new Engine();\nString describe() { return \"car with \" + engine.type(); }\n}\npublic class Main {\npublic static void main(String[] args) {\nSystem.out.println(new Car().describe());\n}\n}",
+      "options": [
+        "It does not compile, because engine is private.",
+        "car with petrol",
+        "It does not compile, because Car does not extend Engine.",
+        "car with null"
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "private restricts access from outside the class, and describe() is inside Car.",
+        "2": "extending Engine is one way to reuse it, not a requirement. Composition reuses it through a field.",
+        "3": "the field is initialised with new Engine(), so it is never null."
+      },
+      "explanation": "Car HAS-A Engine rather than IS-A Engine, so it reaches the engine's behaviour by calling through the field. That call is delegation: Car asks its own Engine to answer. A private field is freely usable inside the class that declares it.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_6-a-class-needs-the-behaviour-of-another-c",
+      "difficulty": "hard",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Inheritence Vs Composition",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "A class needs the behaviour of another class but is not a kind of it. Which change is safest?",
+      "options": [
+        "Hold an instance of that class in a field and call its methods from yours.",
+        "Make every method of the other class static.",
+        "Extend that class with `extends`.",
+        "Copy the methods into your class."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "making methods static removes them from the object and prevents the other class from being replaced or tested separately.",
+        "2": "extending asserts an IS-A relationship. Using it only to borrow code is the mistake the advice about composition is warning against.",
+        "3": "copying the methods duplicates logic, so a fix has to be made in more than one place."
+      },
+      "explanation": "Composition reuses behaviour without claiming a relationship that does not exist. Extending a class you are not a kind of misleads every reader, and it also ties your class to the parent's implementation, so a change in the parent can break you.",
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_7-which-of-these-is-a-has-a-relationship",
+      "difficulty": "medium",
+      "chapter": "Chapter 15: Composition",
+      "topic": "Inheritence Vs Composition",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which of these is a HAS-A relationship?",
+      "options": [
+        "A Novel that extends Book.",
+        "A Book that implements Printable.",
+        "A Book whose class is declared final.",
+        "A Library that keeps a list of Book objects."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "Novel IS-A Book, which is inheritance.",
+        "1": "implementing an interface is not a HAS-A relationship. It is a promise to provide the interface's methods.",
+        "2": "final prevents subclassing. It says nothing about composition."
+      },
+      "explanation": "Holding Book objects inside Library is composition, so a Library HAS-A collection of Books. Extending a class is IS-A, and implementing an interface is a can-do relationship.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
     },
     {
