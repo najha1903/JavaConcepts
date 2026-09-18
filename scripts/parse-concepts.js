@@ -634,7 +634,20 @@ function parseJavaFile(filePath, rootDir) {
   }
   if (currentChallenge) deepChallenges.push(currentChallenge);
 
-  allSourceLines.forEach((rawLine, lineIdx) => {
+  // Only comments from INSIDE the class declaration are annotations. Scanning the
+  // whole file pulled the header notes in a second time, and with them the table
+  // rows, which are stored as structured tables and so were never matched by the
+  // de-duplication below, and the trailing comments of the worked examples. That
+  // is how a panel titled "Key Takeaways & Annotations" filled up with fragments
+  // such as "prints 14, because * binds tighter than +".
+  const bodyStartLine = (() => {
+    const decl = content.match(/^\s*(?:public\s+|final\s+|abstract\s+)*(?:class|interface|enum|record)\s+\w+/m);
+    if (!decl) return 0;
+    return content.slice(0, decl.index).split('\n').length - 1;
+  })();
+
+  allSourceLines.slice(bodyStartLine).forEach((rawLine, offset) => {
+    const lineIdx = offset + bodyStartLine;
     const trimmed = rawLine.trim();
 
     if (trimmed.startsWith('//')) {
@@ -666,7 +679,7 @@ function parseJavaFile(filePath, rootDir) {
         }
       }
 
-      if (!isMeaningfulLine(text) || isCodeFragment(text)) {
+      if (!isMeaningfulLine(text) || isCodeFragment(text) || !isSelfContainedAnnotation(text)) {
         if (currentGroup) { inlineGroups.push(currentGroup); currentGroup = null; }
         return;
       }
@@ -683,7 +696,7 @@ function parseJavaFile(filePath, rootDir) {
       if (currentGroup) { inlineGroups.push(currentGroup); currentGroup = null; }
       if (trailMatch) {
         let text = trailMatch[1].trim().replace(/^\/\/\s*/, '').trim();
-        if (isMeaningfulLine(text) && !isCodeFragment(text)) {
+        if (isMeaningfulLine(text) && !isCodeFragment(text) && isSelfContainedAnnotation(text)) {
           inlineGroups.push({ lines: [text], endLine: lineIdx });
         }
       } else if (trimmed === '') {
@@ -694,8 +707,27 @@ function parseJavaFile(filePath, rootDir) {
   });
   if (currentGroup) inlineGroups.push(currentGroup);
 
+  // A trailing comment is only an annotation when it stands on its own. Comments
+  // such as "condition", "block of statements" or "Similar to if statement"
+  // belong to the line they sit on, and once that line is gone they read as
+  // fragments, which is what filled the annotations panel with noise.
+  function isSelfContainedAnnotation(text) {
+    const words = text.split(/\s+/).filter(Boolean);
+    if (words.length < 8) return false;
+    // A label such as "Compile Error :- Cannot resolve symbol 'x'" has no
+    // lowercase word of its own outside quotes, so it is not a sentence either.
+    return /(?:^|\s)[a-z]{4,}/.test(text);
+  }
+
   // Flatten groups, join continuations, deduplicate
   const headerLineSet = new Set(headerComments.flatMap(b => b.lines || []));
+  // Table rows are held as structured rows rather than as lines, so they are added
+  // to the comparison set explicitly. A table in the header must never reappear
+  // here as raw pipe text.
+  for (const block of headerComments) {
+    if (block.type !== 'table') continue;
+    (block.rows || []).forEach(row => headerLineSet.add(row.join(' ')));
+  }
   const seenInline = new Set();
   const inlineComments = [];
   for (const group of inlineGroups) {
@@ -726,7 +758,19 @@ function parseJavaFile(filePath, rootDir) {
     headerComments.push({ type: 'generated', lines: generated });
   }
 
-  return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments, customQuizzes, deepChallenges, code: content };
+  // The panel is titled "Key Takeaways & Annotations". It leads with the takeaways
+  // and gotchas the author wrote in THIS file, and then the annotations found
+  // inside its code, so the heading describes what is actually listed.
+  const authoredPoints = [];
+  for (const raw of content.split('\n')) {
+    const marker = raw.trim().match(/^(?:\/\/|\*)?\s*@(takeaway|gotcha)\s+(.+)$/i);
+    if (marker) authoredPoints.push(marker[2].trim());
+  }
+  const anchoredPoints = authoredPoints.length
+    ? [...authoredPoints, ...inlineComments.filter(line => !authoredPoints.includes(line))]
+    : inlineComments;
+
+  return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments: anchoredPoints, customQuizzes, deepChallenges, code: content };
 }
 
 // A parameter note is a bullet that names a parameter and then explains it, such

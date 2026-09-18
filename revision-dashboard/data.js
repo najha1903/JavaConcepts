@@ -131,8 +131,14 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "the class name matches the file name the entry point the JVM looks for prints the text, then moves to a new line",
-          "compiles, and writes HelloWorld.class next to the source runs the class, with NO .java or .class on the end"
+          "`javac HelloWorld.java` compiles the source into bytecode, and `java HelloWorld` runs that bytecode on the JVM. The JVM never reads your .java file.",
+          "Java is compiled and interpreted: javac turns source into bytecode once, and the JVM runs that bytecode on the machine it happens to be on.",
+          "The file name has to match the public class inside it, so `public class HelloWorld` must live in HelloWorld.java.",
+          "Java is case-sensitive, so `String` is not `string`, `System` is not `system`, and the capital letters in a name are part of the name.",
+          "`System.out.println` is three separate things: the System class, its standard output stream `out`, and the `println` method, whose \"ln\" adds a new line at the end.",
+          "Editing the source without compiling again appears to change nothing, because the JVM keeps running the previous bytecode that is already on disk.",
+          "`java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.",
+          "Only one class in a file may be public, and it must be the one whose name matches the file name."
         ],
         "customQuizzes": [
           {
@@ -1249,28 +1255,11 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "outer block (e.g., a method)",
-          "OK: i is accessible inside the loop",
-          "ERROR: i is out of scope here — it only existed during the loop",
-          "i is in scope only inside this if block",
-          "ERROR: i is out of scope here",
-          "ERROR: i is out of scope here too",
-          "i declared here, accessible from this point downwards in the switch",
-          "ERROR: j is declared in case 3 (later), so case 2 cannot see it",
-          "j declared here",
-          "OK: j is accessible from this point",
-          "OK: i was declared in case 1 (before default)",
-          "OK: accessible",
-          "OK: j was declared in case 3 (before default)",
-          "ERROR: i is out of scope outside the switch",
-          "ERROR: j is out of scope outside the switch",
           "Starts an outer block - method block. It is also the containing block in this instance",
           "firstVariable is a local variable. It is available to use in the current outer block as well the inner block",
           "secondVariable is a local variable. It is available to use in the current outer block as well the inner block",
-          "Flow statement block starts inner block",
           "Inner block code has access to outer block's variables",
           "thirdVariable is only available to be used in the inner code block.",
-          "Compile Error :- Cannot resolve symbol 'thirdVariable'",
           "Outer code block cannot access the thirdVariable as third variable is out of scope for second code block"
         ],
         "customQuizzes": [
@@ -1355,9 +1344,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Syntax: dataType variableName = initialValue;",
-          "Example: int myFirstNumber = 5;",
-          "dataType variableName = initialValue; int myFirstNumber = 5;",
           "Declaration statement: declares data type (int), identifier (myFirstNumber), and initial value (5)."
         ],
         "customQuizzes": [
@@ -1480,7 +1466,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Expression consists of variables, values and operators.",
           "The data type doesn't form the part of expression, but everything else on the line forms the part of expression. kilometers = (100 * 1.609344); forms the part of expression.",
           "highScore = 0; is part of the expression.",
           "Keyword if, and brackets do not form the part of expression, whatever component is inside the brackets, they are part of expression. highScore == 50 forms the part of expression.",
@@ -1718,18 +1703,17 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Type | Width | Range / Notes",
-          "boolean | 1 bit | Only two values: true or false byte | 8 bits | -128 to 127 short | 16 bits| -32,768 to 32,767 char | 16 bits| A single Unicode character — written in single quotes: 'A' int | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers) long | 64 bits| Very large whole numbers — add 'L' suffix: 100L float | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math) double | 64 bits| Double-precision decimal — default for decimals, add 'd': 3.14d",
-          "int max = Integer.MAX_VALUE; prints -2147483648, which is Integer.MIN_VALUE",
-          "int i = 100; widening, nothing to write double d = 9.8; narrowing, the cast is required and prints 9",
-          "prints 2, because both operands are int prints 2.5, because one operand is double",
-          "char c = 'A'; prints 66, because 'A' is 65 and c is promoted to int prints B, after casting the int back to char",
-          "autoboxing, int to Integer unboxing, Integer back to int",
-          "int myNumber = 42; int -> the type, which fixes how much space it takes and what values are allowed myNumber -> the name you use later, called the identifier",
-          "Compile Error :- integer number too large works, the L makes the literal a long",
-          "Compile Error :- incompatible types, double cannot be assigned to float works, the f makes the literal a float",
+          "Java has exactly eight primitive types: byte, short, int, long, float, double, boolean and char. Everything else is an object, including String.",
+          "Use int for whole numbers and double for decimals by default. Reach for long with an L suffix when a whole number is bigger than about 2.1 billion, and for BigDecimal when the values are money.",
+          "A declaration has three parts: the type, which decides the size and the allowed values, the name you will use, and the initialiser that gives the first value.",
+          "A literal has a type of its own: whole numbers are int and decimals are double, unless a suffix changes them. That is what `long big = 3000000000L;` and `float f = 3.14f;` are for.",
+          "A local variable must be assigned before it is read. Fields and array elements get a default of 0, 0.0, false or null, but locals get nothing at all.",
+          "`char` is written in single quotes and holds exactly one character, and it is a number underneath, which is why `'A' + 1` gives 66 rather than B.",
+          "Going past a type's range does not throw. It wraps around to the opposite end, so `Integer.MAX_VALUE + 1` is `Integer.MIN_VALUE` and the program carries on with a wrong number.",
+          "Dividing two whole numbers keeps only the whole part, so `5 / 2` is 2. Make one side a decimal, as in `5 / 2.0`, when you want 2.5.",
+          "A narrowing cast such as `(int) 9.8` truncates rather than rounds, so it gives 9 and not 10.",
+          "Comparing two Integer objects with `==` compares references rather than values, so use `equals` for the numbers, or store them as int.",
           "A plain int declaration: datatype int, identifier myValue, value 10000.",
-          "myValue is = 10000",
           "int is a primitive data type and Integer is its wrapper class.",
           "By specifying wrapper class Integer, it allows us to perform different operations on int.",
           "The max Value of the integer is = 2147483647",
@@ -1737,29 +1721,12 @@ const CONCEPTS_DATA = [
           "If we try and put a larger value than the maximum in Java, or a smaller value than the minimum in Java, then we will get an Overflow in the case of the maximum value and underflow in the case of minimum",
           "The overflow value of int is = -2147483648",
           "The underflow value of int is = 2147483647",
-          "The max Value of the Byte is = 127",
-          "The min Value of the Byte is = -128",
-          "The max Value of Short is = 32767",
-          "The min Value of Short is = -32768",
           "We need to put letter L in the end to make it as long value.",
-          "The max Value of Long is = 9223372036854775807",
-          "The min Value of Long is = -9223372036854775808",
           "By Casting, we tell/instruct java to treat the int value as byte",
-          "The max Value of Float is = 3.4028235E38",
-          "The min Value of Float is = 1.4E-45",
-          "The max Value of Double is = 1.7976931348623157E308",
-          "The min Value of Double is = 4.9E-324",
           "For whole numbers int is considered as default",
           "To declare float, it is best practice adding f after declaring number at the end of expression",
           "For floating point numbers, double is accepted as default. To declare double, it is best practice adding d after declaring number at the end of the declaration",
-          "Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor",
-          "Float value is = 2.5",
-          "Double value is = 2.5",
-          "Int precision value is = 1",
-          "Float precision value is = 1.6666666",
-          "Double precision value is = 1.6666666666666667",
-          "myTrueBooleanValue is = true",
-          "myFalseBooleanValue is = false"
+          "Int value is = 2. Since integer is a whole number, it doesn't handle the remainder of the dividend and divisor"
         ],
         "customQuizzes": [
           {
@@ -2670,27 +2637,15 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "| Operator | Target Type | Behavior | Code Example |",
-          "| `+` | Numeric / String | Addition for numbers, Concatenation if any operand is String | `10 + 20` -> `30`, `\"Score: \" + 10` -> `\"Score: 10\"` |",
-          "| `-` | Numeric | Subtraction | `20 - 5` -> `15` |",
-          "| `*` | Numeric | Multiplication | `4 * 5` -> `20` |",
-          "| `/` | Numeric | Division (integer division truncates decimal part) | `10 / 3` -> `3` |",
-          "| `%` | Numeric | Modulus (returns division remainder) | `10 % 3` -> `1` |",
-          "| Category | Operators | Notes |",
-          "| Arithmetic | `+ - * / %` | `%` returns the remainder. `int / int` drops the fraction. |",
-          "| Unary | `+ - ++ -- !` | `++` and `--` change the variable itself by 1. |",
-          "| Relational | `< > <= >=` | Produces a boolean. Cannot be chained, so `a > b > c` is an error. |",
-          "| Equality | `== !=` | On primitives it compares values; on objects it compares references. |",
-          "| Logical | `&&` `&` `!` | Short-circuiting AND is `&&`; `&` always evaluates both sides. |",
-          "| Assignment | `= += -= *= /= %=` | The compound forms include an implicit cast back to the left-hand type. |",
-          "| Ternary | `?:` | Both branches must produce a compatible type. |",
-          "prints 14, because * binds tighter than + prints 20, the parentheses override precedence",
-          "int i = 5; prints 5, then i becomes 6. Use the value, then increment.",
-          "prints 7. Increment first, then use the value.",
-          "prints 3, not 3.33 prints 1, the remainder prints -1. The sign follows the left operand, not the divisor.",
-          "ArithmeticException: / by zero prints Infinity, and throws no exception",
-          "byte b = 10; fine, += casts the int result back to byte compile error, because b + 5 is an int",
-          "prints 30Java prints Java1020 prints Java30, the parentheses force the addition first",
+          "An operator is the symbol that does the work, such as `+` or `*`, and the values it works on are called operands. Put them together and you have an expression, which always works out to one value: `15 + 12` is an expression worth 27.",
+          "`+` does two different jobs. While both sides are numbers it adds, so `10 + 20` is 30. The moment one side is text it joins instead, so `10 + 20 + \"Java\"` gives `30Java` because the two numbers were added first, while `\"Java\" + 10 + 20` gives `Java1020` because the text came first.",
+          "Dividing two whole numbers throws the fraction away: `10 / 3` is 3 and not 3.33. The `%` operator hands you that thrown-away remainder instead, so `10 % 3` is 1. Write `10 / 3.0` when you want the decimal answer.",
+          "`b += 5` is not just a shorthand for `b = b + 5`. The compound form quietly converts the result back to the type on the left, which is why `byte b = 10; b += 5;` compiles while `b = b + 5;` does not: `b + 5` has become an int, and Java will not put an int back into a byte unless it is told to.",
+          "Multiply and divide happen before you add and subtract, so `2 + 3 * 4` is 14 and not 20. `i++` uses the value and then increases it, while `++i` increases first and then uses it: with `i = 5`, printing `i++` shows 5, and printing `++i` afterwards shows 7.",
+          "Dividing an int by zero throws ArithmeticException, but dividing a double by zero gives Infinity and no error at all, so the same mistake behaves differently depending on the type.",
+          "`a > b > c` does not compile. `a > b` gives you a boolean, and a boolean cannot be compared with a number using `>`. Write it as `a > b && b > c`.",
+          "`=` puts a value into a variable, and `==` asks whether two values are the same. Because `x = 5` produces an int, `if (x = 5)` is a compile error, which is Java catching a mistake that would go unnoticed in other languages.",
+          "A remainder keeps the sign of the number on the left, not the divisor: `-10 % 3` is -1 and not 1.",
           "15 and 12 are operands; + is the addition operator.",
           "hoursWorked and hourlyRate are operands; * is the multiplication operator.",
           "myVar = myVar + 1 is equivalent to myVar++ (increment by 1).",
@@ -3352,12 +3307,7 @@ const CONCEPTS_DATA = [
             ]
           }
         ],
-        "inlineComments": [
-          "double first = 20.00d; double second = 80.00d;",
-          "100.00 is forced first by the parentheses prints Total = 10000.0",
-          "double remainder = total % 40.00d; prints Remainder = 0.0",
-          "boolean isDivisible = (remainder == 0); prints isDivisible = true"
-        ],
+        "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
         "code": "package Chapter_3_Operators.Sub_Chapter_2_OperatorsChallenge;\n// CODING CHALLENGE — Operators Practice\n// This challenge demonstrates practical use of arithmetic operators, the modulus (remainder) operator, boolean logic, and the ternary operator.\n// Key concept: the modulus operator (%) gives the REMAINDER of division. If a % b == 0, then a is perfectly divisible by b with no remainder.\n// The ternary operator syntax: condition ? valueIfTrue : valueIfFalse — a compact way to assign one of two values based on a condition.\n// The NOT operator (!) inverts a boolean: if checkRemainder is true, !checkRemainder is false, and vice versa.\n/*\n\nOPERATOR CHALLENGE\n\n1. Create a double variable with a value of 20.00\n2. Create a second variable of type double with the value 80.00\n3. Add both numbers together and multiply by 100.00\n4. Use the remainder operator to figure out what the remainder from the result of the operation in step 3 and 40.00\n   We used the modulus or remainder operator on int in the course, but we can also use it on a double.\n5. Create a boolean variable that assigns the value \"true\" if the remainder in step 4 is 0, or \"false\" , if it's not 0\n6. Output the boolean variable.\n7. Write an if-then statement that displays a message \"Got some remainder\" if the boolean in step is \"not true\".\n\n*/\n\n// What the challenge practises :-\n// 1) Order of operations without parentheses :-\n// double first = 20.00d;\n// double second = 80.00d;\n// double total = (first + second) * 100.00d;   // 100.00 is forced first by the parentheses\n// System.out.println(\"Total = \" + total);      // prints Total = 10000.0\n// Note :- without the parentheses, 20.00 + 80.00 * 100.00 would be 8020.0, because * binds tighter than +.\n//\n// 2) The remainder operator works on double too :-\n// double remainder = total % 40.00d;\n// System.out.println(\"Remainder = \" + remainder);   // prints Remainder = 0.0\n// Note :- the course used % on int only, but it is defined for double as well. 40.00 divides 10000.0 exactly, so the remainder is 0.0.\n//\n// 3) A comparison already produces a boolean :-\n// boolean isDivisible = (remainder == 0);\n// System.out.println(\"isDivisible = \" + isDivisible);   // prints isDivisible = true\n// Note :- `remainder == 0` is the test, and the result is stored. There is no need for an if here.\n//\n// 4) The NOT operator inverts a boolean :-\n// if (!isDivisible) {\n//     System.out.println(\"Got some remainder\");\n// }\n// Note :- !isDivisible is true only when the remainder was not 0, which is why the message is written inside the NOT branch.\n//\n// Pitfall :- comparing two double values with `==` is risky in general, because 0.1 + 0.2 is not exactly 0.3. It is safe here only because 40.00 divides 10000.0 exactly and no rounding is involved.\n//\n// Parameter notes :-\n// - first and second (the two double operands): represent the values being combined, so choose numbers whose sum is exactly divisible by the third value when you want the remainder branch to be skipped.\n// - divisor (the value on the right of the remainder operator): choose a non-zero divisor. A double divisor of 0.0 gives NaN instead of throwing, so the boolean test would silently become false.\n\npublic class OperatorChallenge {\n    public static void main(String[] args) {\n\n        double myFirstValue = 20.00D;\n\n        double mySecondValue = 80.00D;\n\n        double sum = (myFirstValue + mySecondValue) * 100.00D;\n\n        double remainder = sum % 40.00D;\n\n        boolean checkRemainder = (remainder == 0) ? true : false;\n\n        System.out.println(\"Remainder check is :-  \" + checkRemainder);\n\n        if(!checkRemainder){\n            System.out.println(\"Got some remainder\");\n        }\n\n    }\n}\n"
@@ -3472,19 +3422,16 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "String message = \"Hello\"",
-          "+ \" World\"",
-          "prints Hello World!",
-          "prints 3",
-          "int c=5 ; int d = 10; prints 15",
-          "int inner = 10; prints 10, inner is in scope here",
-          "Compile Error :- cannot resolve symbol 'inner'",
+          "A statement is one complete instruction. Most of them end with a semicolon, and it is the semicolon that ends them rather than the line break, which is why `int x = 5` on its own line does not compile even though it looks finished.",
+          "An expression works out to a value, such as `2 + 3` or `x > 5`, and a statement is the complete instruction built around it. `int x = 5;` contains the expression `x = 5`, but the line as a whole is a declaration statement.",
+          "Spaces, tabs and line breaks mean nothing to the compiler. `int     c     =      5;` compiles exactly like `int c = 5;`. Indentation is there so that you and I can see which lines sit inside which block.",
+          "One statement can be spread across several lines, and several statements can share one line. Both compile. Write one statement per line anyway, because that is what makes a mistake easy to spot.",
+          "A line holding nothing but a semicolon is a legal empty statement, and that is what makes `if (x > 5);` so dangerous: the semicolon becomes the body of the if, and the block you wrote underneath ends up belonging to nothing.",
+          "A semicolon straight after `if (condition)` ends the if before its block, so the block runs no matter what the condition said. The code still compiles, which is what makes it easy to miss.",
+          "A variable declared inside a block disappears at the closing brace. Using it afterwards gives \"cannot resolve symbol\", because the name no longer exists.",
+          "Braces are not punctuation you can sprinkle anywhere. A class body, a method body, and the headers of `if` and `for` all end in `{` or `}`, and none of them takes a semicolon.",
           "Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.",
-          "This also represents complete statement",
-          "Shows the incremented value: 51",
-          "This also represents complete statement.",
           "This is a valid statement, spread across multiple lines",
-          "Shows the decremented value: 4",
           "Its a completely valid code, java compiles the code, deletes the spaces internally.",
           "Shows anotherVar was assigned correctly despite the odd formatting: 50"
         ],
@@ -3936,10 +3883,7 @@ const CONCEPTS_DATA = [
             ]
           }
         ],
-        "inlineComments": [
-          "double area = length * width; double perimeter = 2 * (length + width);",
-          "double hypotenuse = Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2)); for base 3 and height 4 prints Hypotenuse = 5.0"
-        ],
+        "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
         "code": "package Chapter_4_Statements_And_Indentations.Sub_Chapter_2_Statements_CodingChallenge;\n\n/*\n * Challenge: Use separate statements to calculate the area and perimeter of a rectangle,\n * and the hypotenuse of a right triangle using Math.sqrt and Math.pow.\n */\n\n// What the challenge practises :-\n// 1) One calculation per statement :-\n// double area = length * width;\n// double perimeter = 2 * (length + width);\n// Note :- writing each result on its own line keeps the steps readable, and each line is itself a complete statement.\n//\n// 2) The hypotenuse :-\n// double hypotenuse = Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2));\n// System.out.println(\"Hypotenuse = \" + hypotenuse);   // for base 3 and height 4 prints Hypotenuse = 5.0\n// Note :- Math.sqrt returns a double, so the result is 5.0 and not 5.\n//\n// Parameter notes :-\n// - length and width (the two sides of the rectangle): use the same unit for both, and use non-negative values, because a negative side has no physical meaning here.\n// - base and height (the two legs of the right triangle): use the two sides that meet at the right angle. Passing the hypotenuse as one of them would give the wrong result.\npublic class ExpressionBuilderChallenge {\n\n    public static void main(String[] args) {\n        double width = 8.5;\n        double height = 4.0;\n        double area = width * height;\n        double perimeter = 2 * (width + height);\n\n        double sideA = 3;\n        double sideB = 4;\n        double hypotenuse = Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2));\n\n        System.out.println(\"Rectangle area: \" + area);\n        System.out.println(\"Rectangle perimeter: \" + perimeter);\n        System.out.println(\"Triangle hypotenuse: \" + hypotenuse);\n    }\n}\n"
@@ -4096,18 +4040,17 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "int x = 5; prints not zero",
-          "int score = 75; if (score >= 90) { System.out.println(\"A\"); } prints B else if (score >= 50) { System.out.println(\"C\"); }",
-          "prints A then B, because B is outside the if Note :- this is why braces are recommended even for a single statement. Adding a line later silently moves it outside the condition.",
-          "the else belongs to the inner if Note :- Java binds an else to the nearest unmatched if, which is not always the one a reader expects. Braces remove the doubt.",
-          "String name = null; if (name != null && name.length() > 5) { System.out.println(\"long\"); }",
-          "String a = \"hello\";",
-          "String b = new String(\"hello\"); prints not equal",
+          "An `if` asks a true-or-false question and runs its block only when the answer is true. `if (score >= 50) { ... }` runs the block when the score is at least 50, and skips past it completely when it is not.",
+          "The condition has to be a real boolean. Java will not accept `if (1)` or `if (obj)` the way C does, so write the question out: `if (x != 0)` or `if (obj != null)`.",
+          "In a chain of `else if`, only the first condition that turns out true runs and the rest are skipped. With a score of 75 the `>= 90` test fails and the `>= 70` test passes, so you get B, and the `>= 50` test is never even looked at.",
+          "Without braces, an `if` controls only the one statement that follows it. In `if (flag) System.out.println(\"A\"); System.out.println(\"B\");` the second println runs whatever flag is, because only the first one belongs to the if.",
+          "`condition ? valueIfTrue : valueIfFalse` is a whole if-else squeezed into one expression, and it produces a value. Use it to choose between two values, as in `int paid = isMember ? 10 : 20;`, and use a normal if-else when a branch needs more than one line.",
+          "A semicolon straight after the condition ends the if and leaves it with an empty body, so the block underneath always runs. `if (x > 5); { System.out.println(\"big\"); }` prints big even when x is 1.",
+          "`if (x = 5)` does not compile. `=` assigns a value and produces an int, and an if needs a boolean, so use `==` when you mean to compare.",
+          "Comparing two Strings with `==` asks whether they are the same object rather than whether they hold the same text, so `new String(\"hello\") == \"hello\"` is false. Use `.equals()` for content.",
+          "`&&` and `||` stop as soon as the answer is settled, and that is exactly what makes `name != null && name.length() > 5` safe: when name is null the left side is already false, so the method call that would throw never happens.",
           "If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.",
-          "condition check",
           "Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.",
-          "&& represents logical AND operator",
-          "|| represents logical OR operator",
           "Ideally, we should have used equalsTo(==) operator in place of assignment(=) operator. In this case.",
           "Here since isCar value is false, the condition is checked first, since the condition is false, so false value gets assigned to wasCar."
         ],
@@ -4877,22 +4820,16 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a /* */ block to show the in-between step — it never compiles or runs.",
-          "static void tryToChange(int n) { n = 99; } int x = 5;",
-          "prints 5, because n was a copy",
-          "static void swap(int a, int b) { int t = a; a = b; b = t; } int x = 1, y = 2;",
-          "prints 1 2, not 2 1",
-          "static void update(int[] data) { data[0] = 99; } int[] nums = {1, 2, 3};",
-          "prints 99, the caller's array really changed",
-          "static void reset(int[] data) { data = new int[]{0, 0, 0}; } int[] nums = {1, 2, 3};",
-          "prints 1, because only the copy was pointed elsewhere",
-          "static int sign(int n) { if (n > 0) { return 1; }",
-          "Compile Error :- missing return statement",
-          "static void print(int x) { System.out.println(\"int\"); } static void print(double x) { System.out.println(\"double\"); } prints int",
-          "static void printScore(int score) { System.out.println(score); }",
-          "Compile Error :- void cannot be converted to int",
-          "method without any parameter",
-          "Calling the overloaded method with parameters",
+          "A method is a named block of code you can run by name, so the same logic is written once instead of copied around. Calling it means writing the name with parentheses; defining it means writing a body instead of ending with a semicolon.",
+          "Parameters are local variables created fresh for every call, holding copies of the values you passed in. They exist only while the method is running, and they disappear when it returns.",
+          "Java always passes by value. For a primitive you get a copy of the number, which is why `swap(a, b)` leaves the caller's variables untouched. For an object you get a copy of the reference, so the method can change the object's contents but not point the caller's variable somewhere else.",
+          "A return type is a promise. A non-void method must return a value on every path that can finish, so `static int sign(int n) { if (n > 0) { return 1; } }` does not compile: when n is 0 or less there is nothing to return.",
+          "Overloading means several methods share one name but take different parameter lists. Java picks the version at compile time from the argument types, so `print(5)` chooses `print(int)` instead of widening to `print(double)`.",
+          "`void` means the call produces no value at all, so `int result = printScore(10);` is a compile error even though the method runs and prints normally.",
+          "A parameter is a copy, so assigning to it inside the method never changes the caller's variable. That is the whole reason the classic swap method appears to work and then changes nothing.",
+          "For an object, writing through the reference is visible to the caller, but reassigning the reference is not: `data[0] = 99` changes the caller's array, while `data = new int[]{0,0,0}` only moves the local copy.",
+          "The return type is not part of a method's signature, so two methods that differ only in their return type cannot overload each other.",
+          "The compiler checks every path of a non-void method, so one branch that can finish without a return fails the whole file rather than compiling and returning a surprise at runtime.",
           "The parameters should be passed in the same order as it is defined in the method.",
           "The value returned by calculateScore function is now assigned to highScore variable.",
           "We can also pass the values to the method using variables",
@@ -5920,29 +5857,22 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "long x = 1L;",
-          "Compile Error :- long is not a valid selector boolean b = true;",
-          "Compile Error :- boolean is not valid either",
-          "int x = 2;",
-          "case 1: System.out.print(\"A\"); break; case 2: System.out.print(\"B\"); case 3: System.out.print(\"C\"); break; default: System.out.print(\"D\");",
-          "int x = 3;",
-          "case 3: System.out.println(\"low\"); break; default: System.out.println(\"high\");",
-          "default: System.out.print(\"D\"); case 1: System.out.print(\"A\"); case 2: System.out.print(\"B\");",
-          "static void check(int x) {",
-          "case 1: System.out.println(\"one\"); return; default: System.out.println(\"other\");",
-          "prints one, and never reaches after switch",
-          "String day = \"monday\";",
-          "case \"Monday\": System.out.println(\"start of week\"); break; default: System.out.println(\"unknown\");",
+          "`switch` compares one value against a list of fixed constants. Reach for it when the possibilities are exact values rather than ranges, and use if-else when the conditions are ranges or combinations.",
+          "The selector can be byte, short, char, int, their wrapper types, a String, or an enum value. long, float, double and boolean are rejected, so those need an if-else chain.",
+          "`break` is what stops a case running into the next one. Without it execution falls straight through, which is why `case 2` with no break also prints what `case 3` prints.",
+          "Fall-through is sometimes what you want. Stacking `case 1: case 2: case 3:` makes all three share one body, and only the last label needs a break.",
+          "`default` is matched rather than ordered. It runs when nothing else matched, and writing it first only changes which cases fall into it.",
+          "A missing `break` is the classic switch bug, and the code still compiles, so the mistake shows up as extra output rather than as a compiler error.",
+          "Two case labels holding the same value do not compile, so a duplicated constant is caught at compile time.",
+          "A `return` inside a case leaves the whole method rather than just the switch, so any statement written after the switch never runs.",
+          "A String selector is matched by content and is case-sensitive, so \"monday\" does not match `case \"Monday\"` and quietly takes the default branch.",
           "The same logic can be written using if-else; switch is cleaner when testing one variable against many values.",
           "The switch expression is matched against each case label. When a match is found, its code block executes. Without break, execution 'falls through' to the next case.",
           "The condition is provided as parameter to switch statement, which is then matched to the case statement.",
           "If the condition provided in the switch statement, matches the condition provided in case statement, the code mentioned in that case statement gets executed.",
-          "Similar to if statement",
-          "Similar to else if statement",
           "Once the condition is met, the break statement forces the program to come out of switch condition",
           "It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.",
           "Multiple case labels can share the same code block. If any of the listed values match, the shared code block executes.",
-          "We can club multiple case statements together",
           "Program in switch case without any break statement",
           "We should always use break statements, after the case statements.",
           "If break statements are not used, it will result in fall-through behaviour.",
@@ -6695,21 +6625,13 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Syntax for switch expression: return switch(variable) { case X -> \"value\"; default -> \"fallback\"; };",
-          "int x = 2;",
-          "int x = 4;",
-          "case 1, 2, 3 -> System.out.println(\"low\"); case 4, 5 -> System.out.println(\"high\"); default -> System.out.println(\"out of range\");",
-          "String day = switch (2) { case 1 -> \"Monday\"; case 2 -> \"Tuesday\"; default -> \"Unknown\";",
-          "prints Tuesday",
-          "String month = \"JANUARY\";",
-          "String quarter = switch (month) { case \"JANUARY\", \"FEBRUARY\", \"MARCH\" -> \"Q1\"; default -> {",
-          "String msg = \"INVALID MONTH\"; yield msg;",
-          "prints Q1",
+          "The enhanced switch uses `->` in place of `:`, and each arm ends when its statement ends, so there is no fall-through and no `break` to forget.",
+          "A comma-separated list groups values into one arm, so `case 1, 2, 3 -> ...` does the work of three stacked case labels.",
+          "An enhanced switch can be used as an expression: whatever the chosen arm produces becomes the value of the whole switch, ready to be assigned or returned.",
+          "A switch expression requires a `default` arm, because the expression has to produce a value for every possible input.",
+          "`yield` is valid only inside a switch expression, and it is what returns the value from an arm that needs more than one statement.",
           "Traditional switch: uses colon (:) after each case and requires break to prevent fall-through.",
-          "Similar to if statement",
-          "Similar to else if statement",
           "Once the condition is met, the break statement forces the program to come out of switch condition",
-          "We can club multiple case statements together",
           "It is similar to else statement. If the switch condition is not met in either case, the default, as the name suggest will get executed.",
           "Enhanced switch: uses arrow (->) syntax. No break needed — each case automatically ends after its expression.",
           "Double colon(:) which was part of traditional switch statement is replaced by arrow(->) in the enhanced switch statement",
@@ -7105,15 +7027,14 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "block of statements",
-          "25 and 50 get skipped.",
-          "prints 0 1 2 3 4",
-          "prints 0 1 2 3 4 5",
-          "Compile Error :- cannot resolve symbol 'i'",
-          "same as while (true)",
-          "3 is skipped",
-          "prints 1 2 4 5",
-          "leaves BOTH loops",
+          "A for loop keeps all three parts on one line: what to do before it starts, the test that decides whether to keep going, and what to change after each pass. `for (int i = 0; i < 5; i++)` runs the body five times, with i taking 0, 1, 2, 3 and 4.",
+          "The variable declared in the header belongs to the loop and disappears at the closing brace, so `i` cannot be used after the loop.",
+          "`break` leaves the loop immediately, while `continue` skips the rest of the current pass and jumps to the update step, so the counter still advances.",
+          "Whether you write `<` or `<=` decides how many passes there are. `i < 5` stops at 4 and `i <= 5` stops at 5, and that one extra pass is the usual off-by-one bug.",
+          "Nested loops run the inner loop completely for every single pass of the outer loop, so 3 outer passes over 4 inner passes run the inner body 12 times. A labelled break is how you leave both loops together.",
+          "A loop that never changes its condition runs forever, and the program looks frozen rather than showing an error.",
+          "`break` on its own leaves only the innermost loop. Leaving two loops needs a label, or a flag that the outer loop tests.",
+          "If `continue` runs before the counter update in a while loop, the counter never advances and the loop spins forever. In a for loop the update still runs, so the same mistake is harmless there.",
           "counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested."
         ],
         "customQuizzes": [
@@ -7843,20 +7764,14 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "body must update loop variable here, or you get an infinite loop!",
-          "initialisation happens OUTSIDE the while",
-          "condition",
-          "update happens INSIDE the while",
-          "infinite loop — will loop forever unless break is used",
-          "exits the loop when j exceeds 5",
-          "pass 0, pass 1, pass 2, pass 3, pass 4",
-          "without this line the loop never ends",
-          "-1 is the sentinel that stops the loop",
-          "4, then 3, then 2, then 1",
-          "123, then 12, then 1, then 0",
-          "block of statements",
+          "A while loop tests its condition before every pass, so when the condition is false to begin with the body never runs at all.",
+          "Nothing is built into a while header. You set the counter up before the loop and change it inside the body, and forgetting to change it is what produces an infinite loop.",
+          "Three shapes cover most while loops: count up to a limit, keep going until a sentinel value arrives, and keep asking until the input becomes valid.",
+          "`n % 10` gives the last digit of a number and `n = n / 10` removes it. Repeat that while `n > 0` and the digits come out in reverse, which is the basis of digit sum, palindrome checks and number-to-words.",
+          "A while loop whose body never changes the condition runs forever, and the program looks frozen rather than reporting anything.",
+          "`while (condition);` with a stray semicolon gives the loop an empty body, so the condition is tested endlessly and the block underneath is outside the loop.",
+          "`continue` in a while loop jumps back to the condition without running the update, so a counter incremented only at the end of the body never moves.",
           "In while loop the initialisation of the variable happens outside the while loop",
-          "Iteration",
           "Another common way to program while loop is :-",
           "If break condition is not put, it will lead to infinite loop condition",
           "Here in this code, we are breaking the loop, as soon as the condition is met.",
@@ -8546,23 +8461,18 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "body — executes first, at least once",
-          "NOTE: semicolon required after the closing parenthesis!",
-          "int n = 10; prints nothing, the test is false from the start int m = 10; prints do-while ran once",
-          "int number;",
-          "number = Integer.parseInt(scanner.nextLine());",
-          "} while (number < 1 || number > 10);",
-          "Compile Error :- ';' expected prints hi",
+          "A do-while runs its body first and tests the condition afterwards, so the body always runs at least once, while a while loop can skip its body completely.",
+          "A do-while suits work that must happen once before it can be tested, such as asking for input and then repeating while the answer is out of range.",
+          "The semicolon after `while (condition);` is part of the do-while statement. Leaving it out is a syntax error.",
+          "A do-while always executes its body at least once, even when the condition is false from the very start, so it can never behave like a guarded while loop.",
+          "`while (condition)` inside a do-while needs a statement terminator, unlike the `while` that starts a normal loop.",
+          "`continue` inside a do-while jumps to the condition test rather than to the top of the body, so the body may run fewer times than you expect.",
           "do while statement format: the do block runs first, then the while condition is evaluated. A semicolon is required after the while condition.",
           "Code to execute at least once, and again if the while condition is true.",
-          "semicolon required",
           "do while example: demonstrates that the loop body always executes at least once, even when the exit condition is already set up.",
           "do while with break and continue: 'continue' skips remaining code in the current iteration and rechecks the while condition. 'break' exits the loop immediately.",
-          "Variable is initialised",
           "do code block gets executed first regardless of the while condition. At least one time the do block will get executed",
-          "Number is incremented",
-          "The continue statement will skip the remaining code, and continue with the condition of the while loop.",
-          "The break statement will exit the loop"
+          "The continue statement will skip the remaining code, and continue with the condition of the while loop."
         ],
         "customQuizzes": [
           {
@@ -9133,10 +9043,15 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "We can create String using 2 ways",
-          "1) Literal form",
+          "A class is a blueprint that lists the fields (the data) and the methods (the behaviour). An object is one filled-in copy of that blueprint, created with `new`.",
+          "Every object gets its own copy of the instance fields, so two objects from the same class hold different values. A field you never assign keeps its default: 0, 0.0, false, or null for an object type.",
+          "A variable of a class type holds a reference rather than the object itself. `Car myCar = new Car();` stores the address of an object on the heap, which is why two variables can point at the same one.",
+          "`new` runs a constructor and hands back a reference. The object stays alive while some reference points at it, and Java reclaims it automatically once none does.",
+          "`==` on two object variables asks whether they point at the same object, not whether their fields match, so two separately created cars compare as not equal.",
+          "A field you never assign is not empty. It holds the type's default, so a String field is null and calling a method on it throws a NullPointerException.",
+          "An object variable that has not been given an object holds null, and using it throws a NullPointerException rather than quietly creating something.",
+          "Local variables declared inside a method have no default at all, so reading one before assigning it is a compile error, unlike a field.",
           "s is a local variable on which the objects memory location also known as reference is assigned.",
-          "2) Using new keyword",
           "When we create an object, we can pass initial data to be associated with it in parentheses."
         ],
         "customQuizzes": [
@@ -9707,12 +9622,7 @@ const CONCEPTS_DATA = [
             ]
           }
         ],
-        "inlineComments": [
-          "A method called parseInt is called directly from the Class, Integer",
-          "A method called toUpperCase is called on the instance of String with value \"hello\"",
-          "createFieldOnClass.hello is an example of instance field",
-          "CreateFieldOnClasses.name is an example of static field"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "Why does new CreateFieldOnClasses() not need constructor arguments in this file?",
@@ -9954,16 +9864,16 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "returns a primitive int returns an Integer object prints 42 / 42",
-          "prints 10050, because + joins text int sum = Integer.parseInt(\"100\") + Integer.parseInt(\"50\"); prints 150",
-          "NumberFormatException: For input string: \"abc\"",
-          "NumberFormatException works, trim removes the spaces first",
-          "Scanner sc = new Scanner(System.in);",
-          "reads the whole line, spaces included",
-          "reads one integer token",
-          "the Enter key is still waiting in the buffer reads that leftover newline, so name becomes \"\"",
-          "the import statement lets us use classes from other people's code.",
-          "The above code will give error as both the data type is in String java: bad operand types for binary operator '-' first type: java.lang.String second type: java.lang.String",
+          "Input always arrives as text, even when the user typed digits. `Integer.parseInt(\"42\")` turns that text into 42, and `Double.parseDouble(\"3.14\")` into 3.14.",
+          "Text and numbers behave differently with the same operator. `\"100\" + \"50\"` gives \"10050\" because + joins text, and `\"100\" - \"50\"` does not compile at all. Parse first, then do the arithmetic.",
+          "Parsing fails at runtime with a NumberFormatException when the text is not a valid number, so bad input has to be expected rather than assumed away.",
+          "`new Scanner(System.in)` reads the keyboard: `nextLine()` takes the whole line including spaces, and `nextInt()` takes a single number token.",
+          "The two Scanner methods disagree about newlines, which is the source of the most common input bug: `nextInt()` leaves the Enter key behind, so the `nextLine()` after it reads an empty line.",
+          "`nextInt()` stops before the newline, so a `nextLine()` straight afterwards returns \"\" instead of the text you typed. Call an extra `nextLine()` to clear the leftover.",
+          "`Integer.parseInt(\" 42 \")` throws, because the spaces make it invalid text. Trim the input first.",
+          "`System.console()` returns null inside most IDEs, because the program is not attached to a real terminal, so code that calls it throws a NullPointerException.",
+          "`Math.round` returns a long, not an int, so storing its result in an int needs a cast.",
+          "The above code will give error as both the data type is in String java: bad operand types for binary operator '-'",
           "Integer is a class. It has a static method called parseInt that takes a String and returns a value of data type int.",
           "To access a static method, we use ClassName.methodName. Integer is the class name, and parseInt is the static method.",
           "Double is a class. It has a static method called parseDouble that takes a String and returns a value of data type double.",
@@ -9979,7 +9889,7 @@ const CONCEPTS_DATA = [
           "The idea of putting the logic to get the user input of year of birth inside do while block is to make sure that the code executes at least one time.",
           "and if the user input is not within the proper range, the code continues to execute till the time the correct year of birth within the prescribed year range is entered by the user.",
           "There could be a possibility that the user might not enter the correct year of Birth.",
-          "they might enter characters in place of numbers which might lead to NumberFormat Exception hence, the code is wrapped around a try catch block, where the code logic that might create problem is written inside try code block.",
+          "they might enter characters in place of numbers which might lead to NumberFormat Exception hence, the code is wrapped around a try catch block, where the code logic that might create problem",
           "The boolean return value of checkValidDOB(currentYear, yearOfBirth) is assigned to checkDOBValidity variable of type boolean",
           "The catch block accepts the parameter of the type exception, which the code might throw, in this case, it's NumberFormatException",
           "Since, the user definitely have entered the wrong year of birth, that's why the exception got caught, we are setting the checkDOBValidity value back to false.",
@@ -10896,14 +10806,16 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "the risky line",
-          "} finally { runs whether or not anything went wrong",
-          "static void checkAge(int age) {",
-          "raised at this moment",
-          "declares that this method may pass the problem on",
-          "narrower type first",
-          "broader type afterwards",
-          "} catch (NumberFormatException e) { report it and let the caller decide what to do",
+          "An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace.",
+          "`try` holds the risky code, `catch` deals with one chosen type of failure, and `finally` runs whatever happened, which is what makes it the right place for cleanup.",
+          "Checked exceptions are the ones the compiler makes you deal with, such as IOException. Unchecked ones such as NullPointerException and ArithmeticException are usually mistakes and the compiler asks for nothing.",
+          "`throw` raises an exception at the moment something is wrong, while `throws` in a method signature warns callers that this method may pass one on.",
+          "Catch order matters. List the most specific type first, because a broader catch placed above a narrower one makes that narrower one unreachable and the file will not compile.",
+          "A `catch (Exception e)` wrapped around everything treats a programming bug and a recoverable problem the same way, so real bugs survive unnoticed.",
+          "An empty catch block makes the failure disappear silently, which is worse than not catching it at all.",
+          "`finally` still runs when the try block returns, which is exactly why resources are closed there rather than after the try.",
+          "`Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.",
+          "The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened.",
           "The try block wraps any code that might throw an exception at runtime.",
           "Place only the risky code here — keep try blocks as small as possible.",
           "The try block ends here; the catch block immediately follows.",
@@ -11593,14 +11505,15 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "class Counter {",
-          "ONE copy for the whole class one copy in every object",
-          "void tick() { shared++; mine++; }",
-          "fine, shared belongs to the class",
-          "Compile Error :- mine is not static",
-          "Counter a = new Counter();",
-          "Counter b = new Counter();",
-          "prints 3, all three ticks landed on the one shared copy prints 2 1, each object kept its own count"
+          "A class is a template listing the data (fields) and the behaviour (methods) of one kind of thing. An object is a created copy of that template, and it is the copy that holds actual values.",
+          "`static` means one copy shared by the whole class and reached through the class name, while an instance member means one copy per object reached through that object.",
+          "A static method has no object to work with, so it cannot read or change instance fields. The compiler refuses it at compile time rather than letting it fail later.",
+          "Inheritance lets a child class reuse a parent's fields and methods by writing `extends`. It models an IS-A relationship: a Dog IS-A Animal.",
+          "An access modifier narrows who can see a member: private is the class itself, nothing written means package, protected adds subclasses in other packages, and public is everyone.",
+          "Adding `extends` does not copy the parent's constructors, so the child still has to call one with `super(...)`. If the parent has no no-argument constructor, that call becomes compulsory.",
+          "A private field is not visible to a child class, so a subclass cannot read or set it directly even though it inherits it. It has to go through the parent's methods.",
+          "A top-level class can only be public or have no modifier at all. protected and private are not valid on a top-level class.",
+          "A static method called through an object reference compiles and works the same as calling it through the class name, which makes it look like an instance method when it is not."
         ],
         "customQuizzes": [
           {
@@ -12115,8 +12028,6 @@ const CONCEPTS_DATA = [
         "inlineComments": [
           "This will give compile time error as the car variable is not initialised",
           "This would give a runtime error if we called a method now, because the variable is pointing to a null reference",
-          "Car car = new Car();",
-          "car.make = \"Porsche\";",
           "Since this field has private access, the main class is not allowed to access them",
           "The best practice is to allow access to this data, either through getters and setters",
           "As per the validations conditions mentioned in the setter, the output of this line of code will be \"Unsupported\""
@@ -12375,12 +12286,7 @@ const CONCEPTS_DATA = [
             ]
           }
         ],
-        "inlineComments": [
-          "firstName is set to empty string",
-          "lastName is set to empty string",
-          "firstName is set to John",
-          "lastName is set to Smith"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "What values should be passed to setAge(int age), and what happens outside the valid range?",
@@ -12539,8 +12445,6 @@ const CONCEPTS_DATA = [
         ],
         "inlineComments": [
           "this() cannot be the last statement of the body, if this() is put at last, then the compiler will throw an error \"Call to 'this()' must be first statement in constructor body\"",
-          "Explicit constructor with parameters is called",
-          "ConstructorConcept constructorConcept1 = new ConstructorConcept(\"123456789\",1000.0,\"Navneet Jha\",\"navneet.jha500@gmail.com\",\"(+91) 8093958396\");",
           "Constructor chaining example, where a no-args constructor will call the other args constructor using this keyword, where all the parameters required by the second constructor will be passed to this() keyword",
           "As per the below code. the behaviour will be :-",
           "As this() should always be the first line in the constructor, when the no - args constructor is called, then as per the flow, it then calls, the args constructor using this() and once the args constructor code block is executed, the controls then comes back to the no-args constructor",
@@ -12602,10 +12506,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "parent class also known as super class",
-          "subclass also known as child class",
-          "overrides methods from the parent class",
-          "calls the method in the SuperClass (parent)",
           "Without adding the keyword super in this case, it would end up being a recursive call.",
           "What that means is that the method would call itself forever, or until memory is fully used, crashing the program. That's why we need the super keyword - so that we can call a method with the same name from a parent class."
         ],
@@ -12753,8 +12653,7 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "this keyword is required, same parameter name as the field",
-          "this is optional"
+          "this keyword is required, same parameter name as the field"
         ],
         "customQuizzes": [
           {
@@ -13230,7 +13129,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "house object gets created in the memory",
           "The object is created in the memory, but after the statement completes, the code has no way to access it",
           "The object exist in memory, but the code, can't communicate with it, after the statement is executed",
           "The first object is said to be eligible for garbage collection immediately",
@@ -13337,7 +13235,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Static method called using ClassName.methodName();",
           "Static method called directly using methodName() as printHello() method was declared within the StaticAndInstanceMethods class, and also called in the same class",
           "In order to access the instance method, first an instance of the class needs to be created",
           "Then with the help of reference variable which is referencing the object, the instance method named printName() is called"
@@ -13550,26 +13447,20 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Objects are created using POJO",
           "Getter methods that are defined explicitly in the Student POJO class are called below",
           "The pre-defined best practice to define an explicit getter method name is that the getter method name to access any instance field will have a prefix like (get or is) before the instance variable name for which the value is retrieved(get) which together will form the getter method name",
           "Example: getName() & getClassList() are explicitly defined getter methods for the name and classList instance variables",
           "The values of the instance variables in POJO based approach can be set using the explicitly defined setter methods.",
           "For example: s1.setClassList(s1.getClassList() + \", Java OCJP Exam 829\") will work as expected as the setClassList setter method has been defined explicitly and the value of the classList instance variable of the s1 object will get set to \"Java MasterClass, Java OCJP Exam 829\"",
-          "Output of the code",
           "Difference between the outputs :- i) toString() method should be there in the pojo",
-          "ii) It starts with curly bracket",
-          "iii) Single quotes around Strings are there",
-          "Objects are created using Record Class",
           "Getter methods are implicitly handled in the Record Type StudentRecord class. There is no need to explicitly define the getter methods in the Record Type Class",
           "The implicit defined getter method name to retrieve(get) the value of the specific instance field will only have the instance variable name for which the value is retrieved(get) as the getter method name to access that instance variable value",
           "Example: name() & classList() are implicitly defined accessor methods for the name and classList record components",
           "1) The values of the instance variables in Record Type based approach cannot be set ever and the Record Type class do not have implicitly defined setter methods",
           "2) For example: s1.setClassList(s1.classList() + \", Java OCJP Exam 829\") will not work as there is no implicitly defined setter method for any of the instance field in the Record Type Class",
           "3) This is by design because the Record type class goal is to be immutable and they are built like that specifically",
-          "4) The objective of the record type Class suits well for the use cases of immutable data transfer objects and keeping them well encapsulated. The data needs to be well protected from unintended mutations",
+          "4) The objective of the record type Class suits well for the use cases of immutable data transfer objects and keeping them well encapsulated. The data needs to be",
           "Difference between the outputs :- i) toString() method is not required. It is handled implicitly by the Record type class",
-          "ii) It starts with square bracket",
           "iii) Single quotes around Strings are not there"
         ],
         "customQuizzes": [
@@ -13752,7 +13643,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Static variable example",
           "Although this line will compile and run successfully, it is not considered best practice to call static method with an instance(reference) variable",
           "This is the correct way of calling a static variable",
           "This makes it clearer that the variable is associated with the class and therefore not stored with the instance",
@@ -13761,7 +13651,6 @@ const CONCEPTS_DATA = [
           "When the second parameterised constructor is called, the value of static String name is now set to \"Fluffy\"",
           "Since, the static members are shared between the instances,once the changes are made to the static variable all instances will see the change that has been made.",
           "Both the instances are sharing the same variable \"name\", hence the last modified value of static variable \"name\" which is set to \"Fluffy\" will be printed when the printName method is called by both the instances",
-          "Output :- name = Fluffy",
           "Each instance of the class has its own state or its own values for any variables that have been defined.",
           "Because instance variables are used, every object instance variables has its own value for the name field.",
           "It's not shared like it was before, when a static variable was used.",
@@ -14364,7 +14253,6 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Since Dog inherits from animal.",
           "A dog object can be used as the method argument even though the type was declared as an animal.",
           "It works because dog inherits from animal, it's a type of animal",
           "A dog instance can be passed to any method that takes an animal",
@@ -14442,8 +14330,7 @@ const CONCEPTS_DATA = [
           "Output :- Here, the Student class's overridden toString() method runs.",
           "This override is redundant, as it is simply calling the parent class toString() method, and hence, will give the same output, when the toString() method was called without overriding",
           "The parent class toString() method is implicitly called, when super.toString() is explicitly called",
-          ",Object // Class cannot extend multiple class {",
-          "Call to parent constructor is been made"
+          ",Object // Class cannot extend multiple class {"
         ],
         "customQuizzes": [
           {
@@ -14504,8 +14391,7 @@ const CONCEPTS_DATA = [
           "Here the employeeNumber is taken as static, hence, whenever a new employee gets created, the employeeId gets incremented by 1",
           "An Employee constructor is created, that accepts name, birthDate and hireDate as the parameters",
           "With the help of super keyword, the Worker constructor is called, through constructor chaining",
-          "The name and birthDate information gets set in the worker class using constructor chaining using super keyword, whenever the Employee constructor is called",
-          "Worker class toString() method is called"
+          "The name and birthDate information gets set in the worker class using constructor chaining using super keyword, whenever the Employee constructor is called"
         ],
         "customQuizzes": [
           {
@@ -14919,22 +14805,16 @@ const CONCEPTS_DATA = [
           "If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.",
           "Method return type may or may not be different, and that allows us to reuse the same method name",
           "Overloading is very handy, it reduces duplicated code, and we don't have to remember multiple method names.",
-          "We can overload, static or instance methods",
           "There are two ways to overload the method in java",
-          "By changing number of arguments",
-          "By changing the data type",
-          "Method Overloading and Type Promotion*",
           "One type is promoted to another implicitly if no matching datatype is found.",
           "byte can be promoted to short, int, long, float or double. The short datatype can be promoted to int, long, float or double.",
           "The char datatype can be promoted to int,long,float or double and so on.",
           "If there are matching type arguments in the method, type promotion is not performed.",
           "If there are no matching type arguments in the method, and each method promotes similar number of arguments, there will be ambiguity.",
-          "The b parameter is promoted to long",
           "Type promotion will not happen since there are matching arguments",
           "Since there are no matching type arguments, and each method promotes similar number of arguments, there will be ambiguity.",
           "Example of method overloading. Number of arguments are changed",
           "Just by changing the return type of the method is not sufficient, as it may lead to ambiguity.",
-          "Example of Method Overloading with TypePromotion",
           "Example of Method Overloading with Type Promotion in case of ambiguity",
           "Example of Method Overloading with Type Promotion if matching found"
         ],
@@ -15266,14 +15146,14 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "a parent reference holding a child object runs Dog's version, because the OBJECT type decides",
-          "Animal myPet = new Dog();",
-          "Compile Error :- cannot find symbol, because fetch is declared only on Dog",
-          "| Question | Overriding | Overloading |",
-          "| Same name? | Yes | Yes |",
-          "| Parameter list | Identical | Different |",
-          "| Which one runs | Decided at runtime from the object type | Decided at compile time from the argument types |",
-          "| Also called | Runtime polymorphism | Compile-time selection |"
+          "Overriding means a child class writes its own version of a method the parent already has, keeping the same name and exactly the same parameter list.",
+          "Which overridden method runs is decided at runtime from the actual object type, not from the reference type, which is why overriding is called runtime polymorphism.",
+          "Which overloaded method runs is decided at compile time from the argument types, so overloading has nothing to do with polymorphism.",
+          "A child version may not take access away from callers, so a public parent method cannot become protected or private in the child, and it may narrow the return type to a subclass.",
+          "Static methods, private methods, final methods and constructors cannot be overridden. `@Override` above the child method makes the compiler check all of this for you.",
+          "Changing the parameter list turns an intended override into an overload, and the code still compiles. `@Override` is what turns that silent mistake into an error.",
+          "A private method in the parent cannot be overridden, because the child cannot even see it. A same-named method in the child is a separate, unrelated method.",
+          "Through a parent reference you can only call the methods the parent declares, so calling a child-only method needs a child reference or a cast."
         ],
         "customQuizzes": [
           {
@@ -16165,21 +16045,10 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "| New line | What it is | Where it works | What it gives |",
-          "| `\\n` | Escape sequence, put into the String while compiling | Any String | Always the LF character, on every OS |",
-          "| `%n` | Format specifier, converted by the Formatter at run time | Only a format string | Line separator of the platform: \\r\\n on Windows, \\n on Linux or macOS |",
-          "prints Age = 42 and moves to a new line builds the text without printing it prints Age = 42 later",
-          "| Placeholder | Meaning | Example |",
-          "| `%d` | a whole number | `String.format(\"%d\", 42)` gives `42` |",
-          "| `%f` | a decimal number | `String.format(\"%.2f\", 3.14159)` gives `3.14` |",
-          "| `%s` | text | `String.format(\"%s\", \"hi\")` gives `hi` |",
-          "| `%5d` | pad to width 5, right-aligned | a 2-digit number is padded on the left |",
-          "| `%-5d` | pad to width 5, left-aligned | a 2-digit number is padded on the right |",
-          "| `%.2f` | keep two decimal places | `3.14159` becomes `3.14` |",
-          "| `%n` | the platform's new line | `printf(\"Hi %n\")` moves to a new line |",
-          "IllegalFormatConversionException: %f != java.lang.Integer",
-          "prints Hello and moves to a new line prints Hello %n, because there is no format string here",
-          "docs.oracle.com/javase/8/docs/api/java/util/Formatter.html\""
+          "`System.out.printf` prints its result immediately, while `String.format` returns the same text as a String you can store, compare or print later. The placeholders and arguments behave identically.",
+          "In a format string, %d is a whole number, %f is a decimal, %s is text, %.2f keeps two decimal places, %5d pads to width 5, and %n is the platform's new line.",
+          "A placeholder that does not match its argument throws at runtime, not at compile time, so `printf(\"%f\", 42)` looks fine until the line runs.",
+          "%n only has meaning inside a format string. `System.out.println(\"Hello %n\")` prints the characters `%n` literally, because println is not a formatter."
         ],
         "customQuizzes": [
           {
@@ -16519,32 +16388,34 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "String s = \"Java\"; the result is thrown away prints Java, s never changed the result is stored prints Java is fun",
-          "String a = \"hello\";",
-          "String b = \"hello\";",
-          "String c = new String(\"hello\"); prints true, both literals come from the string pool prints false, new String made a separate object prints true, equals compares the characters",
+          "A String cannot be changed after it is created. `concat`, `toUpperCase`, `trim`, `replace` and `substring` all build and return a NEW String, so the result must be stored or printed to be seen.",
+          "`==` asks whether two variables point at the same object, while `.equals()` asks whether the characters match. Use equals for content, because literals and runtime-built Strings do not share an object.",
+          "Characters are counted from index 0, and `substring(begin, end)` stops just before end, so `substring(0, 3)` gives the first three characters.",
+          "A `char` uses single quotes and holds exactly one character, while a String uses double quotes and holds any number of them. Adding a char to a number gives a number: `'A' + 1` is 66, and `(char) ('A' + 1)` is B.",
+          "`\"Java\" + 10 + 20` gives Java1020 rather than Java30, because + starts joining as soon as one side is text. Wrap the arithmetic in parentheses to add it first.",
+          "`substring` and `charAt` throw StringIndexOutOfBoundsException at runtime when the index is outside the String, so bound the value before using it.",
+          "Comparing Strings with `==` can appear to work with literals and then fail as soon as one of them is built at runtime, because `==` never compares text.",
+          "`replaceAll` reads its first argument as a regular expression, so `replaceAll(\".\", \"-\")` replaces every character. Use `replace` when you mean a literal dot.",
           "String Inspection Methods :- These give information about the String, they never change it.",
           "This method is called with \"Hello World\", with \"\" and with \"\\t \\n\", so that these methods can be seen working on a normal String, on an empty String and on a blank String.",
           "length() returns the total number of characters, and it is an O(1) operation.",
           "isEmpty() returns true only when the length is 0, so a String with only whitespace returns false.",
           "isBlank() returns true when the length is 0 or when the String has only whitespace characters.",
           "This is the check to use for user input, because isEmpty() would let spaces pass through.",
-          "charAt(index) returns the character at that index. The index has to be between 0 and length() - 1, otherwise StringIndexOutOfBoundsException is thrown.",
+          "charAt(index) returns the character at that index. The index has to be between 0 and length() - 1.",
           "The index of the last character is length - 1, because the indexing starts at 0.",
           "indexOf() searches from left to right, and lastIndexOf() searches from right to left.",
           "Both of them return -1 when the value is not found.",
           "The second argument of indexOf() is the position where the search starts.",
           "The second argument of lastIndexOf() is the position where the backward search starts.",
-          "String Comparison Methods :- These compare the content of the String with another String or with a CharSequence, and they return true or false.",
+          "String Comparison Methods :- These compare the content of the String with another String or with a",
           "equals() compares the content and it is case - sensitive.",
           "Note :- always use equals() instead of == for Strings, because == compares the memory references.",
           "equalsIgnoreCase() compares the content and ignores the case, so no lowercasing is needed first.",
-          "startsWith() checks the prefix of the String.",
-          "endsWith() checks the suffix of the String.",
-          "contentEquals() accepts any CharSequence, so a String can be compared with a StringBuilder without calling toString() on it.",
+          "contentEquals() accepts any CharSequence, so a String can be compared with a StringBuilder",
           "contains() checks whether the given sequence appears anywhere inside the String.",
-          "regionMatches(ignoreCase, toffset, other, ooffset, len) compares only the given regions, so no extra substring objects are created.",
-          "String Manipulation Methods :- These return a new String after a transformation, the original String is never changed.",
+          "regionMatches(ignoreCase, toffset, other, ooffset, len) compares only the given regions.",
+          "String Manipulation Methods :- These return a new String after a transformation, the original String",
           "indexOf() gives the position of the year, and substring() then takes the text from that position.",
           "substring(beginIndex) returns the text from beginIndex up to the end of the String.",
           "substring(beginIndex, endIndex) takes beginIndex as inclusive and endIndex as exclusive.",
@@ -16552,7 +16423,7 @@ const CONCEPTS_DATA = [
           "The same 3 values are joined with the delimiter \"/\" in four different ways.",
           "i) String.join() is the cleanest one, because the delimiter is written only once.",
           "ii) Reassigning the result of concat() at every step. This creates a new String object each time, and it also throws NullPointerException when the argument is null.",
-          "iii) The + operator, which is the easiest one to read. It also converts null to the text \"null\" instead of throwing an exception.",
+          "iii) The + operator, which is the easiest one to read. It also converts null to the text \"null\"",
           "iv) Chaining all the concat() calls in a single statement.",
           "replace(char, char) replaces every occurrence of that literal character.",
           "replace(CharSequence, CharSequence) also works on literal text, so \"2\" is not treated as a pattern.",
@@ -16561,12 +16432,11 @@ const CONCEPTS_DATA = [
           "A Regular Expression is needed only when a pattern has to be matched, for example \\d+ for digits.",
           "For a fixed text such as \"/\", replace() is faster and safer, because no pattern is compiled.",
           "repeat() was added in JDK 11. A count of 0 gives an empty String, and a negative count throws",
-          "IllegalArgumentException.",
           "indent() was added in JDK 15. A positive value adds that many leading spaces to every line.",
           "A negative value removes up to that many leading whitespace characters from every line.",
           "strip() is Unicode - aware, so it also removes characters like \\u2000 (en quad).",
-          "stripLeading() removes the leading whitespace only, so the two trailing spaces and the \\u2000 after them are still present.",
-          "stripTrailing() removes the trailing whitespace only, so the \\u2000 at the start and the two spaces after it are still present."
+          "stripLeading() removes the leading whitespace only, so the two trailing spaces and the \\u2000",
+          "stripTrailing() removes the trailing whitespace only, so the \\u2000 at the start and the two"
         ],
         "customQuizzes": [
           {
@@ -16874,59 +16744,35 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "String result = \"\"; builds 5 brand new Strings and throws 4 of them away",
-          "StringBuilder builder = new StringBuilder(); edits one buffer, nothing is copied prints 01234",
-          "| Type | Can it change | Safe across threads | Use it when |",
-          "| String | No | Yes, because it never changes | the text is fixed or rarely changed |",
-          "| StringBuilder | Yes | No | one thread is doing lots of joining |",
-          "| StringBuffer | Yes | Yes, methods are synchronised | several threads share the same buffer |",
-          "Mutable buffer initialized with \"Hello\"",
+          "A StringBuilder is a mutable buffer. `append` changes the same object and returns it, so nothing is copied and there is no need to reassign the result.",
+          "Use StringBuilder when text is joined repeatedly, especially inside a loop, because String concatenation builds a new String on every pass while the builder keeps working on one buffer.",
+          "`toString()` captures the text as it is at that moment in a new, immutable String, so appending afterwards cannot change the String you already took.",
+          "StringBuilder is the modern and faster choice; StringBuffer is the older type whose methods are synchronised, so it is only worth choosing when several threads share one buffer.",
+          "A StringBuilder is not a String, so `sb.equals(\"text\")` is false because that method compares references. Convert with `toString()` before comparing text.",
+          "`new StringBuilder(\"Hello\")` starts with a capacity of 16 plus the text length, so 21 here. Capacity is the room available before the buffer has to grow, not the length of the text.",
+          "Building a long String with `+` inside a loop creates a new object on every pass and leaves the earlier ones for the garbage collector, which is exactly the cost StringBuilder avoids.",
           "append adds to the end and returns the same builder",
           "insert places text at a given index, shifting the rest right",
           "replace swaps the characters in [start, end) with new text",
           "deleteCharAt removes the character at the given index",
           "reverse flips the characters in place on the same object",
-          "length is how many characters are stored",
           "capacity is the internal buffer size (grows as needed)",
           "toString converts the mutable builder into an immutable String",
           "Fluent chaining works because each append returns the same builder",
           "Efficient loop building: one buffer, no throwaway String objects per iteration",
-          "guard avoids a trailing separator",
           "Repeating with String.repeat(int) — added in Java 11, returns a NEW String",
-          "\"====================\" (20 equals signs)",
-          "\"hahaha\"",
           "Repeating with StringBuilder on Java 17 — append in a loop (StringBuilder has no repeat() until Java 21)",
           "each pass appends to the same buffer, no new String objects",
-          "ababab",
           "Capacity demonstration: default is 16; the String constructor adds 16 + text length",
-          "no argument",
-          "String argument",
-          "explicit capacity",
           "Growth: once capacity 16 overflows, it becomes (16 * 2) + 2 = 34",
-          "starts at 16",
-          "17th char exceeds capacity 16",
           "append(\"a\".repeat(17)) into a DEFAULT builder: 17 chars overflow capacity 16, so it grows to (16 * 2) + 2 = 34",
-          "default capacity 16",
-          "17 chars > 16, buffer must grow",
-          "len=17 cap=34",
           "append(\"a\".repeat(17)) into a PRESIZED builder: 17 fits inside capacity 32, so no growth happens",
-          "explicit capacity 32",
-          "17 chars <= 32, buffer stays put",
-          "len=17 cap=32",
           "--- Mutation methods: insert, delete, deleteCharAt, reverse, setLength ---",
           "insert(offset, x): puts text at an index, shifting the rest right; offset == length() appends",
-          "\"Hello, World\"",
           "delete(start, end): removes the half-open range [start, end) -- end is EXCLUSIVE",
-          "removes \" World\" (indexes 5..10) -> \"Hello\"",
-          "deleteCharAt(index): removes exactly one character",
-          "removes 'H' -> \"ello\"",
           "reverse(): flips characters in place on the same object",
-          "\"cba\"",
           "setLength(n): truncates if smaller, pads with '\\u0000' if larger; returns void",
-          "keep first 5 chars -> \"Hello\"",
-          "setLength(0) is the idiom to clear and reuse a StringBuilder without allocating a new one",
-          "now empty",
-          "\"fresh\""
+          "setLength(0) is the idiom to clear and reuse a StringBuilder without allocating a new one"
         ],
         "customQuizzes": [
           {
@@ -17614,26 +17460,11 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "Output: Hello World concat() returns a new String, but the result is ignored, so helloWorld still refers to the original text.",
-          "Output: Hello World and GoodBye append() changes the existing StringBuilder buffer.",
-          "Output: Hello World and GoodBye",
+          "concat() returns a new String, but the result is ignored, so",
           "StringBuffer also changes its existing buffer, while its mutating methods provide synchronized access for shared use across threads.",
           "--- Stack, heap, and String pool: reference identity vs content ---",
-          "pooled literal",
-          "reuses the SAME pooled object",
-          "NEW heap object, outside the pool",
-          "true (same pooled object)",
-          "false (different objects)",
-          "true (same content)",
-          "true (intern() returns the pooled copy)",
           "String reference: mutating call makes a NEW object; original is untouched",
-          "result ignored -> s unchanged",
-          "Hello",
-          "NEW object created AND s repointed",
-          "Hello World",
-          "StringBuilder reference: same object edited in place, reference unchanged",
-          "returns the SAME object it modified",
-          "true (one object, edited in place)"
+          "StringBuilder reference: same object edited in place, reference unchanged"
         ],
         "customQuizzes": [],
         "deepChallenges": [],
@@ -17893,9 +17724,13 @@ const CONCEPTS_DATA = [
           }
         ],
         "inlineComments": [
-          "a Monitor IS-A Product, so it reuses Product's fields and methods",
-          "class PersonalComputer { the computer HAS-A monitor, held as an ordinary field private MotherBoard motherBoard; private ComputerCase computerCase;",
-          "void drawPixel(int x, int y, String colour) { the computer passes the job to the monitor"
+          "Composition means a class holds other objects in its fields, so a PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase. The parts are ordinary fields, and the whole class works by asking them to do their jobs.",
+          "Inheritance models IS-A, so a Dog IS-A Animal and reuses the parent's fields and methods. Composition models HAS-A, so a computer HAS-A monitor, which is a part it owns rather than a kind of itself.",
+          "Composition keeps the parts independent, so a Monitor can be tested, replaced or reused without touching the computer class, while a change in a parent class can affect every subclass at once.",
+          "Delegation is the method that makes composition work: `drawPixel` on the computer simply calls `monitor.drawPixel(...)` and passes the arguments along.",
+          "The two relationships can exist together. In this example every part IS-A Product through inheritance, and the PersonalComputer HAS-A Monitor through composition.",
+          "A composed object is only usable once its parts exist, so a constructor that stores them must receive or create real objects. Otherwise the fields stay null and every delegated call throws a NullPointerException.",
+          "Composition and inheritance are not a choice you make once for a whole program. The same class can belong to both relationships, as Monitor does here."
         ],
         "customQuizzes": [
           {
@@ -18122,10 +17957,7 @@ const CONCEPTS_DATA = [
             ]
           }
         ],
-        "inlineComments": [
-          "Monitor IS-A Product (inheritance, through extends)",
-          "PersonalComputer HAS-A Monitor (composition, through a field)"
-        ],
+        "inlineComments": [],
         "customQuizzes": [
           {
             "question": "How is inheritance described in these notes?",

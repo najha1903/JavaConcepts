@@ -311,7 +311,8 @@ Keep challenge descriptions complete. State the inputs, expected output, constra
 
 The generated portal provides:
 
-- Notes with explanations, code blocks, tables, parameter notes, and inline annotations.
+- Notes with explanations, code blocks, tables and parameter notes.
+- **Key Takeaways & Annotations**: for each file, the `@takeaway` and `@gotcha` lines written in that file, followed by the annotations found inside its code. Only comments from inside the class declaration are listed, so the overview notes are not repeated, and only comments that read as a complete sentence are kept, so a fragment such as "condition" or "block of statements" never appears without the line it belonged to.
 - Detailed Study and Quick Revision modes; comparison tables keep their grid in both.
 - **Revision Bank**: one place for everything the author has written notes for. Filter by chapter, by free text, by level (Easy, Medium, Hard) and by type (OCJP, Tricky, Concept, Predict, Fill Blank, Written), read the notes, or start a quiz directly from the selection. It is built from `CONCEPTS_DATA`, so a chapter that has no source files can never appear in it.
 - Chapter and grand quizzes with interview, OCJP, concept, code-completion, and output-prediction questions.
