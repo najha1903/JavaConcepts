@@ -846,6 +846,34 @@ function isUsableQuizStatement(line) {
   if (/^(package|import)\s/.test(text)) return false;
   if (/\.java\b/.test(text)) return false;
   if (!/\s/.test(text)) return false;
+  if (!isClaimStatement(text)) return false;
+  return true;
+}
+
+// A true/false choice has to be a CLAIM about the topic that can be judged true or
+// false. The notes also contain instructions ("Print the result in the format..."),
+// headings ("Core Concepts: Java Architecture & Execution Flow") and note
+// fragments ("Practises :- ..."), and those used to appear as choices, which made
+// the question unanswerable rather than difficult.
+function isClaimStatement(text) {
+  const t = String(text || '').trim();
+  // The author's ":-" signpost marks a heading or a note line, never a claim.
+  if (t.includes(':-')) return false;
+  // An instruction tells the reader to do something, so it is not a claim.
+  if (/^(print|write|create|build|use|then|add|call|implement|make|declare|output|expected|note|hint|practises|challenge|example|try|run|test|remember|avoid|prefer|choose)\b/i.test(t)) return false;
+  if (/\b(practises|expected output|core concepts|best practices|method overview|exception hierarchy)\b/i.test(t)) return false;
+  // A label ends with a colon and introduces what follows rather than claiming
+  // anything, such as "Java supports several looping statements for repetitive execution:".
+  if (/:$/.test(t)) return false;
+  // A comparison of two forms of syntax is not a claim, and neither is the text an
+  // object prints, such as "StudentRecord[id=1, name=Navneet]".
+  if (/\s->\s|\+\+|\.\.\./.test(t)) return false;
+  if (/^[\w.$]+\[[^\]]*=[^\]]*\]$/.test(t)) return false;
+  // A heading ends without sentence punctuation and capitalises most of its words.
+  const words = t.split(/\s+/).filter(Boolean);
+  const endsLikeSentence = /[.!?]$/.test(t);
+  const capitalised = words.filter(word => /^[A-Z]/.test(word)).length;
+  if (!endsLikeSentence && words.length <= 10 && capitalised >= Math.ceil(words.length * 0.6)) return false;
   return true;
 }
 
@@ -1446,8 +1474,12 @@ function buildStarterQuestions(chapterName, topics) {
     };
     const topicNotes = (allTopicNoteLines[topicIndex] || []).filter(line => !isHeadingLine(line));
 
-    // Predict: a genuine code-tracing exercise. Only a println with a fixed string
-    // literal is used, so the answer is unambiguous.
+    // Predict: a genuine code-tracing exercise.
+    //
+    // This used to accept a plain println("text"), where the answer is already
+    // visible in the code, so the question tested nothing. It now accepts only a
+    // concatenation of literals and numbers, and works out the real output, so the
+    // learner has to apply the left-to-right rule to get it right.
     let printLine = null;
     let printAnswer = null;
     let inBlockComment = false;
@@ -1459,16 +1491,21 @@ function buildStarterQuestions(chapterName, topics) {
         continue;
       }
       if (trimmed.startsWith('//') || trimmed.startsWith('*')) continue;
-      if (!trimmed.includes('System.out.println')) continue;
-      // Match println with only a string literal (no + concatenation with variables)
-      const pureStringMatch = trimmed.match(/System\.out\.println\(\s*"([^"]{5,})"\s*\)/);
-      if (pureStringMatch) {
-        const val = pureStringMatch[1];
-        if (val === `${chapterLabel} - ${topicLabel}`) continue; // skip auto-generated echo
-        printLine = trimmed;
-        printAnswer = val;
-        break;
-      }
+      const concatMatch = trimmed.match(/System\.out\.println\(\s*((?:"[^"]*"|-?\d+(?:\.\d+)?)(?:\s*\+\s*(?:"[^"]*"|-?\d+(?:\.\d+)?)){1,})\s*\)/);
+      if (!concatMatch) continue;
+      // Work out what Java would print: each quoted part contributes its text, and
+      // each number contributes its own digits, because the first quoted part makes
+      // every later + a concatenation.
+      const parts = concatMatch[1].split(/\s*\+\s*/);
+      const hasText = parts.some(part => /^"/.test(part));
+      if (!hasText) continue;                       // pure arithmetic is a different question
+      const rendered = parts.map(part => /^"/.test(part)
+        ? part.replace(/^"|"$/g, '')
+        : part).join('');
+      if (!rendered.trim()) continue;
+      printLine = trimmed;
+      printAnswer = rendered;
+      break;
     }
 
     if (printLine && printAnswer) {
@@ -1482,7 +1519,7 @@ function buildStarterQuestions(chapterName, topics) {
         question: `What does this code print?`,
         code: printLine,
         answer: [printAnswer],
-        explanation: `The output comes directly from the string literal in the println call.`
+        explanation: `+ is evaluated left to right. The first part is text, so every following + joins rather than adds, which gives ${printAnswer}.`
       });
     }
 
@@ -1550,12 +1587,16 @@ function buildStarterQuestions(chapterName, topics) {
     // ---- Concept check: which of these statements are true? --------------------
     // The statements come from this topic and from other topics, so the learner has
     // to recognise what really belongs to the concept rather than match a phrase.
-    const conceptPool = topicNotes.filter(isUsableQuizStatement);
+    const conceptPool = topicNotes
+      .map(line => String(line).replace(/^[-*•]\s+/, '').trim())
+      .filter(isUsableQuizStatement);
     const trueOptions = conceptPool.slice(0, 3);
     const falseOptions = [];
     for (let i = 0; i < topics.length; i++) {
       if (i === topicIndex) continue;
-      const otLines = (allTopicNoteLines[i] || []).filter(isUsableQuizStatement);
+      const otLines = (allTopicNoteLines[i] || [])
+        .map(line => String(line).replace(/^[-*•]\s+/, '').trim())
+        .filter(isUsableQuizStatement);
       if (otLines.length > 0) {
         falseOptions.push(otLines[0]);
         if (falseOptions.length >= 2) break;

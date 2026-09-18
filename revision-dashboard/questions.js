@@ -20,24 +20,6 @@
 const QUESTIONS_BANK = {
   "Chapter 1: Java Introduction": [
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 1: Java Introduction",
-      "topic": "Hello World",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Hello World\");",
-      "answer": [
-        "Hello World"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_0-what-is-the-difference-between-jvm-jre-a",
@@ -520,102 +502,6 @@ const QUESTIONS_BANK = {
       },
       "explanation": "java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 1: Java Introduction",
-      "topic": "Hello World",
-      "question": "Which of the following are TRUE about Hello World? Select all that apply.",
-      "options": [
-        "Java is both a compiled and interpreted language.",
-        "Print the result in the format: \"25°C is 77.0°F\".",
-        "Then print all three values on one line using string concatenation.",
-        "Core Concepts: Java Architecture & Execution Flow",
-        "- java HelloWorld :- starts the JVM, which runs HelloWorld.class"
-      ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Hello World.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-sub-chapter-2-java-intro-codingchallenge-helloworldvariationchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 1: Java Introduction",
-      "topic": "Hello World Variation Challenge",
-      "question": "Which of the following are TRUE about Hello World Variation Challenge? Select all that apply.",
-      "options": [
-        "Practises :- calling System.out.println, and joining text with the + operator.",
-        "Print the result in the format: \"25°C is 77.0°F\".",
-        "Then print all three values on one line using string concatenation.",
-        "Expected output :- three lines first, then one line holding all three values.",
-        "Core Concepts: Java Architecture & Execution Flow"
-      ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "explanation": "The true statements are taken directly from the notes for Hello World Variation Challenge.",
-      "topicPath": "src/Chapter_1_Java_Introduction/Sub_Chapter_2_Java_Intro_CodingChallenge/HelloWorldVariationChallenge.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-sub-chapter-2-java-intro-codingchallenge-temperatureconverterchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 1: Java Introduction",
-      "topic": "Temperature Converter Challenge",
-      "question": "Which of the following are TRUE about Temperature Converter Challenge? Select all that apply.",
-      "options": [
-        "Print the result in the format: \"25°C is 77.0°F\".",
-        "Then print all three values on one line using string concatenation.",
-        "Practises :- variables, arithmetic with `double`, and printing a formatted result.",
-        "Core Concepts: Java Architecture & Execution Flow",
-        "Expected output for 25 :- 25°C is 77.0°F"
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Temperature Converter Challenge.",
-      "topicPath": "src/Chapter_1_Java_Introduction/Sub_Chapter_2_Java_Intro_CodingChallenge/TemperatureConverterChallenge.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-sub-chapter-3-deepproblems-fibonaccideepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 1: Java Introduction",
-      "topic": "Fibonacci Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Fibonacci membership tests:\");",
-      "answer": [
-        "Fibonacci membership tests:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_1_Java_Introduction/Sub_Chapter_3_DeepProblems/FibonacciDeepProblem.java",
-      "tags": [
-        "predict"
-      ]
     }
   ],
   "Chapter 2: Primitive Types": [
@@ -1299,14 +1185,14 @@ const QUESTIONS_BANK = {
       "options": [
         "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").",
         "Variables declared inside the for loop init section are local to the loop only.",
-        "Core Concepts: Java Variables & Initialization",
         "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "A variable is a named storage location in memory that holds a data value."
       ],
       "answer": [
         0,
-        3,
-        4
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for String Example.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -1363,14 +1249,14 @@ const QUESTIONS_BANK = {
       "options": [
         "Variables declared inside an if block are NOT accessible in else or outside the if.",
         "Variables declared inside the for loop init section are local to the loop only.",
-        "Core Concepts: Java Variables & Initialization",
         "{ // outer block (e.g., a method)",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "A variable is a named storage location in memory that holds a data value."
       ],
       "answer": [
         0,
         1,
-        3
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Local Variables And Scope.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
@@ -1641,37 +1527,19 @@ const QUESTIONS_BANK = {
       "options": [
         "In Java, variables are strongly typed: every variable must be declared with a specific data type before it can be used.",
         "Variables declared inside the for loop init section are local to the loop only.",
-        "Core Concepts: Java Variables & Initialization",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "A variable is a named storage location in memory that holds a data value."
+        "A variable is a named storage location in memory that holds a data value.",
+        "Identifiers must begin with a letter, underscore (_), or dollar sign ($)."
       ],
       "answer": [
         0,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Variables.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Key Words And Expressions In Java",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"You got the high score!\"); // You got the highscore! is a part of expression.",
-      "answer": [
-        "You got the high score!"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -2582,14 +2450,14 @@ const QUESTIONS_BANK = {
       "topic": "Primitive Data Types",
       "question": "Which of the following are TRUE about Primitive Data Types? Select all that apply.",
       "options": [
-        "Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).",
         "Variables declared inside the for loop init section are local to the loop only.",
+        "These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.",
         "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.",
         "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
-        0,
+        1,
         2,
         3
       ],
@@ -3364,42 +3232,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-2-operatorschallenge-operatorchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 3: Operators",
-      "topic": "Operator Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Got some remainder\");",
-      "answer": [
-        "Got some remainder"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_2_OperatorsChallenge/OperatorChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-3-deepproblems-expressionevaluatordeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 3: Operators",
-      "topic": "Expression Evaluator Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Power calculations:\");",
-      "answer": [
-        "Power calculations:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_3_DeepProblems/ExpressionEvaluatorDeepProblem.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "qid": "ocjp-chapter-3-operators-prefix-postfix-1",
       "type": "predict",
       "difficulty": "hard",
@@ -3441,24 +3273,6 @@ const QUESTIONS_BANK = {
     }
   ],
   "Chapter 4: Statements And Indentations": [
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 4: Statements And Indentations",
-      "topic": "Statements White Space And Indentation",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"This is a test\"); // This also represents complete statement.",
-      "answer": [
-        "This is a test"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
-      "tags": [
-        "predict"
-      ]
-    },
     {
       "type": "interview",
       "kind": "custom",
@@ -3994,24 +3808,6 @@ const QUESTIONS_BANK = {
     }
   ],
   "Chapter 5: If Else Statements": [
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 5: If Else Statements",
-      "topic": "If Example",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"It is not an alien!\");",
-      "answer": [
-        "It is not an alien!"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
-      "tags": [
-        "predict"
-      ]
-    },
     {
       "type": "interview",
       "kind": "custom",
@@ -4665,24 +4461,6 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The int branch is boxed and both branches share Object as a supertype; only the true one is used.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 5: If Else Statements",
-      "topic": "Code Blocks If Then Else",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Your score was less than 5000 but greater than 1000\");",
-      "answer": [
-        "Your score was less than 5000 but greater than 1000"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
-      "tags": [
-        "predict"
-      ]
     },
     {
       "type": "interview",
@@ -5601,24 +5379,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-equalityprintercodingchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Equality Printer Coding Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Invalid Value\");",
-      "answer": [
-        "Invalid Value"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-equalityprintercodingchallenge-java_true-false-mcq_5",
@@ -5801,24 +5561,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-positivenegativezerocodingchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Positive Negative Zero Coding Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"positive\");",
-      "answer": [
-        "positive"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-positivenegativezerocodingchallenge-java_true-false-mcq_5",
@@ -5897,24 +5639,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-3-deepproblems-recursiondeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Recursion Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Factorial comparison:\");",
-      "answer": [
-        "Factorial comparison:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_3_DeepProblems/RecursionDeepProblem.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "qid": "ocjp-chapter-6-methods-in-java-pass-by-value-1",
       "type": "predict",
       "difficulty": "hard",
@@ -5958,24 +5682,6 @@ const QUESTIONS_BANK = {
     }
   ],
   "Chapter 7: Switch Statements": [
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Switch Statement In Java",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"If-else example:\");",
-      "answer": [
-        "If-else example:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
-      "tags": [
-        "predict"
-      ]
-    },
     {
       "type": "interview",
       "kind": "custom",
@@ -6618,7 +6324,7 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Which of the following are TRUE about Switch Statement In Java? Select all that apply.",
       "options": [
-        "Write a method isLeapYear with a parameter of type int named year.",
+        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
         "switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
@@ -6633,24 +6339,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Enhanced Switch Statement In Java",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Value is 1\");",
-      "answer": [
-        "Value is 1"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -6930,16 +6618,16 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "Which of the following are TRUE about Enhanced Switch Statement In Java? Select all that apply.",
       "options": [
-        "Write a method isLeapYear with a parameter of type int named year.",
+        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Traditional switch: case 1: ... break; Enhanced switch: case 1 -> ...",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "The enhanced switch can be used as an EXPRESSION — it can return a value directly. This makes code concise and readable."
       ],
       "answer": [
         1,
         2,
-        3
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Enhanced Switch Statement In Java.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
@@ -6956,127 +6644,21 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "Which of the following are TRUE about Number Of Days In A Month Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method isLeapYear with a parameter of type int named year.",
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "Otherwise, if it is in the valid range, calculate if the year is a leap year and return true if it is, otherwise return false.",
         "If the parameter is not in that range return false.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
       ],
       "answer": [
         0,
-        1,
+        2,
         3
       ],
       "explanation": "The true statements are taken directly from the notes for Number Of Days In A Month Coding Challenge.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-3-codingchallenge-printnumberinaworldcodingchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Print Number In A World Coding Challenge",
-      "question": "What does this code print?",
-      "code": "case 3: System.out.println(\"THREE\");",
-      "answer": [
-        "THREE"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/PrintNumberInAWorldCodingChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-3-codingchallenge-printnumberinaworldcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Print Number In A World Coding Challenge",
-      "question": "Which of the following are TRUE about Print Number In A World Coding Challenge? Select all that apply.",
-      "options": [
-        "Write a method called printNumberInWord.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The method has one parameter number which is the whole number.",
-        "The method needs to print \"ZERO\", \"ONE\", \"TWO\", ... \"NINE\", \"OTHER\" if the int parameter number is 0, 1, 2, .... 9 or other for any other number including negative numbers.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
-      ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "explanation": "The true statements are taken directly from the notes for Print Number In A World Coding Challenge.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/PrintNumberInAWorldCodingChallenge.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-3-codingchallenge-switchstatementchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Switch Statement Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"A is found\");",
-      "answer": [
-        "A is found"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-3-codingchallenge-switchstatementchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Switch Statement Challenge",
-      "question": "Which of the following are TRUE about Switch Statement Challenge? Select all that apply.",
-      "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "Create a new switch statement using char instead of int.",
-        "Create a new char variable",
-        "Create a switch statement testing for A,B,C,D or E display a message if any of these are found and then break",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
-      ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "explanation": "The true statements are taken directly from the notes for Switch Statement Challenge.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementChallenge.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-3-codingchallenge-switchstatementnatochallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Switch Statement N A T O Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"A is Able\");",
-      "answer": [
-        "A is Able"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementNATOChallenge.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -7106,24 +6688,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-4-deepproblems-menudrivencalculatordeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Menu Driven Calculator Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Calculator tests:\");",
-      "answer": [
-        "Calculator tests:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_4_DeepProblems/MenuDrivenCalculatorDeepProblem.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "qid": "ocjp-chapter-7-switch-statements-switch-fallthrough-1",
       "type": "predict",
       "difficulty": "hard",
@@ -7145,24 +6709,6 @@ const QUESTIONS_BANK = {
     }
   ],
   "Chapter 8: Java Looping Concepts": [
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 8: Java Looping Concepts",
-      "topic": "For Statement",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Counting from 1 to 5:\");",
-      "answer": [
-        "Counting from 1 to 5:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
-      "tags": [
-        "predict"
-      ]
-    },
     {
       "type": "scq",
       "kind": "custom",
@@ -7679,14 +7225,14 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "Which of the following are TRUE about For Statement? Select all that apply.",
       "options": [
-        "Java supports several looping statements for repetitive execution:",
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
+        "for --> best when you are iterating over a known range or set of values.",
         "Loops let us execute the same block of code multiple times without writing that code again and again.",
-        "- for --> best when you are iterating over a known range or set of values."
+        "while --> runs until a specified condition becomes false."
       ],
       "answer": [
-        0,
+        2,
         3,
         4
       ],
@@ -7707,14 +7253,14 @@ const QUESTIONS_BANK = {
       "options": [
         "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
-        "Loops let us execute the same block of code multiple times without writing that code again and again.",
-        "Create a for statement, using any range of numbers, where the maximum number is <= 1000."
+        "If it's a prime number, print it out, and increment a count of the number of prime numbers found. if you get to the stage where 3 or more prime numbers are found, end the loop. In other words, you'll be iterating through the loop, but you've found three prime numbers before the range is fully processed.",
+        "This challenge practices: for loops, a helper method (isPrime), the break statement, and prime number logic.",
+        "Loops let us execute the same block of code multiple times without writing that code again and again."
       ],
       "answer": [
         0,
         2,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for For Loop Prime Number Challenge.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
@@ -7733,14 +7279,14 @@ const QUESTIONS_BANK = {
       "options": [
         "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
         "You also want to break out of the loop, once you find five numbers, that meet those above conditions.",
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
         "Loops let us execute the same block of code multiple times without writing that code again and again."
       ],
       "answer": [
         0,
         1,
-        2
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for For Loop Sum3and5 Challenge.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopSum3and5Challenge.java",
@@ -7757,14 +7303,14 @@ const QUESTIONS_BANK = {
       "topic": "Sum Odd Challenge",
       "question": "Which of the following are TRUE about Sum Odd Challenge? Select all that apply.",
       "options": [
-        "Write a method called isOdd with an int parameter and call it number. The method needs to return a boolean.",
-        "Create a prime number counter variable, that will keep count of how many prime numbers were found.",
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
         "Loops let us execute the same block of code multiple times without writing that code again and again.",
         "If number is odd return true, otherwise return false.",
+        "The method should use a for loop to sum all odd numbers in that range including the end and return the sum.",
         "Check that number is > 0, if it is not return false."
       ],
       "answer": [
-        0,
+        2,
         3,
         4
       ],
@@ -7772,24 +7318,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/SumOddChallenge.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-3-deepproblems-patternprinterdeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 8: Java Looping Concepts",
-      "topic": "Pattern Printer Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"1. Right-angle triangle:\");",
-      "answer": [
-        "1. Right-angle triangle:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_3_DeepProblems/PatternPrinterDeepProblem.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -8479,8 +8007,8 @@ const QUESTIONS_BANK = {
       "topic": "While Loops",
       "question": "Which of the following are TRUE about While Loops? Select all that apply.",
       "options": [
-        "Write a method called isPalindrome with one int parameter called number.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method needs to return a boolean.",
         "Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
         "You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body."
@@ -8695,14 +8223,14 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "Which of the following are TRUE about Do While Loops? Select all that apply.",
       "options": [
-        "Write a method called isPalindrome with one int parameter called number.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method needs to return a boolean.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
         "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.",
         "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\""
       ],
       "answer": [
-        1,
+        0,
         3,
         4
       ],
@@ -8722,7 +8250,7 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Check Number Palindrome Coding Challenge? Select all that apply.",
       "options": [
         "It should return true if the number is a palindrome number otherwise it should return false.",
-        "Write a method called isPalindrome with one int parameter called number.",
+        "Check the tips below for more info about palindromes.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The method needs to return a boolean.",
         "The while loop repeatedly executes its body as long as a condition remains true."
@@ -8775,14 +8303,14 @@ const QUESTIONS_BANK = {
       "options": [
         "If the number is negative, the method should return -1 to indicate an invalid value.",
         "The method should return the sum of the even digits within the number.",
-        "Write a method named getEvenDigitSum with one parameter of type int called number.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true."
+        "The while loop repeatedly executes its body as long as a condition remains true.",
+        "getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20"
       ],
       "answer": [
         0,
         1,
-        2
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Even Digit Sum Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/EvenDigitSumCodingChallenge.java",
@@ -8827,9 +8355,9 @@ const QUESTIONS_BANK = {
       "options": [
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
+        "sumFirstAndLastDigit(257); → should return 9, the first digit is 2 and the last is 7 which gives us 2+7 and the sum is 9.",
         "If the number is negative then the method needs to return -1 to indicate an invalid value.",
-        "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number.",
-        "Write a method named sumFirstAndLastDigit with one parameter of type int called number."
+        "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number."
       ],
       "answer": [
         2,
@@ -8851,14 +8379,14 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "Which of the following are TRUE about Floor Pack Problem Coding Challenge? Select all that apply.",
       "options": [
-        "Write a method named canPack with three parameters of type int named bigCount, smallCount, and goal.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
         "The parameter smallCount represents the count of small flour bags (1 kilo each).",
+        "The parameter goal represents the goal amount of kilos of flour needed to assemble a package.",
         "The parameter bigCount represents the count of big flour bags (5 kilos each)."
       ],
       "answer": [
-        0,
+        2,
         3,
         4
       ],
@@ -8903,15 +8431,15 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Which of the following are TRUE about Largest Prime Factor Coding Challenge? Select all that apply.",
       "options": [
+        "getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21)",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The method should calculate the largest prime factor of a given number and return it.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
-        "Write a method named getLargestPrime with one parameter of type int named number.",
         "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value."
       ],
       "answer": [
-        1,
-        3,
+        0,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Largest Prime Factor Coding Challenge.",
@@ -8930,38 +8458,20 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Last Digit Checker Coding Challenge? Select all that apply.",
       "options": [
         "Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.",
-        "Write a method named hasSameLastDigit with three parameters of type int.",
         "The method should return true if at least two of the numbers share the same rightmost digit; otherwise, it should return false.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true."
+        "The while loop repeatedly executes its body as long as a condition remains true.",
+        "hasSameLastDigit (41, 22, 71); → should return true since 1 is the rightmost digit in numbers 41 and 71"
       ],
       "answer": [
         0,
         1,
-        2
+        4
       ],
       "explanation": "The true statements are taken directly from the notes for Last Digit Checker Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-numbertowordscodingchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Number To Words Coding Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Invalid Value\");",
-      "answer": [
-        "Invalid Value"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -9027,14 +8537,14 @@ const QUESTIONS_BANK = {
       "options": [
         "Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.",
         "The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false.",
-        "Write a method named hasSharedDigit with two parameters of type int.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "hasSharedDigit(12, 23); → should return true since the digit 2 appears in both numbers",
         "The while loop repeatedly executes its body as long as a condition remains true."
       ],
       "answer": [
         0,
         1,
-        2
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Shared Digit Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java",
@@ -9052,38 +8562,20 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about While Loop Coding Challenge? Select all that apply.",
       "options": [
         "If it's an even number, return true, otherwise, return false.",
-        "Create a method called isEvenNumber that takes a parameter of type int. Its purpose is to determine if the argument passed to the method is an even number or not. Return true from the method if it's an even number; otherwise, return false. Next, use a while loop to test a range of numbers from 5 up to and including 20, but printing out only the even numbers determined by the call to the isEvenNumber method. Okay, so the challenge is to create a method called isEvenNumber, and it takes a parameter of type int.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not."
+        "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.",
+        "This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations."
       ],
       "answer": [
         0,
-        1,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for While Loop Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-4-deepproblems-numberguesserdeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Number Guesser Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Collatz sequence lengths for 1 to 20:\");",
-      "answer": [
-        "Collatz sequence lengths for 1 to 20:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_4_DeepProblems/NumberGuesserDeepProblem.java",
-      "tags": [
-        "predict"
       ]
     }
   ],
@@ -9640,81 +9132,9 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static field belongs to the class rather than to any object, so it is created once and shared. Being shared is exactly why it suits a counter or a constant, and why one object changing it affects every other.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-3-class-fields-codingchallenge-bankaccountfieldschallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "Bank Account Fields Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"After deposit:\");",
-      "answer": [
-        "After deposit:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_3_Class_Fields_CodingChallenge/BankAccountFieldsChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-3-class-fields-codingchallenge-studentclasschallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "Student Class Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Updating school name through the first student...\");",
-      "answer": [
-        "Updating school name through the first student..."
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_3_Class_Fields_CodingChallenge/StudentClassChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-4-deepproblems-librarysystemdeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 10: Class Object Static And Instance Fields",
-      "topic": "Library System Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Library status report:\");",
-      "answer": [
-        "Library status report:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_4_DeepProblems/LibrarySystemDeepProblem.java",
-      "tags": [
-        "predict"
-      ]
     }
   ],
   "Chapter 11: Parsing Values Reading Input": [
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Parsing Values Reading Input",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Enter the year of birth greater than 1895 and less than or equal to current year\");",
-      "answer": [
-        "Enter the year of birth greater than 1895 and less than or equal to current year"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
-      "tags": [
-        "predict"
-      ]
-    },
     {
       "type": "scq",
       "kind": "custom",
@@ -10400,16 +9820,16 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Which of the following are TRUE about Parsing Values Reading Input? Select all that apply.",
       "options": [
+        "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "Reading Data From Console",
-        "Write a method called inputThenPrintSumAndAverage that does not have any parameters."
+        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard."
       ],
       "answer": [
         0,
         1,
-        3
+        2
       ],
       "explanation": "The true statements are taken directly from the notes for Parsing Values Reading Input.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
@@ -10430,7 +9850,7 @@ const QUESTIONS_BANK = {
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "Write a method called inputThenPrintSumAndAverage that does not have any parameters."
+        "XX represents the sum of all entered numbers of type int."
       ],
       "answer": [
         0,
@@ -10444,24 +9864,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-minmaxcodingchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Min Max Coding Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Enter any number of your choice. To quit, press any character\");",
-      "answer": [
-        "Enter any number of your choice. To quit, press any character"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/MinMaxCodingChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-minmaxcodingchallenge-java_true-false-mcq_5",
@@ -10472,13 +9874,13 @@ const QUESTIONS_BANK = {
       "options": [
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
+        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
         "You can decide if you want the user to enter integers or decimal numbers.",
-        "Write a method called inputThenPrintSumAndAverage that does not have any parameters.",
         "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number."
       ],
       "answer": [
         1,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Min Max Coding Challenge.",
@@ -10499,7 +9901,7 @@ const QUESTIONS_BANK = {
         "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
         "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "Write a method called inputThenPrintSumAndAverage that does not have any parameters.",
+        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
         "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket)."
       ],
       "answer": [
@@ -10514,24 +9916,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-readinguserinputchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Reading User Input Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Invalid number\");",
-      "answer": [
-        "Invalid number"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/ReadingUserInputChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-readinguserinputchallenge-java_true-false-mcq_5",
@@ -10543,7 +9927,7 @@ const QUESTIONS_BANK = {
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "Reading User Input Challenge.",
         "\"Invalid number\" to the console, but continue looping until you do have 5 valid numbers.",
-        "Write a method called inputThenPrintSumAndAverage that does not have any parameters.",
+        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
         "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those five numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message"
       ],
       "answer": [
@@ -10556,45 +9940,9 @@ const QUESTIONS_BANK = {
       "tags": [
         "concept"
       ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-3-deepproblems-inputvalidatordeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Input Validator Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Valid form test:\");",
-      "answer": [
-        "Valid form test:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_3_DeepProblems/InputValidatorDeepProblem.java",
-      "tags": [
-        "predict"
-      ]
     }
   ],
   "Chapter 12: Exception Handling": [
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 12: Exception Handling",
-      "topic": "Exception Handling In Java",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"You are trying to access a null value.\");",
-      "answer": [
-        "You are trying to access a null value."
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
-      "tags": [
-        "predict"
-      ]
-    },
     {
       "type": "interview",
       "kind": "custom",
@@ -11181,24 +10529,6 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The finally block is the one place that runs on every path out of the try structure, which is what makes it the right place to close a file or a connection. The single exception is when the JVM itself stops, such as through System.exit.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-sub-chapter-2-exception-handling-codingchallenge-safedivisionchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 12: Exception Handling",
-      "topic": "Safe Division Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Cannot divide by zero. Returning 0.\");",
-      "answer": [
-        "Cannot divide by zero. Returning 0."
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_12_Exception_Handling/Sub_Chapter_2_Exception_Handling_CodingChallenge/SafeDivisionChallenge.java",
-      "tags": [
-        "predict"
-      ]
     },
     {
       "qid": "ocjp-chapter-12-exception-handling-finally-1",
@@ -11863,24 +11193,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Getters Encapsulation Object Access)",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"car = null -> calling describeCar() now would throw NullPointerException.\");",
-      "answer": [
-        "car = null -> calling describeCar() now would throw NullPointerException."
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_0-why-will-car-setmodel-carrera-fail-here-",
@@ -11927,14 +11239,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Main (Getters Encapsulation Object Access)? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
-        "When you create a class instance (Car car = new Car()), Java sets all un-initialised fields to their default values: Strings -> null, int -> 0, boolean -> false."
+        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException."
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Main (Getters Encapsulation Object Access).",
@@ -11991,13 +11303,13 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Bank Account? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Create getters and setters for each field. Create two additional methods:",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Create a new class for a bank account.",
-        "account number. account balance. customer name. email. and phone number."
+        "account number. account balance. customer name. email. and phone number.",
+        "one for depositing funds into the account. and one for withdrawing funds from the account.",
+        "A customer should not be allowed to withdraw funds if that withdrawal takes their balance negative."
       ],
       "answer": [
-        1,
+        2,
         3,
         4
       ],
@@ -12090,24 +11402,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-methodoverloadingchallenge-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Method Over Loading Challenge",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Invalid value, please enter correct value\");",
-      "answer": [
-        "Invalid value, please enter correct value"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverLoadingChallenge.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-methodoverloadingchallenge-java_true-false-mcq_5",
@@ -12117,13 +11411,13 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Method Over Loading Challenge? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "This method will convert feet and inches to just inches, then call the first method, to get the number of centimeters, also returning the value as a double. Both methods should return a real number or decimal value for total height in centimeters. Call both methods, and print out the results.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Create two methods with the same name: convertToCentimeters",
         "You'll convert inches to centimeters, in this method, and pass back the number of centimeters, as a double. The second method has two parameters of type int, one to represent height in feet, and one to represent the remaining height in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for inches would be passed to this method.",
         "The first method has one parameter of type int, which represents the entire height in inches."
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
@@ -12145,7 +11439,7 @@ const QUESTIONS_BANK = {
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "You should validate that the 2nd parameter seconds is >= 0 and <= 59.",
         "You should validate that the first parameter minutes is >= 0.",
-        "Create a method called getDurationString with two parameters, first parameter minutes and 2nd parameter seconds.",
+        "The method should return Invalid value if either of the above are not true.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": [
@@ -12226,13 +11520,13 @@ const QUESTIONS_BANK = {
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Method named getFirstName without any parameters, it needs to return the value of the firstName field.",
+        "Method named getAge without any parameters, it needs to return the value of the age field.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Person Class and Age Validation",
-        "Write a class with the name Person. The class needs three fields (instance variables) with the names firstName, lastName of type String and age of type int."
+        "Method named getLastName without any parameters, it needs to return the value of the lastName field."
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Person Age Validation.",
@@ -12251,13 +11545,13 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Sum Calculator Implementation Challenge? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Method named getSecondNumber without any parameters, it needs to return the value of secondNumber field.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Sum Calculator Implementation",
         "Method named getFirstNumber without any parameters, it needs to return the value of firstNumber field.",
-        "Write a class with the name SimpleCalculator. The class needs two fields (instance variables) with names firstNumber and secondNumber both of type double."
+        "Method named setFirstNumber with one parameter of type double, it needs to set the value of the firstNumber field."
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
@@ -12265,24 +11559,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/SumCalculatorImplementationChallenge.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Constructor Concept",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Constructor with 5 arguments is called\");",
-      "answer": [
-        "Constructor with 5 arguments is called"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -12499,24 +11775,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Super Keyword Use Example",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Printed in SuperClass.\");",
-      "answer": [
-        "Printed in SuperClass."
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -13016,32 +12274,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java"
     },
     {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Customer",
-      "question": "Which of the following are TRUE about Customer? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Create the getter methods only for each field. You don't need to create the setters.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Create three constructors for this class: First, create a constructor for all three fields which should assign the arguments directly to the instance fields. Second, create a no-args constructor that calls another constructor, passing some literal values for each argument. And lastly, create a constructor with just the name and email parameters, which also calls another constructor.",
-        "Create a new class, called Customer, with three fields: name. credit limit. and email address."
-      ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Customer.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_0-if-two-references-point-to-the-same-hous",
@@ -13244,24 +12476,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Static And Instance Methods",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Hello\");",
-      "answer": [
-        "Hello"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_0-what-do-a-and-b-mean-in-printsum-int-a-i",
@@ -13426,24 +12640,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Plain Old Java Objects)",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"*****************************************\");",
-      "answer": [
-        "*****************************************"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_0-in-new-student-1-navneet-19-03-1994-java",
@@ -13498,32 +12694,6 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java"
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Plain Old Java Objects)",
-      "question": "Which of the following are TRUE about Main (Plain Old Java Objects)? Select all that apply.",
-      "options": [
-        "StudentRecord[id=1, name=Navneet, dateOfBirth=19/03/1994, classList=Java MasterClass]",
-        "StudentRecord[id=1, name=Navi, dateOfBirth=21/05/1996, classList=Python MasterClass]",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "StudentRecord[id=2, name=Puttu, dateOfBirth=20/04/1995, classList=Javascript MasterClass]"
-      ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Main (Plain Old Java Objects).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
-      "tags": [
-        "concept"
-      ]
     },
     {
       "type": "interview",
@@ -13877,7 +13047,7 @@ const QUESTIONS_BANK = {
         "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
-        "Point Class and Distance Calculation"
+        "Method named getX without any parameters, it needs to return the value of x field."
       ],
       "answer": [
         1,
@@ -13957,13 +13127,13 @@ const QUESTIONS_BANK = {
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "The first constructor does not have any parameters (no-args constructor).",
-        "Write a class with the name Wall. The class needs two fields (instance variables) with name width and height of type double.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "The second constructor has parameters width and height of type double and it needs to initialize the fields."
+        "The second constructor has parameters width and height of type double and it needs to initialize the fields.",
+        "In case the width parameter is less than 0 it needs to set the width field value to 0."
       ],
       "answer": [
         1,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Wall Area Computation.",
@@ -14033,24 +13203,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Dog (Inheritance)",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Woof! \");",
-      "answer": [
-        "Woof! "
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -14155,24 +13307,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Fish",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"muscle moving \");",
-      "answer": [
-        "muscle moving "
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_0-in-fish-string-type-double-weight-int-gi",
@@ -14226,24 +13360,6 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java"
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Inheritance",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"*************************************************************************************\");",
-      "answer": [
-        "*************************************************************************************"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
-      "tags": [
-        "predict"
-      ]
     },
     {
       "type": "interview",
@@ -14310,7 +13426,7 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Inheritance? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Vertebrates (Sub Class of Animal)",
+        "The most generic, or base class, starts at the top of the hierarchy.",
         "Each box on this diagram represents a Class",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent."
@@ -14721,15 +13837,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Worker? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Inheritance Challenge Problem",
+        "hourlyPayRate : double getDoublePay()",
         "intGetAge() double collectPay() terminate(String endDate)",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Create Worker Class -> This should be on top of the Hierarchy"
+        "Below the Worker Class, introduce another Class named Employee which extends the Worker Class",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": [
         1,
         2,
-        4
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for Worker.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
@@ -14785,37 +13901,19 @@ const QUESTIONS_BANK = {
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "important: bark() and bark(int number) are OVERLOADS because the parameter COUNT is different.",
-        "remember: the compiler chooses bark() or bark(int) at compile time from the arguments in the call.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "If a child class wanted to override bark(int number), it would need the identical int parameter list.",
         "careful: adding a different return type to bark(int number) would not create another overload; the parameter list must differ."
       ],
       "answer": [
         1,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Dog (Method Over Loading In Java).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Method Overloading In Java",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"a method invoked\");",
-      "answer": [
-        "a method invoked"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -15076,9 +14174,9 @@ const QUESTIONS_BANK = {
       "options": [
         "important: calculateScore(String, int) and calculateScore(int) are OVERLOADS because their parameter counts and types differ.",
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "warning: type promotion can help choose an overload, but symmetric widening choices can make the call ambiguous at compile time.",
+        "sum(int a, long b): a and b are the two numbers to add; an int second argument can widen to long when no exact sum(int, int) exists.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "remember: overloading is compile-time selection based on method name plus parameter list; return type is not part of the overload key."
+        "sum(int a, int b, int c): a, b, and c are the three numbers to add; this overload is chosen by parameter COUNT."
       ],
       "answer": [
         0,
@@ -15193,24 +14291,6 @@ const QUESTIONS_BANK = {
       ]
     },
     {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Dog (Method Overriding In Java)",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"woof woof woof\");",
-      "answer": [
-        "woof woof woof"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_0-why-does-germanshepherd-bark-override-do",
@@ -15276,14 +14356,14 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Dog (Method Overriding In Java)? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Overloading depends on different parameter types/counts/order; overriding depends on the same parameter list.",
         "trap: if GermanShepherd used bark(int number), it would be overloading, not overriding, because the parameter count changed.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "important: this is OVERRIDING because the child method keeps the same name and identical parameter list as the parent method.",
-        "remember: @Override helps catch parameter-list mistakes that would otherwise create a new overload by accident."
+        "important: this is OVERRIDING because the child method keeps the same name and identical parameter list as the parent method."
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Dog (Method Overriding In Java).",
@@ -16128,38 +15208,20 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Method Over Loading Vs Method Overriding Difference? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "- Method overriding keeps the parent parameter list identical so polymorphism can replace inherited behavior safely.",
-        "remember: overriding allows the same return type or a covariant return type, but it does not allow changed parameters.",
+        "Method overriding keeps the parent parameter list identical so polymorphism can replace inherited behavior safely.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "pitfall: a child method with a different parameter list is an overload even if its name matches the parent method.",
         "important: return type, access modifier, and thrown exceptions do not by themselves create overloaded methods; the parameter list must differ."
       ],
       "answer": [
         1,
-        2,
+        3,
         4
       ],
       "explanation": "The true statements are taken directly from the notes for Method Over Loading Vs Method Overriding Difference.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
       "tags": [
         "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-16-deepproblems-shapehierarchydeepproblem-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Shape Hierarchy Deep Problem",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Shape report using polymorphism:\");",
-      "answer": [
-        "Shape report using polymorphism:"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_16_DeepProblems/ShapeHierarchyDeepProblem.java",
-      "tags": [
-        "predict"
       ]
     },
     {
@@ -16747,50 +15809,6 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
     },
     {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 14: Strings",
-      "topic": "Text Block And Advanced Output Formatting",
-      "question": "Which of the following are TRUE about Text Block And Advanced Output Formatting? Select all that apply.",
-      "options": [
-        "String -> immutable; each method call returns a NEW String instance.",
-        "New line in a format string - \\n or %n :-",
-        "String is a sequence of characters, which means its characters are ordered and indexed.",
-        "2) What the common placeholders mean :-",
-        "1) printf prints straight away, String.format hands the text back :-"
-      ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Text Block And Advanced Output Formatting.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
-      "tags": [
-        "concept"
-      ]
-    },
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 14: Strings",
-      "topic": "String Method And Best Practices",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"=== 1. STRING INSPECTION METHODS ===\");",
-      "answer": [
-        "=== 1. STRING INSPECTION METHODS ==="
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
-      "tags": [
-        "predict"
-      ]
-    },
-    {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_0-what-range-is-valid-for-the-index-parame",
@@ -17183,14 +16201,14 @@ const QUESTIONS_BANK = {
       "topic": "String Method And Best Practices",
       "question": "Which of the following are TRUE about String Method And Best Practices? Select all that apply.",
       "options": [
-        "String -> immutable; each method call returns a NEW String instance.",
+        "ii) Pass no arguments at all",
+        "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
         "String indexing is 0 - based, so the first character is at index 0 and the last one is at length() - 1.",
-        "New line in a format string - \\n or %n :-",
-        "String is a sequence of characters, which means its characters are ordered and indexed.",
-        "1) String Inspection Methods :- These give information about the String, such as its length or the position of a character. For example :- length(), isEmpty(), isBlank(), charAt(), indexOf(), lastIndexOf()."
+        "---- Important points to remember ----",
+        "String is a sequence of characters, which means its characters are ordered and indexed."
       ],
       "answer": [
-        1,
+        2,
         3,
         4
       ],
@@ -17993,10 +17011,10 @@ const QUESTIONS_BANK = {
       "topic": "String Builder Concepts",
       "question": "Which of the following are TRUE about String Builder Concepts? Select all that apply.",
       "options": [
-        "StringBuilder -> mutable class that lets us change its text value in place.",
-        "String -> immutable; each method call returns a NEW String instance.",
-        "Instantiating String Objects",
-        "New line in a format string - \\n or %n :-",
+        "iv) Pass another CharSequence (like a StringBuilder)",
+        "iii) Pass an integer initial capacity",
+        "ii) Pass no arguments at all",
+        "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
         "String is a sequence of characters, which means its characters are ordered and indexed."
       ],
       "answer": [
@@ -18020,15 +17038,15 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about String Vs String Buffer Vs String Builder? Select all that apply.",
       "options": [
         "StringBuilder is mutable. Its append(), insert(), delete(), and replace() methods update the same character buffer and return the same builder object, which makes method chaining possible. This avoids creating a new String for every intermediate change and is usually the best choice for text built by one thread, especially inside a loop.",
+        "ii) Pass no arguments at all",
         "String is immutable. Once a String object has been created, its character contents cannot be changed. An operation such as concat() creates and returns a new String; it does not change the original String. If the result is not assigned to a variable, the original value remains unchanged.",
         "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
-        "New line in a format string - \\n or %n :-",
         "String is a sequence of characters, which means its characters are ordered and indexed."
       ],
       "answer": [
         0,
-        1,
-        2
+        2,
+        3
       ],
       "explanation": "The true statements are taken directly from the notes for String Vs String Buffer Vs String Builder.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringVsStringBufferVsStringBuilder.java",
@@ -18118,24 +17136,6 @@ const QUESTIONS_BANK = {
     }
   ],
   "Chapter 15: Composition": [
-    {
-      "type": "predict",
-      "kind": "predict",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-computercase-java_predict_3",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Computer Case",
-      "question": "What does this code print?",
-      "code": "System.out.println(\"Power button pressed\");",
-      "answer": [
-        "Power button pressed"
-      ],
-      "explanation": "The output comes directly from the string literal in the println call.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/ComputerCase.java",
-      "tags": [
-        "predict"
-      ]
-    },
     {
       "type": "mcq",
       "kind": "true-false",
@@ -18641,32 +17641,6 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Holding Book objects inside Library is composition, so a Library HAS-A collection of Books. Extending a class is IS-A, and implementing an interface is a can-do relationship.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "question": "Which of the following are TRUE about Inheritence Vs Composition? Select all that apply.",
-      "options": [
-        "Composition is a way to make the combination of classes act like a single coherent object",
-        "Inheritence is a way to reuse functionality and attributes",
-        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "IS-A -> inheritance: `class Monitor extends Product` means a Monitor is a kind of Product, so it can be used wherever a Product is expected."
-      ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "explanation": "The true statements are taken directly from the notes for Inheritence Vs Composition.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "tags": [
-        "concept"
-      ]
     },
     {
       "type": "mcq",
