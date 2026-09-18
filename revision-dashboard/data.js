@@ -9788,7 +9788,8 @@ const CONCEPTS_DATA = [
               "Static field example: Integer.MAX_VALUE — you access this without creating an Integer object.",
               "Instance field example: String greet = \"hello\"; greet.toUpperCase() — you call toUpperCase() on the specific greet object.",
               "Rule: a static method CANNOT directly access instance (non-static) fields or call instance methods — because static methods run without an object, so there is no 'this' to refer to.",
-              "Instance methods CAN access both static and instance fields/methods freely."
+              "Instance methods CAN access both static and instance fields/methods freely.",
+              "Exam practice :-"
             ]
           }
         ],
@@ -9805,10 +9806,175 @@ const CONCEPTS_DATA = [
             "code": [],
             "explain": "",
             "whyNotes": []
+          },
+          {
+            "question": "What is printed by this program?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "3 2 1",
+                "correct": true
+              },
+              {
+                "text": "3 3 3",
+                "correct": false,
+                "why": "only a static field is shared. An instance field belongs to one object."
+              },
+              {
+                "text": "1 2 1",
+                "correct": false,
+                "why": "the static field is written three times, not once."
+              },
+              {
+                "text": "3 1 1",
+                "correct": false,
+                "why": "a was ticked twice, so its own field reaches 2."
+              }
+            ],
+            "code": [
+              "public class Counter {",
+              "static int total = 0;",
+              "int mine = 0;",
+              "void tick() { total++; mine++; }",
+              "public static void main(String[] args) {",
+              "Counter a = new Counter();",
+              "Counter b = new Counter();",
+              "a.tick(); a.tick(); b.tick();",
+              "System.out.println(total + \" \" + a.mine + \" \" + b.mine);",
+              "}",
+              "}"
+            ],
+            "explain": "`total` is static, so there is one copy for the whole class and all three tick calls land on it, giving 3. `mine` is an instance field, so each object keeps its own count: a was ticked twice and b once.",
+            "whyNotes": [
+              "B: only a static field is shared. An instance field belongs to one object.",
+              "C: the static field is written three times, not once.",
+              "D: a was ticked twice, so its own field reaches 2."
+            ]
+          },
+          {
+            "question": "Which line does NOT compile?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "The `System.out.println(value);` line, because a static method cannot read an instance field.",
+                "correct": true
+              },
+              {
+                "text": "The `int value = 5;` line, because a field cannot be initialised.",
+                "correct": false,
+                "why": "fields are initialised exactly like that."
+              },
+              {
+                "text": "The `static void show()` line, because a static method must return a value.",
+                "correct": false,
+                "why": "`void` is a valid return type for a static method."
+              },
+              {
+                "text": "Nothing. The class compiles and prints 5.",
+                "correct": false,
+                "why": "the reference is rejected while compiling, so the program never runs."
+              }
+            ],
+            "code": [
+              "public class Demo {",
+              "int value = 5;",
+              "static void show() {",
+              "System.out.println(value);",
+              "}",
+              "}"
+            ],
+            "explain": "A static method runs without any object, so there may be no `value` for it to read. The compiler refuses the reference rather than leaving it to fail later. Writing `static int value = 5;` or making show() non-static would both compile.",
+            "whyNotes": [
+              "B: fields are initialised exactly like that.",
+              "C: `void` is a valid return type for a static method.",
+              "D: the reference is rejected while compiling, so the program never runs."
+            ]
+          },
+          {
+            "question": "What is printed here?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "9",
+                "correct": true
+              },
+              {
+                "text": "1",
+                "correct": false,
+                "why": "1 is what the field holds before the call. The call changes it."
+              },
+              {
+                "text": "0",
+                "correct": false,
+                "why": "the field is initialised to 1, not left at its default."
+              },
+              {
+                "text": "It does not compile, because count cannot be passed.",
+                "correct": false,
+                "why": "a parameter may share a field's name. `this` is how the two are told apart."
+              }
+            ],
+            "code": [
+              "public class Shadow {",
+              "int count = 1;",
+              "void setCount(int count) { this.count = count; }",
+              "public static void main(String[] args) {",
+              "Shadow s = new Shadow();",
+              "s.setCount(9);",
+              "System.out.println(s.count);",
+              "}",
+              "}"
+            ],
+            "explain": "The parameter `count` hides the field `count`, so `this.count` is needed to reach the field. Without `this`, the assignment would give the parameter its own value and the field would stay 1.",
+            "whyNotes": [
+              "B: 1 is what the field holds before the call. The call changes it.",
+              "C: the field is initialised to 1, not left at its default.",
+              "D: a parameter may share a field's name. `this` is how the two are told apart."
+            ]
+          },
+          {
+            "question": "Which statement about a static field is correct?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It is created once when the class is first loaded, and every object of the class sees that one value.",
+                "correct": true
+              },
+              {
+                "text": "It is created once for each object, so each object has its own.",
+                "correct": false,
+                "why": "that describes an instance field. A static field is shared."
+              },
+              {
+                "text": "It cannot be changed after it is given a value.",
+                "correct": false,
+                "why": "a static field can be reassigned unless it is also declared final."
+              },
+              {
+                "text": "It can only be used inside a static method.",
+                "correct": false,
+                "why": "an instance method can read and change a static field freely."
+              }
+            ],
+            "code": [],
+            "explain": "A static field belongs to the class rather than to any object, so it is created once and shared. Being shared is exactly why it suits a counter or a constant, and why one object changing it affects every other.",
+            "whyNotes": [
+              "B: that describes an instance field. A static field is shared.",
+              "C: a static field can be reassigned unless it is also declared final.",
+              "D: an instance method can read and change a static field freely."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_Field_On_Classes;\n// @quiz (INTERVIEW) Why does new CreateFieldOnClasses() not need constructor arguments in this file?\n// @answer The class defines no parameterized constructor, so the default no-argument constructor is used and field initializers supply the values.\n//\n// Java classes have two types of fields (variables declared at the class level, outside any method):\n// STATIC FIELDS: declared with 'static'. There is exactly ONE copy in memory, shared by ALL objects of that class. Accessed via ClassName.fieldName.\n// INSTANCE FIELDS: declared without 'static'. Each object gets its OWN separate copy. Accessed via objectVariable.fieldName.\n// The same distinction applies to methods: static methods belong to the class; instance methods belong to individual objects.\n// Static field example: Integer.MAX_VALUE — you access this without creating an Integer object.\n// Instance field example: String greet = \"hello\"; greet.toUpperCase() — you call toUpperCase() on the specific greet object.\n// Rule: a static method CANNOT directly access instance (non-static) fields or call instance methods — because static methods run without an object, so there is no 'this' to refer to.\n// Instance methods CAN access both static and instance fields/methods freely.\n/*\n*   There are 2 ways to create fields on classes.\n*\n*   1) With static keyword\n*\n*   2) Without static keyword\n*\n*   Static  Field :-\n*\n*  i) Requires 'static' keyword when declared on the class\n*\n*  ii) It is used for value of the field that aren't changing constantly and remains constant.\n*      It is stored in special memory location and only in one place.\n*      Value of the field always stays with the class\n*\n*\n*  iii) Value is accessed by ClassName.fieldname\n*     Ex :- Integer.MAX_VALUE\n*\n*  Instance Field :-\n*\n*   i) Omits 'static' keyword when declared on the class\n*\n*   ii) Value of the field is not allocated any memory and has no value until the object is created.\n*       The instance fields can have different values for every instance created.\n*\n*   iii) Value is accessed by ObjectVariable.fieldname\n*     Ex :- myObject.myFieldName\n*     (myObject is a variable name for the object created and myFieldName is an attribute on the class)\n*\n*   Static Method :-\n*\n*    i) Requires 'static' keyword when declared on the class\n*\n*    ii) Method is accessible by ClassName.methodName\n*\n*    Example :- Integer.parseInt(\"123\"); // A method called parseInt is called directly from the Class, Integer\n*\n*     Instance Method\n*\n*     i) Omits 'static' keyword when declared on the class\n*\n*     ii) Method is accessed by ObjectVariable.methodName\n*\n*     Example :- String greet = \"hello\";\n*\n*     System.out.println(greet.toUpperCase()); // A method called toUpperCase is called on the instance of String with value \"hello\"\n*\n*\n* */\n\npublic class CreateFieldOnClasses {\n\n    static String name = \"Navneet\" ;\n\n    String hello = \"Hello\";\n\n    public static void main(String[] args) {\n\n        CreateFieldOnClasses createFieldOnClasses = new CreateFieldOnClasses();\n\n        // createFieldOnClass.hello is an example of instance field\n\n        // CreateFieldOnClasses.name is an example of static field\n        System.out.println(createFieldOnClasses.hello + \" \" + CreateFieldOnClasses.name);\n    }\n}\n"
+        "code": "package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_2_Create_Field_On_Classes;\n// @quiz (INTERVIEW) Why does new CreateFieldOnClasses() not need constructor arguments in this file?\n// @answer The class defines no parameterized constructor, so the default no-argument constructor is used and field initializers supply the values.\n//\n// Java classes have two types of fields (variables declared at the class level, outside any method):\n// STATIC FIELDS: declared with 'static'. There is exactly ONE copy in memory, shared by ALL objects of that class. Accessed via ClassName.fieldName.\n// INSTANCE FIELDS: declared without 'static'. Each object gets its OWN separate copy. Accessed via objectVariable.fieldName.\n// The same distinction applies to methods: static methods belong to the class; instance methods belong to individual objects.\n// Static field example: Integer.MAX_VALUE — you access this without creating an Integer object.\n// Instance field example: String greet = \"hello\"; greet.toUpperCase() — you call toUpperCase() on the specific greet object.\n// Rule: a static method CANNOT directly access instance (non-static) fields or call instance methods — because static methods run without an object, so there is no 'this' to refer to.\n// Instance methods CAN access both static and instance fields/methods freely.\n/*\n*   There are 2 ways to create fields on classes.\n*\n*   1) With static keyword\n*\n*   2) Without static keyword\n*\n*   Static  Field :-\n*\n*  i) Requires 'static' keyword when declared on the class\n*\n*  ii) It is used for value of the field that aren't changing constantly and remains constant.\n*      It is stored in special memory location and only in one place.\n*      Value of the field always stays with the class\n*\n*\n*  iii) Value is accessed by ClassName.fieldname\n*     Ex :- Integer.MAX_VALUE\n*\n*  Instance Field :-\n*\n*   i) Omits 'static' keyword when declared on the class\n*\n*   ii) Value of the field is not allocated any memory and has no value until the object is created.\n*       The instance fields can have different values for every instance created.\n*\n*   iii) Value is accessed by ObjectVariable.fieldname\n*     Ex :- myObject.myFieldName\n*     (myObject is a variable name for the object created and myFieldName is an attribute on the class)\n*\n*   Static Method :-\n*\n*    i) Requires 'static' keyword when declared on the class\n*\n*    ii) Method is accessible by ClassName.methodName\n*\n*    Example :- Integer.parseInt(\"123\"); // A method called parseInt is called directly from the Class, Integer\n*\n*     Instance Method\n*\n*     i) Omits 'static' keyword when declared on the class\n*\n*     ii) Method is accessed by ObjectVariable.methodName\n*\n*     Example :- String greet = \"hello\";\n*\n*     System.out.println(greet.toUpperCase()); // A method called toUpperCase is called on the instance of String with value \"hello\"\n*\n*\n* */\n\n// Exam practice :-\n// @quiz (OCJP, MEDIUM) What is printed by this program?\n// @code public class Counter {\n// @code     static int total = 0;\n// @code     int mine = 0;\n// @code     void tick() { total++; mine++; }\n// @code     public static void main(String[] args) {\n// @code         Counter a = new Counter();\n// @code         Counter b = new Counter();\n// @code         a.tick(); a.tick(); b.tick();\n// @code         System.out.println(total + \" \" + a.mine + \" \" + b.mine);\n// @code     }\n// @code }\n// @option 3 2 1 [correct]\n// @option 3 3 3\n// @option 1 2 1\n// @option 3 1 1\n// @explain `total` is static, so there is one copy for the whole class and all three tick calls land on it, giving 3. `mine` is an instance field, so each object keeps its own count: a was ticked twice and b once.\n// @why B: only a static field is shared. An instance field belongs to one object.\n// @why C: the static field is written three times, not once.\n// @why D: a was ticked twice, so its own field reaches 2.\n\n// @quiz (OCJP, HARD) Which line does NOT compile?\n// @code public class Demo {\n// @code     int value = 5;\n// @code     static void show() {\n// @code         System.out.println(value);\n// @code     }\n// @code }\n// @option The `System.out.println(value);` line, because a static method cannot read an instance field. [correct]\n// @option The `int value = 5;` line, because a field cannot be initialised.\n// @option The `static void show()` line, because a static method must return a value.\n// @option Nothing. The class compiles and prints 5.\n// @explain A static method runs without any object, so there may be no `value` for it to read. The compiler refuses the reference rather than leaving it to fail later. Writing `static int value = 5;` or making show() non-static would both compile.\n// @why B: fields are initialised exactly like that.\n// @why C: `void` is a valid return type for a static method.\n// @why D: the reference is rejected while compiling, so the program never runs.\n\n// @quiz (OCJP, MEDIUM) What is printed here?\n// @code public class Shadow {\n// @code     int count = 1;\n// @code     void setCount(int count) { this.count = count; }\n// @code     public static void main(String[] args) {\n// @code         Shadow s = new Shadow();\n// @code         s.setCount(9);\n// @code         System.out.println(s.count);\n// @code     }\n// @code }\n// @option 9 [correct]\n// @option 1\n// @option 0\n// @option It does not compile, because count cannot be passed.\n// @explain The parameter `count` hides the field `count`, so `this.count` is needed to reach the field. Without `this`, the assignment would give the parameter its own value and the field would stay 1.\n// @why B: 1 is what the field holds before the call. The call changes it.\n// @why C: the field is initialised to 1, not left at its default.\n// @why D: a parameter may share a field's name. `this` is how the two are told apart.\n\n// @quiz (OCJP, MEDIUM) Which statement about a static field is correct?\n// @option It is created once when the class is first loaded, and every object of the class sees that one value. [correct]\n// @option It is created once for each object, so each object has its own.\n// @option It cannot be changed after it is given a value.\n// @option It can only be used inside a static method.\n// @explain A static field belongs to the class rather than to any object, so it is created once and shared. Being shared is exactly why it suits a counter or a constant, and why one object changing it affects every other.\n// @why B: that describes an instance field. A static field is shared.\n// @why C: a static field can be reassigned unless it is also declared final.\n// @why D: an instance method can read and change a static field freely.\n\n\npublic class CreateFieldOnClasses {\n\n    static String name = \"Navneet\" ;\n\n    String hello = \"Hello\";\n\n    public static void main(String[] args) {\n\n        CreateFieldOnClasses createFieldOnClasses = new CreateFieldOnClasses();\n\n        // createFieldOnClass.hello is an example of instance field\n\n        // CreateFieldOnClasses.name is an example of static field\n        System.out.println(createFieldOnClasses.hello + \" \" + CreateFieldOnClasses.name);\n    }\n}\n"
       },
       {
         "filePath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_3_Class_Fields_CodingChallenge/BankAccountFieldsChallenge.java",
@@ -10971,7 +11137,8 @@ const CONCEPTS_DATA = [
               "Pitfall :- a broad `catch (Exception e)` around a whole method hides programming mistakes. A NullPointerException caused by a bug then looks the same as a recoverable bad input, and the bug survives unnoticed.",
               "Pitfall :- `Error` and its subclasses such as OutOfMemoryError are not meant to be caught. An application cannot reasonably carry on after them.",
               "Pitfall :- an empty catch block is the worst version of the same problem. The failure disappears completely and nothing tells you why.",
-              "Note:- the question \"What is the difference between checked and unchecked exceptions?\" is already asked above as a written question, so it is not repeated here as a multiple-choice question."
+              "Note:- the question \"What is the difference between checked and unchecked exceptions?\" is already asked above as a written question, so it is not repeated here as a multiple-choice question.",
+              "Exam practice :-"
             ]
           }
         ],
@@ -11506,10 +11673,215 @@ const CONCEPTS_DATA = [
               "C: SQLException is checked as well.",
               "D: FileNotFoundException extends IOException, so it is checked too."
             ]
+          },
+          {
+            "question": "What is printed by this program?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "ACDE",
+                "correct": true
+              },
+              {
+                "text": "ABCDE",
+                "correct": false,
+                "why": "B sits after the line that throws, so it is skipped."
+              },
+              {
+                "text": "ACD",
+                "correct": false,
+                "why": "E runs once the try statement is finished. The catch does not end the program."
+              },
+              {
+                "text": "ADE",
+                "correct": false,
+                "why": "the catch matches, so C is printed before the finally runs."
+              }
+            ],
+            "code": [
+              "public class TryMe {",
+              "public static void main(String[] args) {",
+              "try {",
+              "System.out.print(\"A\");",
+              "int x = 1 / 0;",
+              "System.out.print(\"B\");",
+              "} catch (ArithmeticException e) {",
+              "System.out.print(\"C\");",
+              "} finally {",
+              "System.out.print(\"D\");",
+              "}",
+              "System.out.print(\"E\");",
+              "}",
+              "}"
+            ],
+            "explain": "A is printed, then the division throws and skips the rest of the try block, so B never runs. C is printed by the matching catch, D by the finally, and E continues after the whole structure.",
+            "whyNotes": [
+              "B: B sits after the line that throws, so it is skipped.",
+              "C: E runs once the try statement is finished. The catch does not end the program.",
+              "D: the catch matches, so C is printed before the finally runs."
+            ]
+          },
+          {
+            "question": "What does this method return?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "2, because the value from finally replaces the one from try.",
+                "correct": true
+              },
+              {
+                "text": "1, because try returns first.",
+                "correct": false,
+                "why": "the try block's return begins, then finally runs and overrides it."
+              },
+              {
+                "text": "It does not compile, because two returns cannot exist in one method.",
+                "correct": false,
+                "why": "several returns are allowed. What is wrong here is the value being replaced, not the number of returns."
+              },
+              {
+                "text": "It does not compile until the finally block has no return.",
+                "correct": false,
+                "why": "it compiles as written. That is the trap."
+              }
+            ],
+            "code": [
+              "static int check() {",
+              "try {",
+              "return 1;",
+              "} finally {",
+              "return 2;",
+              "}",
+              "}"
+            ],
+            "explain": "A `return` in a finally block discards the value the try block was returning, and the method exits from the finally instead. The code compiles, which is what makes the mistake so easy to ship. Only one path out of a method ever runs. Writing a return inside finally has no warning at all, so it is best avoided.",
+            "whyNotes": [
+              "B: the try block's return begins, then finally runs and overrides it.",
+              "C: several returns are allowed. What is wrong here is the value being replaced, not the number of returns.",
+              "D: it compiles as written. That is the trap."
+            ]
+          },
+          {
+            "question": "Which exception is UNCHECKED?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "NumberFormatException",
+                "correct": true
+              },
+              {
+                "text": "IOException",
+                "correct": false,
+                "why": "IOException is the classic checked exception."
+              },
+              {
+                "text": "FileNotFoundException",
+                "correct": false,
+                "why": "FileNotFoundException extends IOException, so it is checked too."
+              },
+              {
+                "text": "InterruptedException",
+                "correct": false,
+                "why": "InterruptedException is checked, which is why a blocking call makes you deal with it."
+              }
+            ],
+            "code": [],
+            "explain": "NumberFormatException extends IllegalArgumentException, which extends RuntimeException, so the compiler does not require it to be caught or declared. The other three are checked exceptions, so a method that can throw one must catch it or declare it with throws.",
+            "whyNotes": [
+              "B: IOException is the classic checked exception.",
+              "C: FileNotFoundException extends IOException, so it is checked too.",
+              "D: InterruptedException is checked, which is why a blocking call makes you deal with it."
+            ]
+          },
+          {
+            "question": "What is printed by this program?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "hard",
+            "options": [
+              {
+                "text": "It does not compile, because the later catch can never be reached.",
+                "correct": true
+              },
+              {
+                "text": "It prints R.",
+                "correct": false,
+                "why": "nothing runs, because the file is rejected before any bytecode is produced."
+              },
+              {
+                "text": "It prints I.",
+                "correct": false,
+                "why": "the same compile error stops the program."
+              },
+              {
+                "text": "It prints RI.",
+                "correct": false,
+                "why": "only one catch block ever runs, and here none can."
+              }
+            ],
+            "code": [
+              "public class Narrow {",
+              "public static void main(String[] args) {",
+              "try {",
+              "throw new IllegalArgumentException(\"bad\");",
+              "} catch (RuntimeException e) {",
+              "System.out.print(\"R\");",
+              "} catch (IllegalArgumentException e) {",
+              "System.out.print(\"I\");",
+              "}",
+              "}",
+              "}"
+            ],
+            "explain": "A more general catch placed above a more specific one makes the specific one unreachable, and Java reports that while compiling. The order has to be the other way round: narrow first, then broad.",
+            "whyNotes": [
+              "B: nothing runs, because the file is rejected before any bytecode is produced.",
+              "C: the same compile error stops the program.",
+              "D: only one catch block ever runs, and here none can."
+            ]
+          },
+          {
+            "question": "Which statement about finally is correct?",
+            "answers": [],
+            "quizTag": "OCJP",
+            "quizLevel": "medium",
+            "options": [
+              {
+                "text": "It runs whether the try block completes, throws, or returns, unless the JVM exits first.",
+                "correct": true
+              },
+              {
+                "text": "It runs only when an exception is thrown.",
+                "correct": false,
+                "why": "it runs on the normal path too, which is the point of having it."
+              },
+              {
+                "text": "It runs only when no exception is thrown.",
+                "correct": false,
+                "why": "it runs after a catch as well."
+              },
+              {
+                "text": "It runs after every catch block, only if a catch matched.",
+                "correct": false,
+                "why": "it runs even when no catch matched, and then the exception continues on its way after finally finishes."
+              }
+            ],
+            "code": [],
+            "explain": "The finally block is the one place that runs on every path out of the try structure, which is what makes it the right place to close a file or a connection. The single exception is when the JVM itself stops, such as through System.exit.",
+            "whyNotes": [
+              "B: it runs on the normal path too, which is the point of having it.",
+              "C: it runs after a catch as well.",
+              "D: it runs even when no catch matched, and then the exception continues on its way after finally finishes."
+            ]
           }
         ],
         "deepChallenges": [],
-        "code": "package Chapter_12_Exception_Handling;\n\n// Core Concepts: Exception Handling in Java\n// An exception is an abnormal condition or runtime error that occurs during program execution and disrupts normal control flow.\n// Without handling, an exception immediately terminates execution and prints a stack trace.\n//\n// Exception Hierarchy Overview:\n// - `Throwable`: Root class for all errors and exceptions.\n// - `Error`: Serious problems (e.g. `OutOfMemoryError`) that applications should NOT attempt to catch.\n// - `Exception`: Checked exceptions (compulsory handling/declaration, e.g. `IOException`).\n// - `RuntimeException`: Unchecked exceptions (programmer logic errors, e.g. `NullPointerException`, `ArithmeticException`).\n//\n// Key Components & Blocks:\n// - `try` block: Encloses statements that might throw an exception. Keep try blocks scoped tightly.\n// - `catch` block: Handles a specific exception type thrown from the associated `try` block.\n// - `finally` block: Guarantees execution regardless of whether an exception was thrown or caught (used for resource cleanup).\n//\n// Useful Diagnostic Methods:\n// - `e.getMessage()`: Returns detailed string description of the exception.\n// - `e.printStackTrace()`: Prints stack trace details to standard error.\n\n\n// Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.\n\n// Handling exceptions in practice :-\n// 1) try, catch and finally together :-\n// try {\n//     int result = 10 / divisor;         // the risky line\n//     System.out.println(result);\n// } catch (ArithmeticException e) {\n//     System.out.println(\"Cannot divide by zero\");\n// } finally {\n//     System.out.println(\"Done\");        // runs whether or not anything went wrong\n// }\n// Output for divisor 0 :- Cannot divide by zero, then Done\n// Note :- try holds the code that might fail, catch runs only when that type of failure happens, and finally runs in both cases. This is why finally is used to close files and other resources.\n//\n// 2) Checked against unchecked :-\n// Checked, such as IOException: the compiler insists you either catch it or declare it with throws. It represents something outside your control, like a missing file.\n// Unchecked, such as NullPointerException or ArithmeticException: the compiler asks for nothing. These are usually mistakes in the program's own logic.\n// Note :- the rule of thumb is that checked problems are expected and recoverable, while unchecked ones are bugs to be fixed.\n//\n// 3) throw raises one now, throws warns the caller :-\n// static void checkAge(int age) {\n//     if (age < 0) {\n//         throw new IllegalArgumentException(\"Age cannot be negative\");   // raised at this moment\n//     }\n// }\n// static void readFile() throws IOException {   // declares that this method may pass the problem on\n//     // ...\n// }\n// Note :- throw is a statement that fires the exception. throws is part of the method signature, telling callers that they may have to deal with one.\n//\n// 4) Catch the specific type first :-\n// try {\n//     // ...\n// } catch (NumberFormatException e) {     // narrower type first\n//     System.out.println(\"Bad number\");\n// } catch (Exception e) {                 // broader type afterwards\n//     System.out.println(\"Something else\");\n// }\n// Note :- reversing these two is a compile error, because the broader catch would already have handled everything and the narrower one could never be reached.\n//\n// 5) One catch for several types :-\n// try {\n//     // ...\n// } catch (NumberFormatException | NullPointerException e) {\n//     System.out.println(\"Bad input\");\n// }\n// Note :- the pipe form handles two unrelated types in one block. The variable e is a common type, so it cannot be used to call methods that belong to only one of them.\n//\n// 6) Handling and re-throwing :-\n// try {\n//     Integer.parseInt(text);\n// } catch (NumberFormatException e) {\n//     System.out.println(\"Invalid input: \" + e.getMessage());   // report it\n//     throw e;                                                  // and let the caller decide what to do\n// }\n// Note :- catching an exception does not mean you must swallow it. You can note what happened and pass it upwards.\n//\n// Pitfall :- a broad `catch (Exception e)` around a whole method hides programming mistakes. A NullPointerException caused by a bug then looks the same as a recoverable bad input, and the bug survives unnoticed.\n// Pitfall :- `Error` and its subclasses such as OutOfMemoryError are not meant to be caught. An application cannot reasonably carry on after them.\n// Pitfall :- an empty catch block is the worst version of the same problem. The failure disappears completely and nothing tells you why.\n\n// @takeaway An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace.\n// @takeaway `try` holds the risky code, `catch` deals with one chosen type of failure, and `finally` runs whatever happened, which is what makes it the right place for cleanup.\n// @takeaway Checked exceptions are the ones the compiler makes you deal with, such as IOException. Unchecked ones such as NullPointerException and ArithmeticException are usually mistakes and the compiler asks for nothing.\n// @takeaway `throw` raises an exception at the moment something is wrong, while `throws` in a method signature warns callers that this method may pass one on.\n// @takeaway Catch order matters. List the most specific type first, because a broader catch placed above a narrower one makes that narrower one unreachable and the file will not compile.\n// @gotcha A `catch (Exception e)` wrapped around everything treats a programming bug and a recoverable problem the same way, so real bugs survive unnoticed.\n// @gotcha An empty catch block makes the failure disappear silently, which is worse than not catching it at all.\n// @gotcha `finally` still runs when the try block returns, which is exactly why resources are closed there rather than after the try.\n// @gotcha `Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.\n// @gotcha The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened.\n\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions?\n// @answer Checked exceptions (subclasses of Exception excluding RuntimeException) are checked at compile-time and must be caught or declared with `throws`.\n// @answer Unchecked exceptions (subclasses of RuntimeException) occur at runtime due to logic bugs and do not require explicit compiler handling.\n\n// @quiz (INTERVIEW TRAP) Does a `finally` block execute if the `try` block contains a `return` statement?\n// @answer Yes. The `finally` block executes before the method returns. The main exception is if `System.exit()` is called, terminating the JVM.\n\n\n// @quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?\n// @answer Yes. The finally block runs even when try or catch executes a return statement.\n// @answer Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.\n// @answer The main practical exception is System.exit(), which terminates the JVM before finally can run.\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?\n// @answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.\n// @answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.\n// @answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.\n\n// @quiz (INTERVIEW) What is the basic exception hierarchy in Java?\n// @answer At the top is Throwable.\n// @answer Throwable has two major branches: Error and Exception.\n// @answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.\n// @answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.\n\n// @quiz (INTERVIEW) What is multi-catch in Java?\n// @answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).\n// @answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.\n// @answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.\n\n// @quiz (INTERVIEW) What is the difference between throw and throws in Java?\n// @answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").\n// @answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.\n// @answer Think of throw as the action and throws as the declaration.\n\n// @quiz (INTERVIEW) What is a NullPointerException and when does it occur?\n// @answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.\n// @answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.\n// @answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization.\n\n// @quiz (INTERVIEW, EASY) What is the basic structure of the exception hierarchy in Java?\n// @option Throwable is the root, splitting into Error, which applications should not catch, and Exception, which includes RuntimeException and the checked exceptions. [correct]\n// @option Exception is the root of every throwable type.\n// @option Error and RuntimeException are the same branch of the hierarchy.\n// @option RuntimeException is a checked exception.\n// @explain Everything throwable descends from Throwable. Error covers serious JVM-level problems such as OutOfMemoryError. Exception covers the conditions your code is expected to handle.\n// @why B: Throwable is the root. Exception is one of its two main branches.\n// @why C: Error and RuntimeException sit on different branches, because Error is not something application code recovers from.\n// @why D: RuntimeException and its subclasses are the unchecked exceptions.\n//\n// Note:- the question \"What is the difference between checked and unchecked exceptions?\" is already\n// asked above as a written question, so it is not repeated here as a multiple-choice question.\n\n// @quiz (INTERVIEW TRAP, HARD) What is printed by this code?\n// @code try { return 1; } finally { System.out.println(\"finally\"); }\n// @option finally is printed, and then the method returns 1. [correct]\n// @option Nothing is printed, because return skips the finally block.\n// @option It does not compile, because return is not allowed inside try.\n// @option finally runs only when an exception is thrown.\n// @explain A finally block runs before control leaves the try statement, including when a return is on its way out. The return value is settled after finally completes.\n// @why B: finally is designed to run even on the way out through a return.\n// @why C: return inside try is perfectly legal.\n// @why D: finally runs whether or not an exception occurred. The practical exception is System.exit, which ends the JVM.\n\n// @quiz (INTERVIEW, MEDIUM) What is the difference between throw and throws?\n// @option throw raises an exception inside a method body, while throws declares in the signature which checked exceptions may propagate. [correct]\n// @option Both are written in the method signature.\n// @option throws is used inside the body to raise an exception.\n// @option throw can be used only with unchecked exceptions.\n// @explain Think of throw as the action and throws as the declaration. throw new IllegalArgumentException(\"bad\") creates and passes an exception now; throws warns the caller that a checked exception may arrive.\n// @why B: throw belongs in the body, not the signature.\n// @why C: raises is throw's job; throws only declares.\n// @why D: throw works with any Throwable, including checked exceptions.\n\n// @quiz (INTERVIEW, MEDIUM) When does a NullPointerException occur?\n// @option When a method or field is used through a reference that is null, such as String s = null; s.length(); [correct]\n// @option When null is assigned to a variable.\n// @option It is a checked exception that must be caught.\n// @option It occurs at compile time.\n// @explain Assigning null is harmless. The failure comes later, when you try to use the reference as though it pointed at a real object, and there is nothing there to run the method on.\n// @why B: the assignment itself is fine, and local variables must simply be assigned before use.\n// @why C: NullPointerException extends RuntimeException, so it is unchecked.\n// @why D: the compiler cannot know whether a reference will be null, so this is a runtime failure.\n\n// @quiz (INTERVIEW TRAP, MEDIUM) Why is a broad catch (Exception e) usually a poor choice?\n// @option It can swallow unrelated bugs, so it is better to catch the specific exception you expect. [correct]\n// @option It is always the recommended practice.\n// @option You must always catch Throwable instead.\n// @option Specific catch blocks must come after the general one.\n// @explain A broad catch treats every failure as the one you anticipated, which hides the problems you did not. Catching the specific type keeps the handler honest about what it can actually deal with.\n// @why B: the general guidance is the opposite, unless you genuinely intend to handle everything.\n// @why C: catching Throwable is even broader, and it would also catch Error.\n// @why D: this is reversed. A more specific catch must come first, because a general one would otherwise capture the exception before the specific block is reached.\n\n// @quiz (INTERVIEW, EASY) What do getMessage() and printStackTrace() do?\n// @option getMessage() returns the description of the exception, and printStackTrace() writes the trace to standard error. [correct]\n// @option getMessage() prints the trace to standard error.\n// @option printStackTrace() returns a String that you must print yourself.\n// @option Both are fields rather than methods.\n// @explain These are the two diagnostic tools you reach for first. The message explains what went wrong, and the trace shows where it happened by listing the call chain.\n// @why B: that is what printStackTrace does. getMessage only returns the text.\n// @why C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.\n// @why D: they are methods, called with parentheses.\n\n// @quiz (OCJP, HARD) Does this code compile?\n// @code try {\n// @code     int value = Integer.parseInt(\"42\");\n// @code } catch (Exception e) {\n// @code     System.out.println(\"general\");\n// @code } catch (NumberFormatException e) {\n// @code     System.out.println(\"number\");\n// @code }\n// @option No. The broader catch comes first, so the narrower one can never be reached. [correct]\n// @option Yes, and it prints general when parsing fails.\n// @option Yes, and it prints number when parsing fails.\n// @option Yes, because the catch blocks are checked in order at runtime.\n// @explain Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.\n// @why B: the code does not compile, so nothing runs.\n// @why C: the specific catch must be written before the general one.\n// @why D: the order matters, and the compiler rejects an order that makes a block unreachable.\n\n// @quiz (OCJP, MEDIUM) What happens when this code runs?\n// @code int result = 10 / 0;\n// @code System.out.println(result);\n// @option It compiles and then throws ArithmeticException at runtime. [correct]\n// @option It does not compile, because division by zero is an error.\n// @option It prints 0.\n// @option It prints Infinity.\n// @explain Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.\n// @why B: the compiler cannot know the value of the divisor at compile time.\n// @why C: there is no result to print. The exception is thrown during the division.\n// @why D: integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead.\n\n// @quiz (OCJP, MEDIUM) What is thrown by this code?\n// @code int[] numbers = {1, 2, 3};\n// @code System.out.println(numbers[3]);\n// @option ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2. [correct]\n// @option NullPointerException.\n// @option Nothing. It prints 0.\n// @option Nothing. It prints 3.\n// @explain A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.\n// @why B: the array exists. The problem is the index, not a null reference.\n// @why C: Java does not return a default for an out-of-range index.\n// @why D: index 3 does not exist, so no value can be returned.\n\n// @quiz (INTERVIEW TRAP, HARD) What does this method return?\n// @code static int test() {\n// @code     try {\n// @code         return 1;\n// @code     } finally {\n// @code         return 2;\n// @code     }\n// @code }\n// @option 2, because a return inside finally overrides the return from try. [correct]\n// @option 1, because the return in try is evaluated first.\n// @option 3, because the two values are added.\n// @option It does not compile, because a method cannot have two returns.\n// @explain The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.\n// @why B: the value from try is discarded, because finally runs afterwards.\n// @why C: nothing is added. Only the last return value is used.\n// @why D: several return statements in one method are normal.\n\n// @quiz (INTERVIEW, MEDIUM) Which exception type is NOT required to be caught or declared?\n// @option ArithmeticException, because it extends RuntimeException and is unchecked. [correct]\n// @option IOException, because it is unchecked.\n// @option SQLException, because it is unchecked.\n// @option FileNotFoundException, because it is unchecked.\n// @explain Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.\n// @why B: IOException is checked, so it must be handled.\n// @why C: SQLException is checked as well.\n// @why D: FileNotFoundException extends IOException, so it is checked too.\n\npublic class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }\n\n       // The String `value` is intentionally set to null below to demonstrate a caught NullPointerException.\n        String value = null;\n\n        try {\n            System.out.println(value.toUpperCase()); // `value` is null, so calling a method on it throws NullPointerException.\n                                                    // The risky statement belongs inside the `try` block so the program can handle the failure gracefully.\n\n            }catch (NullPointerException e){         // This catch block handles only NullPointerException from the try block above.\n                                                    // Using the specific exception type makes it clear what failure this demo is teaching.\n\n            System.out.println(\"You are trying to access a null value.\");\n            System.out.println(\"Caught exception message: \" + e.getMessage());\n        }\n\n    }\n}\n"
+        "code": "package Chapter_12_Exception_Handling;\n\n// Core Concepts: Exception Handling in Java\n// An exception is an abnormal condition or runtime error that occurs during program execution and disrupts normal control flow.\n// Without handling, an exception immediately terminates execution and prints a stack trace.\n//\n// Exception Hierarchy Overview:\n// - `Throwable`: Root class for all errors and exceptions.\n// - `Error`: Serious problems (e.g. `OutOfMemoryError`) that applications should NOT attempt to catch.\n// - `Exception`: Checked exceptions (compulsory handling/declaration, e.g. `IOException`).\n// - `RuntimeException`: Unchecked exceptions (programmer logic errors, e.g. `NullPointerException`, `ArithmeticException`).\n//\n// Key Components & Blocks:\n// - `try` block: Encloses statements that might throw an exception. Keep try blocks scoped tightly.\n// - `catch` block: Handles a specific exception type thrown from the associated `try` block.\n// - `finally` block: Guarantees execution regardless of whether an exception was thrown or caught (used for resource cleanup).\n//\n// Useful Diagnostic Methods:\n// - `e.getMessage()`: Returns detailed string description of the exception.\n// - `e.printStackTrace()`: Prints stack trace details to standard error.\n\n\n// Warning: Avoid broad `catch (Exception e)` blocks as they can swallow unintended bugs; catch specific exceptions instead.\n\n// Handling exceptions in practice :-\n// 1) try, catch and finally together :-\n// try {\n//     int result = 10 / divisor;         // the risky line\n//     System.out.println(result);\n// } catch (ArithmeticException e) {\n//     System.out.println(\"Cannot divide by zero\");\n// } finally {\n//     System.out.println(\"Done\");        // runs whether or not anything went wrong\n// }\n// Output for divisor 0 :- Cannot divide by zero, then Done\n// Note :- try holds the code that might fail, catch runs only when that type of failure happens, and finally runs in both cases. This is why finally is used to close files and other resources.\n//\n// 2) Checked against unchecked :-\n// Checked, such as IOException: the compiler insists you either catch it or declare it with throws. It represents something outside your control, like a missing file.\n// Unchecked, such as NullPointerException or ArithmeticException: the compiler asks for nothing. These are usually mistakes in the program's own logic.\n// Note :- the rule of thumb is that checked problems are expected and recoverable, while unchecked ones are bugs to be fixed.\n//\n// 3) throw raises one now, throws warns the caller :-\n// static void checkAge(int age) {\n//     if (age < 0) {\n//         throw new IllegalArgumentException(\"Age cannot be negative\");   // raised at this moment\n//     }\n// }\n// static void readFile() throws IOException {   // declares that this method may pass the problem on\n//     // ...\n// }\n// Note :- throw is a statement that fires the exception. throws is part of the method signature, telling callers that they may have to deal with one.\n//\n// 4) Catch the specific type first :-\n// try {\n//     // ...\n// } catch (NumberFormatException e) {     // narrower type first\n//     System.out.println(\"Bad number\");\n// } catch (Exception e) {                 // broader type afterwards\n//     System.out.println(\"Something else\");\n// }\n// Note :- reversing these two is a compile error, because the broader catch would already have handled everything and the narrower one could never be reached.\n//\n// 5) One catch for several types :-\n// try {\n//     // ...\n// } catch (NumberFormatException | NullPointerException e) {\n//     System.out.println(\"Bad input\");\n// }\n// Note :- the pipe form handles two unrelated types in one block. The variable e is a common type, so it cannot be used to call methods that belong to only one of them.\n//\n// 6) Handling and re-throwing :-\n// try {\n//     Integer.parseInt(text);\n// } catch (NumberFormatException e) {\n//     System.out.println(\"Invalid input: \" + e.getMessage());   // report it\n//     throw e;                                                  // and let the caller decide what to do\n// }\n// Note :- catching an exception does not mean you must swallow it. You can note what happened and pass it upwards.\n//\n// Pitfall :- a broad `catch (Exception e)` around a whole method hides programming mistakes. A NullPointerException caused by a bug then looks the same as a recoverable bad input, and the bug survives unnoticed.\n// Pitfall :- `Error` and its subclasses such as OutOfMemoryError are not meant to be caught. An application cannot reasonably carry on after them.\n// Pitfall :- an empty catch block is the worst version of the same problem. The failure disappears completely and nothing tells you why.\n\n// @takeaway An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace.\n// @takeaway `try` holds the risky code, `catch` deals with one chosen type of failure, and `finally` runs whatever happened, which is what makes it the right place for cleanup.\n// @takeaway Checked exceptions are the ones the compiler makes you deal with, such as IOException. Unchecked ones such as NullPointerException and ArithmeticException are usually mistakes and the compiler asks for nothing.\n// @takeaway `throw` raises an exception at the moment something is wrong, while `throws` in a method signature warns callers that this method may pass one on.\n// @takeaway Catch order matters. List the most specific type first, because a broader catch placed above a narrower one makes that narrower one unreachable and the file will not compile.\n// @gotcha A `catch (Exception e)` wrapped around everything treats a programming bug and a recoverable problem the same way, so real bugs survive unnoticed.\n// @gotcha An empty catch block makes the failure disappear silently, which is worse than not catching it at all.\n// @gotcha `finally` still runs when the try block returns, which is exactly why resources are closed there rather than after the try.\n// @gotcha `Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.\n// @gotcha The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened.\n\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions?\n// @answer Checked exceptions (subclasses of Exception excluding RuntimeException) are checked at compile-time and must be caught or declared with `throws`.\n// @answer Unchecked exceptions (subclasses of RuntimeException) occur at runtime due to logic bugs and do not require explicit compiler handling.\n\n// @quiz (INTERVIEW TRAP) Does a `finally` block execute if the `try` block contains a `return` statement?\n// @answer Yes. The `finally` block executes before the method returns. The main exception is if `System.exit()` is called, terminating the JVM.\n\n\n// @quiz (INTERVIEW TRAP) Does a finally block always execute in Java, even if there is a return in try or catch?\n// @answer Yes. The finally block runs even when try or catch executes a return statement.\n// @answer Example: try { return 1; } finally { System.out.println(\"finally\"); } prints finally first and then returns 1.\n// @answer The main practical exception is System.exit(), which terminates the JVM before finally can run.\n\n// @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions in Java?\n// @answer Checked exceptions are exceptions the compiler forces you to handle with try-catch or declare with throws, such as IOException and SQLException.\n// @answer Unchecked exceptions are RuntimeException and its subclasses, such as NullPointerException and ArrayIndexOutOfBoundsException, and the compiler does not require you to declare or catch them.\n// @answer Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state.\n\n// @quiz (INTERVIEW) What is the basic exception hierarchy in Java?\n// @answer At the top is Throwable.\n// @answer Throwable has two major branches: Error and Exception.\n// @answer Error represents serious JVM-level problems such as OutOfMemoryError and is generally not something application code should try to catch and recover from.\n// @answer Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions.\n\n// @quiz (INTERVIEW) What is multi-catch in Java?\n// @answer Multi-catch lets you catch multiple exception types in one catch block using the pipe symbol, for example catch (IOException | SQLException e).\n// @answer It was added in Java 7 and is useful when the handling logic is the same for several exception types.\n// @answer The caught exception variable is effectively final, so you cannot reassign e inside that catch block.\n\n// @quiz (INTERVIEW) What is the difference between throw and throws in Java?\n// @answer throw is used inside a method body to actually create or pass an exception object, such as throw new IllegalArgumentException(\"bad input\").\n// @answer throws is used in the method signature to declare that the method may propagate certain checked exceptions to its caller.\n// @answer Think of throw as the action and throws as the declaration.\n\n// @quiz (INTERVIEW) What is a NullPointerException and when does it occur?\n// @answer A NullPointerException happens when you try to call a method, access a field, or otherwise use an object reference that is null.\n// @answer Example: String s = null; s.length(); throws NullPointerException because s does not point to any actual String object.\n// @answer It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization.\n\n// @quiz (INTERVIEW, EASY) What is the basic structure of the exception hierarchy in Java?\n// @option Throwable is the root, splitting into Error, which applications should not catch, and Exception, which includes RuntimeException and the checked exceptions. [correct]\n// @option Exception is the root of every throwable type.\n// @option Error and RuntimeException are the same branch of the hierarchy.\n// @option RuntimeException is a checked exception.\n// @explain Everything throwable descends from Throwable. Error covers serious JVM-level problems such as OutOfMemoryError. Exception covers the conditions your code is expected to handle.\n// @why B: Throwable is the root. Exception is one of its two main branches.\n// @why C: Error and RuntimeException sit on different branches, because Error is not something application code recovers from.\n// @why D: RuntimeException and its subclasses are the unchecked exceptions.\n//\n// Note:- the question \"What is the difference between checked and unchecked exceptions?\" is already\n// asked above as a written question, so it is not repeated here as a multiple-choice question.\n\n// @quiz (INTERVIEW TRAP, HARD) What is printed by this code?\n// @code try { return 1; } finally { System.out.println(\"finally\"); }\n// @option finally is printed, and then the method returns 1. [correct]\n// @option Nothing is printed, because return skips the finally block.\n// @option It does not compile, because return is not allowed inside try.\n// @option finally runs only when an exception is thrown.\n// @explain A finally block runs before control leaves the try statement, including when a return is on its way out. The return value is settled after finally completes.\n// @why B: finally is designed to run even on the way out through a return.\n// @why C: return inside try is perfectly legal.\n// @why D: finally runs whether or not an exception occurred. The practical exception is System.exit, which ends the JVM.\n\n// @quiz (INTERVIEW, MEDIUM) What is the difference between throw and throws?\n// @option throw raises an exception inside a method body, while throws declares in the signature which checked exceptions may propagate. [correct]\n// @option Both are written in the method signature.\n// @option throws is used inside the body to raise an exception.\n// @option throw can be used only with unchecked exceptions.\n// @explain Think of throw as the action and throws as the declaration. throw new IllegalArgumentException(\"bad\") creates and passes an exception now; throws warns the caller that a checked exception may arrive.\n// @why B: throw belongs in the body, not the signature.\n// @why C: raises is throw's job; throws only declares.\n// @why D: throw works with any Throwable, including checked exceptions.\n\n// @quiz (INTERVIEW, MEDIUM) When does a NullPointerException occur?\n// @option When a method or field is used through a reference that is null, such as String s = null; s.length(); [correct]\n// @option When null is assigned to a variable.\n// @option It is a checked exception that must be caught.\n// @option It occurs at compile time.\n// @explain Assigning null is harmless. The failure comes later, when you try to use the reference as though it pointed at a real object, and there is nothing there to run the method on.\n// @why B: the assignment itself is fine, and local variables must simply be assigned before use.\n// @why C: NullPointerException extends RuntimeException, so it is unchecked.\n// @why D: the compiler cannot know whether a reference will be null, so this is a runtime failure.\n\n// @quiz (INTERVIEW TRAP, MEDIUM) Why is a broad catch (Exception e) usually a poor choice?\n// @option It can swallow unrelated bugs, so it is better to catch the specific exception you expect. [correct]\n// @option It is always the recommended practice.\n// @option You must always catch Throwable instead.\n// @option Specific catch blocks must come after the general one.\n// @explain A broad catch treats every failure as the one you anticipated, which hides the problems you did not. Catching the specific type keeps the handler honest about what it can actually deal with.\n// @why B: the general guidance is the opposite, unless you genuinely intend to handle everything.\n// @why C: catching Throwable is even broader, and it would also catch Error.\n// @why D: this is reversed. A more specific catch must come first, because a general one would otherwise capture the exception before the specific block is reached.\n\n// @quiz (INTERVIEW, EASY) What do getMessage() and printStackTrace() do?\n// @option getMessage() returns the description of the exception, and printStackTrace() writes the trace to standard error. [correct]\n// @option getMessage() prints the trace to standard error.\n// @option printStackTrace() returns a String that you must print yourself.\n// @option Both are fields rather than methods.\n// @explain These are the two diagnostic tools you reach for first. The message explains what went wrong, and the trace shows where it happened by listing the call chain.\n// @why B: that is what printStackTrace does. getMessage only returns the text.\n// @why C: it writes the trace itself and returns nothing, which is why you cannot capture it directly.\n// @why D: they are methods, called with parentheses.\n\n// @quiz (OCJP, HARD) Does this code compile?\n// @code try {\n// @code     int value = Integer.parseInt(\"42\");\n// @code } catch (Exception e) {\n// @code     System.out.println(\"general\");\n// @code } catch (NumberFormatException e) {\n// @code     System.out.println(\"number\");\n// @code }\n// @option No. The broader catch comes first, so the narrower one can never be reached. [correct]\n// @option Yes, and it prints general when parsing fails.\n// @option Yes, and it prints number when parsing fails.\n// @option Yes, because the catch blocks are checked in order at runtime.\n// @explain Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.\n// @why B: the code does not compile, so nothing runs.\n// @why C: the specific catch must be written before the general one.\n// @why D: the order matters, and the compiler rejects an order that makes a block unreachable.\n\n// @quiz (OCJP, MEDIUM) What happens when this code runs?\n// @code int result = 10 / 0;\n// @code System.out.println(result);\n// @option It compiles and then throws ArithmeticException at runtime. [correct]\n// @option It does not compile, because division by zero is an error.\n// @option It prints 0.\n// @option It prints Infinity.\n// @explain Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.\n// @why B: the compiler cannot know the value of the divisor at compile time.\n// @why C: there is no result to print. The exception is thrown during the division.\n// @why D: integer division never yields Infinity. For a double, 10.0 / 0 would give Infinity instead.\n\n// @quiz (OCJP, MEDIUM) What is thrown by this code?\n// @code int[] numbers = {1, 2, 3};\n// @code System.out.println(numbers[3]);\n// @option ArrayIndexOutOfBoundsException, because valid indexes are 0 to 2. [correct]\n// @option NullPointerException.\n// @option Nothing. It prints 0.\n// @option Nothing. It prints 3.\n// @explain A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.\n// @why B: the array exists. The problem is the index, not a null reference.\n// @why C: Java does not return a default for an out-of-range index.\n// @why D: index 3 does not exist, so no value can be returned.\n\n// @quiz (INTERVIEW TRAP, HARD) What does this method return?\n// @code static int test() {\n// @code     try {\n// @code         return 1;\n// @code     } finally {\n// @code         return 2;\n// @code     }\n// @code }\n// @option 2, because a return inside finally overrides the return from try. [correct]\n// @option 1, because the return in try is evaluated first.\n// @option 3, because the two values are added.\n// @option It does not compile, because a method cannot have two returns.\n// @explain The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.\n// @why B: the value from try is discarded, because finally runs afterwards.\n// @why C: nothing is added. Only the last return value is used.\n// @why D: several return statements in one method are normal.\n\n// @quiz (INTERVIEW, MEDIUM) Which exception type is NOT required to be caught or declared?\n// @option ArithmeticException, because it extends RuntimeException and is unchecked. [correct]\n// @option IOException, because it is unchecked.\n// @option SQLException, because it is unchecked.\n// @option FileNotFoundException, because it is unchecked.\n// @explain Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.\n// @why B: IOException is checked, so it must be handled.\n// @why C: SQLException is checked as well.\n// @why D: FileNotFoundException extends IOException, so it is checked too.\n\n// Exam practice :-\n// @quiz (OCJP, MEDIUM) What is printed by this program?\n// @code public class TryMe {\n// @code     public static void main(String[] args) {\n// @code         try {\n// @code             System.out.print(\"A\");\n// @code             int x = 1 / 0;\n// @code             System.out.print(\"B\");\n// @code         } catch (ArithmeticException e) {\n// @code             System.out.print(\"C\");\n// @code         } finally {\n// @code             System.out.print(\"D\");\n// @code         }\n// @code         System.out.print(\"E\");\n// @code     }\n// @code }\n// @option ACDE [correct]\n// @option ABCDE\n// @option ACD\n// @option ADE\n// @explain A is printed, then the division throws and skips the rest of the try block, so B never runs. C is printed by the matching catch, D by the finally, and E continues after the whole structure.\n// @why B: B sits after the line that throws, so it is skipped.\n// @why C: E runs once the try statement is finished. The catch does not end the program.\n// @why D: the catch matches, so C is printed before the finally runs.\n\n// @quiz (OCJP, HARD) What does this method return?\n// @code static int check() {\n// @code     try {\n// @code         return 1;\n// @code     } finally {\n// @code         return 2;\n// @code     }\n// @code }\n// @option 2, because the value from finally replaces the one from try. [correct]\n// @option 1, because try returns first.\n// @option It does not compile, because two returns cannot exist in one method.\n// @option It does not compile until the finally block has no return.\n// @explain A `return` in a finally block discards the value the try block was returning, and the method exits from the finally instead. The code compiles, which is what makes the mistake so easy to ship. Only one path out of a method ever runs. Writing a return inside finally has no warning at all, so it is best avoided.\n// @why B: the try block's return begins, then finally runs and overrides it.\n// @why C: several returns are allowed. What is wrong here is the value being replaced, not the number of returns.\n// @why D: it compiles as written. That is the trap.\n\n// @quiz (OCJP, MEDIUM) Which exception is UNCHECKED?\n// @option NumberFormatException [correct]\n// @option IOException\n// @option FileNotFoundException\n// @option InterruptedException\n// @explain NumberFormatException extends IllegalArgumentException, which extends RuntimeException, so the compiler does not require it to be caught or declared. The other three are checked exceptions, so a method that can throw one must catch it or declare it with throws.\n// @why B: IOException is the classic checked exception.\n// @why C: FileNotFoundException extends IOException, so it is checked too.\n// @why D: InterruptedException is checked, which is why a blocking call makes you deal with it.\n\n// @quiz (OCJP, HARD) What is printed by this program?\n// @code public class Narrow {\n// @code     public static void main(String[] args) {\n// @code         try {\n// @code             throw new IllegalArgumentException(\"bad\");\n// @code         } catch (RuntimeException e) {\n// @code             System.out.print(\"R\");\n// @code         } catch (IllegalArgumentException e) {\n// @code             System.out.print(\"I\");\n// @code         }\n// @code     }\n// @code }\n// @option It does not compile, because the later catch can never be reached. [correct]\n// @option It prints R.\n// @option It prints I.\n// @option It prints RI.\n// @explain A more general catch placed above a more specific one makes the specific one unreachable, and Java reports that while compiling. The order has to be the other way round: narrow first, then broad.\n// @why B: nothing runs, because the file is rejected before any bytecode is produced.\n// @why C: the same compile error stops the program.\n// @why D: only one catch block ever runs, and here none can.\n\n// @quiz (OCJP, MEDIUM) Which statement about finally is correct?\n// @option It runs whether the try block completes, throws, or returns, unless the JVM exits first. [correct]\n// @option It runs only when an exception is thrown.\n// @option It runs only when no exception is thrown.\n// @option It runs after every catch block, only if a catch matched.\n// @explain The finally block is the one place that runs on every path out of the try structure, which is what makes it the right place to close a file or a connection. The single exception is when the JVM itself stops, such as through System.exit.\n// @why B: it runs on the normal path too, which is the point of having it.\n// @why C: it runs after a catch as well.\n// @why D: it runs even when no catch matched, and then the exception continues on its way after finally finishes.\n\npublic class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }\n\n       // The String `value` is intentionally set to null below to demonstrate a caught NullPointerException.\n        String value = null;\n\n        try {\n            System.out.println(value.toUpperCase()); // `value` is null, so calling a method on it throws NullPointerException.\n                                                    // The risky statement belongs inside the `try` block so the program can handle the failure gracefully.\n\n            }catch (NullPointerException e){         // This catch block handles only NullPointerException from the try block above.\n                                                    // Using the specific exception type makes it clear what failure this demo is teaching.\n\n            System.out.println(\"You are trying to access a null value.\");\n            System.out.println(\"Caught exception message: \" + e.getMessage());\n        }\n\n    }\n}\n"
       },
       {
         "filePath": "src/Chapter_12_Exception_Handling/Sub_Chapter_2_Exception_Handling_CodingChallenge/MultiCatchChallenge.java",

@@ -7625,6 +7625,113 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_1-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Create Field On Classes",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class Counter {\nstatic int total = 0;\nint mine = 0;\nvoid tick() { total++; mine++; }\npublic static void main(String[] args) {\nCounter a = new Counter();\nCounter b = new Counter();\na.tick(); a.tick(); b.tick();\nSystem.out.println(total + \" \" + a.mine + \" \" + b.mine);\n}\n}",
+      "options": [
+        "3 2 1",
+        "1 2 1",
+        "3 1 1",
+        "3 3 3"
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the static field is written three times, not once.",
+        "2": "a was ticked twice, so its own field reaches 2.",
+        "3": "only a static field is shared. An instance field belongs to one object."
+      },
+      "explanation": "`total` is static, so there is one copy for the whole class and all three tick calls land on it, giving 3. `mine` is an instance field, so each object keeps its own count: a was ticked twice and b once.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_2-which-line-does-not-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Create Field On Classes",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which line does NOT compile?",
+      "code": "public class Demo {\nint value = 5;\nstatic void show() {\nSystem.out.println(value);\n}\n}",
+      "options": [
+        "The `System.out.println(value);` line, because a static method cannot read an instance field.",
+        "The `static void show()` line, because a static method must return a value.",
+        "Nothing. The class compiles and prints 5.",
+        "The `int value = 5;` line, because a field cannot be initialised."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "`void` is a valid return type for a static method.",
+        "2": "the reference is rejected while compiling, so the program never runs.",
+        "3": "fields are initialised exactly like that."
+      },
+      "explanation": "A static method runs without any object, so there may be no `value` for it to read. The compiler refuses the reference rather than leaving it to fail later. Writing `static int value = 5;` or making show() non-static would both compile.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_3-what-is-printed-here",
+      "difficulty": "medium",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Create Field On Classes",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed here?",
+      "code": "public class Shadow {\nint count = 1;\nvoid setCount(int count) { this.count = count; }\npublic static void main(String[] args) {\nShadow s = new Shadow();\ns.setCount(9);\nSystem.out.println(s.count);\n}\n}",
+      "options": [
+        "It does not compile, because count cannot be passed.",
+        "1",
+        "0",
+        "9"
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "a parameter may share a field's name. `this` is how the two are told apart.",
+        "1": "1 is what the field holds before the call. The call changes it.",
+        "2": "the field is initialised to 1, not left at its default."
+      },
+      "explanation": "The parameter `count` hides the field `count`, so `this.count` is needed to reach the field. Without `this`, the assignment would give the parameter its own value and the field would stay 1.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_4-which-statement-about-a-static-field-is-",
+      "difficulty": "medium",
+      "chapter": "Chapter 10: Class Object Static And Instance Fields",
+      "topic": "Create Field On Classes",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which statement about a static field is correct?",
+      "options": [
+        "It can only be used inside a static method.",
+        "It cannot be changed after it is given a value.",
+        "It is created once when the class is first loaded, and every object of the class sees that one value.",
+        "It is created once for each object, so each object has its own."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "an instance method can read and change a static field freely.",
+        "1": "a static field can be reassigned unless it is also declared final.",
+        "3": "that describes an instance field. A static field is shared."
+      },
+      "explanation": "A static field belongs to the class rather than to any object, so it is created once and shared. Being shared is exactly why it suits a counter or a constant, and why one object changing it affects every other.",
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+    },
+    {
       "type": "predict",
       "kind": "predict",
       "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-3-class-fields-codingchallenge-bankaccountfieldschallenge-java_predict_3",
@@ -8896,6 +9003,139 @@ const QUESTIONS_BANK = {
         "3": "IOException is checked, so it must be handled."
       },
       "explanation": "Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_19-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class TryMe {\npublic static void main(String[] args) {\ntry {\nSystem.out.print(\"A\");\nint x = 1 / 0;\nSystem.out.print(\"B\");\n} catch (ArithmeticException e) {\nSystem.out.print(\"C\");\n} finally {\nSystem.out.print(\"D\");\n}\nSystem.out.print(\"E\");\n}\n}",
+      "options": [
+        "ADE",
+        "ACDE",
+        "ABCDE",
+        "ACD"
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the catch matches, so C is printed before the finally runs.",
+        "2": "B sits after the line that throws, so it is skipped.",
+        "3": "E runs once the try statement is finished. The catch does not end the program."
+      },
+      "explanation": "A is printed, then the division throws and skips the rest of the try block, so B never runs. C is printed by the matching catch, D by the finally, and E continues after the whole structure.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_20-what-does-this-method-return",
+      "difficulty": "hard",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What does this method return?",
+      "code": "static int check() {\ntry {\nreturn 1;\n} finally {\nreturn 2;\n}\n}",
+      "options": [
+        "2, because the value from finally replaces the one from try.",
+        "It does not compile, because two returns cannot exist in one method.",
+        "It does not compile until the finally block has no return.",
+        "1, because try returns first."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "several returns are allowed. What is wrong here is the value being replaced, not the number of returns.",
+        "2": "it compiles as written. That is the trap.",
+        "3": "the try block's return begins, then finally runs and overrides it."
+      },
+      "explanation": "A `return` in a finally block discards the value the try block was returning, and the method exits from the finally instead. The code compiles, which is what makes the mistake so easy to ship. Only one path out of a method ever runs. Writing a return inside finally has no warning at all, so it is best avoided.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_21-which-exception-is-unchecked",
+      "difficulty": "medium",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which exception is UNCHECKED?",
+      "options": [
+        "InterruptedException",
+        "IOException",
+        "NumberFormatException",
+        "FileNotFoundException"
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "InterruptedException is checked, which is why a blocking call makes you deal with it.",
+        "1": "IOException is the classic checked exception.",
+        "3": "FileNotFoundException extends IOException, so it is checked too."
+      },
+      "explanation": "NumberFormatException extends IllegalArgumentException, which extends RuntimeException, so the compiler does not require it to be caught or declared. The other three are checked exceptions, so a method that can throw one must catch it or declare it with throws.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_22-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class Narrow {\npublic static void main(String[] args) {\ntry {\nthrow new IllegalArgumentException(\"bad\");\n} catch (RuntimeException e) {\nSystem.out.print(\"R\");\n} catch (IllegalArgumentException e) {\nSystem.out.print(\"I\");\n}\n}\n}",
+      "options": [
+        "It does not compile, because the later catch can never be reached.",
+        "It prints RI.",
+        "It prints R.",
+        "It prints I."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "only one catch block ever runs, and here none can.",
+        "2": "nothing runs, because the file is rejected before any bytecode is produced.",
+        "3": "the same compile error stops the program."
+      },
+      "explanation": "A more general catch placed above a more specific one makes the specific one unreachable, and Java reports that while compiling. The order has to be the other way round: narrow first, then broad.",
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_23-which-statement-about-finally-is-correct",
+      "difficulty": "medium",
+      "chapter": "Chapter 12: Exception Handling",
+      "topic": "Exception Handling In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which statement about finally is correct?",
+      "options": [
+        "It runs only when no exception is thrown.",
+        "It runs after every catch block, only if a catch matched.",
+        "It runs only when an exception is thrown.",
+        "It runs whether the try block completes, throws, or returns, unless the JVM exits first."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "it runs after a catch as well.",
+        "1": "it runs even when no catch matched, and then the exception continues on its way after finally finishes.",
+        "2": "it runs on the normal path too, which is the point of having it."
+      },
+      "explanation": "The finally block is the one place that runs on every path out of the try structure, which is what makes it the right place to close a file or a connection. The single exception is when the JVM itself stops, such as through System.exit.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
     },
     {
@@ -15765,8 +16005,8 @@ const QUICK_REVISION_BANK = {
       "Counter",
       "read",
       "main",
-      "deposit",
-      "withdraw"
+      "tick",
+      "show"
     ],
     "tables": []
   },
@@ -15839,8 +16079,8 @@ const QUICK_REVISION_BANK = {
       "checkAge",
       "test",
       "main",
-      "demonstrateException",
-      "parseAge"
+      "check",
+      "demonstrateException"
     ],
     "tables": []
   },

@@ -265,6 +265,89 @@ package Chapter_12_Exception_Handling;
 // @why C: SQLException is checked as well.
 // @why D: FileNotFoundException extends IOException, so it is checked too.
 
+// Exam practice :-
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class TryMe {
+// @code     public static void main(String[] args) {
+// @code         try {
+// @code             System.out.print("A");
+// @code             int x = 1 / 0;
+// @code             System.out.print("B");
+// @code         } catch (ArithmeticException e) {
+// @code             System.out.print("C");
+// @code         } finally {
+// @code             System.out.print("D");
+// @code         }
+// @code         System.out.print("E");
+// @code     }
+// @code }
+// @option ACDE [correct]
+// @option ABCDE
+// @option ACD
+// @option ADE
+// @explain A is printed, then the division throws and skips the rest of the try block, so B never runs. C is printed by the matching catch, D by the finally, and E continues after the whole structure.
+// @why B: B sits after the line that throws, so it is skipped.
+// @why C: E runs once the try statement is finished. The catch does not end the program.
+// @why D: the catch matches, so C is printed before the finally runs.
+
+// @quiz (OCJP, HARD) What does this method return?
+// @code static int check() {
+// @code     try {
+// @code         return 1;
+// @code     } finally {
+// @code         return 2;
+// @code     }
+// @code }
+// @option 2, because the value from finally replaces the one from try. [correct]
+// @option 1, because try returns first.
+// @option It does not compile, because two returns cannot exist in one method.
+// @option It does not compile until the finally block has no return.
+// @explain A `return` in a finally block discards the value the try block was returning, and the method exits from the finally instead. The code compiles, which is what makes the mistake so easy to ship. Only one path out of a method ever runs. Writing a return inside finally has no warning at all, so it is best avoided.
+// @why B: the try block's return begins, then finally runs and overrides it.
+// @why C: several returns are allowed. What is wrong here is the value being replaced, not the number of returns.
+// @why D: it compiles as written. That is the trap.
+
+// @quiz (OCJP, MEDIUM) Which exception is UNCHECKED?
+// @option NumberFormatException [correct]
+// @option IOException
+// @option FileNotFoundException
+// @option InterruptedException
+// @explain NumberFormatException extends IllegalArgumentException, which extends RuntimeException, so the compiler does not require it to be caught or declared. The other three are checked exceptions, so a method that can throw one must catch it or declare it with throws.
+// @why B: IOException is the classic checked exception.
+// @why C: FileNotFoundException extends IOException, so it is checked too.
+// @why D: InterruptedException is checked, which is why a blocking call makes you deal with it.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code public class Narrow {
+// @code     public static void main(String[] args) {
+// @code         try {
+// @code             throw new IllegalArgumentException("bad");
+// @code         } catch (RuntimeException e) {
+// @code             System.out.print("R");
+// @code         } catch (IllegalArgumentException e) {
+// @code             System.out.print("I");
+// @code         }
+// @code     }
+// @code }
+// @option It does not compile, because the later catch can never be reached. [correct]
+// @option It prints R.
+// @option It prints I.
+// @option It prints RI.
+// @explain A more general catch placed above a more specific one makes the specific one unreachable, and Java reports that while compiling. The order has to be the other way round: narrow first, then broad.
+// @why B: nothing runs, because the file is rejected before any bytecode is produced.
+// @why C: the same compile error stops the program.
+// @why D: only one catch block ever runs, and here none can.
+
+// @quiz (OCJP, MEDIUM) Which statement about finally is correct?
+// @option It runs whether the try block completes, throws, or returns, unless the JVM exits first. [correct]
+// @option It runs only when an exception is thrown.
+// @option It runs only when no exception is thrown.
+// @option It runs after every catch block, only if a catch matched.
+// @explain The finally block is the one place that runs on every path out of the try structure, which is what makes it the right place to close a file or a connection. The single exception is when the JVM itself stops, such as through System.exit.
+// @why B: it runs on the normal path too, which is the point of having it.
+// @why C: it runs after a catch as well.
+// @why D: it runs even when no catch matched, and then the exception continues on its way after finally finishes.
+
 public class ExceptionHandlingInJava {
     public static void main(String[] args) {
 
