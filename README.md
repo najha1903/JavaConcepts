@@ -64,7 +64,11 @@ scripts/
   parse-concepts.js       # Source-to-dashboard generator
   revise.js               # Runs the proposal and opens the review
   review-server.js        # Local server behind the review page
+  approve.js              # Generate, verify, and roll back if a check fails
+  verify.js               # Runs every check in order
   audit-generated.js      # Generated-data and note-quality checks
+  check-practice.js       # Proves no practice verifier rejects a correct solution
+  check-questions.js      # Compiles and runs questions, compares real output
   create-project.js       # Optional dashboard scaffolder
 ```
 
@@ -140,12 +144,12 @@ The tag in parentheses is optional, and so is a level. Write `(OCJP)`, `(INTERVI
 ```bash
 npm run revise   # propose changes, open them for review, then apply or discard
 npm run revise:cli  # the same proposal with a yes/no question in the terminal
-npm run approve  # apply the reviewed changes, audit, and open the dashboard
-npm run generate # regenerate generated files without the review step
+npm run approve  # generate, run every check, roll back if any fails, open the dashboard
+npm run generate # regenerate generated files without the checks or the review
 npm run audit    # validate the current generated files
-npm run check:practice   # confirm no practice verifier rejects a correct solution
-npm run check:questions  # run every code question and compare its real output
-npm run check    # regenerate, validate, and run both checks above
+npm run check    # generate and run every check, without opening the dashboard
 ```
+
+You write the notes. `npm run approve` does the rest: it regenerates the dashboard, verifies that the practice lab still accepts your own solutions, and that every question about output really prints what it claims. If any of that fails, nothing is applied.
 
 See [rules.md](rules.md) for the complete authoring contract and [TEMPLATE.md](TEMPLATE.md) for the optional cross-technology dashboard template.

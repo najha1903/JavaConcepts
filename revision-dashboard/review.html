@@ -169,10 +169,10 @@
           sub.textContent = 'Nothing is waiting for review.';
           return;
         }
-        result.className = payload.ok ? 'result ok' : 'result bad';
-        result.textContent = payload.ok
-          ? `Applied and verified.\n\n${payload.output}\n\nYou can close this window and open the dashboard.`
-          : `The changes were not applied.\n\n${payload.output || 'The generator reported an error.'}`;
+    result.className = payload.ok ? 'result ok' : 'result bad';
+    result.textContent = payload.ok
+      ? `Applied and verified. Every check passed.\n\n${payload.output}\n\nYou can close this window and open the dashboard.`
+      : `The changes were NOT applied.\n\n${payload.output || 'The generator reported an error.'}\n\nFix the problem and run npm run revise again. Nothing has changed.`;
         if (payload.ok) {
           actions.style.display = 'none';
           sub.textContent = 'Applied. Opening the dashboard...';

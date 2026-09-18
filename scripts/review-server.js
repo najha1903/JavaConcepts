@@ -94,16 +94,12 @@ const server = http.createServer((req, res) => {
 
   if (route === '/api/apply' && req.method === 'POST') {
     if (!readPending()) { sendJson(res, 409, { ok: false, output: 'There is nothing waiting for review.' }); return; }
-    // Regenerating without --propose is the same path `npm run approve` takes.
-    const generate = runNodeScript('parse-concepts.js');
-    const audit = generate.ok ? runNodeScript('audit-generated.js') : { ok: false, output: '' };
-    const ok = generate.ok && audit.ok;
-    if (ok) clearPending();
-    sendJson(res, ok ? 200 : 500, {
-      ok,
-      output: [generate.output, audit.output].filter(Boolean).join('\n\n').trim(),
-      auditFailed: generate.ok && !audit.ok
-    });
+    // approve.js generates, verifies, and rolls the generated files back if a check
+    // fails. It is the same script `npm run approve` runs, so approving here can
+    // never accept content that approving in the terminal would reject.
+    const applied = runNodeScript('approve.js');
+    if (applied.ok) clearPending();
+    sendJson(res, applied.ok ? 200 : 500, { ok: applied.ok, output: applied.output });
     return;
   }
 

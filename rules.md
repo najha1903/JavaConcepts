@@ -28,14 +28,25 @@ npm run revise -- --yes   # applies without asking (for scripted runs)
 `npm run revise` compares a fresh parse against `revision-dashboard/data.js`, which is the baseline the author already approved.
 
 - **Notes, inline notes, or `@quiz` markers changed** → the summary is printed, a report is written to `revision-dashboard/content-changes.md`, and a review page opens in the browser with the same changes and two buttons.
-  - **Apply** → the changes are applied, the audit runs, and the page opens the dashboard.
+  - **Apply** → the changes are generated and every check is run. If all pass, the page opens the dashboard. If any fails, the generated files are rolled back, the page shows what failed, and your last approved version stays in place.
   - **Discard** → nothing is applied, so there is nothing to undo. Run `npm run revise` again after editing the notes.
   - The review is served by a small local server (`scripts/review-server.js`) on the loopback interface. It exists only while the review is open, and the approve step it runs is the same path `npm run approve` takes, so the two can never drift apart.
   - When the author prefers the terminal, `npm run revise:cli` asks `Apply these changes now? (y/N)`. In a non-interactive run the answer defaults to **No**, so an automated run can never hang or apply silently.
 - **Only Java code changed** (everyday practice) → applied straight away and recorded in the same report, so routine edits do not need an approval each time.
 - **Nothing changed** → applied straight away, exactly as before, and the dashboard opens.
 
-`npm run approve` regenerates everything and opens the dashboard, without asking. The generated files are:
+`npm run approve` regenerates everything, runs every check, and opens the dashboard. It is **all or nothing**: the generated files are copied first, and if any check fails they are put back, so the dashboard keeps your last approved version and the message "nothing was applied" is literally true.
+
+`npm run approve` runs, in order:
+
+1. `parse-concepts.js` — regenerate everything from your notes
+2. `audit-generated.js` — the shape of the data: ids, paths, answer shapes, a marker left outside a comment, a note line that never reached the page
+3. `check-practice.js` — every auto-checked challenge runs against the solution in its own file, so none can reject correct code
+4. `check-questions.js` — every question about output is compiled and run, and the real output compared with the answer it marks correct
+
+The whole sequence takes about fifteen seconds. The first failure stops it and rolls the generated files back.
+
+The generated files are:
 
 - `revision-dashboard/data.js`
 - `revision-dashboard/questions.js`

@@ -1,13 +1,13 @@
 {
   "scripts": {
     "revise": "node scripts/revise.js",
-    "revise:cli": "node scripts/parse-concepts.js --propose && node scripts/audit-generated.js && start revision-dashboard/index.html",
-    "approve": "node scripts/parse-concepts.js && node scripts/audit-generated.js && start revision-dashboard/index.html",
+    "revise:cli": "node scripts/parse-concepts.js --propose && node scripts/approve.js && start revision-dashboard/index.html",
+    "approve": "node scripts/parse-concepts.js && node scripts/verify.js && start revision-dashboard/index.html",
     "generate": "node scripts/parse-concepts.js",
     "audit": "node scripts/audit-generated.js",
     "check:practice": "node scripts/check-practice.js",
     "check:questions": "node scripts/check-questions.js",
-    "check": "node scripts/parse-concepts.js && node scripts/audit-generated.js && node scripts/check-practice.js && node scripts/check-questions.js"
+    "check": "node scripts/parse-concepts.js && node scripts/verify.js"
   },
   "dependencies": {
     "wd": "^1.14.0"
