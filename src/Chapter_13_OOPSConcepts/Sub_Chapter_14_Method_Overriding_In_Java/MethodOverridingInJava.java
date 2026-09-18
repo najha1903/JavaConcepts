@@ -280,5 +280,94 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
 // @gotcha Through a parent reference you can only call the methods the parent declares, so calling a child-only method needs a child reference or a cast.
 
 
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code class Animal {
+// @code     String speak() { return "animal"; }
+// @code }
+// @code class Dog extends Animal {
+// @code     @Override String speak() { return "dog"; }
+// @code }
+// @code public class Main {
+// @code     public static void main(String[] args) {
+// @code         Animal a = new Dog();
+// @code         System.out.println(a.speak());
+// @code     }
+// @code }
+// @option dog, because the object type decides which override runs, not the reference type. [correct]
+// @option animal, because the reference is declared as Animal.
+// @option It does not compile, because a Dog is not an Animal.
+// @option It prints both animal and dog.
+// @explain The reference type only says which methods you may call. The object, a Dog, decides the body.
+// @why B: that is true for an overload. An override is resolved from the object, not the reference.
+// @why C: a Dog IS-A Animal, so widening the reference is legal and the code compiles.
+// @why D: one method runs per call, and it returns a single value.
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code class Parent {
+// @code     void move() { System.out.println("move"); }
+// @code }
+// @code class Child extends Parent {
+// @code     void fetch() { System.out.println("fetch"); }
+// @code }
+// @code Parent p = new Child();
+// @code p.fetch();
+// @option No. The reference type decides what you may call, and Parent does not declare fetch. [correct]
+// @option Yes, and it prints fetch, because the object really is a Child.
+// @option Yes, and it throws a ClassCastException at runtime.
+// @option No, because fetch() is not overridden in Parent.
+// @explain The compiler allows only methods the reference type declares, and Parent has no fetch().
+// @why B: that rule needs the parent to declare the method. Here Parent never declares fetch().
+// @why C: this is a compile-time error, so the program never runs and no exception is thrown.
+// @why D: the problem is not a missing override. The problem is that Parent does not declare fetch() at all.
+
+// @quiz (OCJP, HARD) What happens when this code is compiled?
+// @code class Parent {
+// @code     void print(int n) { System.out.println("parent " + n); }
+// @code }
+// @code class Child extends Parent {
+// @code     @Override void print(long n) { System.out.println("child " + n); }
+// @code }
+// @option It does not compile, because @Override finds no Parent method with that parameter list. [correct]
+// @option It compiles, and print(long) overrides print(int).
+// @option It compiles, and print(long) is both an overload and an override.
+// @option It does not compile, because a child may not widen a parameter type.
+// @explain An override must keep the same parameter list, so print(long) is an overload @Override rejects.
+// @why B: widening int to long is not part of overriding. The parameter lists have to match exactly.
+// @why C: without @Override it is a legal overload, but @Override makes the mismatch a compile error.
+// @why D: a child may add an overload with any parameter type. The error comes from @Override, not widening.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code class Parent {
+// @code     static void show() { System.out.println("parent"); }
+// @code }
+// @code class Child extends Parent {
+// @code     static void show() { System.out.println("child"); }
+// @code }
+// @code public class Main {
+// @code     public static void main(String[] args) {
+// @code         Parent ref = new Child();
+// @code         ref.show();
+// @code     }
+// @code }
+// @option parent, because a static method is chosen from the reference type, not the object type. [correct]
+// @option child, because the object is a Child.
+// @option It does not compile, because Child may not declare show().
+// @option It does not compile, because @Override is missing on show().
+// @explain A static method is hidden, not overridden, so the call is bound from the reference type, Parent.
+// @why B: that is how an overridden instance method behaves. A static method follows the reference.
+// @why C: hiding a static method with the same signature is allowed.
+// @why D: @Override is optional, and on a static method it would be an error.
+
+// @quiz (OCJP, MEDIUM) A child class overrides a public method that returns Number. Which change is legal?
+// @option Narrowing the return type to Integer, because an override may return a subtype. [correct]
+// @option Reducing the access from public to package-private, because a child may be more restrictive.
+// @option Making the child method private, because the child owns its own code.
+// @option Making the child method static, because static methods are not inherited.
+// @explain An override may narrow the return type to a subtype, but access may be widened, never reduced.
+// @why B: reducing access is forbidden. Callers already hold the public promise made by the parent.
+// @why C: private is the most restrictive choice of all, so it is forbidden for the same reason.
+// @why D: a static method hides the parent's method instead of overriding it, so it is not an override.
+
+
 public class MethodOverridingInJava {
 }

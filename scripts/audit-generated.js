@@ -48,6 +48,78 @@ for (const [chapterName, chapterQuestions] of Object.entries(questions || {})) {
     if (question.type === 'interview' && (!question.modelAnswer || !Array.isArray(question.keyPoints))) {
       failures.push(`${question.qid}: invalid interview answer shape.`);
     }
+
+    // A choice question is only usable if exactly one answer is reachable and every
+    // wrong choice has a reason. A question with no correct option can never be
+    // answered, and one with two is ambiguous, so both are authoring mistakes
+    // rather than quiz content.
+    if (question.type === 'scq') {
+      const options = question.options || [];
+      const answer = question.answer;
+      if (typeof answer !== 'number' || !Number.isInteger(answer) || answer < 0 || answer >= options.length) {
+        failures.push(`${question.qid}: single-choice question has no valid correct option (answer=${JSON.stringify(answer)}).`);
+      }
+      const whyKeys = Object.keys(question.whyByOption || {});
+      for (const key of whyKeys) {
+        const index = Number(key);
+        if (!Number.isInteger(index) || index < 0 || index >= options.length) {
+          failures.push(`${question.qid}: a reason points at option ${key}, which does not exist.`);
+        } else if (index === answer) {
+          failures.push(`${question.qid}: a wrong-answer reason points at the correct option.`);
+        }
+      }
+    }
+
+    if (question.type === 'mcq') {
+      const options = question.options || [];
+      const answer = question.answer;
+      if (!Array.isArray(answer) || answer.length === 0) {
+        failures.push(`${question.qid}: multiple-choice question has no correct option marked.`);
+      } else {
+        const seen = new Set();
+        for (const index of answer) {
+          if (!Number.isInteger(index) || index < 0 || index >= options.length) {
+            failures.push(`${question.qid}: correct option ${index} does not exist.`);
+          } else if (seen.has(index)) {
+            failures.push(`${question.qid}: correct option ${index} is listed twice.`);
+          }
+          seen.add(index);
+        }
+      }
+    }
+  }
+}
+
+// The same question text in two chapters makes the Grand Quiz repeat itself, and
+// usually means one was written twice by accident.
+//
+// The code is part of the key, because a generic stem such as "What does this
+// code print?" is legitimately reused for a different program. Two questions are
+// only the same question when both the text and the code match.
+// The same question twice in ONE chapter is always a mistake. The same question in
+// two different chapters is often deliberate, because a classic such as the String
+// pool genuinely belongs to both the introduction and the deep dive, and the Grand
+// Quiz de-duplicates by question text. So only the within-chapter case fails, and
+// the cross-chapter case is counted and reported.
+//
+// The code is part of the key, because a generic stem such as "What does this code
+// print?" is legitimately reused for a different program.
+const questionKeys = new Map();
+let crossChapterRepeats = 0;
+for (const [chapterName, chapterQuestions] of Object.entries(questions || {})) {
+  const inThisChapter = new Map();
+  for (const question of chapterQuestions || []) {
+    const text = String(question.question || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    const code = String(question.code || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    if (!text || !code) continue;
+    const key = `${text}|||${code}`;
+    if (inThisChapter.has(key)) {
+      failures.push(`${chapterName}: this exact question and code appear twice in the same chapter: ${String(question.question).slice(0, 60)}`);
+    } else {
+      inThisChapter.set(key, true);
+    }
+    if (questionKeys.has(key) && questionKeys.get(key) !== chapterName) crossChapterRepeats++;
+    else questionKeys.set(key, chapterName);
   }
 }
 
@@ -219,4 +291,7 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   console.log(`Generated artifact audit passed: ${concepts.length} chapters, ${topicPaths.size} topics, ${questionCount} questions, ${(practice || []).length} practice challenges, ${(deep || []).length} deep challenges.`);
+  if (crossChapterRepeats > 0) {
+    console.log(`  ${crossChapterRepeats} question(s) deliberately repeated across chapters; the Grand Quiz shows each once.`);
+  }
 }

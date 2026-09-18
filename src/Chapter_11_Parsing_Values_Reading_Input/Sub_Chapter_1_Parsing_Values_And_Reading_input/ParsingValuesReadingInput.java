@@ -257,6 +257,62 @@ import java.util.Scanner; // the import statement lets us use classes from other
 // @why C: the catch block matches NumberFormatException, so the exception is handled.
 // @why D: only one branch runs when an exception is thrown.
 
+// @quiz (OCJP, MEDIUM) Which of these declarations compile?
+// @code int a = Integer.parseInt("42");
+// @code double b = Double.parseDouble("3.14");
+// @code int c = Math.round(3.6);
+// @option a and b compile, but c does not, because Math.round(double) returns a long. [correct]
+// @option All three compile, because all three produce a number.
+// @option Only a compiles, because the other two return Objects.
+// @option None of them compile, because parsing always returns text.
+// @explain parseInt returns an int, parseDouble a double, but Math.round(double) returns a long.
+// @why B: Math.round(3.6) returns a long, and a long does not fit into an int without a cast.
+// @why C: parseDouble returns a primitive double, not an Object.
+// @why D: parsing turns text into a primitive number, it does not return text.
+// @quiz (OCJP, HARD) What happens when this code runs?
+// @code int a = Integer.parseInt("abc");
+// @code int b = Integer.parseInt(" 42 ");
+// @option It throws NumberFormatException on line one, and the spaces would fail line two too. [correct]
+// @option It does not compile, because "abc" is not a number.
+// @option It sets a to 0 and b to 42, because bad text is ignored.
+// @option It sets a to null and b to 42.
+// @explain It is a runtime NumberFormatException, not a compile error, and " 42 " needs trim().
+// @why B: the compiler cannot inspect String contents, so the program compiles and fails when it runs.
+// @why C: there is no fallback value; the method throws instead of returning 0.
+// @why D: parseInt returns a primitive int, so it can never produce null.
+// @quiz (OCJP, MEDIUM) What is the result of compiling and running this code?
+// @code System.out.println("100" + "50");
+// @code System.out.println("100" - "50");
+// @option The program does not compile, because - is not defined for String operands. [correct]
+// @option It prints 10050 and then 50.
+// @option It prints 10050 and then throws an exception at runtime.
+// @option It prints 150 and then 50.
+// @explain + joins the two Strings into "10050", but - has no String version, so javac rejects the file.
+// @why B: the whole file fails to compile, so neither line ever executes.
+// @why C: this is a compile-time error, not something that can happen at runtime.
+// @why D: + on two Strings concatenates the text instead of adding the numbers.
+// @quiz (OCJP, MEDIUM) The user types 5 and presses Enter. What does line hold?
+// @code Scanner sc = new Scanner(System.in);
+// @code int n = sc.nextInt();
+// @code String line = sc.nextLine();
+// @option line is an empty String, because nextInt left the newline in the buffer. [correct]
+// @option line is "5", because nextLine reads the same input again.
+// @option line is null, because there is nothing left to read.
+// @option It throws InputMismatchException, because the input was already consumed.
+// @explain nextInt stops before the newline, so the next nextLine() returns that empty leftover line.
+// @why B: the 5 was already consumed by nextInt, only the Enter key remains.
+// @why C: nextLine returns an empty String rather than null when the line is empty.
+// @why D: the leftover newline is valid input for nextLine, so no exception is thrown.
+// @quiz (INTERVIEW, MEDIUM) Why does code calling System.console().readLine() often fail inside an IDE?
+// @option System.console() returns null in most IDEs, so readLine() throws NullPointerException. [correct]
+// @option System.console() is not part of the Java API and never compiles.
+// @option readLine() returns a String, so it cannot be called on a console.
+// @option It fails only on a machine that has no keyboard attached.
+// @explain An IDE has no terminal, so console() returns null and calling it throws NullPointerException.
+// @why B: it compiles fine; the problem is the null value at run time.
+// @why C: readLine() does return a String, and that is a normal method call.
+// @why D: the cause is the missing terminal attachment, not the hardware.
+
 public class ParsingValuesReadingInput {
 
     public static void main(String[] args) {

@@ -287,6 +287,79 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // @why C: no conversion is needed or possible. A boolean is exactly what if requires.
 // @why D: a boolean is not a number, so it is not interchangeable with any numeric type.
 
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code double d = 1 / 3;
+// @code System.out.println(d);
+// @option 0.0, because both operands are int, so integer division happens first. [correct]
+// @option 0.3333333333333333, because d is a double.
+// @option 0, because the printed form keeps the type of the operands.
+// @option It does not compile, because an int result cannot be assigned to a double.
+// @explain 1 and 3 are int, so this is integer division. The 0 result is then widened to double, giving 0.0.
+// @why B: a decimal answer needs a decimal operand, as in 1 / 3.0.
+// @why C: widening to double happens after the division, so the output is 0.0 and not 0.
+// @why D: int widens to double automatically, so the assignment is legal.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code char c = 'A';
+// @code System.out.println(c + 1);
+// @option 66, because the char is promoted to int before the addition. [correct]
+// @option B, because adding 1 moves on to the next letter.
+// @option A1, because the number is joined to the character.
+// @option It does not compile, because 1 cannot be added to a char.
+// @explain A char is a number underneath, and 'A' is 65. Arithmetic promotes it to int, so c + 1 is the int 66.
+// @why B: the result only prints as B after a cast, as in (char) (c + 1).
+// @why C: both operands are numeric here, so + is addition and not concatenation.
+// @why D: char takes part in arithmetic. It is promoted to int, and the expression is an int.
+
+// @quiz (OCJP, MEDIUM) Does this line compile?
+// @code long big = 3000000000;
+// @option No. The literal is an int by default, and 3000000000 is too large for an int. [correct]
+// @option Yes, and big holds 3000000000.
+// @option Yes, because the compiler converts the literal to long for the assignment.
+// @option No, because long literals must be written in hexadecimal.
+// @explain A whole-number literal is an int unless it has a suffix. This one is past Integer.MAX_VALUE, so it is rejected.
+// @why B: the literal fails first, so nothing is assigned.
+// @why C: the type of the variable on the left does not retype the literal on the right.
+// @why D: decimal long literals are fine, they simply need the L suffix: 3000000000L.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code float f = 0.1f;
+// @code double d = f;
+// @code System.out.println(d == 0.1);
+// @option false, because 0.1f and 0.1 hold slightly different values. [correct]
+// @option true, because 0.1f is just 0.1 written as a float.
+// @option It does not compile, because a float cannot be compared with a double.
+// @option true, because widening the float rounds it to the nearest double.
+// @explain A float keeps about 7 significant digits and a double about 15, and neither stores 0.1 exactly.
+// @why B: 0.1f is rounded to float precision, which is coarser than double precision.
+// @why C: float widens to double automatically, so the comparison is legal.
+// @why D: widening converts the float value exactly. It does not round it to the double for 0.1.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code byte b = (byte) 130;
+// @code System.out.println(b);
+// @option -126, because 130 wraps around past the top of the byte range. [correct]
+// @option 130, because the cast keeps the value unchanged.
+// @option It does not compile, because 130 does not fit in a byte.
+// @option 2, because the extra 128 is cut off.
+// @explain A byte holds -128 to 127. The int 130 is bit pattern 1000 0010, which as a signed byte is 130 - 256 = -126.
+// @why B: a byte cannot hold 130, so the cast changes the value instead.
+// @why C: the explicit (byte) cast makes it legal, unlike byte b = 130; which fails to compile.
+// @why D: the wrap moves down by the full width of the type, 256, and not by 128.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code double big = 3.0e9;
+// @code int n = (int) big;
+// @code System.out.println(n);
+// @option 2147483647, because a value too large for int saturates at Integer.MAX_VALUE. [correct]
+// @option -2147483648, because the value wraps around to the other end.
+// @option It does not compile without a second cast.
+// @option 3000000000, because the cast keeps the number as it is.
+// @explain Narrowing a floating-point value to int does not wrap. A value too large becomes Integer.MAX_VALUE.
+// @why B: wrap-around belongs to integer arithmetic. A float-to-int cast saturates instead.
+// @why C: one explicit cast makes it compile. The surprise is the value, not the syntax.
+// @why D: an int cannot hold 3000000000, so Java has to give something else.
+
 public class PrimitiveDataTypes {
 
     public static void main(String[] args) {

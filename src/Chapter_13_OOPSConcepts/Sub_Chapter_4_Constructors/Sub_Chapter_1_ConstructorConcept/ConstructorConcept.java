@@ -79,6 +79,82 @@ having to duplicate code by duplicating initialization in more than one place.
 // @quiz (OCJP) Where must the this(accountNumber, 100.00, customerName, email, phoneNumber) call appear?
 // @answer A this(...) constructor call must be the first executable statement in the constructor body.
 
+// @quiz (OCJP, MEDIUM) A class declares only this constructor. What happens when someone writes new Demo()?
+// @code class Demo {
+// @code     Demo(int n) { System.out.println(n); }
+// @code }
+// @code new Demo();
+// @option It does not compile, because the implicit no-argument constructor is no longer supplied. [correct]
+// @option It compiles, because Java always adds a no-argument constructor.
+// @option It compiles and prints 0.
+// @option It compiles and prints nothing.
+// @explain The implicit no-argument constructor exists only if the class declares no constructor at all.
+// @why B: the implicit constructor exists only in a class that declares no constructors.
+// @why C: there is no constructor to run, so nothing is printed.
+// @why D: for the same reason. The call matches no constructor, so the class does not compile.
+
+// @quiz (OCJP, MEDIUM) Does this class compile, and what is void Demo(int n)?
+// @code class Demo {
+// @code     void Demo(int n) { System.out.println(n); }
+// @code }
+// @option It compiles, and void Demo(int n) is a plain method, since a constructor has no return. [correct]
+// @option It does not compile, because a constructor may not be void.
+// @option It compiles, and void Demo(int n) is the constructor of the class.
+// @option It does not compile, because a method may not share the class name.
+// @explain Writing void gives the declaration a return type, so it is a method named Demo, not a constructor.
+// @why B: writing void does not make it an illegal constructor. It makes it a legal method.
+// @why C: a constructor never has a return type, not even void.
+// @why D: a method may share the class name, as long as it has a return type.
+
+// @quiz (OCJP, MEDIUM) Does this constructor compile?
+// @code class Demo {
+// @code     int n;
+// @code     Demo() {
+// @code         System.out.println("start");
+// @code         this(5);
+// @code     }
+// @code     Demo(int n) { this.n = n; }
+// @code }
+// @option No. A this(...) call must be the first statement in the constructor body. [correct]
+// @option Yes, and it prints start before the second constructor runs.
+// @option Yes, because this(5) is just a method call on the current object.
+// @option No, because a constructor may never call another constructor.
+// @explain A constructor may delegate only through this(...), and that call must be the very first statement.
+// @why B: the compiler rejects the constructor, so nothing runs.
+// @why C: this(5) is a constructor call, not a method call, which is why the first-statement rule applies.
+// @why D: a constructor may call another one with this(...). It just has to do it first.
+
+// @quiz (OCJP, MEDIUM) Which pair of constructors is a valid overload?
+// @option Demo(int a) and Demo(double a), because the parameter types differ. [correct]
+// @option Demo(int a) and Demo(int b), because the parameter names differ.
+// @option Two Demo(int a) constructors in one class, because their bodies differ.
+// @option Demo(int a) and void Demo(int a), because the return types differ.
+// @explain Overloading depends on the parameter list: its number, types and order. Names are not part of it.
+// @why B: parameter names are not part of the signature, so this pair clashes.
+// @why C: two constructors with the same parameter list clash, whatever their bodies contain.
+// @why D: a constructor has no return type, so void Demo(int a) is a method, not another constructor.
+
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code class Demo {
+// @code     Demo() {
+// @code         this(5);
+// @code         System.out.println("no-args");
+// @code     }
+// @code     Demo(int n) {
+// @code         System.out.println("int " + n);
+// @code     }
+// @code }
+// @code new Demo();
+// @option int 5, then no-args. [correct]
+// @option no-args, then int 5.
+// @option int 5 only.
+// @option It does not compile, because a constructor may not call another one.
+// @explain this(5) runs first, and control returns to the no-argument constructor, which prints its own line.
+// @why B: this(5) is first, so the delegated constructor always finishes before the other lines run.
+// @why C: control returns to the calling constructor after this(5) finishes, so its own println still runs.
+// @why D: a constructor may call another one with this(...), which is exactly what constructor chaining is.
+
+
 public class ConstructorConcept {
 
     private String accountNumber;

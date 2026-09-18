@@ -241,6 +241,85 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // @why C: the branches of a ternary are alternatives, never combined.
 // @why D: both branches are int here, so the types are compatible.
 
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code int x = 5;
+// @code if (x = 5) { System.out.println("five"); }
+// @option It does not compile, because x = 5 is an int assignment and if needs a boolean. [correct]
+// @option It prints five, because x is assigned 5 and the test then succeeds.
+// @option It prints nothing, because an assignment is never true.
+// @option It does not compile, because x has already been declared.
+// @explain An assignment produces the assigned int, and an if needs a boolean, so the compiler rejects it.
+// @why B: the assignment gives an int, not a boolean, so no branch can run.
+// @why C: the failure happens while compiling, before anything runs.
+// @why D: x is declared once; the error is the type of the expression in the condition.
+
+// @quiz (OCJP, HARD) Does this code compile?
+// @code boolean flag = true;
+// @code if (flag);
+// @code System.out.println("A");
+// @code else System.out.println("B");
+// @option It does not compile, because the semicolon ends the if and leaves else without an if. [correct]
+// @option It prints A, because flag is true.
+// @option It prints B, because the empty if is false.
+// @option It prints A and then B.
+// @explain if (flag); is already a complete if with an empty body, so the else has no if to belong to.
+// @why B: the else cannot attach to the if, so the file is rejected before running.
+// @why C: the file is rejected while compiling, so no branch can print anything.
+// @why D: the stray else is a compile-time error, so this never runs either.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code double d = 0.1 + 0.2;
+// @code if (d == 0.3) { System.out.println("equal"); }
+// @code else { System.out.println("not equal"); }
+// @option not equal, because the sum is not exactly 0.3 in binary floating point. [correct]
+// @option equal, because 0.1 + 0.2 is 0.3.
+// @option It does not compile, because doubles cannot be compared with ==.
+// @option equal, because Java rounds the sum to one decimal place.
+// @explain Doubles are binary fractions, so 0.1 + 0.2 is 0.30000000000000004 and never equal to 0.3.
+// @why B: the two sides differ in their last bits, so == reports false.
+// @why C: == is allowed for primitives, and double is a primitive.
+// @why D: Java does not round to a chosen number of decimal places.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int x = 5;
+// @code if (!(x > 5)) System.out.println("A");
+// @code System.out.println("B");
+// @option A then B, because the negated test is true and B is outside the if. [correct]
+// @option B only, because x > 5 is false.
+// @option A only, because the if controls the rest of the block.
+// @option It does not compile, because ! cannot be applied to a comparison.
+// @explain x > 5 is false, so the negated test is true and A runs; B runs because it is outside the if.
+// @why B: the ! inverts the false test, so the branch does run.
+// @why C: without braces an if controls one statement only.
+// @why D: ! applies to any boolean, and a comparison is a boolean.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int x = 3;
+// @code if (x < 10) { System.out.println("small"); }
+// @code else if (x < 5) { System.out.println("tiny"); }
+// @option small, because the first branch matches and the chain stops there. [correct]
+// @option tiny, because 3 is less than 5 as well.
+// @option small and tiny, because both conditions are true.
+// @option It does not compile, because the second test can never be reached.
+// @explain The chain stops at the first true test, and 3 < 10 is true, so the narrower test is skipped.
+// @why B: the wider test above matched first, so the chain never reaches the else-if.
+// @why C: only one branch of a chain runs.
+// @why D: an unreachable condition is legal, which is exactly why the order matters.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code boolean flag = true;
+// @code Object result = flag ? 1 : "a";
+// @code System.out.println(result);
+// @option 1, because the int branch is boxed, both branches share Object, and only one is used. [correct]
+// @option It does not compile, because the two branches have different types.
+// @option a, because the String branch is always the one chosen for an Object.
+// @option 1a, because both branches are evaluated and combined.
+// @explain The int branch is boxed and both branches share Object as a supertype; only the true one is used.
+// @why B: the branches have a common supertype, so the expression compiles.
+// @why C: flag is true, so the first branch supplies the value.
+// @why D: a conditional expression produces one value, never a combination.
+
 public class IfExample {
 
     public static void main(String[] args) {

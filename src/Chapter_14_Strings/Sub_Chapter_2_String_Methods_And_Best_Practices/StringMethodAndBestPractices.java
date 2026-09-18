@@ -126,6 +126,79 @@ package Chapter_14_Strings.Sub_Chapter_2_String_Methods_And_Best_Practices;
 // @gotcha `replaceAll` reads its first argument as a regular expression, so `replaceAll(".", "-")` replaces every character. Use `replace` when you mean a literal dot.
 
 
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class S {
+// @code     public static void main(String[] args) {
+// @code         String s = "Java";
+// @code         s.concat(" Rocks");
+// @code         System.out.println(s);
+// @code     }
+// @code }
+// @option Java [correct]
+// @option Java Rocks
+// @option JavaJava Rocks
+// @option It throws NullPointerException.
+// @explain concat returns a brand new String and never edits the one it is called on, so s still holds Java.
+// @why B: the joined text exists only as the returned value, which is ignored here.
+// @why C: concat works on a copy, so the original text is never duplicated.
+// @why D: the argument is not null, so no exception is thrown.
+
+// @quiz (OCJP, MEDIUM) What is printed by this statement?
+// @code System.out.println("Programming".substring(0, 3));
+// @option Pro [correct]
+// @option Progr
+// @option rog
+// @option It throws StringIndexOutOfBoundsException.
+// @explain substring(begin, end) includes begin but excludes end, so indexes 0, 1 and 2 are copied.
+// @why B: that would be substring(0, 5), because the end index is exclusive.
+// @why C: that is what substring(1, 4) produces, since the range starts one place later.
+// @why D: the end index may be at most length(), and 3 is well inside the String.
+
+// @quiz (OCJP, HARD) What happens when this statement runs?
+// @code System.out.println("Java".substring(2, 1));
+// @option It throws StringIndexOutOfBoundsException. [correct]
+// @option It prints va
+// @option It prints av, because substring swaps the two indexes.
+// @option It prints an empty String.
+// @explain Both indexes are in range, but beginIndex 2 is greater than endIndex 1, so the reversed range throws.
+// @why B: that is the result of the valid call substring(2), which runs to the end.
+// @why C: substring does not reorder its arguments, so a reversed range is rejected.
+// @why D: an empty String comes from equal indexes such as substring(1, 1).
+
+// @quiz (OCJP, MEDIUM) What is printed by this statement?
+// @code System.out.println("Java" + 10 + 20);
+// @option Java1020 [correct]
+// @option Java30
+// @option 1020Java
+// @option It does not compile.
+// @explain + works left to right, so "Java" + 10 joins first, and joining 20 to a String gives Java1020.
+// @why B: that needs the numbers added first, as in "Java" + (10 + 20).
+// @why C: operands are joined in the written order, so the text stays on the left.
+// @why D: one String operand makes + a concatenation, which is legal.
+
+// @quiz (OCJP, HARD) What is printed by this statement?
+// @code System.out.println("a.b.c".replaceAll(".", "-"));
+// @option ----- [correct]
+// @option a-b-c
+// @option -a-b-c
+// @option It throws PatternSyntaxException.
+// @explain In replaceAll the first argument is regex, so "." matches any character and all five are replaced.
+// @why B: that is what replace(".", "-") gives, because replace treats the dot literally.
+// @why C: each match is replaced in place, so no dash is added beside every dot.
+// @why D: "." is a valid regex, so no exception is thrown.
+
+// @quiz (OCJP, MEDIUM) What is printed by this statement?
+// @code System.out.println('A' + 1);
+// @option 66 [correct]
+// @option B
+// @option A1
+// @option It does not compile.
+// @explain A char is numeric, so 'A' + 1 uses the code point 65 and adds 1, and the int result prints as 66.
+// @why B: the letter B needs a cast back to char, as in (char) ('A' + 1).
+// @why C: + with a char and an int does arithmetic; it never joins them as text.
+// @why D: the expression is legal, because + accepts two numeric operands.
+
+
 public class StringMethodAndBestPractices {
 
     public static void main(String[] args) {

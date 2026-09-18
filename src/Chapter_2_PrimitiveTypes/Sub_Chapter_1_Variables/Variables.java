@@ -63,6 +63,84 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 // @why C: it is still an int literal, and x holds the number 1000000.
 // @why D: grouping in threes is only a convention. The real rules forbid an underscore at the very start or end, next to a decimal point, or directly before a suffix such as L or f.
 
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code public static void main(String[] args) {
+// @code     int count;
+// @code     System.out.println(count);
+// @code }
+// @option No. A local variable must be assigned before it is read, or the compiler stops. [correct]
+// @option Yes, and it prints 0.
+// @option Yes, and it prints null.
+// @option Yes, and it prints whatever was left in memory.
+// @explain Local variables never receive a default value, unlike fields. Reading count before assigning it is a compile-time error.
+// @why B: only fields are zeroed. A local int has no value at all until you assign one.
+// @why C: null is not even a legal value for a primitive such as int.
+// @why D: Java does not expose leftover memory. It refuses to compile the read instead.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code int x = 1;
+// @code {
+// @code     int x = 2;
+// @code     System.out.println(x);
+// @code }
+// @code System.out.println(x);
+// @option 2 and then 1, because the inner x hides the outer one only inside its block. [correct]
+// @option It does not compile, because x is declared twice.
+// @option 2 and then 2, because the second declaration changes the first variable.
+// @option 1 and then 1, because the inner declaration is ignored.
+// @explain A name declared inside a block is a new variable that shadows the outer one for that block. After the closing brace the outer one is visible again.
+// @why B: redeclaring a name in a nested block is legal. It is an error only within the same block.
+// @why C: the inner x is a separate variable that disappears at the closing brace.
+// @why D: the inner declaration is a real declaration, so the first print sees 2.
+
+// @quiz (INTERVIEW, MEDIUM) Does this code compile?
+// @code final int limit = 5;
+// @code limit = 6;
+// @option No. A final variable can be assigned once only, so the second assignment is an error. [correct]
+// @option Yes, and limit becomes 6.
+// @option Yes, because final only stops a variable being read.
+// @option No. limit must be initialised on a separate line.
+// @explain final means the variable is assigned exactly once. Once the declaration has given it a value, any further assignment is an error.
+// @why B: the compiler rejects the second assignment, so the value never changes.
+// @why C: final restricts writing, not reading. A final variable can be read normally.
+// @why D: initialising it in the declaration is fine. That first assignment is the one that counts.
+
+// @quiz (OCJP, MEDIUM) Which of these variable declarations does NOT compile?
+// @option int 2count = 5; [correct]
+// @option int count2 = 5;
+// @option int _count = 5;
+// @option int $count = 5;
+// @explain An identifier must begin with a letter, an underscore, or a dollar sign. It may not begin with a digit.
+// @why B: a digit is allowed anywhere except the first character, so count2 is legal.
+// @why C: an underscore may begin an identifier, although it is poor style.
+// @why D: a dollar sign may begin an identifier, though it is unusual in ordinary code.
+
+// @quiz (OCJP, HARD) Does this code compile?
+// @code System.out.println(total);
+// @code int total = 10;
+// @option No. A local variable cannot be used before its declaration. [correct]
+// @option Yes, and it prints 10.
+// @option Yes, and it prints 0, because total is not yet initialised.
+// @option No, because println cannot take an int.
+// @explain A local variable is in scope from its declaration onwards. The println comes first, so at that point total is unknown.
+// @why B: the declaration has not been seen yet, so there is no variable to read.
+// @why C: locals are never given a default, and the code does not compile at all.
+// @why D: println has an overload for int. The problem is the ordering, not the type.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code boolean flag = false;
+// @code int x;
+// @code if (flag) { x = 1; } else { x = 2; }
+// @code System.out.println(x);
+// @option 2. It compiles because x is assigned on both paths before it is read. [correct]
+// @option It does not compile, because x is read without a value.
+// @option 1, because the if branch runs first.
+// @option 0, because x is a local variable and starts at zero.
+// @explain Java checks definite assignment at compile time. Assigning on both paths makes the later read legal, and flag is false so the else branch gives 2.
+// @why B: assigning on both branches is exactly what the rule requires.
+// @why C: the condition is false, so the else branch is the one that runs.
+// @why D: local variables are never defaulted. x gets 2 from the else branch, not 0.
+
 public class Variables {
 
     public static void main(String[] args) {

@@ -47,6 +47,68 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
 //
 // @quiz (OCJP) In if(j > 5), does the loop break when j is exactly 5?
 // @answer No. The > operator is exclusive, so the break condition becomes true only when j is greater than 5.
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int n = 10;
+// @code do {
+// @code     System.out.print("ran once ");
+// @code } while (n < 5);
+// @option ran once, because a do-while runs its body before testing the condition. [correct]
+// @option Nothing, because n < 5 is false from the start.
+// @option ran once, printed over and over forever.
+// @option It does not compile, because n is never changed inside the loop.
+// @explain A do-while runs the body first, so one pass happens before n < 5 is found false.
+// @why B: that is the behaviour of a while loop, which tests before running the body.
+// @why C: after the first pass the false condition ends the loop.
+// @why D: a loop variable that never changes is legal; here the condition is false anyway.
+// @quiz (OCJP, MEDIUM) What happens with this statement?
+// @code do {
+// @code     System.out.println("hi");
+// @code } while (false)
+// @option It does not compile, because the do-while needs a semicolon after while (false). [correct]
+// @option It prints hi once.
+// @option It prints hi forever.
+// @option It prints nothing, because the condition is false.
+// @explain The semicolon ends the do-while statement, so without it the compiler reports a missing ';'.
+// @why B: the missing terminator stops the file from compiling, so nothing runs.
+// @why C: false ends the loop after the first pass, so it cannot repeat.
+// @why D: the body always runs at least once, so hi would print if the code compiled.
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int n = 5;
+// @code while (n < 5) { System.out.print("while"); }
+// @code do { System.out.print("do"); } while (n < 5);
+// @option do, because only the do-while body runs when the condition is false from the start. [correct]
+// @option whiledo, because both bodies run once.
+// @option Nothing, because n < 5 is false in both loops.
+// @option dodo, because the do-while runs its body twice.
+// @explain The while loop tests first and skips its body; the do-while prints once before testing.
+// @why B: the while loop never enters its body, so it prints nothing at all.
+// @why C: the do-while always prints once, even when the test fails.
+// @why D: after the first pass the false condition ends the loop.
+// @quiz (OCJP, HARD) What does this do-while print?
+// @code int i = 0;
+// @code do {
+// @code     i++;
+// @code     if (i % 2 == 0) { continue; }
+// @code     if (i > 5) { break; }
+// @code     System.out.print(i + " ");
+// @code } while (i < 10);
+// @option 1 3 5, because continue skips the even values and break stops the loop at 7. [correct]
+// @option 1 3 5 7 9, because the loop runs until i reaches 10.
+// @option 2 4 6, because continue prints the even values.
+// @option 1 3 5 7, because break prints the value that stopped the loop.
+// @explain continue jumps to the condition, so 2, 4 and 6 are skipped, and break stops it at i = 7.
+// @why B: break ends the loop at i = 7, so 7 and 9 never print.
+// @why C: continue skips the rest of the body, so the print is not reached for even values.
+// @why D: break does not print anything.
+// @quiz (INTERVIEW, MEDIUM) Which loop fits "ask at least once, then repeat while the answer is invalid"?
+// @option A do-while loop, because the prompt must run once before the answer can be tested. [correct]
+// @option A while loop, because the condition should be tested before the prompt.
+// @option A for loop with a fixed count, because the number of attempts is known.
+// @option An enhanced for loop, because it reads each typed value exactly once.
+// @explain The prompt must appear once, so the test cannot come first; a do-while reads, then repeats.
+// @why B: testing first would skip the prompt or force the prompt to be duplicated before the loop.
+// @why C: the number of attempts is not known in advance; it depends on what the user types.
+// @why D: an enhanced for loop walks a collection that already exists and cannot read keyboard input.
 public class DoWhileLoops {
 
         /*   do while always executes at least once, and then the condition is checked.

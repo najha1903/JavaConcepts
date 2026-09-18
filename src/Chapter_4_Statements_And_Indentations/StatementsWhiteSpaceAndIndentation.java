@@ -176,6 +176,83 @@ package Chapter_4_Statements_And_Indentations;
 // @why C: the variable is not reset, it is simply no longer visible.
 // @why D: final changes whether the value can be reassigned, not how long the variable lives.
 
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code int x = 5;
+// @code if (x > 10);
+// @code {
+// @code     System.out.println("Hi");
+// @code }
+// @option Hi, once, because the semicolon is the empty body of the if and the block always runs. [correct]
+// @option Nothing, because x > 10 is false.
+// @option Hi twice, once for each branch.
+// @option It does not compile, because the if has no body.
+// @explain `if (x > 10);` ends the if at the semicolon, which is a legal empty statement. The braces that follow are then just a plain block.
+// @why B: the block is not part of the if, so the false condition does not stop it.
+// @why C: the block holds one statement, and there is no else branch.
+// @why D: an empty statement is a valid body, which is why this compiles at all.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code if (false)
+// @code     System.out.println("one");
+// @code     System.out.println("two");
+// @option two, because only the first statement belongs to the if. [correct]
+// @option one and then two.
+// @option Nothing, because the condition is false.
+// @option It does not compile, because the indented lines are misaligned.
+// @explain Braces decide the body of an if, not indentation. Without braces only the next statement is controlled, so the second println always runs.
+// @why B: the first println is inside the if and the condition is false, so it never runs.
+// @why C: the second println is outside the if, so it does run.
+// @why D: indentation is ignored by the compiler, so the layout causes no error.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int a = 1; int b = 2; System.out.println(a + b);
+// @option 3, because several statements may share one line. [correct]
+// @option It does not compile, because only one statement is allowed per line.
+// @option 12, because the digits are joined together.
+// @option Nothing, because the middle statement is skipped.
+// @explain The semicolon, not the line break, ends a statement, so three statements on one line behave exactly as if they were on three lines.
+// @why B: Java has no one-statement-per-line rule. That is only a style convention.
+// @why C: a and b are int variables, so + adds them instead of joining text.
+// @why D: every statement on the line runs, in the order written.
+
+// @quiz (OCJP, MEDIUM) Does this code compile, and what is printed?
+// @code int outer = 1;
+// @code {
+// @code     int inner = 2;
+// @code     System.out.println(outer + inner);
+// @code }
+// @option It compiles and prints 3, because an inner block can still see outer variables. [correct]
+// @option It does not compile, because outer is not declared inside the block.
+// @option It compiles and prints 2, because outer is out of scope in the block.
+// @option It does not compile, because a block cannot contain a println.
+// @explain Scope runs outwards. A variable declared in an enclosing block stays visible inside a nested block, so both names are usable there.
+// @why B: the rule stops an inner name being used outside its block, not the other way round.
+// @why C: outer is declared before the block and is still visible inside it.
+// @why D: a println is an ordinary statement and may appear in any block.
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code System.out.println(
+// @code     "Hello"
+// @code );
+// @option Yes. The statement ends at the semicolon, so the line breaks inside are only whitespace. [correct]
+// @option No. Each statement must fit on one line.
+// @option No. A method call must close its parentheses on the same line.
+// @option Yes, but only if the arguments are split with a comma.
+// @explain A statement runs until its semicolon. The compiler ignores line breaks between tokens, so a call may be spread over several lines.
+// @why B: line breaks between tokens carry no meaning, so a statement may span lines.
+// @why C: the closing parenthesis may sit on its own line, as long as the semicolon follows.
+// @why D: one argument needs no comma. Splitting the lines is allowed either way.
+
+// @quiz (OCJP, MEDIUM) Which of these is NOT terminated by a semicolon?
+// @option The block that follows an if, such as { x = 1; } [correct]
+// @option A variable declaration, such as int x = 5;
+// @option An assignment, such as x = 10;
+// @option A method call, such as System.out.println(x);
+// @explain A block is a group of statements inside braces and takes no semicolon of its own, just like a class body or a method body.
+// @why B: a declaration statement ends with a semicolon.
+// @why C: an assignment statement ends with a semicolon.
+// @why D: a method call statement ends with a semicolon.
+
 public class StatementsWhiteSpaceAndIndentation {
 
     public static void main(String[] args) {

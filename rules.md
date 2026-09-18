@@ -329,6 +329,8 @@ A void method outputs nothing else, so only an explicit `@testcase` line can mak
 
 `npm run check:practice` runs every auto-checked challenge against the solution in its own source file and fails if any verifier rejects that solution. It exists because the worst thing the lab can do is tell a learner their correct code is wrong.
 
+`npm run check:questions` compiles and runs every question whose code is a complete program, and compares the real output with the answer the question marks as correct. A question about output is only correct if the program really prints it, and agreeing with the code by eye is not the same as running it. Questions written with an explanatory answer, such as "6, printing 0 to 5", or asking something other than output, are skipped and counted rather than reported.
+
 ## Dashboard Features
 
 The generated portal provides:

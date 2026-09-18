@@ -252,6 +252,74 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // @why C: reassigning parameters is perfectly legal.
 // @why D: the method works correctly on its own copies; the caller simply never sees it.
 
+
+// @quiz (INTERVIEW, MEDIUM) What is printed by this code?
+// @code static int bump(int n) { n = n + 1; return n; }
+// @code int x = 5;
+// @code int y = bump(x);
+// @code System.out.println(x + " " + y);
+// @option 5 6, because the parameter is a copy while the return sends the new value back. [correct]
+// @option 6 6, because the change to n also changes x.
+// @option 5 5, because the changed copy is thrown away at the end.
+// @option It does not compile, because a parameter cannot be reassigned.
+// @explain The parameter is a copy, so x is untouched; the new value reaches the caller only through return.
+// @why B: nothing links n back to x, so only the return can deliver the value.
+// @why C: y takes the returned value, which is 6.
+// @why D: a parameter is an ordinary local variable and may be reassigned.
+
+// @quiz (OCJP, MEDIUM) Does this class compile?
+// @code public void greet() { System.out.println("hi"); }
+// @code public static void main(String[] args) { greet(); }
+// @option No. greet() is an instance method and main is static, so there is no object to call it on. [correct]
+// @option Yes, and it prints hi, because main may call any method of its own class.
+// @option Yes, but it prints nothing because greet() was never initialised.
+// @option Yes, as long as greet() is called twice.
+// @explain A static method has no current object, so it cannot call an instance method without one.
+// @why B: a static context has no current object, so the call is rejected.
+// @why C: the failure happens while compiling, so nothing runs.
+// @why D: the number of calls makes no difference to the rule.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code static void addMark(StringBuilder sb) { sb.append("!"); }
+// @code StringBuilder text = new StringBuilder("hi");
+// @code addMark(text);
+// @code System.out.println(text);
+// @option hi!, because the copied reference points at the same StringBuilder as text. [correct]
+// @option hi, because Java copies the argument before the call.
+// @option It does not compile, because StringBuilder cannot be passed to a method.
+// @option null, because the StringBuilder is emptied by the call.
+// @explain The copied reference still points at the same object, so the append is visible through text.
+// @why B: what is copied is the reference, not the object, so the change is visible.
+// @why C: objects of any class can be passed; only the reference is copied.
+// @why D: nothing empties it; the append adds one character to the existing text.
+
+// @quiz (OCJP, HARD) Does this method compile?
+// @code public static int pick() {
+// @code     return 1;
+// @code     System.out.println("never");
+// @code }
+// @option No, because the statement after return can never be reached. [correct]
+// @option Yes, and it prints never before returning.
+// @option Yes, and it returns 1 without printing.
+// @option No, because pick() has an empty parameter list.
+// @explain After return, control has left the method, so the next statement can never be reached.
+// @why B: the compiler rejects unreachable statements, so nothing runs.
+// @why C: the code is refused before it can run at all.
+// @why D: an empty parameter list is perfectly legal.
+
+// @quiz (OCJP, HARD) Given these overloads, what does the call show(5) print?
+// @code static void show(long n) { System.out.println("long"); }
+// @code static void show(double n) { System.out.println("double"); }
+// @code show(5);
+// @option long, because widening to long is more specific than widening to double. [correct]
+// @option double, because Java prefers floating-point for numeric arguments.
+// @option Neither, because the call is ambiguous and does not compile.
+// @option It does not compile, because an int cannot be widened.
+// @explain Both overloads fit, and long is more specific than double, so show(long) is the one chosen.
+// @why B: double is used only when no closer overload exists.
+// @why C: the most-specific rule picks a winner, so the call is not ambiguous.
+// @why D: an int widens to both long and double without any cast.
+
 public class MethodsInJava {
 
     public static void main(String[] args) {

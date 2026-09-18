@@ -236,6 +236,84 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
  // @gotcha A static method called through an object reference compiles and works the same as calling it through the class name, which makes it look like an instance method when it is not.
 
 
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class Main {
+// @code     static int field;
+// @code     public static void main(String[] args) {
+// @code         int local;
+// @code         System.out.println(field);
+// @code         System.out.println(local);
+// @code     }
+// @code }
+// @option It does not compile, because the local variable local is read before it is assigned. [correct]
+// @option It prints 0 and 0.
+// @option It prints 0 and then throws a NullPointerException.
+// @option It prints 0 and then a leftover value from memory.
+// @explain A field gets a default of 0, but a local variable gets none, so reading local is a compile error.
+// @why B: only the field gets a default of 0. The local has no value at all, so this never compiles.
+// @why C: no object is involved here, so a NullPointerException cannot happen.
+// @why D: Java never exposes uninitialised memory, so there is no leftover value to print.
+
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code String a = new String("java");
+// @code String b = new String("java");
+// @code System.out.println(a == b);
+// @code System.out.println(a.equals(b));
+// @option false, then true. [correct]
+// @option true, then true.
+// @option true, then false.
+// @option false, then false.
+// @explain == asks whether the references point at one object; they do not. equals compares content, so true.
+// @why B: == is true only when both names point at one object, which two new expressions never produce.
+// @why C: this is the reverse of what happens. The references differ and the contents match.
+// @why D: equals is true here, because String compares the characters rather than the identity.
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code class Parent {
+// @code     private int secret = 7;
+// @code }
+// @code class Child extends Parent {
+// @code     int read() { return secret; }
+// @code }
+// @option No. A private field is not visible in the subclass, so secret cannot be found there. [correct]
+// @option Yes, and read() returns 7.
+// @option Yes, but read() returns 0 because the field is hidden.
+// @option No, because a class may not extend a class that has private fields.
+// @explain private means the declaring class only, so secret is not visible in Child and cannot be found.
+// @why B: the compiler rejects the reference, so the method never runs.
+// @why C: the field holds 7, not 0, and in any case the name is not visible in Child.
+// @why D: extending a class that has private fields is normal. The parent exposes them via its methods.
+
+// @quiz (OCJP, HARD) Does this code compile?
+// @code class Parent {
+// @code     Parent(int n) { System.out.println("Parent " + n); }
+// @code }
+// @code class Child extends Parent {
+// @code     Child() { System.out.println("Child"); }
+// @code }
+// @option No. Child never calls super(int), and the parent has no no-argument constructor. [correct]
+// @option Yes, because Child's constructor belongs to Child only.
+// @option Yes, and it prints Parent 0 and then Child.
+// @option No, because a class may only declare one constructor.
+// @explain Constructors are not inherited, so the inserted super() finds no no-argument parent constructor.
+// @why B: access has nothing to do with it. The missing no-argument parent constructor is the problem.
+// @why C: nothing is printed, because the compiler rejects the class before it can run.
+// @why D: a class may declare as many constructors as it likes, as long as their parameter lists differ.
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code protected class Helper {
+// @code     int size = 3;
+// @code }
+// @option No. A top-level class may only be public or have no modifier, so protected is rejected. [correct]
+// @option Yes, and Helper is visible to subclasses in other packages.
+// @option Yes, because protected is the default for a class.
+// @option No, because a top-level class must always be public.
+// @explain protected is relative to an enclosing class. A top-level class has none, so use public or none.
+// @why B: protected does mean that for a member, but it cannot be written on a top-level class at all.
+// @why C: the default is package-private, written by leaving the modifier off, not by protected.
+// @why D: public is allowed but not required. A class with no modifier is also valid.
+
+
 public class ClassesAndInheritance {
 
 

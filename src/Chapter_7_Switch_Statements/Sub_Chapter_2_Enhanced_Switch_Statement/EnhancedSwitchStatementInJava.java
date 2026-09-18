@@ -85,6 +85,85 @@ package Chapter_7_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
 //
 // @quiz (OCJP) What parameter-like value does switch(month) use to choose a case?
 // @answer It uses the selector expression month and matches it exactly against each String case label.
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int x = 2;
+// @code switch (x) {
+// @code     case 1 -> System.out.print("A");
+// @code     case 2 -> System.out.print("B");
+// @code     case 3 -> System.out.print("C");
+// @code     default -> System.out.print("D");
+// @code }
+// @option B, because an arrow arm ends when its own statement ends, so no other arm runs. [correct]
+// @option BC, because an arrow arm with no break falls through into the arm below it.
+// @option BCD, because every arm written below the match also runs.
+// @option It does not compile, because the arrow arms carry no break statements.
+// @explain Arrow arms never fall through, so case 3 and default never run after case 2 matches.
+// @why B: there is no fall-through between arrow arms, so only the matched arm runs.
+// @why C: the switch is over once the matched arm ends, so later arms are never reached.
+// @why D: arrow arms need no break; leaving one out is not an error.
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code int month = 13;
+// @code String quarter = switch (month) {
+// @code     case 1, 2, 3 -> "Q1";
+// @code     default -> {
+// @code         String msg = "INVALID";
+// @code         yield msg;
+// @code     }
+// @code };
+// @code System.out.println(quarter);
+// @option INVALID, because 13 matches no case and the default block yields its value. [correct]
+// @option Q1, because a comma list matches any month value.
+// @option It does not compile, because a block arm must end with return, not yield.
+// @option It does not compile, because yield may not appear in a switch expression.
+// @explain 13 matches no comma-listed value, so the default block runs and yields the value assigned to quarter.
+// @why B: the comma list names exact values, so 13 is not covered by it.
+// @why C: return would leave the method; a block inside a switch expression uses yield.
+// @why D: yield is allowed only inside a switch expression, which is where it is used here.
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code int x = 5;
+// @code String result = switch (x) {
+// @code     case 1 -> "one";
+// @code     case 2 -> "two";
+// @code };
+// @code System.out.println(result);
+// @option No, because a switch expression must have a default arm. [correct]
+// @option Yes, and it prints null, because no arm matched the value 5.
+// @option Yes, and it prints nothing, because an unmatched switch expression is skipped.
+// @option Yes, and it prints an empty string for the unmatched value.
+// @explain A switch expression must produce a value for every input, so a default arm is required here.
+// @why B: null is never produced here; the missing default is a compile error.
+// @why C: an unmatched switch expression cannot be quietly skipped.
+// @why D: the compiler rejects the file before any statement can run.
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int x = 9;
+// @code switch (x) {
+// @code     case 1 -> System.out.println("one");
+// @code     case 2 -> System.out.println("two");
+// @code }
+// @code System.out.println("done");
+// @option done, because an arrow switch statement may omit default and then does nothing. [correct]
+// @option It does not compile, because every switch needs a default label.
+// @option one, because an unmatched switch statement takes the first arm.
+// @option done, printed after an error message about the unmatched value.
+// @explain A switch statement need not produce a value, so default is optional and 9 matches nothing here.
+// @why B: default is required only for a switch expression, not for a switch statement.
+// @why C: the arms are tested against 9, and no arm matches that value.
+// @why D: an unmatched switch statement prints nothing at all; no error message is produced.
+// @quiz (OCJP, HARD) Does this code compile?
+// @code int x = 2;
+// @code switch (x) {
+// @code     case 1: System.out.println("one"); break;
+// @code     case 2 -> System.out.println("two");
+// @code     default -> System.out.println("other");
+// @code }
+// @option No, because one switch block cannot mix colon labels with arrow arms. [correct]
+// @option Yes, and it prints two.
+// @option Yes, and it prints one, because the colon label is tested first.
+// @option Yes, and it prints two then other, because arrow arms fall through.
+// @explain A switch block must use one style throughout: colon labels with break, or arrow arms, never both.
+// @why B: the compiler rejects the mixed style, so nothing is printed.
+// @why C: no label is ever tested, because the file does not compile.
+// @why D: arrow arms never fall through, and this switch does not compile anyway.
 public class EnhancedSwitchStatementInJava {
 
     public static void main(String[] args) {

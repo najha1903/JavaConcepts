@@ -267,6 +267,79 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // @gotcha `=` puts a value into a variable, and `==` asks whether two values are the same. Because `x = 5` produces an int, `if (x = 5)` is a compile error, which is Java catching a mistake that would go unnoticed in other languages.
 // @gotcha A remainder keeps the sign of the number on the left, not the divisor: `-10 % 3` is -1 and not 1.
 
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int i = 5;
+// @code System.out.println(i++);
+// @code System.out.println(++i);
+// @option 5 and then 7 [correct]
+// @option 5 and then 6
+// @option 6 and then 6
+// @option 6 and then 7
+// @explain i++ uses the current value and then increases it, so the first print shows 5 and i becomes 6. ++i increases first, so the second print shows 7.
+// @why B: the prefix form adds one to 6 before the value is used, so it prints 7.
+// @why C: i++ prints the value as it was, which is 5, and only then increments.
+// @why D: the postfix form prints first and increments afterwards, so the first output is 5.
+
+// @quiz (OCJP, MEDIUM) This program compiles. What happens when it runs?
+// @code int result = 10 / 0;
+// @option It throws ArithmeticException at run time. [correct]
+// @option It prints Infinity.
+// @option It does not compile, because division by zero is illegal.
+// @option It prints 0.
+// @explain Integer division by zero is undefined, so the JVM throws ArithmeticException. Dividing by the double 0.0 would give Infinity instead.
+// @why B: Infinity is what double division by zero gives. That is not the behaviour for int.
+// @why C: division by a constant zero is accepted by the compiler and fails when it runs.
+// @why D: Java does not define 10 / 0 as zero. It stops the program with an exception.
+
+// @quiz (OCJP, HARD) What is printed by these two statements?
+// @code System.out.println(-10 % 3);
+// @code System.out.println(10 % -3);
+// @option -1 and 1, because a remainder takes the sign of the left operand. [correct]
+// @option 1 and -1, because a remainder takes the sign of the right operand.
+// @option -1 and -1, because a remainder is always negative.
+// @option 2 and 2, because Java keeps only the positive remainder.
+// @explain The % operator returns the remainder after division that truncates towards zero. -10 / 3 is -3, leaving -1, and 10 / -3 is -3, leaving 1.
+// @why B: the sign of the right operand is not what decides it. The dividend decides the sign.
+// @why C: Java does not force the remainder to be negative.
+// @why D: 2 would be the remainder for a divisor of 4. Here the divisor is 3, so the remainder is 1 or -1.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code int x = 0;
+// @code boolean r = false && (++x > 0);
+// @code System.out.println(x);
+// @option 0, because && stops as soon as the left side is false. [correct]
+// @option 1, because ++x is evaluated before the right side is checked.
+// @option false, because r is false.
+// @option It does not compile, because a boolean cannot be assigned to x.
+// @explain && short-circuits: when the left operand is false the result must be false, so the right operand is never evaluated. That is why ++x never runs.
+// @why B: the right operand is skipped, so the increment never happens. With & it would run and x would be 1.
+// @why C: false is the value of r, but the code prints x, which is an int.
+// @why D: the println takes x, which is an int. r is never printed.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code System.out.println(10.0 / 0);
+// @option Infinity, because floating-point division by zero is defined by the IEEE standard. [correct]
+// @option It throws ArithmeticException.
+// @option It does not compile, because a double cannot be divided by an int zero.
+// @option NaN, because the result is not a number.
+// @explain The int 0 is widened to 0.0, so this is double division. In IEEE 754 that gives Infinity rather than an exception.
+// @why B: ArithmeticException comes from integer division by zero, as in 10 / 0.
+// @why C: the int is widened to double automatically, so the division is legal.
+// @why D: NaN comes from 0.0 / 0.0. A non-zero value divided by zero gives Infinity.
+
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code int x = 2;
+// @code x *= 3 + 1;
+// @code System.out.println(x);
+// @option 8, because the whole right-hand side is worked out first: x = x * (3 + 1). [correct]
+// @option 7, because the multiplication happens first: x = x * 3 + 1.
+// @option 6, because the +1 is ignored by the compound operator.
+// @option It does not compile, because *= needs parentheses.
+// @explain A compound assignment evaluates its right-hand side completely and then applies the operator to the variable. This is x = x * (3 + 1), which is 2 * 4.
+// @why B: the compound form wraps the whole right-hand side, so it is not x * 3 + 1.
+// @why C: the +1 is part of the right-hand side and is used.
+// @why D: no parentheses are needed here, which is exactly what makes the result surprising.
+
 public class OperatorsOperandsExpressions {
 
     public static void main(String[] args) {

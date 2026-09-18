@@ -22,6 +22,95 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_13_Method_OverLoading_In_Java;
 // @quiz (INTERVIEW TRAP) Can changing only the return type create another calculateScore overload?
 // @answer No. Overloading requires a different parameter list; the return type alone cannot distinguish methods.
 
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class Main {
+// @code     static void print(int n) { System.out.println("int"); }
+// @code     static void print(double n) { System.out.println("double"); }
+// @code     public static void main(String[] args) {
+// @code         print(5);
+// @code     }
+// @code }
+// @option int, because an exact match is preferred and widening is only a fallback. [correct]
+// @option double, because the argument is promoted to the widest type.
+// @option It does not compile, because print(5) is ambiguous.
+// @option int and double, because both overloads are called.
+// @explain Overload resolution looks for a match without conversion first, and print(int) matches 5 exactly.
+// @why B: Java does not promote an argument when an exact match is available. Widening is only a fallback.
+// @why C: the call is not ambiguous, because print(int) is strictly more specific than print(double).
+// @why D: exactly one overload is chosen per call, so only one line is printed.
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code public class Main {
+// @code     int calc() { return 1; }
+// @code     long calc() { return 2L; }
+// @code }
+// @option No. Same name and same parameter list, and the return type is not part of the signature. [correct]
+// @option Yes, and the compiler picks the one whose return type fits the context.
+// @option Yes, because the two return types are different.
+// @option No, because a class may not have two methods with the same name.
+// @explain An overload needs a different parameter list, and the return type is not part of the signature.
+// @why B: the compiler never chooses by return type. It looks only at the name and the parameter list.
+// @why C: a different return type is not enough to tell the two methods apart.
+// @why D: a class may have many methods with the same name, as long as their parameter lists differ.
+
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class Main {
+// @code     static void show(long n) { System.out.println("long"); }
+// @code     static void show(double n) { System.out.println("double"); }
+// @code     public static void main(String[] args) {
+// @code         show(5);
+// @code     }
+// @code }
+// @option long, because int widens to long more closely than to double, so long is the best match. [correct]
+// @option double, because every numeric type can widen to double.
+// @option It does not compile, because there is no show(int) method.
+// @option It does not compile, because the call is ambiguous.
+// @explain With no exact match, widening is applied and the most specific method wins: show(long).
+// @why B: double is applicable, but it needs a larger widening than long, so it loses.
+// @why C: a missing exact match is not an error. The compiler widens the argument instead.
+// @why D: the call is not ambiguous, because long is strictly more specific than double.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code class Parent {
+// @code     void show(Object o) { System.out.println("parent"); }
+// @code }
+// @code class Child extends Parent {
+// @code     void show(String s) { System.out.println("child"); }
+// @code }
+// @code public class Main {
+// @code     public static void main(String[] args) {
+// @code         Parent p = new Child();
+// @code         p.show("hi");
+// @code     }
+// @code }
+// @option parent, because the overload is chosen at compile time from the reference type. [correct]
+// @option child, because the object is a Child and the argument is a String.
+// @option It does not compile, because show(String) does not override show(Object).
+// @option It does not compile, because a subclass may not overload a parent method.
+// @explain Different parameter lists make these overloads, so the compiler picks from the reference type.
+// @why B: the object type would matter for an override. Overloading ignores it completely.
+// @why C: an overload is perfectly legal in a subclass, so the code compiles.
+// @why D: a subclass may overload a parent method. It simply does not give runtime polymorphism.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code public class Main {
+// @code     static void go(int n) { System.out.println("int"); }
+// @code     static void go(long n) { System.out.println("long"); }
+// @code     static void go(Integer n) { System.out.println("Integer"); }
+// @code     public static void main(String[] args) {
+// @code         go(5);
+// @code     }
+// @code }
+// @option int, because the exact match wins over widening to long and over boxing to Integer. [correct]
+// @option Integer, because boxing is preferred over widening.
+// @option long, because widening is preferred over an exact match.
+// @option It does not compile, because three applicable overloads make the call ambiguous.
+// @explain The first phase allows no boxing, so go(int) matches exactly and go(Integer) is considered later.
+// @why B: boxing is considered only in a later phase, after the exact match has already been found.
+// @why C: widening is never preferred over an exact match.
+// @why D: the call is not ambiguous, because go(int) is strictly the most specific of the three.
+
+
 public class MethodOverloadingInJava {
 
 //    If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.

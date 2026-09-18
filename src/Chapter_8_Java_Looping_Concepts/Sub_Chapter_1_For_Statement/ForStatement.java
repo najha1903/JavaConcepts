@@ -280,6 +280,86 @@ package Chapter_8_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
 // @why C: the same scope error applies.
 // @why D: the variable is not reset. It simply no longer exists.
 
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code for (int i = 0; i < 5; i++) {
+// @code     if (i % 2 == 0) continue;
+// @code     System.out.print(i);
+// @code }
+// @option 13 [correct]
+// @option 024
+// @option 01234
+// @option Nothing is printed.
+// @explain The continue skips the print for even i, but the update i++ still runs, so only 1 and 3 print.
+// @why B: 024 are the even values, which the continue branch skips.
+// @why C: the print is skipped for half the iterations, not for all of them.
+// @why D: the odd values do reach the print statement.
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code outer:
+// @code for (int i = 1; i <= 3; i++) {
+// @code     for (int j = 1; j <= 3; j++) {
+// @code         if (j == 2) break outer;
+// @code         System.out.print(i + "" + j + " ");
+// @code     }
+// @code }
+// @option 11 [correct]
+// @option 11 21 31
+// @option 11 12 13 21 22 23 31 32 33
+// @option 11 12 21 22 31 32
+// @explain The label outer names the first for loop, so break outer leaves both loops at once.
+// @why B: an unlabelled break would exit only the inner loop and leave the outer one running.
+// @why C: that is the output when there is no break at all.
+// @why D: the break runs when j is 2, not when j is 3.
+// @quiz (INTERVIEW, MEDIUM) How many times is the body of the inner loop executed in total?
+// @code int count = 0;
+// @code for (int i = 0; i < 3; i++) {
+// @code     for (int j = 0; j < 4; j++) {
+// @code         count++;
+// @code     }
+// @code }
+// @option 12, because 3 outer passes each run the inner loop 4 times. [correct]
+// @option 7, because the two bounds are added together.
+// @option 3, because only the outer loop repeats.
+// @option 4, because only the inner loop repeats.
+// @explain The loops are nested, so the iteration counts multiply: 3 outer passes times 4 inner passes is 12.
+// @why B: nested loops multiply their counts rather than adding them.
+// @why C: the inner loop runs again for each of the 3 outer passes.
+// @why D: the outer loop repeats the whole inner loop three times.
+// @quiz (OCJP, HARD) What happens when this code runs?
+// @code for (int i = 0; i < 5; ) {
+// @code     System.out.println(i);
+// @code }
+// @option It prints 0 for ever, because nothing changes i. [correct]
+// @option It prints 0 to 4 and then stops.
+// @option It does not compile, because the update section is missing.
+// @option It prints nothing, because the header is incomplete.
+// @explain The update is optional, so this compiles. Nothing changes i, so the condition stays true.
+// @why B: i never grows, so i < 5 is true on every pass.
+// @why C: a for header may omit the update, so for (int i = 0; i < 5; ) is legal Java.
+// @why D: the condition is true at the start, so the body does run.
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code for (int i = 5; i > 0; i--) {
+// @code     System.out.print(i + " ");
+// @code }
+// @option 5 4 3 2 1 [correct]
+// @option 5 4 3 2 1 0
+// @option 1 2 3 4 5
+// @option Nothing, because i > 0 is false at the first test.
+// @explain The update i-- counts down and the test stops at 0, so the values printed are 5 down to 1.
+// @why B: the test i > 0 fails when i is 0, so 0 is never printed.
+// @why C: the loop starts at 5 and decreases, so it counts down rather than up.
+// @why D: 5 > 0 is true, so the body runs on the first pass.
+// @quiz (OCJP, MEDIUM) How many times does the body of this loop run?
+// @code for (int i = 0; i <= 10; i += 3) {
+// @code     System.out.println(i);
+// @code }
+// @option 4, printing 0, 3, 6 and 9. [correct]
+// @option 3, printing 0, 3 and 6.
+// @option 4, printing 0, 3, 6 and 10.
+// @option 5, printing 0, 3, 6, 9 and 12.
+// @explain i takes the values 0, 3, 6 and 9, then becomes 12 and fails i <= 10, so four passes run.
+// @why B: 9 also satisfies i <= 10, so there is one more pass.
+// @why C: i jumps by 3, so 10 is never a value of i.
+// @why D: 12 fails the test, so it is never printed.
 public class ForStatement {
 
     public static void main(String[] args) {

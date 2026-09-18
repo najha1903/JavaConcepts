@@ -320,6 +320,102 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
 // @gotcha Building a long String with `+` inside a loop creates a new object on every pass and leaves the earlier ones for the garbage collector, which is exactly the cost StringBuilder avoids.
 
 
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class S {
+// @code     public static void main(String[] args) {
+// @code         StringBuilder sb = new StringBuilder("A");
+// @code         sb.append("B").append("C");
+// @code         System.out.println(sb);
+// @code     }
+// @code }
+// @option ABC [correct]
+// @option A
+// @option A B C
+// @option It does not compile, because append returns void.
+// @explain append changes the same builder and returns it, so calls can be chained and the buffer ends up ABC.
+// @why B: the first append already changed the buffer, so it no longer holds just A.
+// @why C: append joins text with no separator inserted between the parts.
+// @why D: append returns the StringBuilder itself, which is what allows chaining.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code public class S {
+// @code     public static void main(String[] args) {
+// @code         StringBuilder sb = new StringBuilder("test");
+// @code         System.out.println(sb.equals("test"));
+// @code     }
+// @code }
+// @option false [correct]
+// @option true
+// @option It throws ClassCastException.
+// @option It does not compile, because equals needs a StringBuilder.
+// @explain StringBuilder does not override equals, so it compares references, and a builder can never equal a String.
+// @why B: true needs the text compared, which only happens after calling toString().
+// @why C: equals takes an Object, so passing a String argument is fine.
+// @why D: the call is legal; it simply returns false.
+
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class S {
+// @code     public static void main(String[] args) {
+// @code         StringBuilder sb = new StringBuilder("Hello");
+// @code         String s = sb.toString();
+// @code         sb.append(" World");
+// @code         System.out.println(s);
+// @code     }
+// @code }
+// @option Hello [correct]
+// @option Hello World
+// @option World
+// @option It does not compile, because s is used after being created.
+// @explain toString builds a new immutable String from the text held then, so later appends cannot affect it.
+// @why B: that is printed only if toString is called after the append.
+// @why C: append adds to the end, so the earlier Hello is still in the builder.
+// @why D: taking a snapshot does not stop the builder from being changed later.
+
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code public class S {
+// @code     public static void main(String[] args) {
+// @code         StringBuilder sb = new StringBuilder("Hello");
+// @code         System.out.println(sb.capacity());
+// @code     }
+// @code }
+// @option 21 [correct]
+// @option 5
+// @option 16
+// @option 10
+// @explain This constructor sets capacity to the text length plus the default 16, so 5 + 16 gives 21.
+// @why B: 5 is the length, which is the number of characters actually stored.
+// @why C: 16 is the spare room of the empty constructor, without room for Hello.
+// @why D: capacity is the text length plus 16, not double the text length.
+
+// @quiz (OCJP, HARD) Which statement about StringBuilder and StringBuffer is correct?
+// @option StringBuffer methods are synchronised, so it is safe when threads share one buffer. [correct]
+// @option StringBuilder methods are synchronised, so it is the thread-safe choice.
+// @option The two differ only in name and behave identically in every situation.
+// @option StringBuilder cannot change after creation, while StringBuffer can.
+// @explain StringBuffer is the older type and its methods are synchronised, which is safe for shared threads but slower.
+// @why B: StringBuilder has no locking, so it is faster but not thread-safe.
+// @why C: they differ in synchronisation, which affects both safety and speed.
+// @why D: both are mutable. It is String that cannot be changed.
+
+// @quiz (OCJP, MEDIUM) What is printed by this program?
+// @code public class S {
+// @code     public static void main(String[] args) {
+// @code         String s = "Hello";
+// @code         s.toUpperCase();
+// @code         s = s + "!";
+// @code         System.out.println(s);
+// @code     }
+// @code }
+// @option Hello! [correct]
+// @option HELLO!
+// @option Hello
+// @option !Hello
+// @explain toUpperCase returns a new String and the unassigned result is discarded, so s still holds Hello.
+// @why B: the upper case text was never stored, so it does not survive.
+// @why C: the assignment on the next line stores the longer text in s.
+// @why D: + appends to the end; it does not place the new text first.
+
+
 public class StringBuilderConcepts {
 
     public static void main(String[] args) {

@@ -1470,6 +1470,167 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_4-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Variables",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "public static void main(String[] args) {\nint count;\nSystem.out.println(count);\n}",
+      "options": [
+        "Yes, and it prints 0.",
+        "Yes, and it prints whatever was left in memory.",
+        "No. A local variable must be assigned before it is read, or the compiler stops.",
+        "Yes, and it prints null."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "only fields are zeroed. A local int has no value at all until you assign one.",
+        "1": "Java does not expose leftover memory. It refuses to compile the read instead.",
+        "3": "null is not even a legal value for a primitive such as int."
+      },
+      "explanation": "Local variables never receive a default value, unlike fields. Reading count before assigning it is a compile-time error.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_5-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Variables",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 1;\n{\nint x = 2;\nSystem.out.println(x);\n}\nSystem.out.println(x);",
+      "options": [
+        "2 and then 1, because the inner x hides the outer one only inside its block.",
+        "2 and then 2, because the second declaration changes the first variable.",
+        "1 and then 1, because the inner declaration is ignored.",
+        "It does not compile, because x is declared twice."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the inner x is a separate variable that disappears at the closing brace.",
+        "2": "the inner declaration is a real declaration, so the first print sees 2.",
+        "3": "redeclaring a name in a nested block is legal. It is an error only within the same block."
+      },
+      "explanation": "A name declared inside a block is a new variable that shadows the outer one for that block. After the closing brace the outer one is visible again.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_6-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Variables",
+      "tags": [
+        "interview"
+      ],
+      "question": "Does this code compile?",
+      "code": "final int limit = 5;\nlimit = 6;",
+      "options": [
+        "No. limit must be initialised on a separate line.",
+        "Yes, and limit becomes 6.",
+        "Yes, because final only stops a variable being read.",
+        "No. A final variable can be assigned once only, so the second assignment is an error."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "initialising it in the declaration is fine. That first assignment is the one that counts.",
+        "1": "the compiler rejects the second assignment, so the value never changes.",
+        "2": "final restricts writing, not reading. A final variable can be read normally."
+      },
+      "explanation": "final means the variable is assigned exactly once. Once the declaration has given it a value, any further assignment is an error.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_7-which-of-these-variable-declarations-doe",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Variables",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which of these variable declarations does NOT compile?",
+      "options": [
+        "int _count = 5;",
+        "int $count = 5;",
+        "int count2 = 5;",
+        "int 2count = 5;"
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "an underscore may begin an identifier, although it is poor style.",
+        "1": "a dollar sign may begin an identifier, though it is unusual in ordinary code.",
+        "2": "a digit is allowed anywhere except the first character, so count2 is legal."
+      },
+      "explanation": "An identifier must begin with a letter, an underscore, or a dollar sign. It may not begin with a digit.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_8-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Variables",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "System.out.println(total);\nint total = 10;",
+      "options": [
+        "No, because println cannot take an int.",
+        "Yes, and it prints 0, because total is not yet initialised.",
+        "Yes, and it prints 10.",
+        "No. A local variable cannot be used before its declaration."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "println has an overload for int. The problem is the ordering, not the type.",
+        "1": "locals are never given a default, and the code does not compile at all.",
+        "2": "the declaration has not been seen yet, so there is no variable to read."
+      },
+      "explanation": "A local variable is in scope from its declaration onwards. The println comes first, so at that point total is unknown.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_9-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Variables",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "boolean flag = false;\nint x;\nif (flag) { x = 1; } else { x = 2; }\nSystem.out.println(x);",
+      "options": [
+        "0, because x is a local variable and starts at zero.",
+        "2. It compiles because x is assigned on both paths before it is read.",
+        "It does not compile, because x is read without a value.",
+        "1, because the if branch runs first."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "local variables are never defaulted. x gets 2 from the else branch, not 0.",
+        "2": "assigning on both branches is exactly what the rule requires.",
+        "3": "the condition is false, so the else branch is the one that runs."
+      },
+      "explanation": "Java checks definite assignment at compile time. Assigning on both paths makes the later read legal, and flag is false so the else branch gives 2.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_true-false-mcq_5",
@@ -1530,6 +1691,138 @@ const QUESTIONS_BANK = {
         "= is assignment, not comparison. Use == when the condition should test whether highScore already equals 50."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_1-which-of-these-identifiers-is-a-reserved",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Key Words And Expressions In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which of these identifiers is a reserved keyword and cannot be used as a name?",
+      "options": [
+        "args",
+        "main",
+        "String",
+        "static"
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "args is just a parameter name, required by convention rather than by any rule.",
+        "1": "main is an ordinary method name that the JVM looks for. It is not a keyword.",
+        "2": "String is a class in java.lang, not a keyword, so a variable may be called String."
+      },
+      "explanation": "A keyword has a fixed meaning in the language, so it can never be used for a class, method, or variable name.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_2-in-the-statement-below-which-part-is-not",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Key Words And Expressions In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "In the statement below, which part is NOT part of an expression?",
+      "code": "int x = 5 + 3;",
+      "options": [
+        "5 + 3, because a value on its own is never an expression.",
+        "=, because the assignment operator is a statement of its own.",
+        "x, because a variable name only becomes an expression when it is printed.",
+        "int, because the data type is not part of any expression."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "5 + 3 is an expression, and it works out to 8.",
+        "1": "= is an operator, so x = 5 + 3 is an assignment expression.",
+        "2": "x is a variable, which is the simplest kind of expression there is."
+      },
+      "explanation": "An expression is built from variables, literals, and operators. The type int says what kind of value is being declared.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_3-which-line-does-not-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Key Words And Expressions In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which line does NOT compile?",
+      "options": [
+        "int classRoom = 5;",
+        "int Class = 5;",
+        "int class = 5;",
+        "int classes = 5;"
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "classRoom is a single identifier and is perfectly legal.",
+        "1": "capitalising the name makes it an ordinary identifier. Class is not the keyword class.",
+        "3": "classes merely starts with the letters of the keyword. It is a legal name."
+      },
+      "explanation": "Java is case-sensitive, so class is the keyword while Class is just an ordinary identifier. A keyword may never name a variable.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_4-which-of-these-is-an-expression",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Key Words And Expressions In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which of these is an expression?",
+      "options": [
+        "int highScore = 0;",
+        "highScore == 50",
+        "if (highScore == 50) { }",
+        "public static void main(String[] args)"
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "this is the whole declaration statement. It contains an expression but is not one.",
+        "2": "this is a control statement. The keyword if and its brackets are not part of the expression.",
+        "3": "this is a method header, not an expression."
+      },
+      "explanation": "An expression works out to a value. The comparison highScore == 50 produces a boolean, so it is an expression.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_5-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Key Words And Expressions In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int Total = 10;\nint total = 20;\nSystem.out.println(Total + total);",
+      "options": [
+        "40, because the two declarations are added together.",
+        "30, because Java identifiers are case-sensitive, so Total and total are two variables.",
+        "It does not compile, because Java keywords must be lowercase.",
+        "It does not compile, because a variable named Total already exists."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "40 would need the values 20 and 20, but Total holds 10.",
+        "2": "int is already lowercase here. The point is that case matters in names, not that keywords vary.",
+        "3": "the names differ by case, so there is no duplicate declaration."
+      },
+      "explanation": "Java tells upper and lower case apart in every identifier, so Total and total are two separate int variables. Adding them gives 30.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
     },
     {
@@ -2116,6 +2409,168 @@ const QUESTIONS_BANK = {
         "2": "that rule belongs to C and C++. Java does not allow the cast."
       },
       "explanation": "Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_24-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "double d = 1 / 3;\nSystem.out.println(d);",
+      "options": [
+        "0.3333333333333333, because d is a double.",
+        "0.0, because both operands are int, so integer division happens first.",
+        "It does not compile, because an int result cannot be assigned to a double.",
+        "0, because the printed form keeps the type of the operands."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "a decimal answer needs a decimal operand, as in 1 / 3.0.",
+        "2": "int widens to double automatically, so the assignment is legal.",
+        "3": "widening to double happens after the division, so the output is 0.0 and not 0."
+      },
+      "explanation": "1 and 3 are int, so this is integer division. The 0 result is then widened to double, giving 0.0.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_25-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "char c = 'A';\nSystem.out.println(c + 1);",
+      "options": [
+        "66, because the char is promoted to int before the addition.",
+        "It does not compile, because 1 cannot be added to a char.",
+        "A1, because the number is joined to the character.",
+        "B, because adding 1 moves on to the next letter."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "char takes part in arithmetic. It is promoted to int, and the expression is an int.",
+        "2": "both operands are numeric here, so + is addition and not concatenation.",
+        "3": "the result only prints as B after a cast, as in (char) (c + 1)."
+      },
+      "explanation": "A char is a number underneath, and 'A' is 65. Arithmetic promotes it to int, so c + 1 is the int 66.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_26-does-this-line-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this line compile?",
+      "code": "long big = 3000000000;",
+      "options": [
+        "No. The literal is an int by default, and 3000000000 is too large for an int.",
+        "Yes, because the compiler converts the literal to long for the assignment.",
+        "No, because long literals must be written in hexadecimal.",
+        "Yes, and big holds 3000000000."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the type of the variable on the left does not retype the literal on the right.",
+        "2": "decimal long literals are fine, they simply need the L suffix: 3000000000L.",
+        "3": "the literal fails first, so nothing is assigned."
+      },
+      "explanation": "A whole-number literal is an int unless it has a suffix. This one is past Integer.MAX_VALUE, so it is rejected.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_27-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "float f = 0.1f;\ndouble d = f;\nSystem.out.println(d == 0.1);",
+      "options": [
+        "It does not compile, because a float cannot be compared with a double.",
+        "true, because widening the float rounds it to the nearest double.",
+        "true, because 0.1f is just 0.1 written as a float.",
+        "false, because 0.1f and 0.1 hold slightly different values."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "float widens to double automatically, so the comparison is legal.",
+        "1": "widening converts the float value exactly. It does not round it to the double for 0.1.",
+        "2": "0.1f is rounded to float precision, which is coarser than double precision."
+      },
+      "explanation": "A float keeps about 7 significant digits and a double about 15, and neither stores 0.1 exactly.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_28-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "byte b = (byte) 130;\nSystem.out.println(b);",
+      "options": [
+        "It does not compile, because 130 does not fit in a byte.",
+        "130, because the cast keeps the value unchanged.",
+        "2, because the extra 128 is cut off.",
+        "-126, because 130 wraps around past the top of the byte range."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the explicit (byte) cast makes it legal, unlike byte b = 130; which fails to compile.",
+        "1": "a byte cannot hold 130, so the cast changes the value instead.",
+        "2": "the wrap moves down by the full width of the type, 256, and not by 128."
+      },
+      "explanation": "A byte holds -128 to 127. The int 130 is bit pattern 1000 0010, which as a signed byte is 130 - 256 = -126.",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_29-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "double big = 3.0e9;\nint n = (int) big;\nSystem.out.println(n);",
+      "options": [
+        "2147483647, because a value too large for int saturates at Integer.MAX_VALUE.",
+        "It does not compile without a second cast.",
+        "3000000000, because the cast keeps the number as it is.",
+        "-2147483648, because the value wraps around to the other end."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "one explicit cast makes it compile. The surprise is the value, not the syntax.",
+        "2": "an int cannot hold 3000000000, so Java has to give something else.",
+        "3": "wrap-around belongs to integer arithmetic. A float-to-int cast saturates instead."
+      },
+      "explanation": "Narrowing a floating-point value to int does not wrap. A value too large becomes Integer.MAX_VALUE.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
     },
     {
@@ -2747,6 +3202,168 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_22-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int i = 5;\nSystem.out.println(i++);\nSystem.out.println(++i);",
+      "options": [
+        "5 and then 6",
+        "5 and then 7",
+        "6 and then 7",
+        "6 and then 6"
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the prefix form adds one to 6 before the value is used, so it prints 7.",
+        "2": "the postfix form prints first and increments afterwards, so the first output is 5.",
+        "3": "i++ prints the value as it was, which is 5, and only then increments."
+      },
+      "explanation": "i++ uses the current value and then increases it, so the first print shows 5 and i becomes 6. ++i increases first, so the second print shows 7.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_23-this-program-compiles-what-happens-when-",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "This program compiles. What happens when it runs?",
+      "code": "int result = 10 / 0;",
+      "options": [
+        "It throws ArithmeticException at run time.",
+        "It prints Infinity.",
+        "It prints 0.",
+        "It does not compile, because division by zero is illegal."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "Infinity is what double division by zero gives. That is not the behaviour for int.",
+        "2": "Java does not define 10 / 0 as zero. It stops the program with an exception.",
+        "3": "division by a constant zero is accepted by the compiler and fails when it runs."
+      },
+      "explanation": "Integer division by zero is undefined, so the JVM throws ArithmeticException. Dividing by the double 0.0 would give Infinity instead.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_24-what-is-printed-by-these-two-statements",
+      "difficulty": "hard",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by these two statements?",
+      "code": "System.out.println(-10 % 3);\nSystem.out.println(10 % -3);",
+      "options": [
+        "-1 and -1, because a remainder is always negative.",
+        "-1 and 1, because a remainder takes the sign of the left operand.",
+        "2 and 2, because Java keeps only the positive remainder.",
+        "1 and -1, because a remainder takes the sign of the right operand."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "Java does not force the remainder to be negative.",
+        "2": "2 would be the remainder for a divisor of 4. Here the divisor is 3, so the remainder is 1 or -1.",
+        "3": "the sign of the right operand is not what decides it. The dividend decides the sign."
+      },
+      "explanation": "The % operator returns the remainder after division that truncates towards zero. -10 / 3 is -3, leaving -1, and 10 / -3 is -3, leaving 1.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_25-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 0;\nboolean r = false && (++x > 0);\nSystem.out.println(x);",
+      "options": [
+        "0, because && stops as soon as the left side is false.",
+        "It does not compile, because a boolean cannot be assigned to x.",
+        "false, because r is false.",
+        "1, because ++x is evaluated before the right side is checked."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the println takes x, which is an int. r is never printed.",
+        "2": "false is the value of r, but the code prints x, which is an int.",
+        "3": "the right operand is skipped, so the increment never happens. With & it would run and x would be 1."
+      },
+      "explanation": "&& short-circuits: when the left operand is false the result must be false, so the right operand is never evaluated. That is why ++x never runs.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_26-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "System.out.println(10.0 / 0);",
+      "options": [
+        "NaN, because the result is not a number.",
+        "It throws ArithmeticException.",
+        "Infinity, because floating-point division by zero is defined by the IEEE standard.",
+        "It does not compile, because a double cannot be divided by an int zero."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "NaN comes from 0.0 / 0.0. A non-zero value divided by zero gives Infinity.",
+        "1": "ArithmeticException comes from integer division by zero, as in 10 / 0.",
+        "3": "the int is widened to double automatically, so the division is legal."
+      },
+      "explanation": "The int 0 is widened to 0.0, so this is double division. In IEEE 754 that gives Infinity rather than an exception.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_27-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 2;\nx *= 3 + 1;\nSystem.out.println(x);",
+      "options": [
+        "8, because the whole right-hand side is worked out first: x = x * (3 + 1).",
+        "7, because the multiplication happens first: x = x * 3 + 1.",
+        "6, because the +1 is ignored by the compound operator.",
+        "It does not compile, because *= needs parentheses."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the compound form wraps the whole right-hand side, so it is not x * 3 + 1.",
+        "2": "the +1 is part of the right-hand side and is used.",
+        "3": "no parentheses are needed here, which is exactly what makes the result surprising."
+      },
+      "explanation": "A compound assignment evaluates its right-hand side completely and then applies the operator to the variable. This is x = x * (3 + 1), which is 2 * 4.",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+    },
+    {
       "type": "predict",
       "kind": "predict",
       "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-2-operatorschallenge-operatorchallenge-java_predict_3",
@@ -3192,6 +3809,167 @@ const QUESTIONS_BANK = {
         "3": "final changes whether the value can be reassigned, not how long the variable lives."
       },
       "explanation": "A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_15-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 5;\nif (x > 10);\n{\nSystem.out.println(\"Hi\");\n}",
+      "options": [
+        "Hi, once, because the semicolon is the empty body of the if and the block always runs.",
+        "Nothing, because x > 10 is false.",
+        "Hi twice, once for each branch.",
+        "It does not compile, because the if has no body."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the block is not part of the if, so the false condition does not stop it.",
+        "2": "the block holds one statement, and there is no else branch.",
+        "3": "an empty statement is a valid body, which is why this compiles at all."
+      },
+      "explanation": "`if (x > 10);` ends the if at the semicolon, which is a legal empty statement. The braces that follow are then just a plain block.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_16-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "if (false)\nSystem.out.println(\"one\");\nSystem.out.println(\"two\");",
+      "options": [
+        "Nothing, because the condition is false.",
+        "two, because only the first statement belongs to the if.",
+        "It does not compile, because the indented lines are misaligned.",
+        "one and then two."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the second println is outside the if, so it does run.",
+        "2": "indentation is ignored by the compiler, so the layout causes no error.",
+        "3": "the first println is inside the if and the condition is false, so it never runs."
+      },
+      "explanation": "Braces decide the body of an if, not indentation. Without braces only the next statement is controlled, so the second println always runs.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_17-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int a = 1; int b = 2; System.out.println(a + b);",
+      "options": [
+        "It does not compile, because only one statement is allowed per line.",
+        "Nothing, because the middle statement is skipped.",
+        "3, because several statements may share one line.",
+        "12, because the digits are joined together."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "Java has no one-statement-per-line rule. That is only a style convention.",
+        "1": "every statement on the line runs, in the order written.",
+        "3": "a and b are int variables, so + adds them instead of joining text."
+      },
+      "explanation": "The semicolon, not the line break, ends a statement, so three statements on one line behave exactly as if they were on three lines.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_18-does-this-code-compile-and-what-is-print",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile, and what is printed?",
+      "code": "int outer = 1;\n{\nint inner = 2;\nSystem.out.println(outer + inner);\n}",
+      "options": [
+        "It does not compile, because a block cannot contain a println.",
+        "It compiles and prints 2, because outer is out of scope in the block.",
+        "It does not compile, because outer is not declared inside the block.",
+        "It compiles and prints 3, because an inner block can still see outer variables."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "a println is an ordinary statement and may appear in any block.",
+        "1": "outer is declared before the block and is still visible inside it.",
+        "2": "the rule stops an inner name being used outside its block, not the other way round."
+      },
+      "explanation": "Scope runs outwards. A variable declared in an enclosing block stays visible inside a nested block, so both names are usable there.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_19-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "System.out.println(\n\"Hello\"\n);",
+      "options": [
+        "No. A method call must close its parentheses on the same line.",
+        "Yes. The statement ends at the semicolon, so the line breaks inside are only whitespace.",
+        "Yes, but only if the arguments are split with a comma.",
+        "No. Each statement must fit on one line."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the closing parenthesis may sit on its own line, as long as the semicolon follows.",
+        "2": "one argument needs no comma. Splitting the lines is allowed either way.",
+        "3": "line breaks between tokens carry no meaning, so a statement may span lines."
+      },
+      "explanation": "A statement runs until its semicolon. The compiler ignores line breaks between tokens, so a call may be spread over several lines.",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_20-which-of-these-is-not-terminated-by-a-se",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which of these is NOT terminated by a semicolon?",
+      "options": [
+        "A variable declaration, such as int x = 5;",
+        "The block that follows an if, such as { x = 1; }",
+        "A method call, such as System.out.println(x);",
+        "An assignment, such as x = 10;"
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "a declaration statement ends with a semicolon.",
+        "2": "a method call statement ends with a semicolon.",
+        "3": "an assignment statement ends with a semicolon."
+      },
+      "explanation": "A block is a group of statements inside braces and takes no semicolon of its own, just like a class body or a method body.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
     },
     {
@@ -3727,6 +4505,168 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_21-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "int x = 5;\nif (x = 5) { System.out.println(\"five\"); }",
+      "options": [
+        "It prints five, because x is assigned 5 and the test then succeeds.",
+        "It does not compile, because x has already been declared.",
+        "It prints nothing, because an assignment is never true.",
+        "It does not compile, because x = 5 is an int assignment and if needs a boolean."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the assignment gives an int, not a boolean, so no branch can run.",
+        "1": "x is declared once; the error is the type of the expression in the condition.",
+        "2": "the failure happens while compiling, before anything runs."
+      },
+      "explanation": "An assignment produces the assigned int, and an if needs a boolean, so the compiler rejects it.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_22-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "boolean flag = true;\nif (flag);\nSystem.out.println(\"A\");\nelse System.out.println(\"B\");",
+      "options": [
+        "It prints A, because flag is true.",
+        "It prints B, because the empty if is false.",
+        "It prints A and then B.",
+        "It does not compile, because the semicolon ends the if and leaves else without an if."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the else cannot attach to the if, so the file is rejected before running.",
+        "1": "the file is rejected while compiling, so no branch can print anything.",
+        "2": "the stray else is a compile-time error, so this never runs either."
+      },
+      "explanation": "if (flag); is already a complete if with an empty body, so the else has no if to belong to.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_23-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "double d = 0.1 + 0.2;\nif (d == 0.3) { System.out.println(\"equal\"); }\nelse { System.out.println(\"not equal\"); }",
+      "options": [
+        "not equal, because the sum is not exactly 0.3 in binary floating point.",
+        "It does not compile, because doubles cannot be compared with ==.",
+        "equal, because 0.1 + 0.2 is 0.3.",
+        "equal, because Java rounds the sum to one decimal place."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "== is allowed for primitives, and double is a primitive.",
+        "2": "the two sides differ in their last bits, so == reports false.",
+        "3": "Java does not round to a chosen number of decimal places."
+      },
+      "explanation": "Doubles are binary fractions, so 0.1 + 0.2 is 0.30000000000000004 and never equal to 0.3.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_24-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 5;\nif (!(x > 5)) System.out.println(\"A\");\nSystem.out.println(\"B\");",
+      "options": [
+        "A then B, because the negated test is true and B is outside the if.",
+        "A only, because the if controls the rest of the block.",
+        "B only, because x > 5 is false.",
+        "It does not compile, because ! cannot be applied to a comparison."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "without braces an if controls one statement only.",
+        "2": "the ! inverts the false test, so the branch does run.",
+        "3": "! applies to any boolean, and a comparison is a boolean."
+      },
+      "explanation": "x > 5 is false, so the negated test is true and A runs; B runs because it is outside the if.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_25-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 3;\nif (x < 10) { System.out.println(\"small\"); }\nelse if (x < 5) { System.out.println(\"tiny\"); }",
+      "options": [
+        "small, because the first branch matches and the chain stops there.",
+        "small and tiny, because both conditions are true.",
+        "tiny, because 3 is less than 5 as well.",
+        "It does not compile, because the second test can never be reached."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "only one branch of a chain runs.",
+        "2": "the wider test above matched first, so the chain never reaches the else-if.",
+        "3": "an unreachable condition is legal, which is exactly why the order matters."
+      },
+      "explanation": "The chain stops at the first true test, and 3 < 10 is true, so the narrower test is skipped.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_26-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "If Example",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "boolean flag = true;\nObject result = flag ? 1 : \"a\";\nSystem.out.println(result);",
+      "options": [
+        "a, because the String branch is always the one chosen for an Object.",
+        "1, because the int branch is boxed, both branches share Object, and only one is used.",
+        "It does not compile, because the two branches have different types.",
+        "1a, because both branches are evaluated and combined."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "flag is true, so the first branch supplies the value.",
+        "2": "the branches have a common supertype, so the expression compiles.",
+        "3": "a conditional expression produces one value, never a combination."
+      },
+      "explanation": "The int branch is boxed and both branches share Object as a supertype; only the true one is used.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+    },
+    {
       "type": "predict",
       "kind": "predict",
       "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_predict_3",
@@ -3780,6 +4720,140 @@ const QUESTIONS_BANK = {
         "Provide command-line words after the class name; Java stores them as args[0], args[1], and so on, using zero-based indexing."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_2-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "Code Blocks If Then Else",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int score = 5000;\nif (score < 5000 && score > 1000) { System.out.println(\"A\"); }\nelse if (score < 1000) { System.out.println(\"B\"); }\nelse { System.out.println(\"C\"); }",
+      "options": [
+        "B, because the else-if is tested when the first test fails.",
+        "C, because neither condition is true for 5000.",
+        "A and C, because the else block always runs as well.",
+        "A, because 5000 is greater than 1000."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "2": "only one branch of an if/else-if/else chain ever runs.",
+        "3": "the else-if is tested, but its condition is false too, so B is not printed."
+      },
+      "explanation": "5000 < 5000 is false and 5000 < 1000 is false, so the else branch is the only one left.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_3-with-score-5000-levelcompleted-5-and-bon",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "Code Blocks If Then Else",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "With score = 5000, levelCompleted = 5 and bonus = 100, what does this print?",
+      "code": "int finalScore = score + (levelCompleted * bonus);\nSystem.out.println(\"Your final score was \" + finalScore);",
+      "options": [
+        "It does not compile, because finalScore is used outside its block.",
+        "Your final score was 5100, because bonus is added once per level.",
+        "Your final score was 5500, because the parentheses give 500 and 5000 + 500 is 5500.",
+        "Your final score was 50100, because the numbers are joined as text."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the line that uses finalScore is inside the same block, so it is in scope.",
+        "1": "bonus is multiplied by levelCompleted exactly once, giving 500.",
+        "3": "the values inside the parentheses are numbers, so they are added, not joined."
+      },
+      "explanation": "The parentheses are evaluated first, giving 5 * 100 = 500, and the addition then gives 5500.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_4-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "Code Blocks If Then Else",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "if (gameOver) { int finalScore = 100; }\nSystem.out.println(finalScore);",
+      "options": [
+        "No. finalScore is declared in the if block, so it is out of scope at the next line.",
+        "Yes, because a block-local variable lives until the method ends.",
+        "Yes, and it prints 0 when gameOver is false.",
+        "Yes, and it prints 100 when gameOver is true."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "block scope ends at the closing brace, not at the end of the method.",
+        "2": "a variable that is out of scope is a compile error, not a zero.",
+        "3": "the file is rejected while compiling, so nothing is printed."
+      },
+      "explanation": "A local variable lives only inside the block that declares it, so the name is gone after the brace.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_5-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "Code Blocks If Then Else",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "if (gameOver) { int n = 1; System.out.println(n); }\nif (gameOver) { int n = 2; System.out.println(n); }",
+      "options": [
+        "Yes, and it prints 1 then 2, because each block has its own n.",
+        "Yes, and it prints 2 both times, because the second declaration wins.",
+        "No, because a local variable may be declared only once per class.",
+        "No, because n is declared twice in the same method."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the first block prints its own n, which is still 1.",
+        "2": "local variables in separate blocks may share a name.",
+        "3": "the duplicate-name rule applies within one scope, and these two scopes differ."
+      },
+      "explanation": "The two blocks are separate scopes, so each block declares and prints its own n.",
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_6-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 5: If Else Statements",
+      "topic": "Code Blocks If Then Else",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "int score = 10;\nif (gameOver) { int score = 20; System.out.println(score); }",
+      "options": [
+        "Yes, and it prints 30, because the two values are added.",
+        "Yes, and it prints 20, because the inner declaration hides the outer one.",
+        "No. A local variable in an inner block may not shadow one from the enclosing block.",
+        "Yes, and it prints 10, because the outer declaration wins."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "declarations never add their values together.",
+        "1": "hiding a name this way is allowed for fields, not for local variables.",
+        "3": "the file does not compile, so no value is printed at all."
+      },
+      "explanation": "Only fields may be hidden this way; a local variable may not shadow another local variable.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
     },
     {
@@ -4285,6 +5359,141 @@ const QUESTIONS_BANK = {
         "3": "the method works correctly on its own copies; the caller simply never sees it."
       },
       "explanation": "Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_20-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "interview"
+      ],
+      "question": "What is printed by this code?",
+      "code": "static int bump(int n) { n = n + 1; return n; }\nint x = 5;\nint y = bump(x);\nSystem.out.println(x + \" \" + y);",
+      "options": [
+        "6 6, because the change to n also changes x.",
+        "5 6, because the parameter is a copy while the return sends the new value back.",
+        "5 5, because the changed copy is thrown away at the end.",
+        "It does not compile, because a parameter cannot be reassigned."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "nothing links n back to x, so only the return can deliver the value.",
+        "2": "y takes the returned value, which is 6.",
+        "3": "a parameter is an ordinary local variable and may be reassigned."
+      },
+      "explanation": "The parameter is a copy, so x is untouched; the new value reaches the caller only through return.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_21-does-this-class-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this class compile?",
+      "code": "public void greet() { System.out.println(\"hi\"); }\npublic static void main(String[] args) { greet(); }",
+      "options": [
+        "Yes, and it prints hi, because main may call any method of its own class.",
+        "Yes, as long as greet() is called twice.",
+        "Yes, but it prints nothing because greet() was never initialised.",
+        "No. greet() is an instance method and main is static, so there is no object to call it on."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "a static context has no current object, so the call is rejected.",
+        "1": "the number of calls makes no difference to the rule.",
+        "2": "the failure happens while compiling, so nothing runs."
+      },
+      "explanation": "A static method has no current object, so it cannot call an instance method without one.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_22-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "static void addMark(StringBuilder sb) { sb.append(\"!\"); }\nStringBuilder text = new StringBuilder(\"hi\");\naddMark(text);\nSystem.out.println(text);",
+      "options": [
+        "null, because the StringBuilder is emptied by the call.",
+        "It does not compile, because StringBuilder cannot be passed to a method.",
+        "hi, because Java copies the argument before the call.",
+        "hi!, because the copied reference points at the same StringBuilder as text."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "nothing empties it; the append adds one character to the existing text.",
+        "1": "objects of any class can be passed; only the reference is copied.",
+        "2": "what is copied is the reference, not the object, so the change is visible."
+      },
+      "explanation": "The copied reference still points at the same object, so the append is visible through text.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_23-does-this-method-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this method compile?",
+      "code": "public static int pick() {\nreturn 1;\nSystem.out.println(\"never\");\n}",
+      "options": [
+        "Yes, and it returns 1 without printing.",
+        "Yes, and it prints never before returning.",
+        "No, because pick() has an empty parameter list.",
+        "No, because the statement after return can never be reached."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the code is refused before it can run at all.",
+        "1": "the compiler rejects unreachable statements, so nothing runs.",
+        "2": "an empty parameter list is perfectly legal."
+      },
+      "explanation": "After return, control has left the method, so the next statement can never be reached.",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_24-given-these-overloads-what-does-the-call",
+      "difficulty": "hard",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Given these overloads, what does the call show(5) print?",
+      "code": "static void show(long n) { System.out.println(\"long\"); }\nstatic void show(double n) { System.out.println(\"double\"); }\nshow(5);",
+      "options": [
+        "double, because Java prefers floating-point for numeric arguments.",
+        "long, because widening to long is more specific than widening to double.",
+        "Neither, because the call is ambiguous and does not compile.",
+        "It does not compile, because an int cannot be widened."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "double is used only when no closer overload exists.",
+        "2": "the most-specific rule picks a winner, so the call is not ambiguous.",
+        "3": "an int widens to both long and double without any cast."
+      },
+      "explanation": "Both overloads fit, and long is more specific than double, so show(long) is the one chosen.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
     },
     {
@@ -5266,6 +6475,141 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_21-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 2;\nswitch (x) {\ncase 1:\ncase 2: System.out.print(\"A\");\ncase 3: System.out.print(\"B\"); break;\ndefault: System.out.print(\"C\");\n}",
+      "options": [
+        "It does not compile, because case 1 has no statements of its own.",
+        "AB, because cases 1 and 2 share a body, and with no break execution falls into case 3.",
+        "ABC, because execution falls through to default as well.",
+        "A, because the matching label stops at the end of its own statement."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "an empty label is legal and is exactly how cases are grouped.",
+        "2": "default runs only when no label matches, and here case 2 matched.",
+        "3": "B alone would need a break written straight after the shared body."
+      },
+      "explanation": "Cases 1 and 2 share one body printing A with no break, so flow falls into case 3 and prints B.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_22-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 4;\nswitch (x) {\ndefault: System.out.print(\"D\");\ncase 1: System.out.print(\"A\");\ncase 2: System.out.print(\"B\");\n}",
+      "options": [
+        "DAB, because 4 matches nothing, so execution starts at default and falls through below.",
+        "D, because default always ends the switch once it runs.",
+        "It does not compile, because default must be written last.",
+        "AB, because the case labels are tested before default is used."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "default has no break, so the flow keeps going into case 1 and case 2.",
+        "2": "default may be written first; its position does not affect compilation.",
+        "3": "default is skipped only when a case label matches, and 4 matches none."
+      },
+      "explanation": "4 matches no label, so default runs, and with no break the flow continues into case 1 and case 2.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_23-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "long value = 2L;\nswitch (value) {\ncase 1: System.out.println(\"one\"); break;\ncase 2: System.out.println(\"two\"); break;\ndefault: System.out.println(\"other\");\n}",
+      "options": [
+        "Yes, and it prints two.",
+        "Yes, but only when the case labels carry the L suffix.",
+        "Yes, and it prints other, because a long cannot match an int case label.",
+        "No, because long is not a valid switch selector type."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the file never compiles, so nothing is printed.",
+        "1": "adding L to the labels does not make long a legal selector type.",
+        "2": "a long selector is a compile error, not a quiet fall-through to default."
+      },
+      "explanation": "long is not a valid selector type; float, double and boolean are rejected in the same way.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_24-does-this-switch-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this switch compile?",
+      "code": "int x = 97;\nswitch (x) {\ncase 'a': System.out.println(\"letter\"); break;\ncase 97: System.out.println(\"number\"); break;\ndefault: System.out.println(\"other\");\n}",
+      "options": [
+        "Yes, and it prints number, because an int label outranks a char label.",
+        "No, because 'a' and 97 are the same constant value, so the labels are duplicates.",
+        "Yes, and it prints other, because the two labels cancel each other out.",
+        "Yes, and it prints letter, because the char label is tested first."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "labels have no ranking; the file simply does not compile.",
+        "2": "default is used only when no label matches, but this switch never compiles.",
+        "3": "the duplicate labels are rejected before any statement can run."
+      },
+      "explanation": "The char literal 'a' has the value 97, so the two labels are duplicates and the file does not compile.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_25-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "static String label(String s) {\nswitch (s) {\ncase \"one\": return \"1\";\ncase \"two\": return \"2\";\ndefault: return \"?\";\n}\n}\nSystem.out.println(label(\"ONE\"));",
+      "options": [
+        "It does not compile, because the method needs a return statement after the switch.",
+        "?, because String labels are matched exactly and \"ONE\" matches none, so default returns \"?\".",
+        "1, because a switch on a String ignores letter case.",
+        "null, because an unmatched String switch produces no value."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "every path returns, so the switch cannot complete normally and no trailing return is needed.",
+        "2": "switch does not normalise case, so \"ONE\" never matches the label \"one\".",
+        "3": "the default branch always returns the literal \"?\", never null."
+      },
+      "explanation": "String labels are compared with equals, so the case-sensitive \"ONE\" takes default and returns \"?\".",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_true-false-mcq_5",
@@ -5440,6 +6784,141 @@ const QUESTIONS_BANK = {
         "It uses the selector expression month and matches it exactly against each String case label."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_7-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Enhanced Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 2;\nswitch (x) {\ncase 1 -> System.out.print(\"A\");\ncase 2 -> System.out.print(\"B\");\ncase 3 -> System.out.print(\"C\");\ndefault -> System.out.print(\"D\");\n}",
+      "options": [
+        "It does not compile, because the arrow arms carry no break statements.",
+        "BC, because an arrow arm with no break falls through into the arm below it.",
+        "B, because an arrow arm ends when its own statement ends, so no other arm runs.",
+        "BCD, because every arm written below the match also runs."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "arrow arms need no break; leaving one out is not an error.",
+        "1": "there is no fall-through between arrow arms, so only the matched arm runs.",
+        "3": "the switch is over once the matched arm ends, so later arms are never reached."
+      },
+      "explanation": "Arrow arms never fall through, so case 3 and default never run after case 2 matches.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_8-what-is-printed-by-this-code",
+      "difficulty": "hard",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Enhanced Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int month = 13;\nString quarter = switch (month) {\ncase 1, 2, 3 -> \"Q1\";\ndefault -> {\nString msg = \"INVALID\";\nyield msg;\n}\n};\nSystem.out.println(quarter);",
+      "options": [
+        "It does not compile, because yield may not appear in a switch expression.",
+        "INVALID, because 13 matches no case and the default block yields its value.",
+        "Q1, because a comma list matches any month value.",
+        "It does not compile, because a block arm must end with return, not yield."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "yield is allowed only inside a switch expression, which is where it is used here.",
+        "2": "the comma list names exact values, so 13 is not covered by it.",
+        "3": "return would leave the method; a block inside a switch expression uses yield."
+      },
+      "explanation": "13 matches no comma-listed value, so the default block runs and yields the value assigned to quarter.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_9-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Enhanced Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "int x = 5;\nString result = switch (x) {\ncase 1 -> \"one\";\ncase 2 -> \"two\";\n};\nSystem.out.println(result);",
+      "options": [
+        "Yes, and it prints nothing, because an unmatched switch expression is skipped.",
+        "No, because a switch expression must have a default arm.",
+        "Yes, and it prints null, because no arm matched the value 5.",
+        "Yes, and it prints an empty string for the unmatched value."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "an unmatched switch expression cannot be quietly skipped.",
+        "2": "null is never produced here; the missing default is a compile error.",
+        "3": "the compiler rejects the file before any statement can run."
+      },
+      "explanation": "A switch expression must produce a value for every input, so a default arm is required here.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_10-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Enhanced Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int x = 9;\nswitch (x) {\ncase 1 -> System.out.println(\"one\");\ncase 2 -> System.out.println(\"two\");\n}\nSystem.out.println(\"done\");",
+      "options": [
+        "done, printed after an error message about the unmatched value.",
+        "It does not compile, because every switch needs a default label.",
+        "one, because an unmatched switch statement takes the first arm.",
+        "done, because an arrow switch statement may omit default and then does nothing."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "an unmatched switch statement prints nothing at all; no error message is produced.",
+        "1": "default is required only for a switch expression, not for a switch statement.",
+        "2": "the arms are tested against 9, and no arm matches that value."
+      },
+      "explanation": "A switch statement need not produce a value, so default is optional and 9 matches nothing here.",
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_11-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 7: Switch Statements",
+      "topic": "Enhanced Switch Statement In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "int x = 2;\nswitch (x) {\ncase 1: System.out.println(\"one\"); break;\ncase 2 -> System.out.println(\"two\");\ndefault -> System.out.println(\"other\");\n}",
+      "options": [
+        "Yes, and it prints two then other, because arrow arms fall through.",
+        "No, because one switch block cannot mix colon labels with arrow arms.",
+        "Yes, and it prints two.",
+        "Yes, and it prints one, because the colon label is tested first."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "arrow arms never fall through, and this switch does not compile anyway.",
+        "2": "the compiler rejects the mixed style, so nothing is printed.",
+        "3": "no label is ever tested, because the file does not compile."
+      },
+      "explanation": "A switch block must use one style throughout: colon labels with break, or arrow arms, never both.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
     },
     {
@@ -6027,6 +7506,168 @@ const QUESTIONS_BANK = {
         "3": "the name is out of scope, so the line does not compile."
       },
       "explanation": "A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_13-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "for (int i = 0; i < 5; i++) {\nif (i % 2 == 0) continue;\nSystem.out.print(i);\n}",
+      "options": [
+        "13",
+        "024",
+        "01234",
+        "Nothing is printed."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "024 are the even values, which the continue branch skips.",
+        "2": "the print is skipped for half the iterations, not for all of them.",
+        "3": "the odd values do reach the print statement."
+      },
+      "explanation": "The continue skips the print for even i, but the update i++ still runs, so only 1 and 3 print.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_14-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "outer:\nfor (int i = 1; i <= 3; i++) {\nfor (int j = 1; j <= 3; j++) {\nif (j == 2) break outer;\nSystem.out.print(i + \"\" + j + \" \");\n}\n}",
+      "options": [
+        "11",
+        "11 12 13 21 22 23 31 32 33",
+        "11 21 31",
+        "11 12 21 22 31 32"
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "that is the output when there is no break at all.",
+        "2": "an unlabelled break would exit only the inner loop and leave the outer one running.",
+        "3": "the break runs when j is 2, not when j is 3."
+      },
+      "explanation": "The label outer names the first for loop, so break outer leaves both loops at once.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_15-how-many-times-is-the-body-of-the-inner-",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "interview"
+      ],
+      "question": "How many times is the body of the inner loop executed in total?",
+      "code": "int count = 0;\nfor (int i = 0; i < 3; i++) {\nfor (int j = 0; j < 4; j++) {\ncount++;\n}\n}",
+      "options": [
+        "4, because only the inner loop repeats.",
+        "3, because only the outer loop repeats.",
+        "7, because the two bounds are added together.",
+        "12, because 3 outer passes each run the inner loop 4 times."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the outer loop repeats the whole inner loop three times.",
+        "1": "the inner loop runs again for each of the 3 outer passes.",
+        "2": "nested loops multiply their counts rather than adding them."
+      },
+      "explanation": "The loops are nested, so the iteration counts multiply: 3 outer passes times 4 inner passes is 12.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_16-what-happens-when-this-code-runs",
+      "difficulty": "hard",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this code runs?",
+      "code": "for (int i = 0; i < 5; ) {\nSystem.out.println(i);\n}",
+      "options": [
+        "It does not compile, because the update section is missing.",
+        "It prints 0 to 4 and then stops.",
+        "It prints nothing, because the header is incomplete.",
+        "It prints 0 for ever, because nothing changes i."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "a for header may omit the update, so for (int i = 0; i < 5; ) is legal Java.",
+        "1": "i never grows, so i < 5 is true on every pass.",
+        "2": "the condition is true at the start, so the body does run."
+      },
+      "explanation": "The update is optional, so this compiles. Nothing changes i, so the condition stays true.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_17-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "for (int i = 5; i > 0; i--) {\nSystem.out.print(i + \" \");\n}",
+      "options": [
+        "5 4 3 2 1",
+        "5 4 3 2 1 0",
+        "Nothing, because i > 0 is false at the first test.",
+        "1 2 3 4 5"
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the test i > 0 fails when i is 0, so 0 is never printed.",
+        "2": "5 > 0 is true, so the body runs on the first pass.",
+        "3": "the loop starts at 5 and decreases, so it counts down rather than up."
+      },
+      "explanation": "The update i-- counts down and the test stops at 0, so the values printed are 5 down to 1.",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_18-how-many-times-does-the-body-of-this-loo",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "How many times does the body of this loop run?",
+      "code": "for (int i = 0; i <= 10; i += 3) {\nSystem.out.println(i);\n}",
+      "options": [
+        "5, printing 0, 3, 6, 9 and 12.",
+        "4, printing 0, 3, 6 and 10.",
+        "3, printing 0, 3 and 6.",
+        "4, printing 0, 3, 6 and 9."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "12 fails the test, so it is never printed.",
+        "1": "i jumps by 3, so 10 is never a value of i.",
+        "2": "9 also satisfies i <= 10, so there is one more pass."
+      },
+      "explanation": "i takes the values 0, 3, 6 and 9, then becomes 12 and fails i <= 10, so four passes run.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
     },
     {
@@ -6695,6 +8336,141 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_22-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int i = 10;\nwhile (i < 5) {\nSystem.out.print(i + \" \");\ni++;\n}\nSystem.out.println(\"done\");",
+      "options": [
+        "10 11 12 ... and the program never stops.",
+        "done, and nothing else, because the condition is false before the first pass.",
+        "Nothing at all, not even done.",
+        "10, then done, because the body always runs once."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the body never runs, so i is never printed and never incremented.",
+        "2": "the println after the loop is outside it, so it still runs.",
+        "3": "the condition fails before the body, so 10 is never printed."
+      },
+      "explanation": "A while loop tests first, so i < 5 is already false, the body is skipped and done still prints.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_23-what-happens-when-this-code-runs",
+      "difficulty": "hard",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this code runs?",
+      "code": "int i = 0;\nwhile (i < 3);\n{\nSystem.out.println(\"body \" + i);\ni++;\n}",
+      "options": [
+        "It does not compile, because a while loop must have a body.",
+        "It prints body 0 exactly once.",
+        "The loop hangs forever, and the block after it is never part of the loop.",
+        "It prints body 0, body 1, body 2 and then stops."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "an empty statement is a legal body, so the file compiles.",
+        "1": "the block is outside the loop and is reached only if the loop ends, which it does not.",
+        "3": "the loop never enters that block, so nothing is printed."
+      },
+      "explanation": "The semicolon after while (i < 3) is the loop body, so i never changes and it spins forever.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_24-what-does-this-loop-print",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What does this loop print?",
+      "code": "int n = 1234;\nwhile (n > 0) {\nSystem.out.print(n % 10 + \" \");\nn = n / 10;\n}",
+      "options": [
+        "1 2 3 4, because the digits come out in their original order.",
+        "4 3 2 1 0, because the loop also runs when n is 0.",
+        "1234, because the whole number is printed on every pass.",
+        "4 3 2 1, because n % 10 takes the last digit and n / 10 removes it."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the last digit is the easiest one to reach, so the order is reversed.",
+        "1": "the test is n > 0, so the pass with n equal to 0 never happens.",
+        "2": "the loop prints n % 10, not n itself."
+      },
+      "explanation": "n % 10 gives the last digit and n / 10 drops it, so 1234 comes out as 4, 3, 2, 1.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_25-what-happens-when-this-loop-runs",
+      "difficulty": "hard",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this loop runs?",
+      "code": "int count = 0;\nint sum = 0;\nwhile (count < 4) {\nif (count % 2 == 0) { continue; }\nsum += count;\ncount++;\n}",
+      "options": [
+        "It prints sum four times and then ends.",
+        "It ends with sum equal to 6.",
+        "It ends with sum equal to 4.",
+        "It never ends, because the continue at count = 0 skips the increment."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "there is no print statement anywhere inside this loop.",
+        "1": "the sum += count line is below the continue and is never executed.",
+        "2": "sum is never changed, because the increment line is never reached."
+      },
+      "explanation": "At count 0 the test is true, so continue jumps back before the increment and count never moves.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_26-what-does-this-loop-print",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What does this loop print?",
+      "code": "int i = 0;\nwhile (i < 10) {\nif (i == 4) { break; }\nSystem.out.print(i + \" \");\ni++;\n}",
+      "options": [
+        "0 1 2 3 4, because the value 4 is printed before the break.",
+        "0 1 2 3 4 5 6 7 8 9, because break only skips one pass.",
+        "4, because break prints the value that stopped the loop.",
+        "0 1 2 3, because break leaves the loop as soon as i is 4."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the break happens before the print on that pass.",
+        "1": "break ends the whole loop, it does not skip a single iteration.",
+        "2": "break does not print anything."
+      },
+      "explanation": "break exits at once, and the test comes before the print, so 4 is never printed.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_true-false-mcq_5",
@@ -6774,6 +8550,140 @@ const QUESTIONS_BANK = {
         "No. The > operator is exclusive, so the break condition becomes true only when j is greater than 5."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_3-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "Do While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int n = 10;\ndo {\nSystem.out.print(\"ran once \");\n} while (n < 5);",
+      "options": [
+        "It does not compile, because n is never changed inside the loop.",
+        "Nothing, because n < 5 is false from the start.",
+        "ran once, printed over and over forever.",
+        "ran once, because a do-while runs its body before testing the condition."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "a loop variable that never changes is legal; here the condition is false anyway.",
+        "1": "that is the behaviour of a while loop, which tests before running the body.",
+        "2": "after the first pass the false condition ends the loop."
+      },
+      "explanation": "A do-while runs the body first, so one pass happens before n < 5 is found false.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_4-what-happens-with-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "Do While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens with this statement?",
+      "code": "do {\nSystem.out.println(\"hi\");\n} while (false)",
+      "options": [
+        "It prints hi forever.",
+        "It prints hi once.",
+        "It does not compile, because the do-while needs a semicolon after while (false).",
+        "It prints nothing, because the condition is false."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "false ends the loop after the first pass, so it cannot repeat.",
+        "1": "the missing terminator stops the file from compiling, so nothing runs.",
+        "3": "the body always runs at least once, so hi would print if the code compiled."
+      },
+      "explanation": "The semicolon ends the do-while statement, so without it the compiler reports a missing ';'.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_5-what-is-printed-by-this-code",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "Do While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this code?",
+      "code": "int n = 5;\nwhile (n < 5) { System.out.print(\"while\"); }\ndo { System.out.print(\"do\"); } while (n < 5);",
+      "options": [
+        "do, because only the do-while body runs when the condition is false from the start.",
+        "whiledo, because both bodies run once.",
+        "Nothing, because n < 5 is false in both loops.",
+        "dodo, because the do-while runs its body twice."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the while loop never enters its body, so it prints nothing at all.",
+        "2": "the do-while always prints once, even when the test fails.",
+        "3": "after the first pass the false condition ends the loop."
+      },
+      "explanation": "The while loop tests first and skips its body; the do-while prints once before testing.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_6-what-does-this-do-while-print",
+      "difficulty": "hard",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "Do While Loops",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What does this do-while print?",
+      "code": "int i = 0;\ndo {\ni++;\nif (i % 2 == 0) { continue; }\nif (i > 5) { break; }\nSystem.out.print(i + \" \");\n} while (i < 10);",
+      "options": [
+        "2 4 6, because continue prints the even values.",
+        "1 3 5 7, because break prints the value that stopped the loop.",
+        "1 3 5 7 9, because the loop runs until i reaches 10.",
+        "1 3 5, because continue skips the even values and break stops the loop at 7."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "continue skips the rest of the body, so the print is not reached for even values.",
+        "1": "break does not print anything.",
+        "2": "break ends the loop at i = 7, so 7 and 9 never print."
+      },
+      "explanation": "continue jumps to the condition, so 2, 4 and 6 are skipped, and break stops it at i = 7.",
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_7-which-loop-fits-ask-at-least-once-then-r",
+      "difficulty": "medium",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "topic": "Do While Loops",
+      "tags": [
+        "interview"
+      ],
+      "question": "Which loop fits \"ask at least once, then repeat while the answer is invalid\"?",
+      "options": [
+        "A do-while loop, because the prompt must run once before the answer can be tested.",
+        "A while loop, because the condition should be tested before the prompt.",
+        "A for loop with a fixed count, because the number of attempts is known.",
+        "An enhanced for loop, because it reads each typed value exactly once."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "testing first would skip the prompt or force the prompt to be duplicated before the loop.",
+        "2": "the number of attempts is not known in advance; it depends on what the user types.",
+        "3": "an enhanced for loop walks a collection that already exists and cannot read keyboard input."
+      },
+      "explanation": "The prompt must appear once, so the test cannot come first; a do-while reads, then repeats.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
     },
     {
@@ -8348,6 +10258,140 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_24-which-of-these-declarations-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which of these declarations compile?",
+      "code": "int a = Integer.parseInt(\"42\");\ndouble b = Double.parseDouble(\"3.14\");\nint c = Math.round(3.6);",
+      "options": [
+        "None of them compile, because parsing always returns text.",
+        "Only a compiles, because the other two return Objects.",
+        "a and b compile, but c does not, because Math.round(double) returns a long.",
+        "All three compile, because all three produce a number."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "parsing turns text into a primitive number, it does not return text.",
+        "1": "parseDouble returns a primitive double, not an Object.",
+        "3": "Math.round(3.6) returns a long, and a long does not fit into an int without a cast."
+      },
+      "explanation": "parseInt returns an int, parseDouble a double, but Math.round(double) returns a long.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_25-what-happens-when-this-code-runs",
+      "difficulty": "hard",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this code runs?",
+      "code": "int a = Integer.parseInt(\"abc\");\nint b = Integer.parseInt(\" 42 \");",
+      "options": [
+        "It sets a to 0 and b to 42, because bad text is ignored.",
+        "It throws NumberFormatException on line one, and the spaces would fail line two too.",
+        "It does not compile, because \"abc\" is not a number.",
+        "It sets a to null and b to 42."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "there is no fallback value; the method throws instead of returning 0.",
+        "2": "the compiler cannot inspect String contents, so the program compiles and fails when it runs.",
+        "3": "parseInt returns a primitive int, so it can never produce null."
+      },
+      "explanation": "It is a runtime NumberFormatException, not a compile error, and \" 42 \" needs trim().",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_26-what-is-the-result-of-compiling-and-runn",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is the result of compiling and running this code?",
+      "code": "System.out.println(\"100\" + \"50\");\nSystem.out.println(\"100\" - \"50\");",
+      "options": [
+        "It prints 150 and then 50.",
+        "It prints 10050 and then 50.",
+        "It prints 10050 and then throws an exception at runtime.",
+        "The program does not compile, because - is not defined for String operands."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "+ on two Strings concatenates the text instead of adding the numbers.",
+        "1": "the whole file fails to compile, so neither line ever executes.",
+        "2": "this is a compile-time error, not something that can happen at runtime."
+      },
+      "explanation": "+ joins the two Strings into \"10050\", but - has no String version, so javac rejects the file.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_27-the-user-types-5-and-presses-enter-what-",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "The user types 5 and presses Enter. What does line hold?",
+      "code": "Scanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nString line = sc.nextLine();",
+      "options": [
+        "It throws InputMismatchException, because the input was already consumed.",
+        "line is \"5\", because nextLine reads the same input again.",
+        "line is an empty String, because nextInt left the newline in the buffer.",
+        "line is null, because there is nothing left to read."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the leftover newline is valid input for nextLine, so no exception is thrown.",
+        "1": "the 5 was already consumed by nextInt, only the Enter key remains.",
+        "3": "nextLine returns an empty String rather than null when the line is empty."
+      },
+      "explanation": "nextInt stops before the newline, so the next nextLine() returns that empty leftover line.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_28-why-does-code-calling-system-console-rea",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "tags": [
+        "interview"
+      ],
+      "question": "Why does code calling System.console().readLine() often fail inside an IDE?",
+      "options": [
+        "System.console() is not part of the Java API and never compiles.",
+        "System.console() returns null in most IDEs, so readLine() throws NullPointerException.",
+        "It fails only on a machine that has no keyboard attached.",
+        "readLine() returns a String, so it cannot be called on a console."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "it compiles fine; the problem is the null value at run time.",
+        "2": "the cause is the missing terminal attachment, not the hardware.",
+        "3": "readLine() does return a String, and that is a normal method call."
+      },
+      "explanation": "An IDE has no terminal, so console() returns null and calling it throws NullPointerException.",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_true-false-mcq_5",
@@ -9576,6 +11620,141 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_16-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class Main {\nstatic int field;\npublic static void main(String[] args) {\nint local;\nSystem.out.println(field);\nSystem.out.println(local);\n}\n}",
+      "options": [
+        "It prints 0 and then a leftover value from memory.",
+        "It prints 0 and then throws a NullPointerException.",
+        "It does not compile, because the local variable local is read before it is assigned.",
+        "It prints 0 and 0."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "Java never exposes uninitialised memory, so there is no leftover value to print.",
+        "1": "no object is involved here, so a NullPointerException cannot happen.",
+        "3": "only the field gets a default of 0. The local has no value at all, so this never compiles."
+      },
+      "explanation": "A field gets a default of 0, but a local variable gets none, so reading local is a compile error.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_17-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "String a = new String(\"java\");\nString b = new String(\"java\");\nSystem.out.println(a == b);\nSystem.out.println(a.equals(b));",
+      "options": [
+        "false, then false.",
+        "true, then false.",
+        "false, then true.",
+        "true, then true."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "equals is true here, because String compares the characters rather than the identity.",
+        "1": "this is the reverse of what happens. The references differ and the contents match.",
+        "3": "== is true only when both names point at one object, which two new expressions never produce."
+      },
+      "explanation": "== asks whether the references point at one object; they do not. equals compares content, so true.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_18-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "class Parent {\nprivate int secret = 7;\n}\nclass Child extends Parent {\nint read() { return secret; }\n}",
+      "options": [
+        "No. A private field is not visible in the subclass, so secret cannot be found there.",
+        "Yes, but read() returns 0 because the field is hidden.",
+        "Yes, and read() returns 7.",
+        "No, because a class may not extend a class that has private fields."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the field holds 7, not 0, and in any case the name is not visible in Child.",
+        "2": "the compiler rejects the reference, so the method never runs.",
+        "3": "extending a class that has private fields is normal. The parent exposes them via its methods."
+      },
+      "explanation": "private means the declaring class only, so secret is not visible in Child and cannot be found.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_19-does-this-code-compile",
+      "difficulty": "hard",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "class Parent {\nParent(int n) { System.out.println(\"Parent \" + n); }\n}\nclass Child extends Parent {\nChild() { System.out.println(\"Child\"); }\n}",
+      "options": [
+        "Yes, and it prints Parent 0 and then Child.",
+        "Yes, because Child's constructor belongs to Child only.",
+        "No. Child never calls super(int), and the parent has no no-argument constructor.",
+        "No, because a class may only declare one constructor."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "nothing is printed, because the compiler rejects the class before it can run.",
+        "1": "access has nothing to do with it. The missing no-argument parent constructor is the problem.",
+        "3": "a class may declare as many constructors as it likes, as long as their parameter lists differ."
+      },
+      "explanation": "Constructors are not inherited, so the inserted super() finds no no-argument parent constructor.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_20-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Classes And Inheritance",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "protected class Helper {\nint size = 3;\n}",
+      "options": [
+        "Yes, because protected is the default for a class.",
+        "Yes, and Helper is visible to subclasses in other packages.",
+        "No. A top-level class may only be public or have no modifier, so protected is rejected.",
+        "No, because a top-level class must always be public."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the default is package-private, written by leaving the modifier off, not by protected.",
+        "1": "protected does mean that for a member, but it cannot be written on a top-level class at all.",
+        "3": "public is allowed but not required. A class with no modifier is also valid."
+      },
+      "explanation": "protected is relative to an enclosing class. A top-level class has none, so use public or none.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_true-false-mcq_5",
@@ -10160,6 +12339,140 @@ const QUESTIONS_BANK = {
         "A this(...) constructor call must be the first executable statement in the constructor body."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_3-a-class-declares-only-this-constructor-w",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Constructor Concept",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "A class declares only this constructor. What happens when someone writes new Demo()?",
+      "code": "class Demo {\nDemo(int n) { System.out.println(n); }\n}\nnew Demo();",
+      "options": [
+        "It compiles and prints 0.",
+        "It compiles, because Java always adds a no-argument constructor.",
+        "It compiles and prints nothing.",
+        "It does not compile, because the implicit no-argument constructor is no longer supplied."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "there is no constructor to run, so nothing is printed.",
+        "1": "the implicit constructor exists only in a class that declares no constructors.",
+        "2": "for the same reason. The call matches no constructor, so the class does not compile."
+      },
+      "explanation": "The implicit no-argument constructor exists only if the class declares no constructor at all.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_4-does-this-class-compile-and-what-is-void",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Constructor Concept",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this class compile, and what is void Demo(int n)?",
+      "code": "class Demo {\nvoid Demo(int n) { System.out.println(n); }\n}",
+      "options": [
+        "It does not compile, because a method may not share the class name.",
+        "It compiles, and void Demo(int n) is the constructor of the class.",
+        "It compiles, and void Demo(int n) is a plain method, since a constructor has no return.",
+        "It does not compile, because a constructor may not be void."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "a method may share the class name, as long as it has a return type.",
+        "1": "a constructor never has a return type, not even void.",
+        "3": "writing void does not make it an illegal constructor. It makes it a legal method."
+      },
+      "explanation": "Writing void gives the declaration a return type, so it is a method named Demo, not a constructor.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_5-does-this-constructor-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Constructor Concept",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this constructor compile?",
+      "code": "class Demo {\nint n;\nDemo() {\nSystem.out.println(\"start\");\nthis(5);\n}\nDemo(int n) { this.n = n; }\n}",
+      "options": [
+        "Yes, because this(5) is just a method call on the current object.",
+        "No. A this(...) call must be the first statement in the constructor body.",
+        "Yes, and it prints start before the second constructor runs.",
+        "No, because a constructor may never call another constructor."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "this(5) is a constructor call, not a method call, which is why the first-statement rule applies.",
+        "2": "the compiler rejects the constructor, so nothing runs.",
+        "3": "a constructor may call another one with this(...). It just has to do it first."
+      },
+      "explanation": "A constructor may delegate only through this(...), and that call must be the very first statement.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_6-which-pair-of-constructors-is-a-valid-ov",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Constructor Concept",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which pair of constructors is a valid overload?",
+      "options": [
+        "Two Demo(int a) constructors in one class, because their bodies differ.",
+        "Demo(int a) and void Demo(int a), because the return types differ.",
+        "Demo(int a) and Demo(double a), because the parameter types differ.",
+        "Demo(int a) and Demo(int b), because the parameter names differ."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "two constructors with the same parameter list clash, whatever their bodies contain.",
+        "1": "a constructor has no return type, so void Demo(int a) is a method, not another constructor.",
+        "3": "parameter names are not part of the signature, so this pair clashes."
+      },
+      "explanation": "Overloading depends on the parameter list: its number, types and order. Names are not part of it.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_7-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Constructor Concept",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "class Demo {\nDemo() {\nthis(5);\nSystem.out.println(\"no-args\");\n}\nDemo(int n) {\nSystem.out.println(\"int \" + n);\n}\n}\nnew Demo();",
+      "options": [
+        "int 5 only.",
+        "no-args, then int 5.",
+        "int 5, then no-args.",
+        "It does not compile, because a constructor may not call another one."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "control returns to the calling constructor after this(5) finishes, so its own println still runs.",
+        "1": "this(5) is first, so the delegated constructor always finishes before the other lines run.",
+        "3": "a constructor may call another one with this(...), which is exactly what constructor chaining is."
+      },
+      "explanation": "this(5) runs first, and control returns to the no-argument constructor, which prints its own line.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
     },
     {
@@ -12618,6 +14931,141 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_6-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overloading In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class Main {\nstatic void print(int n) { System.out.println(\"int\"); }\nstatic void print(double n) { System.out.println(\"double\"); }\npublic static void main(String[] args) {\nprint(5);\n}\n}",
+      "options": [
+        "int, because an exact match is preferred and widening is only a fallback.",
+        "int and double, because both overloads are called.",
+        "It does not compile, because print(5) is ambiguous.",
+        "double, because the argument is promoted to the widest type."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "exactly one overload is chosen per call, so only one line is printed.",
+        "2": "the call is not ambiguous, because print(int) is strictly more specific than print(double).",
+        "3": "Java does not promote an argument when an exact match is available. Widening is only a fallback."
+      },
+      "explanation": "Overload resolution looks for a match without conversion first, and print(int) matches 5 exactly.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_7-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overloading In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "public class Main {\nint calc() { return 1; }\nlong calc() { return 2L; }\n}",
+      "options": [
+        "No. Same name and same parameter list, and the return type is not part of the signature.",
+        "No, because a class may not have two methods with the same name.",
+        "Yes, and the compiler picks the one whose return type fits the context.",
+        "Yes, because the two return types are different."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "a class may have many methods with the same name, as long as their parameter lists differ.",
+        "2": "the compiler never chooses by return type. It looks only at the name and the parameter list.",
+        "3": "a different return type is not enough to tell the two methods apart."
+      },
+      "explanation": "An overload needs a different parameter list, and the return type is not part of the signature.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_8-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overloading In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class Main {\nstatic void show(long n) { System.out.println(\"long\"); }\nstatic void show(double n) { System.out.println(\"double\"); }\npublic static void main(String[] args) {\nshow(5);\n}\n}",
+      "options": [
+        "long, because int widens to long more closely than to double, so long is the best match.",
+        "It does not compile, because there is no show(int) method.",
+        "double, because every numeric type can widen to double.",
+        "It does not compile, because the call is ambiguous."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "a missing exact match is not an error. The compiler widens the argument instead.",
+        "2": "double is applicable, but it needs a larger widening than long, so it loses.",
+        "3": "the call is not ambiguous, because long is strictly more specific than double."
+      },
+      "explanation": "With no exact match, widening is applied and the most specific method wins: show(long).",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_9-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overloading In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "class Parent {\nvoid show(Object o) { System.out.println(\"parent\"); }\n}\nclass Child extends Parent {\nvoid show(String s) { System.out.println(\"child\"); }\n}\npublic class Main {\npublic static void main(String[] args) {\nParent p = new Child();\np.show(\"hi\");\n}\n}",
+      "options": [
+        "child, because the object is a Child and the argument is a String.",
+        "It does not compile, because a subclass may not overload a parent method.",
+        "It does not compile, because show(String) does not override show(Object).",
+        "parent, because the overload is chosen at compile time from the reference type."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "the object type would matter for an override. Overloading ignores it completely.",
+        "1": "a subclass may overload a parent method. It simply does not give runtime polymorphism.",
+        "2": "an overload is perfectly legal in a subclass, so the code compiles."
+      },
+      "explanation": "Different parameter lists make these overloads, so the compiler picks from the reference type.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_10-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overloading In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class Main {\nstatic void go(int n) { System.out.println(\"int\"); }\nstatic void go(long n) { System.out.println(\"long\"); }\nstatic void go(Integer n) { System.out.println(\"Integer\"); }\npublic static void main(String[] args) {\ngo(5);\n}\n}",
+      "options": [
+        "long, because widening is preferred over an exact match.",
+        "It does not compile, because three applicable overloads make the call ambiguous.",
+        "int, because the exact match wins over widening to long and over boxing to Integer.",
+        "Integer, because boxing is preferred over widening."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "widening is never preferred over an exact match.",
+        "1": "the call is not ambiguous, because go(int) is strictly the most specific of the three.",
+        "3": "boxing is considered only in a later phase, after the exact match has already been found."
+      },
+      "explanation": "The first phase allows no boxing, so go(int) matches exactly and go(Integer) is considered later.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_true-false-mcq_5",
@@ -13437,6 +15885,140 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_26-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "class Animal {\nString speak() { return \"animal\"; }\n}\nclass Dog extends Animal {\n@Override String speak() { return \"dog\"; }\n}\npublic class Main {\npublic static void main(String[] args) {\nAnimal a = new Dog();\nSystem.out.println(a.speak());\n}\n}",
+      "options": [
+        "It does not compile, because a Dog is not an Animal.",
+        "It prints both animal and dog.",
+        "animal, because the reference is declared as Animal.",
+        "dog, because the object type decides which override runs, not the reference type."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "a Dog IS-A Animal, so widening the reference is legal and the code compiles.",
+        "1": "one method runs per call, and it returns a single value.",
+        "2": "that is true for an overload. An override is resolved from the object, not the reference."
+      },
+      "explanation": "The reference type only says which methods you may call. The object, a Dog, decides the body.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_27-does-this-code-compile",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Does this code compile?",
+      "code": "class Parent {\nvoid move() { System.out.println(\"move\"); }\n}\nclass Child extends Parent {\nvoid fetch() { System.out.println(\"fetch\"); }\n}\nParent p = new Child();\np.fetch();",
+      "options": [
+        "No, because fetch() is not overridden in Parent.",
+        "Yes, and it throws a ClassCastException at runtime.",
+        "No. The reference type decides what you may call, and Parent does not declare fetch.",
+        "Yes, and it prints fetch, because the object really is a Child."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the problem is not a missing override. The problem is that Parent does not declare fetch() at all.",
+        "1": "this is a compile-time error, so the program never runs and no exception is thrown.",
+        "3": "that rule needs the parent to declare the method. Here Parent never declares fetch()."
+      },
+      "explanation": "The compiler allows only methods the reference type declares, and Parent has no fetch().",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_28-what-happens-when-this-code-is-compiled",
+      "difficulty": "hard",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this code is compiled?",
+      "code": "class Parent {\nvoid print(int n) { System.out.println(\"parent \" + n); }\n}\nclass Child extends Parent {\n@Override void print(long n) { System.out.println(\"child \" + n); }\n}",
+      "options": [
+        "It compiles, and print(long) overrides print(int).",
+        "It does not compile, because @Override finds no Parent method with that parameter list.",
+        "It compiles, and print(long) is both an overload and an override.",
+        "It does not compile, because a child may not widen a parameter type."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "widening int to long is not part of overriding. The parameter lists have to match exactly.",
+        "2": "without @Override it is a legal overload, but @Override makes the mismatch a compile error.",
+        "3": "a child may add an overload with any parameter type. The error comes from @Override, not widening."
+      },
+      "explanation": "An override must keep the same parameter list, so print(long) is an overload @Override rejects.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_29-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "class Parent {\nstatic void show() { System.out.println(\"parent\"); }\n}\nclass Child extends Parent {\nstatic void show() { System.out.println(\"child\"); }\n}\npublic class Main {\npublic static void main(String[] args) {\nParent ref = new Child();\nref.show();\n}\n}",
+      "options": [
+        "It does not compile, because @Override is missing on show().",
+        "parent, because a static method is chosen from the reference type, not the object type.",
+        "It does not compile, because Child may not declare show().",
+        "child, because the object is a Child."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "@Override is optional, and on a static method it would be an error.",
+        "2": "hiding a static method with the same signature is allowed.",
+        "3": "that is how an overridden instance method behaves. A static method follows the reference."
+      },
+      "explanation": "A static method is hidden, not overridden, so the call is bound from the reference type, Parent.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_30-a-child-class-overrides-a-public-method-",
+      "difficulty": "medium",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Method Overriding In Java",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "A child class overrides a public method that returns Number. Which change is legal?",
+      "options": [
+        "Reducing the access from public to package-private, because a child may be more restrictive.",
+        "Making the child method private, because the child owns its own code.",
+        "Narrowing the return type to Integer, because an override may return a subtype.",
+        "Making the child method static, because static methods are not inherited."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "reducing access is forbidden. Callers already hold the public promise made by the parent.",
+        "1": "private is the most restrictive choice of all, so it is forbidden for the same reason.",
+        "3": "a static method hides the parent's method instead of overriding it, so it is not an override."
+      },
+      "explanation": "An override may narrow the return type to a subtype, but access may be widened, never reduced.",
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_true-false-mcq_5",
@@ -14003,6 +16585,168 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
     },
     {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_13-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class S {\npublic static void main(String[] args) {\nString s = String.format(\"Hi %s\", \"Bob\");\nSystem.out.println(s);\n}\n}",
+      "options": [
+        "It does not compile, because String.format returns void.",
+        "Hi Bob",
+        "Hi %s, because format cannot replace specifiers.",
+        "Nothing, because format only builds the text and never prints it."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "format returns a String. It is printf that returns void.",
+        "2": "placeholders work the same in format and in printf.",
+        "3": "format does build the text, but the println on the next line prints it."
+      },
+      "explanation": "String.format returns the formatted text without printing, so it is stored in s and printed later.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_14-what-is-printed-by-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.printf(\"%.2f%n\", 3.14159);",
+      "options": [
+        "3.1",
+        "3",
+        "3.14",
+        "3.14159"
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "one decimal place would need %.1f.",
+        "1": "%d prints whole numbers, while %.2f keeps the decimals.",
+        "3": "that is the number as written in the source, not as the format shows it."
+      },
+      "explanation": "The .2 sets two digits after the decimal point and rounds, so 3.14159 becomes 3.14.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_15-what-happens-when-this-statement-runs",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this statement runs?",
+      "code": "System.out.printf(\"%d%n\", \"42\");",
+      "options": [
+        "It prints the text 42 together with its quotes.",
+        "It prints 42, because the text is parsed as a number.",
+        "It throws IllegalFormatConversionException.",
+        "It does not compile, because %d needs an int."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "%d never prints text, and quotes are never added.",
+        "1": "nothing is parsed; the argument type must already match the specifier.",
+        "3": "the format string is not checked at compile time, so it fails at runtime."
+      },
+      "explanation": "%d accepts only an integral argument, so a String does not match and the call fails while it runs.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_16-what-is-printed-by-this-statement",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.printf(\"[%5d]%n\", 12345678);",
+      "options": [
+        "It throws IllegalFormatConversionException.",
+        "[12345678]",
+        "[12345678     ]",
+        "[12345]"
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the argument is an int and %d expects an integral value.",
+        "2": "padding is added only when the value is shorter than the width.",
+        "3": "a formatter never drops digits so that the value fits the width."
+      },
+      "explanation": "The 5 is a minimum width, so a wider value is printed in full and is never truncated.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_17-what-happens-when-this-declaration-is-co",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this declaration is compiled?",
+      "code": "String s = \"\"\"Hello\"\"\";",
+      "options": [
+        "It compiles and s holds Hello followed by a line break.",
+        "It does not compile, because a text block needs a line break after the opening quotes.",
+        "It compiles only if the closing triple quotes are escaped.",
+        "It compiles and s holds Hello with no line break."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "the same missing line terminator stops this version compiling too.",
+        "2": "escaping the quotes would make ordinary quotes, not a text block.",
+        "3": "the line terminator after the opening delimiter cannot be omitted."
+      },
+      "explanation": "A text block must have three double quotes followed by a line terminator, so content cannot start on that same line.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_18-what-is-printed-by-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.println(\"Hello %n world\");",
+      "options": [
+        "Hello, then a new line, then world.",
+        "Hello world, because %n is removed.",
+        "Hello %n world, with the characters printed as they are.",
+        "It does not compile, because %n is not a valid character."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the new line appears with printf(\"Hello %n world\").",
+        "1": "println treats % as an ordinary character and removes nothing.",
+        "3": "% and n are plain characters in a String literal, so the code compiles."
+      },
+      "explanation": "%n is a format specifier, so it is converted only by printf or format. println does not format, so it prints literally.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+    },
+    {
       "type": "mcq",
       "kind": "true-false",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_true-false-mcq_5",
@@ -14266,6 +17010,168 @@ const QUESTIONS_BANK = {
         "Use replace() when the target is a literal value, because it does not compile a Regular Expression and is faster. Use replaceAll() only when the target is really meant to be a pattern."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_12-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class S {\npublic static void main(String[] args) {\nString s = \"Java\";\ns.concat(\" Rocks\");\nSystem.out.println(s);\n}\n}",
+      "options": [
+        "It throws NullPointerException.",
+        "Java Rocks",
+        "Java",
+        "JavaJava Rocks"
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "the argument is not null, so no exception is thrown.",
+        "1": "the joined text exists only as the returned value, which is ignored here.",
+        "3": "concat works on a copy, so the original text is never duplicated."
+      },
+      "explanation": "concat returns a brand new String and never edits the one it is called on, so s still holds Java.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_13-what-is-printed-by-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.println(\"Programming\".substring(0, 3));",
+      "options": [
+        "Pro",
+        "rog",
+        "Progr",
+        "It throws StringIndexOutOfBoundsException."
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "that is what substring(1, 4) produces, since the range starts one place later.",
+        "2": "that would be substring(0, 5), because the end index is exclusive.",
+        "3": "the end index may be at most length(), and 3 is well inside the String."
+      },
+      "explanation": "substring(begin, end) includes begin but excludes end, so indexes 0, 1 and 2 are copied.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_14-what-happens-when-this-statement-runs",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What happens when this statement runs?",
+      "code": "System.out.println(\"Java\".substring(2, 1));",
+      "options": [
+        "It prints an empty String.",
+        "It prints av, because substring swaps the two indexes.",
+        "It prints va",
+        "It throws StringIndexOutOfBoundsException."
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "an empty String comes from equal indexes such as substring(1, 1).",
+        "1": "substring does not reorder its arguments, so a reversed range is rejected.",
+        "2": "that is the result of the valid call substring(2), which runs to the end."
+      },
+      "explanation": "Both indexes are in range, but beginIndex 2 is greater than endIndex 1, so the reversed range throws.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_15-what-is-printed-by-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.println(\"Java\" + 10 + 20);",
+      "options": [
+        "Java30",
+        "It does not compile.",
+        "1020Java",
+        "Java1020"
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "that needs the numbers added first, as in \"Java\" + (10 + 20).",
+        "1": "one String operand makes + a concatenation, which is legal.",
+        "2": "operands are joined in the written order, so the text stays on the left."
+      },
+      "explanation": "+ works left to right, so \"Java\" + 10 joins first, and joining 20 to a String gives Java1020.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_16-what-is-printed-by-this-statement",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.println(\"a.b.c\".replaceAll(\".\", \"-\"));",
+      "options": [
+        "-a-b-c",
+        "It throws PatternSyntaxException.",
+        "-----",
+        "a-b-c"
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "each match is replaced in place, so no dash is added beside every dot.",
+        "1": "\".\" is a valid regex, so no exception is thrown.",
+        "3": "that is what replace(\".\", \"-\") gives, because replace treats the dot literally."
+      },
+      "explanation": "In replaceAll the first argument is regex, so \".\" matches any character and all five are replaced.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_17-what-is-printed-by-this-statement",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this statement?",
+      "code": "System.out.println('A' + 1);",
+      "options": [
+        "66",
+        "B",
+        "It does not compile.",
+        "A1"
+      ],
+      "answer": 0,
+      "whyByOption": {
+        "1": "the letter B needs a cast back to char, as in (char) ('A' + 1).",
+        "2": "the expression is legal, because + accepts two numeric operands.",
+        "3": "+ with a char and an int does arithmetic; it never joins them as text."
+      },
+      "explanation": "A char is numeric, so 'A' + 1 uses the code point 65 and adds 1, and the int result prints as 66.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
     },
     {
@@ -14915,6 +17821,167 @@ const QUESTIONS_BANK = {
         "3": "toString() is exactly how you convert a StringBuilder back to a String."
       },
       "explanation": "toString() returns an immutable String holding the characters as they were at that instant. Later changes to the StringBuilder cannot affect it, because String never changes.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_28-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class S {\npublic static void main(String[] args) {\nStringBuilder sb = new StringBuilder(\"A\");\nsb.append(\"B\").append(\"C\");\nSystem.out.println(sb);\n}\n}",
+      "options": [
+        "It does not compile, because append returns void.",
+        "A B C",
+        "A",
+        "ABC"
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "append returns the StringBuilder itself, which is what allows chaining.",
+        "1": "append joins text with no separator inserted between the parts.",
+        "2": "the first append already changed the buffer, so it no longer holds just A."
+      },
+      "explanation": "append changes the same builder and returns it, so calls can be chained and the buffer ends up ABC.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_29-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class S {\npublic static void main(String[] args) {\nStringBuilder sb = new StringBuilder(\"test\");\nSystem.out.println(sb.equals(\"test\"));\n}\n}",
+      "options": [
+        "It throws ClassCastException.",
+        "false",
+        "true",
+        "It does not compile, because equals needs a StringBuilder."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "equals takes an Object, so passing a String argument is fine.",
+        "2": "true needs the text compared, which only happens after calling toString().",
+        "3": "the call is legal; it simply returns false."
+      },
+      "explanation": "StringBuilder does not override equals, so it compares references, and a builder can never equal a String.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_30-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class S {\npublic static void main(String[] args) {\nStringBuilder sb = new StringBuilder(\"Hello\");\nString s = sb.toString();\nsb.append(\" World\");\nSystem.out.println(s);\n}\n}",
+      "options": [
+        "Hello World",
+        "Hello",
+        "World",
+        "It does not compile, because s is used after being created."
+      ],
+      "answer": 1,
+      "whyByOption": {
+        "0": "that is printed only if toString is called after the append.",
+        "2": "append adds to the end, so the earlier Hello is still in the builder.",
+        "3": "taking a snapshot does not stop the builder from being changed later."
+      },
+      "explanation": "toString builds a new immutable String from the text held then, so later appends cannot affect it.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_31-what-is-printed-by-this-program",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class S {\npublic static void main(String[] args) {\nStringBuilder sb = new StringBuilder(\"Hello\");\nSystem.out.println(sb.capacity());\n}\n}",
+      "options": [
+        "5",
+        "10",
+        "16",
+        "21"
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "5 is the length, which is the number of characters actually stored.",
+        "1": "capacity is the text length plus 16, not double the text length.",
+        "2": "16 is the spare room of the empty constructor, without room for Hello."
+      },
+      "explanation": "This constructor sets capacity to the text length plus the default 16, so 5 + 16 gives 21.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_32-which-statement-about-stringbuilder-and-",
+      "difficulty": "hard",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "Which statement about StringBuilder and StringBuffer is correct?",
+      "options": [
+        "StringBuilder cannot change after creation, while StringBuffer can.",
+        "The two differ only in name and behave identically in every situation.",
+        "StringBuffer methods are synchronised, so it is safe when threads share one buffer.",
+        "StringBuilder methods are synchronised, so it is the thread-safe choice."
+      ],
+      "answer": 2,
+      "whyByOption": {
+        "0": "both are mutable. It is String that cannot be changed.",
+        "1": "they differ in synchronisation, which affects both safety and speed.",
+        "3": "StringBuilder has no locking, so it is faster but not thread-safe."
+      },
+      "explanation": "StringBuffer is the older type and its methods are synchronised, which is safe for shared threads but slower.",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+    },
+    {
+      "type": "scq",
+      "kind": "custom",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_33-what-is-printed-by-this-program",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "tags": [
+        "ocjp"
+      ],
+      "question": "What is printed by this program?",
+      "code": "public class S {\npublic static void main(String[] args) {\nString s = \"Hello\";\ns.toUpperCase();\ns = s + \"!\";\nSystem.out.println(s);\n}\n}",
+      "options": [
+        "!Hello",
+        "Hello",
+        "HELLO!",
+        "Hello!"
+      ],
+      "answer": 3,
+      "whyByOption": {
+        "0": "+ appends to the end; it does not place the new text first.",
+        "1": "the assignment on the next line stores the longer text in s.",
+        "2": "the upper case text was never stored, so it does not survive."
+      },
+      "explanation": "toUpperCase returns a new String and the unassigned result is discarded, so s still holds Hello.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
     },
     {
@@ -15929,10 +18996,10 @@ const QUICK_REVISION_BANK = {
     "syntax": "public class SwitchStatementInJava {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"If-else example:\");\n        ifElseExample(3);\n\n        System.out.println();\n        System.out.println(\"Traditional switch example:\");\n        switchCase(2);",
     "badges": [
       "check",
+      "label",
       "main",
       "ifElseExample",
-      "switchCase",
-      "switchCaseMultipleCasesTogether"
+      "switchCase"
     ],
     "tables": []
   },
@@ -16112,7 +19179,7 @@ const QUICK_REVISION_BANK = {
       "tick",
       "resetShared",
       "bad",
-      "isConvertible"
+      "main"
     ],
     "tables": [
       {

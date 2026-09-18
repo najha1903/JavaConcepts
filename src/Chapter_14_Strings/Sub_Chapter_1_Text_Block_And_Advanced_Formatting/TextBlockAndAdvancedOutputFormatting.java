@@ -112,6 +112,78 @@ import java.util.IllegalFormatConversionException;
 // @gotcha %n only has meaning inside a format string. `System.out.println("Hello %n")` prints the characters `%n` literally, because println is not a formatter.
 
 
+// @quiz (OCJP, HARD) What is printed by this program?
+// @code public class S {
+// @code     public static void main(String[] args) {
+// @code         String s = String.format("Hi %s", "Bob");
+// @code         System.out.println(s);
+// @code     }
+// @code }
+// @option Hi Bob [correct]
+// @option Nothing, because format only builds the text and never prints it.
+// @option It does not compile, because String.format returns void.
+// @option Hi %s, because format cannot replace specifiers.
+// @explain String.format returns the formatted text without printing, so it is stored in s and printed later.
+// @why B: format does build the text, but the println on the next line prints it.
+// @why C: format returns a String. It is printf that returns void.
+// @why D: placeholders work the same in format and in printf.
+
+// @quiz (OCJP, MEDIUM) What is printed by this statement?
+// @code System.out.printf("%.2f%n", 3.14159);
+// @option 3.14 [correct]
+// @option 3.14159
+// @option 3.1
+// @option 3
+// @explain The .2 sets two digits after the decimal point and rounds, so 3.14159 becomes 3.14.
+// @why B: that is the number as written in the source, not as the format shows it.
+// @why C: one decimal place would need %.1f.
+// @why D: %d prints whole numbers, while %.2f keeps the decimals.
+
+// @quiz (OCJP, HARD) What happens when this statement runs?
+// @code System.out.printf("%d%n", "42");
+// @option It throws IllegalFormatConversionException. [correct]
+// @option It prints 42, because the text is parsed as a number.
+// @option It prints the text 42 together with its quotes.
+// @option It does not compile, because %d needs an int.
+// @explain %d accepts only an integral argument, so a String does not match and the call fails while it runs.
+// @why B: nothing is parsed; the argument type must already match the specifier.
+// @why C: %d never prints text, and quotes are never added.
+// @why D: the format string is not checked at compile time, so it fails at runtime.
+
+// @quiz (OCJP, HARD) What is printed by this statement?
+// @code System.out.printf("[%5d]%n", 12345678);
+// @option [12345678] [correct]
+// @option [12345]
+// @option [12345678     ]
+// @option It throws IllegalFormatConversionException.
+// @explain The 5 is a minimum width, so a wider value is printed in full and is never truncated.
+// @why B: a formatter never drops digits so that the value fits the width.
+// @why C: padding is added only when the value is shorter than the width.
+// @why D: the argument is an int and %d expects an integral value.
+
+// @quiz (OCJP, HARD) What happens when this declaration is compiled?
+// @code String s = """Hello""";
+// @option It does not compile, because a text block needs a line break after the opening quotes. [correct]
+// @option It compiles and s holds Hello with no line break.
+// @option It compiles and s holds Hello followed by a line break.
+// @option It compiles only if the closing triple quotes are escaped.
+// @explain A text block must have three double quotes followed by a line terminator, so content cannot start on that same line.
+// @why B: the line terminator after the opening delimiter cannot be omitted.
+// @why C: the same missing line terminator stops this version compiling too.
+// @why D: escaping the quotes would make ordinary quotes, not a text block.
+
+// @quiz (OCJP, MEDIUM) What is printed by this statement?
+// @code System.out.println("Hello %n world");
+// @option Hello %n world, with the characters printed as they are. [correct]
+// @option Hello, then a new line, then world.
+// @option Hello world, because %n is removed.
+// @option It does not compile, because %n is not a valid character.
+// @explain %n is a format specifier, so it is converted only by printf or format. println does not format, so it prints literally.
+// @why B: the new line appears with printf("Hello %n world").
+// @why C: println treats % as an ordinary character and removes nothing.
+// @why D: % and n are plain characters in a String literal, so the code compiles.
+
+
 public class TextBlockAndAdvancedOutputFormatting {
 
     /*

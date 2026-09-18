@@ -15,6 +15,69 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Chall
 //
 // @quiz (OCJP) How should a caller choose values for String[] args in main?
 // @answer Provide command-line words after the class name; Java stores them as args[0], args[1], and so on, using zero-based indexing.
+
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int score = 5000;
+// @code if (score < 5000 && score > 1000) { System.out.println("A"); }
+// @code else if (score < 1000) { System.out.println("B"); }
+// @code else { System.out.println("C"); }
+// @option C, because neither condition is true for 5000. [correct]
+// @option A, because 5000 is greater than 1000.
+// @option B, because the else-if is tested when the first test fails.
+// @option A and C, because the else block always runs as well.
+// @explain 5000 < 5000 is false and 5000 < 1000 is false, so the else branch is the only one left.
+// @why A: the first test also requires score to be below 5000, and it is not.
+// @why B: the else-if is tested, but its condition is false too, so B is not printed.
+// @why D: only one branch of an if/else-if/else chain ever runs.
+
+// @quiz (OCJP, MEDIUM) With score = 5000, levelCompleted = 5 and bonus = 100, what does this print?
+// @code int finalScore = score + (levelCompleted * bonus);
+// @code System.out.println("Your final score was " + finalScore);
+// @option Your final score was 5500, because the parentheses give 500 and 5000 + 500 is 5500. [correct]
+// @option Your final score was 50100, because the numbers are joined as text.
+// @option Your final score was 5100, because bonus is added once per level.
+// @option It does not compile, because finalScore is used outside its block.
+// @explain The parentheses are evaluated first, giving 5 * 100 = 500, and the addition then gives 5500.
+// @why B: the values inside the parentheses are numbers, so they are added, not joined.
+// @why C: bonus is multiplied by levelCompleted exactly once, giving 500.
+// @why D: the line that uses finalScore is inside the same block, so it is in scope.
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code if (gameOver) { int finalScore = 100; }
+// @code System.out.println(finalScore);
+// @option No. finalScore is declared in the if block, so it is out of scope at the next line. [correct]
+// @option Yes, and it prints 100 when gameOver is true.
+// @option Yes, and it prints 0 when gameOver is false.
+// @option Yes, because a block-local variable lives until the method ends.
+// @explain A local variable lives only inside the block that declares it, so the name is gone after the brace.
+// @why B: the file is rejected while compiling, so nothing is printed.
+// @why C: a variable that is out of scope is a compile error, not a zero.
+// @why D: block scope ends at the closing brace, not at the end of the method.
+
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code if (gameOver) { int n = 1; System.out.println(n); }
+// @code if (gameOver) { int n = 2; System.out.println(n); }
+// @option Yes, and it prints 1 then 2, because each block has its own n. [correct]
+// @option No, because n is declared twice in the same method.
+// @option Yes, and it prints 2 both times, because the second declaration wins.
+// @option No, because a local variable may be declared only once per class.
+// @explain The two blocks are separate scopes, so each block declares and prints its own n.
+// @why B: the duplicate-name rule applies within one scope, and these two scopes differ.
+// @why C: the first block prints its own n, which is still 1.
+// @why D: local variables in separate blocks may share a name.
+
+// @quiz (OCJP, HARD) Does this code compile?
+// @code int score = 10;
+// @code if (gameOver) { int score = 20; System.out.println(score); }
+// @option No. A local variable in an inner block may not shadow one from the enclosing block. [correct]
+// @option Yes, and it prints 20, because the inner declaration hides the outer one.
+// @option Yes, and it prints 10, because the outer declaration wins.
+// @option Yes, and it prints 30, because the two values are added.
+// @explain Only fields may be hidden this way; a local variable may not shadow another local variable.
+// @why B: hiding a name this way is allowed for fields, not for local variables.
+// @why C: the file does not compile, so no value is printed at all.
+// @why D: declarations never add their values together.
+
 public class CodeBlocksIfThenElse {
 
     public static void main(String[] args) {

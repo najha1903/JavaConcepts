@@ -290,6 +290,82 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
 // @why C: testing first is what a while loop does.
 // @why D: running zero times is impossible with do-while, which is the point of the question.
 
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int i = 10;
+// @code while (i < 5) {
+// @code     System.out.print(i + " ");
+// @code     i++;
+// @code }
+// @code System.out.println("done");
+// @option done, and nothing else, because the condition is false before the first pass. [correct]
+// @option 10, then done, because the body always runs once.
+// @option 10 11 12 ... and the program never stops.
+// @option Nothing at all, not even done.
+// @explain A while loop tests first, so i < 5 is already false, the body is skipped and done still prints.
+// @why B: the condition fails before the body, so 10 is never printed.
+// @why C: the body never runs, so i is never printed and never incremented.
+// @why D: the println after the loop is outside it, so it still runs.
+// @quiz (OCJP, HARD) What happens when this code runs?
+// @code int i = 0;
+// @code while (i < 3);
+// @code {
+// @code     System.out.println("body " + i);
+// @code     i++;
+// @code }
+// @option The loop hangs forever, and the block after it is never part of the loop. [correct]
+// @option It prints body 0, body 1, body 2 and then stops.
+// @option It does not compile, because a while loop must have a body.
+// @option It prints body 0 exactly once.
+// @explain The semicolon after while (i < 3) is the loop body, so i never changes and it spins forever.
+// @why B: the loop never enters that block, so nothing is printed.
+// @why C: an empty statement is a legal body, so the file compiles.
+// @why D: the block is outside the loop and is reached only if the loop ends, which it does not.
+// @quiz (OCJP, MEDIUM) What does this loop print?
+// @code int n = 1234;
+// @code while (n > 0) {
+// @code     System.out.print(n % 10 + " ");
+// @code     n = n / 10;
+// @code }
+// @option 4 3 2 1, because n % 10 takes the last digit and n / 10 removes it. [correct]
+// @option 1 2 3 4, because the digits come out in their original order.
+// @option 1234, because the whole number is printed on every pass.
+// @option 4 3 2 1 0, because the loop also runs when n is 0.
+// @explain n % 10 gives the last digit and n / 10 drops it, so 1234 comes out as 4, 3, 2, 1.
+// @why B: the last digit is the easiest one to reach, so the order is reversed.
+// @why C: the loop prints n % 10, not n itself.
+// @why D: the test is n > 0, so the pass with n equal to 0 never happens.
+// @quiz (OCJP, HARD) What happens when this loop runs?
+// @code int count = 0;
+// @code int sum = 0;
+// @code while (count < 4) {
+// @code     if (count % 2 == 0) { continue; }
+// @code     sum += count;
+// @code     count++;
+// @code }
+// @option It never ends, because the continue at count = 0 skips the increment. [correct]
+// @option It ends with sum equal to 4.
+// @option It ends with sum equal to 6.
+// @option It prints sum four times and then ends.
+// @explain At count 0 the test is true, so continue jumps back before the increment and count never moves.
+// @why B: sum is never changed, because the increment line is never reached.
+// @why C: the sum += count line is below the continue and is never executed.
+// @why D: there is no print statement anywhere inside this loop.
+// @quiz (OCJP, MEDIUM) What does this loop print?
+// @code int i = 0;
+// @code while (i < 10) {
+// @code     if (i == 4) { break; }
+// @code     System.out.print(i + " ");
+// @code     i++;
+// @code }
+// @option 0 1 2 3, because break leaves the loop as soon as i is 4. [correct]
+// @option 0 1 2 3 4, because the value 4 is printed before the break.
+// @option 0 1 2 3 4 5 6 7 8 9, because break only skips one pass.
+// @option 4, because break prints the value that stopped the loop.
+// @explain break exits at once, and the test comes before the print, so 4 is never printed.
+// @why B: the break happens before the print on that pass.
+// @why C: break ends the whole loop, it does not skip a single iteration.
+// @why D: break does not print anything.
+
 public class WhileLoops {
 
     /* while loop simply has expression

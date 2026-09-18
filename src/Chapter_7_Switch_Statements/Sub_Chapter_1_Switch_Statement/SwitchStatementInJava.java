@@ -282,6 +282,84 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // @why C: execution starts at the matching case, not at default.
 // @why D: x is 2, so case 2 matches and default is not needed.
 
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int x = 2;
+// @code switch (x) {
+// @code     case 1:
+// @code     case 2: System.out.print("A");
+// @code     case 3: System.out.print("B"); break;
+// @code     default: System.out.print("C");
+// @code }
+// @option AB, because cases 1 and 2 share a body, and with no break execution falls into case 3. [correct]
+// @option A, because the matching label stops at the end of its own statement.
+// @option ABC, because execution falls through to default as well.
+// @option It does not compile, because case 1 has no statements of its own.
+// @explain Cases 1 and 2 share one body printing A with no break, so flow falls into case 3 and prints B.
+// @why B: B alone would need a break written straight after the shared body.
+// @why C: default runs only when no label matches, and here case 2 matched.
+// @why D: an empty label is legal and is exactly how cases are grouped.
+// @quiz (OCJP, MEDIUM) What is printed by this code?
+// @code int x = 4;
+// @code switch (x) {
+// @code     default: System.out.print("D");
+// @code     case 1: System.out.print("A");
+// @code     case 2: System.out.print("B");
+// @code }
+// @option DAB, because 4 matches nothing, so execution starts at default and falls through below. [correct]
+// @option D, because default always ends the switch once it runs.
+// @option AB, because the case labels are tested before default is used.
+// @option It does not compile, because default must be written last.
+// @explain 4 matches no label, so default runs, and with no break the flow continues into case 1 and case 2.
+// @why B: default has no break, so the flow keeps going into case 1 and case 2.
+// @why C: default is skipped only when a case label matches, and 4 matches none.
+// @why D: default may be written first; its position does not affect compilation.
+// @quiz (OCJP, MEDIUM) Does this code compile?
+// @code long value = 2L;
+// @code switch (value) {
+// @code     case 1: System.out.println("one"); break;
+// @code     case 2: System.out.println("two"); break;
+// @code     default: System.out.println("other");
+// @code }
+// @option No, because long is not a valid switch selector type. [correct]
+// @option Yes, and it prints two.
+// @option Yes, and it prints other, because a long cannot match an int case label.
+// @option Yes, but only when the case labels carry the L suffix.
+// @explain long is not a valid selector type; float, double and boolean are rejected in the same way.
+// @why B: the file never compiles, so nothing is printed.
+// @why C: a long selector is a compile error, not a quiet fall-through to default.
+// @why D: adding L to the labels does not make long a legal selector type.
+// @quiz (OCJP, HARD) Does this switch compile?
+// @code int x = 97;
+// @code switch (x) {
+// @code     case 'a': System.out.println("letter"); break;
+// @code     case 97: System.out.println("number"); break;
+// @code     default: System.out.println("other");
+// @code }
+// @option No, because 'a' and 97 are the same constant value, so the labels are duplicates. [correct]
+// @option Yes, and it prints letter, because the char label is tested first.
+// @option Yes, and it prints number, because an int label outranks a char label.
+// @option Yes, and it prints other, because the two labels cancel each other out.
+// @explain The char literal 'a' has the value 97, so the two labels are duplicates and the file does not compile.
+// @why B: the duplicate labels are rejected before any statement can run.
+// @why C: labels have no ranking; the file simply does not compile.
+// @why D: default is used only when no label matches, but this switch never compiles.
+// @quiz (OCJP, HARD) What is printed by this code?
+// @code static String label(String s) {
+// @code     switch (s) {
+// @code         case "one": return "1";
+// @code         case "two": return "2";
+// @code         default: return "?";
+// @code     }
+// @code }
+// @code System.out.println(label("ONE"));
+// @option ?, because String labels are matched exactly and "ONE" matches none, so default returns "?". [correct]
+// @option 1, because a switch on a String ignores letter case.
+// @option It does not compile, because the method needs a return statement after the switch.
+// @option null, because an unmatched String switch produces no value.
+// @explain String labels are compared with equals, so the case-sensitive "ONE" takes default and returns "?".
+// @why B: switch does not normalise case, so "ONE" never matches the label "one".
+// @why C: every path returns, so the switch cannot complete normally and no trailing return is needed.
+// @why D: the default branch always returns the literal "?", never null.
 public class SwitchStatementInJava {
 
     public static void main(String[] args) {
