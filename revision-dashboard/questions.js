@@ -3290,6 +3290,81 @@ const QUESTIONS_BANK = {
         "casting",
         "string-pool"
       ]
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-2-primitive-types_primitive-data-types_code_code-chapter-2-primitive-types-primitive-data-types-2147483648",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "literals",
+        "casting",
+        "string-pool"
+      ],
+      "question": "What does this code print?",
+      "code": "int max = Integer.MAX_VALUE;\nSystem.out.println(max + 1);",
+      "answer": [
+        "-2147483648"
+      ],
+      "explanation": "2147483648, which is Integer.MIN_VALUE — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-2-primitive-types_primitive-data-types_code_code-chapter-2-primitive-types-primitive-data-types-2-2-5",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "literals",
+        "casting",
+        "string-pool"
+      ],
+      "question": "What does this code print?",
+      "code": "System.out.println(5 / 2);\nSystem.out.println(5 / 2.0);",
+      "answer": [
+        "2\r\n2.5"
+      ],
+      "explanation": "2, because both operands are int — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-2-primitive-types_primitive-data-types_code_code-chapter-2-primitive-types-primitive-data-types-66-b",
+      "difficulty": "medium",
+      "chapter": "Chapter 2: Primitive Types",
+      "topic": "Primitive Data Types",
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "literals",
+        "casting",
+        "string-pool"
+      ],
+      "question": "What does this code print?",
+      "code": "char c = 'A';\nSystem.out.println(c + 1);\nSystem.out.println((char) (c + 1));",
+      "answer": [
+        "66\r\nB"
+      ],
+      "explanation": "66, because 'A' is 65 and c is promoted to int — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
     }
   ],
   "Chapter 3: Operators": [
@@ -4164,6 +4239,131 @@ const QUESTIONS_BANK = {
         "casting",
         "statements"
       ]
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-14-20",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "operators",
+        "statements"
+      ],
+      "question": "What does this code print?",
+      "code": "System.out.println(2 + 3 * 4);\nSystem.out.println((2 + 3) * 4);",
+      "answer": [
+        "14\r\n20"
+      ],
+      "explanation": "14, because * binds tighter than + — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-5-7",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "operators",
+        "statements"
+      ],
+      "question": "What does this code print?",
+      "code": "int i = 5;\nSystem.out.println(i++);\nSystem.out.println(++i);",
+      "answer": [
+        "5\r\n7"
+      ],
+      "explanation": "5, then i becomes 6. Use the value, then increment. — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-3-1-1",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "operators",
+        "statements"
+      ],
+      "question": "What does this code print?",
+      "code": "System.out.println(10 / 3);\nSystem.out.println(10 % 3);\nSystem.out.println(-10 % 3);",
+      "answer": [
+        "3\r\n1\r\n-1"
+      ],
+      "explanation": "3, not 3.33 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-30java-java1020-java",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operators Operands Expressions",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "operators",
+        "statements"
+      ],
+      "question": "What does this code print?",
+      "code": "System.out.println(10 + 20 + \"Java\");\nSystem.out.println(\"Java\" + 10 + 20);\nSystem.out.println(\"Java\" + (10 + 20));",
+      "answer": [
+        "30Java\r\nJava1020\r\nJava30"
+      ],
+      "explanation": "30Java — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-3-operators_operator-challenge_code_code-chapter-3-operators-operator-challenge-total-10000-0",
+      "difficulty": "medium",
+      "chapter": "Chapter 3: Operators",
+      "topic": "Operator Challenge",
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_2_OperatorsChallenge/OperatorChallenge.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ],
+      "question": "What does this code print?",
+      "code": "double first = 20.00d;\ndouble second = 80.00d;\ndouble total = (first + second) * 100.00d;\nSystem.out.println(\"Total = \" + total);",
+      "answer": [
+        "Total = 10000.0"
+      ],
+      "explanation": "Total = 10000.0 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
     }
   ],
   "Chapter 4: Statements And Indentations": [
@@ -4787,6 +4987,78 @@ const QUESTIONS_BANK = {
         "statements",
         "if-else"
       ]
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-4-statements-and-indentations_statements-white-space-and-indentation_code_code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-hello-world",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "statements",
+        "if-else"
+      ],
+      "question": "What does this code print?",
+      "code": "String message = \"Hello\"\n    + \" World\"\n    + \"!\";\nSystem.out.println(message);",
+      "answer": [
+        "Hello World!"
+      ],
+      "explanation": "Hello World! — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-4-statements-and-indentations_statements-white-space-and-indentation_code_code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-3",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "statements",
+        "if-else"
+      ],
+      "question": "What does this code print?",
+      "code": "int a = 1; int b = 2; System.out.println(a + b);",
+      "answer": [
+        "3"
+      ],
+      "explanation": "3 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-4-statements-and-indentations_statements-white-space-and-indentation_code_code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-15",
+      "difficulty": "medium",
+      "chapter": "Chapter 4: Statements And Indentations",
+      "topic": "Statements White Space And Indentation",
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "statements",
+        "if-else"
+      ],
+      "question": "What does this code print?",
+      "code": "int c=5     ;\nint     d =    10;\nSystem.out.println(c + d);",
+      "answer": [
+        "15"
+      ],
+      "explanation": "15 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
     }
   ],
   "Chapter 5: If Else Statements": [
@@ -9137,6 +9409,54 @@ const QUESTIONS_BANK = {
         "loops",
         "break-continue"
       ]
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-8-java-looping-concepts_for-statement_code_code-chapter-8-java-looping-concepts-for-statement-0-1-2-3-4-0-1-2-3-4-",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue"
+      ],
+      "question": "What does this code print?",
+      "code": "for (int i = 0; i < 5; i++) { System.out.print(i + \" \"); }\nfor (int i = 0; i <= 5; i++) { System.out.print(i + \" \"); }",
+      "answer": [
+        "0 1 2 3 4 0 1 2 3 4 5"
+      ],
+      "explanation": "0 1 2 3 4 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-8-java-looping-concepts_for-statement_code_code-chapter-8-java-looping-concepts-for-statement-1-2-4-5",
+      "difficulty": "medium",
+      "chapter": "Chapter 8: Java Looping Concepts",
+      "topic": "For Statement",
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue"
+      ],
+      "question": "What does this code print?",
+      "code": "for (int i = 1; i <= 5; i++) {\n    if (i == 3) { continue; }\n    System.out.print(i + \" \");\n}",
+      "answer": [
+        "1 2 4 5"
+      ],
+      "explanation": "1 2 4 5 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
     }
   ],
   "Chapter 9: While And Do While Looping Concepts": [
@@ -12448,6 +12768,56 @@ const QUESTIONS_BANK = {
         "strings",
         "casting"
       ]
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-11-parsing-values-reading-input_parsing-values-reading-input_code_code-chapter-11-parsing-values-reading-input-parsing-values-reading-input-42-42",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ],
+      "question": "What does this code print?",
+      "code": "int a = Integer.parseInt(\"42\");\nInteger b = Integer.valueOf(\"42\");\nSystem.out.println(a + \" / \" + b);",
+      "answer": [
+        "42 / 42"
+      ],
+      "explanation": "42 / 42 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-11-parsing-values-reading-input_parsing-values-reading-input_code_code-chapter-11-parsing-values-reading-input-parsing-values-reading-input-10050-150",
+      "difficulty": "medium",
+      "chapter": "Chapter 11: Parsing Values Reading Input",
+      "topic": "Parsing Values Reading Input",
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ],
+      "question": "What does this code print?",
+      "code": "System.out.println(\"100\" + \"50\");\nint sum = Integer.parseInt(\"100\") + Integer.parseInt(\"50\");\nSystem.out.println(sum);",
+      "answer": [
+        "10050\r\n150"
+      ],
+      "explanation": "10050, because + joins text — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
     }
   ],
   "Chapter 12: Exception Handling": [
@@ -22170,6 +22540,130 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool"
       ]
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-14-strings_text-block-and-advanced-output-formatting_code_code-chapter-14-strings-text-block-and-advanced-output-formatting-age-42-age-42",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ],
+      "question": "What does this code print?",
+      "code": "System.out.printf(\"Age = %d%n\", 42);\nString line = String.format(\"Age = %d\", 42);\nSystem.out.println(line);",
+      "answer": [
+        "Age = 42\r\nAge = 42"
+      ],
+      "explanation": "Age = 42 and moves to a new line — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-14-strings_text-block-and-advanced-output-formatting_code_code-chapter-14-strings-text-block-and-advanced-output-formatting-hello-hello-n",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "Text Block And Advanced Output Formatting",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ],
+      "question": "What does this code print?",
+      "code": "System.out.printf(\"Hello %n\");\nSystem.out.println(\"Hello %n\");",
+      "answer": [
+        "Hello \r\nHello %n"
+      ],
+      "explanation": "Hello and moves to a new line — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-14-strings_string-method-and-best-practices_code_code-chapter-14-strings-string-method-and-best-practices-java-java-is-fun",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool"
+      ],
+      "question": "What does this code print?",
+      "code": "String s = \"Java\";\ns.concat(\" is fun\");\nSystem.out.println(s);\nString t = s.concat(\" is fun\");\nSystem.out.println(t);",
+      "answer": [
+        "Java\r\nJava is fun"
+      ],
+      "explanation": "Java, s never changed — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-14-strings_string-method-and-best-practices_code_code-chapter-14-strings-string-method-and-best-practices-true-false-true",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Method And Best Practices",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool"
+      ],
+      "question": "What does this code print?",
+      "code": "String a = \"hello\";\nString b = \"hello\";\nString c = new String(\"hello\");\nSystem.out.println(a == b);\nSystem.out.println(a == c);\nSystem.out.println(a.equals(c));",
+      "answer": [
+        "true\r\nfalse\r\ntrue"
+      ],
+      "explanation": "true, both literals come from the string pool — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "chapter-14-strings_string-builder-concepts_code_code-chapter-14-strings-string-builder-concepts-01234",
+      "difficulty": "medium",
+      "chapter": "Chapter 14: Strings",
+      "topic": "String Builder Concepts",
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool"
+      ],
+      "question": "What does this code print?",
+      "code": "String result = \"\";\nfor (int i = 0; i < 5; i++) { result = result + i; }\n\nStringBuilder builder = new StringBuilder();\nfor (int i = 0; i < 5; i++) { builder.append(i); }\nSystem.out.println(builder.toString());",
+      "answer": [
+        "01234"
+      ],
+      "explanation": "01234 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
     }
   ],
   "Chapter 15: Composition": [

@@ -7,6 +7,7 @@ const vm = require('vm');
 // instead of matching nothing.
 const conceptCatalogue = require(path.join(__dirname, '..', 'data', 'java-concepts.js'));
 const { OCJP_BANK } = require(path.join(__dirname, '..', 'data', 'ocjp-bank.js'));
+const { DERIVED_CODE_QUESTIONS } = require(path.join(__dirname, '..', 'data', 'code-questions.js'));
 
 // ==========================================================================
 // The marker vocabulary, in one place.
@@ -1852,6 +1853,39 @@ function buildStarterQuestions(chapterName, topics) {
 }
 
 // ==========================================================================
+// The derived "what does this print?" questions
+// ==========================================================================
+// Real code from the notes, with the answer PROVED by compiling and running it in
+// scripts/derive-code-questions.js. Nothing is inferred here; this only carries
+// them into the question set. They are tagged `predict` and `code` so they are
+// filterable, and kind 'derived' keeps them distinguishable from the questions
+// generated from note text, the ones the author wrote, and the researched bank.
+function buildDerivedCodeQuestions(chapterName) {
+  const questions = [];
+  for (const entry of DERIVED_CODE_QUESTIONS) {
+    if (entry.chapter !== chapterName) continue;
+    questions.push({
+      type: 'predict',
+      kind: 'derived',
+      qid: makeQid(chapterName, entry.topic, 'code', entry.id),
+      difficulty: 'medium',
+      chapter: chapterName,
+      topic: entry.topic,
+      topicPath: entry.topicPath,
+      tags: ['predict', 'ocjp', 'code'],
+      concepts: [],
+      question: 'What does this code print?',
+      code: entry.code,
+      answer: [entry.answer],
+      explanation: entry.explanation
+        ? `${entry.explanation} — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it.`
+        : `The output above is what the code really printed when it was run.`
+    });
+  }
+  return questions;
+}
+
+// ==========================================================================
 // Build practice challenges from *Challenge*.java files
 // ==========================================================================
 // Rejects a scraped test case that is not trustworthy. An expectation of "." or a
@@ -2647,7 +2681,7 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
     const ocjpQs = buildOCJPQuestions(chName, chapter.topics);
     // A quiz must never show the same question twice. Several sub-chapters share a
     // file name, so without this a chapter could repeat one question many times.
-    const combined = [...starterQs, ...ocjpQs, ...buildBankQuestions(chName, chapter.topics, conceptsByPath)].map(q => ({ ...q, concepts: q.concepts && q.concepts.length ? q.concepts : conceptsForQuestion(q) }));
+    const combined = [...starterQs, ...ocjpQs, ...buildBankQuestions(chName, chapter.topics, conceptsByPath), ...buildDerivedCodeQuestions(chName)].map(q => ({ ...q, concepts: q.concepts && q.concepts.length ? q.concepts : conceptsForQuestion(q) }));
     const seenQuestions = new Set();
     const deduped = combined.filter(q => {
       const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;

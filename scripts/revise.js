@@ -29,6 +29,20 @@ function openPage(file) {
   }
 }
 
+// The derived code questions are regenerated from the notes BEFORE the parse, so
+// they are always in step with the code blocks they came from. This is the only
+// step that compiles anything, and it is cached by content: the file is only
+// rewritten when a block's derived question would actually change.
+const derive = spawnSync(process.execPath, [path.join(__dirname, 'derive-code-questions.js'), '--quiet'], {
+  cwd: root,
+  stdio: 'inherit'
+});
+if (derive.status !== 0) {
+  console.error('');
+  console.error('Could not derive the code questions. Nothing was proposed.');
+  process.exit(derive.status || 1);
+}
+
 const propose = spawnSync(process.execPath, [path.join(__dirname, 'parse-concepts.js'), '--propose', '--no-prompt'], {
   cwd: root,
   stdio: 'inherit'

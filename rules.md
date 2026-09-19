@@ -317,6 +317,24 @@ The file explains the shape of an entry at the top. Two rules matter when adding
 
 The questions are original and written against the published objectives for Oracle's 1Z0-819 exam, which are public syllabus. Oracle's actual exam questions are copyrighted and covered by an exam NDA, and this repository is public, so none of them are reproduced.
 
+## Questions Derived From Real Code
+
+Alongside the questions generated from your note text and the ones you write with `@quiz`, the tool derives "what does this print?" questions from the **real code blocks in your notes**.
+
+It works like this. Most of your code blocks already carry the answer in a comment:
+
+```java
+int a = 1; int b = 2; System.out.println(a + b);   // prints 3
+```
+
+The tool compiles and runs the block, and takes **the output the JVM actually produced** as the answer. It is not inferred or guessed. It then strips that comment from the code the question shows, so the question does not give itself away, and keeps your comment as the explanation, in your words.
+
+That is why these are trustworthy where a generated question is not: the answer was executed, not reasoned about. `npm run revise` re-runs every one of them, so if a derived answer ever stops matching the code, the build fails.
+
+Nothing needs to be authored for this, but it only finds questions where your code actually prints something and you noted the result. To get more, add a `// prints ...` comment beside a block that prints.
+
+The result is cached against a fingerprint of your code blocks, so it only recompiles when a block changes. Use `npm run derive:code -- --force` to rebuild it from scratch.
+
 ## Section Markers
 
 A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.
@@ -450,6 +468,7 @@ The audit checks that topics, question IDs, question-to-topic links, answer shap
 | `check-practice.js` | Every auto-checked challenge runs against your own solution, so none can reject correct code. |
 | `check-questions.js` | Every question about output is compiled and run, and the real output is compared with the answer marked correct. |
 | `check-bank.js` | Every hand-researched OCJP question marks the answer the bank intends, and every wrong option says why it is wrong. |
-| `coverage.js --check` | Fails on a chapter with no questions, no easy question, no hard question, or no takeaways. Reports the finer gaps as warnings. |
+| `check-quality.js` | Every question gives feedback on a wrong choice, and none gives the answer away without reasoning. |
+| `coverage.js --check` | Fails on a chapter with no questions, no easy question, no hard question, or no takeaways, and on a concept your notes cover that no question tests. Reports the finer gaps as warnings. |
 
 The coverage check reports **"every topic is covered"** when all 142 topics have material of their own. A topic counts as covered when it has a question, a generated practice challenge, or — for a file whose notes open with `Challenge:` or `Deep Problem:` — is an exercise you wrote and solved yourself. Those exercise files are listed separately, because there is nothing for the tool to generate for them.

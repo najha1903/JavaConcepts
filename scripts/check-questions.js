@@ -133,14 +133,24 @@ async function main() {
       if (!program) { skippedFragments++; continue; }
 
       const options = question.options || [];
-      const answerIndex = question.type === 'mcq'
-        ? (Array.isArray(question.answer) ? question.answer[0] : -1)
-        : question.answer;
-      if (typeof answerIndex !== 'number' || answerIndex < 0 || answerIndex >= options.length) {
-        skippedNotOutput++;
-        continue;
+      // A predict question has no options: the answer IS the printed text, so it can
+      // be compared with the real output directly. These are the questions whose
+      // whole point is that the answer was produced by running the code, so skipping
+      // them would leave the most provable questions unproven.
+      let claimed = null;
+      if (!options.length && Array.isArray(question.answer)) {
+        claimed = question.answer.map(String).join('\n').trim();
+      } else {
+        const answerIndex = question.type === 'mcq'
+          ? (Array.isArray(question.answer) ? question.answer[0] : -1)
+          : question.answer;
+        if (typeof answerIndex !== 'number' || answerIndex < 0 || answerIndex >= options.length) {
+          skippedNotOutput++;
+          continue;
+        }
+        claimed = String(options[answerIndex]).replace(/\s*\[correct\]\s*$/, '').trim();
       }
-      const claimed = String(options[answerIndex]).replace(/\s*\[correct\]\s*$/, '').trim();
+      if (!claimed) { skippedNotOutput++; continue; }
       if (looksLikeProse(claimed)) { skippedNotOutput++; continue; }
 
       candidates.push({ index: index++, chapterName, question, claimed, program });
