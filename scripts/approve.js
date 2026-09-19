@@ -76,5 +76,8 @@ if (!verified) {
 // The ledger is the last thing shown, because it is what says what to do next.
 run('coverage.js', 'Coverage');
 
+// Suggestions are for chapters that are finished, so they come after the ledger.
+run('suggest.js', 'Suggested additions');
+
 console.log('Applied and verified. Every check passed.');
 console.log('');

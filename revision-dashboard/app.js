@@ -342,6 +342,37 @@ function renderCoverage() {
   }
   document.getElementById('coverage-work').innerHTML = work.join('');
 
+  // Suggestions: what a finished chapter's code shows and its notes do not
+  // explain. Read-only here; the accepting happens in the review page, because
+  // that is the one place that writes to the author's files.
+  const suggestions = typeof SUGGESTIONS !== 'undefined' ? SUGGESTIONS : null;
+  const suggestionBox = document.getElementById('coverage-suggestions');
+  if (!suggestions || !suggestions.items.length) {
+    suggestionBox.innerHTML = `
+      <div class="cov-work-card cov-suggest-empty">
+        <h3>Suggested additions</h3>
+        <p class="cov-work-note">Nothing to suggest. A suggestion is raised only for a chapter that is finished, and only when the tool can point at the exact API or construct the notes never explain.</p>
+      </div>`;
+  } else {
+    const byChapter = new Map();
+    suggestions.items.forEach(item => {
+      if (!byChapter.has(item.chapter)) byChapter.set(item.chapter, []);
+      byChapter.get(item.chapter).push(item);
+    });
+    suggestionBox.innerHTML = `
+      <div class="cov-work-card">
+        <h3>Suggested additions — ${suggestions.items.length}</h3>
+        <p class="cov-work-note">Things your code uses that your notes do not explain. Nothing is written to your notes until you accept it.</p>
+        ${[...byChapter.entries()].map(([chapter, items]) => `
+          <div class="cov-suggest-chapter">
+            <h4>${chapter}</h4>
+            <ul class="cov-work-list">
+              ${items.map(i => `<li><strong>${i.topic}</strong> — ${i.what}<br><span class="cov-suggest-draft">${(i.draft || []).join(' ')}</span></li>`).join('')}
+            </ul>
+          </div>`).join('')}
+      </div>`;
+  }
+
   // The chapters, with a row per topic.
   const shown = data.chapters.filter(c => !coverageIncompleteOnly || chapterNeedsWork(c));
   document.getElementById('coverage-chapters').innerHTML = shown.map(chapter => {
