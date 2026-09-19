@@ -733,8 +733,16 @@
           </div>
           <div class="card quiz-menu-card">
             <div class="card-body">
+              <h3>🧩 Concept Drill</h3>
+              <p>Test yourself on one concept across every chapter that covers it. <span id="menu-concept-count">0</span> questions available.</p>
+              <select id="menu-concept-select" class="notes-chapter-select" onchange="updateMenuConceptCount()"></select>
+              <button class="btn btn-primary-outline" id="btn-menu-concept-quiz">Start Concept Drill</button>
+            </div>
+          </div>
+          <div class="card quiz-menu-card">
+            <div class="card-body">
               <h3>🔍 Choose Exactly What To Revise</h3>
-              <p>Filter by chapter, topic, level and question type, then start a quiz from your selection.</p>
+              <p>Filter by chapter, topic, level, type and concept, then start a quiz from your selection.</p>
               <button class="btn btn-outline" id="btn-menu-open-bank">Open Revision Bank</button>
             </div>
           </div>

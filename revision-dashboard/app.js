@@ -690,6 +690,22 @@ function setupEventListeners() {
     renderRevisionBank();
     showView('bank-view');
   });
+
+  // Concept drill: one concept, every chapter that covers it. The pool is built
+  // from the concept tag on each question, which is the tag the Revision Bank
+  // filter uses, so the two can never disagree about what a concept contains.
+  const menuConcept = document.getElementById('btn-menu-concept-quiz');
+  if (menuConcept) menuConcept.addEventListener('click', () => {
+    const select = document.getElementById('menu-concept-select');
+    const conceptId = select ? select.value : 'all';
+    const pool = questionsForConcept(conceptId);
+    if (pool.length === 0) {
+      alert('No questions carry that concept yet.');
+      return;
+    }
+    const name = conceptDisplayName(conceptId);
+    startSelectionQuiz(pool, `Concept drill: ${name}`, Math.min(pool.length, 25));
+  });
   const topicQuizBtn = document.getElementById('btn-quiz-this-topic');
   if (topicQuizBtn) topicQuizBtn.addEventListener('click', startTopicQuiz);
   document.getElementById('btn-start-notes').addEventListener('click', () => {
@@ -2986,6 +3002,7 @@ function renderSearchResults(results, query) {
 // Choosing how to be tested, instead of being dropped straight into the Grand
 // Quiz. Every option is built from the chapters the author has notes for.
 function renderQuizMenu() {
+  initMenuConceptSelect();
   const chaptersContainer = document.getElementById('quiz-menu-chapters');
   if (!chaptersContainer) return;
 
@@ -3128,6 +3145,57 @@ function initBankConceptSelect() {
 function setBankConcept(value) {
   bankFilters.concept = value || 'all';
   renderRevisionBank();
+}
+
+// ---- Concept drill (Quiz Menu) ----------------------------------------------
+// One concept, every chapter that covers it. This is the Quiz Menu's version of
+// the Revision Bank's concept filter, and it reads the same `concepts` tag, so the
+// two cannot disagree about what a concept contains.
+function conceptDisplayName(conceptId) {
+  if (typeof CONCEPT_NAMES !== 'undefined' && CONCEPT_NAMES[conceptId]) return CONCEPT_NAMES[conceptId];
+  return conceptId;
+}
+
+function allQuestionsFlat() {
+  const all = [];
+  Object.keys(QUESTIONS_BANK).forEach(chapter => all.push(...(QUESTIONS_BANK[chapter] || [])));
+  return all;
+}
+
+function questionsForConcept(conceptId) {
+  if (!conceptId || conceptId === 'all') return allQuestionsFlat();
+  return allQuestionsFlat().filter(q => (q.concepts || []).includes(conceptId));
+}
+
+function initMenuConceptSelect() {
+  const select = document.getElementById('menu-concept-select');
+  if (!select) return;
+  const counts = new Map();
+  allQuestionsFlat().forEach(q => {
+    (q.concepts || []).forEach(id => counts.set(id, (counts.get(id) || 0) + 1));
+  });
+  const rows = [...counts.entries()]
+    .map(([id, count]) => ({ id, count, name: conceptDisplayName(id) }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+
+  const previous = select.value;
+  select.innerHTML = '';
+  rows.forEach(({ id, count, name }) => {
+    const option = document.createElement('option');
+    option.value = id;
+    option.textContent = `${name} (${count})`;
+    select.appendChild(option);
+  });
+  // Keep the choice across a re-render when it is still on offer.
+  if (previous && rows.some(r => r.id === previous)) select.value = previous;
+  updateMenuConceptCount();
+}
+
+function updateMenuConceptCount() {
+  const select = document.getElementById('menu-concept-select');
+  const el = document.getElementById('menu-concept-count');
+  if (!select || !el) return;
+  el.textContent = questionsForConcept(select.value).length;
 }
 
 function initBankChapterSelect() {
