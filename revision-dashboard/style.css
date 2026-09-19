@@ -3729,3 +3729,5 @@ samp,
 .cov-row-missing .cov-topic-name { color: #f87171; }
 .cov-present { color: #4ade80; }
 .cov-missing { color: #f87171; font-weight: 600; }
+
+.cov-selfcheck { color: #f59e0b; }

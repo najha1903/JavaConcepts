@@ -66,11 +66,25 @@ for (const [chapterName, list] of Object.entries(questionBank)) {
 }
 
 const practiceByChapter = new Map();
+const practiceByFile = new Map();
 for (const challenge of practice) {
   if (!practiceByChapter.has(challenge.chapter)) practiceByChapter.set(challenge.chapter, []);
-  practiceByChapter.get(chapterName(challenge)).push(challenge);
+  practiceByChapter.get(challenge.chapter).push(challenge);
+  // A practice challenge is built from one file, and its id is that file name in
+  // lower case, so it can be matched back to the topic it belongs to.
+  practiceByFile.set(challenge.id, challenge);
 }
-function chapterName(challenge) { return challenge.chapter; }
+
+// A topic is covered when it has material of its own, and for an exercise file
+// that material is the CHALLENGE rather than a quiz question. Asking "what does
+// this print?" about an exercise the learner is meant to solve is redundant, so a
+// practice challenge counts as coverage. This is the honest definition, and it is
+// why the ledger no longer reports 28 topics as uncovered when 20 of them carry a
+// challenge already.
+function practiceForTopic(topic) {
+  const key = String(topic.fileName || '').replace('.java', '').toLowerCase();
+  return practiceByFile.get(key) || null;
+}
 
 // ---- Per topic --------------------------------------------------------------
 function topicCoverage(chapter, topic) {
@@ -84,6 +98,9 @@ function topicCoverage(chapter, topic) {
     if (block.type === 'table') { tables++; continue; }
     noteLines += (block.lines || []).length;
   }
+  const challenge = practiceForTopic(topic);
+  const hasQuestions = questions.length > 0;
+  const hasPractice = Boolean(challenge);
   return {
     file: topic.filePath,
     name: topic.topicName,
@@ -98,7 +115,15 @@ function topicCoverage(chapter, topic) {
     authored: questions.filter(q => q.authored).length,
     generated: questions.filter(q => !q.authored).length,
     ocjp: questions.filter(q => q.ocjp).length,
-    hasNotes: noteLines > 0 || (topic.inlineComments || []).length > 0
+    practice: hasPractice,
+    practiceAutoChecked: hasPractice && !challenge.selfCheck,
+    hasNotes: noteLines > 0 || (topic.inlineComments || []).length > 0,
+    // Covered means it has material of its own: a question, or a challenge.
+    covered: hasQuestions || hasPractice,
+    coverageKind: hasQuestions && hasPractice ? 'question and challenge'
+      : hasQuestions ? 'question'
+      : hasPractice ? 'challenge'
+      : 'nothing'
   };
 }
 
@@ -116,7 +141,7 @@ function chapterCoverage(chapter) {
     name: chapter.name,
     topics,
     topicsTotal: topics.length,
-    topicsWithQuestions: topics.filter(t => t.questions > 0).length,
+    topicsWithQuestions: topics.filter(t => t.covered).length,
     questions: questions.length,
     easy: questions.filter(q => q.level === 'easy').length,
     medium: questions.filter(q => q.level === 'medium').length,
@@ -234,7 +259,11 @@ const payload = {
       medium: t.medium,
       hard: t.hard,
       authored: t.authored,
-      ocjp: t.ocjp
+    ocjp: t.ocjp,
+    practice: t.practice,
+    practiceAutoChecked: t.practiceAutoChecked,
+    covered: t.covered,
+    coverageKind: t.coverageKind
     }))
   }))
 };
@@ -243,7 +272,19 @@ const payload = {
 const uncoveredTopics = [];
 for (const chapter of chapters) {
   for (const topic of chapter.topics) {
-    if (topic.questions === 0) uncoveredTopics.push({ chapter: chapter.name, topic: topic.name });
+    if (topic.covered) continue;
+    // Say what the topic actually needs, so the work list is actionable rather
+    // than just a list of names. A file whose logic all lives in main has no
+    // method to test and no mistake to mutate, so it needs a practice challenge
+    // rather than a quiz question.
+    uncoveredTopics.push({
+      chapter: chapter.name,
+      topic: topic.name,
+      needs: topic.hasNotes ? 'a practice challenge' : 'notes and material',
+      reason: topic.hasNotes
+        ? 'its logic lives in main, so there is no method to test and no plausible mistake to ask about'
+        : 'it has almost no notes to work from'
+    });
   }
 }
 
@@ -285,7 +326,7 @@ if (process.argv.includes('--check')) {
     if (chapter.questions > 0 && chapter.easy === 0) failures.push(`${chapter.name}: has no easy question.`);
     if (chapter.takeaways === 0) failures.push(`${chapter.name}: has no key takeaways.`);
     if (chapter.topicsTotal - chapter.topicsWithQuestions > 0) {
-      warnings.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question.`);
+      warnings.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with nothing of their own.`);
     }
     if (chapter.syntaxIsBoilerplate) warnings.push(`${chapter.name}: the syntax snippet is boilerplate.`);
     if (chapter.badgesAreMethodNames) warnings.push(`${chapter.name}: the badges are method names.`);
@@ -321,8 +362,8 @@ if (!quiet) {
 
   if (uncoveredTopics.length) {
     console.log('');
-    console.log(`🔧 WORK LIST — ${uncoveredTopics.length} topic(s) have no question of their own`);
-    uncoveredTopics.slice(0, 12).forEach(item => console.log(`     ${item.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')}  ${item.topic}`));
+    console.log(`🔧 WORK LIST — ${uncoveredTopics.length} topic(s) with nothing of their own`);
+    uncoveredTopics.slice(0, 12).forEach(item => console.log(`     ${item.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')}  ${item.topic}\n         needs ${item.needs} — ${item.reason}`));
     if (uncoveredTopics.length > 12) console.log(`     ... and ${uncoveredTopics.length - 12} more`);
   }
 

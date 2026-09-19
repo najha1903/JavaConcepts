@@ -308,7 +308,7 @@ function renderCoverage() {
     `Generated ${new Date(data.generated).toLocaleString()}. What exists, what is missing, and what to do next.`;
 
   document.getElementById('coverage-summary').innerHTML = `
-    <div class="cov-stat"><span class="cov-stat-value">${t.topicsWithQuestions}/${t.topics}</span><span class="cov-stat-label">topics with a question</span></div>
+    <div class="cov-stat"><span class="cov-stat-value">${t.topicsWithQuestions}/${t.topics}</span><span class="cov-stat-label">topics covered</span></div>
     <div class="cov-stat"><span class="cov-stat-value">${t.questions}</span><span class="cov-stat-label">questions</span></div>
     <div class="cov-stat"><span class="cov-stat-value">${t.easy} / ${t.medium} / ${t.hard}</span><span class="cov-stat-label">easy / medium / hard</span></div>
     <div class="cov-stat"><span class="cov-stat-value">${t.ocjp}</span><span class="cov-stat-label">OCJP tagged</span></div>
@@ -320,8 +320,8 @@ function renderCoverage() {
   if (data.workList.length) {
     work.push(`
       <div class="cov-work-card">
-        <h3>${data.workList.length} topic(s) with no question of their own</h3>
-        <ul class="cov-work-list">${data.workList.map(w => `<li>${w.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')} &middot; ${w.topic}</li>`).join('')}</ul>
+        <h3>${data.workList.length} topic(s) with nothing of their own</h3>
+        <ul class="cov-work-list">${data.workList.map(w => `<li>${w.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')} &middot; ${w.topic} &mdash; needs ${w.needs}</li>`).join('')}</ul>
       </div>`);
   }
   if (data.ocjpWork.length) {
@@ -364,10 +364,10 @@ function renderCoverage() {
         </div>
         ${flags.length ? `<p class="cov-flags">${flags.join(' &middot; ')}</p>` : ''}
         <table class="cov-table">
-          <thead><tr><th>Topic</th><th>Notes</th><th>Q</th><th>E</th><th>M</th><th>H</th><th>OCJP</th></tr></thead>
+          <thead><tr><th>Topic</th><th>Notes</th><th>Q</th><th>E</th><th>M</th><th>H</th><th>OCJP</th><th>Challenge</th></tr></thead>
           <tbody>
             ${chapter.topics.map(topic => `
-              <tr class="${topic.questions === 0 ? 'cov-row-missing' : ''}">
+              <tr class="${topic.covered ? '' : 'cov-row-missing'}">
                 <td class="cov-topic-name">${topic.name}</td>
                 <td>${coverageCell(topic.noteLines)}</td>
                 <td>${coverageCell(topic.questions)}</td>
@@ -375,6 +375,7 @@ function renderCoverage() {
                 <td>${topic.medium || '&ndash;'}</td>
                 <td>${topic.hard || '&ndash;'}</td>
                 <td>${topic.ocjp || '&ndash;'}</td>
+                <td>${topic.practice ? (topic.practiceAutoChecked ? '<span class="cov-present">auto</span>' : '<span class="cov-selfcheck">self</span>') : '<span class="cov-missing">&ndash;</span>'}</td>
               </tr>`).join('')}
           </tbody>
         </table>
