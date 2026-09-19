@@ -78,6 +78,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M4 19.5V5a2 2 0 0 1 2-2h10l4 4v12.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v4h4"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
             <span>Notes</span>
           </button>
+          <button id="nav-coverage-btn" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
+            <span>Coverage</span>
+          </button>
         </div>
 
         <div class="nav-divider"></div>
@@ -850,6 +854,25 @@
         </div>
       </section>
       
+      <!-- COVERAGE VIEW -->
+      <section id="coverage-view" class="view-section">
+        <div class="view-header">
+          <h1>Coverage</h1>
+          <p class="subtitle" id="coverage-subtitle">What is covered, and what still needs work.</p>
+        </div>
+
+        <div class="coverage-summary" id="coverage-summary"><!-- JS populated --></div>
+
+        <div class="coverage-work" id="coverage-work"><!-- JS populated --></div>
+
+        <div class="coverage-controls">
+          <button id="coverage-filter-all" class="coverage-filter active">All chapters</button>
+          <button id="coverage-filter-incomplete" class="coverage-filter">Needs work only</button>
+        </div>
+
+        <div class="coverage-chapters" id="coverage-chapters"><!-- JS populated --></div>
+      </section>
+
     </main>
   </div>
 
@@ -861,6 +884,8 @@
   <script src="practice.js"></script>
   <!-- Load Deep Coding Challenges -->
   <script src="deep-challenges.js"></script>
+  <!-- Load the Coverage Ledger -->
+  <script src="coverage-data.js"></script>
   <!-- Load App Script -->
   <script src="app.js"></script>
 </body>

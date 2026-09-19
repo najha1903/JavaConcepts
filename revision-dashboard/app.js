@@ -263,7 +263,128 @@ function showView(viewId) {
     document.getElementById('nav-bank-btn').classList.add('active');
   } else if (viewId === 'quiz-menu-view') {
     document.getElementById('nav-quiz-menu-btn').classList.add('active');
+  } else if (viewId === 'coverage-view') {
+    document.getElementById('nav-coverage-btn').classList.add('active');
   }
+}
+
+// ==========================================================================
+// Coverage — what is covered, and what still needs work
+//
+// The numbers come from COVERAGE_DATA, which scripts/coverage.js computes on
+// every run. The browser never recomputes them, so the ledger, coverage.md and
+// this screen can never disagree.
+// ==========================================================================
+
+let coverageIncompleteOnly = false;
+
+function coverageCell(value, suffix) {
+  if (value === 0) return `<span class="cov-missing">0${suffix || ''}</span>`;
+  return `<span class="cov-present">${value}${suffix || ''}</span>`;
+}
+
+function chapterNeedsWork(chapter) {
+  return chapter.topicsWithQuestions < chapter.topicsTotal ||
+    chapter.easy === 0 ||
+    chapter.hard === 0 ||
+    chapter.ocjp === 0 ||
+    chapter.syntaxIsBoilerplate ||
+    chapter.badgesAreMethodNames ||
+    chapter.tables === 0 ||
+    chapter.takeaways === 0 ||
+    chapter.practice === 0;
+}
+
+function renderCoverage() {
+  const data = typeof COVERAGE_DATA !== 'undefined' ? COVERAGE_DATA : null;
+  if (!data) {
+    document.getElementById('coverage-subtitle').textContent =
+      'The ledger has not been generated yet. Run npm run revise.';
+    return;
+  }
+
+  const t = data.totals;
+  document.getElementById('coverage-subtitle').textContent =
+    `Generated ${new Date(data.generated).toLocaleString()}. What exists, what is missing, and what to do next.`;
+
+  document.getElementById('coverage-summary').innerHTML = `
+    <div class="cov-stat"><span class="cov-stat-value">${t.topicsWithQuestions}/${t.topics}</span><span class="cov-stat-label">topics with a question</span></div>
+    <div class="cov-stat"><span class="cov-stat-value">${t.questions}</span><span class="cov-stat-label">questions</span></div>
+    <div class="cov-stat"><span class="cov-stat-value">${t.easy} / ${t.medium} / ${t.hard}</span><span class="cov-stat-label">easy / medium / hard</span></div>
+    <div class="cov-stat"><span class="cov-stat-value">${t.ocjp}</span><span class="cov-stat-label">OCJP tagged</span></div>
+    <div class="cov-stat"><span class="cov-stat-value">${t.authored}</span><span class="cov-stat-label">written by hand</span></div>
+  `;
+
+  // The work list: exactly what is outstanding, so nothing has to be remembered.
+  const work = [];
+  if (data.workList.length) {
+    work.push(`
+      <div class="cov-work-card">
+        <h3>${data.workList.length} topic(s) with no question of their own</h3>
+        <ul class="cov-work-list">${data.workList.map(w => `<li>${w.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')} &middot; ${w.topic}</li>`).join('')}</ul>
+      </div>`);
+  }
+  if (data.ocjpWork.length) {
+    work.push(`
+      <div class="cov-work-card">
+        <h3>OCJP bank — target ${data.ocjpTarget} exam questions per chapter</h3>
+        <ul class="cov-work-list">${data.ocjpWork.map(w => `<li>${w.ocjp} now, ${w.gap} to write &middot; ${w.name}</li>`).join('')}</ul>
+        <p class="cov-work-note">Ask Copilot: &ldquo;write the OCJP questions for ${data.ocjpWork[0].name}&rdquo;</p>
+      </div>`);
+  }
+  const qr = data.quickRevision;
+  if (qr.syntax || qr.badges || qr.tables) {
+    const parts = [];
+    if (qr.syntax) parts.push(`${qr.syntax} chapter(s) whose syntax snippet is boilerplate rather than the chapter's construct`);
+    if (qr.badges) parts.push(`${qr.badges} chapter(s) whose badges are method names rather than the API taught`);
+    if (qr.tables) parts.push(`${qr.tables} chapter(s) with no comparison table`);
+    work.push(`<div class="cov-work-card"><h3>Quick Revision</h3><ul class="cov-work-list">${parts.map(p => `<li>${p}</li>`).join('')}</ul></div>`);
+  }
+  document.getElementById('coverage-work').innerHTML = work.join('');
+
+  // The chapters, with a row per topic.
+  const shown = data.chapters.filter(c => !coverageIncompleteOnly || chapterNeedsWork(c));
+  document.getElementById('coverage-chapters').innerHTML = shown.map(chapter => {
+    const needs = chapterNeedsWork(chapter);
+    const flags = [];
+    if (chapter.topicsWithQuestions < chapter.topicsTotal) flags.push(`${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question`);
+    if (chapter.easy === 0) flags.push('no easy question');
+    if (chapter.hard === 0) flags.push('no hard question');
+    if (chapter.ocjp === 0) flags.push('no OCJP question');
+    if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
+    if (chapter.badgesAreMethodNames) flags.push('badges are method names');
+    if (chapter.tables === 0) flags.push('no comparison table');
+    if (chapter.practice === 0) flags.push('no practice challenge');
+
+    return `
+      <div class="cov-chapter ${needs ? 'needs-work' : 'complete'}">
+        <div class="cov-chapter-head">
+          <h2>${chapter.name}</h2>
+          <span class="cov-chapter-meta">${chapter.questions} Q (E${chapter.easy} M${chapter.medium} H${chapter.hard}) &middot; OCJP ${chapter.ocjp} &middot; practice ${chapter.practice} &middot; takeaways ${chapter.takeaways} &middot; gotchas ${chapter.gotchas}</span>
+        </div>
+        ${flags.length ? `<p class="cov-flags">${flags.join(' &middot; ')}</p>` : ''}
+        <table class="cov-table">
+          <thead><tr><th>Topic</th><th>Notes</th><th>Q</th><th>E</th><th>M</th><th>H</th><th>OCJP</th></tr></thead>
+          <tbody>
+            ${chapter.topics.map(topic => `
+              <tr class="${topic.questions === 0 ? 'cov-row-missing' : ''}">
+                <td class="cov-topic-name">${topic.name}</td>
+                <td>${coverageCell(topic.noteLines)}</td>
+                <td>${coverageCell(topic.questions)}</td>
+                <td>${topic.easy || '&ndash;'}</td>
+                <td>${topic.medium || '&ndash;'}</td>
+                <td>${topic.hard || '&ndash;'}</td>
+                <td>${topic.ocjp || '&ndash;'}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+  }).join('');
+}
+
+function showCoverage() {
+  showView('coverage-view');
+  renderCoverage();
 }
 
 // ==========================================================================
@@ -490,6 +611,24 @@ function setupEventListeners() {
     initBankChapterSelect();
     renderRevisionBank();
     showView('bank-view');
+  });
+
+  document.getElementById('nav-coverage-btn').addEventListener('click', () => {
+    showCoverage();
+  });
+
+  document.getElementById('coverage-filter-all').addEventListener('click', () => {
+    coverageIncompleteOnly = false;
+    document.getElementById('coverage-filter-all').classList.add('active');
+    document.getElementById('coverage-filter-incomplete').classList.remove('active');
+    renderCoverage();
+  });
+
+  document.getElementById('coverage-filter-incomplete').addEventListener('click', () => {
+    coverageIncompleteOnly = true;
+    document.getElementById('coverage-filter-incomplete').classList.add('active');
+    document.getElementById('coverage-filter-all').classList.remove('active');
+    renderCoverage();
   });
   
   // Dashboard buttons
