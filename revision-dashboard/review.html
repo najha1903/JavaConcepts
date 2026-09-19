@@ -43,6 +43,12 @@
     .code-note { font-size: 13px; color: var(--text-muted); font-style: italic; }
     .review-actions { position: fixed; left: 0; right: 0; bottom: 0; background: var(--bg-card); border-top: 1px solid var(--border-color); padding: 14px 20px; display: flex; gap: 12px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
     .review-actions .spacer { margin-right: auto; font-size: 13px; color: var(--text-muted); }
+    /* A suggestion is ticked individually, and the exact lines to be inserted are
+       shown before Apply, so nothing is written that was not read first. */
+    .suggest-item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+    .suggest-item input { margin-top: 3px; flex: none; }
+    .suggest-item > span { display: block; }
+    .suggest-item .code-note { display: block; margin: 4px 0; }
     button { font-family: inherit; font-size: 14px; font-weight: 600; border-radius: 8px; padding: 10px 20px; cursor: pointer; border: 1px solid var(--border-color); background: transparent; color: var(--text-primary); }
     button:hover { border-color: var(--accent-secondary); }
     button.primary { background: var(--accent-secondary); border-color: var(--accent-secondary); color: #08111a; }
@@ -65,6 +71,7 @@
 
     <div class="result" id="result"></div>
     <div id="chips" class="chip-row"></div>
+    <div id="suggestions"></div>
     <div id="body"></div>
   </div>
 
@@ -80,6 +87,8 @@
     const sub = document.getElementById('review-sub');
     const actions = document.getElementById('actions');
     const result = document.getElementById('result');
+    const suggestionsBox = document.getElementById('suggestions');
+    let acceptedKeys = [];
 
     function escapeHtml(text) {
       return String(text).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -94,6 +103,45 @@
     function section(title, lines) {
       if (!lines || (!lines.added.length && !lines.removed.length)) return '';
       return `<div class="section-title">${title}</div>${diffBlock(lines)}`;
+    }
+
+    function renderSuggestions(data) {
+      const items = (data && data.items) || [];
+      if (!items.length) { suggestionsBox.innerHTML = ''; return; }
+      const byChapter = new Map();
+      items.forEach(item => {
+        if (!byChapter.has(item.chapter)) byChapter.set(item.chapter, []);
+        byChapter.get(item.chapter).push(item);
+      });
+      suggestionsBox.innerHTML = `
+        <div class="chapter-block">
+          <h2>Suggested additions</h2>
+          <p class="code-note">Things your code uses that your notes do not explain. Tick the ones you want and press Apply. Each is inserted on its own, and nothing else in the file changes.</p>
+          ${[...byChapter.entries()].map(([chapter, list]) => `
+            <div class="topic-card">
+              <h3>${escapeHtml(chapter)}</h3>
+              ${list.map(item => `
+                <label class="suggest-item">
+                  <input type="checkbox" class="suggest-tick" value="${escapeHtml(item.key)}">
+                  <span>
+                    <strong>${escapeHtml(item.topic)}</strong> &mdash; ${escapeHtml(item.what)}
+                    <span class="code-note">${escapeHtml(item.why)}</span>
+                    <span class="diff"><span class="diff-line add">${(item.draft || []).map(escapeHtml).join('</span><span class="diff-line add">')}</span></span>
+                  </span>
+                </label>`).join('')}
+            </div>`).join('')}
+        </div>`;
+      suggestionsBox.querySelectorAll('.suggest-tick').forEach(box => {
+        box.addEventListener('change', () => {
+          acceptedKeys = [...suggestionsBox.querySelectorAll('.suggest-tick:checked')].map(b => b.value);
+          const note = document.getElementById('action-note');
+          if (note) {
+            note.textContent = acceptedKeys.length
+              ? `${acceptedKeys.length} suggestion(s) will be inserted into your notes.`
+              : 'Nothing has been applied yet.';
+          }
+        });
+      });
     }
 
     function render(pending) {
@@ -144,11 +192,19 @@
       }
       if (!pending.pending) {
         sub.textContent = 'There is nothing waiting for review.';
-        body.innerHTML = '<div class="empty">Everything in the dashboard already matches your notes.<br><br><a href="index.html">Open the dashboard</a></div>';
+        // Suggestions can still be accepted when there are no content changes.
+        if (pending.suggestions && pending.suggestions.items && pending.suggestions.items.length) {
+          renderSuggestions(pending.suggestions);
+          actions.style.display = 'flex';
+          document.getElementById('action-note').textContent = 'Tick a suggestion to insert it into your notes.';
+        } else {
+          body.innerHTML = '<div class="empty">Everything in the dashboard already matches your notes.<br><br><a href="index.html">Open the dashboard</a></div>';
+        }
         return;
       }
       const when = pending.generated ? new Date(pending.generated).toLocaleString() : '';
       sub.textContent = `Proposed ${when}. Nothing has been applied yet.`;
+      renderSuggestions(pending.suggestions);
       render(pending);
       actions.style.display = 'flex';
     }
@@ -160,7 +216,11 @@
       result.className = 'result';
       result.textContent = endpoint === 'apply' ? 'Applying the changes...' : 'Discarding...';
       try {
-        const response = await fetch(`/api/${endpoint}`, { method: 'POST' });
+        const response = await fetch(`/api/${endpoint}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: endpoint === 'apply' ? JSON.stringify({ acceptedKeys }) : '{}'
+        });
         const payload = await response.json();
         if (endpoint === 'discard') {
           result.className = 'result ok';

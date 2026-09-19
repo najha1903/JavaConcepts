@@ -15,6 +15,7 @@
 // ============================================================================
 
 const http = require('http');
+const vm = require('vm');
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
@@ -52,14 +53,39 @@ function readPending() {
   }
 }
 
+// The suggestions the author can accept. Read from the file scripts/suggest.js
+// writes, so the review page and the Coverage view show the same list.
+function readSuggestions() {
+  const file = path.join(dashboardDir, 'suggestions-data.js');
+  if (!fs.existsSync(file)) return { items: [] };
+  try {
+    const context = {};
+    vm.runInNewContext(`${fs.readFileSync(file, 'utf8')}\nthis.__s = SUGGESTIONS;`, context, { filename: 'suggestions-data.js' });
+    return context.__s || { items: [] };
+  } catch (error) {
+    return { items: [] };
+  }
+}
+
+// A small request body reader. The accepted keys arrive as JSON, so the body has
+// to be buffered before it can be parsed.
+function readBody(req) {
+  return new Promise(resolve => {
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    req.on('error', () => resolve(''));
+  });
+}
+
 function clearPending() {
   for (const file of [jsonFile, mdFile]) {
     if (fs.existsSync(file)) fs.unlinkSync(file);
   }
 }
 
-function runNodeScript(script) {
-  const result = spawnSync(process.execPath, [path.join(__dirname, script)], {
+function runNodeScript(script, scriptArgs) {
+  const result = spawnSync(process.execPath, [path.join(__dirname, script), ...(scriptArgs || [])], {
     cwd: root,
     encoding: 'utf8'
   });
@@ -80,26 +106,67 @@ function serveFile(res, filePath) {
   fs.createReadStream(filePath).pipe(res);
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${port}`);
   const route = url.pathname;
 
   if (route === '/api/pending') {
     const pending = readPending();
-    sendJson(res, 200, pending
-      ? { pending: true, generated: pending.generated, totals: pending.totals, changes: pending.changes }
-      : { pending: false });
+    // Suggestions travel with the proposal, so the review page can offer them in
+    // the same gate. Accepting writes to the author's files, so it must happen
+    // here, where Apply is the only thing that writes.
+    const suggestions = readSuggestions();
+    if (!pending) {
+      sendJson(res, 200, { pending: false, suggestions });
+      return;
+    }
+    sendJson(res, 200, { pending: true, generated: pending.generated, totals: pending.totals, changes: pending.changes, suggestions });
     return;
   }
 
   if (route === '/api/apply' && req.method === 'POST') {
     if (!readPending()) { sendJson(res, 409, { ok: false, output: 'There is nothing waiting for review.' }); return; }
-    // approve.js generates, verifies, and rolls the generated files back if a check
-    // fails. It is the same script `npm run approve` runs, so approving here can
-    // never accept content that approving in the terminal would reject.
-    const applied = runNodeScript('approve.js');
-    if (applied.ok) clearPending();
-    sendJson(res, applied.ok ? 200 : 500, { ok: applied.ok, output: applied.output });
+    // Read the accepted suggestion keys from the request body. Nothing is written
+    // unless the caller names them, and each is named separately.
+    let acceptedKeys = [];
+    try {
+      const body = await readBody(req);
+      if (body) {
+        const parsed = JSON.parse(body);
+        // Only strings are usable as keys. A caller that sends objects - which
+        // PowerShell does when a string carries its note properties - must not be
+        // able to write anything, so anything else is dropped rather than guessed
+        // at.
+        if (Array.isArray(parsed.acceptedKeys)) {
+          acceptedKeys = parsed.acceptedKeys
+            .map(key => (typeof key === 'string' ? key : (key && typeof key.value === 'string' ? key.value : null)))
+            .filter(Boolean);
+        }
+      }
+    } catch (error) {
+      acceptedKeys = [];
+    }
+
+    const results = [];
+    let ok = true;
+
+    if (acceptedKeys.length) {
+      const accept = runNodeScript('accept-suggestions.js', acceptedKeys);
+      results.push(accept.output);
+      if (!accept.ok) ok = false;
+    }
+
+    if (ok) {
+      // approve.js generates, verifies, and rolls the generated files back if a
+      // check fails. It is the same script `npm run approve` runs, so approving
+      // here can never accept content that approving in the terminal would reject.
+      const applied = runNodeScript('approve.js');
+      results.push(applied.output);
+      if (!applied.ok) ok = false;
+    }
+
+    if (ok) clearPending();
+    sendJson(res, ok ? 200 : 500, { ok, output: results.filter(Boolean).join('\n\n').trim() });
     return;
   }
 

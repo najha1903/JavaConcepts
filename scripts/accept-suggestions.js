@@ -158,5 +158,5 @@ if (!dryRun && report.length) {
 }
 
 console.log('');
-console.log(`${written} written, ${refused} refused.`);
+console.log(dryRun ? `${written} would be written, ${refused} refused.` : `${written} written, ${refused} refused.`);
 if (refused && !written) process.exit(1);

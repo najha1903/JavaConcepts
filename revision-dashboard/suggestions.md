@@ -6,17 +6,6 @@ A suggestion is raised only when this can point at the exact API or the exact co
 
 ## Chapter 7: Switch Statements
 
-**Number Of Days In A Month Coding Challenge** — a switch
-
-_the code uses a switch, and the notes never explain it_
-
-```java
-// a switch :- the code in this topic uses this, but the notes do not explain it.
-// Note :- a reader who has not met a switch yet cannot follow the example.
-```
-
-## Chapter 7: Switch Statements
-
 **Print Number In A World Coding Challenge** — a switch
 
 _the code uses a switch, and the notes never explain it_
