@@ -26,13 +26,14 @@ const root = path.resolve(__dirname, '..');
 const CHECKS = [
   { script: 'audit-generated.js', label: 'Generated content' },
   { script: 'check-practice.js', label: 'Practice verifiers' },
-  { script: 'check-questions.js', label: 'Question answers' }
+  { script: 'check-questions.js', label: 'Question answers' },
+  { script: 'coverage.js', label: 'Coverage', args: ['--check'] }
 ];
 
 let failed = 0;
 
 for (const check of CHECKS) {
-  const result = spawnSync(process.execPath, [path.join(__dirname, check.script)], {
+  const result = spawnSync(process.execPath, [path.join(__dirname, check.script), ...(check.args || [])], {
     cwd: root,
     stdio: 'inherit'
   });

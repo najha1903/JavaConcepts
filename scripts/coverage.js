@@ -265,6 +265,52 @@ fs.writeFileSync(
   'utf8'
 );
 
+// ---- Check mode -------------------------------------------------------------
+// `--check` makes the ledger enforce rather than report, so a later change
+// cannot quietly drop coverage. Two tiers, deliberately:
+//
+//   FAIL  a chapter with no questions at all, or with no easy question. These
+//         are catastrophic and there are none today, so the build stays green
+//         while still being unable to regress into them.
+//   WARN  the finer gaps: a topic with no question, a boilerplate syntax
+//         snippet, method-name badges, a missing table. These are the work of
+//         Phases 1 and 3, so they are reported loudly but do not block. Each is
+//         promoted to a failure as its phase lands.
+if (process.argv.includes('--check')) {
+  const failures = [];
+  const warnings = [];
+
+  for (const chapter of chapters) {
+    if (chapter.questions === 0) failures.push(`${chapter.name}: has no questions at all.`);
+    if (chapter.questions > 0 && chapter.easy === 0) failures.push(`${chapter.name}: has no easy question.`);
+    if (chapter.takeaways === 0) failures.push(`${chapter.name}: has no key takeaways.`);
+    if (chapter.topicsTotal - chapter.topicsWithQuestions > 0) {
+      warnings.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question.`);
+    }
+    if (chapter.syntaxIsBoilerplate) warnings.push(`${chapter.name}: the syntax snippet is boilerplate.`);
+    if (chapter.badgesAreMethodNames) warnings.push(`${chapter.name}: the badges are method names.`);
+    if (chapter.tables === 0) warnings.push(`${chapter.name}: no comparison table.`);
+    if (chapter.ocjp < OCJP_TARGET) warnings.push(`${chapter.name}: ${chapter.ocjp} OCJP questions, target ${OCJP_TARGET}.`);
+  }
+
+  console.log('');
+  if (warnings.length) {
+    console.log(`Coverage check: ${warnings.length} item(s) still to do. These are the work of Phases 1 and 3.`);
+    warnings.slice(0, 8).forEach(w => console.log(`  - ${w}`));
+    if (warnings.length > 8) console.log(`  ... and ${warnings.length - 8} more. See revision-dashboard/coverage.md`);
+  } else {
+    console.log('Coverage check: every topic is covered.');
+  }
+
+  if (failures.length) {
+    console.log('');
+    console.error(`Coverage check FAILED with ${failures.length} problem(s):`);
+    failures.forEach(f => console.error(`  - ${f}`));
+    process.exitCode = 1;
+  }
+  console.log('');
+}
+
 if (!quiet) {
   console.log('');
   console.log('📊 COVERAGE');
