@@ -414,6 +414,7 @@ The generated portal provides:
 - Notes with explanations, code blocks, tables and parameter notes.
 - **Key Takeaways & Annotations**: for each file, the `@takeaway` and `@gotcha` lines written in that file, followed by the annotations found inside its code. Only comments from inside the class declaration are listed, so the overview notes are not repeated, and only comments that read as a complete sentence are kept, so a fragment such as "condition" or "block of statements" never appears without the line it belonged to.
 - Detailed Study and Quick Revision modes; comparison tables keep their grid in both.
+- **Comparison tables are your content.** A markdown table in your notes becomes a real table in Quick Revision. None is generated, because writing one would mean putting the tool's words into your notes. The ledger tells you which chapters have none; add one only where a comparison is genuinely worth keeping.
 - **Revision Bank**: one place for everything the author has written notes for. Filter by chapter, by free text, by level (Easy, Medium, Hard), by type (OCJP, Tricky, Concept, Predict, Fill Blank, Written) and by concept, read the notes, or start a quiz directly from the selection. It is built from `CONCEPTS_DATA`, so a chapter that has no source files can never appear in it.
 - **Concept filter**: questions are tagged with the concepts of the topic file they came from, so inside Strings the StringBuilder questions and the equals/== questions can be told apart. The dropdown lists only concepts that can match the current chapter, with a count.
 - Chapter and grand quizzes with interview, OCJP, concept, code-completion, and output-prediction questions.
@@ -450,3 +451,5 @@ The audit checks that topics, question IDs, question-to-topic links, answer shap
 | `check-questions.js` | Every question about output is compiled and run, and the real output is compared with the answer marked correct. |
 | `check-bank.js` | Every hand-researched OCJP question marks the answer the bank intends, and every wrong option says why it is wrong. |
 | `coverage.js --check` | Fails on a chapter with no questions, no easy question, no hard question, or no takeaways. Reports the finer gaps as warnings. |
+
+The coverage check reports **"every topic is covered"** when all 142 topics have material of their own. A topic counts as covered when it has a question, a generated practice challenge, or — for a file whose notes open with `Challenge:` or `Deep Problem:` — is an exercise you wrote and solved yourself. Those exercise files are listed separately, because there is nothing for the tool to generate for them.

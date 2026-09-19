@@ -129,6 +129,13 @@ function topicCoverage(chapter, topic) {
   const challenge = practiceForTopic(topic);
   const hasQuestions = questions.length > 0;
   const hasPractice = Boolean(challenge);
+  // A file whose notes open with "Challenge:" or "Deep Problem:" IS the exercise.
+  // The author wrote the task and then solved it in main, so there is no method for
+  // the tool to extract and no plausible mistake to ask about, and no generated
+  // practice could add anything. This is the author's own convention, which makes
+  // it a structural signal rather than a guess about what the notes mean.
+  const firstNote = ((topic.headerComments || []).find(b => b.type !== 'code' && b.type !== 'table') || {}).lines || [];
+  const opensAsExercise = /^\s*(Challenge|Deep Problem)\s*:/i.test(String(firstNote[0] || ''));
   const rules = ruleCoverage(topic);
   return {
     file: topic.filePath,
@@ -150,9 +157,12 @@ function topicCoverage(chapter, topic) {
     rulesWithExample: rules.withExample,
     rulesWithoutExample: rules.withoutExample,
     hasNotes: noteLines > 0 || (topic.inlineComments || []).length > 0,
-    // Covered means it has material of its own: a question, or a challenge.
-    covered: hasQuestions || hasPractice,
-    coverageKind: hasQuestions && hasPractice ? 'question and challenge'
+    isExercise: opensAsExercise,
+    // Covered means it has material of its own: a question, a challenge, or it is an
+    // exercise the author wrote and solved himself.
+    covered: hasQuestions || hasPractice || opensAsExercise,
+    coverageKind: opensAsExercise ? 'the exercise itself'
+      : hasQuestions && hasPractice ? 'question and challenge'
       : hasQuestions ? 'question'
       : hasPractice ? 'challenge'
       : 'nothing'
@@ -297,8 +307,8 @@ for (const chapter of chapters) {
   if (chapter.hard === 0) flags.push('no hard question');
   if (chapter.ocjp === 0) flags.push('no OCJP question');
   if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
-  if (chapter.strayBadges.length) flags.push(`badges that no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
-  if (chapter.tables === 0) flags.push('no comparison table');
+  if (chapter.strayBadges.length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
+  if (chapter.tables === 0) flags.push('no comparison table (your content to add, nothing is generated)');
   if (chapter.takeaways === 0) flags.push('no takeaways');
   if (chapter.practice === 0) flags.push('no practice challenge');
   if (flags.length) {
@@ -359,7 +369,8 @@ const payload = {
     practice: t.practice,
     practiceAutoChecked: t.practiceAutoChecked,
     covered: t.covered,
-    coverageKind: t.coverageKind
+    coverageKind: t.coverageKind,
+    isExercise: t.isExercise
     }))
   }))
 };
@@ -388,9 +399,23 @@ const ocjpWork = chapters
   .map(c => ({ name: c.name, ocjp: c.ocjp, gap: OCJP_TARGET - c.ocjp }))
   .filter(c => c.gap > 0)
   .sort((a, b) => b.gap - a.gap);
+
+// Exercise files the author wrote and solved himself. Nothing can be generated for
+// them, so they are reported separately rather than counted as a gap - but they are
+// still reported, so the fact is visible instead of silently dropped.
+const exerciseTopics = chapters.flatMap(c => c.topics.filter(t => t.isExercise).map(t => ({ chapter: c.name, topic: t.name })));
+
+// Chapters with no comparison table. This is deliberately NOT a warning: a table is
+// authored content, and writing one means putting the tool's words into the notes,
+// which the author has said must never happen. The alternative - deriving one from
+// the notes - cannot be done reliably. Every chapter contains comparison language
+// ("difference", "rather than", "instead of"), but Chapter 1 alone has 22
+// occurrences of "difference", almost all of them the ordinary word "different",
+// so the signal is noise rather than evidence of a comparison worth tabulating.
+// It is reported as information, and the author decides.
+const chaptersWithoutTable = chapters.filter(c => c.tables === 0);
 const syntaxWork = chapters.filter(c => c.syntaxIsBoilerplate).length;
 const badgeWork = chapters.filter(c => c.strayBadges.length).length;
-const tableWork = chapters.filter(c => c.tables === 0).length;
 
 // Rules that state a constraint with no example to show it. Reliable because it is
 // structural: it asks whether a code sample sits beside the rule, not whether some
@@ -400,8 +425,9 @@ const rulesWithoutExample = chapters.reduce((n, c) => n + c.topics.reduce((m, t)
 
 // Fill in the structured payload now that every part is known.
 payload.workList = uncoveredTopics;
+payload.exerciseTopics = exerciseTopics;
 payload.ocjpWork = ocjpWork;
-payload.quickRevision = { syntax: syntaxWork, badges: badgeWork, tables: tableWork };
+payload.quickRevision = { syntax: syntaxWork, badges: badgeWork, tables: chaptersWithoutTable.length };
 payload.rules = { total: rulesTotal, withoutExample: rulesWithoutExample };
 payload.concepts = {
   covered: conceptsCovered.length,
@@ -441,9 +467,10 @@ if (process.argv.includes('--check')) {
     }
     if (chapter.syntaxIsBoilerplate) warnings.push(`${chapter.name}: the syntax snippet is boilerplate.`);
     if (chapter.strayBadges.length) warnings.push(`${chapter.name}: badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}.`);
-    if (chapter.tables === 0) warnings.push(`${chapter.name}: no comparison table.`);
     if (chapter.ocjp < OCJP_TARGET) warnings.push(`${chapter.name}: ${chapter.ocjp} OCJP questions, target ${OCJP_TARGET}.`);
   }
+
+  // "No comparison table" is deliberately NOT a warning; see chaptersWithoutTable.
 
   console.log('');
   if (warnings.length) {
@@ -479,6 +506,15 @@ if (!quiet) {
     if (uncoveredTopics.length > 12) console.log(`     ... and ${uncoveredTopics.length - 12} more`);
   }
 
+  if (exerciseTopics.length) {
+    console.log('');
+    console.log(`✍️  YOUR OWN EXERCISES — ${exerciseTopics.length} file(s), nothing to generate`);
+    console.log('   These open with "Challenge:" or "Deep Problem:". You wrote the task and solved it');
+    console.log('   in main, so there is no method to test and no generated practice would add anything.');
+    exerciseTopics.slice(0, 12).forEach(item => console.log(`     ${item.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')}  ${item.topic}`));
+    if (exerciseTopics.length > 12) console.log(`     ... and ${exerciseTopics.length - 12} more`);
+  }
+
   if (ocjpWork.length) {
     console.log('');
     console.log(`📚 OCJP BANK — target ${OCJP_TARGET} exam questions per chapter`);
@@ -486,14 +522,20 @@ if (!quiet) {
     console.log(`   Ask Copilot: "write the OCJP questions for ${ocjpWork[0].name}"`);
   }
 
-  const quickRevisionWork = syntaxWork + badgeWork + tableWork;
+  const quickRevisionWork = syntaxWork + badgeWork;
 
   if (quickRevisionWork) {
     console.log('');
     console.log('🧩 QUICK REVISION');
     if (syntaxWork) console.log(`     ${syntaxWork} chapter(s): the syntax snippet is boilerplate, not the chapter's construct`);
-    if (badgeWork) console.log(`     ${badgeWork} chapter(s): the badges are method names rather than the API taught`);
-    if (tableWork) console.log(`     ${tableWork} chapter(s): no comparison table`);
+    if (badgeWork) console.log(`     ${badgeWork} chapter(s): the badges are not the syntax the chapter teaches`);
+  }
+
+  if (chaptersWithoutTable.length) {
+    console.log('');
+    console.log(`📋 COMPARISON TABLES — ${chaptersWithoutTable.length} chapter(s) have none`);
+    console.log('   A table is your content, so none is generated. Add one to the notes with a markdown');
+    console.log('   table if a comparison is worth keeping, and it appears in Quick Revision automatically.');
   }
 
   console.log('');
