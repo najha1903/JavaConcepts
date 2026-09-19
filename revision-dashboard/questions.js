@@ -23457,12 +23457,11 @@ const QUICK_REVISION_BANK = {
       "`java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.",
       "Only one class in a file may be public, and it must be the one whose name matches the file name."
     ],
-    "syntax": "public class HelloWorld {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"Hello World\");\n    }\n\n}",
+    "syntax": "public class HelloWorld {                       // the class name matches the file name\n    public static void main(String[] args) {    // the entry point the JVM looks for\n        System.out.println(\"Hello World\");      // prints the text, then moves to a new line\n    }\n}",
     "badges": [
-      "main",
-      "toFahrenheit",
-      "isFibonacci",
-      "printSequence"
+      ";",
+      "{ }",
+      "System.out.println"
     ],
     "tables": []
   },
@@ -23481,12 +23480,13 @@ const QUICK_REVISION_BANK = {
       "A narrowing cast such as `(int) 9.8` truncates rather than rounds, so it gives 9 and not 10.",
       "Comparing two Integer objects with `==` compares references rather than values, so use `equals` for the numbers, or store them as int."
     ],
-    "syntax": "public class StringExample {\n\n    public static void main(String[] args) {\n\n        String myString = \"This is a string\";\n        System.out.println(\"MyString is equal to \" + myString);\n        myString = myString  + \", and this is more.\";\n        System.out.println(\"myString is equal to \" + myString);\n        myString = myString + \" \\u00A9 2022\";\n        System.out.println(\"myString is equal to \" + myString);",
+    "syntax": "long big = 3000000000;      // Compile Error :- integer number too large\nlong big = 3000000000L;     // works, the L makes the literal a long\nfloat f = 3.14;             // Compile Error :- incompatible types, double cannot be assigned to float\nfloat f = 3.14f;            // works, the f makes the literal a float",
     "badges": [
-      "main",
-      "aMethod",
-      "isOdd",
-      "countSetBits"
+      "int",
+      "long",
+      "double",
+      "boolean",
+      "char"
     ],
     "tables": [
       {
@@ -23554,13 +23554,13 @@ const QUICK_REVISION_BANK = {
       "`=` puts a value into a variable, and `==` asks whether two values are the same. Because `x = 5` produces an int, `if (x = 5)` is a compile error, which is Java catching a mistake that would go unnoticed in other languages.",
       "A remainder keeps the sign of the number on the left, not the divisor: `-10 % 3` is -1 and not 1."
     ],
-    "syntax": "public class OperatorsOperandsExpressions {\n\n    public static void main(String[] args) {\n\n        int myVar = 15 + 12; // 15 and 12 are operands; + is the addition operator.\n        double hoursWorked = 9.5d;\n        double hourlyRate = 5d;\n        double mySalary = hoursWorked * hourlyRate; // hoursWorked and hourlyRate are operands; * is the multiplication operator.\n        System.out.println(mySalary);",
+    "syntax": "int i = 5;\nSystem.out.println(i++);              // prints 5, then i becomes 6. Use the value, then increment.\nSystem.out.println(++i);              // prints 7. Increment first, then use the value.",
     "badges": [
-      "main",
-      "power",
-      "absolute",
-      "maxOfThree",
-      "sign"
+      "+",
+      "-",
+      "*",
+      "/",
+      "%"
     ],
     "tables": [
       {
@@ -23662,13 +23662,13 @@ const QUICK_REVISION_BANK = {
       "A variable declared inside a block disappears at the closing brace. Using it afterwards gives \"cannot resolve symbol\", because the name no longer exists.",
       "Braces are not punctuation you can sprinkle anywhere. A class body, a method body, and the headers of `if` and `for` all end in `{` or `}`, and none of them takes a semicolon."
     ],
-    "syntax": "public class StatementsWhiteSpaceAndIndentation {\n\n    public static void main(String[] args) {\n\n        int myVariable = 50; // Statement represents the entire line. Adding datatype at the start of the expression and then finishing of with a semicolon we have made a valid Java Statement.\n        myVariable++; // This also represents complete statement\n        System.out.println(myVariable); // Shows the incremented value: 51\n        System.out.println(\"This is a test\"); // This also represents complete statement.\n\n        System.out.println(\"This is\" +",
+    "syntax": "if (true) {\n    int inner = 10;\n    System.out.println(inner);    // prints 10, inner is in scope here\n}\nSystem.out.println(inner);        // Compile Error :- cannot resolve symbol 'inner'",
     "badges": [
-      "main",
-      "kilometersToMiles",
-      "kilogramsToPounds",
-      "celsiusToFahrenheit",
-      "litersToGallons"
+      ";",
+      "{ }",
+      "System.out.println",
+      "if",
+      "else if"
     ],
     "tables": []
   },
@@ -23686,12 +23686,13 @@ const QUICK_REVISION_BANK = {
       "Comparing two Strings with `==` asks whether they are the same object rather than whether they hold the same text, so `new String(\"hello\") == \"hello\"` is false. Use `.equals()` for content.",
       "`&&` and `||` stop as soon as the answer is settled, and that is exactly what makes `name != null && name.length() > 5` safe: when name is null the left side is already false, so the method call that would throw never happens."
     ],
-    "syntax": "public class IfExample {\n\n    public static void main(String[] args) {\n\n        boolean isAlien = false;\n\n        // If keyword, takes what inside the parenthesis,and if(and only if), the result of expression is true, next line will be executed.\n        if(isAlien == false){ // condition check\n            System.out.println(\"It is not an alien!\");\n        } // Always uses code block, with if statement, it reduces confusion. It allows more than one statement to be executed.",
+    "syntax": "int score = 75;\nif (score >= 90)      { System.out.println(\"A\"); }\nelse if (score >= 70) { System.out.println(\"B\"); }   // prints B\nelse if (score >= 50) { System.out.println(\"C\"); }",
     "badges": [
-      "main",
-      "classify",
-      "isPassing",
-      "letterGrade"
+      "if",
+      "else if",
+      "else",
+      "? :",
+      "+"
     ],
     "tables": []
   },
@@ -23710,13 +23711,13 @@ const QUICK_REVISION_BANK = {
       "The return type is not part of a method's signature, so two methods that differ only in their return type cannot overload each other.",
       "The compiler checks every path of a non-void method, so one branch that can finish without a return fails the whole file rather than compiling and returning a surprise at runtime."
     ],
-    "syntax": "public class MethodsInJava {\n\n    public static void main(String[] args) {\n     calculateScore(); //method without any parameter\n     // calculateScore(true,800,5,100); // Calling the overloaded method with parameters\n        // The parameters should be passed in the same order as it is defined in the method.\n\n        int highScore = calculateScore(true,800,5,100); // The value returned by calculateScore function is now assigned to highScore variable.\n        System.out.println(\"Your final score was \" + highScore);",
+    "syntax": "static void tryToChange(int n) { n = 99; }\nint x = 5;\ntryToChange(x);\nSystem.out.println(x);            // prints 5, because n was a copy",
     "badges": [
-      "methodName",
-      "tryToChange",
-      "swap",
-      "update",
-      "reset"
+      "same name",
+      "different parameters",
+      ";",
+      "{ }",
+      "System.out.println"
     ],
     "tables": []
   },
@@ -23739,13 +23740,13 @@ const QUICK_REVISION_BANK = {
       "A switch expression requires a `default` arm, because the expression has to produce a value for every possible input.",
       "`yield` is valid only inside a switch expression, and it is what returns the value from an arm that needs more than one statement."
     ],
-    "syntax": "public class SwitchStatementInJava {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"If-else example:\");\n        ifElseExample(3);\n\n        System.out.println();\n        System.out.println(\"Traditional switch example:\");\n        switchCase(2);",
+    "syntax": "int x = 3;\nswitch (x) {\n    case 1:\n    case 2:\n    case 3: System.out.println(\"low\"); break;\n    default: System.out.println(\"high\");\n}",
     "badges": [
-      "check",
-      "label",
-      "main",
-      "ifElseExample",
-      "switchCase"
+      "switch",
+      "case",
+      "break",
+      "default",
+      "yield"
     ],
     "tables": []
   },
@@ -23762,13 +23763,13 @@ const QUICK_REVISION_BANK = {
       "`break` on its own leaves only the innermost loop. Leaving two loops needs a label, or a flag that the outer loop tests.",
       "If `continue` runs before the counter update in a while loop, the counter never advances and the loop spins forever. In a for loop the update still runs, so the same mistake is harmless there."
     ],
-    "syntax": "public class ForStatement {\n\n    public static void main(String[] args) {\n\n        System.out.println(\"Counting from 1 to 5:\");\n        for(int counter = 1; counter <=5; counter++){ // counter is the variable that got initialised. It is then compared with the value less than equal to 5. If the counter is greater than 5, the loop will terminate. Lastly the loop is incremented, after the expression is tested.\n           System.out.println(counter);\n        }\n\n        System.out.println();",
+    "syntax": "for (int i = 1; i <= 5; i++) {\n    if (i == 3) { continue; }   // 3 is skipped\n    System.out.print(i + \" \");  // prints 1 2 4 5\n}",
     "badges": [
-      "main",
-      "calculateInterest",
-      "isPrime",
-      "isOdd",
-      "sumOdd"
+      "for",
+      "while",
+      "do while",
+      "i++",
+      "break"
     ],
     "tables": []
   },
@@ -23790,13 +23791,13 @@ const QUICK_REVISION_BANK = {
       "`while (condition)` inside a do-while needs a statement terminator, unlike the `while` that starts a normal loop.",
       "`continue` inside a do-while jumps to the condition test rather than to the top of the body, so the body may run fewer times than you expect."
     ],
-    "syntax": "public class WhileLoops {\n\n    /* while loop simply has expression\n\n    While loop code format :-\n\n    while(expression)  {\n    // block of statements\n\n    } */",
+    "syntax": "int i = 0;\nwhile (i < 5) {\n    System.out.println(\"pass \" + i);   // pass 0, pass 1, pass 2, pass 3, pass 4\n    i++;                                // without this line the loop never ends\n}",
     "badges": [
-      "main",
-      "checkIfNumberIsPalindrome",
-      "sumDigits",
-      "getEvenDigitSum",
-      "printFactors"
+      "for",
+      "while",
+      "do while",
+      "i++",
+      "break"
     ],
     "tables": []
   },
@@ -23813,13 +23814,13 @@ const QUICK_REVISION_BANK = {
       "An object variable that has not been given an object holds null, and using it throws a NullPointerException rather than quietly creating something.",
       "Local variables declared inside a method have no default at all, so reading one before assigning it is a compile error, unlike a field."
     ],
-    "syntax": "public class ClassExample {\n\n    public static void main(String[] args) {\n        //  We can create String using 2 ways\n\n         // 1) Literal form\n\n           String s = \"Hello\";  // s is a local variable on which the objects memory location also known as reference is assigned.\n           System.out.println(\"Literal String = \" + s);",
+    "syntax": "Car a = new Car();\nCar b = new Car();\nSystem.out.println(a == b);        -- prints false, they are two different objects\nCar c = a;\nSystem.out.println(a == c);        -- prints true, both names point at the same object",
     "badges": [
-      "Counter",
-      "read",
-      "main",
-      "tick",
-      "show"
+      "class",
+      "new",
+      "this",
+      "field",
+      "static"
     ],
     "tables": []
   },
@@ -23837,13 +23838,13 @@ const QUICK_REVISION_BANK = {
       "`System.console()` returns null inside most IDEs, because the program is not attached to a real terminal, so code that calls it throws a NullPointerException.",
       "`Math.round` returns a long, not an int, so storing its result in an int needs a cast."
     ],
-    "syntax": "public class ParsingValuesReadingInput {\n\n    public static void main(String[] args) {\n\n        String currentYear = \"2024\";\n\n        String userDateOfBirth = \"1999\";\n\n        // System.out.println(\"Age = \" + (currentYear - userDateOfBirth));",
+    "syntax": "int a = Integer.parseInt(\"42\");        // returns a primitive int\nInteger b = Integer.valueOf(\"42\");     // returns an Integer object\nSystem.out.println(a + \" / \" + b);     // prints 42 / 42",
     "badges": [
-      "main",
-      "getInputFromConsole",
-      "checkValidDOB",
-      "getInputFromScanner",
-      "inputThenPrintSumAndAverage"
+      "Integer.parseInt",
+      "Double.parseDouble",
+      "Integer.MAX_VALUE",
+      "Integer.valueOf",
+      "String"
     ],
     "tables": [
       {
@@ -23887,13 +23888,13 @@ const QUICK_REVISION_BANK = {
       "`Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.",
       "The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened."
     ],
-    "syntax": "public class ExceptionHandlingInJava {\n    public static void main(String[] args) {\n\n        try{ // The try block wraps any code that might throw an exception at runtime.\n            // Place only the risky code here — keep try blocks as small as possible.\n        } // The try block ends here; the catch block immediately follows.\n        catch (Exception e){  // The catch parameter specifies which exception type to handle. 'Exception' is the base class that catches any exception.\n                              // The variable 'e' holds information about the exception, including its message and stack trace.\n                              // The catch block contains your error handling logic — log the error, show a message, or recover gracefully.\n        }",
+    "syntax": "static void checkAge(int age) {\n    if (age < 0) {\n        throw new IllegalArgumentException(\"Age cannot be negative\");   // raised at this moment\n    }\n}\nstatic void readFile() throws IOException {   // declares that this method may pass the problem on\n    // ...\n}",
     "badges": [
-      "checkAge",
-      "test",
-      "main",
-      "check",
-      "demonstrateException"
+      "try",
+      "catch",
+      "finally",
+      "throw",
+      "throws"
     ],
     "tables": []
   },
@@ -23919,13 +23920,13 @@ const QUICK_REVISION_BANK = {
       "A private method in the parent cannot be overridden, because the child cannot even see it. A same-named method in the child is a separate, unrelated method.",
       "Through a parent reference you can only call the methods the parent declares, so calling a child-only method needs a child reference or a cast."
     ],
-    "syntax": "public class ClassesAndInheritance {\n\n\n\n}",
+    "syntax": "class Counter {\n    static int shared = 0;      // ONE copy for the whole class\n    int mine = 0;               // one copy in every object\n\n    void tick() { shared++; mine++; }\n\n    static void resetShared() { shared = 0; }   // fine, shared belongs to the class\n    static void bad() { mine = 0; }   // Compile Error :- mine is not static\n}\nCounter a = new Counter();\nCounter b = new Counter();\na.tick(); a.tick(); b.tick();\nSystem.out.println(Counter.shared);           // prints 3, all three ticks landed on the one shared copy\nSystem.out.println(a.mine + \" \" + b.mine);    // prints 2 1, each object kept its own count",
     "badges": [
-      "show",
-      "tick",
-      "resetShared",
-      "bad",
-      "main"
+      "class",
+      "new",
+      "this",
+      "field",
+      "private"
     ],
     "tables": [
       {
@@ -23983,13 +23984,13 @@ const QUICK_REVISION_BANK = {
       "`new StringBuilder(\"Hello\")` starts with a capacity of 16 plus the text length, so 21 here. Capacity is the room available before the buffer has to grow, not the length of the text.",
       "Building a long String with `+` inside a loop creates a new object on every pass and leaves the earlier ones for the garbage collector, which is exactly the cost StringBuilder avoids."
     ],
-    "syntax": "public class TextBlockAndAdvancedOutputFormatting {\n\n    /*\n\n    * Text Block\n    * 1) A text block is just a special format for multi-line String literals\n    *\n    * 2) It's simply a String, with a new representation in the source code\n    *\n    * Escape Sequences",
+    "syntax": "System.out.printf(\"Age = %d%n\", 42);                 // prints Age = 42 and moves to a new line\nString line = String.format(\"Age = %d\", 42);         // builds the text without printing it\nSystem.out.println(line);                            // prints Age = 42 later",
     "badges": [
-      "main",
-      "StringInspectionMethods",
-      "StringComparisonMethods",
-      "StringManipulationMethods",
-      "isPalindrome"
+      "String",
+      "charAt",
+      "substring",
+      "length()",
+      "toUpperCase"
     ],
     "tables": [
       {
@@ -24100,13 +24101,13 @@ const QUICK_REVISION_BANK = {
       "A composed object is only usable once its parts exist, so a constructor that stores them must receive or create real objects. Otherwise the fields stay null and every delegated call throws a NullPointerException.",
       "Composition and inheritance are not a choice you make once for a whole program. The same class can belong to both relationships, as Monitor does here."
     ],
-    "syntax": "public class ComputerCase extends Product{\n\n    private String powerSupply;\n\n    public ComputerCase(String model, String manufacturer){\n        super(model,manufacturer);\n    }\n\n    public ComputerCase(String model, String manufacturer, String powerSupply){\n        super(model,manufacturer);",
+    "syntax": "Monitor IS-A Product       (inheritance, through extends)\nPersonalComputer HAS-A Monitor   (composition, through a field)",
     "badges": [
-      "ComputerCase",
-      "pressPowerButton",
-      "main",
-      "Monitor",
-      "drawPixelAt"
+      "HAS-A",
+      "field holding an object",
+      "delegation",
+      "extends",
+      "super"
     ],
     "tables": []
   }

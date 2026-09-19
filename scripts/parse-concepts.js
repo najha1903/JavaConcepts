@@ -62,6 +62,53 @@ function formatName(name) {
   return formatted;
 }
 
+// A badge is the SYNTAX or API a concept teaches, not a method name from the
+// source. The panel used to scrape method names, so `main` appeared in all 15
+// chapters and the rest were the author's own helpers - the names of the code
+// written to DEMONSTRATE a concept, not the concept itself.
+const CONCEPT_BADGES = {
+  'statements': [';', '{ }', 'System.out.println'],
+  'primitives': ['int', 'long', 'double', 'boolean', 'char', 'byte', 'short', 'float'],
+  'literals': ['100L', '3.14f', '0x1F', '0b1010', '1_000'],
+  'wrappers': ['Integer.parseInt', 'Double.parseDouble', 'Integer.MAX_VALUE', 'Integer.valueOf'],
+  'casting': ['(int)', '(byte)', '(double)', 'implicit widening'],
+  'operators': ['+', '-', '*', '/', '%', '++', '--', '? :', '+=', '&&', '||'],
+  'strings': ['String', 'charAt', 'substring', 'length()', 'toUpperCase', 'trim', 'replace'],
+  'string-pool': ['==', '.equals()', 'intern()'],
+  'text-blocks': ['"""', 'String.format', 'printf', '%d', '%.2f', '%n'],
+  'var': ['var'],
+  'arrays': ['new int[]', 'array.length', 'for-each'],
+  'if-else': ['if', 'else if', 'else', '? :'],
+  'switch': ['switch', 'case', 'break', 'default', 'yield', '->'],
+  'loops': ['for', 'while', 'do while', 'i++'],
+  'break-continue': ['break', 'continue', 'label:'],
+  'classes': ['class', 'new', 'this', 'field'],
+  'static': ['static', 'ClassName.field', 'ClassName.method()'],
+  'encapsulation': ['private', 'public', 'getX()', 'setX()'],
+  'constructors': ['ClassName()', 'this()', 'super()', 'overloaded constructor'],
+  'inheritance': ['extends', 'super', 'IS-A'],
+  'polymorphism': ['@Override', 'parent reference', 'runtime dispatch'],
+  'overloading': ['same name', 'different parameters'],
+  'abstract': ['abstract class', 'interface', 'implements'],
+  'composition': ['HAS-A', 'field holding an object', 'delegation'],
+  'records-enums': ['record', 'enum'],
+  'object-class': ['toString()', 'equals()', 'hashCode()', 'getClass()'],
+  'exceptions': ['try', 'catch', 'finally', 'throw'],
+  'checked-unchecked': ['throws', 'RuntimeException', 'IOException'],
+  'throw-throws': ['throw new', 'throws'],
+  'multi-catch': ['catch (A | B e)', 'catch order'],
+  'generics': ['<T>', '<? extends T>'],
+  'collections': ['List', 'Set', 'Map', 'ArrayList', 'HashMap'],
+  'lambda': ['->', '@FunctionalInterface'],
+  'streams': ['.stream()', '.map()', '.filter()', '.collect()'],
+  'modules': ['module-info.java', 'requires', 'exports'],
+  'concurrency': ['Thread', 'Runnable', 'synchronized'],
+  'io': ['Files.readString', 'Path', 'BufferedReader'],
+  'jdbc': ['Connection', 'PreparedStatement', 'ResultSet'],
+  'localization': ['Locale', 'ResourceBundle'],
+  'annotations': ['@Override', '@Deprecated', '@SuppressWarnings']
+};
+
 // ==========================================================================
 // Helper: Parse a Java file into structured data
 // ==========================================================================
@@ -1010,25 +1057,44 @@ function buildQuickRevisionEntry(chapterName, topics) {
     conceptsByTopic.push(conceptLines);
     gotchasByTopic.push(gotchaLines);
 
-    // Extract class/method signature badges
-    const sigRegex = /\b(public|private|protected)?\s*(static\s+)?(\w+)\s+(\w+)\s*\([^)]*\)\s*\{/g;
-    let sigMatch;
-    while ((sigMatch = sigRegex.exec(topic.code)) !== null) {
-      const name = sigMatch[4];
-      if (!['if', 'while', 'for', 'switch', 'catch'].includes(name)) {
-        badges.add(name);
-      }
+    // Badges: the syntax and API the chapter teaches, taken from the concepts it
+    // covers. This replaces scraping method names from the source, which put
+    // `main` in all 15 chapters and filled the rest with the author's own helpers.
+    for (const conceptId of conceptCatalogue.conceptsForChapter(chapterName, [topic])) {
+      for (const badge of CONCEPT_BADGES[conceptId] || []) badges.add(badge);
     }
 
-    // Extract first code sample
-    if (codeSnippets.length === 0 && topic.code) {
-      const lines = topic.code.split('\n');
-      const startIdx = lines.findIndex(l => l.trim().startsWith('public class') || l.trim().startsWith('class '));
-      if (startIdx !== -1) {
-        codeSnippets.push(lines.slice(startIdx, Math.min(startIdx + 10, lines.length)).join('\n').trim());
+    // A syntax snippet should show the chapter's CENTRAL CONSTRUCT, not the class
+    // declaration. Taking the first code block gave every chapter
+    // "public class X { public static void main(String[] args) {" which is
+    // boilerplate rather than a syntax reference.
+    //
+    // Candidates are scored by how much of the chapter's own syntax they show, so
+    // a `switch` snippet wins in the switch chapter and a `for` snippet wins in
+    // the loops chapter.
+    for (const block of topic.headerComments || []) {
+      if (block.type !== 'code' || !block.code) continue;
+      const text = String(block.code);
+      if (/^\s*(public\s+)?class\s+\w+\s*\{?\s*$/.test(text.trim())) continue;   // a bare class header
+      // A block that OPENS with a class declaration is mostly scaffolding, so it
+      // is penalised rather than excluded: it is still better than nothing, but a
+      // real statement should win.
+      const opensWithClass = /^\s*(public\s+)?class\s+\w+/.test(text);
+      let score = opensWithClass ? -3 : 0;
+      for (const badge of badges) {
+        const escaped = String(badge).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        if (new RegExp(escaped).test(text)) score += 2;
       }
+      // Prefer something with a statement in it.
+      if (/;/.test(text)) score += 1;
+      if (text.split('\n').length >= 3) score += 1;
+      codeSnippets.push({ code: text.trim(), score });
     }
   });
+
+  // The best-scoring snippet across the chapter, or nothing at all rather than
+  // boilerplate when no block shows anything distinctive.
+  codeSnippets.sort((a, b) => b.score - a.score);
 
   // Authored lines win. Only a chapter with none of its own falls back to the
   // derived pick. The caps are generous enough that a chapter writing its own
@@ -1047,7 +1113,10 @@ function buildQuickRevisionEntry(chapterName, topics) {
     takeaways.push(`No key points are written for ${chapterName} yet. Add // @takeaway lines to state them, and they will appear here instead of this note.`);
   }
 
-  const syntax = codeSnippets[0] || `// See source files in ${chapterName}`;
+  // The snippet is the highest-scoring block, or nothing rather than boilerplate.
+  // A chapter whose notes contain no distinctive code shows no syntax panel at all,
+  // which is more honest than showing a class declaration.
+  const syntax = (codeSnippets[0] && codeSnippets[0].score > 0) ? codeSnippets[0].code : '';
   const badgeList = Array.from(badges).slice(0, 5);
 
   return { takeaways, gotchas, syntax, badges: badgeList, tables };
