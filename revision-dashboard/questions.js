@@ -35,7 +35,10 @@ const QUESTIONS_BANK = {
         "JDK is for development (contains compiler javac), JRE is for running Java programs (libraries + JVM), and JVM is the execution engine."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -53,7 +56,10 @@ const QUESTIONS_BANK = {
         "Java source code compiles to platform-neutral bytecode (.class), which runs on any system equipped with a compatible JVM."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -80,7 +86,10 @@ const QUESTIONS_BANK = {
         "3": "args is never supplied, because the method is never reached."
       },
       "explanation": "Compilation succeeds, because a non-static main is a legal method like any other. The launcher, however, looks for `public static void main(String[])`, does not find it, and reports that no main method could be found.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -106,7 +115,10 @@ const QUESTIONS_BANK = {
         "3": "the array form is the classic signature and still the one the launcher expects."
       },
       "explanation": "Both forms are accepted, because `String...` is compiled to `String[]`, so the two are the same signature once compiled. Nothing else qualifies: the method must be public, static, void, and take exactly one String array.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -133,7 +145,10 @@ const QUESTIONS_BANK = {
         "3": "the second expression is arithmetic first, so 10 + 5 is 15 and not 105."
       },
       "explanation": "`+` is evaluated left to right. In `\"A\" + a + 5` the text comes first, so both numbers are joined: A105. In `a + 5 + \"B\"` the arithmetic comes first, so 10 + 5 is 15 and then the text is joined: 15B. The empty println only ends the line.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -160,7 +175,10 @@ const QUESTIONS_BANK = {
         "3": "declaring Two in its own file is exactly the fix. It is not an additional condition on this file."
       },
       "explanation": "A source file may hold several classes, but only one of them may be public, and its name must match the file name. Two public classes in one file is a compile-time error.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -186,7 +204,10 @@ const QUESTIONS_BANK = {
         "3": "a package statement is unrelated to this rule."
       },
       "explanation": "A public class must live in a file of the same name, so `public class Startup` has to be in Startup.java. The compiler reports this before producing any bytecode.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -212,7 +233,10 @@ const QUESTIONS_BANK = {
         "3": "they are nested, not independent. Installing a JDK also gives you a JRE and a JVM."
       },
       "explanation": "The nesting is JDK > JRE > JVM. The JDK adds development tools such as javac on top of the JRE, and the JRE provides the libraries and the JVM that runs a program.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -238,7 +262,10 @@ const QUESTIONS_BANK = {
         "2": "producing native code directly is not what javac does. Bytecode is the intermediate step, and that is exactly what makes the same .class file portable."
       },
       "explanation": "javac turns source into bytecode, and the JVM translates that bytecode into the native instructions of whatever machine it is running on.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -264,7 +291,10 @@ const QUESTIONS_BANK = {
         "2": "being callable from other classes is the job of public, not static."
       },
       "explanation": "A program needs an entry point before any object exists, so main must be callable without an instance. That is what static provides.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -290,7 +320,10 @@ const QUESTIONS_BANK = {
         "3": "the return type must be void. A static int main compiles, but it is not accepted as the entry point."
       },
       "explanation": "The launcher requires a method named main that is public, static, and void, with one String[] parameter. Extra modifiers such as final are allowed, so the method is still a valid entry point.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -316,7 +349,10 @@ const QUESTIONS_BANK = {
         "3": "args is input to the program, not a record of its output."
       },
       "explanation": "args carries the values typed after the class name, for example `java HelloWorld Navneet 25` gives args[0] = \"Navneet\" and args[1] = \"25\". They are Strings, not numbers.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -342,7 +378,10 @@ const QUESTIONS_BANK = {
         "2": "copying source and recompiling is possible, but it is not the mechanism. The whole point is that the compiled .class file is already portable."
       },
       "explanation": "The portable artefact is the .class file. The JVM is platform-specific, and that is the piece that adapts the same bytecode to each operating system.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -369,7 +408,10 @@ const QUESTIONS_BANK = {
         "3": "the length counts every argument, and two were given."
       },
       "explanation": "args receives the words typed after the class name, in order. Two words were supplied, so the length is 2, and args[0] is the first one, \"Java\".",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -396,7 +438,10 @@ const QUESTIONS_BANK = {
         "3": "javac only writes the .class when the whole file is valid, so the failure comes first."
       },
       "explanation": "Compilation is a separate stage that happens before anything runs. A syntax problem stops javac, so the bytecode is never created and there is nothing to execute.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -422,7 +467,10 @@ const QUESTIONS_BANK = {
         "3": "the JVM is present, but the compiler is not, so compiling is not possible."
       },
       "explanation": "The JRE contains the core libraries and the JVM, which is everything needed to run a program. The development tools, including javac, live in the JDK, which is the larger set that contains the JRE.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -448,7 +496,10 @@ const QUESTIONS_BANK = {
         "3": "compiling again is unnecessary. That would defeat the purpose of bytecode."
       },
       "explanation": "The compiled .class file is the portable part. It contains bytecode, not machine code, and each platform's JVM turns that bytecode into instructions its own processor understands.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -475,7 +526,10 @@ const QUESTIONS_BANK = {
         "3": "nothing calls the method, so nothing prints, and the JVM stops before main runs."
       },
       "explanation": "A static int method named main is a perfectly legal Java method, so the compiler accepts it. The launcher, however, looks for public static void main with a single String[] parameter, so it finds no entry point and refuses to start.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -501,7 +555,10 @@ const QUESTIONS_BANK = {
         "3": "the source is not consulted at run time, so the new text cannot take effect."
       },
       "explanation": "java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.",
-      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java"
+      "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "concepts": [
+        "statements"
+      ]
     }
   ],
   "Chapter 2: Primitive Types": [
@@ -522,7 +579,16 @@ const QUESTIONS_BANK = {
         "It feels special because Java supports string literals like \"hello\", but it is still an object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -541,7 +607,16 @@ const QUESTIONS_BANK = {
         "Immutability also helps security and makes Strings naturally thread-safe."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -560,7 +635,16 @@ const QUESTIONS_BANK = {
         "== compares references, while .equals() compares the actual character content."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -579,7 +663,16 @@ const QUESTIONS_BANK = {
         "StringBuilder changes the same buffer, so it is usually faster and uses less memory in loops."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -599,7 +692,16 @@ const QUESTIONS_BANK = {
         "The concatenation is folded by the compiler into the literal \"ab\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -619,7 +721,16 @@ const QUESTIONS_BANK = {
         "new String(\"ab\") creates a different object, so == is false, but the contents are equal."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -638,7 +749,16 @@ const QUESTIONS_BANK = {
         "The original String is discarded and becomes eligible for garbage collection."
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -656,7 +776,16 @@ const QUESTIONS_BANK = {
         "char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\")."
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -674,7 +803,16 @@ const QUESTIONS_BANK = {
         "When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place."
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -695,7 +833,16 @@ const QUESTIONS_BANK = {
         "KEY RULE: if both operands of + are numeric, it is arithmetic. Once one operand is a String, + becomes concatenation for the rest of the expression."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -716,7 +863,16 @@ const QUESTIONS_BANK = {
         "Once the first operand is a String, ALL subsequent + operations become string concatenation — even int + int after it."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -737,7 +893,16 @@ const QUESTIONS_BANK = {
         "To get \"Result: 3\", use parentheses: \"Result: \" + (1 + 2). Parentheses force arithmetic first."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -758,7 +923,16 @@ const QUESTIONS_BANK = {
         "Contrast: \"Result\" + 1 + 2 = \"Result12\". Order matters!"
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -778,7 +952,16 @@ const QUESTIONS_BANK = {
         "Parentheses (10 + 20) are evaluated first as arithmetic giving 30. Then \"Value: \" + 30 = \"Value: 30\", then + \" done\" = \"Value: 30 done\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -799,7 +982,16 @@ const QUESTIONS_BANK = {
         "To get \"A1\", use: \"\" + ch + 1 OR String.valueOf(ch) + 1. Adding an empty String \"\" forces concatenation."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -819,7 +1011,16 @@ const QUESTIONS_BANK = {
         "Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -839,7 +1040,16 @@ const QUESTIONS_BANK = {
         "Fix: s = s.concat(\" is fun\"); — you must assign the result back."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -860,7 +1070,16 @@ const QUESTIONS_BANK = {
         "To add them arithmetically: System.out.println(a + a + \"\") = \"10\""
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -880,7 +1099,16 @@ const QUESTIONS_BANK = {
         "Key insight: Strings are immutable so you can't modify in place — you must build a new result."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -900,7 +1128,16 @@ const QUESTIONS_BANK = {
         "You DON'T need to reverse the whole string — just compare from both ends. This is O(n/2) = O(n)."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -919,7 +1156,16 @@ const QUESTIONS_BANK = {
         "Or with for-each: for (char ch : str.toCharArray()) { if (ch == target) count++; }"
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -938,7 +1184,16 @@ const QUESTIONS_BANK = {
         "Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -957,7 +1212,16 @@ const QUESTIONS_BANK = {
         "Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }"
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -976,7 +1240,16 @@ const QUESTIONS_BANK = {
         "Simpler: use a switch or if-else chain: if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') count++;"
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -996,7 +1269,16 @@ const QUESTIONS_BANK = {
         "Example: \"listen\" and \"silent\" are anagrams — same characters, different order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1015,7 +1297,16 @@ const QUESTIONS_BANK = {
         "This builds a new String containing only non-space characters."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1034,7 +1325,16 @@ const QUESTIONS_BANK = {
         "Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1053,7 +1353,16 @@ const QUESTIONS_BANK = {
         "int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;"
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1072,7 +1381,16 @@ const QUESTIONS_BANK = {
         "Example: \"programming\" → \"progamin\" (each character kept only on first occurrence)."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1091,7 +1409,16 @@ const QUESTIONS_BANK = {
         "Handle edge cases: empty string should return false. Negative sign ('-' at index 0) may or may not count depending on requirement."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1112,7 +1439,16 @@ const QUESTIONS_BANK = {
         "Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1134,7 +1470,16 @@ const QUESTIONS_BANK = {
         "Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1153,7 +1498,16 @@ const QUESTIONS_BANK = {
         "String is immutable, so concat returns a new String. If you avoid assigning the result back to s, the original reference still points to the old text."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1172,7 +1526,16 @@ const QUESTIONS_BANK = {
         "args stores every command-line value as a String, so \"123\" must be parsed before numeric arithmetic can be performed."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "mcq",
@@ -1198,6 +1561,15 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -1217,7 +1589,16 @@ const QUESTIONS_BANK = {
         "No. thirdVariable was declared inside the if block, so it is out of scope outside that block and cannot be passed to println there."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1236,7 +1617,16 @@ const QUESTIONS_BANK = {
         "The if condition must evaluate to a boolean. firstVariable > 0 is valid because comparison produces true or false."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "mcq",
@@ -1262,6 +1652,15 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -1281,7 +1680,16 @@ const QUESTIONS_BANK = {
         "Primitives store their actual raw values directly in stack memory, whereas reference types store object memory addresses."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1301,7 +1709,16 @@ const QUESTIONS_BANK = {
         "An uninitialized local variable causes a compile-time error if read before assignment."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1327,7 +1744,16 @@ const QUESTIONS_BANK = {
         "3": "an identifier cannot begin with a digit."
       },
       "explanation": "An identifier must begin with a letter, an underscore, or a dollar sign, may not be a keyword, and by convention uses camelCase.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1353,7 +1779,16 @@ const QUESTIONS_BANK = {
         "3": "grouping in threes is only a convention. The real rules forbid an underscore at the very start or end, next to a decimal point, or directly before a suffix such as L or f."
       },
       "explanation": "Underscores exist purely to make long numbers easier for a human to read. The compiler strips them, so the value is unchanged.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1380,7 +1815,16 @@ const QUESTIONS_BANK = {
         "3": "null is not even a legal value for a primitive such as int."
       },
       "explanation": "Local variables never receive a default value, unlike fields. Reading count before assigning it is a compile-time error.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1407,7 +1851,16 @@ const QUESTIONS_BANK = {
         "3": "redeclaring a name in a nested block is legal. It is an error only within the same block."
       },
       "explanation": "A name declared inside a block is a new variable that shadows the outer one for that block. After the closing brace the outer one is visible again.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1434,7 +1887,16 @@ const QUESTIONS_BANK = {
         "2": "final restricts writing, not reading. A final variable can be read normally."
       },
       "explanation": "final means the variable is assigned exactly once. Once the declaration has given it a value, any further assignment is an error.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1460,7 +1922,16 @@ const QUESTIONS_BANK = {
         "2": "a digit is allowed anywhere except the first character, so count2 is legal."
       },
       "explanation": "An identifier must begin with a letter, an underscore, or a dollar sign. It may not begin with a digit.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1487,7 +1958,16 @@ const QUESTIONS_BANK = {
         "2": "the declaration has not been seen yet, so there is no variable to read."
       },
       "explanation": "A local variable is in scope from its declaration onwards. The println comes first, so at that point total is unknown.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1514,7 +1994,16 @@ const QUESTIONS_BANK = {
         "3": "the condition is false, so the else branch is the one that runs."
       },
       "explanation": "Java checks definite assignment at compile time. Assigning on both paths makes the later read legal, and flag is false so the else branch gives 2.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "mcq",
@@ -1540,6 +2029,15 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -1559,7 +2057,16 @@ const QUESTIONS_BANK = {
         "= is assignment, not comparison. Use == when the condition should test whether highScore already equals 50."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1585,7 +2092,16 @@ const QUESTIONS_BANK = {
         "2": "String is a class in java.lang, not a keyword, so a variable may be called String."
       },
       "explanation": "A keyword has a fixed meaning in the language, so it can never be used for a class, method, or variable name.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1612,7 +2128,16 @@ const QUESTIONS_BANK = {
         "2": "x is a variable, which is the simplest kind of expression there is."
       },
       "explanation": "An expression is built from variables, literals, and operators. The type int says what kind of value is being declared.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1638,7 +2163,16 @@ const QUESTIONS_BANK = {
         "3": "classes merely starts with the letters of the keyword. It is a legal name."
       },
       "explanation": "Java is case-sensitive, so class is the keyword while Class is just an ordinary identifier. A keyword may never name a variable.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1664,7 +2198,16 @@ const QUESTIONS_BANK = {
         "3": "this is a method header, not an expression."
       },
       "explanation": "An expression works out to a value. The comparison highScore == 50 produces a boolean, so it is an expression.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1691,7 +2234,16 @@ const QUESTIONS_BANK = {
         "3": "the names differ by case, so there is no duplicate declaration."
       },
       "explanation": "Java tells upper and lower case apart in every identifier, so Total and total are two separate int variables. Adding them gives 30.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "mcq",
@@ -1717,6 +2269,15 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -1736,7 +2297,16 @@ const QUESTIONS_BANK = {
         "Narrowing converts a larger type to a smaller one, like double to int, and requires an explicit cast."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1755,7 +2325,16 @@ const QUESTIONS_BANK = {
         "For example, Integer.MAX_VALUE + 1 becomes Integer.MIN_VALUE."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1774,7 +2353,16 @@ const QUESTIONS_BANK = {
         "So 1 / 2 is 0, while 1.0 / 2 uses floating-point division and keeps the fraction."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1794,7 +2382,16 @@ const QUESTIONS_BANK = {
         "The first uses integer division, while the second uses double division."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1814,7 +2411,16 @@ const QUESTIONS_BANK = {
         "You need an explicit cast, such as int i = (int) l;."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1834,7 +2440,16 @@ const QUESTIONS_BANK = {
         "Local variables are different: Java does NOT give them default values, so you must initialize them before use."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1854,7 +2469,16 @@ const QUESTIONS_BANK = {
         "Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1874,7 +2498,16 @@ const QUESTIONS_BANK = {
         "Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -1894,7 +2527,16 @@ const QUESTIONS_BANK = {
         "They cannot be placed at the start or end of the literal, next to a decimal point, or right before a type suffix such as L or F."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1920,7 +2562,16 @@ const QUESTIONS_BANK = {
         "2": "short covers -32,768 to 32,767. The upper bound is 32,767, not 32,768."
       },
       "explanation": "Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1946,7 +2597,16 @@ const QUESTIONS_BANK = {
         "2": "if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents."
       },
       "explanation": "Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -1973,7 +2633,16 @@ const QUESTIONS_BANK = {
         "3": "the second line has a double operand, so it cannot produce 2."
       },
       "explanation": "When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2000,7 +2669,16 @@ const QUESTIONS_BANK = {
         "3": "Java does not raise an exception for primitive integer overflow. Only integer division by zero throws ArithmeticException."
       },
       "explanation": "int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2026,7 +2704,16 @@ const QUESTIONS_BANK = {
         "3": "L means long, not int, and a decimal literal is double, not float."
       },
       "explanation": "Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2052,7 +2739,16 @@ const QUESTIONS_BANK = {
         "3": "locals are the exception. Reading an unassigned local variable is a compile-time error."
       },
       "explanation": "Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2078,7 +2774,16 @@ const QUESTIONS_BANK = {
         "3": "double quotes create a String. A char literal always uses single quotes, as in 'D'."
       },
       "explanation": "A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2105,7 +2810,16 @@ const QUESTIONS_BANK = {
         "3": "an int cannot hold a fraction at all, which is why precision is lost here."
       },
       "explanation": "Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -2124,7 +2838,16 @@ const QUESTIONS_BANK = {
         "It tells Java to narrow the int result to byte. Be careful: narrowing can overflow or discard information."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "interview",
@@ -2143,7 +2866,16 @@ const QUESTIONS_BANK = {
         "The f suffix makes each literal a float, so Java performs floating-point division and keeps the decimal result instead of integer division."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2170,7 +2902,16 @@ const QUESTIONS_BANK = {
         "3": "128 is one past the maximum, so the value does not fit."
       },
       "explanation": "A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2197,7 +2938,16 @@ const QUESTIONS_BANK = {
         "3": "both operands are int, so the result of / is an int and cannot be -3.5."
       },
       "explanation": "Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2224,7 +2974,16 @@ const QUESTIONS_BANK = {
         "3": "the printed value shows the accumulated error rather than a clean 0.3."
       },
       "explanation": "double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2251,7 +3010,16 @@ const QUESTIONS_BANK = {
         "2": "nothing wraps here. The compiler rejects the type mismatch first."
       },
       "explanation": "Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2277,7 +3045,16 @@ const QUESTIONS_BANK = {
         "2": "that rule belongs to C and C++. Java does not allow the cast."
       },
       "explanation": "Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2304,7 +3081,16 @@ const QUESTIONS_BANK = {
         "3": "widening to double happens after the division, so the output is 0.0 and not 0."
       },
       "explanation": "1 and 3 are int, so this is integer division. The 0 result is then widened to double, giving 0.0.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2331,7 +3117,16 @@ const QUESTIONS_BANK = {
         "3": "the result only prints as B after a cast, as in (char) (c + 1)."
       },
       "explanation": "A char is a number underneath, and 'A' is 65. Arithmetic promotes it to int, so c + 1 is the int 66.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2358,7 +3153,16 @@ const QUESTIONS_BANK = {
         "3": "the literal fails first, so nothing is assigned."
       },
       "explanation": "A whole-number literal is an int unless it has a suffix. This one is past Integer.MAX_VALUE, so it is rejected.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2385,7 +3189,16 @@ const QUESTIONS_BANK = {
         "2": "0.1f is rounded to float precision, which is coarser than double precision."
       },
       "explanation": "A float keeps about 7 significant digits and a double about 15, and neither stores 0.1 exactly.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2412,7 +3225,16 @@ const QUESTIONS_BANK = {
         "2": "the wrap moves down by the full width of the type, 256, and not by 128."
       },
       "explanation": "A byte holds -128 to 127. The int 130 is bit pattern 1000 0010, which as a signed byte is 130 - 256 = -126.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "scq",
@@ -2439,7 +3261,16 @@ const QUESTIONS_BANK = {
         "3": "wrap-around belongs to integer arithmetic. A float-to-int cast saturates instead."
       },
       "explanation": "Narrowing a floating-point value to int does not wrap. A value too large becomes Integer.MAX_VALUE.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java"
+      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
+      ]
     },
     {
       "type": "mcq",
@@ -2465,6 +3296,15 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -2485,6 +3325,15 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -2505,6 +3354,15 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -2525,6 +3383,15 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     },
     {
@@ -2545,6 +3412,15 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "primitives",
+        "literals",
+        "wrappers",
+        "casting",
+        "strings",
+        "string-pool",
+        "var"
       ]
     }
   ],
@@ -2567,7 +3443,12 @@ const QUESTIONS_BANK = {
         "+ is left-to-right: 10 + 20 = 30 (arithmetic, both ints), then 30 + \"Java\" = \"30Java\" (String concat)."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2587,7 +3468,12 @@ const QUESTIONS_BANK = {
         "\"Java\" + 10 = \"Java10\" (String concat), then \"Java10\" + 20 = \"Java1020\". Once a String is the left operand, all + after it are concatenation."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2608,7 +3494,12 @@ const QUESTIONS_BANK = {
         "This is the FIX when you want arithmetic inside a String expression: wrap with parentheses."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2627,7 +3518,12 @@ const QUESTIONS_BANK = {
         "Use parentheses to control evaluation order: \"Score: \" + (a + b) gives arithmetic sum. \"Score: \" + a + b gives two separate concatenations."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2648,7 +3544,12 @@ const QUESTIONS_BANK = {
         "The correct comparison is if (x == 5), which evaluates to true only when x currently holds the value 5."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2668,7 +3569,12 @@ const QUESTIONS_BANK = {
         "The ternary operator evaluates the condition x > 5. Since 10 > 5 is true, Java chooses the first expression, which is \"big\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2688,7 +3594,12 @@ const QUESTIONS_BANK = {
         "After b += 5, the value of b becomes 15."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2708,7 +3619,12 @@ const QUESTIONS_BANK = {
         "This matters when the right side has side effects or could throw an exception, such as checking obj != null && obj.isReady()."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2727,7 +3643,12 @@ const QUESTIONS_BANK = {
         "If both operands are numeric, + performs addition. If either operand is a String, + performs concatenation for that operation."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -2746,7 +3667,12 @@ const QUESTIONS_BANK = {
         "The right-hand value is the amount added before assigning back to myVar; compound assignment also performs an implicit cast when needed."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2772,7 +3698,12 @@ const QUESTIONS_BANK = {
         "2": "a line ending in a semicolon is a statement. An expression is defined by producing a value, not by the semicolon."
       },
       "explanation": "In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2800,7 +3731,12 @@ const QUESTIONS_BANK = {
         "2": "+ with a String operand is legal. It concatenates rather than adding."
       },
       "explanation": "Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + \"Java\" involves a String, so it becomes concatenation and produces 30Java.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2828,7 +3764,12 @@ const QUESTIONS_BANK = {
         "3": "to get Java30 the addition must be forced first with parentheses: \"Java\" + (10 + 20)."
       },
       "explanation": "Once the left operand is a String, every following + is concatenation. \"Java\" + 10 gives \"Java10\", and \"Java10\" + 20 gives \"Java1020\".",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2854,7 +3795,12 @@ const QUESTIONS_BANK = {
         "3": "+= works on every numeric type, not only byte."
       },
       "explanation": "A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2880,7 +3826,12 @@ const QUESTIONS_BANK = {
         "3": "they differ precisely in whether the right operand is evaluated."
       },
       "explanation": "Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2906,7 +3857,12 @@ const QUESTIONS_BANK = {
         "3": "the two results are swapped. / gives the whole part and % gives the remainder."
       },
       "explanation": "With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2932,7 +3888,12 @@ const QUESTIONS_BANK = {
         "3": "the code does not compile at all, so nothing runs."
       },
       "explanation": "= assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2959,7 +3920,12 @@ const QUESTIONS_BANK = {
         "2": "left-to-right order applies between operators of the same precedence, which these are not."
       },
       "explanation": "Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -2986,7 +3952,12 @@ const QUESTIONS_BANK = {
         "3": "the compiler rejects the expression, so nothing runs."
       },
       "explanation": "The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3013,7 +3984,12 @@ const QUESTIONS_BANK = {
         "2": "it does not compile, so nothing is assigned."
       },
       "explanation": "The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3040,7 +4016,12 @@ const QUESTIONS_BANK = {
         "3": "+= performs concatenation for a String, and the numeric part is already resolved."
       },
       "explanation": "The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3067,7 +4048,12 @@ const QUESTIONS_BANK = {
         "3": "! requires a boolean, and ready is one."
       },
       "explanation": "! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3094,7 +4080,12 @@ const QUESTIONS_BANK = {
         "3": "i++ prints the value as it was, which is 5, and only then increments."
       },
       "explanation": "i++ uses the current value and then increases it, so the first print shows 5 and i becomes 6. ++i increases first, so the second print shows 7.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3121,7 +4112,12 @@ const QUESTIONS_BANK = {
         "3": "division by a constant zero is accepted by the compiler and fails when it runs."
       },
       "explanation": "Integer division by zero is undefined, so the JVM throws ArithmeticException. Dividing by the double 0.0 would give Infinity instead.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3148,7 +4144,12 @@ const QUESTIONS_BANK = {
         "3": "the sign of the right operand is not what decides it. The dividend decides the sign."
       },
       "explanation": "The % operator returns the remainder after division that truncates towards zero. -10 / 3 is -3, leaving -1, and 10 / -3 is -3, leaving 1.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3175,7 +4176,12 @@ const QUESTIONS_BANK = {
         "3": "the right operand is skipped, so the increment never happens. With & it would run and x would be 1."
       },
       "explanation": "&& short-circuits: when the left operand is false the result must be false, so the right operand is never evaluated. That is why ++x never runs.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3202,7 +4208,12 @@ const QUESTIONS_BANK = {
         "3": "the int is widened to double automatically, so the division is legal."
       },
       "explanation": "The int 0 is widened to 0.0, so this is double division. In IEEE 754 that gives Infinity rather than an exception.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -3229,7 +4240,12 @@ const QUESTIONS_BANK = {
         "3": "no parentheses are needed here, which is exactly what makes the result surprising."
       },
       "explanation": "A compound assignment evaluates its right-hand side completely and then applies the operator to the variable. This is x = x * (3 + 1), which is 2 * 4.",
-      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java"
+      "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
+      ]
     },
     {
       "qid": "ocjp-chapter-3-operators-prefix-postfix-1",
@@ -3249,6 +4265,11 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
       ]
     },
     {
@@ -3269,6 +4290,11 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "operators",
+        "casting",
+        "statements"
       ]
     }
   ],
@@ -3290,7 +4316,11 @@ const QUESTIONS_BANK = {
         "A statement is a complete instruction, such as int x = 5; or System.out.println(x);."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "interview",
@@ -3309,7 +4339,11 @@ const QUESTIONS_BANK = {
         "They matter for readability, but not for the meaning of correctly separated code."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "interview",
@@ -3328,7 +4362,11 @@ const QUESTIONS_BANK = {
         "The semicolon ends most statements, not the line break."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "interview",
@@ -3348,7 +4386,11 @@ const QUESTIONS_BANK = {
         "The whole line is not just an expression, even though it contains the assignment expression x = 5."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "interview",
@@ -3367,7 +4409,11 @@ const QUESTIONS_BANK = {
         "No. Indentation and most whitespace are ignored by the compiler; the expression before the semicolon determines the parameter value."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "interview",
@@ -3386,7 +4432,11 @@ const QUESTIONS_BANK = {
         "The semicolon ends the statement. A method call and its parameter can be split across multiple lines before that semicolon."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3412,7 +4462,11 @@ const QUESTIONS_BANK = {
         "3": "this is reversed. 2 + 3 yields a value, so it is an expression."
       },
       "explanation": "An expression evaluates to something. A statement is the complete unit of execution that the compiler acts on, and most statements end in a semicolon.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3438,7 +4492,11 @@ const QUESTIONS_BANK = {
         "2": "Java has no rule requiring indentation. Unindented code still compiles."
       },
       "explanation": "Whitespace between tokens is discarded by the compiler. Indentation exists for humans, and it shows the nesting of code blocks.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3464,7 +4522,11 @@ const QUESTIONS_BANK = {
         "3": "any statement may be wrapped, including declarations and assignments."
       },
       "explanation": "Java does not treat a newline as a terminator. A concatenation or method call may be split over many lines and still be one statement, as long as it ends with a semicolon.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3490,7 +4552,11 @@ const QUESTIONS_BANK = {
         "3": "the parenthesis closes the argument list, but the statement is not complete until the semicolon."
       },
       "explanation": "A method call is one statement that runs until the semicolon. Line breaks inside the parentheses are ignored, so a long concatenation can be formatted over several lines.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3516,7 +4582,11 @@ const QUESTIONS_BANK = {
         "3": "x = 10; is an assignment statement."
       },
       "explanation": "A bare comparison is an expression, not a complete statement, so the compiler rejects it. The other three are the everyday statement forms.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3543,7 +4613,11 @@ const QUESTIONS_BANK = {
         "2": "Java never inserts missing punctuation."
       },
       "explanation": "A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3570,7 +4644,11 @@ const QUESTIONS_BANK = {
         "3": "an empty statement performs no assignment."
       },
       "explanation": "A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3596,7 +4674,11 @@ const QUESTIONS_BANK = {
         "3": "a String literal is an expression. Without a semicolon or a use for the value, it is not a statement."
       },
       "explanation": "A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3623,7 +4705,11 @@ const QUESTIONS_BANK = {
         "3": "final changes whether the value can be reassigned, not how long the variable lives."
       },
       "explanation": "A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3650,7 +4736,11 @@ const QUESTIONS_BANK = {
         "3": "an empty statement is a valid body, which is why this compiles at all."
       },
       "explanation": "`if (x > 10);` ends the if at the semicolon, which is a legal empty statement. The braces that follow are then just a plain block.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3677,7 +4767,11 @@ const QUESTIONS_BANK = {
         "3": "the first println is inside the if and the condition is false, so it never runs."
       },
       "explanation": "Braces decide the body of an if, not indentation. Without braces only the next statement is controlled, so the second println always runs.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3704,7 +4798,11 @@ const QUESTIONS_BANK = {
         "3": "a and b are int variables, so + adds them instead of joining text."
       },
       "explanation": "The semicolon, not the line break, ends a statement, so three statements on one line behave exactly as if they were on three lines.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3731,7 +4829,11 @@ const QUESTIONS_BANK = {
         "2": "the rule stops an inner name being used outside its block, not the other way round."
       },
       "explanation": "Scope runs outwards. A variable declared in an enclosing block stays visible inside a nested block, so both names are usable there.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3758,7 +4860,11 @@ const QUESTIONS_BANK = {
         "3": "line breaks between tokens carry no meaning, so a statement may span lines."
       },
       "explanation": "A statement runs until its semicolon. The compiler ignores line breaks between tokens, so a call may be spread over several lines.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "type": "scq",
@@ -3784,7 +4890,11 @@ const QUESTIONS_BANK = {
         "3": "an assignment statement ends with a semicolon."
       },
       "explanation": "A block is a group of statements inside braces and takes no semicolon of its own, just like a class body or a method body.",
-      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java"
+      "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "concepts": [
+        "statements",
+        "if-else"
+      ]
     },
     {
       "qid": "ocjp-chapter-4-statements-and-indentations-switch-fallthrough-1",
@@ -3804,6 +4914,10 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "statements",
+        "if-else"
       ]
     }
   ],
@@ -3825,7 +4939,12 @@ const QUESTIONS_BANK = {
         "In Java, else always matches the nearest unmatched if."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3844,7 +4963,12 @@ const QUESTIONS_BANK = {
         "Unlike C, Java does not allow numbers or object references directly as if conditions."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3863,7 +4987,12 @@ const QUESTIONS_BANK = {
         "Use if-else when the logic is longer or you need multiple statements."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3882,7 +5011,12 @@ const QUESTIONS_BANK = {
         "They also make nested conditions easier to read."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3902,7 +5036,12 @@ const QUESTIONS_BANK = {
         "Java if conditions must evaluate to true or false."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3922,7 +5061,12 @@ const QUESTIONS_BANK = {
         "The second println is outside the if unless braces are used."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3940,7 +5084,12 @@ const QUESTIONS_BANK = {
         "It contains command-line arguments as a zero-based String array, in the same order the user supplied them when starting the program."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3959,7 +5108,12 @@ const QUESTIONS_BANK = {
         "It prints the literal text \"null\" followed by a newline; careful, it does not print an empty line."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -3978,7 +5132,12 @@ const QUESTIONS_BANK = {
         "The second operand is the value used when the condition is true, and the third operand is the value used when the condition is false."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4005,7 +5164,12 @@ const QUESTIONS_BANK = {
         "3": "the block is outside the if, so the condition no longer affects it."
       },
       "explanation": "The semicolon straight after the condition ends the if statement, creating an empty body. The braced block that follows is then a separate statement that always runs. This is why a semicolon must never be placed after if (condition).",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4031,7 +5195,12 @@ const QUESTIONS_BANK = {
         "3": "braces have no effect on execution speed."
       },
       "explanation": "Without braces, only the single next statement belongs to the if. A later edit that adds a line is easy to get wrong, and the second line silently falls outside the condition.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4057,7 +5226,12 @@ const QUESTIONS_BANK = {
         "3": "it is an operator, not a method call."
       },
       "explanation": "The ternary operator is a compact if-else that produces a value. The condition must be boolean, and the two result expressions should be of compatible types.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4084,7 +5258,12 @@ const QUESTIONS_BANK = {
         "3": "the rule is fixed and deterministic, not random."
       },
       "explanation": "This is the dangling else problem. Java resolves it by binding else to the closest if that does not already have one, which is the inner if here. Braces remove the doubt.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4110,7 +5289,12 @@ const QUESTIONS_BANK = {
         "3": "that rule belongs to C and C++, not to Java."
       },
       "explanation": "Java is strict here. Something like if (1) is a compile-time error, and it must be written as a real comparison such as if (x != 0).",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4137,7 +5321,12 @@ const QUESTIONS_BANK = {
         "3": "braces would be needed to control both lines."
       },
       "explanation": "Without braces, an if controls exactly one statement, the one immediately after it. Everything after that is outside the condition.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4163,7 +5352,12 @@ const QUESTIONS_BANK = {
         "3": "the two are swapped."
       },
       "explanation": "They are the logical AND and OR operators. Both also short-circuit, so the right side is skipped once the answer is already known.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4190,7 +5384,12 @@ const QUESTIONS_BANK = {
         "3": "the C branch is never tested, because the chain already stopped."
       },
       "explanation": "An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4217,7 +5416,12 @@ const QUESTIONS_BANK = {
         "3": "the guard exists precisely to prevent the exception."
       },
       "explanation": "Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4244,7 +5448,12 @@ const QUESTIONS_BANK = {
         "3": "it compiles for any reference type, which is why the bug is so easy to make."
       },
       "explanation": "The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4271,7 +5480,12 @@ const QUESTIONS_BANK = {
         "3": "it is legal Java, and that is what makes the mistake dangerous."
       },
       "explanation": "The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4298,7 +5512,12 @@ const QUESTIONS_BANK = {
         "3": "the false branch is not used, and 2 + 3 is not added to the result."
       },
       "explanation": "The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4325,7 +5544,12 @@ const QUESTIONS_BANK = {
         "2": "the failure happens while compiling, before anything runs."
       },
       "explanation": "An assignment produces the assigned int, and an if needs a boolean, so the compiler rejects it.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4352,7 +5576,12 @@ const QUESTIONS_BANK = {
         "2": "the stray else is a compile-time error, so this never runs either."
       },
       "explanation": "if (flag); is already a complete if with an empty body, so the else has no if to belong to.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4379,7 +5608,12 @@ const QUESTIONS_BANK = {
         "3": "Java does not round to a chosen number of decimal places."
       },
       "explanation": "Doubles are binary fractions, so 0.1 + 0.2 is 0.30000000000000004 and never equal to 0.3.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4406,7 +5640,12 @@ const QUESTIONS_BANK = {
         "3": "! applies to any boolean, and a comparison is a boolean."
       },
       "explanation": "x > 5 is false, so the negated test is true and A runs; B runs because it is outside the if.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4433,7 +5672,12 @@ const QUESTIONS_BANK = {
         "3": "an unreachable condition is legal, which is exactly why the order matters."
       },
       "explanation": "The chain stops at the first true test, and 3 < 10 is true, so the narrower test is skipped.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4460,7 +5704,12 @@ const QUESTIONS_BANK = {
         "3": "a conditional expression produces one value, never a combination."
       },
       "explanation": "The int branch is boxed and both branches share Object as a supertype; only the true one is used.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -4479,7 +5728,12 @@ const QUESTIONS_BANK = {
         "Only the first true branch executes; later branches are skipped, so order conditions carefully."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -4498,7 +5752,12 @@ const QUESTIONS_BANK = {
         "Provide command-line words after the class name; Java stores them as args[0], args[1], and so on, using zero-based indexing."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4524,7 +5783,12 @@ const QUESTIONS_BANK = {
         "3": "the else-if is tested, but its condition is false too, so B is not printed."
       },
       "explanation": "5000 < 5000 is false and 5000 < 1000 is false, so the else branch is the only one left.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4551,7 +5815,12 @@ const QUESTIONS_BANK = {
         "3": "the values inside the parentheses are numbers, so they are added, not joined."
       },
       "explanation": "The parentheses are evaluated first, giving 5 * 100 = 500, and the addition then gives 5500.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4578,7 +5847,12 @@ const QUESTIONS_BANK = {
         "3": "the file is rejected while compiling, so nothing is printed."
       },
       "explanation": "A local variable lives only inside the block that declares it, so the name is gone after the brace.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4605,7 +5879,12 @@ const QUESTIONS_BANK = {
         "3": "the duplicate-name rule applies within one scope, and these two scopes differ."
       },
       "explanation": "The two blocks are separate scopes, so each block declares and prints its own n.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -4632,7 +5911,12 @@ const QUESTIONS_BANK = {
         "3": "the file does not compile, so no value is printed at all."
       },
       "explanation": "Only fields may be hidden this way; a local variable may not shadow another local variable.",
-      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java"
+      "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
+      ]
     },
     {
       "qid": "ocjp-chapter-5-if-else-statements-switch-fallthrough-1",
@@ -4652,6 +5936,11 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "if-else",
+        "operators",
+        "statements"
       ]
     }
   ],
@@ -4675,7 +5964,12 @@ const QUESTIONS_BANK = {
         "Classic trap: swap(int a, int b) does not swap the original variables because only copies of a and b are swapped."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -4695,7 +5989,12 @@ const QUESTIONS_BANK = {
         "If no exact match exists, Java may apply widening, boxing, or varargs in that general preference order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -4715,7 +6014,12 @@ const QUESTIONS_BANK = {
         "You cannot write return 5; inside a void method, and you cannot use the result of calling a void method in an expression because there is no value to use."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -4735,7 +6039,12 @@ const QUESTIONS_BANK = {
         "Static methods cannot directly access instance fields or instance methods because they have no current object, but instance methods can access both instance and static members."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -4753,7 +6062,12 @@ const QUESTIONS_BANK = {
         "levelCompleted should be the number of levels completed, and bonus should be the points per level; the method multiplies them together."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -4772,7 +6086,12 @@ const QUESTIONS_BANK = {
         "No. Java passes argument values by value; parameter variables receive copies of those values in the declared order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -4791,7 +6110,12 @@ const QUESTIONS_BANK = {
         "The int-returning overload with parameters (boolean, int, int, int) is called because the argument count and types match that signature."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -4817,7 +6141,12 @@ const QUESTIONS_BANK = {
         "3": "Java always passes by value, so reassigning a parameter cannot affect the caller's variable."
       },
       "explanation": "Parameters are local variables that exist only for the duration of a call. They are initialised with copies of the argument values, which is why Java is described as pass-by-value.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -4843,7 +6172,12 @@ const QUESTIONS_BANK = {
         "3": "The return type describes the value sent back to the caller, not what is printed inside the method."
       },
       "explanation": "A non-void return type is a promise that the method sends back a value of that declared type on every path that finishes normally. Here the promise is kept by returning finalScore, or -1 as the sentinel when no score is valid.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -4869,7 +6203,12 @@ const QUESTIONS_BANK = {
         "3": "The call is not ambiguous, because print(int) is strictly more specific than print(double)."
       },
       "explanation": "Overload resolution happens at compile time and picks the most specific applicable method. The argument is exactly an int, so print(int) is a better match than print(double).",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -4896,7 +6235,12 @@ const QUESTIONS_BANK = {
         "3": "Being static has no effect on argument passing; copies are made either way."
       },
       "explanation": "Java passes arguments by value, so a and b are copies. Swapping the copies leaves the caller's variables exactly as they were, which is the classic Java trap.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -4922,7 +6266,12 @@ const QUESTIONS_BANK = {
         "3": "void describes only the return type; a void method may take as many parameters as it needs."
       },
       "explanation": "void means the method sends no value back to the caller. The call is therefore an action rather than an expression, so it cannot be used where a value is expected.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -4948,7 +6297,12 @@ const QUESTIONS_BANK = {
         "2": "Static members belong to the class and are shared by all objects rather than copied for each object."
       },
       "explanation": "A static method belongs to the class itself and is called through the class name, such as Math.max(). It has no current object, so instance fields are out of reach, whereas an instance method has a current object and can use both kinds of member.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -4975,7 +6329,12 @@ const QUESTIONS_BANK = {
         "3": "finalScore is declared inside the if block, so it does not exist at all when the block is skipped."
       },
       "explanation": "The whole calculation sits inside if(gameOver), so passing false skips it. Execution then reaches the final return -1, which is the documented sentinel meaning no valid score.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5001,7 +6360,12 @@ const QUESTIONS_BANK = {
         "3": "Java never invents arguments; the argument count and types must match a declared parameter list."
       },
       "explanation": "A no-argument method declares no parameters, so it must supply its own values inside the body. That is exactly why the caller of this version has no way to change gameOver, score, levelCompleted or bonus.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5028,7 +6392,12 @@ const QUESTIONS_BANK = {
         "3": "nothing is reset. The change made inside the method persists."
       },
       "explanation": "Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5055,7 +6424,12 @@ const QUESTIONS_BANK = {
         "3": "reassigning a parameter is allowed; it simply has no effect on the caller."
       },
       "explanation": "The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5082,7 +6456,12 @@ const QUESTIONS_BANK = {
         "3": "Java never supplies a default return value for a method."
       },
       "explanation": "The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5109,7 +6488,12 @@ const QUESTIONS_BANK = {
         "3": "printing is output, not a return."
       },
       "explanation": "void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5137,7 +6521,12 @@ const QUESTIONS_BANK = {
         "3": "the method works correctly on its own copies; the caller simply never sees it."
       },
       "explanation": "Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5164,7 +6553,12 @@ const QUESTIONS_BANK = {
         "3": "a parameter is an ordinary local variable and may be reassigned."
       },
       "explanation": "The parameter is a copy, so x is untouched; the new value reaches the caller only through return.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5191,7 +6585,12 @@ const QUESTIONS_BANK = {
         "2": "the failure happens while compiling, so nothing runs."
       },
       "explanation": "A static method has no current object, so it cannot call an instance method without one.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5218,7 +6617,12 @@ const QUESTIONS_BANK = {
         "2": "what is copied is the reference, not the object, so the change is visible."
       },
       "explanation": "The copied reference still points at the same object, so the append is visible through text.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5245,7 +6649,12 @@ const QUESTIONS_BANK = {
         "2": "an empty parameter list is perfectly legal."
       },
       "explanation": "After return, control has left the method, so the next statement can never be reached.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -5272,7 +6681,12 @@ const QUESTIONS_BANK = {
         "3": "an int widens to both long and double without any cast."
       },
       "explanation": "Both overloads fit, and long is more specific than double, so show(long) is the one chosen.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java"
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
+      ]
     },
     {
       "type": "mcq",
@@ -5298,6 +6712,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5324,6 +6743,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/AreaCalculatorCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5350,6 +6774,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5376,6 +6805,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/DecimalComparatorCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5402,6 +6836,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5428,6 +6867,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualSumCheckerCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5454,6 +6898,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/LeapYearCalculatorCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5480,6 +6929,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MegaBytesConverterCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5506,6 +6960,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MethodsChallengeProblem.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5532,6 +6991,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MinutesToYearsAndDaysCalculatorCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5558,6 +7022,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5584,6 +7053,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5610,6 +7084,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/SpeedConverterCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5636,6 +7115,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5656,6 +7140,11 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     },
     {
@@ -5678,6 +7167,11 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "overloading",
+        "statements",
+        "casting"
       ]
     }
   ],
@@ -5699,7 +7193,12 @@ const QUESTIONS_BANK = {
         "It does not support every type, so larger or unrelated types still need if-else logic."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -5718,7 +7217,12 @@ const QUESTIONS_BANK = {
         "It is useful when multiple cases should share the same logic, but accidental fall-through is a common bug."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -5737,7 +7241,12 @@ const QUESTIONS_BANK = {
         "It is optional, but it is often useful for invalid or unexpected values."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -5756,7 +7265,12 @@ const QUESTIONS_BANK = {
         "if-else is better when conditions are ranges, combinations, or more complex boolean expressions."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -5776,7 +7290,12 @@ const QUESTIONS_BANK = {
         "Execution starts at case 2 and falls through to default because there are no break statements."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -5796,7 +7315,12 @@ const QUESTIONS_BANK = {
         "For those cases, use if-else instead."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -5814,7 +7338,12 @@ const QUESTIONS_BANK = {
         "Pass an exact uppercase month name like \"JANUARY\" or \"NOVEMBER\"; any unlisted spelling, case, or null fails to match the cases."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -5833,7 +7362,12 @@ const QUESTIONS_BANK = {
         "It selects the starting case only; without break statements, execution falls through and runs later cases too."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -5859,7 +7393,12 @@ const QUESTIONS_BANK = {
         "3": "switch does not call equals on arbitrary objects; String and enum are the only reference types it accepts."
       },
       "explanation": "A traditional switch accepts the smaller integral types byte, short, char and int, their wrapper classes, String from Java 7 onwards, and enum types. Nothing larger than int is allowed, and unrelated object types are not allowed either.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -5886,7 +7425,12 @@ const QUESTIONS_BANK = {
         "3": "default runs only when no case label matches, and here case 2 matched."
       },
       "explanation": "The matching label is case 2, so B is printed. With no break there, execution falls through into the next case and prints C, and the break in case 3 then leaves the switch. default is never reached because a case did match.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -5912,7 +7456,12 @@ const QUESTIONS_BANK = {
         "3": "default is unrelated to the selector type; it applies to every form of switch."
       },
       "explanation": "default is the switch equivalent of the final else: it is chosen only when the selector matches none of the case labels. Java lets you leave it out, but including it handles unexpected values.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -5938,7 +7487,12 @@ const QUESTIONS_BANK = {
         "2": "char is a valid selector type and has been since the earliest version of the language."
       },
       "explanation": "A traditional switch accepts byte, short, char, int and their wrapper types, plus String and enum types. long is not in that list, so a switch on a long would not compile, and the same is true of float, double and boolean.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -5965,7 +7519,12 @@ const QUESTIONS_BANK = {
         "3": "The code compiles without default, because the return statement after the switch provides a value on that path."
       },
       "explanation": "String matching in a switch is exact and case-sensitive, so lowercase \"november\" matches none of the uppercase labels. Execution falls past every case to the final return, which supplies the text \"INVALID MONTH\".",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -5991,7 +7550,12 @@ const QUESTIONS_BANK = {
         "3": "return ends the whole method, not just the switch statement."
       },
       "explanation": "return leaves the method altogether, so control never comes back to the switch. That is why getQuarter can return from each group of cases without writing any break.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6017,7 +7581,12 @@ const QUESTIONS_BANK = {
         "3": "default is chosen only when no label matches, and case 4 does match here."
       },
       "explanation": "Labels written one after another share the single block that follows them, so any of 3, 4 or 5 starts the same message. The shared block ends with a break, so there is no fall-through beyond it.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6043,7 +7612,12 @@ const QUESTIONS_BANK = {
         "3": "Execution starts at the label that matched, so the earlier messages for case 1 and case 2 are not printed."
       },
       "explanation": "With no break anywhere, execution starts at the matching label and then falls through every following label. Starting at the grouped case 3/4/5, it prints that message and then falls into default.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6070,7 +7644,12 @@ const QUESTIONS_BANK = {
         "3": "the file does not compile, so nothing runs."
       },
       "explanation": "The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6097,7 +7676,12 @@ const QUESTIONS_BANK = {
         "3": "switch does not normalise case. Lowercase the value first if case must be ignored."
       },
       "explanation": "A switch on a String compares with equals, which is case-sensitive. Since \"monday\" differs from \"Monday\", no label matches and the default branch runs.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6124,7 +7708,12 @@ const QUESTIONS_BANK = {
         "3": "the grouping means 3 has a block, the shared one."
       },
       "explanation": "Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6151,7 +7740,12 @@ const QUESTIONS_BANK = {
         "3": "only the matching branch runs, and the method returns from it."
       },
       "explanation": "return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6178,7 +7772,12 @@ const QUESTIONS_BANK = {
         "3": "x is 2, so case 2 matches and default is not needed."
       },
       "explanation": "default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6205,7 +7804,12 @@ const QUESTIONS_BANK = {
         "3": "B alone would need a break written straight after the shared body."
       },
       "explanation": "Cases 1 and 2 share one body printing A with no break, so flow falls into case 3 and prints B.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6232,7 +7836,12 @@ const QUESTIONS_BANK = {
         "3": "default is skipped only when a case label matches, and 4 matches none."
       },
       "explanation": "4 matches no label, so default runs, and with no break the flow continues into case 1 and case 2.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6259,7 +7868,12 @@ const QUESTIONS_BANK = {
         "2": "a long selector is a compile error, not a quiet fall-through to default."
       },
       "explanation": "long is not a valid selector type; float, double and boolean are rejected in the same way.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6286,7 +7900,12 @@ const QUESTIONS_BANK = {
         "3": "the duplicate labels are rejected before any statement can run."
       },
       "explanation": "The char literal 'a' has the value 97, so the two labels are duplicates and the file does not compile.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6313,7 +7932,12 @@ const QUESTIONS_BANK = {
         "3": "the default branch always returns the literal \"?\", never null."
       },
       "explanation": "String labels are compared with equals, so the case-sensitive \"ONE\" takes default and returns \"?\".",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "mcq",
@@ -6339,6 +7963,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
       ]
     },
     {
@@ -6358,7 +7987,12 @@ const QUESTIONS_BANK = {
         "Enhanced switch can also be used as an expression that directly returns a value."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -6377,7 +8011,12 @@ const QUESTIONS_BANK = {
         "Each case provides the result with an expression or with yield inside a block."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -6396,7 +8035,12 @@ const QUESTIONS_BANK = {
         "It is only used inside switch expressions, not ordinary methods."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -6416,7 +8060,12 @@ const QUESTIONS_BANK = {
         "That is why enhanced switch does not need break statements."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -6434,7 +8083,12 @@ const QUESTIONS_BANK = {
         "Use an exact uppercase month name from the case labels, such as \"JANUARY\" or \"DECEMBER\"; otherwise the default branch yields \"INVALID MONTH\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -6453,7 +8107,12 @@ const QUESTIONS_BANK = {
         "String.equals compares exact character content, so \"invalid month\" and \"INVALID MONTH\" are different argument values."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "interview",
@@ -6472,7 +8131,12 @@ const QUESTIONS_BANK = {
         "It uses the selector expression month and matches it exactly against each String case label."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6499,7 +8163,12 @@ const QUESTIONS_BANK = {
         "3": "the switch is over once the matched arm ends, so later arms are never reached."
       },
       "explanation": "Arrow arms never fall through, so case 3 and default never run after case 2 matches.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6526,7 +8195,12 @@ const QUESTIONS_BANK = {
         "3": "return would leave the method; a block inside a switch expression uses yield."
       },
       "explanation": "13 matches no comma-listed value, so the default block runs and yields the value assigned to quarter.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6553,7 +8227,12 @@ const QUESTIONS_BANK = {
         "3": "the compiler rejects the file before any statement can run."
       },
       "explanation": "A switch expression must produce a value for every input, so a default arm is required here.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6580,7 +8259,12 @@ const QUESTIONS_BANK = {
         "2": "the arms are tested against 9, and no arm matches that value."
       },
       "explanation": "A switch statement need not produce a value, so default is optional and 9 matches nothing here.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "scq",
@@ -6607,7 +8291,12 @@ const QUESTIONS_BANK = {
         "3": "no label is ever tested, because the file does not compile."
       },
       "explanation": "A switch block must use one style throughout: colon labels with break, or arrow arms, never both.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java"
+      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
+      ]
     },
     {
       "type": "mcq",
@@ -6633,6 +8322,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
       ]
     },
     {
@@ -6659,6 +8353,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
       ]
     },
     {
@@ -6685,6 +8384,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementNATOChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
       ]
     },
     {
@@ -6705,6 +8409,11 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "switch",
+        "break-continue",
+        "statements"
       ]
     }
   ],
@@ -6733,7 +8442,11 @@ const QUESTIONS_BANK = {
         "3": "The parts always run in the written order, with the update last."
       },
       "explanation": "The header reads for(initialisation; condition; update). The initialisation runs a single time, the condition is re-tested before every iteration, and the update runs after the body of each iteration.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6760,7 +8473,11 @@ const QUESTIONS_BANK = {
         "2": "The update does run at the end of each completed iteration, but the real problem is scope rather than the value."
       },
       "explanation": "A variable declared in for(int i = ...) is scoped to the loop, so i no longer exists at the println after the closing brace. The value would have been 3 if the name were still in scope.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6787,7 +8504,11 @@ const QUESTIONS_BANK = {
         "3": "Java allows the loop variable to be modified inside the body; it is legal but confusing."
       },
       "explanation": "The body increments the loop variable as well as the update does, so the printed values are 1 and then 3, and the loop ends when i reaches 4. Modifying the loop variable inside the body is legal, but it changes the loop flow and is easy to get wrong.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6813,7 +8534,11 @@ const QUESTIONS_BANK = {
         "3": "A missing condition is treated as permanently true, not as false after one pass."
       },
       "explanation": "Leaving the initialisation, condition and update empty gives a header that is always true, so the loop repeats until something inside it ends it. This is a deliberate way of writing \"loop until done\".",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6839,7 +8564,11 @@ const QUESTIONS_BANK = {
         "3": "Reading the elements without changing them is exactly what the enhanced for loop is designed for."
       },
       "explanation": "The enhanced for loop hides the index and always walks forward, so it cannot give you positions or move backwards, and it is not suitable when the structure is modified during iteration. A counted for loop is used for those tasks.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6865,7 +8594,11 @@ const QUESTIONS_BANK = {
         "3": "A for header has exactly three sections separated by two semicolons, so the third semicolon is a syntax error."
       },
       "explanation": "The initialiser may declare several variables as long as they share the single declared type, and the update section may hold several comma-separated expressions. Here both i and j are int, and the loop runs while i is less than j.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6891,7 +8624,11 @@ const QUESTIONS_BANK = {
         "2": "There is no rounding anywhere, only a multiplication and a division."
       },
       "explanation": "calculateInterest computes amount * (interestRate / 100), so the parameter is a percent value. Passing 0.075 would divide twice and give a rate far too small.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6918,7 +8655,11 @@ const QUESTIONS_BANK = {
         "2": "break leaves the loop immediately, so rates above 8.5 are never reached."
       },
       "explanation": "calculateInterest(100, rate) is just rate, so the interest amount equals the rate. 8.5 is not greater than 8.5, so it is printed, and the next rate of 8.75 triggers the break.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6945,7 +8686,11 @@ const QUESTIONS_BANK = {
         "3": "continue skips one iteration, not the whole loop."
       },
       "explanation": "continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6972,7 +8717,11 @@ const QUESTIONS_BANK = {
         "2": "i begins at 0, not 1."
       },
       "explanation": "i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -6999,7 +8748,11 @@ const QUESTIONS_BANK = {
         "3": "nothing limits it to a single pass."
       },
       "explanation": "All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7025,7 +8778,11 @@ const QUESTIONS_BANK = {
         "3": "only continue behaves that way."
       },
       "explanation": "break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7052,7 +8809,11 @@ const QUESTIONS_BANK = {
         "3": "the name is out of scope, so the line does not compile."
       },
       "explanation": "A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7079,7 +8840,11 @@ const QUESTIONS_BANK = {
         "3": "the odd values do reach the print statement."
       },
       "explanation": "The continue skips the print for even i, but the update i++ still runs, so only 1 and 3 print.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7106,7 +8871,11 @@ const QUESTIONS_BANK = {
         "3": "the break runs when j is 2, not when j is 3."
       },
       "explanation": "The label outer names the first for loop, so break outer leaves both loops at once.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7133,7 +8902,11 @@ const QUESTIONS_BANK = {
         "2": "nested loops multiply their counts rather than adding them."
       },
       "explanation": "The loops are nested, so the iteration counts multiply: 3 outer passes times 4 inner passes is 12.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7160,7 +8933,11 @@ const QUESTIONS_BANK = {
         "2": "the condition is true at the start, so the body does run."
       },
       "explanation": "The update is optional, so this compiles. Nothing changes i, so the condition stays true.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7187,7 +8964,11 @@ const QUESTIONS_BANK = {
         "3": "the loop starts at 5 and decreases, so it counts down rather than up."
       },
       "explanation": "The update i-- counts down and the test stops at 0, so the values printed are 5 down to 1.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "scq",
@@ -7214,7 +8995,11 @@ const QUESTIONS_BANK = {
         "2": "9 also satisfies i <= 10, so there is one more pass."
       },
       "explanation": "i takes the values 0, 3, 6 and 9, then becomes 12 and fails i <= 10, so four passes run.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java"
+      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "concepts": [
+        "loops",
+        "break-continue"
+      ]
     },
     {
       "type": "mcq",
@@ -7240,6 +9025,10 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue"
       ]
     },
     {
@@ -7266,6 +9055,10 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue"
       ]
     },
     {
@@ -7292,6 +9085,10 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopSum3and5Challenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue"
       ]
     },
     {
@@ -7318,6 +9115,10 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/SumOddChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue"
       ]
     },
     {
@@ -7340,6 +9141,10 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue"
       ]
     }
   ],
@@ -7361,7 +9166,12 @@ const QUESTIONS_BANK = {
         "do-while checks after the body, so it always runs at least once."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7380,7 +9190,12 @@ const QUESTIONS_BANK = {
         "You exit it with break, return, an exception, or by changing the condition from inside the loop."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7399,7 +9214,12 @@ const QUESTIONS_BANK = {
         "It is common for input-reading, waiting, and sentinel-controlled loops."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7418,7 +9238,12 @@ const QUESTIONS_BANK = {
         "Both change control flow without waiting for the loop body to finish normally."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7438,7 +9263,12 @@ const QUESTIONS_BANK = {
         "A do-while loop always executes its body once before checking the condition."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7458,7 +9288,12 @@ const QUESTIONS_BANK = {
         "while (true) with break is fine when the exit depends on logic inside the loop body."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7476,7 +9311,12 @@ const QUESTIONS_BANK = {
         "The boolean condition number < 15 controls the loop; it stops when that expression becomes false."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7495,7 +9335,12 @@ const QUESTIONS_BANK = {
         "5 is skipped because <= is inclusive, and continue jumps to the next iteration before the plain number print."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -7514,7 +9359,12 @@ const QUESTIONS_BANK = {
         "The concatenation creates one String argument, such as \"Skipping number 6\", and println prints that String with a newline."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7540,7 +9390,12 @@ const QUESTIONS_BANK = {
         "3": "The condition is a test, not the place for the required update; changing it there also changes the test itself."
       },
       "explanation": "A while header holds only a boolean condition, so unlike a for loop it has no initialisation or update section. The counter must be prepared before the loop and changed inside the body, otherwise the condition never becomes false.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7567,7 +9422,12 @@ const QUESTIONS_BANK = {
         "3": "Running the body at least once is the behaviour of a do-while loop, not a while loop."
       },
       "explanation": "A while loop tests its condition first, so when the condition is false from the start the body is skipped entirely and control continues after the loop. This is the \"never-executing loop\" case.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7593,7 +9453,12 @@ const QUESTIONS_BANK = {
         "3": "A boolean literal is a valid condition, and while (true) compiles."
       },
       "explanation": "while (true) is a deliberate infinite loop whose condition never becomes false. It is a common \"loop until done\" pattern, and the exit has to come from inside the body.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7620,7 +9485,12 @@ const QUESTIONS_BANK = {
         "2": "<= is inclusive, so 5 satisfies the condition and is skipped along with 1 to 4."
       },
       "explanation": "The test number <= 5 is inclusive, so 1 through 5 all take the continue branch and print the Skipping message instead of the bare number. The first bare number printed is 6.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7646,7 +9516,12 @@ const QUESTIONS_BANK = {
         "2": "A known iteration count is the case where a for loop fits better, because its setup stays in one line."
       },
       "explanation": "A while loop keeps only the condition in its declaration, which suits sentinel-controlled and input-reading loops where the count is unknown. A for loop is preferred when the count is known up front.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7673,7 +9548,12 @@ const QUESTIONS_BANK = {
         "3": "5 is skipped by the <= 5 test and 10 is stopped by break, so neither reaches the final print."
       },
       "explanation": "Values 1 to 5 are caught by the first test, print the Skipping message and continue, and 10 is caught by the second test and breaks. Only 6, 7, 8 and 9 fall through both tests to the plain println.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7699,7 +9579,12 @@ const QUESTIONS_BANK = {
         "3": "The initialisation of a for loop runs once, but the body is still skipped when the condition is false."
       },
       "explanation": "A do-while loop checks its condition after the body has run, so the body executes once even when the condition is false from the start. while and for test before the body and may run it zero times.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7726,7 +9611,12 @@ const QUESTIONS_BANK = {
         "3": "The condition is true when j is 1, so the body does run; it simply never stops."
       },
       "explanation": "The body never changes j, so j stays 1 and j <= 5 remains true for ever. Every while loop depends on the body updating its counter.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7753,7 +9643,12 @@ const QUESTIONS_BANK = {
         "2": "that is the behaviour of a while loop, which tests before the body."
       },
       "explanation": "A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7780,7 +9675,12 @@ const QUESTIONS_BANK = {
         "3": "declaring the counter before the loop is exactly how while loops are written."
       },
       "explanation": "A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7808,7 +9708,12 @@ const QUESTIONS_BANK = {
         "2": "continue is valid in a while; the problem is where it was placed."
       },
       "explanation": "When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7835,7 +9740,12 @@ const QUESTIONS_BANK = {
         "3": "the loop continues while the condition holds, which it does for 1 and 3."
       },
       "explanation": "j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7861,7 +9771,12 @@ const QUESTIONS_BANK = {
         "3": "a known count is the strength of a for loop."
       },
       "explanation": "do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7888,7 +9803,12 @@ const QUESTIONS_BANK = {
         "3": "the condition fails before the body, so 10 is never printed."
       },
       "explanation": "A while loop tests first, so i < 5 is already false, the body is skipped and done still prints.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7915,7 +9835,12 @@ const QUESTIONS_BANK = {
         "3": "the loop never enters that block, so nothing is printed."
       },
       "explanation": "The semicolon after while (i < 3) is the loop body, so i never changes and it spins forever.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7942,7 +9867,12 @@ const QUESTIONS_BANK = {
         "2": "the loop prints n % 10, not n itself."
       },
       "explanation": "n % 10 gives the last digit and n / 10 drops it, so 1234 comes out as 4, 3, 2, 1.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7969,7 +9899,12 @@ const QUESTIONS_BANK = {
         "2": "sum is never changed, because the increment line is never reached."
       },
       "explanation": "At count 0 the test is true, so continue jumps back before the increment and count never moves.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -7996,7 +9931,12 @@ const QUESTIONS_BANK = {
         "2": "break does not print anything."
       },
       "explanation": "break exits at once, and the test comes before the print, so 4 is never printed.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "mcq",
@@ -8022,6 +9962,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8040,7 +9985,12 @@ const QUESTIONS_BANK = {
         "It controls whether another iteration starts after the body finishes; because it is checked after the body, the body runs at least once."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -8059,7 +10009,12 @@ const QUESTIONS_BANK = {
         "It still runs once, because do-while checks the condition after executing the body."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "interview",
@@ -8078,7 +10033,12 @@ const QUESTIONS_BANK = {
         "No. The > operator is exclusive, so the break condition becomes true only when j is greater than 5."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -8105,7 +10065,12 @@ const QUESTIONS_BANK = {
         "2": "after the first pass the false condition ends the loop."
       },
       "explanation": "A do-while runs the body first, so one pass happens before n < 5 is found false.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -8132,7 +10097,12 @@ const QUESTIONS_BANK = {
         "3": "the body always runs at least once, so hi would print if the code compiled."
       },
       "explanation": "The semicolon ends the do-while statement, so without it the compiler reports a missing ';'.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -8159,7 +10129,12 @@ const QUESTIONS_BANK = {
         "3": "after the first pass the false condition ends the loop."
       },
       "explanation": "The while loop tests first and skips its body; the do-while prints once before testing.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -8186,7 +10161,12 @@ const QUESTIONS_BANK = {
         "2": "break ends the loop at i = 7, so 7 and 9 never print."
       },
       "explanation": "continue jumps to the condition, so 2, 4 and 6 are skipped, and break stops it at i = 7.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "scq",
@@ -8212,7 +10192,12 @@ const QUESTIONS_BANK = {
         "3": "an enhanced for loop walks a collection that already exists and cannot read keyboard input."
       },
       "explanation": "The prompt must appear once, so the test cannot come first; a do-while reads, then repeats.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java"
+      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
+      ]
     },
     {
       "type": "mcq",
@@ -8238,6 +10223,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8264,6 +10254,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/CheckNumberPalindromeCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8290,6 +10285,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/DigitSumCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8316,6 +10316,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/EvenDigitSumCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8342,6 +10347,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FactorPrinterCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8368,6 +10378,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8394,6 +10409,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8420,6 +10440,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/GreatestCommonDivisorCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8446,6 +10471,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LargestPrimeFactorCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8472,6 +10502,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8498,6 +10533,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8524,6 +10564,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8550,6 +10595,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     },
     {
@@ -8576,6 +10626,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "loops",
+        "break-continue",
+        "operators"
       ]
     }
   ],
@@ -8604,7 +10659,12 @@ const QUESTIONS_BANK = {
         "2": "the relationship is the other way round. An object is an instance of a class."
       },
       "explanation": "The class describes the data and behaviour; the object is the real thing in memory, created from that description. There is no limit on how many objects one class can produce.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8630,7 +10690,12 @@ const QUESTIONS_BANK = {
         "3": "compilation produces bytecode. Objects exist only while the program runs."
       },
       "explanation": "new performs the class instance creation expression. It allocates the object and gives you a reference to it. Declaring the variable only reserves a name; no object exists until new runs.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8656,7 +10721,12 @@ const QUESTIONS_BANK = {
         "3": "holding different values per object is exactly what instance fields are for."
       },
       "explanation": "An instance field belongs to the object. Two Car objects can have different colours at the same time, because each holds its own copy.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8682,7 +10752,12 @@ const QUESTIONS_BANK = {
         "2": "an instance field is reached through an object reference, as in myCar.colour. ClassName.field is the static style."
       },
       "explanation": "A static field has one value for the whole class, so every object sees the same value. An instance field gives each object its own storage.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8709,7 +10784,12 @@ const QUESTIONS_BANK = {
         "3": "println(null) is safe. Only the method call fails."
       },
       "explanation": "println is built to accept a null argument and prints the word null. The danger is elsewhere: any instance method called on a null reference fails, because there is no object to run it on.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8735,7 +10815,12 @@ const QUESTIONS_BANK = {
         "2": "they are different objects, which is why == can be false for two equal Strings."
       },
       "explanation": "new always allocates a fresh object. A literal is looked up in the String pool and reused, which is why two identical literals usually share one object.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -8754,7 +10839,12 @@ const QUESTIONS_BANK = {
         "No. println can print null as the text \"null\", but calling an instance method on a null reference throws NullPointerException."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -8773,7 +10863,12 @@ const QUESTIONS_BANK = {
         "Many objects can be created from one class, each with its own state."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -8792,7 +10887,12 @@ const QUESTIONS_BANK = {
         "An instance field belongs to each object, so every object gets its own copy."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -8811,7 +10911,12 @@ const QUESTIONS_BANK = {
         "These defaults apply to fields, not to local variables."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -8830,7 +10935,12 @@ const QUESTIONS_BANK = {
         "Do not use static when every object needs its own separate value."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -8850,7 +10960,12 @@ const QUESTIONS_BANK = {
         "The field is static, so both references access the same shared class variable."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -8870,7 +10985,12 @@ const QUESTIONS_BANK = {
         "It must use an object reference or access a static field instead."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8897,7 +11017,12 @@ const QUESTIONS_BANK = {
         "3": "an instance field would behave that way. A static field is the shared one."
       },
       "explanation": "A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8924,7 +11049,12 @@ const QUESTIONS_BANK = {
         "3": "a field of an object gets a default value, here null, so it compiles."
       },
       "explanation": "name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8951,7 +11081,12 @@ const QUESTIONS_BANK = {
         "3": "the order of statements cannot help, because the problem is that no object is involved."
       },
       "explanation": "A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -8978,7 +11113,12 @@ const QUESTIONS_BANK = {
         "3": "there is only one object, so there is only one size field."
       },
       "explanation": "Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -9006,7 +11146,12 @@ const QUESTIONS_BANK = {
         "3": "null must be checked when the code runs, so the compiler allows it."
       },
       "explanation": "The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "interview",
@@ -9024,7 +11169,12 @@ const QUESTIONS_BANK = {
         "The class defines no parameterized constructor, so the default no-argument constructor is used and field initializers supply the values."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -9051,7 +11201,12 @@ const QUESTIONS_BANK = {
         "3": "only a static field is shared. An instance field belongs to one object."
       },
       "explanation": "`total` is static, so there is one copy for the whole class and all three tick calls land on it, giving 3. `mine` is an instance field, so each object keeps its own count: a was ticked twice and b once.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -9078,7 +11233,12 @@ const QUESTIONS_BANK = {
         "3": "fields are initialised exactly like that."
       },
       "explanation": "A static method runs without any object, so there may be no `value` for it to read. The compiler refuses the reference rather than leaving it to fail later. Writing `static int value = 5;` or making show() non-static would both compile.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -9105,7 +11265,12 @@ const QUESTIONS_BANK = {
         "2": "the field is initialised to 1, not left at its default."
       },
       "explanation": "The parameter `count` hides the field `count`, so `this.count` is needed to reach the field. Without `this`, the assignment would give the parameter its own value and the field would stay 1.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     },
     {
       "type": "scq",
@@ -9131,7 +11296,12 @@ const QUESTIONS_BANK = {
         "3": "that describes an instance field. A static field is shared."
       },
       "explanation": "A static field belongs to the class rather than to any object, so it is created once and shared. Being shared is exactly why it suits a counter or a constant, and why one object changing it affects every other.",
-      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java"
+      "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "concepts": [
+        "classes",
+        "static",
+        "encapsulation"
+      ]
     }
   ],
   "Chapter 11: Parsing Values Reading Input": [
@@ -9159,7 +11329,12 @@ const QUESTIONS_BANK = {
         "3": "parseInt rejects decimals such as \"22.5\" rather than rounding them."
       },
       "explanation": "parseInt is a conversion from text to a number. It only accepts valid integer text, so a decimal point, letters, or a blank string cause NumberFormatException at runtime.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9185,7 +11360,12 @@ const QUESTIONS_BANK = {
         "2": "it does not truncate. Use Double.parseDouble(\"22.5\") when decimals are expected."
       },
       "explanation": "parseInt expects whole-number text. The decimal point makes the input invalid, so the method throws rather than guessing what you meant.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9211,7 +11391,12 @@ const QUESTIONS_BANK = {
         "2": "the whole string is parsed. The second argument never limits how many characters are used."
       },
       "explanation": "The radix selects the number base used to interpret the text. Base 2 means binary, so the digits 1010 represent 8 + 0 + 2 + 0, which is 10.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9238,7 +11423,12 @@ const QUESTIONS_BANK = {
         "3": "next() and nextLine() both have their uses; the issue is the leftover newline, not the choice of method."
       },
       "explanation": "Token methods such as nextInt read up to the number and stop. The line break is still waiting, so the following nextLine call sees an empty line. Reading one extra line first clears it.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9264,7 +11454,12 @@ const QUESTIONS_BANK = {
         "3": "parseDouble returns a double. Use parseInt for an int result from whole-number text."
       },
       "explanation": "Choose the parse method that matches the text you expect. Any input can still fail with NumberFormatException, so letters remain a problem for both methods.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9290,7 +11485,12 @@ const QUESTIONS_BANK = {
         "3": "+ does arithmetic only when both operands are numeric."
       },
       "explanation": "The + operator is defined for text as concatenation. The type of the operands decides the meaning, so two Strings produce one longer String. To add them you must parse them first.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9316,7 +11516,12 @@ const QUESTIONS_BANK = {
         "2": "Console is mainly used for reading input with a prompt."
       },
       "explanation": "Console is a convenient way to read a line and show a prompt, but it is not always available. When the JVM is not connected to a terminal, console() returns null and calling a method on it would throw.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9334,7 +11539,12 @@ const QUESTIONS_BANK = {
         "It must contain valid integer text for the expected radix, with no decimal point or non-numeric characters except a valid sign."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9353,7 +11563,12 @@ const QUESTIONS_BANK = {
         "It throws NumberFormatException because \"22.5\" is not valid integer text."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9371,7 +11586,12 @@ const QUESTIONS_BANK = {
         "Choose Double.parseDouble when decimal values are allowed or expected, such as \"22.5\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9389,7 +11609,12 @@ const QUESTIONS_BANK = {
         "currentYear sets the upper validation limit, while yearOfBirth supplies the user text that must be parsed and checked against the allowed range."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9408,7 +11633,12 @@ const QUESTIONS_BANK = {
         "NumberFormatException is specific to parsing failures, so it avoids accidentally hiding unrelated bugs that a broad Exception catch would also catch."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9427,7 +11657,12 @@ const QUESTIONS_BANK = {
         "The second parameter is the radix/base; 2 means interpret \"1010\" as binary, producing decimal 10."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9446,7 +11681,12 @@ const QUESTIONS_BANK = {
         "It throws NumberFormatException if the text is not a valid integer."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9465,7 +11705,12 @@ const QUESTIONS_BANK = {
         "valueOf() is useful when you need the wrapper type instead of the primitive."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9484,7 +11729,12 @@ const QUESTIONS_BANK = {
         "Methods like nextInt(), next(), and nextLine() parse different kinds of input."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9503,7 +11753,12 @@ const QUESTIONS_BANK = {
         "That is why parsing methods are common when reading user input."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9523,7 +11778,12 @@ const QUESTIONS_BANK = {
         "Decimal text must be parsed with a floating-point parser instead."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "interview",
@@ -9543,7 +11803,12 @@ const QUESTIONS_BANK = {
         "The following nextLine() reads that leftover newline, so you often need an extra nextLine() to consume it first."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9569,7 +11834,12 @@ const QUESTIONS_BANK = {
         "3": "the second argument is the base, not a count of characters."
       },
       "explanation": "The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so \"FF\" means 15 times 16 plus 15, which is 255.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9595,7 +11865,12 @@ const QUESTIONS_BANK = {
         "3": "trimming is not part of parsing. You would call trim() first."
       },
       "explanation": "parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9621,7 +11896,12 @@ const QUESTIONS_BANK = {
         "3": "validate the input first if you need to distinguish null from bad text."
       },
       "explanation": "parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9648,7 +11928,12 @@ const QUESTIONS_BANK = {
         "3": "parseInt returns an int, and int division produces an int."
       },
       "explanation": "parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9675,7 +11960,12 @@ const QUESTIONS_BANK = {
         "3": "parsing does not return a fallback. It throws."
       },
       "explanation": "parseInt cannot read \"hello\" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9702,7 +11992,12 @@ const QUESTIONS_BANK = {
         "3": "Math.round(3.6) returns a long, and a long does not fit into an int without a cast."
       },
       "explanation": "parseInt returns an int, parseDouble a double, but Math.round(double) returns a long.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9729,7 +12024,12 @@ const QUESTIONS_BANK = {
         "3": "parseInt returns a primitive int, so it can never produce null."
       },
       "explanation": "It is a runtime NumberFormatException, not a compile error, and \" 42 \" needs trim().",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9756,7 +12056,12 @@ const QUESTIONS_BANK = {
         "2": "this is a compile-time error, not something that can happen at runtime."
       },
       "explanation": "+ joins the two Strings into \"10050\", but - has no String version, so javac rejects the file.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9783,7 +12088,12 @@ const QUESTIONS_BANK = {
         "3": "nextLine returns an empty String rather than null when the line is empty."
       },
       "explanation": "nextInt stops before the newline, so the next nextLine() returns that empty leftover line.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "scq",
@@ -9809,7 +12119,12 @@ const QUESTIONS_BANK = {
         "3": "readLine() does return a String, and that is a normal method call."
       },
       "explanation": "An IDE has no terminal, so console() returns null and calling it throws NullPointerException.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java"
+      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
+      ]
     },
     {
       "type": "mcq",
@@ -9835,6 +12150,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
       ]
     },
     {
@@ -9861,6 +12181,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/InputCalculatorChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
       ]
     },
     {
@@ -9887,6 +12212,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/MinMaxCodingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
       ]
     },
     {
@@ -9913,6 +12243,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
       ]
     },
     {
@@ -9939,6 +12274,11 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/ReadingUserInputChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "wrappers",
+        "strings",
+        "casting"
       ]
     }
   ],
@@ -9960,7 +12300,13 @@ const QUESTIONS_BANK = {
         "Unchecked exceptions (subclasses of RuntimeException) occur at runtime due to logic bugs and do not require explicit compiler handling."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "interview",
@@ -9979,7 +12325,13 @@ const QUESTIONS_BANK = {
         "Yes. The `finally` block executes before the method returns. The main exception is if `System.exit()` is called, terminating the JVM."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "interview",
@@ -10000,7 +12352,13 @@ const QUESTIONS_BANK = {
         "The main practical exception is System.exit(), which terminates the JVM before finally can run."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "interview",
@@ -10020,7 +12378,13 @@ const QUESTIONS_BANK = {
         "Checked exceptions represent recoverable conditions the API wants you to consider explicitly, while unchecked exceptions usually indicate programming bugs or invalid runtime state."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "interview",
@@ -10041,7 +12405,13 @@ const QUESTIONS_BANK = {
         "Exception contains checked exceptions and also RuntimeException, whose subclasses are the unchecked exceptions."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "interview",
@@ -10061,7 +12431,13 @@ const QUESTIONS_BANK = {
         "The caught exception variable is effectively final, so you cannot reassign e inside that catch block."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "interview",
@@ -10081,7 +12457,13 @@ const QUESTIONS_BANK = {
         "Think of throw as the action and throws as the declaration."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "interview",
@@ -10101,7 +12483,13 @@ const QUESTIONS_BANK = {
         "It is one of the most common runtime exceptions in Java and usually indicates missing null checks or incorrect object initialization."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10127,7 +12515,13 @@ const QUESTIONS_BANK = {
         "3": "Throwable is the root. Exception is one of its two main branches."
       },
       "explanation": "Everything throwable descends from Throwable. Error covers serious JVM-level problems such as OutOfMemoryError. Exception covers the conditions your code is expected to handle.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10155,7 +12549,13 @@ const QUESTIONS_BANK = {
         "2": "finally runs whether or not an exception occurred. The practical exception is System.exit, which ends the JVM."
       },
       "explanation": "A finally block runs before control leaves the try statement, including when a return is on its way out. The return value is settled after finally completes.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10181,7 +12581,13 @@ const QUESTIONS_BANK = {
         "2": "throw works with any Throwable, including checked exceptions."
       },
       "explanation": "Think of throw as the action and throws as the declaration. throw new IllegalArgumentException(\"bad\") creates and passes an exception now; throws warns the caller that a checked exception may arrive.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10207,7 +12613,13 @@ const QUESTIONS_BANK = {
         "3": "the compiler cannot know whether a reference will be null, so this is a runtime failure."
       },
       "explanation": "Assigning null is harmless. The failure comes later, when you try to use the reference as though it pointed at a real object, and there is nothing there to run the method on.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10234,7 +12646,13 @@ const QUESTIONS_BANK = {
         "3": "this is reversed. A more specific catch must come first, because a general one would otherwise capture the exception before the specific block is reached."
       },
       "explanation": "A broad catch treats every failure as the one you anticipated, which hides the problems you did not. Catching the specific type keeps the handler honest about what it can actually deal with.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10260,7 +12678,13 @@ const QUESTIONS_BANK = {
         "3": "they are methods, called with parentheses."
       },
       "explanation": "These are the two diagnostic tools you reach for first. The message explains what went wrong, and the trace shows where it happened by listing the call chain.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10287,7 +12711,13 @@ const QUESTIONS_BANK = {
         "3": "the code does not compile, so nothing runs."
       },
       "explanation": "Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10314,7 +12744,13 @@ const QUESTIONS_BANK = {
         "2": "there is no result to print. The exception is thrown during the division."
       },
       "explanation": "Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10341,7 +12777,13 @@ const QUESTIONS_BANK = {
         "3": "the array exists. The problem is the index, not a null reference."
       },
       "explanation": "A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10369,7 +12811,13 @@ const QUESTIONS_BANK = {
         "2": "the value from try is discarded, because finally runs afterwards."
       },
       "explanation": "The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10395,7 +12843,13 @@ const QUESTIONS_BANK = {
         "3": "IOException is checked, so it must be handled."
       },
       "explanation": "Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10422,7 +12876,13 @@ const QUESTIONS_BANK = {
         "3": "E runs once the try statement is finished. The catch does not end the program."
       },
       "explanation": "A is printed, then the division throws and skips the rest of the try block, so B never runs. C is printed by the matching catch, D by the finally, and E continues after the whole structure.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10449,7 +12909,13 @@ const QUESTIONS_BANK = {
         "3": "the try block's return begins, then finally runs and overrides it."
       },
       "explanation": "A `return` in a finally block discards the value the try block was returning, and the method exits from the finally instead. The code compiles, which is what makes the mistake so easy to ship. Only one path out of a method ever runs. Writing a return inside finally has no warning at all, so it is best avoided.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10475,7 +12941,13 @@ const QUESTIONS_BANK = {
         "3": "FileNotFoundException extends IOException, so it is checked too."
       },
       "explanation": "NumberFormatException extends IllegalArgumentException, which extends RuntimeException, so the compiler does not require it to be caught or declared. The other three are checked exceptions, so a method that can throw one must catch it or declare it with throws.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10502,7 +12974,13 @@ const QUESTIONS_BANK = {
         "3": "the same compile error stops the program."
       },
       "explanation": "A more general catch placed above a more specific one makes the specific one unreachable, and Java reports that while compiling. The order has to be the other way round: narrow first, then broad.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "type": "scq",
@@ -10528,7 +13006,13 @@ const QUESTIONS_BANK = {
         "2": "it runs on the normal path too, which is the point of having it."
       },
       "explanation": "The finally block is the one place that runs on every path out of the try structure, which is what makes it the right place to close a file or a connection. The single exception is when the JVM itself stops, such as through System.exit.",
-      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java"
+      "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
+      ]
     },
     {
       "qid": "ocjp-chapter-12-exception-handling-finally-1",
@@ -10548,6 +13032,12 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
       ]
     },
     {
@@ -10570,6 +13060,12 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "exceptions",
+        "checked-unchecked",
+        "throw-throws",
+        "multi-catch"
       ]
     }
   ],
@@ -10593,7 +13089,19 @@ const QUESTIONS_BANK = {
         "Use an abstract class when related classes share core implementation or state. Use an interface when you want unrelated classes to promise the same behavior, such as Comparable or Runnable."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -10613,7 +13121,19 @@ const QUESTIONS_BANK = {
         "A final class cannot be extended, which is why classes like String and Integer cannot be subclassed."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -10635,7 +13155,19 @@ const QUESTIONS_BANK = {
         "public means accessible from everywhere."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -10655,7 +13187,19 @@ const QUESTIONS_BANK = {
         "this resolves current-object context, while super explicitly moves one level up the inheritance chain."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -10675,7 +13219,19 @@ const QUESTIONS_BANK = {
         "Example: Animal a = new Dog(); a.sound(); calls Dog.sound() if sound() is overridden in Dog. This is dynamic dispatch."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -10693,7 +13249,19 @@ const QUESTIONS_BANK = {
         "The bare name field is the parameter, while this.field is the current object's instance field; the assignment stores the caller's argument in the object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -10712,7 +13280,19 @@ const QUESTIONS_BANK = {
         "Java matches the argument list at compile time by number, compatible types, and order, so passing arguments in the wrong order can call a different overload or fail to compile."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10738,7 +13318,19 @@ const QUESTIONS_BANK = {
         "3": "those are features of how methods and fields behave, not the pillars."
       },
       "explanation": "The four pillars describe the design principles of OOP. Classes, objects, methods and fields are the building blocks you use to apply them, not the pillars themselves.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10764,7 +13356,19 @@ const QUESTIONS_BANK = {
         "3": "methods are only half of it. The fields that hold the state are members too."
       },
       "explanation": "A class describes the data it holds and what it can do. Fields store the state, methods provide the behaviour, and together they are called class members.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10790,7 +13394,19 @@ const QUESTIONS_BANK = {
         "3": "instance fields are per object, but a static field is not."
       },
       "explanation": "Static means it belongs to the class itself, so every object sees the same value. Instance fields belong to the object, so different objects can hold different values at the same time.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10816,7 +13432,19 @@ const QUESTIONS_BANK = {
         "3": "instance fields can have any access modifier."
       },
       "explanation": "A static method is called on the class, so it has no object to take state from. That is why it cannot reference instance fields directly, while an instance method can use both static and instance data.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10842,7 +13470,19 @@ const QUESTIONS_BANK = {
         "2": "only two options apply to a top-level class."
       },
       "explanation": "A top-level class can be public or package-private. protected and private describe access relative to a class, so they make sense for members, not for the top-level class itself.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10868,7 +13508,19 @@ const QUESTIONS_BANK = {
         "2": "public has to be written. The default is package-private, not public."
       },
       "explanation": "Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10895,7 +13547,19 @@ const QUESTIONS_BANK = {
         "3": "the compiler rejects it, so nothing is printed."
       },
       "explanation": "An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10921,7 +13585,19 @@ const QUESTIONS_BANK = {
         "2": "private members are exactly the ones that are not inherited."
       },
       "explanation": "Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10947,7 +13623,19 @@ const QUESTIONS_BANK = {
         "3": "objects are instances of the class, not members of it."
       },
       "explanation": "Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -10974,7 +13662,19 @@ const QUESTIONS_BANK = {
         "3": "only the field gets a default of 0. The local has no value at all, so this never compiles."
       },
       "explanation": "A field gets a default of 0, but a local variable gets none, so reading local is a compile error.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11001,7 +13701,19 @@ const QUESTIONS_BANK = {
         "3": "== is true only when both names point at one object, which two new expressions never produce."
       },
       "explanation": "== asks whether the references point at one object; they do not. equals compares content, so true.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11028,7 +13740,19 @@ const QUESTIONS_BANK = {
         "3": "extending a class that has private fields is normal. The parent exposes them via its methods."
       },
       "explanation": "private means the declaring class only, so secret is not visible in Child and cannot be found.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11055,7 +13779,19 @@ const QUESTIONS_BANK = {
         "3": "a class may declare as many constructors as it likes, as long as their parameter lists differ."
       },
       "explanation": "Constructors are not inherited, so the inserted super() finds no no-argument parent constructor.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11082,7 +13818,19 @@ const QUESTIONS_BANK = {
         "3": "public is allowed but not required. A class with no modifier is also valid."
       },
       "explanation": "protected is relative to an enclosing class. A top-level class has none, so use public or none.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11108,6 +13856,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11126,7 +13886,19 @@ const QUESTIONS_BANK = {
         "Pass the manufacturer name; null is changed to \"Unknown\", accepted values are holden, porsche, and tesla, and any other value stores \"Unsupported\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11145,7 +13917,19 @@ const QUESTIONS_BANK = {
         "The setter directly assigns the parameter with no validation, so invalid values like negative door counts would still be stored."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11164,7 +13948,19 @@ const QUESTIONS_BANK = {
         "this.convertible is the current object's field; convertible without this is the method parameter supplied by the caller."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11190,6 +13986,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11209,7 +14017,19 @@ const QUESTIONS_BANK = {
         "A parameterized method call needs a real target object; null has no object to receive the \"Carrera\" argument, so Java throws NullPointerException."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11227,7 +14047,19 @@ const QUESTIONS_BANK = {
         "It tells the Car object to store convertible as true; pass false for a non-convertible car."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11253,6 +14085,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11272,7 +14116,19 @@ const QUESTIONS_BANK = {
         "depositFunds directly adds the parameter without validation, so a negative value would reduce the balance instead of behaving like a normal deposit."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11291,7 +14147,19 @@ const QUESTIONS_BANK = {
         "The parameter shadows the field; this.customerName selects the instance field and the bare customerName selects the incoming argument."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11317,6 +14185,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11335,7 +14215,19 @@ const QUESTIONS_BANK = {
         "It becomes the account's starting/replacement balance before deposits and withdrawals are tested."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11354,7 +14246,19 @@ const QUESTIONS_BANK = {
         "The methods do not fully validate negative amounts, so negative deposits can reduce the balance and negative withdrawals can increase it."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11373,7 +14277,19 @@ const QUESTIONS_BANK = {
         "No. It calls a no-argument constructor, so the object fields keep default values until setter methods receive arguments."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11399,6 +14315,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11425,6 +14353,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverLoadingChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11451,6 +14391,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverloadingSecondAndMinutesChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11469,7 +14421,19 @@ const QUESTIONS_BANK = {
         "Pass an age from 0 to 100 inclusive; values less than 0 or greater than 100 cause the field to be set to 0."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11488,7 +14452,19 @@ const QUESTIONS_BANK = {
         "getFullName() calls isEmpty() on the stored names, and calling isEmpty() on null would throw NullPointerException."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11507,7 +14483,19 @@ const QUESTIONS_BANK = {
         "The right-side age is the setter parameter, while this.age is the instance field being updated."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11533,6 +14521,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11559,6 +14559,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/SumCalculatorImplementationChallenge.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11577,7 +14589,19 @@ const QUESTIONS_BANK = {
         "It is the initial balance copied into the accountBalance field when the object is created."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11596,7 +14620,19 @@ const QUESTIONS_BANK = {
         "Both parameters are Strings, so the code can compile even though the values are stored in the wrong fields."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11615,7 +14651,19 @@ const QUESTIONS_BANK = {
         "A this(...) constructor call must be the first executable statement in the constructor body."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11642,7 +14690,19 @@ const QUESTIONS_BANK = {
         "2": "for the same reason. The call matches no constructor, so the class does not compile."
       },
       "explanation": "The implicit no-argument constructor exists only if the class declares no constructor at all.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11669,7 +14729,19 @@ const QUESTIONS_BANK = {
         "3": "writing void does not make it an illegal constructor. It makes it a legal method."
       },
       "explanation": "Writing void gives the declaration a return type, so it is a method named Demo, not a constructor.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11696,7 +14768,19 @@ const QUESTIONS_BANK = {
         "3": "a constructor may call another one with this(...). It just has to do it first."
       },
       "explanation": "A constructor may delegate only through this(...), and that call must be the very first statement.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11722,7 +14806,19 @@ const QUESTIONS_BANK = {
         "3": "parameter names are not part of the signature, so this pair clashes."
       },
       "explanation": "Overloading depends on the parameter list: its number, types and order. Names are not part of it.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -11749,7 +14845,19 @@ const QUESTIONS_BANK = {
         "3": "a constructor may call another one with this(...), which is exactly what constructor chaining is."
       },
       "explanation": "this(5) runs first, and control returns to the no-argument constructor, which prints its own line.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11775,6 +14883,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11793,7 +14913,19 @@ const QUESTIONS_BANK = {
         "It passes no arguments and explicitly selects the parent class printMethod() implementation."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11812,7 +14944,19 @@ const QUESTIONS_BANK = {
         "Without super, a call to printMethod() from inside the override would call itself recursively instead of the parent method."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11831,7 +14975,19 @@ const QUESTIONS_BANK = {
         "The JVM stores command-line arguments in args, though this example ignores them."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11849,7 +15005,19 @@ const QUESTIONS_BANK = {
         "this(args) calls another constructor in the same class, while super(args) calls a constructor in the parent class."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11868,7 +15036,19 @@ const QUESTIONS_BANK = {
         "Each constructor call must be the first statement, and only one statement can be first."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11887,7 +15067,19 @@ const QUESTIONS_BANK = {
         "No. They require constructor/object context and cannot be used from static methods."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -11913,6 +15105,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -11932,7 +15136,19 @@ const QUESTIONS_BANK = {
         "The parameter shadows the field, so this.color identifies the instance field and color identifies the constructor or setter parameter."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11951,7 +15167,19 @@ const QUESTIONS_BANK = {
         "No. It returns the color already stored in the current object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11969,7 +15197,19 @@ const QUESTIONS_BANK = {
         "They are position coordinates forwarded to the parent constructor so the parent fields can be initialized."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -11988,7 +15228,19 @@ const QUESTIONS_BANK = {
         "Both parameters are ints, so swapped values still compile but store the wrong dimensions."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12007,7 +15259,19 @@ const QUESTIONS_BANK = {
         "It must be the first statement in the constructor body before child-field assignments."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12033,6 +15297,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12051,7 +15327,19 @@ const QUESTIONS_BANK = {
         "They are the object's dimensions; the constructor stores them while defaulting x and y to 0."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12070,7 +15358,19 @@ const QUESTIONS_BANK = {
         "All four parameters are ints, so wrong ordering still compiles but assigns coordinates and dimensions incorrectly."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12089,7 +15389,19 @@ const QUESTIONS_BANK = {
         "A this(...) call from simpler constructors to the most complete constructor could centralize field assignment."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12115,6 +15427,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12133,7 +15457,19 @@ const QUESTIONS_BANK = {
         "The first two arguments, 0 and 0, default x and y; width and height are the caller's parameters forwarded to the master constructor."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12152,7 +15488,19 @@ const QUESTIONS_BANK = {
         "Since every parameter is int, swapped values can compile while assigning coordinates and dimensions to the wrong fields."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12171,7 +15519,19 @@ const QUESTIONS_BANK = {
         "It must be the first statement in the constructor body."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12197,6 +15557,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12215,7 +15587,19 @@ const QUESTIONS_BANK = {
         "name initializes the name field, creditLimit initializes the creditLimit field, and emailAddress initializes the emailAddress field."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12234,7 +15618,19 @@ const QUESTIONS_BANK = {
         "The no-args constructor does not set fields directly; it reuses the two-parameter constructor, which then supplies the default credit limit and delegates to the three-parameter constructor."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12253,7 +15649,19 @@ const QUESTIONS_BANK = {
         "The parameter name shadows the field name, so this.name explicitly means the current object's field while name means the constructor parameter."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12271,7 +15679,19 @@ const QUESTIONS_BANK = {
         "Pass the numeric credit amount the Customer should start with, usually a non-negative business value, because this constructor stores it directly without validation."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12290,7 +15710,19 @@ const QUESTIONS_BANK = {
         "It will see red too, because setColor changes the shared object, not just one reference variable."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12309,7 +15741,19 @@ const QUESTIONS_BANK = {
         "this.color is the instance field of the current object; color without this is the method or constructor parameter."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12335,6 +15779,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12353,7 +15809,19 @@ const QUESTIONS_BANK = {
         "It chooses the initial color field value for the new House object referenced by blueHouse."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12372,7 +15840,19 @@ const QUESTIONS_BANK = {
         "anotherHouse and blueHouse are two references to the same House object, so the setColor parameter updates that shared object's field."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12391,7 +15871,19 @@ const QUESTIONS_BANK = {
         "No. The \"green\" argument initialized a separate new House object; reassignment changes the reference, not the old object's color."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12409,7 +15901,19 @@ const QUESTIONS_BANK = {
         "It is passed to the House constructor and copied into the new object's color field."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12428,7 +15932,19 @@ const QUESTIONS_BANK = {
         "The color parameter still initializes an object, but no reference is kept, so the program cannot access that object after the statement completes."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12447,7 +15963,19 @@ const QUESTIONS_BANK = {
         "No. Each new expression creates a separate object; matching constructor arguments do not make references point to the same object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12473,6 +16001,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12491,7 +16031,19 @@ const QUESTIONS_BANK = {
         "They are the two integer operands that the method adds and prints."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12510,7 +16062,19 @@ const QUESTIONS_BANK = {
         "No. It is declared without static, so it is an instance method and must be called on an object reference."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12529,7 +16093,19 @@ const QUESTIONS_BANK = {
         "b receives 3 because Java matches method arguments to parameters by position."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12555,6 +16131,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12573,7 +16161,19 @@ const QUESTIONS_BANK = {
         "Choose values that represent the initial state of the object, matching the constructor parameter order and types."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12592,7 +16192,19 @@ const QUESTIONS_BANK = {
         "The setter will usually store the argument directly, so callers must avoid invalid, null, or inconsistent values themselves."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12611,7 +16223,19 @@ const QUESTIONS_BANK = {
         "A getter reads an existing field from the current object, so the object reference already identifies what data to return."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12637,6 +16261,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12655,7 +16291,19 @@ const QUESTIONS_BANK = {
         "It is the classList value, describing the course or list of courses for that Student."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12674,7 +16322,19 @@ const QUESTIONS_BANK = {
         "Java assigns arguments by position, so swapping two String values may compile but store data in the wrong fields or components."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12693,7 +16353,19 @@ const QUESTIONS_BANK = {
         "It would receive one replacement String containing the previous classList text plus the added course text."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12711,7 +16383,19 @@ const QUESTIONS_BANK = {
         "id, name, dateOfBirth, and classList initialize the matching fields of the new Student object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12730,7 +16414,19 @@ const QUESTIONS_BANK = {
         "The parameter replaces the whole classList field; it does not automatically append to the existing value."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12749,7 +16445,19 @@ const QUESTIONS_BANK = {
         "The parameter id shadows the field id, so this.id identifies the instance field while id identifies the parameter."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12767,7 +16475,19 @@ const QUESTIONS_BANK = {
         "Pass the birth-date text in the format the application expects, because this class stores it as a String without validation or conversion."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12793,6 +16513,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12811,7 +16543,19 @@ const QUESTIONS_BANK = {
         "name updates the shared static class variable, while instanceName initializes a separate instance field for one object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12830,7 +16574,19 @@ const QUESTIONS_BANK = {
         "The second call overwrites the shared static name, so all instances that read the static variable see Fluffy."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12849,7 +16605,19 @@ const QUESTIONS_BANK = {
         "age receives 4 because it is the second parameter in the (String instanceName, int age) constructor."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12875,6 +16643,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12894,7 +16674,19 @@ const QUESTIONS_BANK = {
         "Each component becomes a canonical constructor parameter, a private final field, and a public accessor method with the same name."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12912,7 +16704,19 @@ const QUESTIONS_BANK = {
         "Pass the complete course-list String the record should keep, because records are immutable and provide no setter to change it later."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12931,7 +16735,19 @@ const QUESTIONS_BANK = {
         "Both are Strings, so the code may still compile, but the record will store the student's name in the dateOfBirth component and the date in the name component."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -12950,7 +16766,19 @@ const QUESTIONS_BANK = {
         "The accessor is name(), not getName()."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -12976,6 +16804,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -12994,7 +16834,19 @@ const QUESTIONS_BANK = {
         "x is the horizontal coordinate and y is the vertical coordinate used to initialize the point's fields."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13013,7 +16865,19 @@ const QUESTIONS_BANK = {
         "It causes a NullPointerException because the method reads a.getX() and a.getY()."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13032,7 +16896,19 @@ const QUESTIONS_BANK = {
         "The first int is treated as the target x-coordinate and the second int as the target y-coordinate."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13058,6 +16934,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13076,7 +16964,19 @@ const QUESTIONS_BANK = {
         "They are the wall's two dimensions, and callers should choose non-negative values in the same unit."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13095,7 +16995,19 @@ const QUESTIONS_BANK = {
         "The width field is set to 0, so the negative input is not stored."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13114,7 +17026,19 @@ const QUESTIONS_BANK = {
         "It multiplies the object's current width and height fields, which were set by the constructor or setters."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13140,6 +17064,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13158,7 +17094,19 @@ const QUESTIONS_BANK = {
         "Choose a type name, a size label, and a numeric weight for the animal, in that exact order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13177,7 +17125,19 @@ const QUESTIONS_BANK = {
         "It uses the same weight argument for two jobs: storing the numeric weight and deriving the size label."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13203,6 +17163,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13221,7 +17193,19 @@ const QUESTIONS_BANK = {
         "type and weight are passed to the Animal constructor with super(type, weight); earShape and tailShape initialize Dog fields."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13240,7 +17224,19 @@ const QUESTIONS_BANK = {
         "The two-argument constructor chooses default earShape and tailShape, so callers cannot customize those values through that overload."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13259,7 +17255,19 @@ const QUESTIONS_BANK = {
         "Java must initialize the parent or chained constructor before the rest of the current constructor body runs."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13278,7 +17286,19 @@ const QUESTIONS_BANK = {
         "This implementation checks the text case-insensitively, so \"slow\" triggers walk() and wagTail(), while other values trigger run()."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13304,6 +17324,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13322,7 +17354,19 @@ const QUESTIONS_BANK = {
         "It invokes Animal(String, String, double), passing the fish type, hard-coding size to \"small\", and passing the fish weight."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13340,7 +17384,19 @@ const QUESTIONS_BANK = {
         "They should pass int counts that describe the fish, usually non-negative values."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13359,7 +17415,19 @@ const QUESTIONS_BANK = {
         "Only the text \"fast\" triggers moveBackFin(); other speed values still move the fish, but without the extra back-fin output."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13377,7 +17445,19 @@ const QUESTIONS_BANK = {
         "Dog and Fish extend Animal, so they satisfy the Animal parameter type and Java dispatches overridden methods at runtime."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13395,7 +17475,19 @@ const QUESTIONS_BANK = {
         "They are type, weight, number of gills, and number of fins, in that order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13414,7 +17506,19 @@ const QUESTIONS_BANK = {
         "The method calls animal.makeNoise(), animal.move(speed), and println(animal), so null would cause a NullPointerException before useful polymorphism occurs."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13440,6 +17544,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13458,7 +17574,19 @@ const QUESTIONS_BANK = {
         "name and age are passed to Student(String, int); parentName is stored in the PrimarySchoolStudent field."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13477,7 +17605,19 @@ const QUESTIONS_BANK = {
         "Avoid invalid values such as negative ages, because the constructor stores the int directly without validation."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13496,7 +17636,19 @@ const QUESTIONS_BANK = {
         "It receives command-line arguments as a String array, although this program does not use them."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13522,6 +17674,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13540,7 +17704,19 @@ const QUESTIONS_BANK = {
         "It invokes Worker(String, String), setting the Worker name and birthDate fields for the Employee object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13559,7 +17735,19 @@ const QUESTIONS_BANK = {
         "Worker.getAge() uses birthDate.substring(6), so the year must start at index 6 or age calculation can fail or be wrong."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13578,7 +17766,19 @@ const QUESTIONS_BANK = {
         "No, the caller passes name, birthDate, and hireDate; employeeId is assigned automatically from the static counter."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13596,7 +17796,19 @@ const QUESTIONS_BANK = {
         "It controls weekly pay because collectPay() returns 40 multiplied by hourlyRate."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13614,7 +17826,19 @@ const QUESTIONS_BANK = {
         "They are passed to the Employee constructor; Employee stores hireDate and passes name and birthDate to Worker."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13633,7 +17857,19 @@ const QUESTIONS_BANK = {
         "The constructor stores it directly, so collectPay() would produce a negative paycheck."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13651,7 +17887,19 @@ const QUESTIONS_BANK = {
         "They are name, birthDate, hireDate, and annualSalary, in that order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13669,7 +17917,19 @@ const QUESTIONS_BANK = {
         "It becomes hourlyRate, so collectPay() returns 40 times 20."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13688,7 +17948,19 @@ const QUESTIONS_BANK = {
         "Worker.getAge() extracts the year with substring(6), so the date string must put the year at that position."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13714,6 +17986,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13732,7 +18016,19 @@ const QUESTIONS_BANK = {
         "It is the yearly salary amount used by collectPay(), which divides it by 26."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13750,7 +18046,19 @@ const QUESTIONS_BANK = {
         "They call Employee(String, String, String), passing identity and dates up the inheritance chain."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13769,7 +18077,19 @@ const QUESTIONS_BANK = {
         "It is the endDate String stored by Worker.terminate(), and it is hard-coded by retire()."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13787,7 +18107,19 @@ const QUESTIONS_BANK = {
         "getAge() extracts the year with substring(6), parses it, and subtracts it from the current year."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13806,7 +18138,19 @@ const QUESTIONS_BANK = {
         "substring(6) or Integer.parseInt(...) can fail, or the calculated age can be incorrect."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13825,7 +18169,19 @@ const QUESTIONS_BANK = {
         "It stores the provided endDate String in the protected endDate field."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13851,6 +18207,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13869,7 +18237,19 @@ const QUESTIONS_BANK = {
         "They have the same method name but different parameter counts: zero parameters versus one int parameter."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13888,7 +18268,19 @@ const QUESTIONS_BANK = {
         "No. A return type change alone is not enough; overloading requires a different parameter list."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -13914,6 +18306,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -13932,7 +18336,19 @@ const QUESTIONS_BANK = {
         "calculateScore(String, int) is called because the argument list has a String followed by an int."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13950,7 +18366,19 @@ const QUESTIONS_BANK = {
         "calculateScore(int) is called; score is the unnamed player's points value before multiplying by 1000."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13969,7 +18397,19 @@ const QUESTIONS_BANK = {
         "There is no exact sum(int, int), so the second int argument can widen to long and match sum(int, long)."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -13988,7 +18428,19 @@ const QUESTIONS_BANK = {
         "Both performingSum(int, long) and performingSum(long, int) need one int-to-long widening conversion, so neither overload is more specific."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14007,7 +18459,19 @@ const QUESTIONS_BANK = {
         "Java prefers the exact parameter match performingSumAgain(int, int) before widening both arguments to long."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14026,7 +18490,19 @@ const QUESTIONS_BANK = {
         "No. Overloading requires a different parameter list; the return type alone cannot distinguish methods."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14053,7 +18529,19 @@ const QUESTIONS_BANK = {
         "3": "Java does not promote an argument when an exact match is available. Widening is only a fallback."
       },
       "explanation": "Overload resolution looks for a match without conversion first, and print(int) matches 5 exactly.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14080,7 +18568,19 @@ const QUESTIONS_BANK = {
         "3": "a different return type is not enough to tell the two methods apart."
       },
       "explanation": "An overload needs a different parameter list, and the return type is not part of the signature.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14107,7 +18607,19 @@ const QUESTIONS_BANK = {
         "3": "the call is not ambiguous, because long is strictly more specific than double."
       },
       "explanation": "With no exact match, widening is applied and the most specific method wins: show(long).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14134,7 +18646,19 @@ const QUESTIONS_BANK = {
         "2": "an overload is perfectly legal in a subclass, so the code compiles."
       },
       "explanation": "Different parameter lists make these overloads, so the compiler picks from the reference type.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14161,7 +18685,19 @@ const QUESTIONS_BANK = {
         "3": "boxing is considered only in a later phase, after the exact match has already been found."
       },
       "explanation": "The first phase allows no boxing, so go(int) matches exactly and go(Integer) is considered later.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -14187,6 +18723,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -14205,7 +18753,19 @@ const QUESTIONS_BANK = {
         "name is the person's stored name, and birthDate is the stored birth-date text copied into the new Person."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14224,7 +18784,19 @@ const QUESTIONS_BANK = {
         "No. Constructors are not inherited, so they can be overloaded but never overridden."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14243,7 +18815,19 @@ const QUESTIONS_BANK = {
         "The parameter list is identical and Person is a covariant return type, meaning it is more specific than Object."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14262,7 +18846,19 @@ const QUESTIONS_BANK = {
         "No. Changing the parameter list makes it a different overloaded method, not an override."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -14288,6 +18884,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -14306,7 +18914,19 @@ const QUESTIONS_BANK = {
         "It has the same method name and the identical empty parameter list in a child class."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14325,7 +18945,19 @@ const QUESTIONS_BANK = {
         "It would be an overload, not an override, because the parameter count differs from Dog.bark()."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14344,7 +18976,19 @@ const QUESTIONS_BANK = {
         "It must use the identical empty parameter list: bark()."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -14370,6 +19014,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -14390,7 +19046,19 @@ const QUESTIONS_BANK = {
         "The JVM decides at RUNTIME which version to call based on the actual object type, not the reference type."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14410,7 +19078,19 @@ const QUESTIONS_BANK = {
         "Key interview distinction: overloading = compile-time, overriding = runtime. Overloading changes the method signature; overriding keeps it identical."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14434,7 +19114,19 @@ const QUESTIONS_BANK = {
         "7) static methods CANNOT be overridden — they are hidden (method hiding), not overridden."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14456,7 +19148,19 @@ const QUESTIONS_BANK = {
         "TRAP: beginners think Animal's speak() is called because the reference is Animal. Wrong — it's always the actual object's method."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14478,7 +19182,19 @@ const QUESTIONS_BANK = {
         "@Override annotation on a static method causes a COMPILE ERROR."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14501,7 +19217,19 @@ const QUESTIONS_BANK = {
         "CRITICAL TRAP: fields are NOT polymorphic. Only methods are. Always remember: fields → compile-time (reference), methods → runtime (object)."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14521,7 +19249,19 @@ const QUESTIONS_BANK = {
         "Why useful: allows more specific return types without breaking the contract."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14541,7 +19281,19 @@ const QUESTIONS_BANK = {
         "Without @Override: if you accidentally write the wrong signature, Java silently treats it as a new overloaded method. You'd think you overrode, but you didn't."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14560,7 +19312,19 @@ const QUESTIONS_BANK = {
         "@Override on a \"private method override\" will cause a compile error."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14579,7 +19343,19 @@ const QUESTIONS_BANK = {
         "Example: child's toString() calls super.toString() to include parent's fields in the output, then adds its own fields."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14598,7 +19374,19 @@ const QUESTIONS_BANK = {
         "Constructors can be OVERLOADED (same class, different parameters) but not overridden."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14616,7 +19404,19 @@ const QUESTIONS_BANK = {
         "The parameter list must be identical: same count, same types, and same order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14635,7 +19435,19 @@ const QUESTIONS_BANK = {
         "No. int and double are different parameter types, so this creates an overload instead of an override."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14654,7 +19466,19 @@ const QUESTIONS_BANK = {
         "Overloading is selected at compile time by the argument list; overriding is selected at runtime by the actual object type."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -14673,7 +19497,19 @@ const QUESTIONS_BANK = {
         "Yes. If the child method's parameters do not exactly match an inherited method, @Override causes a compile-time error."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14699,7 +19535,19 @@ const QUESTIONS_BANK = {
         "3": "same name and different parameters in one class is overloading."
       },
       "explanation": "Overriding is runtime polymorphism, also called dynamic method dispatch. The JVM looks at the actual object, not the declared type of the reference, when deciding which version to run.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14725,7 +19573,19 @@ const QUESTIONS_BANK = {
         "3": "this is reversed. Overloading stays within one class."
       },
       "explanation": "The distinction interviewers look for is which one the compiler decides and which one the JVM decides. Changing the parameters means a new overload; keeping them identical means an override.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14751,7 +19611,19 @@ const QUESTIONS_BANK = {
         "3": "package-private is more restrictive than protected, so it is not allowed here either, but private is the clearly invalid one being asked for."
       },
       "explanation": "An override may widen access but never narrow it. protected can become public, but it cannot become private, because callers that could reach the parent's method would suddenly be locked out.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14778,7 +19650,19 @@ const QUESTIONS_BANK = {
         "3": "only one version runs, not both."
       },
       "explanation": "This is the heart of runtime polymorphism. The reference type only decides what you are allowed to call; the object type decides which version actually runs. Assigning a Dog to an Animal reference is legal because a Dog is an Animal.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14804,7 +19688,19 @@ const QUESTIONS_BANK = {
         "3": "final is only one of several cases."
       },
       "explanation": "static methods are hidden rather than overridden, private methods are not inherited at all, final methods are locked down by the compiler, and constructors are not inherited methods. A method must be inheritable before it can be overridden.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14830,7 +19726,19 @@ const QUESTIONS_BANK = {
         "3": "the annotation has no effect on performance."
       },
       "explanation": "The annotation is a promise to the compiler. If the signature does not match a parent method, the compiler reports an error instead of silently creating a new method that never gets called.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14856,7 +19764,19 @@ const QUESTIONS_BANK = {
         "3": "widening to a supertype would break callers who expect the narrower type."
       },
       "explanation": "Covariance lets an override narrow the return type, which is more specific and therefore safe. If the parent returns Animal, the child may return Dog, because a Dog is an Animal.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14883,7 +19803,19 @@ const QUESTIONS_BANK = {
         "3": "the annotation is checked, and it fails here."
       },
       "explanation": "Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14910,7 +19842,19 @@ const QUESTIONS_BANK = {
         "3": "only one method is called."
       },
       "explanation": "A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14936,7 +19880,19 @@ const QUESTIONS_BANK = {
         "3": "a constructor call is super(...) with parentheses and arguments, not super.method()."
       },
       "explanation": "super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14962,7 +19918,19 @@ const QUESTIONS_BANK = {
         "3": "the modifier is constrained by the rule that access may not be reduced."
       },
       "explanation": "An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -14989,7 +19957,19 @@ const QUESTIONS_BANK = {
         "2": "that is true for an overload. An override is resolved from the object, not the reference."
       },
       "explanation": "The reference type only says which methods you may call. The object, a Dog, decides the body.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -15016,7 +19996,19 @@ const QUESTIONS_BANK = {
         "3": "that rule needs the parent to declare the method. Here Parent never declares fetch()."
       },
       "explanation": "The compiler allows only methods the reference type declares, and Parent has no fetch().",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -15043,7 +20035,19 @@ const QUESTIONS_BANK = {
         "3": "a child may add an overload with any parameter type. The error comes from @Override, not widening."
       },
       "explanation": "An override must keep the same parameter list, so print(long) is an overload @Override rejects.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -15070,7 +20074,19 @@ const QUESTIONS_BANK = {
         "3": "that is how an overridden instance method behaves. A static method follows the reference."
       },
       "explanation": "A static method is hidden, not overridden, so the call is bound from the reference type, Parent.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "scq",
@@ -15096,7 +20112,19 @@ const QUESTIONS_BANK = {
         "3": "a static method hides the parent's method instead of overriding it, so it is not an override."
       },
       "explanation": "An override may narrow the return type to a subtype, but access may be widened, never reduced.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -15122,6 +20150,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15140,7 +20180,19 @@ const QUESTIONS_BANK = {
         "Different parameter count, different parameter types, or different parameter order can create overloads."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -15159,7 +20211,19 @@ const QUESTIONS_BANK = {
         "No. The parameter list must differ; return type alone is not enough."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -15178,7 +20242,19 @@ const QUESTIONS_BANK = {
         "It must stay identical to the parent method's parameter list: same count, types, and order."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "interview",
@@ -15196,7 +20272,19 @@ const QUESTIONS_BANK = {
         "Overloading uses parameter lists for compile-time selection; overriding uses an identical parameter list and runtime dispatch by actual object type."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java"
+      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
+      ]
     },
     {
       "type": "mcq",
@@ -15222,6 +20310,18 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15242,6 +20342,18 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15262,6 +20374,18 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15284,6 +20408,18 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15306,6 +20442,18 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15328,6 +20476,18 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15350,6 +20510,18 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     },
     {
@@ -15372,6 +20544,18 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp",
         "tricky"
+      ],
+      "concepts": [
+        "classes",
+        "encapsulation",
+        "constructors",
+        "inheritance",
+        "polymorphism",
+        "overloading",
+        "abstract",
+        "object-class",
+        "static",
+        "records-enums"
       ]
     }
   ],
@@ -15392,7 +20576,13 @@ const QUESTIONS_BANK = {
         "The first parameter is the format string; it controls the literal text and placeholders that later arguments fill."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15411,7 +20601,13 @@ const QUESTIONS_BANK = {
         "It throws IllegalFormatConversionException because %f expects a floating-point value."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15429,7 +20625,13 @@ const QUESTIONS_BANK = {
         "It is the minimum output width, used to pad the integer for alignment if the printed value is shorter."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15447,7 +20649,13 @@ const QUESTIONS_BANK = {
         "They use the same format and argument rules, but String.format returns the formatted String while printf prints it."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15466,7 +20674,13 @@ const QUESTIONS_BANK = {
         "It appeared as a preview in Java 13 and became a standard feature in Java 15."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15485,7 +20699,13 @@ const QUESTIONS_BANK = {
         "These specifiers are used by printf(), format(), and related formatting APIs."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15504,7 +20724,13 @@ const QUESTIONS_BANK = {
         "Both produce a formatted String instead of printing directly to the console."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15523,7 +20749,13 @@ const QUESTIONS_BANK = {
         "They are especially useful for JSON, SQL, XML, or formatted console output templates."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15543,7 +20775,13 @@ const QUESTIONS_BANK = {
         "Use 10.0 or a %d specifier instead."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15563,7 +20801,13 @@ const QUESTIONS_BANK = {
         "Moving the closing delimiter changes the resulting indentation in the String."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15590,7 +20834,13 @@ const QUESTIONS_BANK = {
         "3": "the format string is not type-checked at compile time, and %s accepts any object or primitive."
       },
       "explanation": "%s calls toString() on whatever it is given, so an int is perfectly acceptable. That is different from %f, which insists on a floating-point value and throws for an int.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15617,7 +20867,13 @@ const QUESTIONS_BANK = {
         "3": "the doubled sign is a way of writing one, so the second is not printed literally."
       },
       "explanation": "The percent sign starts a format specifier, so a literal percent has to be written twice. The pair %% is replaced by a single % in the output.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15644,7 +20900,13 @@ const QUESTIONS_BANK = {
         "3": "repetition uses String.repeat, not a format flag."
       },
       "explanation": "The width sets the minimum field size and the minus flag pads on the right instead of the left. So 42 becomes 42 followed by three spaces inside the brackets.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15671,7 +20933,13 @@ const QUESTIONS_BANK = {
         "3": "format does build the text, but the println on the next line prints it."
       },
       "explanation": "String.format returns the formatted text without printing, so it is stored in s and printed later.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15698,7 +20966,13 @@ const QUESTIONS_BANK = {
         "3": "that is the number as written in the source, not as the format shows it."
       },
       "explanation": "The .2 sets two digits after the decimal point and rounds, so 3.14159 becomes 3.14.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15725,7 +20999,13 @@ const QUESTIONS_BANK = {
         "3": "the format string is not checked at compile time, so it fails at runtime."
       },
       "explanation": "%d accepts only an integral argument, so a String does not match and the call fails while it runs.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15752,7 +21032,13 @@ const QUESTIONS_BANK = {
         "3": "a formatter never drops digits so that the value fits the width."
       },
       "explanation": "The 5 is a minimum width, so a wider value is printed in full and is never truncated.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15779,7 +21065,13 @@ const QUESTIONS_BANK = {
         "3": "the line terminator after the opening delimiter cannot be omitted."
       },
       "explanation": "A text block must have three double quotes followed by a line terminator, so content cannot start on that same line.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -15806,7 +21098,13 @@ const QUESTIONS_BANK = {
         "3": "% and n are plain characters in a String literal, so the code compiles."
       },
       "explanation": "%n is a format specifier, so it is converted only by printf or format. println does not format, so it prints literally.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15824,7 +21122,13 @@ const QUESTIONS_BANK = {
         "The valid range is 0 to length() - 1. Any index outside that range throws StringIndexOutOfBoundsException."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15842,7 +21146,13 @@ const QUESTIONS_BANK = {
         "It tells indexOf to start the search at index 3, which is useful to skip the earlier matches."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15861,7 +21171,13 @@ const QUESTIONS_BANK = {
         "The index 3 (beginIndex) is included and the index 5 (endIndex) is excluded, so the result has 2 characters."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15880,7 +21196,13 @@ const QUESTIONS_BANK = {
         "It returns \"\" (an empty String). An index equal to length() is valid, so no exception is thrown."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15899,7 +21221,13 @@ const QUESTIONS_BANK = {
         "It does not throw an exception. It returns \"\" (an empty String), because beginIndex and endIndex are the same, so the range has 0 length."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15918,7 +21246,13 @@ const QUESTIONS_BANK = {
         "The output is XXXXXXX, 7 X characters, because \".\" in a Regular Expression matches ANY single character. To replace only the dots, use replaceAll(\"\\\\.\", \"X\") or replace(\".\", \"X\")."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15937,7 +21271,13 @@ const QUESTIONS_BANK = {
         "It throws IllegalArgumentException, because the repeat count cannot be negative."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15956,7 +21296,13 @@ const QUESTIONS_BANK = {
         "It throws NullPointerException, because concat() does not accept null. In contrast, \"hello\" + null gives \"hellonull\", because the + operator converts null to the text \"null\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15974,7 +21320,13 @@ const QUESTIONS_BANK = {
         "isEmpty() returns true only when the length is 0. isBlank() returns true when the length is 0 or when the String has only whitespace characters. Use isBlank() for user input validation."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -15992,7 +21344,13 @@ const QUESTIONS_BANK = {
         "trim() removes only ASCII whitespace, which means characters with a codepoint of 32 or less. strip() uses Character.isWhitespace(), so it also removes Unicode whitespace such as \\u2000. Prefer strip() in JDK 11 or above."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16010,7 +21368,13 @@ const QUESTIONS_BANK = {
         "equals() returns true only when the other object is also a String. contentEquals() accepts any CharSequence, such as StringBuilder or StringBuffer, so it avoids calling toString() and creating a temporary String."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16028,7 +21392,13 @@ const QUESTIONS_BANK = {
         "Use replace() when the target is a literal value, because it does not compile a Regular Expression and is faster. Use replaceAll() only when the target is really meant to be a pattern."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16055,7 +21425,13 @@ const QUESTIONS_BANK = {
         "3": "concat works on a copy, so the original text is never duplicated."
       },
       "explanation": "concat returns a brand new String and never edits the one it is called on, so s still holds Java.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16082,7 +21458,13 @@ const QUESTIONS_BANK = {
         "3": "the end index may be at most length(), and 3 is well inside the String."
       },
       "explanation": "substring(begin, end) includes begin but excludes end, so indexes 0, 1 and 2 are copied.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16109,7 +21491,13 @@ const QUESTIONS_BANK = {
         "2": "that is the result of the valid call substring(2), which runs to the end."
       },
       "explanation": "Both indexes are in range, but beginIndex 2 is greater than endIndex 1, so the reversed range throws.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16136,7 +21524,13 @@ const QUESTIONS_BANK = {
         "2": "operands are joined in the written order, so the text stays on the left."
       },
       "explanation": "+ works left to right, so \"Java\" + 10 joins first, and joining 20 to a String gives Java1020.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16163,7 +21557,13 @@ const QUESTIONS_BANK = {
         "3": "that is what replace(\".\", \"-\") gives, because replace treats the dot literally."
       },
       "explanation": "In replaceAll the first argument is regex, so \".\" matches any character and all five are replaced.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16190,7 +21590,13 @@ const QUESTIONS_BANK = {
         "3": "+ with a char and an int does arithmetic; it never joins them as text."
       },
       "explanation": "A char is numeric, so 'A' + 1 uses the code point 65 and adds 1, and the int result prints as 66.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "mcq",
@@ -16216,6 +21622,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
       ]
     },
     {
@@ -16235,7 +21647,13 @@ const QUESTIONS_BANK = {
         "StringBuilder is mutable and edits its internal buffer in place, which is far more efficient for repeated changes."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16254,7 +21672,13 @@ const QUESTIONS_BANK = {
         "String + in a loop creates a new object each iteration (O(n^2) work); StringBuilder appends in place (O(n))."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16273,7 +21697,13 @@ const QUESTIONS_BANK = {
         "Use StringBuilder by default in single-threaded code; use StringBuffer only when multiple threads share the buffer."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16291,7 +21721,13 @@ const QUESTIONS_BANK = {
         "Because append() returns the same StringBuilder instance, enabling a fluent builder-style API."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16311,7 +21747,13 @@ const QUESTIONS_BANK = {
         "length() is 0; capacity() is 20. An int argument sets capacity, not content."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16331,7 +21773,13 @@ const QUESTIONS_BANK = {
         "Compare content with sb1.toString().equals(sb2.toString()) instead."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16351,7 +21799,13 @@ const QUESTIONS_BANK = {
         "When exceeded, the buffer grows to (oldCapacity * 2) + 2, so from 16 the sequence is 16 -> 34 -> 70."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16371,7 +21825,13 @@ const QUESTIONS_BANK = {
         "It is NOT 16; only new StringBuilder() with no argument gives capacity 16."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16391,7 +21851,13 @@ const QUESTIONS_BANK = {
         "The buffer starts at the default capacity 16; appending 17 chars overflows it, so it grows to (16 * 2) + 2 = 34."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16411,7 +21877,13 @@ const QUESTIONS_BANK = {
         "17 fits inside the pre-allocated capacity 32, so no growth happens; capacity only changes when the content exceeds it."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16431,7 +21903,13 @@ const QUESTIONS_BANK = {
         "For a plain repeated String use String.repeat(int) from Java 11, e.g. \"ab\".repeat(3) returns \"ababab\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16451,7 +21929,13 @@ const QUESTIONS_BANK = {
         "The end index is EXCLUSIVE; delete(1, 3) removes 2 characters, not 3."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16470,7 +21954,13 @@ const QUESTIONS_BANK = {
         "deleteCharAt(index) removes exactly ONE character at the given index."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16490,7 +21980,13 @@ const QUESTIONS_BANK = {
         "If the new length is smaller, it truncates. setLength(0) is a common way to clear and reuse a StringBuilder."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16509,7 +22005,13 @@ const QUESTIONS_BANK = {
         "Yes -- inserting at offset == length() appends at the end. Any offset outside 0..length() throws StringIndexOutOfBoundsException."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16529,7 +22031,13 @@ const QUESTIONS_BANK = {
         "The number of characters removed is (end - start), which is why delete(2, 5) removes 3 characters."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "interview",
@@ -16548,7 +22056,13 @@ const QUESTIONS_BANK = {
         "Choose it when you can estimate the final size, to avoid repeated buffer re-allocation as the builder grows."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16574,7 +22088,13 @@ const QUESTIONS_BANK = {
         "3": "they can hold the same text. The difference is how changes are performed, not how much fits."
       },
       "explanation": "String never changes once created. StringBuilder edits one internal buffer, which is why repeated appends are far cheaper than building the same text with +.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16600,7 +22120,13 @@ const QUESTIONS_BANK = {
         "3": "capacity is not a fixed limit. The buffer grows when it overflows."
       },
       "explanation": "Capacity is the size of the internal storage and length is what is actually used. A new StringBuilder() has length 0 but capacity 16, because the buffer is already reserved.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16627,7 +22153,13 @@ const QUESTIONS_BANK = {
         "2": "no copy is made. Returning the same object is what allows chaining."
       },
       "explanation": "reverse() mutates the buffer and returns the same instance, which is why sb and same refer to one object and the identity check prints true.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16653,7 +22185,13 @@ const QUESTIONS_BANK = {
         "2": "the comparison compiles and runs, but it answers the wrong question."
       },
       "explanation": "Without an override, equals() falls back to the version inherited from Object, which compares identity. Two different objects are therefore unequal even when they hold identical characters.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16679,7 +22217,13 @@ const QUESTIONS_BANK = {
         "3": "the rule adds 2 as well, so 16 becomes 34 rather than 32."
       },
       "explanation": "The growth rule doubles the old capacity and adds 2. Knowing this is why presizing with new StringBuilder(int) is worthwhile when the final size is known.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16706,7 +22250,13 @@ const QUESTIONS_BANK = {
         "3": "clearing everything needs the end index to be length(), not 1."
       },
       "explanation": "The range is half-open: start is included and end is excluded. So delete(0, 1) affects index 0 only, while delete(0, sb.length()) clears the whole buffer.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16732,7 +22282,13 @@ const QUESTIONS_BANK = {
         "3": "the same object is reused, which is the point of the idiom."
       },
       "explanation": "A smaller length truncates the buffer, and 0 therefore clears it. This is a common way to reuse a StringBuilder without allocating a new one. Its void return means it cannot be chained.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16758,7 +22314,13 @@ const QUESTIONS_BANK = {
         "2": "append is an instance method, called on the builder."
       },
       "explanation": "Returning the same instance is what makes chaining work. Because it is the same object, every call writes into one buffer. Call toString() when you finally need an immutable String.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16785,7 +22347,13 @@ const QUESTIONS_BANK = {
         "3": "the range is inclusive of length(), unlike an array index."
       },
       "explanation": "The valid offset range is 0 up to and including length(). Using exactly length() places the text after the last character, which is the same effect as append.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16812,7 +22380,13 @@ const QUESTIONS_BANK = {
         "2": "three characters are removed, not one. deleteCharAt(1) would remove a single character."
       },
       "explanation": "The end index is exclusive, so delete(1, 4) removes the characters at indexes 1, 2 and 3. That is b, c and d, leaving a, e and f.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16839,7 +22413,13 @@ const QUESTIONS_BANK = {
         "3": "toString() is exactly how you convert a StringBuilder back to a String."
       },
       "explanation": "toString() returns an immutable String holding the characters as they were at that instant. Later changes to the StringBuilder cannot affect it, because String never changes.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16866,7 +22446,13 @@ const QUESTIONS_BANK = {
         "2": "the first append already changed the buffer, so it no longer holds just A."
       },
       "explanation": "append changes the same builder and returns it, so calls can be chained and the buffer ends up ABC.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16893,7 +22479,13 @@ const QUESTIONS_BANK = {
         "3": "the call is legal; it simply returns false."
       },
       "explanation": "StringBuilder does not override equals, so it compares references, and a builder can never equal a String.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16920,7 +22512,13 @@ const QUESTIONS_BANK = {
         "3": "taking a snapshot does not stop the builder from being changed later."
       },
       "explanation": "toString builds a new immutable String from the text held then, so later appends cannot affect it.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16947,7 +22545,13 @@ const QUESTIONS_BANK = {
         "2": "16 is the spare room of the empty constructor, without room for Hello."
       },
       "explanation": "This constructor sets capacity to the text length plus the default 16, so 5 + 16 gives 21.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -16973,7 +22577,13 @@ const QUESTIONS_BANK = {
         "3": "StringBuilder has no locking, so it is faster but not thread-safe."
       },
       "explanation": "StringBuffer is the older type and its methods are synchronised, which is safe for shared threads but slower.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "scq",
@@ -17000,7 +22610,13 @@ const QUESTIONS_BANK = {
         "2": "the upper case text was never stored, so it does not survive."
       },
       "explanation": "toUpperCase returns a new String and the unassigned result is discarded, so s still holds Hello.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java"
+      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
+      ]
     },
     {
       "type": "mcq",
@@ -17026,6 +22642,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
       ]
     },
     {
@@ -17052,6 +22674,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringVsStringBufferVsStringBuilder.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
       ]
     },
     {
@@ -17072,6 +22700,12 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
       ]
     },
     {
@@ -17092,6 +22726,12 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
       ]
     },
     {
@@ -17112,6 +22752,12 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
       ]
     },
     {
@@ -17132,6 +22778,12 @@ const QUESTIONS_BANK = {
         "ocjp",
         "tricky",
         "predict"
+      ],
+      "concepts": [
+        "strings",
+        "string-pool",
+        "text-blocks",
+        "arrays"
       ]
     }
   ],
@@ -17162,6 +22814,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/ComputerCase.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
       ]
     },
     {
@@ -17190,6 +22848,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Main.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
       ]
     },
     {
@@ -17218,6 +22882,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Monitor.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
       ]
     },
     {
@@ -17246,6 +22916,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/MotherBoard.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
       ]
     },
     {
@@ -17274,6 +22950,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/PersonalComputer.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
       ]
     },
     {
@@ -17300,7 +22982,13 @@ const QUESTIONS_BANK = {
         "3": "they describe different relationships, and choosing between them is a design decision."
       },
       "explanation": "A Monitor IS-A Product, which is inheritance. A PersonalComputer HAS-A Monitor, which is composition, because the computer holds a Monitor as one of its parts.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17326,7 +23014,13 @@ const QUESTIONS_BANK = {
         "3": "extending Monitor would make the computer a kind of monitor, which is not what the design says. They both extend Product instead."
       },
       "explanation": "Composition means one object is made up of others. A PersonalComputer contains a Monitor, a MotherBoard and a ComputerCase, so those are parts of it rather than parents of it.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17352,7 +23046,13 @@ const QUESTIONS_BANK = {
         "2": "there is one Product class. The subclasses share its definition."
       },
       "explanation": "Inheritance is a form of code reuse. The shared attributes live once in Product, and every subclass inherits them while still being free to add its own fields and behaviour.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17378,7 +23078,13 @@ const QUESTIONS_BANK = {
         "2": "that would create a second, unrelated field and leave the parent's copy unset."
       },
       "explanation": "private means the field is visible only inside Product. A subclass therefore has to go through a Product constructor, which is what super(...) does.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17404,7 +23110,13 @@ const QUESTIONS_BANK = {
         "3": "sharing one value happens with static fields. Each instance field here is per object."
       },
       "explanation": "Inheritance lets each subclass reuse the parent's definition. Each object still has its own copy of those fields, but the declarations live once in Product.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "mcq",
@@ -17430,6 +23142,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
       ]
     },
     {
@@ -17456,7 +23174,13 @@ const QUESTIONS_BANK = {
         "2": "a subclass may extend a class from another package, provided the class is visible."
       },
       "explanation": "Inheritance lets a subclass reuse what the parent already defines, and then add to it or change it. It is reuse through a parent-child relationship, not copying.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17482,7 +23206,13 @@ const QUESTIONS_BANK = {
         "3": "reusing attributes through a parent-child hierarchy is inheritance."
       },
       "explanation": "Composition is about building one thing out of others and presenting the result as a single object. The containing class delegates work to the parts it holds.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17508,7 +23238,13 @@ const QUESTIONS_BANK = {
         "3": "one object holding another as a field is exactly how composition is expressed."
       },
       "explanation": "The computer is built from those objects, so it has them. IS-A describes inheritance, where one class is a kind of another, which is a different relationship.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17535,7 +23271,13 @@ const QUESTIONS_BANK = {
         "3": "they are different: IS-A is a kind of, HAS-A is made of parts."
       },
       "explanation": "Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17561,7 +23303,13 @@ const QUESTIONS_BANK = {
         "3": "the two are the wrong way round."
       },
       "explanation": "The keyword decides the relationship. `class Monitor extends Product` claims a Monitor IS-A Product, so a Monitor can be used wherever a Product is expected. Storing a Monitor in a field of PersonalComputer makes it a part, which is HAS-A.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17588,7 +23336,13 @@ const QUESTIONS_BANK = {
         "3": "the field is initialised with new Engine(), so it is never null."
       },
       "explanation": "Car HAS-A Engine rather than IS-A Engine, so it reaches the engine's behaviour by calling through the field. That call is delegation: Car asks its own Engine to answer. A private field is freely usable inside the class that declares it.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17614,7 +23368,13 @@ const QUESTIONS_BANK = {
         "3": "copying the methods duplicates logic, so a fix has to be made in more than one place."
       },
       "explanation": "Composition reuses behaviour without claiming a relationship that does not exist. Extending a class you are not a kind of misleads every reader, and it also ties your class to the parent's implementation, so a change in the parent can break you.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "scq",
@@ -17640,7 +23400,13 @@ const QUESTIONS_BANK = {
         "2": "final prevents subclassing. It says nothing about composition."
       },
       "explanation": "Holding Book objects inside Library is composition, so a Library HAS-A collection of Books. Extending a class is IS-A, and implementing an interface is a can-do relationship.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java"
+      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
+      ]
     },
     {
       "type": "mcq",
@@ -17666,6 +23432,12 @@ const QUESTIONS_BANK = {
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_3_DeepProblems/CompositionDeepProblem.java",
       "tags": [
         "concept"
+      ],
+      "concepts": [
+        "composition",
+        "inheritance",
+        "classes",
+        "constructors"
       ]
     }
   ]

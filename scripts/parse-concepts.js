@@ -2,6 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
+// The concept catalogue. Questions are tagged by CONCEPT rather than by chapter
+// name, so a new chapter receives the right material from what its notes cover
+// instead of matching nothing.
+const conceptCatalogue = require(path.join(__dirname, '..', 'data', 'java-concepts.js'));
+
 // ==========================================================================
 // The marker vocabulary, in one place.
 // Every marker the tool understands is listed here. A marker that is missing
@@ -2476,12 +2481,15 @@ async function main() {
 
   chaptersList.forEach(chapter => {
     const chName = chapter.name;
+    // Every question in a chapter carries the chapter's concepts, so the quiz can
+    // be filtered by concept and a new chapter is covered by what its notes say.
+    const chapterConcepts = conceptCatalogue.conceptsForChapter(chName, chapter.topics);
     sortedQRBank[chName] = buildQuickRevisionEntry(chName, chapter.topics);
     const starterQs = buildStarterQuestions(chName, chapter.topics);
     const ocjpQs = buildOCJPQuestions(chName, chapter.topics);
     // A quiz must never show the same question twice. Several sub-chapters share a
     // file name, so without this a chapter could repeat one question many times.
-    const combined = [...starterQs, ...ocjpQs];
+    const combined = [...starterQs, ...ocjpQs].map(q => ({ ...q, concepts: chapterConcepts }));
     const seenQuestions = new Set();
     const deduped = combined.filter(q => {
       const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;
@@ -2490,7 +2498,7 @@ async function main() {
       return true;
     });
     sortedQBank[chName] = deduped;
-    console.log(`  🃏 Regenerated Quick Revision and question sets for: ${chName} (${deduped.length} questions, ${ocjpQs.length} OCJP)`);
+    console.log(`  🃏 Regenerated Quick Revision and question sets for: ${chName} (${deduped.length} questions, ${ocjpQs.length} OCJP, ${chapterConcepts.length} concepts)`);
   });
 
   console.log(`\n📝 Summary: ${chaptersList.length} regenerated chapter question set(s), ${chaptersList.length} regenerated quick revision entry/entries.`);
