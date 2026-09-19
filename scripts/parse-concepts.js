@@ -1800,7 +1800,9 @@ function buildStarterQuestions(chapterName, topics) {
         .map(line => String(line).replace(/^[-*•]\s+/, '').trim())
         .filter(isUsableQuizStatement);
       if (otLines.length > 0) {
-        falseOptions.push(otLines[0]);
+        // The topic the distractor came FROM is kept, because that is the whole
+        // reason it is wrong and the only honest feedback that can be given for it.
+        falseOptions.push({ line: otLines[0], from: topics[i].topicName });
         if (falseOptions.length >= 2) break;
       }
     }
@@ -1808,23 +1810,38 @@ function buildStarterQuestions(chapterName, topics) {
     if (trueOptions.length >= 3 && falseOptions.length >= 2) {
       const selectedTrue = trueOptions.slice(0, Math.min(3, trueOptions.length));
       const selectedFalse = falseOptions.slice(0, Math.min(2, falseOptions.length));
-      const allOpts = [...selectedTrue, ...selectedFalse];
-      const shuffledOpts = shuffleArr(allOpts);
-      const correctIndices = shuffledOpts
-        .map((opt, idx) => selectedTrue.includes(opt) ? idx : -1)
-        .filter(idx => idx >= 0);
+      // Options are tagged rather than matched back by text, so a distractor that
+      // happened to read the same as a true statement could not be miscounted.
+      const tagged = [
+        ...selectedTrue.map(text => ({ text, correct: true })),
+        ...selectedFalse.map(f => ({ text: f.line, correct: false, from: f.from }))
+      ];
+      const seed = makeQid(chapterName, topicIdentity, 'true-false-mcq', 5);
+      const ordered = orderOptionsForQuestion(tagged, seed);
+      const shuffledOpts = ordered.map(o => o.text);
+      const correctIndices = ordered.map((o, idx) => (o.correct ? idx : -1)).filter(idx => idx >= 0);
+      // Each distractor is a real statement from ANOTHER topic, so the reason it is
+      // wrong can be stated exactly instead of left blank. Without this the learner
+      // was told only that they were wrong, never why.
+      const whyByOption = {};
+      ordered.forEach((o, idx) => {
+        if (!o.correct && o.from) {
+          whyByOption[idx] = `This statement is true of "${o.from}", not of "${topicLabel}". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.`;
+        }
+      });
       if (correctIndices.length > 0) {
         addQuestion({
           type: 'mcq',
           kind: 'true-false',
-          qid: makeQid(chapterName, topicIdentity, 'true-false-mcq', 5),
+          qid: seed,
           difficulty: levelForKind('true-false'),
           chapter: chapterName,
           topic: topicLabel,
           question: `Which of the following are TRUE about ${topicLabel}? Select all that apply.`,
           options: shuffledOpts,
           answer: correctIndices,
-          explanation: `The true statements are taken directly from the notes for ${topicLabel}.`
+          whyByOption: Object.keys(whyByOption).length ? whyByOption : undefined,
+          explanation: `A statement belongs here only if your notes make it about ${topicLabel}. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. ${correctIndices.length} of the ${shuffledOpts.length} statements are about ${topicLabel}.`
         });
       }
     }

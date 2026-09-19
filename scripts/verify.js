@@ -15,6 +15,8 @@
 //                     real output is compared with the answer it marks correct
 //   check-bank        every hand-researched OCJP question marks the answer the
 //                     bank intends, and every wrong option says why it is wrong
+//   check-quality     every question gives feedback on a wrong choice, and none
+//                     gives the answer away without reasoning
 //
 // The first failure stops the run and the exit code is non-zero, so a broken
 // generation can never be reported as approved.
@@ -30,6 +32,7 @@ const CHECKS = [
   { script: 'check-practice.js', label: 'Practice verifiers' },
   { script: 'check-questions.js', label: 'Question answers' },
   { script: 'check-bank.js', label: 'OCJP bank' },
+  { script: 'check-quality.js', label: 'Question quality' },
   { script: 'coverage.js', label: 'Coverage', args: ['--check'] }
 ];
 

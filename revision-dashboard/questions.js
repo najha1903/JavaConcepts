@@ -1534,18 +1534,22 @@ const QUESTIONS_BANK = {
       "topic": "String Example",
       "question": "Which of the following are TRUE about String Example? Select all that apply.",
       "options": [
-        "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").",
-        "Variables declared inside the for loop init section are local to the loop only.",
         "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "A variable is a named storage location in memory that holds a data value."
+        "Variables declared inside the for loop init section are local to the loop only.",
+        "A variable is a named storage location in memory that holds a data value.",
+        "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
         0,
-        2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for String Example.",
+      "whyByOption": {
+        "1": "This statement is true of \"Local Variables And Scope\", not of \"String Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Variables\", not of \"String Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about String Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Example.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
       "tags": [
         "concept"
@@ -1621,18 +1625,22 @@ const QUESTIONS_BANK = {
       "topic": "Local Variables And Scope",
       "question": "Which of the following are TRUE about Local Variables And Scope? Select all that apply.",
       "options": [
-        "Variables declared inside an if block are NOT accessible in else or outside the if.",
         "Variables declared inside the for loop init section are local to the loop only.",
+        "A variable is a named storage location in memory that holds a data value.",
         "{ // outer block (e.g., a method)",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "A variable is a named storage location in memory that holds a data value."
+        "Variables declared inside an if block are NOT accessible in else or outside the if.",
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
         0,
-        1,
-        2
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Local Variables And Scope.",
+      "whyByOption": {
+        "1": "This statement is true of \"Variables\", not of \"Local Variables And Scope\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"String Example\", not of \"Local Variables And Scope\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Local Variables And Scope. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Local Variables And Scope.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
       "tags": [
         "concept"
@@ -1998,18 +2006,22 @@ const QUESTIONS_BANK = {
       "topic": "Variables",
       "question": "Which of the following are TRUE about Variables? Select all that apply.",
       "options": [
-        "In Java, variables are strongly typed: every variable must be declared with a specific data type before it can be used.",
-        "Variables declared inside the for loop init section are local to the loop only.",
+        "Identifiers must begin with a letter, underscore (_), or dollar sign ($).",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
         "A variable is a named storage location in memory that holds a data value.",
-        "Identifiers must begin with a letter, underscore (_), or dollar sign ($)."
+        "Variables declared inside the for loop init section are local to the loop only.",
+        "In Java, variables are strongly typed: every variable must be declared with a specific data type before it can be used."
       ],
       "answer": [
         0,
-        3,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Variables.",
+      "whyByOption": {
+        "1": "This statement is true of \"String Example\", not of \"Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Local Variables And Scope\", not of \"Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Variables. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Variables.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
       "tags": [
         "concept"
@@ -2238,18 +2250,22 @@ const QUESTIONS_BANK = {
       "topic": "Key Words And Expressions In Java",
       "question": "Which of the following are TRUE about Key Words And Expressions In Java? Select all that apply.",
       "options": [
-        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "Variables declared inside the for loop init section are local to the loop only.",
-        "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.",
         "An expression in Java is any combination of variables, literals, operators, and method calls that evaluates to a single value.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
+        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
+        "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.",
+        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
+        "Variables declared inside the for loop init section are local to the loop only."
       ],
       "answer": [
         0,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Key Words And Expressions In Java.",
+      "whyByOption": {
+        "1": "This statement is true of \"String Example\", not of \"Key Words And Expressions In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Local Variables And Scope\", not of \"Key Words And Expressions In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Key Words And Expressions In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Key Words And Expressions In Java.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
       "tags": [
         "concept"
@@ -3145,18 +3161,22 @@ const QUESTIONS_BANK = {
       "topic": "Primitive Data Types",
       "question": "Which of the following are TRUE about Primitive Data Types? Select all that apply.",
       "options": [
-        "Variables declared inside the for loop init section are local to the loop only.",
-        "These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.",
-        "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.",
         "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
+        "Variables declared inside the for loop init section are local to the loop only.",
+        "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.",
+        "These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
-        1,
+        0,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Primitive Data Types.",
+      "whyByOption": {
+        "1": "This statement is true of \"Local Variables And Scope\", not of \"Primitive Data Types\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"String Example\", not of \"Primitive Data Types\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Primitive Data Types. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Primitive Data Types.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
       "tags": [
         "concept"
@@ -6545,18 +6565,22 @@ const QUESTIONS_BANK = {
       "topic": "Methods In Java",
       "question": "Which of the following are TRUE about Methods In Java? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
         "Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.",
-        "The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.",
+        "This challenge uses method overloading to give the same method name two related meanings.",
         "This challenge practices boolean logic with two inputs: whether barking is happening and what hour it is.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing."
       ],
       "answer": [
-        1,
-        2,
+        0,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Methods In Java.",
+      "whyByOption": {
+        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Methods In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Barking Dog Coding Challenge\", not of \"Methods In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Methods In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Methods In Java.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
       "tags": [
         "concept"
@@ -6577,8 +6601,8 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Area Calculator Coding Challenge? Select all that apply.",
       "options": [
         "This challenge uses method overloading to give the same method name two related meanings.",
-        "area(double x, double y) calculates the area of a rectangle with x * y.",
         "area(double radius) calculates the area of a circle with Math.PI * radius * radius.",
+        "area(double x, double y) calculates the area of a rectangle with x * y.",
         "This challenge practices boolean logic with two inputs: whether barking is happening and what hour it is.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
@@ -6587,7 +6611,11 @@ const QUESTIONS_BANK = {
         1,
         2
       ],
-      "explanation": "The true statements are taken directly from the notes for Area Calculator Coding Challenge.",
+      "whyByOption": {
+        "3": "This statement is true of \"Barking Dog Coding Challenge\", not of \"Area Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Methods In Java\", not of \"Area Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Area Calculator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Area Calculator Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/AreaCalculatorCodingChallenge.java",
       "tags": [
         "concept"
@@ -6607,18 +6635,22 @@ const QUESTIONS_BANK = {
       "topic": "Barking Dog Coding Challenge",
       "question": "Which of the following are TRUE about Barking Dog Coding Challenge? Select all that apply.",
       "options": [
-        "shouldWakeUp(boolean barking, int hourOfDay) returns true only when barking is true and the time is before 8 or after 22.",
         "This challenge uses method overloading to give the same method name two related meanings.",
-        "The valid hour range is 0 through 23; any value outside that range returns false because the input itself is invalid.",
         "This challenge practices boolean logic with two inputs: whether barking is happening and what hour it is.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "The valid hour range is 0 through 23; any value outside that range returns false because the input itself is invalid.",
+        "shouldWakeUp(boolean barking, int hourOfDay) returns true only when barking is true and the time is before 8 or after 22."
       ],
       "answer": [
-        0,
-        2,
-        3
+        1,
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Barking Dog Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Barking Dog Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Methods In Java\", not of \"Barking Dog Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Barking Dog Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Barking Dog Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java",
       "tags": [
         "concept"
@@ -6639,17 +6671,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Decimal Comparator Coding Challenge? Select all that apply.",
       "options": [
         "This challenge uses method overloading to give the same method name two related meanings.",
-        "Multiplying by 1000 shifts the first three decimal places into the whole-number part of the value.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "This challenge compares two double values only up to three decimal places.",
         "Casting the shifted double to int truncates the remaining decimal portion instead of rounding it.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "Multiplying by 1000 shifts the first three decimal places into the whole-number part of the value."
       ],
       "answer": [
-        1,
         2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Decimal Comparator Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Decimal Comparator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Methods In Java\", not of \"Decimal Comparator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Decimal Comparator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Decimal Comparator Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/DecimalComparatorCodingChallenge.java",
       "tags": [
         "concept"
@@ -6669,18 +6705,22 @@ const QUESTIONS_BANK = {
       "topic": "Equality Printer Coding Challenge",
       "question": "Which of the following are TRUE about Equality Printer Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "This challenge classifies the relationship between three int values and prints one exact message.",
-        "printEqual(int firstNumber, int secondNumber, int thirdNumber) is a void method because the visible output is the printed text.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Any negative input is invalid and must print \"Invalid Value\" before any equality checks."
+        "Any negative input is invalid and must print \"Invalid Value\" before any equality checks.",
+        "printEqual(int firstNumber, int secondNumber, int thirdNumber) is a void method because the visible output is the printed text.",
+        "This challenge uses method overloading to give the same method name two related meanings.",
+        "This challenge classifies the relationship between three int values and prints one exact message."
       ],
       "answer": [
         1,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Equality Printer Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Methods In Java\", not of \"Equality Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Equality Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Equality Printer Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Equality Printer Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java",
       "tags": [
         "concept"
@@ -6700,18 +6740,22 @@ const QUESTIONS_BANK = {
       "topic": "Equal Sum Checker Coding Challenge",
       "question": "Which of the following are TRUE about Equal Sum Checker Coding Challenge? Select all that apply.",
       "options": [
-        "The method should return true for matching totals and false for all other totals.",
         "This challenge uses method overloading to give the same method name two related meanings.",
-        "This challenge practices returning a boolean expression directly from a method.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "hasEqualSum(int firstNumber, int secondNumber, int sum) checks whether firstNumber + secondNumber equals sum."
+        "hasEqualSum(int firstNumber, int secondNumber, int sum) checks whether firstNumber + secondNumber equals sum.",
+        "This challenge practices returning a boolean expression directly from a method.",
+        "The method should return true for matching totals and false for all other totals."
       ],
       "answer": [
-        0,
         2,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Equal Sum Checker Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Equal Sum Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Methods In Java\", not of \"Equal Sum Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Equal Sum Checker Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Equal Sum Checker Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualSumCheckerCodingChallenge.java",
       "tags": [
         "concept"
@@ -6731,18 +6775,22 @@ const QUESTIONS_BANK = {
       "topic": "Leap Year Calculator Coding Challenge",
       "question": "Which of the following are TRUE about Leap Year Calculator Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
         "A valid year is a leap year when it is divisible by 4, except century years must also be divisible by 400.",
-        "This challenge implements the leap-year rule as a clean boolean method.",
+        "This challenge uses method overloading to give the same method name two related meanings.",
+        "isLeapYear(int year) first validates that the year is between 1 and 9999, inclusive.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "isLeapYear(int year) first validates that the year is between 1 and 9999, inclusive."
+        "This challenge implements the leap-year rule as a clean boolean method."
       ],
       "answer": [
-        1,
+        0,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Leap Year Calculator Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Leap Year Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Methods In Java\", not of \"Leap Year Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Leap Year Calculator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Leap Year Calculator Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/LeapYearCalculatorCodingChallenge.java",
       "tags": [
         "concept"
@@ -6762,18 +6810,22 @@ const QUESTIONS_BANK = {
       "topic": "Mega Bytes Converter Coding Challenge",
       "question": "Which of the following are TRUE about Mega Bytes Converter Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "Integer division gives the whole megabytes: 2500 / 1024 is 2.",
-        "This challenge converts a whole number of kilobytes into megabytes plus leftover kilobytes.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "printMegaBytesAndKiloBytes(int kiloBytes) is a void method because its job is to print a formatted result, not return one."
+        "printMegaBytesAndKiloBytes(int kiloBytes) is a void method because its job is to print a formatted result, not return one.",
+        "This challenge converts a whole number of kilobytes into megabytes plus leftover kilobytes.",
+        "This challenge uses method overloading to give the same method name two related meanings.",
+        "Integer division gives the whole megabytes: 2500 / 1024 is 2."
       ],
       "answer": [
         1,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Mega Bytes Converter Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Methods In Java\", not of \"Mega Bytes Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Mega Bytes Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Mega Bytes Converter Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Mega Bytes Converter Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MegaBytesConverterCodingChallenge.java",
       "tags": [
         "concept"
@@ -6793,18 +6845,22 @@ const QUESTIONS_BANK = {
       "topic": "Methods Challenge Problem",
       "question": "Which of the following are TRUE about Methods Challenge Problem? Select all that apply.",
       "options": [
-        "This challenge separates calculation from display so each method has one clear responsibility.",
-        "Scores of 1000 or more get position 1, scores of 500 to 999 get position 2, scores of 100 to 499 get position 3, and all lower scores get position 4.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
         "This challenge uses method overloading to give the same method name two related meanings.",
+        "Scores of 1000 or more get position 1, scores of 500 to 999 get position 2, scores of 100 to 499 get position 3, and all lower scores get position 4.",
         "calculateHighScorePosition(int score) converts a player's score into a ranking position.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "This challenge separates calculation from display so each method has one clear responsibility."
       ],
       "answer": [
-        0,
-        1,
-        3
+        2,
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Methods Challenge Problem.",
+      "whyByOption": {
+        "0": "This statement is true of \"Methods In Java\", not of \"Methods Challenge Problem\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Methods Challenge Problem\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Methods Challenge Problem. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Methods Challenge Problem.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MethodsChallengeProblem.java",
       "tags": [
         "concept"
@@ -6824,18 +6880,22 @@ const QUESTIONS_BANK = {
       "topic": "Minutes To Years And Days Calculator Coding Challenge",
       "question": "Which of the following are TRUE about Minutes To Years And Days Calculator Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "This challenge converts a long minute count into full years plus leftover days.",
-        "The conversion uses fixed calendar assumptions: 60 minutes per hour, 24 hours per day, and 365 days per year.",
+        "printYearsAndDays(long minutes) is a void method because it prints the formatted answer directly.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "printYearsAndDays(long minutes) is a void method because it prints the formatted answer directly."
+        "This challenge uses method overloading to give the same method name two related meanings.",
+        "The conversion uses fixed calendar assumptions: 60 minutes per hour, 24 hours per day, and 365 days per year.",
+        "This challenge converts a long minute count into full years plus leftover days."
       ],
       "answer": [
-        1,
-        2,
+        0,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Minutes To Years And Days Calculator Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Methods In Java\", not of \"Minutes To Years And Days Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Minutes To Years And Days Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Minutes To Years And Days Calculator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Minutes To Years And Days Calculator Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MinutesToYearsAndDaysCalculatorCodingChallenge.java",
       "tags": [
         "concept"
@@ -6855,18 +6915,22 @@ const QUESTIONS_BANK = {
       "topic": "Playing Cat Coding Challenge",
       "question": "Which of the following are TRUE about Playing Cat Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "In normal weather, the allowed range is 25 through 35, inclusive.",
         "This challenge models a temperature rule that changes when the season changes.",
         "isCatPlaying(boolean isSummer, int temperature) returns true when the temperature is in the allowed range.",
+        "This challenge uses method overloading to give the same method name two related meanings.",
+        "In normal weather, the allowed range is 25 through 35, inclusive.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
       "answer": [
+        0,
         1,
-        2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Playing Cat Coding Challenge.",
+      "whyByOption": {
+        "2": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Playing Cat Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Methods In Java\", not of \"Playing Cat Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Playing Cat Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Playing Cat Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java",
       "tags": [
         "concept"
@@ -6886,18 +6950,22 @@ const QUESTIONS_BANK = {
       "topic": "Positive Negative Zero Coding Challenge",
       "question": "Which of the following are TRUE about Positive Negative Zero Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
         "checkNumber(int number) classifies one integer and prints the matching label.",
+        "This challenge uses method overloading to give the same method name two related meanings.",
+        "A value greater than 0 prints \"positive\", a value less than 0 prints \"negative\", and 0 prints \"zero\".",
         "This challenge practices simple branching with a void method.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "A value greater than 0 prints \"positive\", a value less than 0 prints \"negative\", and 0 prints \"zero\"."
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Positive Negative Zero Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Positive Negative Zero Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Methods In Java\", not of \"Positive Negative Zero Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Positive Negative Zero Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Positive Negative Zero Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java",
       "tags": [
         "concept"
@@ -6917,18 +6985,22 @@ const QUESTIONS_BANK = {
       "topic": "Speed Converter Coding Challenge",
       "question": "Which of the following are TRUE about Speed Converter Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "A negative speed is invalid, so the method returns -1 as a sentinel value instead of a real conversion.",
         "This challenge converts speed from kilometers per hour to miles per hour using small, reusable static methods.",
         "toMilesPerHour(double kilometersPerHour) validates the input, converts kilometers to miles, rounds the answer, and returns it as a long.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
+        "A negative speed is invalid, so the method returns -1 as a sentinel value instead of a real conversion.",
+        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
+        "This challenge uses method overloading to give the same method name two related meanings."
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Speed Converter Coding Challenge.",
+      "whyByOption": {
+        "3": "This statement is true of \"Methods In Java\", not of \"Speed Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Speed Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Speed Converter Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Speed Converter Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/SpeedConverterCodingChallenge.java",
       "tags": [
         "concept"
@@ -6948,18 +7020,22 @@ const QUESTIONS_BANK = {
       "topic": "Teen Number Checker Coding Challenge",
       "question": "Which of the following are TRUE about Teen Number Checker Coding Challenge? Select all that apply.",
       "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "isTeen(int number) returns true when number is between 13 and 19, inclusive.",
-        "hasTeen(int firstNumber, int secondNumber, int thirdNumber) returns true when at least one of its three arguments is a teen number.",
+        "This challenge breaks a repeated age-range check into a helper method.",
         "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "This challenge breaks a repeated age-range check into a helper method."
+        "This challenge uses method overloading to give the same method name two related meanings.",
+        "hasTeen(int firstNumber, int secondNumber, int thirdNumber) returns true when at least one of its three arguments is a teen number.",
+        "isTeen(int number) returns true when number is between 13 and 19, inclusive."
       ],
       "answer": [
-        1,
-        2,
+        0,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Teen Number Checker Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Methods In Java\", not of \"Teen Number Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Teen Number Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Teen Number Checker Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Teen Number Checker Coding Challenge.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java",
       "tags": [
         "concept"
@@ -7831,18 +7907,22 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement In Java",
       "question": "Which of the following are TRUE about Switch Statement In Java? Select all that apply.",
       "options": [
-        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
         "switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
+        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999."
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Switch Statement In Java.",
+      "whyByOption": {
+        "1": "This statement is true of \"Enhanced Switch Statement In Java\", not of \"Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Number Of Days In A Month Coding Challenge\", not of \"Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Switch Statement In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Switch Statement In Java.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
       "tags": [
         "concept"
@@ -8190,18 +8270,22 @@ const QUESTIONS_BANK = {
       "topic": "Enhanced Switch Statement In Java",
       "question": "Which of the following are TRUE about Enhanced Switch Statement In Java? Select all that apply.",
       "options": [
+        "The enhanced switch can be used as an EXPRESSION — it can return a value directly. This makes code concise and readable.",
         "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced switch can be used as an EXPRESSION — it can return a value directly. This makes code concise and readable."
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
       "answer": [
-        1,
+        0,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Enhanced Switch Statement In Java.",
+      "whyByOption": {
+        "1": "This statement is true of \"Number Of Days In A Month Coding Challenge\", not of \"Enhanced Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Switch Statement In Java\", not of \"Enhanced Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Enhanced Switch Statement In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Enhanced Switch Statement In Java.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
       "tags": [
         "concept"
@@ -8221,18 +8305,22 @@ const QUESTIONS_BANK = {
       "topic": "Number Of Days In A Month Coding Challenge",
       "question": "Which of the following are TRUE about Number Of Days In A Month Coding Challenge? Select all that apply.",
       "options": [
-        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
         "Otherwise, if it is in the valid range, calculate if the year is a leap year and return true if it is, otherwise return false.",
-        "If the parameter is not in that range return false.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "If the parameter is not in that range return false."
       ],
       "answer": [
-        0,
         2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Number Of Days In A Month Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Enhanced Switch Statement In Java\", not of \"Number Of Days In A Month Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Switch Statement In Java\", not of \"Number Of Days In A Month Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Number Of Days In A Month Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Number Of Days In A Month Coding Challenge.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java",
       "tags": [
         "concept"
@@ -8252,18 +8340,22 @@ const QUESTIONS_BANK = {
       "topic": "Switch Statement N A T O Challenge",
       "question": "Which of the following are TRUE about Switch Statement N A T O Challenge? Select all that apply.",
       "options": [
-        "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
-        "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels) that tests the value in the variable from Step 1.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
         "2) Create cases for the characters, A, B, C, D, and E. Display a message in each case block,with the letter and the NATO word, then break.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values."
+        "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels) that tests the value in the variable from Step 1.",
+        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
+        "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
+        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
       "answer": [
         0,
         1,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Switch Statement N A T O Challenge.",
+      "whyByOption": {
+        "2": "This statement is true of \"Switch Statement In Java\", not of \"Switch Statement N A T O Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Enhanced Switch Statement In Java\", not of \"Switch Statement N A T O Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Switch Statement N A T O Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Switch Statement N A T O Challenge.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementNATOChallenge.java",
       "tags": [
         "concept"
@@ -8893,18 +8985,22 @@ const QUESTIONS_BANK = {
       "topic": "For Statement",
       "question": "Which of the following are TRUE about For Statement? Select all that apply.",
       "options": [
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "for --> best when you are iterating over a known range or set of values.",
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
         "Loops let us execute the same block of code multiple times without writing that code again and again.",
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
         "while --> runs until a specified condition becomes false."
       ],
       "answer": [
+        0,
         2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for For Statement.",
+      "whyByOption": {
+        "1": "This statement is true of \"For Loop Sum3and5 Challenge\", not of \"For Statement\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"For Loop Prime Number Challenge\", not of \"For Statement\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about For Statement. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about For Statement.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
       "tags": [
         "concept"
@@ -8923,18 +9019,22 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Prime Number Challenge",
       "question": "Which of the following are TRUE about For Loop Prime Number Challenge? Select all that apply.",
       "options": [
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "If it's a prime number, print it out, and increment a count of the number of prime numbers found. if you get to the stage where 3 or more prime numbers are found, end the loop. In other words, you'll be iterating through the loop, but you've found three prime numbers before the range is fully processed.",
+        "Loops let us execute the same block of code multiple times without writing that code again and again.",
         "This challenge practices: for loops, a helper method (isPrime), the break statement, and prime number logic.",
-        "Loops let us execute the same block of code multiple times without writing that code again and again."
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
+        "If it's a prime number, print it out, and increment a count of the number of prime numbers found. if you get to the stage where 3 or more prime numbers are found, end the loop. In other words, you'll be iterating through the loop, but you've found three prime numbers before the range is fully processed.",
+        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
       ],
       "answer": [
-        0,
+        1,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for For Loop Prime Number Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"For Statement\", not of \"For Loop Prime Number Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"For Loop Sum3and5 Challenge\", not of \"For Loop Prime Number Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about For Loop Prime Number Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about For Loop Prime Number Challenge.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
       "tags": [
         "concept"
@@ -8953,18 +9053,22 @@ const QUESTIONS_BANK = {
       "topic": "For Loop Sum3and5 Challenge",
       "question": "Which of the following are TRUE about For Loop Sum3and5 Challenge? Select all that apply.",
       "options": [
-        "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
-        "You also want to break out of the loop, once you find five numbers, that meet those above conditions.",
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
         "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Loops let us execute the same block of code multiple times without writing that code again and again."
+        "Loops let us execute the same block of code multiple times without writing that code again and again.",
+        "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
+        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
+        "You also want to break out of the loop, once you find five numbers, that meet those above conditions."
       ],
       "answer": [
         0,
-        1,
-        3
+        2,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for For Loop Sum3and5 Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"For Statement\", not of \"For Loop Sum3and5 Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"For Loop Prime Number Challenge\", not of \"For Loop Sum3and5 Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about For Loop Sum3and5 Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about For Loop Sum3and5 Challenge.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopSum3and5Challenge.java",
       "tags": [
         "concept"
@@ -8984,17 +9088,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Sum Odd Challenge? Select all that apply.",
       "options": [
         "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
+        "Check that number is > 0, if it is not return false.",
         "Loops let us execute the same block of code multiple times without writing that code again and again.",
         "If number is odd return true, otherwise return false.",
-        "The method should use a for loop to sum all odd numbers in that range including the end and return the sum.",
-        "Check that number is > 0, if it is not return false."
+        "The method should use a for loop to sum all odd numbers in that range including the end and return the sum."
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Sum Odd Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"For Loop Prime Number Challenge\", not of \"Sum Odd Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"For Statement\", not of \"Sum Odd Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Sum Odd Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Sum Odd Challenge.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/SumOddChallenge.java",
       "tags": [
         "concept"
@@ -9830,18 +9938,22 @@ const QUESTIONS_BANK = {
       "topic": "While Loops",
       "question": "Which of the following are TRUE about While Loops? Select all that apply.",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method needs to return a boolean.",
         "Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
-        "You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body."
+        "You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body.",
+        "The method needs to return a boolean.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
-        2,
-        3,
-        4
+        0,
+        1,
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for While Loops.",
+      "whyByOption": {
+        "3": "This statement is true of \"Check Number Palindrome Coding Challenge\", not of \"While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Do While Loops\", not of \"While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about While Loops. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about While Loops.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
       "tags": [
         "concept"
@@ -10091,18 +10203,22 @@ const QUESTIONS_BANK = {
       "topic": "Do While Loops",
       "question": "Which of the following are TRUE about Do While Loops? Select all that apply.",
       "options": [
+        "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\"",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method needs to return a boolean.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
-        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked.",
-        "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\""
+        "The method needs to return a boolean.",
+        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked."
       ],
       "answer": [
         0,
-        3,
+        1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Do While Loops.",
+      "whyByOption": {
+        "2": "This statement is true of \"While Loops\", not of \"Do While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Check Number Palindrome Coding Challenge\", not of \"Do While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Do While Loops. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Do While Loops.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
       "tags": [
         "concept"
@@ -10122,18 +10238,22 @@ const QUESTIONS_BANK = {
       "topic": "Check Number Palindrome Coding Challenge",
       "question": "Which of the following are TRUE about Check Number Palindrome Coding Challenge? Select all that apply.",
       "options": [
-        "It should return true if the number is a palindrome number otherwise it should return false.",
-        "Check the tips below for more info about palindromes.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method needs to return a boolean.",
-        "The while loop repeatedly executes its body as long as a condition remains true."
+        "It should return true if the number is a palindrome number otherwise it should return false.",
+        "The while loop repeatedly executes its body as long as a condition remains true.",
+        "Check the tips below for more info about palindromes.",
+        "The method needs to return a boolean."
       ],
       "answer": [
-        0,
         1,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Check Number Palindrome Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Do While Loops\", not of \"Check Number Palindrome Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"While Loops\", not of \"Check Number Palindrome Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Check Number Palindrome Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Check Number Palindrome Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/CheckNumberPalindromeCodingChallenge.java",
       "tags": [
         "concept"
@@ -10153,18 +10273,22 @@ const QUESTIONS_BANK = {
       "topic": "Digit Sum Coding Challenge",
       "question": "Which of the following are TRUE about Digit Sum Coding Challenge? Select all that apply.",
       "options": [
+        "The while loop repeatedly executes its body as long as a condition remains true.",
         "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
         "If a negative number is passed, it should return -1, meaning, an invalid value was passed.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The method should only take a number that is a positive number."
+        "The method should only take a number that is a positive number.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
-        0,
         1,
-        4
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Digit Sum Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"While Loops\", not of \"Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Do While Loops\", not of \"Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Digit Sum Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Digit Sum Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/DigitSumCodingChallenge.java",
       "tags": [
         "concept"
@@ -10187,15 +10311,19 @@ const QUESTIONS_BANK = {
         "If the number is negative, the method should return -1 to indicate an invalid value.",
         "The method should return the sum of the even digits within the number.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20"
+        "getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20",
+        "The while loop repeatedly executes its body as long as a condition remains true."
       ],
       "answer": [
         0,
         1,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Even Digit Sum Coding Challenge.",
+      "whyByOption": {
+        "2": "This statement is true of \"Do While Loops\", not of \"Even Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"While Loops\", not of \"Even Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Even Digit Sum Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Even Digit Sum Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/EvenDigitSumCodingChallenge.java",
       "tags": [
         "concept"
@@ -10215,18 +10343,22 @@ const QUESTIONS_BANK = {
       "topic": "Factor Printer Coding Challenge",
       "question": "Which of the following are TRUE about Factor Printer Coding Challenge? Select all that apply.",
       "options": [
-        "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).",
         "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.",
-        "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
+        "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
         "The while loop repeatedly executes its body as long as a condition remains true."
       ],
       "answer": [
         0,
         1,
-        2
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Factor Printer Coding Challenge.",
+      "whyByOption": {
+        "2": "This statement is true of \"Do While Loops\", not of \"Factor Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"While Loops\", not of \"Factor Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Factor Printer Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Factor Printer Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FactorPrinterCodingChallenge.java",
       "tags": [
         "concept"
@@ -10246,18 +10378,22 @@ const QUESTIONS_BANK = {
       "topic": "First And Last Digit Sum Coding Challenge",
       "question": "Which of the following are TRUE about First And Last Digit Sum Coding Challenge? Select all that apply.",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "sumFirstAndLastDigit(257); → should return 9, the first digit is 2 and the last is 7 which gives us 2+7 and the sum is 9.",
         "If the number is negative then the method needs to return -1 to indicate an invalid value.",
-        "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number.",
+        "The while loop repeatedly executes its body as long as a condition remains true.",
+        "sumFirstAndLastDigit(257); → should return 9, the first digit is 2 and the last is 7 which gives us 2+7 and the sum is 9."
       ],
       "answer": [
+        0,
         2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for First And Last Digit Sum Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Do While Loops\", not of \"First And Last Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"While Loops\", not of \"First And Last Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about First And Last Digit Sum Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about First And Last Digit Sum Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java",
       "tags": [
         "concept"
@@ -10277,18 +10413,22 @@ const QUESTIONS_BANK = {
       "topic": "Floor Pack Problem Coding Challenge",
       "question": "Which of the following are TRUE about Floor Pack Problem Coding Challenge? Select all that apply.",
       "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The parameter goal represents the goal amount of kilos of flour needed to assemble a package.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
         "The parameter smallCount represents the count of small flour bags (1 kilo each).",
-        "The parameter goal represents the goal amount of kilos of flour needed to assemble a package.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The parameter bigCount represents the count of big flour bags (5 kilos each)."
       ],
       "answer": [
+        0,
         2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Floor Pack Problem Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"While Loops\", not of \"Floor Pack Problem Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Do While Loops\", not of \"Floor Pack Problem Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Floor Pack Problem Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Floor Pack Problem Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
       "tags": [
         "concept"
@@ -10309,17 +10449,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Greatest Common Divisor Coding Challenge? Select all that apply.",
       "options": [
         "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.",
-        "The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
         "For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly."
       ],
       "answer": [
         0,
-        1,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Greatest Common Divisor Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Do While Loops\", not of \"Greatest Common Divisor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"While Loops\", not of \"Greatest Common Divisor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Greatest Common Divisor Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Greatest Common Divisor Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/GreatestCommonDivisorCodingChallenge.java",
       "tags": [
         "concept"
@@ -10339,18 +10483,22 @@ const QUESTIONS_BANK = {
       "topic": "Largest Prime Factor Coding Challenge",
       "question": "Which of the following are TRUE about Largest Prime Factor Coding Challenge? Select all that apply.",
       "options": [
-        "getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21)",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The method should calculate the largest prime factor of a given number and return it.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
-        "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.",
+        "getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21)"
       ],
       "answer": [
         0,
-        2,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Largest Prime Factor Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"While Loops\", not of \"Largest Prime Factor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Do While Loops\", not of \"Largest Prime Factor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Largest Prime Factor Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Largest Prime Factor Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LargestPrimeFactorCodingChallenge.java",
       "tags": [
         "concept"
@@ -10370,18 +10518,22 @@ const QUESTIONS_BANK = {
       "topic": "Last Digit Checker Coding Challenge",
       "question": "Which of the following are TRUE about Last Digit Checker Coding Challenge? Select all that apply.",
       "options": [
-        "Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.",
-        "The method should return true if at least two of the numbers share the same rightmost digit; otherwise, it should return false.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "hasSameLastDigit (41, 22, 71); → should return true since 1 is the rightmost digit in numbers 41 and 71"
+        "The method should return true if at least two of the numbers share the same rightmost digit; otherwise, it should return false.",
+        "hasSameLastDigit (41, 22, 71); → should return true since 1 is the rightmost digit in numbers 41 and 71",
+        "Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.",
+        "The while loop repeatedly executes its body as long as a condition remains true."
       ],
       "answer": [
-        0,
         1,
-        4
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Last Digit Checker Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Do While Loops\", not of \"Last Digit Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"While Loops\", not of \"Last Digit Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Last Digit Checker Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Last Digit Checker Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java",
       "tags": [
         "concept"
@@ -10401,18 +10553,22 @@ const QUESTIONS_BANK = {
       "topic": "Number To Words Coding Challenge",
       "question": "Which of the following are TRUE about Number To Words Coding Challenge? Select all that apply.",
       "options": [
-        "This example defines 3 methods; trace method behavior step by step.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
-        "Review the class NumberToWordsCodingChallenge and understand its key responsibilities."
+        "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
+        "This example defines 3 methods; trace method behavior step by step.",
+        "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
       "answer": [
-        0,
+        1,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Number To Words Coding Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"While Loops\", not of \"Number To Words Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Do While Loops\", not of \"Number To Words Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Number To Words Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Number To Words Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
       "tags": [
         "concept"
@@ -10432,18 +10588,22 @@ const QUESTIONS_BANK = {
       "topic": "Perfect Number Coding Challenge",
       "question": "Which of the following are TRUE about Perfect Number Coding Challenge? Select all that apply.",
       "options": [
-        "This example defines 2 methods; trace method behavior step by step.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
+        "The while loop repeatedly executes its body as long as a condition remains true.",
         "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "The while loop repeatedly executes its body as long as a condition remains true."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "This example defines 2 methods; trace method behavior step by step."
       ],
       "answer": [
         0,
         2,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Perfect Number Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"While Loops\", not of \"Perfect Number Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Do While Loops\", not of \"Perfect Number Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Perfect Number Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Perfect Number Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
       "tags": [
         "concept"
@@ -10463,18 +10623,22 @@ const QUESTIONS_BANK = {
       "topic": "Shared Digit Coding Challenge",
       "question": "Which of the following are TRUE about Shared Digit Coding Challenge? Select all that apply.",
       "options": [
-        "Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.",
-        "The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "hasSharedDigit(12, 23); → should return true since the digit 2 appears in both numbers",
-        "The while loop repeatedly executes its body as long as a condition remains true."
+        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
+        "Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.",
+        "The while loop repeatedly executes its body as long as a condition remains true.",
+        "The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false."
       ],
       "answer": [
         0,
-        1,
-        3
+        2,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Shared Digit Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Do While Loops\", not of \"Shared Digit Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"While Loops\", not of \"Shared Digit Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Shared Digit Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Shared Digit Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java",
       "tags": [
         "concept"
@@ -10495,17 +10659,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about While Loop Coding Challenge? Select all that apply.",
       "options": [
         "If it's an even number, return true, otherwise, return false.",
+        "This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations.",
         "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
         "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not.",
-        "This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations."
+        "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not."
       ],
       "answer": [
         0,
-        3,
+        1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for While Loop Coding Challenge.",
+      "whyByOption": {
+        "2": "This statement is true of \"Do While Loops\", not of \"While Loop Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"While Loops\", not of \"While Loop Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about While Loop Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about While Loop Coding Challenge.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
       "tags": [
         "concept"
@@ -12115,18 +12283,22 @@ const QUESTIONS_BANK = {
       "topic": "Parsing Values Reading Input",
       "question": "Which of the following are TRUE about Parsing Values Reading Input? Select all that apply.",
       "options": [
+        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
         "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard."
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
       "answer": [
-        0,
         1,
-        2
+        2,
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Parsing Values Reading Input.",
+      "whyByOption": {
+        "0": "This statement is true of \"Input Calculator Challenge\", not of \"Parsing Values Reading Input\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Min Max Coding Challenge\", not of \"Parsing Values Reading Input\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Parsing Values Reading Input. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Parsing Values Reading Input.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
       "tags": [
         "concept"
@@ -12148,16 +12320,20 @@ const QUESTIONS_BANK = {
       "options": [
         "When the user enters something that is not an int then it needs to print a message in the format \"SUM = XX AVG = YY\".",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
         "XX represents the sum of all entered numbers of type int."
       ],
       "answer": [
         0,
-        3,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Input Calculator Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Parsing Values Reading Input\", not of \"Input Calculator Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Min Max Coding Challenge\", not of \"Input Calculator Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Input Calculator Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Input Calculator Challenge.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/InputCalculatorChallenge.java",
       "tags": [
         "concept"
@@ -12177,18 +12353,22 @@ const QUESTIONS_BANK = {
       "topic": "Min Max Coding Challenge",
       "question": "Which of the following are TRUE about Min Max Coding Challenge? Select all that apply.",
       "options": [
+        "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.",
         "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
         "You can decide if you want the user to enter integers or decimal numbers.",
-        "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number."
+        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
+        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
       "answer": [
-        1,
-        3,
+        0,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Min Max Coding Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Parsing Values Reading Input\", not of \"Min Max Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Input Calculator Challenge\", not of \"Min Max Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Min Max Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Min Max Coding Challenge.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/MinMaxCodingChallenge.java",
       "tags": [
         "concept"
@@ -12208,18 +12388,22 @@ const QUESTIONS_BANK = {
       "topic": "Paint Job Challenge",
       "question": "Which of the following are TRUE about Paint Job Challenge? Select all that apply.",
       "options": [
-        "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket)."
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
+        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).",
+        "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
+        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
       ],
       "answer": [
-        0,
-        1,
+        2,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Paint Job Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Input Calculator Challenge\", not of \"Paint Job Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Parsing Values Reading Input\", not of \"Paint Job Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Paint Job Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Paint Job Challenge.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
       "tags": [
         "concept"
@@ -12239,18 +12423,22 @@ const QUESTIONS_BANK = {
       "topic": "Reading User Input Challenge",
       "question": "Which of the following are TRUE about Reading User Input Challenge? Select all that apply.",
       "options": [
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
         "Reading User Input Challenge.",
         "\"Invalid number\" to the console, but continue looping until you do have 5 valid numbers.",
         "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those five numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message"
+        "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those five numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message",
+        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
       ],
       "answer": [
+        0,
         1,
-        2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Reading User Input Challenge.",
+      "whyByOption": {
+        "2": "This statement is true of \"Input Calculator Challenge\", not of \"Reading User Input Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Parsing Values Reading Input\", not of \"Reading User Input Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Reading User Input Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Reading User Input Challenge.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/ReadingUserInputChallenge.java",
       "tags": [
         "concept"
@@ -13732,18 +13920,22 @@ const QUESTIONS_BANK = {
       "topic": "Classes And Inheritance",
       "question": "Which of the following are TRUE about Classes And Inheritance? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.",
         "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects",
+        "Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.",
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
       "answer": [
+        0,
         1,
-        2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Classes And Inheritance.",
+      "whyByOption": {
+        "2": "This statement is true of \"Main\", not of \"Classes And Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Car\", not of \"Classes And Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Classes And Inheritance. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Classes And Inheritance.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
       "tags": [
         "concept"
@@ -13857,18 +14049,22 @@ const QUESTIONS_BANK = {
       "topic": "Car",
       "question": "Which of the following are TRUE about Car? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly.",
-        "When writing methods that use non-static fields, your method can't be declared static."
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "When writing methods that use non-static fields, your method can't be declared static.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods."
       ],
       "answer": [
         0,
-        3,
-        4
+        1,
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Car.",
+      "whyByOption": {
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Car\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Main\", not of \"Car\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Car. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Car.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
       "tags": [
         "concept"
@@ -13956,18 +14152,22 @@ const QUESTIONS_BANK = {
       "topic": "Main (Getters Encapsulation Object Access)",
       "question": "Which of the following are TRUE about Main (Getters Encapsulation Object Access)? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
         "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
         "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException."
+        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
       "answer": [
         1,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Main (Getters Encapsulation Object Access).",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Main (Getters Encapsulation Object Access)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Car\", not of \"Main (Getters Encapsulation Object Access)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Main (Getters Encapsulation Object Access). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Getters Encapsulation Object Access).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
       "tags": [
         "concept"
@@ -14056,8 +14256,8 @@ const QUESTIONS_BANK = {
       "topic": "Bank Account",
       "question": "Which of the following are TRUE about Bank Account? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "account number. account balance. customer name. email. and phone number.",
         "one for depositing funds into the account. and one for withdrawing funds from the account.",
         "A customer should not be allowed to withdraw funds if that withdrawal takes their balance negative."
@@ -14067,7 +14267,11 @@ const QUESTIONS_BANK = {
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Bank Account.",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Bank Account\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Car\", not of \"Bank Account\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Bank Account. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Bank Account.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java",
       "tags": [
         "concept"
@@ -14186,18 +14390,22 @@ const QUESTIONS_BANK = {
       "topic": "Main (Classes Challenge)",
       "question": "Which of the following are TRUE about Main (Classes Challenge)? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Review the class Main and understand its key responsibilities.",
         "This topic belongs to Chapter 13: OOP Concepts → Classes Challenge.",
-        "This example defines 1 method; trace method behavior step by step.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "This example defines 1 method; trace method behavior step by step."
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Main (Classes Challenge).",
+      "whyByOption": {
+        "2": "This statement is true of \"Car\", not of \"Main (Classes Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Main (Classes Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Main (Classes Challenge). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Classes Challenge).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
       "tags": [
         "concept"
@@ -14224,18 +14432,22 @@ const QUESTIONS_BANK = {
       "topic": "Method Over Loading Challenge",
       "question": "Which of the following are TRUE about Method Over Loading Challenge? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "This method will convert feet and inches to just inches, then call the first method, to get the number of centimeters, also returning the value as a double. Both methods should return a real number or decimal value for total height in centimeters. Call both methods, and print out the results.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "You'll convert inches to centimeters, in this method, and pass back the number of centimeters, as a double. The second method has two parameters of type int, one to represent height in feet, and one to represent the remaining height in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for inches would be passed to this method.",
-        "The first method has one parameter of type int, which represents the entire height in inches."
+        "The first method has one parameter of type int, which represents the entire height in inches.",
+        "This method will convert feet and inches to just inches, then call the first method, to get the number of centimeters, also returning the value as a double. Both methods should return a real number or decimal value for total height in centimeters. Call both methods, and print out the results.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "You'll convert inches to centimeters, in this method, and pass back the number of centimeters, as a double. The second method has two parameters of type int, one to represent height in feet, and one to represent the remaining height in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for inches would be passed to this method."
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Method Over Loading Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Over Loading Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"Method Over Loading Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Method Over Loading Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Over Loading Challenge.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverLoadingChallenge.java",
       "tags": [
         "concept"
@@ -14262,18 +14474,22 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading Second And Minutes Challenge",
       "question": "Which of the following are TRUE about Method Overloading Second And Minutes Challenge? Select all that apply.",
       "options": [
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "You should validate that the 2nd parameter seconds is >= 0 and <= 59.",
         "You should validate that the first parameter minutes is >= 0.",
-        "The method should return Invalid value if either of the above are not true.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "You should validate that the 2nd parameter seconds is >= 0 and <= 59.",
+        "The method should return Invalid value if either of the above are not true."
       ],
       "answer": [
-        1,
         2,
-        3
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Method Overloading Second And Minutes Challenge.",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Overloading Second And Minutes Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Car\", not of \"Method Overloading Second And Minutes Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Method Overloading Second And Minutes Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Overloading Second And Minutes Challenge.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverloadingSecondAndMinutesChallenge.java",
       "tags": [
         "concept"
@@ -14392,18 +14608,22 @@ const QUESTIONS_BANK = {
       "topic": "Person Age Validation",
       "question": "Which of the following are TRUE about Person Age Validation? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Method named getLastName without any parameters, it needs to return the value of the lastName field.",
         "Method named getFirstName without any parameters, it needs to return the value of the firstName field.",
         "Method named getAge without any parameters, it needs to return the value of the age field.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Method named getLastName without any parameters, it needs to return the value of the lastName field."
+        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
       "answer": [
+        0,
         1,
-        2,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Person Age Validation.",
+      "whyByOption": {
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Person Age Validation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Car\", not of \"Person Age Validation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Person Age Validation. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Person Age Validation.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
       "tags": [
         "concept"
@@ -14430,18 +14650,22 @@ const QUESTIONS_BANK = {
       "topic": "Sum Calculator Implementation Challenge",
       "question": "Which of the following are TRUE about Sum Calculator Implementation Challenge? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Method named getSecondNumber without any parameters, it needs to return the value of secondNumber field.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Method named getFirstNumber without any parameters, it needs to return the value of firstNumber field.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Method named setFirstNumber with one parameter of type double, it needs to set the value of the firstNumber field."
       ],
       "answer": [
-        1,
-        3,
+        0,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Sum Calculator Implementation Challenge.",
+      "whyByOption": {
+        "1": "This statement is true of \"Classes And Inheritance\", not of \"Sum Calculator Implementation Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"Sum Calculator Implementation Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Sum Calculator Implementation Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Sum Calculator Implementation Challenge.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/SumCalculatorImplementationChallenge.java",
       "tags": [
         "concept"
@@ -14698,18 +14922,22 @@ const QUESTIONS_BANK = {
       "topic": "Constructor Concept",
       "question": "Which of the following are TRUE about Constructor Concept? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "It is a special type of code block that has a specific name and parameters, much like a method.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "It has the same name as the class itself, and it doesn't return any values.",
-        "A constructor is used in the creation of an object."
+        "A constructor is used in the creation of an object.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
       "answer": [
+        0,
         1,
-        3,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Constructor Concept.",
+      "whyByOption": {
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Constructor Concept\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Car\", not of \"Constructor Concept\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Constructor Concept. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Constructor Concept.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
       "tags": [
         "concept"
@@ -14889,18 +15117,22 @@ const QUESTIONS_BANK = {
       "topic": "This And Super",
       "question": "Which of the following are TRUE about This And Super? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "1) The keyword this, is used to call the current class members (both variables and methods).",
         "1) The keyword super is used to access or call the parent class members (both variables and methods).",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "2) this keyword is required when we have a parameter with the same name as an instance variable or field.",
-        "1) The keyword this, is used to call the current class members (both variables and methods)."
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "2) this keyword is required when we have a parameter with the same name as an instance variable or field."
       ],
       "answer": [
+        0,
         1,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for This And Super.",
+      "whyByOption": {
+        "2": "This statement is true of \"Classes And Inheritance\", not of \"This And Super\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"This And Super\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about This And Super. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about This And Super.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
       "tags": [
         "concept"
@@ -15050,17 +15282,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Good Constructor Super Call Example? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The 1st constructor is calling the 2nd constructor.",
         "The 2nd constructor calls the parent constructor with parameters x and y.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "The parent constructor will initialize the x and y variables, while the 2nd Rectangle constructor will initialize the width and height variables. Here, as you can see in this code, Both the super() and this() calls are made, but in different constructors."
+        "The parent constructor will initialize the x and y variables, while the 2nd Rectangle constructor will initialize the width and height variables. Here, as you can see in this code, Both the super() and this() calls are made, but in different constructors.",
+        "The 1st constructor is calling the 2nd constructor.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": [
         1,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Good Constructor Super Call Example.",
+      "whyByOption": {
+        "0": "This statement is true of \"Car\", not of \"Good Constructor Super Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Classes And Inheritance\", not of \"Good Constructor Super Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Good Constructor Super Call Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Good Constructor Super Call Example.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
       "tags": [
         "concept"
@@ -15171,18 +15407,22 @@ const QUESTIONS_BANK = {
       "topic": "Bad Constructor This Call Example",
       "question": "Which of the following are TRUE about Bad Constructor This Call Example? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "This is a bad way to write constructors like this.",
         "Here, there are three constructors.",
-        "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values."
+        "This is a bad way to write constructors like this.",
+        "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
       "answer": [
-        2,
-        3,
-        4
+        0,
+        1,
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Bad Constructor This Call Example.",
+      "whyByOption": {
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Bad Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Car\", not of \"Bad Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Bad Constructor This Call Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Bad Constructor This Call Example.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
       "tags": [
         "concept"
@@ -15301,18 +15541,22 @@ const QUESTIONS_BANK = {
       "topic": "Good Constructor This Call Example",
       "question": "Which of the following are TRUE about Good Constructor This Call Example? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "In other words, The 3rd constructor does all the work.",
         "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.",
         "The variables will always be initialized in the 3rd constructor, and only there.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": [
+        0,
         1,
-        2,
-        3
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Good Constructor This Call Example.",
+      "whyByOption": {
+        "3": "This statement is true of \"Car\", not of \"Good Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Classes And Inheritance\", not of \"Good Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Good Constructor This Call Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Good Constructor This Call Example.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
       "tags": [
         "concept"
@@ -15534,7 +15778,11 @@ const QUESTIONS_BANK = {
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for House.",
+      "whyByOption": {
+        "1": "This statement is true of \"Car\", not of \"House\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Classes And Inheritance\", not of \"House\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about House. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about House.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
       "tags": [
         "concept"
@@ -15745,18 +15993,22 @@ const QUESTIONS_BANK = {
       "topic": "Reference Objects Instance Class",
       "question": "Which of the following are TRUE about Reference Objects Instance Class? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Using blueprint, we can create as many objects that we want",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "This object can also be known as an instance.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "A Class is like a blueprint"
+        "A Class is like a blueprint",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Reference Objects Instance Class.",
+      "whyByOption": {
+        "1": "This statement is true of \"Car\", not of \"Reference Objects Instance Class\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Classes And Inheritance\", not of \"Reference Objects Instance Class\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Reference Objects Instance Class. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Reference Objects Instance Class.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
       "tags": [
         "concept"
@@ -15876,17 +16128,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Static And Instance Methods? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "1) Static methods are declared using a static modifier and they belong to Class",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "2) Static methods can't access instance methods and instance variables directly.",
         "3) They're usually used for operations that don't require any data from an instance of the class (from this)",
-        "2) Static methods can't access instance methods and instance variables directly."
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "1) Static methods are declared using a static modifier and they belong to Class"
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Static And Instance Methods.",
+      "whyByOption": {
+        "0": "This statement is true of \"Car\", not of \"Static And Instance Methods\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Static And Instance Methods\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Static And Instance Methods. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Static And Instance Methods.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
       "tags": [
         "concept"
@@ -16006,17 +16262,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Plain Old Java Object? Select all that apply.",
       "options": [
         "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "ii) It's used to house data and pass data between functional classes.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data"
+        "i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "ii) It's used to house data and pass data between functional classes."
       ],
       "answer": [
         0,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Plain Old Java Object.",
+      "whyByOption": {
+        "1": "This statement is true of \"Classes And Inheritance\", not of \"Plain Old Java Object\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"Plain Old Java Object\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Plain Old Java Object. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Plain Old Java Object.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
       "tags": [
         "concept"
@@ -16257,18 +16517,22 @@ const QUESTIONS_BANK = {
       "topic": "Student",
       "question": "Which of the following are TRUE about Student? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The toString() method is a special method in Java.",
         "The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way.",
-        "The toString() method can be implemented in any class, and doing this helps to print out the current state of the object.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "The toString() method is a special method in Java.",
+        "The toString() method can be implemented in any class, and doing this helps to print out the current state of the object."
       ],
       "answer": [
-        1,
-        2,
-        3
+        0,
+        3,
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for Student.",
+      "whyByOption": {
+        "1": "This statement is true of \"Car\", not of \"Student\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Classes And Inheritance\", not of \"Student\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Student. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Student.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
       "tags": [
         "concept"
@@ -16387,18 +16651,22 @@ const QUESTIONS_BANK = {
       "topic": "Static And Instance Variables",
       "question": "Which of the following are TRUE about Static And Instance Variables? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "3) Every instance of the class shares the same static variable.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "1) A static variable is Declared by using the keyword static.",
         "2) Static variables are also known as static member variables. They belong to the class, not the instance"
       ],
       "answer": [
-        1,
+        0,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Static And Instance Variables.",
+      "whyByOption": {
+        "1": "This statement is true of \"Car\", not of \"Static And Instance Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Classes And Inheritance\", not of \"Static And Instance Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Static And Instance Variables. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Static And Instance Variables.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
       "tags": [
         "concept"
@@ -16516,18 +16784,22 @@ const QUESTIONS_BANK = {
       "topic": "Student Record",
       "question": "Which of the following are TRUE about Student Record? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.",
-        "2) It's purpose is to replace the boilerplate code of the POJO but to be more restrictive.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Java calls them \"plain data carriers\".",
+        "2) It's purpose is to replace the boilerplate code of the POJO but to be more restrictive.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": [
-        1,
+        0,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Student Record.",
+      "whyByOption": {
+        "1": "This statement is true of \"Car\", not of \"Student Record\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Classes And Inheritance\", not of \"Student Record\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Student Record. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Student Record.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
       "tags": [
         "concept"
@@ -16638,18 +16910,22 @@ const QUESTIONS_BANK = {
       "topic": "Point Class Distance Calculation",
       "question": "Which of the following are TRUE about Point Class Distance Calculation? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields.",
+        "Method named getX without any parameters, it needs to return the value of x field.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
-        "Method named getX without any parameters, it needs to return the value of x field."
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields."
       ],
       "answer": [
-        1,
-        3,
+        0,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Point Class Distance Calculation.",
+      "whyByOption": {
+        "1": "This statement is true of \"Classes And Inheritance\", not of \"Point Class Distance Calculation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"Point Class Distance Calculation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Point Class Distance Calculation. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Point Class Distance Calculation.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
       "tags": [
         "concept"
@@ -16768,18 +17044,22 @@ const QUESTIONS_BANK = {
       "topic": "Wall Area Computation",
       "question": "Which of the following are TRUE about Wall Area Computation? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The first constructor does not have any parameters (no-args constructor).",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "The second constructor has parameters width and height of type double and it needs to initialize the fields.",
+        "The first constructor does not have any parameters (no-args constructor).",
         "In case the width parameter is less than 0 it needs to set the width field value to 0."
       ],
       "answer": [
-        1,
+        2,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Wall Area Computation.",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Wall Area Computation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Car\", not of \"Wall Area Computation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Wall Area Computation. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Wall Area Computation.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
       "tags": [
         "concept"
@@ -16867,18 +17147,22 @@ const QUESTIONS_BANK = {
       "topic": "Animal",
       "question": "Which of the following are TRUE about Animal? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Also, the super class will have all the behaviour that animals have in common.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Overriding a method is when you create a method on a subclass, which has the same signature as a method on a super class.",
         "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Overriding a method is when you create a method on a subclass, which has the same signature as a method on a super class."
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Also, the super class will have all the behaviour that animals have in common."
       ],
       "answer": [
+        0,
         1,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Animal.",
+      "whyByOption": {
+        "2": "This statement is true of \"Classes And Inheritance\", not of \"Animal\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"Animal\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Animal. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Animal.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
       "tags": [
         "concept"
@@ -16996,18 +17280,22 @@ const QUESTIONS_BANK = {
       "topic": "Dog (Inheritance)",
       "question": "Which of the following are TRUE about Dog (Inheritance)? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Animal is a parent or super class of Dog",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Dog \"IS A\" a type of Animal",
-        "Dog is a subclass or child class of Animal"
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "Dog is a subclass or child class of Animal",
+        "Animal is a parent or super class of Dog"
       ],
       "answer": [
-        1,
+        0,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Dog (Inheritance).",
+      "whyByOption": {
+        "1": "This statement is true of \"Car\", not of \"Dog (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Classes And Inheritance\", not of \"Dog (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Dog (Inheritance). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Dog (Inheritance).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
       "tags": [
         "concept"
@@ -17187,18 +17475,22 @@ const QUESTIONS_BANK = {
       "topic": "Inheritance",
       "question": "Which of the following are TRUE about Inheritance? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The most generic, or base class, starts at the top of the hierarchy.",
-        "Each box on this diagram represents a Class",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent."
+        "The most generic, or base class, starts at the top of the hierarchy.",
+        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
+        "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "Each box on this diagram represents a Class"
       ],
       "answer": [
         1,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Inheritance.",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Inheritance. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Inheritance.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
       "tags": [
         "concept"
@@ -17287,17 +17579,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Main (Inheritance)? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "That class is named Object, and it's in the java.lang package.",
+        "Every class created in Java extends a special Java class.",
         "Class Object is the root of the class hierarchy.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Every class created in Java extends a special Java class."
+        "That class is named Object, and it's in the java.lang package."
       ],
       "answer": [
         1,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Main (Inheritance).",
+      "whyByOption": {
+        "0": "This statement is true of \"Car\", not of \"Main (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Main (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Main (Inheritance). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Inheritance).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
       "tags": [
         "concept"
@@ -17567,17 +17863,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Main (Inheritance Coding Challenge)? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.",
         "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee."
       ],
       "answer": [
-        2,
+        1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Main (Inheritance Coding Challenge).",
+      "whyByOption": {
+        "0": "This statement is true of \"Car\", not of \"Main (Inheritance Coding Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Classes And Inheritance\", not of \"Main (Inheritance Coding Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Main (Inheritance Coding Challenge). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Inheritance Coding Challenge).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
       "tags": [
         "concept"
@@ -17755,18 +18055,22 @@ const QUESTIONS_BANK = {
       "topic": "Worker",
       "question": "Which of the following are TRUE about Worker? Select all that apply.",
       "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "hourlyPayRate : double getDoublePay()",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "intGetAge() double collectPay() terminate(String endDate)",
         "Below the Worker Class, introduce another Class named Employee which extends the Worker Class",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
+        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
       "answer": [
-        1,
+        0,
         2,
         3
       ],
-      "explanation": "The true statements are taken directly from the notes for Worker.",
+      "whyByOption": {
+        "1": "This statement is true of \"Classes And Inheritance\", not of \"Worker\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Car\", not of \"Worker\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Worker. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Worker.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
       "tags": [
         "concept"
@@ -17847,17 +18151,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Dog (Method Over Loading In Java)? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
+        "careful: adding a different return type to bark(int number) would not create another overload; the parameter list must differ.",
         "important: bark() and bark(int number) are OVERLOADS because the parameter COUNT is different.",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "If a child class wanted to override bark(int number), it would need the identical int parameter list.",
-        "careful: adding a different return type to bark(int number) would not create another overload; the parameter list must differ."
+        "If a child class wanted to override bark(int number), it would need the identical int parameter list."
       ],
       "answer": [
         1,
-        3,
+        2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Dog (Method Over Loading In Java).",
+      "whyByOption": {
+        "0": "This statement is true of \"Car\", not of \"Dog (Method Over Loading In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Classes And Inheritance\", not of \"Dog (Method Over Loading In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Dog (Method Over Loading In Java). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Dog (Method Over Loading In Java).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
       "tags": [
         "concept"
@@ -18175,18 +18483,22 @@ const QUESTIONS_BANK = {
       "topic": "Method Overloading In Java",
       "question": "Which of the following are TRUE about Method Overloading In Java? Select all that apply.",
       "options": [
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "sum(int a, long b): a and b are the two numbers to add; an int second argument can widen to long when no exact sum(int, int) exists.",
         "important: calculateScore(String, int) and calculateScore(int) are OVERLOADS because their parameter counts and types differ.",
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "sum(int a, long b): a and b are the two numbers to add; an int second argument can widen to long when no exact sum(int, int) exists.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "sum(int a, int b, int c): a, b, and c are the three numbers to add; this overload is chosen by parameter COUNT."
       ],
       "answer": [
-        0,
+        1,
         2,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Method Overloading In Java.",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Overloading In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Car\", not of \"Method Overloading In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Method Overloading In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Overloading In Java.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
       "tags": [
         "concept"
@@ -18329,17 +18641,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Covariant Return Type? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "All classes ultimately have Object as a baseclass, so every class can be said to be a covariant of Object",
         "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "The term, covariant return type, can include types such as interfaces and generic types",
-        "The return type of an overriden method can be the same type as the parent method's declaration, but it can also be a subclass."
+        "The return type of an overriden method can be the same type as the parent method's declaration, but it can also be a subclass.",
+        "All classes ultimately have Object as a baseclass, so every class can be said to be a covariant of Object"
       ],
       "answer": [
-        1,
+        2,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Covariant Return Type.",
+      "whyByOption": {
+        "0": "This statement is true of \"Car\", not of \"Covariant Return Type\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Classes And Inheritance\", not of \"Covariant Return Type\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Covariant Return Type. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Covariant Return Type.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
       "tags": [
         "concept"
@@ -18458,18 +18774,22 @@ const QUESTIONS_BANK = {
       "topic": "Dog (Method Overriding In Java)",
       "question": "Which of the following are TRUE about Dog (Method Overriding In Java)? Select all that apply.",
       "options": [
+        "trap: if GermanShepherd used bark(int number), it would be overloading, not overriding, because the parameter count changed.",
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Overloading depends on different parameter types/counts/order; overriding depends on the same parameter list.",
-        "trap: if GermanShepherd used bark(int number), it would be overloading, not overriding, because the parameter count changed.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "important: this is OVERRIDING because the child method keeps the same name and identical parameter list as the parent method."
+        "important: this is OVERRIDING because the child method keeps the same name and identical parameter list as the parent method.",
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
       "answer": [
-        1,
+        0,
         2,
-        4
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for Dog (Method Overriding In Java).",
+      "whyByOption": {
+        "1": "This statement is true of \"Car\", not of \"Dog (Method Overriding In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Classes And Inheritance\", not of \"Dog (Method Overriding In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Dog (Method Overriding In Java). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Dog (Method Overriding In Java).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
       "tags": [
         "concept"
@@ -19377,18 +19697,22 @@ const QUESTIONS_BANK = {
       "topic": "Method Overriding In Java",
       "question": "Which of the following are TRUE about Method Overriding In Java? Select all that apply.",
       "options": [
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
         "Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.",
-        "Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In other words, the same name, and same parameters).",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods."
+        "By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.",
+        "Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In other words, the same name, and same parameters)."
       ],
       "answer": [
-        1,
         2,
+        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Method Overriding In Java.",
+      "whyByOption": {
+        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Overriding In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "1": "This statement is true of \"Car\", not of \"Method Overriding In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Method Overriding In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Overriding In Java.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
       "tags": [
         "concept"
@@ -19499,17 +19823,21 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Method Over Loading Vs Method Overriding Difference? Select all that apply.",
       "options": [
         "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Method overriding keeps the parent parameter list identical so polymorphism can replace inherited behavior safely.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
         "pitfall: a child method with a different parameter list is an overload even if its name matches the parent method.",
-        "important: return type, access modifier, and thrown exceptions do not by themselves create overloaded methods; the parameter list must differ."
+        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
+        "important: return type, access modifier, and thrown exceptions do not by themselves create overloaded methods; the parameter list must differ.",
+        "Method overriding keeps the parent parameter list identical so polymorphism can replace inherited behavior safely."
       ],
       "answer": [
         1,
         3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Method Over Loading Vs Method Overriding Difference.",
+      "whyByOption": {
+        "0": "This statement is true of \"Car\", not of \"Method Over Loading Vs Method Overriding Difference\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Classes And Inheritance\", not of \"Method Over Loading Vs Method Overriding Difference\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Method Over Loading Vs Method Overriding Difference. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Over Loading Vs Method Overriding Difference.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
       "tags": [
         "concept"
@@ -20734,18 +21062,22 @@ const QUESTIONS_BANK = {
       "topic": "String Method And Best Practices",
       "question": "Which of the following are TRUE about String Method And Best Practices? Select all that apply.",
       "options": [
+        "String is a sequence of characters, which means its characters are ordered and indexed.",
+        "---- Important points to remember ----",
         "ii) Pass no arguments at all",
         "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
-        "String indexing is 0 - based, so the first character is at index 0 and the last one is at length() - 1.",
-        "---- Important points to remember ----",
-        "String is a sequence of characters, which means its characters are ordered and indexed."
+        "String indexing is 0 - based, so the first character is at index 0 and the last one is at length() - 1."
       ],
       "answer": [
-        2,
-        3,
+        0,
+        1,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for String Method And Best Practices.",
+      "whyByOption": {
+        "2": "This statement is true of \"String Builder Concepts\", not of \"String Method And Best Practices\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"String Vs String Buffer Vs String Builder\", not of \"String Method And Best Practices\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about String Method And Best Practices. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Method And Best Practices.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
       "tags": [
         "concept"
@@ -21684,18 +22016,22 @@ const QUESTIONS_BANK = {
       "topic": "String Builder Concepts",
       "question": "Which of the following are TRUE about String Builder Concepts? Select all that apply.",
       "options": [
-        "iv) Pass another CharSequence (like a StringBuilder)",
         "iii) Pass an integer initial capacity",
-        "ii) Pass no arguments at all",
+        "iv) Pass another CharSequence (like a StringBuilder)",
         "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
+        "ii) Pass no arguments at all",
         "String is a sequence of characters, which means its characters are ordered and indexed."
       ],
       "answer": [
         0,
         1,
-        2
+        3
       ],
-      "explanation": "The true statements are taken directly from the notes for String Builder Concepts.",
+      "whyByOption": {
+        "2": "This statement is true of \"String Vs String Buffer Vs String Builder\", not of \"String Builder Concepts\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"String Method And Best Practices\", not of \"String Builder Concepts\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about String Builder Concepts. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Builder Concepts.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
       "tags": [
         "concept"
@@ -21714,18 +22050,22 @@ const QUESTIONS_BANK = {
       "topic": "String Vs String Buffer Vs String Builder",
       "question": "Which of the following are TRUE about String Vs String Buffer Vs String Builder? Select all that apply.",
       "options": [
-        "StringBuilder is mutable. Its append(), insert(), delete(), and replace() methods update the same character buffer and return the same builder object, which makes method chaining possible. This avoids creating a new String for every intermediate change and is usually the best choice for text built by one thread, especially inside a loop.",
         "ii) Pass no arguments at all",
-        "String is immutable. Once a String object has been created, its character contents cannot be changed. An operation such as concat() creates and returns a new String; it does not change the original String. If the result is not assigned to a variable, the original value remains unchanged.",
         "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
-        "String is a sequence of characters, which means its characters are ordered and indexed."
+        "String is immutable. Once a String object has been created, its character contents cannot be changed. An operation such as concat() creates and returns a new String; it does not change the original String. If the result is not assigned to a variable, the original value remains unchanged.",
+        "String is a sequence of characters, which means its characters are ordered and indexed.",
+        "StringBuilder is mutable. Its append(), insert(), delete(), and replace() methods update the same character buffer and return the same builder object, which makes method chaining possible. This avoids creating a new String for every intermediate change and is usually the best choice for text built by one thread, especially inside a loop."
       ],
       "answer": [
-        0,
+        1,
         2,
-        3
+        4
       ],
-      "explanation": "The true statements are taken directly from the notes for String Vs String Buffer Vs String Builder.",
+      "whyByOption": {
+        "0": "This statement is true of \"String Builder Concepts\", not of \"String Vs String Buffer Vs String Builder\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"String Method And Best Practices\", not of \"String Vs String Buffer Vs String Builder\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about String Vs String Buffer Vs String Builder. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Vs String Buffer Vs String Builder.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringVsStringBufferVsStringBuilder.java",
       "tags": [
         "concept"
@@ -21842,20 +22182,22 @@ const QUESTIONS_BANK = {
       "topic": "Computer Case",
       "question": "Which of the following are TRUE about Computer Case? Select all that apply.",
       "options": [
+        "Review the class ComputerCase and understand its key responsibilities.",
         "This example defines 1 method; trace method behavior step by step.",
         "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
         "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "Review the class ComputerCase and understand its key responsibilities."
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package."
       ],
       "answer": [
         0,
         1,
-        2,
-        3,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Computer Case.",
+      "whyByOption": {
+        "3": "This statement is true of \"Main\", not of \"Computer Case\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Monitor\", not of \"Computer Case\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Computer Case. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Computer Case.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/ComputerCase.java",
       "tags": [
         "concept"
@@ -21885,11 +22227,13 @@ const QUESTIONS_BANK = {
       "answer": [
         0,
         1,
-        2,
-        3,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Main.",
+      "whyByOption": {
+        "3": "This statement is true of \"Computer Case\", not of \"Main\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Monitor\", not of \"Main\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Main. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Main.java",
       "tags": [
         "concept"
@@ -21919,11 +22263,13 @@ const QUESTIONS_BANK = {
       "answer": [
         0,
         1,
-        2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Monitor.",
+      "whyByOption": {
+        "2": "This statement is true of \"Computer Case\", not of \"Monitor\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Main\", not of \"Monitor\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Monitor. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Monitor.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Monitor.java",
       "tags": [
         "concept"
@@ -21953,11 +22299,13 @@ const QUESTIONS_BANK = {
       "answer": [
         0,
         1,
-        2,
-        3,
         4
       ],
-      "explanation": "The true statements are taken directly from the notes for Mother Board.",
+      "whyByOption": {
+        "2": "This statement is true of \"Computer Case\", not of \"Mother Board\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "3": "This statement is true of \"Main\", not of \"Mother Board\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Mother Board. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Mother Board.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/MotherBoard.java",
       "tags": [
         "concept"
@@ -21987,11 +22335,13 @@ const QUESTIONS_BANK = {
       "answer": [
         0,
         1,
-        2,
-        3,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Personal Computer.",
+      "whyByOption": {
+        "3": "This statement is true of \"Computer Case\", not of \"Personal Computer\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Main\", not of \"Personal Computer\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Personal Computer. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Personal Computer.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/PersonalComputer.java",
       "tags": [
         "concept"
@@ -22162,18 +22512,22 @@ const QUESTIONS_BANK = {
       "topic": "Product",
       "question": "Which of the following are TRUE about Product? Select all that apply.",
       "options": [
+        "All of the computer parts are going to be inherited from Product",
         "Product is the base Class",
         "All of the base parts will have set of attributes names manufacturer, model and dimensions ( width, height and depth )",
         "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "All of the computer parts are going to be inherited from Product"
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package."
       ],
       "answer": [
         0,
         1,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Product.",
+      "whyByOption": {
+        "3": "This statement is true of \"Computer Case\", not of \"Product\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Main\", not of \"Product\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Product. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Product.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
       "tags": [
         "concept"
@@ -22434,18 +22788,22 @@ const QUESTIONS_BANK = {
       "topic": "Composition Deep Problem",
       "question": "Which of the following are TRUE about Composition Deep Problem? Select all that apply.",
       "options": [
-        "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.",
         "Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.",
+        "A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.",
+        "This is the difference between HAS-A (composition) and IS-A (inheritance).",
         "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-        "This is the difference between HAS-A (composition) and IS-A (inheritance)."
+        "This topic belongs to Chapter 15: Composition → Composition Example Computer Package."
       ],
       "answer": [
         0,
         1,
-        4
+        2
       ],
-      "explanation": "The true statements are taken directly from the notes for Composition Deep Problem.",
+      "whyByOption": {
+        "3": "This statement is true of \"Computer Case\", not of \"Composition Deep Problem\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "4": "This statement is true of \"Main\", not of \"Composition Deep Problem\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
+      },
+      "explanation": "A statement belongs here only if your notes make it about Composition Deep Problem. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Composition Deep Problem.",
       "topicPath": "src/Chapter_15_Composition/Sub_Chapter_3_DeepProblems/CompositionDeepProblem.java",
       "tags": [
         "concept"
