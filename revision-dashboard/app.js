@@ -3087,7 +3087,50 @@ function startSelectionQuiz(questions, label, maxQuestions) {
 // ==========================================================================
 // One place to revise everything the author has written notes for. It is built
 // from CONCEPTS_DATA, so only topics that exist under src/ can ever appear here.
-let bankFilters = { chapter: 'all', search: '', level: 'all', tag: 'all' };
+let bankFilters = { chapter: 'all', search: '', level: 'all', tag: 'all', concept: 'all' };
+
+// The concepts present in the current chapter selection, so the filter only ever
+// offers concepts that can actually match something.
+function bankAvailableConcepts() {
+  const chapters = CONCEPTS_DATA.filter((chapter, index) =>
+    bankFilters.chapter === 'all' || String(index) === bankFilters.chapter);
+  const counts = new Map();
+  chapters.forEach(chapter => {
+    (QUESTIONS_BANK[chapter.name] || []).forEach(question => {
+      (question.concepts || []).forEach(id => counts.set(id, (counts.get(id) || 0) + 1));
+    });
+  });
+  return [...counts.entries()]
+    .map(([id, count]) => ({ id, count, name: (typeof CONCEPT_NAMES !== 'undefined' && CONCEPT_NAMES[id]) || id }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}
+
+function initBankConceptSelect() {
+  const select = document.getElementById('bank-concept-select');
+  if (!select) return;
+  const available = bankAvailableConcepts();
+  // Keep the chosen concept when it is still on offer, otherwise fall back to Any.
+  if (bankFilters.concept !== 'all' && !available.some(c => c.id === bankFilters.concept)) {
+    bankFilters.concept = 'all';
+  }
+  select.innerHTML = '';
+  const all = document.createElement('option');
+  all.value = 'all';
+  all.textContent = 'Any concept';
+  select.appendChild(all);
+  available.forEach(({ id, count, name }) => {
+    const option = document.createElement('option');
+    option.value = id;
+    option.textContent = `${name} (${count})`;
+    select.appendChild(option);
+  });
+  select.value = bankFilters.concept;
+}
+
+function setBankConcept(value) {
+  bankFilters.concept = value || 'all';
+  renderRevisionBank();
+}
 
 function initBankChapterSelect() {
   const select = document.getElementById('bank-chapter-select');
@@ -3103,10 +3146,13 @@ function initBankChapterSelect() {
     option.textContent = chapter.name;
     select.appendChild(option);
   });
+  select.value = bankFilters.chapter;
+  initBankConceptSelect();
 }
 
 function setBankChapter(value) {
   bankFilters.chapter = value;
+  initBankConceptSelect();
   renderRevisionBank();
 }
 
@@ -3137,6 +3183,7 @@ function topicSearchText(topic) {
 function questionMatchesBankFilters(question) {
   if (bankFilters.level !== 'all' && (question.difficulty || 'medium') !== bankFilters.level) return false;
   if (bankFilters.tag !== 'all' && !(question.tags || []).includes(bankFilters.tag)) return false;
+  if (bankFilters.concept !== 'all' && !(question.concepts || []).includes(bankFilters.concept)) return false;
   return true;
 }
 
@@ -3262,7 +3309,7 @@ function renderRevisionBank() {
 
   // When a level or type filter is active, a topic with nothing matching is hidden
   // rather than shown empty, so the list reflects the filter.
-  const filtering = bankFilters.level !== 'all' || bankFilters.tag !== 'all';
+  const filtering = bankFilters.level !== 'all' || bankFilters.tag !== 'all' || bankFilters.concept !== 'all';
   const topics = selection.topics.filter(entry => {
     if (!filtering) return true;
     return (questionsByPath.get(entry.topic.filePath) || []).length > 0;
@@ -3285,7 +3332,7 @@ function renderRevisionBank() {
 
   container.innerHTML = '';
   if (topics.length === 0) {
-    container.innerHTML = '<div class="card"><div class="card-body">Nothing matches this filter. Try clearing the search box, or set the level and type back to Any and Everything.</div></div>';
+    container.innerHTML = '<div class="card"><div class="card-body">Nothing matches this filter. Try clearing the search box, or set the level, type and concept back to Any.</div></div>';
     return;
   }
 

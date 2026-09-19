@@ -200,10 +200,7 @@ function keywordPresent(text, keyword) {
   return new RegExp(`${leading}${escaped}${trailing}`, 'i').test(text);
 }
 
-function conceptsForChapter(chapterName, topics) {
-  const mapped = CHAPTER_CONCEPTS[chapterName];
-  if (mapped) return mapped.slice();
-
+function inferConcepts(topics) {
   const text = (topics || []).map(t => {
     const notes = (t.headerComments || []).flatMap(b => b.lines || []).join(' ');
     const inline = (t.inlineComments || []).join(' ');
@@ -220,11 +217,55 @@ function conceptsForChapter(chapterName, topics) {
   return found;
 }
 
+// The chapter-level list, used where a chapter is the unit of work (coverage,
+// objectives, gap detection). A chapter with a hand-written mapping uses it.
+function conceptsForChapter(chapterName, topics) {
+  const mapped = CHAPTER_CONCEPTS[chapterName];
+  if (mapped) return mapped.slice();
+  return inferConcepts(topics);
+}
+
+// The concepts a SINGLE topic file is about, always inferred from that file's own
+// text. This is what makes a per-question concept tag meaningful: inside the
+// Strings chapter, the StringBuilder topic and the equals/== topic get different
+// tags, where the chapter list would give both the same five.
+//
+// The inference is narrowed to the concepts the CHAPTER is responsible for. That
+// is a structural constraint rather than a guess: a Strings topic cannot be about
+// Collections, so a stray pair of keyword hits must not put it there. Broad
+// English words make this necessary — the Strings chapter alone picked up
+// "Statements, whitespace and indentation" from 39 questions.
+//
+// If narrowing leaves fewer than two concepts the full inference is not used
+// either: the chapter's own mapping is, so a topic is never left thinly tagged.
+function conceptsForTopic(topic, chapterConcepts) {
+  const own = inferConcepts([topic]);
+  if (!own.length) return own;
+  if (!chapterConcepts || !chapterConcepts.length) return own;
+  const allowed = new Set(chapterConcepts);
+  const narrowed = own.filter(id => allowed.has(id));
+  // One surviving concept is weak evidence, so the hand-written chapter mapping
+  // wins instead: Chapter 10 would otherwise offer only `static` and hide its own
+  // classes and encapsulation questions from the filter.
+  if (narrowed.length >= 2) return narrowed;
+  return chapterConcepts.slice();
+}
+
+// id -> display name, so the dashboard can label a concept filter without
+// shipping the whole catalogue to the browser.
+function conceptNames() {
+  const names = {};
+  for (const concept of CONCEPTS) names[concept.id] = concept.name;
+  return names;
+}
+
 module.exports = {
   EXAM_OBJECTIVES,
   CONCEPTS,
   CHAPTER_CONCEPTS,
   OBJECTIVES_AHEAD,
   conceptsForChapter,
+  conceptsForTopic,
+  conceptNames,
   keywordPresent
 };

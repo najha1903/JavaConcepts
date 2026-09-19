@@ -23272,3 +23272,48 @@ const CONCEPTS_DATA = [
     ]
   }
 ];
+
+// Concept id -> readable name. Lets the dashboard label a concept filter without
+// loading the whole catalogue.
+const CONCEPT_NAMES = {
+  "primitives": "The eight primitive types",
+  "literals": "Literals and suffixes",
+  "wrappers": "Wrapper classes and autoboxing",
+  "casting": "Casting and promotion",
+  "operators": "Operators and expressions",
+  "strings": "String and StringBuilder",
+  "string-pool": "String pool and equality",
+  "text-blocks": "Text blocks and formatting",
+  "var": "Local variable type inference",
+  "arrays": "Arrays",
+  "statements": "Statements, whitespace and indentation",
+  "if-else": "if, else and the ternary",
+  "switch": "switch, including the arrow form",
+  "loops": "for, while and do-while",
+  "break-continue": "break and continue",
+  "classes": "Classes, objects and fields",
+  "static": "static against instance",
+  "encapsulation": "Encapsulation, getters and setters",
+  "constructors": "Constructors and overloading them",
+  "inheritance": "Inheritance",
+  "polymorphism": "Polymorphism and overriding",
+  "overloading": "Overloading and how it is resolved",
+  "abstract": "Abstract classes and interfaces",
+  "composition": "Composition and delegation",
+  "records-enums": "Records and enums",
+  "object-class": "Object, equals, hashCode and toString",
+  "exceptions": "try, catch and finally",
+  "checked-unchecked": "Checked against unchecked",
+  "throw-throws": "throw against throws",
+  "multi-catch": "Multi-catch and catch order",
+  "generics": "Generics",
+  "collections": "Collections",
+  "lambda": "Lambdas and functional interfaces",
+  "streams": "Streams",
+  "modules": "The module system",
+  "concurrency": "Threads and concurrency",
+  "io": "Files and I/O",
+  "jdbc": "JDBC",
+  "localization": "Locales and resource bundles",
+  "annotations": "Annotations"
+};

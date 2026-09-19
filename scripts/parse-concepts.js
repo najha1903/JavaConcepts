@@ -2573,7 +2573,14 @@ async function main() {
   }
 
   const dataFile = path.join(dashboardDir, 'data.js');
-  fs.writeFileSync(dataFile, `// Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.\nconst CONCEPTS_DATA = ${JSON.stringify(chaptersList, null, 2)};\n`, 'utf8');
+  const dataOutput = `// Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.
+const CONCEPTS_DATA = ${JSON.stringify(chaptersList, null, 2)};
+
+// Concept id -> readable name. Lets the dashboard label a concept filter without
+// loading the whole catalogue.
+const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)};
+`;
+  fs.writeFileSync(dataFile, dataOutput, 'utf8');
   console.log(`✅ data.js regenerated with ${chaptersList.length} chapters.`);
 
   // ── Step 3: Rebuild generated question banks from the current source tree ─
@@ -2585,12 +2592,21 @@ async function main() {
     // Every question in a chapter carries the chapter's concepts, so the quiz can
     // be filtered by concept and a new chapter is covered by what its notes say.
     const chapterConcepts = conceptCatalogue.conceptsForChapter(chName, chapter.topics);
+    // A finer tag: the concepts of the topic file the question came from. Inside
+    // the Strings chapter this separates the StringBuilder questions from the
+    // equals/== ones, which the chapter-wide list cannot do.
+    const conceptsByPath = new Map();
+    chapter.topics.forEach(topic => {
+      const own = conceptCatalogue.conceptsForTopic(topic, chapterConcepts);
+      if (own.length) conceptsByPath.set(topic.filePath, own);
+    });
+    const conceptsForQuestion = q => (q.topicPath && conceptsByPath.get(q.topicPath)) || chapterConcepts;
     sortedQRBank[chName] = buildQuickRevisionEntry(chName, chapter.topics);
     const starterQs = buildStarterQuestions(chName, chapter.topics);
     const ocjpQs = buildOCJPQuestions(chName, chapter.topics);
     // A quiz must never show the same question twice. Several sub-chapters share a
     // file name, so without this a chapter could repeat one question many times.
-    const combined = [...starterQs, ...ocjpQs].map(q => ({ ...q, concepts: chapterConcepts }));
+    const combined = [...starterQs, ...ocjpQs].map(q => ({ ...q, concepts: conceptsForQuestion(q) }));
     const seenQuestions = new Set();
     const deduped = combined.filter(q => {
       const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;

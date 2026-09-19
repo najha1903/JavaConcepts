@@ -761,6 +761,10 @@
               <input id="bank-search" class="bank-search-input" type="search" placeholder="For example: StringBuilder, substring, immutable" oninput="setBankSearch(this.value)">
             </div>
             <div class="bank-filter-row">
+              <label class="filter-label" for="bank-concept-select">Concept</label>
+              <select id="bank-concept-select" class="notes-chapter-select" onchange="setBankConcept(this.value)"></select>
+            </div>
+            <div class="bank-filter-row">
               <label class="filter-label">Level</label>
               <div class="diff-pills" id="bank-level-pills">
                 <button class="diff-pill active" data-level="all" onclick="setBankLevel('all', this)">Any</button>
