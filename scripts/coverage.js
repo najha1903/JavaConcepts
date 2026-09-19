@@ -357,7 +357,8 @@ if (process.argv.includes('--check')) {
 
   for (const chapter of chapters) {
     if (chapter.questions === 0) failures.push(`${chapter.name}: has no questions at all.`);
-    if (chapter.questions > 0 && chapter.easy === 0) failures.push(`${chapter.name}: has no easy question.`);
+    if (chapter.questions > 0 && chapter.easy === 0) failures.push(`${chapter.name}: has no easy question, so there is no way in for a beginner.`);
+    if (chapter.questions > 0 && chapter.hard === 0) failures.push(`${chapter.name}: has no hard question, so nothing stretches.`);
     if (chapter.takeaways === 0) failures.push(`${chapter.name}: has no key takeaways.`);
     if (chapter.topicsTotal - chapter.topicsWithQuestions > 0) {
       warnings.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with nothing of their own.`);
@@ -391,6 +392,7 @@ if (!quiet) {
   console.log('📊 COVERAGE');
   console.log(`   Topics with a question of their own : ${totals.topicsWithQuestions} / ${totals.topics}`);
   console.log(`   Questions                            : ${totals.questions}  (E${totals.easy} M${totals.medium} H${totals.hard})`);
+  console.log(`   Difficulty spread                    : ${Math.round(totals.easy / totals.questions * 100)}% easy, ${Math.round(totals.medium / totals.questions * 100)}% medium, ${Math.round(totals.hard / totals.questions * 100)}% hard`);
   console.log(`   OCJP tagged                          : ${totals.ocjp}`);
   console.log(`   Written by hand                      : ${totals.authored}`);
 

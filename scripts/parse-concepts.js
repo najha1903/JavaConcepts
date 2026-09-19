@@ -1133,11 +1133,42 @@ function normalizeLevel(value) {
   return null;
 }
 
-// Level for an authored @quiz marker: use the authored level when present,
-// otherwise a trap question is hard and everything else is medium.
+// Level for an authored @quiz marker.
+//
+// The author's own level always wins, and a trap is always hard. Everything else
+// used to fall to medium, which made 643 of 760 questions medium and left almost
+// nothing easy, so a beginner had no way in. The level is now read from what the
+// question actually asks:
+//
+//   something that goes wrong   -> hard   (a compile error, an exception, a trap)
+//   code to trace               -> medium (it has to be read and run in the head)
+//   a "why" question            -> medium (it asks for reasoning, not recall)
+//   recognising a fact          -> easy   (the fact IS the concept, which the
+//                                          anti-memory rule allows)
 function levelForCustomQuiz(quiz) {
   if (quiz.quizLevel) return quiz.quizLevel;
-  if (/trap/i.test(quiz.quizTag || '')) return 'hard';
+  const tag = String(quiz.quizTag || '');
+  if (/trap/i.test(tag)) return 'hard';
+
+  const text = String(quiz.question || '');
+  const options = (quiz.options || []).map(o => String(o && o.text ? o.text : o)).join(' ');
+  const hasCode = Array.isArray(quiz.code) && quiz.code.length > 0;
+
+  // A question about something failing is a trap by nature.
+  if (/\b(does not compile|will not compile|compile error|compile-time error|does not run|runtime error|exception|stack trace|throws|fails?)\b/i.test(`${text} ${options}`)) {
+    return 'hard';
+  }
+
+  // Tracing code is medium: the answer is not stated, it has to be worked out.
+  if (hasCode) return 'medium';
+
+  // Asking why wants a reason, not a fact.
+  if (/^\s*why\b/i.test(text)) return 'medium';
+
+  // Recognising a fact is recall, and recall of a definition is easy.
+  if (/^\s*(what is|what are|what does|what do|which statement|which of these|which one|which single|what actually)\b/i.test(text)) return 'easy';
+  if (/\b(correctly describes|is the difference between|refers to|means)\b/i.test(text)) return 'easy';
+
   return 'medium';
 }
 

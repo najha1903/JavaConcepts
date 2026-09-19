@@ -23,7 +23,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_0-what-is-the-difference-between-jvm-jre-a",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
       "tags": [
@@ -622,7 +622,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_2-what-is-the-string-pool-and-what-is-the-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
       "tags": [
@@ -736,7 +736,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_6-what-does-it-mean-that-strings-are-immut",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
       "tags": [
@@ -764,7 +764,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_7-what-is-the-difference-between-a-char-an",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
       "tags": [
@@ -1026,7 +1026,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_16-what-is-the-output-of-string-s-java-s-co",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
       "tags": [
@@ -1424,7 +1424,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_30-what-is-the-difference-between-and-equal",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
       "tags": [
@@ -1667,7 +1667,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_0-what-are-java-s-8-primitive-types-and-th",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
       "tags": [
@@ -2284,7 +2284,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_0-what-is-the-difference-between-widening-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
       "tags": [
@@ -2312,7 +2312,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_1-what-is-integer-overflow-in-java",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
       "tags": [
@@ -2368,7 +2368,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_3-what-is-the-output-of-system-out-println",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
       "tags": [
@@ -2426,7 +2426,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_5-what-are-the-default-values-of-java-prim",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
       "tags": [
@@ -2484,7 +2484,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_7-what-is-the-difference-between-widening-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
       "tags": [
@@ -3505,7 +3505,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_3-what-is-the-golden-rule-for-the-operator",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
       "tags": [
@@ -3605,7 +3605,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_7-what-is-the-difference-between-and-when-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
       "tags": [
@@ -3654,7 +3654,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_9-what-is-important-about-the-right-hand-v",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
       "tags": [
@@ -4303,7 +4303,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_0-what-is-the-difference-between-a-stateme",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
       "tags": [
@@ -4926,7 +4926,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_0-what-is-the-dangling-else-problem-in-jav",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
       "tags": [
@@ -6000,7 +6000,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_2-what-is-the-difference-between-a-void-me",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
       "tags": [
@@ -6025,7 +6025,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_3-what-is-the-difference-between-a-static-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
       "tags": [
@@ -7204,7 +7204,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_1-what-is-fall-through-in-a-switch-stateme",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
       "tags": [
@@ -7228,7 +7228,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_2-what-is-the-default-case-in-a-switch-sta",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
       "tags": [
@@ -7974,7 +7974,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_0-what-is-the-difference-between-a-traditi",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
       "tags": [
@@ -8022,7 +8022,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_2-what-is-the-purpose-of-yield-in-an-enhan",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
       "tags": [
@@ -9153,7 +9153,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_0-what-is-the-difference-between-while-and",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
       "tags": [
@@ -9177,7 +9177,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_1-what-is-an-infinite-loop-and-how-do-you-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
       "tags": [
@@ -9225,7 +9225,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_3-what-do-break-and-continue-do-inside-a-w",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
       "tags": [
@@ -9346,7 +9346,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_8-what-is-passed-to-println-in-system-out-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
       "tags": [
@@ -9973,7 +9973,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_0-what-does-the-isready-value-control-in-d",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
       "tags": [
@@ -10850,7 +10850,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_7-what-is-the-difference-between-a-class-a",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
       "tags": [
@@ -10874,7 +10874,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_8-what-is-the-difference-between-static-fi",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
       "tags": [
@@ -10898,7 +10898,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_9-what-are-the-default-values-of-instance-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
       "tags": [
@@ -11668,7 +11668,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_13-what-does-integer-parseint-do-and-what-e",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
       "tags": [
@@ -11692,7 +11692,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_14-what-is-the-difference-between-integer-p",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
       "tags": [
@@ -11716,7 +11716,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_15-what-is-scanner-and-how-does-it-read-inp",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
       "tags": [
@@ -12287,7 +12287,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_0-what-is-the-difference-between-checked-a",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
       "tags": [
@@ -12364,7 +12364,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_3-what-is-the-difference-between-checked-a",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
       "tags": [
@@ -12390,7 +12390,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_4-what-is-the-basic-exception-hierarchy-in",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
       "tags": [
@@ -12417,7 +12417,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_5-what-is-multi-catch-in-java",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
       "tags": [
@@ -12443,7 +12443,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_6-what-is-the-difference-between-throw-and",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
       "tags": [
@@ -12469,7 +12469,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_7-what-is-a-nullpointerexception-and-when-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
       "tags": [
@@ -13074,7 +13074,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_0-what-is-the-difference-between-an-abstra",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
       "tags": [
@@ -13107,7 +13107,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_1-what-are-the-three-common-uses-of-the-fi",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
       "tags": [
@@ -13139,7 +13139,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_2-what-is-the-order-of-java-access-modifie",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
       "tags": [
@@ -13173,7 +13173,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_3-what-is-the-difference-between-this-and-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
       "tags": [
@@ -13205,7 +13205,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_4-what-is-polymorphism-in-java-and-what-is",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
       "tags": [
@@ -14035,7 +14035,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_1-what-does-the-argument-true-mean-in-car-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Getters Encapsulation Object Access)",
       "tags": [
@@ -14203,7 +14203,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_0-what-does-the-argument-1000-0-mean-in-ba",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Classes Challenge)",
       "tags": [
@@ -14577,7 +14577,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_0-what-does-the-accountbalance-argument-re",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
       "tags": [
@@ -14901,7 +14901,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_0-what-does-super-printmethod-pass-as-argu",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Super Keyword Use Example",
       "tags": [
@@ -14962,7 +14962,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_2-what-is-stored-in-the-args-parameter-of-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Super Keyword Use Example",
       "tags": [
@@ -14993,7 +14993,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_0-what-is-the-difference-between-passing-a",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This And Super",
       "tags": [
@@ -15185,7 +15185,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_0-what-do-the-x-and-y-arguments-passed-to-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Good Constructor Super Call Example",
       "tags": [
@@ -15315,7 +15315,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_0-what-do-width-and-height-mean-in-badcons",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bad Constructor This Call Example",
       "tags": [
@@ -15889,7 +15889,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_0-what-does-the-beige-argument-do-in-house",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Reference Objects Instance Class",
       "tags": [
@@ -16019,7 +16019,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_0-what-do-a-and-b-mean-in-printsum-int-a-i",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Methods",
       "tags": [
@@ -16371,7 +16371,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_0-what-are-the-four-constructor-parameters",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student",
       "tags": [
@@ -16531,7 +16531,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_0-what-is-the-difference-between-the-name-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Variables",
       "tags": [
@@ -16753,7 +16753,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_3-what-is-the-accessor-method-for-the-name",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student Record",
       "tags": [
@@ -16952,7 +16952,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_0-what-do-width-and-height-mean-in-wallare",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Wall Area Computation",
       "tags": [
@@ -17463,7 +17463,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_1-what-do-the-arguments-in-new-fish-goldfi",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Inheritance",
       "tags": [
@@ -17623,7 +17623,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_2-what-does-main-string-args-receive",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance)",
       "tags": [
@@ -17875,7 +17875,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_0-what-do-the-four-arguments-in-new-salari",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance Coding Challenge)",
       "tags": [
@@ -18034,7 +18034,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_1-what-do-the-arguments-in-super-name-birt",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Salaried Employee",
       "tags": [
@@ -18156,7 +18156,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_2-what-does-terminate-string-enddate-do-wi",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Worker",
       "tags": [
@@ -18741,7 +18741,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_0-what-do-the-name-and-birthdate-parameter",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Covariant Return Type",
       "tags": [
@@ -19032,7 +19032,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_0-what-is-method-overriding-in-java",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
       "tags": [
@@ -19064,7 +19064,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_1-what-is-the-difference-between-method-ov",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
       "tags": [
@@ -19096,7 +19096,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_2-what-are-the-rules-for-method-overriding",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
       "tags": [
@@ -19235,7 +19235,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_6-what-is-covariant-return-type-in-method-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
       "tags": [
@@ -19267,7 +19267,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_7-what-is-the-purpose-of-the-override-anno",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
       "tags": [
@@ -20661,7 +20661,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_4-what-is-a-text-block-in-java-and-which-j",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
       "tags": [
@@ -20686,7 +20686,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_5-what-do-common-printf-format-specifiers-",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
       "tags": [
@@ -20711,7 +20711,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_6-what-is-the-difference-between-string-fo",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
       "tags": [
@@ -21183,7 +21183,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_3-what-does-hello-substring-5-return",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
       "tags": [
@@ -21208,7 +21208,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_4-does-abc-substring-0-0-throw-an-exceptio",
-      "difficulty": "medium",
+      "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
       "tags": [
@@ -21308,7 +21308,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_8-what-is-the-difference-between-isempty-a",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
       "tags": [
@@ -21356,7 +21356,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_10-what-is-the-difference-between-equals-an",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
       "tags": [
@@ -21634,7 +21634,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_0-what-is-the-core-difference-between-stri",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
       "tags": [
@@ -21684,7 +21684,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_2-what-is-the-difference-between-stringbui",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
       "tags": [
@@ -21759,7 +21759,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_5-what-does-sb1-equals-sb2-compare-for-two",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
       "tags": [
@@ -21785,7 +21785,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_6-what-is-the-default-capacity-of-new-stri",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
       "tags": [
@@ -21811,7 +21811,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_7-what-is-the-capacity-of-new-stringbuilde",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
       "tags": [
@@ -21941,7 +21941,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_12-what-is-the-difference-between-delete-st",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
       "tags": [
@@ -22043,7 +22043,7 @@ const QUESTIONS_BANK = {
       "type": "interview",
       "kind": "custom",
       "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_16-what-does-the-int-argument-to-the-constr",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
       "tags": [
