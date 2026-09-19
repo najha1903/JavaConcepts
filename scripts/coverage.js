@@ -477,20 +477,24 @@ if (process.argv.includes('--check')) {
 
   // "No comparison table" is deliberately NOT a warning; see chaptersWithoutTable.
 
+  // A concept the notes cover but no question tests can never be revised, which is
+  // the point of the ledger. It is 29/29 today, so this guards against a future
+  // chapter dropping one rather than being a task list.
+  for (const concept of conceptsMissing) {
+    failures.push(`Concept "${concept.name}" (${concept.objective}) is covered by your notes but has no question, so it can never be revised.`);
+  }
+
   console.log('');
-  if (warnings.length) {
+  if (failures.length) {
+    console.error(`Coverage check FAILED with ${failures.length} problem(s):`);
+    failures.forEach(f => console.error(`  - ${f}`));
+    process.exitCode = 1;
+  } else if (warnings.length) {
     console.log(`Coverage check: ${warnings.length} item(s) still to do. These are the work of Phases 1 and 3.`);
     warnings.slice(0, 8).forEach(w => console.log(`  - ${w}`));
     if (warnings.length > 8) console.log(`  ... and ${warnings.length - 8} more. See revision-dashboard/coverage.md`);
   } else {
-    console.log('Coverage check: every topic is covered.');
-  }
-
-  if (failures.length) {
-    console.log('');
-    console.error(`Coverage check FAILED with ${failures.length} problem(s):`);
-    failures.forEach(f => console.error(`  - ${f}`));
-    process.exitCode = 1;
+    console.log('Coverage check: every topic and every concept is covered.');
   }
   console.log('');
 }
