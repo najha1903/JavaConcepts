@@ -4,6 +4,7 @@
     "revise:cli": "node scripts/parse-concepts.js --propose && node scripts/approve.js && start revision-dashboard/index.html",
     "approve": "node scripts/parse-concepts.js && node scripts/verify.js && start revision-dashboard/index.html",
     "generate": "node scripts/parse-concepts.js",
+    "coverage": "node scripts/coverage.js",
     "audit": "node scripts/audit-generated.js",
     "check:practice": "node scripts/check-practice.js",
     "check:questions": "node scripts/check-questions.js",

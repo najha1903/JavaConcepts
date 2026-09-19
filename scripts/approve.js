@@ -73,5 +73,8 @@ if (!verified) {
   process.exit(1);
 }
 
+// The ledger is the last thing shown, because it is what says what to do next.
+run('coverage.js', 'Coverage');
+
 console.log('Applied and verified. Every check passed.');
 console.log('');

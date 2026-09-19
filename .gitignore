@@ -14,3 +14,7 @@
 # only exists between those two moments.
 /revision-dashboard/content-changes.md
 /revision-dashboard/content-changes.json
+
+# The Coverage Ledger is computed on every run from the generated data, so it is
+# an output rather than a source. Read it any time; never edit it.
+/revision-dashboard/coverage.md
