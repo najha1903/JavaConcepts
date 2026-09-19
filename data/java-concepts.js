@@ -259,9 +259,62 @@ function conceptNames() {
   return names;
 }
 
+// A badge is the SYNTAX or API a concept teaches, not a method name from the
+// source. The Quick Revision panel used to scrape method names, so `main` appeared
+// in all 15 chapters and the rest were the author's own helpers - the names of the
+// code written to DEMONSTRATE a concept, not the concept itself.
+//
+// This lives here rather than in the generator so the ledger can check a chapter's
+// badges against it exactly, instead of guessing from their shape. A shape test
+// cannot work: `switch`, `case` and `try` are single lowercase words just like
+// `main` and `tryToChange` were.
+const CONCEPT_BADGES = {
+  'statements': [';', '{ }', 'System.out.println'],
+  'primitives': ['int', 'long', 'double', 'boolean', 'char', 'byte', 'short', 'float'],
+  'literals': ['100L', '3.14f', '0x1F', '0b1010', '1_000'],
+  'wrappers': ['Integer.parseInt', 'Double.parseDouble', 'Integer.MAX_VALUE', 'Integer.valueOf'],
+  'casting': ['(int)', '(byte)', '(double)', 'implicit widening'],
+  'operators': ['+', '-', '*', '/', '%', '++', '--', '? :', '+=', '&&', '||'],
+  'strings': ['String', 'charAt', 'substring', 'length()', 'toUpperCase', 'trim', 'replace'],
+  'string-pool': ['==', '.equals()', 'intern()'],
+  'text-blocks': ['"""', 'String.format', 'printf', '%d', '%.2f', '%n'],
+  'var': ['var'],
+  'arrays': ['new int[]', 'array.length', 'for-each'],
+  'if-else': ['if', 'else if', 'else', '? :'],
+  'switch': ['switch', 'case', 'break', 'default', 'yield', '->'],
+  'loops': ['for', 'while', 'do while', 'i++'],
+  'break-continue': ['break', 'continue', 'label:'],
+  'classes': ['class', 'new', 'this', 'field'],
+  'static': ['static', 'ClassName.field', 'ClassName.method()'],
+  'encapsulation': ['private', 'public', 'getX()', 'setX()'],
+  'constructors': ['ClassName()', 'this()', 'super()', 'overloaded constructor'],
+  'inheritance': ['extends', 'super', 'IS-A'],
+  'polymorphism': ['@Override', 'parent reference', 'runtime dispatch'],
+  'overloading': ['same name', 'different parameters'],
+  'abstract': ['abstract class', 'interface', 'implements'],
+  'composition': ['HAS-A', 'field holding an object', 'delegation'],
+  'records-enums': ['record', 'enum'],
+  'object-class': ['toString()', 'equals()', 'hashCode()', 'getClass()'],
+  'exceptions': ['try', 'catch', 'finally', 'throw'],
+  'checked-unchecked': ['throws', 'RuntimeException', 'IOException'],
+  'throw-throws': ['throw new', 'throws'],
+  'multi-catch': ['catch (A | B e)', 'catch order'],
+  'generics': ['<T>', '<? extends T>'],
+  'collections': ['List', 'Set', 'Map', 'ArrayList', 'HashMap'],
+  'lambda': ['->', '@FunctionalInterface'],
+  'streams': ['.stream()', '.map()', '.filter()', '.collect()'],
+  'modules': ['module-info.java', 'requires', 'exports'],
+  'concurrency': ['Thread', 'Runnable', 'synchronized'],
+  'io': ['Files.readString', 'Path', 'BufferedReader'],
+  'jdbc': ['Connection', 'PreparedStatement', 'ResultSet'],
+  'localization': ['Locale', 'ResourceBundle'],
+  'annotations': ['@Override', '@Deprecated', '@SuppressWarnings']
+};
+
 module.exports = {
   EXAM_OBJECTIVES,
   CONCEPTS,
+  CONCEPT_BADGES,
   CHAPTER_CONCEPTS,
   OBJECTIVES_AHEAD,
   conceptsForChapter,

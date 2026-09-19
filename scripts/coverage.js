@@ -160,14 +160,39 @@ function topicCoverage(chapter, topic) {
 }
 
 // ---- Per chapter ------------------------------------------------------------
+// The catalogue is needed by chapterCoverage below, so it is loaded first.
+const catalogue = require(path.join(root, 'data', 'java-concepts.js'));
+const conceptById = new Map((catalogue.CONCEPTS || []).map(c => [c.id, c]));
+
+// Every badge any of this chapter's concepts can legitimately produce.
+function allowedBadges(chapterName) {
+  const allowed = new Set();
+  const ids = catalogue.conceptsForChapter(chapterName, []) || [];
+  for (const id of ids) {
+    for (const badge of (catalogue.CONCEPT_BADGES || {})[id] || []) allowed.add(badge);
+  }
+  return allowed;
+}
+
+function normaliseSnippet(text) {
+  return String(text || '')
+    .replace(/\/\/.*$/gm, '')            // the author's trailing comments
+    .replace(/\b(class|interface|record|enum)\s+\w+/g, '$1')  // the class name
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function chapterCoverage(chapter) {
   const topics = (chapter.topics || []).map(t => topicCoverage(chapter, t));
   const questions = byChapter.get(chapter.name) || [];
   const revision = revisionBank[chapter.name] || {};
   const syntax = String(revision.syntax || '');
-  const syntaxIsBoilerplate = /^\s*(public\s+)?class\s+\w+\s*\{/.test(syntax.split('\n').map(l => l.trim()).filter(Boolean)[0] || '');
   const badges = revision.badges || [];
-  const badgesAreMethodNames = badges.length > 0 && badges.every(b => /^[a-z][A-Za-z0-9]*$/.test(b));
+  // A badge is wrong only when NO concept the chapter covers can produce it. The
+  // old test asked whether every badge looked like a lowercase word, which flagged
+  // `switch`, `case`, `try` and `catch` - the keywords the chapter teaches.
+  const allowed = allowedBadges(chapter.name);
+  const strayBadges = badges.filter(b => !allowed.has(b));
   const challenges = practice.filter(c => c.chapter === chapter.name);
   return {
     name: chapter.name,
@@ -183,9 +208,9 @@ function chapterCoverage(chapter) {
     takeaways: (revision.takeaways || []).length,
     gotchas: (revision.gotchas || []).length,
     tables: (revision.tables || []).length,
-    syntaxIsBoilerplate,
+    syntaxKey: normaliseSnippet(syntax),
     badges,
-    badgesAreMethodNames,
+    strayBadges,
     practice: challenges.length,
     practiceAutoChecked: challenges.filter(c => !c.selfCheck).length,
     deep: deep.filter(c => c.chapter === chapter.name).length
@@ -194,11 +219,23 @@ function chapterCoverage(chapter) {
 
 const chapters = concepts.map(chapterCoverage);
 
+// The original defect was that EVERY chapter showed the same first code block, so
+// the test is whether a snippet is shared, not what it starts with. Chapter 1's
+// annotated HelloWorld program is unique to Chapter 1, and that chapter is the one
+// that teaches it, so it is not boilerplate.
+const snippetCounts = new Map();
+for (const chapter of chapters) {
+  if (!chapter.syntaxKey) continue;
+  snippetCounts.set(chapter.syntaxKey, (snippetCounts.get(chapter.syntaxKey) || 0) + 1);
+}
+for (const chapter of chapters) {
+  chapter.syntaxIsBoilerplate = !!chapter.syntaxKey && snippetCounts.get(chapter.syntaxKey) > 1;
+}
+
 // ---- Concepts ---------------------------------------------------------------
 // Questions are tagged by concept rather than by chapter name, so coverage can be
 // reported against the concepts a chapter actually teaches, and against the
 // published exam objectives.
-const catalogue = require(path.join(root, 'data', 'java-concepts.js'));
 
 const questionsByConcept = new Map();
 for (const list of Object.values(questionBank)) {
@@ -260,7 +297,7 @@ for (const chapter of chapters) {
   if (chapter.hard === 0) flags.push('no hard question');
   if (chapter.ocjp === 0) flags.push('no OCJP question');
   if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
-  if (chapter.badgesAreMethodNames) flags.push('badges are method names');
+  if (chapter.strayBadges.length) flags.push(`badges that no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
   if (chapter.tables === 0) flags.push('no comparison table');
   if (chapter.takeaways === 0) flags.push('no takeaways');
   if (chapter.practice === 0) flags.push('no practice challenge');
@@ -306,7 +343,7 @@ const payload = {
     practiceAutoChecked: c.practiceAutoChecked,
     deep: c.deep,
     syntaxIsBoilerplate: c.syntaxIsBoilerplate,
-    badgesAreMethodNames: c.badgesAreMethodNames,
+    strayBadges: c.strayBadges,
     badges: c.badges,
     topics: c.topics.map(t => ({
       name: t.name,
@@ -352,7 +389,7 @@ const ocjpWork = chapters
   .filter(c => c.gap > 0)
   .sort((a, b) => b.gap - a.gap);
 const syntaxWork = chapters.filter(c => c.syntaxIsBoilerplate).length;
-const badgeWork = chapters.filter(c => c.badgesAreMethodNames).length;
+const badgeWork = chapters.filter(c => c.strayBadges.length).length;
 const tableWork = chapters.filter(c => c.tables === 0).length;
 
 // Rules that state a constraint with no example to show it. Reliable because it is
@@ -403,7 +440,7 @@ if (process.argv.includes('--check')) {
       warnings.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with nothing of their own.`);
     }
     if (chapter.syntaxIsBoilerplate) warnings.push(`${chapter.name}: the syntax snippet is boilerplate.`);
-    if (chapter.badgesAreMethodNames) warnings.push(`${chapter.name}: the badges are method names.`);
+    if (chapter.strayBadges.length) warnings.push(`${chapter.name}: badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}.`);
     if (chapter.tables === 0) warnings.push(`${chapter.name}: no comparison table.`);
     if (chapter.ocjp < OCJP_TARGET) warnings.push(`${chapter.name}: ${chapter.ocjp} OCJP questions, target ${OCJP_TARGET}.`);
   }

@@ -62,52 +62,9 @@ function formatName(name) {
   return formatted;
 }
 
-// A badge is the SYNTAX or API a concept teaches, not a method name from the
-// source. The panel used to scrape method names, so `main` appeared in all 15
-// chapters and the rest were the author's own helpers - the names of the code
-// written to DEMONSTRATE a concept, not the concept itself.
-const CONCEPT_BADGES = {
-  'statements': [';', '{ }', 'System.out.println'],
-  'primitives': ['int', 'long', 'double', 'boolean', 'char', 'byte', 'short', 'float'],
-  'literals': ['100L', '3.14f', '0x1F', '0b1010', '1_000'],
-  'wrappers': ['Integer.parseInt', 'Double.parseDouble', 'Integer.MAX_VALUE', 'Integer.valueOf'],
-  'casting': ['(int)', '(byte)', '(double)', 'implicit widening'],
-  'operators': ['+', '-', '*', '/', '%', '++', '--', '? :', '+=', '&&', '||'],
-  'strings': ['String', 'charAt', 'substring', 'length()', 'toUpperCase', 'trim', 'replace'],
-  'string-pool': ['==', '.equals()', 'intern()'],
-  'text-blocks': ['"""', 'String.format', 'printf', '%d', '%.2f', '%n'],
-  'var': ['var'],
-  'arrays': ['new int[]', 'array.length', 'for-each'],
-  'if-else': ['if', 'else if', 'else', '? :'],
-  'switch': ['switch', 'case', 'break', 'default', 'yield', '->'],
-  'loops': ['for', 'while', 'do while', 'i++'],
-  'break-continue': ['break', 'continue', 'label:'],
-  'classes': ['class', 'new', 'this', 'field'],
-  'static': ['static', 'ClassName.field', 'ClassName.method()'],
-  'encapsulation': ['private', 'public', 'getX()', 'setX()'],
-  'constructors': ['ClassName()', 'this()', 'super()', 'overloaded constructor'],
-  'inheritance': ['extends', 'super', 'IS-A'],
-  'polymorphism': ['@Override', 'parent reference', 'runtime dispatch'],
-  'overloading': ['same name', 'different parameters'],
-  'abstract': ['abstract class', 'interface', 'implements'],
-  'composition': ['HAS-A', 'field holding an object', 'delegation'],
-  'records-enums': ['record', 'enum'],
-  'object-class': ['toString()', 'equals()', 'hashCode()', 'getClass()'],
-  'exceptions': ['try', 'catch', 'finally', 'throw'],
-  'checked-unchecked': ['throws', 'RuntimeException', 'IOException'],
-  'throw-throws': ['throw new', 'throws'],
-  'multi-catch': ['catch (A | B e)', 'catch order'],
-  'generics': ['<T>', '<? extends T>'],
-  'collections': ['List', 'Set', 'Map', 'ArrayList', 'HashMap'],
-  'lambda': ['->', '@FunctionalInterface'],
-  'streams': ['.stream()', '.map()', '.filter()', '.collect()'],
-  'modules': ['module-info.java', 'requires', 'exports'],
-  'concurrency': ['Thread', 'Runnable', 'synchronized'],
-  'io': ['Files.readString', 'Path', 'BufferedReader'],
-  'jdbc': ['Connection', 'PreparedStatement', 'ResultSet'],
-  'localization': ['Locale', 'ResourceBundle'],
-  'annotations': ['@Override', '@Deprecated', '@SuppressWarnings']
-};
+// CONCEPT_BADGES lives in data/java-concepts.js with the rest of the concept
+// metadata, so the ledger can check a chapter's badges against it rather than
+// guessing from their shape.
 
 // ==========================================================================
 // Helper: Parse a Java file into structured data
@@ -1061,7 +1018,7 @@ function buildQuickRevisionEntry(chapterName, topics) {
     // covers. This replaces scraping method names from the source, which put
     // `main` in all 15 chapters and filled the rest with the author's own helpers.
     for (const conceptId of conceptCatalogue.conceptsForChapter(chapterName, [topic])) {
-      for (const badge of CONCEPT_BADGES[conceptId] || []) badges.add(badge);
+      for (const badge of conceptCatalogue.CONCEPT_BADGES[conceptId] || []) badges.add(badge);
     }
 
     // A syntax snippet should show the chapter's CENTRAL CONSTRUCT, not the class
