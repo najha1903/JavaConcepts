@@ -8,6 +8,7 @@
     "audit": "node scripts/audit-generated.js",
     "check:practice": "node scripts/check-practice.js",
     "check:questions": "node scripts/check-questions.js",
+    "check:bank": "node scripts/check-bank.js",
     "check": "node scripts/parse-concepts.js && node scripts/verify.js"
   },
   "dependencies": {

@@ -13,6 +13,8 @@
 //                     author's own solution, so none can reject correct code
 //   check-questions   every question about output is compiled and run, and the
 //                     real output is compared with the answer it marks correct
+//   check-bank        every hand-researched OCJP question marks the answer the
+//                     bank intends, and every wrong option says why it is wrong
 //
 // The first failure stops the run and the exit code is non-zero, so a broken
 // generation can never be reported as approved.
@@ -27,6 +29,7 @@ const CHECKS = [
   { script: 'audit-generated.js', label: 'Generated content' },
   { script: 'check-practice.js', label: 'Practice verifiers' },
   { script: 'check-questions.js', label: 'Question answers' },
+  { script: 'check-bank.js', label: 'OCJP bank' },
   { script: 'coverage.js', label: 'Coverage', args: ['--check'] }
 ];
 

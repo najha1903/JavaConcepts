@@ -6,6 +6,7 @@ const vm = require('vm');
 // name, so a new chapter receives the right material from what its notes cover
 // instead of matching nothing.
 const conceptCatalogue = require(path.join(__dirname, '..', 'data', 'java-concepts.js'));
+const { OCJP_BANK } = require(path.join(__dirname, '..', 'data', 'ocjp-bank.js'));
 
 // ==========================================================================
 // The marker vocabulary, in one place.
@@ -1125,6 +1126,72 @@ function orderOptionsForQuestion(options, seed) {
 // Helper: create a simple slug for qid
 function slugify(s) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
+// ==========================================================================
+// The hand-researched OCJP bank
+// ==========================================================================
+// Questions generated from the notes test what the author wrote. They cannot be
+// exam-grade, because a generator can only reformat his sentences. An exam
+// question needs a distractor that is wrong for a reason an examiner would test,
+// so those are researched and written by hand in data/ocjp-bank.js and merged in
+// here. They carry kind 'bank' so the ledger can tell them apart from both the
+// generated questions and the ones the author wrote in his own notes.
+function buildBankQuestions(chapterName, topics, conceptsByPath) {
+  const questions = [];
+  // A bank question is written for a chapter, but it still has to point at a real
+  // topic file so the audit can trace it and the Revision Bank can group it. The
+  // topic is chosen by concept overlap, which is structural: the question tagged
+  // `constructors` lands on the chapter's constructors topic. No overlap falls
+  // back to the first topic, so a question is never dropped.
+  const topicFor = (entry) => {
+    const wanted = new Set(entry.concepts || []);
+    let best = null;
+    let bestScore = 0;
+    for (const topic of topics || []) {
+      const own = conceptsByPath.get(topic.filePath) || [];
+      const score = own.filter(id => wanted.has(id)).length;
+      if (score > bestScore) { bestScore = score; best = topic; }
+    }
+    return best || (topics || [])[0] || null;
+  };
+
+  for (const entry of OCJP_BANK) {
+    if (entry.chapter !== chapterName) continue;
+    const correct = entry.options.filter(o => o.correct);
+    if (correct.length !== 1) {
+      console.warn(`   ⚠️  OCJP bank entry "${entry.id}" has ${correct.length} correct options and was skipped.`);
+      continue;
+    }
+    const topic = topicFor(entry);
+    // Options are reordered so the answer is not always first, exactly as for the
+    // questions authored in the notes. The "why this is wrong" note travels with
+    // its option.
+    const ordered = orderOptionsForQuestion(entry.options, entry.id);
+    const answerIndex = ordered.findIndex(o => o.correct);
+    const whyByOption = {};
+    ordered.forEach((o, i) => { if (!o.correct && o.why) whyByOption[i] = o.why; });
+
+    questions.push({
+      type: 'scq',
+      kind: 'bank',
+      qid: makeQid(chapterName, entry.topic || entry.concepts.join('-'), 'bank', entry.id),
+      difficulty: entry.difficulty || 'medium',
+      chapter: chapterName,
+      topic: entry.topic || (topic && topic.topicName) || (entry.concepts || []).join(', '),
+      topicPath: topic ? topic.filePath : undefined,
+      tags: ['ocjp', ...(entry.concepts || [])],
+      concepts: entry.concepts || [],
+      question: entry.question,
+      code: entry.code || undefined,
+      options: ordered.map(o => o.text),
+      answer: answerIndex,
+      whyByOption: Object.keys(whyByOption).length ? whyByOption : undefined,
+      explanation: entry.explanation,
+      source: 'ocjp-bank'
+    });
+  }
+  return questions;
 }
 
 // ==========================================================================
@@ -2563,7 +2630,7 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
     const ocjpQs = buildOCJPQuestions(chName, chapter.topics);
     // A quiz must never show the same question twice. Several sub-chapters share a
     // file name, so without this a chapter could repeat one question many times.
-    const combined = [...starterQs, ...ocjpQs].map(q => ({ ...q, concepts: conceptsForQuestion(q) }));
+    const combined = [...starterQs, ...ocjpQs, ...buildBankQuestions(chName, chapter.topics, conceptsByPath)].map(q => ({ ...q, concepts: q.concepts && q.concepts.length ? q.concepts : conceptsForQuestion(q) }));
     const seenQuestions = new Set();
     const deduped = combined.filter(q => {
       const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;

@@ -302,6 +302,21 @@ Rules:
 - Quiz markers are excluded from ordinary Notes and appear in the Quiz Bank.
 - Every generated question receives a stable ID and source-topic identity for progress tracking and concept review.
 
+## The Researched OCJP Bank
+
+The `@quiz` markers above are for questions you write yourself, in your own file. There is a second place for questions: `data/ocjp-bank.js`, which holds exam questions researched and written by hand.
+
+**Why it is separate.** A question generated from your notes tests what you wrote. It cannot be exam-grade, because the tool can only reformat your sentences. An exam question needs a distractor that is wrong for a reason an examiner would test — the field that is not polymorphic, the catch block that can never run, the overload that loses to widening. That has to be researched, so it lives in its own file and is never invented at runtime.
+
+**You do not need to touch it.** It is merged into the quiz automatically on every `npm run revise`, tagged `ocjp`, and attached to the topic that matches its concepts. It shows up in the Quiz Bank, the OCJP quiz, the Revision Bank, and the concept filter like any other question.
+
+The file explains the shape of an entry at the top. Two rules matter when adding one:
+
+- Every wrong option needs a `why`, because a distractor with no explanation teaches nothing.
+- The stated answer must be the real one. `scripts/check-bank.js` verifies that the quiz marks the answer the bank intends, and that every distractor has a reason; it runs as part of `npm run revise`. Snippets are verified by compiling and running them.
+
+The questions are original and written against the published objectives for Oracle's 1Z0-819 exam, which are public syllabus. Oracle's actual exam questions are copyrighted and covered by an exam NDA, and this repository is public, so none of them are reproduced.
+
 ## Section Markers
 
 A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.
@@ -399,7 +414,8 @@ The generated portal provides:
 - Notes with explanations, code blocks, tables and parameter notes.
 - **Key Takeaways & Annotations**: for each file, the `@takeaway` and `@gotcha` lines written in that file, followed by the annotations found inside its code. Only comments from inside the class declaration are listed, so the overview notes are not repeated, and only comments that read as a complete sentence are kept, so a fragment such as "condition" or "block of statements" never appears without the line it belonged to.
 - Detailed Study and Quick Revision modes; comparison tables keep their grid in both.
-- **Revision Bank**: one place for everything the author has written notes for. Filter by chapter, by free text, by level (Easy, Medium, Hard) and by type (OCJP, Tricky, Concept, Predict, Fill Blank, Written), read the notes, or start a quiz directly from the selection. It is built from `CONCEPTS_DATA`, so a chapter that has no source files can never appear in it.
+- **Revision Bank**: one place for everything the author has written notes for. Filter by chapter, by free text, by level (Easy, Medium, Hard), by type (OCJP, Tricky, Concept, Predict, Fill Blank, Written) and by concept, read the notes, or start a quiz directly from the selection. It is built from `CONCEPTS_DATA`, so a chapter that has no source files can never appear in it.
+- **Concept filter**: questions are tagged with the concepts of the topic file they came from, so inside Strings the StringBuilder questions and the equals/== questions can be told apart. The dropdown lists only concepts that can match the current chapter, with a count.
 - Chapter and grand quizzes with interview, OCJP, concept, code-completion, and output-prediction questions.
 - **Revision Quizzes menu**: opens a choice instead of jumping straight into the Grand Quiz, with the Grand Quiz, an OCJP-only quiz, a Tricky-only quiz, a per-chapter list, and a link into the Revision Bank. Every question shows the chapter it came from.
 - **Quiz This Topic** starts a quiz from the single topic open in the Notes view.
@@ -424,3 +440,13 @@ npm run check     # regenerate and audit without opening the browser
 ```
 
 The audit checks that topics, question IDs, question-to-topic links, answer shapes, challenges, and known incomplete-note patterns are valid. Java compilation should still be checked with your installed JDK after changing source code.
+
+`npm run revise` and `npm run approve` run every check, in order, and refuse to apply if any fails. They are:
+
+| Check | What it guarantees |
+|---|---|
+| `audit-generated.js` | The shape of the data: ids, topic paths, answer shapes, no marker leaked into the notes, no note line lost. |
+| `check-practice.js` | Every auto-checked challenge runs against your own solution, so none can reject correct code. |
+| `check-questions.js` | Every question about output is compiled and run, and the real output is compared with the answer marked correct. |
+| `check-bank.js` | Every hand-researched OCJP question marks the answer the bank intends, and every wrong option says why it is wrong. |
+| `coverage.js --check` | Fails on a chapter with no questions, no easy question, no hard question, or no takeaways. Reports the finer gaps as warnings. |
