@@ -289,8 +289,7 @@ function chapterNeedsWork(chapter) {
     chapter.hard === 0 ||
     chapter.ocjp === 0 ||
     chapter.syntaxIsBoilerplate ||
-    chapter.badgesAreMethodNames ||
-    chapter.tables === 0 ||
+    (chapter.strayBadges || []).length > 0 ||
     chapter.takeaways === 0 ||
     chapter.practice === 0;
 }
@@ -336,8 +335,8 @@ function renderCoverage() {
   if (qr.syntax || qr.badges || qr.tables) {
     const parts = [];
     if (qr.syntax) parts.push(`${qr.syntax} chapter(s) whose syntax snippet is boilerplate rather than the chapter's construct`);
-    if (qr.badges) parts.push(`${qr.badges} chapter(s) whose badges are method names rather than the API taught`);
-    if (qr.tables) parts.push(`${qr.tables} chapter(s) with no comparison table`);
+    if (qr.badges) parts.push(`${qr.badges} chapter(s) whose badges are not the syntax the chapter teaches`);
+    if (qr.tables) parts.push(`${qr.tables} chapter(s) with no comparison table &mdash; your content to add, nothing is generated`);
     work.push(`<div class="cov-work-card"><h3>Quick Revision</h3><ul class="cov-work-list">${parts.map(p => `<li>${p}</li>`).join('')}</ul></div>`);
   }
   document.getElementById('coverage-work').innerHTML = work.join('');
@@ -383,8 +382,7 @@ function renderCoverage() {
     if (chapter.hard === 0) flags.push('no hard question');
     if (chapter.ocjp === 0) flags.push('no OCJP question');
     if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
-    if (chapter.badgesAreMethodNames) flags.push('badges are method names');
-    if (chapter.tables === 0) flags.push('no comparison table');
+    if ((chapter.strayBadges || []).length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
     if (chapter.practice === 0) flags.push('no practice challenge');
 
     return `

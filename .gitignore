@@ -18,3 +18,8 @@
 # The Coverage Ledger is computed on every run from the generated data, so it is
 # an output rather than a source. Read it any time; never edit it.
 /revision-dashboard/coverage.md
+
+# Throwaway probe scripts written while checking a change. They are scratch work,
+# not part of the project, and one was committed by accident because of it.
+_*.tmp.js
+*.tmp.js
