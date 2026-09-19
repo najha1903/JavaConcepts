@@ -86,6 +86,34 @@ function practiceForTopic(topic) {
   return practiceByFile.get(key) || null;
 }
 
+// A rule is a note that states a constraint. Whether it has an EXAMPLE beside it
+// is structural, so it can be measured reliably: does a code sample sit directly
+// above or below the block the rule is in?
+//
+// Linking a rule to matching lines in the source was tried and removed. It
+// produced 36 links, most of them wrong: "println is the method called on it"
+// linked to `public class HelloWorld {`, and a rule about keywords linked to an
+// arithmetic line. Keyword matching cannot tell what a line is ABOUT from what it
+// merely mentions. Detection is reliable; linking is not.
+const RULE_PATTERN = /\b(must|cannot|can't|never|always|only|throws?|does not compile|compile error|is required|is not allowed|is forbidden)\b/i;
+
+function ruleCoverage(topic) {
+  const blocks = (topic.headerComments || []).filter(b => b.type !== 'table');
+  let rules = 0;
+  let withExample = 0;
+  blocks.forEach((block, index) => {
+    if (block.type === 'code') return;
+    const hasExample = (index > 0 && blocks[index - 1].type === 'code') ||
+      (index < blocks.length - 1 && blocks[index + 1].type === 'code');
+    for (const line of block.lines || []) {
+      if (!RULE_PATTERN.test(line)) continue;
+      rules++;
+      if (hasExample) withExample++;
+    }
+  });
+  return { rules, withExample, withoutExample: rules - withExample };
+}
+
 // ---- Per topic --------------------------------------------------------------
 function topicCoverage(chapter, topic) {
   const questions = byTopic.get(topic.filePath) || [];
@@ -101,6 +129,7 @@ function topicCoverage(chapter, topic) {
   const challenge = practiceForTopic(topic);
   const hasQuestions = questions.length > 0;
   const hasPractice = Boolean(challenge);
+  const rules = ruleCoverage(topic);
   return {
     file: topic.filePath,
     name: topic.topicName,
@@ -117,6 +146,9 @@ function topicCoverage(chapter, topic) {
     ocjp: questions.filter(q => q.ocjp).length,
     practice: hasPractice,
     practiceAutoChecked: hasPractice && !challenge.selfCheck,
+    rules: rules.rules,
+    rulesWithExample: rules.withExample,
+    rulesWithoutExample: rules.withoutExample,
     hasNotes: noteLines > 0 || (topic.inlineComments || []).length > 0,
     // Covered means it has material of its own: a question, or a challenge.
     covered: hasQuestions || hasPractice,
@@ -323,10 +355,17 @@ const syntaxWork = chapters.filter(c => c.syntaxIsBoilerplate).length;
 const badgeWork = chapters.filter(c => c.badgesAreMethodNames).length;
 const tableWork = chapters.filter(c => c.tables === 0).length;
 
+// Rules that state a constraint with no example to show it. Reliable because it is
+// structural: it asks whether a code sample sits beside the rule, not whether some
+// line is about the same subject.
+const rulesTotal = chapters.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rules || 0), 0), 0);
+const rulesWithoutExample = chapters.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rulesWithoutExample || 0), 0), 0);
+
 // Fill in the structured payload now that every part is known.
 payload.workList = uncoveredTopics;
 payload.ocjpWork = ocjpWork;
 payload.quickRevision = { syntax: syntaxWork, badges: badgeWork, tables: tableWork };
+payload.rules = { total: rulesTotal, withoutExample: rulesWithoutExample };
 payload.concepts = {
   covered: conceptsCovered.length,
   studied: studiedConcepts.length,
@@ -411,6 +450,7 @@ if (!quiet) {
   }
 
   const quickRevisionWork = syntaxWork + badgeWork + tableWork;
+
   if (quickRevisionWork) {
     console.log('');
     console.log('🧩 QUICK REVISION');
@@ -420,8 +460,14 @@ if (!quiet) {
   }
 
   console.log('');
-  console.log('📖 EXAM OBJECTIVES');
-  objectiveStatus.forEach(o => {
+  console.log('📝 NOTES — rules that state a constraint');
+  console.log(`   Rules found in the notes            : ${rulesTotal}`);
+  console.log(`   With an example beside them          : ${rulesTotal - rulesWithoutExample}`);
+  console.log(`   With no example to show it           : ${rulesWithoutExample}  (${rulesTotal ? Math.round(rulesWithoutExample / rulesTotal * 100) : 0}%)`);
+  console.log(`   These are where an example would help most. The tool cannot write one, so they are listed for you.`);
+
+  console.log('');
+  console.log('📖 EXAM OBJECTIVES');  objectiveStatus.forEach(o => {
     const mark = o.ahead ? 'ahead' : `${o.covered}/${o.concepts.length}`;
     console.log(`     ${mark.padStart(6)}  ${o.name}`);
   });

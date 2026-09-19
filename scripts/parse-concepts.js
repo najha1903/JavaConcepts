@@ -775,6 +775,7 @@ function parseJavaFile(filePath, rootDir) {
     ? [...authoredPoints, ...inlineComments.filter(line => !authoredPoints.includes(line))]
     : inlineComments;
 
+
   return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments: anchoredPoints, customQuizzes, deepChallenges, code: content };
 }
 
