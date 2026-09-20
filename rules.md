@@ -520,6 +520,8 @@ They then run every check, in order, and refuse to apply if any fails:
 | `check-questions.js` | Every question about output is compiled and run, and the real output is compared with the answer marked correct. |
 | `check-bank.js` | Every hand-researched OCJP question marks the answer the bank intends, and every wrong option says why it is wrong. |
 | `check-quality.js` | Every question gives feedback on a wrong choice, and none gives the answer away without reasoning. |
-| `coverage.js --check` | Fails on a chapter with no questions, no easy question, no hard question, or no takeaways, and on a concept your notes cover that no question tests. Reports the finer gaps as warnings. |
+| `coverage.js --check` | **Fails** on a chapter with no questions, no easy question, no hard question, or no takeaways; on a topic with nothing of its own; on a Quick Revision syntax snippet or badge that is not the chapter's own; and on a concept your notes cover that no question tests. **Warns** when a chapter is short of the OCJP target. |
+
+The two tiers are deliberate. A **failure** is a defect: something a learner could not revise. A **warning** is a target: the OCJP count is hand work, so it tells you what to write next without blocking you.
 
 The coverage check reports **"every topic is covered"** when all 142 topics have material of their own. A topic counts as covered when it has a question, a generated practice challenge, or — for a file whose notes open with `Challenge:` or `Deep Problem:` — is an exercise you wrote and solved yourself. Those exercise files are listed separately, because there is nothing for the tool to generate for them.

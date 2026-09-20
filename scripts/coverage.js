@@ -468,10 +468,12 @@ if (process.argv.includes('--check')) {
     if (chapter.questions > 0 && chapter.hard === 0) failures.push(`${chapter.name}: has no hard question, so nothing stretches.`);
     if (chapter.takeaways === 0) failures.push(`${chapter.name}: has no key takeaways.`);
     if (chapter.topicsTotal - chapter.topicsWithQuestions > 0) {
-      warnings.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with nothing of their own.`);
+      failures.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with nothing of their own, so there is no way to revise them.`);
     }
-    if (chapter.syntaxIsBoilerplate) warnings.push(`${chapter.name}: the syntax snippet is boilerplate.`);
-    if (chapter.strayBadges.length) warnings.push(`${chapter.name}: badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}.`);
+    if (chapter.syntaxIsBoilerplate) failures.push(`${chapter.name}: the Quick Revision syntax snippet is boilerplate rather than the chapter's own construct.`);
+    if (chapter.strayBadges.length) failures.push(`${chapter.name}: Quick Revision badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}.`);
+    // The OCJP count stays a WARNING. It is a target for hand-written exam questions
+    // rather than a defect, so it tells you what to write next without blocking.
     if (chapter.ocjp < OCJP_TARGET) warnings.push(`${chapter.name}: ${chapter.ocjp} OCJP questions, target ${OCJP_TARGET}.`);
   }
 
