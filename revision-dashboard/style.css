@@ -514,6 +514,43 @@ h1, h2, h3, h4, .logo span {
 .btn-primary:active {
   transform: translateY(0);
 }
+
+/* --------------------------------------------------------------------------
+   A DISABLED BUTTON MUST LOOK DISABLED.
+
+   There was no :disabled rule at all, so a button that could not be clicked
+   looked exactly like one that could. The quiz's Submit Answer is disabled until
+   an option is chosen, and it read as ready to press, which is what made it look
+   broken.
+
+   The hover and active effects are neutralised as well, because a button that
+   lifts and glows under the cursor is advertising itself as clickable.
+   -------------------------------------------------------------------------- */
+button:disabled,
+.btn:disabled,
+.btn-primary:disabled,
+.btn-outline:disabled,
+.btn-primary-outline:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+  box-shadow: none;
+}
+button:disabled:hover,
+.btn:disabled:hover,
+.btn-primary:disabled:hover,
+.btn-outline:disabled:hover,
+.btn-primary-outline:disabled:hover,
+button:disabled:active,
+.btn-primary:disabled:active {
+  transform: none;
+  box-shadow: none;
+  background-color: inherit;
+}
+.btn-primary:disabled,
+.btn-primary:disabled:hover {
+  background-color: var(--accent-primary);
+}
 .btn-outline {
   background-color: transparent;
   border-color: var(--border-color);

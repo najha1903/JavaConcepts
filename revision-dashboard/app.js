@@ -403,12 +403,68 @@ function levelStatusText(level, progress) {
 // from the data: overdue reviews first, then the weakest concept, then new material.
 // ============================================================================
 
+// ============================================================================
+// Where each concept first appears in the author's notes.
+//
+// "Study next" used to pick the first untried concept ALPHABETICALLY, so with no
+// history at all it offered to drill "Abstract classes and interfaces" - a chapter he
+// had not reached. It was not a recommendation at all, it was the letter A, and it
+// presented itself as advice.
+//
+// The order that means something is the order of his own notes: the first place a
+// concept appears. That makes "next" mean "the next thing in your material", which is
+// what a learner expects.
+// ============================================================================
+let conceptOrderCache = null;
+
+function conceptNotesOrder() {
+  if (conceptOrderCache) return conceptOrderCache;
+  const { byConcept, byId } = questionIndex();
+
+  // Each topic's position, flattened into one number so concepts can be compared.
+  const topicPosition = new Map();
+  CONCEPTS_DATA.forEach((chapter, chapterIndex) => {
+    (chapter.topics || []).forEach((topic, topicIndex) => {
+      topicPosition.set(topic.filePath, chapterIndex * 1000 + topicIndex);
+    });
+  });
+
+  const position = new Map();
+  for (const [conceptId, qids] of byConcept) {
+    let earliest = Infinity;
+    for (const qid of qids) {
+      const question = byId.get(qid);
+      if (!question) continue;
+      const where = topicPosition.get(question.topicPath);
+      if (typeof where === 'number' && where < earliest) earliest = where;
+    }
+    position.set(conceptId, earliest);
+  }
+  conceptOrderCache = position;
+  return position;
+}
+
+// Untried concepts in the order they appear in the notes, so the first one is the
+// earliest thing he has not covered.
+function untriedConceptsInNotesOrder(mastery) {
+  const order = conceptNotesOrder();
+  return mastery
+    .filter(m => !m.attempted)
+    .sort((a, b) => {
+      const oa = order.has(a.id) ? order.get(a.id) : Infinity;
+      const ob = order.has(b.id) ? order.get(b.id) : Infinity;
+      return oa - ob || a.name.localeCompare(b.name);
+    });
+}
+
 function pickStudyNext() {
   const queue = getReviewQueue();
   const mastery = getConceptMastery();
   const weakest = mastery.find(m => m.attempted && !m.proved);
-  const untouched = mastery.filter(m => !m.attempted);
+  const attempted = mastery.filter(m => m.attempted);
+  const untouched = untriedConceptsInNotesOrder(mastery);
 
+  // 1. Anything due comes first: forgetting is worse than not having started.
   if (queue.length) {
     const overdue = queue.filter(i => i.overdueMs > 0).length;
     return {
@@ -422,6 +478,7 @@ function pickStudyNext() {
     };
   }
 
+  // 2. A concept he has tried but not proved. This is a real weakness, measured.
   if (weakest) {
     return {
       action: 'weakest',
@@ -433,24 +490,43 @@ function pickStudyNext() {
     };
   }
 
+  // 3. Nothing answered at all. There is no weakness to find, so the honest thing is
+  // to start at the beginning of the notes rather than to name a concept at random.
+  if (!attempted.length) {
+    const firstChapter = CONCEPTS_DATA[0];
+    return {
+      action: 'start',
+      title: firstChapter ? `Start with ${firstChapter.name}` : 'Start with a chapter',
+      why: 'You have not answered anything yet, so there is no weakness to work on. This is where your notes begin.',
+      button: firstChapter ? `Read ${firstChapter.name}` : 'Open the first chapter',
+      handler: 'openFirstChapter'
+    };
+  }
+
+  // 4. Everything tried is proved. Point at the next thing in the notes, in order.
   if (untouched.length) {
+    const next = untouched[0];
     return {
       action: 'new',
-      title: `Start ${untouched.length} untried concept${untouched.length === 1 ? '' : 's'}`,
-      why: 'Everything you have tried is solid. These concepts have no answers recorded yet.',
-      button: `Drill ${untouched[0].name}`,
+      title: `Next in your notes: ${next.name}`,
+      why: `Everything you have tried is proved. This is the earliest concept you have not covered yet, out of ${untouched.length} still untried.`,
+      button: `Drill ${next.name}`,
       handler: 'startWeakestConceptQuiz',
-      concept: untouched[0].id
+      concept: next.id
     };
   }
 
   return {
     action: 'start',
-    title: 'Start with a chapter',
-    why: 'No answers recorded yet, so nothing is weak and nothing is due. Read a chapter, then quiz it.',
-    button: 'Open the first chapter',
-    handler: 'openFirstChapter'
+    title: 'Everything is proved',
+    why: 'Nothing is due and nothing is weak. Read a chapter you have not revisited in a while, or take the Grand Quiz.',
+    button: 'Open the Grand Quiz',
+    handler: 'openGrandQuiz'
   };
+}
+
+function openGrandQuiz() {
+  startChapterQuiz('Grand Java Quiz');
 }
 
 function getProjectNotes() {
