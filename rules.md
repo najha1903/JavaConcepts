@@ -356,6 +356,28 @@ Before an expectation is written, the **practice lab's own verifier** is run aga
 
 That is the reliable route for a `String` or `char` parameter, where the tool deliberately will not guess.
 
+## Mastery: What You Are Weak At, And What To Do Next
+
+The **Mastery** view answers the one question that matters for revision: which concepts am I bad at. Everything on it is computed from the answers you have already given, so it works on history that already exists.
+
+**Concepts, weakest first.** Every concept shows your accuracy, how many answers it is based on, and how long since you last got one right. The list is sorted weakest first, so the top of the screen is always what to work on. A concept you have not tried sorts *after* the ones you have — not-started is not the same as weak. A concept counts as **proved** at 80% or better over at least 3 answers.
+
+**Exam readiness, one honest number.** It is built from three things, and each asks a different question:
+
+| Part | Weight | What it asks |
+|---|---|---|
+| Accuracy | 35% | How often you are right when you answer |
+| Coverage | 20% | How much of the material you have actually attempted |
+| Proof | 45% | How many concepts you have answered well, repeatedly |
+
+Proof carries the most weight because it is the only part that cannot be reached by luck. A number built on accuracy alone would read 72% on a history that scores 32 — that is why the three parts are shown beneath it.
+
+**Levels.** Easy is always open. Medium opens when easy is proved, hard when medium is. This is a **nudge, never a lock**: every level stays reachable, and a level you have already proved is never shown as locked.
+
+**One review queue.** Questions and flashcards used to be scheduled separately: flashcards had real due dates, questions had only a weight, so a question you got wrong was merely *more likely* to reappear rather than guaranteed to come back. Questions now get a real due date too — wrong means again in this session, right means tomorrow and then further out each time — and both kinds are merged into a single list ordered by due date.
+
+**Study next.** The dashboard opens on one action chosen from your data, not three generic buttons. The priority is: something overdue, then your weakest concept, then untried material.
+
 ## Section Markers
 
 A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.
@@ -463,6 +485,7 @@ The generated portal provides:
 - **Practice Lab honesty**: every challenge is labelled **Auto-checked** (your method is run against the recorded expected values) or **Self-check** (no automatic verification, verify it yourself). Code the checker cannot run is reported as "could not be checked", never as a wrong answer.
 - OCJP questions attached to the topic they belong to, so they can be revised topic by topic, chapter by chapter, or centrally from the Revision Bank.
 - Wrong-answer concept review linked back to the exact source topic.
+- **Mastery view**: what you are weak at, weakest concept first, with exam readiness, level unlocking, one merged review queue and a "study next" nudge. Built entirely from the answers you have already given, so it works on existing history.
 - Practice Lab and Deep Problems.
 - Chapter-wise PDF printing from the Notes view.
 - Local progress tracking in browser storage.
