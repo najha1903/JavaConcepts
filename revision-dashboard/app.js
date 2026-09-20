@@ -619,6 +619,9 @@ function coverageCell(value, suffix) {
 }
 
 function chapterNeedsWork(chapter) {
+  // A chapter still being written is never flagged. Flagging a half-written chapter
+  // is double work, because the author may cover the gap in his next session.
+  if (chapter.inProgress) return false;
   return chapter.topicsWithQuestions < chapter.topicsTotal ||
     chapter.easy === 0 ||
     chapter.hard === 0 ||
@@ -639,7 +642,7 @@ function renderCoverage() {
 
   const t = data.totals;
   document.getElementById('coverage-subtitle').textContent =
-    `Generated ${new Date(data.generated).toLocaleString()}. What exists, what is missing, and what to do next.`;
+    `Generated ${new Date(data.generated).toLocaleString()}. What exists, what is missing, and what to do next. A chapter you are still writing is listed without being judged.`;
 
   document.getElementById('coverage-summary').innerHTML = `
     <div class="cov-stat"><span class="cov-stat-value">${t.topicsWithQuestions}/${t.topics}</span><span class="cov-stat-label">topics covered</span></div>
@@ -647,6 +650,7 @@ function renderCoverage() {
     <div class="cov-stat"><span class="cov-stat-value">${t.easy} / ${t.medium} / ${t.hard}</span><span class="cov-stat-label">easy / medium / hard</span></div>
     <div class="cov-stat"><span class="cov-stat-value">${t.ocjp}</span><span class="cov-stat-label">OCJP tagged</span></div>
     <div class="cov-stat"><span class="cov-stat-value">${t.authored}</span><span class="cov-stat-label">written by hand</span></div>
+    ${(data.inProgress && data.inProgress.chapters) ? `<div class="cov-stat in-progress"><span class="cov-stat-value">${data.inProgress.chapters}</span><span class="cov-stat-label">still being written</span></div>` : ''}
   `;
 
   // The work list: exactly what is outstanding, so nothing has to be remembered.
@@ -712,13 +716,17 @@ function renderCoverage() {
   document.getElementById('coverage-chapters').innerHTML = shown.map(chapter => {
     const needs = chapterNeedsWork(chapter);
     const flags = [];
-    if (chapter.topicsWithQuestions < chapter.topicsTotal) flags.push(`${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question`);
-    if (chapter.easy === 0) flags.push('no easy question');
-    if (chapter.hard === 0) flags.push('no hard question');
-    if (chapter.ocjp === 0) flags.push('no OCJP question');
-    if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
-    if ((chapter.strayBadges || []).length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
-    if (chapter.practice === 0) flags.push('no practice challenge');
+    if (chapter.inProgress) {
+      flags.push('still being written — nothing is generated for it yet, and it is not counted as incomplete');
+    } else {
+      if (chapter.topicsWithQuestions < chapter.topicsTotal) flags.push(`${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question`);
+      if (chapter.easy === 0) flags.push('no easy question');
+      if (chapter.hard === 0) flags.push('no hard question');
+      if (chapter.ocjp === 0) flags.push('no OCJP question');
+      if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
+      if ((chapter.strayBadges || []).length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
+      if (chapter.practice === 0) flags.push('no practice challenge');
+    }
 
     return `
       <div class="cov-chapter ${needs ? 'needs-work' : 'complete'}">

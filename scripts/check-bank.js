@@ -49,6 +49,23 @@ for (const [chapterName, questions] of Object.entries(questionBank)) {
   }
 }
 
+// A bank question for a chapter the author is STILL WRITING is intentionally not
+// emitted, because nothing is generated for that chapter until he moves on. It is not
+// a missing question, so it must not be reported as one. The rule is the same one
+// parse-concepts.js and coverage.js use.
+function chapterNumber(name) {
+  const match = String(name).match(/Chapter\s*_?\s*(\d+)/i);
+  return match ? Number(match[1]) : null;
+}
+const chapterNumbers = Object.keys(questionBank).map(chapterNumber).filter(n => n !== null);
+const highestChapter = chapterNumbers.length ? Math.max(...chapterNumbers) : null;
+function isInProgress(chapterName) {
+  const n = chapterNumber(chapterName);
+  if (n === null || highestChapter === null) return false;
+  return n >= highestChapter;
+}
+const deferredEntries = OCJP_BANK.filter(e => isInProgress(e.chapter));
+
 // ---- The source file itself -------------------------------------------------
 const ids = OCJP_BANK.map(e => e.id);
 if (new Set(ids).size !== ids.length) {
@@ -117,7 +134,7 @@ for (const { chapterName, question } of emitted) {
 }
 
 for (const entry of OCJP_BANK) {
-  if (!matched.has(entry.id)) problems.push(`${entry.id}: is in the bank but never reached the dashboard.`);
+  if (!matched.has(entry.id) && !isInProgress(entry.chapter)) problems.push(`${entry.id}: is in the bank but never reached the dashboard.`);
 }
 
 // ---- Report -----------------------------------------------------------------
@@ -125,6 +142,9 @@ const slots = {};
 for (const { question } of emitted) slots[question.answer] = (slots[question.answer] || 0) + 1;
 
 console.log(`   Bank entries: ${OCJP_BANK.length} written, ${emitted.length} in the dashboard`);
+if (deferredEntries.length) {
+  console.log(`   ${deferredEntries.length} held back for a chapter still being written, and they arrive when you start the next one.`);
+}
 console.log(`   Answer slots: ${Object.entries(slots).sort((a, b) => a[0] - b[0]).map(([k, v]) => `#${Number(k) + 1}:${v}`).join('  ')}`);
 if (Object.keys(slots).length === 1 && emitted.length > 3) {
   console.log('   Note: every answer is in the same slot, so the shuffle is not working.');

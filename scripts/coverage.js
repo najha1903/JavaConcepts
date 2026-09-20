@@ -169,6 +169,30 @@ function topicCoverage(chapter, topic) {
   };
 }
 
+// ---- Which chapters are finished ---------------------------------------------
+// A chapter still being written is NOT judged: no "needs work" flag, and no failure
+// for anything it has not got round to yet. Flagging a half-written chapter is
+// double work, because the author may cover the gap in his next session. The rule is
+// identical to the one in parse-concepts.js and suggest.js, so all three agree.
+function chapterNumber(name) {
+  const match = String(name).match(/Chapter\s*_?\s*(\d+)/i);
+  return match ? Number(match[1]) : null;
+}
+function isDraftChapter(chapter) {
+  return (chapter.topics || []).some(topic => /@draft\b/.test(String(topic.code || '')));
+}
+function finishedChapterNames(list) {
+  const numbers = list.map(c => chapterNumber(c.name)).filter(n => n !== null);
+  const highest = numbers.length ? Math.max(...numbers) : null;
+  const finished = new Set();
+  for (const chapter of list) {
+    const n = chapterNumber(chapter.name);
+    if (n === null || highest === null) { finished.add(chapter.name); continue; }
+    if (n < highest && !isDraftChapter(chapter)) finished.add(chapter.name);
+  }
+  return finished;
+}
+
 // ---- Per chapter ------------------------------------------------------------
 // The catalogue is needed by chapterCoverage below, so it is loaded first.
 const catalogue = require(path.join(root, 'data', 'java-concepts.js'));
@@ -228,6 +252,11 @@ function chapterCoverage(chapter) {
 }
 
 const chapters = concepts.map(chapterCoverage);
+const finishedChapters = finishedChapterNames(concepts);
+// Totals over the FINISHED chapters only, so the summary cannot contradict the check.
+// A chapter still being written is reported separately: counting its gaps here would
+// say "137 of 142" while the check says everything is covered.
+const finishedCoverage = chapters.filter(c => finishedChapters.has(c.name));
 
 // The original defect was that EVERY chapter showed the same first code block, so
 // the test is whether a snippet is shared, not what it starts with. Chapter 1's
@@ -259,8 +288,18 @@ for (const list of Object.values(questionBank)) {
 // Only the concepts the author has actually studied are judged. An objective he
 // has not reached yet is listed as ahead, not as a gap in his notes.
 const studiedConcepts = catalogue.CONCEPTS.filter(c => !catalogue.OBJECTIVES_AHEAD.includes(c.objective));
-const conceptsCovered = studiedConcepts.filter(c => (questionsByConcept.get(c.id) || 0) > 0);
-const conceptsMissing = studiedConcepts.filter(c => (questionsByConcept.get(c.id) || 0) === 0);
+
+// A concept is only judged once a FINISHED chapter covers it. A concept that lives
+// only in the chapter the author is still writing has no questions by design, because
+// nothing is generated for that chapter, so it must not be reported as a gap.
+const conceptsInFinishedChapters = new Set();
+for (const chapter of chapters) {
+  if (!finishedChapters.has(chapter.name)) continue;
+  for (const id of catalogue.conceptsForChapter(chapter.name, []) || []) conceptsInFinishedChapters.add(id);
+}
+const judgeableConcepts = studiedConcepts.filter(c => conceptsInFinishedChapters.has(c.id));
+const conceptsCovered = judgeableConcepts.filter(c => (questionsByConcept.get(c.id) || 0) > 0);
+const conceptsMissing = judgeableConcepts.filter(c => (questionsByConcept.get(c.id) || 0) === 0);
 const objectiveStatus = catalogue.EXAM_OBJECTIVES.map(name => ({
   name,
   ahead: catalogue.OBJECTIVES_AHEAD.includes(name),
@@ -277,16 +316,25 @@ lines.push('');
 lines.push('One line per topic: what it has, and what it still needs.');
 lines.push('');
 
+// Totals are over the finished chapters. The chapter still being written is counted
+// separately, because its gaps are not gaps.
 const totals = {
-  topics: chapters.reduce((n, c) => n + c.topicsTotal, 0),
-  topicsWithQuestions: chapters.reduce((n, c) => n + c.topicsWithQuestions, 0),
-  questions: chapters.reduce((n, c) => n + c.questions, 0),
-  easy: chapters.reduce((n, c) => n + c.easy, 0),
-  medium: chapters.reduce((n, c) => n + c.medium, 0),
-  hard: chapters.reduce((n, c) => n + c.hard, 0),
-  ocjp: chapters.reduce((n, c) => n + c.ocjp, 0),
-  authored: chapters.reduce((n, c) => n + c.authored, 0)
+  topics: finishedCoverage.reduce((n, c) => n + c.topicsTotal, 0),
+  topicsWithQuestions: finishedCoverage.reduce((n, c) => n + c.topicsWithQuestions, 0),
+  questions: finishedCoverage.reduce((n, c) => n + c.questions, 0),
+  easy: finishedCoverage.reduce((n, c) => n + c.easy, 0),
+  medium: finishedCoverage.reduce((n, c) => n + c.medium, 0),
+  hard: finishedCoverage.reduce((n, c) => n + c.hard, 0),
+  ocjp: finishedCoverage.reduce((n, c) => n + c.ocjp, 0),
+  authored: finishedCoverage.reduce((n, c) => n + c.authored, 0)
 };
+const inProgressTotals = chapters
+  .filter(c => !finishedChapters.has(c.name))
+  .reduce((acc, c) => ({
+    chapters: acc.chapters + 1,
+    questions: acc.questions + c.questions,
+    topics: acc.topics + c.topicsTotal
+  }), { chapters: 0, questions: 0, topics: 0 });
 
 lines.push('## Summary');
 lines.push('');
@@ -294,6 +342,9 @@ lines.push(`- Topics: **${totals.topicsWithQuestions} of ${totals.topics}** have
 lines.push(`- Questions: **${totals.questions}** (easy ${totals.easy}, medium ${totals.medium}, hard ${totals.hard})`);
 lines.push(`- OCJP tagged: **${totals.ocjp}**`);
 lines.push(`- Authored by hand: **${totals.authored}**, generated from the notes: **${totals.questions - totals.authored}**`);
+if (inProgressTotals.chapters) {
+  lines.push(`- Still being written: **${inProgressTotals.chapters} chapter(s)**, ${inProgressTotals.topics} topic(s), ${inProgressTotals.questions} question(s) — nothing is generated for these, and they are not counted above`);
+}
 lines.push('');
 
 for (const chapter of chapters) {
@@ -302,15 +353,21 @@ for (const chapter of chapters) {
   lines.push(`Questions ${chapter.questions} (E${chapter.easy} M${chapter.medium} H${chapter.hard}) · OCJP ${chapter.ocjp} · topics covered ${chapter.topicsWithQuestions}/${chapter.topicsTotal} · practice ${chapter.practice} · takeaways ${chapter.takeaways} · gotchas ${chapter.gotchas}`);
   lines.push('');
   const flags = [];
-  if (chapter.topicsWithQuestions < chapter.topicsTotal) flags.push(`${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question`);
-  if (chapter.easy === 0) flags.push('no easy question');
-  if (chapter.hard === 0) flags.push('no hard question');
-  if (chapter.ocjp === 0) flags.push('no OCJP question');
-  if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
-  if (chapter.strayBadges.length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
-  if (chapter.tables === 0) flags.push('no comparison table (your content to add, nothing is generated)');
-  if (chapter.takeaways === 0) flags.push('no takeaways');
-  if (chapter.practice === 0) flags.push('no practice challenge');
+  // A chapter still being written is listed with what it HAS, and no "needs work"
+  // line at all. See finishedChapterNames for why.
+  if (finishedChapters.has(chapter.name)) {
+    if (chapter.topicsWithQuestions < chapter.topicsTotal) flags.push(`${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question`);
+    if (chapter.easy === 0) flags.push('no easy question');
+    if (chapter.hard === 0) flags.push('no hard question');
+    if (chapter.ocjp === 0) flags.push('no OCJP question');
+    if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
+    if (chapter.strayBadges.length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
+    if (chapter.tables === 0) flags.push('no comparison table (your content to add, nothing is generated)');
+    if (chapter.takeaways === 0) flags.push('no takeaways');
+    if (chapter.practice === 0) flags.push('no practice challenge');
+  } else {
+    flags.push('still being written — nothing is generated for it yet, and it is not counted as incomplete');
+  }
   if (flags.length) {
     lines.push(`**Needs work:** ${flags.join(' · ')}`);
     lines.push('');
@@ -332,12 +389,16 @@ fs.writeFileSync(path.join(dashboardDir, 'coverage.md'), lines.join('\n'), 'utf8
 const payload = {
   generated: new Date().toISOString(),
   totals,
+  inProgress: inProgressTotals,
   ocjpTarget: OCJP_TARGET,
   workList: [],
   ocjpWork: [],
   quickRevision: { syntax: 0, badges: 0, tables: 0 },
   chapters: chapters.map(c => ({
     name: c.name,
+    // True for the chapter still being written, so the view can show it without
+    // judging it. See finishedChapterNames.
+    inProgress: !finishedChapters.has(c.name),
     questions: c.questions,
     easy: c.easy,
     medium: c.medium,
@@ -463,6 +524,9 @@ if (process.argv.includes('--check')) {
   const warnings = [];
 
   for (const chapter of chapters) {
+    // A chapter still being written is exempt. It is not incomplete; it is unfinished,
+    // and failing the build while the author is mid-chapter would block his work.
+    if (!finishedChapters.has(chapter.name)) continue;
     if (chapter.questions === 0) failures.push(`${chapter.name}: has no questions at all.`);
     if (chapter.questions > 0 && chapter.easy === 0) failures.push(`${chapter.name}: has no easy question, so there is no way in for a beginner.`);
     if (chapter.questions > 0 && chapter.hard === 0) failures.push(`${chapter.name}: has no hard question, so nothing stretches.`);
@@ -496,7 +560,7 @@ if (process.argv.includes('--check')) {
     warnings.slice(0, 8).forEach(w => console.log(`  - ${w}`));
     if (warnings.length > 8) console.log(`  ... and ${warnings.length - 8} more. See revision-dashboard/coverage.md`);
   } else {
-    console.log('Coverage check: every topic and every concept is covered.');
+    console.log('Coverage check: every topic and every concept in a FINISHED chapter is covered.');
   }
   console.log('');
 }
@@ -504,7 +568,10 @@ if (process.argv.includes('--check')) {
 if (!quiet) {
   console.log('');
   console.log('📊 COVERAGE');
-  console.log(`   Topics with a question of their own : ${totals.topicsWithQuestions} / ${totals.topics}`);
+  console.log(`   Topics with a question of their own : ${totals.topicsWithQuestions} / ${totals.topics}   (finished chapters)`);
+  if (inProgressTotals.chapters) {
+    console.log(`   Still being written                 : ${inProgressTotals.chapters} chapter(s), ${inProgressTotals.topics} topic(s) - not judged, nothing generated`);
+  }
   console.log(`   Questions                            : ${totals.questions}  (E${totals.easy} M${totals.medium} H${totals.hard})`);
   console.log(`   Difficulty spread                    : ${Math.round(totals.easy / totals.questions * 100)}% easy, ${Math.round(totals.medium / totals.questions * 100)}% medium, ${Math.round(totals.hard / totals.questions * 100)}% hard`);
   console.log(`   OCJP tagged                          : ${totals.ocjp}`);
@@ -562,7 +629,7 @@ if (!quiet) {
     console.log(`     ${mark.padStart(6)}  ${o.name}`);
   });
   console.log('');
-  console.log(`   Concepts studied and covered: ${conceptsCovered.length}/${studiedConcepts.length}`);
+  console.log(`   Concepts studied and covered: ${conceptsCovered.length}/${judgeableConcepts.length}   (finished chapters)`);
   if (conceptsMissing.length) {
     console.log(`   Concepts with no question yet: ${conceptsMissing.map(c => c.name).join(', ')}`);
   }

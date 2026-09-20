@@ -71,6 +71,45 @@ function formatName(name) {
 // guessing from their shape.
 
 // ==========================================================================
+// A chapter that is still being written
+// ==========================================================================
+// The author writes a chapter over several sessions. While he is doing that, the
+// tool must not judge the chapter and must not fill it in. Two reasons, both his:
+//
+//   - flagging a gap in a half-written chapter is double work, because he may cover
+//     it in the next session;
+//   - anything generated for it may become wrong the moment he edits the notes.
+//
+// So a chapter is FINISHED only once a higher-numbered chapter exists, and `@draft`
+// in the file overrides that in the other direction. For an unfinished chapter the
+// tool generates no questions, no takeaways and no gotchas - only what he wrote
+// himself appears. Everything arrives the moment he moves on.
+//
+// This is the same rule suggest.js uses, kept deliberately identical so the two can
+// never disagree about what "finished" means.
+function chapterNumber(name) {
+  const match = String(name).match(/Chapter\s*_?\s*(\d+)/i);
+  return match ? Number(match[1]) : null;
+}
+
+function isDraftChapter(chapter) {
+  return (chapter.topics || []).some(topic => /@draft\b/.test(String(topic.code || '')));
+}
+
+// The set of chapter names that are finished.
+function finishedChapterNames(chapters) {
+  const numbers = chapters.map(c => chapterNumber(c.name)).filter(n => n !== null);
+  const highest = numbers.length ? Math.max(...numbers) : null;
+  const finished = new Set();
+  for (const chapter of chapters) {
+    const n = chapterNumber(chapter.name);
+    if (n === null || highest === null) { finished.add(chapter.name); continue; }  // unnumbered: judge it normally
+    if (n < highest && !isDraftChapter(chapter)) finished.add(chapter.name);
+  }
+  return finished;
+}
+
+// ==========================================================================
 // Helper: Parse a Java file into structured data
 // ==========================================================================
 function parseJavaFile(filePath, rootDir) {
@@ -945,7 +984,7 @@ function isClaimStatement(text) {
 // ==========================================================================
 // Auto-generate QUICK_REVISION_BANK entry from parsed chapter topics
 // ==========================================================================
-function buildQuickRevisionEntry(chapterName, topics) {
+function buildQuickRevisionEntry(chapterName, topics, chapterIsFinished = true) {
   const gotchaKeywords = ['gotcha', 'pitfall', 'warning', 'caution', 'error', 'note', 'remember', 'important', 'trick', 'overflow', 'avoid', 'careful', 'trap'];
   const codeSnippets = [];
   const badges = new Set();
@@ -1060,18 +1099,24 @@ function buildQuickRevisionEntry(chapterName, topics) {
   // Authored lines win. Only a chapter with none of its own falls back to the
   // derived pick. The caps are generous enough that a chapter writing its own
   // points does not silently lose the last few.
+  //
+  // For a chapter that is STILL BEING WRITTEN there is no derived fallback at all:
+  // the panel shows only what the author wrote, because a derived point in a
+  // half-written chapter is a guess about a moving target.
   const takeaways = authoredTakeaways.length
     ? authoredTakeaways.slice(0, 12)
-    : pickBestKeyPoints(conceptsByTopic, 8);
+    : (chapterIsFinished ? pickBestKeyPoints(conceptsByTopic, 8) : []);
   const gotchas = authoredGotchas.length
     ? authoredGotchas.slice(0, 10)
-    : pickBestKeyPoints(gotchasByTopic, 6);
+    : (chapterIsFinished ? pickBestKeyPoints(gotchasByTopic, 6) : []);
 
   // A chapter with no authored points and nothing worth deriving says so, rather
   // than leaving the panel empty. This is a prompt to the author, and it appears
   // only in that case, so a chapter that has written its own points never shows it.
   if (!takeaways.length) {
-    takeaways.push(`No key points are written for ${chapterName} yet. Add // @takeaway lines to state them, and they will appear here instead of this note.`);
+    takeaways.push(chapterIsFinished
+      ? `No key points are written for ${chapterName} yet. Add // @takeaway lines to state them, and they will appear here instead of this note.`
+      : `${chapterName} is still being written, so nothing is generated for it yet. Add // @takeaway lines to state the key points, and they appear here. Everything else arrives once you start the next chapter.`);
   }
 
   // The snippet is the highest-scoring block, or nothing rather than boilerplate.
@@ -2687,6 +2732,13 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
   // ── Step 3: Rebuild generated question banks from the current source tree ─
   const sortedQBank = {};
   const sortedQRBank = {};
+  // Which chapters are finished, computed once. A chapter still being written gets no
+  // generated content; see finishedChapterNames.
+  const finishedChapters = finishedChapterNames(chaptersList);
+  const inProgress = chaptersList.filter(c => !finishedChapters.has(c.name)).map(c => c.name);
+  if (inProgress.length) {
+    console.log(`\n✍️  Still being written, so nothing is generated for: ${inProgress.join(', ')}`);
+  }
 
   chaptersList.forEach(chapter => {
     const chName = chapter.name;
@@ -2702,12 +2754,18 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
       if (own.length) conceptsByPath.set(topic.filePath, own);
     });
     const conceptsForQuestion = q => (q.topicPath && conceptsByPath.get(q.topicPath)) || chapterConcepts;
-    sortedQRBank[chName] = buildQuickRevisionEntry(chName, chapter.topics);
+    // A chapter still being written gets no generated content. Only the questions he
+    // wrote himself with @quiz appear, so nothing the tool invents can be wrong the
+    // moment he edits the notes, and there is nothing to redo later.
+    const isFinished = finishedChapters.has(chName);
+    sortedQRBank[chName] = buildQuickRevisionEntry(chName, chapter.topics, isFinished);
     const starterQs = buildStarterQuestions(chName, chapter.topics);
     const ocjpQs = buildOCJPQuestions(chName, chapter.topics);
     // A quiz must never show the same question twice. Several sub-chapters share a
     // file name, so without this a chapter could repeat one question many times.
-    const combined = [...starterQs, ...ocjpQs, ...buildBankQuestions(chName, chapter.topics, conceptsByPath), ...buildDerivedCodeQuestions(chName)].map(q => ({ ...q, concepts: q.concepts && q.concepts.length ? q.concepts : conceptsForQuestion(q) }));
+    const generated = [...starterQs, ...ocjpQs, ...buildBankQuestions(chName, chapter.topics, conceptsByPath), ...buildDerivedCodeQuestions(chName)];
+    const combined = (isFinished ? generated : generated.filter(q => q.kind === 'custom'))
+      .map(q => ({ ...q, concepts: q.concepts && q.concepts.length ? q.concepts : conceptsForQuestion(q) }));
     const seenQuestions = new Set();
     const deduped = combined.filter(q => {
       const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;

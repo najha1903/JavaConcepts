@@ -378,6 +378,34 @@ Proof carries the most weight because it is the only part that cannot be reached
 
 **Study next.** The dashboard opens on one action chosen from your data, not three generic buttons. The priority is: something overdue, then your weakest concept, then untried material.
 
+## A Chapter You Are Still Writing
+
+A chapter you are still working on is **not judged, and nothing is generated for it.**
+
+The rule: a chapter counts as **finished** once a higher-numbered chapter exists. `@draft` in any file marks a chapter as unfinished even if a higher one exists.
+
+While a chapter is unfinished:
+
+| | What happens |
+|---|---|
+| **Your notes** | Shown exactly as written |
+| **Your `@quiz` questions** | Kept and usable |
+| **Your `@takeaway` and `@gotcha` lines** | Kept and shown |
+| **Generated questions** | **None** — no true/false, no output-prediction, no OCJP-trap, no researched bank questions |
+| **Generated takeaways and gotchas** | **None** — the panel shows only what you wrote |
+| **The ledger** | Lists the chapter as *still being written*, with no "needs work" flag |
+| **`npm run verify`** | Does not fail on anything this chapter lacks |
+| **Suggestions** | None |
+
+Two reasons, both practical:
+
+1. **Flagging a half-written chapter is double work.** You may cover the gap in your next session, so being told about it now just creates a list you will ignore.
+2. **Anything generated may become wrong immediately.** The moment you edit the notes, generated content can contradict them.
+
+**Everything arrives the moment you start the next chapter.** At that point the chapter is finished, and it gets its generated questions, derived takeaways, ledger flags and suggestions all at once.
+
+The same rule is implemented in three places — `parse-concepts.js`, `coverage.js` and `suggest.js` — kept deliberately identical so they can never disagree about what "finished" means.
+
 ## Section Markers
 
 A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.
