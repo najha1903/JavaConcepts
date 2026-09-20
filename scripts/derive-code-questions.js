@@ -30,7 +30,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { execFileSync } = require('child_process');
+const { runProcess, mapWithConcurrency, availableConcurrency } = require(path.join(__dirname, 'lib', 'run-java.js'));
 
 const root = path.resolve(__dirname, '..');
 const quiet = process.argv.includes('--quiet');
@@ -129,8 +129,10 @@ function isTrivialOutput(code, output) {
 
 const work = fs.mkdtempSync(path.join(os.tmpdir(), 'derive-'));
 
-// Returns the real output, or null when the block cannot be compiled and run.
-function runBlock(code, tag) {
+// Compiles and runs a block, returning its real output, or null when it cannot be
+// compiled or does not finish. ASYNC: these used to run one at a time through
+// execFileSync, which is why a full rebuild took 29 seconds.
+async function runBlock(code, tag) {
   const candidates = [];
   if (/\bclass\s+\w+/.test(code)) candidates.push(code);
   candidates.push(`public class Probe {\n    public static void main(String[] args) {\n${code.split('\n').map(l => '        ' + l).join('\n')}\n    }\n}`);
@@ -139,16 +141,10 @@ function runBlock(code, tag) {
     const dir = fs.mkdtempSync(path.join(work, tag + '-'));
     const file = path.join(dir, 'Probe.java');
     fs.writeFileSync(file, source.replace(/\n/g, '\r\n'), 'utf8');
-    try {
-      execFileSync('javac', ['-d', dir, file], { stdio: 'pipe' });
-    } catch {
-      continue;
-    }
-    try {
-      return execFileSync('java', ['-cp', dir, 'Probe'], { stdio: 'pipe', timeout: 5000 }).toString().trim();
-    } catch {
-      return null;   // threw, or never finished
-    }
+    const compile = await runProcess('javac', ['-d', dir, file], { timeout: 30000 });
+    if (compile.status !== 0) continue;
+    const run = await runProcess('java', ['-cp', dir, 'Probe'], { timeout: 5000 });
+    return run.status === 0 ? String(run.stdout).trim() : null;
   }
   return null;
 }
@@ -156,40 +152,53 @@ function runBlock(code, tag) {
 const questions = [];
 const skipped = { noClaim: 0, wontCompile: 0, noOutput: 0, changedWhenStripped: 0, trivial: 0, duplicate: 0 };
 const seen = new Set();
-let index = 0;
 
-for (const block of blocks) {
+// CommonJS has no top-level await, so the part that compiles is wrapped in an async
+// main. Everything after the runBlock definition belongs to it.
+async function main() {
+
+// Blocks are processed in parallel, because each one needs a javac and a java process
+// and JVM startup is the whole cost. Results are then assembled in the original order
+// so the generated file stays byte-stable between runs.
+async function evaluateBlock(block, index) {
   const code = block.code;
   const claim = code.match(OUTPUT_CLAIM);
-  if (!claim) { skipped.noClaim++; continue; }
+  if (!claim) return { skip: 'noClaim' };
 
-  const tag = 'b' + (index++);
-  const realOutput = runBlock(code, tag);
-  if (realOutput === null) { skipped.wontCompile++; continue; }
-  if (!realOutput) { skipped.noOutput++; continue; }
+  const tag = 'b' + index;
+  const realOutput = await runBlock(code, tag);
+  if (realOutput === null) return { skip: 'wontCompile' };
+  if (!realOutput) return { skip: 'noOutput' };
 
   // The stripped code must produce exactly the same output, or the comment was
   // load-bearing and the block cannot be shown without it.
   const shown = stripComments(code);
-  if (!shown) { skipped.noOutput++; continue; }
-  const strippedOutput = runBlock(shown, tag + 's');
-  if (strippedOutput !== realOutput) { skipped.changedWhenStripped++; continue; }
+  if (!shown) return { skip: 'noOutput' };
+  const strippedOutput = await runBlock(shown, tag + 's');
+  if (strippedOutput !== realOutput) return { skip: 'changedWhenStripped' };
 
-  if (isTrivialOutput(shown, realOutput)) { skipped.trivial++; continue; }
+  if (isTrivialOutput(shown, realOutput)) return { skip: 'trivial' };
 
-  const key = shown + '||' + realOutput;
+  return {
+    question: {
+      chapter: block.chapter,
+      topic: block.topic,
+      topicPath: block.topicPath,
+      code: shown,
+      answer: realOutput,
+      explanation: explanationFitsOutput(explanationFrom(code), realOutput) ? explanationFrom(code) : '',
+      claim: claim[1].trim()
+    }
+  };
+}
+
+const evaluated = await mapWithConcurrency(blocks, availableConcurrency(), evaluateBlock);
+for (const outcome of evaluated) {
+  if (outcome.skip) { skipped[outcome.skip]++; continue; }
+  const key = outcome.question.code + '||' + outcome.question.answer;
   if (seen.has(key)) { skipped.duplicate++; continue; }
   seen.add(key);
-
-  questions.push({
-    chapter: block.chapter,
-    topic: block.topic,
-    topicPath: block.topicPath,
-    code: shown,
-    answer: realOutput,
-    explanation: explanationFitsOutput(explanationFrom(code), realOutput) ? explanationFrom(code) : '',
-    claim: claim[1].trim()
-  });
+  questions.push(outcome.question);
 }
 
 // A stable id per question, so progress tracking survives a regeneration.
@@ -234,3 +243,9 @@ if (!quiet) {
 }
 
 fs.rmSync(work, { recursive: true, force: true });
+}
+
+main().catch(error => {
+  console.error(`Could not derive the code questions: ${error && error.message ? error.message : error}`);
+  process.exit(1);
+});

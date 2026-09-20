@@ -18,11 +18,14 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const vm = require('vm');
-const { spawnSync } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 
 const root = path.resolve(__dirname, '..');
 const dashboardDir = path.join(root, 'revision-dashboard');
-const CONCURRENCY = 6;
+// Each candidate starts two JVMs, which is nearly all of the cost, so the concurrency
+// is what decides the runtime. One per core, capped, so a small machine is not
+// swamped and a large one is used properly.
+const CONCURRENCY = Math.max(2, Math.min(8, os.cpus().length));
 
 function loadValue(file, globalName) {
   const source = fs.readFileSync(path.join(dashboardDir, file), 'utf8');
@@ -76,18 +79,42 @@ function tokens(text) {
 }
 
 // Compiles and runs one candidate, then compares. Returns a verdict.
-function checkOne(candidate, workDir) {
+//
+// This is ASYNC on purpose. It used to call spawnSync, which blocks the event loop -
+// and because the worker bodies never awaited anything, the "parallel workers" ran one
+// after another. Six-way concurrency was an illusion and the check took 28 seconds.
+// Starting the processes without waiting lets them genuinely overlap.
+function runProcess(command, args, options) {
+  return new Promise(resolve => {
+    let stdout = '';
+    let stderr = '';
+    let settled = false;
+    const finish = (status) => {
+      if (settled) return;
+      settled = true;
+      resolve({ status, stdout, stderr });
+    };
+    const child = spawn(command, args, { ...options, windowsHide: true });
+    const timer = setTimeout(() => { try { child.kill(); } catch (e) {} finish(-1); }, options.timeout || 30000);
+    child.stdout.on('data', d => { stdout += d; });
+    child.stderr.on('data', d => { stderr += d; });
+    child.on('error', () => { clearTimeout(timer); finish(-1); });
+    child.on('close', status => { clearTimeout(timer); finish(status); });
+  });
+}
+
+async function checkOne(candidate, workDir) {
   const dir = path.join(workDir, String(candidate.index));
   fs.mkdirSync(dir, { recursive: true });
   const filePath = path.join(dir, 'Workspace.java');
   fs.writeFileSync(filePath, candidate.program.source, 'utf8');
 
-  const compile = spawnSync('javac', ['-d', dir, filePath], { encoding: 'utf8', timeout: 30000 });
+  const compile = await runProcess('javac', ['-d', dir, filePath], { timeout: 30000 });
   // A question may be asking whether the code compiles, which is a valid question
   // and not one this check can judge, so a compile failure is a skip.
   if (compile.status !== 0) return { verdict: 'skip' };
 
-  const run = spawnSync('java', ['-cp', dir, 'Workspace'], { encoding: 'utf8', timeout: 15000 });
+  const run = await runProcess('java', ['-cp', dir, 'Workspace'], { timeout: 15000 });
   if (run.status !== 0) return { verdict: 'skip' };
 
   const actual = String(run.stdout).replace(/\r\n/g, '\n').replace(/\s+$/, '');
@@ -169,7 +196,7 @@ async function main() {
     const workers = Array.from({ length: Math.min(CONCURRENCY, candidates.length) }, async () => {
       while (next < candidates.length) {
         const candidate = candidates[next++];
-        const result = checkOne(candidate, workDir);
+        const result = await checkOne(candidate, workDir);
         if (result.verdict === 'skip') { skippedCompile++; continue; }
         runnable++;
         if (result.verdict === 'pass') agreed++;

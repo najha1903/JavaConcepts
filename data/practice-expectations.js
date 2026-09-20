@@ -11,8 +11,13 @@
 // choosing the value would be a guess about the author's domain. A challenge that is
 // absent here needs a @testcase line in the notes.
 //
-// Regenerate with: node scripts/fill-practice-expectations.js
+// Regenerate with: node scripts/fill-practice-expectations.js [--force]
 // ============================================================================
+
+// Fingerprint of the inputs this was derived from: the source files, the challenge
+// list and the verifier template. When it still matches, the script skips the work
+// instead of compiling and running every method again.
+const SOURCE_FINGERPRINT = 'a15a477c';
 
 const PRACTICE_EXPECTATIONS = {
   "expressionevaluatordeepproblem": [
@@ -145,4 +150,4 @@ const PRACTICE_EXPECTATIONS = {
   ]
 };
 
-module.exports = { PRACTICE_EXPECTATIONS };
+module.exports = { PRACTICE_EXPECTATIONS, SOURCE_FINGERPRINT };

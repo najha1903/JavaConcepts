@@ -31,8 +31,8 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const vm = require('vm');
-const { execFileSync } = require('child_process');
 const { buildVerifySource } = require('./lib/lab-verifier.js');
+const { runProcess, mapWithConcurrency, availableConcurrency } = require('./lib/run-java.js');
 
 const root = path.resolve(__dirname, '..');
 const quiet = process.argv.includes('--quiet');
@@ -66,6 +66,46 @@ function needsFilling(challenge) {
 }
 
 const targets = challenges.filter(needsFilling);
+
+// ---- Skip the whole thing when nothing it depends on has changed ---------------
+// Computing an expectation means compiling and running a method, so this step costs
+// about 17 seconds. Its result depends only on the source files, the challenge list
+// and the verifier template, so those are fingerprinted. A run where nothing changed
+// does no work at all.
+function fingerprint() {
+  let result = 2166136261;
+  const feed = (text) => {
+    for (let i = 0; i < text.length; i++) {
+      result ^= text.charCodeAt(i);
+      result = Math.imul(result, 16777619);
+    }
+  };
+  const walk = (dir, out = []) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full, out);
+      else if (entry.name.endsWith('.java')) out.push(full);
+    }
+    return out;
+  };
+  for (const file of walk(path.join(root, 'src')).sort()) {
+    feed(path.relative(root, file));
+    feed(fs.readFileSync(file, 'utf8'));
+  }
+  feed(fs.readFileSync(path.join(root, 'revision-dashboard', 'practice.js'), 'utf8'));
+  feed(fs.readFileSync(path.join(__dirname, 'lib', 'lab-verifier.js'), 'utf8'));
+  return (result >>> 0).toString(16);
+}
+
+const sourceFingerprint = fingerprint();
+if (!process.argv.includes('--force') && fs.existsSync(outputFile)) {
+  const existingText = fs.readFileSync(outputFile, 'utf8');
+  const match = existingText.match(/SOURCE_FINGERPRINT = '([0-9a-f]+)'/);
+  if (match && match[1] === sourceFingerprint) {
+    if (!quiet) console.log(`   Practice expectations are already up to date (${Object.keys(existing).length} challenge(s), sources unchanged).`);
+    process.exit(0);
+  }
+}
 
 function sourceFor(challenge) {
   for (const chapter of concepts) {
@@ -182,16 +222,20 @@ const report = { filled: 0, skippedDomainTypes: 0, noSource: 0, wouldNotCompile:
 const skipped = [];
 const disagreements = [];
 
-for (const challenge of targets) {
+// One challenge, start to finish. Returns an outcome rather than mutating shared
+// state, so the results can be aggregated in the original order after running in
+// parallel. Each challenge needs its own javac and java process, and JVM startup is
+// the whole cost, which is why this is async.
+async function processChallenge(challenge) {
   const topic = sourceFor(challenge);
-  if (!topic) { report.noSource++; continue; }
+  if (!topic) return { kind: 'noSource' };
 
   const classBody = String(topic.code)
     .replace(/^\s*package\s+[^;]+;\s*$/m, '')
     .replace(new RegExp(`public\\s+class\\s+${topic.fileName.replace('.java', '')}\\b`), 'public class Harness');
 
   const signature = classBody.match(new RegExp(`public\\s+static\\s+([\\w<>\\[\\]]+)\\s+${challenge.methodName}\\s*\\(([^)]*)\\)`));
-  if (!signature) { report.noSource++; continue; }
+  if (!signature) return { kind: 'noSource' };
   const returnType = signature[1];
   const isVoid = returnType === 'void';
   const params = signature[2].split(',').map(p => p.trim()).filter(Boolean);
@@ -210,17 +254,13 @@ for (const challenge of targets) {
   } else {
     const choices = types.map(valuesFor);
     if (choices.some(c => c === null)) {
-      report.skippedDomainTypes++;
-      skipped.push({ id: challenge.id, method: challenge.methodName, types: types.join(', ') });
-      continue;
+      return { kind: 'skippedDomainTypes', entry: { id: challenge.id, method: challenge.methodName, types: types.join(', ') } };
     }
     const rounds = Math.max(...choices.map(c => c.length));
     argSets = Array.from({ length: rounds }, (_, i) => choices.map(c => c[Math.min(i, c.length - 1)]));
   }
 
   const cases = [];
-  let ok = true;
-
   for (const args of argSets) {
     const literals = args.map(a => {
       if (typeof a === 'boolean') return a ? 'true' : 'false';
@@ -235,37 +275,49 @@ for (const challenge of targets) {
     const file = path.join(dir, 'Harness.java');
     fs.writeFileSync(file, `${classBody}\n\nclass Runner {\n    public static void main(String[] a) {\n        ${statement}\n    }\n}`.replace(/\n/g, '\r\n'), 'utf8');
 
-    try {
-      execFileSync('javac', ['-d', dir, file], { stdio: 'pipe' });
-    } catch { report.wouldNotCompile++; ok = false; break; }
+    const compile = await runProcess('javac', ['-d', dir, file], { timeout: 30000 });
+    if (compile.status !== 0) return { kind: 'wouldNotCompile' };
 
-    let out;
-    try {
-      out = execFileSync('java', ['-cp', dir, 'Runner'], { stdio: 'pipe', timeout: 5000 }).toString().replace(/\r\n/g, '\n');
-    } catch { report.threw++; ok = false; break; }
+    const run = await runProcess('java', ['-cp', dir, 'Runner'], { timeout: 5000 });
+    if (run.status !== 0) return { kind: 'threw' };
 
-    const trimmed = out.replace(/\s+$/, '');
+    const trimmed = String(run.stdout).replace(/\r\n/g, '\n').replace(/\s+$/, '');
     // An empty result cannot be told apart from "it never ran", so it is not used as
     // an expectation. A challenge that genuinely expects no output needs an explicit
     // @testcase line from the author.
-    if (!trimmed) { report.noResult++; ok = false; break; }
+    if (!trimmed) return { kind: 'noResult' };
     cases.push({ args, expected: asJsValue(trimmed, returnType) });
   }
 
-  if (ok && cases.length) {
-    // The lab has the final say. If it does not agree with the Java-computed value,
-    // the challenge stays self-check: honest, rather than marking correct code wrong.
-    const solution = String(topic.code);
-    if (labAgrees({ methodName: challenge.methodName, paramNames, capturesOutput: isVoid, solution, cases })) {
-      expectations[challenge.id] = cases;
-      report.filled++;
-    } else {
-      report.labDisagreed++;
-      disagreements.push({ id: challenge.id, method: challenge.methodName, cases });
-    }
-  } else if (existing[challenge.id]) {
-    // The Java run failed this time. Keep what was already validated rather than
-    // dropping it on a transient problem.
+  if (!cases.length) return { kind: 'noResult' };
+
+  // The lab has the final say. If it does not agree with the Java-computed value, the
+  // challenge stays self-check: honest, rather than marking correct code wrong.
+  const solution = String(topic.code);
+  if (labAgrees({ methodName: challenge.methodName, paramNames, capturesOutput: isVoid, solution, cases })) {
+    return { kind: 'filled', id: challenge.id, cases };
+  }
+  return { kind: 'labDisagreed', entry: { id: challenge.id, method: challenge.methodName, cases } };
+}
+
+// CommonJS has no top-level await, so the part that runs Java is wrapped in an async
+// main. Everything from here to the end of the file belongs to it.
+async function main() {
+const outcomes = await mapWithConcurrency(targets, availableConcurrency(), processChallenge);
+
+for (let i = 0; i < outcomes.length; i++) {
+  const outcome = outcomes[i];
+  const challenge = targets[i];
+  if (outcome.kind === 'filled') { expectations[challenge.id] = outcome.cases; report.filled++; continue; }
+  if (outcome.kind === 'labDisagreed') { report.labDisagreed++; disagreements.push(outcome.entry); continue; }
+  if (outcome.kind === 'skippedDomainTypes') { report.skippedDomainTypes++; skipped.push(outcome.entry); continue; }
+  if (outcome.kind === 'noSource') { report.noSource++; continue; }
+  if (outcome.kind === 'wouldNotCompile') { report.wouldNotCompile++; }
+  else if (outcome.kind === 'threw') { report.threw++; }
+  else if (outcome.kind === 'noResult') { report.noResult++; }
+  // The Java run failed this time. Keep what was already validated rather than
+  // dropping it on a transient problem.
+  if (existing[challenge.id]) {
     expectations[challenge.id] = existing[challenge.id];
     report.carriedOver++;
   }
@@ -284,12 +336,17 @@ const output = `// =============================================================
 // choosing the value would be a guess about the author's domain. A challenge that is
 // absent here needs a @testcase line in the notes.
 //
-// Regenerate with: node scripts/fill-practice-expectations.js
+// Regenerate with: node scripts/fill-practice-expectations.js [--force]
 // ============================================================================
+
+// Fingerprint of the inputs this was derived from: the source files, the challenge
+// list and the verifier template. When it still matches, the script skips the work
+// instead of compiling and running every method again.
+const SOURCE_FINGERPRINT = '${sourceFingerprint}';
 
 const PRACTICE_EXPECTATIONS = ${JSON.stringify(expectations, null, 2)};
 
-module.exports = { PRACTICE_EXPECTATIONS };
+module.exports = { PRACTICE_EXPECTATIONS, SOURCE_FINGERPRINT };
 `;
 
 // Only rewritten when a value actually changed, so a run that finds nothing to do
@@ -318,3 +375,9 @@ if (!quiet) {
 }
 
 fs.rmSync(work, { recursive: true, force: true });
+}
+
+main().catch(error => {
+  console.error(`Could not compute the practice expectations: ${error && error.message ? error.message : error}`);
+  process.exit(1);
+});
