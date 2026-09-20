@@ -4,6 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Review proposed changes</title>
+  <!--
+    The theme is set HERE, before the stylesheet is applied, so the page never flashes
+    white on the way to dark. style.css defines its variables only under
+    [data-theme="dark"] and [data-theme="light"], so a page that sets neither gets no
+    variables at all and the browser falls back to a white background, which is what
+    made this page painful to look at.
+
+    The preference is SEPARATE from the dashboard's, and defaults to dark. Sharing one
+    key would mean that switching the dashboard to light also made this page light,
+    which is the thing that hurt. Here, dark is guaranteed unless it is changed on this
+    page.
+  -->
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('javarev_theme_review'); } catch (e) {}
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -57,6 +76,18 @@
     .result.ok { border-color: rgba(74, 222, 128, 0.4); }
     .result.bad { border-color: rgba(248, 113, 113, 0.4); }
     .empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .review-head-actions { display: flex; align-items: center; gap: 14px; }
+    .theme-toggle {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+    .theme-toggle:hover { color: var(--text-primary); border-color: var(--accent-secondary); }
   </style>
 </head>
 <body>
@@ -66,7 +97,12 @@
         <h1>Review proposed changes</h1>
         <p class="review-sub" id="review-sub">Checking what is waiting&hellip;</p>
       </div>
-      <a href="index.html" style="font-size:13px;color:var(--text-muted);">Open the dashboard &rarr;</a>
+      <div class="review-head-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" title="Switch between dark and light">
+          <span id="theme-label">Dark</span>
+        </button>
+        <a href="index.html" style="font-size:13px;color:var(--text-muted);">Open the dashboard &rarr;</a>
+      </div>
     </div>
 
     <div class="result" id="result"></div>
@@ -89,6 +125,33 @@
     const result = document.getElementById('result');
     const suggestionsBox = document.getElementById('suggestions');
     let acceptedKeys = [];
+
+    // ---- Theme ----------------------------------------------------------------
+    // Dark by default, with a switch to light. The initial value is applied by the
+    // inline script in the head, before the stylesheet paints, so there is no white
+    // flash. The preference is kept separate from the dashboard's so a light dashboard
+    // can never make this page light again.
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeLabel = document.getElementById('theme-label');
+
+    function showThemeLabel() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      themeLabel.textContent = current === 'dark' ? 'Dark' : 'Light';
+      themeToggle.title = current === 'dark' ? 'Switch to light' : 'Switch to dark';
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('javarev_theme_review', next); } catch (e) {}
+      showThemeLabel();
+    }
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', toggleTheme);
+      showThemeLabel();
+    }
 
     function escapeHtml(text) {
       return String(text).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
