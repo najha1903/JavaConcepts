@@ -3942,6 +3942,10 @@ function collectBankSelection() {
   const topics = [];
   chapters.forEach(chapter => {
     chapter.topics.forEach(topic => {
+      // An exercise file is practice, not revision material. It is not listed here;
+      // the chapter shows one line pointing at the Practice Lab instead. The flag is
+      // written by the parser, so the browser is not re-deriving the rule.
+      if (topic.isExercise) return;
       if (bankFilters.search && !topicSearchText(topic).includes(bankFilters.search)) return;
       topics.push({ chapter: chapter.name, topic });
     });
@@ -3968,32 +3972,84 @@ function collectBankSelection() {
   return { topics, questions };
 }
 
-// The bank is for revision, so it shows the CONCEPT lines. Parameter notes, bare
-// headings, table rows and code lines are skipped: they belong in the Notes view,
-// and dumping them here made the bank read like a wall of argument descriptions.
-function bankConceptLines(topic) {
-  const lines = [];
+// ============================================================================
+// The Revision Bank shows the author's notes ORGANISED BY THEIR OWN SHAPE.
+//
+// It used to extract "concept lines" with a blocklist of ~11 "reject if it looks
+// like X" rules, which let headings through as if they were claims, left wrapped
+// fragments standing alone, and dropped code that WAS the explanation. A blocklist
+// cannot tell a heading from a claim - the same trap that got two earlier features
+// in this project deleted.
+//
+// Nothing is filtered now. A line's SHAPE decides how it is drawn, never whether it
+// is good enough to show.
+// ============================================================================
+
+// Classify a note line by shape only. No meaning is inferred.
+function lineKind(text) {
+  const t = String(text || '').trim();
+  if (!t) return 'blank';
+
+  // A list item, by its own literal marker.
+  if (/^[-*\u2022]\s+/.test(t)) return 'bullet';
+  if (/^\d+[.)]\s/.test(t)) return 'bullet';
+  if (/^[ivx]{1,4}[.)]\s/i.test(t)) return 'bullet';
+
+  const words = t.split(/\s+/).filter(Boolean).length;
+  const endsSentence = /[.!?]$/.test(t);
+  const letters = t.replace(/[^A-Za-z]/g, '');
+
+  // A label: short, and ends with a colon or a colon-dash. The author writes his
+  // section titles this way, such as "Those two steps, in order:".
+  if (/[:-]$/.test(t) && words <= 12) return 'heading';
+
+  // A shout: short and entirely capitals, such as "LOCAL VARIABLE SCOPE EXAMPLES"
+  // or "--- FOR LOOP SCOPE ---". Punctuation is ignored for the test.
+  if (letters.length >= 3 && letters === letters.toUpperCase() && words <= 8) return 'heading';
+
+  // A short title with no sentence-ending punctuation, such as
+  // "Core Concepts: Java Architecture & Execution Flow".
+  if (!endsSentence && words <= 8 && /^[A-Z0-9]/.test(t)) return 'heading';
+
+  return 'prose';
+}
+
+// The topic's own blocks, with each prose line labelled by shape. Code and tables are
+// carried through as themselves, because in these notes the code IS the explanation:
+// the prose says a variable is out of scope and the code shows exactly where.
+function bankNoteBlocks(topic) {
+  const blocks = [];
   (topic.headerComments || []).forEach(block => {
-    if (block.type === 'table' || block.type === 'code') return;
     if (block.type === 'generated' || block.type === 'generated-parameters') return;
-    const blockLines = block.lines || [];
-    if (blockLines.length && /parameter notes/i.test(blockLines[0])) return;
-    blockLines.forEach(line => {
-      const text = String(line || '').trim();
-      if (text.length < 25) return;
-      if (!/[a-z]/.test(text)) return;
-      if (/^[-*\u2022]\s+/.test(text) && /\)\s*:/.test(text)) return;
-      if (/what each (argument|constructor|parameter)/i.test(text)) return;
-      if (/^(parameter notes|challenge|deep problem|hint|testcase)\b/i.test(text)) return;
-      if (/^\s*-{3,}.*-{3,}\s*$/.test(text)) return;
-      if (/^\s*={3,}.*={3,}\s*$/.test(text)) return;
-      if (/^\s*\|/.test(text)) return;
-      if (/[{};]\s*$/.test(text)) return;
-      if (lines.includes(text)) return;
-      lines.push(text);
-    });
+
+    if (block.type === 'table') {
+      if ((block.rows || []).length) blocks.push({ type: 'table', headers: block.headers || [], rows: block.rows || [] });
+      return;
+    }
+    if (block.type === 'code') {
+      const code = String(block.code || '').replace(/\s+$/, '');
+      if (code.trim()) blocks.push({ type: 'code', code, language: block.language || 'java' });
+      return;
+    }
+    const lines = (block.lines || [])
+      .map(line => String(line || '').trim())
+      .filter(Boolean)
+      .map(text => ({ kind: lineKind(text), text }));
+    if (lines.length) blocks.push({ type: 'lines', lines });
   });
-  return lines;
+
+  // A supporting class often has no notes above the class declaration: its notes are
+  // written INSIDE the body, beside the code they explain. Those are shown when there
+  // is nothing above, so a topic such as House or Monitor is not blank. Nothing is
+  // duplicated, because this only runs when the header has no notes at all.
+  if (blocks.length === 0) {
+    const inline = (topic.inlineComments || [])
+      .map(text => String(text || '').trim())
+      .filter(Boolean)
+      .map(text => ({ kind: lineKind(text), text }));
+    if (inline.length) blocks.push({ type: 'lines', lines: inline });
+  }
+  return blocks;
 }
 
 // A compact picture of a topic's questions, so a long answer key is not needed.
@@ -4062,11 +4118,14 @@ function renderRevisionBank() {
     return (questionsByPath.get(entry.topic.filePath) || []).length > 0;
   });
 
-  const totalConceptLines = topics.reduce((n, e) => n + bankConceptLines(e.topic).length, 0);
+  // Counted as the number of note blocks shown, since nothing is extracted any more.
+  const totalNotePoints = topics.reduce((n, e) => {
+    return n + bankNoteBlocks(e.topic).reduce((m, b) => m + (b.type === 'lines' ? b.lines.length : 1), 0);
+  }, 0);
   const revisedCount = topics.filter(e => revised[e.topic.filePath]).length;
 
   if (summary) {
-    summary.textContent = topics.length + ' topics | ' + totalConceptLines + ' concept lines available | ' +
+    summary.textContent = topics.length + ' topics | ' + totalNotePoints + ' note points | ' +
       selection.questions.length + ' questions | ' + revisedCount + ' marked revised';
   }
   const quizBtn = document.getElementById('btn-bank-quiz');
@@ -4084,7 +4143,9 @@ function renderRevisionBank() {
   }
 
   let currentChapter = null;
-  const shownConceptLines = new Set();
+  // The same sentence can appear in more than one topic file. It is shown once, the
+  // first time it appears, so the bank is not repetitive.
+  const shownNoteText = new Set();
   topics.forEach(({ chapter, topic }) => {
     if (chapter !== currentChapter) {
       currentChapter = chapter;
@@ -4092,17 +4153,27 @@ function renderRevisionBank() {
       heading.className = 'bank-chapter-heading';
       heading.textContent = chapter;
       container.appendChild(heading);
+      // Exercises are practice, not revision material, so they are not listed as
+      // topics. One line per chapter keeps them reachable without 70 cards of noise.
+      const practiceHere = (CONCEPTS_DATA.find(c => c.name === chapter)?.topics || [])
+        .filter(t => t.isExercise).length;
+      if (practiceHere) {
+        const practice = document.createElement('div');
+        practice.className = 'bank-practice-line';
+        practice.innerHTML = `${practiceHere} practice challenge${practiceHere === 1 ? '' : 's'} in this chapter &middot; `;
+        const practiceBtn = document.createElement('button');
+        practiceBtn.className = 'btn btn-outline btn-small';
+        practiceBtn.textContent = 'Open the Practice Lab';
+        practiceBtn.addEventListener('click', () => {
+          document.getElementById('nav-practice-btn').click();
+        });
+        practice.appendChild(practiceBtn);
+        container.appendChild(practice);
+      }
     }
 
     const topicQuestions = questionsByPath.get(topic.filePath) || [];
     const stats = bankTopicStats(topicQuestions);
-    // The same sentence can appear in more than one topic file. It is shown once,
-    // the first time it appears, so the bank is not repetitive.
-    const lines = bankConceptLines(topic).filter(line => {
-      if (shownConceptLines.has(line)) return false;
-      return true;
-    });
-    lines.forEach(line => shownConceptLines.add(line));
 
     const card = document.createElement('div');
     card.className = 'bank-card' + (revised[topic.filePath] ? ' is-revised' : '');
@@ -4124,50 +4195,141 @@ function renderRevisionBank() {
       '</div>';
     card.appendChild(head);
 
-    const conceptList = document.createElement('ul');
-    conceptList.className = 'bank-concept-list';
-    if (lines.length === 0) {
-      // Say why there is nothing to show, rather than repeating one vague message
-      // for every topic that has no concept notes of its own.
-      const li = document.createElement('li');
-      li.className = 'bank-empty';
-      const blocks = topic.headerComments || [];
-      const onlyParameterNotes = blocks.length > 0 && blocks.every(b =>
-        b.type === 'generated-parameters' || b.type === 'generated' ||
-        (b.lines || []).every(l => /^-?\s*\S+\s*\)\s*:|what each (argument|constructor|parameter)|^parameter notes/i.test(String(l || '').trim())));
-      const isChallenge = /(Challenge|DeepProblem)/.test(topic.fileName);
-      if (isChallenge) {
-        li.textContent = 'This is a challenge topic, so it has a task rather than concept notes. Open the full notes to read the brief.';
-      } else if (onlyParameterNotes) {
-        li.textContent = 'This topic only has generated parameter notes so far. Add a concept note in the .java file and it will appear here.';
-      } else {
-        li.textContent = 'No concept notes recorded for this topic yet.';
-      }
-      conceptList.appendChild(li);
-    } else {
-      const showLine = (line, extra) => {
-        const li = document.createElement('li');
-        if (extra) li.className = 'bank-extra-line';
-        li.textContent = line;
-        conceptList.appendChild(li);
-      };
-      const firstBatch = 8;
-      lines.slice(0, firstBatch).forEach(line => showLine(line, false));
-      if (lines.length > firstBatch) {
-        let expanded = false;
-        const toggle = document.createElement('button');
-        toggle.className = 'btn btn-outline btn-small bank-more-btn';
-        toggle.textContent = `Show all ${lines.length} lines`;
-        toggle.addEventListener('click', () => {
-          if (expanded) return;
-          lines.slice(firstBatch).forEach(line => showLine(line, true));
-          expanded = true;
-          toggle.remove();
+    // The topic's own notes, organised by shape. Nothing is filtered: every line he
+    // wrote appears, styled by what it is.
+    const noteBlocks = bankNoteBlocks(topic);
+    const notes = document.createElement('div');
+    notes.className = 'bank-notes';
+
+    // Code is collapsed by default, because some examples run to 25 lines and would
+    // bury the prose. Nothing is hidden - one click opens it.
+    const codeBodies = [];
+    const lineNodes = [];
+    let codeCounter = 0;
+
+    const addCode = (block) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'bank-code-block';
+      const body = document.createElement('pre');
+      body.className = 'bank-code-body';
+      const codeEl = document.createElement('code');
+      codeEl.textContent = block.code;
+      body.appendChild(codeEl);
+      body.style.display = 'none';
+
+      const lineCount = block.code.split('\n').length;
+      const toggle = document.createElement('button');
+      toggle.className = 'bank-code-toggle';
+      toggle.textContent = `${block.language === 'text' ? 'Diagram' : 'Java example'}, ${lineCount} line${lineCount === 1 ? '' : 's'}`;
+
+      const state = { open: false };
+      toggle.addEventListener('click', () => {
+        state.open = !state.open;
+        body.style.display = state.open ? 'block' : 'none';
+        toggle.classList.toggle('is-open', state.open);
+      });
+
+      wrap.appendChild(toggle);
+      wrap.appendChild(body);
+      codeBodies.push({ state, body, toggle });
+      codeCounter++;
+      notes.appendChild(wrap);
+    };
+
+    const addTable = (block) => {
+      const table = document.createElement('table');
+      table.className = 'bank-note-table';
+      if (block.headers.length) {
+        const thead = document.createElement('thead');
+        const tr = document.createElement('tr');
+        block.headers.forEach(h => {
+          const th = document.createElement('th');
+          th.textContent = h;
+          tr.appendChild(th);
         });
-        conceptList.appendChild(toggle);
+        thead.appendChild(tr);
+        table.appendChild(thead);
       }
+      const tbody = document.createElement('tbody');
+      block.rows.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      notes.appendChild(table);
+    };
+
+    noteBlocks.forEach(block => {
+      if (block.type === 'code') { addCode(block); return; }
+      if (block.type === 'table') { addTable(block); return; }
+      block.lines.forEach(({ kind, text }) => {
+        // The same sentence can appear in more than one topic file. It is shown once,
+        // the first time it appears, so the bank is not repetitive.
+        if (shownNoteText.has(text)) return;
+        shownNoteText.add(text);
+        const el = document.createElement('div');
+        el.className = 'bank-note bank-note-' + kind;
+        el.textContent = kind === 'bullet' ? '\u2022 ' + text : text;
+        notes.appendChild(el);
+        lineNodes.push(el);
+      });
+    });
+
+    if (!notes.childNodes.length) {
+      const empty = document.createElement('div');
+      empty.className = 'bank-empty';
+      // Be specific about WHY there is nothing, so it does not read like a fault.
+      empty.textContent = topic.isExercise
+        ? 'This is an exercise file, so it holds a task rather than revision notes.'
+        : 'This is a supporting class with no notes of its own. Its notes are in the topic that uses it.';
+      notes.appendChild(empty);
     }
-    card.appendChild(conceptList);
+    card.appendChild(notes);
+
+    // A long topic shows its first screenful; the rest is one click away. This is a
+    // length control, not a quality one - nothing is ever discarded.
+    const firstBatch = 14;
+    const overflow = lineNodes.slice(firstBatch);
+    if (overflow.length) {
+      overflow.forEach(el => { el.style.display = 'none'; });
+      let expanded = false;
+      const more = document.createElement('button');
+      more.className = 'btn btn-outline btn-small bank-more-btn';
+      more.textContent = `Show the remaining ${overflow.length} line${overflow.length === 1 ? '' : 's'}`;
+      more.addEventListener('click', () => {
+        if (expanded) return;
+        overflow.forEach(el => { el.style.display = ''; });
+        expanded = true;
+        more.remove();
+      });
+      notes.appendChild(more);
+    }
+
+    // One control for all the code in the card, since code is the bulkiest part and
+    // the Notes view shows it in full.
+    if (codeBodies.length) {
+      const codeToggle = document.createElement('button');
+      codeToggle.className = 'btn btn-outline btn-small bank-code-all';
+      const label = () => `Show code (${codeBodies.length})`;
+      const hideLabel = () => `Hide code (${codeBodies.length})`;
+      codeToggle.textContent = label();
+      let allOpen = false;
+      codeToggle.addEventListener('click', () => {
+        allOpen = !allOpen;
+        codeBodies.forEach(({ state, body, toggle }) => {
+          state.open = allOpen;
+          body.style.display = allOpen ? 'block' : 'none';
+          toggle.classList.toggle('is-open', allOpen);
+        });
+        codeToggle.textContent = allOpen ? hideLabel() : label();
+      });
+      head.appendChild(codeToggle);
+    }
 
     const actions = document.createElement('div');
     actions.className = 'bank-card-actions';

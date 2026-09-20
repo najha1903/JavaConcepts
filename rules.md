@@ -406,6 +406,34 @@ Two reasons, both practical:
 
 The same rule is implemented in three places — `parse-concepts.js`, `coverage.js` and `suggest.js` — kept deliberately identical so they can never disagree about what "finished" means.
 
+## The Revision Bank
+
+The bank shows your notes **organised by their own shape**. It is not a filter and it is not a summary: every line you wrote appears.
+
+**A line's shape decides how it is drawn, never whether it is shown:**
+
+| Shape | How it is recognised | How it is drawn |
+|---|---|---|
+| heading | ends with `:`, or is short and ALL CAPS, or is a short title with no sentence-ending punctuation | a small uppercase label |
+| bullet | starts with `-`, `*`, a bullet dot, or `1.` / `1)` / `i)` | an indented bullet |
+| prose | everything else | a paragraph |
+| code | the parser already separates it | a collapsed block, one click to open |
+| table | the parser already separates it | a real table |
+
+Nothing is ever discarded. There is no "is this line good enough" test anywhere, because a blocklist cannot tell a heading from a claim — that approach was measured as unreliable twice in this project and both attempts were deleted.
+
+**Exercises are not listed here.** A file is practice when its name ends in `Challenge`/`Problem`, or its notes open with `Challenge:` / `Deep Problem:`. Those are shown as one line per chapter pointing at the Practice Lab, instead of a card each. That is 70 of the 142 files.
+
+**Code is collapsed, not hidden.** In these notes the code *is* the explanation — the prose says a variable is out of scope and the code shows exactly where. Each block shows a preview saying what it is and how long, and a card-level `Show code` opens every block at once.
+
+**A supporting class** such as `Monitor` or `House` has no notes above its declaration, so its notes from inside the class body are shown instead. If it has none at all, the card says so plainly rather than showing an empty box.
+
+### One rule, one place
+
+The rules the scripts share — *is this an exercise*, *is this chapter finished*, *is this line code* — live in `scripts/lib/note-rules.js`, used by `parse-concepts.js`, `coverage.js` and `suggest.js`.
+
+They used to be copied into each file and kept in step by hand, and they had already drifted: "is this an exercise?" matched by **filename** in the parser and by **note content** in the ledger, so the two reported different numbers for the same project. `npm run revise` now guarantees they agree.
+
 ## Section Markers
 
 A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.

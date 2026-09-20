@@ -1626,18 +1626,18 @@ const QUESTIONS_BANK = {
       "question": "Which of the following are TRUE about Local Variables And Scope? Select all that apply.",
       "options": [
         "Variables declared inside the for loop init section are local to the loop only.",
+        "In a switch, a variable declared in one case IS accessible to later cases (cases that come after), but NOT to earlier cases, and NOT outside the switch.",
         "A variable is a named storage location in memory that holds a data value.",
-        "{ // outer block (e.g., a method)",
         "Variables declared inside an if block are NOT accessible in else or outside the if.",
         "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
       "answer": [
         0,
-        2,
+        1,
         3
       ],
       "whyByOption": {
-        "1": "This statement is true of \"Variables\", not of \"Local Variables And Scope\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
+        "2": "This statement is true of \"Variables\", not of \"Local Variables And Scope\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
         "4": "This statement is true of \"String Example\", not of \"Local Variables And Scope\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
       },
       "explanation": "A statement belongs here only if your notes make it about Local Variables And Scope. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Local Variables And Scope.",

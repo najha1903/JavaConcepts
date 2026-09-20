@@ -91,25 +91,14 @@ if (process.argv.includes('--list-keys')) {
 }
 
 // ---- Which chapters are finished --------------------------------------------
-// A chapter is finished when a higher-numbered chapter exists. A `@draft` marker
-// in any of its files says "not yet", which covers the case of jumping ahead.
-function chapterNumber(name) {
-  const match = String(name).match(/Chapter\s+(\d+)/);
-  return match ? parseInt(match[1], 10) : 999;
-}
-
-function isDraft(chapter) {
-  return (chapter.topics || []).some(topic => /@draft\b/.test(String(topic.code || '')));
-}
-
-const numbers = concepts.map(c => chapterNumber(c.name));
-const highest = numbers.length ? Math.max(...numbers) : 0;
+// The rule lives in scripts/lib/note-rules.js so this script, the parser and the
+// coverage ledger cannot disagree about what "finished" means. It used to be copied
+// here with its own numbering convention.
+const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
+const finishedChapterNames = noteRules.finishedChapterNames(concepts);
 
 function isFinished(chapter) {
-  if (isDraft(chapter)) return false;
-  // The highest chapter is the one being written.
-  if (chapterNumber(chapter.name) >= highest) return false;
-  return true;
+  return finishedChapterNames.has(chapter.name);
 }
 
 // ---- Source 1: a JDK API the code uses and the notes never explain -----------

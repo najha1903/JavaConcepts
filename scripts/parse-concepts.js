@@ -10,6 +10,7 @@ const { OCJP_BANK } = require(path.join(__dirname, '..', 'data', 'ocjp-bank.js')
 const { DERIVED_CODE_QUESTIONS } = require(path.join(__dirname, '..', 'data', 'code-questions.js'));
 const { PRACTICE_EXPECTATIONS } = require(path.join(__dirname, '..', 'data', 'practice-expectations.js'));
 const { buildVerifySource } = require(path.join(__dirname, 'lib', 'lab-verifier.js'));
+const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
 
 // ==========================================================================
 // The marker vocabulary, in one place.
@@ -85,29 +86,8 @@ function formatName(name) {
 // tool generates no questions, no takeaways and no gotchas - only what he wrote
 // himself appears. Everything arrives the moment he moves on.
 //
-// This is the same rule suggest.js uses, kept deliberately identical so the two can
-// never disagree about what "finished" means.
-function chapterNumber(name) {
-  const match = String(name).match(/Chapter\s*_?\s*(\d+)/i);
-  return match ? Number(match[1]) : null;
-}
-
-function isDraftChapter(chapter) {
-  return (chapter.topics || []).some(topic => /@draft\b/.test(String(topic.code || '')));
-}
-
-// The set of chapter names that are finished.
-function finishedChapterNames(chapters) {
-  const numbers = chapters.map(c => chapterNumber(c.name)).filter(n => n !== null);
-  const highest = numbers.length ? Math.max(...numbers) : null;
-  const finished = new Set();
-  for (const chapter of chapters) {
-    const n = chapterNumber(chapter.name);
-    if (n === null || highest === null) { finished.add(chapter.name); continue; }  // unnumbered: judge it normally
-    if (n < highest && !isDraftChapter(chapter)) finished.add(chapter.name);
-  }
-  return finished;
-}
+// The rule lives in scripts/lib/note-rules.js so this parser, the coverage ledger and
+// the suggestion engine cannot disagree about what "finished" means.
 
 // ==========================================================================
 // Helper: Parse a Java file into structured data
@@ -166,30 +146,9 @@ function parseJavaFile(filePath, rootDir) {
   }
 
   // Returns true if a line is commented-out code rather than an explanation.
-  function isCodeFragment(line) {
-    const n = line.trim();
-    if (!n) return false;
-    // Pure annotation
-    if (/^@\w+(\(.*\))?$/.test(n)) return true;
-    // Lines with unmatched brace or braces only
-    if (/^\s*[{}]\s*$/.test(n)) return true;
-    if (/^[A-Za-z_][\w$.]*\s*[({][^)]*[)};]*$/.test(n) && /[{};]/.test(n) && !/\s[a-z]{4,}/.test(n)) return true;
-    // Ends with semicolon and starts with code keyword or call
-    if (/;\s*$/.test(n) && /^(super|this|System|new|return|throw|[a-z_][a-zA-Z0-9_.]*\s*\()/.test(n)) return true;
-    // Pure method call  bark();  super();
-    if (/^[A-Za-z_][\w$.]*\s*\([^)]*\)\s*;$/.test(n)) return true;
-    // Java access-modifier declarations
-    if (/^(public|private|protected)\s+(static\s+|final\s+)?[\w<>\[\],\s]+\s+\w+\s*[({]/.test(n)) return true;
-    // A control-statement header that opens a block, such as "switch (x) {" or
-    // "if (n > 0) {". Without this the header is treated as prose and the sample
-    // is split apart from the braces that belong to it.
-    if (/^(if|else\s+if|else|for|while|do|switch|try|catch|finally|synchronized)\b[^{};]*\{\s*$/.test(n)) return true;
-    // Switch labels:  case 1:   case 'A':   case "x":   case ENUM_VALUE:   default:
-    if (/^(case\s+([0-9]+|'\\?.'|"[^"]*"|[A-Za-z_$][\w$.]*)|default)\s*:\s*$/.test(n)) return true;
-    // Starts with another comment marker
-    if (/^\/\//.test(n)) return true;
-    return false;
-  }
+  // The rule lives in scripts/lib/note-rules.js so the Revision Bank, the coverage
+  // ledger and this parser cannot disagree about what counts as code.
+  const isCodeFragment = noteRules.isCodeFragment;
 
   // Joins lines where the previous line is clearly a continuation. Besides a
   // comma or lowercase continuation, recognize grammatical connector words so
@@ -823,7 +782,11 @@ function parseJavaFile(filePath, rootDir) {
     : inlineComments;
 
 
-  return { filePath: relativePath, fileName, topicName, chapter, subChapter, headerComments, inlineComments: anchoredPoints, customQuizzes, deepChallenges, code: content };
+  // `isExercise` is emitted so the Revision Bank can read a flag instead of
+  // re-deriving the rule in the browser, where it could drift from the pipeline.
+  const isExercise = noteRules.isExerciseTopic({ fileName, headerComments });
+
+  return { filePath: relativePath, fileName, topicName, chapter, subChapter, isExercise, headerComments, inlineComments: anchoredPoints, customQuizzes, deepChallenges, code: content };
 }
 
 // A parameter note is a bullet that names a parameter and then explains it, such
@@ -1986,7 +1949,6 @@ function buildPracticeChallenges(parsedData) {
   const challenges = [];
 
   for (const topic of parsedData) {
-    const nameLower = topic.fileName.toLowerCase();
     // Practice is built from files that contain an exercise: the *Challenge* files,
     // and also the *DeepProblem* files. Several chapters keep their practice methods
     // only in the DeepProblem file while their Challenge file holds just main(), so
@@ -1998,7 +1960,7 @@ function buildPracticeChallenges(parsedData) {
     // only be checked from an expectation the author wrote by hand. Measured before
     // this was allowed: of 72 non-exercise files, 10 hold such a method, and 3 of
     // those read console input and are excluded.
-    const isExercise = nameLower.includes('challenge') || nameLower.includes('problem');
+    const isExercise = noteRules.isExerciseTopic(topic);
 
     const code = topic.code;
     const fileName = topic.fileName.replace('.java', '');
@@ -2734,7 +2696,7 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
   const sortedQRBank = {};
   // Which chapters are finished, computed once. A chapter still being written gets no
   // generated content; see finishedChapterNames.
-  const finishedChapters = finishedChapterNames(chaptersList);
+  const finishedChapters = noteRules.finishedChapterNames(chaptersList);
   const inProgress = chaptersList.filter(c => !finishedChapters.has(c.name)).map(c => c.name);
   if (inProgress.length) {
     console.log(`\n✍️  Still being written, so nothing is generated for: ${inProgress.join(', ')}`);

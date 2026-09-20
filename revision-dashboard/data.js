@@ -9,6 +9,7 @@ const CONCEPTS_DATA = [
         "topicName": "Hello World",
         "chapter": "Chapter 1: Java Introduction",
         "subChapter": "",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -791,6 +792,7 @@ const CONCEPTS_DATA = [
         "topicName": "Hello World Variation Challenge",
         "chapter": "Chapter 1: Java Introduction",
         "subChapter": "Java Intro Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -814,6 +816,7 @@ const CONCEPTS_DATA = [
         "topicName": "Temperature Converter Challenge",
         "chapter": "Chapter 1: Java Introduction",
         "subChapter": "Java Intro Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -837,6 +840,7 @@ const CONCEPTS_DATA = [
         "topicName": "Fibonacci Deep Problem",
         "chapter": "Chapter 1: Java Introduction",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -869,6 +873,7 @@ const CONCEPTS_DATA = [
         "topicName": "String Example",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Strings",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -1366,20 +1371,20 @@ const CONCEPTS_DATA = [
         "topicName": "Local Variables And Scope",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Variables",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
             "lines": [
               "LOCAL VARIABLE SCOPE EXAMPLES",
               "--- FOR LOOP SCOPE ---",
-              "Variables declared inside the for loop init section are local to the loop only.",
-              "{ // outer block (e.g., a method)"
+              "Variables declared inside the for loop init section are local to the loop only."
             ]
           },
           {
             "type": "code",
             "language": "java",
-            "code": "  for (int i = 1; i <= 5; i++) {\n    System.out.println(i);   // OK: i is accessible inside the loop\n  }\n  System.out.println(i);     // ERROR: i is out of scope here — it only existed during the loop\n}\n\n--- IF STATEMENT SCOPE ---",
+            "code": "{  // outer block (e.g., a method)\n  for (int i = 1; i <= 5; i++) {\n    System.out.println(i);   // OK: i is accessible inside the loop\n  }\n  System.out.println(i);     // ERROR: i is out of scope here — it only existed during the loop\n}\n\n--- IF STATEMENT SCOPE ---",
             "lines": []
           },
           {
@@ -1462,6 +1467,7 @@ const CONCEPTS_DATA = [
         "topicName": "Variables",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Variables",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -1843,6 +1849,7 @@ const CONCEPTS_DATA = [
         "topicName": "Key Words And Expressions In Java",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Key Words And Expressions",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -2062,6 +2069,7 @@ const CONCEPTS_DATA = [
         "topicName": "Primitive Data Types",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Primitive Data Types",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -3137,6 +3145,7 @@ const CONCEPTS_DATA = [
         "topicName": "Data Type Limits Challenge",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Primitive Types Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -3157,6 +3166,7 @@ const CONCEPTS_DATA = [
         "topicName": "String Concat Challenge",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Primitive Types Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -3177,6 +3187,7 @@ const CONCEPTS_DATA = [
         "topicName": "Bitwise Operations Deep Problem",
         "chapter": "Chapter 2: Primitive Types",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -3201,6 +3212,7 @@ const CONCEPTS_DATA = [
         "topicName": "Operators Operands Expressions",
         "chapter": "Chapter 3: Operators",
         "subChapter": "Operators Operands And Expressions",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -4238,6 +4250,7 @@ const CONCEPTS_DATA = [
         "topicName": "Operator Challenge",
         "chapter": "Chapter 3: Operators",
         "subChapter": "Operators Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -4332,6 +4345,7 @@ const CONCEPTS_DATA = [
         "topicName": "Expression Evaluator Deep Problem",
         "chapter": "Chapter 3: Operators",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -4356,6 +4370,7 @@ const CONCEPTS_DATA = [
         "topicName": "Statements White Space And Indentation",
         "chapter": "Chapter 4: Statements And Indentations",
         "subChapter": "",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -5080,6 +5095,7 @@ const CONCEPTS_DATA = [
         "topicName": "Expression Builder Challenge",
         "chapter": "Chapter 4: Statements And Indentations",
         "subChapter": "Statements Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -5134,6 +5150,7 @@ const CONCEPTS_DATA = [
         "topicName": "Unit Converter Deep Problem",
         "chapter": "Chapter 4: Statements And Indentations",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -5158,6 +5175,7 @@ const CONCEPTS_DATA = [
         "topicName": "If Example",
         "chapter": "Chapter 5: If Else Statements",
         "subChapter": "If Then Else Control Statement",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -6080,6 +6098,7 @@ const CONCEPTS_DATA = [
         "topicName": "Code Blocks If Then Else",
         "chapter": "Chapter 5: If Else Statements",
         "subChapter": "Code Block If Then Else Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -6328,6 +6347,7 @@ const CONCEPTS_DATA = [
         "topicName": "Grade Classifier Deep Problem",
         "chapter": "Chapter 5: If Else Statements",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -6352,6 +6372,7 @@ const CONCEPTS_DATA = [
         "topicName": "Methods In Java",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods In Java",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -6429,14 +6450,8 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "static int sign(int n) {\n    if (n > 0) { return 1; }",
+            "code": "static int sign(int n) {\n    if (n > 0) { return 1; }\n}                                  // Compile Error :- missing return statement",
             "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "} // Compile Error :- missing return statement"
-            ]
           },
           {
             "type": "lines",
@@ -7257,6 +7272,7 @@ const CONCEPTS_DATA = [
         "topicName": "Area Calculator Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7281,6 +7297,7 @@ const CONCEPTS_DATA = [
         "topicName": "Barking Dog Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7305,6 +7322,7 @@ const CONCEPTS_DATA = [
         "topicName": "Decimal Comparator Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7329,6 +7347,7 @@ const CONCEPTS_DATA = [
         "topicName": "Equality Printer Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7354,6 +7373,7 @@ const CONCEPTS_DATA = [
         "topicName": "Equal Sum Checker Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7377,6 +7397,7 @@ const CONCEPTS_DATA = [
         "topicName": "Leap Year Calculator Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7402,6 +7423,7 @@ const CONCEPTS_DATA = [
         "topicName": "Mega Bytes Converter Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7427,6 +7449,7 @@ const CONCEPTS_DATA = [
         "topicName": "Methods Challenge Problem",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7453,6 +7476,7 @@ const CONCEPTS_DATA = [
         "topicName": "Minutes To Years And Days Calculator Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7478,6 +7502,7 @@ const CONCEPTS_DATA = [
         "topicName": "Playing Cat Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7502,6 +7527,7 @@ const CONCEPTS_DATA = [
         "topicName": "Positive Negative Zero Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -7530,6 +7556,7 @@ const CONCEPTS_DATA = [
         "topicName": "Speed Converter Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7556,6 +7583,7 @@ const CONCEPTS_DATA = [
         "topicName": "Teen Number Checker Coding Challenge",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Methods Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -7580,6 +7608,7 @@ const CONCEPTS_DATA = [
         "topicName": "Recursion Deep Problem",
         "chapter": "Chapter 6: Methods In Java",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -7604,6 +7633,7 @@ const CONCEPTS_DATA = [
         "topicName": "Switch Statement In Java",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Switch Statement",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -8541,6 +8571,7 @@ const CONCEPTS_DATA = [
         "topicName": "Enhanced Switch Statement In Java",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Enhanced Switch Statement",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -9012,6 +9043,7 @@ const CONCEPTS_DATA = [
         "topicName": "Number Of Days In A Month Coding Challenge",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -9052,6 +9084,7 @@ const CONCEPTS_DATA = [
         "topicName": "Print Number In A World Coding Challenge",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -9073,6 +9106,7 @@ const CONCEPTS_DATA = [
         "topicName": "Switch Statement Challenge",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -9095,6 +9129,7 @@ const CONCEPTS_DATA = [
         "topicName": "Switch Statement Challenge Return Day Of The Week",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -9121,6 +9156,7 @@ const CONCEPTS_DATA = [
         "topicName": "Switch Statement N A T O Challenge",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -9143,6 +9179,7 @@ const CONCEPTS_DATA = [
         "topicName": "Menu Driven Calculator Deep Problem",
         "chapter": "Chapter 7: Switch Statements",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -9167,6 +9204,7 @@ const CONCEPTS_DATA = [
         "topicName": "For Statement",
         "chapter": "Chapter 8: Java Looping Concepts",
         "subChapter": "For Statement",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -10027,6 +10065,7 @@ const CONCEPTS_DATA = [
         "topicName": "For Loop Prime Number Challenge",
         "chapter": "Chapter 8: Java Looping Concepts",
         "subChapter": "For Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -10058,6 +10097,7 @@ const CONCEPTS_DATA = [
         "topicName": "For Loop Sum3and5 Challenge",
         "chapter": "Chapter 8: Java Looping Concepts",
         "subChapter": "For Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -10089,6 +10129,7 @@ const CONCEPTS_DATA = [
         "topicName": "Sum Odd Challenge",
         "chapter": "Chapter 8: Java Looping Concepts",
         "subChapter": "For Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -10131,6 +10172,7 @@ const CONCEPTS_DATA = [
         "topicName": "Pattern Printer Deep Problem",
         "chapter": "Chapter 8: Java Looping Concepts",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -10155,6 +10197,7 @@ const CONCEPTS_DATA = [
         "topicName": "While Loops",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Loop",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -11099,6 +11142,7 @@ const CONCEPTS_DATA = [
         "topicName": "Do While Loops",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "Do While Loop",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -11422,6 +11466,7 @@ const CONCEPTS_DATA = [
         "topicName": "Check Number Palindrome Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11470,6 +11515,7 @@ const CONCEPTS_DATA = [
         "topicName": "Digit Sum Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11494,6 +11540,7 @@ const CONCEPTS_DATA = [
         "topicName": "Even Digit Sum Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11520,6 +11567,7 @@ const CONCEPTS_DATA = [
         "topicName": "Factor Printer Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -11542,6 +11590,7 @@ const CONCEPTS_DATA = [
         "topicName": "First And Last Digit Sum Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11569,6 +11618,7 @@ const CONCEPTS_DATA = [
         "topicName": "Floor Pack Problem Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11600,6 +11650,7 @@ const CONCEPTS_DATA = [
         "topicName": "Greatest Common Divisor Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -11623,6 +11674,7 @@ const CONCEPTS_DATA = [
         "topicName": "Largest Prime Factor Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11650,6 +11702,7 @@ const CONCEPTS_DATA = [
         "topicName": "Last Digit Checker Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11681,6 +11734,7 @@ const CONCEPTS_DATA = [
         "topicName": "Number To Words Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "generated",
@@ -11702,6 +11756,7 @@ const CONCEPTS_DATA = [
         "topicName": "Perfect Number Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "generated",
@@ -11724,6 +11779,7 @@ const CONCEPTS_DATA = [
         "topicName": "Shared Digit Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11750,6 +11806,7 @@ const CONCEPTS_DATA = [
         "topicName": "While Loop Coding Challenge",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11778,6 +11835,7 @@ const CONCEPTS_DATA = [
         "topicName": "While Loop Coding Challenge Part2",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11797,6 +11855,7 @@ const CONCEPTS_DATA = [
         "topicName": "Number Guesser Deep Problem",
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -11821,6 +11880,7 @@ const CONCEPTS_DATA = [
         "topicName": "Class Example",
         "chapter": "Chapter 10: Class Object Static And Instance Fields",
         "subChapter": "Class",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -12463,6 +12523,7 @@ const CONCEPTS_DATA = [
         "topicName": "Create Field On Classes",
         "chapter": "Chapter 10: Class Object Static And Instance Fields",
         "subChapter": "Create Field On Classes",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -12713,6 +12774,7 @@ const CONCEPTS_DATA = [
         "topicName": "Bank Account Fields Challenge",
         "chapter": "Chapter 10: Class Object Static And Instance Fields",
         "subChapter": "Class Fields Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -12732,6 +12794,7 @@ const CONCEPTS_DATA = [
         "topicName": "Student Class Challenge",
         "chapter": "Chapter 10: Class Object Static And Instance Fields",
         "subChapter": "Class Fields Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -12751,6 +12814,7 @@ const CONCEPTS_DATA = [
         "topicName": "Library System Deep Problem",
         "chapter": "Chapter 10: Class Object Static And Instance Fields",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -12775,6 +12839,7 @@ const CONCEPTS_DATA = [
         "topicName": "Parsing Values Reading Input",
         "chapter": "Chapter 11: Parsing Values Reading Input",
         "subChapter": "Parsing Values And Reading Input",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -13730,6 +13795,7 @@ const CONCEPTS_DATA = [
         "topicName": "Input Calculator Challenge",
         "chapter": "Chapter 11: Parsing Values Reading Input",
         "subChapter": "Parsing Values Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -13790,6 +13856,7 @@ const CONCEPTS_DATA = [
         "topicName": "Min Max Coding Challenge",
         "chapter": "Chapter 11: Parsing Values Reading Input",
         "subChapter": "Parsing Values Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -13813,6 +13880,7 @@ const CONCEPTS_DATA = [
         "topicName": "Paint Job Challenge",
         "chapter": "Chapter 11: Parsing Values Reading Input",
         "subChapter": "Parsing Values Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -13836,6 +13904,7 @@ const CONCEPTS_DATA = [
         "topicName": "Reading User Input Challenge",
         "chapter": "Chapter 11: Parsing Values Reading Input",
         "subChapter": "Parsing Values Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -13862,6 +13931,7 @@ const CONCEPTS_DATA = [
         "topicName": "Input Validator Deep Problem",
         "chapter": "Chapter 11: Parsing Values Reading Input",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -13886,6 +13956,7 @@ const CONCEPTS_DATA = [
         "topicName": "Exception Handling In Java",
         "chapter": "Chapter 12: Exception Handling",
         "subChapter": "",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -13913,31 +13984,7 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "try {\n    int result = 10 / divisor;         // the risky line\n    System.out.println(result);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "} catch (ArithmeticException e) {"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "System.out.println(\"Cannot divide by zero\");",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "} finally {"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "    System.out.println(\"Done\");        // runs whether or not anything went wrong\n}",
+            "code": "try {\n    int result = 10 / divisor;         // the risky line\n    System.out.println(result);\n} catch (ArithmeticException e) {\n    System.out.println(\"Cannot divide by zero\");\n} finally {\n    System.out.println(\"Done\");        // runs whether or not anything went wrong\n}",
             "lines": []
           },
           {
@@ -13968,31 +14015,7 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "try {\n    // ...",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "} catch (NumberFormatException e) { // narrower type first"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "System.out.println(\"Bad number\");",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "} catch (Exception e) { // broader type afterwards"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "    System.out.println(\"Something else\");\n}",
+            "code": "try {\n    // ...\n} catch (NumberFormatException e) {     // narrower type first\n    System.out.println(\"Bad number\");\n} catch (Exception e) {                 // broader type afterwards\n    System.out.println(\"Something else\");\n}",
             "lines": []
           },
           {
@@ -14005,19 +14028,7 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "try {\n    // ...",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "} catch (NumberFormatException | NullPointerException e) {"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "    System.out.println(\"Bad input\");\n}",
+            "code": "try {\n    // ...\n} catch (NumberFormatException | NullPointerException e) {\n    System.out.println(\"Bad input\");\n}",
             "lines": []
           },
           {
@@ -14030,19 +14041,7 @@ const CONCEPTS_DATA = [
           {
             "type": "code",
             "language": "java",
-            "code": "try {\n    Integer.parseInt(text);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "} catch (NumberFormatException e) {"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "    System.out.println(\"Invalid input: \" + e.getMessage());   // report it\n    throw e;                                                  // and let the caller decide what to do\n}",
+            "code": "try {\n    Integer.parseInt(text);\n} catch (NumberFormatException e) {\n    System.out.println(\"Invalid input: \" + e.getMessage());   // report it\n    throw e;                                                  // and let the caller decide what to do\n}",
             "lines": []
           },
           {
@@ -14804,6 +14803,7 @@ const CONCEPTS_DATA = [
         "topicName": "Multi Catch Challenge",
         "chapter": "Chapter 12: Exception Handling",
         "subChapter": "Exception Handling Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -14823,6 +14823,7 @@ const CONCEPTS_DATA = [
         "topicName": "Parse And Handle Challenge",
         "chapter": "Chapter 12: Exception Handling",
         "subChapter": "Exception Handling Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -14842,6 +14843,7 @@ const CONCEPTS_DATA = [
         "topicName": "Safe Division Challenge",
         "chapter": "Chapter 12: Exception Handling",
         "subChapter": "Exception Handling Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -14861,6 +14863,7 @@ const CONCEPTS_DATA = [
         "topicName": "Robust Calculator Deep Problem",
         "chapter": "Chapter 12: Exception Handling",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -14885,6 +14888,7 @@ const CONCEPTS_DATA = [
         "topicName": "Classes And Inheritance",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes And Inheritance",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -15595,6 +15599,7 @@ const CONCEPTS_DATA = [
         "topicName": "Car",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Getters Encapsulation Object Access",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -15670,6 +15675,7 @@ const CONCEPTS_DATA = [
         "topicName": "Main",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Getters Encapsulation Object Access",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -15726,6 +15732,7 @@ const CONCEPTS_DATA = [
         "topicName": "Bank Account",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -15778,6 +15785,7 @@ const CONCEPTS_DATA = [
         "topicName": "Main",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "generated",
@@ -15837,6 +15845,7 @@ const CONCEPTS_DATA = [
         "topicName": "Method Over Loading Challenge",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -15859,6 +15868,7 @@ const CONCEPTS_DATA = [
         "topicName": "Method Overloading Second And Minutes Challenge",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "lines",
@@ -15895,6 +15905,7 @@ const CONCEPTS_DATA = [
         "topicName": "Person Age Validation",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -15993,6 +16004,7 @@ const CONCEPTS_DATA = [
         "topicName": "Sum Calculator Implementation Challenge",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -16052,6 +16064,7 @@ const CONCEPTS_DATA = [
         "topicName": "Constructor Concept",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16355,6 +16368,7 @@ const CONCEPTS_DATA = [
         "topicName": "Super Keyword Use Example",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16414,6 +16428,7 @@ const CONCEPTS_DATA = [
         "topicName": "This And Super",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16501,6 +16516,7 @@ const CONCEPTS_DATA = [
         "topicName": "This Key Word Use Example",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16548,6 +16564,7 @@ const CONCEPTS_DATA = [
         "topicName": "Good Constructor Super Call Example",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16656,6 +16673,7 @@ const CONCEPTS_DATA = [
         "topicName": "Bad Constructor This Call Example",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16723,6 +16741,7 @@ const CONCEPTS_DATA = [
         "topicName": "Good Constructor This Call Example",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16793,6 +16812,7 @@ const CONCEPTS_DATA = [
         "topicName": "Customer",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -16863,6 +16883,7 @@ const CONCEPTS_DATA = [
         "topicName": "House",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Reference Object Instance",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "generated",
@@ -16909,6 +16930,7 @@ const CONCEPTS_DATA = [
         "topicName": "Main",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Reference Object Instance",
+        "isExercise": false,
         "headerComments": [],
         "inlineComments": [
           "A reference named \"blueHouse\" of type House is created which is pointing to an object(which got created by new keyword, which in turns calls a parameterised constructor) of type House",
@@ -16972,6 +16994,7 @@ const CONCEPTS_DATA = [
         "topicName": "Reference Objects Instance Class",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Reference Object Instance",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17044,6 +17067,7 @@ const CONCEPTS_DATA = [
         "topicName": "Static And Instance Methods",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Static And Instance Methods",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17144,6 +17168,7 @@ const CONCEPTS_DATA = [
         "topicName": "Plain Old Java Object",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Plain Old Java Objects",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17247,6 +17272,7 @@ const CONCEPTS_DATA = [
         "topicName": "Main",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Plain Old Java Objects",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "code",
@@ -17291,10 +17317,43 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "case 1 -> \"1\"; case 2 -> \"2\"; case 3 -> \"3\"; case 4 -> \"4\"; case 5 -> \"5\"; default -> \"0\";",
-              "},switch(i){ case 1 -> \"Navneet\"; case 2 -> \"Puttu\"; case 3 -> \"Navi\"; case 4 -> \"NaviPuttu\"; case 5 -> \"PuttuNavi\"; default -> \"Random\";",
-              "},switch(i){ case 1 -> \"19/03/1994\"; case 2 -> \"20/04/1995\"; case 3 -> \"21/05/1996\"; case 4 -> \"22/06/1997\"; case 5 -> \"23/07/1998\"; default -> \"01/01/2001\";",
-              "},switch (i){ case 1 -> \"Java MasterClass\"; case 2 -> \"Javascript MasterClass\"; case 3 -> \"21/05/1996\"; case 4 -> \"22/06/1997\"; case 5 -> \"23/07/1998\"; default -> \"01/01/2001\";"
+              "case 1 -> \"1\"; case 2 -> \"2\"; case 3 -> \"3\"; case 4 -> \"4\"; case 5 -> \"5\"; default -> \"0\";"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "},switch(i){",
+            "lines": []
+          },
+          {
+            "type": "block",
+            "lines": [
+              "case 1 -> \"Navneet\"; case 2 -> \"Puttu\"; case 3 -> \"Navi\"; case 4 -> \"NaviPuttu\"; case 5 -> \"PuttuNavi\"; default -> \"Random\";"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "},switch(i){",
+            "lines": []
+          },
+          {
+            "type": "block",
+            "lines": [
+              "case 1 -> \"19/03/1994\"; case 2 -> \"20/04/1995\"; case 3 -> \"21/05/1996\"; case 4 -> \"22/06/1997\"; case 5 -> \"23/07/1998\"; default -> \"01/01/2001\";"
+            ]
+          },
+          {
+            "type": "code",
+            "language": "java",
+            "code": "},switch (i){",
+            "lines": []
+          },
+          {
+            "type": "block",
+            "lines": [
+              "case 1 -> \"Java MasterClass\"; case 2 -> \"Javascript MasterClass\"; case 3 -> \"21/05/1996\"; case 4 -> \"22/06/1997\"; case 5 -> \"23/07/1998\"; default -> \"01/01/2001\";"
             ]
           },
           {
@@ -17368,6 +17427,7 @@ const CONCEPTS_DATA = [
         "topicName": "Student",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Plain Old Java Objects",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17455,6 +17515,7 @@ const CONCEPTS_DATA = [
         "topicName": "Static And Instance Variables",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Static And Instance Variables",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17564,6 +17625,7 @@ const CONCEPTS_DATA = [
         "topicName": "Student Record",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Java Records",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17702,6 +17764,7 @@ const CONCEPTS_DATA = [
         "topicName": "Point Class Distance Calculation",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors Coding Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17772,6 +17835,7 @@ const CONCEPTS_DATA = [
         "topicName": "Wall Area Computation",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Constructors Coding Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17840,6 +17904,7 @@ const CONCEPTS_DATA = [
         "topicName": "Animal",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -17914,6 +17979,7 @@ const CONCEPTS_DATA = [
         "topicName": "Dog",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -18003,6 +18069,7 @@ const CONCEPTS_DATA = [
         "topicName": "Fish",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance",
+        "isExercise": false,
         "headerComments": [],
         "inlineComments": [
           "The constructor of animal class is called, using constructor chaining",
@@ -18058,6 +18125,7 @@ const CONCEPTS_DATA = [
         "topicName": "Inheritance",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -18164,6 +18232,7 @@ const CONCEPTS_DATA = [
         "topicName": "Main",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -18237,6 +18306,7 @@ const CONCEPTS_DATA = [
         "topicName": "Employee",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance Coding Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -18298,6 +18368,7 @@ const CONCEPTS_DATA = [
         "topicName": "Hourly Employee",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance Coding Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -18358,6 +18429,7 @@ const CONCEPTS_DATA = [
         "topicName": "Main",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance Coding Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -18418,6 +18490,7 @@ const CONCEPTS_DATA = [
         "topicName": "Salaried Employee",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance Coding Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -18479,6 +18552,7 @@ const CONCEPTS_DATA = [
         "topicName": "Worker",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Inheritance Coding Challenge",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -18597,6 +18671,7 @@ const CONCEPTS_DATA = [
         "topicName": "Dog",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Method Over Loading In Java",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -18644,6 +18719,7 @@ const CONCEPTS_DATA = [
         "topicName": "Method Overloading In Java",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Method Over Loading In Java",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -18972,6 +19048,7 @@ const CONCEPTS_DATA = [
         "topicName": "Covariant Return Type",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Method Overriding In Java",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -19053,6 +19130,7 @@ const CONCEPTS_DATA = [
         "topicName": "Dog",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Method Overriding In Java",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -19112,6 +19190,7 @@ const CONCEPTS_DATA = [
         "topicName": "Method Overriding In Java",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Method Overriding In Java",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -20086,6 +20165,7 @@ const CONCEPTS_DATA = [
         "topicName": "Method Over Loading Vs Method Overriding Difference",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Method Overloading Vs Method Overriding",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -20158,6 +20238,7 @@ const CONCEPTS_DATA = [
         "topicName": "Shape Hierarchy Deep Problem",
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -20182,6 +20263,7 @@ const CONCEPTS_DATA = [
         "topicName": "Text Block And Advanced Output Formatting",
         "chapter": "Chapter 14: Strings",
         "subChapter": "Text Block And Advanced Formatting",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "lines",
@@ -20800,6 +20882,7 @@ const CONCEPTS_DATA = [
         "topicName": "String Method And Best Practices",
         "chapter": "Chapter 14: Strings",
         "subChapter": "String Methods And Best Practices",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -21319,6 +21402,7 @@ const CONCEPTS_DATA = [
         "topicName": "String Builder Concepts",
         "chapter": "Chapter 14: Strings",
         "subChapter": "String Builder",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -22386,6 +22470,7 @@ const CONCEPTS_DATA = [
         "topicName": "String Vs String Buffer Vs String Builder",
         "chapter": "Chapter 14: Strings",
         "subChapter": "String Builder",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -22446,6 +22531,7 @@ const CONCEPTS_DATA = [
         "topicName": "String Formatting Challenge",
         "chapter": "Chapter 14: Strings",
         "subChapter": "Strings Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -22465,6 +22551,7 @@ const CONCEPTS_DATA = [
         "topicName": "Text Block Challenge",
         "chapter": "Chapter 14: Strings",
         "subChapter": "Strings Coding Challenge",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -22484,6 +22571,7 @@ const CONCEPTS_DATA = [
         "topicName": "String Analyzer Deep Problem",
         "chapter": "Chapter 14: Strings",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",
@@ -22508,6 +22596,7 @@ const CONCEPTS_DATA = [
         "topicName": "Computer Case",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "generated",
@@ -22529,6 +22618,7 @@ const CONCEPTS_DATA = [
         "topicName": "Main",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "generated",
@@ -22551,6 +22641,7 @@ const CONCEPTS_DATA = [
         "topicName": "Monitor",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "generated",
@@ -22572,6 +22663,7 @@ const CONCEPTS_DATA = [
         "topicName": "Mother Board",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "generated",
@@ -22593,6 +22685,7 @@ const CONCEPTS_DATA = [
         "topicName": "Personal Computer",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "generated",
@@ -22614,6 +22707,7 @@ const CONCEPTS_DATA = [
         "topicName": "Product",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -22883,6 +22977,7 @@ const CONCEPTS_DATA = [
         "topicName": "Inheritence Vs Composition",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Inheritence Vs Composition",
+        "isExercise": false,
         "headerComments": [
           {
             "type": "block",
@@ -23228,6 +23323,7 @@ const CONCEPTS_DATA = [
         "topicName": "Composition Deep Problem",
         "chapter": "Chapter 15: Composition",
         "subChapter": "Deep Problems",
+        "isExercise": true,
         "headerComments": [
           {
             "type": "block",

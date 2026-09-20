@@ -129,13 +129,13 @@ function topicCoverage(chapter, topic) {
   const challenge = practiceForTopic(topic);
   const hasQuestions = questions.length > 0;
   const hasPractice = Boolean(challenge);
-  // A file whose notes open with "Challenge:" or "Deep Problem:" IS the exercise.
-  // The author wrote the task and then solved it in main, so there is no method for
-  // the tool to extract and no plausible mistake to ask about, and no generated
-  // practice could add anything. This is the author's own convention, which makes
-  // it a structural signal rather than a guess about what the notes mean.
-  const firstNote = ((topic.headerComments || []).find(b => b.type !== 'code' && b.type !== 'table') || {}).lines || [];
-  const opensAsExercise = /^\s*(Challenge|Deep Problem)\s*:/i.test(String(firstNote[0] || ''));
+  // An exercise file IS the exercise. The author wrote the task and then solved it in
+  // main, so there is no method for the tool to extract and no plausible mistake to
+  // ask about, and no generated practice could add anything. The rule lives in
+  // scripts/lib/note-rules.js and matches by NAME or by the notes opening with
+  // "Challenge:" / "Deep Problem:". It used to match only by note content here and
+  // only by name in the parser, so the two reported different numbers.
+  const opensAsExercise = noteRules.isExerciseTopic(topic);
   const rules = ruleCoverage(topic);
   return {
     file: topic.filePath,
@@ -169,29 +169,11 @@ function topicCoverage(chapter, topic) {
   };
 }
 
-// ---- Which chapters are finished ---------------------------------------------
-// A chapter still being written is NOT judged: no "needs work" flag, and no failure
-// for anything it has not got round to yet. Flagging a half-written chapter is
-// double work, because the author may cover the gap in his next session. The rule is
-// identical to the one in parse-concepts.js and suggest.js, so all three agree.
-function chapterNumber(name) {
-  const match = String(name).match(/Chapter\s*_?\s*(\d+)/i);
-  return match ? Number(match[1]) : null;
-}
-function isDraftChapter(chapter) {
-  return (chapter.topics || []).some(topic => /@draft\b/.test(String(topic.code || '')));
-}
-function finishedChapterNames(list) {
-  const numbers = list.map(c => chapterNumber(c.name)).filter(n => n !== null);
-  const highest = numbers.length ? Math.max(...numbers) : null;
-  const finished = new Set();
-  for (const chapter of list) {
-    const n = chapterNumber(chapter.name);
-    if (n === null || highest === null) { finished.add(chapter.name); continue; }
-    if (n < highest && !isDraftChapter(chapter)) finished.add(chapter.name);
-  }
-  return finished;
-}
+// ---- Which chapters are finished, and which files are exercises --------------
+// Both rules live in scripts/lib/note-rules.js so this ledger, the parser and the
+// suggestion engine cannot disagree. They used to be copied into each file by hand,
+// and "is this an exercise?" had already drifted into two different definitions.
+const noteRules = require(path.join(root, 'scripts', 'lib', 'note-rules.js'));
 
 // ---- Per chapter ------------------------------------------------------------
 // The catalogue is needed by chapterCoverage below, so it is loaded first.
@@ -252,7 +234,7 @@ function chapterCoverage(chapter) {
 }
 
 const chapters = concepts.map(chapterCoverage);
-const finishedChapters = finishedChapterNames(concepts);
+const finishedChapters = noteRules.finishedChapterNames(concepts);
 // Totals over the FINISHED chapters only, so the summary cannot contradict the check.
 // A chapter still being written is reported separately: counting its gaps here would
 // say "137 of 142" while the check says everything is covered.

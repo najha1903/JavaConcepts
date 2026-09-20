@@ -12,7 +12,7 @@
 // Regenerate with: node scripts/derive-code-questions.js [--force]
 // ============================================================================
 
-const SOURCE_HASH = '305e41a';
+const SOURCE_HASH = '8c0bd7d7';
 
 const DERIVED_CODE_QUESTIONS = [
   {
