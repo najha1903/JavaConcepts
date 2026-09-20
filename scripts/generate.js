@@ -17,6 +17,9 @@
 //                              lab's verifier before keeping it.
 //   4. parse-concepts again    only if step 3 changed something, because the
 //                              expectations live in a separate file that step 2 reads.
+//   5. coverage                writes the ledger, which is the only source of the
+//                              Coverage view. It runs here so the view can never show
+//                              the previous run's picture.
 //
 // Step 2 has to run before step 3, and step 4 exists because of that dependency. The
 // second parse is skipped when there is nothing new, which is the common case.
@@ -65,3 +68,11 @@ if (after !== before) {
   const secondParse = step('parse-concepts.js', process.argv.slice(2), 'Applying the new practice expectations');
   if (secondParse.status !== 0) process.exit(secondParse.status || 1);
 }
+
+// 5. The ledger, so the Coverage view is never stale. It reads the files the parse
+// just wrote, and it is the only thing that writes coverage-data.js. Without this
+// step the dashboard showed the previous run's coverage until an approve happened,
+// which meant a newly started chapter was missing from it and the chapter it
+// superseded was still marked as the one being written.
+const coverage = step('coverage.js', ['--quiet'], 'Updating the coverage ledger');
+if (coverage.status !== 0) process.exit(coverage.status || 1);
