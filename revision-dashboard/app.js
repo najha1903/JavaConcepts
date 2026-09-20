@@ -105,8 +105,37 @@ function recordQuestionResult(qid, isCorrect) {
   if (!hist[qid]) hist[qid] = { seen: 0, correct: 0, wrong: 0, lastSeenMs: 0 };
   hist[qid].seen++;
   hist[qid].lastSeenMs = Date.now();
-  if (isCorrect) hist[qid].correct++; else hist[qid].wrong++;
+  if (isCorrect) {
+    hist[qid].correct++;
+    hist[qid].lastCorrectMs = Date.now();
+  } else {
+    hist[qid].wrong++;
+  }
+
+  // A question now has a real DUE DATE, not only a weight. Without this a question
+  // that was answered wrongly was merely MORE LIKELY to be picked again, never
+  // guaranteed to come back before it was forgotten. The schedule is deliberately
+  // simple: wrong means "again in this session", right means tomorrow and then
+  // further out each time. See questionDueMs.
+  const DAY = 24 * 60 * 60 * 1000;
+  const s = hist[qid];
+  if (isCorrect) {
+    s.intervalDays = s.intervalDays ? Math.round(s.intervalDays * 2.5) : 1;
+  } else {
+    s.intervalDays = 0;
+  }
+  s.dueMs = s.intervalDays > 0 ? Date.now() + s.intervalDays * DAY : Date.now() + 10 * 60 * 1000;
+
   localStorage.setItem(STORAGE_QHISTORY_KEY, JSON.stringify(hist));
+}
+
+// When a question should be seen again. A question that has never been answered is
+// due now, which is how new material enters the queue.
+function questionDueMs(record) {
+  if (!record) return 0;
+  if (typeof record.dueMs === 'number') return record.dueMs;
+  // Answered before due dates were recorded, so treat it as due rather than losing it.
+  return 0;
 }
 
 function getQuestionWeight(qid, history) {
@@ -117,6 +146,311 @@ function getQuestionWeight(qid, history) {
   if (h.wrong > h.correct) return 5;                    // wrong (older)
   if (daysSince > 14) return 3;                          // not seen in 2 weeks
   return 1;                                              // recently correct
+}
+
+// ============================================================================
+// Mastery: what am I actually weak at?
+//
+// Accuracy was recorded per question from the start but never aggregated, so the
+// dashboard could not answer the one question that matters for revision: which
+// concepts am I bad at. Everything below is derived from data already stored, so
+// nothing new has to be recorded for it to work on history that already exists.
+// ============================================================================
+
+const MASTERY_MIN_SEEN = 3;          // fewer than this and a score is noise
+const MASTERY_PROVEN = 0.8;          // accuracy at which a concept counts as proved
+
+function questionIndex() {
+  if (questionIndexCache) return questionIndexCache;
+  const byId = new Map();
+  const byConcept = new Map();
+  for (const [chapterName, questions] of Object.entries(QUESTIONS_BANK)) {
+    for (const q of questions || []) {
+      byId.set(q.qid, { ...q, chapter: chapterName });
+      for (const concept of q.concepts || []) {
+        if (!byConcept.has(concept)) byConcept.set(concept, []);
+        byConcept.get(concept).push(q.qid);
+      }
+    }
+  }
+  questionIndexCache = { byId, byConcept };
+  return questionIndexCache;
+}
+let questionIndexCache = null;
+
+// Per-concept accuracy, weakest first, so the top of the screen is always what to
+// work on next.
+function getConceptMastery() {
+  const history = getQuestionHistory();
+  const { byConcept } = questionIndex();
+  const rows = [];
+
+  for (const [conceptId, qids] of byConcept) {
+    let seen = 0, correct = 0, wrong = 0, lastCorrectMs = 0, lastSeenMs = 0;
+    for (const qid of qids) {
+      const h = history[qid];
+      if (!h || !h.seen) continue;
+      seen += h.seen;
+      correct += h.correct || 0;
+      wrong += h.wrong || 0;
+      if (h.lastCorrectMs && h.lastCorrectMs > lastCorrectMs) lastCorrectMs = h.lastCorrectMs;
+      if (h.lastSeenMs && h.lastSeenMs > lastSeenMs) lastSeenMs = h.lastSeenMs;
+    }
+    const answered = correct + wrong;
+    rows.push({
+      id: conceptId,
+      name: conceptDisplayName(conceptId),
+      questions: qids.length,
+      answered,
+      correct,
+      wrong,
+      seen,
+      accuracy: answered ? correct / answered : null,
+      lastCorrectMs,
+      lastSeenMs,
+      attempted: answered > 0,
+      proved: answered >= MASTERY_MIN_SEEN && (correct / answered) >= MASTERY_PROVEN
+    });
+  }
+
+  // Weakest first: unattempted work is not "weak", it is simply not started, so
+  // attempted concepts sort by accuracy and unattempted ones come after them.
+  rows.sort((a, b) => {
+    if (a.attempted !== b.attempted) return a.attempted ? -1 : 1;
+    if (a.attempted && b.attempted) {
+      if (a.accuracy !== b.accuracy) return a.accuracy - b.accuracy;
+      // Same accuracy: the one untouched for longer is the more urgent.
+      return (a.lastSeenMs || 0) - (b.lastSeenMs || 0);
+    }
+    return a.name.localeCompare(b.name);
+  });
+  return rows;
+}
+
+function humanAgo(ms) {
+  if (!ms) return 'never';
+  const mins = Math.round((Date.now() - ms) / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + ' min ago';
+  const hours = Math.round(mins / 60);
+  if (hours < 24) return hours + (hours === 1 ? ' hour ago' : ' hours ago');
+  const days = Math.round(hours / 24);
+  return days + (days === 1 ? ' day ago' : ' days ago');
+}
+
+// ============================================================================
+// One review queue: questions and flashcards together, ordered by due date.
+//
+// There were two systems. Flashcards had a real SM-2 schedule with due dates.
+// Questions had only a weight, so a question answered wrongly was more likely to
+// reappear but never guaranteed to. This merges both into one list, because what
+// matters to the learner is "what is due", not which system it came from.
+// ============================================================================
+
+function getDueQuestions() {
+  const history = getQuestionHistory();
+  const { byId } = questionIndex();
+  const now = Date.now();
+  const due = [];
+  for (const [qid, record] of Object.entries(history)) {
+    if (!record || !record.seen) continue;
+    const when = questionDueMs(record);
+    if (when > now) continue;
+    const question = byId.get(qid);
+    if (!question) continue;   // the question no longer exists in the bank
+    due.push({
+      kind: 'question',
+      id: qid,
+      due: when,
+      overdueMs: now - when,
+      title: String(question.question || 'Question').slice(0, 120),
+      chapter: question.chapter,
+      detail: `${question.difficulty || 'medium'} · wrong ${record.wrong || 0} of ${(record.wrong || 0) + (record.correct || 0)}`
+    });
+  }
+  return due;
+}
+
+function getDueCards() {
+  const state = getAnkiState();
+  const now = Date.now();
+  const due = [];
+  for (const [cardId, s] of Object.entries(state)) {
+    if (!s) continue;
+    const when = typeof s.due === 'number' ? s.due : 0;
+    if (when > now) continue;
+    due.push({ kind: 'card', id: cardId, due: when, overdueMs: now - when, title: 'Flashcard', chapter: '', detail: s.state || 'review' });
+  }
+  return due;
+}
+
+// Everything due, oldest first, whatever kind it is.
+function getReviewQueue() {
+  const items = [...getDueQuestions(), ...getDueCards()];
+  items.sort((a, b) => a.due - b.due);
+  return items;
+}
+
+// ============================================================================
+// Readiness: one honest number.
+//
+// Three things go into it, and each is deliberately a different question:
+//   accuracy   how often you are right when you answer
+//   coverage   how much of the material you have actually attempted
+//   proof      how many concepts you have answered well enough, repeatedly
+//
+// A number that only used accuracy would look great after ten easy questions.
+// ============================================================================
+
+function computeReadiness() {
+  const history = getQuestionHistory();
+  const mastery = getConceptMastery();
+  const attempted = mastery.filter(m => m.attempted);
+  const totalConcepts = mastery.length;
+  const provedConcepts = mastery.filter(m => m.proved).length;
+
+  let correct = 0, answered = 0;
+  for (const h of Object.values(history)) {
+    if (!h || !h.seen) continue;
+    correct += h.correct || 0;
+    answered += (h.correct || 0) + (h.wrong || 0);
+  }
+
+  const accuracy = answered ? correct / answered : 0;
+  const coverage = totalConcepts ? attempted.length / totalConcepts : 0;
+  const proof = totalConcepts ? provedConcepts / totalConcepts : 0;
+
+  // Proof carries the most weight, because it is the only part that cannot be
+  // reached by luck: it needs several right answers on the same concept.
+  const score = Math.round((accuracy * 0.35 + coverage * 0.2 + proof * 0.45) * 100);
+
+  return {
+    score,
+    accuracy, coverage, proof,
+    answered, correct,
+    conceptsTotal: totalConcepts,
+    conceptsAttempted: attempted.length,
+    conceptsProved: provedConcepts,
+    weakest: attempted.filter(m => !m.proved).slice(0, 5)
+  };
+}
+
+// ============================================================================
+// Progressive unlocking.
+//
+// A nudge, never a lock. Drilling hard questions before the easy ones are solid is
+// how confidence gets destroyed, but blocking a level outright would be worse: the
+// learner decides. Each level reports whether it is ready and what would make it so.
+// ============================================================================
+
+const LEVEL_READY = 0.7;             // accuracy at a level before the next opens
+const LEVEL_MIN_ANSWERED = 5;        // and enough answers for that to mean something
+
+function getLevelProgress() {
+  const history = getQuestionHistory();
+  const { byId } = questionIndex();
+  const levels = { easy: { correct: 0, answered: 0 }, medium: { correct: 0, answered: 0 }, hard: { correct: 0, answered: 0 } };
+
+  for (const [qid, h] of Object.entries(history)) {
+    if (!h || !h.seen) continue;
+    const question = byId.get(qid);
+    if (!question) continue;
+    const level = String(question.difficulty || 'medium').toLowerCase();
+    if (!levels[level]) continue;
+    levels[level].correct += h.correct || 0;
+    levels[level].answered += (h.correct || 0) + (h.wrong || 0);
+  }
+
+  const summary = {};
+  for (const [level, s] of Object.entries(levels)) {
+    summary[level] = {
+      answered: s.answered,
+      accuracy: s.answered ? s.correct / s.answered : null,
+      solid: s.answered >= LEVEL_MIN_ANSWERED && (s.correct / s.answered) >= LEVEL_READY
+    };
+  }
+  // Easy is always open. A later level opens when the one before it is solid - OR
+  // when the learner has already proved that level itself. Without the second part a
+  // learner who had answered 13 medium questions at 77% would be told medium is not
+  // open yet, while hard was, which is both wrong and irritating. This is a nudge,
+  // never a lock.
+  summary.easy.unlocked = true;
+  summary.medium.unlocked = summary.easy.solid || summary.medium.solid;
+  summary.hard.unlocked = summary.medium.solid || summary.hard.solid;
+  return summary;
+}
+
+// A short sentence for the UI: why a level is or is not open yet.
+function levelStatusText(level, progress) {
+  const p = progress[level];
+  if (p.unlocked) {
+    if (p.answered) return `${Math.round(p.accuracy * 100)}% right over ${p.answered} answered`;
+    return level === 'easy' ? 'always open' : 'open, nothing answered yet';
+  }
+  const needed = level === 'medium' ? 'easy' : 'medium';
+  const before = progress[needed];
+  const shortfall = Math.max(0, LEVEL_MIN_ANSWERED - before.answered);
+  if (shortfall > 0) {
+    return `opens after ${shortfall} more ${needed} question${shortfall === 1 ? '' : 's'} (${before.answered} answered)`;
+  }
+  return `opens at ${Math.round(LEVEL_READY * 100)}% on ${needed} (currently ${Math.round((before.accuracy || 0) * 100)}%)`;
+}
+
+// ============================================================================
+// Study next: the single most useful thing to do right now.
+//
+// The dashboard used to offer three generic start buttons. This decides one action
+// from the data: overdue reviews first, then the weakest concept, then new material.
+// ============================================================================
+
+function pickStudyNext() {
+  const queue = getReviewQueue();
+  const mastery = getConceptMastery();
+  const weakest = mastery.find(m => m.attempted && !m.proved);
+  const untouched = mastery.filter(m => !m.attempted);
+
+  if (queue.length) {
+    const overdue = queue.filter(i => i.overdueMs > 0).length;
+    return {
+      action: 'review',
+      title: `Review ${queue.length} due item${queue.length === 1 ? '' : 's'}`,
+      why: overdue
+        ? `${overdue} of them ${overdue === 1 ? 'is' : 'are'} past due. Clearing these first is what stops you forgetting them.`
+        : 'These are due now, so clearing them first keeps the schedule honest.',
+      button: 'Open the review queue',
+      handler: 'openReviewQueue'
+    };
+  }
+
+  if (weakest) {
+    return {
+      action: 'weakest',
+      title: `Work on ${weakest.name}`,
+      why: `Your weakest concept: ${Math.round(weakest.accuracy * 100)}% right over ${weakest.answered} answer${weakest.answered === 1 ? '' : 's'}, last practised ${humanAgo(weakest.lastSeenMs)}.`,
+      button: `Drill ${weakest.name}`,
+      handler: 'startWeakestConceptQuiz',
+      concept: weakest.id
+    };
+  }
+
+  if (untouched.length) {
+    return {
+      action: 'new',
+      title: `Start ${untouched.length} untried concept${untouched.length === 1 ? '' : 's'}`,
+      why: 'Everything you have tried is solid. These concepts have no answers recorded yet.',
+      button: `Drill ${untouched[0].name}`,
+      handler: 'startWeakestConceptQuiz',
+      concept: untouched[0].id
+    };
+  }
+
+  return {
+    action: 'start',
+    title: 'Start with a chapter',
+    why: 'No answers recorded yet, so nothing is weak and nothing is due. Read a chapter, then quiz it.',
+    button: 'Open the first chapter',
+    handler: 'openFirstChapter'
+  };
 }
 
 function getProjectNotes() {
@@ -208,6 +542,7 @@ function initApp() {
   renderSidebar();
   updateStats();
   renderResumeChapters();
+  renderStudyNext();
   setupEventListeners();
   initPracticeLab();
   
@@ -415,6 +750,264 @@ function renderCoverage() {
 function showCoverage() {
   showView('coverage-view');
   renderCoverage();
+}
+
+// ==========================================================================
+// Mastery, readiness, the review queue and the study-next nudge
+// ==========================================================================
+
+// Notes, question text and concept names are the author's own words, so anything
+// interpolated into innerHTML has to be escaped or a `<` in a note would break the
+// page.
+function escapeHtml(value) {
+  return String(value === null || value === undefined ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+let masteryFilter = 'all';
+
+function setMasteryFilter(value, btn) {
+  masteryFilter = value;
+  document.querySelectorAll('.mastery-controls .coverage-filter').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderMastery();
+}
+
+function showMastery() {
+  showView('mastery-view');
+  renderMastery();
+}
+
+function renderMastery() {
+  renderReadiness();
+  renderLevels();
+  renderReviewQueue();
+  renderMasteryList();
+}
+
+// ---- The one honest number ---------------------------------------------------
+function renderReadiness() {
+  const host = document.getElementById('mastery-readiness');
+  if (!host) return;
+  const r = computeReadiness();
+
+  // A score of zero on an empty history is not a failure, it is the starting line.
+  const started = r.answered > 0;
+  const band = r.score >= 85 ? 'exam-ready' : r.score >= 65 ? 'nearly-there' : r.score >= 35 ? 'building' : 'starting';
+  const verdict = !started
+    ? 'Nothing answered yet, so there is nothing to measure. Take a quiz and this becomes real.'
+    : r.score >= 85
+      ? 'Strong across accuracy, coverage and proof. This is where sitting the exam makes sense.'
+      : r.score >= 65
+        ? 'Solid, but the weak concepts below are what is holding the number down.'
+        : r.score >= 35
+          ? 'Building. Accuracy is not the problem yet — how much you have proved is.'
+          : 'Early days. Keep answering and watch which part moves.';
+
+  host.innerHTML = `
+    <div class="readiness-card ${band}">
+      <div class="readiness-score">
+        <span class="readiness-number">${r.score}</span>
+        <span class="readiness-out-of">/ 100</span>
+      </div>
+      <div class="readiness-body">
+        <h2>Exam readiness</h2>
+        <p class="readiness-verdict">${verdict}</p>
+        <div class="readiness-parts">
+          <div class="readiness-part">
+            <span class="part-value">${started ? Math.round(r.accuracy * 100) + '%' : '—'}</span>
+            <span class="part-label">Accuracy</span>
+            <span class="part-note">${r.correct} right of ${r.answered} answered</span>
+          </div>
+          <div class="readiness-part">
+            <span class="part-value">${r.conceptsAttempted} / ${r.conceptsTotal}</span>
+            <span class="part-label">Concepts tried</span>
+            <span class="part-note">${Math.round(r.coverage * 100)}% of your concepts</span>
+          </div>
+          <div class="readiness-part">
+            <span class="part-value">${r.conceptsProved} / ${r.conceptsTotal}</span>
+            <span class="part-label">Concepts proved</span>
+            <span class="part-note">${Math.round(MASTERY_PROVEN * 100)}% or better over ${MASTERY_MIN_SEEN}+ answers</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ---- Level unlocking ---------------------------------------------------------
+function renderLevels() {
+  const host = document.getElementById('mastery-levels');
+  if (!host) return;
+  const progress = getLevelProgress();
+  const rows = ['easy', 'medium', 'hard'].map(level => {
+    const p = progress[level];
+    return `
+      <div class="level-card ${p.unlocked ? 'unlocked' : 'locked'}">
+        <div class="level-head">
+          <span class="level-name">${level}</span>
+          <span class="level-badge">${p.unlocked ? 'open' : 'not yet'}</span>
+        </div>
+        <p class="level-status">${levelStatusText(level, progress)}</p>
+        <button class="btn btn-small ${p.unlocked ? 'btn-primary-outline' : 'btn-outline'}" onclick="startLevelQuiz('${level}')">
+          Quiz ${level}
+        </button>
+      </div>`;
+  }).join('');
+  host.innerHTML = `
+    <div class="mastery-section-head">
+      <h2>Levels</h2>
+      <p class="panel-subtitle">A nudge, not a lock. Every level stays reachable whenever you want it.</p>
+    </div>
+    <div class="level-grid">${rows}</div>`;
+}
+
+// ---- One review queue --------------------------------------------------------
+function renderReviewQueue() {
+  const host = document.getElementById('mastery-queue');
+  if (!host) return;
+  const queue = getReviewQueue();
+  const questions = queue.filter(i => i.kind === 'question').length;
+  const cards = queue.length - questions;
+
+  if (!queue.length) {
+    host.innerHTML = `
+      <div class="mastery-section-head">
+        <h2>Review queue</h2>
+        <p class="panel-subtitle">Nothing is due. Questions and flashcards are scheduled together here.</p>
+      </div>`;
+    return;
+  }
+
+  const shown = queue.slice(0, 8).map(item => `
+    <li class="queue-item">
+      <span class="queue-kind ${item.kind}">${item.kind === 'question' ? 'Q' : 'Card'}</span>
+      <span class="queue-title">${escapeHtml(item.title)}</span>
+      <span class="queue-when">${item.overdueMs > 0 ? 'overdue' : 'due now'}</span>
+    </li>`).join('');
+
+  host.innerHTML = `
+    <div class="mastery-section-head">
+      <h2>Review queue</h2>
+      <p class="panel-subtitle">${queue.length} due &middot; ${questions} question${questions === 1 ? '' : 's'}, ${cards} flashcard${cards === 1 ? '' : 's'}. Ordered by due date, whatever kind of item it is.</p>
+    </div>
+    <ul class="queue-list">${shown}</ul>
+    ${queue.length > 8 ? `<p class="queue-more">and ${queue.length - 8} more.</p>` : ''}
+    <div class="queue-actions">
+      <button class="btn btn-primary" onclick="startDueQuestionsQuiz()">Quiz the due questions</button>
+      <button class="btn btn-outline" onclick="startAnkiSession()">Open flashcards</button>
+    </div>`;
+}
+
+// ---- The concept list, weakest first ----------------------------------------
+function renderMasteryList() {
+  const host = document.getElementById('mastery-list');
+  if (!host) return;
+  const all = getConceptMastery();
+  const rows = all.filter(m => {
+    if (masteryFilter === 'weak') return m.attempted && !m.proved;
+    if (masteryFilter === 'untried') return !m.attempted;
+    return true;
+  });
+
+  if (!rows.length) {
+    host.innerHTML = '<div class="card"><div class="card-body">Nothing in this filter. ' +
+      (masteryFilter === 'weak' ? 'Every concept you have tried is proved — a good place to be.' : 'Try a different filter.') +
+      '</div></div>';
+    return;
+  }
+
+  const attemptedCount = all.filter(m => m.attempted).length;
+  const head = `<div class="mastery-section-head">
+      <h2>Concepts</h2>
+      <p class="panel-subtitle">${attemptedCount} of ${all.length} concepts tried &middot; weakest first, so the top of this list is always what to work on.</p>
+    </div>`;
+
+  host.innerHTML = head + rows.map(m => {
+    const pct = m.attempted ? Math.round(m.accuracy * 100) : null;
+    const band = !m.attempted ? 'untried' : m.proved ? 'proved' : pct >= 60 ? 'shaky' : 'weak';
+    const bar = m.attempted ? `<span class="mastery-bar"><span class="mastery-bar-fill ${band}" style="width:${pct}%"></span></span>` : '';
+    const meta = m.attempted
+      ? `${m.correct} right of ${m.answered} &middot; last right ${humanAgo(m.lastCorrectMs)}`
+      : `${m.questions} question${m.questions === 1 ? '' : 's'} waiting`;
+    return `
+      <div class="mastery-row ${band}">
+        <div class="mastery-row-main">
+          <span class="mastery-name">${escapeHtml(m.name)}</span>
+          <span class="mastery-meta">${meta}</span>
+          ${bar}
+        </div>
+        <div class="mastery-row-side">
+          <span class="mastery-pct">${pct === null ? '—' : pct + '%'}</span>
+          <button class="btn btn-small btn-outline" onclick="startConceptQuiz('${m.id}')">Drill</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ---- The dashboard nudge -----------------------------------------------------
+function renderStudyNext() {
+  const host = document.getElementById('study-next-panel');
+  if (!host) return;
+  const next = pickStudyNext();
+  host.innerHTML = `
+    <div class="study-next-card ${next.action}">
+      <div class="study-next-label">Study next</div>
+      <h2>${escapeHtml(next.title)}</h2>
+      <p>${escapeHtml(next.why)}</p>
+      <button class="btn btn-primary" onclick="${next.handler}()">${escapeHtml(next.button)}</button>
+    </div>`;
+}
+
+// ---- The actions the nudge and the list can take -----------------------------
+function startConceptQuiz(conceptId) {
+  const pool = questionsForConcept(conceptId);
+  if (!pool.length) { alert('No questions carry that concept yet.'); return; }
+  startSelectionQuiz(pool, `Concept drill: ${conceptDisplayName(conceptId)}`, Math.min(pool.length, 20));
+}
+
+function startWeakestConceptQuiz() {
+  const next = pickStudyNext();
+  if (next.concept) startConceptQuiz(next.concept);
+  else openFirstChapter();
+}
+
+function startDueQuestionsQuiz() {
+  const history = getQuestionHistory();
+  const { byId } = questionIndex();
+  const now = Date.now();
+  const pool = [];
+  for (const [qid, record] of Object.entries(history)) {
+    if (!record || !record.seen) continue;
+    if (questionDueMs(record) > now) continue;
+    const question = byId.get(qid);
+    if (question) pool.push(question);
+  }
+  if (!pool.length) { alert('Nothing is due right now.'); return; }
+  startSelectionQuiz(pool, 'Due for review', Math.min(pool.length, 25));
+}
+
+function startLevelQuiz(level) {
+  const pool = [];
+  Object.keys(QUESTIONS_BANK).forEach(ch => (QUESTIONS_BANK[ch] || []).forEach(q => {
+    if (String(q.difficulty || 'medium').toLowerCase() === level) pool.push(q);
+  }));
+  if (!pool.length) { alert(`No ${level} questions yet.`); return; }
+  startSelectionQuiz(pool, `${level} questions: all chapters`, Math.min(pool.length, 25));
+}
+
+function openFirstChapter() {
+  const first = CONCEPTS_DATA[0];
+  if (first && first.topics && first.topics[0]) openNotesView(first.topics[0].filePath);
+}
+
+function openReviewQueue() {
+  showMastery();
+  const host = document.getElementById('mastery-queue');
+  if (host && host.scrollIntoView) host.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ==========================================================================
@@ -645,6 +1238,10 @@ function setupEventListeners() {
 
   document.getElementById('nav-coverage-btn').addEventListener('click', () => {
     showCoverage();
+  });
+
+  document.getElementById('nav-mastery-btn').addEventListener('click', () => {
+    showMastery();
   });
 
   document.getElementById('coverage-filter-all').addEventListener('click', () => {

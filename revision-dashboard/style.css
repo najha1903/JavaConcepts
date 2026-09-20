@@ -3736,3 +3736,152 @@ samp,
 .cov-suggest-chapter h4 { font-size: 13px; margin: 0 0 6px; color: var(--text-muted); }
 .cov-suggest-draft { color: var(--text-muted); font-size: 12px; }
 .cov-suggest-empty .cov-work-note { margin: 0; }
+
+/* --------------------------------------------------------------------------
+   MASTERY, READINESS, REVIEW QUEUE AND THE STUDY-NEXT NUDGE
+
+   The Mastery view answers "what am I actually weak at". Everything on it is
+   computed from the answers already recorded, so it works on history that
+   already exists. The list is sorted weakest first, so the top of the screen is
+   always the thing to work on next.
+   -------------------------------------------------------------------------- */
+
+/* ---- The study-next nudge on the dashboard ---- */
+.study-next-panel { margin-bottom: 20px; }
+.study-next-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.study-next-card.review { border-left-color: var(--accent-secondary); }
+.study-next-card.weakest { border-left-color: #e0a030; }
+.study-next-card.new { border-left-color: #3fa66a; }
+.study-next-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.study-next-card h2 { font-size: 18px; margin: 0 0 6px; color: var(--text-primary); }
+.study-next-card p { margin: 0 0 12px; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+
+/* ---- Readiness ---- */
+.mastery-readiness { margin-bottom: 24px; }
+.readiness-card {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.readiness-score { display: flex; align-items: baseline; gap: 4px; min-width: 120px; }
+.readiness-number { font-size: 46px; font-weight: 700; line-height: 1; color: var(--text-primary); }
+.readiness-out-of { font-size: 14px; color: var(--text-muted); }
+.readiness-card.exam-ready .readiness-number { color: #3fa66a; }
+.readiness-card.nearly-there .readiness-number { color: #7ab648; }
+.readiness-card.building .readiness-number { color: #e0a030; }
+.readiness-card.starting .readiness-number { color: var(--text-muted); }
+.readiness-body { flex: 1; }
+.readiness-body h2 { font-size: 16px; margin: 0 0 4px; color: var(--text-primary); }
+.readiness-verdict { margin: 0 0 14px; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.readiness-parts { display: flex; flex-wrap: wrap; gap: 20px; }
+.readiness-part { display: flex; flex-direction: column; gap: 2px; }
+.part-value { font-size: 18px; font-weight: 600; color: var(--text-primary); }
+.part-label { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.part-note { font-size: 11px; color: var(--text-muted); }
+
+/* ---- Levels ---- */
+.mastery-levels, .mastery-queue { margin-bottom: 24px; }
+.mastery-section-head { margin-bottom: 12px; }
+.mastery-section-head h2 { font-size: 16px; margin: 0 0 2px; color: var(--text-primary); }
+.level-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+.level-card {
+  flex: 1 1 200px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.level-card.locked { opacity: 0.72; border-style: dashed; }
+.level-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.level-name { font-weight: 600; text-transform: capitalize; color: var(--text-primary); }
+.level-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+}
+.level-card.unlocked .level-badge { background: rgba(63,166,106,0.15); color: #3fa66a; }
+.level-status { font-size: 12px; color: var(--text-muted); margin: 0 0 12px; line-height: 1.4; }
+
+/* ---- Review queue ---- */
+.queue-list { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.queue-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.queue-kind {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.queue-kind.question { background: rgba(90,140,220,0.15); color: #5a8cdc; }
+.queue-title { flex: 1; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.queue-when { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+.queue-more { font-size: 12px; color: var(--text-muted); margin: 0 0 12px; }
+.queue-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---- Concept list ---- */
+.mastery-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.mastery-list { display: flex; flex-direction: column; gap: 8px; }
+.mastery-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.mastery-row.weak { border-left-color: #d9534f; }
+.mastery-row.shaky { border-left-color: #e0a030; }
+.mastery-row.proved { border-left-color: #3fa66a; }
+.mastery-row.untried { border-left-color: var(--border-color); opacity: 0.8; }
+.mastery-row-main { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.mastery-name { font-size: 14px; color: var(--text-primary); }
+.mastery-meta { font-size: 11px; color: var(--text-muted); }
+.mastery-bar { display: block; height: 4px; border-radius: 2px; background: var(--bg-secondary); overflow: hidden; }
+.mastery-bar-fill { display: block; height: 100%; border-radius: 2px; background: var(--accent-primary); }
+.mastery-bar-fill.weak { background: #d9534f; }
+.mastery-bar-fill.shaky { background: #e0a030; }
+.mastery-bar-fill.proved { background: #3fa66a; }
+.mastery-row-side { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.mastery-pct { font-size: 15px; font-weight: 600; color: var(--text-primary); min-width: 44px; text-align: right; }
+
+@media (max-width: 768px) {
+  .readiness-card { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .readiness-number { font-size: 36px; }
+  .mastery-row { flex-direction: column; align-items: stretch; }
+  .mastery-row-side { justify-content: space-between; }
+}

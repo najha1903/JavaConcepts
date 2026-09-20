@@ -78,10 +78,13 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M4 19.5V5a2 2 0 0 1 2-2h10l4 4v12.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v4h4"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
             <span>Notes</span>
           </button>
+          <button id="nav-mastery-btn" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M12 2 15 9l7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
+            <span>Mastery</span>
+          </button>
           <button id="nav-coverage-btn" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
-            <span>Coverage</span>
-          </button>
+            <span>Coverage</span>          </button>
         </div>
 
         <div class="nav-divider"></div>
@@ -113,6 +116,8 @@
           <h1>Welcome to Java Revision Dashboard</h1>
           <p class="subtitle">Track your progress, study core concepts, and quiz yourself to mastery.</p>
         </div>
+
+        <div class="study-next-panel" id="study-next-panel"><!-- JS populated --></div>
 
         <div class="dashboard-panel getting-started-panel">
           <div class="panel-heading-row">
@@ -866,6 +871,28 @@
         </div>
       </section>
       
+      <!-- MASTERY VIEW -->
+      <section id="mastery-view" class="view-section">
+        <div class="view-header">
+          <h1>Mastery</h1>
+          <p class="subtitle">What you are actually good at, weakest first. Built from every answer you have given.</p>
+        </div>
+
+        <div class="mastery-readiness" id="mastery-readiness"><!-- JS populated --></div>
+
+        <div class="mastery-levels" id="mastery-levels"><!-- JS populated --></div>
+
+        <div class="mastery-queue" id="mastery-queue"><!-- JS populated --></div>
+
+        <div class="mastery-controls">
+          <button id="mastery-filter-all" class="coverage-filter active">All concepts</button>
+          <button id="mastery-filter-weak" class="coverage-filter">Not yet proved</button>
+          <button id="mastery-filter-untried" class="coverage-filter">Not tried yet</button>
+        </div>
+
+        <div class="mastery-list" id="mastery-list"><!-- JS populated --></div>
+      </section>
+
       <!-- COVERAGE VIEW -->
       <section id="coverage-view" class="view-section">
         <div class="view-header">
