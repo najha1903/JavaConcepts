@@ -23,7 +23,7 @@ const dashboardDir = path.join(root, 'revision-dashboard');
 
 // Every file the generator writes. data.js is also the baseline the review gate
 // compares against, so restoring it restores the whole approved state.
-const GENERATED = ['data.js', 'questions.js', 'practice.js', 'deep-challenges.js'];
+const GENERATED = ['data.js', 'questions.js', 'practice.js', 'deep-challenges.js', 'coverage-data.js'];
 
 function snapshot() {
   const saved = new Map();
@@ -56,7 +56,7 @@ function run(script, label) {
 
 const saved = snapshot();
 
-const generated = run('parse-concepts.js', 'Generating from your notes');
+const generated = run('generate.js', 'Generating from your notes');
 if (!generated) {
   restore(saved);
   console.error('\nGeneration failed. Nothing was applied; the dashboard still shows the last approved version.');

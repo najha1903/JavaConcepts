@@ -8,6 +8,8 @@ const vm = require('vm');
 const conceptCatalogue = require(path.join(__dirname, '..', 'data', 'java-concepts.js'));
 const { OCJP_BANK } = require(path.join(__dirname, '..', 'data', 'ocjp-bank.js'));
 const { DERIVED_CODE_QUESTIONS } = require(path.join(__dirname, '..', 'data', 'code-questions.js'));
+const { PRACTICE_EXPECTATIONS } = require(path.join(__dirname, '..', 'data', 'practice-expectations.js'));
+const { buildVerifySource } = require(path.join(__dirname, 'lib', 'lab-verifier.js'));
 
 // ==========================================================================
 // The marker vocabulary, in one place.
@@ -1918,6 +1920,23 @@ function isPlausibleTestCase(testCase, returnType) {
 // ==========================================================================
 // Practice challenges
 // ==========================================================================
+// The body of the method whose signature starts at `index`, found by matching braces.
+// Used to ask what a method actually does - whether it reads console input, for
+// instance - rather than guessing from its name.
+function bodyOfMethod(source, index) {
+  const open = String(source).indexOf('{', index);
+  if (open === -1) return '';
+  let depth = 0;
+  for (let i = open; i < source.length; i++) {
+    if (source[i] === '{') depth++;
+    else if (source[i] === '}') {
+      depth--;
+      if (depth === 0) return source.slice(open, i + 1);
+    }
+  }
+  return source.slice(open);
+}
+
 function buildPracticeChallenges(parsedData) {
   const challenges = [];
 
@@ -1927,8 +1946,14 @@ function buildPracticeChallenges(parsedData) {
     // and also the *DeepProblem* files. Several chapters keep their practice methods
     // only in the DeepProblem file while their Challenge file holds just main(), so
     // those chapters used to receive no practice at all.
+    //
+    // A file that is NOT an exercise is also considered, but only when it holds a
+    // method worth practising. That is decided below by the method search, which
+    // requires a non-void public static method: a method that returns nothing can
+    // only be checked from an expectation the author wrote by hand. Measured before
+    // this was allowed: of 72 non-exercise files, 10 hold such a method, and 3 of
+    // those read console input and are excluded.
     const isExercise = nameLower.includes('challenge') || nameLower.includes('problem');
-    if (!isExercise) continue;
 
     const code = topic.code;
     const fileName = topic.fileName.replace('.java', '');
@@ -1954,12 +1979,31 @@ function buildPracticeChallenges(parsedData) {
       ? '<p>' + descLines.join('</p><p>') + '</p>'
       : `<p>Implement the method in <code>${topic.fileName}</code>. Read the source code for details.</p>`;
 
-    // Find first non-main public static method
+    // Find first non-main public static method.
+    //
+    // The search runs over the source with comments and string literals blanked out.
+    // Without that it matched methods that were only MENTIONED in prose - the notes
+    // discuss `calculateScore(...)` and `getQuarter(...)` in comments - and reported
+    // 36 candidates where there are really 10.
+    //
+    // The blanking replaces each removed character with a space rather than deleting
+    // it, so every index still lines up with the original source. The rest of this
+    // function slices `code` using `methodMatch.index`.
+    const searchable = String(code)
+      .replace(/\/\*[\s\S]*?\*\//g, blank => ' '.repeat(blank.length))
+      .replace(/\/\/[^\n]*/g, blank => ' '.repeat(blank.length))
+      .replace(/"(?:\\.|[^"\\])*"/g, blank => '"' + ' '.repeat(Math.max(0, blank.length - 2)) + '"');
     const methodRegex = /public\s+static\s+(\w[\w<>\[\]]*)\s+(\w+)\s*\(([^)]*)\)\s*(?:throws\s+[\w,\s]+)?\s*\{/g;
     let methodMatch = null;
     let m;
-    while ((m = methodRegex.exec(code)) !== null) {
-      if (m[2] !== 'main') { methodMatch = m; break; }
+    while ((m = methodRegex.exec(searchable)) !== null) {
+      if (m[2] === 'main') continue;
+      // In a file that is not an exercise, the method has to be one a challenge can
+      // actually check. A void method returns nothing, so its only usable
+      // expectation is one written by hand, which these files do not have.
+      if (!isExercise && m[1] === 'void') continue;
+      methodMatch = m;
+      break;
     }
 
     if (!methodMatch) continue; // Skip if no suitable method found
@@ -1967,6 +2011,11 @@ function buildPracticeChallenges(parsedData) {
     const returnType = methodMatch[1];
     const methodName = methodMatch[2];
     const params = methodMatch[3];
+
+    // A method that reads console input cannot be given an expected value without a
+    // person at the keyboard, so it can never be auto-checked. Three of the ten
+    // candidates in non-exercise files are of this kind.
+    if (!isExercise && /\bScanner\b|System\.console\s*\(|BufferedReader|System\.in\b/.test(bodyOfMethod(code, methodMatch.index))) continue;
 
     // Difficulty from the problem itself: extra parameters, loops, branches and
     // recursion all make a coding challenge harder. The old rule used the chapter
@@ -2099,53 +2148,30 @@ function buildPracticeChallenges(parsedData) {
     }
     }
 
+    // Expected values computed by scripts/fill-practice-expectations.js, which calls
+    // the author's OWN method and records what it returned. Without these, a test case
+    // scraped from `println(method(args))` knows the arguments but not the result, so
+    // the challenge can only be self-checked. Applying them is what makes it
+    // auto-checked, and the value is the author's own answer rather than a guess.
+    const computedExpectations = PRACTICE_EXPECTATIONS[slug];
+    if (computedExpectations && computedExpectations.length) {
+      testCases.length = 0;
+      for (const entry of computedExpectations) testCases.push({ args: entry.args, expected: entry.expected });
+    }
+
     const selfCheck = testCases.length === 0 ||
       testCases.every(tc => tc.expected === null);
 
     // Build verifyFn string (evaluated in browser context). It returns true, false,
     // or null. null means the code could not be run automatically, which must be
     // reported as "not checked" rather than as a wrong answer.
+    // The verifier is built for every challenge that can have one, not only for the
+    // auto-checked ones. fill-practice-expectations.js needs it in order to test an
+    // expectation BEFORE writing it: without that it could record a value the lab
+    // rejects, and the lab would mark the author's own correct code wrong.
     let verifyFnStr = null;
-    if (!selfCheck && paramNames.length > 0 && capturesOutput) {
-      // A void method is checked by what it prints. print and println are routed to
-      // two helpers so the newline a println adds is captured exactly, and the
-      // comparison is then against the text the author wrote.
-      const argAccess = paramNames.map((_, i) => `testCase.args[${i}]`).join(', ');
-      const paramQuoted = paramNames.map(p => `"${p}"`).join(', ');
-      verifyFnStr = `function(userCode, testCase) {
-        try {
-          if (typeof prepareJavaBody !== "function") return null;
-          const body = extractMethodBody(userCode, "${methodName}");
-          const prepared = prepareJavaBody(body, true);
-          const out = [];
-          const __print = (v) => { out.push(String(v)); };
-          const __printLn = (v) => { out.push(String(v) + "\\n"); };
-          const fn = new Function("__print", "__printLn", ${paramQuoted}, prepared);
-          fn(__print, __printLn, ${argAccess});
-          const actual = out.join("").replace(/\\s+$/, "");
-          const expected = String(testCase.expected).replace(/\\s+$/, "");
-          return actual === expected;
-        } catch(e) { return null; }
-      }`;
-    } else if (!selfCheck && paramNames.length > 0) {
-      const argAccess = paramNames.map((_, i) => `testCase.args[${i}]`).join(', ');
-      const paramQuoted = paramNames.map(p => `"${p}"`).join(', ');
-      verifyFnStr = `function(userCode, testCase) {
-        try {
-          const body = extractMethodBody(userCode, "${methodName}");
-          const prepared = (typeof prepareJavaBody === "function") ? prepareJavaBody(body) : body;
-          const fn = new Function(${paramQuoted}, prepared);
-          const result = fn(${argAccess});
-          const expected = testCase.expected;
-          // Floating point results are compared with a small tolerance, because a
-          // note such as "returns about 78.53975" is a rounded value.
-          if (typeof result === "number" && typeof expected === "number") {
-            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);
-            return Math.abs(result - expected) <= tolerance;
-          }
-          return result === expected;
-        } catch(e) { return null; }
-      }`;
+    if (paramNames.length > 0) {
+      verifyFnStr = buildVerifySource({ methodName, paramNames, capturesOutput });
     }
 
     challenges.push({

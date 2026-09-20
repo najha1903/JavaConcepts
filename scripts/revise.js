@@ -29,26 +29,15 @@ function openPage(file) {
   }
 }
 
-// The derived code questions are regenerated from the notes BEFORE the parse, so
-// they are always in step with the code blocks they came from. This is the only
-// step that compiles anything, and it is cached by content: the file is only
-// rewritten when a block's derived question would actually change.
-const derive = spawnSync(process.execPath, [path.join(__dirname, 'derive-code-questions.js'), '--quiet'], {
-  cwd: root,
-  stdio: 'inherit'
-});
-if (derive.status !== 0) {
-  console.error('');
-  console.error('Could not derive the code questions. Nothing was proposed.');
-  process.exit(derive.status || 1);
-}
-
-const propose = spawnSync(process.execPath, [path.join(__dirname, 'parse-concepts.js'), '--propose', '--no-prompt'], {
+// The generated code questions and practice expectations are refreshed BEFORE the
+// parse, so they are always in step with the notes they came from. See generate.js
+// for why the order is what it is.
+const generate = spawnSync(process.execPath, [path.join(__dirname, 'generate.js'), '--propose', '--no-prompt'], {
   cwd: root,
   stdio: 'inherit'
 });
 
-if (propose.status !== 0 && !fs.existsSync(proposalFile)) process.exit(propose.status || 1);
+if (generate.status !== 0 && !fs.existsSync(proposalFile)) process.exit(generate.status || 1);
 
 if (fs.existsSync(proposalFile)) {
   // Something is waiting, so open the review page instead of the dashboard.

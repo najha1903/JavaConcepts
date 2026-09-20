@@ -335,6 +335,27 @@ Nothing needs to be authored for this, but it only finds questions where your co
 
 The result is cached against a fingerprint of your code blocks, so it only recompiles when a block changes. Use `npm run derive:code -- --force` to rebuild it from scratch.
 
+## Practice Challenges And How They Get Checked
+
+A practice challenge comes from a file whose name contains `Challenge` or `Problem`. A file that is not an exercise is used too, but only when it holds a **non-void public static method** that takes at least one argument — a method a challenge can actually check. A method that reads console input is skipped, because its result cannot be known without a person at the keyboard.
+
+Each challenge is labelled in the lab:
+
+- **Auto-checked** — your method is run and compared with a recorded expected value.
+- **Self-check** — there is no expected value, so you verify it yourself.
+
+The tool raises as many challenges to auto-checked as it honestly can. For a challenge with no recorded expectation it calls **your own method** with generated arguments and records what it returned, so the expected value is your answer rather than a guess. Arguments are generated only for numeric and boolean parameters, because for those any in-range value is meaningful; a `String` parameter is left alone, since choosing the value would be a guess about your domain.
+
+Before an expectation is written, the **practice lab's own verifier** is run against your source. If it disagrees, the expectation is discarded and the challenge stays self-check. That check exists because the lab translates Java into JavaScript, and the translation has limits: writing a value it rejects would make the lab tell you your correct code is wrong, which is the worst thing it can do.
+
+**To make a challenge auto-checked by hand**, add an `@testcase` line:
+
+```java
+// @testcase toFahrenheit(25) -> 77.0
+```
+
+That is the reliable route for a `String` or `char` parameter, where the tool deliberately will not guess.
+
 ## Section Markers
 
 A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.
@@ -460,7 +481,14 @@ npm run check     # regenerate and audit without opening the browser
 
 The audit checks that topics, question IDs, question-to-topic links, answer shapes, challenges, and known incomplete-note patterns are valid. Java compilation should still be checked with your installed JDK after changing source code.
 
-`npm run revise` and `npm run approve` run every check, in order, and refuse to apply if any fails. They are:
+`npm run revise` and `npm run approve` both run `scripts/generate.js`, which regenerates everything in the order it has to happen:
+
+1. `derive-code-questions.js` — compiles your note code blocks and records what they print. Cached against a fingerprint of the blocks, so it is a no-op when nothing changed.
+2. `parse-concepts.js` — writes `data.js`, `questions.js`, `practice.js` and `deep-challenges.js` from your notes.
+3. `fill-practice-expectations.js` — reads the challenges step 2 just wrote, computes the expected value by calling your own method, and validates it against the practice lab's verifier.
+4. `parse-concepts.js` again — only when step 3 produced a new value, so the dashboard picks it up.
+
+They then run every check, in order, and refuse to apply if any fails:
 
 | Check | What it guarantees |
 |---|---|
