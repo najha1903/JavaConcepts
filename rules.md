@@ -477,7 +477,7 @@ A rule that lives only in a document gets forgotten. A rule that fails the build
 
 ## Editing These Files: Watch The Encoding
 
-**Windows PowerShell 5.1's `Get-Content` reads a file with no BOM as Windows-1252, not UTF-8.** Read a UTF-8 file that way, write it back with `Set-Content -Encoding UTF8`, and every multi-byte character is stored permanently wrong: one em-dash becomes three wrong characters, a tick becomes three, an emoji becomes a run of them. It renders as `â€”` and similar.
+**Windows PowerShell 5.1's `Get-Content` reads a file with no BOM as Windows-1252, not UTF-8.** Read a UTF-8 file that way, write it back with `Set-Content -Encoding UTF8`, and every multi-byte character is stored permanently wrong: one em-dash becomes three wrong characters, a tick becomes three, an emoji becomes a run of them. What you see is a run of accented letters and symbols where a dash or a tick should be — the character U+00E2 followed by U+20AC followed by U+201D, in place of a single em-dash.
 
 This happened to `app.js`, `index.html` and `style.css`, in 76 places, and was fixed by `npm run fix:encoding`.
 
