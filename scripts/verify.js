@@ -17,6 +17,8 @@
 //                     bank intends, and every wrong option says why it is wrong
 //   check-quality     every question gives feedback on a wrong choice, and none
 //                     gives the answer away without reasoning
+//   check-ui          every text colour clears WCAG AA, no text is below 12px, and no
+//                     container gap is below 12px
 //
 // The first failure stops the run and the exit code is non-zero, so a broken
 // generation can never be reported as approved.
@@ -33,6 +35,7 @@ const CHECKS = [
   { script: 'check-questions.js', label: 'Question answers' },
   { script: 'check-bank.js', label: 'OCJP bank' },
   { script: 'check-quality.js', label: 'Question quality' },
+  { script: 'check-ui.js', label: 'Interface' },
   { script: 'coverage.js', label: 'Coverage', args: ['--check'] }
 ];
 

@@ -10,6 +10,8 @@
     "check:questions": "node scripts/check-questions.js",
     "check:bank": "node scripts/check-bank.js",
     "check:quality": "node scripts/check-quality.js",
+    "check:ui": "node scripts/check-ui.js",
+    "apply:ui": "node scripts/apply-ui-fixes.js",
     "derive:code": "node scripts/derive-code-questions.js",
     "generate:all": "node scripts/generate.js",
     "fill:practice": "node scripts/fill-practice-expectations.js",
