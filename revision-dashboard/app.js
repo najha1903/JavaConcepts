@@ -29,6 +29,9 @@ let quizReviewMode = false;
 let currentDifficultyFilter = 'all'; // 'all', 'easy', 'medium', 'hard'
 let currentTagFilter = 'all'; // 'all', 'ocjp', 'interview', 'tricky', 'predict', 'concept', 'codefill'
 let currentPracticeTab = 'coding'; // 'coding' or 'deep'
+// When the whole challenge set is shown it is ordered weakest-concept-first, so the top
+// of the list is what to do. The author can turn that off and get the file order back.
+let practiceOrderByWeakness = true;
 
 // Anki-style spaced-repetition flashcard state
 let quickRevMode = 'flashcards';   // 'flashcards' (Anki) or 'browse'
@@ -1037,6 +1040,7 @@ function renderMasteryList() {
         <div class="mastery-row-side">
           <span class="mastery-pct">${pct === null ? 'â€”' : pct + '%'}</span>
           <button class="btn btn-small btn-outline" onclick="startConceptQuiz('${m.id}')">Drill</button>
+          ${challengesForConcept(m.id, true).length ? `<button class="btn btn-small btn-outline" onclick="practiseConceptInCode('${m.id}')">Practise in code</button>` : ''}
         </div>
       </div>`;
   }).join('');
@@ -1283,23 +1287,32 @@ function openQuizRevisit(scope) {
 }
 
 function getScopedPracticeChallenges() {
+  const all = getAllPracticeChallenges();
+
+  if (!currentPracticeScope.chapterName) {
+    // Showing everything: order it by what the author is weakest at, so the top of the
+    // list is what to actually do rather than whatever order the files happen to be in.
+    return practiceOrderByWeakness ? orderChallengesByWeakness(all) : all;
+  }
+  const scoped = all.filter(ch => ch.chapter === currentPracticeScope.chapterName);
+  return scoped.length > 0 ? scoped : all;
+}
+
+// Every challenge, unscoped. The scoped accessor above exists for the lab's LIST; code
+// that needs to know what exists - such as Mastery asking whether a challenge teaches a
+// concept - must not be affected by whatever chapter the lab happens to be showing.
+function getAllPracticeChallenges() {
   // Every challenge comes from practice.js now - both the hand-written ones and the
   // generated ones. They used to be split across two files, which meant the audit
   // could not see the hand-written six and they would have missed their concept tags.
   // See data/practice-challenges.js.
-  const allChallenges = (typeof GENERATED_PRACTICE_CHALLENGES !== 'undefined' ? GENERATED_PRACTICE_CHALLENGES : [])
+  return (typeof GENERATED_PRACTICE_CHALLENGES !== 'undefined' ? GENERATED_PRACTICE_CHALLENGES : [])
     .map(ch => {
       if (ch.verifyFnStr && !ch.verify) {
         try { ch.verify = eval('(' + ch.verifyFnStr + ')'); } catch (e) { ch.selfCheck = true; }
       }
       return ch;
     });
-
-  if (!currentPracticeScope.chapterName) {
-    return allChallenges;
-  }
-  const scoped = allChallenges.filter(ch => ch.chapter === currentPracticeScope.chapterName);
-  return scoped.length > 0 ? scoped : allChallenges;
 }
 
 function setupEventListeners() {
@@ -1464,6 +1477,8 @@ function setupEventListeners() {
   // nothing is lost, so there is nothing to confirm.
   document.getElementById('btn-close-quiz').addEventListener('click', closeQuiz);
   document.getElementById('btn-prev-question').addEventListener('click', previousQuizQuestion);
+  const practiceOrderBtn = document.getElementById('btn-practice-order');
+  if (practiceOrderBtn) practiceOrderBtn.addEventListener('click', togglePracticeOrder);
   document.getElementById('btn-retry-quiz').addEventListener('click', retryQuiz);
   document.getElementById('btn-return-dashboard').addEventListener('click', () => {
     // Back to where the quiz was launched from, not always the Overview.
@@ -4969,6 +4984,77 @@ function prepareJavaBody(body, captureOutput) {
   return code;
 }
 
+// ============================================================================
+// Connecting Mastery and the Code Practice lab
+//
+// They share no capability: Mastery measures, the lab is a tool. They never used to
+// reference each other, so Mastery said "Drill this concept" and never "practise it in
+// code", and the lab showed its challenges in file order with no idea which ones the
+// author was weak at. These functions are that connection.
+// ============================================================================
+
+// The challenges that teach a given concept.
+//
+// `preciseOnly` matters. A challenge whose concepts came from its own notes narrowed to
+// that topic is a real match. One whose concepts fell back to the whole chapter's list
+// only means "this chapter teaches it", and offering it would promise a challenge about
+// one concept and deliver another - measured, 8 of 69 are precise and 61 are not. The
+// Mastery button uses preciseOnly; the weakness ordering uses both, because ranking by
+// chapter weakness is genuinely what the data supports.
+function challengesForConcept(conceptId, preciseOnly) {
+  if (!conceptId) return [];
+  // Unscoped on purpose: this answers "is there a challenge for this concept", which
+  // must not depend on which chapter the lab is currently showing.
+  return getAllPracticeChallenges().filter(ch => {
+    if (!Array.isArray(ch.concepts) || !ch.concepts.includes(conceptId)) return false;
+    if (preciseOnly && ch.conceptsSource !== 'topic') return false;
+    return true;
+  });
+}
+
+// Opens the lab on the first challenge that genuinely teaches this concept.
+function practiseConceptInCode(conceptId) {
+  const matches = challengesForConcept(conceptId, true);
+  if (!matches.length) return;
+  const target = matches[0];
+  // Scope to the chapter so the list around it makes sense, then select it.
+  currentPracticeScope = { chapterName: target.chapter, subChapterName: null };
+  showView('practice-view');
+  renderChallengesList();
+  const scoped = getScopedPracticeChallenges();
+  const idx = scoped.findIndex(ch => ch.id === target.id);
+  currentChallengeIndex = idx >= 0 ? idx : 0;
+  selectChallenge(currentChallengeIndex);
+}
+
+// How weak the author is at the concepts a challenge teaches. Lower is weaker, so the
+// sort is ascending. A concept never attempted counts as weakest, because it is unknown
+// rather than proved.
+function challengeWeakness(challenge) {
+  const mastery = getConceptMastery();
+  const byId = new Map(mastery.map(m => [m.id, m]));
+  const concepts = (challenge.concepts || []).map(id => byId.get(id)).filter(Boolean);
+  if (!concepts.length) return 1;                       // no data: treat as weak
+  const attempted = concepts.filter(c => c.attempted);
+  if (!attempted.length) return 0;                      // nothing tried yet: weakest
+  return attempted.reduce((sum, c) => sum + c.accuracy, 0) / attempted.length;
+}
+
+// Orders the lab's list by what the author is weakest at, so the top of the list is what
+// to actually do. Applied only when the whole set is shown; a chapter-scoped list is
+// small enough that its own order reads better.
+function orderChallengesByWeakness(list) {
+  return list.slice().sort((a, b) => challengeWeakness(a) - challengeWeakness(b));
+}
+
+// Switches the lab's list between weakest-concept-first and the file order.
+function togglePracticeOrder() {
+  practiceOrderByWeakness = !practiceOrderByWeakness;
+  currentChallengeIndex = 0;
+  renderChallengesList();
+  selectChallenge(currentChallengeIndex);
+}
+
 function showPracticeLab(scope) {
   if (scope) {
     currentPracticeScope = {
@@ -5005,6 +5091,19 @@ function renderChallengesList() {
     scopeLabel.innerText = currentPracticeScope.chapterName
       ? (currentPracticeScope.subChapterName ? `${currentPracticeScope.chapterName} > ${currentPracticeScope.subChapterName}` : currentPracticeScope.chapterName)
       : 'All chapters';
+  }
+
+  // The ordering note only means anything when the whole set is shown; a chapter-scoped
+  // list is small and keeps its own order.
+  const orderBar = document.getElementById('practice-order-bar');
+  const orderNote = document.getElementById('practice-order-note');
+  const orderBtn = document.getElementById('btn-practice-order');
+  if (orderBar) {
+    orderBar.style.display = currentPracticeScope.chapterName ? 'none' : 'flex';
+    if (orderNote) orderNote.innerText = practiceOrderByWeakness
+      ? 'Weakest concepts first'
+      : 'In chapter order';
+    if (orderBtn) orderBtn.innerText = practiceOrderByWeakness ? 'By chapter' : 'Weakest first';
   }
 
   scopedChallenges.forEach((ch, idx) => {

@@ -238,17 +238,24 @@ function conceptsForChapter(chapterName, topics) {
 //
 // If narrowing leaves fewer than two concepts the full inference is not used
 // either: the chapter's own mapping is, so a topic is never left thinly tagged.
-function conceptsForTopic(topic, chapterConcepts) {
+//
+// `source` says which of the two happened, because they mean different things:
+//   'topic'   the concepts came from THIS file's notes, so a match is precise
+//   'chapter' they are the whole chapter's list, so a match only means the chapter
+//             teaches it
+// Only 'topic' supports claiming that a challenge teaches a specific concept.
+function conceptsForTopicWithSource(topic, chapterConcepts) {
   const own = inferConcepts([topic]);
-  if (!own.length) return own;
-  if (!chapterConcepts || !chapterConcepts.length) return own;
+  if (!own.length) return { concepts: own, source: 'chapter' };
+  if (!chapterConcepts || !chapterConcepts.length) return { concepts: own, source: 'topic' };
   const allowed = new Set(chapterConcepts);
   const narrowed = own.filter(id => allowed.has(id));
-  // One surviving concept is weak evidence, so the hand-written chapter mapping
-  // wins instead: Chapter 10 would otherwise offer only `static` and hide its own
-  // classes and encapsulation questions from the filter.
-  if (narrowed.length >= 2) return narrowed;
-  return chapterConcepts.slice();
+  if (narrowed.length >= 2) return { concepts: narrowed, source: 'topic' };
+  return { concepts: chapterConcepts.slice(), source: 'chapter' };
+}
+
+function conceptsForTopic(topic, chapterConcepts) {
+  return conceptsForTopicWithSource(topic, chapterConcepts).concepts;
 }
 
 // id -> display name, so the dashboard can label a concept filter without
@@ -319,6 +326,7 @@ module.exports = {
   OBJECTIVES_AHEAD,
   conceptsForChapter,
   conceptsForTopic,
+  conceptsForTopicWithSource,
   conceptNames,
   keywordPresent
 };

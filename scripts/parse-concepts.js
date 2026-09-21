@@ -2196,14 +2196,22 @@ function buildPracticeChallenges(parsedData) {
     // be reached from the Mastery view.
     //
     // A challenge file is mostly code with little prose, so inference often finds
-    // nothing. In that case the chapter's own concepts are the honest answer: the
-    // challenge belongs to that chapter, so it teaches what that chapter teaches.
+    // nothing and the chapter's own concepts are the honest fallback: the challenge
+    // belongs to that chapter, so it teaches what that chapter teaches.
+    //
+    // `conceptsSource` records WHICH of those happened, because the two mean different
+    // things and only one supports claiming a specific concept. Measured: 8 of 69 are
+    // narrowed from the topic, and 61 fall back to the chapter. A concept match on a
+    // chapter fallback means "this chapter teaches it", NOT "this challenge teaches
+    // it" - and offering a challenge about `abstract` that turns out to be about method
+    // overloading is worse than offering nothing.
     const chapterConcepts = conceptCatalogue.conceptsForChapter(
       topic.chapter,
       topicsByChapter.get(topic.chapter) || []
     );
-    const ownConcepts = conceptCatalogue.conceptsForTopic(topic, chapterConcepts);
-    const concepts = ownConcepts.length ? ownConcepts : chapterConcepts.slice();
+    const inferred = conceptCatalogue.conceptsForTopicWithSource(topic, chapterConcepts);
+    const concepts = inferred.concepts.length ? inferred.concepts : chapterConcepts.slice();
+    const conceptsSource = inferred.concepts.length ? inferred.source : 'chapter';
 
     challenges.push({
       id: slug,
@@ -2211,6 +2219,10 @@ function buildPracticeChallenges(parsedData) {
       difficulty,
       chapter: topic.chapter,
       concepts,
+      // 'topic' means the concepts were narrowed from this file's own notes, so a
+      // concept match is precise. 'chapter' means they are the whole chapter's list,
+      // so a match only means the chapter teaches it. See the note above.
+      conceptsSource,
       description: descHtml,
       template,
       testCases: selfCheck ? [{ args: [], expected: null }] : testCases,
@@ -2805,7 +2817,14 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
     // `source` lets the checks tell a hand-written challenge from a generated one. A
     // hand-written challenge has no .java file in src/, so there is nothing to check it
     // against, and saying "source file not found" would read like a fault.
-    return { ...rest, source: 'curated', verifyFnStr: typeof verify === 'function' ? verify.toString() : null };
+    //
+    // These carry concepts chosen by hand, so a match on one is precise.
+    return {
+      ...rest,
+      source: 'curated',
+      conceptsSource: 'topic',
+      verifyFnStr: typeof verify === 'function' ? verify.toString() : null
+    };
   });
   const generatedItems = buildPracticeChallenges(parsedData);
   const challengesList = [...curatedItems, ...generatedItems];
