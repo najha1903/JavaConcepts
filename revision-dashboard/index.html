@@ -318,8 +318,8 @@
           <!-- Quick Revision mode toggle: Anki flashcards vs Browse notes -->
           <div class="qr-mode-bar">
             <div class="qr-mode-toggle">
-              <button id="qr-mode-flashcards" class="qr-mode-btn active" onclick="setQuickRevMode('flashcards')">ðŸŽ´ Flashcards</button>
-              <button id="qr-mode-browse" class="qr-mode-btn" onclick="setQuickRevMode('browse')">ðŸ“– Browse Notes</button>
+              <button id="qr-mode-flashcards" class="qr-mode-btn active" onclick="setQuickRevMode('flashcards')">🎴 Flashcards</button>
+              <button id="qr-mode-browse" class="qr-mode-btn" onclick="setQuickRevMode('browse')">📖 Browse Notes</button>
             </div>
           </div>
 
@@ -345,9 +345,9 @@
               <!-- JS-rendered card / completion screen -->
             </div>
             <div class="anki-deck-footer">
-              <button class="anki-footer-btn" onclick="shuffleAnkiQueue()">ðŸ”€ Shuffle</button>
-              <button class="anki-footer-btn" onclick="resetAnkiDeck()">â†º Reset progress</button>
-              <span class="anki-footer-hint">Shortcuts: <kbd>Space</kbd> reveal Â· <kbd>1</kbd>â€“<kbd>4</kbd> rate</span>
+              <button class="anki-footer-btn" onclick="shuffleAnkiQueue()">🔀 Shuffle</button>
+              <button class="anki-footer-btn" onclick="resetAnkiDeck()">↺ Reset progress</button>
+              <span class="anki-footer-hint">Shortcuts: <kbd>Space</kbd> reveal · <kbd>1</kbd>–<kbd>4</kbd> rate</span>
             </div>
           </div>
 
@@ -358,7 +358,7 @@
             <div class="flashcard" id="quick-flashcard">
               <!-- Front Face -->
               <div class="flashcard-face flashcard-front">
-                <div class="flashcard-chip">Click to Flip â†»</div>
+                <div class="flashcard-chip">Click to Flip ↻</div>
                 <div class="flashcard-front-content">
                   <div class="flashcard-chapter-label" id="fc-chapter-label">Chapter</div>
                   <h2 class="flashcard-topic-name" id="fc-topic-name">Topic Name</h2>
@@ -370,14 +370,14 @@
               </div>
               <!-- Back Face -->
               <div class="flashcard-face flashcard-back">
-                <div class="flashcard-chip flashcard-chip-back">Definition & Tips âœ“</div>
+                <div class="flashcard-chip flashcard-chip-back">Definition & Tips ✓</div>
                 <div class="flashcard-back-content">
                   <div class="flashcard-back-section">
-                    <div class="flashcard-back-label">ðŸ”‘ Core Rule</div>
+                    <div class="flashcard-back-label">🔑 Core Rule</div>
                     <div id="fc-core-rule" class="flashcard-back-text">Loading...</div>
                   </div>
                   <div class="flashcard-back-section">
-                    <div class="flashcard-back-label">ðŸ’¡ Interview Pro-Tip</div>
+                    <div class="flashcard-back-label">💡 Interview Pro-Tip</div>
                     <div id="fc-pro-tip" class="flashcard-back-text">Loading...</div>
                   </div>
                 </div>
@@ -391,7 +391,7 @@
             <div class="quick-cards-column">
               <div class="card quick-notes-card">
                 <div class="card-header">
-                  <h3>ðŸ”‘ Core Rules &amp; Key Concepts</h3>
+                  <h3>🔑 Core Rules &amp; Key Concepts</h3>
                 </div>
                 <div class="card-body">
                   <ul id="quick-bullet-points" class="bullet-list">
@@ -405,7 +405,7 @@
               
               <div class="card gotchas-card danger-alert">
                 <div class="card-header">
-                  <h3>âš ï¸ Tricky Gotchas &amp; Pitfalls</h3>
+                  <h3>⚠️ Tricky Gotchas &amp; Pitfalls</h3>
                 </div>
                 <div class="card-body">
                   <ul id="quick-gotchas-list" class="bullet-list">
@@ -419,7 +419,7 @@
             <div class="quick-syntax-column">
               <div class="card syntax-template-card">
                 <div class="card-header">
-                  <h3>ðŸ“‹ Class &amp; Method Signature Templates</h3>
+                  <h3>📋 Class &amp; Method Signature Templates</h3>
                 </div>
                 <div class="card-body">
                   <div class="syntax-badge-container" id="quick-syntax-badges">
@@ -479,12 +479,12 @@
               <label class="filter-label">Filter:</label>
               <div class="tag-pills">
                 <button class="tag-pill active" data-tag="all" onclick="setQuizTag('all', this)">All Types</button>
-                <button class="tag-pill ocjp-pill" data-tag="ocjp" onclick="setQuizTag('ocjp', this)">ðŸŽ“ OCJP</button>
-                <button class="tag-pill" data-tag="interview" onclick="setQuizTag('interview', this)">ðŸ’¼ Interview</button>
-                <button class="tag-pill" data-tag="tricky" onclick="setQuizTag('tricky', this)">âš¡ Tricky</button>
-                <button class="tag-pill" data-tag="concept" onclick="setQuizTag('concept', this)">ðŸ“š Concept</button>
-                <button class="tag-pill" data-tag="predict" onclick="setQuizTag('predict', this)">ðŸ”® Predict</button>
-                <button class="tag-pill" data-tag="codefill" onclick="setQuizTag('codefill', this)">âœï¸ Fill Blank</button>
+                <button class="tag-pill ocjp-pill" data-tag="ocjp" onclick="setQuizTag('ocjp', this)">🎓 OCJP</button>
+                <button class="tag-pill" data-tag="interview" onclick="setQuizTag('interview', this)">💼 Interview</button>
+                <button class="tag-pill" data-tag="tricky" onclick="setQuizTag('tricky', this)">⚡ Tricky</button>
+                <button class="tag-pill" data-tag="concept" onclick="setQuizTag('concept', this)">📚 Concept</button>
+                <button class="tag-pill" data-tag="predict" onclick="setQuizTag('predict', this)">🔮 Predict</button>
+                <button class="tag-pill" data-tag="codefill" onclick="setQuizTag('codefill', this)">✏️ Fill Blank</button>
               </div>
             </div>
 
@@ -525,7 +525,7 @@
                 <span id="quiz-question-type-badge" class="question-type-badge">Single Choice</span>
                 <span id="quiz-question-difficulty-badge" class="difficulty-badge easy">Easy</span>
               </div>
-              <span id="quiz-mcq-indicator" class="mcq-select-all-indicator" style="display:none;">â˜‘ Select ALL correct answers</span>
+              <span id="quiz-mcq-indicator" class="mcq-select-all-indicator" style="display:none;">☑ Select ALL correct answers</span>
             </div>
 
             <div id="quiz-question-tags" class="question-tags-row"></div>
@@ -577,7 +577,7 @@
               <span class="answer-feedback" id="quiz-feedback-text"></span>
               <div id="quiz-concept-review" class="concept-review-panel" style="display:none;">
                 <div class="concept-review-header">
-                  <span class="review-icon">ðŸ“–</span>
+                  <span class="review-icon">📖</span>
                   <span class="review-title">Quick Concept Review</span>
                   <span class="review-topic-name" id="review-topic-name"></span>
                 </div>
@@ -655,8 +655,8 @@
         <div class="practice-container">
           <!-- Practice Tab Bar -->
           <div class="practice-tab-bar" id="practice-tab-bar">
-            <button class="practice-tab active" id="tab-coding" onclick="switchPracticeTab('coding', this)">âŒ¨ Coding Challenges</button>
-            <button class="practice-tab" id="tab-deep" onclick="switchPracticeTab('deep', this)">ðŸ† Deep Problems</button>
+            <button class="practice-tab active" id="tab-coding" onclick="switchPracticeTab('coding', this)">⌨ Coding Challenges</button>
+            <button class="practice-tab" id="tab-deep" onclick="switchPracticeTab('deep', this)">🏆 Deep Problems</button>
           </div>
 
           <!-- Split Layout: Left side challenges selector & info -->
@@ -749,28 +749,28 @@
         <div class="quiz-menu-grid">
           <div class="card quiz-menu-card">
             <div class="card-body">
-              <h3>ðŸŽ¯ Grand Java Quiz</h3>
+              <h3>🎯 Grand Java Quiz</h3>
               <p>A mixed set of 40 questions drawn from every chapter you have notes for.</p>
               <button class="btn btn-primary" id="btn-menu-grand-quiz">Start Grand Quiz</button>
             </div>
           </div>
           <div class="card quiz-menu-card">
             <div class="card-body">
-              <h3>ðŸŽ“ OCJP Only</h3>
+              <h3>🎓 OCJP Only</h3>
               <p>Exam style trap questions across all chapters. <span id="menu-ocjp-count">0</span> questions available.</p>
               <button class="btn btn-primary-outline" id="btn-menu-ocjp-quiz">Start OCJP Quiz</button>
             </div>
           </div>
           <div class="card quiz-menu-card">
             <div class="card-body">
-              <h3>âš¡ Tricky Questions</h3>
+              <h3>⚡ Tricky Questions</h3>
               <p>The questions that catch people out. <span id="menu-tricky-count">0</span> questions available.</p>
               <button class="btn btn-primary-outline" id="btn-menu-tricky-quiz">Start Tricky Quiz</button>
             </div>
           </div>
           <div class="card quiz-menu-card">
             <div class="card-body">
-              <h3>ðŸ§© Concept Drill</h3>
+              <h3>🧩 Concept Drill</h3>
               <p>Test yourself on one concept across every chapter that covers it. <span id="menu-concept-count">0</span> questions available.</p>
               <select id="menu-concept-select" class="notes-chapter-select" onchange="updateMenuConceptCount()"></select>
               <button class="btn btn-primary-outline" id="btn-menu-concept-quiz">Start Concept Drill</button>
@@ -778,7 +778,7 @@
           </div>
           <div class="card quiz-menu-card">
             <div class="card-body">
-              <h3>ðŸ” Choose Exactly What To Revise</h3>
+              <h3>🔍 Choose Exactly What To Revise</h3>
               <p>Filter by chapter, topic, level, type and concept, then start a quiz from your selection.</p>
               <button class="btn btn-outline" id="btn-menu-open-bank">Open Revision Bank</button>
             </div>
@@ -822,19 +822,19 @@
               <label class="filter-label">Type</label>
               <div class="tag-pills" id="bank-type-pills">
                 <button class="tag-pill active" data-banktag="all" onclick="setBankTag('all', this)">Everything</button>
-                <button class="tag-pill ocjp-pill" data-banktag="ocjp" onclick="setBankTag('ocjp', this)">ðŸŽ“ OCJP</button>
-                <button class="tag-pill" data-banktag="tricky" onclick="setBankTag('tricky', this)">âš¡ Tricky</button>
-                <button class="tag-pill" data-banktag="concept" onclick="setBankTag('concept', this)">ðŸ“š Concept</button>
-                <button class="tag-pill" data-banktag="predict" onclick="setBankTag('predict', this)">ðŸ”® Predict</button>
-                <button class="tag-pill" data-banktag="codefill" onclick="setBankTag('codefill', this)">âœï¸ Fill Blank</button>
-                <button class="tag-pill" data-banktag="interview" onclick="setBankTag('interview', this)">ðŸ’¼ Written</button>
+                <button class="tag-pill ocjp-pill" data-banktag="ocjp" onclick="setBankTag('ocjp', this)">🎓 OCJP</button>
+                <button class="tag-pill" data-banktag="tricky" onclick="setBankTag('tricky', this)">⚡ Tricky</button>
+                <button class="tag-pill" data-banktag="concept" onclick="setBankTag('concept', this)">📚 Concept</button>
+                <button class="tag-pill" data-banktag="predict" onclick="setBankTag('predict', this)">🔮 Predict</button>
+                <button class="tag-pill" data-banktag="codefill" onclick="setBankTag('codefill', this)">✏️ Fill Blank</button>
+                <button class="tag-pill" data-banktag="interview" onclick="setBankTag('interview', this)">💼 Written</button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="bank-summary-bar">
-          <span id="bank-summary">Loadingâ€¦</span>
+          <span id="bank-summary">Loading…</span>
           <button class="btn btn-primary" id="btn-bank-quiz" onclick="startBankQuiz()">Start quiz from this selection</button>
         </div>
 

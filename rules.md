@@ -467,12 +467,32 @@ Only a `topic` match is offered as "Practise in code", because a chapter-wide ma
 
 Three rules live in one place, `scripts/lib/note-rules.js`, so the scripts cannot disagree: **is this an exercise**, **is this chapter finished**, and **is this line code**. They used to be copied into each script and had already drifted — "is this an exercise" matched by filename in one place and by note content in another, so two reports of the same project disagreed.
 
-Two more are enforced by checks that fail the build, rather than by this document:
+Four more are enforced by checks that fail the build, rather than by this document:
 
 - every practice challenge must carry `chapter` and at least one `concept` (`audit-generated.js`)
 - every text colour must clear WCAG AA, no text below 12px, no container gap below 12px (`check-ui.js`)
+- no file may contain double-encoded text (`fix-encoding.js`)
 
 A rule that lives only in a document gets forgotten. A rule that fails the build cannot be.
+
+## Editing These Files: Watch The Encoding
+
+**Windows PowerShell 5.1's `Get-Content` reads a file with no BOM as Windows-1252, not UTF-8.** Read a UTF-8 file that way, write it back with `Set-Content -Encoding UTF8`, and every multi-byte character is stored permanently wrong: one em-dash becomes three wrong characters, a tick becomes three, an emoji becomes a run of them. It renders as `â€”` and similar.
+
+This happened to `app.js`, `index.html` and `style.css`, in 76 places, and was fixed by `npm run fix:encoding`.
+
+**To edit these files safely, use one of these:**
+
+| | |
+|---|---|
+| The editor or the `edit` tool | reads and writes UTF-8 correctly |
+| `[System.IO.File]::ReadAllText($path, [System.Text.Encoding]::UTF8)` | when a script must do it |
+| `Set-Content -Encoding UTF8` | safe to write, but only if the read was correct |
+| **`Get-Content -Raw` alone** | **not safe** on a file without a BOM |
+
+**`npm run check:encoding` catches it**, and runs inside `npm run revise`. It fails and names the file rather than letting the damage reach the browser, where it is silent — the characters simply render wrong.
+
+If it ever fires: `npm run fix:encoding` reverses it exactly, because the wrong characters are all representable in Windows-1252, so encoding them back recovers the original bytes. It refuses to write if a repair would lose a character.
 
 ## Section Markers
 

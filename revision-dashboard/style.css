@@ -110,7 +110,7 @@ button {
   font-family: inherit;
 }
 
-/* SVGs inside buttons should never intercept clicks â€” pass through to the button */
+/* SVGs inside buttons should never intercept clicks — pass through to the button */
 button svg, button .nav-icon, button .chevron-icon {
   pointer-events: none;
 }
@@ -1813,7 +1813,7 @@ button:disabled:active,
 .code-annotation { color: var(--accent-secondary); font-style: italic; }
 
 /* ==========================================================================
-   Mobile chrome (hidden on desktop, activated in the â‰¤768px media query)
+   Mobile chrome (hidden on desktop, activated in the ≤768px media query)
    ========================================================================== */
 .mobile-topbar { display: none; }
 .drawer-backdrop { display: none; }
@@ -2501,16 +2501,16 @@ button:disabled:active,
   font-size: 13px;
 }
 .test-case-status.pending::before {
-  content: "â—";
+  content: "●";
   color: var(--text-muted);
 }
 .test-case-status.pass::before {
-  content: "âœ“";
+  content: "✓";
   color: var(--success);
   font-weight: bold;
 }
 .test-case-status.fail::before {
-  content: "âœ—";
+  content: "✗";
   color: var(--danger);
   font-weight: bold;
 }
@@ -2640,7 +2640,7 @@ button:disabled:active,
   position: relative;
 }
 .option-item.checkbox.selected::after {
-  content: "âœ“";
+  content: "✓";
   position: absolute;
   right: 18px;
   color: var(--accent-primary);
@@ -2996,7 +2996,7 @@ button:disabled:active,
 .practice-tab.active { color: var(--accent-blue, #4fc3f7); border-bottom-color: var(--accent-blue, #4fc3f7); font-weight: 700; }
 
 /* ==========================================================================
-   Deep Challenge Styles â€” Collapsible Accordion
+   Deep Challenge Styles — Collapsible Accordion
    ========================================================================== */
 .deep-challenge-header { margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
@@ -3048,7 +3048,7 @@ button:disabled:active,
 }
 .dc-open .dc-chevron { transform: rotate(0deg); } /* expanded */
 
-/* Collapsible body â€” hidden when not .dc-open */
+/* Collapsible body — hidden when not .dc-open */
 .dc-section-body {
   max-height: 0;
   overflow: hidden;
@@ -3068,14 +3068,14 @@ button:disabled:active,
   padding: 4px 0 2px 0;
 }
 
-/* Hints section â€” amber accent */
+/* Hints section — amber accent */
 #dc-hints { border-color: rgba(255, 193, 7, 0.2); }
 #dc-hints .dc-section-toggle { color: #ffc107; }
 #dc-hints .dc-count { background: rgba(255,193,7,0.15); color: #ffc107; }
 #dc-hints ul { margin: 4px 0 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 12px; }
 #dc-hints li { font-size: 14px; line-height: 1.65; color: var(--text-secondary, #ccc); }
 
-/* Test cases section â€” green accent */
+/* Test cases section — green accent */
 #dc-testcases { border-color: rgba(76, 175, 80, 0.2); }
 #dc-testcases .dc-section-toggle { color: #4caf50; }
 #dc-testcases .dc-count { background: rgba(76,175,80,0.15); color: #4caf50; }
@@ -3290,7 +3290,7 @@ button:disabled:active,
   line-height: 1.45;
 }
 .anki-keypoints li::before {
-  content: "âœ“";
+  content: "✓";
   position: absolute;
   left: 0;
   color: var(--success);
@@ -3688,7 +3688,7 @@ samp,
 }
 
 /* --------------------------------------------------------------------------
-   Coverage view â€” what is covered, and what still needs work.
+   Coverage view — what is covered, and what still needs work.
 
    This screen exists so the author never has to open topics one by one and
    hold the state of 142 of them in his head. Green means present, red means

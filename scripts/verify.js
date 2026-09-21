@@ -19,6 +19,8 @@
 //                     gives the answer away without reasoning
 //   check-ui          every text colour clears WCAG AA, no text is below 12px, and no
 //                     container gap is below 12px
+//   fix-encoding      no file contains double-encoded text, which renders as mojibake
+//                     such as the em-dash becoming three wrong characters
 //
 // The first failure stops the run and the exit code is non-zero, so a broken
 // generation can never be reported as approved.
@@ -36,6 +38,7 @@ const CHECKS = [
   { script: 'check-bank.js', label: 'OCJP bank' },
   { script: 'check-quality.js', label: 'Question quality' },
   { script: 'check-ui.js', label: 'Interface' },
+  { script: 'fix-encoding.js', label: 'Text encoding' },
   { script: 'coverage.js', label: 'Coverage', args: ['--check'] }
 ];
 
