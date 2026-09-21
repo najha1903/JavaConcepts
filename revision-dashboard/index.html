@@ -131,11 +131,14 @@
              offered back. Nothing is ever thrown away by closing a quiz. -->
         <div class="resume-quiz-panel" id="resume-quiz-panel"><!-- JS populated --></div>
 
-        <div class="dashboard-panel getting-started-panel">
+        <!-- Shown only on a genuine first run, when there is no progress to compute a
+             suggestion from. Once anything is answered, Study next above does this job
+             better, so this disappears. -->
+        <div class="dashboard-panel getting-started-panel" id="start-here-panel">
           <div class="panel-heading-row">
             <div>
               <h2>Start Here</h2>
-              <p class="panel-subtitle">A simple path for your first visit or your next revision session.</p>
+              <p class="panel-subtitle">Nothing answered yet, so here is the path: read, check, practise.</p>
             </div>
           </div>
           <div class="getting-started-grid">
@@ -190,9 +193,11 @@
         </div>
 
         <div class="dashboard-grid">
-          <!-- Recent Chapters / Resume studying -->
+          <!-- Where to READ. Deliberately separate from Study next above, which is what
+               to DO. Both used to be called "study", which is why they looked like
+               duplicates. -->
           <div class="dashboard-panel">
-            <h2>Resume Studying</h2>
+            <h2>Continue reading</h2>
             <div class="resume-list" id="resume-chapters-list">
               <!-- JS populated -->
             </div>
@@ -207,13 +212,15 @@
                 <p>Test your knowledge across every chapter in one comprehensive quiz.</p>
                 <button class="btn btn-primary" id="btn-grand-quiz">Start Grand Quiz</button>
               </div>
-              <div class="action-card">
-                <h3>Reset All Progress</h3>
-                <p>Clear all checked revision items and quiz history to start fresh.</p>
-                <button class="btn btn-danger-outline" id="btn-reset-data">Reset Progress</button>
-              </div>
             </div>
           </div>
+        </div>
+
+        <!-- Deliberately away from the study panels above. A destructive action does not
+             belong beside the things you click while studying. -->
+        <div class="dashboard-settings">
+          <button class="btn btn-danger-outline" id="btn-reset-data">Reset all progress</button>
+          <span class="dashboard-settings-note">Clears every checked revision item and all quiz history.</span>
         </div>
       </section>
 

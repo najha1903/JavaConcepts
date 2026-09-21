@@ -1058,6 +1058,19 @@ function renderStudyNext() {
       <p>${escapeHtml(next.why)}</p>
       <button class="btn btn-primary" onclick="${next.handler}()">${escapeHtml(next.button)}</button>
     </div>`;
+  renderStartHere();
+}
+
+// "Start Here" is a genuine first-run panel: it shows only when there is nothing to
+// compute a suggestion from. Once anything has been answered, Study next above does the
+// same job better, and having both was two sections saying the same thing.
+function renderStartHere() {
+  const panel = document.getElementById('start-here-panel');
+  if (!panel) return;
+  const history = getQuestionHistory();
+  const answered = Object.values(history).some(h => h && h.seen);
+  const read = Object.keys(getRevisedTopics()).length > 0;
+  panel.style.display = (answered || read) ? 'none' : '';
 }
 
 // ---- The actions the nudge and the list can take -----------------------------
@@ -1692,37 +1705,65 @@ function updateStats() {
 function renderResumeChapters() {
   const container = document.getElementById('resume-chapters-list');
   container.innerHTML = '';
-  
+
   const revised = getRevisedTopics();
-  
-  // Display first 4 chapters
-  CONCEPTS_DATA.slice(0, 4).forEach((chapter, chIdx) => {
-    const countCompleted = chapter.topics.filter(t => revised[t.filePath]).length;
-    const total = chapter.topics.length;
-    const remaining = total - countCompleted;
-    
+
+  // Every chapter that has been started, most recently touched first, rather than the
+  // first four. The old `slice(0, 4)` meant chapters 5 to 15 could never appear here at
+  // all, however much of them had been read.
+  const started = CONCEPTS_DATA
+    .map((chapter, chIdx) => {
+      const completed = chapter.topics.filter(t => revised[t.filePath]).length;
+      return { chapter, chIdx, completed, total: chapter.topics.length };
+    })
+    .filter(entry => entry.completed > 0);
+
+  // Nothing read yet: say so plainly rather than showing an empty box.
+  if (!started.length) {
+    container.innerHTML = '<p class="resume-empty">No chapter has been marked as read yet. Open one from the Notes view, and it appears here.</p>';
+    return;
+  }
+
+  const shownLimit = 6;
+  const rows = started.slice(0, shownLimit);
+  const hidden = started.slice(shownLimit);
+
+  const addCard = entry => {
     const card = document.createElement('div');
     card.className = 'resume-card';
     card.innerHTML = `
       <div class="resume-card-info">
-        <span class="resume-card-title">${chapter.name}</span>
-        <span class="resume-card-desc">${countCompleted} reviewed, ${remaining} left</span>
+        <span class="resume-card-title">${entry.chapter.name}</span>
+        <span class="resume-card-desc">${entry.completed} of ${entry.total} topics read</span>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="resume-card-icon"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     `;
-    
     card.addEventListener('click', () => {
-      // Open chapter accordion in sidebar and select first topic
-      const accordion = document.querySelector(`.chapter-accordion.ch-${chIdx}`);
+      const accordion = document.querySelector(`.chapter-accordion.ch-${entry.chIdx}`);
       if (accordion) {
         document.querySelectorAll('.chapter-accordion').forEach(a => a.classList.remove('open'));
         accordion.classList.add('open');
       }
-      selectTopic(chIdx, 0);
+      selectTopic(entry.chIdx, 0);
     });
-    
     container.appendChild(card);
-  });
+  };
+
+  rows.forEach(addCard);
+
+  if (hidden.length) {
+    const more = document.createElement('button');
+    more.className = 'btn btn-outline btn-small';
+    more.textContent = `Show all ${started.length} chapters in progress`;
+    let expanded = false;
+    more.addEventListener('click', () => {
+      if (expanded) return;
+      hidden.forEach(addCard);
+      expanded = true;
+      more.remove();
+    });
+    container.appendChild(more);
+  }
 }
 
 function findTopicByFilePath(filePath) {

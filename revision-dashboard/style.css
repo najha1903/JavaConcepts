@@ -4115,3 +4115,29 @@ samp,
   color: var(--text-muted);
 }
 .practice-order-bar button { flex-shrink: 0; }
+
+/* --------------------------------------------------------------------------
+   THE OVERVIEW
+
+   Four sections all answered "what should I do next", using three different
+   definitions of progress, one of them capped at four chapters. There are now two,
+   with distinct jobs: Study next says what to DO, Continue reading says where to READ.
+   The destructive reset sits apart from both.
+   -------------------------------------------------------------------------- */
+.resume-empty {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+  padding: 8px 0;
+}
+
+.dashboard-settings {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+.dashboard-settings-note { font-size: 13px; color: var(--text-muted); }
