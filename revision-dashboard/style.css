@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    CSS variables (Dark theme by default, toggled to light)
    ========================================================================== */
 :root[data-theme="dark"] {
@@ -110,7 +110,7 @@ button {
   font-family: inherit;
 }
 
-/* SVGs inside buttons should never intercept clicks — pass through to the button */
+/* SVGs inside buttons should never intercept clicks â€” pass through to the button */
 button svg, button .nav-icon, button .chevron-icon {
   pointer-events: none;
 }
@@ -1813,7 +1813,7 @@ button:disabled:active,
 .code-annotation { color: var(--accent-secondary); font-style: italic; }
 
 /* ==========================================================================
-   Mobile chrome (hidden on desktop, activated in the ≤768px media query)
+   Mobile chrome (hidden on desktop, activated in the â‰¤768px media query)
    ========================================================================== */
 .mobile-topbar { display: none; }
 .drawer-backdrop { display: none; }
@@ -2501,16 +2501,16 @@ button:disabled:active,
   font-size: 13px;
 }
 .test-case-status.pending::before {
-  content: "●";
+  content: "â—";
   color: var(--text-muted);
 }
 .test-case-status.pass::before {
-  content: "✓";
+  content: "âœ“";
   color: var(--success);
   font-weight: bold;
 }
 .test-case-status.fail::before {
-  content: "✗";
+  content: "âœ—";
   color: var(--danger);
   font-weight: bold;
 }
@@ -2640,7 +2640,7 @@ button:disabled:active,
   position: relative;
 }
 .option-item.checkbox.selected::after {
-  content: "✓";
+  content: "âœ“";
   position: absolute;
   right: 18px;
   color: var(--accent-primary);
@@ -2996,7 +2996,7 @@ button:disabled:active,
 .practice-tab.active { color: var(--accent-blue, #4fc3f7); border-bottom-color: var(--accent-blue, #4fc3f7); font-weight: 700; }
 
 /* ==========================================================================
-   Deep Challenge Styles — Collapsible Accordion
+   Deep Challenge Styles â€” Collapsible Accordion
    ========================================================================== */
 .deep-challenge-header { margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
@@ -3048,7 +3048,7 @@ button:disabled:active,
 }
 .dc-open .dc-chevron { transform: rotate(0deg); } /* expanded */
 
-/* Collapsible body — hidden when not .dc-open */
+/* Collapsible body â€” hidden when not .dc-open */
 .dc-section-body {
   max-height: 0;
   overflow: hidden;
@@ -3068,14 +3068,14 @@ button:disabled:active,
   padding: 4px 0 2px 0;
 }
 
-/* Hints section — amber accent */
+/* Hints section â€” amber accent */
 #dc-hints { border-color: rgba(255, 193, 7, 0.2); }
 #dc-hints .dc-section-toggle { color: #ffc107; }
 #dc-hints .dc-count { background: rgba(255,193,7,0.15); color: #ffc107; }
 #dc-hints ul { margin: 4px 0 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 12px; }
 #dc-hints li { font-size: 14px; line-height: 1.65; color: var(--text-secondary, #ccc); }
 
-/* Test cases section — green accent */
+/* Test cases section â€” green accent */
 #dc-testcases { border-color: rgba(76, 175, 80, 0.2); }
 #dc-testcases .dc-section-toggle { color: #4caf50; }
 #dc-testcases .dc-count { background: rgba(76,175,80,0.15); color: #4caf50; }
@@ -3290,7 +3290,7 @@ button:disabled:active,
   line-height: 1.45;
 }
 .anki-keypoints li::before {
-  content: "✓";
+  content: "âœ“";
   position: absolute;
   left: 0;
   color: var(--success);
@@ -3688,7 +3688,7 @@ samp,
 }
 
 /* --------------------------------------------------------------------------
-   Coverage view — what is covered, and what still needs work.
+   Coverage view â€” what is covered, and what still needs work.
 
    This screen exists so the author never has to open topics one by one and
    hold the state of 142 of them in his head. Green means present, red means
@@ -4021,3 +4021,65 @@ samp,
   border-radius: 8px;
 }
 .bank-empty { font-size: 14px; color: var(--text-muted); font-style: italic; }
+
+/* --------------------------------------------------------------------------
+   QUIZ CONTROLS
+
+   Closing a quiz is instant and lossless: the progress is saved, so there is no
+   confirmation to click through and the control can sit in plain sight. Stepping
+   back is read-only, so the score cannot be changed by reviewing.
+   -------------------------------------------------------------------------- */
+.quiz-close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;   /* chip-like: a cross and its label, kept tight on purpose */
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.quiz-close-btn:hover { color: var(--text-primary); border-color: var(--accent-secondary); }
+.quiz-close-btn span[aria-hidden] { font-size: 16px; line-height: 1; }
+
+/* Reviewing an earlier question: clearly not the live question. */
+.option-item.is-review { cursor: default; opacity: 0.75; }
+.option-item.is-review.selected { opacity: 1; }
+.review-verdict { font-weight: 600; margin-bottom: 8px; }
+.review-verdict.correct { color: var(--success); }
+.review-verdict.wrong { color: var(--danger); }
+.review-answer-row { color: var(--text-secondary); margin-bottom: 8px; }
+.review-readonly-note {
+  margin-top: 10px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* The saved quiz, offered back on the Overview. */
+.resume-quiz-panel { margin-bottom: 20px; }
+.resume-quiz-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-secondary);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.resume-quiz-body { flex: 1; min-width: 240px; }
+.resume-quiz-card h2 { font-size: 16px; margin: 0 0 4px; color: var(--text-primary); }
+.resume-quiz-card p { margin: 0; font-size: 13px; color: var(--text-muted); }
+.resume-quiz-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+  .quiz-close-btn .quiz-close-label { display: none; }
+  .resume-quiz-card { flex-direction: column; align-items: stretch; }
+}

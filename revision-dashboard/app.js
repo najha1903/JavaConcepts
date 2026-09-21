@@ -20,6 +20,12 @@ let currentChallengeIndex = 0; // currently selected practice challenge
 let currentNotesTopicPath = null;
 let currentPracticeScope = { chapterName: null, subChapterName: null };
 let currentQuizScope = { chapterName: null, subChapterName: null };
+// Which view the quiz was launched from, so closing it returns the author there rather
+// than always dumping him on the Overview.
+let quizOriginView = 'dashboard-view';
+// True while reviewing an earlier question. The options are not clickable and Submit is
+// hidden, so stepping back can never change the score.
+let quizReviewMode = false;
 let currentDifficultyFilter = 'all'; // 'all', 'easy', 'medium', 'hard'
 let currentTagFilter = 'all'; // 'all', 'ocjp', 'interview', 'tricky', 'predict', 'concept', 'codefill'
 let currentPracticeTab = 'coding'; // 'coding' or 'deep'
@@ -43,6 +49,9 @@ const STORAGE_PRACTICE_KEY = 'javarev_practice_status';
 const STORAGE_NOTES_KEY = 'javarev_notes';
 const STORAGE_QHISTORY_KEY = 'javarev_question_history';
 const STORAGE_ANKI_KEY = 'javarev_anki_srs';
+// A half-finished quiz. Closing a quiz saves it here, so closing is instant and
+// lossless and needs no confirmation dialog.
+const STORAGE_QUIZ_PROGRESS_KEY = 'javarev_quiz_progress';
 
 function getRevisedTopics() {
   const data = localStorage.getItem(STORAGE_REVISED_KEY);
@@ -619,6 +628,7 @@ function initApp() {
   updateStats();
   renderResumeChapters();
   renderStudyNext();
+  renderResumeQuiz();
   setupEventListeners();
   initPracticeLab();
   
@@ -1450,9 +1460,14 @@ function setupEventListeners() {
   document.getElementById('btn-start-quiz-now').addEventListener('click', runActiveQuiz);
   document.getElementById('btn-submit-answer').addEventListener('click', submitQuizAnswer);
   document.getElementById('btn-next-question').addEventListener('click', loadNextQuizQuestion);
+  // Closing saves the quiz and returns to where it was launched from. No confirmation:
+  // nothing is lost, so there is nothing to confirm.
+  document.getElementById('btn-close-quiz').addEventListener('click', closeQuiz);
+  document.getElementById('btn-prev-question').addEventListener('click', previousQuizQuestion);
   document.getElementById('btn-retry-quiz').addEventListener('click', retryQuiz);
   document.getElementById('btn-return-dashboard').addEventListener('click', () => {
-    showView('dashboard-view');
+    // Back to where the quiz was launched from, not always the Overview.
+    showView(quizOriginView || 'dashboard-view');
   });
 
   // Revision Depth controls
@@ -2983,6 +2998,7 @@ function startChapterQuiz(chapterName, subChapterName) {
   document.getElementById('quiz-active-container').style.display = 'none';
   document.getElementById('quiz-result-container').style.display = 'none';
   
+  quizOriginView = (document.querySelector('.view-section.active') || {}).id || 'dashboard-view';
   showView('quiz-view');
 }
 
@@ -3095,6 +3111,17 @@ function renderQuizQuestion() {
   submitBtn.innerText = (question.type === 'interview') ? 'Submit & Reveal Answer' : 'Submit Answer';
   submitBtn.disabled = true;
   document.getElementById('btn-next-question').style.display = 'none';
+
+  // Previous is offered from the second question onward, so an earlier question can be
+  // re-read. In review mode the options are inert and Submit is hidden, so stepping
+  // back can never change the score.
+  const prevBtn = document.getElementById('btn-prev-question');
+  if (prevBtn) prevBtn.style.display = currentQuizQuestionIndex > 0 ? 'inline-flex' : 'none';
+
+  if (quizReviewMode) {
+    renderQuizReview(question, optionsContainer, inputContainer, interviewContainer);
+    return;
+  }
   
   // Populate UI based on type
   if (question.type === 'scq' || question.type === 'mcq') {
@@ -3415,16 +3442,235 @@ function submitQuizAnswer() {
   }
 }
 
+// ==========================================================================
+// Reviewing an earlier question
+//
+// The author chose read-only review. The question, his answer and the feedback that was
+// given are all shown, but nothing can be changed: the options are not clickable and
+// Submit is hidden. Next is available straight away, so stepping forward again does not
+// require answering anything.
+// ==========================================================================
+
+function renderQuizReview(question, optionsContainer, inputContainer, interviewContainer) {
+  const record = answeredQuestions[currentQuizQuestionIndex];
+  const submitBtn = document.getElementById('btn-submit-answer');
+  const nextBtn = document.getElementById('btn-next-question');
+  const feedback = document.getElementById('quiz-feedback-text');
+
+  submitBtn.style.display = 'none';
+  nextBtn.style.display = 'inline-flex';
+  nextBtn.innerText = (currentQuizQuestionIndex === activeQuizQuestions.length - 1) ? 'See Results' : 'Next Question';
+
+  // The options, with the chosen one marked and everything inert.
+  if (question.type === 'scq' || question.type === 'mcq') {
+    optionsContainer.style.display = 'flex';
+    const chosen = new Set();
+    if (Array.isArray(question.answer)) question.answer.forEach(i => chosen.add(i));
+    else chosen.add(question.answer);
+
+    question.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-item is-review';
+      btn.disabled = true;
+      // The right answer is marked so the review teaches something, not just replays.
+      if (chosen.has(idx)) btn.classList.add('selected');
+      btn.innerHTML = `
+        <span class="option-letter">${String.fromCharCode(65 + idx)}</span>
+        <span class="option-text">${opt}</span>
+      `;
+      optionsContainer.appendChild(btn);
+    });
+  } else if (question.type === 'predict' || question.type === 'codefill') {
+    inputContainer.style.display = 'block';
+    const input = document.getElementById('quiz-predict-input');
+    input.value = record && record.selected ? String(record.selected) : '';
+    input.disabled = true;
+  } else if (question.type === 'interview') {
+    interviewContainer.style.display = 'block';
+    const textarea = document.getElementById('quiz-interview-textarea');
+    textarea.value = '';
+    textarea.disabled = true;
+    if (record && record.selected) {
+      const wrapper = document.getElementById('quiz-interview-eval-wrapper');
+      wrapper.style.display = 'block';
+      document.getElementById('quiz-model-answer').innerText = question.modelAnswer || '';
+    }
+  }
+
+  feedback.className = 'answer-feedback';
+  const verdict = document.createElement('div');
+  verdict.className = record && record.isCorrect ? 'review-verdict correct' : 'review-verdict wrong';
+  verdict.textContent = record
+    ? (record.isCorrect ? 'You answered this correctly.' : 'You answered this incorrectly.')
+    : 'You have not answered this question.';
+  feedback.appendChild(verdict);
+
+  if (record && record.selected) {
+    const given = document.createElement('div');
+    given.className = 'review-answer-row';
+    given.textContent = `Your answer: ${record.selected}`;
+    feedback.appendChild(given);
+  }
+  if (question.explanation) {
+    const why = document.createElement('div');
+    why.className = 'why-note';
+    why.textContent = question.explanation;
+    feedback.appendChild(why);
+  }
+  const notice = document.createElement('div');
+  notice.className = 'review-readonly-note';
+  notice.textContent = 'Reviewing an earlier question. Go forward to continue the quiz.';
+  feedback.appendChild(notice);
+}
+
 function loadNextQuizQuestion() {
   if (currentQuizQuestionIndex < activeQuizQuestions.length - 1) {
     currentQuizQuestionIndex++;
+    quizReviewMode = false;
     renderQuizQuestion();
   } else {
     showQuizResults();
   }
 }
 
+// ==========================================================================
+// Closing a quiz, and coming back to it
+//
+// Closing used to be impossible: there was no control at all, and the only escape was a
+// sidebar click that threw the score away silently. Now closing is instant and lossless,
+// so it needs no confirmation dialog - there is nothing to confirm.
+//
+// The questions are stored BY ID and re-resolved from the question bank, so a stored
+// copy cannot go stale. If a question no longer exists, the saved quiz is reported as
+// no longer resumable and cleared, rather than failing on resume.
+// ==========================================================================
+
+function saveQuizProgress() {
+  if (!activeQuizQuestions.length) return;
+  try {
+    localStorage.setItem(STORAGE_QUIZ_PROGRESS_KEY, JSON.stringify({
+      label: (currentQuizScope && currentQuizScope.chapterName) || 'Quiz',
+      questionIds: activeQuizQuestions.map(q => q.qid),
+      index: currentQuizQuestionIndex,
+      score: quizScore,
+      // Stored as-is: the records are already plain data, and they line up with the
+      // question order because a question cannot be reached without answering the one
+      // before it.
+      answered: answeredQuestions,
+      originView: quizOriginView,
+      savedAt: Date.now()
+    }));
+  } catch (e) { /* storage full or unavailable: closing still works, only resuming is lost */ }
+}
+
+function loadQuizProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_QUIZ_PROGRESS_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    if (!saved || !Array.isArray(saved.questionIds) || !saved.questionIds.length) return null;
+
+    // Re-resolve the questions from the bank, so a stored copy cannot go stale.
+    const { byId } = questionIndex();
+    const questions = saved.questionIds.map(id => byId.get(id)).filter(Boolean);
+    if (questions.length !== saved.questionIds.length) {
+      // A question has gone from the bank since this was saved.
+      return { stale: true, saved };
+    }
+    return { saved, questions };
+  } catch (e) {
+    return null;
+  }
+}
+
+function clearQuizProgress() {
+  try { localStorage.removeItem(STORAGE_QUIZ_PROGRESS_KEY); } catch (e) {}
+}
+
+// A quiz is only worth offering back if there is somewhere to come back to.
+function resumableQuiz() {
+  const loaded = loadQuizProgress();
+  if (!loaded) return null;
+  if (loaded.stale) { clearQuizProgress(); return null; }
+  const { saved, questions } = loaded;
+  // Nothing left to answer means it was effectively finished.
+  if (saved.index >= questions.length) { clearQuizProgress(); return null; }
+  return { saved, questions };
+}
+
+function resumeQuiz() {
+  const resumable = resumableQuiz();
+  if (!resumable) { alert('There is no saved quiz to resume.'); return; }
+  const { saved, questions } = resumable;
+
+  currentQuizScope = { chapterName: saved.label, subChapterName: null };
+  activeQuizQuestions = questions;
+  currentQuizQuestionIndex = Math.min(saved.index || 0, questions.length - 1);
+  quizScore = saved.score || 0;
+  answeredQuestions = Array.isArray(saved.answered) ? saved.answered : [];
+  quizOriginView = saved.originView || 'dashboard-view';
+  quizReviewMode = false;
+
+  document.getElementById('quiz-question-count').innerText = `${questions.length} Questions`;
+  document.getElementById('quiz-est-time').innerText = `${Math.ceil(questions.length * 1.5)} Mins`;
+  document.getElementById('quiz-subtitle').innerText = saved.label;
+  document.getElementById('quiz-start-container').style.display = 'none';
+  document.getElementById('quiz-active-container').style.display = 'block';
+  document.getElementById('quiz-result-container').style.display = 'none';
+  showView('quiz-view');
+  renderQuizQuestion();
+}
+
+function closeQuiz() {
+  saveQuizProgress();
+  // A finished quiz has nothing to resume, so clear rather than keep a dead entry.
+  if (currentQuizQuestionIndex >= activeQuizQuestions.length - 1 && answeredQuestions.length >= activeQuizQuestions.length) {
+    clearQuizProgress();
+  }
+  quizReviewMode = false;
+  renderResumeQuiz();
+  showView(quizOriginView || 'dashboard-view');
+}
+
+// Steps back to an earlier question for REVIEW ONLY. The options are inert and Submit is
+// hidden, so the score cannot be changed by stepping back.
+function previousQuizQuestion() {
+  if (currentQuizQuestionIndex <= 0) return;
+  currentQuizQuestionIndex--;
+  quizReviewMode = true;
+  renderQuizQuestion();
+}
+
+function renderResumeQuiz() {
+  const host = document.getElementById('resume-quiz-panel');
+  if (!host) return;
+  const resumable = resumableQuiz();
+  if (!resumable) { host.innerHTML = ''; return; }
+
+  const { saved, questions } = resumable;
+  const answered = (saved.answered || []).length;
+  host.innerHTML = `
+    <div class="resume-quiz-card">
+      <div class="resume-quiz-body">
+        <div class="study-next-label">Saved quiz</div>
+        <h2>Resume &ldquo;${escapeHtml(saved.label)}&rdquo;</h2>
+        <p>Question ${(saved.index || 0) + 1} of ${questions.length}${answered ? ` &middot; ${answered} answered, ${saved.score} right` : ''}.</p>
+      </div>
+      <div class="resume-quiz-actions">
+        <button class="btn btn-primary" onclick="resumeQuiz()">Resume</button>
+        <button class="btn btn-outline" onclick="discardSavedQuiz()">Discard</button>
+      </div>
+    </div>`;
+}
+
+function discardSavedQuiz() {
+  clearQuizProgress();
+  renderResumeQuiz();
+}
+
 function showQuizResults() {
+  // The quiz is finished, so there is nothing left to resume.
+  clearQuizProgress();
   document.getElementById('quiz-active-container').style.display = 'none';
   document.getElementById('quiz-result-container').style.display = 'block';
   
@@ -3751,6 +3997,7 @@ function startTopicQuiz() {
   document.getElementById('quiz-start-container').style.display = 'none';
   document.getElementById('quiz-active-container').style.display = 'block';
   document.getElementById('quiz-result-container').style.display = 'none';
+  quizOriginView = (document.querySelector('.view-section.active') || {}).id || 'dashboard-view';
   showView('quiz-view');
   renderQuizQuestion();
 }
@@ -3773,6 +4020,7 @@ function startSelectionQuiz(questions, label, maxQuestions) {
   document.getElementById('quiz-start-container').style.display = 'none';
   document.getElementById('quiz-active-container').style.display = 'block';
   document.getElementById('quiz-result-container').style.display = 'none';
+  quizOriginView = (document.querySelector('.view-section.active') || {}).id || 'dashboard-view';
   showView('quiz-view');
   renderQuizQuestion();
   return true;

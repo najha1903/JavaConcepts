@@ -103,7 +103,8 @@ const CHIP_LIKE = [
   'syntax-badge-container', 'tag-pills', 'question-tags-row', 'anki-scope-toggle',
   'anki-rate', 'queue-kind', 'level-badge', 'question-tag', 'count-chip',
   'difficulty-badge', 'question-type-badge', 'challenge-item-status', 'check-badge',
-  'flashcard-chip', 'mcq-select-all-indicator', 'syntax-badge', 'tag-pill', 'diff-pill'
+  'flashcard-chip', 'mcq-select-all-indicator', 'syntax-badge', 'tag-pill', 'diff-pill',
+  'quiz-close-btn'
 ];
 
 const smallGaps = [];
