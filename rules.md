@@ -434,6 +434,46 @@ The rules the scripts share — *is this an exercise*, *is this chapter finished
 
 They used to be copied into each file and kept in step by hand, and they had already drifted: "is this an exercise?" matched by **filename** in the parser and by **note content** in the ledger, so the two reported different numbers for the same project. `npm run revise` now guarantees they agree.
 
+## What A New Chapter Inherits
+
+Write a chapter the way you normally do — notes, maybe a `@quiz`, maybe a challenge file — and run `npm run revise`. Nothing else is needed. Proven by adding a chapter, running the real pipeline, and checking every one of these, then removing it again.
+
+| | A new chapter gets |
+|---|---|
+| **Contrast** | The current text colours, clearing WCAG AA in both themes |
+| **Type** | The 12px floor and 14px body text, with no work |
+| **Spacing** | The container minimums |
+| **A quiz** | Its own `@quiz` questions, kept exactly as written |
+| **Closing a quiz** | The close control, save and resume |
+| **A practice challenge** | Generated from its `*Challenge*` / `*Problem*` files, carrying `chapter` and `concepts` |
+| **Mastery** | Its concepts appear in the list, and "Practise in code" where a challenge genuinely teaches one |
+| **The lab's ordering** | Its challenge takes part in the weakest-first order |
+| **The nav and the Overview** | Both already generic |
+
+**And while it is the chapter you are writing, none of it is generated yet.** See *A Chapter You Are Still Writing* above: it is not judged, nothing is generated for it, and everything arrives when you start the next chapter.
+
+### Two things worth knowing
+
+**Quiz markers must start with `//`.** A `@quiz` inside a `/* */` block comment is not recognised, because the marker reader looks for line comments. Found by writing a probe chapter with the wrong style and seeing its question silently not appear.
+
+**`concepts` on a challenge can be precise or chapter-wide.** The parser records which in `conceptsSource`:
+
+- `topic` — narrowed from that file's own notes, so a match is precise. **10 of 69 today.**
+- `chapter` — fell back to the whole chapter's list, so a match only means the chapter teaches it. **59 of 69.**
+
+Only a `topic` match is offered as "Practise in code", because a chapter-wide match would promise a challenge about one concept and deliver another. The number grows by itself as your challenge files get clearer notes.
+
+### The rules that hold, and where
+
+Three rules live in one place, `scripts/lib/note-rules.js`, so the scripts cannot disagree: **is this an exercise**, **is this chapter finished**, and **is this line code**. They used to be copied into each script and had already drifted — "is this an exercise" matched by filename in one place and by note content in another, so two reports of the same project disagreed.
+
+Two more are enforced by checks that fail the build, rather than by this document:
+
+- every practice challenge must carry `chapter` and at least one `concept` (`audit-generated.js`)
+- every text colour must clear WCAG AA, no text below 12px, no container gap below 12px (`check-ui.js`)
+
+A rule that lives only in a document gets forgotten. A rule that fails the build cannot be.
+
 ## Section Markers
 
 A `@section` line divides a file into groups of questions, so the file stays readable when it is opened. It is tool syntax, and is filtered out of the notes in exactly the same way as a quiz marker.
@@ -576,6 +616,7 @@ They then run every check, in order, and refuse to apply if any fails:
 | `check-questions.js` | Every question about output is compiled and run, and the real output is compared with the answer marked correct. |
 | `check-bank.js` | Every hand-researched OCJP question marks the answer the bank intends, and every wrong option says why it is wrong. |
 | `check-quality.js` | Every question gives feedback on a wrong choice, and none gives the answer away without reasoning. |
+| `check-ui.js` | Every text colour clears WCAG AA against its own theme background, no `font-size` is below 12px, and no container gap is below 12px. Chips, badges and tags are excluded on purpose. |
 | `coverage.js --check` | **Fails** on a chapter with no questions, no easy question, no hard question, or no takeaways; on a topic with nothing of its own; on a Quick Revision syntax snippet or badge that is not the chapter's own; and on a concept your notes cover that no question tests. **Warns** when a chapter is short of the OCJP target. |
 
 The two tiers are deliberate. A **failure** is a defect: something a learner could not revise. A **warning** is a target: the OCJP count is hand work, so it tells you what to write next without blocking you.
