@@ -9,6 +9,7 @@ const conceptCatalogue = require(path.join(__dirname, '..', 'data', 'java-concep
 const { OCJP_BANK } = require(path.join(__dirname, '..', 'data', 'ocjp-bank.js'));
 const { DERIVED_CODE_QUESTIONS } = require(path.join(__dirname, '..', 'data', 'code-questions.js'));
 const { PRACTICE_EXPECTATIONS } = require(path.join(__dirname, '..', 'data', 'practice-expectations.js'));
+const { CURATED_PRACTICE_CHALLENGES } = require(path.join(__dirname, '..', 'data', 'practice-challenges.js'));
 const { buildVerifySource } = require(path.join(__dirname, 'lib', 'lab-verifier.js'));
 const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
 
@@ -1948,6 +1949,14 @@ function bodyOfMethod(source, index) {
 function buildPracticeChallenges(parsedData) {
   const challenges = [];
 
+  // Every topic of each chapter, so a topic's concepts can be narrowed to the ones its
+  // chapter is actually responsible for. Built once rather than per challenge.
+  const topicsByChapter = new Map();
+  for (const topic of parsedData) {
+    if (!topicsByChapter.has(topic.chapter)) topicsByChapter.set(topic.chapter, []);
+    topicsByChapter.get(topic.chapter).push(topic);
+  }
+
   for (const topic of parsedData) {
     // Practice is built from files that contain an exercise: the *Challenge* files,
     // and also the *DeepProblem* files. Several chapters keep their practice methods
@@ -2181,11 +2190,27 @@ function buildPracticeChallenges(parsedData) {
       verifyFnStr = buildVerifySource({ methodName, paramNames, capturesOutput });
     }
 
+    // Which concepts this challenge teaches, taken from the topic it came from - the
+    // same tag the questions carry. The audit REQUIRES this, because a challenge
+    // without concepts silently drops out of the weakest-first ordering and can never
+    // be reached from the Mastery view.
+    //
+    // A challenge file is mostly code with little prose, so inference often finds
+    // nothing. In that case the chapter's own concepts are the honest answer: the
+    // challenge belongs to that chapter, so it teaches what that chapter teaches.
+    const chapterConcepts = conceptCatalogue.conceptsForChapter(
+      topic.chapter,
+      topicsByChapter.get(topic.chapter) || []
+    );
+    const ownConcepts = conceptCatalogue.conceptsForTopic(topic, chapterConcepts);
+    const concepts = ownConcepts.length ? ownConcepts : chapterConcepts.slice();
+
     challenges.push({
       id: slug,
       title: title.trim(),
       difficulty,
       chapter: topic.chapter,
+      concepts,
       description: descHtml,
       template,
       testCases: selfCheck ? [{ args: [], expected: null }] : testCases,
@@ -2771,7 +2796,20 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
   console.log(`✅ questions.js updated successfully.\n`);
 
   // ── Step 5: Write practice.js ─────────────────────────────────────────────
-  const challengesList = buildPracticeChallenges(parsedData);
+  // The hand-written challenges are merged in here, so `practice.js` is the ONE place
+  // challenges come from. They used to live in app.js, which meant the audit could not
+  // see them and they would have silently missed the concept tagging. See
+  // data/practice-challenges.js for the full reasoning.
+  const curatedItems = CURATED_PRACTICE_CHALLENGES.map(ch => {
+    const { verify, ...rest } = ch;
+    // `source` lets the checks tell a hand-written challenge from a generated one. A
+    // hand-written challenge has no .java file in src/, so there is nothing to check it
+    // against, and saying "source file not found" would read like a fault.
+    return { ...rest, source: 'curated', verifyFnStr: typeof verify === 'function' ? verify.toString() : null };
+  });
+  const generatedItems = buildPracticeChallenges(parsedData);
+  const challengesList = [...curatedItems, ...generatedItems];
+
   const practiceFile = path.join(dashboardDir, 'practice.js');
 
   const practiceItems = challengesList.map(ch => {
@@ -2781,10 +2819,17 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
 
   fs.writeFileSync(
     practiceFile,
-    `// Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.\nconst GENERATED_PRACTICE_CHALLENGES = ${JSON.stringify(practiceItems, null, 2)};\n`,
+    `// Auto-generated. Do NOT edit manually — run 'npm run revise' to regenerate.\n` +
+    `//\n` +
+    `// Holds BOTH kinds of challenge, so this is the single source for them:\n` +
+    `//   - the hand-written ones from data/practice-challenges.js, first\n` +
+    `//   - the generated ones from the author's *Challenge* and *Problem* files\n` +
+    `// Every entry carries chapter and concepts. The audit enforces both.\n` +
+    `const GENERATED_PRACTICE_CHALLENGES = ${JSON.stringify(practiceItems, null, 2)};\n`,
     'utf8'
   );
-  console.log(`✅ practice.js regenerated with ${challengesList.length} challenges.`);
+  console.log(`✅ practice.js regenerated with ${challengesList.length} challenges ` +
+    `(${curatedItems.length} hand-written, ${generatedItems.length} generated).`);
 
   // ── Step 6: Write deep-challenges.js ──────────────────────────────────────
   const allDeepChallenges = [];

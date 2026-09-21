@@ -285,6 +285,20 @@ for (const challenge of [...(practice || []), ...(deep || [])]) {
   if (!challenge.id || !challenge.title || !challenge.description) failures.push(`Challenge is incomplete: ${challenge.id || '(no id)'}`);
 }
 
+// Every PRACTICE challenge must say which chapter it belongs to and which concepts it
+// teaches. Without those it cannot take part in the weakest-first ordering, and it can
+// never be reached from the Mastery view - it would simply never be suggested, with
+// nothing to say so. This rule exists because that nearly happened: six hand-written
+// challenges lived in app.js with no concepts, and the audit could not see them at all.
+// Deep challenges are excluded: they are prose briefs with no single concept.
+for (const challenge of practice || []) {
+  const label = challenge.id || '(no id)';
+  if (!challenge.chapter) failures.push(`Practice challenge "${label}" has no chapter, so it cannot be scoped or ordered.`);
+  if (!Array.isArray(challenge.concepts) || challenge.concepts.length === 0) {
+    failures.push(`Practice challenge "${label}" has no concepts, so it would never appear in the weakest-first order or be reachable from Mastery.`);
+  }
+}
+
 if (failures.length) {
   console.error(`Generated artifact audit failed with ${failures.length} issue(s):`);
   failures.slice(0, 40).forEach(item => console.error(`- ${item}`));

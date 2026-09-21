@@ -109,9 +109,17 @@ for (const file of findSourceFiles(path.join(root, 'src'))) {
 
 const failures = [];
 const warnings = [];
+const curated = [];
 let passed = 0;
 
 for (const challenge of autoChecked) {
+  // A hand-written challenge has no .java file in src/, so there is no author solution
+  // to check it against. That is not a fault, so it is reported as its own kind rather
+  // than as a missing file.
+  if (challenge.source === 'curated') {
+    curated.push(challenge.id);
+    continue;
+  }
   const sourceFile = sources.get(challenge.id);
   if (!sourceFile) {
     warnings.push(`${challenge.id}: the source file could not be found, so the challenge cannot be checked against a solution.`);
@@ -151,6 +159,9 @@ for (const challenge of autoChecked) {
 
 console.log('');
 console.log(`Practice verifier check: ${autoChecked.length} auto-checked challenge(s), ${passed} verified against the author's solution.`);
+if (curated.length) {
+  console.log(`  ${curated.length} hand-written challenge(s) have no .java file in src/, so there is no author solution to check them against: ${curated.join(', ')}.`);
+}
 if (warnings.length) {
   console.log('');
   console.log(`  ${warnings.length} challenge(s) cannot be run by the checker and are reported as "could not be checked", which is honest:`);
