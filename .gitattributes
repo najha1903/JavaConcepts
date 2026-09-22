@@ -1,0 +1,19 @@
+# ============================================================================
+# Line endings.
+#
+# WHY THIS FILE EXISTS
+#
+# core.autocrlf is true in this repository, so git converts text files to CRLF on
+# checkout. That is fine for source, and it is what caused the encoding trouble in a
+# different way, but it BREAKS SHELL SCRIPTS: sh cannot run a script whose lines end in
+# CRLF, so the pre-commit hook would simply stop working after a fresh clone, silently.
+#
+# Only the shell scripts are pinned. Nothing else is declared, deliberately, so this file
+# cannot cause a mass renormalisation of the whole repository.
+# ============================================================================
+
+# The git hooks run under sh, which requires LF.
+scripts/githooks/* text eol=lf
+
+# Any future shell script, wherever it lives.
+*.sh text eol=lf
