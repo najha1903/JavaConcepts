@@ -1086,8 +1086,17 @@ function buildQuickRevisionEntry(chapterName, topics, chapterIsFinished = true) 
   // The snippet is the highest-scoring block, or nothing rather than boilerplate.
   // A chapter whose notes contain no distinctive code shows no syntax panel at all,
   // which is more honest than showing a class declaration.
-  const syntax = (codeSnippets[0] && codeSnippets[0].score > 0) ? codeSnippets[0].code : '';
-  const badgeList = Array.from(badges).slice(0, 5);
+  //
+  // For a chapter still being written, neither the snippet nor the badges are produced.
+  // Both are the tool's own output - the snippet is chosen by a scoring rule and the
+  // badges are derived from the concepts - and the panel's job is revising finished
+  // material. A half-written chapter would show a summary that is incomplete by
+  // definition and changes every time the notes do. Only the author's own @takeaway and
+  // @gotcha lines appear, which is what he asked for.
+  const syntax = chapterIsFinished && codeSnippets[0] && codeSnippets[0].score > 0
+    ? codeSnippets[0].code
+    : '';
+  const badgeList = chapterIsFinished ? Array.from(badges).slice(0, 5) : [];
 
   return { takeaways, gotchas, syntax, badges: badgeList, tables };
 }
@@ -1946,7 +1955,13 @@ function bodyOfMethod(source, index) {
   return source.slice(open);
 }
 
-function buildPracticeChallenges(parsedData) {
+// `finishedChapters` is the set of chapter names that are finished. A chapter still being
+// written gets NO practice challenges, for the same reason it gets no generated questions:
+// the tool derives the test cases and the checker from the author's file, and that
+// derivation is wrong the moment he edits it. This was missed when the rule was added -
+// Chapter 15, the chapter being written, was shipping a generated challenge with test
+// cases the tool had derived from its `main` method.
+function buildPracticeChallenges(parsedData, finishedChapters) {
   const challenges = [];
 
   // Every topic of each chapter, so a topic's concepts can be narrowed to the ones its
@@ -1958,6 +1973,9 @@ function buildPracticeChallenges(parsedData) {
   }
 
   for (const topic of parsedData) {
+    // Nothing is generated for a chapter still being written.
+    if (finishedChapters && !finishedChapters.has(topic.chapter)) continue;
+
     // Practice is built from files that contain an exercise: the *Challenge* files,
     // and also the *DeepProblem* files. Several chapters keep their practice methods
     // only in the DeepProblem file while their Challenge file holds just main(), so
@@ -2826,7 +2844,7 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
       verifyFnStr: typeof verify === 'function' ? verify.toString() : null
     };
   });
-  const generatedItems = buildPracticeChallenges(parsedData);
+  const generatedItems = buildPracticeChallenges(parsedData, finishedChapters);
   const challengesList = [...curatedItems, ...generatedItems];
 
   const practiceFile = path.join(dashboardDir, 'practice.js');
@@ -2851,8 +2869,13 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
     `(${curatedItems.length} hand-written, ${generatedItems.length} generated).`);
 
   // ── Step 6: Write deep-challenges.js ──────────────────────────────────────
+  // Nothing is generated for a chapter still being written, the same rule the questions
+  // and the practice challenges follow. Chapter 15 happened to produce none, so this was
+  // a latent gap rather than a visible one: the mechanism was ungated and would have
+  // produced them as soon as its topics matched a trigger.
   const allDeepChallenges = [];
   chaptersList.forEach(chapter => {
+    if (!finishedChapters.has(chapter.name)) return;
     const deepQs = buildDeepChallenges(chapter.name, chapter.topics);
     allDeepChallenges.push(...deepQs);
   });

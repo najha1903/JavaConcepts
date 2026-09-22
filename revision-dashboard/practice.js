@@ -2154,40 +2154,5 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "methodName": "isPalindrome",
     "hasVerify": true,
     "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"text\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
-  },
-  {
-    "id": "compositiondeepproblem",
-    "title": "Composition",
-    "difficulty": "Medium",
-    "chapter": "Chapter 15: Composition",
-    "concepts": [
-      "composition",
-      "inheritance",
-      "classes",
-      "constructors"
-    ],
-    "conceptsSource": "chapter",
-    "description": "<p>Deep Problem: Computer Assembly — composition in practice.</p><p>A PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase.</p><p>Each part is its own object with its own model and manufacturer, and the computer is built by holding those parts, not by inheriting from them.</p><p>This is the difference between HAS-A (composition) and IS-A (inheritance).</p><p>This exercise works with the parts as simple values, so the idea can be practised without building the whole object graph.</p><p>describePart :- returns the part as \"model by manufacturer\", or \"incomplete part\"</p><p>when either value is missing.</p><p>totalCost :- adds the three part prices to give the cost of the whole build.</p><p>isFullyAssembled :- returns true only when every part is present.</p>",
-    "template": "public class PracticeWorkspace {\n    public static String describePart(String model, String manufacturer) {\n        // Write your code here\n        return \"\";\n    }\n}",
-    "testCases": [
-      {
-        "args": [
-          "U2720Q",
-          "Dell"
-        ],
-        "expected": "U2720Q by Dell"
-      },
-      {
-        "args": [
-          "H510",
-          "NZXT"
-        ],
-        "expected": "H510 by NZXT"
-      }
-    ],
-    "selfCheck": false,
-    "methodName": "describePart",
-    "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"describePart\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"model\", \"manufacturer\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   }
 ];

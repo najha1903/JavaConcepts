@@ -1307,8 +1307,21 @@ function getScopedPracticeChallenges() {
     // list is what to actually do rather than whatever order the files happen to be in.
     return practiceOrderByWeakness ? orderChallengesByWeakness(all) : all;
   }
-  const scoped = all.filter(ch => ch.chapter === currentPracticeScope.chapterName);
-  return scoped.length > 0 ? scoped : all;
+  // Scoped to one chapter: return exactly that chapter's challenges, including none.
+  //
+  // This used to fall back to the WHOLE set when a chapter had nothing, which was written
+  // when every chapter happened to have a challenge. Once a chapter being written stopped
+  // generating challenges, the fallback started showing an unrelated one: the lab said
+  // "Chapter 15: Composition" and displayed a Chapter 2 challenge. An empty list with an
+  // explanation is honest; an unrelated challenge is not.
+  return all.filter(ch => ch.chapter === currentPracticeScope.chapterName);
+}
+
+// True when the lab is scoped to a chapter that has no challenges of its own, so the UI
+// can say why rather than showing an empty panel.
+function scopedChapterHasNoChallenges() {
+  if (!currentPracticeScope.chapterName) return false;
+  return getScopedPracticeChallenges().length === 0;
 }
 
 // Every challenge, unscoped. The scoped accessor above exists for the lab's LIST; code
@@ -4747,11 +4760,14 @@ function renderDeepChallengesList() {
   if (!container) return;
 
   const allDeep = typeof DEEP_CHALLENGES !== 'undefined' ? DEEP_CHALLENGES : [];
-  const scoped = currentPracticeScope.chapterName
+  // Scoped to one chapter: exactly that chapter's deep challenges, including none.
+  //
+  // This used to fall back to the WHOLE set when a chapter had nothing, which is the same
+  // bug the practice list had: scoped to a chapter being written, it displayed an
+  // unrelated chapter's problem under that chapter's heading.
+  const toShow = currentPracticeScope.chapterName
     ? allDeep.filter(c => c.chapter === currentPracticeScope.chapterName)
     : allDeep;
-
-  const toShow = scoped.length > 0 ? scoped : allDeep;
 
   container.innerHTML = '';
 
@@ -5172,11 +5188,37 @@ function renderChallengesList() {
   });
 }
 
+// Explains an empty Practice Lab rather than showing a stale challenge. A chapter being
+// written has no challenges, because nothing is generated for it until it is finished.
+function showEmptyPracticeScope() {
+  const chapter = currentPracticeScope.chapterName || '';
+  document.getElementById('practice-title').innerText = 'No practice challenge here yet';
+  const diffBadge = document.getElementById('practice-difficulty');
+  diffBadge.innerText = '';
+  diffBadge.className = 'difficulty-badge';
+  document.getElementById('practice-instructions').innerHTML = chapter
+    ? `<p><strong>${escapeHtml(chapter)}</strong> has no practice challenge yet.</p>
+       <p>Nothing is generated for a chapter you are still writing, so its challenge files are left alone until you start the next chapter. Everything arrives then.</p>
+       <p>You can still practise: open <strong>Code Practice</strong> without a chapter selected to see every challenge.</p>`
+    : '<p>No challenges match this scope.</p>';
+  const checkNote = document.getElementById('practice-check-note');
+  if (checkNote) { checkNote.textContent = ''; checkNote.className = 'practice-check-note'; }
+  const textarea = document.getElementById('practice-code-textarea');
+  if (textarea) textarea.value = '';
+  const cases = document.getElementById('practice-testcases');
+  if (cases) cases.innerHTML = '';
+  const testCases = document.getElementById('practice-test-cases');
+  if (testCases) testCases.innerHTML = '';
+}
+
 function selectChallenge(index) {
   currentChallengeIndex = index;
   const scopedChallenges = getScopedPracticeChallenges();
   const challenge = scopedChallenges[index];
   if (!challenge) {
+    // Nothing to show for this scope. Say why, rather than leaving the previous
+    // challenge on screen under a heading that claims a different chapter.
+    showEmptyPracticeScope();
     return;
   }
   

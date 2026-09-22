@@ -23720,14 +23720,8 @@ const QUICK_REVISION_BANK = {
       "A composed object is only usable once its parts exist, so a constructor that stores them must receive or create real objects. Otherwise the fields stay null and every delegated call throws a NullPointerException.",
       "Composition and inheritance are not a choice you make once for a whole program. The same class can belong to both relationships, as Monitor does here."
     ],
-    "syntax": "Monitor IS-A Product       (inheritance, through extends)\nPersonalComputer HAS-A Monitor   (composition, through a field)",
-    "badges": [
-      "HAS-A",
-      "field holding an object",
-      "delegation",
-      "extends",
-      "super"
-    ],
+    "syntax": "",
+    "badges": [],
     "tables": []
   }
 };

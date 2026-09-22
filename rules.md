@@ -393,9 +393,13 @@ While a chapter is unfinished:
 | **Your `@takeaway` and `@gotcha` lines** | Kept and shown |
 | **Generated questions** | **None** — no true/false, no output-prediction, no OCJP-trap, no researched bank questions |
 | **Generated takeaways and gotchas** | **None** — the panel shows only what you wrote |
+| **Quick Revision badges and syntax snippet** | **None** — both are the tool's own selection or derivation |
+| **Practice challenges** | **None** — the tool would derive test cases from a file you are still editing |
+| **Deep challenges** | **None** |
 | **The ledger** | Lists the chapter as *still being written*, with no "needs work" flag |
 | **`npm run verify`** | Does not fail on anything this chapter lacks |
 | **Suggestions** | None |
+| **Code Practice, scoped to it** | Says *"No practice challenge here yet"* rather than showing another chapter's challenge |
 
 Two reasons, both practical:
 
