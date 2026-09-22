@@ -37,7 +37,16 @@ const generate = spawnSync(process.execPath, [path.join(__dirname, 'generate.js'
   stdio: 'inherit'
 });
 
-if (generate.status !== 0 && !fs.existsSync(proposalFile)) process.exit(generate.status || 1);
+// A failed generation stops here, whatever else exists. The old condition only exited
+// when there was also no proposal file, so a failed run with a stale proposal would open
+// a review page for content that had just been rolled back.
+if (generate.status !== 0) {
+  console.error('');
+  console.error('Generation did not pass its checks, so nothing was applied and the dashboard');
+  console.error('still shows the last good version. Fix the problem above and run this again.');
+  console.error('');
+  process.exit(generate.status || 1);
+}
 
 if (fs.existsSync(proposalFile)) {
   // Something is waiting, so open the review page instead of the dashboard.

@@ -32,7 +32,44 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 
 const root = path.resolve(__dirname, '..');
+const dashboardDir = path.join(root, 'revision-dashboard');
 const expectationsFile = path.join(root, 'data', 'practice-expectations.js');
+
+// Every file the generation steps write. Copied before generating and restored if the
+// structural checks then fail, so no code path can leave broken content on disk.
+//
+// practice-expectations.js is included because the fill step writes it, and it is a
+// SOURCE file the next run reads. Leaving it out meant a rollback restored practice.js but
+// kept a fingerprint computed from the rejected version, so the two disagreed until the
+// next run noticed and recomputed. Harmless, but an incomplete rollback is the kind of
+// thing that stops being harmless.
+const GENERATED = [
+  'data.js', 'questions.js', 'practice.js', 'deep-challenges.js', 'coverage-data.js'
+];
+const GENERATED_SOURCES = ['data/practice-expectations.js'];
+
+function snapshot() {
+  const saved = new Map();
+  for (const name of GENERATED) {
+    const file = path.join(dashboardDir, name);
+    saved.set(file, fs.existsSync(file) ? fs.readFileSync(file) : null);
+  }
+  for (const name of GENERATED_SOURCES) {
+    const file = path.join(root, name);
+    saved.set(file, fs.existsSync(file) ? fs.readFileSync(file) : null);
+  }
+  return saved;
+}
+
+function restore(saved) {
+  for (const [file, contents] of saved) {
+    if (contents === null) {
+      if (fs.existsSync(file)) fs.unlinkSync(file);
+    } else {
+      fs.writeFileSync(file, contents);
+    }
+  }
+}
 
 function step(script, args, label) {
   console.log('');
@@ -43,36 +80,61 @@ function step(script, args, label) {
   });
 }
 
+// Everything below runs with a snapshot taken, so a failure at any point restores the
+// generated files rather than leaving half-generated content on disk.
+const saved = snapshot();
+
+function fail(message, status) {
+  restore(saved);
+  console.error('');
+  console.error(message);
+  console.error('The generated files were restored, so the dashboard still shows the last good version.');
+  process.exit(status || 1);
+}
+
 // 1. The derived code questions, before the parse that merges them.
 const derive = step('derive-code-questions.js', ['--quiet'], 'Deriving questions from your code');
 if (derive.status !== 0) {
-  console.error('\nCould not derive the code questions. Nothing was generated.');
-  process.exit(derive.status || 1);
+  fail('Could not derive the code questions. Nothing was generated.', derive.status);
 }
 
 // 2. The parse, with whatever expectations are already known.
 const before = fs.existsSync(expectationsFile) ? fs.readFileSync(expectationsFile, 'utf8') : '';
 const firstParse = step('parse-concepts.js', process.argv.slice(2), 'Generating from your notes');
-if (firstParse.status !== 0) process.exit(firstParse.status || 1);
+if (firstParse.status !== 0) fail('Generation failed. Nothing was applied.', firstParse.status);
 
 // 3. Compute and validate the practice expectations from the challenges just written.
 const fill = step('fill-practice-expectations.js', ['--quiet'], 'Checking practice challenges');
 if (fill.status !== 0) {
-  console.error('\nCould not compute the practice expectations. Nothing was generated.');
-  process.exit(fill.status || 1);
+  fail('Could not compute the practice expectations. Nothing was generated.', fill.status);
 }
 
 // 4. Re-parse only when step 3 produced a new value, so the dashboard picks it up.
 const after = fs.existsSync(expectationsFile) ? fs.readFileSync(expectationsFile, 'utf8') : '';
 if (after !== before) {
   const secondParse = step('parse-concepts.js', process.argv.slice(2), 'Applying the new practice expectations');
-  if (secondParse.status !== 0) process.exit(secondParse.status || 1);
+  if (secondParse.status !== 0) fail('Applying the practice expectations failed.', secondParse.status);
 }
 
-// 5. The ledger, so the Coverage view is never stale. It reads the files the parse
-// just wrote, and it is the only thing that writes coverage-data.js. Without this
-// step the dashboard showed the previous run's coverage until an approve happened,
-// which meant a newly started chapter was missing from it and the chapter it
-// superseded was still marked as the one being written.
+// 5. The ledger, so the Coverage view is never stale. It reads the files the parse just
+// wrote, and it is the only thing that writes coverage-data.js.
 const coverage = step('coverage.js', ['--quiet'], 'Updating the coverage ledger');
-if (coverage.status !== 0) process.exit(coverage.status || 1);
+if (coverage.status !== 0) fail('Updating the coverage ledger failed.', coverage.status);
+
+// 6. The FAST structural checks, HERE rather than only on approve.
+//
+// This is the hole that made the in-progress rule unreliable. `npm run revise` runs this
+// file with --propose, which WRITES the generated files and then opens the dashboard. It
+// never ran a check, so a generator that emitted content for the chapter being written
+// left it on disk and live in the dashboard, and nothing said a word. The Apply button
+// was protected because approve.js verifies and rolls back; the ordinary everyday path
+// was not.
+//
+// These checks take about a second, so they can run every time. The ones that compile and
+// run Java stay in verify.js, because they are slower and belong with a deliberate action.
+const structure = step('check-structure.js', [], 'Checking what was generated');
+if (structure.status !== 0) {
+  fail('A structural check failed, so the generated files were rolled back.');
+}
+
+console.log('Generated and checked.');

@@ -479,14 +479,30 @@ Only a `topic` match is offered as "Practise in code", because a chapter-wide ma
 
 Three rules live in one place, `scripts/lib/note-rules.js`, so the scripts cannot disagree: **is this an exercise**, **is this chapter finished**, and **is this line code**. They used to be copied into each script and had already drifted — "is this an exercise" matched by filename in one place and by note content in another, so two reports of the same project disagreed.
 
-Four more are enforced by checks that fail the build, rather than by this document:
+Five more are enforced by checks that fail the build, rather than by this document:
 
 - every practice challenge must carry `chapter` and at least one `concept` (`audit-generated.js`)
 - every text colour must clear WCAG AA, no text below 12px, no container gap below 12px (`check-ui.js`)
 - no file may contain double-encoded text or invalid UTF-8 (`fix-encoding.js`, also a pre-commit hook)
 - **nothing is generated for a chapter that is still being written** (`check-in-progress.js`)
+- the generated content has a valid shape (`audit-generated.js`)
 
 A rule that lives only in a document gets forgotten. A rule that fails the build cannot be.
+
+### Where the checks run, and why it matters
+
+There are two ways the dashboard gets regenerated, and for a long time **only one of them was checked**.
+
+| Path | What runs |
+|---|---|
+| **`npm run revise`** | `generate.js` → generate → **`check-structure.js`** (the fast checks, about a second) → **rolls back and refuses to continue** if anything fails |
+| **Click Apply** | `approve.js` → generate → **`verify.js`** (everything, including the checks that compile and run Java) → rolls back if anything fails |
+
+The split is deliberate: the fast checks run every time, the Java-compiling ones run on approve.
+
+**The gap that made the in-progress rule unreliable:** `npm run revise` runs `generate.js` with `--propose`, which **writes the generated files and then opens the dashboard**. It never ran a check. So a generator that emitted content for the chapter being written left that content on disk and live in the dashboard, and nothing said a word. Apply was protected; the everyday path was not.
+
+Proven by breaking a generator on purpose: with the gate removed, `npm run revise` now reports the failure, **restores all six generated files byte for byte**, and refuses to open anything. The rollback covers `data/practice-expectations.js` too — it is written by the fill step and read by the next run, so leaving it out meant a rollback restored the challenges but kept a fingerprint computed from the rejected version.
 
 ### Why the last one exists, and what it taught
 
