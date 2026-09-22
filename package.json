@@ -12,6 +12,7 @@
     "check:quality": "node scripts/check-quality.js",
     "check:ui": "node scripts/check-ui.js",
     "check:encoding": "node scripts/fix-encoding.js",
+    "check:in-progress": "node scripts/check-in-progress.js",
     "fix:encoding": "node scripts/fix-encoding.js --write",
     "apply:ui": "node scripts/apply-ui-fixes.js",
     "derive:code": "node scripts/derive-code-questions.js",

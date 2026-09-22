@@ -476,8 +476,21 @@ Four more are enforced by checks that fail the build, rather than by this docume
 - every practice challenge must carry `chapter` and at least one `concept` (`audit-generated.js`)
 - every text colour must clear WCAG AA, no text below 12px, no container gap below 12px (`check-ui.js`)
 - no file may contain double-encoded text or invalid UTF-8 (`fix-encoding.js`, also a pre-commit hook)
+- **nothing is generated for a chapter that is still being written** (`check-in-progress.js`)
 
 A rule that lives only in a document gets forgotten. A rule that fails the build cannot be.
+
+### Why the last one exists, and what it taught
+
+The in-progress rule was introduced correctly and applied badly: it was added at the **two call sites** being looked at, and there are **seven generators** that produce chapter-scoped content. Five were covered by accident, because they feed one array that happens to be filtered by a single flag. Two were not covered at all, so the chapter being written shipped a generated challenge.
+
+Three things follow, and they are worth remembering:
+
+1. **A cross-cutting rule applied by hand at some call sites and not others will be applied incompletely.** The fix is a choke point or a check, not more care.
+2. **Documentation written from the implementation inherits the implementation's gaps.** This section originally listed questions and takeaways and not challenges, because it was written by reading the code I had just written. It could not have revealed the bug. A document derived from an implementation cannot audit that implementation.
+3. **An assumption that has always held is untested.** The scoping fallback `scoped.length > 0 ? scoped : all` was written when every chapter happened to have a challenge. Removing the in-progress chapter's challenge exposed it: the lab said "Chapter 15: Composition" and displayed a Chapter 2 challenge. Removing a thing can break the assumptions built on it.
+
+So the check enumerates the **output** rather than trusting the code. It discovers every chapter-scoped array and every chapter-keyed object in the generated files, and fails if any entry belongs to a chapter still being written. A generator added tomorrow is covered automatically. It also fails when it finds *no* in-progress chapter, because that means the rule changed and the check has quietly stopped testing anything.
 
 ## Editing These Files: Watch The Encoding
 

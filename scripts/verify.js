@@ -21,6 +21,7 @@
 //                     container gap is below 12px
 //   fix-encoding      no file contains double-encoded text, which renders as mojibake
 //                     such as the em-dash becoming three wrong characters
+//   check-in-progress nothing is generated for a chapter that is still being written
 //
 // The first failure stops the run and the exit code is non-zero, so a broken
 // generation can never be reported as approved.
@@ -39,6 +40,7 @@ const CHECKS = [
   { script: 'check-quality.js', label: 'Question quality' },
   { script: 'check-ui.js', label: 'Interface' },
   { script: 'fix-encoding.js', label: 'Text encoding' },
+  { script: 'check-in-progress.js', label: 'In-progress chapter' },
   { script: 'coverage.js', label: 'Coverage', args: ['--check'] }
 ];
 
