@@ -56,6 +56,29 @@ function damagedSequences(text) {
   return [...new Set((text.match(new RegExp(DAMAGE.source, 'g')) || []))];
 }
 
+// TWO KINDS OF DAMAGE, because they have different causes and one used to hide behind the
+// other.
+//
+//   'double'  - the text was read with the wrong codepage and written back, so a
+//               multi-byte character became several wrong ones. The characters are all
+//               valid, which is why it renders as odd letters rather than as boxes.
+//
+//   'invalid' - the file contains bytes that are not valid UTF-8 at all, so decoding
+//               produced U+FFFD. This is a DIFFERENT failure and the double-encoding
+//               pattern cannot see it: measured, a file with a stray 0xE2 byte passed the
+//               first check silently. U+FFFD is never legitimate in source, so flagging it
+//               is safe.
+//
+// C1 control characters (U+0080-U+009F) are also reported, because they are never
+// legitimate in source either and they appear when a codepage leaves a byte undefined.
+function findDamage(raw) {
+  const text = raw.toString('utf8');
+  const double = damagedSequences(text);
+  const replacements = (text.match(/\uFFFD/g) || []).length;
+  const c1 = (text.match(/[\u0080-\u009F]/g) || []).length;
+  return { text, double, replacements, c1 };
+}
+
 // Reverses the double-encoding: every character back to its 1252 byte, then those bytes
 // read as UTF-8.
 function repair(text) {
@@ -72,12 +95,27 @@ function repair(text) {
   return Buffer.from(bytes).toString('utf8');
 }
 
+// A file is treated as text when it contains no NUL byte in its first block. That is more
+// reliable than a list of extensions, because a list silently misses whatever is added
+// next - and this check exists precisely because something silent slipped through.
+function isProbablyText(file) {
+  const handle = fs.openSync(file, 'r');
+  try {
+    const buffer = Buffer.alloc(4096);
+    const read = fs.readSync(handle, buffer, 0, 4096, 0);
+    for (let i = 0; i < read; i++) if (buffer[i] === 0) return false;
+    return true;
+  } finally {
+    fs.closeSync(handle);
+  }
+}
+
 function walk(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.name === 'node_modules' || entry.name === '.git') continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(full, out);
-    else if (/\.(css|js|html|md|json|java)$/.test(entry.name)) out.push(full);
+    else if (isProbablyText(full)) out.push(full);
   }
   return out;
 }
@@ -87,43 +125,55 @@ const damaged = [];
 
 for (const file of files) {
   const raw = fs.readFileSync(file);
-  const text = raw.toString('utf8');
-  const sequences = damagedSequences(text);
-  if (!sequences.length) continue;
+  const { text, double, replacements, c1 } = findDamage(raw);
 
-  const fixed = repair(text);
-  // A repair that introduces the replacement character has destroyed something, so it is
-  // refused rather than written.
-  const lost = (fixed.match(/\uFFFD/g) || []).length;
-  const remaining = damagedSequences(fixed);
+  // Only the double-encoding case is repairable. Invalid bytes and stray C1 controls are
+  // reported, because repairing them needs a decision a script cannot make.
+  if (!double.length && !replacements && !c1) continue;
 
-  damaged.push({
+  const entry = {
     file: path.relative(root, file),
-    sequences,
-    before: sequences.length,
-    lost,
-    remaining: remaining.length
-  });
+    double,
+    replacements,
+    c1,
+    repairable: double.length > 0 && replacements === 0
+  };
 
-  if (write && lost === 0 && remaining.length === 0) {
-    fs.writeFileSync(file, fixed, 'utf8');
+  if (entry.repairable) {
+    const fixed = repair(text);
+    entry.lost = (fixed.match(/\uFFFD/g) || []).length;
+    entry.remaining = damagedSequences(fixed).length;
+    entry.repairable = entry.lost === 0 && entry.remaining === 0;
+    if (write && entry.repairable) fs.writeFileSync(file, fixed, 'utf8');
   }
+
+  damaged.push(entry);
 }
 
 if (!damaged.length) {
-  console.log('No double-encoded text found.');
+  console.log('No encoding damage found in ' + files.length + ' text files.');
   process.exit(0);
 }
 
 console.log('');
-console.log(`${damaged.length} file(s) contain double-encoded text:`);
+console.log(`${damaged.length} file(s) have an encoding problem:`);
 for (const d of damaged) {
   console.log('');
   console.log(`  ${d.file}`);
-  console.log(`    damaged sequences : ${d.before}`);
-  console.log(`    ${d.sequences.slice(0, 8).map(s => JSON.stringify(s)).join(' ')}`);
-  if (d.lost) console.log(`    WOULD LOSE ${d.lost} character(s) - refused`);
-  if (d.remaining) console.log(`    WOULD REMAIN DAMAGED - refused`);
+  if (d.double.length) {
+    console.log(`    double-encoded : ${d.double.length} sequence(s)  ${d.double.slice(0, 6).map(s => JSON.stringify(s)).join(' ')}`);
+    if (d.lost) console.log(`      repair would lose ${d.lost} character(s), so it was refused`);
+    else if (d.remaining) console.log('      repair would leave damage behind, so it was refused');
+    else console.log('      repairable with npm run fix:encoding');
+  }
+  if (d.replacements) {
+    console.log(`    INVALID UTF-8  : ${d.replacements} byte(s) cannot be decoded, shown as U+FFFD.`);
+    console.log('      This is not the double-encoding case and cannot be repaired automatically.');
+    console.log('      Open the file in an editor that shows the bytes, or restore it from git.');
+  }
+  if (d.c1) {
+    console.log(`    control chars  : ${d.c1} character(s) in U+0080-U+009F, which are never valid in source.`);
+  }
 }
 
 console.log('');

@@ -1,0 +1,45 @@
+#!/bin/sh
+# ============================================================================
+# Runs before every commit, and refuses a commit that would introduce a problem the
+# checks can catch.
+#
+# WHY A HOOK RATHER THAN RELYING ON THE CHECKS
+#
+# The checks run inside `npm run revise` and `npm run approve`. That is fine when they
+# run, but they only help if someone remembers. This was proven rather than assumed: a
+# file with 76 double-encoded characters was committed straight through, because the
+# check was never invoked. A guard that depends on memory is not a guard.
+#
+# So the encoding check runs here, at the moment the mistake would become permanent.
+#
+# WHAT IT CHECKS, AND WHY ONLY THAT
+#
+# Only the cheap, unambiguous check. A pre-commit hook that takes ten seconds gets
+# bypassed with --no-verify out of irritation, and a hook that gets bypassed protects
+# nothing. This one takes under a second and cannot report a false positive: it looks for
+# text that is definitely wrong, not text that might be.
+#
+# The full suite stays where it belongs, in `npm run verify`, because it compiles and runs
+# Java and belongs with a deliberate action rather than every commit.
+#
+# TO INSTALL (already done for this repository):
+#   git config core.hooksPath scripts/githooks
+# ============================================================================
+
+node scripts/fix-encoding.js
+status=$?
+
+if [ $status -ne 0 ]; then
+  echo ""
+  echo "COMMIT REFUSED: some files contain double-encoded text."
+  echo ""
+  echo "   Fix it with:  npm run fix:encoding"
+  echo ""
+  echo "   (Or bypass with: git commit --no-verify - but please fix it instead, because"
+  echo "    the damage is silent in a browser and only shows as wrong characters where a"
+  echo "    dash or a tick should be.)"
+  echo ""
+  exit 1
+fi
+
+exit 0

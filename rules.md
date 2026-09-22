@@ -471,7 +471,7 @@ Four more are enforced by checks that fail the build, rather than by this docume
 
 - every practice challenge must carry `chapter` and at least one `concept` (`audit-generated.js`)
 - every text colour must clear WCAG AA, no text below 12px, no container gap below 12px (`check-ui.js`)
-- no file may contain double-encoded text (`fix-encoding.js`)
+- no file may contain double-encoded text or invalid UTF-8 (`fix-encoding.js`, also a pre-commit hook)
 
 A rule that lives only in a document gets forgotten. A rule that fails the build cannot be.
 
@@ -490,9 +490,29 @@ This happened to `app.js`, `index.html` and `style.css`, in 76 places, and was f
 | `Set-Content -Encoding UTF8` | safe to write, but only if the read was correct |
 | **`Get-Content -Raw` alone** | **not safe** on a file without a BOM |
 
-**`npm run check:encoding` catches it**, and runs inside `npm run revise`. It fails and names the file rather than letting the damage reach the browser, where it is silent — the characters simply render wrong.
+**`npm run check:encoding` catches it**, and it now runs in **two** places:
 
-If it ever fires: `npm run fix:encoding` reverses it exactly, because the wrong characters are all representable in Windows-1252, so encoding them back recovers the original bytes. It refuses to write if a repair would lose a character.
+1. Inside `npm run revise`, with the other checks.
+2. **As a git pre-commit hook**, which is the one that matters. A guard that depends on remembering to run it is not a guard — proven, not assumed: a file with 76 double-encoded characters was committed straight through because the check was never invoked. The hook is version-controlled in `scripts/githooks/pre-commit` and installed with `git config core.hooksPath scripts/githooks`.
+
+The hook checks only the cheap, unambiguous things, so it takes under a second and is never worth bypassing. The full suite stays in `npm run verify`, because it compiles Java and belongs with a deliberate action.
+
+**It catches two different kinds of damage**, because they have different causes and one used to hide behind the other:
+
+| | |
+|---|---|
+| **double-encoded** | Text read with the wrong codepage and written back. The characters are all valid, which is why it renders as odd letters rather than boxes. **Repairable** with `npm run fix:encoding`. |
+| **invalid UTF-8** | Bytes that are not valid UTF-8 at all, shown as `U+FFFD`. Not repairable automatically. Measured: a file with a stray `0xE2` byte passed the double-encoding check silently, which is why this second check exists. |
+
+It also reports C1 control characters (`U+0080`–`U+009F`), which are never valid in source.
+
+If it fires: `npm run fix:encoding` reverses the double-encoding exactly, because the wrong characters are all representable in Windows-1252, so encoding them back recovers the original bytes. It **refuses to write** if a repair would lose a character or leave damage behind — which is what protected `rules.md` when a stray example tripped the check.
+
+**What is still not protected, honestly:**
+
+- `git commit --no-verify` bypasses the hook. Nothing can stop that.
+- A file edited and left uncommitted can hold damage until the next check runs.
+- The double-encoding pattern is specific to **Windows-1252**. If this machine's ANSI codepage were something else, the wrong characters would differ. The invalid-UTF-8 check is codepage-independent and would still catch the worst cases.
 
 ## Section Markers
 
