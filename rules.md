@@ -389,7 +389,7 @@ While a chapter is unfinished:
 | | What happens |
 |---|---|
 | **Your notes** | Shown exactly as written |
-| **Your `@quiz` questions** | Kept and usable |
+| **Questions written in the notes** | Kept and usable. These are the `@quiz` markers, and they are kept because they are fixed text rather than derived - not because they are all yours, which they are not (see the note below) |
 | **Your `@takeaway` and `@gotcha` lines** | Kept and shown |
 | **Generated questions** | **None** — no true/false, no output-prediction, no OCJP-trap, no researched bank questions |
 | **Generated takeaways and gotchas** | **None** — the panel shows only what you wrote |
@@ -400,6 +400,14 @@ While a chapter is unfinished:
 | **`npm run verify`** | Does not fail on anything this chapter lacks |
 | **Suggestions** | None |
 | **Code Practice, scoped to it** | Says *"No practice challenge here yet"* rather than showing another chapter's challenge |
+
+### A correction worth recording
+
+This section used to say the `@quiz` questions are "your own". That was wrong, and checking it was worth doing.
+
+There are **643 `@quiz` markers** in the Java files, and the commits that added most of them are titled *"Add concept-practice questions for Chapters 1-15"* and *"Write exam-grade questions for…"*, all `Co-authored-by: Copilot`. In Chapter 15 specifically, `git blame` attributes all 13 markers to three of those commits. So they are largely mine, inserted into your files, and indistinguishable from your own writing once they are there.
+
+The rule still keeps them, but for the honest reason: they are **fixed text**, so they do not become wrong when you edit the code around them. That is a different reason from "they are yours".
 
 Two reasons, both practical:
 
