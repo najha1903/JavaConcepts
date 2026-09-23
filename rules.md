@@ -380,6 +380,10 @@ Proof carries the most weight because it is the only part that cannot be reached
 
 **Study next.** The dashboard opens on one action chosen from your data, not three generic buttons. The priority is: something overdue, then your weakest concept, then untried material.
 
+**Notes that could use an example.** The rules in your notes that state a constraint — "must", "cannot", "throws", "does not compile" — with no code sample beside them, grouped by chapter and then by file, each file name a button that opens it in the Notes view. Detection is reliable because it is structural: it asks whether a code block sits next to the line, not whether two lines are about the same subject. Keyword matching cannot tell what a line is *about* from what it merely mentions, which is why the tool can find these but cannot write the example. It was 128 of 246 at the time of writing.
+
+**Suggested additions.** Gaps where your code uses a construct or an API your notes never explain. Listed here read-only, deliberately: accepting one writes to your files, and that stays in the review page, which is the one place in this project that writes to your notes. Exercise files are excluded entirely, because using the construct is the exercise — a loop challenge in the Looping chapter contains a loop, and "the notes never explain it" is true and meaningless. That exclusion took the list from 50 to 8.
+
 ## A Chapter You Are Still Writing
 
 A chapter you are still working on is **not judged, and nothing is generated for it.**
@@ -690,7 +694,7 @@ The generated portal provides:
 - **Practice Lab honesty**: every challenge is labelled **Auto-checked** (your method is run against the recorded expected values) or **Self-check** (no automatic verification, verify it yourself). Code the checker cannot run is reported as "could not be checked", never as a wrong answer.
 - OCJP questions attached to the topic they belong to, so they can be revised topic by topic, chapter by chapter, or centrally from the Revision Bank.
 - Wrong-answer concept review linked back to the exact source topic.
-- **Mastery view**: what you are weak at, weakest concept first, with exam readiness, level unlocking, one merged review queue and a "study next" nudge. Built entirely from the answers you have already given, so it works on existing history.
+- **Mastery view**: what you are weak at, weakest concept first, with exam readiness, level unlocking, one merged review queue and a "study next" nudge. Built entirely from the answers you have already given, so it works on existing history. It also carries the two things the retired Coverage screen was for: **Notes that could use an example** — the rules in your notes that state a constraint with no code sample beside them, grouped by chapter and file, each file name a button that opens it — and **Suggested additions**, listed read-only, because accepting one writes to your files and that stays in the review page.
 - Practice Lab and Deep Problems.
 - Chapter-wise PDF printing from the Notes view.
 - Local progress tracking in browser storage.
@@ -715,6 +719,7 @@ The audit checks that topics, question IDs, question-to-topic links, answer shap
 2. `parse-concepts.js` — writes `data.js`, `questions.js`, `practice.js` and `deep-challenges.js` from your notes.
 3. `fill-practice-expectations.js` — reads the challenges step 2 just wrote, computes the expected value by calling your own method, and validates it against the practice lab's verifier.
 4. `parse-concepts.js` again — only when step 3 produced a new value, so the dashboard picks it up.
+5. `coverage.js` — recomputes the ledger and writes `coverage.md` and `coverage-data.js`.
 
 They then run every check, in order, and refuse to apply if any fails:
 
@@ -735,3 +740,18 @@ A topic with no question was a **failure** for a while, and moving it to a warni
 The coverage check reports **"every topic is covered"** when every topic of a finished chapter has material of its own. A topic counts as covered when it has a question, a generated practice challenge, or — for a file whose notes open with `Challenge:` or `Deep Problem:` — is an exercise you wrote and solved yourself. Those exercise files are listed separately, because there is nothing for the tool to generate for them.
 
 **The work list and the OCJP list cover finished chapters only.** They did not, for a long time: the flags and the totals were filtered by the in-progress rule and these two were not, so the ledger told the author to go and write notes and practice for the chapter he was sitting in front of. Both are filtered now, and the chapter being written gets its own line — *"still being written, not judged, nothing generated"*.
+
+## Where the ledger lives
+
+There is no Coverage screen any more. It was a ninth view, and almost everything it reported was a false alarm: its work list and its OCJP list were entirely the chapter being written, its "needs work" flags were your own content, and 42 of its 50 suggestions were complaints that an exercise file used the thing it was an exercise in. A page of false alarms teaches you to ignore it.
+
+The ledger itself is kept, and it is what you read:
+
+| | |
+|---|---|
+| `revision-dashboard/coverage.md` | The full ledger, written on every run |
+| The terminal | The same, printed by `npm run revise` and `npm run verify` |
+| `coverage.js --check` | The enforcement, run inside `npm run verify` and `npm run revise` |
+| **Mastery → Notes that could use an example** | The one part that had nowhere else to go: the rules with no example beside them, as the lines themselves, grouped by chapter and file |
+
+`coverage-data.js` used to carry the whole ledger — every chapter, a row per topic, the work list, the OCJP list, the exercise list, the Quick Revision counts — because the screen rendered all of it. It now carries only what Mastery reads: the rules without an example, their counts, the concept summary, and which chapter is still being written. That took it from 3,267 lines to 900.

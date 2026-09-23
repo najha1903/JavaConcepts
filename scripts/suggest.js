@@ -236,6 +236,15 @@ for (const chapter of concepts) {
   const chapterConcepts = new Set(catalogue.conceptsForChapter(chapter.name, chapter.topics));
 
   for (const topic of chapter.topics || []) {
+    // An exercise file is skipped entirely, and so is anything inside an exercise folder.
+    //
+    // Using the construct IS the exercise: a loop challenge in the Looping chapter contains
+    // a loop, and a switch challenge in the Switch chapter contains a switch. The notes in
+    // those files are the task, not an explanation of it, so "the code uses a switch, and
+    // the notes never explain it" is true and completely meaningless. 42 of the 50
+    // suggestions were this, which is what made the list worth ignoring.
+    if (noteRules.isExerciseTopic(topic) || noteRules.isInsideExerciseFolder(topic.filePath)) continue;
+
     const raw = String(topic.code || '');
     // Match against the CODE only, with comments and the entry point removed.
     const code = codeOnly(raw);

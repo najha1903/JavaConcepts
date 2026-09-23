@@ -17,7 +17,7 @@
 // Fingerprint of the inputs this was derived from: the source files, the challenge
 // list and the verifier template. When it still matches, the script skips the work
 // instead of compiling and running every method again.
-const SOURCE_FINGERPRINT = '242397a8';
+const SOURCE_FINGERPRINT = 'c4e26ca6';
 
 const PRACTICE_EXPECTATIONS = {
   "expressionevaluatordeepproblem": [

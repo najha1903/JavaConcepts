@@ -24,6 +24,19 @@ function isExerciseFileName(name) {
   return /challenge|problem/i.test(String(name || ''));
 }
 
+// A file that sits inside one of the author's exercise folders, such as
+// Sub_Chapter_12_Inheritance_Coding_Challenge.
+//
+// This is deliberately separate from isExerciseTopic. That one drives what the dashboard
+// shows, and a supporting class in a challenge folder - Employee.java beside Worker.java -
+// is still a topic worth reading, with real notes in it. This one answers a narrower
+// question, asked only by the suggestion engine: is this file part of an exercise, so that
+// using the construct is the task rather than a gap? Employee.java and Worker.java are,
+// because they are the solution to that challenge.
+function isInsideExerciseFolder(filePath) {
+  return /(^|\/)[^/]*(challenge|problem)[^/]*\//i.test(String(filePath || ''));
+}
+
 // The first line of actual notes, skipping code and tables. A file that opens with
 // "Challenge:" or "Deep Problem:" is an exercise even when its name does not say so.
 function firstNoteLine(topic) {
@@ -131,6 +144,7 @@ function isCodeFragment(line) {
 
 module.exports = {
   isExerciseFileName,
+  isInsideExerciseFolder,
   opensAsExercise,
   isExerciseTopic,
   firstNoteLine,

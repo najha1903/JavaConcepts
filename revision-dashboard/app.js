@@ -687,166 +687,7 @@ function showView(viewId) {
     document.getElementById('nav-bank-btn').classList.add('active');
   } else if (viewId === 'quiz-menu-view') {
     document.getElementById('nav-quiz-menu-btn').classList.add('active');
-  } else if (viewId === 'coverage-view') {
-    document.getElementById('nav-coverage-btn').classList.add('active');
   }
-}
-
-// ==========================================================================
-// Coverage — what is covered, and what still needs work
-//
-// The numbers come from COVERAGE_DATA, which scripts/coverage.js computes on
-// every run. The browser never recomputes them, so the ledger, coverage.md and
-// this screen can never disagree.
-// ==========================================================================
-
-let coverageIncompleteOnly = false;
-
-function coverageCell(value, suffix) {
-  if (value === 0) return `<span class="cov-missing">0${suffix || ''}</span>`;
-  return `<span class="cov-present">${value}${suffix || ''}</span>`;
-}
-
-function chapterNeedsWork(chapter) {
-  // A chapter still being written is never flagged. Flagging a half-written chapter
-  // is double work, because the author may cover the gap in his next session.
-  if (chapter.inProgress) return false;
-  return chapter.topicsWithQuestions < chapter.topicsTotal ||
-    chapter.easy === 0 ||
-    chapter.hard === 0 ||
-    chapter.ocjp === 0 ||
-    chapter.syntaxIsBoilerplate ||
-    (chapter.strayBadges || []).length > 0 ||
-    chapter.takeaways === 0 ||
-    chapter.practice === 0;
-}
-
-function renderCoverage() {
-  const data = typeof COVERAGE_DATA !== 'undefined' ? COVERAGE_DATA : null;
-  if (!data) {
-    document.getElementById('coverage-subtitle').textContent =
-      'The ledger has not been generated yet. Run npm run revise.';
-    return;
-  }
-
-  const t = data.totals;
-  document.getElementById('coverage-subtitle').textContent =
-    `Generated ${new Date(data.generated).toLocaleString()}. What exists, what is missing, and what to do next. A chapter you are still writing is listed without being judged.`;
-
-  document.getElementById('coverage-summary').innerHTML = `
-    <div class="cov-stat"><span class="cov-stat-value">${t.topicsWithQuestions}/${t.topics}</span><span class="cov-stat-label">topics covered</span></div>
-    <div class="cov-stat"><span class="cov-stat-value">${t.questions}</span><span class="cov-stat-label">questions</span></div>
-    <div class="cov-stat"><span class="cov-stat-value">${t.easy} / ${t.medium} / ${t.hard}</span><span class="cov-stat-label">easy / medium / hard</span></div>
-    <div class="cov-stat"><span class="cov-stat-value">${t.ocjp}</span><span class="cov-stat-label">OCJP tagged</span></div>
-    <div class="cov-stat"><span class="cov-stat-value">${t.authored}</span><span class="cov-stat-label">written by hand</span></div>
-    ${(data.inProgress && data.inProgress.chapters) ? `<div class="cov-stat in-progress"><span class="cov-stat-value">${data.inProgress.chapters}</span><span class="cov-stat-label">still being written</span></div>` : ''}
-  `;
-
-  // The work list: exactly what is outstanding, so nothing has to be remembered.
-  const work = [];
-  if (data.workList.length) {
-    work.push(`
-      <div class="cov-work-card">
-        <h3>${data.workList.length} topic(s) with nothing of their own</h3>
-        <ul class="cov-work-list">${data.workList.map(w => `<li>${w.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')} &middot; ${w.topic} &mdash; needs ${w.needs}</li>`).join('')}</ul>
-      </div>`);
-  }
-  if (data.ocjpWork.length) {
-    work.push(`
-      <div class="cov-work-card">
-        <h3>OCJP bank — target ${data.ocjpTarget} exam questions per chapter</h3>
-        <ul class="cov-work-list">${data.ocjpWork.map(w => `<li>${w.ocjp} now, ${w.gap} to write &middot; ${w.name}</li>`).join('')}</ul>
-        <p class="cov-work-note">Ask Copilot: &ldquo;write the OCJP questions for ${data.ocjpWork[0].name}&rdquo;</p>
-      </div>`);
-  }
-  const qr = data.quickRevision;
-  if (qr.syntax || qr.badges || qr.tables) {
-    const parts = [];
-    if (qr.syntax) parts.push(`${qr.syntax} chapter(s) whose syntax snippet is boilerplate rather than the chapter's construct`);
-    if (qr.badges) parts.push(`${qr.badges} chapter(s) whose badges are not the syntax the chapter teaches`);
-    if (qr.tables) parts.push(`${qr.tables} chapter(s) with no comparison table &mdash; your content to add, nothing is generated`);
-    work.push(`<div class="cov-work-card"><h3>Quick Revision</h3><ul class="cov-work-list">${parts.map(p => `<li>${p}</li>`).join('')}</ul></div>`);
-  }
-  document.getElementById('coverage-work').innerHTML = work.join('');
-
-  // Suggestions: what a finished chapter's code shows and its notes do not
-  // explain. Read-only here; the accepting happens in the review page, because
-  // that is the one place that writes to the author's files.
-  const suggestions = typeof SUGGESTIONS !== 'undefined' ? SUGGESTIONS : null;
-  const suggestionBox = document.getElementById('coverage-suggestions');
-  if (!suggestions || !suggestions.items.length) {
-    suggestionBox.innerHTML = `
-      <div class="cov-work-card cov-suggest-empty">
-        <h3>Suggested additions</h3>
-        <p class="cov-work-note">Nothing to suggest. A suggestion is raised only for a chapter that is finished, and only when the tool can point at the exact API or construct the notes never explain.</p>
-      </div>`;
-  } else {
-    const byChapter = new Map();
-    suggestions.items.forEach(item => {
-      if (!byChapter.has(item.chapter)) byChapter.set(item.chapter, []);
-      byChapter.get(item.chapter).push(item);
-    });
-    suggestionBox.innerHTML = `
-      <div class="cov-work-card">
-        <h3>Suggested additions — ${suggestions.items.length}</h3>
-        <p class="cov-work-note">Things your code uses that your notes do not explain. Nothing is written to your notes until you accept it.</p>
-        ${[...byChapter.entries()].map(([chapter, items]) => `
-          <div class="cov-suggest-chapter">
-            <h4>${chapter}</h4>
-            <ul class="cov-work-list">
-              ${items.map(i => `<li><strong>${i.topic}</strong> — ${i.what}<br><span class="cov-suggest-draft">${(i.draft || []).join(' ')}</span></li>`).join('')}
-            </ul>
-          </div>`).join('')}
-      </div>`;
-  }
-
-  // The chapters, with a row per topic.
-  const shown = data.chapters.filter(c => !coverageIncompleteOnly || chapterNeedsWork(c));
-  document.getElementById('coverage-chapters').innerHTML = shown.map(chapter => {
-    const needs = chapterNeedsWork(chapter);
-    const flags = [];
-    if (chapter.inProgress) {
-      flags.push('still being written — nothing is generated for it yet, and it is not counted as incomplete');
-    } else {
-      if (chapter.topicsWithQuestions < chapter.topicsTotal) flags.push(`${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with no question`);
-      if (chapter.easy === 0) flags.push('no easy question');
-      if (chapter.hard === 0) flags.push('no hard question');
-      if (chapter.ocjp === 0) flags.push('no OCJP question');
-      if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
-      if ((chapter.strayBadges || []).length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
-      if (chapter.practice === 0) flags.push('no practice challenge');
-    }
-
-    return `
-      <div class="cov-chapter ${needs ? 'needs-work' : 'complete'}">
-        <div class="cov-chapter-head">
-          <h2>${chapter.name}</h2>
-          <span class="cov-chapter-meta">${chapter.questions} Q (E${chapter.easy} M${chapter.medium} H${chapter.hard}) &middot; OCJP ${chapter.ocjp} &middot; practice ${chapter.practice} &middot; takeaways ${chapter.takeaways} &middot; gotchas ${chapter.gotchas}</span>
-        </div>
-        ${flags.length ? `<p class="cov-flags">${flags.join(' &middot; ')}</p>` : ''}
-        <table class="cov-table">
-          <thead><tr><th>Topic</th><th>Notes</th><th>Q</th><th>E</th><th>M</th><th>H</th><th>OCJP</th><th>Challenge</th></tr></thead>
-          <tbody>
-            ${chapter.topics.map(topic => `
-              <tr class="${topic.covered ? '' : 'cov-row-missing'}">
-                <td class="cov-topic-name">${topic.name}</td>
-                <td>${coverageCell(topic.noteLines)}</td>
-                <td>${coverageCell(topic.questions)}</td>
-                <td>${topic.easy || '&ndash;'}</td>
-                <td>${topic.medium || '&ndash;'}</td>
-                <td>${topic.hard || '&ndash;'}</td>
-                <td>${topic.ocjp || '&ndash;'}</td>
-                <td>${topic.practice ? (topic.practiceAutoChecked ? '<span class="cov-present">auto</span>' : '<span class="cov-selfcheck">self</span>') : '<span class="cov-missing">&ndash;</span>'}</td>
-              </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>`;
-  }).join('');
-}
-
-function showCoverage() {
-  showView('coverage-view');
-  renderCoverage();
 }
 
 // ==========================================================================
@@ -884,6 +725,119 @@ function renderMastery() {
   renderLevels();
   renderReviewQueue();
   renderMasteryList();
+  renderNotesGaps();
+  renderMasterySuggestions();
+}
+
+// ---- Notes that could use an example -----------------------------------------
+//
+// The one genuinely useful thing the coverage ledger computes, and until now it was printed
+// to the terminal and nowhere else - which is why the Coverage view never showed it.
+//
+// These are lines in your notes that state a constraint ("must", "cannot", "throws", "does
+// not compile") with no code sample beside them. Detection is reliable because it is
+// structural: it asks whether a code block sits next to the line, not whether two lines are
+// about the same subject. The tool cannot write the example, so they are listed for you.
+function renderNotesGaps() {
+  const host = document.getElementById('mastery-notes-gaps');
+  if (!host) return;
+  const data = typeof COVERAGE_DATA !== 'undefined' ? COVERAGE_DATA : null;
+  const gaps = data && data.notesGaps ? data.notesGaps : [];
+  const totals = data && data.rules ? data.rules : { total: 0, withoutExample: 0 };
+
+  if (!gaps.length) {
+    host.innerHTML = `
+      <div class="mastery-section-head">
+        <h2>Notes that could use an example</h2>
+        <p class="panel-subtitle">Every rule in your notes has a code sample beside it.</p>
+      </div>`;
+    return;
+  }
+
+  // Grouped by chapter, then by file, because that is the order you would work through them.
+  const byChapter = new Map();
+  gaps.forEach(gap => {
+    if (!byChapter.has(gap.chapter)) byChapter.set(gap.chapter, new Map());
+    const byFile = byChapter.get(gap.chapter);
+    if (!byFile.has(gap.file)) byFile.set(gap.file, []);
+    byFile.get(gap.file).push(gap);
+  });
+
+  const percent = totals.total ? Math.round(totals.withoutExample / totals.total * 100) : 0;
+  const groups = [...byChapter.entries()].map(([chapter, byFile]) => {
+    const files = [...byFile.entries()].map(([file, items]) => `
+      <li class="gap-file">
+        <button class="gap-file-name" onclick="openTopicInNotes('${String(file).replace(/'/g, "\\'")}')">${escapeHtml(file.split('/').pop())}</button>
+        <span class="gap-file-count">${items.length}</span>
+        <ul class="gap-rules">
+          ${items.map(item => `<li>${escapeHtml(item.rule)}</li>`).join('')}
+        </ul>
+      </li>`).join('');
+    const count = [...byFile.values()].reduce((n, a) => n + a.length, 0);
+    return `
+      <details class="gap-chapter">
+        <summary>${escapeHtml(chapter)} <span class="gap-chapter-count">${count}</span></summary>
+        <ul class="gap-files">${files}</ul>
+      </details>`;
+  }).join('');
+
+  host.innerHTML = `
+    <div class="mastery-section-head">
+      <h2>Notes that could use an example</h2>
+      <p class="panel-subtitle">${totals.withoutExample} of your ${totals.total} rules (${percent}%) state a constraint with no code sample beside them. These are where an example would help most. The tool cannot write one, so they are listed here for you.</p>
+    </div>
+    <div class="gap-groups">${groups}</div>`;
+}
+
+// Opens the file a rule lives in, in the Notes view, so it can be acted on.
+function openTopicInNotes(filePath) {
+  for (let ci = 0; ci < CONCEPTS_DATA.length; ci++) {
+    const ti = CONCEPTS_DATA[ci].topics.findIndex(t => t.filePath === filePath);
+    if (ti >= 0) {
+      currentChapterIndex = ci;
+      currentTopicIndex = ti;
+      revisionDepth = 'detailed';
+      showView('notes-view');
+      selectTopic(ci, ti);
+      return;
+    }
+  }
+}
+
+// ---- Suggested additions, read-only ------------------------------------------
+//
+// Accepting a suggestion writes to your files, and that stays in the review page - the one
+// place in this project that writes to your notes. Here they are only listed, so Mastery can
+// answer "what should I do next" without offering to change anything.
+function renderMasterySuggestions() {
+  const host = document.getElementById('mastery-suggestions');
+  if (!host) return;
+  const data = typeof SUGGESTIONS !== 'undefined' ? SUGGESTIONS : null;
+  const items = data && data.items ? data.items : [];
+
+  if (!items.length) {
+    host.innerHTML = `
+      <div class="mastery-section-head">
+        <h2>Suggested additions</h2>
+        <p class="panel-subtitle">Nothing to add. Every construct and API your teaching files use is explained in the notes.</p>
+      </div>`;
+    return;
+  }
+
+  const rows = items.map(item => `
+    <li class="suggestion-row">
+      <span class="suggestion-chapter">${escapeHtml(item.chapter.replace(/^Chapter (\d+).*/, 'Ch$1'))}</span>
+      <span class="suggestion-file">${escapeHtml(item.file.split('/').pop())}</span>
+      <span class="suggestion-what">${escapeHtml(item.what)}</span>
+      <span class="suggestion-why">${escapeHtml(item.why)}</span>
+    </li>`).join('');
+
+  host.innerHTML = `
+    <div class="mastery-section-head">
+      <h2>Suggested additions</h2>
+      <p class="panel-subtitle">${items.length} gap${items.length === 1 ? '' : 's'} in the notes of finished chapters. Listed only &mdash; accepting one is done in the review page, because that is the one place that writes to your notes.</p>
+    </div>
+    <ul class="suggestion-list">${rows}</ul>`;
 }
 
 // ---- The one honest number ---------------------------------------------------
@@ -1369,28 +1323,10 @@ function setupEventListeners() {
     showView('bank-view');
   });
 
-  document.getElementById('nav-coverage-btn').addEventListener('click', () => {
-    showCoverage();
-  });
-
   document.getElementById('nav-mastery-btn').addEventListener('click', () => {
     showMastery();
   });
 
-  document.getElementById('coverage-filter-all').addEventListener('click', () => {
-    coverageIncompleteOnly = false;
-    document.getElementById('coverage-filter-all').classList.add('active');
-    document.getElementById('coverage-filter-incomplete').classList.remove('active');
-    renderCoverage();
-  });
-
-  document.getElementById('coverage-filter-incomplete').addEventListener('click', () => {
-    coverageIncompleteOnly = true;
-    document.getElementById('coverage-filter-incomplete').classList.add('active');
-    document.getElementById('coverage-filter-all').classList.remove('active');
-    renderCoverage();
-  });
-  
   // Dashboard buttons
   document.getElementById('btn-grand-quiz').addEventListener('click', () => {
     startChapterQuiz("Grand Java Quiz");

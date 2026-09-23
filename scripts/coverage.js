@@ -101,6 +101,9 @@ function ruleCoverage(topic) {
   const blocks = (topic.headerComments || []).filter(b => b.type !== 'table');
   let rules = 0;
   let withExample = 0;
+  // The lines themselves, not just the count. The count says how big the gap is; the lines
+  // are what the author can act on, and they were only ever printed to the terminal.
+  const withoutExample = [];
   blocks.forEach((block, index) => {
     if (block.type === 'code') return;
     const hasExample = (index > 0 && blocks[index - 1].type === 'code') ||
@@ -109,9 +112,10 @@ function ruleCoverage(topic) {
       if (!RULE_PATTERN.test(line)) continue;
       rules++;
       if (hasExample) withExample++;
+      else withoutExample.push(String(line).trim());
     }
   });
-  return { rules, withExample, withoutExample: rules - withExample };
+  return { rules, withExample, withoutExample: rules - withExample, withoutExampleLines: withoutExample };
 }
 
 // ---- Per topic --------------------------------------------------------------
@@ -156,6 +160,7 @@ function topicCoverage(chapter, topic) {
     rules: rules.rules,
     rulesWithExample: rules.withExample,
     rulesWithoutExample: rules.withoutExample,
+    rulesWithoutExampleLines: rules.withoutExampleLines,
     hasNotes: noteLines > 0 || (topic.inlineComments || []).length > 0,
     isExercise: opensAsExercise,
     // Covered means it has material of its own: a question, a challenge, or it is an
@@ -369,61 +374,23 @@ for (const chapter of chapters) {
 
 fs.writeFileSync(path.join(dashboardDir, 'coverage.md'), lines.join('\n'), 'utf8');
 
-// ---- Structured form, so the dashboard can render it ------------------------
-// One source of truth: the same computation feeds the markdown, the console and
-// the Coverage view. The browser never recomputes it.
+// ---- Structured form ---------------------------------------------------------
+// Only what the dashboard still reads. It used to carry the whole ledger - every chapter
+// with a per-topic row, the work list, the OCJP list, the exercise list, the Quick Revision
+// counts - because the Coverage view rendered all of it. That view is gone, and the ledger
+// itself is written to coverage.md and printed to the terminal, so carrying a second copy
+// here was 3,200 lines of data nothing opened.
+//
+// What remains is the one thing that had nowhere else to go: the rules that state a
+// constraint with no example beside them, as the lines themselves, which Mastery shows
+// grouped by chapter. The counts are kept alongside so the dashboard can say "128 of 246"
+// without recounting.
 const payload = {
   generated: new Date().toISOString(),
-  totals,
   inProgress: inProgressTotals,
-  ocjpTarget: OCJP_TARGET,
-  workList: [],
-  ocjpWork: [],
-  quickRevision: { syntax: 0, badges: 0, tables: 0 },
-  chapters: chapters.map(c => ({
-    name: c.name,
-    // True for the chapter still being written, so the view can show it without
-    // judging it. See finishedChapterNames.
-    inProgress: !finishedChapters.has(c.name),
-    questions: c.questions,
-    easy: c.easy,
-    medium: c.medium,
-    hard: c.hard,
-    ocjp: c.ocjp,
-    authored: c.authored,
-    topicsTotal: c.topicsTotal,
-    topicsWithQuestions: c.topicsWithQuestions,
-    // How many of those topics the author has not written anything in. Kept separate from
-    // "no question", because the two need different answers: one needs notes, the other
-    // needs a question the generator could not make from what is there.
-    topicsWithoutNotes: c.topicsWithoutNotes,
-    takeaways: c.takeaways,
-    gotchas: c.gotchas,
-    tables: c.tables,
-    practice: c.practice,
-    practiceAutoChecked: c.practiceAutoChecked,
-    deep: c.deep,
-    syntaxIsBoilerplate: c.syntaxIsBoilerplate,
-    strayBadges: c.strayBadges,
-    badges: c.badges,
-    topics: c.topics.map(t => ({
-      name: t.name,
-      noteLines: t.noteLines,
-      codeBlocks: t.codeBlocks,
-      inlineNotes: t.inlineNotes,
-      questions: t.questions,
-      easy: t.easy,
-      medium: t.medium,
-      hard: t.hard,
-      authored: t.authored,
-    ocjp: t.ocjp,
-    practice: t.practice,
-    practiceAutoChecked: t.practiceAutoChecked,
-    covered: t.covered,
-    coverageKind: t.coverageKind,
-    isExercise: t.isExercise
-    }))
-  }))
+  rules: { total: 0, withoutExample: 0 },
+  notesGaps: [],
+  concepts: { covered: 0, studied: 0, missing: [] }
 };
 
 // ---- The work list ----------------------------------------------------------
@@ -485,12 +452,24 @@ const badgeWork = chapters.filter(c => c.strayBadges.length).length;
 const rulesTotal = chapters.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rules || 0), 0), 0);
 const rulesWithoutExample = chapters.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rulesWithoutExample || 0), 0), 0);
 
+// The rules that state a constraint with no example beside them, as the lines themselves,
+// grouped by chapter with the file named so it can be opened. This is the one genuinely
+// useful thing the ledger produces and it used to be printed to the terminal and nowhere
+// else, which is why the Coverage view never showed it. Finished chapters only, so the
+// author is not told to annotate the chapter he is still writing.
+const notesGaps = [];
+for (const chapter of chapters) {
+  if (!finishedChapters.has(chapter.name)) continue;
+  for (const topic of chapter.topics) {
+    for (const rule of topic.rulesWithoutExampleLines || []) {
+      notesGaps.push({ chapter: chapter.name, topic: topic.name, file: topic.file, rule });
+    }
+  }
+}
+
 // Fill in the structured payload now that every part is known.
-payload.workList = uncoveredTopics;
-payload.exerciseTopics = exerciseTopics;
-payload.ocjpWork = ocjpWork;
-payload.quickRevision = { syntax: syntaxWork, badges: badgeWork, tables: chaptersWithoutTable.length };
 payload.rules = { total: rulesTotal, withoutExample: rulesWithoutExample };
+payload.notesGaps = notesGaps;
 payload.concepts = {
   covered: conceptsCovered.length,
   studied: studiedConcepts.length,

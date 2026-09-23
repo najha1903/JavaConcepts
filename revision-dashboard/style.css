@@ -3701,53 +3701,13 @@ samp,
 }
 
 /* --------------------------------------------------------------------------
-   Coverage view — what is covered, and what still needs work.
+   Mastery filter pills.
 
-   This screen exists so the author never has to open topics one by one and
-   hold the state of 142 of them in his head. Green means present, red means
-   missing, so a gap is visible without reading any numbers.
+   The class is still called coverage-filter because Mastery's filter buttons have used it
+   since before the Coverage view existed, and renaming it would have touched the markup and
+   the script for no change in behaviour. The rest of the Coverage view's styles went with
+   the view itself.
    -------------------------------------------------------------------------- */
-.coverage-summary {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.cov-stat {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 14px 18px;
-  min-width: 130px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.cov-stat-value { font-size: 20px; font-weight: 600; color: var(--text-primary); }
-.cov-stat-label { font-size: 13px; color: var(--text-muted); }
-
-.coverage-work { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-.cov-work-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-left: 3px solid var(--accent-secondary);
-  border-radius: 10px;
-  padding: 14px 18px;
-}
-.cov-work-card h3 { font-size: 14px; margin: 0 0 10px; color: var(--text-primary); }
-.cov-work-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 18px;
-  font-size: 14px;
-  color: var(--text-muted);
-}
-.cov-work-note { font-size: 14px; color: var(--accent-secondary); margin: 10px 0 0; }
-
-.coverage-controls { display: flex; gap: 12px; margin-bottom: 18px; }
 .coverage-filter {
   font-family: inherit;
   font-size: 14px;
@@ -3759,43 +3719,6 @@ samp,
   cursor: pointer;
 }
 .coverage-filter.active { border-color: var(--accent-secondary); color: var(--accent-secondary); }
-
-.coverage-chapters { display: flex; flex-direction: column; gap: 18px; }
-.cov-chapter {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 16px 18px;
-}
-.cov-chapter.needs-work { border-left: 3px solid #f59e0b; }
-.cov-chapter.complete { border-left: 3px solid #4ade80; }
-.cov-chapter-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-bottom: 6px; }
-.cov-chapter-head h2 { font-size: 16px; margin: 0; }
-.cov-chapter-meta { font-size: 13px; color: var(--text-muted); }
-.cov-flags { font-size: 13px; color: #f59e0b; margin: 0 0 12px; }
-
-.cov-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.cov-table th {
-  text-align: left;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  padding: 6px 8px;
-  border-bottom: 1px solid var(--border-color);
-}
-.cov-table td { padding: 6px 8px; border-bottom: 1px solid var(--border-color); color: var(--text-muted); }
-.cov-topic-name { color: var(--text-primary); }
-.cov-row-missing .cov-topic-name { color: #f87171; }
-.cov-present { color: #4ade80; }
-.cov-missing { color: #f87171; font-weight: 600; }
-
-.cov-selfcheck { color: #f59e0b; }
-
-.cov-suggest-chapter { margin-top: 12px; }
-.cov-suggest-chapter h4 { font-size: 14px; margin: 0 0 6px; color: var(--text-muted); }
-.cov-suggest-draft { color: var(--text-muted); font-size: 13px; }
-.cov-suggest-empty .cov-work-note { margin: 0; }
 
 /* --------------------------------------------------------------------------
    MASTERY, READINESS, REVIEW QUEUE AND THE STUDY-NEXT NUDGE
@@ -3938,6 +3861,78 @@ samp,
 .mastery-bar-fill.proved { background: #3fa66a; }
 .mastery-row-side { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .mastery-pct { font-size: 15px; font-weight: 600; color: var(--text-primary); min-width: 44px; text-align: right; }
+
+/* ---- Notes that could use an example ---- */
+.mastery-notes-gaps, .mastery-suggestions { margin-top: 28px; }
+.gap-groups { display: flex; flex-direction: column; gap: 12px; }
+.gap-chapter {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.gap-chapter > summary {
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gap-chapter-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+.gap-files { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.gap-file { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+.gap-file-name {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  color: var(--accent-primary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.gap-file-count { font-size: 12px; color: var(--text-muted); }
+.gap-rules {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0 0 0 16px;
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gap-rules li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  border-left: 2px solid var(--border-color);
+  padding-left: 12px;
+}
+
+/* ---- Suggested additions ---- */
+.suggestion-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.suggestion-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+.suggestion-chapter { font-size: 12px; color: var(--text-muted); min-width: 40px; }
+.suggestion-file { font-family: var(--font-mono, monospace); font-size: 13px; color: var(--text-primary); }
+.suggestion-what { font-size: 14px; color: var(--accent-primary); }
+.suggestion-why { font-size: 13px; color: var(--text-muted); flex-basis: 100%; }
 
 @media (max-width: 768px) {
   .readiness-card { flex-direction: column; align-items: flex-start; gap: 16px; }
