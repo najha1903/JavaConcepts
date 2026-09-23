@@ -1074,13 +1074,17 @@ function buildQuickRevisionEntry(chapterName, topics, chapterIsFinished = true) 
     ? authoredGotchas.slice(0, 10)
     : (chapterIsFinished ? pickBestKeyPoints(gotchasByTopic, 6) : []);
 
-  // A chapter with no authored points and nothing worth deriving says so, rather
-  // than leaving the panel empty. This is a prompt to the author, and it appears
-  // only in that case, so a chapter that has written its own points never shows it.
-  if (!takeaways.length) {
-    takeaways.push(chapterIsFinished
-      ? `No key points are written for ${chapterName} yet. Add // @takeaway lines to state them, and they will appear here instead of this note.`
-      : `${chapterName} is still being written, so nothing is generated for it yet. Add // @takeaway lines to state the key points, and they appear here. Everything else arrives once you start the next chapter.`);
+  // A FINISHED chapter with no key points says so, as a prompt to the author. A chapter
+  // still being written gets NOTHING - not even a prompt.
+  //
+  // It used to get a prompt, and that was wrong twice over. The rule is that nothing
+  // exists for the chapter being written, and the prompt's advice was "add // @takeaway
+  // lines", which invites tool markers into a chapter the author has not finished - the
+  // exact habit that put 13 quizzes and a "Composition Deep Problem" into Chapter 15. The
+  // dashboard explains the empty panel instead, from the `inProgress` flag below, so the
+  // explanation lives in the interface rather than in the data.
+  if (!takeaways.length && chapterIsFinished) {
+    takeaways.push(`No key points are written for ${chapterName} yet. Add // @takeaway lines to state them, and they will appear here instead of this note.`);
   }
 
   // The snippet is the highest-scoring block, or nothing rather than boilerplate.
@@ -1098,7 +1102,10 @@ function buildQuickRevisionEntry(chapterName, topics, chapterIsFinished = true) 
     : '';
   const badgeList = chapterIsFinished ? Array.from(badges).slice(0, 5) : [];
 
-  return { takeaways, gotchas, syntax, badges: badgeList, tables };
+  // `inProgress` is a fact about the chapter, not content of the tool's, so the interface
+  // can explain an empty panel without any text being stored as revision material. It is
+  // deliberately not in the fail set of check-in-progress.js for that reason.
+  return { takeaways, gotchas, syntax, badges: badgeList, tables, inProgress: !chapterIsFinished };
 }
 
 // ==========================================================================

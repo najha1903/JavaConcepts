@@ -34,16 +34,36 @@
 // that is still being written. A generator added tomorrow is covered automatically, as
 // long as its output carries a chapter, which the audit already requires of challenges.
 //
+// AND THEN IT FAILED AGAIN, WHICH IS WHY THERE IS A SECOND HALF BELOW
+//
+// The check above passed while Chapter 15 - the chapter being written - was showing 13
+// quizzes and a topic called "Composition Deep Problem". All of it was real; none of it was
+// output. The quizzes were @quiz markers written into the author's .java files by hand, and
+// the "Deep Problem" was a file in his folder that the parser read as a topic. On top of
+// that this file carried an EXEMPTION for questions tagged 'custom', on the reasoning that
+// fixed text does not change when the surrounding code does. That is true and it answers
+// the wrong question. The question is whether the author wrote it, and for Chapter 15 he
+// had not.
+//
+// So the rule is now checked on both sides, in one place:
+//
+//   OUTPUT  the generated arrays and chapter-keyed banks   (below)
+//   SOURCE  the author's own notes under src/              (second half)
+//
+// and the pre-commit hook runs it, so it cannot be committed either.
+//
 // Usage: node scripts/check-in-progress.js
 // ============================================================================
 
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
+const notesGuard = require(path.join(__dirname, 'lib', 'notes-guard.js'));
 
 const root = path.resolve(__dirname, '..');
 const dashboardDir = path.join(root, 'revision-dashboard');
-const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
+const notesDir = path.join(root, 'src');
 
 // Files the dashboard reads, and the ones holding generated content. data.js is included
 // because it tells us WHICH chapter is being written, but its own content is the author's
@@ -145,31 +165,34 @@ for (const file of GENERATED_FILES) {
     for (const key of chapterKeyed) {
       const entry = value[key];
 
-      // An array under a chapter key: every item belongs to that chapter.
+      // An array under a chapter key: every item belongs to that chapter, so none of them
+      // may be there.
       //
-      // EXCEPT the questions written directly in the notes, which are kept on purpose.
-      // `kind` is 'custom' for a question that came from an @quiz marker in a file, and
-      // anything else - true-false, ocjp-tricky, derived, bank - is DERIVED by the tool
-      // from something that moves.
-      //
-      // The distinction being drawn is static against derived, NOT his against mine. An
-      // @quiz question is fixed text: it does not change when the surrounding code does,
-      // so it is safe for a chapter still being written. That is the real reason, and an
-      // earlier version of this comment got it wrong by calling them "the author's own".
-      // They are not all his: 643 @quiz markers exist in his files and the batch commits
-      // that added most of them are Co-authored-by: Copilot.
+      // This used to exempt questions with `kind: 'custom'` - the ones that came from an
+      // @quiz marker in a file - on the reasoning that they are fixed text and so do not
+      // change when the surrounding code does. That is true, and it answers the wrong
+      // question. The question is whether the author wrote it, and the answer for Chapter
+      // 15 was no: all 13 of its questions came from three commits that are
+      // Co-authored-by: Copilot. So the check passed while a chapter he was still studying
+      // showed 13 quizzes. The exemption is gone, and the source half below now names the
+      // markers and the files directly.
       if (Array.isArray(entry)) {
-        const derived = entry.filter(item => item && item.kind !== 'custom');
-        if (!derived.length) continue;
-        for (const item of derived) {
-          problems.push(`${file} -> ${name}["${key}"]: "${labelFor(item)}" is derived (kind: ${item.kind}) for a chapter still being written.`);
+        for (const item of entry) {
+          problems.push(`${file} -> ${name}["${key}"]: "${labelFor(item)}" (kind: ${item.kind}) exists for a chapter still being written.`);
         }
         continue;
       }
 
-      // An object under a chapter key: only the DERIVED fields matter. Takeaways and
-      // gotchas are the author's own @takeaway and @gotcha lines, so they are meant to be
-      // there; the badges and the syntax snippet are the tool's own output.
+      // An object under a chapter key: NOTHING may be here for a chapter still being
+      // written.
+      //
+      // Takeaways and gotchas used to be exempted, on the reasoning that they are the
+      // author's own @takeaway and @gotcha lines. He had not written them: every one of
+      // them came from a commit that is Co-authored-by: Copilot. So Chapter 15, the
+      // chapter being written, was showing five key takeaways and two gotchas that he had
+      // never seen before. Exempting them was the same mistake as the 'custom' exemption
+      // above - asking "did the tool derive this?" when the question is "did the author
+      // write this?".
       if (entry && typeof entry === 'object') {
         if (Array.isArray(entry.badges) && entry.badges.length) {
           problems.push(`${file} -> ${name}["${key}"].badges: ${entry.badges.length} badge(s) derived for a chapter still being written.`);
@@ -180,7 +203,76 @@ for (const file of GENERATED_FILES) {
         if (Array.isArray(entry.tables) && entry.tables.length) {
           problems.push(`${file} -> ${name}["${key}"].tables: ${entry.tables.length} table(s) for a chapter still being written.`);
         }
+        if (Array.isArray(entry.takeaways) && entry.takeaways.length) {
+          problems.push(`${file} -> ${name}["${key}"].takeaways: ${entry.takeaways.length} key takeaway(s) for a chapter still being written.`);
+        }
+        if (Array.isArray(entry.gotchas) && entry.gotchas.length) {
+          problems.push(`${file} -> ${name}["${key}"].gotchas: ${entry.gotchas.length} gotcha(s) for a chapter still being written.`);
+        }
       }
+    }
+  }
+}
+
+// ---- The SOURCE half --------------------------------------------------------
+//
+// The generated output can be gated. The author's notes cannot: anything written into them
+// by hand stays there, and every later run reads it as his. So the same rule is applied to
+// the notes directly.
+//
+// Three things are refused in a file belonging to the chapter being written:
+//
+//   quiz content     @quiz and the @option/@explain/@why lines that belong to it
+//   key points       @takeaway, @gotcha and @testcase
+//   exercise files   *Challenge*, *Problem*, or anything under a DeepProblems folder
+//
+// Every one of these was introduced into this project by a commit that is
+// Co-authored-by: Copilot, which is why none of them belongs in a chapter he is writing.
+//
+// WHAT THIS CANNOT CATCH, SAID PLAINLY: plain prose has no marker. A paragraph I wrote and
+// a paragraph he wrote are indistinguishable to a machine, and telling them apart by
+// keywords is the approach that produced several bad features earlier in this project -
+// confident, wrong, and hard to notice. So this covers the markers and the exercise files,
+// and prose is covered by the other half of the guard instead: generate.js compares src/
+// byte for byte around every run and refuses if a generator changed anything, which closes
+// the mechanism rather than the symptom.
+
+const inProgressByNumber = new Map();
+for (const name of inProgress) {
+  const number = noteRules.chapterNumber(name);
+  if (number !== null) inProgressByNumber.set(number, name);
+}
+
+const TOOL_MARKERS = ['@quiz', '@option', '@explain', '@why', '@takeaway', '@gotcha', '@testcase'];
+
+function chapterNumberOfNotePath(relativePath) {
+  const match = String(relativePath).replace(/^src\//i, '').match(/^Chapter_(\d+)/i);
+  return match ? Number(match[1]) : null;
+}
+
+let noteFilesScanned = 0;
+
+if (inProgressByNumber.size) {
+  for (const file of notesGuard.readTree(notesDir).keys()) {
+    const relative = path.relative(root, file).replace(/\\/g, '/');
+    const number = chapterNumberOfNotePath(relative);
+    if (number === null || !inProgressByNumber.has(number)) continue;
+
+    noteFilesScanned++;
+    const chapter = inProgressByNumber.get(number);
+    const text = fs.readFileSync(file, 'utf8');
+
+    for (const marker of TOOL_MARKERS) {
+      const found = (text.match(new RegExp(marker.replace('@', '@') + '\\b', 'g')) || []).length;
+      if (found) {
+        problems.push(`${relative}: ${found} ${marker} line(s), in ${chapter}, which is still being written.`);
+      }
+    }
+
+    if (noteRules.isExerciseFileName(path.basename(file))) {
+      problems.push(`${relative}: an exercise file in ${chapter}, which is still being written.`);
+    } else if (/\/DeepProblems\//i.test(relative)) {
+      problems.push(`${relative}: sits in a DeepProblems folder in ${chapter}, which is still being written.`);
     }
   }
 }
@@ -188,14 +280,16 @@ for (const file of GENERATED_FILES) {
 console.log('');
 console.log(`   Being written : ${inProgress.join(', ')}`);
 console.log(`   Arrays checked: ${scanned} chapter-scoped array(s) across ${GENERATED_FILES.length} generated file(s)`);
+console.log(`   Notes checked : ${noteFilesScanned} file(s) in the chapter(s) being written`);
 
 if (problems.length) {
   console.error('');
   for (const problem of problems) console.error(`   ${problem}`);
   console.error('');
-  console.error(`In-progress check failed: ${problems.length} item(s) generated for a chapter still being written.`);
-  console.error('Nothing should be generated for it. Gate the generator, as buildPracticeChallenges does.');
+  console.error(`In-progress check failed: ${problems.length} item(s) exist for a chapter still being written.`);
+  console.error('Nothing should be generated for it, and nothing of the tool\'s should sit in its notes.');
+  console.error('Gate the generator, as buildPracticeChallenges does, and keep the notes to the author\'s own writing.');
   process.exit(1);
 }
 
-console.log('   Nothing is generated for a chapter that is still being written.');
+console.log('   Nothing of the tool\'s exists for a chapter that is still being written.');

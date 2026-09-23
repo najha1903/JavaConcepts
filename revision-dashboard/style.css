@@ -945,6 +945,19 @@ button:disabled:active,
   background-color: var(--accent-primary);
 }
 
+/* Explains an empty Quick Revision panel for a chapter that is still being written.
+   Deliberately not a bullet: it is a statement about the panel, not a key point, so it
+   loses the dot and takes a rule down its left side instead. */
+.bullet-list li.quick-pending-note {
+  padding: 2px 0 2px 12px;
+  border-left: 2px solid var(--border-color);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.bullet-list li.quick-pending-note::before {
+  content: none;
+}
+
 /* Notes Table (auto-generated from pipe-delimited comment tables) */
 .note-table-wrapper {
   width: 100%;

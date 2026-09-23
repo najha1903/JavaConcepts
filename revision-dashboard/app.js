@@ -2835,6 +2835,18 @@ function renderQuickRevision(topic) {
       gotchasContainer.appendChild(li);
     });
 
+    // A chapter still being written has no key points, gotchas, badges or snippet, by
+    // design: nothing is generated for it. Saying so beats an empty panel, and the reason
+    // is kept here rather than in the generated data so that no content of the tool's
+    // sits in a chapter the author has not finished yet.
+    if (curated.inProgress) {
+      const pending = document.createElement('li');
+      pending.className = 'quick-pending-note';
+      pending.textContent = `${chapter.name} is still being written, so nothing is generated for it yet. `
+        + 'Key points, gotchas, badges and a syntax snippet all appear here once you start the next chapter.';
+      bulletContainer.appendChild(pending);
+    }
+
     // Comparison tables render as real tables, never as flattened text rows.
     if (tablesContainer) {
       (curated.tables || []).forEach(table => {
@@ -3049,6 +3061,15 @@ function startChapterQuiz(chapterName, subChapterName) {
   }
   
   if (questions.length === 0) {
+    // A chapter that is still being written has no questions BY DESIGN, so sending the
+    // author into a 40-question quiz about the other fourteen chapters is the wrong answer
+    // to a correct state - it looks like the chapter has content when it does not. Say what
+    // is actually true instead.
+    const revision = typeof QUICK_REVISION_BANK !== 'undefined' ? QUICK_REVISION_BANK[chapterName] : null;
+    if (revision && revision.inProgress) {
+      alert(`${chapterName} is still being written, so there are no questions for it yet. They appear once you start the next chapter.`);
+      return;
+    }
     alert("No quiz questions available for this chapter yet. Proceeding with a grand quiz instead!");
     startChapterQuiz("Grand Java Quiz");
     return;
@@ -3080,6 +3101,11 @@ function runActiveQuiz() {
 
 function renderQuizQuestion() {
   const question = activeQuizQuestions[currentQuizQuestionIndex];
+
+  // No question means an empty quiz. Nothing can start one - every entry point refuses -
+  // but returning is better than reading `.question` off undefined, and it is what keeps
+  // the progress bar below from dividing by zero and rendering "NaN%".
+  if (!question) return;
   
   // Progress Header
   hideConceptReview();
@@ -3744,7 +3770,9 @@ function showQuizResults() {
   document.getElementById('quiz-result-container').style.display = 'block';
   
   const total = activeQuizQuestions.length;
-  const percentage = Math.round((quizScore / total) * 100);
+  // No questions cannot happen - every entry point refuses an empty quiz - but a guard
+  // here means a future one cannot turn the score into "NaN%".
+  const percentage = total > 0 ? Math.round((quizScore / total) * 100) : 0;
   
   document.getElementById('result-score-text').textContent = `${percentage}%`;
   document.getElementById('result-correct-count').textContent = quizScore;

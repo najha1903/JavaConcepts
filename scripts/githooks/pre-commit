@@ -12,12 +12,20 @@
 #
 # So the encoding check runs here, at the moment the mistake would become permanent.
 #
+# AND SO DOES THE IN-PROGRESS CHECK
+#
+# The same reasoning applies to the other failure that kept recurring. 13 @quiz blocks and
+# a whole exercise file were committed into Chapter 15 - the chapter being written - over
+# several commits, and every one of them looked fine at the time. The check that catches it
+# now exists, but it only helps if it runs, and `npm run revise` is not run before every
+# commit. This is where it becomes permanent, so this is where it is refused.
+#
 # WHAT IT CHECKS, AND WHY ONLY THAT
 #
-# Only the cheap, unambiguous check. A pre-commit hook that takes ten seconds gets
+# Only the cheap, unambiguous checks. A pre-commit hook that takes ten seconds gets
 # bypassed with --no-verify out of irritation, and a hook that gets bypassed protects
-# nothing. This one takes under a second and cannot report a false positive: it looks for
-# text that is definitely wrong, not text that might be.
+# nothing. These take under two seconds together and cannot report a false positive: they
+# look for text that is definitely wrong, not text that might be.
 #
 # The full suite stays where it belongs, in `npm run verify`, because it compiles and runs
 # Java and belongs with a deliberate action rather than every commit.
@@ -27,9 +35,9 @@
 # ============================================================================
 
 node scripts/fix-encoding.js
-status=$?
+encoding_status=$?
 
-if [ $status -ne 0 ]; then
+if [ $encoding_status -ne 0 ]; then
   echo ""
   echo "COMMIT REFUSED: some files contain double-encoded text."
   echo ""
@@ -38,6 +46,22 @@ if [ $status -ne 0 ]; then
   echo "   (Or bypass with: git commit --no-verify - but please fix it instead, because"
   echo "    the damage is silent in a browser and only shows as wrong characters where a"
   echo "    dash or a tick should be.)"
+  echo ""
+  exit 1
+fi
+
+node scripts/check-in-progress.js
+progress_status=$?
+
+if [ $progress_status -ne 0 ]; then
+  echo ""
+  echo "COMMIT REFUSED: something exists for the chapter you are still writing."
+  echo ""
+  echo "   A chapter being written carries nothing: no quiz markers, no @takeaway or"
+  echo "   @gotcha lines, no exercise file. See rules.md, 'A Chapter You Are Still Writing'."
+  echo ""
+  echo "   (Or bypass with: git commit --no-verify - but the content will then be part of"
+  echo "    your notes for good, and no later run can remove it, because it is not generated.)"
   echo ""
   exit 1
 fi

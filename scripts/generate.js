@@ -30,10 +30,16 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const notesGuard = require(path.join(__dirname, 'lib', 'notes-guard.js'));
 
 const root = path.resolve(__dirname, '..');
 const dashboardDir = path.join(root, 'revision-dashboard');
 const expectationsFile = path.join(root, 'data', 'practice-expectations.js');
+
+// The author's own notes. Nothing generated may land here, and this is checked by
+// comparing bytes rather than by trusting the generators to behave. See the bottom of this
+// file for why that distinction matters.
+const NOTES_DIR = path.join(root, 'src');
 
 // Every file the generation steps write. Copied before generating and restored if the
 // structural checks then fail, so no code path can leave broken content on disk.
@@ -83,9 +89,18 @@ function step(script, args, label) {
 // Everything below runs with a snapshot taken, so a failure at any point restores the
 // generated files rather than leaving half-generated content on disk.
 const saved = snapshot();
+const notesBefore = notesGuard.readTree(NOTES_DIR);
 
 function fail(message, status) {
   restore(saved);
+  const notesChanges = notesGuard.restoreTree(NOTES_DIR, notesBefore);
+  if (notesChanges.length) {
+    console.error('');
+    console.error('Your notes were also restored, because a generator had written into them:');
+    for (const change of notesChanges) {
+      console.error(`   ${change.kind.padEnd(7)} ${path.relative(root, change.file)}`);
+    }
+  }
   console.error('');
   console.error(message);
   console.error('The generated files were restored, so the dashboard still shows the last good version.');
@@ -121,6 +136,53 @@ if (after !== before) {
 const coverage = step('coverage.js', ['--quiet'], 'Updating the coverage ledger');
 if (coverage.status !== 0) fail('Updating the coverage ledger failed.', coverage.status);
 
+// 5b. THE NOTES. Nothing above may have touched them.
+//
+// This is the guard the earlier rounds were missing. The in-progress rule was checked
+// against the tool's OUTPUT only, so it passed while Chapter 15 - the chapter being
+// written - showed 13 quizzes and a "Composition Deep Problem" topic, because the quizzes
+// were text sitting in the author's files and the exercise was a file in his folder.
+// Neither was output, so no output check could ever see them.
+//
+// Comparing bytes answers the question that matters - did anything change here? - instead
+// of the question I kept answering, which was "does this look like something I would
+// generate?". Prose, a marker, a new file or something nobody has thought of yet is caught
+// identically, and it is a fact rather than a guess.
+const notesChanges = notesGuard.diffTrees(notesBefore, notesGuard.readTree(NOTES_DIR));
+if (notesChanges.length) {
+  fail(
+    'A generator wrote into your notes. Nothing generated may live in src/ - your notes are\n' +
+    'yours, and content written into them cannot be removed by any later run, because it is\n' +
+    'no longer generated. See rules.md, "A Chapter You Are Still Writing".'
+  );
+}
+
+// Which generated files this run actually rewrote, so the checks below only ever judge
+// content that was just produced.
+//
+// WHY THIS IS NEEDED. `npm run revise` proposes: when there is authored content waiting -
+// a note edit, a @quiz change - the parse reports it and exits WITHOUT writing anything,
+// and the browser review page asks the author to Apply. In that state the generated files
+// on disk are the last APPROVED version, and checking them means checking history. It also
+// deadlocks: the check fails on the old content, so the review page never opens, so the
+// author can never Apply the change that would make the check pass.
+//
+// coverage-data.js is deliberately not in this list. Step 5 rewrites it from the other
+// files on every run, so its changing is not evidence that the parse produced anything.
+const CHECKED_FILES = ['data.js', 'questions.js', 'practice.js', 'deep-challenges.js'];
+
+function rewrittenSince(before) {
+  const changed = [];
+  for (const name of CHECKED_FILES) {
+    const file = path.join(dashboardDir, name);
+    const was = before.get(file);
+    const now = fs.existsSync(file) ? fs.readFileSync(file) : null;
+    if (was === null && now === null) continue;
+    if (was === null || now === null || !was.equals(now)) changed.push(name);
+  }
+  return changed;
+}
+
 // 6. The FAST structural checks, HERE rather than only on approve.
 //
 // This is the hole that made the in-progress rule unreliable. `npm run revise` runs this
@@ -132,6 +194,21 @@ if (coverage.status !== 0) fail('Updating the coverage ledger failed.', coverage
 //
 // These checks take about a second, so they can run every time. The ones that compile and
 // run Java stay in verify.js, because they are slower and belong with a deliberate action.
+const rewritten = rewrittenSince(saved);
+if (!rewritten.length) {
+  const proposalFile = path.join(dashboardDir, 'content-changes.json');
+  console.log('');
+  if (fs.existsSync(proposalFile)) {
+    console.log('A content change is waiting for your review, so nothing was written and there is');
+    console.log('nothing new to check. Apply it in the review page and the checks run on the result.');
+  } else {
+    console.log('Nothing changed, so there was nothing new to check.');
+  }
+  console.log('');
+  console.log('Generated and checked.');
+  process.exit(0);
+}
+
 const structure = step('check-structure.js', [], 'Checking what was generated');
 if (structure.status !== 0) {
   fail('A structural check failed, so the generated files were rolled back.');

@@ -22666,400 +22666,7 @@ const QUESTIONS_BANK = {
       "explanation": "01234 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
     }
   ],
-  "Chapter 15: Composition": [
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_custom_0-what-do-is-a-and-has-a-mean-in-java",
-      "difficulty": "easy",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Product",
-      "tags": [
-        "interview"
-      ],
-      "question": "What do IS-A and HAS-A mean in Java?",
-      "options": [
-        "Inheritance defines a HAS-A relationship, and composition defines an IS-A relationship.",
-        "Inheritance defines an IS-A relationship, and composition defines a HAS-A relationship.",
-        "IS-A means an object stores another object as a field.",
-        "Both describe the same relationship."
-      ],
-      "answer": 1,
-      "whyByOption": {
-        "0": "the two are the other way round.",
-        "2": "storing another object as a field is HAS-A, which is composition.",
-        "3": "they describe different relationships, and choosing between them is a design decision."
-      },
-      "explanation": "A Monitor IS-A Product, which is inheritance. A PersonalComputer HAS-A Monitor, which is composition, because the computer holds a Monitor as one of its parts.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_custom_1-in-this-design-why-is-personalcomputer-h",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Product",
-      "tags": [
-        "interview"
-      ],
-      "question": "In this design, why is PersonalComputer HAS-A Monitor an example of composition?",
-      "options": [
-        "Because the computer is built from other objects held as its parts, rather than inheriting from them.",
-        "Because Monitor and PersonalComputer share the same fields.",
-        "Because composition always requires an interface.",
-        "Because PersonalComputer extends Monitor."
-      ],
-      "answer": 0,
-      "whyByOption": {
-        "1": "sharing fields is not what composition means.",
-        "2": "composition works with concrete classes too. Interfaces are optional.",
-        "3": "extending Monitor would make the computer a kind of monitor, which is not what the design says. They both extend Product instead."
-      },
-      "explanation": "Composition means one object is made up of others. A PersonalComputer contains a Monitor, a MotherBoard and a ComputerCase, so those are parts of it rather than parents of it.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_custom_2-all-of-monitor-motherboard-computercase-",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Product",
-      "tags": [
-        "interview"
-      ],
-      "question": "All of Monitor, MotherBoard, ComputerCase and PersonalComputer extend Product. What does that inheritance give them?",
-      "options": [
-        "It makes them all the same type at runtime.",
-        "It prevents them from adding their own fields.",
-        "Each of them gets its own separate copy of the Product class file.",
-        "They all inherit Product's common attributes, such as model and manufacturer, without repeating that code."
-      ],
-      "answer": 3,
-      "whyByOption": {
-        "0": "they remain distinct types, which is what allows each to have its own behaviour.",
-        "1": "subclasses can add their own fields freely, such as ramSlots on MotherBoard.",
-        "2": "there is one Product class. The subclasses share its definition."
-      },
-      "explanation": "Inheritance is a form of code reuse. The shared attributes live once in Product, and every subclass inherits them while still being free to add its own fields and behaviour.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_custom_3-motherboard-extends-product-and-product-",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Product",
-      "tags": [
-        "ocjp"
-      ],
-      "question": "MotherBoard extends Product, and Product declares its fields as private. What must the MotherBoard constructor do to set the model?",
-      "options": [
-        "Nothing. The parent fields are set automatically from the parameter names.",
-        "Assign this.model = model, because a subclass can reach the parent fields.",
-        "Declare model again inside MotherBoard and assign that.",
-        "Call super(model, manufacturer), because private fields of the parent cannot be assigned directly."
-      ],
-      "answer": 3,
-      "whyByOption": {
-        "0": "Java does not match parameters to fields by name. You must pass the values yourself.",
-        "1": "private really does block the subclass, which is the point of encapsulation.",
-        "2": "that would create a second, unrelated field and leave the parent's copy unset."
-      },
-      "explanation": "private means the field is visible only inside Product. A subclass therefore has to go through a Product constructor, which is what super(...) does.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-1-composition-example-computer-package-product-java_custom_4-monitor-motherboard-and-computercase-all",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Product",
-      "tags": [
-        "interview"
-      ],
-      "question": "Monitor, MotherBoard and ComputerCase all extend Product. What does that let them do?",
-      "options": [
-        "Reuse the model and manufacturer attributes from Product instead of declaring them again.",
-        "Become the same class at runtime.",
-        "Avoid having any fields of their own.",
-        "Share one set of field values between all three classes."
-      ],
-      "answer": 0,
-      "whyByOption": {
-        "1": "they remain distinct types, which is what allows each to have its own behaviour.",
-        "2": "each subclass is free to add its own fields, such as ramSlots on MotherBoard.",
-        "3": "sharing one value happens with static fields. Each instance field here is per object."
-      },
-      "explanation": "Inheritance lets each subclass reuse the parent's definition. Each object still has its own copy of those fields, but the declarations live once in Product.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_1_Composition_Example_Computer_Package/Product.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_0-how-is-inheritance-described-in-these-no",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "interview"
-      ],
-      "question": "How is inheritance described in these notes?",
-      "options": [
-        "Inheritance means copying the source code of one class into another.",
-        "Inheritance is a way to make several objects act as one.",
-        "Inheritance is only possible between classes in the same package.",
-        "Inheritance is a way to reuse functionality and attributes from a parent class."
-      ],
-      "answer": 3,
-      "whyByOption": {
-        "0": "the subclass reuses the parent's definition. Nothing is copied into the file.",
-        "1": "making a combination of classes act as one coherent object is the description of composition.",
-        "2": "a subclass may extend a class from another package, provided the class is visible."
-      },
-      "explanation": "Inheritance lets a subclass reuse what the parent already defines, and then add to it or change it. It is reuse through a parent-child relationship, not copying.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_1-how-is-composition-described-in-these-no",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "interview"
-      ],
-      "question": "How is composition described in these notes?",
-      "options": [
-        "Composition means one class can have only one field.",
-        "Composition is a way to make a combination of classes act like a single coherent object.",
-        "Composition is another word for inheritance.",
-        "Composition is a way to reuse attributes through a parent-child hierarchy."
-      ],
-      "answer": 1,
-      "whyByOption": {
-        "0": "a composed class can hold as many parts as it needs.",
-        "2": "they are different approaches, which is why this topic compares them.",
-        "3": "reusing attributes through a parent-child hierarchy is inheritance."
-      },
-      "explanation": "Composition is about building one thing out of others and presenting the result as a single object. The containing class delegates work to the parts it holds.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_2-a-personalcomputer-holds-a-monitor-a-mot",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "interview"
-      ],
-      "question": "A PersonalComputer holds a Monitor, a MotherBoard and a ComputerCase as fields. Which relationship is that?",
-      "options": [
-        "IS-A, because the parts are all products.",
-        "IS-A, because the computer uses the parts.",
-        "HAS-A, which is composition, because the parts are held inside the whole.",
-        "Neither. Holding a field is not a relationship between classes."
-      ],
-      "answer": 2,
-      "whyByOption": {
-        "0": "the parts being Products is a separate IS-A relationship, and it is not what the fields express.",
-        "1": "using a part is still HAS-A. The whole contains it.",
-        "3": "one object holding another as a field is exactly how composition is expressed."
-      },
-      "explanation": "The computer is built from those objects, so it has them. IS-A describes inheritance, where one class is a kind of another, which is a different relationship.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_3-why-can-a-monitor-be-used-in-both-of-the",
-      "difficulty": "hard",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "ocjp"
-      ],
-      "question": "Why can a Monitor be used in both of these ways?",
-      "code": "Product p = new Monitor();          // IS-A\npersonalComputer.setMonitor(m);    // HAS-A",
-      "options": [
-        "Because Monitor inherits from PersonalComputer.",
-        "Because setMonitor converts the Monitor into a Product.",
-        "Because Monitor is a kind of Product and is also able to be held as a part of another object.",
-        "Because composition and inheritance are the same relationship."
-      ],
-      "answer": 2,
-      "whyByOption": {
-        "0": "the inheritance runs the other way, from Monitor up to Product.",
-        "1": "no conversion happens. A Monitor already is a Product.",
-        "3": "they are different: IS-A is a kind of, HAS-A is made of parts."
-      },
-      "explanation": "Monitor extends Product, so a Monitor can be used as a Product. At the same time, any object can be stored in a field of a type it is compatible with, which is what makes it a part of the computer.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_4-which-statement-about-the-two-relationsh",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "ocjp"
-      ],
-      "question": "Which statement about the two relationships is correct?",
-      "options": [
-        "Both create an IS-A relationship, and HAS-A needs an interface.",
-        "`extends` creates an IS-A relationship, and holding an object in a field creates a HAS-A relationship.",
-        "Neither creates a relationship until the code is run.",
-        "`extends` creates a HAS-A relationship, and holding an object in a field creates an IS-A relationship."
-      ],
-      "answer": 1,
-      "whyByOption": {
-        "0": "composition needs no interface. A field is enough, which is what makes it so flexible.",
-        "2": "relationships between types are fixed when the code compiles, not when it runs.",
-        "3": "the two are the wrong way round."
-      },
-      "explanation": "The keyword decides the relationship. `class Monitor extends Product` claims a Monitor IS-A Product, so a Monitor can be used wherever a Product is expected. Storing a Monitor in a field of PersonalComputer makes it a part, which is HAS-A.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_5-what-is-printed-by-this-program",
-      "difficulty": "hard",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "ocjp"
-      ],
-      "question": "What is printed by this program?",
-      "code": "class Engine {\nString type() { return \"petrol\"; }\n}\nclass Car {\nprivate Engine engine = new Engine();\nString describe() { return \"car with \" + engine.type(); }\n}\npublic class Main {\npublic static void main(String[] args) {\nSystem.out.println(new Car().describe());\n}\n}",
-      "options": [
-        "It does not compile, because engine is private.",
-        "car with petrol",
-        "It does not compile, because Car does not extend Engine.",
-        "car with null"
-      ],
-      "answer": 1,
-      "whyByOption": {
-        "0": "private restricts access from outside the class, and describe() is inside Car.",
-        "2": "extending Engine is one way to reuse it, not a requirement. Composition reuses it through a field.",
-        "3": "the field is initialised with new Engine(), so it is never null."
-      },
-      "explanation": "Car HAS-A Engine rather than IS-A Engine, so it reaches the engine's behaviour by calling through the field. That call is delegation: Car asks its own Engine to answer. A private field is freely usable inside the class that declares it.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_6-a-class-needs-the-behaviour-of-another-c",
-      "difficulty": "hard",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "ocjp"
-      ],
-      "question": "A class needs the behaviour of another class but is not a kind of it. Which change is safest?",
-      "options": [
-        "Hold an instance of that class in a field and call its methods from yours.",
-        "Make every method of the other class static.",
-        "Extend that class with `extends`.",
-        "Copy the methods into your class."
-      ],
-      "answer": 0,
-      "whyByOption": {
-        "1": "making methods static removes them from the object and prevents the other class from being replaced or tested separately.",
-        "2": "extending asserts an IS-A relationship. Using it only to borrow code is the mistake the advice about composition is warning against.",
-        "3": "copying the methods duplicates logic, so a fix has to be made in more than one place."
-      },
-      "explanation": "Composition reuses behaviour without claiming a relationship that does not exist. Extending a class you are not a kind of misleads every reader, and it also ties your class to the parent's implementation, so a change in the parent can break you.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    },
-    {
-      "type": "scq",
-      "kind": "custom",
-      "qid": "chapter-15-composition_src-chapter-15-composition-sub-chapter-2-inheritence-vs-composition-inheritencevscomposition-java_custom_7-which-of-these-is-a-has-a-relationship",
-      "difficulty": "medium",
-      "chapter": "Chapter 15: Composition",
-      "topic": "Inheritence Vs Composition",
-      "tags": [
-        "ocjp"
-      ],
-      "question": "Which of these is a HAS-A relationship?",
-      "options": [
-        "A Novel that extends Book.",
-        "A Book that implements Printable.",
-        "A Book whose class is declared final.",
-        "A Library that keeps a list of Book objects."
-      ],
-      "answer": 3,
-      "whyByOption": {
-        "0": "Novel IS-A Book, which is inheritance.",
-        "1": "implementing an interface is not a HAS-A relationship. It is a promise to provide the interface's methods.",
-        "2": "final prevents subclassing. It says nothing about composition."
-      },
-      "explanation": "Holding Book objects inside Library is composition, so a Library HAS-A collection of Books. Extending a class is IS-A, and implementing an interface is a can-do relationship.",
-      "topicPath": "src/Chapter_15_Composition/Sub_Chapter_2_Inheritence_Vs_Composition/InheritenceVsComposition.java",
-      "concepts": [
-        "inheritance",
-        "composition"
-      ]
-    }
-  ]
+  "Chapter 15: Composition": []
 };
 
 const QUICK_REVISION_BANK = {
@@ -23082,7 +22689,8 @@ const QUICK_REVISION_BANK = {
       "{ }",
       "System.out.println"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 2: Primitive Types": {
     "takeaways": [
@@ -23157,7 +22765,8 @@ const QUICK_REVISION_BANK = {
           ]
         ]
       }
-    ]
+    ],
+    "inProgress": false
   },
   "Chapter 3: Operators": {
     "takeaways": [
@@ -23266,7 +22875,8 @@ const QUICK_REVISION_BANK = {
           ]
         ]
       }
-    ]
+    ],
+    "inProgress": false
   },
   "Chapter 4: Statements And Indentations": {
     "takeaways": [
@@ -23289,7 +22899,8 @@ const QUICK_REVISION_BANK = {
       "if",
       "else if"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 5: If Else Statements": {
     "takeaways": [
@@ -23313,7 +22924,8 @@ const QUICK_REVISION_BANK = {
       "? :",
       "+"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 6: Methods In Java": {
     "takeaways": [
@@ -23338,7 +22950,8 @@ const QUICK_REVISION_BANK = {
       "{ }",
       "System.out.println"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 7: Switch Statements": {
     "takeaways": [
@@ -23367,7 +22980,8 @@ const QUICK_REVISION_BANK = {
       "default",
       "yield"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 8: Java Looping Concepts": {
     "takeaways": [
@@ -23390,7 +23004,8 @@ const QUICK_REVISION_BANK = {
       "i++",
       "break"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 9: While And Do While Looping Concepts": {
     "takeaways": [
@@ -23418,7 +23033,8 @@ const QUICK_REVISION_BANK = {
       "i++",
       "break"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 10: Class Object Static And Instance Fields": {
     "takeaways": [
@@ -23441,7 +23057,8 @@ const QUICK_REVISION_BANK = {
       "field",
       "static"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 11: Parsing Values Reading Input": {
     "takeaways": [
@@ -23490,7 +23107,8 @@ const QUICK_REVISION_BANK = {
           ]
         ]
       }
-    ]
+    ],
+    "inProgress": false
   },
   "Chapter 12: Exception Handling": {
     "takeaways": [
@@ -23515,7 +23133,8 @@ const QUICK_REVISION_BANK = {
       "throw",
       "throws"
     ],
-    "tables": []
+    "tables": [],
+    "inProgress": false
   },
   "Chapter 13: OOP Concepts": {
     "takeaways": [
@@ -23577,7 +23196,8 @@ const QUICK_REVISION_BANK = {
           ]
         ]
       }
-    ]
+    ],
+    "inProgress": false
   },
   "Chapter 14: Strings": {
     "takeaways": [
@@ -23706,22 +23326,15 @@ const QUICK_REVISION_BANK = {
           ]
         ]
       }
-    ]
+    ],
+    "inProgress": false
   },
   "Chapter 15: Composition": {
-    "takeaways": [
-      "Composition means a class holds other objects in its fields, so a PersonalComputer HAS-A Monitor, a MotherBoard and a ComputerCase. The parts are ordinary fields, and the whole class works by asking them to do their jobs.",
-      "Inheritance models IS-A, so a Dog IS-A Animal and reuses the parent's fields and methods. Composition models HAS-A, so a computer HAS-A monitor, which is a part it owns rather than a kind of itself.",
-      "Composition keeps the parts independent, so a Monitor can be tested, replaced or reused without touching the computer class, while a change in a parent class can affect every subclass at once.",
-      "Delegation is the method that makes composition work: `drawPixel` on the computer simply calls `monitor.drawPixel(...)` and passes the arguments along.",
-      "The two relationships can exist together. In this example every part IS-A Product through inheritance, and the PersonalComputer HAS-A Monitor through composition."
-    ],
-    "gotchas": [
-      "A composed object is only usable once its parts exist, so a constructor that stores them must receive or create real objects. Otherwise the fields stay null and every delegated call throws a NullPointerException.",
-      "Composition and inheritance are not a choice you make once for a whole program. The same class can belong to both relationships, as Monitor does here."
-    ],
+    "takeaways": [],
+    "gotchas": [],
     "syntax": "",
     "badges": [],
-    "tables": []
+    "tables": [],
+    "inProgress": true
   }
 };

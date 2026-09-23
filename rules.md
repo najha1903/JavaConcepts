@@ -68,7 +68,7 @@ Three things a new file does NOT inherit, because they are authored rather than 
 
 The Quick Revision panel is built automatically. It scores every statement in the chapter's notes and keeps the best ones: a rule ("must", "cannot", "throws", "does not compile") scores high, a definition or an explanation scores well, and a line that talks about *this file* or *this example*, or that asks a question, is passed over. Exercise files score lower than concept files, because their lines describe a task. The pick then moves round the topics, so one long topic cannot fill the whole list.
 
-This means a new chapter arrives with usable key points and no work from you. Verified by removing the `@takeaway` lines from Chapter 12 and regenerating: the derived list was
+This means a chapter arrives with usable key points and no work from you — **once it is finished.** The chapter you are currently writing is the exception: it has none of this until you start the next one. See [A Chapter You Are Still Writing](#a-chapter-you-are-still-writing). Verified by removing the `@takeaway` lines from Chapter 12 and regenerating: the derived list was
 
 ```text
 Without handling, an exception immediately terminates execution and prints a stack trace.
@@ -306,6 +306,8 @@ Rules:
 
 The `@quiz` markers above are for questions you write yourself, in your own file. There is a second place for questions: `data/ocjp-bank.js`, which holds exam questions researched and written by hand.
 
+**The tool never writes a marker into your notes.** It reads `@quiz`, `@takeaway`, `@gotcha` and `@testcase`, and it produces content from them, but it does not insert them. Every marker in `src/` was put there by hand, which is why the guard in `generate.js` compares `src/` byte for byte around every run and refuses if a generator changed anything. Earlier rounds broke this rule — 652 `@quiz` markers and a whole exercise file were committed into the notes, most of them into a chapter that was still being written — and nothing could remove them afterwards, because content in your notes is not generated.
+
 **Why it is separate.** A question generated from your notes tests what you wrote. It cannot be exam-grade, because the tool can only reformat your sentences. An exam question needs a distractor that is wrong for a reason an examiner would test — the field that is not polymorphic, the catch block that can never run, the overload that loses to widening. That has to be researched, so it lives in its own file and is never invented at runtime.
 
 **You do not need to touch it.** It is merged into the quiz automatically on every `npm run revise`, tagged `ocjp`, and attached to the topic that matches its concepts. It shows up in the Quiz Bank, the OCJP quiz, the Revision Bank, and the concept filter like any other question.
@@ -384,39 +386,51 @@ A chapter you are still working on is **not judged, and nothing is generated for
 
 The rule: a chapter counts as **finished** once a higher-numbered chapter exists. `@draft` in any file marks a chapter as unfinished even if a higher one exists.
 
-While a chapter is unfinished:
+While a chapter is unfinished, **nothing of the tool's exists for it, in the generated content or in your notes:**
 
 | | What happens |
 |---|---|
-| **Your notes** | Shown exactly as written |
-| **Questions written in the notes** | Kept and usable. These are the `@quiz` markers, and they are kept because they are fixed text rather than derived - not because they are all yours, which they are not (see the note below) |
-| **Your `@takeaway` and `@gotcha` lines** | Kept and shown |
+| **Your notes** | Shown exactly as written — and they contain **only your writing** |
+| **Quiz markers (`@quiz` and its `@option`/`@explain`/`@why` lines)** | **None.** A chapter being written carries no quiz content at all |
+| **`@takeaway`, `@gotcha`, `@testcase`** | **None** — these are the tool's markers, and the tool does not write into a chapter you have not finished |
+| **Exercise files (`*Challenge*`, `*Problem*`, a `DeepProblems` folder)** | **None** — an exercise file in the chapter you are writing is read as one of your topics, so it appears in your notes as a topic you never wrote |
 | **Generated questions** | **None** — no true/false, no output-prediction, no OCJP-trap, no researched bank questions |
-| **Generated takeaways and gotchas** | **None** — the panel shows only what you wrote |
-| **Quick Revision badges and syntax snippet** | **None** — both are the tool's own selection or derivation |
+| **Takeaways, gotchas, badges, syntax snippet, tables** | **None.** The panel says the chapter is still being written, and that sentence lives in the interface rather than in the generated data, so no content is stored as revision material |
 | **Practice challenges** | **None** — the tool would derive test cases from a file you are still editing |
 | **Deep challenges** | **None** |
 | **The ledger** | Lists the chapter as *still being written*, with no "needs work" flag |
 | **`npm run verify`** | Does not fail on anything this chapter lacks |
 | **Suggestions** | None |
 | **Code Practice, scoped to it** | Says *"No practice challenge here yet"* rather than showing another chapter's challenge |
+| **Starting a quiz on it** | Says the chapter is still being written, rather than quietly redirecting you to the Grand Quiz |
 
-### A correction worth recording
+### A correction worth recording, twice over
 
-This section used to say the `@quiz` questions are "your own". That was wrong, and checking it was worth doing.
+This section first said the `@quiz` questions were "your own". That was wrong. There are **652 `@quiz` markers** in the Java files, and the commits that added most of them are `Co-authored-by: Copilot`. In Chapter 15, `git blame` attributes all 13 to three of those commits.
 
-There are **643 `@quiz` markers** in the Java files, and the commits that added most of them are titled *"Add concept-practice questions for Chapters 1-15"* and *"Write exam-grade questions for…"*, all `Co-authored-by: Copilot`. In Chapter 15 specifically, `git blame` attributes all 13 markers to three of those commits. So they are largely mine, inserted into your files, and indistinguishable from your own writing once they are there.
+It was then corrected to say the markers are kept "because they are fixed text rather than derived". That was also wrong, in a way that mattered more, because it sounded like a reason. It answers *"will this go stale?"* when the question is *"did the author write this?"* — and the answer for Chapter 15 was no. So the check passed while a chapter being studied showed 13 quizzes, a topic called "Composition Deep Problem", five key takeaways and two gotchas.
 
-The rule still keeps them, but for the honest reason: they are **fixed text**, so they do not become wrong when you edit the code around them. That is a different reason from "they are yours".
+The lesson: **a rule about what a chapter may contain cannot be enforced by looking only at what the tool generates.** Content written into your notes by hand is not generated, so no generator gate can ever see it or remove it. That is why the rule is now checked on both sides, and why the pipeline is watched as well.
 
-Two reasons, both practical:
+### How the rule is enforced
+
+| Where | What it does |
+|---|---|
+| `parse-concepts.js` | Produces nothing for an unfinished chapter: no questions, no takeaways, no gotchas, no badges, no snippet, no practice, no deep challenges |
+| `coverage.js` | Does not judge it, and does not flag it as needing work |
+| `suggest.js` | Skips it |
+| `check-in-progress.js` | Enumerates the generated output **and** the notes. It fails if any generated entry, quiz marker, key-point marker or exercise file belongs to the chapter being written |
+| `generate.js` | Compares `src/` byte for byte around every run. If a generator changes a single byte of your notes, the run fails and everything is rolled back |
+| `scripts/githooks/pre-commit` | Runs the in-progress check, so it cannot be committed either |
+
+The last three exist because the first three were not enough. Gating the generators was correct and stayed correct, and the content still reached the dashboard, because it was never generated in the first place.
+
+Two reasons the rule is worth all that:
 
 1. **Flagging a half-written chapter is double work.** You may cover the gap in your next session, so being told about it now just creates a list you will ignore.
 2. **Anything generated may become wrong immediately.** The moment you edit the notes, generated content can contradict them.
 
 **Everything arrives the moment you start the next chapter.** At that point the chapter is finished, and it gets its generated questions, derived takeaways, ledger flags and suggestions all at once.
-
-The same rule is implemented in three places — `parse-concepts.js`, `coverage.js` and `suggest.js` — kept deliberately identical so they can never disagree about what "finished" means.
 
 ## The Revision Bank
 
@@ -484,7 +498,7 @@ Five more are enforced by checks that fail the build, rather than by this docume
 - every practice challenge must carry `chapter` and at least one `concept` (`audit-generated.js`)
 - every text colour must clear WCAG AA, no text below 12px, no container gap below 12px (`check-ui.js`)
 - no file may contain double-encoded text or invalid UTF-8 (`fix-encoding.js`, also a pre-commit hook)
-- **nothing is generated for a chapter that is still being written** (`check-in-progress.js`)
+- nothing exists for a chapter that is still being written — **neither in the generated content nor in your notes** (`check-in-progress.js`, which checks both, and `generate.js`, which compares `src/` byte for byte)
 - the generated content has a valid shape (`audit-generated.js`)
 
 A rule that lives only in a document gets forgotten. A rule that fails the build cannot be.
@@ -503,6 +517,18 @@ The split is deliberate: the fast checks run every time, the Java-compiling ones
 **The gap that made the in-progress rule unreliable:** `npm run revise` runs `generate.js` with `--propose`, which **writes the generated files and then opens the dashboard**. It never ran a check. So a generator that emitted content for the chapter being written left that content on disk and live in the dashboard, and nothing said a word. Apply was protected; the everyday path was not.
 
 Proven by breaking a generator on purpose: with the gate removed, `npm run revise` now reports the failure, **restores all six generated files byte for byte**, and refuses to open anything. The rollback covers `data/practice-expectations.js` too — it is written by the fill step and read by the next run, so leaving it out meant a rollback restored the challenges but kept a fingerprint computed from the rejected version.
+
+**And the checks only judge what was just produced.** When `--propose` finds authored content waiting, it reports it and exits **without writing anything**, so the files on disk are your last *approved* version. Checking those means checking history, and it deadlocks: the check fails on the old content, so the review page never opens, so you can never Apply the change that would make it pass. So `generate.js` compares the generated files against their pre-run bytes and, when nothing was rewritten, says so and stops. That is also the honest answer to "I ran revise and nothing changed" — there was nothing new to check.
+
+### The guard that watches your notes
+
+One more, added because the in-progress rule kept failing in a way no output check could see.
+
+`generate.js` takes a **byte-for-byte copy of `src/`** before it runs and compares it after. If a generator changes a single byte of your notes, the run fails, **puts your notes back**, and refuses. Proven by making a generator write one file into `src/`: the run named it, deleted it, restored the generated files, and exited non-zero.
+
+This is the one that closes the mechanism rather than the symptom. A generator that writes prose, a marker, an exercise file, or something nobody has thought of yet is caught identically, because the question is *"did any byte here change?"* rather than *"does this look like something I would generate?"*. The second question is the one that produced several confident, wrong features earlier in this project.
+
+**What it cannot catch, said plainly:** plain prose written into your notes by hand has no marker, so a paragraph I wrote and a paragraph you wrote are indistinguishable to a machine, and keyword matching is exactly the unreliable approach already measured and rejected twice here. So the marker half is checked by `check-in-progress.js` and the pre-commit hook, and prose is covered by the rule that the tool never writes into `src/` — which the byte comparison now enforces.
 
 ### Why the last one exists, and what it taught
 
