@@ -4365,8 +4365,6 @@ function lineKind(text) {
 function bankNoteBlocks(topic) {
   const blocks = [];
   (topic.headerComments || []).forEach(block => {
-    if (block.type === 'generated' || block.type === 'generated-parameters') return;
-
     if (block.type === 'table') {
       if ((block.rows || []).length) blocks.push({ type: 'table', headers: block.headers || [], rows: block.rows || [] });
       return;

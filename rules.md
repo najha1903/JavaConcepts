@@ -417,7 +417,7 @@ The lesson: **a rule about what a chapter may contain cannot be enforced by look
 | Where | What it does |
 |---|---|
 | `parse-concepts.js` | Produces nothing for an unfinished chapter: no questions, no takeaways, no gotchas, no badges, no snippet, no practice, no deep challenges |
-| `coverage.js` | Does not judge it, and does not flag it as needing work |
+| `coverage.js` | Does not judge it, does not flag it as needing work, and does not put it in the work list or the OCJP list — all four were needed, and the last two were missing for a long time |
 | `suggest.js` | Skips it |
 | `check-in-progress.js` | Enumerates the generated output **and** the notes. It fails if any generated entry, quiz marker, key-point marker or exercise file belongs to the chapter being written |
 | `generate.js` | Compares `src/` byte for byte around every run. If a generator changes a single byte of your notes, the run fails and everything is rolled back |
@@ -456,7 +456,7 @@ Nothing is ever discarded. There is no "is this line good enough" test anywhere,
 
 ### One rule, one place
 
-The rules the scripts share — *is this an exercise*, *is this chapter finished*, *is this line code* — live in `scripts/lib/note-rules.js`, used by `parse-concepts.js`, `coverage.js` and `suggest.js`.
+The rules the scripts share — *is this an exercise*, *is this chapter finished*, *is this line code*, *does this topic have notes of its own* — live in `scripts/lib/note-rules.js`, used by `parse-concepts.js`, `coverage.js` and `suggest.js`.
 
 They used to be copied into each file and kept in step by hand, and they had already drifted: "is this an exercise?" matched by **filename** in the parser and by **note content** in the ledger, so the two reported different numbers for the same project. `npm run revise` now guarantees they agree.
 
@@ -491,7 +491,9 @@ Only a `topic` match is offered as "Practise in code", because a chapter-wide ma
 
 ### The rules that hold, and where
 
-Three rules live in one place, `scripts/lib/note-rules.js`, so the scripts cannot disagree: **is this an exercise**, **is this chapter finished**, and **is this line code**. They used to be copied into each script and had already drifted — "is this an exercise" matched by filename in one place and by note content in another, so two reports of the same project disagreed.
+Four rules live in one place, `scripts/lib/note-rules.js`, so the scripts cannot disagree: **is this an exercise**, **is this chapter finished**, **is this line code**, and **does this topic have notes of its own**. They used to be copied into each script and had already drifted — "is this an exercise" matched by filename in one place and by note content in another, so two reports of the same project disagreed.
+
+**The tool never writes notes.** It reads them, re-organises them and generates questions from them, but it does not put words into your files or into your notes. The one exception used to be a short block of the tool's own prose written for any file with no notes at all, so the interface had something to show. It was a mistake three times over — it was displayed as your writing, it was used as the correct answers to a quiz question, and it made a file with no notes pass a check that a file with two of your sentences failed. It is gone. A file with no notes now says so, in the interface, in its own words.
 
 Five more are enforced by checks that fail the build, rather than by this document:
 
@@ -724,8 +726,12 @@ They then run every check, in order, and refuse to apply if any fails:
 | `check-bank.js` | Every hand-researched OCJP question marks the answer the bank intends, and every wrong option says why it is wrong. |
 | `check-quality.js` | Every question gives feedback on a wrong choice, and none gives the answer away without reasoning. |
 | `check-ui.js` | Every text colour clears WCAG AA against its own theme background, no `font-size` is below 12px, and no container gap is below 12px. Chips, badges and tags are excluded on purpose. |
-| `coverage.js --check` | **Fails** on a chapter with no questions, no easy question, no hard question, or no takeaways; on a topic with nothing of its own; on a Quick Revision syntax snippet or badge that is not the chapter's own; and on a concept your notes cover that no question tests. **Warns** when a chapter is short of the OCJP target. |
+| `coverage.js --check` | **Fails** on a chapter with no questions, no easy question, no hard question, or no takeaways; on a Quick Revision syntax snippet or badge that is not the chapter's own; and on a concept your notes cover that no question tests. **Warns** when a topic has no question of its own, and when a chapter is short of the OCJP target. |
 
-The two tiers are deliberate. A **failure** is a defect: something a learner could not revise. A **warning** is a target: the OCJP count is hand work, so it tells you what to write next without blocking you.
+The two tiers are deliberate. A **failure** is a defect: something a learner could not revise. A **warning** is a target, or something you write rather than something the tool generates, so it tells you what to write next without blocking you.
 
-The coverage check reports **"every topic is covered"** when all 142 topics have material of their own. A topic counts as covered when it has a question, a generated practice challenge, or — for a file whose notes open with `Challenge:` or `Deep Problem:` — is an exercise you wrote and solved yourself. Those exercise files are listed separately, because there is nothing for the tool to generate for them.
+A topic with no question was a **failure** for a while, and moving it to a warning is worth explaining, because the reason it was wrong is instructive. The parser used to invent three sentences of its own prose for any file with no notes, and the question generator collected every note line except tables — so the tool wrote three sentences about a class and then asked you *"Which of the following are TRUE about Computer Case?"* with those sentences as the correct options. The check therefore **passed for a file with nothing in it** and **failed for a file with two of your own sentences**, because the generator needs three. It was measuring the generator's output, not your notes. With the invented text gone, "this topic has no question" is a true and useful statement about what to write next, so it is a warning.
+
+The coverage check reports **"every topic is covered"** when every topic of a finished chapter has material of its own. A topic counts as covered when it has a question, a generated practice challenge, or — for a file whose notes open with `Challenge:` or `Deep Problem:` — is an exercise you wrote and solved yourself. Those exercise files are listed separately, because there is nothing for the tool to generate for them.
+
+**The work list and the OCJP list cover finished chapters only.** They did not, for a long time: the flags and the totals were filtered by the in-progress rule and these two were not, so the ledger told the author to go and write notes and practice for the chapter he was sitting in front of. Both are filtered now, and the chapter being written gets its own line — *"still being written, not judged, nothing generated"*.

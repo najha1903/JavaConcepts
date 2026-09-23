@@ -215,6 +215,10 @@ function chapterCoverage(chapter) {
     topics,
     topicsTotal: topics.length,
     topicsWithQuestions: topics.filter(t => t.covered).length,
+    // Topics the author has written nothing in. Reported separately from "no question",
+    // because the two need different answers: one needs notes, the other needs a question
+    // that the generator could not make from what is there.
+    topicsWithoutNotes: (chapter.topics || []).filter(t => !noteRules.hasOwnNotes(t)).length,
     questions: questions.length,
     easy: questions.filter(q => q.level === 'easy').length,
     medium: questions.filter(q => q.level === 'medium').length,
@@ -389,6 +393,10 @@ const payload = {
     authored: c.authored,
     topicsTotal: c.topicsTotal,
     topicsWithQuestions: c.topicsWithQuestions,
+    // How many of those topics the author has not written anything in. Kept separate from
+    // "no question", because the two need different answers: one needs notes, the other
+    // needs a question the generator could not make from what is there.
+    topicsWithoutNotes: c.topicsWithoutNotes,
     takeaways: c.takeaways,
     gotchas: c.gotchas,
     tables: c.tables,
@@ -419,8 +427,15 @@ const payload = {
 };
 
 // ---- The work list ----------------------------------------------------------
+// Only FINISHED chapters. A chapter still being written is not incomplete, it is
+// unfinished, and telling the author to go and write notes for the chapter he is sitting in
+// front of is the same mistake the in-progress rule exists to prevent - it was reported
+// here for a long time, because this list was built from every chapter while the flags and
+// the totals were correctly filtered. The chapter being written is reported on its own line
+// instead, and everything in this list arrives the moment he starts the next chapter.
 const uncoveredTopics = [];
 for (const chapter of chapters) {
+  if (!finishedChapters.has(chapter.name)) continue;
   for (const topic of chapter.topics) {
     if (topic.covered) continue;
     // Say what the topic actually needs, so the work list is actionable rather
@@ -439,6 +454,10 @@ for (const chapter of chapters) {
 }
 
 const ocjpWork = chapters
+  // Finished chapters only, for the same reason: the chapter being written has no exam
+  // questions yet by design, so counting it here asks the author to write questions for a
+  // chapter he has not finished.
+  .filter(c => finishedChapters.has(c.name))
   .map(c => ({ name: c.name, ocjp: c.ocjp, gap: OCJP_TARGET - c.ocjp }))
   .filter(c => c.gap > 0)
   .sort((a, b) => b.gap - a.gap);
@@ -494,13 +513,19 @@ if (withoutTimestamp(existingCoverage) !== withoutTimestamp(coverageOutput)) {
 // `--check` makes the ledger enforce rather than report, so a later change
 // cannot quietly drop coverage. Two tiers, deliberately:
 //
-//   FAIL  a chapter with no questions at all, or with no easy question. These
-//         are catastrophic and there are none today, so the build stays green
-//         while still being unable to regress into them.
-//   WARN  the finer gaps: a topic with no question, a boilerplate syntax
-//         snippet, method-name badges, a missing table. These are the work of
-//         Phases 1 and 3, so they are reported loudly but do not block. Each is
-//         promoted to a failure as its phase lands.
+//   FAIL  a chapter with no questions at all, no easy question, no hard question, or no
+//         key takeaways. These are catastrophic and there are none today, so the build
+//         stays green while still being unable to regress into them.
+//   WARN  the finer gaps: a topic with no question of its own, a boilerplate syntax
+//         snippet, method-name badges, a missing table, and the OCJP count. Reported
+//         loudly, but they do not block.
+//
+// The topic-with-no-question warning was a failure for a while, and that was wrong for a
+// reason worth remembering. The parser was inventing three sentences for any file with no
+// notes, so the check passed for a file that had NOTHING in it and failed for a file with
+// two of the author's own sentences - it was measuring the generator's output, not the
+// notes. With the invented text gone, "this topic has no question" is a true and useful
+// statement about what to write next, which is a warning, not a defect in the build.
 if (process.argv.includes('--check')) {
   const failures = [];
   const warnings = [];
@@ -513,8 +538,22 @@ if (process.argv.includes('--check')) {
     if (chapter.questions > 0 && chapter.easy === 0) failures.push(`${chapter.name}: has no easy question, so there is no way in for a beginner.`);
     if (chapter.questions > 0 && chapter.hard === 0) failures.push(`${chapter.name}: has no hard question, so nothing stretches.`);
     if (chapter.takeaways === 0) failures.push(`${chapter.name}: has no key takeaways.`);
+    // A topic with no question is a WARNING, not a failure.
+    //
+    // It was promoted to a failure while the parser was inventing three sentences for a
+    // topic with no notes, which made the check pass for a file that had nothing in it and
+    // fail for a file with two of the author's own sentences. Now that the invented text is
+    // gone, this reports a real and useful fact - which topics still need writing - but it
+    // is a note to the author about his notes, not a defect in the generated content. Making
+    // it a failure would block the build the moment he starts a new chapter, for files he is
+    // part-way through writing.
     if (chapter.topicsTotal - chapter.topicsWithQuestions > 0) {
-      failures.push(`${chapter.name}: ${chapter.topicsTotal - chapter.topicsWithQuestions} topic(s) with nothing of their own, so there is no way to revise them.`);
+      const gap = chapter.topicsTotal - chapter.topicsWithQuestions;
+      const noNotes = chapter.topicsWithoutNotes;
+      const detail = noNotes > 0
+        ? `${noNotes} of them have no notes at all`
+        : 'their notes are too short for the question generator';
+      warnings.push(`${chapter.name}: ${gap} topic(s) with no question of their own, so there is no way to revise them (${detail}).`);
     }
     if (chapter.syntaxIsBoilerplate) failures.push(`${chapter.name}: the Quick Revision syntax snippet is boilerplate rather than the chapter's own construct.`);
     if (chapter.strayBadges.length) failures.push(`${chapter.name}: Quick Revision badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}.`);

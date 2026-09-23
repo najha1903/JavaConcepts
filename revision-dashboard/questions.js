@@ -10867,76 +10867,6 @@ const QUESTIONS_BANK = {
     {
       "type": "mcq",
       "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-numbertowordscodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Number To Words Coding Challenge",
-      "question": "Which of the following are TRUE about Number To Words Coding Challenge? Select all that apply.",
-      "options": [
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
-        "This example defines 3 methods; trace method behavior step by step.",
-        "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
-      ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"While Loops\", not of \"Number To Words Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Do While Loops\", not of \"Number To Words Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Number To Words Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Number To Words Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-perfectnumbercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Perfect Number Coding Challenge",
-      "question": "Which of the following are TRUE about Perfect Number Coding Challenge? Select all that apply.",
-      "options": [
-        "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "This example defines 2 methods; trace method behavior step by step."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"While Loops\", not of \"Perfect Number Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Do While Loops\", not of \"Perfect Number Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Perfect Number Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Perfect Number Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
       "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-shareddigitcodingchallenge-java_true-false-mcq_5",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
@@ -14754,48 +14684,6 @@ const QUESTIONS_BANK = {
     {
       "type": "mcq",
       "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Classes Challenge)",
-      "question": "Which of the following are TRUE about Main (Classes Challenge)? Select all that apply.",
-      "options": [
-        "Review the class Main and understand its key responsibilities.",
-        "This topic belongs to Chapter 13: OOP Concepts → Classes Challenge.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "This example defines 1 method; trace method behavior step by step."
-      ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Car\", not of \"Main (Classes Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Main (Classes Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Main (Classes Challenge). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Classes Challenge).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
       "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-methodoverloadingchallenge-java_true-false-mcq_5",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
@@ -16115,48 +16003,6 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "House",
-      "question": "Which of the following are TRUE about House? Select all that apply.",
-      "options": [
-        "Review the class House and understand its key responsibilities.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "This example defines 2 methods; trace method behavior step by step.",
-        "This topic belongs to Chapter 13: OOP Concepts → Reference Object Instance.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
-      ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Car\", not of \"House\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Classes And Inheritance\", not of \"House\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about House. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about House.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
-      "tags": [
-        "concept"
-      ],
       "concepts": [
         "classes",
         "encapsulation",

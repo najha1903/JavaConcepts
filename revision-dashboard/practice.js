@@ -1621,7 +1621,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
       "operators"
     ],
     "conceptsSource": "chapter",
-    "description": "<p>This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.</p><p>Review the class NumberToWordsCodingChallenge and understand its key responsibilities.</p><p>This example defines 3 methods; trace method behavior step by step.</p>",
+    "description": "<p>Implement the method in <code>NumberToWordsCodingChallenge.java</code>. Read the source code for details.</p>",
     "template": "public class PracticeWorkspace {\n    public static int getDigitCount(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
@@ -1647,7 +1647,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
       "operators"
     ],
     "conceptsSource": "chapter",
-    "description": "<p>This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.</p><p>Review the class PerfectNumberCodingChallenge and understand its key responsibilities.</p><p>This example defines 2 methods; trace method behavior step by step.</p><p>Run through the main method flow to understand execution order and output.</p>",
+    "description": "<p>Implement the method in <code>PerfectNumberCodingChallenge.java</code>. Read the source code for details.</p>",
     "template": "public class PracticeWorkspace {\n    public static boolean isPerfectNumber(int number) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {

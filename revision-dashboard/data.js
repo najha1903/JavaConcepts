@@ -11735,16 +11735,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
         "isExercise": true,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-              "Review the class NumberToWordsCodingChallenge and understand its key responsibilities.",
-              "This example defines 3 methods; trace method behavior step by step."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
@@ -11757,17 +11748,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 9: While And Do While Looping Concepts",
         "subChapter": "While Do While Loop Coding Challenge",
         "isExercise": true,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 9: While And Do While Looping Concepts → While Do While Loop Coding Challenge.",
-              "Review the class PerfectNumberCodingChallenge and understand its key responsibilities.",
-              "This example defines 2 methods; trace method behavior step by step.",
-              "Run through the main method flow to understand execution order and output."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
@@ -15786,17 +15767,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Classes Challenge",
         "isExercise": false,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 13: OOP Concepts → Classes Challenge.",
-              "Review the class Main and understand its key responsibilities.",
-              "This example defines 1 method; trace method behavior step by step.",
-              "Run through the main method flow to understand execution order and output."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [
           {
@@ -16884,16 +16855,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 13: OOP Concepts",
         "subChapter": "Reference Object Instance",
         "isExercise": false,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 13: OOP Concepts → Reference Object Instance.",
-              "Review the class House and understand its key responsibilities.",
-              "This example defines 2 methods; trace method behavior step by step."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [
           {
@@ -22597,16 +22559,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
         "isExercise": false,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-              "Review the class ComputerCase and understand its key responsibilities.",
-              "This example defines 1 method; trace method behavior step by step."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
@@ -22619,17 +22572,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
         "isExercise": false,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-              "Review the class Main and understand its key responsibilities.",
-              "This example defines 1 method; trace method behavior step by step.",
-              "Run through the main method flow to understand execution order and output."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
@@ -22642,16 +22585,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
         "isExercise": false,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-              "Review the class Monitor and understand its key responsibilities.",
-              "This example defines 1 method; trace method behavior step by step."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
@@ -22664,16 +22598,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
         "isExercise": false,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-              "Review the class MotherBoard and understand its key responsibilities.",
-              "This example defines 1 method; trace method behavior step by step."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],
@@ -22686,16 +22611,7 @@ const CONCEPTS_DATA = [
         "chapter": "Chapter 15: Composition",
         "subChapter": "Composition Example Computer Package",
         "isExercise": false,
-        "headerComments": [
-          {
-            "type": "generated",
-            "lines": [
-              "This topic belongs to Chapter 15: Composition → Composition Example Computer Package.",
-              "Review the class PersonalComputer and understand its key responsibilities.",
-              "This example defines 3 methods; trace method behavior step by step."
-            ]
-          }
-        ],
+        "headerComments": [],
         "inlineComments": [],
         "customQuizzes": [],
         "deepChallenges": [],

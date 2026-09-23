@@ -753,22 +753,32 @@ function parseJavaFile(filePath, rootDir) {
     }
   }
 
-  // ---- auto-generate overview when truly empty --------------------------------
-  if (headerComments.length === 0 && inlineComments.length === 0) {
-    const typeMatch2 = content.match(/^\s*(public\s+)?(abstract\s+|final\s+)?(class|interface|record|enum)\s+(\w+)/m);
-    const typeKind = typeMatch2 ? typeMatch2[3] : 'class';
-    const typeName = typeMatch2 ? typeMatch2[4] : topicName.replace(/\s+/g, '');
-    const methodCount = (content.match(/\b(public|private|protected)\s+(static\s+)?[\w<>\[\]]+\s+\w+\s*\([^;]*\)\s*\{/g) || []).length;
-    const hasMain = /\bpublic\s+static\s+void\s+main\s*\(/.test(content);
-    const contextLabel = subChapter ? `${chapter} → ${subChapter}` : chapter;
-    const generated = [
-      `This topic belongs to ${contextLabel}.`,
-      `Review the ${typeKind} ${typeName} and understand its key responsibilities.`
-    ];
-    if (methodCount > 0) generated.push(`This example defines ${methodCount} method${methodCount === 1 ? '' : 's'}; trace method behavior step by step.`);
-    if (hasMain) generated.push(`Run through the main method flow to understand execution order and output.`);
-    headerComments.push({ type: 'generated', lines: generated });
-  }
+  // ---- a file with no notes gets NO invented notes ----------------------------
+  //
+  // This used to write a short block of the tool's own prose into headerComments when a
+  // file had no notes at all, so the interface would have something to show. It read:
+  //
+  //   This topic belongs to Chapter 15: Composition → Composition Example Computer Package.
+  //   Review the class ComputerCase and understand its key responsibilities.
+  //   This example defines 1 method; trace method behavior step by step.
+  //
+  // That caused three problems, all of them the same mistake - the tool's writing standing
+  // in for the author's:
+  //
+  //   1. It was DISPLAYED as if he had written it. The study view renders every header
+  //      block as note bullets, so nine topics showed three sentences of tool prose as his
+  //      own notes. The study view already has the honest message for this case
+  //      ("No overview comments found for this file"), which the filler was suppressing.
+  //   2. It was used as QUIZ MATERIAL. buildStarterQuestions collected every note line
+  //      except tables, so it asked "Which of the following are TRUE about Computer Case?"
+  //      with the three filler sentences as the correct options.
+  //   3. It INVERTED the coverage check. A file with no notes passed, because the tool had
+  //      something to say about it, while a file with two of the author's own sentences
+  //      failed, because the question generator needs three.
+  //
+  // So nothing is invented here any more. A topic with no notes simply has none, the
+  // interface says so, and the ledger reports it as a topic to write notes for. The rule
+  // "does this topic have notes of its own?" lives in note-rules.js, used by the ledger.
 
   // The panel is titled "Key Takeaways & Annotations". It leads with the takeaways
   // and gotchas the author wrote in THIS file, and then the annotations found
@@ -979,7 +989,7 @@ function buildQuickRevisionEntry(chapterName, topics, chapterIsFinished = true) 
     const gotchaLines = [];
 
     topic.headerComments.forEach(block => {
-      if (block.type === 'code' || block.type === 'generated' || block.type === 'generated-parameters') return;
+      if (block.type === 'code') return;
       if (block.type === 'table' && (block.rows || []).length > 0) {
         if (tables.length < 3) {
           tables.push({

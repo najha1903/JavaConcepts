@@ -73,6 +73,28 @@ function finishedChapterNames(chapters) {
   return finished;
 }
 
+// ---- Does a topic have notes of its own? ------------------------------------
+
+// True when the author has written something in this file - either a header block above
+// the declaration or a comment inside it.
+//
+// This exists because the parser used to invent three sentences for a topic with no notes,
+// so that the interface had something to show. That filler made a file with NO notes pass
+// the coverage check while a file with two of the author's own sentences failed, and it was
+// displayed and quizzed as if he had written it. The filler is gone; this is how the ledger
+// asks the real question instead.
+//
+// Code and table blocks do not count. A file that is only code, with no comment anywhere,
+// has no notes of its own - which is a fact worth reporting, not a defect to paper over.
+function hasOwnNotes(topic) {
+  if (!topic) return false;
+  const prose = (topic.headerComments || []).some(block =>
+    block && block.type !== 'code' && block.type !== 'table' && (block.lines || []).some(line => String(line || '').trim())
+  );
+  if (prose) return true;
+  return (topic.inlineComments || []).some(line => String(line || '').trim());
+}
+
 // ---- Is a note line actually code? ------------------------------------------
 
 // Returns true if a line is commented-out code rather than an explanation.
@@ -115,5 +137,6 @@ module.exports = {
   chapterNumber,
   isDraftChapter,
   finishedChapterNames,
-  isCodeFragment
+  isCodeFragment,
+  hasOwnNotes
 };
