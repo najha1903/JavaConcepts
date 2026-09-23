@@ -75,10 +75,6 @@
           </button>
 
           <div class="nav-group-title">Practise</div>
-          <button id="nav-quiz-menu-btn" class="nav-item">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span>Revision Quizzes</span>
-          </button>
           <button id="nav-practice-btn" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
             <span>Code Practice</span>
@@ -460,29 +456,11 @@
             </div>
             <h2 id="quiz-start-title">Chapter Revision Quiz</h2>
             <p id="quiz-start-desc" class="quiz-description">This quiz covers core concepts, operators, and control flows found in this chapter. It consists of multiple choice questions and code snippets.</p>
-            
-            <div class="quiz-difficulty-filter" id="quiz-difficulty-filter">
-              <label class="filter-label">Difficulty:</label>
-              <div class="difficulty-pills">
-                <button class="diff-pill active" data-diff="all" onclick="setQuizDifficulty('all', this)">Mixed</button>
-                <button class="diff-pill" data-diff="easy" onclick="setQuizDifficulty('easy', this)">Easy</button>
-                <button class="diff-pill" data-diff="medium" onclick="setQuizDifficulty('medium', this)">Medium</button>
-                <button class="diff-pill" data-diff="hard" onclick="setQuizDifficulty('hard', this)">Hard</button>
-              </div>
-            </div>
 
-            <div class="quiz-tag-filter" id="quiz-tag-filter">
-              <label class="filter-label">Filter:</label>
-              <div class="tag-pills">
-                <button class="tag-pill active" data-tag="all" onclick="setQuizTag('all', this)">All Types</button>
-                <button class="tag-pill ocjp-pill" data-tag="ocjp" onclick="setQuizTag('ocjp', this)">🎓 OCJP</button>
-                <button class="tag-pill" data-tag="interview" onclick="setQuizTag('interview', this)">💼 Interview</button>
-                <button class="tag-pill" data-tag="tricky" onclick="setQuizTag('tricky', this)">⚡ Tricky</button>
-                <button class="tag-pill" data-tag="concept" onclick="setQuizTag('concept', this)">📚 Concept</button>
-                <button class="tag-pill" data-tag="predict" onclick="setQuizTag('predict', this)">🔮 Predict</button>
-                <button class="tag-pill" data-tag="codefill" onclick="setQuizTag('codefill', this)">✏️ Fill Blank</button>
-              </div>
-            </div>
+            <!-- The difficulty and type pills were here, 11 buttons duplicating the Revision
+                 Bank's Level and Type filters. What you are tested on is chosen in the bank
+                 now, so this page is the confirmation: how many questions, how long, and
+                 Start. -->
 
             <div class="quiz-meta-info">
               <div class="meta-item">
@@ -735,55 +713,6 @@
         </div>
       </section>
 
-      <!-- NOTES VIEW -->
-      <section id="quiz-menu-view" class="view-section">
-        <div class="view-header">
-          <h1>Revision Quizzes</h1>
-          <p class="subtitle">Pick how you want to be tested. Everything here comes from the chapters you have written notes for.</p>
-        </div>
-
-        <div class="quiz-menu-grid">
-          <div class="card quiz-menu-card">
-            <div class="card-body">
-              <h3>🎯 Grand Java Quiz</h3>
-              <p>A mixed set of 40 questions drawn from every chapter you have notes for.</p>
-              <button class="btn btn-primary" id="btn-menu-grand-quiz">Start Grand Quiz</button>
-            </div>
-          </div>
-          <div class="card quiz-menu-card">
-            <div class="card-body">
-              <h3>🎓 OCJP Only</h3>
-              <p>Exam style trap questions across all chapters. <span id="menu-ocjp-count">0</span> questions available.</p>
-              <button class="btn btn-primary-outline" id="btn-menu-ocjp-quiz">Start OCJP Quiz</button>
-            </div>
-          </div>
-          <div class="card quiz-menu-card">
-            <div class="card-body">
-              <h3>⚡ Tricky Questions</h3>
-              <p>The questions that catch people out. <span id="menu-tricky-count">0</span> questions available.</p>
-              <button class="btn btn-primary-outline" id="btn-menu-tricky-quiz">Start Tricky Quiz</button>
-            </div>
-          </div>
-          <div class="card quiz-menu-card">
-            <div class="card-body">
-              <h3>🧩 Concept Drill</h3>
-              <p>Test yourself on one concept across every chapter that covers it. <span id="menu-concept-count">0</span> questions available.</p>
-              <select id="menu-concept-select" class="notes-chapter-select" onchange="updateMenuConceptCount()"></select>
-              <button class="btn btn-primary-outline" id="btn-menu-concept-quiz">Start Concept Drill</button>
-            </div>
-          </div>
-          <div class="card quiz-menu-card">
-            <div class="card-body">
-              <h3>🔍 Choose Exactly What To Revise</h3>
-              <p>Filter by chapter, topic, level, type and concept, then start a quiz from your selection.</p>
-              <button class="btn btn-outline" id="btn-menu-open-bank">Open Revision Bank</button>
-            </div>
-          </div>
-        </div>
-
-        <h2 class="bank-chapter-heading">Quiz a single chapter</h2>
-        <div id="quiz-menu-chapters" class="quiz-menu-chapters"></div>
-      </section>
 
       <section id="bank-view" class="view-section">
         <div class="view-header">
@@ -793,6 +722,19 @@
 
         <div class="card bank-filter-card">
           <div class="card-body">
+            <!-- The four preset quizzes that used to be separate cards on the Revision
+                 Quizzes screen. Each one just sets the filters below, so there is one pool
+                 and one rule rather than two of each. -->
+            <div class="bank-preset-row">
+              <span class="filter-label">Ready-made</span>
+              <div class="bank-preset-pills" id="bank-preset-pills">
+                <button class="tag-pill active" data-preset="everything" onclick="applyBankPreset('everything', this)">Everything</button>
+                <button class="tag-pill ocjp-pill" data-preset="ocjp" onclick="applyBankPreset('ocjp', this)">🎓 OCJP only</button>
+                <button class="tag-pill" data-preset="tricky" onclick="applyBankPreset('tricky', this)">⚡ Tricky only</button>
+                <button class="tag-pill" data-preset="interview" onclick="applyBankPreset('interview', this)">💼 Interview</button>
+                <button class="tag-pill" data-preset="drill" onclick="applyBankPreset('drill', this)">🧩 Concept drill</button>
+              </div>
+            </div>
             <div class="bank-filter-row">
               <label class="filter-label" for="bank-chapter-select">Chapter</label>
               <select id="bank-chapter-select" class="notes-chapter-select" onchange="setBankChapter(this.value)"></select>
@@ -831,6 +773,15 @@
 
         <div class="bank-summary-bar">
           <span id="bank-summary">Loading…</span>
+          <!-- The size used to be fixed at 20 here and at 40 for the Grand Quiz, which is
+               why the presets could not be faithful without a choice. -->
+          <label class="filter-label" for="bank-quiz-size">Questions</label>
+          <select id="bank-quiz-size" class="notes-chapter-select bank-quiz-size" onchange="setBankQuizSize(this.value)">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="40">40</option>
+            <option value="all">All</option>
+          </select>
           <button class="btn btn-primary" id="btn-bank-quiz" onclick="startBankQuiz()">Start quiz from this selection</button>
         </div>
 

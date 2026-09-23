@@ -26,8 +26,6 @@ let quizOriginView = 'dashboard-view';
 // True while reviewing an earlier question. The options are not clickable and Submit is
 // hidden, so stepping back can never change the score.
 let quizReviewMode = false;
-let currentDifficultyFilter = 'all'; // 'all', 'easy', 'medium', 'hard'
-let currentTagFilter = 'all'; // 'all', 'ocjp', 'interview', 'tricky', 'predict', 'concept', 'codefill'
 let currentPracticeTab = 'coding'; // 'coding' or 'deep'
 // When the whole challenge set is shown it is ordered weakest-concept-first, so the top
 // of the list is what to do. The author can turn that off and get the file order back.
@@ -678,15 +676,15 @@ function showView(viewId) {
   if (viewId === 'dashboard-view') {
     document.getElementById('nav-dashboard-btn').classList.add('active');
   } else if (viewId === 'quiz-view') {
-    document.getElementById('nav-quiz-menu-btn').classList.add('active');
+    // A quiz is started from the Revision Bank or from a contextual button, so the bank is
+    // the nav item that stays lit while it runs.
+    document.getElementById('nav-bank-btn').classList.add('active');
   } else if (viewId === 'practice-view') {
     document.getElementById('nav-practice-btn').classList.add('active');
   } else if (viewId === 'notes-view') {
     document.getElementById('nav-notes-btn').classList.add('active');
   } else if (viewId === 'bank-view') {
     document.getElementById('nav-bank-btn').classList.add('active');
-  } else if (viewId === 'quiz-menu-view') {
-    document.getElementById('nav-quiz-menu-btn').classList.add('active');
   }
 }
 
@@ -1126,7 +1124,19 @@ function shuffleArray(items) {
 
 function pickSmartQuestions(pool, count, difficultyFilter, tagFilter) {
   const history = getQuestionHistory();
-  let filtered = [...pool];
+
+  // The same question can legitimately belong to two chapters - the String pool traps sit in
+  // Chapter 14 and again in Chapter 13's inheritance material. In one quiz it must appear
+  // once. The Grand Quiz handled this for itself, so any OTHER pool that spanned chapters -
+  // the Revision Bank, the level quizzes, the concept drill - could show the same question
+  // twice. One rule, at the funnel every quiz goes through.
+  const seenContent = new Set();
+  let filtered = pool.filter(q => {
+    const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;
+    if (seenContent.has(key)) return false;
+    seenContent.add(key);
+    return true;
+  });
 
   // An explicit filter is honoured. The old code silently fell back to the whole
   // pool when fewer than 5 questions matched, so "Easy" could still serve hard
@@ -1172,18 +1182,10 @@ function pickSmartQuestions(pool, count, difficultyFilter, tagFilter) {
   return selected;
 }
 
-function setQuizDifficulty(level, btn) {
-  currentDifficultyFilter = level;
-  document.querySelectorAll('.diff-pill').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-}
-
-function setQuizTag(tag, btn) {
-  currentTagFilter = tag;
-  document.querySelectorAll('.tag-pill').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-}
-
+// The quiz engine still takes difficulty and tag filters, and a preset or a bank selection
+// passes its own pool instead. The pills that used to set these on the quiz start page were
+// deleted - they duplicated the Revision Bank's Level and Type filters - so nothing sets them
+// any more and both callers below pass 'all'.
 function getQuestionsForScope(chapterName, subChapterName) {
   const chapterQuestions = QUESTIONS_BANK[chapterName] || [];
   if (!subChapterName) {
@@ -1304,11 +1306,6 @@ function setupEventListeners() {
     showView('dashboard-view');
   });
   
-  document.getElementById('nav-quiz-menu-btn').addEventListener('click', () => {
-    renderQuizMenu();
-    showView('quiz-menu-view');
-  });
-
   document.getElementById('nav-practice-btn').addEventListener('click', () => {
     showPracticeLab({ chapterName: null, subChapterName: null });
   });
@@ -1332,46 +1329,6 @@ function setupEventListeners() {
     startChapterQuiz("Grand Java Quiz");
   });
 
-  const menuGrand = document.getElementById('btn-menu-grand-quiz');
-  if (menuGrand) menuGrand.addEventListener('click', () => startChapterQuiz("Grand Java Quiz"));
-  const menuOcjp = document.getElementById('btn-menu-ocjp-quiz');
-  if (menuOcjp) menuOcjp.addEventListener('click', () => {
-    const pool = [];
-    Object.keys(QUESTIONS_BANK).forEach(ch => QUESTIONS_BANK[ch].forEach(q => {
-      if ((q.tags || []).includes('ocjp')) pool.push(q);
-    }));
-    startSelectionQuiz(pool, 'OCJP questions: all chapters', 25);
-  });
-  const menuTricky = document.getElementById('btn-menu-tricky-quiz');
-  if (menuTricky) menuTricky.addEventListener('click', () => {
-    const pool = [];
-    Object.keys(QUESTIONS_BANK).forEach(ch => QUESTIONS_BANK[ch].forEach(q => {
-      if ((q.tags || []).includes('tricky')) pool.push(q);
-    }));
-    startSelectionQuiz(pool, 'Tricky questions: all chapters', 25);
-  });
-  const menuBank = document.getElementById('btn-menu-open-bank');
-  if (menuBank) menuBank.addEventListener('click', () => {
-    initBankChapterSelect();
-    renderRevisionBank();
-    showView('bank-view');
-  });
-
-  // Concept drill: one concept, every chapter that covers it. The pool is built
-  // from the concept tag on each question, which is the tag the Revision Bank
-  // filter uses, so the two can never disagree about what a concept contains.
-  const menuConcept = document.getElementById('btn-menu-concept-quiz');
-  if (menuConcept) menuConcept.addEventListener('click', () => {
-    const select = document.getElementById('menu-concept-select');
-    const conceptId = select ? select.value : 'all';
-    const pool = questionsForConcept(conceptId);
-    if (pool.length === 0) {
-      alert('No questions carry that concept yet.');
-      return;
-    }
-    const name = conceptDisplayName(conceptId);
-    startSelectionQuiz(pool, `Concept drill: ${name}`, Math.min(pool.length, 25));
-  });
   const topicQuizBtn = document.getElementById('btn-quiz-this-topic');
   if (topicQuizBtn) topicQuizBtn.addEventListener('click', startTopicQuiz);
   document.getElementById('btn-start-notes').addEventListener('click', () => {
@@ -2963,23 +2920,16 @@ function startChapterQuiz(chapterName, subChapterName) {
   };
   
   if (chapterName === "Grand Java Quiz") {
-    const allQuestions = [];
+    // Every question in every chapter. Duplicates by content are removed inside
+    // pickSmartQuestions now, at the funnel every quiz goes through, so there is nothing to
+    // de-duplicate here any more.
+    const uniqueQuestions = [];
     Object.keys(QUESTIONS_BANK).forEach(ch => {
-      allQuestions.push(...QUESTIONS_BANK[ch]);
-    });
-
-    // The same question can legitimately belong to two chapters, for example the
-    // String pool traps. In a mixed quiz it must still appear only once.
-    const seenInGrand = new Set();
-    const uniqueQuestions = allQuestions.filter(q => {
-      const key = `${q.question || ''}||${q.code || ''}||${(q.options || []).join('|')}`;
-      if (seenInGrand.has(key)) return false;
-      seenInGrand.add(key);
-      return true;
+      uniqueQuestions.push(...QUESTIONS_BANK[ch]);
     });
 
     // Shuffle from the full pool every time; no answered-question filtering.
-    questions = pickSmartQuestions(uniqueQuestions, 40, currentDifficultyFilter, currentTagFilter);
+    questions = pickSmartQuestions(uniqueQuestions, 40, 'all', 'all');
 
     document.getElementById('quiz-start-title').innerText = "Grand Java Revision Quiz";
     document.getElementById('quiz-start-desc').innerText = "Test your grasp on all concepts in this Java project. Includes randomized logic predictions, multi-select questions, and technical interview scenarios.";
@@ -2990,7 +2940,7 @@ function startChapterQuiz(chapterName, subChapterName) {
     const staticQs = getQuestionsForScope(chapterName, subChapterName);
     const chapterLabel = subChapterName ? `${chapterName} > ${subChapterName}` : chapterName;
     
-    questions = pickSmartQuestions(staticQs, 20, currentDifficultyFilter, currentTagFilter);
+    questions = pickSmartQuestions(staticQs, 20, 'all', 'all');
     
     document.getElementById('quiz-start-title').innerText = `${chapterLabel} Revision Quiz`;
     document.getElementById('quiz-start-desc').innerText = `Review the core concepts in ${chapterLabel} through dynamic logic tracking, multiple-choice questions, and conceptual mock interviews.`;
@@ -3955,56 +3905,6 @@ function renderSearchResults(results, query) {
     container.appendChild(card);
   });
 }
-
-// ==========================================================================
-// Quiz menu
-// ==========================================================================
-// Choosing how to be tested, instead of being dropped straight into the Grand
-// Quiz. Every option is built from the chapters the author has notes for.
-function renderQuizMenu() {
-  initMenuConceptSelect();
-  const chaptersContainer = document.getElementById('quiz-menu-chapters');
-  if (!chaptersContainer) return;
-
-  const allQuestions = [];
-  Object.keys(QUESTIONS_BANK).forEach(chapter => allQuestions.push(...QUESTIONS_BANK[chapter]));
-  const ocjpCount = allQuestions.filter(q => (q.tags || []).includes('ocjp')).length;
-  const trickyCount = allQuestions.filter(q => (q.tags || []).includes('tricky')).length;
-  const ocjpEl = document.getElementById('menu-ocjp-count');
-  const trickyEl = document.getElementById('menu-tricky-count');
-  if (ocjpEl) ocjpEl.textContent = ocjpCount;
-  if (trickyEl) trickyEl.textContent = trickyCount;
-
-  chaptersContainer.innerHTML = '';
-  CONCEPTS_DATA.forEach((chapter, index) => {
-    const questions = QUESTIONS_BANK[chapter.name] || [];
-    const subChapters = Array.from(new Set(chapter.topics.map(t => t.subChapter).filter(Boolean)));
-    const row = document.createElement('div');
-    row.className = 'quiz-menu-chapter-row';
-    row.innerHTML = `
-      <div class="quiz-menu-chapter-info">
-        <span class="quiz-menu-chapter-name">${chapter.name}</span>
-        <span class="bank-topic-meta">${chapter.topics.length} topic(s) · ${questions.length} question(s)</span>
-      </div>
-      <div class="quiz-menu-chapter-actions"></div>
-    `;
-    const actions = row.querySelector('.quiz-menu-chapter-actions');
-    const chapterBtn = document.createElement('button');
-    chapterBtn.className = 'btn btn-primary-outline btn-small';
-    chapterBtn.textContent = 'Quiz chapter';
-    chapterBtn.addEventListener('click', () => startChapterQuiz(chapter.name));
-    actions.appendChild(chapterBtn);
-    subChapters.forEach(subChapter => {
-      const subBtn = document.createElement('button');
-      subBtn.className = 'btn btn-outline btn-small';
-      subBtn.textContent = subChapter;
-      subBtn.addEventListener('click', () => startChapterQuiz(chapter.name, subChapter));
-      actions.appendChild(subBtn);
-    });
-    chaptersContainer.appendChild(row);
-  });
-}
-
 // Starts a quiz for the single topic currently open in the Notes view.
 function startTopicQuiz() {
   const chapter = CONCEPTS_DATA[currentChapterIndex];
@@ -4065,6 +3965,9 @@ function startSelectionQuiz(questions, label, maxQuestions) {
 // One place to revise everything the author has written notes for. It is built
 // from CONCEPTS_DATA, so only topics that exist under src/ can ever appear here.
 let bankFilters = { chapter: 'all', search: '', level: 'all', tag: 'all', concept: 'all' };
+// How many questions the bank's quiz asks. 'all' means no cap. It used to be the literal 20
+// here and 40 for the Grand Quiz, which is why the presets needed a choice.
+let bankQuizSize = '20';
 
 // The concepts present in the current chapter selection, so the filter only ever
 // offers concepts that can actually match something.
@@ -4129,37 +4032,6 @@ function questionsForConcept(conceptId) {
   return allQuestionsFlat().filter(q => (q.concepts || []).includes(conceptId));
 }
 
-function initMenuConceptSelect() {
-  const select = document.getElementById('menu-concept-select');
-  if (!select) return;
-  const counts = new Map();
-  allQuestionsFlat().forEach(q => {
-    (q.concepts || []).forEach(id => counts.set(id, (counts.get(id) || 0) + 1));
-  });
-  const rows = [...counts.entries()]
-    .map(([id, count]) => ({ id, count, name: conceptDisplayName(id) }))
-    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
-
-  const previous = select.value;
-  select.innerHTML = '';
-  rows.forEach(({ id, count, name }) => {
-    const option = document.createElement('option');
-    option.value = id;
-    option.textContent = `${name} (${count})`;
-    select.appendChild(option);
-  });
-  // Keep the choice across a re-render when it is still on offer.
-  if (previous && rows.some(r => r.id === previous)) select.value = previous;
-  updateMenuConceptCount();
-}
-
-function updateMenuConceptCount() {
-  const select = document.getElementById('menu-concept-select');
-  const el = document.getElementById('menu-concept-count');
-  if (!select || !el) return;
-  el.textContent = questionsForConcept(select.value).length;
-}
-
 function initBankChapterSelect() {
   const select = document.getElementById('bank-chapter-select');
   if (!select) return;
@@ -4215,36 +4087,54 @@ function questionMatchesBankFilters(question) {
   return true;
 }
 
+// A search term narrows the quiz pool by the same text the reading list searches, plus the
+// question's own words. A superset of the old behaviour, so nothing that used to match stops
+// matching.
+function questionMatchesBankSearch(question, chapters) {
+  const needle = bankFilters.search;
+  if (!needle) return true;
+  const own = `${question.question || ''} ${question.code || ''} ${question.topic || ''}`.toLowerCase();
+  if (own.includes(needle)) return true;
+  for (const chapter of chapters) {
+    const topic = chapter.topics.find(t => t.filePath === question.topicPath);
+    if (topic && topicSearchText(topic).includes(needle)) return true;
+  }
+  return false;
+}
+
 // Collects the topics and questions matching the current filters.
 function collectBankSelection() {
   const chapters = CONCEPTS_DATA.filter((chapter, index) =>
     bankFilters.chapter === 'all' || String(index) === bankFilters.chapter);
 
+  // The READING list: the notes to show. An exercise file is practice rather than revision
+  // material, so it is not listed here; the chapter shows one line pointing at the Practice
+  // Lab instead. The flag is written by the parser, so the browser is not re-deriving it.
   const topics = [];
   chapters.forEach(chapter => {
     chapter.topics.forEach(topic => {
-      // An exercise file is practice, not revision material. It is not listed here;
-      // the chapter shows one line pointing at the Practice Lab instead. The flag is
-      // written by the parser, so the browser is not re-deriving the rule.
       if (topic.isExercise) return;
       if (bankFilters.search && !topicSearchText(topic).includes(bankFilters.search)) return;
       topics.push({ chapter: chapter.name, topic });
     });
   });
 
-  const includedPaths = new Set(topics.map(entry => entry.topic.filePath));
+  // The QUIZ pool: every question in the selected chapters that matches the filters.
+  //
+  // This is deliberately NOT derived from the reading list, and it used to be. A question was
+  // kept only when its topic had survived the reading list, so a question attached to an
+  // exercise file was excluded from quizzing because that file is not revision reading
+  // material - an accident of implementation, not a decision. It dropped 41 questions: 36
+  // "which of these is TRUE about X Coding Challenge" task questions, which is no loss, and
+  // 4 OCJP output traps and 1 derived output question, which is a real one. The chapter quiz
+  // never did this, so the two paths already disagreed about what a chapter contains.
   const questions = [];
   const seen = new Set();
   chapters.forEach(chapter => {
     (QUESTIONS_BANK[chapter.name] || []).forEach(question => {
-      // A question belongs here when its topic is selected, or when it is a
-      // chapter-level question that has no topic of its own.
-      const inSelectedTopic = question.topicPath && includedPaths.has(question.topicPath);
-      const isChapterLevel = !question.topicPath;
-      if (!inSelectedTopic && !isChapterLevel) return;
-      if (!isChapterLevel && bankFilters.search && !includedPaths.has(question.topicPath)) return;
       if (seen.has(question.qid)) return;
       if (!questionMatchesBankFilters(question)) return;
+      if (bankFilters.search && !questionMatchesBankSearch(question, chapters)) return;
       seen.add(question.qid);
       questions.push(question);
     });
@@ -4684,7 +4574,76 @@ function startBankQuiz() {
   const bankLabel = bankFilters.chapter === 'all'
     ? 'Revision Bank: all chapters'
     : `Revision Bank: ${CONCEPTS_DATA[Number(bankFilters.chapter)]?.name || ''}`;
-  startSelectionQuiz(questions, bankLabel, 20);
+  // 'all' means every question that matched, and startSelectionQuiz treats a non-number as
+  // "no cap".
+  const size = bankQuizSize === 'all' ? questions.length : Number(bankQuizSize) || 20;
+  startSelectionQuiz(questions, bankLabel, size);
+}
+
+// ---- The ready-made presets ---------------------------------------------------
+//
+// These four were separate cards on the Revision Quizzes screen. They are the same thing as
+// a filter state, which is why they are presets here rather than a second screen: one pool,
+// one rule, and what you see listed is what you are tested on.
+//
+// The pools were compared question by question against the old cards:
+//   OCJP only  329 -> 329
+//   Tricky     126 -> 126
+//   Drill      223 -> 223
+//   Everything 760 -> 766, the extra 6 being questions that sit in two chapters, which
+//                       pickSmartQuestions de-duplicates before the quiz is built.
+const BANK_PRESETS = {
+  everything: { level: 'all', tag: 'all', concept: 'all' },
+  ocjp: { level: 'all', tag: 'ocjp', concept: 'all' },
+  tricky: { level: 'all', tag: 'tricky', concept: 'all' },
+  interview: { level: 'all', tag: 'interview', concept: 'all' },
+  // The drill's whole point is crossing chapters for one concept, so it clears the chapter
+  // filter and leaves the concept to the Concept select.
+  drill: { level: 'all', tag: 'all', concept: null }
+};
+
+function applyBankPreset(name, btn) {
+  const preset = BANK_PRESETS[name];
+  if (!preset) return;
+
+  if (preset.concept === null) {
+    // The drill needs a concept. The old card read the select and, when it was empty,
+    // silently drilled EVERYTHING - a 766-question pool labelled "Concept drill". Saying so
+    // is better than that.
+    if (!bankFilters.concept || bankFilters.concept === 'all') {
+      alert('Choose a concept first, then start the drill. The Concept dropdown is just above.');
+      return;
+    }
+    bankFilters.chapter = 'all';
+    bankFilters.level = preset.level;
+    bankFilters.tag = preset.tag;
+  } else {
+    bankFilters.level = preset.level;
+    bankFilters.tag = preset.tag;
+    bankFilters.concept = preset.concept;
+  }
+
+  document.querySelectorAll('#bank-preset-pills .tag-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  syncBankFilterControls();
+  renderRevisionBank();
+}
+
+// Puts the pills and selects back in step with bankFilters, so a preset is visible in the
+// controls below it rather than only in the result.
+function syncBankFilterControls() {
+  const chapterSelect = document.getElementById('bank-chapter-select');
+  if (chapterSelect) chapterSelect.value = bankFilters.chapter;
+  const conceptSelect = document.getElementById('bank-concept-select');
+  if (conceptSelect && bankFilters.concept !== 'all') conceptSelect.value = bankFilters.concept;
+  document.querySelectorAll('#bank-level-pills .diff-pill').forEach(b =>
+    b.classList.toggle('active', b.dataset.level === bankFilters.level));
+  document.querySelectorAll('#bank-type-pills .tag-pill').forEach(b =>
+    b.classList.toggle('active', b.dataset.banktag === bankFilters.tag));
+}
+
+function setBankQuizSize(value) {
+  bankQuizSize = value;
 }
 
 // ==========================================================================

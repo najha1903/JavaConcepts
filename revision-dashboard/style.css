@@ -1027,6 +1027,31 @@ button:disabled:active,
 .bank-filter-card {
   margin-bottom: 16px;
 }
+/* The ready-made presets. Visually separated from the filters below, because they SET those
+   filters rather than adding another one. */
+.bank-preset-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+.bank-preset-row .filter-label {
+  min-width: 150px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+.bank-preset-pills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.bank-quiz-size {
+  width: auto;
+  min-width: 80px;
+}
 .bank-filter-row {
   display: flex;
   align-items: center;
@@ -1173,54 +1198,6 @@ button:disabled:active,
 }
 .practice-check-note.auto {
   border-color: var(--text-success, #2f9e44);
-}
-
-/* Quiz menu */
-.quiz-menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-  margin-bottom: 26px;
-}
-.quiz-menu-card h3 {
-  margin: 0 0 6px;
-  font-size: 15px;
-}
-.quiz-menu-card p {
-  margin: 0 0 12px;
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-.quiz-menu-chapters {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.quiz-menu-chapter-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 14px 18px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  background: var(--bg-card);
-}
-.quiz-menu-chapter-info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.quiz-menu-chapter-name {
-  font-weight: 600;
-  color: var(--text-primary);
-  font-size: 14px;
-}
-.quiz-menu-chapter-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 /* Per-chapter quiz result breakdown */
@@ -2857,12 +2834,6 @@ button:disabled:active,
 /* ==========================================================================
    Difficulty Filter Pills
    ========================================================================== */
-.quiz-difficulty-filter {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 16px 0;
-}
 
 @media (max-width: 600px) {
   .notes-export-actions { align-items: stretch; flex-wrap: wrap; }
@@ -2940,12 +2911,6 @@ button:disabled:active,
 /* ==========================================================================
    Tag / Label System for Quiz Questions
    ========================================================================== */
-.quiz-tag-filter {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 8px 0 16px 0;
-}
 .tag-pills {
   display: flex;
   gap: 6px;
