@@ -97,6 +97,15 @@ function practiceForTopic(topic) {
 // merely mentions. Detection is reliable; linking is not.
 const RULE_PATTERN = /\b(must|cannot|can't|never|always|only|throws?|does not compile|compile error|is required|is not allowed|is forbidden)\b/i;
 
+// A marker line is tool syntax, not a note, so it is never a rule needing an example.
+//
+// This mattered more than it looks. Without it the detector counted quiz answers as rules:
+// "@answer 5) Constructors and private methods CANNOT be overridden." matches the rule pattern
+// and has no code block beside it, so it was listed as a rule needing an example. Chapter 13
+// holds 69 of the 99 flagged rules and 182 quiz markers, which is not a coincidence - most of
+// what was being reported was quiz text, not the author's notes.
+const MARKER_LINE = /^(?:\/\/|\*)?\s*@(quiz|option|answer|explain|why|code|takeaway|gotcha|snippet|testcase|desc|hint|section|challenge|draft|noexample)\b/i;
+
 function ruleCoverage(topic) {
   // An exercise file is skipped. Its lines describe a task - "Deep Problem: Multi-Domain Unit
   // Converter - Implement a conversion utility that handles distance, weight..." - and a task
@@ -117,6 +126,8 @@ function ruleCoverage(topic) {
     const hasExample = (index > 0 && blocks[index - 1].type === 'code') ||
       (index < blocks.length - 1 && blocks[index + 1].type === 'code');
     for (const line of block.lines || []) {
+      // Tool markers are not notes. See MARKER_LINE.
+      if (MARKER_LINE.test(String(line).trim())) continue;
       if (!RULE_PATTERN.test(line)) continue;
       // A rule that quotes its own code in the same line already has its example.
       if (hasInlineExample(line)) continue;

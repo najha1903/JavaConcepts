@@ -19,7 +19,7 @@ const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
 // from this list is not recognised as tool syntax, so it shows up in the
 // author's notes as if he had written it. Always add new markers here.
 // ==========================================================================
-const MARKER_KEYWORDS = 'quiz|answer|option|explain|why|code|challenge|desc|hint|testcase|section|takeaway|gotcha';
+const MARKER_KEYWORDS = 'quiz|answer|option|explain|why|code|challenge|desc|hint|testcase|section|takeaway|gotcha|snippet';
 const MARKER_AFTER_SLASHES = new RegExp(`^//\\s*@(?:${MARKER_KEYWORDS})\\b`, 'i');
 const MARKER_BARE = new RegExp(`^@(?:${MARKER_KEYWORDS})\\b`, 'i');
 

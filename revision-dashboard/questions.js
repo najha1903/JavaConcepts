@@ -22537,7 +22537,7 @@ const QUICK_REVISION_BANK = {
         "code": ""
       }
     ],
-    "syntax": "@snippet System.out.println(\"Hello World\");",
+    "syntax": "public class HelloWorld {                       // the class name matches the file name\n    public static void main(String[] args) {    // the entry point the JVM looks for\n        System.out.println(\"Hello World\");      // prints the text, then moves to a new line\n    }\n}",
     "badges": [
       ";",
       "{ }",

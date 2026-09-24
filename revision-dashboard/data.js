@@ -127,15 +127,8 @@ const CONCEPTS_DATA = [
               "What you should be able to do after this chapter :-",
               "- Write, compile and run a class that prints something, and explain what javac did and what java did.",
               "- Explain why a change to the source appears to be ignored until the file is compiled again.",
-              "- Read `System.out.println(\"...\")` as a class, a stream and a method rather than as one magic word.",
-              "@snippet public static void main(String[] args)"
+              "- Read `System.out.println(\"...\")` as a class, a stream and a method rather than as one magic word."
             ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@snippet System.out.println(\"Hello World\");",
-            "lines": []
           }
         ],
         "inlineComments": [
@@ -2286,18 +2279,6 @@ const CONCEPTS_DATA = [
             "lines": [
               "Note :- whole-number literals are int, and decimal literals are double, unless a suffix says otherwise."
             ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@snippet long big = 3000000000L;\n@snippet float f = 3.14f;",
-            "lines": []
-          },
-          {
-            "type": "code",
-            "language": "text",
-            "code": "@snippet 'A' + 1        // 66\n@snippet 5 / 2          // 2\n@snippet 5 / 2.0        // 2.5\n@snippet (int) 9.8      // 9, not 10",
-            "lines": []
           }
         ],
         "inlineComments": [
@@ -3459,12 +3440,6 @@ const CONCEPTS_DATA = [
               "- divisor (the value on the right of `/` and `%`): choose a non-zero divisor for int arithmetic, because integer division by zero throws ArithmeticException. For double, the result is Infinity instead.",
               "- leftOperand (`10 + 20`, `\"Score: \" + 10`): the operand you read first decides the operation. If it is a String, every `+` after it concatenates; if it is numeric, `+` adds until a String appears."
             ]
-          },
-          {
-            "type": "code",
-            "language": "text",
-            "code": "@snippet 10 + 20 + \"Java\"   // 30Java\n@snippet \"Java\" + 10 + 20   // Java1020\n@snippet 9 / 2         // 4\n@snippet 9 % 2         // 1\n@snippet 9 / 2.0       // 4.5",
-            "lines": []
           }
         ],
         "inlineComments": [
@@ -5323,24 +5298,6 @@ const CONCEPTS_DATA = [
               "Pitfall :- a semicolon straight after the condition ends the if and gives it an empty body, so the block written after it runs whatever the condition was.",
               "Pitfall :- `=` assigns and `==` compares, so `if (x = 5)` does not compile rather than testing anything."
             ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@snippet if (1) { } // compile error"
-            ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@snippet boolean flag = true;\n@snippet if (flag) System.out.println(\"A\");\n@snippet System.out.println(\"B\");          // always runs\n@snippet boolean isMember = true;",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@snippet int paid = isMember ? 10 : 20;"
-            ]
           }
         ],
         "inlineComments": [
@@ -6533,12 +6490,6 @@ const CONCEPTS_DATA = [
               "- score, levelCompleted and bonus (the three int values passed to calculateScore): score is the starting points, levelCompleted is how many levels were finished, and bonus is the points per level. The method adds score to levelCompleted * bonus, so a zero or negative bonus would reduce the score.",
               "- gameOver (the boolean passed to calculateScore): it decides whether the score is reported, so pass true for a finished game and false to keep playing."
             ]
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@snippet int r = printScore(10);      // compile error",
-            "lines": []
           }
         ],
         "inlineComments": [
@@ -9381,8 +9332,7 @@ const CONCEPTS_DATA = [
           {
             "type": "block",
             "lines": [
-              "Note :- the inner loop runs its whole 3 passes for every single pass of the outer loop. A plain break would leave only the inner loop, which is why a label is used when both must stop.",
-              "@snippet for (int i = 0; i < 5; i++) { }"
+              "Note :- the inner loop runs its whole 3 passes for every single pass of the outer loop. A plain break would leave only the inner loop, which is why a label is used when both must stop."
             ]
           }
         ],
@@ -13024,24 +12974,7 @@ const CONCEPTS_DATA = [
               "Parameter notes :-",
               "- s (the String given to Integer.parseInt, Double.parseDouble and the other parse methods): it must be exactly the digits of the number, with no spaces and no other characters. Choose it from trimmed user input so that \" 42 \" does not reach the parser.",
               "- currentYear (passed to getInputFromConsole and getInputFromScanner): the year used to work out an age, so pass the real current year, or a fixed year when you want a repeatable test.",
-              "- yearOfBirth (passed to checkValidDOB): the text the user typed for their birth year. It is still a String at this point, so it is parsed and checked, and it must not be later than currentYear."
-            ]
-          },
-          {
-            "type": "code",
-            "language": "text",
-            "code": "@snippet Integer.parseInt(\"42\")        // 42\n@snippet Double.parseDouble(\"3.14\")    // 3.14",
-            "lines": []
-          },
-          {
-            "type": "code",
-            "language": "java",
-            "code": "@snippet int n = (int) Math.round(3.7);",
-            "lines": []
-          },
-          {
-            "type": "lines",
-            "lines": [
+              "- yearOfBirth (passed to checkValidDOB): the text the user typed for their birth year. It is still a String at this point, so it is parsed and checked, and it must not be later than currentYear.",
               "In this case, Java provides a library of code, which includes the Scanner class in a library called java.util."
             ]
           }
@@ -21003,12 +20936,6 @@ const CONCEPTS_DATA = [
               "- beginIndex and endIndex (substring): the returned text runs from beginIndex up to but NOT including endIndex, so substring(0, 3) gives the first three characters and index 3 itself is left out. An index outside the String throws StringIndexOutOfBoundsException.",
               "- target (indexOf, replace, replaceAll): the text being searched for or replaced. In replaceAll the target is a REGULAR EXPRESSION, so a \".\" matches any single character and needs escaping when you mean a real dot.",
               "- newChar or replacement (replace): a literal value, useful when the text to find contains characters that a regular expression would treat specially."
-            ]
-          },
-          {
-            "type": "lines",
-            "lines": [
-              "@snippet \"Java\".substring(0, 3) // Jav"
             ]
           }
         ],
