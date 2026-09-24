@@ -64,16 +64,17 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // - score, levelCompleted and bonus (the three int values passed to calculateScore): score is the starting points, levelCompleted is how many levels were finished, and bonus is the points per level. The method adds score to levelCompleted * bonus, so a zero or negative bonus would reduce the score.
 // - gameOver (the boolean passed to calculateScore): it decides whether the score is reported, so pass true for a finished game and false to keep playing.
 
-// @takeaway A method is a named block of code you can run by name, so the same logic is written once instead of copied around. Calling it means writing the name with parentheses; defining it means writing a body instead of ending with a semicolon.
-// @takeaway Parameters are local variables created fresh for every call, holding copies of the values you passed in. They exist only while the method is running, and they disappear when it returns.
-// @takeaway Java always passes by value. For a primitive you get a copy of the number, which is why `swap(a, b)` leaves the caller's variables untouched. For an object you get a copy of the reference, so the method can change the object's contents but not point the caller's variable somewhere else.
-// @takeaway A return type is a promise. A non-void method must return a value on every path that can finish, so `static int sign(int n) { if (n > 0) { return 1; } }` does not compile: when n is 0 or less there is nothing to return.
-// @takeaway Overloading means several methods share one name but take different parameter lists. Java picks the version at compile time from the argument types, so `print(5)` chooses `print(int)` instead of widening to `print(double)`.
-// @takeaway `void` means the call produces no value at all, so `int result = printScore(10);` is a compile error even though the method runs and prints normally.
-// @gotcha A parameter is a copy, so assigning to it inside the method never changes the caller's variable. That is the whole reason the classic swap method appears to work and then changes nothing.
-// @gotcha For an object, writing through the reference is visible to the caller, but reassigning the reference is not: `data[0] = 99` changes the caller's array, while `data = new int[]{0,0,0}` only moves the local copy.
-// @gotcha The return type is not part of a method's signature, so two methods that differ only in their return type cannot overload each other.
-// @gotcha The compiler checks every path of a non-void method, so one branch that can finish without a return fails the whole file rather than compiling and returning a surprise at runtime.
+// @takeaway A method is a named block you run by name, so the logic is written once instead of copied around.
+// @takeaway Parameters are locals created fresh for each call, holding copies of what you passed, and they disappear on return.
+// @takeaway Java always passes by value: a copy of the number for a primitive, and a copy of the reference for an object.
+// @takeaway A non-void method must return a value on every path that can finish.
+// @takeaway Overloading is one name with different parameter lists, chosen at compile time from the argument types.
+// @takeaway `void` means the call produces no value at all.
+// @snippet int r = printScore(10);      // compile error
+// @gotcha A parameter is a copy, so assigning to it inside the method never changes the caller's variable.
+// @gotcha Writing through an object reference is visible to the caller, but reassigning the reference is not.
+// @gotcha The return type is not part of the signature, so two methods differing only in return type cannot overload.
+// @gotcha One branch that can finish without a return fails the whole file, not just that branch.
 
 // @quiz (INTERVIEW) Is Java pass-by-value or pass-by-reference?
 // @answer Java is ALWAYS pass-by-value.

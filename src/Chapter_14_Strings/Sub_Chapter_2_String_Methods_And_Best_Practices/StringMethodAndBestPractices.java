@@ -116,14 +116,15 @@ package Chapter_14_Strings.Sub_Chapter_2_String_Methods_And_Best_Practices;
 // - target (indexOf, replace, replaceAll): the text being searched for or replaced. In replaceAll the target is a REGULAR EXPRESSION, so a "." matches any single character and needs escaping when you mean a real dot.
 // - newChar or replacement (replace): a literal value, useful when the text to find contains characters that a regular expression would treat specially.
 
-// @takeaway A String cannot be changed after it is created. `concat`, `toUpperCase`, `trim`, `replace` and `substring` all build and return a NEW String, so the result must be stored or printed to be seen.
-// @takeaway `==` asks whether two variables point at the same object, while `.equals()` asks whether the characters match. Use equals for content, because literals and runtime-built Strings do not share an object.
-// @takeaway Characters are counted from index 0, and `substring(begin, end)` stops just before end, so `substring(0, 3)` gives the first three characters.
-// @takeaway A `char` uses single quotes and holds exactly one character, while a String uses double quotes and holds any number of them. Adding a char to a number gives a number: `'A' + 1` is 66, and `(char) ('A' + 1)` is B.
-// @gotcha `"Java" + 10 + 20` gives Java1020 rather than Java30, because + starts joining as soon as one side is text. Wrap the arithmetic in parentheses to add it first.
-// @gotcha `substring` and `charAt` throw StringIndexOutOfBoundsException at runtime when the index is outside the String, so bound the value before using it.
-// @gotcha Comparing Strings with `==` can appear to work with literals and then fail as soon as one of them is built at runtime, because `==` never compares text.
-// @gotcha `replaceAll` reads its first argument as a regular expression, so `replaceAll(".", "-")` replaces every character. Use `replace` when you mean a literal dot.
+// @takeaway A String never changes; `toUpperCase`, `trim`, `replace` and `substring` all return a NEW String, so store or print the result.
+// @takeaway `==` asks whether two variables point at the same object; `.equals()` asks whether the characters match.
+// @takeaway Indexes start at 0, and `substring(begin, end)` stops just before end.
+// @snippet "Java".substring(0, 3)     // Jav
+// @takeaway A `char` is single quotes, one character; a String is double quotes, any number. `'A' + 1` is 66, not B.
+// @gotcha `"Java" + 10 + 20` gives `Java1020`, because `+` starts joining as soon as one side is text.
+// @gotcha `substring` and `charAt` throw `StringIndexOutOfBoundsException` at runtime when the index is outside the String.
+// @gotcha `==` on Strings can appear to work with literals and then fail on a runtime-built one.
+// @gotcha `replaceAll` reads its first argument as a regex, so `replaceAll(".", "-")` replaces every character.
 
 
 // @quiz (OCJP, MEDIUM) What is printed by this program?

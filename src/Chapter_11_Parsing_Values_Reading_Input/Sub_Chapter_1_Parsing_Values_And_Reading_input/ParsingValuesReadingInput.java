@@ -144,15 +144,18 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_1_Parsing_Values_And
 // - currentYear (passed to getInputFromConsole and getInputFromScanner): the year used to work out an age, so pass the real current year, or a fixed year when you want a repeatable test.
 // - yearOfBirth (passed to checkValidDOB): the text the user typed for their birth year. It is still a String at this point, so it is parsed and checked, and it must not be later than currentYear.
 
-// @takeaway Input always arrives as text, even when the user typed digits. `Integer.parseInt("42")` turns that text into 42, and `Double.parseDouble("3.14")` into 3.14.
-// @takeaway Text and numbers behave differently with the same operator. `"100" + "50"` gives "10050" because + joins text, and `"100" - "50"` does not compile at all. Parse first, then do the arithmetic.
-// @takeaway Parsing fails at runtime with a NumberFormatException when the text is not a valid number, so bad input has to be expected rather than assumed away.
-// @takeaway `new Scanner(System.in)` reads the keyboard: `nextLine()` takes the whole line including spaces, and `nextInt()` takes a single number token.
-// @takeaway The two Scanner methods disagree about newlines, which is the source of the most common input bug: `nextInt()` leaves the Enter key behind, so the `nextLine()` after it reads an empty line.
-// @gotcha `nextInt()` stops before the newline, so a `nextLine()` straight afterwards returns "" instead of the text you typed. Call an extra `nextLine()` to clear the leftover.
-// @gotcha `Integer.parseInt(" 42 ")` throws, because the spaces make it invalid text. Trim the input first.
-// @gotcha `System.console()` returns null inside most IDEs, because the program is not attached to a real terminal, so code that calls it throws a NullPointerException.
-// @gotcha `Math.round` returns a long, not an int, so storing its result in an int needs a cast.
+// @takeaway Input always arrives as text, even when the user typed digits, so it has to be parsed.
+// @snippet Integer.parseInt("42")        // 42
+// @snippet Double.parseDouble("3.14")    // 3.14
+// @takeaway Parse before doing arithmetic: `"100" + "50"` joins to `10050`, and `"100" - "50"` does not compile.
+// @takeaway Parsing throws `NumberFormatException` at runtime when the text is not a valid number.
+// @takeaway `new Scanner(System.in)` reads the keyboard: `nextLine()` takes the whole line, `nextInt()` one number token.
+// @takeaway `nextInt()` leaves the Enter key behind, so the `nextLine()` after it reads an empty line.
+// @gotcha `nextInt()` stops before the newline, so call an extra `nextLine()` to clear the leftover.
+// @gotcha `Integer.parseInt(" 42 ")` throws, because the spaces make it invalid; trim the input first.
+// @gotcha `System.console()` returns null inside most IDEs, so calling it throws `NullPointerException`.
+// @gotcha `Math.round` returns a `long`, so storing its result in an `int` needs a cast.
+// @snippet int n = (int) Math.round(3.7);
 
 /*
 *  When we read data in from either a file or from user input, it's common for the data

@@ -106,10 +106,10 @@ import java.util.IllegalFormatConversionException;
 // System.out.println("Hello %n");     // prints Hello %n, because there is no format string here
 // Note :- %n only means anything inside a format string. For a plain print, use an escape such as \n.
 
-// @takeaway `System.out.printf` prints its result immediately, while `String.format` returns the same text as a String you can store, compare or print later. The placeholders and arguments behave identically.
-// @takeaway In a format string, %d is a whole number, %f is a decimal, %s is text, %.2f keeps two decimal places, %5d pads to width 5, and %n is the platform's new line.
-// @gotcha A placeholder that does not match its argument throws at runtime, not at compile time, so `printf("%f", 42)` looks fine until the line runs.
-// @gotcha %n only has meaning inside a format string. `System.out.println("Hello %n")` prints the characters `%n` literally, because println is not a formatter.
+// @takeaway `printf` prints immediately; `String.format` returns the same text as a String you can store or print later.
+// @takeaway In a format string `%d` is a whole number, `%f` a decimal, `%s` text, `%.2f` two places, `%5d` width 5, and `%n` a new line.
+// @gotcha A placeholder that does not match its argument throws at runtime, not at compile time.
+// @gotcha `%n` only means a newline inside a format string; `println("Hello %n")` prints it literally.
 
 
 // @quiz (OCJP, HARD) What is printed by this program?

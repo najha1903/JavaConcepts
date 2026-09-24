@@ -81,13 +81,13 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
   Pitfall :- `while (condition);` with a semicolon gives the loop an empty body, so the condition is tested forever and the block you wrote underneath does not belong to the loop at all.
   Pitfall :- in a while loop, `continue` jumps straight back to the condition without running the update, so a counter that is only incremented at the end of the body never advances.
 
- @takeaway A while loop tests its condition before every pass, so when the condition is false to begin with the body never runs at all.
- @takeaway Nothing is built into a while header. You set the counter up before the loop and change it inside the body, and forgetting to change it is what produces an infinite loop.
- @takeaway Three shapes cover most while loops: count up to a limit, keep going until a sentinel value arrives, and keep asking until the input becomes valid.
- @takeaway `n % 10` gives the last digit of a number and `n = n / 10` removes it. Repeat that while `n > 0` and the digits come out in reverse, which is the basis of digit sum, palindrome checks and number-to-words.
- @gotcha A while loop whose body never changes the condition runs forever, and the program looks frozen rather than reporting anything.
- @gotcha `while (condition);` with a stray semicolon gives the loop an empty body, so the condition is tested endlessly and the block underneath is outside the loop.
- @gotcha `continue` in a while loop jumps back to the condition without running the update, so a counter incremented only at the end of the body never moves.
+ @takeaway A `while` tests before every pass, so if the condition is false to begin with the body never runs.
+ @takeaway Nothing is built into a `while` header: you set the counter up before it and change it inside the body.
+ @takeaway Three shapes cover most `while` loops: count to a limit, wait for a sentinel, and keep asking until the input is valid.
+ @takeaway `n % 10` is the last digit and `n / 10` removes it, which is the basis of digit sum and palindrome checks.
+ @gotcha A `while` whose body never changes the condition runs forever.
+ @gotcha `while (condition);` with a stray semicolon gives the loop an empty body and spins forever.
+ @gotcha `continue` in a `while` jumps to the condition without the update, so the counter never moves.
 */
 
 // @quiz (INTERVIEW) What is the difference between while and do-while in Java?

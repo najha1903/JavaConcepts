@@ -38,6 +38,7 @@ const CHECKS = [
   { script: 'check-questions.js', label: 'Question answers' },
   { script: 'check-bank.js', label: 'OCJP bank' },
   { script: 'check-quality.js', label: 'Question quality' },
+  { script: 'check-cram.js', label: 'Cram points' },
   { script: 'check-ui.js', label: 'Interface' },
   { script: 'fix-encoding.js', label: 'Text encoding' },
   { script: 'check-in-progress.js', label: 'In-progress chapter' },

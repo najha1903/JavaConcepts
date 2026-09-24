@@ -901,7 +901,7 @@ function renderLevels() {
           <span class="level-badge">${p.unlocked ? 'open' : 'not yet'}</span>
         </div>
         <p class="level-status">${levelStatusText(level, progress)}</p>
-        <button class="btn btn-small ${p.unlocked ? 'btn-primary-outline' : 'btn-outline'}" onclick="startLevelQuiz('${level}')">
+        <button class="btn btn-small ${p.unlocked ? 'btn-primary-outline' : 'btn-outline'}" onclick="drillLevelInBank('${level}')">
           Quiz ${level}
         </button>
       </div>`;
@@ -991,7 +991,7 @@ function renderMasteryList() {
         </div>
         <div class="mastery-row-side">
           <span class="mastery-pct">${pct === null ? '—' : pct + '%'}</span>
-          <button class="btn btn-small btn-outline" onclick="startConceptQuiz('${m.id}')">Drill</button>
+          <button class="btn btn-small btn-outline" onclick="drillConceptInBank('${m.id}')">Drill</button>
           ${challengesForConcept(m.id, true).length ? `<button class="btn btn-small btn-outline" onclick="practiseConceptInCode('${m.id}')">Practise in code</button>` : ''}
         </div>
       </div>`;
@@ -1026,6 +1026,33 @@ function renderStartHere() {
 }
 
 // ---- The actions the nudge and the list can take -----------------------------
+// ---- Routing into the Revision Bank -----------------------------------------
+//
+// The level and concept quizzes used to start here. That meant the same quiz was reachable
+// from two screens with two sets of filters, which is how they drifted apart. The Bank is the
+// one place a quiz starts now, so these buttons take you there with the filter already set -
+// what you see listed is what you are tested on.
+//
+// Kept as quizzes, because the Bank cannot express them: they are driven by the answer record,
+// not by filters over the notes. See startDueQuestionsQuiz and startWeakestConceptQuiz.
+
+function openBankWithFilters(filters) {
+  bankFilters = { ...bankFilters, chapter: 'all', search: '', ...filters };
+  initBankChapterSelect();
+  initBankConceptSelect();
+  syncBankFilterControls();
+  renderRevisionBank();
+  showView('bank-view');
+}
+
+function drillLevelInBank(level) {
+  openBankWithFilters({ level, tag: 'all', concept: 'all' });
+}
+
+function drillConceptInBank(conceptId) {
+  openBankWithFilters({ level: 'all', tag: 'all', concept: conceptId });
+}
+
 function startConceptQuiz(conceptId) {
   const pool = questionsForConcept(conceptId);
   if (!pool.length) { alert('No questions carry that concept yet.'); return; }
@@ -1051,15 +1078,6 @@ function startDueQuestionsQuiz() {
   }
   if (!pool.length) { alert('Nothing is due right now.'); return; }
   startSelectionQuiz(pool, 'Due for review', Math.min(pool.length, 25));
-}
-
-function startLevelQuiz(level) {
-  const pool = [];
-  Object.keys(QUESTIONS_BANK).forEach(ch => (QUESTIONS_BANK[ch] || []).forEach(q => {
-    if (String(q.difficulty || 'medium').toLowerCase() === level) pool.push(q);
-  }));
-  if (!pool.length) { alert(`No ${level} questions yet.`); return; }
-  startSelectionQuiz(pool, `${level} questions: all chapters`, Math.min(pool.length, 25));
 }
 
 function openFirstChapter() {
@@ -2354,11 +2372,13 @@ function buildAnkiDeck(scope) {
       });
     });
 
-    // 2) Cloze cards from chapter takeaways + gotchas (Quick Revision bank)
+    // 2) Cloze cards from the chapter's cram points (Quick Revision bank)
     const rev = (typeof QUICK_REVISION_BANK !== 'undefined' && QUICK_REVISION_BANK[chapterName]) || null;
     if (rev) {
-      (rev.takeaways || []).forEach(t => {
-        const c = ankiMakeCloze(t);
+      // A cram point is { say, code }, so the card is built from its sentence. The snippet is
+      // not used for the card: a cloze deletion needs a sentence to blank a word out of.
+      (rev.takeaways || []).forEach(point => {
+        const c = ankiMakeCloze(cramSay(point));
         if (!c) return;
         const key = c.back.toLowerCase().slice(0, 90);
         if (seen.has(key)) return; seen.add(key);
@@ -2369,7 +2389,8 @@ function buildAnkiDeck(scope) {
         });
       });
 
-      (rev.gotchas || []).forEach(g => {
+      (rev.gotchas || []).forEach(point => {
+        const g = cramSay(point);
         // Skip raw @quiz traps — already represented as interview Q&A cards
         if (/output of:|INTERVIEW TRAP|what is wrong with|what is the result|what happens/i.test(g)) return;
         const clean = ankiCleanText(g);
@@ -2677,6 +2698,28 @@ function handleAnkiKeydown(e) {
   }
 }
 
+// ---- Cram points ------------------------------------------------------------
+//
+// A cram point is { say, code }: one sentence, and optionally up to three lines of code that
+// show the shape of the syntax it is about. The sentence is what you say in an interview;
+// the code is there because for some facts the syntax IS the fact.
+//
+// The points come from the @takeaway lines in the author's notes. There is no derived list.
+
+function cramSay(point) {
+  if (point === null || point === undefined) return '';
+  if (typeof point === 'string') return point;
+  return String(point.say || '');
+}
+
+function renderCramPoint(point) {
+  // The author's own words, so they are escaped before anything is wrapped around them.
+  const text = escapeHtml(cramSay(point)).replace(/`([^`]+)`/g, '<code>$1</code>');
+  const code = String((point && point.code) || '').replace(/\s+$/, '');
+  if (!code) return text;
+  return `${text}<pre class="cram-snippet"><code>${escapeHtml(code)}</code></pre>`;
+}
+
 function renderQuickRevision(topic) {
   const bulletContainer = document.getElementById('quick-bullet-points');
   const gotchasContainer = document.getElementById('quick-gotchas-list');
@@ -2708,23 +2751,23 @@ function renderQuickRevision(topic) {
   const fcCoreRule = document.getElementById('fc-core-rule');
   const fcProTip = document.getElementById('fc-pro-tip');
   if (curated) {
-    if (fcCoreRule) fcCoreRule.textContent = curated.takeaways[0] || 'Review the core concept in this chapter.';
-    if (fcProTip) fcProTip.textContent = curated.proTip || curated.gotchas[0] || 'Be precise about edge cases when explaining this in an interview.';
+    if (fcCoreRule) fcCoreRule.textContent = cramSay(curated.takeaways[0]) || 'Review the core concept in this chapter.';
+    if (fcProTip) fcProTip.textContent = curated.proTip || cramSay(curated.gotchas[0]) || 'Be precise about edge cases when explaining this in an interview.';
   } else {
     if (fcCoreRule) fcCoreRule.textContent = `Study the structure of ${topic.fileName} to understand key Java constraints.`;
     if (fcProTip) fcProTip.textContent = 'Be aware of implicit type promotions and compiler restrictions. Always mention edge cases in an interview.';
   }
   
   if (curated) {
-    curated.takeaways.forEach(rule => {
+    curated.takeaways.forEach(point => {
       const li = document.createElement('li');
-      li.innerHTML = rule.replace(/`([^`]+)`/g, '<code>$1</code>');
+      li.innerHTML = renderCramPoint(point);
       bulletContainer.appendChild(li);
     });
     
-    curated.gotchas.forEach(gotcha => {
+    curated.gotchas.forEach(point => {
       const li = document.createElement('li');
-      li.innerHTML = gotcha.replace(/`([^`]+)`/g, '<code>$1</code>');
+      li.innerHTML = renderCramPoint(point);
       gotchasContainer.appendChild(li);
     });
 

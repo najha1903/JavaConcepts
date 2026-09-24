@@ -813,77 +813,6 @@ function isParameterNoteLine(line) {
   return head.includes('(') && /\)$/.test(head);
 }
 
-// A key point should state a general rule about the topic. A line that refers to
-// the file it came from, or that describes one particular example, is a note
-// rather than a key point, so it scores lower and is passed over.
-function scoreKeyPoint(line, fileName, isGotcha) {
-  const text = String(line || '');
-  let score = 0;
-
-  // A rule reads like a rule.
-  if (/\b(must|cannot|can't|never|always|only|throws?|compile error|does not compile|is not allowed|is required)\b/i.test(text)) score += 4;
-  // A definition explains what something is, which is what a key point is for.
-  if (/^[A-Z][\w\s]{2,40}\s+(is|are|means|refers to)\b/.test(text)) score += 3;
-  else if (/\b(is a|are a|means|refers to)\b/.test(text)) score += 2;
-  // An explanation gives a reason, which is more useful than a bare statement.
-  if (/\b(because|so that|which is why|otherwise)\b/i.test(text)) score += 2;
-
-  // A line about this particular file is not a key point for the chapter.
-  if (/\b(this file|this example|the code below|in this topic|we will|we'll|here we|the example below|as we saw)\b/i.test(text)) score -= 5;
-  if (/^(note|important|tip)\b/i.test(text)) score -= 1;
-  // A question is not a key point.
-  if (/\?\s*$/.test(text)) score -= 6;
-  // An exercise file describes a task, so its lines are weaker key points.
-  if (/challenge|problem/i.test(String(fileName || ''))) score -= 3;
-  // A gotcha line belongs in the gotchas list, so it is not a concept.
-  if (isGotcha) score -= 1;
-
-  // Long enough to explain, short enough to scan.
-  const length = text.length;
-  if (length >= 60 && length <= 190) score += 2;
-  else if (length < 40) score -= 1;
-  else if (length > 260) score -= 1;
-
-  return score;
-}
-
-// Picks the best candidates while still covering every topic, so one long topic
-// cannot fill the whole list. Within a topic the highest score wins, and between
-// topics the pick moves round so each contributes in turn.
-function pickBestKeyPoints(buckets, limit) {
-  const ranked = buckets.map(bucket =>
-    bucket.slice().sort((a, b) => b.score - a.score));
-  const out = [];
-  const seen = new Set();
-  const takeFrom = bucket => {
-    while (bucket.length) {
-      const candidate = bucket.shift();
-      const key = candidate.line.toLowerCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      return candidate;
-    }
-    return null;
-  };
-  let round = 0;
-  while (out.length < limit) {
-    let addedThisRound = false;
-    for (const bucket of ranked) {
-      if (out.length >= limit) break;
-      if (bucket.length === 0) continue;
-      const candidate = takeFrom(bucket);
-      if (candidate) {
-        out.push(candidate.line);
-        addedThisRound = true;
-      }
-    }
-    if (!addedThisRound) break;
-    round++;
-    if (round > 40) break;
-  }
-  return out;
-}
-
 // True when a line is a title or a label rather than a statement that can be
 // explained, for example "STRING METHODS AND BEST PRACTICES", "Parameters:-" or
 // "Challenge: Build a calculator".
@@ -955,81 +884,71 @@ function isClaimStatement(text) {
   return true;
 }
 
+// How many lines a @snippet block may carry. A cram point is a sentence you could say out
+// loud, and the code under it is there to show the shape of the thing, not to be an example
+// you read. Longer than this and it is the notes, which is what Quick Revision must not be.
+const SNIPPET_MAX_LINES = 3;
+
 // ==========================================================================
 // Auto-generate QUICK_REVISION_BANK entry from parsed chapter topics
 // ==========================================================================
 function buildQuickRevisionEntry(chapterName, topics, chapterIsFinished = true) {
-  const gotchaKeywords = ['gotcha', 'pitfall', 'warning', 'caution', 'error', 'note', 'remember', 'important', 'trick', 'overflow', 'avoid', 'careful', 'trap'];
   const codeSnippets = [];
   const badges = new Set();
   // Comparison tables keep their grid in the Quick Revision panel, so they are
   // carried across as structured rows instead of flattened "cell — cell" text.
   const tables = [];
-  // Concept lines are collected per topic so that every topic contributes,
-  // instead of the first topic filling every slot with its parameter notes.
-  const conceptsByTopic = [];
-  const gotchasByTopic = [];
-  // The author can state a chapter's key points himself with @takeaway and
-  // @gotcha. Those lines are used ahead of anything the tool derives, because a
-  // derived list picks whatever line happens to come first in a file, which is
-  // how challenge instructions and bare headings used to end up as "takeaways".
+  // The author's cram points, written with @takeaway and @gotcha, each optionally carrying
+  // a short code sample on the @snippet lines that follow it.
+  //
+  // These are what the Quick Revision panel shows, and they are the ONLY source. There used
+  // to be a derived fallback that invented points by scoring sentences out of the notes when
+  // a chapter had none; it produced copies of the notes rather than cram points, and it is
+  // gone. A chapter with no points says so, and the ledger names it as work to do.
   const authoredTakeaways = [];
   const authoredGotchas = [];
 
   topics.forEach(topic => {
+    // A point stays open across blank lines, and closes on any other line, so a snippet
+    // cannot attach itself across a paragraph of notes to a point it does not belong to.
+    let current = null;
     for (const raw of String(topic.code || '').split('\n')) {
-      const marker = raw.trim().match(/^(?:\/\/|\*)?\s*@(takeaway|gotcha)\s+(.+)$/i);
-      if (!marker) continue;
-      const text = marker[2].trim();
-      if (marker[1].toLowerCase() === 'takeaway') authoredTakeaways.push(text);
-      else authoredGotchas.push(text);
+      const line = raw.trim();
+
+      const point = line.match(/^(?:\/\/|\*)?\s*@(takeaway|gotcha)\s+(.+)$/i);
+      if (point) {
+        current = { say: point[2].trim(), code: '' };
+        if (point[1].toLowerCase() === 'takeaway') authoredTakeaways.push(current);
+        else authoredGotchas.push(current);
+        continue;
+      }
+
+      const snippet = line.match(/^(?:\/\/|\*)?\s*@snippet\s*(.*)$/i);
+      if (snippet) {
+        if (!current) continue;
+        if (current.code.split('\n').filter(l => l.trim()).length >= SNIPPET_MAX_LINES) continue;
+        const text = snippet[1].replace(/\s+$/, '');
+        current.code = current.code ? `${current.code}\n${text}` : text;
+        continue;
+      }
+
+      // A line that is only comment markers is treated as blank and keeps the point open.
+      if (!line.replace(/^(?:\/\/+|\*+)\s*$/, '')) continue;
+      current = null;
     }
 
-    const conceptLines = [];
-    const gotchaLines = [];
-
+    // Only the comparison tables are read from the notes now. Everything else in this loop
+    // fed the derived key-point list, which is gone: the cram points are the authored
+    // @takeaway lines and nothing else.
     topic.headerComments.forEach(block => {
-      if (block.type === 'code') return;
-      if (block.type === 'table' && (block.rows || []).length > 0) {
-        if (tables.length < 3) {
-          tables.push({
-            headers: (block.headers || []).slice(),
-            rows: (block.rows || []).map(row => row.slice())
-          });
-        }
-        return;
+      if (block.type !== 'table' || !(block.rows || []).length) return;
+      if (tables.length < 3) {
+        tables.push({
+          headers: (block.headers || []).slice(),
+          rows: (block.rows || []).map(row => row.slice())
+        });
       }
-      if (!Array.isArray(block.lines)) return;
-      // Skip a whole parameter-notes block. It explains arguments, not concepts.
-      if (block.lines.length && /parameter notes/i.test(block.lines[0])) return;
-      block.lines.forEach(rawLine => {
-        // A bullet is presentation, not part of the statement.
-        const line = String(rawLine || '').replace(/^[-*•]\s+/, '').trim();
-        if (!line || line.length < 10) return;
-        if (isParameterNoteLine(line)) return;
-        // A bare heading such as "STRING METHODS AND BEST PRACTICES" is a title,
-        // not a concept, so it is not revision material.
-        if (!/[a-z]/.test(line)) return;
-        // A line ending in ":-" or ":" introduces what follows rather than stating
-        // a concept, so "Types of loop in Java :-" must never become a key point.
-        if (/[:-]\s*$/.test(line)) return;
-        // The same rule the quiz options use: an instruction, a heading or a note
-        // fragment is not a statement about the topic. This is what stops a chapter
-        // that has no authored @takeaway from filling the panel with "Print the
-        // result in the format..." and other instructions from its challenges.
-        if (!isClaimStatement(line)) return;
-        // Each candidate keeps its score, so the best lines can be chosen rather
-        // than whichever one happened to come first in the file.
-        const lowerLine = line.toLowerCase();
-        const isGotcha = gotchaKeywords.some(kw => lowerLine.includes(kw));
-        const entry = { line, score: scoreKeyPoint(line, topic.fileName, isGotcha) };
-        if (isGotcha) gotchaLines.push(entry);
-        else conceptLines.push(entry);
-      });
     });
-
-    conceptsByTopic.push(conceptLines);
-    gotchasByTopic.push(gotchaLines);
 
     // Badges: the syntax and API the chapter teaches, taken from the concepts it
     // covers. This replaces scraping method names from the source, which put
@@ -1070,33 +989,25 @@ function buildQuickRevisionEntry(chapterName, topics, chapterIsFinished = true) 
   // boilerplate when no block shows anything distinctive.
   codeSnippets.sort((a, b) => b.score - a.score);
 
-  // Authored lines win. Only a chapter with none of its own falls back to the
-  // derived pick. The caps are generous enough that a chapter writing its own
-  // points does not silently lose the last few.
+  // The cram points ARE the authored lines, with their snippets. There is no fallback.
   //
-  // For a chapter that is STILL BEING WRITTEN there is no derived fallback at all:
-  // the panel shows only what the author wrote, because a derived point in a
-  // half-written chapter is a guess about a moving target.
-  const takeaways = authoredTakeaways.length
-    ? authoredTakeaways.slice(0, 12)
-    : (chapterIsFinished ? pickBestKeyPoints(conceptsByTopic, 8) : []);
-  const gotchas = authoredGotchas.length
-    ? authoredGotchas.slice(0, 10)
-    : (chapterIsFinished ? pickBestKeyPoints(gotchasByTopic, 6) : []);
+  // There used to be one: a chapter with no @takeaway lines had points invented for it by
+  // scoring sentences out of its notes and keeping the best. That produced copies of the
+  // notes rather than cram points, which is the defect this whole change exists to fix, so
+  // it is gone. A finished chapter with no points shows the honest message below instead,
+  // and the ledger names it as work to do.
+  const takeaways = authoredTakeaways.slice(0, 14);
+  const gotchas = authoredGotchas.slice(0, 10);
 
-  // A FINISHED chapter with no key points says so, as a prompt to the author. A chapter
-  // still being written gets NOTHING - not even a prompt.
+  // A finished chapter with no points says so. A chapter still being written gets NOTHING,
+  // not even the message - nothing exists for it by design.
   //
-  // It used to get a prompt, and that was wrong twice over. The rule is that nothing
-  // exists for the chapter being written, and the prompt's advice was "add // @takeaway
-  // lines", which invites tool markers into a chapter the author has not finished - the
-  // exact habit that put 13 quizzes and a "Composition Deep Problem" into Chapter 15. The
-  // dashboard explains the empty panel instead, from the `inProgress` flag below, so the
-  // explanation lives in the interface rather than in the data.
+  // The message is marked as a placeholder, so the ledger and the check can tell it apart from
+  // a real cram point. Without that it counted as one, and the ledger reported "14 of 14
+  // chapters have cram points" for a chapter that had none.
   if (!takeaways.length && chapterIsFinished) {
-    takeaways.push(`No key points are written for ${chapterName} yet. Add // @takeaway lines to state them, and they will appear here instead of this note.`);
+    takeaways.push({ say: `No cram points are written for ${chapterName} yet.`, code: '', placeholder: true });
   }
-
   // The snippet is the highest-scoring block, or nothing rather than boilerplate.
   // A chapter whose notes contain no distinctive code shows no syntax panel at all,
   // which is more honest than showing a class declaration.

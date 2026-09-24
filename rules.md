@@ -64,11 +64,11 @@ Verified by adding a new chapter with notes, a quiz and a challenge, running the
 
 Three things a new file does NOT inherit, because they are authored rather than generated:
 
-### 1. A new chapter's key points are written for you, and `@takeaway` refines them
+### 1. A new chapter's cram points are written by hand, and nothing is derived
 
-The Quick Revision panel is built automatically. It scores every statement in the chapter's notes and keeps the best ones: a rule ("must", "cannot", "throws", "does not compile") scores high, a definition or an explanation scores well, and a line that talks about *this file* or *this example*, or that asks a question, is passed over. Exercise files score lower than concept files, because their lines describe a task. The pick then moves round the topics, so one long topic cannot fill the whole list.
+The Quick Revision panel shows a chapter's cram points, and they come from the `@takeaway` and `@gotcha` lines in its files. **There is no derived list.** A chapter with no points says so, and the ledger names it as work to do.
 
-This means a chapter arrives with usable key points and no work from you — **once it is finished.** The chapter you are currently writing is the exception: it has none of this until you start the next one. See [A Chapter You Are Still Writing](#a-chapter-you-are-still-writing). Verified by removing the `@takeaway` lines from Chapter 12 and regenerating: the derived list was
+That used to be different, and the history is worth keeping because the mistake was subtle. The panel first tried to write its own key points by scoring every sentence in the chapter's notes and keeping the best — a rule word scored high, a definition scored well, a line mentioning "this file" was passed over. It produced this, when it was verified against Chapter 12:
 
 ```text
 Without handling, an exception immediately terminates execution and prints a stack trace.
@@ -76,14 +76,18 @@ Checked, such as IOException: the compiler insists you either catch it or declar
 `finally` block: Guarantees execution regardless of whether an exception was thrown or caught.
 ```
 
-against the authored *"An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace."* Close, and all five derived gotchas were the authored ones.
+The second and third are fragments rather than sentences, and all three are the notes rearranged. That is the whole reason the panel felt like a shortened copy of the notes: it was one. So the scoring was deleted, and the points are written instead.
 
-Write `@takeaway` and `@gotcha` lines when you want the point phrased your way, or when you want to state something the notes do not already say. Yours are used verbatim and the derived ones are not shown at all. If a chapter has nothing worth deriving, the panel says so rather than showing junk:
+**A cram point is one sentence you could say out loud.** That is a rule, and it is enforced:
 
-```text
-No key points are written for Chapter 16 yet. Add // @takeaway lines to state them,
-and they will appear here instead of this note.
-```
+| | |
+|---|---|
+| Length | at most **160 characters and 26 words**. The old points had a median of 157 characters and 28 words, with 90 of 152 over 150 — paragraphs, not cram points |
+| Not a repeat | a point must not duplicate another note line in the same chapter |
+| Per chapter | 5 to 14 points, 2 to 10 traps |
+| A snippet | at most 3 lines, always Java, and it must compile or - when it carries a `// value` comment - actually produce that value |
+
+The chapter you are currently writing has none of this until you start the next one. See [A Chapter You Are Still Writing](#a-chapter-you-are-still-writing).
 
 See [Key Takeaways And Gotchas](#key-takeaways-and-gotchas) for how to write one.
 
@@ -380,6 +384,8 @@ Proof carries the most weight because it is the only part that cannot be reached
 
 **Study next.** The dashboard opens on one action chosen from your data, not three generic buttons. The priority is: something overdue, then your weakest concept, then untried material.
 
+**Mastery measures; the Revision Bank acts.** Mastery's level buttons and its per-concept Drill buttons do not start a quiz of their own — they open the **Revision Bank with that filter already set**, so what is listed is what you are tested on and there is one place a quiz begins. Two buttons do still start their own quiz, because the Bank cannot express them: **Quiz the due questions** ("what my record says is due" is not a filter over the notes) and **Quiz my weakest concept** (chosen from your accuracy history).
+
 **Notes that could use an example.** The rules in your notes that state a constraint — "must", "cannot", "throws", "does not compile" — with no code sample beside them, grouped by chapter and then by file, each file name a button that opens it in the Notes view. Detection is reliable because it is structural: it asks whether a code block sits next to the line, not whether two lines are about the same subject. Keyword matching cannot tell what a line is *about* from what it merely mentions, which is why the tool can find these but cannot write the example. It was 128 of 246 at the time of writing.
 
 **Suggested additions.** Gaps where your code uses a construct or an API your notes never explain. Listed here read-only, deliberately: accepting one writes to your files, and that stays in the review page, which is the one place in this project that writes to your notes. Exercise files are excluded entirely, because using the construct is the exercise — a loop challenge in the Looping chapter contains a loop, and "the notes never explain it" is true and meaningless. That exclusion took the list from 50 to 8.
@@ -599,32 +605,56 @@ Use it when one file holds two clearly different sets of questions. Never use it
 
 ## Key Takeaways And Gotchas
 
-`@takeaway` and `@gotcha` state a chapter's key points in the author's own words. They feed the Quick Revision panel and the cloze cards.
+`@takeaway` and `@gotcha` are the chapter's **cram points**. They are what the Quick Revision panel shows, and they are the only source: nothing is derived from the notes any more.
 
 ```java
-// @takeaway A String cannot be changed after it is created, so concat, trim and substring all return a NEW String and the result has to be stored to be seen.
-// @gotcha `"Java" + 10 + 20` gives Java1020 rather than Java30, because + starts joining as soon as one side is text.
+// @takeaway A String never changes; `toUpperCase`, `trim`, `replace` and `substring` all return a NEW String, so store or print the result.
+// @takeaway Indexes start at 0, and `substring(begin, end)` stops just before end.
+// @snippet "Java".substring(0, 3)     // Jav
+// @gotcha `replaceAll` reads its first argument as a regex, so `replaceAll(".", "-")` replaces every character.
 ```
 
-A chapter with no authored lines falls back to a round-robin pick of its note lines, which is why challenge instructions and bare headings used to appear as "key points". Authoring them is what removes that.
+### A cram point is one sentence you could say out loud
 
-### How To Write One
+That is the whole standard, and it is enforced by `scripts/check-cram.js`, which fails the build. It exists because the first version of this panel did not meet it: the points had a median of 157 characters and 28 words, with 90 of 152 over 150 characters and the longest at 294. Those are paragraphs you read, not points you say, which is exactly why the panel felt like a shortened copy of the notes.
 
-A takeaway is there to help you understand the concept, not to remind you of a rule you already understand. Write it as if explaining the idea to yourself next month.
+| Rule | Limit |
+|---|---|
+| Length | **160 characters and 26 words** |
+| Not a repeat | must not duplicate another note line in the same chapter |
+| Per chapter | **5 to 14 points, 2 to 10 traps** |
+| Snippet | at most **3 lines**, always Java, and it must compile |
 
-- Explain the idea in plain words first, then use the term.
-- Give one concrete example with its real output, such as `5 / 2` is 2.
-- Say why it matters, or what goes wrong without it.
-- Two or three sentences is the right length. One dense line is not.
-
-Compare:
+Write it the way you would say it in an interview: the fact first, then the consequence if it fits.
 
 ```text
-Cryptic     : Division and modulus differ in that integer division truncates while modulus yields the remainder.
-Explained   : Dividing two whole numbers throws the fraction away, so 10 / 3 is 3 and not 3.33. The % operator hands you that thrown-away remainder instead, which makes 10 % 3 equal 1.
+Reads like notes : An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace.
+Cram point       : An exception interrupts the normal flow; unhandled, the program stops and prints a stack trace.
 ```
 
-A gotcha is for the mistake that is easy to make and easy to miss. Name the mistake, show the wrong code, and say what actually happens. Do not restate the rule in the negative.
+### `@snippet` — code, but only where the syntax IS the fact
+
+A snippet is up to 3 lines under the point, and it is there because for some facts the syntax *is* the fact. `javac` takes a file and `java` takes a class name is not a fact you can state well in words.
+
+```java
+// @takeaway `main` is `public static void`: public so the launcher can call it, static so the JVM needs no object, void because it returns nothing.
+// @snippet public static void main(String[] args)
+```
+
+**Roughly half the points carry one, and never more than 3 lines.** A sheet where every point has code is the notes again, which is the defect being fixed.
+
+A snippet must be **self-contained Java**, using the JDK only — a fragment that calls your own method cannot be checked by anyone, including you next month. Two more things the check enforces, and both make the sheet better rather than just checkable:
+
+```java
+// @snippet 9 / 2         // 4          <- the claim is tested: it is run, and 4 is what it prints
+// @snippet if (1) { }    // compile error   <- asserted to NOT compile
+```
+
+So a comment is a promise. If it says `// 4`, the snippet is run and must print `4`. If it says `// compile error`, it must genuinely fail to compile.
+
+### A gotcha is for the mistake that is easy to make and easy to miss
+
+Name the mistake and say what actually happens. Do not restate the rule in the negative.
 
 ## Quiz Levels
 
@@ -682,7 +712,8 @@ A void method outputs nothing else, so only an explicit `@testcase` line can mak
 The generated portal provides:
 
 - Notes with explanations, code blocks, tables and parameter notes.
-- **Key Takeaways & Annotations**: for each file, the `@takeaway` and `@gotcha` lines written in that file, followed by the annotations found inside its code. Only comments from inside the class declaration are listed, so the overview notes are not repeated, and only comments that read as a complete sentence are kept, so a fragment such as "condition" or "block of statements" never appears without the line it belonged to.
+- **Key Takeaways & Annotations**: the `@takeaway` and `@gotcha` cram points written in each file, followed by the annotations found inside its code. Only comments from inside the class declaration are listed, so the overview notes are not repeated, and only comments that read as a complete sentence are kept, so a fragment such as "condition" or "block of statements" never appears without the line it belonged to.
+- **Quick Revision** shows the cram sheet: the points and traps for the chapter, each at most 160 characters, with a short code snippet under the ones where the syntax is the fact. There is a Browse mode for reading them and a flashcard mode built from the same points.
 - Detailed Study and Quick Revision modes; comparison tables keep their grid in both.
 - **Comparison tables are your content.** A markdown table in your notes becomes a real table in Quick Revision. None is generated, because writing one would mean putting the tool's words into your notes. The ledger tells you which chapters have none; add one only where a comparison is genuinely worth keeping.
 - **Revision Bank**: one place for everything the author has written notes for. Filter by chapter, by free text, by level (Easy, Medium, Hard), by type (OCJP, Tricky, Concept, Predict, Fill Blank, Written) and by concept, read the notes, or start a quiz directly from the selection. It is built from `CONCEPTS_DATA`, so a chapter that has no source files can never appear in it.
@@ -731,6 +762,7 @@ They then run every check, in order, and refuse to apply if any fails:
 | `check-questions.js` | Every question about output is compiled and run, and the real output is compared with the answer marked correct. |
 | `check-bank.js` | Every hand-researched OCJP question marks the answer the bank intends, and every wrong option says why it is wrong. |
 | `check-quality.js` | Every question gives feedback on a wrong choice, and none gives the answer away without reasoning. |
+| `check-cram.js` | Every cram point is at most 160 characters and 26 words, does not duplicate a note line, and sits in a chapter with 5–14 points and 2–10 traps. Every snippet is at most 3 lines, is not a whole code block lifted from the notes, and either compiles or — when its comment claims a value — actually produces it. |
 | `check-ui.js` | Every text colour clears WCAG AA against its own theme background, no `font-size` is below 12px, and no container gap is below 12px. Chips, badges and tags are excluded on purpose. |
 | `coverage.js --check` | **Fails** on a chapter with no questions, no easy question, no hard question, or no takeaways; on a Quick Revision syntax snippet or badge that is not the chapter's own; and on a concept your notes cover that no question tests. **Warns** when a topic has no question of its own, and when a chapter is short of the OCJP target. |
 

@@ -958,6 +958,26 @@ button:disabled:active,
   content: none;
 }
 
+/* The short code sample under a cram point. A cram point is a sentence you say out loud,
+   and the sample is there because for some facts the syntax IS the fact. So it is set apart
+   from the prose: monospace, its own background, and no wrapping, because a wrapped line of
+   code is harder to read than a scrolled one. */
+.cram-snippet {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.cram-snippet code {
+  font-family: var(--font-mono, monospace);
+  color: var(--text-secondary);
+  white-space: pre;
+}
+
 /* Notes Table (auto-generated from pipe-delimited comment tables) */
 .note-table-wrapper {
   width: 100%;

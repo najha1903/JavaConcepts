@@ -10,6 +10,7 @@
     "check:questions": "node scripts/check-questions.js",
     "check:bank": "node scripts/check-bank.js",
     "check:quality": "node scripts/check-quality.js",
+    "check:cram": "node scripts/check-cram.js",
     "check:ui": "node scripts/check-ui.js",
     "check:encoding": "node scripts/fix-encoding.js",
     "check:in-progress": "node scripts/check-in-progress.js",

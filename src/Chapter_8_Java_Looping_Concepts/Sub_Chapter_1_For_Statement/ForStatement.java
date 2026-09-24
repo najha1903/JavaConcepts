@@ -82,14 +82,15 @@ package Chapter_8_Java_Looping_Concepts.Sub_Chapter_1_For_Statement;
  }
  Note :- the inner loop runs its whole 3 passes for every single pass of the outer loop. A plain break would leave only the inner loop, which is why a label is used when both must stop.
 
- @takeaway A for loop keeps all three parts on one line: what to do before it starts, the test that decides whether to keep going, and what to change after each pass. `for (int i = 0; i < 5; i++)` runs the body five times, with i taking 0, 1, 2, 3 and 4.
- @takeaway The variable declared in the header belongs to the loop and disappears at the closing brace, so `i` cannot be used after the loop.
- @takeaway `break` leaves the loop immediately, while `continue` skips the rest of the current pass and jumps to the update step, so the counter still advances.
- @takeaway Whether you write `<` or `<=` decides how many passes there are. `i < 5` stops at 4 and `i <= 5` stops at 5, and that one extra pass is the usual off-by-one bug.
- @takeaway Nested loops run the inner loop completely for every single pass of the outer loop, so 3 outer passes over 4 inner passes run the inner body 12 times. A labelled break is how you leave both loops together.
- @gotcha A loop that never changes its condition runs forever, and the program looks frozen rather than showing an error.
- @gotcha `break` on its own leaves only the innermost loop. Leaving two loops needs a label, or a flag that the outer loop tests.
- @gotcha If `continue` runs before the counter update in a while loop, the counter never advances and the loop spins forever. In a for loop the update still runs, so the same mistake is harmless there.
+ @takeaway A `for` header holds all three parts: the setup, the test, and the update after each pass.
+ @snippet for (int i = 0; i < 5; i++) { }
+ @takeaway The variable declared in the header belongs to the loop and disappears at the closing brace.
+ @takeaway `break` leaves the loop; `continue` skips the rest of the pass and still runs the update step.
+ @takeaway `i < 5` stops at 4 and `i <= 5` stops at 5, and that one extra pass is the usual off-by-one bug.
+ @takeaway Nested loops run the inner loop completely for every pass of the outer one, so 3 x 4 runs the inner body 12 times.
+ @gotcha A loop that never changes its condition runs forever, and the program just looks frozen.
+ @gotcha `break` on its own leaves only the innermost loop; leaving two needs a label.
+ @gotcha In a `while`, a `continue` before the update spins forever; in a `for`, the update still runs.
 
  @quiz (INTERVIEW) What is the difference between for, while, and do-while loops in Java?
  @answer for is best when initialization, condition, and update belong together, while while is better for condition-driven loops.

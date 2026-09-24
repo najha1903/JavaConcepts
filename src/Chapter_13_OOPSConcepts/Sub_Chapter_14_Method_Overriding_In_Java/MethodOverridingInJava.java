@@ -270,14 +270,14 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
 // | Also called | Runtime polymorphism | Compile-time selection |
 // Note :- this single distinction explains why `@Override` reports an error when you accidentally change a parameter type: the method has quietly become an overload instead of an override.
 
-// @takeaway Overriding means a child class writes its own version of a method the parent already has, keeping the same name and exactly the same parameter list.
-// @takeaway Which overridden method runs is decided at runtime from the actual object type, not from the reference type, which is why overriding is called runtime polymorphism.
-// @takeaway Which overloaded method runs is decided at compile time from the argument types, so overloading has nothing to do with polymorphism.
-// @takeaway A child version may not take access away from callers, so a public parent method cannot become protected or private in the child, and it may narrow the return type to a subclass.
-// @takeaway Static methods, private methods, final methods and constructors cannot be overridden. `@Override` above the child method makes the compiler check all of this for you.
-// @gotcha Changing the parameter list turns an intended override into an overload, and the code still compiles. `@Override` is what turns that silent mistake into an error.
-// @gotcha A private method in the parent cannot be overridden, because the child cannot even see it. A same-named method in the child is a separate, unrelated method.
-// @gotcha Through a parent reference you can only call the methods the parent declares, so calling a child-only method needs a child reference or a cast.
+// @takeaway Overriding is a child's own version of a parent method, with the same name and the same parameter list.
+// @takeaway Which override runs is decided at runtime from the actual object type, which is why it is called runtime polymorphism.
+// @takeaway Which overload runs is decided at compile time from the argument types, so overloading is not polymorphism.
+// @takeaway An override cannot narrow access: a `public` parent method cannot become `protected` or `private` in the child.
+// @takeaway `static`, `private`, `final` methods and constructors cannot be overridden; `@Override` makes the compiler check that.
+// @gotcha Changing the parameter list silently turns an override into an overload, and `@Override` is what catches it.
+// @gotcha A `private` parent method cannot be overridden, because the child cannot see it, so a same-named method is unrelated.
+// @gotcha Through a parent reference you can only call the methods the parent declares, so a child-only method needs a cast.
 
 
 // @quiz (OCJP, MEDIUM) What is printed by this program?

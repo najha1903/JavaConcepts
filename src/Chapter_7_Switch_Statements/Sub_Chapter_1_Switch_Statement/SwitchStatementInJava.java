@@ -76,15 +76,15 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 // - month (passed to getQuarter(String month)): the exact uppercase month name the case labels expect, such as "JANUARY" or "NOVEMBER". An unlisted spelling, a lowercase name, or null all fall through to the default branch.
 // - value (the selector of switchCaseWithoutUsingBreak): it only picks the case where execution STARTS. Without break statements the run continues into the later cases, so a value of 4 prints the output of 4 and everything after it.
 
-// @takeaway `switch` compares one value against a list of fixed constants. Reach for it when the possibilities are exact values rather than ranges, and use if-else when the conditions are ranges or combinations.
-// @takeaway The selector can be byte, short, char, int, their wrapper types, a String, or an enum value. long, float, double and boolean are rejected, so those need an if-else chain.
-// @takeaway `break` is what stops a case running into the next one. Without it execution falls straight through, which is why `case 2` with no break also prints what `case 3` prints.
-// @takeaway Fall-through is sometimes what you want. Stacking `case 1: case 2: case 3:` makes all three share one body, and only the last label needs a break.
-// @takeaway `default` is matched rather than ordered. It runs when nothing else matched, and writing it first only changes which cases fall into it.
-// @gotcha A missing `break` is the classic switch bug, and the code still compiles, so the mistake shows up as extra output rather than as a compiler error.
-// @gotcha Two case labels holding the same value do not compile, so a duplicated constant is caught at compile time.
-// @gotcha A `return` inside a case leaves the whole method rather than just the switch, so any statement written after the switch never runs.
-// @gotcha A String selector is matched by content and is case-sensitive, so "monday" does not match `case "Monday"` and quietly takes the default branch.
+// @takeaway `switch` compares one value against fixed constants; use `if-else` when the conditions are ranges or combinations.
+// @takeaway The selector can be `byte short char int`, their wrappers, a `String` or an `enum`; `long`, `float`, `double` and `boolean` are rejected.
+// @takeaway `break` stops a case running into the next one; without it execution falls straight through.
+// @takeaway Stacking `case 1: case 2: case 3:` makes all three share one body, and only the last label needs a `break`.
+// @takeaway `default` runs when nothing else matched, and it is matched rather than ordered, so its position only changes what falls into it.
+// @gotcha A missing `break` still compiles, so the bug shows up as extra output rather than as an error.
+// @gotcha Two case labels holding the same value do not compile.
+// @gotcha A `return` inside a case leaves the whole method, so anything written after the switch never runs.
+// @gotcha A `String` selector matches by content and is case-sensitive, so `"monday"` quietly takes the `default` branch.
 
 // @quiz (INTERVIEW) What data types can be used in a traditional Java switch statement?
 // @answer switch supports byte, short, char, int, their wrapper types, enum types, and String.

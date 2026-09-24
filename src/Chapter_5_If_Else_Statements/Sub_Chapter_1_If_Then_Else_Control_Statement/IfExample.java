@@ -49,15 +49,21 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // Pitfall :- a semicolon straight after the condition ends the if and gives it an empty body, so the block written after it runs whatever the condition was.
 // Pitfall :- `=` assigns and `==` compares, so `if (x = 5)` does not compile rather than testing anything.
 
-// @takeaway An `if` asks a true-or-false question and runs its block only when the answer is true. `if (score >= 50) { ... }` runs the block when the score is at least 50, and skips past it completely when it is not.
-// @takeaway The condition has to be a real boolean. Java will not accept `if (1)` or `if (obj)` the way C does, so write the question out: `if (x != 0)` or `if (obj != null)`.
-// @takeaway In a chain of `else if`, only the first condition that turns out true runs and the rest are skipped. With a score of 75 the `>= 90` test fails and the `>= 70` test passes, so you get B, and the `>= 50` test is never even looked at.
-// @takeaway Without braces, an `if` controls only the one statement that follows it. In `if (flag) System.out.println("A"); System.out.println("B");` the second println runs whatever flag is, because only the first one belongs to the if.
-// @takeaway `condition ? valueIfTrue : valueIfFalse` is a whole if-else squeezed into one expression, and it produces a value. Use it to choose between two values, as in `int paid = isMember ? 10 : 20;`, and use a normal if-else when a branch needs more than one line.
-// @gotcha A semicolon straight after the condition ends the if and leaves it with an empty body, so the block underneath always runs. `if (x > 5); { System.out.println("big"); }` prints big even when x is 1.
-// @gotcha `if (x = 5)` does not compile. `=` assigns a value and produces an int, and an if needs a boolean, so use `==` when you mean to compare.
-// @gotcha Comparing two Strings with `==` asks whether they are the same object rather than whether they hold the same text, so `new String("hello") == "hello"` is false. Use `.equals()` for content.
-// @gotcha `&&` and `||` stop as soon as the answer is settled, and that is exactly what makes `name != null && name.length() > 5` safe: when name is null the left side is already false, so the method call that would throw never happens.
+// @takeaway `if` asks a true-or-false question and runs its block only when the answer is true.
+// @takeaway The condition must be a real boolean, so `if (1)` does not compile the way it does in C.
+// @snippet if (1) { }        // compile error
+// @takeaway In an `else if` chain only the first condition that turns out true runs, and the rest are never looked at.
+// @takeaway Without braces, an `if` controls only the one statement that follows it.
+// @snippet boolean flag = true;
+// @snippet if (flag) System.out.println("A");
+// @snippet System.out.println("B");          // always runs
+// @takeaway `condition ? a : b` is an if-else that produces a value, so it fits where a statement cannot.
+// @snippet boolean isMember = true;
+// @snippet int paid = isMember ? 10 : 20;
+// @gotcha A semicolon straight after the condition gives the `if` an empty body, so the block underneath always runs.
+// @gotcha `if (x = 5)` does not compile: `=` assigns and yields an int, and an `if` needs a boolean.
+// @gotcha `==` on two Strings asks whether they are the same object, not the same text; use `.equals()`.
+// @gotcha `&&` stops as soon as the answer is settled, which is what makes `name != null && name.length() > 5` safe.
 /*
     Ternary Operator Example :-
 

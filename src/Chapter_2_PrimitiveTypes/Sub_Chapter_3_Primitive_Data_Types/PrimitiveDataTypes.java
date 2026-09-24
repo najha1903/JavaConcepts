@@ -88,16 +88,22 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // float f = 3.14f;            // works, the f makes the literal a float
 // Note :- whole-number literals are int, and decimal literals are double, unless a suffix says otherwise.
 
-// @takeaway Java has exactly eight primitive types: byte, short, int, long, float, double, boolean and char. Everything else is an object, including String.
-// @takeaway Use int for whole numbers and double for decimals by default. Reach for long with an L suffix when a whole number is bigger than about 2.1 billion, and for BigDecimal when the values are money.
-// @takeaway A declaration has three parts: the type, which decides the size and the allowed values, the name you will use, and the initialiser that gives the first value.
-// @takeaway A literal has a type of its own: whole numbers are int and decimals are double, unless a suffix changes them. That is what `long big = 3000000000L;` and `float f = 3.14f;` are for.
-// @takeaway A local variable must be assigned before it is read. Fields and array elements get a default of 0, 0.0, false or null, but locals get nothing at all.
-// @takeaway `char` is written in single quotes and holds exactly one character, and it is a number underneath, which is why `'A' + 1` gives 66 rather than B.
-// @gotcha Going past a type's range does not throw. It wraps around to the opposite end, so `Integer.MAX_VALUE + 1` is `Integer.MIN_VALUE` and the program carries on with a wrong number.
-// @gotcha Dividing two whole numbers keeps only the whole part, so `5 / 2` is 2. Make one side a decimal, as in `5 / 2.0`, when you want 2.5.
-// @gotcha A narrowing cast such as `(int) 9.8` truncates rather than rounds, so it gives 9 and not 10.
-// @gotcha Comparing two Integer objects with `==` compares references rather than values, so use `equals` for the numbers, or store them as int.
+// @takeaway Eight primitive types: `byte short int long float double boolean char`. Everything else is an object, `String` included.
+// @takeaway Default to `int` for whole numbers and `double` for decimals; `long` with an `L` only past 2.1 billion, and `BigDecimal` for money.
+// @takeaway A declaration is three parts: the type, the name, and the initialiser that gives the first value.
+// @takeaway A whole-number literal is an `int` and a decimal literal is a `double`; the `L` and `f` suffixes are how you say otherwise.
+// @snippet long big = 3000000000L;
+// @snippet float f = 3.14f;
+// @takeaway A local must be assigned before it is read; fields and array elements default to 0, 0.0, false or null.
+// @takeaway `char` is single quotes, one character, and a number underneath, so `'A' + 1` is 66.
+// @snippet 'A' + 1        // 66
+// @gotcha Overflow does not throw: `Integer.MAX_VALUE + 1` wraps to `Integer.MIN_VALUE` and the program carries on.
+// @gotcha Integer division drops the fraction, so write `5 / 2.0` when you want the decimal answer.
+// @snippet 5 / 2          // 2
+// @snippet 5 / 2.0        // 2.5
+// @gotcha A narrowing cast truncates rather than rounds.
+// @snippet (int) 9.8      // 9, not 10
+// @gotcha `==` on two `Integer` objects compares references, not values; use `equals`, or store them as `int`.
 
 
 // @quiz (INTERVIEW) What is the difference between widening and narrowing casting in Java?

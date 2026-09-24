@@ -288,14 +288,27 @@ package Chapter_1_Java_Introduction;
 // - Explain why a change to the source appears to be ignored until the file is compiled again.
 // - Read `System.out.println("...")` as a class, a stream and a method rather than as one magic word.
 
-// @takeaway `javac HelloWorld.java` compiles the source into bytecode, and `java HelloWorld` runs that bytecode on the JVM. The JVM never reads your .java file.
-// @takeaway Java is compiled and interpreted: javac turns source into bytecode once, and the JVM runs that bytecode on the machine it happens to be on.
-// @takeaway The file name has to match the public class inside it, so `public class HelloWorld` must live in HelloWorld.java.
-// @takeaway Java is case-sensitive, so `String` is not `string`, `System` is not `system`, and the capital letters in a name are part of the name.
-// @takeaway `System.out.println` is three separate things: the System class, its standard output stream `out`, and the `println` method, whose "ln" adds a new line at the end.
-// @gotcha Editing the source without compiling again appears to change nothing, because the JVM keeps running the previous bytecode that is already on disk.
-// @gotcha `java HelloWorld.class` fails. The argument to java is a class name, and only javac takes a file name.
-// @gotcha Only one class in a file may be public, and it must be the one whose name matches the file name.
+// @takeaway `javac` compiles a file; `java` runs a class name, so `java HelloWorld.class` fails.
+
+// @takeaway Java is compiled once, then interpreted, which is what "write once, run anywhere" means.
+
+// @takeaway `main` is `public static void`: public so the launcher can call it, static so the JVM needs no object, void because it returns nothing.
+// @snippet public static void main(String[] args)
+
+// @takeaway The file name must match the public class name, or it is a compile error.
+
+// @takeaway Java is case-sensitive: `String` and `string` are two different names.
+
+// @takeaway JDK = tools + JRE. JRE = libraries + JVM. JVM runs the bytecode.
+
+// @takeaway `System.out.println` is three things joined by dots: the `System` class, the `out` stream, and the `println` method. `print` leaves the newline off.
+// @snippet System.out.println("Hello World");
+
+// @takeaway A String literal is the text in quotes, and `println` takes any value, not only text.
+
+// @gotcha The JVM runs the `.class` on disk, so editing the source without recompiling changes nothing.
+// @gotcha Only one class per file may be public, and it must be the one the file is named after.
+// @gotcha A name mismatch is a compile error, not a runtime one.
 
 
 public class HelloWorld {

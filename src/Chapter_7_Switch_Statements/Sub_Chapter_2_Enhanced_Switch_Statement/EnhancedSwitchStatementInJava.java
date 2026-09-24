@@ -56,11 +56,11 @@ package Chapter_7_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
 // Pitfall :- a switch expression must cover every possible input, so the `default` arm is compulsory there. A switch statement may omit it, but then an unmatched value does nothing at all.
 // Pitfall :- `yield` is only allowed inside a switch expression. Writing it in an ordinary method is a compile error.
 
-// @takeaway The enhanced switch uses `->` in place of `:`, and each arm ends when its statement ends, so there is no fall-through and no `break` to forget.
-// @takeaway A comma-separated list groups values into one arm, so `case 1, 2, 3 -> ...` does the work of three stacked case labels.
-// @takeaway An enhanced switch can be used as an expression: whatever the chosen arm produces becomes the value of the whole switch, ready to be assigned or returned.
-// @gotcha A switch expression requires a `default` arm, because the expression has to produce a value for every possible input.
-// @gotcha `yield` is valid only inside a switch expression, and it is what returns the value from an arm that needs more than one statement.
+// @takeaway The enhanced switch uses `->`, and each arm ends where its statement ends, so there is no fall-through and no `break` to forget.
+// @takeaway A comma-separated list groups values into one arm, so `case 1, 2, 3 ->` replaces three stacked labels.
+// @takeaway An enhanced switch can be an expression: the chosen arm's value becomes the value of the whole switch.
+// @gotcha A switch expression needs a `default` arm, because it has to produce a value for every possible input.
+// @gotcha `yield` returns the value from an arm that needs more than one statement, and is valid only inside a switch expression.
 
 // @quiz (INTERVIEW) What is the difference between a traditional switch statement and an enhanced switch expression?
 // @answer Traditional switch uses colon syntax and can fall through, while enhanced switch uses arrow syntax and does not fall through.

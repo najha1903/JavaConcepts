@@ -298,6 +298,34 @@ const objectiveStatus = catalogue.EXAM_OBJECTIVES.map(name => ({
   covered: catalogue.CONCEPTS.filter(c => c.objective === name && (questionsByConcept.get(c.id) || 0) > 0).length
 }));
 
+// ---- The cram sheet ----------------------------------------------------------
+//
+// How many cram points each finished chapter has. This is hand work, like the OCJP
+// questions, so it is reported rather than generated: the ledger names the chapters that still
+// need points written, and nothing is blocked while they are missing.
+const cramCounts = chapters.map(chapter => {
+  const revision = revisionBank[chapter.name] || {};
+  // The placeholder a finished chapter gets when it has no points yet is not a point.
+  const real = list => (list || []).filter(p => !(p && typeof p === 'object' && p.placeholder));
+  const points = real(revision.takeaways);
+  const traps = real(revision.gotchas);
+  return {
+    name: chapter.name,
+    finished: finishedChapters.has(chapter.name),
+    points: points.length,
+    traps: traps.length,
+    snippets: [...points, ...traps].filter(p => p && typeof p === 'object' && p.code).length
+  };
+});
+const cramFinished = cramCounts.filter(c => c.finished);
+const cramDone = cramFinished.filter(c => c.points > 0);
+const cramMissing = cramFinished.filter(c => c.points === 0);
+const cramTotals = {
+  points: cramFinished.reduce((n, c) => n + c.points, 0),
+  traps: cramFinished.reduce((n, c) => n + c.traps, 0),
+  snippets: cramFinished.reduce((n, c) => n + c.snippets, 0)
+};
+
 // ---- The ledger -------------------------------------------------------------
 const lines = [];
 lines.push('# Coverage Ledger');
@@ -333,6 +361,9 @@ lines.push(`- Topics: **${totals.topicsWithQuestions} of ${totals.topics}** have
 lines.push(`- Questions: **${totals.questions}** (easy ${totals.easy}, medium ${totals.medium}, hard ${totals.hard})`);
 lines.push(`- OCJP tagged: **${totals.ocjp}**`);
 lines.push(`- Authored by hand: **${totals.authored}**, generated from the notes: **${totals.questions - totals.authored}**`);
+if (cramFinished.length) {
+  lines.push(`- Cram points: **${cramDone.length} of ${cramFinished.length}** finished chapters have them, ${cramTotals.points} points and ${cramTotals.traps} traps`);
+}
 if (inProgressTotals.chapters) {
   lines.push(`- Still being written: **${inProgressTotals.chapters} chapter(s)**, ${inProgressTotals.topics} topic(s), ${inProgressTotals.questions} question(s) — nothing is generated for these, and they are not counted above`);
 }
@@ -602,7 +633,22 @@ if (!quiet) {
 
   const quickRevisionWork = syntaxWork + badgeWork;
 
-  if (quickRevisionWork) {
+  // The cram points. Reported here because this section is already about the Quick Revision
+  // panel, and because "which chapters still need cram points written" is exactly the kind of
+  // work the ledger exists to name - it is hand work, like the OCJP questions, not something a
+  // tool can do. The counts were computed above, so the markdown and this cannot disagree.
+  if (cramFinished.length) {
+    console.log('');
+    console.log('🧩 QUICK REVISION — the cram sheet');
+    console.log(`     Cram points written                  : ${cramDone.length} of ${cramFinished.length} finished chapters`);
+    console.log(`     Points / traps / snippets            : ${cramTotals.points} / ${cramTotals.traps} / ${cramTotals.snippets}`);
+    if (cramMissing.length) {
+      console.log(`     ${cramMissing.length} chapter(s) have none: ${cramMissing.map(c => c.name).join(', ')}`);
+      console.log(`   Ask Copilot: "write the cram points for ${cramMissing[0].name}"`);
+    }
+    if (syntaxWork) console.log(`     ${syntaxWork} chapter(s): the syntax snippet is boilerplate, not the chapter's construct`);
+    if (badgeWork) console.log(`     ${badgeWork} chapter(s): the badges are not the syntax the chapter teaches`);
+  } else if (quickRevisionWork) {
     console.log('');
     console.log('🧩 QUICK REVISION');
     if (syntaxWork) console.log(`     ${syntaxWork} chapter(s): the syntax snippet is boilerplate, not the chapter's construct`);

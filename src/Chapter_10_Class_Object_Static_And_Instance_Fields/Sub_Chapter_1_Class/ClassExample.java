@@ -148,14 +148,14 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
 *    An object stays in memory for as long as at least one reference points at it. When the last reference goes away, the object becomes
 *    eligible for garbage collection, and Java reclaims the memory by itself. There is nothing to free by hand.
 
- @takeaway A class is a blueprint that lists the fields (the data) and the methods (the behaviour). An object is one filled-in copy of that blueprint, created with `new`.
- @takeaway Every object gets its own copy of the instance fields, so two objects from the same class hold different values. A field you never assign keeps its default: 0, 0.0, false, or null for an object type.
- @takeaway A variable of a class type holds a reference rather than the object itself. `Car myCar = new Car();` stores the address of an object on the heap, which is why two variables can point at the same one.
- @takeaway `new` runs a constructor and hands back a reference. The object stays alive while some reference points at it, and Java reclaims it automatically once none does.
- @takeaway `==` on two object variables asks whether they point at the same object, not whether their fields match, so two separately created cars compare as not equal.
- @gotcha A field you never assign is not empty. It holds the type's default, so a String field is null and calling a method on it throws a NullPointerException.
- @gotcha An object variable that has not been given an object holds null, and using it throws a NullPointerException rather than quietly creating something.
- @gotcha Local variables declared inside a method have no default at all, so reading one before assigning it is a compile error, unlike a field.
+ @takeaway A class is a blueprint of fields and methods; an object is one filled-in copy, created with `new`.
+ @takeaway Every object gets its own copy of the instance fields; a field you never assign keeps its default.
+ @takeaway Assigning one object variable to another copies the reference, so both then point at the same object.
+ @takeaway `new` runs a constructor and hands back a reference; Java reclaims the object once nothing points at it.
+ @takeaway `==` on two object variables asks whether they point at the same object, not whether the fields match.
+ @gotcha A field you never assign holds the type's default, so a String field is null and calling a method on it throws.
+ @gotcha An object variable with no object holds null, and using it throws `NullPointerException`.
+ @gotcha A local has no default at all, so reading one before assigning it is a compile error, unlike a field.
 *
 *
 *

@@ -32,12 +32,12 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
 //
 // Pitfall :- a do-while always runs its body once, even when the condition is false from the start. That is a feature here, but it is a surprise if you meant to guard the work with the condition.
 
-// @takeaway A do-while runs its body first and tests the condition afterwards, so the body always runs at least once, while a while loop can skip its body completely.
-// @takeaway A do-while suits work that must happen once before it can be tested, such as asking for input and then repeating while the answer is out of range.
-// @takeaway The semicolon after `while (condition);` is part of the do-while statement. Leaving it out is a syntax error.
-// @gotcha A do-while always executes its body at least once, even when the condition is false from the very start, so it can never behave like a guarded while loop.
-// @gotcha `while (condition)` inside a do-while needs a statement terminator, unlike the `while` that starts a normal loop.
-// @gotcha `continue` inside a do-while jumps to the condition test rather than to the top of the body, so the body may run fewer times than you expect.
+// @takeaway A `do-while` runs its body first and tests the condition afterwards, so it always runs at least once.
+// @takeaway A `do-while` suits work that must happen once before it can be tested, such as asking for input.
+// @takeaway The semicolon after `while (condition);` is part of the statement; leaving it out is a syntax error.
+// @gotcha A `do-while` always runs its body once, even when the condition is false from the very start.
+// @gotcha The `while (condition)` that ends a `do-while` needs a semicolon, unlike the one that starts a loop.
+// @gotcha `continue` in a `do-while` jumps to the condition test, not to the top of the body.
 
 // @quiz (INTERVIEW) What does the isReady value control in do { ... } while (isReady)?
 // @answer It controls whether another iteration starts after the body finishes; because it is checked after the body, the body runs at least once.

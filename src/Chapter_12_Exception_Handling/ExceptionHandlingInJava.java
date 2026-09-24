@@ -82,16 +82,16 @@ package Chapter_12_Exception_Handling;
 // Pitfall :- `Error` and its subclasses such as OutOfMemoryError are not meant to be caught. An application cannot reasonably carry on after them.
 // Pitfall :- an empty catch block is the worst version of the same problem. The failure disappears completely and nothing tells you why.
 
-// @takeaway An exception interrupts the normal flow of a program. Without handling it, the program stops and prints a stack trace.
-// @takeaway `try` holds the risky code, `catch` deals with one chosen type of failure, and `finally` runs whatever happened, which is what makes it the right place for cleanup.
-// @takeaway Checked exceptions are the ones the compiler makes you deal with, such as IOException. Unchecked ones such as NullPointerException and ArithmeticException are usually mistakes and the compiler asks for nothing.
-// @takeaway `throw` raises an exception at the moment something is wrong, while `throws` in a method signature warns callers that this method may pass one on.
-// @takeaway Catch order matters. List the most specific type first, because a broader catch placed above a narrower one makes that narrower one unreachable and the file will not compile.
-// @gotcha A `catch (Exception e)` wrapped around everything treats a programming bug and a recoverable problem the same way, so real bugs survive unnoticed.
-// @gotcha An empty catch block makes the failure disappear silently, which is worse than not catching it at all.
-// @gotcha `finally` still runs when the try block returns, which is exactly why resources are closed there rather than after the try.
-// @gotcha `Error` and its subclasses such as OutOfMemoryError are not meant to be caught, because an application cannot reasonably recover from them.
-// @gotcha The message on an exception can be absent, so `e.getMessage()` sometimes gives null. The stack trace is what actually shows where the problem happened.
+// @takeaway An exception interrupts the normal flow; unhandled, the program stops and prints a stack trace.
+// @takeaway `try` holds the risky code, `catch` handles one type of failure, and `finally` runs whatever happened.
+// @takeaway Checked exceptions such as `IOException` must be handled; unchecked ones such as `NullPointerException` are usually bugs.
+// @takeaway `throw` raises an exception; `throws` in the signature warns callers that this method may pass one on.
+// @takeaway List the most specific catch first, because a broader one above it makes the narrower one unreachable and the file will not compile.
+// @gotcha A `catch (Exception e)` around everything treats a programming bug and a recoverable problem the same way.
+// @gotcha An empty catch block makes the failure disappear silently.
+// @gotcha `finally` still runs when the `try` block returns, which is why resources are closed there.
+// @gotcha `Error` and its subclasses such as `OutOfMemoryError` signal a JVM-level failure, not something your code can recover from.
+// @gotcha `e.getMessage()` can be null, so the stack trace is what actually shows where the problem happened.
 
 
 // @quiz (INTERVIEW) What is the difference between checked and unchecked exceptions?

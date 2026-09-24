@@ -311,13 +311,13 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
 //
 // Pitfall :- a StringBuilder is not a String, so `builder.equals("text")` is false. That method compares references, not characters. Convert first: `builder.toString().equals("text")`.
 
-// @takeaway A StringBuilder is a mutable buffer. `append` changes the same object and returns it, so nothing is copied and there is no need to reassign the result.
-// @takeaway Use StringBuilder when text is joined repeatedly, especially inside a loop, because String concatenation builds a new String on every pass while the builder keeps working on one buffer.
-// @takeaway `toString()` captures the text as it is at that moment in a new, immutable String, so appending afterwards cannot change the String you already took.
-// @takeaway StringBuilder is the modern and faster choice; StringBuffer is the older type whose methods are synchronised, so it is only worth choosing when several threads share one buffer.
-// @gotcha A StringBuilder is not a String, so `sb.equals("text")` is false because that method compares references. Convert with `toString()` before comparing text.
-// @gotcha `new StringBuilder("Hello")` starts with a capacity of 16 plus the text length, so 21 here. Capacity is the room available before the buffer has to grow, not the length of the text.
-// @gotcha Building a long String with `+` inside a loop creates a new object on every pass and leaves the earlier ones for the garbage collector, which is exactly the cost StringBuilder avoids.
+// @takeaway A `StringBuilder` is a mutable buffer: `append` changes the same object, so nothing is copied.
+// @takeaway Use `StringBuilder` when text is joined in a loop; `+` builds a new String on every pass.
+// @takeaway `toString()` captures the text as it is at that moment, so appending afterwards cannot change it.
+// @takeaway `StringBuilder` is faster; `StringBuffer` is the older type with synchronised methods, worth it only across threads.
+// @gotcha `sb.equals("text")` is always false, because a `StringBuilder` is not a String; convert with `toString()` first.
+// @gotcha `new StringBuilder("Hello")` has capacity 21: 16 plus the text length, and capacity is room to grow, not length.
+// @gotcha `+` inside a loop creates a new object every pass, which is exactly the cost `StringBuilder` avoids.
 
 
 // @quiz (OCJP, MEDIUM) What is printed by this program?
