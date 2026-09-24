@@ -280,8 +280,15 @@ function verifyClaim(work, index, item, line) {
   const source = `public class ${name} {\n    public static void main(String[] args) {\n        System.out.println(${expression});\n    }\n}\n`;
   if (!attemptCompile(work, name, source)) return false;
 
-  const run = spawnSync('java', ['-cp', work, name], { encoding: 'utf8', timeout: 15000 });
+  // One retry, because a JVM that will not start is not a wrong answer. Without it a transient
+  // failure falls through to the whole-snippet compile, and a claim-style line cannot be
+  // validated that way - `2 + 3   // 5` is not a statement, so the snippet gets reported as
+  // "not valid Java on its own". That false alarm was observed once, in a run that started
+  // while a regenerate was still finishing, and then not again in six repeats.
+  let run = spawnSync('java', ['-cp', work, name], { encoding: 'utf8', timeout: 15000 });
+  if (run.status !== 0) run = spawnSync('java', ['-cp', work, name], { encoding: 'utf8', timeout: 15000 });
   if (run.status !== 0) return false;
+
   const printed = String(run.stdout || '').trim();
   if (printed !== head && !printed.startsWith(head)) {
     failures.push(`${item.chapter}: snippet claims ${JSON.stringify(comment.trim())} but \`${expression}\` prints ${JSON.stringify(printed)}.`);

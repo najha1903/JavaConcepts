@@ -22793,19 +22793,19 @@ const QUICK_REVISION_BANK = {
     "takeaways": [
       {
         "say": "A statement is one complete instruction, and it is the semicolon that ends it, not the line break.",
-        "code": ""
+        "code": "int x = 5;"
       },
       {
         "say": "An expression works out to a value; a statement is the whole instruction built around it.",
-        "code": ""
+        "code": "2 + 3          // 5"
       },
       {
         "say": "Spaces, tabs and line breaks mean nothing to the compiler; indentation is for the reader.",
-        "code": ""
+        "code": "int     c     =     5;"
       },
       {
         "say": "One statement can span several lines and several can share one, so write one per line because that is what makes a mistake visible.",
-        "code": ""
+        "code": "int a = 1; int b = 2;"
       },
       {
         "say": "A lone semicolon is a legal empty statement, which is what makes `if (x > 5);` so dangerous.",
@@ -22815,11 +22815,11 @@ const QUICK_REVISION_BANK = {
     "gotchas": [
       {
         "say": "A semicolon straight after `if (condition)` ends the if, so its block runs whatever the condition said. It still compiles.",
-        "code": ""
+        "code": "int x = 1;\nif (x > 5);\n{ System.out.println(\"always runs\"); }"
       },
       {
         "say": "A variable declared inside a block disappears at the closing brace, and using it afterwards gives \"cannot resolve symbol\".",
-        "code": ""
+        "code": "{ int n = 1; } System.out.println(n);      // compile error"
       },
       {
         "say": "A class body, a method body and the headers of `if` and `for` all end in a brace, and none of them takes a semicolon.",
@@ -22953,15 +22953,15 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "The selector can be `byte short char int`, their wrappers, a `String` or an `enum`; `long`, `float`, `double` and `boolean` are rejected.",
-        "code": ""
+        "code": "switch (\"monday\") { case \"monday\": System.out.println(\"Mon\"); break; default: System.out.println(\"other\"); }"
       },
       {
         "say": "`break` stops a case running into the next one; without it execution falls straight through.",
-        "code": ""
+        "code": "switch (2) { case 2: System.out.println(\"two\");\ncase 3: System.out.println(\"three\"); }"
       },
       {
         "say": "Stacking `case 1: case 2: case 3:` makes all three share one body, and only the last label needs a `break`.",
-        "code": ""
+        "code": "switch (2) { case 1: case 2: case 3: System.out.println(\"low\");\ndefault: System.out.println(\"other\"); }"
       },
       {
         "say": "`default` runs when nothing else matched, and it is matched rather than ordered, so its position only changes what falls into it.",
@@ -22969,15 +22969,15 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "The enhanced switch uses `->`, and each arm ends where its statement ends, so there is no fall-through and no `break` to forget.",
-        "code": ""
+        "code": "switch (2) { case 2 -> System.out.println(\"two\"); default -> System.out.println(\"other\"); }"
       },
       {
         "say": "A comma-separated list groups values into one arm, so `case 1, 2, 3 ->` replaces three stacked labels.",
-        "code": ""
+        "code": "switch (2) { case 1, 2, 3 -> System.out.println(\"low\"); default -> System.out.println(\"high\"); }"
       },
       {
         "say": "An enhanced switch can be an expression: the chosen arm's value becomes the value of the whole switch.",
-        "code": ""
+        "code": "int label = switch (2) { case 2 -> 20; default -> 0; };"
       }
     ],
     "gotchas": [
@@ -22987,7 +22987,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "Two case labels holding the same value do not compile.",
-        "code": ""
+        "code": "switch (2) { case 2: break; case 2: break; }      // compile error"
       },
       {
         "say": "A `return` inside a case leaves the whole method, so anything written after the switch never runs.",
@@ -22995,15 +22995,15 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "A `String` selector matches by content and is case-sensitive, so `\"monday\"` quietly takes the `default` branch.",
-        "code": ""
+        "code": "switch (\"MONDAY\") { case \"monday\": System.out.println(\"matched\"); break; default: System.out.println(\"default\"); }"
       },
       {
         "say": "A switch expression needs a `default` arm, because it has to produce a value for every possible input.",
-        "code": ""
+        "code": "int label = switch (2) { case 2 -> 20; };     // compile error"
       },
       {
         "say": "`yield` returns the value from an arm that needs more than one statement, and is valid only inside a switch expression.",
-        "code": ""
+        "code": "int n = switch (2) { case 2 -> { int x = 20; yield x; } default -> 0; };"
       }
     ],
     "syntax": "int x = 3;\nswitch (x) {\n    case 1:\n    case 2:\n    case 3: System.out.println(\"low\"); break;\n    default: System.out.println(\"high\");\n}",
@@ -23069,11 +23069,11 @@ const QUICK_REVISION_BANK = {
     "takeaways": [
       {
         "say": "A `while` tests before every pass, so if the condition is false to begin with the body never runs.",
-        "code": ""
+        "code": "int i = 0;\nwhile (i > 0) { System.out.println(i); }"
       },
       {
         "say": "Nothing is built into a `while` header: you set the counter up before it and change it inside the body.",
-        "code": ""
+        "code": "int i = 0;\nwhile (i < 3) { System.out.println(i); i++; }"
       },
       {
         "say": "Three shapes cover most `while` loops: count to a limit, wait for a sentinel, and keep asking until the input is valid.",
@@ -23081,11 +23081,11 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`n % 10` is the last digit and `n / 10` removes it, which is the basis of digit sum and palindrome checks.",
-        "code": ""
+        "code": "1234 % 10          // 4\n1234 / 10          // 123"
       },
       {
         "say": "A `do-while` runs its body first and tests the condition afterwards, so it always runs at least once.",
-        "code": ""
+        "code": "int i = 5;\ndo { System.out.println(i); } while (i < 3);"
       },
       {
         "say": "A `do-while` suits work that must happen once before it can be tested, such as asking for input.",
@@ -23093,7 +23093,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "The semicolon after `while (condition);` is part of the statement; leaving it out is a syntax error.",
-        "code": ""
+        "code": "int i = 0;\ndo { i++; } while (i < 3);"
       }
     ],
     "gotchas": [
@@ -23103,7 +23103,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`while (condition);` with a stray semicolon gives the loop an empty body and spins forever.",
-        "code": ""
+        "code": "int i = 0;\nwhile (i < 3);          // spins forever"
       },
       {
         "say": "`continue` in a `while` jumps to the condition without the update, so the counter never moves.",
@@ -23145,7 +23145,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "Assigning one object variable to another copies the reference, so both then point at the same object.",
-        "code": ""
+        "code": "int[] a = { 1, 2 };\nint[] b = a;\nb[0] = 99;              // a[0] is now 99 too"
       },
       {
         "say": "`new` runs a constructor and hands back a reference; Java reclaims the object once nothing points at it.",
@@ -23153,13 +23153,13 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`==` on two object variables asks whether they point at the same object, not whether the fields match.",
-        "code": ""
+        "code": "new String(\"ab\") == new String(\"ab\")     // false\n\"ab\" == \"ab\"                             // true"
       }
     ],
     "gotchas": [
       {
         "say": "A field you never assign holds the type's default, so a String field is null and calling a method on it throws.",
-        "code": ""
+        "code": "static String s;        // null"
       },
       {
         "say": "An object variable with no object holds null, and using it throws `NullPointerException`.",
@@ -23167,7 +23167,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "A local has no default at all, so reading one before assigning it is a compile error, unlike a field.",
-        "code": ""
+        "code": "int n; System.out.println(n);      // compile error"
       }
     ],
     "syntax": "Car a = new Car();\nCar b = new Car();\nSystem.out.println(a == b);        -- prints false, they are two different objects\nCar c = a;\nSystem.out.println(a == c);        -- prints true, both names point at the same object",
@@ -23266,19 +23266,19 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`try` holds the risky code, `catch` handles one type of failure, and `finally` runs whatever happened.",
-        "code": ""
+        "code": "try { Integer.parseInt(\"x\"); }\ncatch (NumberFormatException e) { System.out.println(\"bad input\"); }\nfinally { System.out.println(\"done\"); }"
       },
       {
         "say": "Checked exceptions such as `IOException` must be handled; unchecked ones such as `NullPointerException` are usually bugs.",
-        "code": ""
+        "code": "java.io.FileReader r = new java.io.FileReader(\"x\");      // compile error"
       },
       {
         "say": "`throw` raises an exception; `throws` in the signature warns callers that this method may pass one on.",
-        "code": ""
+        "code": "void risky() throws java.io.IOException { throw new java.io.IOException(\"boom\"); }"
       },
       {
         "say": "List the most specific catch first, because a broader one above it makes the narrower one unreachable and the file will not compile.",
-        "code": ""
+        "code": "try { } catch (Exception e) { } catch (RuntimeException e) { }      // compile error"
       }
     ],
     "gotchas": [
@@ -23292,7 +23292,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`finally` still runs when the `try` block returns, which is why resources are closed there.",
-        "code": ""
+        "code": "try { return; } finally { System.out.println(\"still runs\"); }"
       },
       {
         "say": "`Error` and its subclasses such as `OutOfMemoryError` signal a JVM-level failure, not something your code can recover from.",
@@ -23322,23 +23322,23 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`static` is one copy shared by the class; an instance member is one copy per object.",
-        "code": ""
+        "code": "static int total;\nint mine;"
       },
       {
         "say": "A static method has no object, so it cannot read or change instance fields, and the compiler refuses it.",
-        "code": ""
+        "code": "static int total; static void reset() { total = 0; }"
       },
       {
         "say": "`extends` reuses a parent's fields and methods, and models IS-A: a Dog IS-A Animal.",
-        "code": ""
+        "code": "class Base { Base(int n) { } }\nclass Child extends Base { Child() { super(1); } }"
       },
       {
         "say": "`private` is the class, nothing written means package, `protected` adds subclasses, `public` is everyone.",
-        "code": ""
+        "code": "private int secret; protected int shared; public int open;"
       },
       {
         "say": "Overriding is a child's own version of a parent method, with the same name and the same parameter list.",
-        "code": ""
+        "code": "class Base { void show() { } } class Child extends Base { void show() { } }"
       },
       {
         "say": "Which override runs is decided at runtime from the actual object type, which is why it is called runtime polymorphism.",
@@ -23350,21 +23350,21 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "An override cannot narrow access: a `public` parent method cannot become `protected` or `private` in the child.",
-        "code": ""
+        "code": "class Base { public void show() { } } class Child extends Base { protected void show() { } }      // compile error"
       },
       {
         "say": "`static`, `private`, `final` methods and constructors cannot be overridden; `@Override` makes the compiler check that.",
-        "code": ""
+        "code": "class Base { void show() { } } class Child extends Base { @Override void show() { } }"
       }
     ],
     "gotchas": [
       {
         "say": "`extends` does not copy constructors, so the child must call `super(...)`, and it is compulsory when the parent has no no-arg constructor.",
-        "code": ""
+        "code": "class Base { Base(int n) { } } class Child extends Base { }      // compile error"
       },
       {
         "say": "A `private` field is invisible to a child class even though it inherits it, so it has to go through the parent's methods.",
-        "code": ""
+        "code": "class Base { private int n; } class Child extends Base { int get() { return n; } }      // compile error"
       },
       {
         "say": "A top-level class can be `public` or have no modifier; `protected` and `private` are not valid on it.",
@@ -23376,7 +23376,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "Changing the parameter list silently turns an override into an overload, and `@Override` is what catches it.",
-        "code": ""
+        "code": "class Base { void show() { } } class Child extends Base { @Override void show(int n) { } }      // compile error"
       },
       {
         "say": "A `private` parent method cannot be overridden, because the child cannot see it, so a same-named method is unrelated.",
@@ -23384,7 +23384,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "Through a parent reference you can only call the methods the parent declares, so a child-only method needs a cast.",
-        "code": ""
+        "code": "class Base { } class Child extends Base { void extra() { } } Base b = new Child(); b.extra();      // compile error"
       }
     ],
     "syntax": "class Parent {\n    private int x;\n    Parent(int x) {\n        this.x = x;                 // 'this' tells the field apart from the parameter\n    }\n}\n\nclass Child extends Parent {\n    private int y;\n    Child() {\n        this(0);                    // this() chains to the constructor below, in the SAME class\n    }\n    Child(int y) {\n        super(y);                   // super() calls the parent constructor, and must be first\n        this.y = y;\n    }\n}",
