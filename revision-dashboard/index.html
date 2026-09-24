@@ -864,9 +864,9 @@
         <div class="mastery-queue" id="mastery-queue"><!-- JS populated --></div>
 
         <div class="mastery-controls">
-          <button id="mastery-filter-all" class="coverage-filter active">All concepts</button>
-          <button id="mastery-filter-weak" class="coverage-filter">Not yet proved</button>
-          <button id="mastery-filter-untried" class="coverage-filter">Not tried yet</button>
+          <button id="mastery-filter-all" class="coverage-filter active" onclick="setMasteryFilter('all', this)">All concepts</button>
+          <button id="mastery-filter-weak" class="coverage-filter" onclick="setMasteryFilter('weak', this)">Not yet proved</button>
+          <button id="mastery-filter-untried" class="coverage-filter" onclick="setMasteryFilter('untried', this)">Not tried yet</button>
         </div>
 
         <div class="mastery-list" id="mastery-list"><!-- JS populated --></div>

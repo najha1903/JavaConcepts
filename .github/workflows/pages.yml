@@ -34,15 +34,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The checks need the devDependency (jsdom, for the dashboard check) and a JDK to compile
+      # and run the snippets and questions. Both are present on this runner.
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      # WHY THIS RUNS THE CHECKS
+      #
+      # The workflow used to run `parse-concepts.js` and `audit-generated.js` only, and then
+      # deploy. So a commit that failed any of the other nine checks still went live, and the
+      # published dashboard could be broken while the local checks said otherwise.
+      #
+      # `npm run check` regenerates from the notes and then runs the whole suite, which is the
+      # same thing the author runs. If it fails, the deploy stops and the previous good version
+      # stays live.
+      - name: Generate and verify
+        run: npm run check
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-
-      - name: Generate and audit dashboard data
-        run: |
-          node scripts/parse-concepts.js
-          node scripts/audit-generated.js
 
       - name: Upload dashboard as Pages artifact
         uses: actions/upload-pages-artifact@v3

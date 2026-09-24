@@ -23,9 +23,21 @@
 // The split is deliberate:
 //
 //   here       the shape of what was generated - ids, paths, the in-progress rule,
-//              the text encoding, the interface rules, coverage. All fast, all definite.
+//              the text encoding, the interface rules, the dashboard's behaviour,
+//              coverage. All fast, all definite.
 //   verify.js  everything above, PLUS the checks that compile and run Java to prove
 //              answers are right. Slower, so it runs on approve.
+//
+// check-dashboard is here because it takes 3.5 seconds and catches a whole class of failure
+// nothing else can see: a function renamed, an element id changed, a button that no longer
+// does anything. The generated data stays perfectly valid while the page is broken.
+//
+// check-cram is NOT here, and that is deliberate too. It compiles every cram snippet, which
+// takes 11.6 seconds - too slow for the command the author runs most, and a check that slows
+// the everyday path down is a check that gets worked around. It runs on approve instead.
+// An attempt to speed it up by batching the compiles into one javac call cut it to 3.4
+// seconds and silently broke the claim check, so it was reverted: correctness over speed.
+// The reason is recorded because the temptation to retry it will come back.
 //
 // Usage: node scripts/check-structure.js
 // ============================================================================
@@ -40,6 +52,7 @@ const CHECKS = [
   { script: 'check-in-progress.js', label: 'In-progress chapter' },
   { script: 'fix-encoding.js', label: 'Text encoding' },
   { script: 'check-ui.js', label: 'Interface' },
+  { script: 'check-dashboard.js', label: 'Dashboard behaviour' },
   { script: 'coverage.js', label: 'Coverage', args: ['--check'] }
 ];
 

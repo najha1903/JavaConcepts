@@ -391,6 +391,65 @@ check('no question uses the tool\'s old invented text', () => {
   return 'none of the questions use it';
 });
 
+// ---- Every control does something -------------------------------------------
+
+check('every button in the dashboard does something', () => {
+  // WHY THIS EXISTS
+  //
+  // The three Mastery filter buttons had no onclick and no listener, so clicking "Not yet
+  // proved" did nothing at all. setMasteryFilter was defined and masteryFilter was read when
+  // the list rendered, but nothing ever set it, so the filter was permanently 'all'.
+  //
+  // That is invisible to every other check: the data is valid, the page renders, no error is
+  // thrown. The button is simply inert. It was found by hand, and the dashboard has 49 buttons
+  // while this project has deleted two whole views and re-wired several handlers, so it is
+  // exactly the kind of thing that comes back.
+  //
+  // A button is wired if it has an onclick, or if app.js reaches it by id - which covers
+  // addEventListener, since that needs getElementById first.
+  //
+  // Only STATIC buttons are checked: the ones written in index.html. A button the script
+  // creates gets its handler attached to the element it just made, so it is never fetched by
+  // id and this test would wrongly call it inert. The first version did exactly that and
+  // reported 141 false positives, every one of them a subtopic button the notes view builds.
+  const source = fs.readFileSync(path.join(dashboardDir, 'app.js'), 'utf8');
+  const markup = fs.readFileSync(indexPath, 'utf8');
+  const inert = [];
+  for (const element of doc.querySelectorAll('button[id]')) {
+    if (!markup.includes(`id="${element.id}"`)) continue;
+    if (element.hasAttribute('onclick')) continue;
+    if (new RegExp(`getElementById\\(['"]${element.id}['"]\\)`).test(source)) continue;
+    inert.push(element.id);
+  }
+  const staticCount = [...doc.querySelectorAll('button[id]')].filter(b => markup.includes(`id="${b.id}"`)).length;
+  if (inert.length) throw new Error(`${inert.length} static button(s) do nothing: ${inert.join(', ')}`);
+  return `${staticCount} static buttons, all wired`;
+});
+
+check('the Mastery filters actually filter', () => {
+  // The behavioural half of the check above: click each filter and confirm the list changes.
+  g('showMastery')();
+  const host = doc.getElementById('mastery-list');
+  const counts = {};
+  for (const [id, value] of [['mastery-filter-all', 'all'], ['mastery-filter-weak', 'weak'], ['mastery-filter-untried', 'untried']]) {
+    const button = doc.getElementById(id);
+    if (!button) throw new Error(`no ${id}`);
+    button.click();
+    if (g('masteryFilter') !== value) {
+      throw new Error(`clicking ${id} left the filter as ${g('masteryFilter')}, expected ${value}`);
+    }
+    counts[value] = host.querySelectorAll('.mastery-row').length;
+  }
+  // With no quiz history every concept is untried, so 'all' and 'untried' must agree and
+  // 'weak' must be empty. That is a real relationship, not a snapshot of today's numbers.
+  if (counts.all !== counts.untried) {
+    throw new Error(`all=${counts.all} and untried=${counts.untried} should match with no history`);
+  }
+  if (counts.weak !== 0) throw new Error(`weak=${counts.weak} should be 0 with no history`);
+  g(`setMasteryFilter('all', document.getElementById('mastery-filter-all'))`);
+  return `all ${counts.all}, weak ${counts.weak}, untried ${counts.untried}`;
+});
+
 // ---- Every view renders -----------------------------------------------------
 
 for (const section of [...doc.querySelectorAll('.view-section')].map(s => s.id)) {

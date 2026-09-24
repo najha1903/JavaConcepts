@@ -1293,10 +1293,6 @@ function getScopedPracticeChallenges() {
 
 // True when the lab is scoped to a chapter that has no challenges of its own, so the UI
 // can say why rather than showing an empty panel.
-function scopedChapterHasNoChallenges() {
-  if (!currentPracticeScope.chapterName) return false;
-  return getScopedPracticeChallenges().length === 0;
-}
 
 // Every challenge, unscoped. The scoped accessor above exists for the lab's LIST; code
 // that needs to know what exists - such as Mastery asking whether a challenge teaches a
