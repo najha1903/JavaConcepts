@@ -325,6 +325,21 @@ function verifySnippet(work, index, item) {
     `public class Probe${index} {\n    void run() {\n${body}\n    }\n}\n`,
     `public class Probe${index} {\n    void run() {\n        Object v = ${body};\n    }\n}\n`
   ];
+  // A fifth shape, and it is needed for one specific line: a claim carries no semicolon,
+  // because a claim is an expression rather than a statement - `2 + 3   // 5`. verifyClaim adds
+  // the semicolon back when it runs the claim, but when a claim cannot be evaluated - the
+  // comment is prose, or the expression throws at runtime - this fallback is the only check
+  // left, and NONE of the four wrappers above can validate a line with no semicolon. They all
+  // reported "';' expected", so a perfectly valid claim was called "not valid Java on its own".
+  // That was the real cause of a false alarm blamed on a transient JVM failure, and it also
+  // rejected `String.format("%d", "text")   // throws`. Restricted to the one-line claim shape,
+  // so a multi-line sample still has to carry its own semicolons.
+  if (lines.length === 1 && body.includes('//')) {
+    const codeOnly = body.replace(/\/\/.*$/, '').trim().replace(/;\s*$/, '');
+    if (codeOnly) {
+      attempts.push(`public class Probe${index} {\n    void run() {\n        ${codeOnly};\n    }\n}\n`);
+    }
+  }
   if (!attempts.some(source => attemptCompile(work, `Probe${index}`, source))) {
     failures.push(`${item.chapter}: a snippet is not valid Java on its own: "${lines[0].slice(0, 60)}..."`);
   }
