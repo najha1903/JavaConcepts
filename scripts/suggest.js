@@ -235,6 +235,30 @@ for (const chapter of concepts) {
   // of `static`, because Chapter 10 teaches it.
   const chapterConcepts = new Set(catalogue.conceptsForChapter(chapter.name, chapter.topics));
 
+  // What the CHAPTER explains, collected once.
+  //
+  // This is the fix for a whole class of false positive. The check used to ask whether THIS
+  // FILE's notes explain the construct, which flagged 8 of 8 suggestions wrongly:
+  //
+  //   Dog.java, Fish.java, SuperKeywordUseExample.java  -> "the notes never explain inheritance"
+  //   Main.java, Inheritance.java, MethodOverloading... -> "the notes never explain static"
+  //   StringMethodAndBestPractices.java                 -> "the notes never mention printf"
+  //
+  // Ten files in Chapter 13 explain inheritance, and two files in Chapter 14 cover printf.
+  // The construct IS explained; it is explained in a sibling file. A concept is taught by a
+  // chapter, not by each file separately, so the question has to be asked of the chapter.
+  //
+  // This is the same mistake as the exercise-file noise fixed just before it - a per-file
+  // question where the right answer is per-chapter - which is why it is worth stating plainly
+  // rather than just correcting.
+  const chapterNotes = chapter.topics
+    .flatMap(t => [
+      ...(t.headerComments || []).flatMap(b => (b.type === 'code' ? [] : (b.lines || []))),
+      ...(t.inlineComments || [])
+    ])
+    .join(' ');
+  if (!chapterNotes.trim()) continue;
+
   for (const topic of chapter.topics || []) {
     // An exercise file is skipped entirely, and so is anything inside an exercise folder.
     //
@@ -248,13 +272,8 @@ for (const chapter of concepts) {
     const raw = String(topic.code || '');
     // Match against the CODE only, with comments and the entry point removed.
     const code = codeOnly(raw);
-    // Only the notes, so a mention anywhere in the file does not count as an
-    // explanation. A comment inside a method is not an explanation either.
-    const notes = [
-      ...(topic.headerComments || []).flatMap(b => (b.type === 'code' ? [] : (b.lines || []))),
-      ...(topic.inlineComments || [])
-    ].join(' ');
-    if (!notes.trim()) continue;
+    // The chapter's notes, not this file's. See the comment above.
+    const notes = chapterNotes;
 
     for (const entry of JDK_APIS) {
       // Only an API this chapter is responsible for teaching.

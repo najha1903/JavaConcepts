@@ -98,11 +98,19 @@ function practiceForTopic(topic) {
 const RULE_PATTERN = /\b(must|cannot|can't|never|always|only|throws?|does not compile|compile error|is required|is not allowed|is forbidden)\b/i;
 
 function ruleCoverage(topic) {
+  // An exercise file is skipped. Its lines describe a task - "Deep Problem: Multi-Domain Unit
+  // Converter - Implement a conversion utility that handles distance, weight..." - and a task
+  // description is not a rule about the language, so no example is missing from it. Those
+  // lines were 1 of the 125 and would have been noise in the list.
+  if (noteRules.isExerciseTopic(topic)) {
+    return { rules: 0, withExample: 0, withoutExample: 0, withoutExampleLines: [] };
+  }
+
   const blocks = (topic.headerComments || []).filter(b => b.type !== 'table');
   let rules = 0;
   let withExample = 0;
   // The lines themselves, not just the count. The count says how big the gap is; the lines
-  // are what the author can act on, and they were only ever printed to the terminal.
+  // are what can be acted on, and they were only ever printed to the terminal.
   const withoutExample = [];
   blocks.forEach((block, index) => {
     if (block.type === 'code') return;
@@ -110,12 +118,33 @@ function ruleCoverage(topic) {
       (index < blocks.length - 1 && blocks[index + 1].type === 'code');
     for (const line of block.lines || []) {
       if (!RULE_PATTERN.test(line)) continue;
+      // A rule that quotes its own code in the same line already has its example.
+      if (hasInlineExample(line)) continue;
       rules++;
       if (hasExample) withExample++;
       else withoutExample.push(String(line).trim());
     }
   });
   return { rules, withExample, withoutExample: rules - withExample, withoutExampleLines: withoutExample };
+}
+
+// A rule that already carries its own example in the same line.
+//
+// "Scope example: if(gameOver) { int finalScore = ...; } - finalScore is only accessible
+// inside the if block" states a rule AND shows it, in one line. The detector only looked for a
+// code BLOCK beside the rule, so it counted this as needing an example when it already has
+// one. Braces are the signal: prose that quotes code in these notes quotes braces with it.
+//
+// This is deliberately narrow. A looser test - backticks, or a word that looks like a method
+// name - would start excluding rules that genuinely have no example, which is the failure mode
+// this project has hit repeatedly with keyword matching.
+function hasInlineExample(line) {
+  const text = String(line || '');
+  if (/[{}]/.test(text)) return true;
+  // A method signature followed by what it gives back, as in
+  // "shouldWakeUp(boolean barking, int hourOfDay) returns true only when ...".
+  if (/\b\w+\s*\([^)]*\)\s*(returns?|gives?|gives back|prints?|produces?)\b/i.test(text)) return true;
+  return false;
 }
 
 // ---- Per topic --------------------------------------------------------------
@@ -667,7 +696,8 @@ if (!quiet) {
   console.log(`   Rules found in the notes            : ${rulesTotal}`);
   console.log(`   With an example beside them          : ${rulesTotal - rulesWithoutExample}`);
   console.log(`   With no example to show it           : ${rulesWithoutExample}  (${rulesTotal ? Math.round(rulesWithoutExample / rulesTotal * 100) : 0}%)`);
-  console.log(`   These are where an example would help most. The tool cannot write one, so they are listed for you.`);
+  console.log(`   These are where an example would help most. Outstanding work: ask Copilot to write them,`);
+  console.log(`   and to mark the ones that genuinely need none.`);
 
   console.log('');
   console.log('📖 EXAM OBJECTIVES');  objectiveStatus.forEach(o => {

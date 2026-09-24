@@ -782,7 +782,7 @@ function renderNotesGaps() {
   host.innerHTML = `
     <div class="mastery-section-head">
       <h2>Notes that could use an example</h2>
-      <p class="panel-subtitle">${totals.withoutExample} of your ${totals.total} rules (${percent}%) state a constraint with no code sample beside them. These are where an example would help most. The tool cannot write one, so they are listed here for you.</p>
+      <p class="panel-subtitle">${totals.withoutExample} of your ${totals.total} rules state a constraint with no code sample beside them. <strong>Outstanding work</strong> &mdash; ask Copilot to write these. Some genuinely need no example, and those should be marked so rather than left in the list.</p>
     </div>
     <div class="gap-groups">${groups}</div>`;
 }
@@ -817,7 +817,7 @@ function renderMasterySuggestions() {
     host.innerHTML = `
       <div class="mastery-section-head">
         <h2>Suggested additions</h2>
-        <p class="panel-subtitle">Nothing to add. Every construct and API your teaching files use is explained in the notes.</p>
+        <p class="panel-subtitle">Nothing outstanding. Every construct and API your teaching files use is explained in the notes of the chapter that teaches it.</p>
       </div>`;
     return;
   }
@@ -833,7 +833,7 @@ function renderMasterySuggestions() {
   host.innerHTML = `
     <div class="mastery-section-head">
       <h2>Suggested additions</h2>
-      <p class="panel-subtitle">${items.length} gap${items.length === 1 ? '' : 's'} in the notes of finished chapters. Listed only &mdash; accepting one is done in the review page, because that is the one place that writes to your notes.</p>
+      <p class="panel-subtitle">${items.length} gap${items.length === 1 ? '' : 's'} in the notes of finished chapters. <strong>Outstanding work</strong> &mdash; ask Copilot to write these. They are listed rather than written automatically because the one place that edits your notes is the review page, deliberately.</p>
     </div>
     <ul class="suggestion-list">${rows}</ul>`;
 }
