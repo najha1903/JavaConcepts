@@ -108,8 +108,11 @@ import java.util.IllegalFormatConversionException;
 
 // @takeaway `printf` prints immediately; `String.format` returns the same text as a String you can store or print later.
 // @takeaway In a format string `%d` is a whole number, `%f` a decimal, `%s` text, `%.2f` two places, `%5d` width 5, and `%n` a new line.
+// @snippet String.format("%d and %.2f and %s", 42, 3.14159, "text")     // 42 and 3.14 and text
 // @gotcha A placeholder that does not match its argument throws at runtime, not at compile time.
+// @snippet String.format("%d", "text")     // throws
 // @gotcha `%n` only means a newline inside a format string; `println("Hello %n")` prints it literally.
+// @snippet String.format("Hello %n")     // Hello
 
 
 // @quiz (OCJP, HARD) What is printed by this program?

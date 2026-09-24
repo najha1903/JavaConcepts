@@ -118,13 +118,21 @@ package Chapter_14_Strings.Sub_Chapter_2_String_Methods_And_Best_Practices;
 
 // @takeaway A String never changes; `toUpperCase`, `trim`, `replace` and `substring` all return a NEW String, so store or print the result.
 // @takeaway `==` asks whether two variables point at the same object; `.equals()` asks whether the characters match.
+// @snippet new String("ab") == "ab"          // false
+// @snippet new String("ab").equals("ab")     // true
 // @takeaway Indexes start at 0, and `substring(begin, end)` stops just before end.
 // @snippet "Java".substring(0, 3)     // Jav
+// @snippet "Java".charAt(0)           // J
 // @takeaway A `char` is single quotes, one character; a String is double quotes, any number. `'A' + 1` is 66, not B.
 // @gotcha `"Java" + 10 + 20` gives `Java1020`, because `+` starts joining as soon as one side is text.
+// @snippet "Java" + 10 + 20     // Java1020
 // @gotcha `substring` and `charAt` throw `StringIndexOutOfBoundsException` at runtime when the index is outside the String.
+// @snippet "Java".charAt(10)     // throws StringIndexOutOfBoundsException
 // @gotcha `==` on Strings can appear to work with literals and then fail on a runtime-built one.
+// @snippet "ab" == "ab"                  // true
+// @snippet new String("ab") == "ab"      // false
 // @gotcha `replaceAll` reads its first argument as a regex, so `replaceAll(".", "-")` replaces every character.
+// @snippet "abc".replaceAll(".", "-")     // ---
 
 
 // @quiz (OCJP, MEDIUM) What is printed by this program?

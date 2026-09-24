@@ -312,11 +312,18 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
 // Pitfall :- a StringBuilder is not a String, so `builder.equals("text")` is false. That method compares references, not characters. Convert first: `builder.toString().equals("text")`.
 
 // @takeaway A `StringBuilder` is a mutable buffer: `append` changes the same object, so nothing is copied.
+// @snippet StringBuilder sb = new StringBuilder("ab");
+// @snippet sb.append("cd");       // sb is now "abcd", the same object
 // @takeaway Use `StringBuilder` when text is joined in a loop; `+` builds a new String on every pass.
 // @takeaway `toString()` captures the text as it is at that moment, so appending afterwards cannot change it.
+// @snippet StringBuilder sb = new StringBuilder("ab");
+// @snippet String s = sb.toString();
+// @snippet sb.append("cd");       // s is still "ab"
 // @takeaway `StringBuilder` is faster; `StringBuffer` is the older type with synchronised methods, worth it only across threads.
 // @gotcha `sb.equals("text")` is always false, because a `StringBuilder` is not a String; convert with `toString()` first.
+// @snippet new StringBuilder("ab").equals("ab")     // false
 // @gotcha `new StringBuilder("Hello")` has capacity 21: 16 plus the text length, and capacity is room to grow, not length.
+// @snippet new StringBuilder("Hello").capacity()     // 21
 // @gotcha `+` inside a loop creates a new object every pass, which is exactly the cost `StringBuilder` avoids.
 
 

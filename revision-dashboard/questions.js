@@ -23436,7 +23436,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "In a format string `%d` is a whole number, `%f` a decimal, `%s` text, `%.2f` two places, `%5d` width 5, and `%n` a new line.",
-        "code": ""
+        "code": "String.format(\"%d and %.2f and %s\", 42, 3.14159, \"text\")     // 42 and 3.14 and text"
       },
       {
         "say": "A String never changes; `toUpperCase`, `trim`, `replace` and `substring` all return a NEW String, so store or print the result.",
@@ -23444,11 +23444,11 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`==` asks whether two variables point at the same object; `.equals()` asks whether the characters match.",
-        "code": ""
+        "code": "new String(\"ab\") == \"ab\"          // false\nnew String(\"ab\").equals(\"ab\")     // true"
       },
       {
         "say": "Indexes start at 0, and `substring(begin, end)` stops just before end.",
-        "code": "\"Java\".substring(0, 3)     // Jav"
+        "code": "\"Java\".substring(0, 3)     // Jav\n\"Java\".charAt(0)           // J"
       },
       {
         "say": "A `char` is single quotes, one character; a String is double quotes, any number. `'A' + 1` is 66, not B.",
@@ -23456,7 +23456,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "A `StringBuilder` is a mutable buffer: `append` changes the same object, so nothing is copied.",
-        "code": ""
+        "code": "StringBuilder sb = new StringBuilder(\"ab\");\nsb.append(\"cd\");       // sb is now \"abcd\", the same object"
       },
       {
         "say": "Use `StringBuilder` when text is joined in a loop; `+` builds a new String on every pass.",
@@ -23464,7 +23464,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`toString()` captures the text as it is at that moment, so appending afterwards cannot change it.",
-        "code": ""
+        "code": "StringBuilder sb = new StringBuilder(\"ab\");\nString s = sb.toString();\nsb.append(\"cd\");       // s is still \"ab\""
       },
       {
         "say": "`StringBuilder` is faster; `StringBuffer` is the older type with synchronised methods, worth it only across threads.",
@@ -23474,35 +23474,35 @@ const QUICK_REVISION_BANK = {
     "gotchas": [
       {
         "say": "A placeholder that does not match its argument throws at runtime, not at compile time.",
-        "code": ""
+        "code": "String.format(\"%d\", \"text\")     // throws"
       },
       {
         "say": "`%n` only means a newline inside a format string; `println(\"Hello %n\")` prints it literally.",
-        "code": ""
+        "code": "String.format(\"Hello %n\")     // Hello"
       },
       {
         "say": "`\"Java\" + 10 + 20` gives `Java1020`, because `+` starts joining as soon as one side is text.",
-        "code": ""
+        "code": "\"Java\" + 10 + 20     // Java1020"
       },
       {
         "say": "`substring` and `charAt` throw `StringIndexOutOfBoundsException` at runtime when the index is outside the String.",
-        "code": ""
+        "code": "\"Java\".charAt(10)     // throws StringIndexOutOfBoundsException"
       },
       {
         "say": "`==` on Strings can appear to work with literals and then fail on a runtime-built one.",
-        "code": ""
+        "code": "\"ab\" == \"ab\"                  // true\nnew String(\"ab\") == \"ab\"      // false"
       },
       {
         "say": "`replaceAll` reads its first argument as a regex, so `replaceAll(\".\", \"-\")` replaces every character.",
-        "code": ""
+        "code": "\"abc\".replaceAll(\".\", \"-\")     // ---"
       },
       {
         "say": "`sb.equals(\"text\")` is always false, because a `StringBuilder` is not a String; convert with `toString()` first.",
-        "code": ""
+        "code": "new StringBuilder(\"ab\").equals(\"ab\")     // false"
       },
       {
         "say": "`new StringBuilder(\"Hello\")` has capacity 21: 16 plus the text length, and capacity is room to grow, not length.",
-        "code": ""
+        "code": "new StringBuilder(\"Hello\").capacity()     // 21"
       },
       {
         "say": "`+` inside a loop creates a new object every pass, which is exactly the cost `StringBuilder` avoids.",
