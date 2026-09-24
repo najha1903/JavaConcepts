@@ -641,16 +641,20 @@ A snippet is up to 3 lines under the point, and it is there because for some fac
 // @snippet public static void main(String[] args)
 ```
 
+**One point carries one snippet.** Consecutive `@snippet` lines are joined into a single sample of Java, so two separate one-liners under the same point become one two-line program rather than two snippets. That is what makes a multi-line sample possible, and it is also easy to trip over: two unrelated lines were once written under one `@gotcha` and the result failed to compile as duplicate class definitions. If two things deserve separate code, they deserve separate points.
+
 **Roughly half the points carry one, and never more than 3 lines.** A sheet where every point has code is the notes again, which is the defect being fixed.
 
-A snippet must be **self-contained Java**, using the JDK only — a fragment that calls your own method cannot be checked by anyone, including you next month. Two more things the check enforces, and both make the sheet better rather than just checkable:
+A snippet must be **self-contained Java**, using the JDK only — a fragment that calls your own method cannot be checked by anyone, including you next month. It does not have to compile as a whole file, because a fragment is a fragment: the check wraps it and it must be valid in some reasonable place, as a class member, as a statement, or as an expression. `while (false) { ... }` is worth knowing about here — it looks like the natural way to show a body that never runs, and **javac rejects it**, because the body is unreachable.
+
+Two more things the check enforces, and both make the sheet better rather than just checkable:
 
 ```java
 // @snippet 9 / 2         // 4          <- the claim is tested: it is run, and 4 is what it prints
 // @snippet if (1) { }    // compile error   <- asserted to NOT compile
 ```
 
-So a comment is a promise. If it says `// 4`, the snippet is run and must print `4`. If it says `// compile error`, it must genuinely fail to compile.
+So a comment is a promise. If it says `// 4`, the snippet is run and must print `4`. If it says `// compile error`, it must genuinely fail to compile. A comment that is prose rather than a value — `// throws`, `// no semicolon` — is left alone and the snippet is only compiled.
 
 ### A gotcha is for the mistake that is easy to make and easy to miss
 
