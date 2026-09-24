@@ -120,7 +120,8 @@ for (const challenge of autoChecked) {
     curated.push(challenge.id);
     continue;
   }
-  const sourceFile = sources.get(challenge.id);
+  const linkedSource = challenge.sourceFile && path.join(root, challenge.sourceFile);
+  const sourceFile = linkedSource && fs.existsSync(linkedSource) ? linkedSource : sources.get(challenge.id);
   if (!sourceFile) {
     warnings.push(`${challenge.id}: the source file could not be found, so the challenge cannot be checked against a solution.`);
     continue;
@@ -146,7 +147,7 @@ for (const challenge of autoChecked) {
 
   if (outcomes.every(outcome => outcome === true)) { passed++; continue; }
 
-  if (outcomes.some(outcome => outcome === null)) {
+  if (!outcomes.some(outcome => outcome === false) && outcomes.some(outcome => outcome === null)) {
     warnings.push(`${challenge.id}: the lab reports "could not be checked" for this challenge.`);
     continue;
   }
@@ -154,11 +155,11 @@ for (const challenge of autoChecked) {
   const detail = challenge.testCases
     .map((testCase, i) => `${JSON.stringify(testCase.args)} expected ${JSON.stringify(testCase.expected)}, verifier said ${outcomes[i]}`)
     .join('; ');
-  failures.push(`${challenge.id}: the verifier rejects the author's own solution, so correct code would be marked wrong. ${detail}`);
+  failures.push(`${challenge.id}: browser approximation disagrees with the reference solution; inspect the expectation and translation rather than assuming either is correct. ${detail}`);
 }
 
 console.log('');
-console.log(`Practice verifier check: ${autoChecked.length} auto-checked challenge(s), ${passed} verified against the author's solution.`);
+console.log(`Browser-approximate practice smoke check: ${autoChecked.length} challenge(s) have expectations, ${passed} matched the reference solution in the Java-to-JavaScript approximation. This is not native Java verification.`);
 if (curated.length) {
   console.log(`  ${curated.length} hand-written challenge(s) have no .java file in src/, so there is no author solution to check them against: ${curated.join(', ')}.`);
 }
@@ -169,10 +170,10 @@ if (warnings.length) {
 }
 if (failures.length) {
   console.log('');
-  console.log(`  ${failures.length} challenge(s) would mark CORRECT code as wrong:`);
+  console.log(`  ${failures.length} challenge(s) disagree with the reference solution:`);
   failures.forEach(failure => console.log(`    - ${failure}`));
   console.log('');
   process.exit(1);
 }
-console.log('  No challenge rejects a correct solution.');
+console.log('  No mismatches in the checked approximation cases. Unsupported and curated cases above are not counted as passes; reference agreement is not an independent correctness proof.');
 console.log('');

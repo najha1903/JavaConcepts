@@ -72,14 +72,19 @@ function isDraftChapter(chapter) {
   return (chapter.topics || []).some(topic => /@draft\b/.test(String(topic.code || '')));
 }
 
-// A chapter is finished once a HIGHER-numbered chapter exists, and not before. While it
-// is unfinished nothing is generated for it and it is not judged; see rules.md.
-function finishedChapterNames(chapters) {
+// Reviewed statuses are authoritative; @draft remains an explicit override.
+// Newly discovered chapters without a manifest entry retain the older compatibility
+// rule (highest numbered is draft). All-finished/all-draft manifests are valid.
+function finishedChapterNames(chapters, manifest = require('../../data/chapter-status.json')) {
   const numbers = (chapters || []).map(c => chapterNumber(c.name)).filter(n => n !== null);
   const highest = numbers.length ? Math.max(...numbers) : null;
   const finished = new Set();
   for (const chapter of chapters || []) {
     const n = chapterNumber(chapter.name);
+    const declared = (manifest.chapters || {})[String(n)] || (manifest.chapters || {})[chapter.name];
+    if (declared && !['finished', 'draft'].includes(declared)) throw new Error(`Invalid chapter status for ${chapter.name}: ${declared}`);
+    if (isDraftChapter(chapter) || declared === 'draft') continue;
+    if (declared === 'finished') { finished.add(chapter.name); continue; }
     if (n === null || highest === null) { finished.add(chapter.name); continue; }
     if (n < highest && !isDraftChapter(chapter)) finished.add(chapter.name);
   }

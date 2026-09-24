@@ -33,9 +33,8 @@
 //   - the Bank's presets select exactly what the same filter selects
 //   - no invented text anywhere on screen
 //
-// jsdom does the DOM. It is a devDependency, and if it is missing this SKIPS rather than
-// fails, the same way the Java checks skip when javac is absent - a missing tool is not a
-// defect in the author's notes.
+// jsdom is a required devDependency. Missing tooling fails this check, rather than
+// silently reporting untested behaviour as green. DOM tests do not prove visual layout.
 //
 // Usage: node scripts/check-dashboard.js
 // ============================================================================
@@ -50,9 +49,9 @@ let JSDOM;
 try {
   ({ JSDOM } = require('jsdom'));
 } catch (error) {
-  console.log('Dashboard check skipped: jsdom is not installed.');
+  console.error('Dashboard check failed: required jsdom is not installed.');
   console.log('   Install it with:  npm install');
-  process.exit(0);
+  process.exit(1);
 }
 
 const indexPath = path.join(dashboardDir, 'index.html');
@@ -128,7 +127,7 @@ function check(name, fn) {
     const value = fn();
     results.push({ name, ok: true, value: value === undefined ? '' : String(value) });
   } catch (error) {
-    results.push({ name, ok: false, value: error.message });
+    results.push({ name, ok: false, value: error.stack || error.message });
   }
 }
 
@@ -136,6 +135,7 @@ function check(name, fn) {
 // printed, and each test reads what was said.
 let alerts = [];
 win.alert = message => { alerts.push(String(message)); };
+win.confirm = () => true;
 
 function isHidden(element) {
   let node = element;
@@ -464,8 +464,370 @@ for (const section of [...doc.querySelectorAll('.view-section')].map(s => s.id))
   });
 }
 
+// ---- Persistence, grading and accessibility regressions ----------------------
+
+const assert = require('assert/strict');
+const savedState = g('JavaRevStorage.exportText()');
+function storageFixture(seed = {}, unavailable = false) {
+  const fixture = new JSDOM('<div id="storage-warnings" hidden></div>', {
+    url: 'http://localhost/', runScripts: 'outside-only'
+  });
+  for (const [key, value] of Object.entries(seed)) fixture.window.localStorage.setItem(key, value);
+  if (unavailable) Object.defineProperty(fixture.window, 'localStorage', { get() { throw new Error('denied'); } });
+  fixture.window.eval(fs.readFileSync(path.join(dashboardDir, 'storage.js'), 'utf8'));
+  return fixture;
+}
+function expectWarning(fixture) {
+  assert.equal(fixture.window.document.getElementById('storage-warnings').hidden, false);
+  assert.ok(fixture.window.document.getElementById('storage-warnings').textContent.length > 20);
+}
+check('grading preserves case and meaningful whitespace', () => {
+  const grade = g('JavaRevScoring.grade');
+  for (const type of ['predict', 'codefill']) {
+    const q = { type, answer: ['Hello World\nnext'] };
+    assert.equal(grade(q, 'Hello World\r\nnext\n'), true);
+    for (const wrong of ['hello world\nnext', 'HelloWorld\nnext', 'Hello  World\nnext', ' Hello World\nnext', 'Hello World\nnext\n\n']) {
+      assert.equal(grade(q, wrong), false, wrong);
+    }
+  }
+  assert.equal(grade({ type: 'codefill', answer: ['String'] }, 'string'), false);
+});
+
+check('missing, corrupt and unavailable storage warn visibly and preserve valid legacy data', () => {
+  const fixtures = [];
+  try {
+    const empty = storageFixture(); fixtures.push(empty);
+    empty.window.JavaRevStorage.read('javarev_notes'); expectWarning(empty);
+    const blocked = storageFixture({}, true); fixtures.push(blocked);
+    blocked.window.JavaRevStorage.write('javarev_notes', { project: 'in memory', topics: {} });
+    assert.equal(blocked.window.JavaRevStorage.read('javarev_notes').project, 'in memory');
+    expectWarning(blocked);
+    const oldRecord = { seen: 2, correct: 1, wrong: 1, lastSeenMs: 10 };
+    const corrupt = storageFixture({
+      javarev_quiz_history: '{broken',
+      javarev_question_history: JSON.stringify({ valid: oldRecord, invalid: { seen: 'no' } }),
+      javarev_notes: JSON.stringify({ project: 'Keep this', topics: { topic: 'note' } })
+    }); fixtures.push(corrupt);
+    const store = corrupt.window.JavaRevStorage;
+    assert.equal(store.read('javarev_notes').project, 'Keep this');
+    assert.equal(store.read('javarev_question_history').valid.correct, 1);
+    assert.equal(corrupt.window.localStorage.getItem('javarev_quiz_history'), '{broken');
+    expectWarning(corrupt);
+    const brokenEnvelope = storageFixture({ javarev_state_v2: '{broken' }); fixtures.push(brokenEnvelope);
+    brokenEnvelope.window.JavaRevStorage.write('javarev_notes', { project: 'new', topics: {} });
+    assert.equal(brokenEnvelope.window.localStorage.getItem('javarev_state_v2'), '{broken');
+    expectWarning(brokenEnvelope);
+    const quota = storageFixture({ javarev_state_v2: savedState }); fixtures.push(quota);
+    quota.window.JavaRevStorage.read('javarev_notes');
+    quota.window.Storage.prototype.setItem = () => { throw new Error('quota'); };
+    assert.equal(quota.window.JavaRevStorage.write('javarev_notes', { project: 'unsaved', topics: {} }), false);
+    assert.equal(quota.window.localStorage.getItem('javarev_state_v2'), savedState);
+    expectWarning(quota);
+  } finally { fixtures.forEach(f => f.window.close()); }
+});
+
+check('backup import validates schema, previews, backs up and distrusts scores', () => {
+  const fixture = storageFixture({ javarev_state_v2: savedState });
+  try {
+    const store = fixture.window.JavaRevStorage;
+    const imported = JSON.parse(savedState);
+    imported.data.javarev_question_history = { score: { seen: 9, correct: 9, wrong: 0, lastSeenMs: 10 } };
+    imported.data.javarev_quiz_history = [{ chapter: 'test', correct: 9, total: 9 }];
+    imported.data.javarev_editor_drafts = { sample: { code: 'int value = 3;' } };
+    const text = JSON.stringify(imported);
+    assert.match(store.preview(text).summary, /1 editor drafts/);
+    assert.equal(store.importData(text), true);
+    assert.equal(store.read('javarev_question_history').score.imported, true);
+    assert.equal(store.backupText(), savedState);
+    for (const invalid of [
+      { ...imported, project: 'DifferentProject' },
+      { ...imported, version: 999 },
+      { ...imported, data: { ...imported.data, javarev_notes: [] } },
+      { ...imported, data: { ...imported.data, javarev_quiz_progress: { questionIds: [null] } } }
+    ]) assert.throws(() => store.preview(JSON.stringify(invalid)));
+    assert.throws(() => store.preview(text.replace('"data":{', '"data":{"__proto__":{},')));
+    assert.equal(store.reset(), true);
+    assert.equal(Object.keys(store.read('javarev_editor_drafts')).length, 0);
+    assert.equal(store.read('javarev_question_history').score, undefined);
+    assert.equal(JSON.parse(store.backupText()).data.javarev_editor_drafts.sample.code, 'int value = 3;');
+  } finally { fixture.window.close(); }
+});
+
+let sessionFixture;
+check('quiz scoring is idempotent and all selection types survive navigation and close', () => {
+  const all = Object.values(g('QUESTIONS_BANK')).flat();
+  // The regression drives all four answer shapes, so each one has to exist. A type with
+  // no question yet - multi-select needs an authored question with two [correct] options,
+  // and the generated topic-membership questions were removed as unsound - is supplied as
+  // a fixture and registered in the bank. A saved quiz re-resolves its questions by id, so
+  // a fixture that was not registered would make resume refuse the whole session.
+  const synthetic = [];
+  const pick = (type, qid, build, match) => {
+    const found = all.find(q => q.type === type && (!match || match(q)));
+    if (found) return found;
+    const question = {
+      qid, type, difficulty: 'easy', chapter: 'Regression fixture', topic: 'Regression fixture',
+      question: `Regression fixture for the ${type} answer shape`, concepts: [],
+      contentVersion: 'regression-fixture', explanation: 'Fixture explanation.',
+      ...build
+    };
+    synthetic.push(question);
+    return question;
+  };
+  sessionFixture = [
+    pick('scq', 'regression-fixture-scq', { answer: 0, options: ['First', 'Second', 'Third'] }, q => q.answer === 0),
+    pick('mcq', 'regression-fixture-mcq', { answer: [0, 1], options: ['Alpha', 'Beta', 'Gamma'] }),
+    pick('predict', 'regression-fixture-predict', { answer: ['Exact output'], code: 'System.out.println("x");' }),
+    pick('interview', 'regression-fixture-interview', { modelAnswer: 'Fixture answer.', keyPoints: ['First point', 'Second point'] })
+  ];
+  assert.equal(sessionFixture.length, 4, 'fixtures for all four question types exist');
+  if (synthetic.length) g(`QUESTIONS_BANK['Regression fixture'] = ${JSON.stringify(synthetic)}; questionIndexCache = null;`);
+  win.__sessionFixture = sessionFixture;
+  g('startSelectionQuiz(__sessionFixture, "Persistence regression", 4); activeQuizQuestions = __sessionFixture.slice(); currentQuizQuestionIndex = 0; renderQuizQuestion();');
+  doc.querySelector('#quiz-options-container .option-item').click();
+  doc.getElementById('btn-submit-answer').click();
+  const afterSubmit = g('getQuestionHistory()')[sessionFixture[0].qid].seen;
+  g('submitQuizAnswer()');
+  assert.equal(g('getQuestionHistory()')[sessionFixture[0].qid].seen, afterSubmit);
+  g('loadNextQuizQuestion()');
+  doc.querySelectorAll('#quiz-options-container .option-item')[1].click();
+  g('previousQuizQuestion()');
+  assert.equal(doc.getElementById('btn-submit-answer').style.display, 'none');
+  assert.ok(doc.querySelector('#quiz-options-container .option-item').classList.contains('selected'));
+  assert.match(doc.getElementById('quiz-feedback-text').textContent, /Your answer: 0/);
+  g('loadNextQuizQuestion()');
+  assert.ok(doc.querySelectorAll('#quiz-options-container .option-item')[1].classList.contains('selected'));
+  g('closeQuiz(); resumeQuiz()');
+  assert.ok(doc.querySelectorAll('#quiz-options-container .option-item')[1].classList.contains('selected'));
+  g('submitQuizAnswer(); loadNextQuizQuestion()');
+  const predict = doc.getElementById('quiz-predict-input');
+  predict.value = '  Exact CASE\nline  ';
+  predict.dispatchEvent(new win.Event('input'));
+  g('showView("notes-view"); resumeQuiz()');
+  assert.equal(predict.value, '  Exact CASE\nline  ');
+  g('previousQuizQuestion(); loadNextQuizQuestion()');
+  assert.equal(predict.value, '  Exact CASE\nline  ');
+  predict.value = '<img src=x onerror="alert(1)">';
+  predict.dispatchEvent(new win.Event('input'));
+  g('submitQuizAnswer(); loadNextQuizQuestion()');
+  const interview = doc.getElementById('quiz-interview-textarea');
+  interview.value = 'My original interview explanation';
+  interview.dispatchEvent(new win.Event('input'));
+  g('submitQuizAnswer()');
+  const box = doc.querySelector('#quiz-interview-checklist input');
+  box.checked = true; box.dispatchEvent(new win.Event('change'));
+  g('closeQuiz(); resumeQuiz()');
+  assert.equal(interview.value, 'My original interview explanation');
+  assert.equal(doc.querySelector('#quiz-interview-checklist input').checked, true);
+  g('submitQuizAnswer()');
+  const stored = g('loadQuizProgress()');
+  assert.equal(stored.saved.answered.length, 4);
+  assert.equal(stored.saved.inputs[3].interview, 'My original interview explanation');
+  assert.equal(stored.saved.score, g('JavaRevScoring.totals(activeQuizQuestions, answeredQuestions).correct'));
+  g('showQuizResults()');
+  const sessions = g('getQuizHistory()').length;
+  g('showQuizResults(); closeQuiz(); showView("dashboard-view")');
+  assert.equal(g('getQuizHistory()').length, sessions);
+  assert.equal(g('loadQuizProgress()'), null);
+  assert.match(doc.getElementById('result-score-note').textContent, /3 scored questions; 1 self-assessed/);
+  assert.equal(doc.querySelector('#quiz-results-breakdown img'), null);
+});
+
+check('saved quiz restores after a full app reload with unsubmitted text', () => {
+  win.__reloadQuestion = sessionFixture[2];
+  g('startSelectionQuiz([__reloadQuestion], "Reload regression", 1)');
+  const input = doc.getElementById('quiz-predict-input');
+  input.value = 'Retain\nCASE and spaces ';
+  input.dispatchEvent(new win.Event('input'));
+  const seed = win.localStorage.getItem('javarev_state_v2');
+  const fixture = new JSDOM(html, { runScripts: 'dangerously', url: 'http://localhost/revision-dashboard/index.html#quiz-view' });
+  try {
+    const w = fixture.window;
+    w.localStorage.setItem('javarev_state_v2', seed);
+    w.matchMedia = win.matchMedia;
+    w.alert = () => {}; w.confirm = () => true;
+    Object.defineProperty(w.HTMLElement.prototype, 'innerText', {
+      get() { return this.textContent; }, set(value) { this.textContent = value; }
+    });
+    for (const src of scriptSources) {
+      const script = w.document.createElement('script');
+      script.textContent = fs.readFileSync(path.join(dashboardDir, src), 'utf8');
+      w.document.head.appendChild(script);
+    }
+    w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
+    assert.equal(w.document.querySelector('.view-section.active').id, 'quiz-view');
+    assert.equal(w.document.getElementById('quiz-predict-input').value, 'Retain\nCASE and spaces ');
+    assert.equal(w.eval('activeQuizQuestions.length'), 1);
+  } finally { fixture.window.close(); }
+});
+
+check('study confidence requires distinct objective IDs and excludes imported and retired evidence', () => {
+  const history = g('getQuestionHistory()');
+  try {
+    const concept = [...g('questionIndex().byConcept')].find(([, ids]) =>
+      ids.filter(id => g('questionIndex().byId').get(id).type !== 'interview').length >= 3);
+    assert.ok(concept);
+    const qs = concept[1].map(id => g('questionIndex().byId').get(id)).filter(q => q.type !== 'interview');
+    const records = {};
+    const record = q => ({ seen: 10, correct: 10, wrong: 0, lastSeenMs: 1, contentVersion: q.contentVersion });
+    records[qs[0].qid] = record(qs[0]);
+    g('JavaRevStorage').write('javarev_question_history', records);
+    assert.equal(g('getConceptMastery()').find(m => m.id === concept[0]).proved, false);
+    records[qs[1].qid] = record(qs[1]); records[qs[2].qid] = record(qs[2]);
+    g('JavaRevStorage').write('javarev_question_history', records);
+    assert.equal(g('getConceptMastery()').find(m => m.id === concept[0]).proved, true);
+    records[qs[2].qid].imported = true;
+    records.retired = { seen: 10000, correct: 10000, wrong: 0, lastSeenMs: 1 };
+    records[sessionFixture[3].qid] = record(sessionFixture[3]);
+    g('JavaRevStorage').write('javarev_question_history', records);
+    assert.equal(g('getConceptMastery()').find(m => m.id === concept[0]).proved, false);
+    assert.equal(g('computeReadiness().answered'), 2);
+    g('renderReadiness()');
+    assert.match(doc.getElementById('mastery-readiness').textContent, /Study confidence/);
+  } finally { g('JavaRevStorage').write('javarev_question_history', history); }
+});
+
+check('content identity aliases preserve compatible history and archive changed evidence visibly', () => {
+  const q = sessionFixture[0];
+  const oldVersion = q.contentVersion, oldAliases = q.legacyQids;
+  const history = g('getQuestionHistory()');
+  try {
+    q.contentVersion = 'regression-v1'; q.legacyQids = ['regression-old-id'];
+    const records = { 'regression-old-id': { seen: 3, correct: 2, wrong: 1, lastSeenMs: 1 } };
+    g('JavaRevStorage').write('javarev_question_history', records);
+    g('questionIndexCache = null; reconcileQuestionHistory()');
+    assert.equal(g('getQuestionHistory()')[q.qid].correct, 2);
+    assert.equal(g('getQuestionHistory()')['regression-old-id'], undefined);
+    q.contentVersion = 'regression-v2';
+    g('questionIndexCache = null; reconcileQuestionHistory()');
+    assert.equal(g('getQuestionHistory()')[q.qid], undefined);
+    assert.ok(Object.keys(g('JavaRevStorage.read("javarev_archived_evidence")')).some(key => key.includes(q.qid)));
+    assert.equal(doc.getElementById('storage-warnings').hidden, false);
+  } finally {
+    q.contentVersion = oldVersion; q.legacyQids = oldAliases;
+    g('questionIndexCache = null');
+    g('JavaRevStorage').write('javarev_question_history', history);
+  }
+});
+
+check('practice drafts survive challenge and tab changes without claiming compilation', () => {
+  g('showPracticeLab({ chapterName: null, subChapterName: null })');
+  const editor = doc.getElementById('practice-code-textarea');
+  editor.value = '// keep my draft\nint count = 7;';
+  editor.dispatchEvent(new win.Event('input'));
+  const id = g('currentEditorChallenge.id');
+  g('selectChallenge(1); selectChallenge(0)');
+  assert.equal(g('currentEditorChallenge.id'), id);
+  assert.equal(editor.value, '// keep my draft\nint count = 7;');
+  if (g('DEEP_CHALLENGES.length')) {
+    g('switchPracticeTab("deep")');
+    editor.value = '// deep draft'; editor.dispatchEvent(new win.Event('input'));
+    g('switchPracticeTab("coding"); switchPracticeTab("deep")');
+    assert.equal(editor.value, '// deep draft');
+  }
+  assert.doesNotMatch(doc.getElementById('btn-run-practice').textContent, /Compile/);
+});
+
+check('mobile drawer hides focus, traps Tab, closes with Escape and restores focus', () => {
+  const original = win.matchMedia;
+  win.matchMedia = () => ({ matches: true });
+  try {
+    g('syncDrawerVisibility()');
+    assert.equal(doc.querySelector('.sidebar').inert, true);
+    doc.getElementById('mobile-menu-btn').focus();
+    g('openDrawer()');
+    assert.equal(doc.querySelector('.sidebar').inert, false);
+    assert.equal(doc.querySelector('.main-content').inert, true);
+    assert.equal(doc.getElementById('mobile-menu-btn').getAttribute('aria-expanded'), 'true');
+    doc.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    assert.equal(doc.querySelector('.sidebar').inert, true);
+    assert.equal(doc.activeElement.id, 'mobile-menu-btn');
+    g('openDrawer(); showView("notes-view")');
+    assert.equal(doc.querySelector('.main-content').inert, false);
+    assert.equal(doc.querySelector('.app-container').classList.contains('drawer-open'), false);
+    assert.ok(doc.querySelector('#notes-view').contains(doc.activeElement));
+  } finally { win.matchMedia = original; g('syncDrawerVisibility()'); }
+});
+
+async function checkAsync(name, fn) {
+  try { await fn(); results.push({ name, ok: true, value: '' }); }
+  catch (error) { results.push({ name, ok: false, value: error.message }); }
+}
+
+async function asyncRegressions() {
+  await checkAsync('practice worker handles normal, unsupported, unavailable and infinite-loop cases', async () => {
+    const { Worker: NodeWorker } = require('worker_threads');
+    const workerSource = fs.readFileSync(path.join(dashboardDir, 'practice-worker.js'), 'utf8');
+    let terminated = 0;
+    win.Worker = class {
+      constructor() {
+        this.worker = new NodeWorker(`
+          const { parentPort } = require('worker_threads');
+          global.self = global;
+          self.postMessage = value => parentPort.postMessage(value);
+          ${workerSource}
+          parentPort.on('message', data => self.onmessage({ data }));
+        `, { eval: true });
+        this.worker.on('message', data => this.onmessage?.({ data }));
+        this.worker.on('error', error => this.onerror?.(error));
+      }
+      postMessage(value) { this.worker.postMessage(value); }
+      terminate() { terminated++; this.worker.terminate(); }
+    };
+    const runtime = g('JavaRevRuntime');
+    const challenge = { id: 'worker-regression', testCases: [{}], verifyFnStr: 'function(code) { return new Function(code)(); }' };
+    const good = await runtime.run(challenge, 'return true;', {}, 2000);
+    assert.equal(good.outcomes[0], 'match');
+    const unsupported = await runtime.run(challenge, 'throw new Error("unsupported");', {}, 2000);
+    assert.equal(unsupported.outcomes[0], 'unsupported');
+    let responsive = false;
+    setTimeout(() => { responsive = true; }, 25);
+    const infinite = await runtime.run(challenge, 'while (true) {}', {}, 100);
+    assert.match(infinite.unavailable, /stopped after/);
+    assert.equal(responsive, true);
+    assert.equal(terminated, 3);
+    delete win.Worker;
+    const unavailable = await runtime.run(challenge, 'while (true) {}', {});
+    assert.match(unavailable.unavailable, /Nothing was executed/);
+  });
+  await checkAsync('browser back/forward restores views and focus without losing a quiz', async () => {
+    g('resumeQuiz(); showView("notes-view"); showView("bank-view")');
+    const saved = g('loadQuizProgress().saved.inputs[0].predict');
+    win.history.back();
+    await new Promise(resolve => setTimeout(resolve, 80));
+    assert.equal(doc.querySelector('.view-section.active').id, 'notes-view');
+    assert.ok(doc.querySelector('#notes-view').contains(doc.activeElement));
+    win.history.forward();
+    await new Promise(resolve => setTimeout(resolve, 80));
+    assert.equal(doc.querySelector('.view-section.active').id, 'bank-view');
+    assert.equal(g('loadQuizProgress().saved.inputs[0].predict'), saved);
+  });
+  await checkAsync('import UI previews and requires confirmation before replacement', async () => {
+    const fileInput = doc.getElementById('import-data-file');
+    const before = g('JavaRevStorage.exportText()');
+    const parsed = JSON.parse(before);
+    parsed.data.javarev_notes.project = 'Imported project note';
+    Object.defineProperty(fileInput, 'files', {
+      configurable: true, value: [{ size: before.length, text: async () => JSON.stringify(parsed) }]
+    });
+    await fileInput.onchange();
+    assert.equal(doc.getElementById('btn-confirm-import').hidden, false);
+    assert.match(doc.getElementById('import-data-preview').textContent, /replaces local data/);
+    win.confirm = () => false;
+    doc.getElementById('btn-confirm-import').click();
+    assert.notEqual(g('getProjectNotes()'), 'Imported project note');
+    win.confirm = () => true;
+    doc.getElementById('btn-confirm-import').click();
+    assert.equal(g('getProjectNotes()'), 'Imported project note');
+    assert.equal(doc.getElementById('btn-confirm-import').hidden, true);
+    assert.ok(g('JavaRevStorage.backupText()'));
+  });
+  report();
+}
+
 // ---- Report -----------------------------------------------------------------
 
+function report() {
 console.log('');
 let failed = 0;
 for (const result of results) {
@@ -487,4 +849,7 @@ if (failed) {
   console.error(`Dashboard check failed: ${failed} problem(s). The page is broken even though the data is valid.`);
   process.exit(1);
 }
-console.log(`   The dashboard renders and behaves: ${results.length} checks passed.`);
+console.log(`   DOM/state checks passed: ${results.length}. jsdom does not verify real visual layout or browser rendering.`);
+dom.window.close();
+}
+asyncRegressions().catch(error => { console.error(error); dom.window.close(); process.exitCode = 1; });

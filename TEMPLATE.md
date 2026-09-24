@@ -1,144 +1,89 @@
-# Revision Dashboard Template Guide
+# Reusing the revision-portal design
 
-This repository can bootstrap the same notes-first revision dashboard for JavaScript, TypeScript, Cypress, Playwright, or Selenium projects. The Java project is the reference implementation.
+JavaConcepts is a Java learning portal, **not a plug-and-play framework template**.
+The former copy-based `scripts\create-project.js` scaffolder is retired. It prints
+plan guidance instead of creating or overwriting a destination project:
 
-## Create A Project
-
-Run from the JavaConcepts project root:
-
-```bash
-node scripts/create-project.js <ProjectName> <technology>
+```powershell
+node scripts\create-project.js --help
 ```
 
-Supported technologies:
+Help (`--help` or `-h`) exits successfully; other invocations return a nonzero exit
+code after the guidance. No invocation creates or overwrites destination files.
 
-- `javascript`
-- `typescript`
-- `cypress`
-- `playwright`
-- `selenium`
+Do not copy generated Java datasets, rename extensions, or adapt the Java parser
+through string replacement and call the result a working framework portal.
 
-Useful options:
+## Choose a standalone plan
 
-```bash
-node scripts/create-project.js PlaywrightConcepts playwright
-node scripts/create-project.js MyProject playwright --target "D:\Work\MyProject"
-node scripts/create-project.js MyProject playwright --target "D:\Work\MyProject" --dashboard-only
-node scripts/create-project.js --help
-```
+All plans are in [revision-portal-plans](revision-portal-plans/README.md):
 
-If the target already contains a project, the scaffolder updates the dashboard and parser while leaving the existing `src/` content untouched. The generated project includes a technology-specific parser, dashboard, `package.json`, `README.md`, and `rules.md`.
+| Destination | Self-contained blueprint |
+| --- | --- |
+| Selenium with Java | [Selenium](revision-portal-plans/SELENIUM-JAVA-REVISION-PORTAL-PLAN.md) |
+| REST Assured with Java | [REST Assured](revision-portal-plans/REST-ASSURED-JAVA-REVISION-PORTAL-PLAN.md) |
+| Karate DSL | [Karate](revision-portal-plans/KARATE-DSL-REVISION-PORTAL-PLAN.md) |
+| Cypress with JavaScript / TypeScript | [Cypress](revision-portal-plans/CYPRESS-JS-TS-REVISION-PORTAL-PLAN.md) |
+| Playwright with JavaScript / TypeScript | [Playwright](revision-portal-plans/PLAYWRIGHT-JS-TS-REVISION-PORTAL-PLAN.md) |
 
-## Source-To-Portal Flow
+Copy the relevant plan into its learning repository and ask Copilot:
 
-The generated project follows this flow:
+> Implement this plan, beginning with discovery. Preserve my notes, existing
+> application/tests, build tooling, and source organization. Report actual
+> validation evidence and any blocked capabilities.
 
-```text
-Source files in src/
-        |
-        v
-Parser extracts notes, code, quizzes, and challenges
-        |
-        v
-Generated data files in revision-dashboard/
-        |
-        v
-Interactive notes, quizzes, practice, and chapter PDF printing
-```
+These plans specify **future target behavior**. They do not mean that this
+repository implements native framework practice, portable adapters, or a shared
+multi-project backend.
 
-After every source change, run:
+## Discover before building
 
-```bash
-npm run revise
-```
+1. Inspect actual note roots, chapter boundaries, draft/finished status, languages,
+   package/build files, installed versions, and existing tests without running
+   environment suites.
+2. Record stable project/topic identities and explicit status mapping. Do not
+   import Java chapter names or assume the highest-numbered folder is unfinished.
+3. Choose technology-aware extraction and reviewed supplementary content. Preserve
+   ordinary notes; quiz/snippet markers are optional compatibility input, not an
+   obligation on the learner.
+4. Inventory the complete dependency graph of any UI assets reused, including
+   styles, data loaders, storage, and licenses. Build destination content afresh.
+5. Separate deterministic generation, explicit Copilot authoring, local review,
+   static study, and opt-in native execution.
 
-The command should regenerate the data files, run the generated-content audit when available, and open the dashboard. Generated files must not be edited manually.
+## Contracts worth preserving
 
-## Authoring Contract
+- **Notes first:** preserve wording and examples; only explicitly accepted source
+  patches can insert or correct notes. No unstudied content or filler quotas.
+- **One approval backend:** browser Apply and CLI approval share staging,
+  validation, input/proposal conflicts, fresh reports, and journaled recovery.
+  Concurrent human edits must never be restored from an unrelated backup.
+- **One everyday workflow:** `npm run revise` remains the source of truth for
+  generation/review as new content is added. Keep generate/approve commands as
+  adapters to shared orchestration, not competing pipelines. Validate future
+  changes rather than promising that shared code can never regress.
+- **Truthful learning evidence:** exact, type-sensitive grading; genuinely false
+  distractors; expectation provenance; independent cases for independent claims.
+- **Durable progress:** stable IDs, legacy aliases, semantic content versions,
+  idempotent per-question events, drafts, backups, validated import, and recovery.
+- **Study confidence, not certification:** at least three distinct eligible
+  objective questions and 80% accuracy for the default concept threshold.
+  Repetition and interview self-assessment cannot manufacture breadth.
+- **Honest native boundaries:** use dedicated deterministic local fixtures and an
+  actual supported runtime. A JavaScript approximation, subprocess, or container
+  label alone establishes neither framework correctness nor secure isolation.
+- **Static hosting:** GitHub Pages serves study content; it does not run a native
+  local test service or grant write access to a repository.
 
-The source comments are the core content, even when they are raw input. They should still contain the complete technical idea. The parser improves structure and common wording issues, adds supporting context, and preserves the original rules, examples, constraints, and expected behavior. It should not invent unrelated behavior or replace the author's explanation.
+## Handoff acceptance
 
-Overview comments belong before the first function, `describe`, class, interface, record, or export:
+Use the chosen plan's acceptance matrix, adapted to the discovered project.
+Demonstrate an ordinary notes → revise → review/Apply → study cycle, scratch-only
+validation, stale/concurrent edit handling, failed publication recovery, and
+progress export/import. Verify native fixtures separately against independent
+oracles and known incorrect implementations.
 
-```javascript
-// A locator identifies an element that a test wants to inspect or use.
-// Prefer stable user-facing or test-specific selectors so the test survives layout changes.
-// A selector that matches several elements can make a test act on the wrong target.
-```
-
-Inline comments belong beside important implementation lines:
-
-```javascript
-const submitButton = page.getByRole('button', { name: 'Submit' }); // Role-based locators express user-visible intent.
-await submitButton.click(); // The click waits for the locator to resolve before interacting.
-```
-
-Write complete sentences with a clear subject, action, and consequence. Explain what the concept is, why it matters, how the example works, and which boundary cases can fail. Keep code examples separate from prose so the parser can render them as code blocks.
-
-## Supported Markers
-
-```javascript
-// @quiz Why should a test use a stable locator?
-// @answer A stable locator continues to identify the intended element when unrelated layout details change.
-// @answer Prefer role, label, or test-id locators according to the technology's recommended practice.
-
-// @challenge Build a reliable login workflow
-// @desc Create a reusable page object with navigation, field entry, submission, and validation methods.
-// @hint Keep locators together and wait on meaningful UI state rather than fixed time delays.
-// @testcase login("valid@example.com", "secret") -> dashboard is visible
-```
-
-`@quiz` and `@answer` create quiz-bank entries. `@challenge`, `@desc`, `@hint`, and `@testcase` create deep coding problems. These marker lines are excluded from ordinary topic notes.
-
-## Technology Focus
-
-### Cypress
-
-- `cy.get()` versus scoped queries such as `find()`.
-- Why fixed `cy.wait(milliseconds)` calls are unreliable.
-- Command chaining, assertions, and automatic retries.
-- `beforeEach` versus `before`.
-- Network interception with `cy.intercept()`.
-
-### Playwright
-
-- Locator priority: role, label, text, test id, then CSS when appropriate.
-- Auto-waiting locators versus explicit waits.
-- Pages, contexts, multiple tabs, and fixtures.
-- `beforeAll`, `beforeEach`, and test isolation.
-
-### JavaScript
-
-- `var`, `let`, and `const` scope and hoisting.
-- `==` versus `===` and coercion traps.
-- Promises, `async`, and `await`.
-- `map`, `filter`, `reduce`, and `forEach`.
-- Closures and `this` binding.
-
-### TypeScript
-
-- `interface` versus `type`.
-- `any`, `unknown`, and `never`.
-- Generics and type guards.
-- `readonly` versus `const`.
-
-### Selenium With Java
-
-- Implicit, explicit, and fluent waits.
-- Page Object Model design.
-- `findElement` versus `findElements`.
-- Actions such as hover, drag-and-drop, and right-click.
-- TestNG and JUnit lifecycle annotations.
-
-## Quality Checklist
-
-Before running the generator, check that each topic has:
-
-- A meaningful overview before the main declaration.
-- Readable inline explanations near important code.
-- At least one expected result or concrete example.
-- Parameter meaning, valid values, and boundary cases where applicable.
-- One common mistake or technology-specific trap.
-- Custom quiz answers written as complete explanations.
-
-Then run `npm run revise` and inspect the generated topic in Notes, Quick Revision, Quiz, Practice, and PDF output as applicable.
+Document commands from the **implemented package scripts**, not this Java
+repository's historical aliases. Report unsupported tooling, missing authoring,
+skipped checks, and execution limitations explicitly. Current Java behavior is
+documented in [README.md](README.md) and [rules.md](rules.md).

@@ -12,7 +12,16 @@
 // Regenerate with: node scripts/derive-code-questions.js [--force]
 // ============================================================================
 
-const SOURCE_HASH = 'd1885e38';
+const SOURCE_HASH = '780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac';
+const NATIVE_VALIDATION = {
+  "release": 21,
+  "preview": false,
+  "compilerVersion": "javac 25.0.4.1",
+  "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+  "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+  "validator": "scripts/derive-code-questions.js",
+  "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+};
 
 const DERIVED_CODE_QUESTIONS = [
   {
@@ -20,201 +29,577 @@ const DERIVED_CODE_QUESTIONS = [
     "topic": "Primitive Data Types",
     "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
     "code": "int max = Integer.MAX_VALUE;\nSystem.out.println(max + 1);",
-    "answer": "-2147483648",
-    "explanation": "2147483648, which is Integer.MIN_VALUE",
+    "answer": "-2147483648\n",
+    "explanation": "",
     "claim": "2147483648, which is Integer.MIN_VALUE",
-    "id": "code-chapter-2-primitive-types-primitive-data-types-2147483648"
+    "id": "code-80e1983459f16cefff0e76de",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "5d8f8828dd3e5bb311d00bb2206c598a5144c843709b056af0320eed9c40aa63",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 2: Primitive Types",
     "topic": "Primitive Data Types",
     "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
     "code": "System.out.println(5 / 2);\nSystem.out.println(5 / 2.0);",
-    "answer": "2\r\n2.5",
-    "explanation": "2, because both operands are int",
+    "answer": "2\n2.5\n",
+    "explanation": "",
     "claim": "2, because both operands are int",
-    "id": "code-chapter-2-primitive-types-primitive-data-types-2-2-5"
+    "id": "code-eaccff719176f6846aa1f3f7",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "8df98f70d283dc1117fefd6db5be7b2b2fcdc250dd3956617838dbf91d49f032",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 2: Primitive Types",
     "topic": "Primitive Data Types",
     "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
     "code": "char c = 'A';\nSystem.out.println(c + 1);\nSystem.out.println((char) (c + 1));",
-    "answer": "66\r\nB",
-    "explanation": "66, because 'A' is 65 and c is promoted to int",
+    "answer": "66\nB\n",
+    "explanation": "",
     "claim": "66, because 'A' is 65 and c is promoted to int",
-    "id": "code-chapter-2-primitive-types-primitive-data-types-66-b"
+    "id": "code-df4674521ebac1f9a4009608",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "ed83dfd2329aa91b6d3489e0e5ed8de2b38322082cd51a315309304eb9975f3b",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 3: Operators",
     "topic": "Operators Operands Expressions",
     "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
     "code": "System.out.println(2 + 3 * 4);\nSystem.out.println((2 + 3) * 4);",
-    "answer": "14\r\n20",
-    "explanation": "14, because * binds tighter than +",
+    "answer": "14\n20\n",
+    "explanation": "",
     "claim": "14, because * binds tighter than +",
-    "id": "code-chapter-3-operators-operators-operands-expressions-14-20"
+    "id": "code-4cc0eb14595f969967bd1521",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "7ba9f7f4bacd1eaf8a4faf261bbb5fdbf22ed9e68243470137132df1b6ddbe2b",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 3: Operators",
     "topic": "Operators Operands Expressions",
     "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
     "code": "int i = 5;\nSystem.out.println(i++);\nSystem.out.println(++i);",
-    "answer": "5\r\n7",
-    "explanation": "5, then i becomes 6. Use the value, then increment.",
+    "answer": "5\n7\n",
+    "explanation": "",
     "claim": "5, then i becomes 6. Use the value, then increment.",
-    "id": "code-chapter-3-operators-operators-operands-expressions-5-7"
+    "id": "code-e8f17832633457840954b3a6",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "acb934206252412e0010ef0e41293deb188f9e6f35955df27232c9fe4d7f5525",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 3: Operators",
     "topic": "Operators Operands Expressions",
     "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
     "code": "System.out.println(10 / 3);\nSystem.out.println(10 % 3);\nSystem.out.println(-10 % 3);",
-    "answer": "3\r\n1\r\n-1",
-    "explanation": "3, not 3.33",
+    "answer": "3\n1\n-1\n",
+    "explanation": "",
     "claim": "3, not 3.33",
-    "id": "code-chapter-3-operators-operators-operands-expressions-3-1-1"
+    "id": "code-d6a8afbf4efe6513b240a9af",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "ed4f318c2ebc187699e7033e30da39e62086b0db6b795cb8f71cdd95a9ba6e4e",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 3: Operators",
     "topic": "Operators Operands Expressions",
     "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
     "code": "System.out.println(10 + 20 + \"Java\");\nSystem.out.println(\"Java\" + 10 + 20);\nSystem.out.println(\"Java\" + (10 + 20));",
-    "answer": "30Java\r\nJava1020\r\nJava30",
-    "explanation": "30Java",
+    "answer": "30Java\nJava1020\nJava30\n",
+    "explanation": "",
     "claim": "30Java",
-    "id": "code-chapter-3-operators-operators-operands-expressions-30java-java1020-java"
+    "id": "code-5b13bb3f6cf64a994a825f73",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "7b9686a659bd06b5b03c9e030b965554b80ccbc481a007ea67ad137f7997d8e8",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 3: Operators",
     "topic": "Operator Challenge",
     "topicPath": "src/Chapter_3_Operators/Sub_Chapter_2_OperatorsChallenge/OperatorChallenge.java",
     "code": "double first = 20.00d;\ndouble second = 80.00d;\ndouble total = (first + second) * 100.00d;\nSystem.out.println(\"Total = \" + total);",
-    "answer": "Total = 10000.0",
-    "explanation": "Total = 10000.0",
+    "answer": "Total = 10000.0\n",
+    "explanation": "",
     "claim": "Total = 10000.0",
-    "id": "code-chapter-3-operators-operator-challenge-total-10000-0"
+    "id": "code-ddec23ce7b1d08e42d60fd79",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "f4727e8faeaf9a4357f063222b4b1f95d52b078fd6ea248b63cb549b5e46bc69",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 4: Statements And Indentations",
     "topic": "Statements White Space And Indentation",
     "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
     "code": "String message = \"Hello\"\n    + \" World\"\n    + \"!\";\nSystem.out.println(message);",
-    "answer": "Hello World!",
-    "explanation": "Hello World!",
+    "answer": "Hello World!\n",
+    "explanation": "",
     "claim": "Hello World!",
-    "id": "code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-hello-world"
+    "id": "code-ca848d3da886d2b154dbc910",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "78905f86fdbd48f0c74adb04cdacf4501c6db6a54fafe515508bb19c70d959ae",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 4: Statements And Indentations",
     "topic": "Statements White Space And Indentation",
     "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
     "code": "int a = 1; int b = 2; System.out.println(a + b);",
-    "answer": "3",
-    "explanation": "3",
+    "answer": "3\n",
+    "explanation": "",
     "claim": "3",
-    "id": "code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-3"
+    "id": "code-63f78f354f7bfd46162f49af",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "2617a4d5885607a8131aa115d176dcac50f19a966eeefac9648f1f34926a7123",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 4: Statements And Indentations",
     "topic": "Statements White Space And Indentation",
     "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
     "code": "int c=5     ;\nint     d =    10;\nSystem.out.println(c + d);",
-    "answer": "15",
-    "explanation": "15",
+    "answer": "15\n",
+    "explanation": "",
     "claim": "15",
-    "id": "code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-15"
+    "id": "code-9e336d6ebf8fdd7f2bbd2119",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "a0c3bda3ea11f9e0b5eafa22e4eb76b3f8fa8db6cbc0314e3af210c7f9e092cf",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
+  },
+  {
+    "chapter": "Chapter 6: Methods In Java",
+    "topic": "Methods In Java",
+    "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+    "code": "static void tryToChange(int n) { n = 99; }\nint x = 5;\ntryToChange(x);\nSystem.out.println(x);",
+    "answer": "5\n",
+    "explanation": "",
+    "claim": "5, because n was a copy",
+    "id": "code-71ece0be46df94dd70a50a02",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "0fdd7bcd46928fab5ec1b80cc2a215c706c2e6d2ddf0b68bb22703f40aa002ac",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
+  },
+  {
+    "chapter": "Chapter 6: Methods In Java",
+    "topic": "Methods In Java",
+    "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+    "code": "static void swap(int a, int b) { int t = a; a = b; b = t; }\nint x = 1, y = 2;\nswap(x, y);\nSystem.out.println(x + \" \" + y);",
+    "answer": "1 2\n",
+    "explanation": "",
+    "claim": "1 2, not 2 1",
+    "id": "code-34a46813cceffd9c2545a94b",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "4a244aa9b63a0d643b88f69c65c72e641ae72405064d91324ada82da623298a4",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
+  },
+  {
+    "chapter": "Chapter 6: Methods In Java",
+    "topic": "Methods In Java",
+    "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+    "code": "static void update(int[] data) { data[0] = 99; }\nint[] nums = {1, 2, 3};\nupdate(nums);\nSystem.out.println(nums[0]);",
+    "answer": "99\n",
+    "explanation": "",
+    "claim": "99, the caller's array really changed",
+    "id": "code-3282c369295dab32d45710d9",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "5340efbbbb8faf9bc245ae070a47f3dcbc97ec717770fdf8ba7411322455d095",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
+  },
+  {
+    "chapter": "Chapter 6: Methods In Java",
+    "topic": "Methods In Java",
+    "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+    "code": "static void reset(int[] data) { data = new int[]{0, 0, 0}; }\nint[] nums = {1, 2, 3};\nreset(nums);\nSystem.out.println(nums[0]);",
+    "answer": "1\n",
+    "explanation": "",
+    "claim": "1, because only the copy was pointed elsewhere",
+    "id": "code-fb9f2582b9ea29cd1bdeed6d",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "906ca02ed5f4bbcb8947c51df8c8f3a37dba43349e439f745c8df794eb74106f",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 8: Java Looping Concepts",
     "topic": "For Statement",
     "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
     "code": "for (int i = 0; i < 5; i++) { System.out.print(i + \" \"); }\nfor (int i = 0; i <= 5; i++) { System.out.print(i + \" \"); }",
-    "answer": "0 1 2 3 4 0 1 2 3 4 5",
-    "explanation": "0 1 2 3 4",
+    "answer": "0 1 2 3 4 0 1 2 3 4 5 ",
+    "explanation": "",
     "claim": "0 1 2 3 4",
-    "id": "code-chapter-8-java-looping-concepts-for-statement-0-1-2-3-4-0-1-2-3-4-"
+    "id": "code-94d8ebd7e9e97d68dce628ee",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "cc3dd615e9a257bd8b84ae7059ad34b720e53f604f28aa876b1f146114363624",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 8: Java Looping Concepts",
     "topic": "For Statement",
     "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
     "code": "for (int i = 1; i <= 5; i++) {\n    if (i == 3) { continue; }\n    System.out.print(i + \" \");\n}",
-    "answer": "1 2 4 5",
-    "explanation": "1 2 4 5",
+    "answer": "1 2 4 5 ",
+    "explanation": "",
     "claim": "1 2 4 5",
-    "id": "code-chapter-8-java-looping-concepts-for-statement-1-2-4-5"
+    "id": "code-e9b3f7c91d06313b3929c00f",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "c6bf721edb31465f3432653d1de8eefb420c064e288f0a7736360c037e75abab",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 11: Parsing Values Reading Input",
     "topic": "Parsing Values Reading Input",
     "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
     "code": "int a = Integer.parseInt(\"42\");\nInteger b = Integer.valueOf(\"42\");\nSystem.out.println(a + \" / \" + b);",
-    "answer": "42 / 42",
-    "explanation": "42 / 42",
+    "answer": "42 / 42\n",
+    "explanation": "",
     "claim": "42 / 42",
-    "id": "code-chapter-11-parsing-values-reading-input-parsing-values-reading-input-42-42"
+    "id": "code-acbe623fc890829b65d68a9c",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "6c7fda0015b7db90ce04d02db90e4c44835b38e431dccdde073c8b9d0c35e986",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 11: Parsing Values Reading Input",
     "topic": "Parsing Values Reading Input",
     "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
     "code": "System.out.println(\"100\" + \"50\");\nint sum = Integer.parseInt(\"100\") + Integer.parseInt(\"50\");\nSystem.out.println(sum);",
-    "answer": "10050\r\n150",
-    "explanation": "10050, because + joins text",
+    "answer": "10050\n150\n",
+    "explanation": "",
     "claim": "10050, because + joins text",
-    "id": "code-chapter-11-parsing-values-reading-input-parsing-values-reading-input-10050-150"
+    "id": "code-ab363a9a6d443a4dcd245203",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "49ced9acad4b456b30e09dee19e42388874fa92e5bbcbb352f7edbbb8f34ab02",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 14: Strings",
     "topic": "Text Block And Advanced Output Formatting",
     "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
     "code": "System.out.printf(\"Age = %d%n\", 42);\nString line = String.format(\"Age = %d\", 42);\nSystem.out.println(line);",
-    "answer": "Age = 42\r\nAge = 42",
-    "explanation": "Age = 42 and moves to a new line",
+    "answer": "Age = 42\nAge = 42\n",
+    "explanation": "",
     "claim": "Age = 42 and moves to a new line",
-    "id": "code-chapter-14-strings-text-block-and-advanced-output-formatting-age-42-age-42"
+    "id": "code-cfa477fe2f2fd8f0fb65a9f9",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "41d4a5e25fe5bbf27db5a1152015977e9fc8dfce7a237da386ab51a92cd56f0f",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 14: Strings",
     "topic": "Text Block And Advanced Output Formatting",
     "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
     "code": "System.out.printf(\"Hello %n\");\nSystem.out.println(\"Hello %n\");",
-    "answer": "Hello \r\nHello %n",
-    "explanation": "Hello and moves to a new line",
+    "answer": "Hello \nHello %n\n",
+    "explanation": "",
     "claim": "Hello and moves to a new line",
-    "id": "code-chapter-14-strings-text-block-and-advanced-output-formatting-hello-hello-n"
+    "id": "code-48cb1f5e9d9649420c264129",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "2f0a240b90ba9f5cfe46da4584006605be0a78f681ebf4c17b015d1f69a03a37",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 14: Strings",
     "topic": "String Method And Best Practices",
     "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
     "code": "String s = \"Java\";\ns.concat(\" is fun\");\nSystem.out.println(s);\nString t = s.concat(\" is fun\");\nSystem.out.println(t);",
-    "answer": "Java\r\nJava is fun",
-    "explanation": "Java, s never changed",
+    "answer": "Java\nJava is fun\n",
+    "explanation": "",
     "claim": "Java, s never changed",
-    "id": "code-chapter-14-strings-string-method-and-best-practices-java-java-is-fun"
+    "id": "code-5c5c8a14d1687a8ad5084f49",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "96e2444d3b685ebe463c98d42879fc664eb9636e57a2139adfa8443fdbb28fb5",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 14: Strings",
     "topic": "String Method And Best Practices",
     "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
     "code": "String a = \"hello\";\nString b = \"hello\";\nString c = new String(\"hello\");\nSystem.out.println(a == b);\nSystem.out.println(a == c);\nSystem.out.println(a.equals(c));",
-    "answer": "true\r\nfalse\r\ntrue",
-    "explanation": "true, both literals come from the string pool",
+    "answer": "true\nfalse\ntrue\n",
+    "explanation": "",
     "claim": "true, both literals come from the string pool",
-    "id": "code-chapter-14-strings-string-method-and-best-practices-true-false-true"
+    "id": "code-7b66e1a9884b8214033e23f6",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "9d090cdab0e37b08b794ccf3214dfcda2e74228ff7bf52a839e9d491bdb06d6a",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   },
   {
     "chapter": "Chapter 14: Strings",
     "topic": "String Builder Concepts",
     "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
     "code": "String result = \"\";\nfor (int i = 0; i < 5; i++) { result = result + i; }\n\nStringBuilder builder = new StringBuilder();\nfor (int i = 0; i < 5; i++) { builder.append(i); }\nSystem.out.println(builder.toString());",
-    "answer": "01234",
-    "explanation": "01234",
+    "answer": "01234\n",
+    "explanation": "",
     "claim": "01234",
-    "id": "code-chapter-14-strings-string-builder-concepts-01234"
+    "id": "code-84ab37eaeaff6f98f257e9c9",
+    "provenance": {
+      "kind": "native-derived-smoke",
+      "sourceHash": "fd093ecdf99ca2d781cdaa71745aedd9a4ecc93ff62d6776f0e5ecee36e09c91",
+      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      }
+    }
   }
 ];
 
-module.exports = { DERIVED_CODE_QUESTIONS, SOURCE_HASH };
+module.exports = { DERIVED_CODE_QUESTIONS, SOURCE_HASH, NATIVE_VALIDATION };

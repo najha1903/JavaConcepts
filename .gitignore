@@ -23,3 +23,7 @@
 # not part of the project, and one was committed by accident because of it.
 _*.tmp.js
 *.tmp.js
+
+# Isolated candidates, locks and recoverable publication journals.
+/.revision-work/
+*.revision-tmp

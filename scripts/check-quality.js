@@ -125,7 +125,7 @@ function rule6(q) {
 
 // ---- Rule 7: the same stem and code twice in one chapter --------------------
 function rule7(q) {
-  const key = String(q.question || '').trim().toLowerCase() + '||' + String(q.code || '').trim();
+  const key = String(q.question || '').trim().toLowerCase() + '||' + String(q.code || '').trim() + '||' + JSON.stringify([...(q.options || [])].sort());
   if (seenInChapter.get(key)) return `is the same question as ${seenInChapter.get(key)}, which is already in this chapter`;
   seenInChapter.set(key, q.qid);
   return null;
@@ -138,7 +138,8 @@ const RULES = [
   { id: 4, name: 'filler stem with nothing to read', test: rule4 },
   { id: 5, name: 'asks true/false with non-boolean options', test: rule5 },
   { id: 6, name: 'explanation missing or a placeholder', test: rule6 },
-  { id: 7, name: 'duplicate question in one chapter', test: rule7 }
+  { id: 7, name: 'duplicate question in one chapter', test: rule7 },
+  { id: 8, name: 'topic membership is not truth', test: q => q.kind === 'true-false' || /true statement (?:taken from|about) (?:a different|another) topic/i.test(q.explanation || '') ? 'marks a true fact false merely because it came from another topic' : null }
 ];
 
 const seenInChapter = new Map();

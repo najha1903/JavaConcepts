@@ -1,56 +1,37 @@
-// ============================================================================
-// `npm run revise`
-//
-// Proposes the changes without applying them, then opens the review in the
-// browser when there is something to approve. When nothing is pending it simply
-// refreshes the dashboard, so the command behaves sensibly either way.
-//
-// The terminal flow is still available as `npm run revise:cli`, which asks the
-// y/N question directly.
-// ============================================================================
-
-const fs = require('fs');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const readline = require('readline');
+const { execute } = require('./lib/revision-workflow');
+const openPage = require('./lib/open-page');
 
-const root = path.resolve(__dirname, '..');
-const dashboardDir = path.join(root, 'revision-dashboard');
-const proposalFile = path.join(dashboardDir, 'content-changes.json');
-const dashboardPage = path.join(dashboardDir, 'index.html');
-
-function openPage(file) {
-  const url = `file:///${file.replace(/\\/g, '/')}`;
-  if (process.platform === 'win32') {
-    spawnSync(process.env.ComSpec || 'cmd.exe', ['/c', 'start', '', url], { stdio: 'ignore' });
-  } else if (process.platform === 'darwin') {
-    spawnSync('open', [file], { stdio: 'ignore' });
+async function main() {
+  const args = process.argv.slice(2);
+  if (args.some(arg => !['--cli', '--yes', '--no-open'].includes(arg))) throw new Error('Supported options: --cli, --yes, --no-open.');
+  if (args.includes('--no-open')) process.env.REVISION_NO_OPEN = '1';
+  let result = execute({ mode: 'propose' });
+  if (result.pending && (args.includes('--cli') || args.includes('--yes'))) {
+    let accepted = args.includes('--yes');
+    if (!accepted && process.stdin.isTTY) {
+      const prompt = readline.createInterface({ input: process.stdin, output: process.stdout });
+      accepted = await new Promise(resolve => prompt.question('Apply the reviewed content (no optional note insertions)? (y/N) ', answer => {
+        prompt.close();
+        resolve(/^y(es)?$/i.test(answer.trim()));
+      }));
+    }
+    if (!accepted) {
+      console.log('Not applied. The candidate remains available for review.');
+      return;
+    }
+    result = execute({ mode: 'approve', proposalId: result.proposalId });
+  }
+  if (result.pending) {
+    if (process.env.REVISION_NO_OPEN === '1') process.env.REVIEW_NO_OPEN = '1';
+    require('./review-server');
   } else {
-    spawnSync('xdg-open', [file], { stdio: 'ignore' });
+    openPage(path.join(__dirname, '..', 'revision-dashboard', 'index.html'));
   }
 }
 
-// The generated code questions and practice expectations are refreshed BEFORE the
-// parse, so they are always in step with the notes they came from. See generate.js
-// for why the order is what it is.
-const generate = spawnSync(process.execPath, [path.join(__dirname, 'generate.js'), '--propose', '--no-prompt'], {
-  cwd: root,
-  stdio: 'inherit'
+main().catch(error => {
+  console.error(`\n${error.message}`);
+  process.exitCode = 1;
 });
-
-// A failed generation stops here, whatever else exists. The old condition only exited
-// when there was also no proposal file, so a failed run with a stale proposal would open
-// a review page for content that had just been rolled back.
-if (generate.status !== 0) {
-  console.error('');
-  console.error('Generation did not pass its checks, so nothing was applied and the dashboard');
-  console.error('still shows the last good version. Fix the problem above and run this again.');
-  console.error('');
-  process.exit(generate.status || 1);
-}
-
-if (fs.existsSync(proposalFile)) {
-  // Something is waiting, so open the review page instead of the dashboard.
-  require(path.join(__dirname, 'review-server.js'));
-} else {
-  openPage(dashboardPage);
-}

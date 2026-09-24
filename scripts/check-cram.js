@@ -36,6 +36,10 @@ const { spawnSync } = require('child_process');
 const root = path.resolve(__dirname, '..');
 const dashboardDir = path.join(root, 'revision-dashboard');
 const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
+const { requireJava, createWorkDir, compileArguments, nativeValidation } = require('./lib/run-java.js');
+const { frameworkFingerprint } = require('./lib/content-identity.js');
+const { exactOutputMatches, expectedCompileFailure } = require('./lib/output-contract.js');
+const compileContracts = require('../data/snippet-contracts.js');
 
 // A point is one sentence you could say out loud. Past this and it is prose to read.
 const MAX_CHARS = 160;
@@ -56,6 +60,8 @@ const MIN_TRAPS = 2;
 const MAX_TRAPS = 10;
 
 const failures = [];
+const authoringGaps = [];
+try { requireJava(); } catch (error) { failures.push(error.message); }
 
 function loadGlobal(file, expression) {
   const full = path.join(dashboardDir, file);
@@ -160,10 +166,12 @@ for (const chapter of concepts) {
     continue;
   }
 
-  if (points.length < MIN_POINTS || points.length > MAX_POINTS) {
+  if (points.length < MIN_POINTS) authoringGaps.push(`${chapter.name}: ${points.length} authored points; no filler added.`);
+  if (points.length > MAX_POINTS) {
     failures.push(`${chapter.name}: ${points.length} points. A cram sheet wants ${MIN_POINTS} to ${MAX_POINTS}.`);
   }
-  if (traps.length < MIN_TRAPS || traps.length > MAX_TRAPS) {
+  if (traps.length < MIN_TRAPS) authoringGaps.push(`${chapter.name}: ${traps.length} authored traps; no filler added.`);
+  if (traps.length > MAX_TRAPS) {
     failures.push(`${chapter.name}: ${traps.length} traps. A cram sheet wants ${MIN_TRAPS} to ${MAX_TRAPS}.`);
   }
 
@@ -220,10 +228,6 @@ for (const chapter of concepts) {
 
 // ---- Verifying the snippets, by compiling or by running them ----------------
 
-function hasJavaCompiler() {
-  return spawnSync('javac', ['-version'], { encoding: 'utf8' }).status === 0;
-}
-
 // A snippet is one of four things, and each is verified differently:
 //
 //   a claim        "5 / 2          // 2"            run it, compare the comment
@@ -244,11 +248,13 @@ function hasJavaCompiler() {
 //     claim is tested rather than trusted.
 const COMPILE_ERROR_CLAIM = /\b(compile error|does not compile|will not compile|won't compile|fails to compile)\b/i;
 
-function attemptCompile(work, className, source) {
+function compileResult(work, className, source) {
   const file = path.join(work, `${className}.java`);
   fs.writeFileSync(file, source, 'utf8');
-  return spawnSync('javac', ['-d', work, file], { encoding: 'utf8', timeout: 30000 }).status === 0;
+  return spawnSync('javac', compileArguments(['-XDrawDiagnostics', '-d', work, file]), { encoding: 'utf8', timeout: 30000 });
 }
+function attemptCompile(work, className, source) { return compileResult(work, className, source).status === 0; }
+const evidence = { output: 0, compileFailure: 0, runtimeFailure: 0, syntaxOnly: 0, unsupportedClaims: 0 };
 
 // A claim is a line whose comment says what the line produces: "5 / 2  // 2". The comment
 // may be a single token ("2", "30Java", "Jav") or a sentence ("9, not 10"), so the first
@@ -264,21 +270,38 @@ function verifyClaim(work, index, item, line) {
   // tested rather than trusted, which is what makes "// compile error" worth writing.
   if (COMPILE_ERROR_CLAIM.test(comment)) {
     const name = `Fail${index}`;
-    const source = `public class ${name} {\n    void run() {\n${expression};\n    }\n}\n`;
-    if (attemptCompile(work, name, source)) {
-      failures.push(`${item.chapter}: the snippet claims it does not compile, but it does: "${line.slice(0, 60)}..."`);
+    const contract = compileContracts[expression];
+    if (!contract) {
+      failures.push(`${item.chapter}: compile-failure claim needs an authored diagnostic contract: ${expression}`);
+      return true;
+    }
+    const source = `public class ${name} {\n${contract.members || ''}\n    void run() {\n${expression};\n    }\n}\n`;
+    const result = compileResult(work, name, source);
+    if (!expectedCompileFailure(result, contract.diagnostic)) {
+      failures.push(`${item.chapter}: expected compiler diagnostic ${contract.diagnostic}, not an unrelated failure: ${result.stderr || result.error || 'compiled successfully'}`);
+    } else {
+      evidence.compileFailure++;
     }
     return true;
   }
 
-  const head = comment.trim().split(/[\s,]/)[0];
-  // Only compare when the first token is something a program could print. A comment that
-  // starts with a word such as "runs" or "prints" is prose, and is left alone.
-  if (!/^[\w.+-]{1,20}$/.test(head)) return false;
+  const throwing = comment.trim().match(/^throws(?:\s+([\w.]+Exception))?$/);
+  let expected = comment.trim().replace(/,\s+not\s+.+$/, '');
+  if (expected.startsWith('"')) {
+    try { expected = JSON.parse(expected); } catch { evidence.unsupportedClaims++; return false; }
+  } else if (!throwing && /\b(?:always|runs|now|still|same|object|because)\b/i.test(expected)) {
+    evidence.unsupportedClaims++;
+    return false;
+  }
 
   const name = `Claim${index}`;
-  const source = `public class ${name} {\n    public static void main(String[] args) {\n        System.out.println(${expression});\n    }\n}\n`;
-  if (!attemptCompile(work, name, source)) return false;
+  const field = expression.match(/^static\s+\w+\s+(\w+)$/);
+  const source = `public class ${name} {\n${field ? expression + ';' : ''}\n    public static void main(String[] args) {\n        System.out.print(${field ? field[1] : expression});\n    }\n}\n`;
+  const compiled = compileResult(work, name, source);
+  if (compiled.status !== 0) {
+    failures.push(`${item.chapter}: output/runtime claim did not compile: ${compiled.stderr || compiled.error}`);
+    return true;
+  }
 
   // One retry, because a JVM that will not start is not a wrong answer. Without it a transient
   // failure falls through to the whole-snippet compile, and a claim-style line cannot be
@@ -287,12 +310,16 @@ function verifyClaim(work, index, item, line) {
   // while a regenerate was still finishing, and then not again in six repeats.
   let run = spawnSync('java', ['-cp', work, name], { encoding: 'utf8', timeout: 15000 });
   if (run.status !== 0) run = spawnSync('java', ['-cp', work, name], { encoding: 'utf8', timeout: 15000 });
-  if (run.status !== 0) return false;
-
-  const printed = String(run.stdout || '').trim();
-  if (printed !== head && !printed.startsWith(head)) {
-    failures.push(`${item.chapter}: snippet claims ${JSON.stringify(comment.trim())} but \`${expression}\` prints ${JSON.stringify(printed)}.`);
+  if (throwing) {
+    const expectedException = throwing[1] || (expression === 'String.format("%d", "text")' ? 'IllegalFormatConversionException' : null);
+    if (!expectedException || run.error || run.signal || run.status !== 1 || !new RegExp(`Exception in thread "[^"]+" (?:[\\w.]+\\.)?${expectedException.replace(/\./g, '\\.')}(?::|\\s)`).test(run.stderr || '')) {
+      failures.push(`${item.chapter}: expected ${expectedException || 'a named exception'}, not an unrelated runtime/infrastructure error: ${run.stderr || run.error}`);
+    } else evidence.runtimeFailure++;
+    return true;
   }
+  if (run.status !== 0) failures.push(`${item.chapter}: output claim failed at runtime: ${run.stderr || run.error}`);
+  else if (!exactOutputMatches(run.stdout, expected)) failures.push(`${item.chapter}: snippet claims ${JSON.stringify(expected)} but prints ${JSON.stringify(run.stdout)}.`);
+  else evidence.output++;
   return true;
 }
 
@@ -342,28 +369,31 @@ function verifySnippet(work, index, item) {
   }
   if (!attempts.some(source => attemptCompile(work, `Probe${index}`, source))) {
     failures.push(`${item.chapter}: a snippet is not valid Java on its own: "${lines[0].slice(0, 60)}..."`);
-  }
+  } else evidence.syntaxOnly++;
 }
 
 if (snippetsToVerify.length) {
-  if (!hasJavaCompiler()) {
-    console.log(`Snippet check skipped: javac is not available. ${snippetsToVerify.length} snippet(s) were not compiled.`);
-  } else {
-    const work = fs.mkdtempSync(path.join(os.tmpdir(), 'cram-check-'));
+  try {
+    if (failures.some(f => f.startsWith('Required native check cannot run'))) throw new Error('Native snippet execution unavailable; no snippet was counted as passed.');
+    const work = createWorkDir('cram');
     try {
       snippetsToVerify.forEach((item, index) => verifySnippet(work, index, item));
     } finally {
       fs.rmSync(work, { recursive: true, force: true });
     }
-  }
+  } catch (error) { failures.push(error.message); }
 }
 
 // ---- Report -----------------------------------------------------------------
 
 console.log('');
 console.log(`   Points checked      : ${checkedPoints} across ${finished.size} finished chapter(s)`);
-console.log(`   Snippets checked    : ${checkedSnippets} (3 lines maximum, not copied, valid Java)`);
+console.log(`   Snippets inspected  : ${checkedSnippets}; native exact output ${evidence.output}, expected compile failures ${evidence.compileFailure}, expected exceptions ${evidence.runtimeFailure}, syntax-only ${evidence.syntaxOnly}, unsupported prose claims ${evidence.unsupportedClaims}`);
 console.log(`   Length limit        : ${MAX_CHARS} characters, ${MAX_WORDS} words`);
+if (!failures.some(f => f.startsWith('Required native check cannot run'))) {
+  console.log(`   Native evidence     : ${JSON.stringify(nativeValidation('scripts/check-cram.js', frameworkFingerprint(root, ['scripts/check-cram.js', 'scripts/lib/run-java.js', 'scripts/lib/output-contract.js', 'data/snippet-contracts.js'])))}`);
+}
+authoringGaps.forEach(gap => console.log(`   Needs authoring: ${gap}`));
 
 if (failures.length) {
   console.error('');
@@ -374,4 +404,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('   Every cram point is short, unique, and its snippet is real Java.');
+console.log('   Structural and supported native snippet checks passed; syntax-only checks do not establish prose correctness.');

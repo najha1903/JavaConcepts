@@ -1,9 +1,9 @@
 {
   "scripts": {
     "revise": "node scripts/revise.js",
-    "revise:cli": "node scripts/parse-concepts.js --propose && node scripts/approve.js && start revision-dashboard/index.html",
-    "approve": "node scripts/parse-concepts.js && node scripts/verify.js && start revision-dashboard/index.html",
-    "generate": "node scripts/parse-concepts.js",
+    "revise:cli": "node scripts/revise.js --cli",
+    "approve": "node scripts/approve.js",
+    "generate": "node scripts/generate.js --propose",
     "coverage": "node scripts/coverage.js",
     "audit": "node scripts/audit-generated.js",
     "check:practice": "node scripts/check-practice.js",
@@ -18,10 +18,11 @@
     "check:structure": "node scripts/check-structure.js",
     "fix:encoding": "node scripts/fix-encoding.js --write",
     "apply:ui": "node scripts/apply-ui-fixes.js",
-    "derive:code": "node scripts/derive-code-questions.js",
+    "derive:code": "node scripts/generate.js --propose",
     "generate:all": "node scripts/generate.js",
-    "fill:practice": "node scripts/fill-practice-expectations.js",
-    "check": "node scripts/parse-concepts.js && node scripts/verify.js"
+    "fill:practice": "node scripts/generate.js --propose",
+    "check:workflow": "node scripts/check-workflow.js",
+    "check": "node scripts/generate.js --check"
   },
   "dependencies": {
     "wd": "^1.14.0"

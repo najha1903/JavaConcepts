@@ -72,7 +72,7 @@ for (const challenge of practice) {
   practiceByChapter.get(challenge.chapter).push(challenge);
   // A practice challenge is built from one file, and its id is that file name in
   // lower case, so it can be matched back to the topic it belongs to.
-  practiceByFile.set(challenge.id, challenge);
+  practiceByFile.set(challenge.sourceFile || `${challenge.chapter}|${challenge.id}`, challenge);
 }
 
 // A topic is covered when it has material of its own, and for an exercise file
@@ -83,7 +83,7 @@ for (const challenge of practice) {
 // challenge already.
 function practiceForTopic(topic) {
   const key = String(topic.fileName || '').replace('.java', '').toLowerCase();
-  return practiceByFile.get(key) || null;
+  return practiceByFile.get(topic.filePath) || practiceByFile.get(`${topic.chapter}|${key}`) || null;
 }
 
 // A rule is a note that states a constraint. Whether it has an EXAMPLE beside it
@@ -282,7 +282,9 @@ function chapterCoverage(chapter) {
     name: chapter.name,
     topics,
     topicsTotal: topics.length,
-    topicsWithQuestions: topics.filter(t => t.covered).length,
+    topicsWithQuestions: topics.filter(t => t.questions > 0).length,
+    topicsWithMaterial: topics.filter(t => t.covered).length,
+    topicsWithExercises: topics.filter(t => t.isExercise).length,
     // Topics the author has written nothing in. Reported separately from "no question",
     // because the two need different answers: one needs notes, the other needs a question
     // that the generator could not make from what is there.
@@ -293,14 +295,19 @@ function chapterCoverage(chapter) {
     hard: questions.filter(q => q.level === 'hard').length,
     ocjp: questions.filter(q => q.ocjp).length,
     authored: questions.filter(q => q.authored).length,
-    takeaways: (revision.takeaways || []).length,
-    gotchas: (revision.gotchas || []).length,
+    takeaways: (revision.takeaways || []).filter(p => !p.placeholder).length,
+    gotchas: (revision.gotchas || []).filter(p => !p.placeholder).length,
     tables: (revision.tables || []).length,
     syntaxKey: normaliseSnippet(syntax),
     badges,
     strayBadges,
     practice: challenges.length,
     practiceAutoChecked: challenges.filter(c => !c.selfCheck).length,
+    practiceApproximate: challenges.filter(c => !c.selfCheck).length,
+    practiceSelfCheck: challenges.filter(c => c.selfCheck).length,
+    practiceNativeVerified: 0,
+    practiceIndependentContracts: challenges.filter(c => c.evidence && c.evidence.expectation === 'independent-contract').length,
+    practiceSolutionSmoke: challenges.filter(c => c.evidence && c.evidence.expectation === 'solution-derived-smoke').length,
     deep: deep.filter(c => c.chapter === chapter.name).length
   };
 }
@@ -403,6 +410,13 @@ lines.push('');
 const totals = {
   topics: finishedCoverage.reduce((n, c) => n + c.topicsTotal, 0),
   topicsWithQuestions: finishedCoverage.reduce((n, c) => n + c.topicsWithQuestions, 0),
+  topicsWithMaterial: finishedCoverage.reduce((n, c) => n + c.topicsWithMaterial, 0),
+  topicsWithExercises: finishedCoverage.reduce((n, c) => n + c.topicsWithExercises, 0),
+  practiceApproximate: finishedCoverage.reduce((n, c) => n + c.practiceApproximate, 0),
+  practiceSelfCheck: finishedCoverage.reduce((n, c) => n + c.practiceSelfCheck, 0),
+  practiceNativeVerified: 0,
+  practiceIndependentContracts: finishedCoverage.reduce((n, c) => n + c.practiceIndependentContracts, 0),
+  practiceSolutionSmoke: finishedCoverage.reduce((n, c) => n + c.practiceSolutionSmoke, 0),
   questions: finishedCoverage.reduce((n, c) => n + c.questions, 0),
   easy: finishedCoverage.reduce((n, c) => n + c.easy, 0),
   medium: finishedCoverage.reduce((n, c) => n + c.medium, 0),
@@ -421,6 +435,8 @@ const inProgressTotals = chapters
 lines.push('## Summary');
 lines.push('');
 lines.push(`- Topics: **${totals.topicsWithQuestions} of ${totals.topics}** have a question of their own`);
+lines.push(`- Any material: **${totals.topicsWithMaterial} of ${totals.topics}** have a linked question, practice challenge, or authored exercise; **${totals.topicsWithExercises}** are exercises`);
+lines.push(`- Practice: **${totals.practiceApproximate}** browser-approximate, **${totals.practiceSelfCheck}** self-check; **${totals.practiceIndependentContracts}** independent contracts, **${totals.practiceSolutionSmoke}** solution-derived smoke sets. Native reference checks are reported separately by check-practice-contracts.js, not inferred here.`);
 lines.push(`- Questions: **${totals.questions}** (easy ${totals.easy}, medium ${totals.medium}, hard ${totals.hard})`);
 lines.push(`- OCJP tagged: **${totals.ocjp}**`);
 lines.push(`- Authored by hand: **${totals.authored}**, generated from the notes: **${totals.questions - totals.authored}**`);
@@ -435,7 +451,7 @@ lines.push('');
 for (const chapter of chapters) {
   lines.push(`## ${chapter.name}`);
   lines.push('');
-  lines.push(`Questions ${chapter.questions} (E${chapter.easy} M${chapter.medium} H${chapter.hard}) · OCJP ${chapter.ocjp} · topics covered ${chapter.topicsWithQuestions}/${chapter.topicsTotal} · practice ${chapter.practice} · takeaways ${chapter.takeaways} · gotchas ${chapter.gotchas}`);
+  lines.push(`Questions ${chapter.questions} (E${chapter.easy} M${chapter.medium} H${chapter.hard}) · OCJP ${chapter.ocjp} · topics with questions ${chapter.topicsWithQuestions}/${chapter.topicsTotal} · topics with any material ${chapter.topicsWithMaterial}/${chapter.topicsTotal} · practice ${chapter.practice} · takeaways ${chapter.takeaways} · gotchas ${chapter.gotchas}`);
   lines.push('');
   const flags = [];
   // A chapter still being written is listed with what it HAS, and no "needs work"
@@ -447,7 +463,6 @@ for (const chapter of chapters) {
     if (chapter.ocjp === 0) flags.push('no OCJP question');
     if (chapter.syntaxIsBoilerplate) flags.push('syntax snippet is boilerplate');
     if (chapter.strayBadges.length) flags.push(`badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}`);
-    if (chapter.tables === 0) flags.push('no comparison table (your content to add, nothing is generated)');
     if (chapter.takeaways === 0) flags.push('no takeaways');
     if (chapter.practice === 0) flags.push('no practice challenge');
   } else {
@@ -460,7 +475,7 @@ for (const chapter of chapters) {
   lines.push('| Topic | Notes | Q | E | M | H | Practice |');
   lines.push('|---|---|---|---|---|---|---|');
   for (const topic of chapter.topics) {
-    const practiceMark = chapter.practice > 0 ? '' : '';
+    const practiceMark = topic.practice ? (topic.practiceAutoChecked ? 'browser-approximate' : 'self-check') : topic.isExercise ? 'authored exercise' : 'none';
     lines.push(`| ${topic.name} | ${topic.noteLines} | ${topic.questions} | ${topic.easy} | ${topic.medium} | ${topic.hard} | ${practiceMark} |`);
   }
   lines.push('');
@@ -480,7 +495,10 @@ fs.writeFileSync(path.join(dashboardDir, 'coverage.md'), lines.join('\n'), 'utf8
 // grouped by chapter. The counts are kept alongside so the dashboard can say "128 of 246"
 // without recounting.
 const payload = {
-  generated: new Date().toISOString(),
+  schemaVersion: 2,
+  totals,
+  chapters,
+  evidence: { coverage: 'structural-links', ruleGaps: 'heuristic', nativePractice: 'reported-separately-not-inferred' },
   inProgress: inProgressTotals,
   rules: { total: 0, withoutExample: 0 },
   notesGaps: [],
@@ -506,10 +524,11 @@ for (const chapter of chapters) {
     uncoveredTopics.push({
       chapter: chapter.name,
       topic: topic.name,
-      needs: topic.hasNotes ? 'a practice challenge' : 'notes and material',
+      file: topic.file,
+      needs: topic.hasNotes ? 'an authored question or practice contract' : 'notes and revision material',
       reason: topic.hasNotes
-        ? 'its logic lives in main, so there is no method to test and no plausible mistake to ask about'
-        : 'it has almost no notes to work from'
+        ? 'no question or challenge links to this topic, and it is not identified as an authored exercise'
+        : 'no prose notes or linked revision material were found'
     });
   }
 }
@@ -526,7 +545,7 @@ const ocjpWork = chapters
 // Exercise files the author wrote and solved himself. Nothing can be generated for
 // them, so they are reported separately rather than counted as a gap - but they are
 // still reported, so the fact is visible instead of silently dropped.
-const exerciseTopics = chapters.flatMap(c => c.topics.filter(t => t.isExercise).map(t => ({ chapter: c.name, topic: t.name })));
+const exerciseTopics = finishedCoverage.flatMap(c => c.topics.filter(t => t.isExercise).map(t => ({ chapter: c.name, topic: t.name })));
 
 // Chapters with no comparison table. This is deliberately NOT a warning: a table is
 // authored content, and writing one means putting the tool's words into the notes,
@@ -536,15 +555,15 @@ const exerciseTopics = chapters.flatMap(c => c.topics.filter(t => t.isExercise).
 // occurrences of "difference", almost all of them the ordinary word "different",
 // so the signal is noise rather than evidence of a comparison worth tabulating.
 // It is reported as information, and the author decides.
-const chaptersWithoutTable = chapters.filter(c => c.tables === 0);
+const chaptersWithoutTable = finishedCoverage.filter(c => c.tables === 0);
 const syntaxWork = chapters.filter(c => c.syntaxIsBoilerplate).length;
 const badgeWork = chapters.filter(c => c.strayBadges.length).length;
 
 // Rules that state a constraint with no example to show it. Reliable because it is
 // structural: it asks whether a code sample sits beside the rule, not whether some
 // line is about the same subject.
-const rulesTotal = chapters.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rules || 0), 0), 0);
-const rulesWithoutExample = chapters.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rulesWithoutExample || 0), 0), 0);
+const rulesTotal = finishedCoverage.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rules || 0), 0), 0);
+const rulesWithoutExample = finishedCoverage.reduce((n, c) => n + c.topics.reduce((m, t) => m + (t.rulesWithoutExample || 0), 0), 0);
 
 // The rules that state a constraint with no example beside them, as the lines themselves,
 // grouped by chapter with the file named so it can be opened. This is the one genuinely
@@ -564,9 +583,12 @@ for (const chapter of chapters) {
 // Fill in the structured payload now that every part is known.
 payload.rules = { total: rulesTotal, withoutExample: rulesWithoutExample };
 payload.notesGaps = notesGaps;
+payload.needsAuthoring = uncoveredTopics;
+payload.questionGaps = finishedCoverage.flatMap(c => c.topics.filter(t => t.questions === 0).map(t => ({ chapter: c.name, topic: t.name, file: t.file, hasOtherMaterial: t.covered })));
+payload.sourceFingerprint = require('./lib/content-identity.js').frameworkFingerprint(root, ['revision-dashboard/data.js', 'revision-dashboard/questions.js', 'revision-dashboard/practice.js', 'scripts/coverage.js', 'scripts/lib/note-rules.js', 'data/chapter-status.json']);
 payload.concepts = {
   covered: conceptsCovered.length,
-  studied: studiedConcepts.length,
+  studied: judgeableConcepts.length,
   missing: conceptsMissing.map(c => ({ id: c.id, name: c.name, objective: c.objective })),
   objectives: objectiveStatus.map(o => ({ name: o.name, ahead: o.ahead, covered: o.covered, total: o.concepts.length })),
   byConcept: Object.fromEntries([...questionsByConcept.entries()].sort((a, b) => b[1] - a[1]))
@@ -607,10 +629,8 @@ if (process.argv.includes('--check')) {
     // A chapter still being written is exempt. It is not incomplete; it is unfinished,
     // and failing the build while the author is mid-chapter would block his work.
     if (!finishedChapters.has(chapter.name)) continue;
-    if (chapter.questions === 0) failures.push(`${chapter.name}: has no questions at all.`);
-    if (chapter.questions > 0 && chapter.easy === 0) failures.push(`${chapter.name}: has no easy question, so there is no way in for a beginner.`);
-    if (chapter.questions > 0 && chapter.hard === 0) failures.push(`${chapter.name}: has no hard question, so nothing stretches.`);
-    if (chapter.takeaways === 0) failures.push(`${chapter.name}: has no key takeaways.`);
+    if (chapter.questions === 0) warnings.push(`${chapter.name}: needs authored questions; no filler generated.`);
+    if (chapter.takeaways === 0) warnings.push(`${chapter.name}: no authored key takeaways.`);
     // A topic with no question is a WARNING, not a failure.
     //
     // It was promoted to a failure while the parser was inventing three sentences for a
@@ -623,10 +643,7 @@ if (process.argv.includes('--check')) {
     if (chapter.topicsTotal - chapter.topicsWithQuestions > 0) {
       const gap = chapter.topicsTotal - chapter.topicsWithQuestions;
       const noNotes = chapter.topicsWithoutNotes;
-      const detail = noNotes > 0
-        ? `${noNotes} of them have no notes at all`
-        : 'their notes are too short for the question generator';
-      warnings.push(`${chapter.name}: ${gap} topic(s) with no question of their own, so there is no way to revise them (${detail}).`);
+      warnings.push(`${chapter.name}: ${gap} topic(s) have no linked question; ${chapter.topicsWithMaterial}/${chapter.topicsTotal} have some revision material. Notes absent in ${noNotes} topic(s).`);
     }
     if (chapter.syntaxIsBoilerplate) failures.push(`${chapter.name}: the Quick Revision syntax snippet is boilerplate rather than the chapter's own construct.`);
     if (chapter.strayBadges.length) failures.push(`${chapter.name}: Quick Revision badges no concept of this chapter teaches: ${chapter.strayBadges.join(', ')}.`);
@@ -641,7 +658,7 @@ if (process.argv.includes('--check')) {
   // the point of the ledger. It is 29/29 today, so this guards against a future
   // chapter dropping one rather than being a task list.
   for (const concept of conceptsMissing) {
-    failures.push(`Concept "${concept.name}" (${concept.objective}) is covered by your notes but has no question, so it can never be revised.`);
+    warnings.push(`Concept "${concept.name}" (${concept.objective}) is detected in notes but has no linked question; needs authoring.`);
   }
 
   console.log('');
@@ -654,7 +671,7 @@ if (process.argv.includes('--check')) {
     warnings.slice(0, 8).forEach(w => console.log(`  - ${w}`));
     if (warnings.length > 8) console.log(`  ... and ${warnings.length - 8} more. See revision-dashboard/coverage.md`);
   } else {
-    console.log('Coverage check: every topic and every concept in a FINISHED chapter is covered.');
+    console.log('Coverage structural checks passed. Coverage is not proof of factual correctness or exhaustive testing.');
   }
   console.log('');
 }
@@ -663,11 +680,12 @@ if (!quiet) {
   console.log('');
   console.log('📊 COVERAGE');
   console.log(`   Topics with a question of their own : ${totals.topicsWithQuestions} / ${totals.topics}   (finished chapters)`);
+  console.log(`   Topics with any material             : ${totals.topicsWithMaterial} / ${totals.topics}   (question OR practice OR exercise)`);
   if (inProgressTotals.chapters) {
     console.log(`   Still being written                 : ${inProgressTotals.chapters} chapter(s), ${inProgressTotals.topics} topic(s) - not judged, nothing generated`);
   }
   console.log(`   Questions                            : ${totals.questions}  (E${totals.easy} M${totals.medium} H${totals.hard})`);
-  console.log(`   Difficulty spread                    : ${Math.round(totals.easy / totals.questions * 100)}% easy, ${Math.round(totals.medium / totals.questions * 100)}% medium, ${Math.round(totals.hard / totals.questions * 100)}% hard`);
+  console.log(`   Difficulty spread                    : ${Math.round(totals.easy / (totals.questions || 1) * 100)}% easy, ${Math.round(totals.medium / (totals.questions || 1) * 100)}% medium, ${Math.round(totals.hard / (totals.questions || 1) * 100)}% hard`);
   console.log(`   OCJP tagged                          : ${totals.ocjp}`);
   console.log(`   Written by hand                      : ${totals.authored}`);
 
@@ -681,8 +699,7 @@ if (!quiet) {
   if (exerciseTopics.length) {
     console.log('');
     console.log(`✍️  YOUR OWN EXERCISES — ${exerciseTopics.length} file(s), nothing to generate`);
-    console.log('   These open with "Challenge:" or "Deep Problem:". You wrote the task and solved it');
-    console.log('   in main, so there is no method to test and no generated practice would add anything.');
+    console.log('   Identified by exercise filename or opening note. This is material coverage, not proof that the solution is correct.');
     exerciseTopics.slice(0, 12).forEach(item => console.log(`     ${item.chapter.replace(/^Chapter (\d+).*/, 'Ch$1')}  ${item.topic}`));
     if (exerciseTopics.length > 12) console.log(`     ... and ${exerciseTopics.length - 12} more`);
   }

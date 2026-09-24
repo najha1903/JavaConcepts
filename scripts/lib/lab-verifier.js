@@ -40,8 +40,8 @@ function buildVerifySource({ methodName, paramNames, capturesOutput }) {
           const __printLn = (v) => { out.push((v === undefined ? "" : String(v)) + "\\n"); };
           const fn = new Function("__print", "__printLn", ${paramQuoted}, prepared);
           fn(__print, __printLn, ${argAccess});
-          const actual = out.join("").replace(/\\s+$/, "");
-          const expected = String(testCase.expected).replace(/\\s+$/, "");
+          const actual = out.join("").replace(/\\r\\n?/g, "\\n").replace(/\\n$/, "");
+          const expected = String(testCase.expected).replace(/\\r\\n?/g, "\\n").replace(/\\n$/, "");
           return actual === expected;
         } catch(e) { return null; }
       }`;
@@ -57,7 +57,9 @@ function buildVerifySource({ methodName, paramNames, capturesOutput }) {
           // Floating point results are compared with a small tolerance, because a
           // note such as "returns about 78.53975" is a rounded value.
           if (typeof result === "number" && typeof expected === "number") {
-            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);
+            const tolerance = testCase.tolerance === undefined
+              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))
+              : testCase.tolerance;
             return Math.abs(result - expected) <= tolerance;
           }
           return result === expected;

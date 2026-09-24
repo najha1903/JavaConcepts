@@ -11,7 +11,9 @@ on:
       - 'revision-dashboard/**'
       - 'src/**'
       - 'scripts/**'
+      - 'data/**'
       - 'package.json'
+      - 'package-lock.json'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -56,11 +58,10 @@ jobs:
       # deploy. So a commit that failed any of the other nine checks still went live, and the
       # published dashboard could be broken while the local checks said otherwise.
       #
-      # `npm run check` regenerates from the notes and then runs the whole suite, which is the
-      # same thing the author runs. If it fails, the deploy stops and the previous good version
-      # stays live.
+      # Build the checked-out commit with the shared full approval workflow.
+      # `npm run check` intentionally validates in scratch space without publishing artifacts.
       - name: Generate and verify
-        run: npm run check
+        run: npm run approve
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

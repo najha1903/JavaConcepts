@@ -53,16 +53,10 @@ for (const [chapterName, questions] of Object.entries(questionBank)) {
 // emitted, because nothing is generated for that chapter until he moves on. It is not
 // a missing question, so it must not be reported as one. The rule is the same one
 // parse-concepts.js and coverage.js use.
-function chapterNumber(name) {
-  const match = String(name).match(/Chapter\s*_?\s*(\d+)/i);
-  return match ? Number(match[1]) : null;
-}
-const chapterNumbers = Object.keys(questionBank).map(chapterNumber).filter(n => n !== null);
-const highestChapter = chapterNumbers.length ? Math.max(...chapterNumbers) : null;
+const concepts = loadValue('data.js', 'CONCEPTS_DATA') || [];
+const finished = require('./lib/note-rules.js').finishedChapterNames(concepts);
 function isInProgress(chapterName) {
-  const n = chapterNumber(chapterName);
-  if (n === null || highestChapter === null) return false;
-  return n >= highestChapter;
+  return !finished.has(chapterName);
 }
 const deferredEntries = OCJP_BANK.filter(e => isInProgress(e.chapter));
 

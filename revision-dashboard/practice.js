@@ -20,28 +20,48 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           3.14
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           5
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           -2.5
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           0
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       }
     ],
     "source": "curated",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract"
+    },
     "conceptsSource": "topic",
     "hasVerify": true,
     "verifyFnStr": "function (userCode, testCase) {\r\n      const body = extractMethodBody(userCode, 'isLossyCast');\r\n      const fn = new Function('val', body);\r\n      return fn(testCase.args[0]) === testCase.expected;\r\n    }"
@@ -62,31 +82,51 @@ const GENERATED_PRACTICE_CHALLENGES = [
           10,
           3
         ],
-        "expected": 1
+        "expected": 1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           20,
           5
         ],
-        "expected": 0
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           7,
           8
         ],
-        "expected": 7
+        "expected": 7,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           0,
           4
         ],
-        "expected": 0
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       }
     ],
     "source": "curated",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract"
+    },
     "conceptsSource": "topic",
     "hasVerify": true,
     "verifyFnStr": "function (userCode, testCase) {\r\n      const body = extractMethodBody(userCode, 'getModulus');\r\n      const fn = new Function('dividend', 'divisor', body);\r\n      return fn(testCase.args[0], testCase.args[1]) === testCase.expected;\r\n    }"
@@ -107,34 +147,58 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           2000
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           1900
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           2024
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           2023
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           10000
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       }
     ],
     "source": "curated",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract"
+    },
     "conceptsSource": "topic",
     "hasVerify": true,
     "verifyFnStr": "function (userCode, testCase) {\r\n      const body = extractMethodBody(userCode, 'isLeapYear');\r\n      const fn = new Function('year', body);\r\n      return fn(testCase.args[0]) === testCase.expected;\r\n    }"
@@ -155,28 +219,48 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           121
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           -121
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           123
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           7
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       }
     ],
     "source": "curated",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract"
+    },
     "conceptsSource": "topic",
     "hasVerify": true,
     "verifyFnStr": "function (userCode, testCase) {\r\n      const body = extractMethodBody(userCode, 'isPalindrome');\r\n      const fn = new Function('number', body);\r\n      return fn(testCase.args[0]) === testCase.expected;\r\n    }"
@@ -197,22 +281,38 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           3
         ],
-        "expected": 3
+        "expected": 3,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           5
         ],
-        "expected": 8
+        "expected": 8,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       },
       {
         "args": [
           1
         ],
-        "expected": 9
+        "expected": 9,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       }
     ],
     "source": "curated",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract"
+    },
     "conceptsSource": "topic",
     "hasVerify": true,
     "verifyFnStr": "function (userCode, testCase) {\r\n      const count = testCase.args[0];\r\n      const body = extractMethodBody(userCode, 'track');\r\n\r\n      const simulator = `\r\n        let instanceCount = ${this.accumulated || 0};\r\n        function Constructor() {\r\n            instanceCount++;\r\n        }\r\n        function track(countToCreate) {\r\n            ${body.replace(/new\\s+PracticeWorkspace\\(\\)/g, 'Constructor()')}\r\n            return instanceCount;\r\n        }\r\n        return track(${count});\r\n      `;\r\n      const fn = new Function(simulator);\r\n      const res = fn();\r\n      this.accumulated = res;\r\n      return res === testCase.expected;\r\n    }"
@@ -231,10 +331,18 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "testCases": [
       {
         "args": [],
-        "expected": "Child: Parent Message"
+        "expected": "Child: Parent Message",
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-challenges.js"
+        }
       }
     ],
     "source": "curated",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract"
+    },
     "conceptsSource": "topic",
     "hasVerify": true,
     "verifyFnStr": "function (userCode, testCase) {\r\n      const body = extractMethodBody(userCode, 'getMessage');\r\n\r\n      const simulator = `\r\n        class Parent {\r\n            getMessage() { return \"Parent Message\"; }\r\n        }\r\n        class PracticeWorkspace extends Parent {\r\n            getMessage() {\r\n                const super_getMessage = () => super.getMessage();\r\n                ${body.replace(/super\\.getMessage\\(\\)/g, 'super_getMessage()')}\r\n            }\r\n        }\r\n        const child = new PracticeWorkspace();\r\n        return child.getMessage();\r\n      `;\r\n      const fn = new Function(simulator);\r\n      return fn() === testCase.expected;\r\n    }"
@@ -244,6 +352,12 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Temperature Converter",
     "difficulty": "Easy",
     "chapter": "Chapter 1: Java Introduction",
+    "sourceFile": "src/Chapter_1_Java_Introduction/Sub_Chapter_2_Java_Intro_CodingChallenge/TemperatureConverterChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "statements"
     ],
@@ -259,13 +373,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "toFahrenheit",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toFahrenheit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"celsius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toFahrenheit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"celsius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "fibonaccideepproblem",
     "title": "Fibonacci",
     "difficulty": "Hard",
     "chapter": "Chapter 1: Java Introduction",
+    "sourceFile": "src/Chapter_1_Java_Introduction/Sub_Chapter_3_DeepProblems/FibonacciDeepProblem.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "statements"
     ],
@@ -277,19 +397,29 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           6
         ],
-        "expected": 0
+        "expected": 0,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_1_Java_Introduction/Sub_Chapter_3_DeepProblems/FibonacciDeepProblem.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "generateFibonacci",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"generateFibonacci\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"count\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"generateFibonacci\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"count\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "bitwiseoperationsdeepproblem",
     "title": "Bitwise Operations",
     "difficulty": "Medium",
     "chapter": "Chapter 2: Primitive Types",
+    "sourceFile": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_5_DeepProblems/BitwiseOperationsDeepProblem.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "primitives",
       "literals",
@@ -307,37 +437,59 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           3
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_5_DeepProblems/BitwiseOperationsDeepProblem.java"
+        }
       },
       {
         "args": [
           4
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_5_DeepProblems/BitwiseOperationsDeepProblem.java"
+        }
       },
       {
         "args": [
           0
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_5_DeepProblems/BitwiseOperationsDeepProblem.java"
+        }
       },
       {
         "args": [
           -7
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_5_DeepProblems/BitwiseOperationsDeepProblem.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isOdd",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "expressionevaluatordeepproblem",
     "title": "Expression Evaluator",
     "difficulty": "Hard",
     "chapter": "Chapter 3: Operators",
+    "sourceFile": "src/Chapter_3_Operators/Sub_Chapter_3_DeepProblems/ExpressionEvaluatorDeepProblem.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "operators",
       "casting",
@@ -352,19 +504,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
           1,
           1
         ],
-        "expected": 1
+        "expected": 1,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_3_Operators/Sub_Chapter_3_DeepProblems/ExpressionEvaluatorDeepProblem.java",
+          "sourceHash": "17733f7f9c4e6925e196bb8c5cee9d1fbedefc16af56e4613cfe1dc3f309677e",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "power",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"power\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"base\", \"exponent\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"power\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"base\", \"exponent\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "unitconverterdeepproblem",
     "title": "Unit Converter",
     "difficulty": "Medium",
     "chapter": "Chapter 4: Statements And Indentations",
+    "sourceFile": "src/Chapter_4_Statements_And_Indentations/Sub_Chapter_3_DeepProblems/UnitConverterDeepProblem.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "statements",
       "if-else"
@@ -377,31 +551,49 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": 0.621371
+        "expected": 0.621371,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_4_Statements_And_Indentations/Sub_Chapter_3_DeepProblems/UnitConverterDeepProblem.java"
+        }
       },
       {
         "args": [
           10
         ],
-        "expected": 6.21371
+        "expected": 6.21371,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_4_Statements_And_Indentations/Sub_Chapter_3_DeepProblems/UnitConverterDeepProblem.java"
+        }
       },
       {
         "args": [
           0
         ],
-        "expected": 0
+        "expected": 0,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_4_Statements_And_Indentations/Sub_Chapter_3_DeepProblems/UnitConverterDeepProblem.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "kilometersToMiles",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"kilometersToMiles\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometers\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"kilometersToMiles\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometers\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "gradeclassifierdeepproblem",
     "title": "Grade Classifier",
     "difficulty": "Medium",
     "chapter": "Chapter 5: If Else Statements",
+    "sourceFile": "src/Chapter_5_If_Else_Statements/Sub_Chapter_3_DeepProblems/GradeClassifierDeepProblem.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "if-else",
       "operators",
@@ -415,37 +607,59 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           98
         ],
-        "expected": "A+"
+        "expected": "A+",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_5_If_Else_Statements/Sub_Chapter_3_DeepProblems/GradeClassifierDeepProblem.java"
+        }
       },
       {
         "args": [
           88
         ],
-        "expected": "A"
+        "expected": "A",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_5_If_Else_Statements/Sub_Chapter_3_DeepProblems/GradeClassifierDeepProblem.java"
+        }
       },
       {
         "args": [
           78
         ],
-        "expected": "B"
+        "expected": "B",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_5_If_Else_Statements/Sub_Chapter_3_DeepProblems/GradeClassifierDeepProblem.java"
+        }
       },
       {
         "args": [
           40
         ],
-        "expected": "F"
+        "expected": "F",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_5_If_Else_Statements/Sub_Chapter_3_DeepProblems/GradeClassifierDeepProblem.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "classify",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"classify\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"score\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"classify\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"score\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodsinjava",
     "title": "Methods In Java",
     "difficulty": "Medium",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "casting",
       "overloading"
@@ -462,13 +676,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calculateScore",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"gameOver\", \"score\", \"levelCompleted\", \"bonus\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"gameOver\", \"score\", \"levelCompleted\", \"bonus\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "areacalculatorcodingchallenge",
     "title": "Area Calculator",
     "difficulty": "Medium",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/AreaCalculatorCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract",
+      "contractId": "circle-area"
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -479,22 +699,70 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static double area(double radius) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
-          5
+          1
         ],
-        "expected": 78.53975
+        "expected": 3.141592653589793,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
+      },
+      {
+        "category": "normal",
+        "args": [
+          2
+        ],
+        "expected": 12.566370614359172,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
+      },
+      {
+        "category": "boundary",
+        "args": [
+          0
+        ],
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
+      },
+      {
+        "category": "invalid",
+        "args": [
+          -1
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
       }
     ],
     "selfCheck": false,
     "methodName": "area",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"area\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"radius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"area\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"radius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "barkingdogcodingchallenge",
     "title": "Barking Dog",
     "difficulty": "Medium",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -509,33 +777,51 @@ const GENERATED_PRACTICE_CHALLENGES = [
           true,
           1
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java"
+        }
       },
       {
         "args": [
           false,
           2
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java"
+        }
       },
       {
         "args": [
           true,
           8
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "shouldWakeUp",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"shouldWakeUp\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"barking\", \"hourOfDay\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"shouldWakeUp\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"barking\", \"hourOfDay\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "decimalcomparatorcodingchallenge",
     "title": "Decimal Comparator",
     "difficulty": "Easy",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/DecimalComparatorCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -550,33 +836,51 @@ const GENERATED_PRACTICE_CHALLENGES = [
           -3.1756,
           -3.175
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/DecimalComparatorCodingChallenge.java"
+        }
       },
       {
         "args": [
           3.175,
           3.176
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/DecimalComparatorCodingChallenge.java"
+        }
       },
       {
         "args": [
           -3.123,
           3.123
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/DecimalComparatorCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "areEqualByThreeDecimalPlaces",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"areEqualByThreeDecimalPlaces\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"areEqualByThreeDecimalPlaces\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "equalityprintercodingchallenge",
     "title": "Equality Printer",
     "difficulty": "Medium",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -592,7 +896,11 @@ const GENERATED_PRACTICE_CHALLENGES = [
           1,
           1
         ],
-        "expected": "All numbers are equal"
+        "expected": "All numbers are equal",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java"
+        }
       },
       {
         "args": [
@@ -600,7 +908,11 @@ const GENERATED_PRACTICE_CHALLENGES = [
           2,
           3
         ],
-        "expected": "All numbers are different"
+        "expected": "All numbers are different",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java"
+        }
       },
       {
         "args": [
@@ -608,7 +920,11 @@ const GENERATED_PRACTICE_CHALLENGES = [
           1,
           2
         ],
-        "expected": "Neither all are equal or different"
+        "expected": "Neither all are equal or different",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java"
+        }
       },
       {
         "args": [
@@ -616,19 +932,29 @@ const GENERATED_PRACTICE_CHALLENGES = [
           -1,
           -1
         ],
-        "expected": "Invalid Value"
+        "expected": "Invalid Value",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "printEqual",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printEqual\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1], testCase.args[2]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printEqual\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1], testCase.args[2]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "equalsumcheckercodingchallenge",
     "title": "Equal Sum Checker",
     "difficulty": "Easy",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualSumCheckerCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -644,7 +970,11 @@ const GENERATED_PRACTICE_CHALLENGES = [
           1,
           1
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualSumCheckerCodingChallenge.java"
+        }
       },
       {
         "args": [
@@ -652,7 +982,11 @@ const GENERATED_PRACTICE_CHALLENGES = [
           1,
           2
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualSumCheckerCodingChallenge.java"
+        }
       },
       {
         "args": [
@@ -660,19 +994,29 @@ const GENERATED_PRACTICE_CHALLENGES = [
           -1,
           0
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualSumCheckerCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "hasEqualSum",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasEqualSum\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"sum\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasEqualSum\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"sum\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "leapyearcalculatorcodingchallenge",
     "title": "Leap Year Calculator",
     "difficulty": "Easy",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/LeapYearCalculatorCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract",
+      "contractId": "gregorian-leap-year"
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -683,34 +1027,121 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean isLeapYear(int year) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
-          -1600
+          2024
         ],
-        "expected": false
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "normal",
         "args": [
-          1600
+          2023
         ],
-        "expected": true
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "boundary",
         "args": [
-          2017
+          1900
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2000
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          1
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          9999
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          0
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          10000
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          -400
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isLeapYear",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "megabytesconvertercodingchallenge",
     "title": "Mega Bytes Converter",
     "difficulty": "Easy",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MegaBytesConverterCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -724,31 +1155,49 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           2500
         ],
-        "expected": "2500 KB = 2 MB and 452 KB"
+        "expected": "2500 KB = 2 MB and 452 KB",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MegaBytesConverterCodingChallenge.java"
+        }
       },
       {
         "args": [
           5000
         ],
-        "expected": "5000 KB = 4 MB and 904 KB"
+        "expected": "5000 KB = 4 MB and 904 KB",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MegaBytesConverterCodingChallenge.java"
+        }
       },
       {
         "args": [
           -1024
         ],
-        "expected": "Invalid Value"
+        "expected": "Invalid Value",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MegaBytesConverterCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "printMegaBytesAndKiloBytes",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printMegaBytesAndKiloBytes\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"kilobytes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printMegaBytesAndKiloBytes\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"kilobytes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodschallengeproblem",
     "title": "Methods Challenge Problem",
     "difficulty": "Medium",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MethodsChallengeProblem.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -766,13 +1215,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "displayHighScorePosition",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"displayHighScorePosition\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"name\", \"position\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"displayHighScorePosition\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"name\", \"position\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "minutestoyearsanddayscalculatorcodingchallenge",
     "title": "Minutes To Years And Days Calculator",
     "difficulty": "Easy",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MinutesToYearsAndDaysCalculatorCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -786,25 +1241,39 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           525600
         ],
-        "expected": "525600 min = 1 y and 0 d"
+        "expected": "525600 min = 1 y and 0 d",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MinutesToYearsAndDaysCalculatorCodingChallenge.java"
+        }
       },
       {
         "args": [
           561600
         ],
-        "expected": "561600 min = 1 y and 25 d"
+        "expected": "561600 min = 1 y and 25 d",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MinutesToYearsAndDaysCalculatorCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "printYearsAndDays",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printYearsAndDays\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"minutes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printYearsAndDays\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"minutes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "playingcatcodingchallenge",
     "title": "Playing Cat",
     "difficulty": "Easy",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -819,33 +1288,51 @@ const GENERATED_PRACTICE_CHALLENGES = [
           true,
           10
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java"
+        }
       },
       {
         "args": [
           false,
           36
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java"
+        }
       },
       {
         "args": [
           false,
           35
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isCatPlaying",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isCatPlaying\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"isSummer\", \"temperature\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isCatPlaying\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"isSummer\", \"temperature\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "positivenegativezerocodingchallenge",
     "title": "Positive Negative Zero",
     "difficulty": "Easy",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -859,31 +1346,49 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": "positive"
+        "expected": "positive",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java"
+        }
       },
       {
         "args": [
           -1
         ],
-        "expected": "negative"
+        "expected": "negative",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java"
+        }
       },
       {
         "args": [
           0
         ],
-        "expected": "zero"
+        "expected": "zero",
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "checkNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"checkNumber\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"checkNumber\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "speedconvertercodingchallenge",
     "title": "Speed Converter",
     "difficulty": "Medium",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/SpeedConverterCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract",
+      "contractId": "speed-kmh-to-mph"
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -894,34 +1399,77 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static long toMilesPerHour(double kilometersPerHour) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
-        "args": [
-          1.5
-        ],
-        "expected": 1
-      },
-      {
+        "category": "normal",
         "args": [
           10.25
         ],
-        "expected": 6
+        "expected": 6,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "normal",
         "args": [
-          -5.6
+          75.114
         ],
-        "expected": -1
+        "expected": 47,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          0
+        ],
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          1.609
+        ],
+        "expected": 1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          -0.01
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "toMilesPerHour",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toMilesPerHour\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometersPerHour\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toMilesPerHour\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometersPerHour\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "teennumbercheckercodingchallenge",
     "title": "Teen Number Checker",
     "difficulty": "Medium",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -937,7 +1485,11 @@ const GENERATED_PRACTICE_CHALLENGES = [
           99,
           19
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java"
+        }
       },
       {
         "args": [
@@ -945,7 +1497,11 @@ const GENERATED_PRACTICE_CHALLENGES = [
           15,
           42
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java"
+        }
       },
       {
         "args": [
@@ -953,19 +1509,29 @@ const GENERATED_PRACTICE_CHALLENGES = [
           23,
           24
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "hasTeen",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasTeen\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasTeen\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "recursiondeepproblem",
     "title": "Recursion",
     "difficulty": "Hard",
     "chapter": "Chapter 6: Methods In Java",
+    "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_3_DeepProblems/RecursionDeepProblem.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "overloading",
       "statements",
@@ -983,13 +1549,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "factorialRecursive",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"factorialRecursive\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"factorialRecursive\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementinjava",
     "title": "Switch Statement In Java",
     "difficulty": "Easy",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1007,13 +1579,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "getQuarter",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "enhancedswitchstatementinjava",
     "title": "Enhanced Switch Statement In Java",
     "difficulty": "Medium",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1031,13 +1609,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "getQuarter",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "numberofdaysinamonthcodingchallenge",
     "title": "Number Of Days In A Month",
     "difficulty": "Medium",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1051,37 +1635,59 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           -1600
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java"
+        }
       },
       {
         "args": [
           1600
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java"
+        }
       },
       {
         "args": [
           2017
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java"
+        }
       },
       {
         "args": [
           2000
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isLeapYear",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "printnumberinaworldcodingchallenge",
     "title": "Print Number In A World",
     "difficulty": "Medium",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/PrintNumberInAWorldCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1095,19 +1701,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": "ONE"
+        "expected": "ONE",
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/PrintNumberInAWorldCodingChallenge.java",
+          "sourceHash": "36f910b7e7193015bb88b72041cf6dc15eb1ff34459fdb30b9e2ca6c0791da8c",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "returnNumberInAWordUsingTraditionalSwitch",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"returnNumberInAWordUsingTraditionalSwitch\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"returnNumberInAWordUsingTraditionalSwitch\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementchallenge",
     "title": "Switch Statement",
     "difficulty": "Easy",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1125,13 +1753,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "switchStatementUsingChar",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"switchStatementUsingChar\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"switchStatementUsingChar\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementchallengereturndayoftheweek",
     "title": "Switch Statement Challenge Return Day Of The Week",
     "difficulty": "Easy",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementChallengeReturnDayOfTheWeek.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1149,13 +1783,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "printDayOfWeek",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printDayOfWeek\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"day\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printDayOfWeek\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"day\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementnatochallenge",
     "title": "Switch Statement N A T O",
     "difficulty": "Easy",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementNATOChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1173,13 +1813,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "returnNatoStringForGivenCharacter",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"returnNatoStringForGivenCharacter\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"returnNatoStringForGivenCharacter\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "menudrivencalculatordeepproblem",
     "title": "Menu Driven Calculator",
     "difficulty": "Hard",
     "chapter": "Chapter 7: Switch Statements",
+    "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_4_DeepProblems/MenuDrivenCalculatorDeepProblem.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "switch",
       "break-continue",
@@ -1197,13 +1843,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calculate",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculate\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"first\", \"second\", \"operator\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculate\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"first\", \"second\", \"operator\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "forstatement",
     "title": "For Statement",
     "difficulty": "Easy",
     "chapter": "Chapter 8: Java Looping Concepts",
+    "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue"
@@ -1217,19 +1869,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
           2.5,
           2.5
         ],
-        "expected": 0.0625
+        "expected": 0.0625,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+          "sourceHash": "80e75dfcf2cb3749b46dbbd677f084dbca17ae3dad3d866ab8b3d8ba47506957",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "calculateInterest",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateInterest\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"amount\", \"interestRate\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateInterest\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"amount\", \"interestRate\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "forloopprimenumberchallenge",
     "title": "For Loop Prime Number",
     "difficulty": "Medium",
     "chapter": "Chapter 8: Java Looping Concepts",
+    "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue"
@@ -1242,19 +1916,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
+          "sourceHash": "2ae08770bcf8400615e36fbaa4ceef81515ed8cf6ad3468a989d90e26e356720",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isPrime",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPrime\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPrime\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "sumoddchallenge",
     "title": "Sum Odd",
     "difficulty": "Medium",
     "chapter": "Chapter 8: Java Looping Concepts",
+    "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/SumOddChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract",
+      "contractId": "positive-odd-number"
+    },
     "concepts": [
       "loops",
       "break-continue"
@@ -1264,40 +1960,77 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean isOdd(int number) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
           3
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "normal",
         "args": [
           4
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "boundary",
         "args": [
-          -3
+          1
         ],
-        "expected": false
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "boundary",
         "args": [
           0
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          -3
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isOdd",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "patternprinterdeepproblem",
     "title": "Pattern Printer",
     "difficulty": "Medium",
     "chapter": "Chapter 8: Java Looping Concepts",
+    "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_3_DeepProblems/PatternPrinterDeepProblem.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue"
@@ -1310,19 +2043,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": "*"
+        "expected": "* ",
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_3_DeepProblems/PatternPrinterDeepProblem.java",
+          "sourceHash": "a4c5e652a8d6d77d3f9c9c11d480201d02b1b14302f18bf2241b6647d5a78421",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "printRightTriangle",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printRightTriangle\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"size\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printRightTriangle\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"size\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "checknumberpalindromecodingchallenge",
     "title": "Check Number Palindrome",
     "difficulty": "Easy",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/CheckNumberPalindromeCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1336,31 +2091,49 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           -1221
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/CheckNumberPalindromeCodingChallenge.java"
+        }
       },
       {
         "args": [
           707
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/CheckNumberPalindromeCodingChallenge.java"
+        }
       },
       {
         "args": [
           11212
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/CheckNumberPalindromeCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "checkIfNumberIsPalindrome",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"checkIfNumberIsPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"checkIfNumberIsPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "digitsumcodingchallenge",
     "title": "Digit Sum",
     "difficulty": "Easy",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/DigitSumCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1374,19 +2147,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": 1
+        "expected": 1,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/DigitSumCodingChallenge.java",
+          "sourceHash": "1df13361482c8b98aaf36937915d9d2b789b05f21ef9e952572809df98396f13",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "sumDigits",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumDigits\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumDigits\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "evendigitsumcodingchallenge",
     "title": "Even Digit Sum",
     "difficulty": "Medium",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/EvenDigitSumCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract",
+      "contractId": "even-digit-sum"
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1397,34 +2192,88 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static int getEvenDigitSum(int number) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
           123456789
         ],
-        "expected": 20
+        "expected": 20,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "normal",
         "args": [
-          252
+          2468
         ],
-        "expected": 4
+        "expected": 20,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       },
       {
+        "category": "normal",
+        "args": [
+          13579
+        ],
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          0
+        ],
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2
+        ],
+        "expected": 2,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
         "args": [
           -22
         ],
-        "expected": -1
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "getEvenDigitSum",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getEvenDigitSum\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getEvenDigitSum\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "factorprintercodingchallenge",
     "title": "Factor Printer",
     "difficulty": "Medium",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FactorPrinterCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1438,19 +2287,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": "1"
+        "expected": "1 ",
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FactorPrinterCodingChallenge.java",
+          "sourceHash": "528d64310f98c758268ffbecb94350832a9f516f65c81c64756f09460837616c",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "printFactors",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printFactors\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printFactors\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "firstandlastdigitsumcodingchallenge",
     "title": "First And Last Digit Sum",
     "difficulty": "Medium",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1464,37 +2335,59 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           252
         ],
-        "expected": 4
+        "expected": 4,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java"
+        }
       },
       {
         "args": [
           257
         ],
-        "expected": 9
+        "expected": 9,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java"
+        }
       },
       {
         "args": [
           0
         ],
-        "expected": 0
+        "expected": 0,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java"
+        }
       },
       {
         "args": [
           5
         ],
-        "expected": 10
+        "expected": 10,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "sumFirstAndLastDigit",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumFirstAndLastDigit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumFirstAndLastDigit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "floorpackproblemcodingchallenge",
     "title": "Floor Pack Problem",
     "difficulty": "Hard",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1510,46 +2403,151 @@ const GENERATED_PRACTICE_CHALLENGES = [
           1,
           1
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
+          "sourceHash": "7f9f6bf146fe3c541aee64f3e861a000811d459e33fd69bded169a5312353cb9",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "canPack",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"canPack\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"bigCount\", \"smallCount\", \"goal\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"canPack\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"bigCount\", \"smallCount\", \"goal\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "greatestcommondivisorcodingchallenge",
     "title": "Greatest Common Divisor",
     "difficulty": "Hard",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/GreatestCommonDivisorCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "independent-contract",
+      "contractId": "gcd-minimum-ten"
+    },
     "concepts": [
       "loops",
       "break-continue",
       "operators"
     ],
     "conceptsSource": "chapter",
-    "description": "<p>Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.</p><p>For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly.</p><p>The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.</p><p>Both numbers must be >= 10; otherwise -1 is returned to indicate invalid input.</p><p>The approach uses nested while loops to compare factors of both numbers, tracking the largest common one found.</p>",
+    "description": "<p>Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.</p><p>For example, GCD(81, 153) = 9, since 9 is the largest number that divides both 81 and 153 evenly.</p><p>The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.</p><p>Both numbers must be >= 10; otherwise -1 is returned to indicate invalid input.</p><p>The approach uses nested while loops to compare factors of both numbers, tracking the largest common one found.</p>",
     "template": "public class PracticeWorkspace {\n    public static int getGreatestCommonDivisor(int number1, int number2) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
-          1,
-          1
+          81,
+          153
         ],
-        "expected": -1
+        "expected": 9,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          11,
+          13
+        ],
+        "expected": 1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          10,
+          10
+        ],
+        "expected": 10,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          10,
+          20
+        ],
+        "expected": 10,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          9,
+          20
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          20,
+          9
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          -10,
+          20
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "getGreatestCommonDivisor",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getGreatestCommonDivisor\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getGreatestCommonDivisor\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "largestprimefactorcodingchallenge",
     "title": "Largest Prime Factor",
     "difficulty": "Medium",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LargestPrimeFactorCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1563,19 +2561,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": -1
+        "expected": -1,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LargestPrimeFactorCodingChallenge.java",
+          "sourceHash": "d5ab09fd1dd85c0a154ad0db26be52ab3fd88cefe0970d3518dc23df6f9f2919",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "getLargestPrime",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getLargestPrime\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getLargestPrime\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "lastdigitcheckercodingchallenge",
     "title": "Last Digit Checker",
     "difficulty": "Medium",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1589,31 +2609,49 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           10
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java"
+        }
       },
       {
         "args": [
           468
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java"
+        }
       },
       {
         "args": [
           1051
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isValid",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValid\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValid\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "numbertowordscodingchallenge",
     "title": "Number To Words",
     "difficulty": "Hard",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1627,19 +2665,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": 1
+        "expected": 1,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
+          "sourceHash": "d7c70e6d1754aafcf54aca658d02753358866b5fbfad2bed2534d9e493d3b584",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "getDigitCount",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDigitCount\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDigitCount\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "perfectnumbercodingchallenge",
     "title": "Perfect Number",
     "difficulty": "Medium",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1653,19 +2713,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
+          "sourceHash": "226cdd09003f21796ca71094e10ee78722db5d1dc04d0f8b41197e823463ef75",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isPerfectNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPerfectNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPerfectNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "shareddigitcodingchallenge",
     "title": "Shared Digit",
     "difficulty": "Hard",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1680,33 +2762,51 @@ const GENERATED_PRACTICE_CHALLENGES = [
           12,
           23
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java"
+        }
       },
       {
         "args": [
           9,
           99
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java"
+        }
       },
       {
         "args": [
           15,
           55
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "hasSharedDigit",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasSharedDigit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasSharedDigit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "whileloopcodingchallenge",
     "title": "While Loop",
     "difficulty": "Easy",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1720,19 +2820,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
+          "sourceHash": "e5af60b58cf3d873bcc022d4e025ec6626ddc06ef3875c3bb242f04d6f015f05",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isEvenNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "whileloopcodingchallengepart2",
     "title": "While Loop Coding Challenge Part2",
     "difficulty": "Easy",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallengePart2.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1746,19 +2868,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           1
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallengePart2.java",
+          "sourceHash": "2a721710830bf65eeb0c55b880a29a31093550f699b7b2cbaa85a2ae1126a21a",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isEvenNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "numberguesserdeepproblem",
     "title": "Number Guesser",
     "difficulty": "Hard",
     "chapter": "Chapter 9: While And Do While Looping Concepts",
+    "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_4_DeepProblems/NumberGuesserDeepProblem.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "loops",
       "break-continue",
@@ -1776,13 +2920,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "simulateGuessingGame",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"simulateGuessingGame\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"secret\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"simulateGuessingGame\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"secret\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "librarysystemdeepproblem",
     "title": "Library System",
     "difficulty": "Medium",
     "chapter": "Chapter 10: Class Object Static And Instance Fields",
+    "sourceFile": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_4_DeepProblems/LibrarySystemDeepProblem.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "classes",
       "static",
@@ -1807,6 +2957,12 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Input Calculator",
     "difficulty": "Easy",
     "chapter": "Chapter 11: Parsing Values Reading Input",
+    "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/InputCalculatorChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "wrappers",
       "strings",
@@ -1831,6 +2987,12 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Min Max",
     "difficulty": "Medium",
     "chapter": "Chapter 11: Parsing Values Reading Input",
+    "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/MinMaxCodingChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "wrappers",
       "strings",
@@ -1855,6 +3017,12 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Paint Job",
     "difficulty": "Hard",
     "chapter": "Chapter 11: Parsing Values Reading Input",
+    "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "solution-derived-smoke",
+      "contractId": null
+    },
     "concepts": [
       "wrappers",
       "strings",
@@ -1871,19 +3039,41 @@ const GENERATED_PRACTICE_CHALLENGES = [
           2.5,
           1
         ],
-        "expected": 2
+        "expected": 2,
+        "provenance": {
+          "kind": "solution-derived-smoke",
+          "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
+          "sourceHash": "e37cfeafd923a8e92ad80894e0241e45707b65409bdaf3b708f2c1a84366a77e",
+          "frameworkFingerprint": "4357908b",
+          "execution": "native-reference-and-browser-approximate",
+          "nativeValidation": {
+            "release": 21,
+            "preview": false,
+            "compilerVersion": "javac 25.0.4.1",
+            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+            "validator": "scripts/fill-practice-expectations.js",
+            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          }
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "getBucketCount",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getBucketCount\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"width\", \"height\", \"areaOfBucket\", \"extraBuckets\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getBucketCount\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"width\", \"height\", \"areaOfBucket\", \"extraBuckets\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "readinguserinputchallenge",
     "title": "Reading User Input",
     "difficulty": "Hard",
     "chapter": "Chapter 11: Parsing Values Reading Input",
+    "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/ReadingUserInputChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "wrappers",
       "strings",
@@ -1908,6 +3098,12 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "title": "Input Validator",
     "difficulty": "Medium",
     "chapter": "Chapter 11: Parsing Values Reading Input",
+    "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_3_DeepProblems/InputValidatorDeepProblem.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "wrappers",
       "strings"
@@ -1924,13 +3120,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "isValidInt",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValidInt\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValidInt\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "multicatchchallenge",
     "title": "Multi Catch",
     "difficulty": "Easy",
     "chapter": "Chapter 12: Exception Handling",
+    "sourceFile": "src/Chapter_12_Exception_Handling/Sub_Chapter_2_Exception_Handling_CodingChallenge/MultiCatchChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "exceptions",
       "checked-unchecked",
@@ -1949,13 +3151,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "demonstrateException",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"demonstrateException\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"scenario\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"demonstrateException\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"scenario\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "parseandhandlechallenge",
     "title": "Parse And Handle",
     "difficulty": "Easy",
     "chapter": "Chapter 12: Exception Handling",
+    "sourceFile": "src/Chapter_12_Exception_Handling/Sub_Chapter_2_Exception_Handling_CodingChallenge/ParseAndHandleChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "exceptions",
       "checked-unchecked",
@@ -1974,13 +3182,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "parseAge",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"parseAge\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"input\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"parseAge\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"input\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "safedivisionchallenge",
     "title": "Safe Division",
     "difficulty": "Easy",
     "chapter": "Chapter 12: Exception Handling",
+    "sourceFile": "src/Chapter_12_Exception_Handling/Sub_Chapter_2_Exception_Handling_CodingChallenge/SafeDivisionChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "exceptions",
       "checked-unchecked",
@@ -1999,13 +3213,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "safeDivide",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"safeDivide\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"a\", \"b\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"safeDivide\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"a\", \"b\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodoverloadingchallenge",
     "title": "Method Over Loading",
     "difficulty": "Medium",
     "chapter": "Chapter 13: OOP Concepts",
+    "sourceFile": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverLoadingChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "classes",
       "encapsulation",
@@ -2030,13 +3250,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calcFeetAndInchesToCentimeters",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"calcFeetAndInchesToCentimeters\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"feet\", \"inches\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"calcFeetAndInchesToCentimeters\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"feet\", \"inches\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodoverloadingsecondandminuteschallenge",
     "title": "Method Overloading Second And Minutes",
     "difficulty": "Medium",
     "chapter": "Chapter 13: OOP Concepts",
+    "sourceFile": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverloadingSecondAndMinutesChallenge.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "classes",
       "encapsulation",
@@ -2061,13 +3287,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "getDurationString",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDurationString\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"minutes\", \"seconds\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDurationString\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"minutes\", \"seconds\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodoverloadinginjava",
     "title": "Method Overloading In Java",
     "difficulty": "Medium",
     "chapter": "Chapter 13: OOP Concepts",
+    "sourceFile": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "inheritance",
       "overloading"
@@ -2084,13 +3316,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calculateScore",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"playerName\", \"score\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"playerName\", \"score\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "shapehierarchydeepproblem",
     "title": "Shape Hierarchy",
     "difficulty": "Medium",
     "chapter": "Chapter 13: OOP Concepts",
+    "sourceFile": "src/Chapter_13_OOPSConcepts/Sub_Chapter_16_DeepProblems/ShapeHierarchyDeepProblem.java",
+    "evidence": {
+      "execution": "self-check",
+      "expectation": "none",
+      "contractId": null
+    },
     "concepts": [
       "classes",
       "encapsulation",
@@ -2115,13 +3353,19 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "printShapeInfo",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printShapeInfo\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"shape\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\s+$/, \"\");\n          const expected = String(testCase.expected).replace(/\\s+$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printShapeInfo\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"shape\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "stringanalyzerdeepproblem",
     "title": "String Analyzer",
     "difficulty": "Hard",
     "chapter": "Chapter 14: Strings",
+    "sourceFile": "src/Chapter_14_Strings/Sub_Chapter_5_DeepProblems/StringAnalyzerDeepProblem.java",
+    "evidence": {
+      "execution": "browser-approximate",
+      "expectation": "authored-note",
+      "contractId": null
+    },
     "concepts": [
       "strings",
       "text-blocks"
@@ -2134,24 +3378,36 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "args": [
           "racecar"
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_14_Strings/Sub_Chapter_5_DeepProblems/StringAnalyzerDeepProblem.java"
+        }
       },
       {
         "args": [
           "hello"
         ],
-        "expected": false
+        "expected": false,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_14_Strings/Sub_Chapter_5_DeepProblems/StringAnalyzerDeepProblem.java"
+        }
       },
       {
         "args": [
           "A man a plan a canal Panama"
         ],
-        "expected": true
+        "expected": true,
+        "provenance": {
+          "kind": "authored-note",
+          "file": "src/Chapter_14_Strings/Sub_Chapter_5_DeepProblems/StringAnalyzerDeepProblem.java"
+        }
       }
     ],
     "selfCheck": false,
     "methodName": "isPalindrome",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"text\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = Math.max(1e-9, Math.abs(expected) * 1e-6);\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"text\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   }
 ];

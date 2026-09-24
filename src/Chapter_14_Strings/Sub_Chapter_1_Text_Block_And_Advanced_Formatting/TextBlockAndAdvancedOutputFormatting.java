@@ -112,7 +112,7 @@ import java.util.IllegalFormatConversionException;
 // @gotcha A placeholder that does not match its argument throws at runtime, not at compile time.
 // @snippet String.format("%d", "text")     // throws
 // @gotcha `%n` only means a newline inside a format string; `println("Hello %n")` prints it literally.
-// @snippet String.format("Hello %n")     // Hello
+// @snippet String.format("Hello %n")     // "Hello \n"
 
 
 // @quiz (OCJP, HARD) What is printed by this program?

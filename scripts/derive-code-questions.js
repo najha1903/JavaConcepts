@@ -30,7 +30,10 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { runProcess, mapWithConcurrency, availableConcurrency } = require(path.join(__dirname, 'lib', 'run-java.js'));
+const { runProcess, mapWithConcurrency, availableConcurrency, requireJava, createWorkDir, nativeValidation } = require(path.join(__dirname, 'lib', 'run-java.js'));
+const { hash, frameworkFingerprint } = require('./lib/content-identity.js');
+const { finishedChapterNames } = require('./lib/note-rules.js');
+const { asRunnableProgram } = require('./lib/output-contract.js');
 
 const root = path.resolve(__dirname, '..');
 const quiet = process.argv.includes('--quiet');
@@ -41,11 +44,14 @@ function loadValue(file, globalName) {
 }
 
 const concepts = loadValue('data.js', 'CONCEPTS_DATA') || [];
+const finished = finishedChapterNames(concepts);
+const toolchain = requireJava();
 
 // Every code block in the notes, in a stable order, is the input to this script.
 function collectBlocks() {
   const out = [];
   for (const chapter of concepts) {
+    if (!finished.has(chapter.name)) continue;
     for (const topic of chapter.topics) {
       for (const block of topic.headerComments || []) {
         if (block.type !== 'code' || !block.code) continue;
@@ -69,8 +75,11 @@ function hashBlocks(blocks) {
 }
 
 const blocks = collectBlocks();
-const sourceHash = hashBlocks(blocks);
+const validatorFingerprint = frameworkFingerprint(root, ['scripts/derive-code-questions.js', 'scripts/lib/run-java.js', 'scripts/lib/note-rules.js', 'scripts/lib/output-contract.js', 'scripts/lib/content-identity.js', 'data/chapter-status.json']);
+const validation = nativeValidation('scripts/derive-code-questions.js', validatorFingerprint);
+const sourceHash = hash([hashBlocks(blocks), validatorFingerprint, toolchain]);
 const outputFile = path.join(root, 'data', 'code-questions.js');
+const knownBlocks = new Set((fs.existsSync(outputFile) ? require(outputFile).DERIVED_CODE_QUESTIONS : []).map(q => hash([q.topicPath, q.code])));
 
 // Deriving means compiling and running every candidate block, which takes minutes.
 // The result depends only on the blocks, so when they have not changed there is
@@ -102,9 +111,7 @@ function explanationFrom(code) {
 // so it is dropped rather than shown as an explanation of the wrong thing. The
 // question is kept either way.
 function explanationFitsOutput(explanation, output) {
-  const numbers = String(explanation).match(/\d[\d.]*/g);
-  if (!numbers || !numbers.length) return true;
-  return numbers.some(n => output.includes(n));
+  return String(explanation).trim() === output;
 }
 
 // The code the question shows: the same block with every trailing comment removed,
@@ -127,24 +134,24 @@ function isTrivialOutput(code, output) {
   return lines.every(line => literals.includes(line));
 }
 
-const work = fs.mkdtempSync(path.join(os.tmpdir(), 'derive-'));
+const work = createWorkDir('derive');
 
 // Compiles and runs a block, returning its real output, or null when it cannot be
 // compiled or does not finish. ASYNC: these used to run one at a time through
 // execFileSync, which is why a full rebuild took 29 seconds.
 async function runBlock(code, tag) {
-  const candidates = [];
-  if (/\bclass\s+\w+/.test(code)) candidates.push(code);
-  candidates.push(`public class Probe {\n    public static void main(String[] args) {\n${code.split('\n').map(l => '        ' + l).join('\n')}\n    }\n}`);
+  const program = asRunnableProgram(code);
+  if (!program) return null;
+  const candidates = [program.source];
 
   for (const source of candidates) {
     const dir = fs.mkdtempSync(path.join(work, tag + '-'));
-    const file = path.join(dir, 'Probe.java');
+    const file = path.join(dir, `${program.className}.java`);
     fs.writeFileSync(file, source.replace(/\n/g, '\r\n'), 'utf8');
     const compile = await runProcess('javac', ['-d', dir, file], { timeout: 30000 });
     if (compile.status !== 0) continue;
-    const run = await runProcess('java', ['-cp', dir, 'Probe'], { timeout: 5000 });
-    return run.status === 0 ? String(run.stdout).trim() : null;
+    const run = await runProcess('java', ['-cp', dir, program.launchName], { timeout: 5000 });
+    return run.status === 0 ? String(run.stdout).replace(/\r\n?/g, '\n') : null;
   }
   return null;
 }
@@ -167,7 +174,10 @@ async function evaluateBlock(block, index) {
 
   const tag = 'b' + index;
   const realOutput = await runBlock(code, tag);
-  if (realOutput === null) return { skip: 'wontCompile' };
+  if (realOutput === null) {
+    if (knownBlocks.has(hash([block.topicPath, stripComments(code)]))) throw new Error(`Previously executable derived block failed: ${block.topicPath}`);
+    return { skip: 'wontCompile' };
+  }
   if (!realOutput) return { skip: 'noOutput' };
 
   // The stripped code must produce exactly the same output, or the comment was
@@ -175,7 +185,10 @@ async function evaluateBlock(block, index) {
   const shown = stripComments(code);
   if (!shown) return { skip: 'noOutput' };
   const strippedOutput = await runBlock(shown, tag + 's');
-  if (strippedOutput !== realOutput) return { skip: 'changedWhenStripped' };
+  if (strippedOutput !== realOutput) {
+    if (knownBlocks.has(hash([block.topicPath, shown]))) throw new Error(`Previously executable shown code changed behavior: ${block.topicPath}`);
+    return { skip: 'changedWhenStripped' };
+  }
 
   if (isTrivialOutput(shown, realOutput)) return { skip: 'trivial' };
 
@@ -206,7 +219,8 @@ function slug(text) {
   return String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 }
 for (const q of questions) {
-  q.id = `code-${slug(q.chapter)}-${slug(q.topic)}-${slug(q.answer).slice(0, 20)}`;
+  q.id = `code-${hash([q.topicPath, q.code]).slice(0, 24)}`;
+  q.provenance = { kind: 'native-derived-smoke', sourceHash: hash(q.code), frameworkFingerprint: sourceHash, nativeValidation: validation };
 }
 
 const output = `// ============================================================================
@@ -224,10 +238,11 @@ const output = `// =============================================================
 // ============================================================================
 
 const SOURCE_HASH = '${sourceHash}';
+const NATIVE_VALIDATION = ${JSON.stringify(validation, null, 2)};
 
 const DERIVED_CODE_QUESTIONS = ${JSON.stringify(questions, null, 2)};
 
-module.exports = { DERIVED_CODE_QUESTIONS, SOURCE_HASH };
+module.exports = { DERIVED_CODE_QUESTIONS, SOURCE_HASH, NATIVE_VALIDATION };
 `;
 
 fs.writeFileSync(outputFile, output, 'utf8');
@@ -246,6 +261,7 @@ fs.rmSync(work, { recursive: true, force: true });
 }
 
 main().catch(error => {
+  fs.rmSync(work, { recursive: true, force: true });
   console.error(`Could not derive the code questions: ${error && error.message ? error.message : error}`);
   process.exit(1);
 });

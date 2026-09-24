@@ -118,6 +118,13 @@ if (smallGaps.length) {
   failures.push(`${smallGaps.length} non-chip rule(s) have a gap below ${MIN_CONTAINER_GAP_PX}px: ${smallGaps.slice(0, 5).join(', ')}${smallGaps.length > 5 ? ', ...' : ''}`);
 }
 
+if (!/\[hidden\]\s*\{\s*display:\s*none\s*!important/.test(css)) {
+  failures.push('The hidden attribute must hide inactive views and import controls regardless of component display rules.');
+}
+if (!/\.sidebar\[aria-hidden="true"\]\s*\{[^}]*visibility:\s*hidden/.test(css)) {
+  failures.push('The closed mobile drawer needs visibility:hidden as well as its off-canvas transform.');
+}
+
 // ---- Report -----------------------------------------------------------------
 
 console.log('');
@@ -136,4 +143,5 @@ if (failures.length) {
 }
 
 console.log('');
-console.log('   Every text colour clears WCAG AA, no text is below 12px, and no container gap is below 12px.');
+console.log('   Checked theme tokens clear WCAG AA; declared pixel sizes and container gaps meet the floors.');
+console.log('   Static CSS checks do not establish real-browser layout, full accessibility, or all rendered colour combinations.');

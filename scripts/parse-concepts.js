@@ -12,6 +12,8 @@ const { PRACTICE_EXPECTATIONS } = require(path.join(__dirname, '..', 'data', 'pr
 const { CURATED_PRACTICE_CHALLENGES } = require(path.join(__dirname, '..', 'data', 'practice-challenges.js'));
 const { buildVerifySource } = require(path.join(__dirname, 'lib', 'lab-verifier.js'));
 const noteRules = require(path.join(__dirname, 'lib', 'note-rules.js'));
+const { createRegistry } = require('./lib/content-identity.js');
+const { PRACTICE_CONTRACTS } = require('../data/practice-contracts.js');
 
 // ==========================================================================
 // The marker vocabulary, in one place.
@@ -82,8 +84,9 @@ function formatName(name) {
 //     it in the next session;
 //   - anything generated for it may become wrong the moment he edits the notes.
 //
-// So a chapter is FINISHED only once a higher-numbered chapter exists, and `@draft`
-// in the file overrides that in the other direction. For an unfinished chapter the
+// Reviewed status lives in data/chapter-status.json; `@draft` in a file can still
+// mark it unfinished. Unlisted chapters retain the highest-number compatibility rule.
+// For an unfinished chapter the
 // tool generates no questions, no takeaways and no gotchas - only what he wrote
 // himself appears. Everything arrives the moment he moves on.
 //
@@ -593,7 +596,7 @@ function parseJavaFile(filePath, rootDir) {
     if (/^\/\/\s*@quiz\s+/.test(trimmed)) {
       closeQuiz();
       const parsedHeader = parseQuizHeader(trimmed.replace(/^\/\/\s*@quiz\s+/, '').trim());
-      currentQuiz = { question: parsedHeader.text, answers: [], quizTag: parsedHeader.tag, quizLevel: parsedHeader.level, options: [], code: [], explain: '', whyNotes: [] };
+      currentQuiz = { question: parsedHeader.text, permanentId: parsedHeader.permanentId, answers: [], quizTag: parsedHeader.tag, quizLevel: parsedHeader.level, options: [], code: [], explain: '', whyNotes: [] };
     } else if (/^\/\/\s*@answer\s+/.test(trimmed) && currentQuiz) {
       currentQuiz.answers.push(trimmed.replace(/^\/\/\s*@answer\s+/, '').trim());
     } else if (/^\/\/\s*@code\s+/.test(trimmed) && currentQuiz) {
@@ -1221,6 +1224,8 @@ const QUIZ_TAG_WORDS = ['OCJP', 'INTERVIEW', 'EXAM', 'TRAP', 'SCJP'];
 
 // Splits "(OCJP, HARD) What is the result?" into { tag, level, text }.
 function parseQuizHeader(raw) {
+  const permanent = String(raw || '').match(/^\[id:([a-zA-Z0-9][a-zA-Z0-9._-]*)\]\s*(.*)$/);
+  if (permanent) return { ...parseQuizHeader(permanent[2]), permanentId: permanent[1] };
   const match = String(raw || '').match(/^\(([^)]*)\)\s*(.*)$/);
   if (!match) return { tag: null, level: null, text: String(raw || '').trim() };
   const inside = match[1];
@@ -1647,12 +1652,14 @@ function buildStarterQuestions(chapterName, topics) {
       // Work out what Java would print: each quoted part contributes its text, and
       // each number contributes its own digits, because the first quoted part makes
       // every later + a concatenation.
-      const parts = concatMatch[1].split(/\s*\+\s*/);
-      const hasText = parts.some(part => /^"/.test(part));
-      if (!hasText) continue;                       // pure arithmetic is a different question
-      const rendered = parts.map(part => /^"/.test(part)
-        ? part.replace(/^"|"$/g, '')
-        : part).join('');
+      const parts = concatMatch[1].match(/"(?:\\.|[^"\\])*"|-?\d+(?:\.\d+)?/g) || [];
+      // This narrow shortcut is valid only when concatenation starts with text.
+      // Numeric prefixes such as 10 + 20 + "Java" require Java evaluation.
+      if (!parts.length || !parts[0].startsWith('"')) continue;
+      let rendered;
+      try {
+        rendered = parts.map(part => part.startsWith('"') ? JSON.parse(part) : part).join('');
+      } catch { continue; }
       if (!rendered.trim()) continue;
       printLine = trimmed;
       printAnswer = rendered;
@@ -1675,8 +1682,7 @@ function buildStarterQuestions(chapterName, topics) {
     }
 
     // ---- @quiz / @answer custom questions from Java source comments -----------
-    (topic.customQuizzes || []).forEach((q, customIndex) => {
-      const qidBase = makeQid(chapterName, topicIdentity, 'custom', `${customIndex}-${slugify(q.question).slice(0, 40)}`);
+    (topic.customQuizzes || []).forEach(q => {
       const tagList = [
         ...(q.quizTag && /ocjp/i.test(q.quizTag) ? ['ocjp'] : []),
         ...(q.quizTag && /trap/i.test(q.quizTag) ? ['tricky'] : []),
@@ -1698,7 +1704,7 @@ function buildStarterQuestions(chapterName, topics) {
           addQuestion({
             type: isMulti ? 'mcq' : 'scq',
             kind: 'custom',
-            qid: qidBase,
+            permanentId: q.permanentId,
             difficulty: levelForCustomQuiz(q),
             chapter: chapterName,
             topic: topicLabel,
@@ -1718,7 +1724,7 @@ function buildStarterQuestions(chapterName, topics) {
       addQuestion({
         type: 'interview',
         kind: 'custom',
-        qid: qidBase,
+        permanentId: q.permanentId,
         difficulty: levelForCustomQuiz(q),
         chapter: chapterName,
         topic: topicLabel,
@@ -1733,68 +1739,8 @@ function buildStarterQuestions(chapterName, topics) {
       });
     });
 
-    // ---- New question types A–F ------------------------------------------------
-
-    // ---- Concept check: which of these statements are true? --------------------
-    // The statements come from this topic and from other topics, so the learner has
-    // to recognise what really belongs to the concept rather than match a phrase.
-    const conceptPool = topicNotes
-      .map(line => String(line).replace(/^[-*•]\s+/, '').trim())
-      .filter(isUsableQuizStatement);
-    const trueOptions = conceptPool.slice(0, 3);
-    const falseOptions = [];
-    for (let i = 0; i < topics.length; i++) {
-      if (i === topicIndex) continue;
-      const otLines = (allTopicNoteLines[i] || [])
-        .map(line => String(line).replace(/^[-*•]\s+/, '').trim())
-        .filter(isUsableQuizStatement);
-      if (otLines.length > 0) {
-        // The topic the distractor came FROM is kept, because that is the whole
-        // reason it is wrong and the only honest feedback that can be given for it.
-        falseOptions.push({ line: otLines[0], from: topics[i].topicName });
-        if (falseOptions.length >= 2) break;
-      }
-    }
-    // Require at least 3 true notes AND 2 plausible false statements — avoids low-quality MCQs for thin topics
-    if (trueOptions.length >= 3 && falseOptions.length >= 2) {
-      const selectedTrue = trueOptions.slice(0, Math.min(3, trueOptions.length));
-      const selectedFalse = falseOptions.slice(0, Math.min(2, falseOptions.length));
-      // Options are tagged rather than matched back by text, so a distractor that
-      // happened to read the same as a true statement could not be miscounted.
-      const tagged = [
-        ...selectedTrue.map(text => ({ text, correct: true })),
-        ...selectedFalse.map(f => ({ text: f.line, correct: false, from: f.from }))
-      ];
-      const seed = makeQid(chapterName, topicIdentity, 'true-false-mcq', 5);
-      const ordered = orderOptionsForQuestion(tagged, seed);
-      const shuffledOpts = ordered.map(o => o.text);
-      const correctIndices = ordered.map((o, idx) => (o.correct ? idx : -1)).filter(idx => idx >= 0);
-      // Each distractor is a real statement from ANOTHER topic, so the reason it is
-      // wrong can be stated exactly instead of left blank. Without this the learner
-      // was told only that they were wrong, never why.
-      const whyByOption = {};
-      ordered.forEach((o, idx) => {
-        if (!o.correct && o.from) {
-          whyByOption[idx] = `This statement is true of "${o.from}", not of "${topicLabel}". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.`;
-        }
-      });
-      if (correctIndices.length > 0) {
-        addQuestion({
-          type: 'mcq',
-          kind: 'true-false',
-          qid: seed,
-          difficulty: levelForKind('true-false'),
-          chapter: chapterName,
-          topic: topicLabel,
-          question: `Which of the following are TRUE about ${topicLabel}? Select all that apply.`,
-          options: shuffledOpts,
-          answer: correctIndices,
-          whyByOption: Object.keys(whyByOption).length ? whyByOption : undefined,
-          explanation: `A statement belongs here only if your notes make it about ${topicLabel}. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. ${correctIndices.length} of the ${shuffledOpts.length} statements are about ${topicLabel}.`
-        });
-      }
-    }
-
+    // A true statement from another topic is not a false distractor. Only authored
+    // alternatives and executable output questions belong in the scored bank.
   });
 
   return questions.map(q => assignTags(q));
@@ -1825,9 +1771,11 @@ function buildDerivedCodeQuestions(chapterName) {
       question: 'What does this code print?',
       code: entry.code,
       answer: [entry.answer],
+      outputExpectation: { kind: 'exact-output', value: entry.answer, provenance: 'native-derived-smoke' },
+      nativeValidation: entry.provenance && entry.provenance.nativeValidation || null,
       explanation: entry.explanation
         ? `${entry.explanation} — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it.`
-        : `The output above is what the code really printed when it was run.`
+        : `Running this block produces ${JSON.stringify(entry.answer)}. That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.`
     });
   }
   return questions;
@@ -2115,14 +2063,21 @@ function buildPracticeChallenges(parsedData, finishedChapters) {
     // scraped from `println(method(args))` knows the arguments but not the result, so
     // the challenge can only be self-checked. Applying them is what makes it
     // auto-checked, and the value is the author's own answer rather than a guess.
+    const independent = PRACTICE_CONTRACTS.find(c => c.challengeId === slug && c.methodName === methodName && c.parameterTypes.length === paramNames.length);
     const computedExpectations = PRACTICE_EXPECTATIONS[slug];
-    if (computedExpectations && computedExpectations.length) {
+    if (independent) {
       testCases.length = 0;
-      for (const entry of computedExpectations) testCases.push({ args: entry.args, expected: entry.expected });
+      testCases.push(...independent.cases.map(entry => ({ ...entry, tolerance: independent.tolerance })));
+    } else if (computedExpectations && computedExpectations.length && !testCases.some(tc => tc.expected !== null && tc.expected !== undefined)) {
+      testCases.length = 0;
+      for (const entry of computedExpectations) testCases.push({ ...entry, provenance: entry.provenance || { kind: 'solution-derived-smoke', validation: 'legacy-cache-unverified' } });
+    }
+    for (const entry of testCases) {
+      if (!entry.provenance) entry.provenance = { kind: entry.expected === null ? 'none' : 'authored-note', file: topic.filePath };
     }
 
     const selfCheck = testCases.length === 0 ||
-      testCases.every(tc => tc.expected === null);
+      testCases.some(tc => tc.expected === null || tc.expected === undefined);
 
     // Build verifyFn string (evaluated in browser context). It returns true, false,
     // or null. null means the code could not be run automatically, which must be
@@ -2164,6 +2119,12 @@ function buildPracticeChallenges(parsedData, finishedChapters) {
       title: title.trim(),
       difficulty,
       chapter: topic.chapter,
+      sourceFile: topic.filePath,
+      evidence: {
+        execution: selfCheck ? 'self-check' : 'browser-approximate',
+        expectation: independent ? 'independent-contract' : selfCheck ? 'none' : testCases[0].provenance.kind,
+        contractId: independent ? independent.id : null
+      },
       concepts,
       // 'topic' means the concepts were narrowed from this file's own notes, so a
       // concept match is precise. 'chapter' means they are the whole chapter's list,
@@ -2677,6 +2638,13 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
   // ── Step 3: Rebuild generated question banks from the current source tree ─
   const sortedQBank = {};
   const sortedQRBank = {};
+  let previousBank = {};
+  if (fs.existsSync(questionsFile)) {
+    const context = {};
+    vm.runInNewContext(fs.readFileSync(questionsFile, 'utf8') + '\nthis.bank = QUESTIONS_BANK;', context);
+    previousBank = context.bank;
+  }
+  const identityRegistry = createRegistry(path.join(rootDir, 'data', 'question-identities.json'), previousBank);
   // Which chapters are finished, computed once. A chapter still being written gets no
   // generated content; see finishedChapterNames.
   const finishedChapters = noteRules.finishedChapterNames(chaptersList);
@@ -2699,9 +2667,8 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
       if (own.length) conceptsByPath.set(topic.filePath, own);
     });
     const conceptsForQuestion = q => (q.topicPath && conceptsByPath.get(q.topicPath)) || chapterConcepts;
-    // A chapter still being written gets no generated content. Only the questions he
-    // wrote himself with @quiz appear, so nothing the tool invents can be wrong the
-    // moment he edits the notes, and there is nothing to redo later.
+    // Authored draft notes remain in data.js, but no revision questions are emitted
+    // until the chapter is finished, including those written with @quiz.
     const isFinished = finishedChapters.has(chName);
     sortedQRBank[chName] = buildQuickRevisionEntry(chName, chapter.topics, isFinished);
     const starterQs = buildStarterQuestions(chName, chapter.topics);
@@ -2709,7 +2676,7 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
     // A quiz must never show the same question twice. Several sub-chapters share a
     // file name, so without this a chapter could repeat one question many times.
     const generated = [...starterQs, ...ocjpQs, ...buildBankQuestions(chName, chapter.topics, conceptsByPath), ...buildDerivedCodeQuestions(chName)];
-    const combined = (isFinished ? generated : generated.filter(q => q.kind === 'custom'))
+    const combined = (isFinished ? generated : [])
       .map(q => ({ ...q, concepts: q.concepts && q.concepts.length ? q.concepts : conceptsForQuestion(q) }));
     const seenQuestions = new Set();
     const deduped = combined.filter(q => {
@@ -2718,7 +2685,7 @@ const CONCEPT_NAMES = ${JSON.stringify(conceptCatalogue.conceptNames(), null, 2)
       seenQuestions.add(key);
       return true;
     });
-    sortedQBank[chName] = deduped;
+    sortedQBank[chName] = deduped.map(q => identityRegistry.assign(q));
     console.log(`  🃏 Regenerated Quick Revision and question sets for: ${chName} (${deduped.length} questions, ${ocjpQs.length} OCJP, ${chapterConcepts.length} concepts)`);
   });
 
@@ -2750,6 +2717,7 @@ const QUESTIONS_BANK = ${JSON.stringify(sortedQBank, null, 2)};
 const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
 `;
 
+  identityRegistry.save();
   fs.writeFileSync(questionsFile, questionsOutput, 'utf8');
   console.log(`✅ questions.js updated successfully.\n`);
 
@@ -2758,7 +2726,7 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
   // challenges come from. They used to live in app.js, which meant the audit could not
   // see them and they would have silently missed the concept tagging. See
   // data/practice-challenges.js for the full reasoning.
-  const curatedItems = CURATED_PRACTICE_CHALLENGES.map(ch => {
+  const curatedItems = CURATED_PRACTICE_CHALLENGES.filter(ch => finishedChapters.has(ch.chapter)).map(ch => {
     const { verify, ...rest } = ch;
     // `source` lets the checks tell a hand-written challenge from a generated one. A
     // hand-written challenge has no .java file in src/, so there is nothing to check it
@@ -2768,6 +2736,8 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
     return {
       ...rest,
       source: 'curated',
+      evidence: { execution: 'browser-approximate', expectation: 'independent-contract' },
+      testCases: (rest.testCases || []).map(tc => ({ ...tc, provenance: { kind: 'independent-contract', file: 'data/practice-challenges.js' } })),
       conceptsSource: 'topic',
       verifyFnStr: typeof verify === 'function' ? verify.toString() : null
     };
@@ -2816,7 +2786,8 @@ const QUICK_REVISION_BANK = ${JSON.stringify(sortedQRBank, null, 2)};
   console.log(`✅ deep-challenges.js regenerated with ${allDeepChallenges.length} deep challenges.`);
 }
 
-main().catch(error => {
+if (require.main === module) main().catch(error => {
   console.error(error);
   process.exitCode = 1;
 });
+module.exports = { parseJavaFile, parseQuizHeader, buildStarterQuestions, buildPracticeChallenges, buildQuickRevisionEntry };

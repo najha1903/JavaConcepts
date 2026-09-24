@@ -34,15 +34,17 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
  *
  * Java keeps running data in two main places: the STACK and the HEAP.
  *
- * THE STACK is where reference variables live.
+ * THE STACK holds method frames, including local variables.
  * - Every thread has its own stack. Each method call gets a small block of
  *   space (a frame) that is thrown away when the method returns.
  * - Local variables live in that frame. A reference variable, such as a String
  *   or a StringBuilder variable, does NOT hold the object itself. It only holds
  *   a reference, which is like an address that points to the real object on the
  *   heap.
- * - Primitive variables like int, char and boolean are different. They store
- *   their actual value directly on the stack, not a reference.
+ * - Primitive local variables like int, char and boolean hold their actual
+ *   value, not a reference. Primitive fields belong to objects instead.
+ * - Reference fields also belong to objects; references are not always on the
+ *   stack. This is a conceptual model, not a guarantee of physical JVM layout.
  *
  * THE HEAP is where the objects themselves live.
  * - Every object made with the new keyword is created on the heap. This
@@ -72,8 +74,8 @@ package Chapter_14_Strings.Sub_Chapter_3_StringBuilder;
  *
  * HOW A REFERENCE VARIABLE BEHAVES FOR EACH TYPE
  *
- * A reference variable always sits on the stack and points to an object on the
- * heap. The real difference is whether changing the text edits that same object
+ * A local reference belongs to a method frame; a reference field belongs to its
+ * object. Both can refer to a heap object. The real difference is whether changing the text edits that same object
  * or quietly creates a new one.
  *
  * String is IMMUTABLE. A method like concat never changes the original text. It

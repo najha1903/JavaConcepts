@@ -13,7 +13,7 @@
 <body>
   <!-- Mobile Top Bar (visible only on small screens) -->
   <header class="mobile-topbar">
-    <button id="mobile-menu-btn" class="mobile-icon-btn" aria-label="Open chapters menu">
+    <button id="mobile-menu-btn" class="mobile-icon-btn" aria-label="Open chapters menu" aria-controls="chapter-sidebar" aria-expanded="false">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <div class="mobile-topbar-title">
@@ -30,7 +30,7 @@
 
   <div class="app-container">
     <!-- Sidebar Navigation -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="chapter-sidebar" aria-label="Study navigation">
       <div class="sidebar-header">
         <div class="logo">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="m16 16 3-8 3 8c-.87.5-1.93.5-2.8 0l-.2-.1a2 2 0 0 0-2 0l-.2.1c-.87.5-1.93.5-2.8 0z"/><path d="m2 16 3-8 3 8c-.87.5-1.93.5-2.8 0l-.2-.1a2 2 0 0 0-2 0l-.2.1c-.87.5-1.93.5-2.8 0z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
@@ -83,7 +83,7 @@
           <div class="nav-group-title">Progress</div>
           <button id="nav-mastery-btn" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M12 2 15 9l7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
-            <span>Mastery</span>
+            <span>Study confidence</span>
           </button>
         </div>
 
@@ -99,6 +99,7 @@
 
     <!-- Main Content Area -->
     <main class="main-content">
+      <div id="storage-warnings" class="storage-warning" role="status" aria-live="polite" hidden></div>
       
       <!-- DASHBOARD VIEW -->
       <section id="dashboard-view" class="view-section active">
@@ -211,8 +212,16 @@
         <!-- Deliberately away from the study panels above. A destructive action does not
              belong beside the things you click while studying. -->
         <div class="dashboard-settings">
+          <h2>Local study data</h2>
+          <p>Only this browser stores your JavaConcepts notes, quiz history, flashcards and editor drafts. No account or cloud sync. Export regularly; browser clearing can delete local data and backups.</p>
+          <button class="btn btn-outline" id="btn-export-data">Export study backup</button>
+          <label for="import-data-file">Import JavaConcepts backup (JSON)</label>
+          <input type="file" id="import-data-file" accept=".json,application/json">
+          <p id="import-data-preview" role="status"></p>
+          <button class="btn btn-primary" id="btn-confirm-import" hidden>Confirm import and replace</button>
+          <button class="btn btn-outline" id="btn-export-backup">Download previous backup</button>
           <button class="btn btn-danger-outline" id="btn-reset-data">Reset all progress</button>
-          <span class="dashboard-settings-note">Clears every checked revision item and all quiz history.</span>
+          <span class="dashboard-settings-note">Reset clears notes, drafts, revision marks, quiz history, saved quizzes and flashcards after making a local backup.</span>
         </div>
       </section>
 
@@ -524,7 +533,8 @@
             <!-- Text Input Container (for Predict Output type) -->
             <div id="quiz-input-container" style="display:none; margin-bottom: 24px;">
               <div class="input-label" style="font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Your Predicted Output:</div>
-              <input type="text" id="quiz-predict-input" class="quiz-text-input" placeholder="Type the exact output here...">
+              <textarea id="quiz-predict-input" class="quiz-text-input" rows="4" spellcheck="false" aria-label="Your exact output or code fill" placeholder="Type the exact output here..."></textarea>
+              <p class="text-muted">Case and spaces matter. Line endings and one final newline are normalized; all other text must match an accepted answer.</p>
             </div>
 
             <!-- Conceptual Technical Interview Container (for Interview type) -->
@@ -587,6 +597,7 @@
 
             <h2 id="result-title">Quiz Completed!</h2>
             <p id="result-desc" class="quiz-description">Great job revising these concepts. Here's a breakdown of your score.</p>
+            <p id="result-score-note"></p>
             
             <div class="score-details-box">
               <div class="score-row">
@@ -623,7 +634,7 @@
       <section id="practice-view" class="view-section">
         <div class="view-header">
           <h1>Code Practice</h1>
-          <p class="subtitle">Write Java and run it against test cases. This is where you do the work; Mastery tells you which concept to start with.</p>
+          <p class="subtitle">Draft Java here. Limited heuristic checks run JavaScript approximations, not Java compilation. Use your Java IDE for authoritative results.</p>
         </div>
 
         <div class="practice-container">
@@ -686,7 +697,7 @@
                     <button class="btn btn-outline btn-small" id="btn-reset-practice">Reset Template</button>
                     <button class="btn btn-primary btn-small" id="btn-run-practice">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="run-icon"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                      Compile & Run
+                      Run heuristic checks
                     </button>
                   </div>
                 </div>
@@ -701,7 +712,7 @@
               <!-- Terminal console output -->
               <div class="card terminal-card">
                 <div class="card-header">
-                  <span class="console-label">Console Compiler Output</span>
+                  <span class="console-label">Heuristic check feedback (not a Java compiler)</span>
                   <button id="btn-clear-console" class="clear-btn-link">Clear Console</button>
                 </div>
                 <div class="terminal-body">
@@ -853,8 +864,8 @@
       <!-- MASTERY VIEW -->
       <section id="mastery-view" class="view-section">
         <div class="view-header">
-          <h1>Mastery</h1>
-          <p class="subtitle">Where you stand: what you are weak at, what is due, and whether you are ready. This measures. Code Practice is where you do the work.</p>
+          <h1>Study confidence</h1>
+          <p class="subtitle">Local revision guidance from this question bank, not official exam readiness. Objective scored questions and self-assessed interview practice are kept separate.</p>
         </div>
 
         <div class="mastery-readiness" id="mastery-readiness"><!-- JS populated --></div>
@@ -865,7 +876,7 @@
 
         <div class="mastery-controls">
           <button id="mastery-filter-all" class="coverage-filter active" onclick="setMasteryFilter('all', this)">All concepts</button>
-          <button id="mastery-filter-weak" class="coverage-filter" onclick="setMasteryFilter('weak', this)">Not yet proved</button>
+          <button id="mastery-filter-weak" class="coverage-filter" onclick="setMasteryFilter('weak', this)">Limited evidence</button>
           <button id="mastery-filter-untried" class="coverage-filter" onclick="setMasteryFilter('untried', this)">Not tried yet</button>
         </div>
 
@@ -892,6 +903,9 @@
   <!-- Load the suggestions -->
   <script src="suggestions-data.js"></script>
   <!-- Load App Script -->
+  <script src="storage.js"></script>
+  <script src="scoring.js"></script>
+  <script src="practice-runtime.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

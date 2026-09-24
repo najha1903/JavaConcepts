@@ -125,6 +125,7 @@
     const result = document.getElementById('result');
     const suggestionsBox = document.getElementById('suggestions');
     let acceptedKeys = [];
+    let proposalId = null;
 
     // ---- Theme ----------------------------------------------------------------
     // Dark by default, with a switch to light. The initial value is applied by the
@@ -189,7 +190,7 @@
                   <span>
                     <strong>${escapeHtml(item.topic)}</strong> &mdash; ${escapeHtml(item.what)}
                     <span class="code-note">${escapeHtml(item.why)}</span>
-                    <span class="diff"><span class="diff-line add">${(item.draft || []).map(escapeHtml).join('</span><span class="diff-line add">')}</span></span>
+                    <span class="diff"><span class="diff-line add">${[`// ${item.what} :- ${item.why}`, ...(item.draft || []).slice(1).map(line => `// ${line}`)].map(escapeHtml).join('</span><span class="diff-line add">')}</span></span>
                   </span>
                 </label>`).join('')}
             </div>`).join('')}
@@ -243,26 +244,34 @@
               ${c.codeChanged && !c.isNew ? '<p class="code-note">Java code was edited, so the dashboard code view will update.</p>' : ''}
             </div>`).join('')}
         </div>`).join('');
+      if (pending.authoringChanged) {
+        body.insertAdjacentHTML('afterbegin', '<p class="code-note">Revision content or chapter configuration changed. Apply publishes the candidate through the same full approval workflow.</p>');
+      }
+      if (pending.ledger) {
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        summary.textContent = 'Candidate coverage ledger';
+        const pre = document.createElement('pre');
+        pre.textContent = pending.ledger;
+        details.append(summary, pre);
+        body.append(details);
+      }
     }
 
     async function load() {
       let pending;
       try {
-        pending = await (await fetch('/api/pending')).json();
+        const response = await fetch('/api/pending');
+        pending = await response.json();
+        if (!response.ok) throw new Error(pending.output || 'Could not load the review.');
       } catch (error) {
-        sub.textContent = 'This page has to be opened through npm run revise, because it needs the local review server.';
+        sub.textContent = `Could not load the review: ${error.message}. Open this page through npm run revise.`;
         return;
       }
+      proposalId = pending.proposalId || null;
       if (!pending.pending) {
         sub.textContent = 'There is nothing waiting for review.';
-        // Suggestions can still be accepted when there are no content changes.
-        if (pending.suggestions && pending.suggestions.items && pending.suggestions.items.length) {
-          renderSuggestions(pending.suggestions);
-          actions.style.display = 'flex';
-          document.getElementById('action-note').textContent = 'Tick a suggestion to insert it into your notes.';
-        } else {
-          body.innerHTML = '<div class="empty">Everything in the dashboard already matches your notes.<br><br><a href="index.html">Open the dashboard</a></div>';
-        }
+        body.innerHTML = '<div class="empty">There is no pending candidate.<br><br><a href="index.html">Open the dashboard</a></div>';
         return;
       }
       const when = pending.generated ? new Date(pending.generated).toLocaleString() : '';
@@ -282,9 +291,10 @@
         const response = await fetch(`/api/${endpoint}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: endpoint === 'apply' ? JSON.stringify({ acceptedKeys }) : '{}'
+          body: JSON.stringify({ proposalId, acceptedKeys: endpoint === 'apply' ? acceptedKeys : [] })
         });
         const payload = await response.json();
+        if (!response.ok || !payload.ok) throw new Error(payload.output || 'Review action failed.');
         if (endpoint === 'discard') {
           result.className = 'result ok';
           result.textContent = 'Nothing was applied. Your dashboard still shows the last approved version.';
@@ -294,8 +304,8 @@
         }
     result.className = payload.ok ? 'result ok' : 'result bad';
     result.textContent = payload.ok
-      ? `Applied and verified. Every check passed.\n\n${payload.output}\n\nYou can close this window and open the dashboard.`
-      : `The changes were NOT applied.\n\n${payload.output || 'The generator reported an error.'}\n\nFix the problem and run npm run revise again. Nothing has changed.`;
+      ? `Candidate published.\n\n${payload.output}\n\nYou can open the dashboard.`
+      : `The operation did not complete.\n\n${payload.output || 'The generator reported an error.'}`;
         if (payload.ok) {
           actions.style.display = 'none';
           sub.textContent = 'Applied. Opening the dashboard...';
@@ -305,7 +315,7 @@
         }
       } catch (error) {
         result.className = 'result bad';
-        result.textContent = 'The review server did not answer. Is the revise window still open?';
+        result.textContent = `The operation did not complete: ${error.message}\nYour newer source edits are preserved. Read any recovery instructions above, or regenerate and review the candidate.`;
         buttons.forEach(b => { b.disabled = false; });
       }
     }

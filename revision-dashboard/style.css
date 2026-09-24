@@ -148,6 +148,20 @@ h1, h2, h3, h4, .logo span {
 }
 
 /* Sidebar navigation */
+[hidden] { display: none !important; }
+.storage-warning {
+  border: 1px solid var(--text-secondary);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+.dashboard-settings { flex-wrap: wrap; }
+.dashboard-settings h2, .dashboard-settings p { flex-basis: 100%; }
+.review-value { white-space: pre-wrap; overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
+
 .sidebar {
   background-color: var(--bg-sidebar);
   border-right: 1px solid var(--border-color);
@@ -1971,7 +1985,8 @@ button:disabled:active,
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.45);
     overflow-y: auto;
   }
-  .app-container.drawer-open .sidebar { transform: translateX(0); }
+  .sidebar[aria-hidden="true"] { visibility: hidden; pointer-events: none; }
+  .app-container.drawer-open .sidebar { transform: translateX(0); visibility: visible; }
   .drawer-backdrop {
     display: block;
     position: fixed;
@@ -1982,17 +1997,17 @@ button:disabled:active,
     transition: opacity 0.28s ease;
     z-index: 1150;
   }
-  .app-container.drawer-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
+  body:has(.app-container.drawer-open) > .drawer-backdrop { opacity: 1; pointer-events: auto; }
 
   .mobile-only-inline { display: inline-flex; }
   .desktop-only-inline { display: none; }
 
   /* --- Hide non-notes navigation entry points --- */
   .nav-menu .nav-section,
-  .nav-menu .nav-divider { display: none; }
+  .nav-menu .nav-divider { display: block; }
 
   /* --- Dashboard view: show mobile intro, hide everything else --- */
-  #dashboard-view > *:not(.mobile-intro) { display: none; }
+  #dashboard-view > *:not(.mobile-intro):not(.dashboard-settings):not(.resume-quiz-panel) { display: none; }
   .mobile-intro {
     display: flex;
     flex-direction: column;

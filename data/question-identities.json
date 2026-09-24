@@ -1,0 +1,2762 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "00d6d172691fb577924f9373b9cdced75d3869e8397d1d2e522d27f181a5d3f5": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_1-what-happens-to-name-birthdate-and-hired",
+      "legacyQids": []
+    },
+    "0100132840c7afba6edb799f18dd24dfd169c6ebd54d1ab033c3e9dd447e28db": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_3-what-is-the-output-class-animal-void-spe",
+      "legacyQids": []
+    },
+    "0114bcdfb70928e92a8fc35455dbb735c7547a49f7d000a5cc3fe157be21a960": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_1-why-does-setdoors-int-doors-need-a-sensi",
+      "legacyQids": []
+    },
+    "01dc76dda0061655a1fd12034c98b02b1485217d9fba478f04940041db48a7fe": {
+      "qid": "ocjp-chapter-14-strings-string-pool-2",
+      "legacyQids": []
+    },
+    "020dc966d286f59e0892c45b295eab686fd70140a91ab71556a3a039fb4856ba": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_8-how-do-the-operands-you-choose-affect-th",
+      "legacyQids": []
+    },
+    "0304f62ef81404c872b97bc23953a53c86f9e01528a46c66a2fd9b41f4205821": {
+      "qid": "chapter-1-java-introduction_statements_bank_ch01-compile-then-run",
+      "legacyQids": []
+    },
+    "032600d232b50bca83283a19e22ed70f0542c5b4bda2f556f0aa3c1dec1899d7": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_28-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "036bb3eaccc4a688de2781d88551dc80857e8a63c046f94470201bc29393be35": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_3-what-is-the-difference-between-a-static-",
+      "legacyQids": []
+    },
+    "039f96165a286a23c87de7cd02ac85ad84d2c90f3b0efce885dce7af4b9f12f6": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_3-a-class-declares-only-this-constructor-w",
+      "legacyQids": []
+    },
+    "03a51a405e440ced387b9ea545db5bdb0adfb7ad5238206772041624dfb94334": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_4-does-abc-substring-0-0-throw-an-exceptio",
+      "legacyQids": []
+    },
+    "0468b8120760f6ed67bf193cfc51c9464caac71ce85a8ff38e899a078e2e24ff": {
+      "qid": "ocjp-chapter-14-strings-string-concat-1",
+      "legacyQids": []
+    },
+    "0488e7db741c9eefb20eb8b84f2da415f71b87e760b1498081a7db6fbaa6936d": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_9-given-the-overloads-print-int-x-and-prin",
+      "legacyQids": []
+    },
+    "04bbf37be1300d765d8d129cb33f3477be79501b640f4d8276406d8dcf834efc": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_11-what-is-printed-by-these-two-statements",
+      "legacyQids": []
+    },
+    "075bef12031a55670231d97386067b0add51771183c5973abec00c121f3f709d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_0-what-is-the-difference-between-passing-a",
+      "legacyQids": []
+    },
+    "082ac8caf5353c4b5bf5877875c967ff3d598f8624dec614f87b320da64b14ab": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_0-what-does-super-printmethod-pass-as-argu",
+      "legacyQids": []
+    },
+    "083a062c53ef7a1f1ab9228b8852bac1131c273145466347f61919b10a4675e7": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_2-what-does-terminate-string-enddate-do-wi",
+      "legacyQids": []
+    },
+    "0875ddaa07278dc343d908575fa538c5ee4d7f5bbbd900b28b4935853e427bae": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_19-how-do-you-check-if-a-string-is-a-palind",
+      "legacyQids": []
+    },
+    "091794a064c60cee4de8e2eca6b1daab519ec9ba1b98357220c1f255ecf6e122": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_6-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "09a352b38c629194c4b829262c12133274ab65ec8b0e7ba2016fb33f22e51c3f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_25-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "09ae148cc467359bd2cb94aaa05f0186e1418c01b10dc440c87f17da85ce1fa4": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_14-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "0a1cd547bd18bf7f810c5a366ef6f7887cac4f6e1c2144a3453f3346ac85a557": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_0-can-system-out-println-thirdvariable-use",
+      "legacyQids": []
+    },
+    "0a55a4dbf9b27d1135bb117fa534afb52341891567b129599c2bb2c3339dd69b": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_19-what-does-this-code-print",
+      "legacyQids": []
+    },
+    "0a7aafc1300531cd257c7a69a97a86099c4ef960c2aa9674f46bb18a1cb87388": {
+      "qid": "chapter-2-primitive-types_primitive-data-types_code_code-chapter-2-primitive-types-primitive-data-types-2-2-5",
+      "legacyQids": []
+    },
+    "0bb4f022f49801e8feebcc24b105313f9856bd0421298eadc373b38f962d5386": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_22-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "0be56b60066a726900769aac8e14e4a995cab40cfc5d4ee709c2fd1169a461d0": {
+      "qid": "chapter-11-parsing-values-reading-input_parsing-values-reading-input_code_code-chapter-11-parsing-values-reading-input-parsing-values-reading-input-10050-150",
+      "legacyQids": []
+    },
+    "0c09565baa97c587a8f6a2d97149fa0b7000c00de717bf601c1bf8bb77fe11ff": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_12-what-actually-makes-write-once-run-anywh",
+      "legacyQids": []
+    },
+    "0c36fdaf08904a091544cd15d51935d9b832d5a9b94cd4d82194881fe6208dfe": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_30-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "0d030a7970a1e86d5c386c9b10f3e4c63d426480b7e32a49df7d08f32f4d2518": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_5-what-is-multi-catch-in-java",
+      "legacyQids": []
+    },
+    "0e689979a457f7307ae0d24c869cf81a7f30253304767bbe6dc411794835e9b6": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_12-which-statement-correctly-compares-a-sta",
+      "legacyQids": []
+    },
+    "105f2ee265c6919950ad6754cd52ed7e9246746ac6f6268b9745c5e35327e167": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_0-in-house-bluehouse-new-house-blue-what-d",
+      "legacyQids": []
+    },
+    "11707db9eab6892aba074a75facd02d6a0bc0ecd73a4010124abba96eb2462d5": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_3-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "120e225847b9ade23336a7eb7632cd40cd7f663795d5985f37d53397964f5e9e": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_13-what-do-getmessage-and-printstacktrace-d",
+      "legacyQids": []
+    },
+    "13645a0e851f9463a6b087ce7bf692f5f565643b9b8f4d701a08eed87a9d597e": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_6-why-does-byte-b-10-b-5-compile-but-b-b-5",
+      "legacyQids": []
+    },
+    "14726a2e74f36cdc2da77b56bc2df5a5f5076e46b3352eeef27c46d90431f24a": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_0-in-doanimalstuff-animal-animal-string-sp",
+      "legacyQids": []
+    },
+    "14a8eb40e2379b0895581cb5e1e109a3958c718249a556596417b2b7d354b213": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_7-do-whitespace-and-indentation-affect-whe",
+      "legacyQids": []
+    },
+    "14d08361ab0de5d5c4c03d9556442d3e11d945cd3a58cee2a716da22a857a6cb": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_18-does-this-code-compile",
+      "legacyQids": []
+    },
+    "1560aa313970c82b0c735acd289e1825fd31210057589d2b43b639b2598698ca": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_13-when-is-an-overloaded-method-selected-ve",
+      "legacyQids": []
+    },
+    "15b7224cff64ba3051d84c13f3cd437281c9fa07574cfa09ee456fec596eb5fa": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_26-how-do-you-count-words-in-a-string-witho",
+      "legacyQids": []
+    },
+    "1645945e7f1c9d08c75d4829d8220894fdca824dad16575ef9a072dc5438e4a7": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_18-how-do-you-reverse-a-string-without-usin",
+      "legacyQids": []
+    },
+    "16bbea62b0581f585227f24823b449429a1268e4f4ce7f426eb451ded9c2cab4": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_23-which-statement-about-finally-is-correct",
+      "legacyQids": []
+    },
+    "17051a0a8548e8c8e2f3f1a68b2729336aed40130acfdd27389723f3aa829fb6": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_1-why-is-argument-order-important-when-cre",
+      "legacyQids": []
+    },
+    "170a663a84acdf2e8adc03f4ba75018d878d6c0ce48de2cbb6714f09963507a0": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_23-does-this-method-compile",
+      "legacyQids": []
+    },
+    "1718b46fc669414c008407cfbfdb9466fc236e1f84692e0cc86dcbca725ddfa7": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_12-does-this-code-compile",
+      "legacyQids": []
+    },
+    "1754d03a906a6fc750d7c12131632c24dae14814123e023e53b2d8591e5fc8e6": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_1-how-does-java-choose-between-overloaded-",
+      "legacyQids": []
+    },
+    "1774c2c590c11858d3ad437021f2b902a2dd026722be85f5580f42e373b77498": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_20-why-is-override-recommended-even-though-",
+      "legacyQids": []
+    },
+    "17843a4beca66ee945a2cbad63c665803001f8957543888d8b3c42e4958267b1": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_13-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "17ffdfdcb12695c747ce7acd727d02928c92778d2b122079bcd00af646fd7f2f": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_6-what-parameter-like-value-controls-when-",
+      "legacyQids": []
+    },
+    "180216af7b8b9f797dc2ae9ae58c16f2c52d142bc9558072d59db5c7fa4c06d6": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_2-after-anotherhouse-greenhouse-does-passi",
+      "legacyQids": []
+    },
+    "18107d766a87f0ced833a4ce1bb5e4235e35c2360b0e5c22aa71a6f13cceee32": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_11-when-should-replace-be-used-instead-of-r",
+      "legacyQids": []
+    },
+    "18142aac052e19a06a560769d0fcc7395f410a4b67edc2fc71c7fdb65c445eb5": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_12-what-does-the-5-do-in-this-statement",
+      "legacyQids": []
+    },
+    "182b9e886d48db94220566b91f602b5998e3098e4feb6841d232c3ba14aedba7": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_7-what-is-dangerous-about-the-value-parame",
+      "legacyQids": []
+    },
+    "18a4bb21387dd441bc62ce220c24f90b328878ff58966db7ac8e8a8c15d86825": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_8-what-is-printed-by-this-loop",
+      "legacyQids": []
+    },
+    "1a0476970ed4a8f88215081d03e974dbe0068fc6ccf16afcd3f2e5e876776394": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_2-what-does-this-loop-print",
+      "legacyQids": []
+    },
+    "1b9d69d3b0686e6e7f1bee73023437718c889b12a378e4a5bd882e80c86dab20": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_0-what-parameter-list-changes-can-create-m",
+      "legacyQids": []
+    },
+    "1bb1aaacc7c34a2b7488c5ef85ce152de9010ab26e9edff7638f6e22cb57e307": {
+      "qid": "ocjp-chapter-13-oop-concepts-final-keyword-1",
+      "legacyQids": []
+    },
+    "1c08dfb8381672380c86c062c1bfd2b00bb703332a132446c26ffd5277bcf279": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_17-what-happens-when-this-code-runs",
+      "legacyQids": []
+    },
+    "1c28c4afbb2208772e4d3489c0f19a913e6341389331e2eebc00dddfa6386238": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_8-what-happens-if-integer-parseint-22-5-is",
+      "legacyQids": []
+    },
+    "1ca3fe4cb407069e2ac00e14446ff9cb0d87c84cd611f3ccc8791bb27d6a1080": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_0-what-does-the-isready-value-control-in-d",
+      "legacyQids": []
+    },
+    "1cd7a0cbfdcfee2d591f9ae31742589b358bd09e27634b0dd8fa35b59615cfdf": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_0-what-does-the-accountbalance-argument-re",
+      "legacyQids": []
+    },
+    "1ce52b2173dd6e689f6b8226b14c1224badeafae3aa99eab059e14f942f8ee40": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_33-what-should-you-remember-about-the-args-",
+      "legacyQids": []
+    },
+    "1d104c4922407ba6e0c86459249a81e2c42043146b0e846e5874e1eac1454d0f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_1-what-must-the-parameter-inside-if-firstv",
+      "legacyQids": []
+    },
+    "1d3ce0f045ea8a228247e6719c87bdfbf082a8647cff613038dc41f7d39b633f": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_7-what-happens-when-hello-concat-null-is-c",
+      "legacyQids": []
+    },
+    "1d7ef14d05eff0708853cabcdd03837b8d1607df1c4e61dde157408b7fb1033b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_23-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "1dac33f37f3041588c310c065ded5a779d1287034d85e6b25fe34597c4b8254d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_29-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "1df2e76b58dda456c6386e45215855af9849b2ac289187806ea68f9cb3bd48a7": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_2-what-is-the-default-case-in-a-switch-sta",
+      "legacyQids": []
+    },
+    "1e2e02d539d53ced21c7a8feb03b523f0158a1a84e3e6ac20b1be67347041117": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_9-what-is-important-about-the-right-hand-v",
+      "legacyQids": []
+    },
+    "1e4e3a45ee26959b79e9d4f640b47945e6ed222019dcc5c8357d4f37e6032404": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_15-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "1fcf8ece3f7f06b9adab4d362a245b9990aae2b81d815676243e8ed6fd38e3de": {
+      "qid": "ocjp-chapter-2-primitive-types-string-pool-2",
+      "legacyQids": []
+    },
+    "1fd174961a8e938febddf7a5d62716433d8bec069b45cd4a4276a0ed5afa6908": {
+      "qid": "q-1fd174961a8e938febddf7a5",
+      "legacyQids": []
+    },
+    "1fd72ecafdc952e3f1f31d66de8d0a88c3c83f8dab6a6c59a2bbb4185f13399b": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_0-in-system-out-printf-age-d-age-what-does",
+      "legacyQids": []
+    },
+    "2033bbaf54462fe49ed39beb9473fc2477645f1cd08a3d6a945a9d19764e94d8": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_2-what-does-main-string-args-receive",
+      "legacyQids": []
+    },
+    "203d74991105abb90441981ec4d10cea91b9787e78672669fa897e5f28ebe24f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_5-what-prints-here-string-s-new-string-ab-",
+      "legacyQids": []
+    },
+    "205d802bf9dfe90aa09f96f3a6d0f6b322dbaa8553ff9104bc095f5d4f1b4a08": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_31-what-is-the-output-of-integer-a-127-inte",
+      "legacyQids": []
+    },
+    "20b14ebc926fd0bd052707172acc4ff23b9e0f33e5048fdf760b3c52009c8b0e": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_1-what-happens-if-printf-uses-f-but-the-ma",
+      "legacyQids": []
+    },
+    "218a9ff8a281303e2b3c24f97775bf74d24f19248c1b48a4dd84c101bdee1c10": {
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-14-20",
+      "legacyQids": []
+    },
+    "21caebfb57783275901dd1b0220639385f4dd028962055226a36ac600ee4f80b": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_12-what-is-the-value-of-x-after-this-code-r",
+      "legacyQids": []
+    },
+    "22598f54442e3ae93f1d0cf5783d215cdb597633084b19d771d1fb2b932efa99": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_17-a-parent-method-is-declared-protected-wh",
+      "legacyQids": []
+    },
+    "22bd86d0b5cfa6dd9e1bf78050ce28cdc51611085fdbeec60b671f047a57538c": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_18-what-is-wrong-with-this-loop",
+      "legacyQids": []
+    },
+    "22ef352beace03ed6b800337e2d412a9201d3cde48817cf99a74313b4441a2c2": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_14-what-is-the-difference-between-integer-p",
+      "legacyQids": []
+    },
+    "23f864574baf0c61cd941631b2ff60cf40233e03a6b9de92f5def73168d4bde6": {
+      "qid": "chapter-14-strings_string-builder-concepts_code_code-chapter-14-strings-string-builder-concepts-01234",
+      "legacyQids": []
+    },
+    "24bf174f5759d273ab5275ff66aaac05a064237f1c8913d069325ebf18d57276": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_1-if-isready-is-false-before-a-do-while-st",
+      "legacyQids": []
+    },
+    "253678c3d7397e684752274fe37a7512671fe0f462d79dcba13645b43b8c0d36": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_24-does-this-switch-compile",
+      "legacyQids": []
+    },
+    "2573c6d5dc986977d4bfb39b55d69c513e44177993270fb4124dcf7f7e741885": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_8-can-a-single-statement-be-spread-over-se",
+      "legacyQids": []
+    },
+    "25837fd103c6666ae1f7641692aae40c029dd513414449ffe9b55c851e4fc35b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_2-in-this-convertible-convertible-which-si",
+      "legacyQids": []
+    },
+    "261af38c7ff2c1635c30d2856377c1c985a83b2ba34794dd0c9a8687ad885dd5": {
+      "qid": "ocjp-chapter-13-oop-concepts-covariant-return-1",
+      "legacyQids": []
+    },
+    "26adfbf94ef5210d1162410baaf55831eeb0200a96d901a39cbfb583f293b5da": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_12-can-a-static-method-directly-access-an-i",
+      "legacyQids": []
+    },
+    "26df8eec6bd8cfe7f08fda1808986f17117261a4a2235a156ef91c0dd65265c4": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_1-what-is-the-result-of-this-code",
+      "legacyQids": []
+    },
+    "27134cef52e054253f542caefdf874c4d673bf0dd121e796d317b7ec2ef4a59b": {
+      "qid": "chapter-4-statements-and-indentations_statements-white-space-and-indentation_code_code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-3",
+      "legacyQids": []
+    },
+    "275cc5dd7bb8221e50f83d121adb5d1f15abd1743b60ef079f54207d46f8d39e": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_13-what-does-setlength-do-when-the-new-leng",
+      "legacyQids": []
+    },
+    "27657316dfcc3c38e8d915af5fb60b1c121d62f6aba145a3011a7bdf4de0e1b3": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_0-what-is-the-difference-between-widening-",
+      "legacyQids": []
+    },
+    "279d2911c4070d71258b703405b16fe2994c970f772d09145e7f5c2f1e7bc60a": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_7-what-is-the-difference-between-a-class-a",
+      "legacyQids": []
+    },
+    "27ab6a5cf9a7968a110dbb613c4fe9834233b9d9b1775808b2d3a1523c2ffef5": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_18-what-is-printed",
+      "legacyQids": []
+    },
+    "27b8f9f7bbf39f3577382696aea465434ceb68d732cd316c3c11237f29c957c0": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_17-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "27c8c17837942ad64d5c715c2da793538be0becdc25d536ea188e4f9fcc9b5af": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_1-why-can-t-a-constructor-call-both-this-a",
+      "legacyQids": []
+    },
+    "27c8d88c04ef501f6127c2e45f3708b6f6ee6c6a25cd53bea29dff358565fdc0": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_0-in-this-0-0-width-height-which-arguments",
+      "legacyQids": []
+    },
+    "289f472e1b3910f6d2b6ef800f12182637b834b10f4bf0dc913c421084f7faa6": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_24-what-is-printed-by-these-two-statements",
+      "legacyQids": []
+    },
+    "291dd8415dd6f3497badcddb0da0efd4fb96f967c3d0685f5dfc5091fdd9c70a": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_15-what-is-scanner-and-how-does-it-read-inp",
+      "legacyQids": []
+    },
+    "29695ac5812ce6041f32a7e6eaf0e6822f25de2fae855a4d74ede0bf0c4c2f4a": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_4-what-happens-with-this-statement",
+      "legacyQids": []
+    },
+    "29d9877ec7c0464cbd5bcc29f3cf156e5328877b3d8aae90a6b7e99a41091d8f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_13-what-is-the-output-of-system-out-println",
+      "legacyQids": []
+    },
+    "2a0a3b6e8543c89560b52e82a36924b105864d3a4f70407a16093ff6ee39b1fa": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_13-what-happens-when-a-return-statement-is-",
+      "legacyQids": []
+    },
+    "2ae12b2ea0b19992ef778f0622f6d396373497b6d39a506db0b47043ac5ddf58": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_4-which-of-these-is-an-expression",
+      "legacyQids": []
+    },
+    "2b11ad03687321cbba4d39b7b44d16de0cd04198dce755ce6d4eb638c05336d6": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_16-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "2b5c703a0acc1f3b71bc4a7944eab05cdff7be9cd71727daf22f69faa60c76e6": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_17-the-class-below-compiles-successfully-wh",
+      "legacyQids": []
+    },
+    "2cbf78738bd8938f7a2d494d3cd3a1952d9ec21832ff913a51f49b1bf40e66a8": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_1-what-is-fall-through-in-a-switch-stateme",
+      "legacyQids": []
+    },
+    "2d077618efc11f737259908b73bbf0675c93249703df52cb8a7212574bcb5716": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_0-what-do-a-and-b-mean-in-printsum-int-a-i",
+      "legacyQids": []
+    },
+    "2d591237b74dcc56e59be72aca8df00f1bc07bac6ce23c1df963fe1000faaacb": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_0-in-salariedemployee-string-name-string-b",
+      "legacyQids": []
+    },
+    "2d6a37048cda76655637302fc3b18917163330ba769c62f4e91c3630b5e7c3c6": {
+      "qid": "q-2d6a37048cda76655637302f",
+      "legacyQids": []
+    },
+    "2d8b1e1eecd86212313e7a301482e07f543c145fa27426f5278329ed3fcf9a06": {
+      "qid": "ocjp-chapter-12-exception-handling-finally-1",
+      "legacyQids": []
+    },
+    "2e30ff9c2c85e5939b79c1008991a29dbc47b4be768d4735ae5c2f3c94fb2515": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_9-where-do-the-declaration-and-the-update-",
+      "legacyQids": []
+    },
+    "2ee06b5dc24763f2f859246e90c8a6063f6168c37ea3948a637df2ac06c6b606": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_16-does-this-switch-compile",
+      "legacyQids": []
+    },
+    "2f38c2407edd2b66d2f11445121a886d5e26ebc4f2b66e47d7901f77f0dba610": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_11-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "2fc567b3735dc0e74a653f0cd192281f7c441c2470e8676d0cd034320a5c1709": {
+      "qid": "ocjp-chapter-2-primitive-types-string-pool-1",
+      "legacyQids": []
+    },
+    "30438bf4f291aec5d534228e63b5d8a57f64525325262deca323465b513fa20a": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_10-what-is-the-difference-between-throw-and",
+      "legacyQids": []
+    },
+    "30ee68b03d734df2e895aa5e5f2374a4729a5464b89dea9d71d48b05762a0488": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_8-which-types-can-be-used-as-the-selector-",
+      "legacyQids": []
+    },
+    "310cdd7b256379f3b89127f551066d7d284b4a598b301eb9db1335cbf2ecabb3": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_2-why-does-getarea-not-need-width-and-heig",
+      "legacyQids": []
+    },
+    "3113273ae2c16985211e285c7a7bc7eca16dbed73790dfb92d496503d8209e5a": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_0-what-do-width-and-height-mean-in-wallare",
+      "legacyQids": []
+    },
+    "311aa9e7a26f5a5658002573df56ff0fb6316cb0398c10714a082fa905eba7f2": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_1-why-can-swapping-email-and-phonenumber-a",
+      "legacyQids": []
+    },
+    "322324a78d990bd72df0d58275ed8cbcd80ad0a28acd0f5b224263a968ee7893": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_26-what-is-the-result-of-compiling-and-runn",
+      "legacyQids": []
+    },
+    "322b9b35c04ce8af0b65e2bad7533d3ecfd4df950ef7b4f715cee65d93e5c3b8": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_0-in-employee-string-name-string-birthdate",
+      "legacyQids": []
+    },
+    "3299b8a77bb9ee642eb3f03299bf02cb85251f9acafae0ac76a1fba25840791a": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_6-what-does-this-do-while-print",
+      "legacyQids": []
+    },
+    "32dab01ccfc5d994a4c49b53d31e9f388562e8cb60cf1ac376a68c8bad62d379": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_21-does-this-code-compile",
+      "legacyQids": []
+    },
+    "3337e2c37e9f1516667f7f34f03a2e342f3eb9f9c19d31835e131473eef48ea8": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_15-a-colleague-s-machine-has-the-jre-instal",
+      "legacyQids": []
+    },
+    "33c6bceb8ae34cc5c5f3a515764b49f19c74e0b39d29368da72f66a3941ace24": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_25-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "33d832033d3b8a06864f1ad78f238882b49c73ea1c88dcfbbfa6102a199f2511": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_18-does-this-line-compile",
+      "legacyQids": []
+    },
+    "34af41b57a8f5fe96c6308ca02bc0779d22eaae0b686d70b95056490bf0c6870": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_18-how-many-times-does-the-body-of-this-loo",
+      "legacyQids": []
+    },
+    "34dff56eae2a998758287382893db1bbbbbc9b663d4a06ff03ef1da5b463c442": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_20-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "35825c71f55dcb7142eb9969632cf9e6958507a75cc97f59688df3cf7ad77f73": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_1-what-do-the-arguments-in-new-fish-goldfi",
+      "legacyQids": []
+    },
+    "3587012ff005fb16d0e66e550c4c63b8308193a35057841a474e1ee397ae798d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_3-what-is-the-difference-between-this-and-",
+      "legacyQids": []
+    },
+    "3616c1bbcc50eac6cac12222716b6afd198a63fc841105cdcd144d0bbabae374": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_32-if-s-concat-is-fun-receives-is-fun-as-it",
+      "legacyQids": []
+    },
+    "3740c5bf36420c8bbea4e88e400bab725ddcc55ab56e7dc674aa4344f27e6179": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_2-why-is-the-birthdate-argument-format-a-c",
+      "legacyQids": []
+    },
+    "37a4caadf4312819cf94b7ce5cd6f19418f47a87a7d90f741489c93731443e67": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_18-why-can-nextline-appear-to-skip-input-af",
+      "legacyQids": []
+    },
+    "385d1a21ac299444511def9230ca59e4e689f51cfb5b533f01ca1e349a990a5e": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_14-where-can-the-variable-declared-here-be-",
+      "legacyQids": []
+    },
+    "38964a88e72441e609aeaaedf2c81a3d882383ba1905a08b881fa49a2b6bbc44": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_5-how-many-statements-does-if-control-here",
+      "legacyQids": []
+    },
+    "38f4d09c711cfc8c6036df99cbbdc2245602c78e47820339ad82612eee0a58f4": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_7-which-statement-correctly-describes-how-",
+      "legacyQids": []
+    },
+    "3b1c875c68de89ec846cbffe58c38c263e7c8e2504a85ab4b05e34dfa47be6a4": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_8-what-is-passed-to-println-in-system-out-",
+      "legacyQids": []
+    },
+    "3b1d50621f1ba7a470b94e7b6a4dbf92643a7903b9476fc3faa7b5a1d9ca9771": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_2-what-does-the-12-12-2025-argument-in-ter",
+      "legacyQids": []
+    },
+    "3b24b3c4b74f8bff492b9d5e3a3c8c2f711c57dafc5549beb9e2f3b612219263": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_19-which-methods-can-not-be-overridden",
+      "legacyQids": []
+    },
+    "3b59282ed6ca0e3dded75a77d5560ec2051fe70f30573f2bd23975f333bf6bbf": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_20-what-happens-when-integer-parseint-42-ru",
+      "legacyQids": []
+    },
+    "3c46a1bef4b199631fb1dd22b9d6df02c84eacc8906ca4e366fc903ca7fb5f65": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_1-would-bark-int-number-and-int-bark-int-n",
+      "legacyQids": []
+    },
+    "3c722c9024cd5328b380c856a24c91835a164943a74bbcba488dc26f4e370d10": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_17-what-happens-when-this-declaration-is-co",
+      "legacyQids": []
+    },
+    "3c9679b99b88b551b7e30e1d21ebc5bfa3cb9dbe89da56a3a938d45e77c93e45": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_4-what-is-wrong-with-writing-if-x-5-instea",
+      "legacyQids": []
+    },
+    "3cb6db566b130349c64b822b638ced140fca9710a0c1fb39050a84fb33a2ba81": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_1-what-is-the-pitfall-in-calling-distance-",
+      "legacyQids": []
+    },
+    "3cb89caab69c6c6904d78ae395d3f086ba089f5ee503b87e98095f596e3c9c8b": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_19-does-this-line-compile",
+      "legacyQids": []
+    },
+    "3cca084bd49035612f5eed1554c56a3555fb2ba6ffc7aea3a0ab2a66dd732686": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_11-reading-strictly-left-to-right-what-is-p",
+      "legacyQids": []
+    },
+    "3e6865bc06bab72fc53a0bae621c838c1af04726e3606abac41a7c06829bf463": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_16-what-is-the-key-difference-between-overl",
+      "legacyQids": []
+    },
+    "3eb746961acce2932d1a1c33d64d6efc0ad406d3c92c702dec79f85de9ad200a": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_7-what-is-the-purpose-of-the-override-anno",
+      "legacyQids": []
+    },
+    "3f22930a674b52f8031e8a7d9e9fa84bffd62c795713c69d1824ee31a3b06a7f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_12-two-classes-are-declared-in-the-same-pac",
+      "legacyQids": []
+    },
+    "3f6da762b0eb6b93df7d6552ff5b6e143ec4e5cb89167fbcf3427a1ceecb5d47": {
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-3-1-1",
+      "legacyQids": []
+    },
+    "3f93590d200ca7e11b367f77998ebc7d067db8b4fb45b530ffc96c6cfb250b8a": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_0-what-is-the-difference-between-checked-a",
+      "legacyQids": []
+    },
+    "3fa6a4da0ea660dff964fb2324f96c435d60215ca4934a6100e53cb02bca6e1f": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_3-what-does-for-do-in-java",
+      "legacyQids": []
+    },
+    "408be3fa493b8cfaa6b1af2aa953fbdf5f3b659c35831808aa63682ff5ae9e73": {
+      "qid": "chapter-2-primitive-types_primitive-data-types_code_code-chapter-2-primitive-types-primitive-data-types-66-b",
+      "legacyQids": []
+    },
+    "4093ea09b96e2b029c325e94837f157029b6785873ad41ad004369ed27272430": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_14-what-happens-when-this-statement-runs",
+      "legacyQids": []
+    },
+    "4151c890af9f276d9ba2c35dbeb813b7c6e4227043c808f868a6e074dd369fb0": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_4-which-statement-about-a-static-field-is-",
+      "legacyQids": []
+    },
+    "4156f16210ed24f5d67bb16f971bac2f626151a7460d4f2d0978074f993865c7": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_8-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "416741e8a975cff5455c8721d960fb2871e3c05aa2263058c74a60d60c811f0a": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_16-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "41c144ecabc1e3b6734cde0f17a782a3d28059fe3397d28a91bca19f61192f89": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_14-how-many-statements-does-the-if-control-",
+      "legacyQids": []
+    },
+    "41dd5f7af8b5876c51cdb391fe7937f7e25783ad4a01f7691a1d1affec695cbf": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_0-what-is-method-overriding-in-java",
+      "legacyQids": []
+    },
+    "41e8b6eb9b7732de1067005db030f7ecc0356f1472faf4c10e221e6a00340324": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_21-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "4210fb43de38982106db8331e0b854ecc4a6f67da3b76d9a08d9494b739214e5": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_11-what-does-the-string-args-parameter-of-m",
+      "legacyQids": []
+    },
+    "42323145b61b0dc047f7382d5eef218a60db0b39727e9dc2400b7ef35dc5794d": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_13-why-does-byte-b-10-b-5-compile-while-b-b",
+      "legacyQids": []
+    },
+    "4238bf91220eb6e512fae97980204568aef52be01faa9235eca82066f8c9cabf": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_29-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "42606f88da81b2ef31598941def3d6369e1fa8c8341ed7cd3bccb2dc47dc3784": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_4-how-should-the-month-parameter-be-chosen",
+      "legacyQids": []
+    },
+    "426188ca05102523110964e00841713af6061a0903739e705df4a1de6bc768fc": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_5-which-of-these-for-headers-is-valid-java",
+      "legacyQids": []
+    },
+    "42d69dac75fe4d01e481b82af0c8ddf9d8761ed0917d27aadfd3293d93c412e8": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_25-what-happens-when-this-loop-runs",
+      "legacyQids": []
+    },
+    "433a6b21281549ec89b3534eb9e5a2c4adcc33e268f88b0effc8d1eec6e9701a": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_11-why-should-the-catch-parameter-often-be-",
+      "legacyQids": []
+    },
+    "435a8e6042d7e813fd3fedd000a7060d781e903b8fca4a2c327b1028d4b35f49": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_5-why-is-equals-invalid-month-case-sensiti",
+      "legacyQids": []
+    },
+    "4407a8b8d1e36ae66bac82198a2860e066359ae8824e5cdcab5991a5cbff2db5": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_6-what-happens-when-abc-repeat-1-is-called",
+      "legacyQids": []
+    },
+    "442c0a2b8f6993a8491e5d08911f0e5aac7f73e13ce00fb8a92788bce8045a7a": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_5-two-files-are-created-in-the-same-folder",
+      "legacyQids": []
+    },
+    "443b78d72a8f87097a3e3e3ed6c1a818d28c20a8b786a3141581acc1f906c2f1": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_16-what-is-thrown-by-this-code",
+      "legacyQids": []
+    },
+    "445aafa732f43e4552d6a6f344f9b0af422e023022b716c77d712e6b2cd19daf": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_2-what-is-stored-in-the-args-parameter-of-",
+      "legacyQids": []
+    },
+    "4469aaaeec776f80ad11f2356ccb84a6dbc2297201d68d8479f113b18aaf6fa6": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_0-what-is-the-output-of-system-out-println",
+      "legacyQids": []
+    },
+    "44e8675fe9aa0f701a797da25b246e9a0d4d9aa0b250b487c6ff8d245cd5b002": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_8-in-condition-a-b-what-do-the-second-and-",
+      "legacyQids": []
+    },
+    "44fc2b890fc75cf16e11f25c2bedf9beee4298527f17717de3c989b92a9aa9d7": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_0-what-is-the-difference-between-the-name-",
+      "legacyQids": []
+    },
+    "458108c98b291233c81015f13fb0dd1f0feccc9fe43d64ef14a957025f104368": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_20-why-does-sb1-equals-sb2-return-false-for",
+      "legacyQids": []
+    },
+    "45e0ce5b2a40211101ec0a3020eba840ffb321a2651b940c41420bb7a6ebccdd": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_17-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "4674d1be42586b7cd42e14b71b69b9361f1caa69e59fdd84f13f41d826feef84": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_0-what-do-the-four-arguments-in-new-salari",
+      "legacyQids": []
+    },
+    "468dd0cde95e5931c641233ba7ef316f2cfb69cd5086696aecc7f61b9f249989": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_5-can-a-traditional-switch-use-long-or-boo",
+      "legacyQids": []
+    },
+    "47f4ebc97b26367c60522d8891221387a285f9d7db4e0ac09124c7f0a35a9e79": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_11-for-sb-new-stringbuilder-hello-what-does",
+      "legacyQids": []
+    },
+    "48314ceecfa89afdad7bf2f49dbecddd7bf89f69b8bda21c2538b68c0bdd8b07": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_encapsulation_bank_ch10-why-private",
+      "legacyQids": []
+    },
+    "48b96987481d4286fdc56d97a8991b3da36f6a0813f925985edf1067328a9c6c": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_1-when-should-you-prefer-stringbuilder-ove",
+      "legacyQids": []
+    },
+    "499d6e467b8b250780328fb9058320d951a87b7158389b9c3adf65232a23002d": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_14-in-switchcasemultiplecasestogether-what-",
+      "legacyQids": []
+    },
+    "49a0ec49b22224b09894e4e447913b484fd684dd70061257f290e4b6a5c70b5b": {
+      "qid": "ocjp-chapter-13-oop-concepts-static-hiding-1",
+      "legacyQids": []
+    },
+    "49a25d7ea8fc4c46a33120a71761933f284268a70172f878c5cb836e554fc0cf": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_9-what-happens-when-you-call-super-methodn",
+      "legacyQids": []
+    },
+    "4a81c69aa32010028196920c05c1efcc3db0f5f8c869570a23177c238451098d": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_9-does-this-code-compile",
+      "legacyQids": []
+    },
+    "4b4599f40949cbe1422bee6157fc3e519f61b8dda339fcc298a1ce3a29da9d94": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_8-what-happens-with-system-out-printf-f-10",
+      "legacyQids": []
+    },
+    "4bc15c45c5a8e06dc50e2b5145e0d97024541e10b5a8afa9b7ada6c5a9c35eb4": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_1-in-this-color-color-which-color-is-the-f",
+      "legacyQids": []
+    },
+    "4bdca6430f2fd3d4fba70c6e20e0180a88863c59a05446abc1205b1f7a8d605a": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_16-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "4c2de8165dc1974c0cddc8e35db4b18a6f802bb673de77ff2f896b0c719cc337": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_22-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "4c5d7237d81f973438747aefb13e30127ee8f51c6d8947226c9dc70657f64d9e": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_1-how-should-a-caller-choose-the-classlist",
+      "legacyQids": []
+    },
+    "4ca3949ef149d91e4b78b015d1eb3e911f48987bd56a2733fd6c4f152eb77108": {
+      "qid": "ocjp-chapter-3-operators-prefix-postfix-1",
+      "legacyQids": []
+    },
+    "4d51c54e9da8dc47a1c06baee8dd6e8542ebd35188182047248b13442dfd6135": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_8-for-new-stringbuilder-then-append-a-repe",
+      "legacyQids": []
+    },
+    "4dcede02643e93b8a7c29ed89178379670ca5ee97666b4d3d45b534ecc4d3218": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_6-what-is-the-difference-between-a-stateme",
+      "legacyQids": []
+    },
+    "4e617fcb037836eb784af47cd9aaa2869893d4b3fd5943315dd982213d7d91eb": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_5-what-is-the-output-class-parent-string-n",
+      "legacyQids": []
+    },
+    "4f17ef05dfd5d3c9b74e53d8dca5ea03b64d279ab056db2071b36fa53a39da7c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_0-in-a-typical-pojo-constructor-with-one-p",
+      "legacyQids": []
+    },
+    "4f511f14ce76c8e5d5a897a97ff1b74ec1a685af49b9c9120fe6f6b5666fe7b6": {
+      "qid": "ocjp-chapter-14-strings-int-cast-1",
+      "legacyQids": []
+    },
+    "5030b95e471ada01d32e587790ce9cc6721525d48601be3f7c2abf27e2489dbe": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_4-does-this-class-compile-and-what-is-void",
+      "legacyQids": []
+    },
+    "5050880bc069c1d0ae25510dbf34e937a08c1a827f6a3cf3eace6e55400aca8a": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_2-why-is-this-id-required-in-this-id-id",
+      "legacyQids": []
+    },
+    "50eb6e135e1f2acec35e852129e4b50c5cff89ea075b2e2d8c5a4e32f2d6630f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_2-is-employeeid-chosen-by-the-employee-con",
+      "legacyQids": []
+    },
+    "510a0c30d17b4ff26b9b96a7b37aa96f8dc48be22cc4653511cb3812ae7fcca8": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_28-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "51154b199204977791f12ed6788079ab1499b04cc36b5230813746c2174d56ec": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_5-which-is-usually-clearer-while-condition",
+      "legacyQids": []
+    },
+    "517942be2f751ec181e6142788638cb885320b54a76237532b75edc7ce21425c": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_11-what-is-the-output-of-system-out-println",
+      "legacyQids": []
+    },
+    "519f147e9b6d6ff1b27217844db2e85a67269e6ce06c93253268b4d16319eb3c": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_22-does-this-code-compile",
+      "legacyQids": []
+    },
+    "51e47d6986194a509ff9f3fda602285aa143ef191e3939032c2d1c440ead527c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_9-how-does-a-static-field-differ-from-an-i",
+      "legacyQids": []
+    },
+    "5283213f7783b878af0a34f2bc528746e73605861c1c748aa79b4156cf9fe10a": {
+      "qid": "chapter-4-statements-and-indentations_statements-white-space-and-indentation_code_code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-hello-world",
+      "legacyQids": []
+    },
+    "528cb14dacf439f6979935357da81ff1bf79eb621f8bfd8ad62995ef766a720c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_0-why-will-car-setmodel-carrera-fail-here-",
+      "legacyQids": []
+    },
+    "52e2d3c99afb484a6c4ce03025f5f65803cb842665bfb5e1644e4747dd8acd8d": {
+      "qid": "chapter-14-strings_text-block-and-advanced-output-formatting_code_code-chapter-14-strings-text-block-and-advanced-output-formatting-hello-hello-n",
+      "legacyQids": []
+    },
+    "52f13bf95c811e9649183f1d745c0d3634dc2f49a51cc0c0741ebfe3e496764f": {
+      "qid": "chapter-3-operators_operator-challenge_code_code-chapter-3-operators-operator-challenge-total-10000-0",
+      "legacyQids": []
+    },
+    "53c7e20efd1bc51975490ed7b4d1d1bce06f41c105690e45aa7c9c6a66b4f633": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_1-what-is-the-pitfall-of-dog-string-type-d",
+      "legacyQids": []
+    },
+    "53e5f409c4a879f0ddb05e2311f3ccc912769613bbab44c30025f48a2aa87ca6": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_7-what-parameter-value-does-system-out-pri",
+      "legacyQids": []
+    },
+    "542f19b1f3ede897c8fec9815122ef973ccfbdad77bd377d1558ba13c3d478d5": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_8-what-is-the-basic-structure-of-the-excep",
+      "legacyQids": []
+    },
+    "5447cbe185655e047309bb730ee872573f66bdc80c54b95fd2377136d4ff56fc": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_3-which-main-method-signatures-let-the-cla",
+      "legacyQids": []
+    },
+    "5472c42b4377f8b928cd2be296e3524b389a7daa26330eac3fc14a5dcbe135ad": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_1-what-does-the-argument-true-mean-in-car-",
+      "legacyQids": []
+    },
+    "549aac305450ce6f3fd876cf01eb420ee8e94722107d649880839759b79a6318": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_14-why-can-the-first-version-of-calculatesc",
+      "legacyQids": []
+    },
+    "549de36ad34a6d386a7cf6034f266629c64a4cc65f6d06f235b7f4952e477135": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_14-does-insert-offset-x-allow-offset-to-equ",
+      "legacyQids": []
+    },
+    "54a6a35e1b8b69d8f934e0eaf3f42c107f693c569615e3de167c50f27b6a4dbf": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_1-what-would-germanshepherd-bark-int-numbe",
+      "legacyQids": []
+    },
+    "557c2503c88fb42c3efc6ed9e7df749745cc9add36171a08d1e5b61ed1f3ae18": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_18-does-this-condition-compile",
+      "legacyQids": []
+    },
+    "5590c5389e15f0d2983e06483527509fa0f89c50fb24cbb7655353f7eecfb371": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_1-why-is-string-immutable-in-java",
+      "legacyQids": []
+    },
+    "56222f3ecde4baceee814d6dc4b5a955057632ed8f41baf73d19f532b8de7f50": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_16-what-happens-when-this-code-runs",
+      "legacyQids": []
+    },
+    "56832beb9e5674067e7774185a9b279fa65e3a42241c0e122994304b90e944a2": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_15-what-is-a-class-member-in-java",
+      "legacyQids": []
+    },
+    "56a33e0756d3401325618b8bfb2a5509e491db1474066de150793a53a91ea5b6": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_12-what-is-the-effect-of-the-semicolon-in-t",
+      "legacyQids": []
+    },
+    "56da4fe11f64cc3c371b0174b8d0753d56e57f0392bbb884075b0d49a458e60d": {
+      "qid": "chapter-8-java-looping-concepts_for-statement_code_code-chapter-8-java-looping-concepts-for-statement-1-2-4-5",
+      "legacyQids": []
+    },
+    "575dcc1dd548dfe1bb2290e5b42fb64a00b4fefc8ab3352fc417a620fe7d1b0f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_0-why-is-passing-a-negative-depositamount-",
+      "legacyQids": []
+    },
+    "5806548d70e316498c76fbbc405cc3f2ad08daafcda0779697d47a7480ded4a4": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_9-when-would-you-choose-double-parsedouble",
+      "legacyQids": []
+    },
+    "583076d67284724c271e98b806e6e0f73d512dbb33767cd49046ec863aa4e830": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_7-does-this-code-compile",
+      "legacyQids": []
+    },
+    "584c8843839e265e8644682cea883be66dce9e95c1a2cef70a8731761d389689": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_10-which-statement-correctly-defines-an-ope",
+      "legacyQids": []
+    },
+    "590589f0a93e42df9160585042f8ef752fd677b3c80f8c27752963f85c301949": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_9-what-does-this-code-print",
+      "legacyQids": []
+    },
+    "591c01afb458e92f5bcc4a97c7e95dcec92fc48d13c8c2e8f16c38f87169d271": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_18-you-change-a-message-inside-helloworld-j",
+      "legacyQids": []
+    },
+    "597cb276e673799251fb369c0c4d0603c88605c11d890f4b59d71229c3c8c33d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_2-in-printsum-2-3-which-parameter-receives",
+      "legacyQids": []
+    },
+    "597ed86c7178d4364c0f30a17e364e7bd3064b61d4e500d58553d3af18483f57": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_0-in-hourlyemployee-string-name-string-bir",
+      "legacyQids": []
+    },
+    "5a094504c34228d3ffce225410ffe02a75b144754a97788987ee90a9dcb2f323": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_12-given-getquarter-string-month-what-does-",
+      "legacyQids": []
+    },
+    "5ab10921d111dad39d9c82645662e833a44121c80493a914e26046e2dedfeae1": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_3-would-clone-string-name-override-object-",
+      "legacyQids": []
+    },
+    "5b9d834715506fb782e8fb2dd18f2877ea08f35bd6aaa0c52112007d008abed2": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_2-what-is-the-difference-between-stringbui",
+      "legacyQids": []
+    },
+    "5b9e8e335cb314f50c6bea0bfca3f8e8198a940ed76e7930d6ec96f57bdfffd2": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_2-what-is-the-string-pool-and-what-is-the-",
+      "legacyQids": []
+    },
+    "5baf279bd5a2facd3a186d3f94cdb949c3dc10cb64da75237ecf8a6b5357fb68": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_3-why-is-stringbuilder-preferred-over-stri",
+      "legacyQids": []
+    },
+    "5bfc939c67eb7740eb9c9fc3ee04c5de0f174bc420e65ac79022449977755505": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_9-what-are-the-default-values-of-instance-",
+      "legacyQids": []
+    },
+    "5c8bc050fde9c1747c08c75977111e716b274bf0969b3e16810f91f0aa30fdfd": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_20-what-is-the-value-of-result",
+      "legacyQids": []
+    },
+    "5c9036049c01fc83d738dae0dedcede8c0af561e8764535f5723b240b6eef5cd": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_15-what-are-the-results-of-10-3-and-10-3",
+      "legacyQids": []
+    },
+    "5cd618c957e92943078006cc4fe655a13ba9eb762d9168bf24735a754d76763c": {
+      "qid": "ocjp-chapter-4-statements-and-indentations-switch-fallthrough-1",
+      "legacyQids": []
+    },
+    "5ce216687d984cf19c7e8d8befe6d70950ea19d5d02935ad535c76f7a03f3791": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_6-what-is-the-default-capacity-of-new-stri",
+      "legacyQids": []
+    },
+    "5e67130b9dccbb8b2e853cd3669a3f645fc20fe6962ebc3aeb0d6752b487299d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_0-why-is-this-color-needed-in-this-color-c",
+      "legacyQids": []
+    },
+    "5ecd242e308ce1d393d2600c5a876244041c5a723353c333aa960a298f59354a": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_8-what-is-the-difference-between-isempty-a",
+      "legacyQids": []
+    },
+    "5ee9403ef81c31a2703dd969257c93617bf9b5be356126a1fdaae7fe56eb4375": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_13-what-is-the-value-of-result-after-this-c",
+      "legacyQids": []
+    },
+    "5f31c92aeb59f64797f048f748c9ff4e0e80d66216aadb9fc5350e2a0189119a": {
+      "qid": "chapter-11-parsing-values-reading-input_parsing-values-reading-input_code_code-chapter-11-parsing-values-reading-input-parsing-values-reading-input-42-42",
+      "legacyQids": []
+    },
+    "5fac735e15b9bee0168eaf96bc889ccd1cad29e398f5dfe25d016e6d78926a07": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_9-for-new-stringbuilder-32-then-append-a-r",
+      "legacyQids": []
+    },
+    "5fc0b5a7b131e2637ab8d1b5d87ad97a0b3773bbe1616abbbe53979faa8d1612": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_13-what-does-integer-parseint-do-and-what-e",
+      "legacyQids": []
+    },
+    "5fcb3e8a01873b39d6ae142a28b286fa2bd0209168b8884aa0e08e9931362fdd": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_3-what-is-the-difference-between-checked-a",
+      "legacyQids": []
+    },
+    "6012ebe2a23ead80803b032b4c2b3cd8b25473bd47d84be7f2ae6bbbe2a1b5d9": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_24-what-does-super-tostring-do-inside-an-ov",
+      "legacyQids": []
+    },
+    "60612a92d0552ae90338fa206502d2a2997fa6808ec82ee061071e98bf220a93": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_0-in-record-studentrecord-string-id-string",
+      "legacyQids": []
+    },
+    "60d9150be634e3b34d125d49257247a3809ada36c1c53aa383ea7becd85a5f3d": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_5-what-is-the-output-of-int-x-10-string-re",
+      "legacyQids": []
+    },
+    "6138650c77dbadd35c290d040350152666bf1fc062b29a08fc98559f6461ae28": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_custom_1-what-important-detail-should-you-remembe",
+      "legacyQids": []
+    },
+    "621a304d715c73082646694f29b737ade0d39373cfe0c1c71bc7eabc28263895": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_0-what-do-the-x-and-y-arguments-passed-to-",
+      "legacyQids": []
+    },
+    "62b40cd2c5b001aedc615a5fd18aa8a3ec7f09f46a2725b81b09e34e5a3ff0e1": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_2-in-integer-parseint-1010-2-what-does-the",
+      "legacyQids": []
+    },
+    "6318f8688a85b5f48d04224d4ee763ae4e0a31dcb6a23d9157d794b66cc16f72": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_0-in-what-order-does-java-execute-the-thre",
+      "legacyQids": []
+    },
+    "6354c3b3b43a1ba2444a7c6b12c75d9209583c9d4aa363ca1a99182f549b5e28": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_5-can-changing-only-the-return-type-create",
+      "legacyQids": []
+    },
+    "63def70bd65f36d1ae48216d1da97219570b0c693486cd38c23a60ddc94c6fdc": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_14-this-source-is-saved-and-you-run-javac-h",
+      "legacyQids": []
+    },
+    "63df275b876d2c1ffbe0d1122d615f3b4a31ccbb62e96436e2f7e099d8f4dfab": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_5-what-tells-java-where-the-println-statem",
+      "legacyQids": []
+    },
+    "649e593e7c7b7d2b0309420173d78c1471c0d7f1b9bce590c565e732466d04a9": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_10-in-checkvaliddob-currentyear-yearofbirth",
+      "legacyQids": []
+    },
+    "64ae46418ef5fc5805bd337cbb67ffdc8d17986fee51b95fca83875b7a216f21": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_0-if-two-references-point-to-the-same-hous",
+      "legacyQids": []
+    },
+    "6505cfee60e15f3b21f482404599f9865407868e5638036a71f58176ebac5d7f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_6-what-is-covariant-return-type-in-method-",
+      "legacyQids": []
+    },
+    "65c752e379c3b23da298c62b2c3f45da7f5987f0e7df90767aa22a2f6fefea5d": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_2-how-do-instance-fields-behave-across-sev",
+      "legacyQids": []
+    },
+    "660b80144cce812de4a38765b5a0246bd308fcfe75827f3695dcb6483c09d1a9": {
+      "qid": "chapter-1-java-introduction_statements_bank_ch01-file-name-must-match",
+      "legacyQids": []
+    },
+    "661ea8b91115a08bab77ce022d5d7ff0c5fef0a2b0fbaa14c95562ec26067359": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_1-if-a-pojo-setter-has-no-validation-what-",
+      "legacyQids": []
+    },
+    "668c95d04fea04792454c8e5c3633fa4c4d5c0aee59c660850e4c3687edbd9f2": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_1-what-is-the-pitfall-of-calling-new-stati",
+      "legacyQids": []
+    },
+    "67325d7d6b9f0f6646da0e74fc36d10e4c18ba94ecc64c0b3c6103c095b0af9e": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_0-in-pointclassdistancecalculation-int-x-i",
+      "legacyQids": []
+    },
+    "6768e6de92d14c9d4c53b32eb993cebafc63cb840acc21ead4aa6f77251c62f8": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_17-what-is-the-key-difference-between-strin",
+      "legacyQids": []
+    },
+    "67fe25e012563d9cdd2b9d766aa10e8b4d312cb3029bdf9015123e32150ad9de": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_19-what-is-the-effect-of-this-loop",
+      "legacyQids": []
+    },
+    "682c91023702c7576b7d67c6722206522b87b75669c356f2e83ffef0c933cb3d": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_10-when-would-you-make-a-field-static",
+      "legacyQids": []
+    },
+    "686cd502df467f7af6a228d4b257d580a6cda4e97768fccb41c9584ae95c9e69": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_15-does-this-class-compile",
+      "legacyQids": []
+    },
+    "68bfcf8eca2f4481f4f4a4c91dc7728ce12b848e9c0053a523c0f3b78bf44291": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_2-what-must-happen-to-the-parameter-list-d",
+      "legacyQids": []
+    },
+    "68d74a3f90558a104950c6abd22ebd3274c16668f1ef2acf923a11eabe27c004": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_22-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "69984e738d490a143c53098fed9a159a5bd630ea12fa503232fbdcab625a71f4": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_1-can-an-enhanced-switch-return-a-value",
+      "legacyQids": []
+    },
+    "6a6ad2550348442571c978647a2382f6464d316e3955fdc891c633a468fceede": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_25-a-parent-declares-a-method-as-protected-",
+      "legacyQids": []
+    },
+    "6ab7b060d913901966e17e57a93f6482cdffac7173ee2e25d5fb2828b586be3b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_13-does-this-class-compile",
+      "legacyQids": []
+    },
+    "6ad4a07f6061025ed45539572bcffd7e173769661dd9e088ed4451f4181d48ca": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_6-what-is-the-difference-between-string-fo",
+      "legacyQids": []
+    },
+    "6ae67a0a2a339095face16c07b87340ceded258aa3c9baf4d3f2563b6160985d": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_8-what-does-javac-produce-and-what-runs-it",
+      "legacyQids": []
+    },
+    "6b4e2382cdfc5f32ecc88c05e42f443a9d90cfea9cfa1ff3abf7b599c60f4220": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_11-does-this-code-compile",
+      "legacyQids": []
+    },
+    "6b555dca3610a1410691917ec56d88f67036aef1be786e5c623b28f131d227f9": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_24-which-of-these-declarations-compile",
+      "legacyQids": []
+    },
+    "6c0ae33905329ddcefb579b073bdbe89e2621eab8e8cc78e13efc6b4ee111f83": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_3-what-is-the-accessor-method-for-the-name",
+      "legacyQids": []
+    },
+    "6c1acba68ba9e775928c4ec10906a33cc7673de542757674924f7f2dfad12ed7": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_2-in-substring-3-5-which-index-is-included",
+      "legacyQids": []
+    },
+    "6c6f3bd9901b715404190ff88d159ece1802e1271c7d851cbcb6f5092efb5dfa": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_19-what-does-this-code-print",
+      "legacyQids": []
+    },
+    "6d4204d79358aacb7f2d29696847538774fbdbf919e998fd27b68ea7d6712b06": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_2-in-distance-int-a-int-b-why-is-parameter",
+      "legacyQids": []
+    },
+    "6d730f54dc0e8dfe093e119bc57385a5fc50d7f624c456e0b44d148281542129": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_24-how-do-you-check-if-two-strings-are-anag",
+      "legacyQids": []
+    },
+    "6dcd8e868c5e2acb81776f61a55cb830503744bc4c016e88a1ef3d8e3414e0ce": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_13-which-statement-about-numeric-literal-su",
+      "legacyQids": []
+    },
+    "6dfb015da6529d3e6b26e8f5e3e250817b0e4142d4105184f4085fd5234b51c6": {
+      "qid": "ocjp-chapter-13-oop-concepts-override-overload-1",
+      "legacyQids": []
+    },
+    "6e00d779fa54338780ef7e0fe139de51d01d17335ceeb162754a26703ec42925": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_21-what-does-the-operator-do-and-what-is-pr",
+      "legacyQids": []
+    },
+    "6e51a16d0bfe4014d0683376b136fae04b332d6e2d7e9ce5301288184568334c": {
+      "qid": "ocjp-chapter-3-operators-short-circuit-1",
+      "legacyQids": []
+    },
+    "6ebe1417f7328ec1f3740a5a99ac5b72d5937d961f9c9bae0236e2653cea05aa": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_24-what-does-this-loop-print",
+      "legacyQids": []
+    },
+    "6ee9ca01d6256dbe15d0d6ba6f5d73128cebf4866d77df741a8028a229cd4bf9": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_16-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "6efd1c85703dca6a94082036e685a51eb9dc48abcf195ef2e394db22a4293403": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_4-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "6f48c2d6254954cde0eaeb20eb662fee46211878ae4af7ca562a3d5e2722ec0b": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_26-what-is-the-result-of-this-call",
+      "legacyQids": []
+    },
+    "6f49f38cada185ca433e3bc4ffe496e95ed81401d79e454b685eb75c64028277": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_4-does-this-code-compile",
+      "legacyQids": []
+    },
+    "6fae18718a83029dc16b595e4dd777bb0959517b0094cb85f3874397824ab608": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_2-in-this-age-age-what-does-the-age-on-the",
+      "legacyQids": []
+    },
+    "6fe9d22fee85b301761e7201651b33fa808f7cba2f68f3530a4cf1db170c5876": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_10-what-is-the-difference-between-equals-an",
+      "legacyQids": []
+    },
+    "6feca7a210315f2ae1a96c6ccdddaee25d6f2ac3642f34bdd74c50ab82e56c33": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_10-which-single-change-to-public-static-voi",
+      "legacyQids": []
+    },
+    "7013eb03dfd54bc8e755075e8234333b9fa0c5d9dc5d6e248e9a3aede2ec6c09": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_2-why-does-sum-1-2-call-sum-int-a-long-b-i",
+      "legacyQids": []
+    },
+    "70382d359761ddaba276ecef1256474d901e6dee19f75ac934d8f995e7f9fc6b": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_6-why-can-system-console-be-a-problem-in-s",
+      "legacyQids": []
+    },
+    "725189fb49dbb0d5ddd78ad802515423f679f553035000120b4e61ff75ac4a64": {
+      "qid": "chapter-14-strings_text-block-and-advanced-output-formatting_code_code-chapter-14-strings-text-block-and-advanced-output-formatting-age-42-age-42",
+      "legacyQids": []
+    },
+    "7332db155ea3839b59126cdfb864deec84166e4587779b36f2e3704f229cefa7": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_2-where-must-super-x-y-appear-in-the-child",
+      "legacyQids": []
+    },
+    "73905ca77dccb27a46b8ce279f878997babe75471a88244b24afc92444661bd3": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_5-what-does-sb1-equals-sb2-compare-for-two",
+      "legacyQids": []
+    },
+    "7421a567e080b03c62656d7e83a1b05d21b38de06ed1c72cdf1fa0684e2ae233": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_16-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "74c3c45226810bdc6e2d4ca8630b265c5e831a43a2cb29bc4e87a1f19298121f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_14-which-statement-about-default-values-in-",
+      "legacyQids": []
+    },
+    "755d10da2bec437ff03f925c35013a38850055d8d9ba334ed8bc31b35319d8ac": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_7-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "758042ec4af8e9282024fbcbbecc51117af243ace2eff9b130265bf34cfcf931": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_33-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "7594afdaf8afe0895aa66957d59222abf4d64409f67631f3c78f0350e12db9ea": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_3-what-is-the-golden-rule-for-the-operator",
+      "legacyQids": []
+    },
+    "7595f024dd49af93fe8127ee8d08f64206a36e6f133146e3ab28f5ad45662fc6": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_23-does-this-code-compile",
+      "legacyQids": []
+    },
+    "76036c6819f1fd3ece14b3d436834feaa655113ed63e0c0a4ed0bc3322af9050": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_2-what-parameter-would-setclasslist-receiv",
+      "legacyQids": []
+    },
+    "76937efbcf2ba0fcc742e2b8fd6a4223847f1c0445abdbe9a5d8ee6b01c55c44": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_10-why-can-a-static-method-not-use-instance",
+      "legacyQids": []
+    },
+    "76cf6fc93dddac1aa1fb807dbb19222ddde2c62ad9358dd9acc45be1f6f2d8b2": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_10-can-a-constructor-be-overridden",
+      "legacyQids": []
+    },
+    "76f9bf90913776beb0cdee347f8c51e2c7e17bb8f281efd6d317b78aeb3c08d2": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_3-why-is-performingsum-1-3-ambiguous-here",
+      "legacyQids": []
+    },
+    "76fe12c5b69e1683553c1a819ebea0734ef512a4d2eb5288d76a087220b0b6ee": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_26-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "77306aa369b14d54c01360bbdb0e93b5a09c0b31d35f1d058253f28c8694d577": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_17-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "77557d5c3a56e91c29a162bbc0ff059f18658772d4dd78316ea40799a86c256c": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_14-does-this-code-compile",
+      "legacyQids": []
+    },
+    "77633e8dd5c7aa8da3a02f6cad1c44ab37ca7ccc316ec62d39ea05164962ed97": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_26-what-does-this-loop-print",
+      "legacyQids": []
+    },
+    "7777c783305222e6eed1ea67b6556b4a7f466020b3f28262b0543131972bb38b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_1-what-is-the-warning-when-calling-setclas",
+      "legacyQids": []
+    },
+    "77fe01f336eb4ff8caa90f575482f28519311fa26aecc889f767f19a4d91038e": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_1-why-is-passing-null-to-setfirstname-stri",
+      "legacyQids": []
+    },
+    "782e6f7bd47a8c33ed10752f5af96eecdc0933da261fa8aab881e45dc2e1a4fb": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_3-when-is-switch-usually-preferred-over-a-",
+      "legacyQids": []
+    },
+    "78801e8414e68a0cc7195f64d5fd9ed9dbc0c9dd4e8d3d4a06317f3f0b7a0df2": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_2-does-new-bankaccount-pass-any-constructo",
+      "legacyQids": []
+    },
+    "78872703aff4d8a176b67020a6d2e7541a12737ca9914eab0bdcf61dd6cdbf81": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_1-which-calculatescore-overload-is-called-",
+      "legacyQids": []
+    },
+    "788facb900f9537388e0c7d60389f955b4788ae3d3c5baf13cf003c68e44eebe": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_25-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "78ca27eb79e2c4d1eddcc644f511d6d972e581d5450f895fe3fab72b7d24f6f3": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_1-what-should-callers-avoid-when-choosing-",
+      "legacyQids": []
+    },
+    "79e85b1216b23b59ab9c82979f4813ad7302d2d87da2d0a7f2c37eace8d45031": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_0-is-string-a-primitive-type-or-an-object-",
+      "legacyQids": []
+    },
+    "7a1caf8b96fbf9a1f679f0675106c1da7cc50f562760c768183f5ab415253bf0": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_1-do-local-variables-receive-default-value",
+      "legacyQids": []
+    },
+    "7aec102328b642b01e9cb365e2dbe48510774e43c9ff7e851fed2502dc379888": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_1-can-person-string-name-string-birthdate-",
+      "legacyQids": []
+    },
+    "7b57f7d5efc81b598334a78ad15ee13ae844bf2f857fb219a8b281a22db64b88": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_22-does-this-code-compile",
+      "legacyQids": []
+    },
+    "7b659b018b1be404e1f87961f3989018677af9ece1e618b89a51aeb99d36e853": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_17-what-does-this-method-return",
+      "legacyQids": []
+    },
+    "7b7194e2652d1b1c1102d7cefe71c08c39f169d5c684d6a2d6134313f8a6bf94": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_5-does-this-code-compile",
+      "legacyQids": []
+    },
+    "7bdc311dc25679e373940b04cc88e6784d81544ffca31b4d21f0373c535f3e6c": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_27-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "7c97a552146bb08c7e10016bd97fde93fcb747d51dca46dbe46ffe0af12cf944": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_3-which-line-does-not-compile",
+      "legacyQids": []
+    },
+    "7d55bd67e2f307cde90b39e4a7af8d7626ddcd2ae4ca2304596e40213fc6cb58": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_27-does-this-code-compile",
+      "legacyQids": []
+    },
+    "7d566ea1a43a56c2c26b1aa49f5def0aef0a2b5e9e81b80e19643b755d9498bc": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_2-what-is-the-difference-between-a-void-me",
+      "legacyQids": []
+    },
+    "7d81d5e9defdd35befb30c1f03a890c18229448cb6bd645c197814a6f6c3e8b4": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_30-a-child-class-overrides-a-public-method-",
+      "legacyQids": []
+    },
+    "7dc8ea69121cbefc94cbb84e4abe25686c632188a6fdb06aac9d698305223b45": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_14-can-override-catch-a-parameter-list-mism",
+      "legacyQids": []
+    },
+    "7dfd10f796a832de6cefa839b0051cb367a8c1efe15a41d057f2b2ce08008d27": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_1-why-is-swapping-width-and-height-easy-to",
+      "legacyQids": []
+    },
+    "7e4dd0ea85901f8b6360e780e0e51ea8845aabc52bfea44e500e6d93e02583e7": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_1-how-should-a-caller-choose-values-for-st",
+      "legacyQids": []
+    },
+    "7ec7a9eceffd3388e99ace6cb54a15c0d5bdd486df53bebd203b8fa16884bf96": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_6-what-happens-in-java-when-you-run-int-x-",
+      "legacyQids": []
+    },
+    "7f554c2ace369c53ed40660e72b937f262e1677b10417e84d06bb3b64012e150": {
+      "qid": "chapter-1-java-introduction_statements_bank_ch01-main-signature",
+      "legacyQids": []
+    },
+    "80949e220c12aebe95d09c9e62cfb7e8ed7011dda3a1136c2121d86a9bc78d3c": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_1-in-text-indexof-l-3-what-does-the-3-para",
+      "legacyQids": []
+    },
+    "809fa0b311e538548407c41455c70057854cea94a68ed086e302a2cc7df25653": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_21-what-is-a-covariant-return-type-in-an-ov",
+      "legacyQids": []
+    },
+    "81344a5f697005d5170d2aa2f4551b9f6238c0201b1724d2aea7c58b45a2216b": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_2-which-line-does-not-compile",
+      "legacyQids": []
+    },
+    "816fa7061691672c6bc715de79effd0ca129ebf0f4cc2fb5246fa2025c69739c": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_1-what-is-the-output-of-system-out-println",
+      "legacyQids": []
+    },
+    "81c1b06299b6478aca16fc6f3939fbd6a76edcf1ffac47a222a8e957f66b5122": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_1-what-is-the-pitfall-of-calling-new-house",
+      "legacyQids": []
+    },
+    "8208d79709f2b822422736d3b30871c5ab56d0ce97b0ed5a753c1b14604519b5": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_15-which-loop-always-executes-its-body-at-l",
+      "legacyQids": []
+    },
+    "821da79fc59586ff1a23ceeee61eae3f37fa5b22418ae20c0485e4f2939231bb": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_6-in-main-string-args-what-does-the-args-p",
+      "legacyQids": []
+    },
+    "82afbfc922e62de783f5348e111d3fbc7fcf8444f3d93c1527e4206079da9296": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_1-which-of-these-identifiers-is-a-reserved",
+      "legacyQids": []
+    },
+    "82c37eba8ae48c83d6ccdc79fcc3dc7db15ba00f5fc4f0c65f2ce98fb34416d0": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_6-a-file-is-saved-as-start-java-and-contai",
+      "legacyQids": []
+    },
+    "833f3b07456c94d79c53da416b1afd2dfd2b880300904f7a86d398e890d8de5e": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_5-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "8346e618881e358f0864c022ef7b4f1315cbcbede5edc95221310ae83841f55d": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_9-how-many-numbers-does-this-loop-print",
+      "legacyQids": []
+    },
+    "83b9732d65ae6b58967e223d6fb209b56a8cb0b25eddfafe058b2f4e6dab198b": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_0-what-is-the-difference-between-a-class-a",
+      "legacyQids": []
+    },
+    "83df8b958335ab43766875bb81635553f682808f6acdf3e9757453c688ec976b": {
+      "qid": "chapter-12-exception-handling_exceptions_bank_ch12-finally-overrides-return",
+      "legacyQids": []
+    },
+    "8419436f562da7a5bcbf421028e54ba8c99d9837422e92d6b4a553f3f6ab918d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_0-what-does-the-beige-argument-do-in-house",
+      "legacyQids": []
+    },
+    "84410cbd18444b7a3f9dab38c98ea847186fe32326a93341e85945a62681af91": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_7-which-loop-fits-ask-at-least-once-then-r",
+      "legacyQids": []
+    },
+    "8571e369a6edadbf80a9300520a8a1af9897c0a4b9621ffe292fe01d7d175d8c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_3-how-do-parameter-lists-affect-compile-ti",
+      "legacyQids": []
+    },
+    "85f9991f49a7ca91061af6e7bc2ed574be2e37773074d8dbeec8ba2d53997bc6": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_4-what-prints-here-int-x-2-switch-x-case-1",
+      "legacyQids": []
+    },
+    "866083bbac97030edd10ea88eda89af89f2c60616bc9b92bf8d2a5a45790bf1b": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_8-when-should-you-use-stringbuilder-instea",
+      "legacyQids": []
+    },
+    "867cdae83d3f0d54bf9c6b068378b90ebccd09300fbaff23fbd02f6bc4df23b4": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_3-why-is-mixing-scanner-nextint-and-scanne",
+      "legacyQids": []
+    },
+    "8721f39069519b79a397d2fdf65afec0fb0e5e4ff867d14578701434c2527b20": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_2-what-is-the-output-of-system-out-println",
+      "legacyQids": []
+    },
+    "872ead169459214c5394cfd932644c72a781f91c9fd7e7cc78c220b802ce7f05": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_15-what-is-the-difference-between-and-in-a-",
+      "legacyQids": []
+    },
+    "874583d28fae687e35109d9644287e7be348b4c8a506ef0492c1a9d0fc303dcf": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_6-which-overload-is-called-by-calculatesco",
+      "legacyQids": []
+    },
+    "87675ea4ffc69aca6ed76abb87afade90f3c4810ad012a5ef5c6486279621c3d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_17-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "87c567467e262cd37fe04f20817d60298eae743182ba413e459c6a01a4bd87ef": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_5-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "87d18932fd8fc818c920aaa6eb40a34ae7c3a19c79c1055e72b42b99d9b00931": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_10-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "87e8940ca0c4a01b90bb6db9a1974850836fcb7cad54db926216fd3032481dc7": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_0-in-worker-string-name-string-birthdate-h",
+      "legacyQids": []
+    },
+    "87ee8a8a2af6fa5a90de67c538b4e5b7e856323ee7652019a5bb9c253b8f2428": {
+      "qid": "ocjp-chapter-7-switch-statements-switch-fallthrough-1",
+      "legacyQids": []
+    },
+    "8820ea017df7f1a6a17507470a466381e6054a7be2d2fb8103db19f82df54ad6": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_12-why-is-a-broad-catch-exception-e-usually",
+      "legacyQids": []
+    },
+    "8822342dbd036e1e352dd5d79c1fb38858b3aac12ddf4a8fb3056e94ba86a323": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_14-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "8843f855a584b44aa8b368e7d65910c923f5ae16766f106d2b0a8f8c178fa82c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_20-does-this-code-compile",
+      "legacyQids": []
+    },
+    "88c17019be4859dcd6988617ba3d70c519976e2417b7abe0d19fee805df304db": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_0-what-is-the-dangling-else-problem-in-jav",
+      "legacyQids": []
+    },
+    "88e8fd6d35f0a30845c03f437e9e067c63dfd9a5d5ff5072f683db4f0de1d3ce": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_15-in-delete-start-end-what-do-start-and-en",
+      "legacyQids": []
+    },
+    "8941309b3cd7b32d905c62157e9fcb25503713a427786691042077aae05edf4d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_2-what-parameter-list-must-an-overriding-b",
+      "legacyQids": []
+    },
+    "895d8982febe18d486ab237086930e34383cbbc5a39cb555319e83bde4ee1733": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_2-why-is-public-person-clone-a-valid-overr",
+      "legacyQids": []
+    },
+    "8962768ca4eb71919d88b72ff5d6d2f7b6fc5acd856d8696b3e073dde35b46bb": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_3-with-score-5000-levelcompleted-5-and-bon",
+      "legacyQids": []
+    },
+    "899767563e39842d3eb44b43cdcd33f3651daa92fa149d75f4ab843fcf47a75b": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_17-what-happens-with-integer-parseint-3-5",
+      "legacyQids": []
+    },
+    "899c9053be00883447e108398c17604b92da70a2c435f17671c7303526f536ac": {
+      "qid": "ocjp-chapter-13-oop-concepts-polymorphism-1",
+      "legacyQids": []
+    },
+    "89bc5bfb1994f1088c619c017ac2f1f5e3787ed64fcc2b15cdad473277639ace": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_29-how-do-you-check-if-a-string-is-numeric-",
+      "legacyQids": []
+    },
+    "89f40e0a182ce28132b7415446199cd7fab3114f7a5de842167dad0e457f7ab2": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_31-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "8a3202f99e36c8068d0e04b4da3d5eb096dafaf042441cce4f93527788fad49a": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_7-what-is-the-difference-between-a-char-an",
+      "legacyQids": []
+    },
+    "8a951ec6ce60efce89d0f89f58a52c5be75e7604d89299907a702f3008c01312": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_17-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "8aca0069b84339ae9b720a4223dd7e560685e6d23dee3ea8358db9c5c4a8556f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_24-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "8acbe7308476beceb310cf8e8cee3cd495a3b5bdf93f23f6f1b29c8fa7024d26": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_17-does-this-method-compile",
+      "legacyQids": []
+    },
+    "8b09d0197301763fac520741a8b5e9db0696af64f430bc3b3121f38efeecacb4": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_2-in-if-j-5-does-the-loop-break-when-j-is-",
+      "legacyQids": []
+    },
+    "8b57a1adfa144925b802f2dd2062bb79d93d60f1d0944cbe4538c50a2020b4e7": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_2-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "8b6626df8edbf68a99a74b66e346e7712038292a6209e5c441bc316e13cf5b9a": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_23-what-does-setlength-0-do-and-how-does-it",
+      "legacyQids": []
+    },
+    "8bbb6306524c4adfbb0e29de24204766006db78772b3d0111b94e5c941316893": {
+      "qid": "ocjp-chapter-13-oop-concepts-access-modifier-override-1",
+      "legacyQids": []
+    },
+    "8c13c7bfcf662cbf999355807f60bcb32546565c622e873511eb3de6b4a3653b": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_18-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "8c1b7aa9174bc9d8b644e23b6d88d920feb67ba6a1f192e36e732180002b9b32": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_5-what-is-the-output-of-string-s-123-456-s",
+      "legacyQids": []
+    },
+    "8c57f289aa364ce750ea4dc55243da7726b30823d50325b34fcf92f45996d5f8": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_27-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "8c827be6f8012d3516e5c4ddb57590149a903ddc05999b4750e0efc824511745": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_1-does-a-finally-block-execute-if-the-try-",
+      "legacyQids": []
+    },
+    "8cd333a225294a54c4698d4e71346ae8a8012b5514b8bd216af0361739ba1e8c": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_12-in-this-file-s-loop-is-the-value-5-print",
+      "legacyQids": []
+    },
+    "8d283f29b55a8e4d88e59458550034b4b3dc05e3d5ceddf63e7e526343fc761b": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_27-the-user-types-5-and-presses-enter-what-",
+      "legacyQids": []
+    },
+    "8d8cd2cd5aba082c8593e0d3ddd8dfe8f06ec20847a92f7ede3a9504530f1d09": {
+      "qid": "chapter-1-java-introduction_statements_bank_ch01-one-public-class",
+      "legacyQids": []
+    },
+    "8dbedb99a4fd817f11d92ac17fbc4914f928e0881fe7e1f60e06370f398d2ced": {
+      "qid": "chapter-4-statements-and-indentations_statements-white-space-and-indentation_code_code-chapter-4-statements-and-indentations-statements-white-space-and-indentation-15",
+      "legacyQids": []
+    },
+    "8ddd0fe0bf0cda1d6a0875dfd2a28b2953fa161e3695b15dd2f319f8cc9405e6": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_2-in-the-statement-below-which-part-is-not",
+      "legacyQids": []
+    },
+    "8e163618fb891c03d494973accec8ec56c45088fd9b88bf3ae4a0ded40731dd5": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_1-why-is-parameter-order-especially-import",
+      "legacyQids": []
+    },
+    "8e4a3033844d9c0fc0a69dcc651bd59b21822f4734ce94dd400db3dc332596cf": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_0-what-data-types-can-be-used-in-a-traditi",
+      "legacyQids": []
+    },
+    "8e7437f02f273a558f616d5cc1aa464ac3ec6bb41dab8265c4cde50de51d4508": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_30-what-is-the-difference-between-and-equal",
+      "legacyQids": []
+    },
+    "8e787c1e2b64a181d3a6c50a83cc4eadc1da81a14c9bdf275ffe3cbdd0fd741d": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_24-why-can-calls-like-sb-append-a-append-b-",
+      "legacyQids": []
+    },
+    "8eb49632f02917aa84f166d041e1128d496009559c7473a30c74ca2e8bca831b": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_15-what-happens-when-this-code-runs",
+      "legacyQids": []
+    },
+    "8edbd19d09b44c92dcd5b1fe34b244d7a8dce6c961209d3544d3d5555e6de6cf": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_22-how-do-you-convert-a-string-to-uppercase",
+      "legacyQids": []
+    },
+    "8ef9e84865785afdc4231ae7e0012c56e89ff8f23640433e3770972c2b02fbf0": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_1-does-printname-string-name-become-static",
+      "legacyQids": []
+    },
+    "8f1464fcf4bbedfd674069173530d894bbb943c24eee7ecd38fb414f3d892cea": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_0-what-is-the-difference-between-a-stateme",
+      "legacyQids": []
+    },
+    "9139824fba2be735bad3db1a938ac683f4e21da2d7c5e71067398601e0de1203": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_3-what-is-the-output-of-system-out-println",
+      "legacyQids": []
+    },
+    "92f9647e548f5478dc00d758efeb591fb4b338fed0aa4b8629e8766956f5d0ef": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_3-how-do-string-format-hi-s-name-parameter",
+      "legacyQids": []
+    },
+    "9359c3cf7d5382594c2a24d524e81cf86c95693017a7bf6e70ecc42cf5e115c6": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_8-can-a-private-method-be-overridden",
+      "legacyQids": []
+    },
+    "939b9d2b01ba13bb91750e43d7c9f31aa8fd457875e66b129805356d3df10656": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_1-how-does-new-hourlyemployee-mary-05-05-1",
+      "legacyQids": []
+    },
+    "93d6a976926bbf42f722a29309542733b1658a9871a00861c49dec7f91809ff9": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_23-this-program-compiles-what-happens-when-",
+      "legacyQids": []
+    },
+    "947fdaa10b6cf12dc209fe7dc0c6f36540de9eec99c877485fbb573c619198a8": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_20-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "949a009e7b09c9fadd136c8cf642a083ec776b56c17ec082f2cbdfe72586aa13": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_10-what-does-this-loop-do",
+      "legacyQids": []
+    },
+    "957b7c5ad79d1a777d272dc6600dbd6af0720460f03d636c95ce5a58cadd0447": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_0-what-is-the-difference-between-a-traditi",
+      "legacyQids": []
+    },
+    "957de3fc053affb7f8ef1b692783fc913f5869a9c812ff814092753ae6ea89dc": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_14-what-is-the-output-of-char-ch-a-system-o",
+      "legacyQids": []
+    },
+    "958c75901040545f56c70aa28e9fdb55f7cf156b74ec5d0855f1100d8ae2c767": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_6-does-this-code-compile",
+      "legacyQids": []
+    },
+    "96298eb58ec84d710f86a977d04e7087a0e09cfc150c09a640dfd83cd8b67270": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_2-why-does-a-pojo-getter-usually-take-no-p",
+      "legacyQids": []
+    },
+    "9643c6c805513e4b9f622f2d57c83b10000f1476403fc8c35db573a6bfd6edb9": {
+      "qid": "ocjp-chapter-12-exception-handling-checked-unchecked-1",
+      "legacyQids": []
+    },
+    "964bc071630bb0012ac2ffa03e0b3a9926f212719caa496c91f8114d4ee15063": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_6-does-this-code-compile",
+      "legacyQids": []
+    },
+    "967041e6689b45fb81cb7e75d88521a150ba537fe8c0950b93afd43e19422cd9": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_5-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "969bee9950835ad278f1dcb84d470ad328ca061be21c2414f201f68d2b401b25": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_22-does-this-code-compile",
+      "legacyQids": []
+    },
+    "96e26c5446bae90ea716c2090e9d2cb42e4d75e09432747e2331c94f5330ee13": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_28-why-does-code-calling-system-console-rea",
+      "legacyQids": []
+    },
+    "97f1caaa413f46a04dde44f66755f0312dcf9b4f0d7e8b0949f9f8bfc1018459": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_0-in-fish-string-type-double-weight-int-gi",
+      "legacyQids": []
+    },
+    "98995cda8f1b2548765163dfe98c6355559f2aa73bf07ffea6cf9ef9a809fcb8": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_2-why-is-swapping-name-and-dateofbirth-a-d",
+      "legacyQids": []
+    },
+    "989d3141a8536cf9ba7b6cc4308d0b06b2f7641f667ae7fd686e3960b9c3e6e4": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_1-what-is-the-difference-between-method-ov",
+      "legacyQids": []
+    },
+    "98adbc35ad59a6454b22ffd9c5f57d42aab245e5122e1462b9d8422a1717d911": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_2-what-constructor-call-could-reduce-dupli",
+      "legacyQids": []
+    },
+    "98b0578f61bc169f03fb74ebe4cd745313b4785cf6a0f43b1464795211cda42c": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_14-what-is-the-difference-between-and-for-b",
+      "legacyQids": []
+    },
+    "98be712f41098d5feb6ff115baee20229775b61997557ed72e0aac2eeb8a52f8": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_4-when-is-double-parsedouble-the-right-cho",
+      "legacyQids": []
+    },
+    "9912fe87ace0f9f2497005b5620298811149cfdb9d809f3f0e1603f10a57e2f5": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_10-why-is-it-recommended-to-always-use-brac",
+      "legacyQids": []
+    },
+    "994ddd4047f1c5facc78da8bd2ecd9f533af7b69c5d19b38402cc297ca39fb1f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_0-in-dog-string-type-double-weight-string-",
+      "legacyQids": []
+    },
+    "9958cc8ac82b44991c119cc1efe6801a1d380cd11bcce59d3cc01e00fefcd87c": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_1-what-is-an-infinite-loop-and-how-do-you-",
+      "legacyQids": []
+    },
+    "999681f5ec7eb2b22f806b792715254c6c4f523d118c01be0b148a51aa52fae2": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_11-when-does-a-nullpointerexception-occur",
+      "legacyQids": []
+    },
+    "99998ddb8284e51028e1f1196ef93e01f5d731ebe05a9415aaeb06686412807e": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_26-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "99f7ef50b28c7e82339b338f7e8cd70333d5d360ee9819cafa34c538462782ef": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_1-how-is-an-object-created-from-a-class",
+      "legacyQids": []
+    },
+    "9a4e0e3f7f88a758a8ba7d47730c9e797624b476cc3779660bd2db818c5dc87e": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_5-why-does-100-50-give-10050-rather-than-1",
+      "legacyQids": []
+    },
+    "9a669f66f268e74bcb6cd90279429cd4296ef9d0afee2ba1640c7bf6f52ecf64": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_19-does-this-line-compile",
+      "legacyQids": []
+    },
+    "9a6a8535e15687084d10c7c547bf38b0a9ff912395614cc996e64167c4c6cb7a": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_17-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "9afd8bba877e56b8c5ff5bc78c348651aa7b195119676e275a0da0f42d008ddd": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_28-what-happens-when-this-code-is-compiled",
+      "legacyQids": []
+    },
+    "9b3b894f65a72c96e8cdb0e156413911ad606947a70d30a135fc800c8c0ac27d": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_2-which-of-these-is-a-valid-java-variable-",
+      "legacyQids": []
+    },
+    "9b9691b97165d52cb62348e882d6a052d70c73d04eaa1344041eccc032d19927": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_16-what-does-the-int-argument-to-the-constr",
+      "legacyQids": []
+    },
+    "9bdd3c2de98b748888e067775074e8af287ed729b403d45acf7242c47f4c6a61": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_27-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "9c027da488738f30d700a27269609215942a8f4fec730698d6390ce066b190a3": {
+      "qid": "chapter-6-methods-in-java_overloading-casting-wrappers_bank_ch06-widening-beats-boxing",
+      "legacyQids": []
+    },
+    "9c753e347acd1b313c524f385b0ca44d9daae17f9869990662ae64ae4a95d321": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_1-does-getcolor-need-a-parameter-to-return",
+      "legacyQids": []
+    },
+    "9cf241694b1dcf92560c29e5794ad177aa31b15e9fc9c3ce698403e6646d401c": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_13-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "9dacd9f365be49bcf173a05c233adde2a0c46f9d82ff49e39ad3a7674fd5777b": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_14-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "9e4290a920440ea20ff0ec007d29f07ef684181d609679de09960e2b83b8959b": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_7-what-must-be-true-about-the-string-passe",
+      "legacyQids": []
+    },
+    "9f2a4897c0898427881cd810de0cbbf769ad4aab3f9b8f3bf608e3ca1d45f7e1": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_18-does-this-code-compile-and-what-is-print",
+      "legacyQids": []
+    },
+    "9fc9b8956248d88636f43be015b4127a749575aee57dbde696b58bafc7b74941": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_7-what-is-a-nullpointerexception-and-when-",
+      "legacyQids": []
+    },
+    "a02d6dc7de5f04b9d4f22a0b7c4622147d7ae5be90a0033567a21ca1ba2f5e23": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_1-can-return-type-alone-distinguish-overlo",
+      "legacyQids": []
+    },
+    "a0a2318b0441aa9c2d963fb6819fe14d3120f0a87b91aa941accc37670b41d41": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_2-the-class-below-compiles-successfully-wh",
+      "legacyQids": []
+    },
+    "a0c45d8adb10687caa06e2154af2ee089e16085e291dd55a4c209fe5426ae508": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_2-what-is-the-pitfall-of-passing-null-as-t",
+      "legacyQids": []
+    },
+    "a10ccb6da9a9d80a2c3f4314dfb56400e391ac4281562eb883a7676aa57270dc": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_16-why-do-java-programs-often-need-parsing-",
+      "legacyQids": []
+    },
+    "a1518e6ac1732993be98056ae00c1e25dc721704e4ca8a88b5a78b6f51079a6b": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_13-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "a17130adfd5b2511406d4b9cb4bcc9981f0b54b84f94662ea7064c004693607e": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_1-why-does-anotherhouse-setcolor-red-affec",
+      "legacyQids": []
+    },
+    "a1d169d4421133f62f72638404c12903f45a9ab1892b952c4cc95dd6cb2f69c3": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_2-what-is-the-warning-about-move-string-sp",
+      "legacyQids": []
+    },
+    "a1d6547d1e0a15b4e13b39cc6759c9ee7d4ce3e4e04a19102e590d0d7c4e7f44": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_21-when-should-you-prefer-a-do-while-over-a",
+      "legacyQids": []
+    },
+    "a2c8bd3bda5b9d44780702d02d40d8f355f4a5d0dcff96dc2de9a4e74a95a212": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_2-are-this-args-and-super-args-available-i",
+      "legacyQids": []
+    },
+    "a2e7e5be825c7f20ef6c894c286d4fc19b72120667db415887d9d98f7b269677": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_6-what-values-should-be-passed-to-getquart",
+      "legacyQids": []
+    },
+    "a3a170b2e22bc4bcec1092cb95a1d4641d169577ed0974dedcfc5bf2212f29e0": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_19-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "a4027bc640439a0cdd99781f4240e67c1fac0e7489b67bf7bf62ebf551933020": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_11-in-the-ternary-expression-condition-a-b-",
+      "legacyQids": []
+    },
+    "a405f5f431fefdaa02c0e73d2e9c29eb0a5db55b5dbe9ac59b59f4a1a7cc67f1": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_24-given-these-overloads-what-does-the-call",
+      "legacyQids": []
+    },
+    "a463a36ce88ea35c813e6f461ebeaa9d97cd42df2444c35b8f1d20398f0810c6": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_4-what-is-polymorphism-in-java-and-what-is",
+      "legacyQids": []
+    },
+    "a52b5168ca1e271005c73c4ac3e3497c5ebbecf0a5978bbf6ddf9c85688cf487": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_18-what-is-the-difference-between-length-an",
+      "legacyQids": []
+    },
+    "a6635e6e7748b891beae43e93c1d5466cf9b75b240a59e8afaef6d693cfd8baa": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_6-is-system-out-println-null-the-same-risk",
+      "legacyQids": []
+    },
+    "a6660850925287f028dcf134223f38fd6227486f080ebe8990e2ff45d40b2b45": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_23-how-do-you-count-vowels-in-a-string-with",
+      "legacyQids": []
+    },
+    "a66c1ad2251627e13a752343da61cc39b703c248334fec81efc9df79b5fe9940": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_15-what-does-switchcasewithoutusingbreak-4-",
+      "legacyQids": []
+    },
+    "a696bce68a917150b70882d9864ed63bca4be68edd9e63d7c0f34748b03bb809": {
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-30java-java1020-java",
+      "legacyQids": []
+    },
+    "a6ff93a4bffcf05d5c10984fddd4555e27d2991967e33288586589bd4be89e54": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_0-what-is-the-core-difference-between-stri",
+      "legacyQids": []
+    },
+    "a79fdaedb49c06ac255565907d0994f045d23a76ed377cd6b40271fe8720a57b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_0-what-is-the-difference-between-an-abstra",
+      "legacyQids": []
+    },
+    "a7db0380612aecf018e4cb5ebb7b62635d546fbb3f68b27d712cf71fdba8c25a": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_11-what-is-the-difference-between-break-and",
+      "legacyQids": []
+    },
+    "a8465ff0b2f548bc83560ad80c59ddf4bb8538578eaef4e1bb108a10c05fb683": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_8-what-are-the-members-of-a-class",
+      "legacyQids": []
+    },
+    "a93594e26af73a76fcf4dae0427204e80fbfb94b6a1de64b9c8b2df5d1249d00": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_0-what-range-is-valid-for-the-index-parame",
+      "legacyQids": []
+    },
+    "aa78c6d2e294b10402f1d02c2746ceb60eadd4ac2796bd398152fe1bda00f970": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_4-what-does-new-stringbuilder-20-create",
+      "legacyQids": []
+    },
+    "aacb8ebdc14a1824d283512d191001e1f2ee66a88df3751e54266da27c4697ba": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_1-how-should-callers-choose-gills-and-fins",
+      "legacyQids": []
+    },
+    "ab0c01c9944b747a20aa7609e97316cf8d83af006ab1977d0a9c0226cdadd025": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_4-what-happens-here-int-x-5-if-x-5-system-",
+      "legacyQids": []
+    },
+    "ab26449af9b28d5062d60c72642caef8b8095755e4f68744f1de8de92fed4fa4": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_19-what-does-integer-parseint-ff-16-return",
+      "legacyQids": []
+    },
+    "abcd9ff5bd7911b26cd25189821e9fd1ec02f700ec6b94188838a87dbcaa4037": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_14-a-subclass-inherits-from-a-parent-which-",
+      "legacyQids": []
+    },
+    "acb9212373c14916d7eee347b4e973ed74dda447e33b93f0d4eafe331925a880": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_20-how-many-times-does-this-loop-run",
+      "legacyQids": []
+    },
+    "ad5b475d683370ba9f8ba62985f28da10e2faf7002242705e3712235eec82e74": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_2-why-should-callers-avoid-a-negative-hour",
+      "legacyQids": []
+    },
+    "ad9cc48ebce1903ab5ff96c4d330d6762dd0585b487dfb75612b7cf9f622f859": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_1-what-is-integer-overflow-in-java",
+      "legacyQids": []
+    },
+    "addc7237d547c2d7841620d42ce0917a0d44e927fa1cc9cda44659dbbaa6e11f": {
+      "qid": "ocjp-chapter-5-if-else-statements-switch-fallthrough-1",
+      "legacyQids": []
+    },
+    "addf7810607088affda199101430bcbf7356094f6906acfac9af6355893d02f7": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_17-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "ae1775c431d983abfbea7f21e6a5ebbf9825880299c524f567ca8566dfca2798": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_13-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "ae6e615d04e0c7fe42eea9376dea1fcdb9f88b3bbae6bcc0bfb2557b45b3e50f": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_2-does-a-finally-block-always-execute-in-j",
+      "legacyQids": []
+    },
+    "aeadebf54b37f7898956a828d927dcb5a74b8bdd3272e84c8ffc06121f4061fc": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_7-what-is-the-capacity-of-new-stringbuilde",
+      "legacyQids": []
+    },
+    "aec4edde13f599376acfadb4480672b44a853eed407a2197b2eeaa21ac21d62a": {
+      "qid": "q-aec4edde13f599376acfadb4",
+      "legacyQids": []
+    },
+    "aee2aaeb38d741a5bd238299b3b129ca98419513434d03c274fcc34e694af61f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_7-which-of-these-variable-declarations-doe",
+      "legacyQids": []
+    },
+    "afc77f665a031cf062eeb5b463556f9c3f1229cfa1f1ffea5c2666b358e49c52": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_6-what-parameter-like-value-does-switch-mo",
+      "legacyQids": []
+    },
+    "b003c4bd5a2c1a710f74f3599a1f538dcd7a771d5fee5f191a26a96186da95f9": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_23-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "b1575723c59099b406a976773450b201bab039022695eeaff3f744cd799d5831": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_4-in-which-situation-is-the-enhanced-for-l",
+      "legacyQids": []
+    },
+    "b2db6e65d0c129746d74ae817d83e621735bcaeefb7168ab85e5b73abe62570d": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_9-what-does-this-code-print-when-x-is-2",
+      "legacyQids": []
+    },
+    "b41376b8281423798dcf9af226c720757c159ec320ae6f771bbab1b8385ae915": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_19-does-this-code-compile",
+      "legacyQids": []
+    },
+    "b44064859e6b4d6d1743974cb956c434787c08174cc36cac712d9ece37221e01": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_19-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "b441ad11e3ac3131da1346c459f0f436e9f641c5614af033d53f9d5f992c7bf7": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_25-how-do-you-remove-all-spaces-from-a-stri",
+      "legacyQids": []
+    },
+    "b4c4ceac847beb3a6c59d1bc9f836f503b2405301c133ab49096da9bd0964479": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_0-what-do-width-and-height-mean-in-badcons",
+      "legacyQids": []
+    },
+    "b5407a2ea723b21b1c241a2af367a5601bfec32cfd41e4191e476115d44b00fd": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_1-what-happens-when-integer-parseint-22-5-",
+      "legacyQids": []
+    },
+    "b58d844c712fdfaadb9bcfff8e43d422029536d765fb1bd6ed679d74a2536367": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_9-int-a-10-int-b-20-string-c-navneet-what-",
+      "legacyQids": []
+    },
+    "b59d1d0136612bb4dbbf7fd231ccf7041ceab46d06460fec455c1c627745b51f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_custom_0-in-animal-string-type-string-size-double",
+      "legacyQids": []
+    },
+    "b67ce330a16ae5f6a99b6b7c216f8087eb1da0dc5a58a52fbe16a6ca5ca17c71": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_8-does-this-code-compile",
+      "legacyQids": []
+    },
+    "b6aee0de37391f4d53617f6bc07c2a5c461ff28ce43451feb6e88c0b8cb93579": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_23-what-does-this-code-print-when-the-user-",
+      "legacyQids": []
+    },
+    "b76b8ff86a5e139b51de29e31e718b924d63573cf38641ea49b5617b2d530fa6": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_20-what-does-this-method-return",
+      "legacyQids": []
+    },
+    "b7e0047bae9e7b1e5c0daca329569c2cff400f5c058a385a21c8e4b675a23be4": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_22-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "b86161dacbc2ba0675aa61d368cbb80d9f762b9d055b36d5515e358158b3544e": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_2-in-new-staticandinstancevariables-rex-4-",
+      "legacyQids": []
+    },
+    "b8cee810b7032bfd403d4ea2eda6df2bdfefa0fc2686cbb290f589c6a816c5c6": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_21-which-exception-is-unchecked",
+      "legacyQids": []
+    },
+    "b91667a3242edf395e7a37ff70871e947b0e97dcf41fd871107e6cd3fa105fa2": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_2-when-should-you-use-the-ternary-operator",
+      "legacyQids": []
+    },
+    "b9919b9fdd2941497d4e1d058e54a0901d79a1f98106071fdf28d781a0647cf1": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_26-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "b9c10ec1fed79c7440e4856aaa057346ad87d9b430fe1f72ed35ded343098313": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_13-which-of-these-is-a-single-valid-stateme",
+      "legacyQids": []
+    },
+    "ba84510e49ea4e4b7363964d806740f2b204a0e0f5b1a8bbbc039ec7a26418d3": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_8-what-is-the-difference-between-static-fi",
+      "legacyQids": []
+    },
+    "bae4e6dc19cf236ded8836d406a8534230bec95d3a9bb0f741b11acf4c5b89f8": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_4-how-do-system-out-println-null-and-calli",
+      "legacyQids": []
+    },
+    "bb1993d96c3f3313ce44d5f8f87581a7dea1e0aeb71984fef96045970e0b85a5": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_18-which-exception-type-is-not-required-to-",
+      "legacyQids": []
+    },
+    "bbf4182652f8df9e3af75152e7cb43c7f64b0a7f32e2ae4dfca75badaffba655": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_27-how-do-you-find-the-first-non-repeating-",
+      "legacyQids": []
+    },
+    "bc054b87a22a72ae7c8935480af905218a433a634729a816f91c863313e597eb": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_16-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "bc31b1b0c08b11a381a071167f425c2df4f9f6449fd64584a822bd00488fad93": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_0-what-are-java-s-8-primitive-types-and-th",
+      "legacyQids": []
+    },
+    "bc54a18e856966a251ff903cd37fa1d39c811e83246d0a80cc9eeed793d8e53c": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_18-why-choose-5f-instead-of-5-in-floatvalue",
+      "legacyQids": []
+    },
+    "bc6cfb235def6da1ee34c36ece43846f52e26b228fc444151aa53de4a16aa302": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_5-does-calculatescore-gameover-score-level",
+      "legacyQids": []
+    },
+    "bd092d77636c5aa6b465d11943cd14063e6754d7f9876c0b72beaf237b600a14": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_1-what-is-the-pitfall-of-passing-birthdate",
+      "legacyQids": []
+    },
+    "bd0e2b735ce1a745269367cbb9115c14c759fb9004737a5c867e23e42af93c4a": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_12-in-integer-parseint-1010-2-what-does-the",
+      "legacyQids": []
+    },
+    "bdaf65b23db02feedca0c11a0c7ae92cfa36beb008d8128f473260d0bcca21a6": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_8-a-method-is-declared-as-public-static-in",
+      "legacyQids": []
+    },
+    "bdb62d7049431fdc09835a7f4e54ea12503b01cd6ff5055dd5b5de91090c9179": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_11-which-statement-about-a-void-method-is-c",
+      "legacyQids": []
+    },
+    "be11205a7c88c9fd68dd61a9d1727a764ac7af225456cd1df924fbf29de1b78c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_0-which-calculatescore-overload-is-called-",
+      "legacyQids": []
+    },
+    "be13b7b35a856470211a3f93430e7f3e40f466bc4ab63ae056596f30df4d627d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_2-where-must-this-0-0-appear-in-the-no-arg",
+      "legacyQids": []
+    },
+    "be7c2393dbcbdfe6cec62f657631613f5f0bcb1da1e33fea28fb1b6f5c77c48c": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_6-what-does-it-mean-that-strings-are-immut",
+      "legacyQids": []
+    },
+    "be7f653013b16b430b8a22fb0b5f1bac87b74fd8780355065b2f0e4af3f4b93b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_7-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "be887fdaa950cc318a0d126feaf20f9f6be169d696c92af84382357a286d54b5": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_6-how-does-java-choose-between-overloaded-",
+      "legacyQids": []
+    },
+    "bec136c531a4cb52e70adfbdbf8ae20d7087014888637bca2fd03bfa9787a323": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_0-in-an-if-else-if-chain-with-parameter-li",
+      "legacyQids": []
+    },
+    "bf3b1262e9d8a58a58376c861ab7498871bbef997fa700367b990167cb4418b6": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_4-does-this-code-compile",
+      "legacyQids": []
+    },
+    "bf6ef46e6ee75154122463d3ee4653c36fadb85c57815bde73e4a801aa7c45ff": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_9-what-decides-where-a-println-statement-a",
+      "legacyQids": []
+    },
+    "c02ac6b6ea1da9d598f582678abc2549faebc48592bf5802c37a42d2e9958d89": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_5-what-do-common-printf-format-specifiers-",
+      "legacyQids": []
+    },
+    "c042ce69eb6f4a60073daedc6e8622e7eb0323cfc580b967e3e32b7ab7f34760": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_26-does-this-line-compile",
+      "legacyQids": []
+    },
+    "c078ed25b82d2d2ba2b5c414a49bb753003db435f7e82158382fbc0ccf5186ea": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_3-what-is-the-difference-between-a-static-",
+      "legacyQids": []
+    },
+    "c0d518d6cde092a44b6aa5f350b2fa2d0bd0fbeb63e0a117f26e498e56038746": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_static-classes_bank_ch10-initialisation-order",
+      "legacyQids": []
+    },
+    "c1cf3db851e4f07d2ec2200fc99b4cf2415d168bf0b06d24d4cb3dd29cde5e81": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_15-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "c2e55ff893a62e33663f7108cb4f9a27189625fa1da5f2013cbb00e9cc74c07f": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_16-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "c353974bfe4e62b3ad5cf5f522bce9b268f489be327d4384cb5b762220ded29c": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_9-why-must-the-main-method-be-static",
+      "legacyQids": []
+    },
+    "c38bf7ed88fd6a8d680ed662fd5ac81a08a3653cf04408aa9e0aeb8cc95e85e2": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_9-which-statement-about-primitive-type-siz",
+      "legacyQids": []
+    },
+    "c3b75816170485eba2b4a4d104d9866d6e32f1917d402fe0ce57cc8cd012d5c1": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_15-what-is-printed-by-this-statement",
+      "legacyQids": []
+    },
+    "c3d99ef04853b415569f81bcc28ec6ecd090f7ee580ac1f6335af1c76b803aa8": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_4-how-should-a-caller-choose-levelcomplete",
+      "legacyQids": []
+    },
+    "c48ec7105db05296cd4c53556293ade42496b6d4773fb6c91dd6a4a54064fdb1": {
+      "qid": "chapter-2-primitive-types_primitive-data-types_code_code-chapter-2-primitive-types-primitive-data-types-2147483648",
+      "legacyQids": []
+    },
+    "c53b092c06fb7994b291cc76315474b52b7645d0edbd239c97e3516fd57189b7": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_19-does-this-code-compile",
+      "legacyQids": []
+    },
+    "c55011b4f8325288530717f38455a2a35bf5b20381ebb47a501d5138542159c4": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_4-what-is-a-text-block-in-java-and-which-j",
+      "legacyQids": []
+    },
+    "c58228b08af7d3dc604dbb246c66681bbd4ebc6c694955e67092b60b92e7d08e": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_9-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "c5bf9b7b8ad7a7e97711262d3e890e8be3ef03e2974b953d450ef58aae5af8df": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_6-which-pair-of-constructors-is-a-valid-ov",
+      "legacyQids": []
+    },
+    "c648a9e0de4e2eea2685039633c75edb20c83ecb4127564cd5ce018b52f1fc4e": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_13-can-a-java-if-condition-use-a-number-or-",
+      "legacyQids": []
+    },
+    "c6983269594fe2b924a8183c5e69742da0379feb38957d98df9cd62475f3eb99": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_16-you-compile-a-program-on-windows-then-co",
+      "legacyQids": []
+    },
+    "c6cc75c3a8d9736ccd225743bcb1f427cce437ef1a305ff8f027fdff432a1f87": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_22-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "c717d01365b7c781b148af16844d660c087f5f43af1b07b6d9cbe5de8b03d5ca": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_0-what-should-you-pass-to-setmake-string-m",
+      "legacyQids": []
+    },
+    "c74a75c823aac0f5aeb73f8550840aa9ca1c2229f5a0f37c9e8e3a94ef3e0865": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_17-what-does-the-byte-parameter-like-target",
+      "legacyQids": []
+    },
+    "c766b1622d89ec5cf3c448abc1f0626d52f85ab2a7862cb3d754099834a36ea9": {
+      "qid": "ocjp-chapter-6-methods-in-java-overload-resolution-1",
+      "legacyQids": []
+    },
+    "c80b528fa02359ef3fa64fd66ae88cbbff9e4af4a6bdd2d8666d9fdea700c103": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_1-why-is-birthdate-format-important-when-c",
+      "legacyQids": []
+    },
+    "c86e53f15c2d6eaac6fd59325914c664c00328f00f947c585c763370b7c7b638": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_2-what-is-the-order-of-java-access-modifie",
+      "legacyQids": []
+    },
+    "c88d3d32bcaf54bfbd924cac491f5ff15341c22417b2e73e35ee81147aef72e6": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_29-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "c8ec184c2b42c43c07f0bf42e9f2b9d5e7ebdc3a36990b5fcea228fadee60784": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_0-why-are-bark-and-bark-int-number-overloa",
+      "legacyQids": []
+    },
+    "c9170f14e5b3e08e55e78b08d02fdd95960363e81f3be6dd801d4560c2d73beb": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_4-does-indentation-change-the-parameter-pa",
+      "legacyQids": []
+    },
+    "c9f43637996649e73c6b5f3d3770e7c6cf068c844bc417a02c476762654802d8": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_3-is-int-x-1-000-000-valid-java-and-what-d",
+      "legacyQids": []
+    },
+    "ca4e8e94788f195c765975fffe767ad5974c368c5f1c80b30482fd6f36a45466": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_2-why-must-super-or-this-be-the-first-stat",
+      "legacyQids": []
+    },
+    "ca50bef505c0776a06b895372445a840124890389692936e0f2baea57529f4fa": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_11-which-statement-about-while-true-is-corr",
+      "legacyQids": []
+    },
+    "ca891bbcae6ae9550452437de5a03c9c76abd8ddb2a5f9e6acf98ca339117088": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_3-what-is-printed-here",
+      "legacyQids": []
+    },
+    "cb9d1cd20e4d5626867c471acfa32b3f16473a3097f5832127cad1ee97fd315f": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_15-what-happens-when-this-statement-runs",
+      "legacyQids": []
+    },
+    "cbdbdd9a48854694cf9a72aa1d193faef4fbf002a0d69798a59586fa5a5f0691": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_21-when-a-stringbuilder-buffer-overflows-ho",
+      "legacyQids": []
+    },
+    "cbfe84dc3e4e68bc3116c2e75d764926653ce0c963bd62901ec6a597e8cc0f16": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_10-how-do-you-repeat-text-with-a-stringbuil",
+      "legacyQids": []
+    },
+    "cc08ce937b8131ff5177d30cbb71ce0ac86af7956a26b739cf461f79eb93df04": {
+      "qid": "ocjp-chapter-6-methods-in-java-pass-by-value-1",
+      "legacyQids": []
+    },
+    "cc5a507d6908de89cb21b531128619a0915ae416788dec419062a90fb8e47535": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_0-what-is-the-difference-between-while-and",
+      "legacyQids": []
+    },
+    "cc608c00fe64b526f6fdd77434bd7547d8a331ef8c5241172f0ebbf9b1d62fd5": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_1-what-do-the-arguments-in-super-name-birt",
+      "legacyQids": []
+    },
+    "cd2d68952647d95fee77970f925d3ce9c4120b04a7e3223a06fa607b185a8243": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_7-what-is-the-difference-between-widening-",
+      "legacyQids": []
+    },
+    "cd83f889b6990c12c3d89edecaa4afaf5a334dd6dcdd83b49bb43d1d0f33c3db": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_11-which-of-these-types-cannot-be-used-as-t",
+      "legacyQids": []
+    },
+    "cdbd33de59e7b04f40e1f4c6cd31b708c02adb4853a1415bacf0db2e68702e63": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_4-can-you-override-a-static-method-in-java",
+      "legacyQids": []
+    },
+    "ce1f6ddc75ad5d3c5001737d68537a448318e01cb609e510abe35b041ff9e94f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_0-what-does-the-argument-1000-0-mean-in-ba",
+      "legacyQids": []
+    },
+    "ce34eac14ab8e667f20deadd63619d6d9bec76990996548d6bcd4069db62085b": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_12-what-is-printed-when-the-string-operand-",
+      "legacyQids": []
+    },
+    "ce3a7d782371294b1eb1bb6c101176b6aad27be0f48a99330bca098fba40a8d3": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_1-what-happens-if-setwidth-double-width-re",
+      "legacyQids": []
+    },
+    "ce6cbdfb1e079bef422621bef9b781879dd56b52161b3f6cdce1a0c98f30a485": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_15-which-statement-about-char-is-correct",
+      "legacyQids": []
+    },
+    "cf3d1d892ff120678e3c82f55a798bec18aec369d52afd473eeb03f8a0286c53": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_9-how-does-strip-differ-from-trim",
+      "legacyQids": []
+    },
+    "cf65f3609dd30028d89bb8255f4811b80e35daa8079661489156ea066ca440b6": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_22-what-is-printed-by-this-code-when-the-us",
+      "legacyQids": []
+    },
+    "cf6e6a122fe276fad7853f4074fe3e863677d9b69e046aab77d4019b46efa398": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_21-how-do-you-check-if-a-string-contains-a-",
+      "legacyQids": []
+    },
+    "cfc5eaccf56ea0011725775a33b6df55ce665ec69e782842ce835e902964c171": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_19-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "d014084695bd8ea59545804e218c12c066ed49d99506375f5e70d8c2b2b429ca": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_4-if-performingsumagain-20-20-is-called-wh",
+      "legacyQids": []
+    },
+    "d0221f0f6ec161df6699a259d221cb23486137787e07d22a2d03baa59b66c022": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_17-int-a-5-what-is-the-output-of-system-out",
+      "legacyQids": []
+    },
+    "d0c74e84897575e4287c9b22a166be1ee712b37d975440c8eea2548df607ff74": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_11-what-access-modifiers-may-a-top-level-cl",
+      "legacyQids": []
+    },
+    "d1fd16082d836e9eebfb5bddeb4ec374d0a2fffd12e11808e45ed5234a1fd48f": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_10-int-a-10-int-b-20-string-c-navneet-what-",
+      "legacyQids": []
+    },
+    "d2134b855159664796d6e2fa00ee54cec09f551350b1b636e16bf8c31ac981d6": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_0-what-values-should-be-passed-to-setage-i",
+      "legacyQids": []
+    },
+    "d223123981fb1211d5c38847b9d0f0087e7b5909e221cfe99a69f571eabd7b82": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_0-why-does-germanshepherd-bark-override-do",
+      "legacyQids": []
+    },
+    "d2407ccf633f4dc14759b6301e9ccfaeaa1ac3a79f4f65265b51cf69a2a6c45c": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_7-this-loop-breaks-as-soon-as-the-interest",
+      "legacyQids": []
+    },
+    "d245d5ca83b2871418e7ee7275dbe3a98de9004f65225eb37b76c7284f15ee79": {
+      "qid": "chapter-3-operators_operators-operands-expressions_code_code-chapter-3-operators-operators-operands-expressions-5-7",
+      "legacyQids": []
+    },
+    "d265748f927714aaf28b5dab30a126a568b247a8e6c228b2737410746467a745": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_0-in-primaryschoolstudent-string-name-int-",
+      "legacyQids": []
+    },
+    "d277a44db19bbf4db2f3edabda2e9737ec853e5cccf4abfd6164aa0fde6388c3": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_5-does-this-constructor-compile",
+      "legacyQids": []
+    },
+    "d2d8a206582bb50ed43fe2ed5cddaccb954f314071f7189135648202ceacf60a": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_7-why-are-text-blocks-useful-compared-with",
+      "legacyQids": []
+    },
+    "d2df10cd1d5f79ab5aab790e2db2c610d4e0ef5e1c8a38075b78f5f05c14a155": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_32-which-statement-about-stringbuilder-and-",
+      "legacyQids": []
+    },
+    "d3437fde49d0e09b6db56056a27568ac9c34f201d125bf0e5b6ce93ee2e69a49": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_16-what-is-the-output-of-string-s-java-s-co",
+      "legacyQids": []
+    },
+    "d3fcce778a537f5f725126753c5c60c74aa0a4559cd4f6252231e8b9e624da0a": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_7-which-statement-about-method-parameters-",
+      "legacyQids": []
+    },
+    "d49b9b7213db22e079498b6cc57e7479bb959c0f2a1b9164b2dcc98a13a30e12": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_11-for-a-child-method-to-override-a-parent-",
+      "legacyQids": []
+    },
+    "d522432f8d13076cb02f6f4254bcc81e8438734d2b72079366b306b21f8e6071": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_9-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "d550ab284ef5a52cf538f97006f3a2477f0d3673323fb0654e65e6f1f181b5d3": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_2-in-6d-what-does-the-6-parameter-like-val",
+      "legacyQids": []
+    },
+    "d552d18dd795cc5680594bbcdd1f32328784d1ac5abd330462ee82dad3a09d85": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_6-why-should-a-caller-pass-7-5-rather-than",
+      "legacyQids": []
+    },
+    "d5d5d2fc28a27e0a61f72940fc039d1946c6921da0878624aa55aac2725dcdb9": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_1-what-are-the-three-common-uses-of-the-fi",
+      "legacyQids": []
+    },
+    "d608bd435b1392b6d4e70d6bbebd7c708042b5b6876a17fd0ac5b43e1825020b": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_11-what-prints-here-class-counter-static-in",
+      "legacyQids": []
+    },
+    "d668fc1479f58bcd539f60f2b6620e65710d3af0e24750d105551eaa0d94264e": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_24-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "d66c122b1073936364729587bf980823489aec7ee2aae2bf1346d5c1b51e7e16": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_6-what-is-the-difference-between-throw-and",
+      "legacyQids": []
+    },
+    "d690fd7b9a9ffc5b6cd1bc7faf43b5af2fd8fed325485ac9a09726845e729e32": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_12-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "d79ca4cd5ace10049539c1e07dec99dc3036b0195675b2bc4fbe3ae2ab547c64": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_1-why-must-callers-be-careful-with-the-4-i",
+      "legacyQids": []
+    },
+    "d7ead6200d1e9db7dec00373d1eef67ba4c57fc1c668e0bc810c3020be387dd3": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_23-what-happens-when-this-code-runs",
+      "legacyQids": []
+    },
+    "d8172d1be90dbea924047c3e587abf6a7f2070ac3461569d13481be6a20bd329": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_0-what-are-the-four-constructor-parameters",
+      "legacyQids": []
+    },
+    "d86f3f429d929b8c0a6d27c663aee24ae53a96dd76227c2a839335408bf197a1": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_3-what-does-hello-substring-5-return",
+      "legacyQids": []
+    },
+    "d88a33f6b1f6a57743bd28050bcd09e59b07e75097298a657828f666666d4526": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_21-what-happens-when-integer-parseint-null-",
+      "legacyQids": []
+    },
+    "d97db1fa3eb34d5612403950f5c75d19e4511f26bc3e6d6c673a65c8fdcc3ead": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_3-how-should-a-caller-choose-the-dateofbir",
+      "legacyQids": []
+    },
+    "db1a3d0b16a2bc3e6abcb853bfb4ac7d8c0c79e95301856582def2ba0c33adb6": {
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_15-how-many-times-is-the-body-of-the-inner-",
+      "legacyQids": []
+    },
+    "db225e0c714d2a3e80f81c6081e455ba3e607bdd9529e7cd75723bce42f9feae": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_12-what-is-the-difference-between-delete-st",
+      "legacyQids": []
+    },
+    "dbd889680cc62abaff87f5caedeaa5dd34e13cdfc0bc4039cfc19e6555afb366": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_10-which-statement-about-the-default-label-",
+      "legacyQids": []
+    },
+    "dc5581e24bd0095dd32d45e5f680abc19ba413d15c5e17a92d07057ffc045811": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_25-what-happens-when-this-code-runs",
+      "legacyQids": []
+    },
+    "dd1d3f3d2343413b83cc8793d015e97732ac50cd4f4d4e2a75092afbb36967e0": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_9-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "dd7735f5a7866f233e4fd6c37bc9335eaa4c719a9dee31b9c8213a6674f3832c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_2-where-must-the-this-accountnumber-100-00",
+      "legacyQids": []
+    },
+    "dd8b48aa6ce6127f6ca39528f09283aafbe429a20309b064f2a3a4019a272806": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_3-why-can-you-chain-calls-like-sb-append-a",
+      "legacyQids": []
+    },
+    "dda4cca5d3c018b66bb37ac03f6ac6b15a3a0460276ed86af2d13e42ea9c1db5": {
+      "qid": "chapter-12-exception-handling_exceptions-checked-unchecked-multi-catch_bank_ch12-unreachable-catch",
+      "legacyQids": []
+    },
+    "de3c01b5f114be7baa87dff77dc8d0d6b0541abbc8965be08d4d8cbc916053ec": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_0-is-java-pass-by-value-or-pass-by-referen",
+      "legacyQids": []
+    },
+    "df02262a2bd77e5235a98993ef7cf8800b259e581124d39f1bc53f33cda6ad9b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_7-what-are-the-four-pillars-of-object-orie",
+      "legacyQids": []
+    },
+    "df10494b03e7c176d14c141fb1b52fdd2bf012c7885b583ab0df120bd7307c29": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_21-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "df6d19ea5c77adafc7c6d8c6ec1940f6153cc5f1f96d9afb3533824e7ad08cb1": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_3-what-do-break-and-continue-do-inside-a-w",
+      "legacyQids": []
+    },
+    "dfac4080ef6d25e8aac385636258b17f59ab8f853cb9eec7c871425b04d88b3b": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_10-which-of-these-is-not-one-of-the-common-",
+      "legacyQids": []
+    },
+    "dfbdf89b609bdd01665f226a4442c7c29a4fccefe7701977852fc6060427bc4c": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_25-what-does-this-code-print",
+      "legacyQids": []
+    },
+    "e06d292840aaa5b9f20369c89b6c138a4c2199bdc794c679da8dc72cdf703421": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_3-is-int-x-5-a-statement-or-an-expression",
+      "legacyQids": []
+    },
+    "e0caf79b6ab24da94a3bf0711109faf96b44a693cc01a6b0a22f30bedddde93d": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_9-in-a-text-block-like-string-s-n-hi-n-wha",
+      "legacyQids": []
+    },
+    "e1185dab4652c2a306c7069d102b561acb3f52aa75fff851736b58b3de9f18ee": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_20-which-of-these-is-not-terminated-by-a-se",
+      "legacyQids": []
+    },
+    "e16c9cbc0956c0ebe96ac96ad0d8155977e64b8e6645f181e72f25af4cf1c3fb": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_2-what-are-the-rules-for-method-overriding",
+      "legacyQids": []
+    },
+    "e19f6dd24f4904ab7a9d2b9fdb3732251ec3979d9398dcaf33bdcc508d4e0c61": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_1-what-is-the-important-effect-of-customer",
+      "legacyQids": []
+    },
+    "e262a26bbf1e515ff6b94946ff11def5832c44182b19df5de52b7c1f6a9ca20c": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_7-in-if-number-5-is-5-skipped-or-printed",
+      "legacyQids": []
+    },
+    "e29b6b8db9e06f30e2f9a970b67a8f0461ca528cc066f507939a7d672438086b": {
+      "qid": "ocjp-chapter-14-strings-string-pool-1",
+      "legacyQids": []
+    },
+    "e2b30f31d8f1061f75c82ab3c35d5fb68f048d84b444ef9343dd1e679e4c99b1": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_1-why-is-java-called-platform-independent",
+      "legacyQids": []
+    },
+    "e38d98c224f4cd0f3191d00b68c2882973d3ed9c0d8a56682c34014c6ec30922": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_1-can-an-if-condition-use-non-boolean-type",
+      "legacyQids": []
+    },
+    "e397f652df70866d36817c2adcae1216933a99786beda76f704f9565fe567c57": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_4-what-prints-here-int-x-0-do-x-while-x-0-",
+      "legacyQids": []
+    },
+    "e3e12aef9b08a7294581cb467dfdc6fe7b458f5eea87258fd8162a79971660d4": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_2-what-is-the-purpose-of-yield-in-an-enhan",
+      "legacyQids": []
+    },
+    "e44734f14fb9e6acd3cc1b1d2d22c7b17ec8567b0db794a6186e1f951aa4c74f": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_0-what-do-the-name-and-birthdate-parameter",
+      "legacyQids": []
+    },
+    "e49f9e0da7187cf77e42d170c7620d0fa4b71b2f085a08467da38b3d8ffd9d9d": {
+      "qid": "chapter-8-java-looping-concepts_for-statement_code_code-chapter-8-java-looping-concepts-for-statement-0-1-2-3-4-0-1-2-3-4-",
+      "legacyQids": []
+    },
+    "e4b8beefd3cba4583976211b5cbc3b48c4bb194e57515bdb55190340825ae3e6": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_12-what-is-the-output-of-system-out-println",
+      "legacyQids": []
+    },
+    "e4c7f440822f8e6e8c445f31b69119c211597cd9e262954557948774597155fc": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_18-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "e4ce829eb73e575ea8b63d3d9fc522567c5682ad5fdaaa6033f7d6357d5c8bd1": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_5-when-a-constructor-parameter-has-the-sam",
+      "legacyQids": []
+    },
+    "e5150552aa48f40e7258dc90d06e615f063ce95e830fd30cee80422192704ba4": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_15-how-do-you-find-the-length-of-a-string-w",
+      "legacyQids": []
+    },
+    "e583dd1547d4dfe274dd219f2394520d43cfef0d45321cdba9151eb4876b2894": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_8-is-this-valid-java-int-x-1-000-000-and-w",
+      "legacyQids": []
+    },
+    "e5eaab082c0060b25707cd3178fdad66207c16d6c0eafbb34abc62abc970e577": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_2-when-would-you-prefer-while-over-for",
+      "legacyQids": []
+    },
+    "e6ba4002ea6c6e9d24f17ef2c0fc58d77bdde9f742cdfa8982fcabf2d36f8ebb": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_12-with-braces-omitted-which-if-does-an-els",
+      "legacyQids": []
+    },
+    "e6dfd4b0b4015edddcea8946b8f3930748f27c9b149ab47eecbe4d44a061b976": {
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_0-what-does-integer-parseint-do-and-what-c",
+      "legacyQids": []
+    },
+    "e7e0d5258a71fa0d4e71d6d5f2ffffac2b4a84c88c8d66cdff8827162aa55378": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_15-what-is-method-overriding-and-when-is-th",
+      "legacyQids": []
+    },
+    "e831225d8cfffe346c4ebdcaf4b9ba1e186a380d8a8150186ec57ae51bfd063e": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_20-what-is-printed-by-these-two-statements",
+      "legacyQids": []
+    },
+    "e85e805fe44abba2ac25baa69199a6b9c5efa8f3b9675bd850ffe0486d11db2e": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_5-what-are-the-default-values-of-java-prim",
+      "legacyQids": []
+    },
+    "e86402e347f02da6ed8a4e9f0b14a67c65f1f725b364ed0f0f9267c66c1df3ba": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_2-are-the-two-calls-new-house-red-guarante",
+      "legacyQids": []
+    },
+    "e8cdbc21e2c1df714d3991320dce67b6b96e32f59449ad76dc54c3cd84ab47fa": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_10-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "e92b27d9bac4c7807901f453251ac73a565e723fbedc1327fa9ce2c033a259df": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_8-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "e9852f3d3a332895a183175c1ea903dbefd5ecde4fdf75769fb0410745f4ac0b": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_17-why-is-this-condition-safe-even-when-nam",
+      "legacyQids": []
+    },
+    "ea0888d7a7c4cd4fdac7ca03a90d4e027924c2e117f5f0675ee6231b6905470b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_0-in-new-student-1-navneet-19-03-1994-java",
+      "legacyQids": []
+    },
+    "ea92686e63f0eadd9142417b10bbd2e08b517c6d1e280d7593c5a9a530f3cbc0": {
+      "qid": "chapter-14-strings_string-method-and-best-practices_code_code-chapter-14-strings-string-method-and-best-practices-java-java-is-fun",
+      "legacyQids": []
+    },
+    "eacd8ef7a1eae304f7d540278cc020ff5f334036f7562a08503f4cefab5624b7": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_5-how-does-new-string-hello-differ-from-wr",
+      "legacyQids": []
+    },
+    "eaeda6a9da059d68a5c331175f96b50eb91e5e381c74b639aad035bc829744d9": {
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_22-what-does-delete-0-1-remove-from-a-strin",
+      "legacyQids": []
+    },
+    "eb57dbc459be3cdf43cfeb74906bcbe7ff834a4b9889e71bcf99b0cd04e706c6": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_2-why-does-integer-division-drop-the-decim",
+      "legacyQids": []
+    },
+    "ebb7952785220c46ebab38b9eaa607b9d656db0453482f2ccb91e5a95bd7197c": {
+      "qid": "ocjp-chapter-8-java-looping-concepts-for-scope-1",
+      "legacyQids": []
+    },
+    "ebc05f9eacacd8250bedf8180c711bdf718d95024cd3a98ebf73960c1ea3448a": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_4-what-happens-here-long-l-10-int-i-l",
+      "legacyQids": []
+    },
+    "ec7ff9ab59162b27d71130c0e05e6a420eb9a79614c4778c5550c699de90798d": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_10-a-classic-swap-int-a-int-b-method-exchan",
+      "legacyQids": []
+    },
+    "ecd8b2c316656b22dbfa314380efd07f62cb4eac9f72d18649ce7c1803025cc9": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_13-the-program-below-is-run-with-java-hello",
+      "legacyQids": []
+    },
+    "ed977eaaf315515e171ddc3ddeea4aa3099b1c79e40cdddf3b4feb2a9eee3fad": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_14-in-this-loop-which-values-reach-the-fina",
+      "legacyQids": []
+    },
+    "ede77b34566ef79d9d7f5163911f6760a11de0cadb152b483b17637bd7419638": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_16-what-happens-when-this-code-runs",
+      "legacyQids": []
+    },
+    "ee668f332043cc419e5812574a87d240bf909e76d088e5e149da5873ecdbfd34": {
+      "qid": "q-ee668f332043cc419e581257",
+      "legacyQids": []
+    },
+    "eeb9a46281ca245887695986124dea30896111872c6148c4321b6ee81ec8ae66": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_10-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "efc1c71b26867e31914639ee2c559297c3af0500e298d62d85b822f492366091": {
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_21-does-this-class-compile",
+      "legacyQids": []
+    },
+    "f0268266a04df25249b6cf6760b5699c934e64351721950fe45fec58be6bfa73": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_12-does-processpayment-int-amount-override-",
+      "legacyQids": []
+    },
+    "f05107ba5929d04a04a3e415b629aa4f5353923b6f66612dc84fd6a67d075a9b": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_18-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "f067a4b29c2291fb261683ba0e8dcf65080ef084369695b00b7e4cadfa0a4b5a": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_0-why-is-if-highscore-50-not-the-right-par",
+      "legacyQids": []
+    },
+    "f0aaebbfb5fd5dfef62f1d98dc713686b16529d372c5826b8a40697966d4b934": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_16-what-is-the-value-of-n",
+      "legacyQids": []
+    },
+    "f111fecc6601d9b313341f2adc382e634bab7500ab8bde63785a580154578c3d": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_7-what-is-the-difference-between-and-when-",
+      "legacyQids": []
+    },
+    "f11b3786acf8a88744fe62e31f2ca8b1e681435fec2d69b34a7cb9f2384f2e9b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_1-why-should-callers-avoid-passing-negativ",
+      "legacyQids": []
+    },
+    "f1890646311cb942762588f2bf4dfa680809e2e3cae394ecc40dbd4384d6af11": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_10-what-is-the-difference-between-widening-",
+      "legacyQids": []
+    },
+    "f23b59d2ce77bb463e2d3181b5afa9d146b0b628b434000ee11c0988a556fa2b": {
+      "qid": "chapter-14-strings_string-method-and-best-practices_code_code-chapter-14-strings-string-method-and-best-practices-true-false-true",
+      "legacyQids": []
+    },
+    "f26162d1e9af586f35000578733dc6e354c3a4ed543523e49d8399d76c3283aa": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_28-how-do-you-remove-duplicate-characters-f",
+      "legacyQids": []
+    },
+    "f27db5e7b2284310278771861066cc4733fc104295fa88092e0599e65a688f1b": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_1-in-setcustomername-string-customername-w",
+      "legacyQids": []
+    },
+    "f29d34b4f7fb40cd4bc84ae3a9be8e6d85c3fe878c2b121e28cfbb6636681f86": {
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_4-what-is-the-basic-exception-hierarchy-in",
+      "legacyQids": []
+    },
+    "f31c04200b673f39fc4e4b0506f33a6d535dd2a63ac0c2399246d90889ffaa86": {
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_16-what-happens-with-int-x-5-if-x-5",
+      "legacyQids": []
+    },
+    "f485ecec807646b0ca6d00b05f1a366798b75678f0796450f22174ab58566807": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_23-which-statement-about-boolean-in-java-is",
+      "legacyQids": []
+    },
+    "f49c2a3b16c3cf0e9defb7bab92d34c54ad83a7ffc45dd958aba317d906cc1af": {
+      "qid": "ocjp-chapter-2-primitive-types-string-concat-1",
+      "legacyQids": []
+    },
+    "f4aa8c3db7ca1e301013d772ce26fd809dde80a042c8c3568f894e3bafab4b63": {
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_3-why-are-braces-recommended-even-for-a-si",
+      "legacyQids": []
+    },
+    "f4cd0767795b28209d2ae59957c341fe9abd46f54e4d7f3225465ff4179faaaf": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_13-when-is-a-while-loop-usually-a-better-ch",
+      "legacyQids": []
+    },
+    "f568680bdf735a9169a06a9e374742efe0888d70809a92708f3c020c0a790d26": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_0-why-does-new-createfieldonclasses-not-ne",
+      "legacyQids": []
+    },
+    "f5c521a297c5242dcdc04986e9154b7668cf467ec8264daaf4c4f0a4ea2cf1b6": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_3-does-an-enhanced-switch-fall-through-her",
+      "legacyQids": []
+    },
+    "f6a38933c4bbfb179ef9636b9a18a67a1c9365b2db42452eac34e607a956b4e2": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_2-can-one-statement-span-multiple-lines-or",
+      "legacyQids": []
+    },
+    "f6bbae57957de26fcf946c79452705b51f6975e7c37fffe5a29cb8d8d2e3e75a": {
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_10-how-many-times-does-the-body-of-this-loo",
+      "legacyQids": []
+    },
+    "f709f5ae477a82ac9b28d8ea60f844495e13b4d5d62c4dcb1d0a4244f5b8d941": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_20-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "f78067d60b0e87a3104fd1a37208614f304de68bfba85719b2e018fdd85c840d": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_0-in-customer-string-name-double-creditlim",
+      "legacyQids": []
+    },
+    "f843d8b6667d289f565e605a56c9cd0bf5637d8f74f9ca74297b80dceccb701c": {
+      "qid": "ocjp-chapter-2-primitive-types-int-cast-1",
+      "legacyQids": []
+    },
+    "f94fba1b76840ac81691c982351fed8bda89652711172a6e46bdb18eda6dbdfd": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_2-why-does-this-name-name-use-this-name-on",
+      "legacyQids": []
+    },
+    "fa56043e0ec8015517e67f60ead66985732327127ef21c80a3ef7731707cacdb": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_1-what-is-printed-by-this-program",
+      "legacyQids": []
+    },
+    "fa63e4ac27dc7e929d0dfbe4078c148df170aa4b047ad9ad967f1a4da3082027": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_3-what-is-special-about-passing-slow-to-mo",
+      "legacyQids": []
+    },
+    "fb5d6205bb9177db27e237655a17853e2e2f863042b7ea42ed0eff2e5478128f": {
+      "qid": "chapter-10-class-object-static-and-instance-fields_static-classes_bank_ch10-static-field-is-shared",
+      "legacyQids": []
+    },
+    "fbb45f6798f0855f62ec395994fe264bf5b6f01d3213278c9499395c13f2ce9a": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_3-how-should-a-caller-choose-the-creditlim",
+      "legacyQids": []
+    },
+    "fc10a164e6f76075e9789b6810ffb8c5befa71ad39b8da4c61f685fb88d8a6cb": {
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_25-what-is-printed-by-this-code",
+      "legacyQids": []
+    },
+    "fc9f419be7e3e13efaaf5e21b103c0f2a8e3d5eb109b652a323a5df7a3f86f93": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_1-do-whitespace-and-indentation-affect-jav",
+      "legacyQids": []
+    },
+    "fcc5ec36b0c747a586127879227d51a3872979396d90781d418859a2f4289dd9": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_20-how-do-you-count-occurrences-of-a-specif",
+      "legacyQids": []
+    },
+    "fd2fd5c518d6996bd8ea4efce16a7e22d0dc632b61d6f9acbdc899f1fef3376c": {
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_1-why-is-super-important-in-the-overriding",
+      "legacyQids": []
+    },
+    "fe9e2ac1304af3366a2641f82513a49bceff63966de71a8bc2fdb6c140fd0c69": {
+      "qid": "ocjp-chapter-13-oop-concepts-constructor-chain-1",
+      "legacyQids": []
+    },
+    "ff63de22eb626899e7318fc53517e1e2bf2874182c1b8c6e495c6fac837f7116": {
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_0-what-is-the-difference-between-jvm-jre-a",
+      "legacyQids": []
+    },
+    "ffa6a6ae354240442ec8e48ffc0394069854b4ea86fe8c6267e3076db36ff3b6": {
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_11-does-this-code-compile",
+      "legacyQids": []
+    },
+    "ffb5ea7b5ecfed95ee64e88e98f29ad39dc4c0ed51393d3d66abf744e31feacb": {
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_4-what-prints-here-string-s-a-b-string-t-a",
+      "legacyQids": []
+    }
+  },
+  "permanent": {}
+}

@@ -30,6 +30,11 @@ let currentPracticeTab = 'coding'; // 'coding' or 'deep'
 // When the whole challenge set is shown it is ordered weakest-concept-first, so the top
 // of the list is what to do. The author can turn that off and get the file order back.
 let practiceOrderByWeakness = true;
+let quizSessionId = '';
+let quizInputs = {};
+let quizCompleted = false;
+let currentEditorChallenge = null;
+let practiceRunId = 0;
 
 // Anki-style spaced-repetition flashcard state
 let quickRevMode = 'flashcards';   // 'flashcards' (Anki) or 'browse'
@@ -55,8 +60,7 @@ const STORAGE_ANKI_KEY = 'javarev_anki_srs';
 const STORAGE_QUIZ_PROGRESS_KEY = 'javarev_quiz_progress';
 
 function getRevisedTopics() {
-  const data = localStorage.getItem(STORAGE_REVISED_KEY);
-  return data ? JSON.parse(data) : {};
+  return JavaRevStorage.read(STORAGE_REVISED_KEY);
 }
 
 function saveRevisedTopic(filePath, isCompleted) {
@@ -66,53 +70,57 @@ function saveRevisedTopic(filePath, isCompleted) {
   } else {
     delete revised[filePath];
   }
-  localStorage.setItem(STORAGE_REVISED_KEY, JSON.stringify(revised));
+  JavaRevStorage.write(STORAGE_REVISED_KEY, revised);
   updateStats();
   updateSidebarCompletionStates();
 }
 
 function getQuizHistory() {
-  const data = localStorage.getItem(STORAGE_QUIZ_KEY);
-  return data ? JSON.parse(data) : [];
+  return JavaRevStorage.read(STORAGE_QUIZ_KEY);
 }
 
 function saveQuizResult(chapterName, correctCount, totalCount) {
   const history = getQuizHistory();
+  if (history.some(h => h.sessionId === quizSessionId)) return;
   history.push({
+    sessionId: quizSessionId,
     chapter: chapterName,
     correct: correctCount,
     total: totalCount,
-    percentage: Math.round((correctCount / totalCount) * 100),
+    percentage: totalCount ? Math.round((correctCount / totalCount) * 100) : 0,
     date: new Date().toLocaleDateString()
   });
-  localStorage.setItem(STORAGE_QUIZ_KEY, JSON.stringify(history));
+  JavaRevStorage.write(STORAGE_QUIZ_KEY, history);
   updateStats();
 }
 
 function getNotesState() {
-  const data = localStorage.getItem(STORAGE_NOTES_KEY);
-  if (!data) {
-    return { project: '', topics: {} };
-  }
-  const parsed = JSON.parse(data);
-  if (!parsed.project) parsed.project = '';
-  if (!parsed.topics) parsed.topics = {};
-  return parsed;
+  return JavaRevStorage.read(STORAGE_NOTES_KEY);
 }
 
 function saveNotesState(notes) {
-  localStorage.setItem(STORAGE_NOTES_KEY, JSON.stringify(notes));
+  JavaRevStorage.write(STORAGE_NOTES_KEY, notes);
 }
 
 function getQuestionHistory() {
-  const data = localStorage.getItem(STORAGE_QHISTORY_KEY);
-  return data ? JSON.parse(data) : {};
+  return JavaRevStorage.read(STORAGE_QHISTORY_KEY);
 }
 
 function recordQuestionResult(qid, isCorrect) {
   if (!qid) return;
   const hist = getQuestionHistory();
+  const question = questionIndex().byId.get(qid);
+  if (hist[qid] && hist[qid].imported) {
+    archiveEvidence(qid, hist[qid], 'imported');
+    delete hist[qid];
+  }
   if (!hist[qid]) hist[qid] = { seen: 0, correct: 0, wrong: 0, lastSeenMs: 0 };
+  const sessions = hist[qid].sessions || [];
+  if (quizSessionId && sessions.includes(quizSessionId)) return;
+  if (quizSessionId) sessions.push(quizSessionId);
+  hist[qid].sessions = sessions;
+  hist[qid].contentVersion = question && question.contentVersion;
+  hist[qid].kind = question && question.type === 'interview' ? 'self-assessed' : 'objective';
   hist[qid].seen++;
   hist[qid].lastSeenMs = Date.now();
   if (isCorrect) {
@@ -136,7 +144,63 @@ function recordQuestionResult(qid, isCorrect) {
   }
   s.dueMs = s.intervalDays > 0 ? Date.now() + s.intervalDays * DAY : Date.now() + 10 * 60 * 1000;
 
-  localStorage.setItem(STORAGE_QHISTORY_KEY, JSON.stringify(hist));
+  JavaRevStorage.write(STORAGE_QHISTORY_KEY, hist);
+}
+
+function archiveEvidence(qid, record, reason) {
+  const archived = JavaRevStorage.read('javarev_archived_evidence');
+  const prefix = `${qid}:${record.contentVersion || 'legacy'}:${reason}`;
+  let key = prefix, suffix = 1;
+  while (Object.hasOwn(archived, key)) key = `${prefix}:${suffix++}`;
+  archived[key] = { ...record, reason };
+  JavaRevStorage.write('javarev_archived_evidence', archived);
+}
+
+function reconcileQuestionHistory() {
+  const history = getQuestionHistory();
+  const { byId } = questionIndex();
+  let changed = false, invalidated = 0;
+  for (const question of byId.values()) {
+    for (const alias of question.legacyQids || []) {
+      if (alias !== question.qid && history[alias]) {
+        const old = history[alias], current = history[question.qid];
+        if (!current) history[question.qid] = old;
+        else {
+          archiveEvidence(alias, old, 'compatible-alias');
+          const overlap = (old.sessions || []).some(id => (current.sessions || []).includes(id));
+          if (!old.imported && !current.imported && !overlap) {
+            for (const field of ['seen', 'correct', 'wrong']) current[field] += old[field];
+            current.lastSeenMs = Math.max(current.lastSeenMs || 0, old.lastSeenMs || 0);
+            current.lastCorrectMs = Math.max(current.lastCorrectMs || 0, old.lastCorrectMs || 0);
+            current.sessions = [...new Set([...(current.sessions || []), ...(old.sessions || [])])];
+          }
+        }
+        delete history[alias];
+        changed = true;
+      }
+    }
+    const h = history[question.qid];
+    if (!h) continue;
+    if (h.contentVersion && question.contentVersion && h.contentVersion !== question.contentVersion) {
+      archiveEvidence(question.qid, h, 'content-changed');
+      delete history[question.qid];
+      invalidated++;
+      changed = true;
+    } else if (!h.contentVersion && question.contentVersion) {
+      h.contentVersion = question.contentVersion;
+      changed = true;
+    }
+  }
+  for (const qid of Object.keys(history)) {
+    if (!byId.has(qid)) {
+      archiveEvidence(qid, history[qid], 'retired');
+      delete history[qid];
+      invalidated++;
+      changed = true;
+    }
+  }
+  if (changed) JavaRevStorage.write(STORAGE_QHISTORY_KEY, history);
+  if (invalidated) JavaRevStorage.warn(`${invalidated} question record(s) were archived because content changed or retired. Re-answer the current questions for study confidence; old evidence remains in exports.`);
 }
 
 // When a question should be seen again. A question that has never been answered is
@@ -192,21 +256,26 @@ let questionIndexCache = null;
 // work on next.
 function getConceptMastery() {
   const history = getQuestionHistory();
-  const { byConcept } = questionIndex();
+  const { byConcept, byId } = questionIndex();
   const rows = [];
 
   for (const [conceptId, qids] of byConcept) {
-    let seen = 0, correct = 0, wrong = 0, lastCorrectMs = 0, lastSeenMs = 0;
+    let seen = 0, correct = 0, wrong = 0, lastCorrectMs = 0, lastSeenMs = 0, distinct = 0, selfAssessed = 0;
     for (const qid of qids) {
       const h = history[qid];
       if (!h || !h.seen) continue;
+      if (byId.get(qid).type === 'interview') { selfAssessed += h.seen; continue; }
+      if (!JavaRevScoring.objective(byId.get(qid), h)) continue;
+      if (!(h.correct + h.wrong)) continue;
+      distinct++;
       seen += h.seen;
-      correct += h.correct || 0;
-      wrong += h.wrong || 0;
+      const attempts = h.correct + h.wrong;
+      correct += attempts ? h.correct / attempts : 0;
+      wrong += attempts ? h.wrong / attempts : 0;
       if (h.lastCorrectMs && h.lastCorrectMs > lastCorrectMs) lastCorrectMs = h.lastCorrectMs;
       if (h.lastSeenMs && h.lastSeenMs > lastSeenMs) lastSeenMs = h.lastSeenMs;
     }
-    const answered = correct + wrong;
+    const answered = distinct;
     rows.push({
       id: conceptId,
       name: conceptDisplayName(conceptId),
@@ -215,11 +284,13 @@ function getConceptMastery() {
       correct,
       wrong,
       seen,
+      distinct,
+      selfAssessed,
       accuracy: answered ? correct / answered : null,
       lastCorrectMs,
       lastSeenMs,
       attempted: answered > 0,
-      proved: answered >= MASTERY_MIN_SEEN && (correct / answered) >= MASTERY_PROVEN
+      proved: distinct >= MASTERY_MIN_SEEN && (correct / answered) >= MASTERY_PROVEN
     });
   }
 
@@ -320,19 +391,21 @@ function computeReadiness() {
   const provedConcepts = mastery.filter(m => m.proved).length;
 
   let correct = 0, answered = 0;
-  for (const h of Object.values(history)) {
-    if (!h || !h.seen) continue;
-    correct += h.correct || 0;
-    answered += (h.correct || 0) + (h.wrong || 0);
+  for (const [qid, h] of Object.entries(history)) {
+    if (!h || !h.seen || !JavaRevScoring.objective(questionIndex().byId.get(qid), h)) continue;
+    const attempts = (h.correct || 0) + (h.wrong || 0);
+    if (!attempts) continue;
+    correct += h.correct / attempts;
+    answered++;
   }
 
   const accuracy = answered ? correct / answered : 0;
   const coverage = totalConcepts ? attempted.length / totalConcepts : 0;
   const proof = totalConcepts ? provedConcepts / totalConcepts : 0;
 
-  // Proof carries the most weight, because it is the only part that cannot be
-  // reached by luck: it needs several right answers on the same concept.
-  const score = Math.round((accuracy * 0.35 + coverage * 0.2 + proof * 0.45) * 100);
+  // Coverage gates accuracy, so repeatedly answering one easy question cannot
+  // dominate confidence in the whole bank.
+  const score = Math.round((accuracy * coverage * 0.55 + proof * 0.45) * 100);
 
   return {
     score,
@@ -364,11 +437,13 @@ function getLevelProgress() {
   for (const [qid, h] of Object.entries(history)) {
     if (!h || !h.seen) continue;
     const question = byId.get(qid);
-    if (!question) continue;
+    if (!JavaRevScoring.objective(question, h)) continue;
     const level = String(question.difficulty || 'medium').toLowerCase();
     if (!levels[level]) continue;
-    levels[level].correct += h.correct || 0;
-    levels[level].answered += (h.correct || 0) + (h.wrong || 0);
+    const attempts = h.correct + h.wrong;
+    if (!attempts) continue;
+    levels[level].correct += h.correct / attempts;
+    levels[level].answered++;
   }
 
   const summary = {};
@@ -401,9 +476,9 @@ function levelStatusText(level, progress) {
   const before = progress[needed];
   const shortfall = Math.max(0, LEVEL_MIN_ANSWERED - before.answered);
   if (shortfall > 0) {
-    return `opens after ${shortfall} more ${needed} question${shortfall === 1 ? '' : 's'} (${before.answered} answered)`;
+    return `Suggested after ${shortfall} more distinct ${needed} question${shortfall === 1 ? '' : 's'}; available now`;
   }
-  return `opens at ${Math.round(LEVEL_READY * 100)}% on ${needed} (currently ${Math.round((before.accuracy || 0) * 100)}%)`;
+  return `Suggested at ${Math.round(LEVEL_READY * 100)}% on ${needed}; available now`;
 }
 
 // ============================================================================
@@ -493,7 +568,7 @@ function pickStudyNext() {
     return {
       action: 'weakest',
       title: `Work on ${weakest.name}`,
-      why: `Your weakest concept: ${Math.round(weakest.accuracy * 100)}% right over ${weakest.answered} answer${weakest.answered === 1 ? '' : 's'}, last practised ${humanAgo(weakest.lastSeenMs)}.`,
+      why: `Limited evidence: ${Math.round(weakest.accuracy * 100)}% accuracy across ${weakest.distinct} distinct scored question${weakest.distinct === 1 ? '' : 's'}, last practised ${humanAgo(weakest.lastSeenMs)}.`,
       button: `Drill ${weakest.name}`,
       handler: 'startWeakestConceptQuiz',
       concept: weakest.id
@@ -519,7 +594,7 @@ function pickStudyNext() {
     return {
       action: 'new',
       title: `Next in your notes: ${next.name}`,
-      why: `Everything you have tried is proved. This is the earliest concept you have not covered yet, out of ${untouched.length} still untried.`,
+      why: `The concepts tried so far have supported study confidence. This is the earliest of ${untouched.length} unseen concepts.`,
       button: `Drill ${next.name}`,
       handler: 'startWeakestConceptQuiz',
       concept: next.id
@@ -528,8 +603,8 @@ function pickStudyNext() {
 
   return {
     action: 'start',
-    title: 'Everything is proved',
-    why: 'Nothing is due and nothing is weak. Read a chapter you have not revisited in a while, or take the Grand Quiz.',
+    title: 'Current concepts have supporting evidence',
+    why: 'Nothing is due. This is study confidence, not exam certification. Read a chapter again or take the Grand Quiz.',
     button: 'Open the Grand Quiz',
     handler: 'openGrandQuiz'
   };
@@ -624,6 +699,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initApp() {
+  if (initApp.done) return;
+  initApp.done = true;
+  reconcileQuestionHistory();
   setupTheme();
   renderSidebar();
   updateStats();
@@ -632,9 +710,15 @@ function initApp() {
   renderResumeQuiz();
   setupEventListeners();
   initPracticeLab();
-  
-  // Show Overview View on start
-  showView('dashboard-view');
+  setupDataControls();
+  syncDrawerVisibility();
+  JavaRevStorage.refreshWarnings();
+  restoreViewFromHash();
+  window.addEventListener('hashchange', restoreViewFromHash);
+  window.addEventListener('pagehide', () => { saveQuizProgress(); saveEditorDraft(); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') { saveQuizProgress(); saveEditorDraft(); }
+  });
 }
 
 function updateThemeIcons(theme) {
@@ -647,7 +731,7 @@ function updateThemeIcons(theme) {
 }
 
 function setupTheme() {
-  const currentTheme = localStorage.getItem('javarev_theme') || 'dark';
+  const currentTheme = JavaRevStorage.read('javarev_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
   updateThemeIcons(currentTheme);
 }
@@ -657,16 +741,27 @@ function toggleTheme() {
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   
   document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('javarev_theme', newTheme);
+  JavaRevStorage.write('javarev_theme', newTheme);
   updateThemeIcons(newTheme);
 }
 
 // View switching
-function showView(viewId) {
+function showView(viewId, fromHistory = false) {
+  if (!document.getElementById(viewId)?.classList.contains('view-section')) viewId = 'dashboard-view';
+  saveQuizProgress();
+  saveEditorDraft();
+  closeDrawer(false);
   document.querySelectorAll('.view-section').forEach(view => {
     view.classList.remove('active');
+    view.hidden = true;
   });
-  document.getElementById(viewId).classList.add('active');
+  const target = document.getElementById(viewId);
+  target.classList.add('active');
+  target.hidden = false;
+  if (!fromHistory && location.hash !== `#${viewId}`) history.pushState(null, '', `#${viewId}`);
+  const heading = target.querySelector('h1, h2') || target;
+  heading.setAttribute('tabindex', '-1');
+  heading.focus({ preventScroll: true });
   
   // Update sidebar active states
   document.querySelectorAll('.nav-item').forEach(item => {
@@ -685,7 +780,71 @@ function showView(viewId) {
     document.getElementById('nav-notes-btn').classList.add('active');
   } else if (viewId === 'bank-view') {
     document.getElementById('nav-bank-btn').classList.add('active');
+  } else if (viewId === 'mastery-view') {
+    document.getElementById('nav-mastery-btn').classList.add('active');
   }
+  if (viewId === 'dashboard-view') renderResumeQuiz();
+}
+
+function restoreViewFromHash() {
+  const viewId = location.hash.slice(1) || 'dashboard-view';
+  if (viewId === 'quiz-view' && !activeQuizQuestions.length) {
+    if (resumableQuiz()) { resumeQuiz(); return; }
+    showView('dashboard-view', true);
+    return;
+  }
+  if (viewId === 'bank-view') { initBankChapterSelect(); renderRevisionBank(); }
+  if (viewId === 'mastery-view') renderMastery();
+  if (viewId === 'notes-view') renderNotesView();
+  if (viewId === 'practice-view') { renderChallengesList(); selectChallenge(currentChallengeIndex); }
+  if (viewId === 'study-view') { selectTopic(currentChapterIndex, currentTopicIndex); return; }
+  showView(viewId, true);
+}
+
+function downloadStudyData(text, filename) {
+  if (!text) { JavaRevStorage.warn('No local backup is available yet.'); return; }
+  const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function setupDataControls() {
+  document.getElementById('btn-export-data').onclick = () => {
+    saveQuizProgress(); saveEditorDraft();
+    downloadStudyData(JavaRevStorage.exportText(), 'JavaConcepts-study-backup.json');
+  };
+  document.getElementById('btn-export-backup').onclick = () =>
+    downloadStudyData(JavaRevStorage.backupText(), 'JavaConcepts-previous-backup.json');
+  const input = document.getElementById('import-data-file');
+  const preview = document.getElementById('import-data-preview');
+  const confirmBtn = document.getElementById('btn-confirm-import');
+  let pending = null;
+  input.onchange = async () => {
+    pending = null;
+    confirmBtn.hidden = true;
+    try {
+      if (!input.files[0]) return;
+      if (input.files[0].size > 20 * 1024 * 1024) throw new Error('Backup exceeds 20 MB.');
+      const text = await input.files[0].text();
+      const result = JavaRevStorage.preview(text);
+      pending = text;
+      preview.textContent = result.summary;
+      confirmBtn.hidden = false;
+    } catch (error) { preview.textContent = `Import rejected: ${error.message}`; }
+  };
+  confirmBtn.onclick = () => {
+    if (!pending || !confirm('Replace this project’s local study data? A local backup is made first. Imported scores will not count as evidence.')) return;
+    if (JavaRevStorage.importData(pending)) {
+      activeQuizQuestions = []; quizInputs = {}; answeredQuestions = []; currentEditorChallenge = null;
+      reconcileQuestionHistory(); updateStats(); renderSidebar(); renderResumeChapters();
+      preview.textContent = 'Imported successfully. Old data is available using Download previous backup.';
+      confirmBtn.hidden = true; pending = null;
+      showView('dashboard-view');
+    }
+  };
 }
 
 // ==========================================================================
@@ -846,15 +1005,15 @@ function renderReadiness() {
 
   // A score of zero on an empty history is not a failure, it is the starting line.
   const started = r.answered > 0;
-  const band = r.score >= 85 ? 'exam-ready' : r.score >= 65 ? 'nearly-there' : r.score >= 35 ? 'building' : 'starting';
+  const band = r.score >= 85 ? 'supported' : r.score >= 65 ? 'nearly-there' : r.score >= 35 ? 'building' : 'starting';
   const verdict = !started
     ? 'Nothing answered yet, so there is nothing to measure. Take a quiz and this becomes real.'
     : r.score >= 85
-      ? 'Strong across accuracy, coverage and proof. This is where sitting the exam makes sense.'
+      ? 'Broad supporting evidence in this question bank. This is not an exam-readiness guarantee.'
       : r.score >= 65
         ? 'Solid, but the weak concepts below are what is holding the number down.'
         : r.score >= 35
-          ? 'Building. Accuracy is not the problem yet — how much you have proved is.'
+          ? 'Building. Broaden the number of distinct questions and concepts practised.'
           : 'Early days. Keep answering and watch which part moves.';
 
   host.innerHTML = `
@@ -864,13 +1023,14 @@ function renderReadiness() {
         <span class="readiness-out-of">/ 100</span>
       </div>
       <div class="readiness-body">
-        <h2>Exam readiness</h2>
+        <h2>Study confidence</h2>
         <p class="readiness-verdict">${verdict}</p>
+        <p>Local study guidance, not official exam readiness or proof. Interview checklists are self-assessed and excluded. Accuracy gives each distinct scored question equal weight; imported scores do not count.</p>
         <div class="readiness-parts">
           <div class="readiness-part">
             <span class="part-value">${started ? Math.round(r.accuracy * 100) + '%' : '—'}</span>
             <span class="part-label">Accuracy</span>
-            <span class="part-note">${r.correct} right of ${r.answered} answered</span>
+            <span class="part-note">${r.answered} distinct scored questions</span>
           </div>
           <div class="readiness-part">
             <span class="part-value">${r.conceptsAttempted} / ${r.conceptsTotal}</span>
@@ -879,8 +1039,8 @@ function renderReadiness() {
           </div>
           <div class="readiness-part">
             <span class="part-value">${r.conceptsProved} / ${r.conceptsTotal}</span>
-            <span class="part-label">Concepts proved</span>
-            <span class="part-note">${Math.round(MASTERY_PROVEN * 100)}% or better over ${MASTERY_MIN_SEEN}+ answers</span>
+            <span class="part-label">Supported concepts</span>
+            <span class="part-note">${Math.round(MASTERY_PROVEN * 100)}% or better across ${MASTERY_MIN_SEEN}+ distinct scored question IDs</span>
           </div>
         </div>
       </div>
@@ -898,7 +1058,7 @@ function renderLevels() {
       <div class="level-card ${p.unlocked ? 'unlocked' : 'locked'}">
         <div class="level-head">
           <span class="level-name">${level}</span>
-          <span class="level-badge">${p.unlocked ? 'open' : 'not yet'}</span>
+          <span class="level-badge">${p.unlocked ? 'suggested' : 'available'}</span>
         </div>
         <p class="level-status">${levelStatusText(level, progress)}</p>
         <button class="btn btn-small ${p.unlocked ? 'btn-primary-outline' : 'btn-outline'}" onclick="drillLevelInBank('${level}')">
@@ -964,7 +1124,7 @@ function renderMasteryList() {
 
   if (!rows.length) {
     host.innerHTML = '<div class="card"><div class="card-body">Nothing in this filter. ' +
-      (masteryFilter === 'weak' ? 'Every concept you have tried is proved — a good place to be.' : 'Try a different filter.') +
+      (masteryFilter === 'weak' ? 'Every concept you have tried has supporting evidence.' : 'Try a different filter.') +
       '</div></div>';
     return;
   }
@@ -979,9 +1139,10 @@ function renderMasteryList() {
     const pct = m.attempted ? Math.round(m.accuracy * 100) : null;
     const band = !m.attempted ? 'untried' : m.proved ? 'proved' : pct >= 60 ? 'shaky' : 'weak';
     const bar = m.attempted ? `<span class="mastery-bar"><span class="mastery-bar-fill ${band}" style="width:${pct}%"></span></span>` : '';
-    const meta = m.attempted
-      ? `${m.correct} right of ${m.answered} &middot; last right ${humanAgo(m.lastCorrectMs)}`
-      : `${m.questions} question${m.questions === 1 ? '' : 's'} waiting`;
+    const meta = (m.attempted
+      ? `${m.distinct} distinct scored questions &middot; ${m.proved ? 'supported confidence' : 'limited evidence'} &middot; last right ${humanAgo(m.lastCorrectMs)}`
+      : `Unseen objective evidence &middot; ${m.questions} questions available`) +
+      (m.selfAssessed ? ` &middot; ${m.selfAssessed} self-assessed interview attempts (excluded)` : '');
     return `
       <div class="mastery-row ${band}">
         <div class="mastery-row-main">
@@ -1097,17 +1258,36 @@ function openReviewQueue() {
 function isMobileView() {
   return window.matchMedia('(max-width: 768px)').matches;
 }
+let drawerReturnFocus = null;
+function syncDrawerVisibility() {
+  const sidebar = document.querySelector('.sidebar');
+  const open = document.querySelector('.app-container').classList.contains('drawer-open');
+  const hidden = isMobileView() && !open;
+  sidebar.inert = hidden;
+  sidebar.setAttribute('aria-hidden', String(hidden));
+  document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', String(isMobileView() && open));
+  document.querySelector('.main-content').inert = isMobileView() && open;
+  document.querySelector('.mobile-topbar').inert = isMobileView() && open;
+}
 function openDrawer() {
+  if (!isMobileView()) return;
+  drawerReturnFocus = document.activeElement;
   const c = document.querySelector('.app-container');
   if (c) c.classList.add('drawer-open');
+  syncDrawerVisibility();
+  document.getElementById('drawer-close-btn').focus();
 }
-function closeDrawer() {
+function closeDrawer(restoreFocus = true) {
   const c = document.querySelector('.app-container');
+  const wasOpen = c && c.classList.contains('drawer-open');
   if (c) c.classList.remove('drawer-open');
+  syncDrawerVisibility();
+  if (wasOpen && restoreFocus && drawerReturnFocus) drawerReturnFocus.focus();
 }
 function toggleDrawer() {
   const c = document.querySelector('.app-container');
-  if (c) c.classList.toggle('drawer-open');
+  if (c && c.classList.contains('drawer-open')) closeDrawer();
+  else openDrawer();
 }
 function resetMobileCodePanel() {
   const panel = document.querySelector('.study-code-panel');
@@ -1302,13 +1482,7 @@ function getAllPracticeChallenges() {
   // generated ones. They used to be split across two files, which meant the audit
   // could not see the hand-written six and they would have missed their concept tags.
   // See data/practice-challenges.js.
-  return (typeof GENERATED_PRACTICE_CHALLENGES !== 'undefined' ? GENERATED_PRACTICE_CHALLENGES : [])
-    .map(ch => {
-      if (ch.verifyFnStr && !ch.verify) {
-        try { ch.verify = eval('(' + ch.verifyFnStr + ')'); } catch (e) { ch.selfCheck = true; }
-      }
-      return ch;
-    });
+  return typeof GENERATED_PRACTICE_CHALLENGES !== 'undefined' ? GENERATED_PRACTICE_CHALLENGES : [];
 }
 
 function setupEventListeners() {
@@ -1356,10 +1530,9 @@ function setupEventListeners() {
   });
   
   document.getElementById('btn-reset-data').addEventListener('click', () => {
-    if (confirm("Are you sure you want to reset all your revision progress and quiz history? This cannot be undone.")) {
-      localStorage.removeItem(STORAGE_REVISED_KEY);
-      localStorage.removeItem(STORAGE_QUIZ_KEY);
-      localStorage.removeItem(STORAGE_PRACTICE_KEY);
+    if (confirm("Reset all JavaConcepts study data, including notes, drafts, flashcards and quizzes? A local backup is made first; export a file too for safekeeping.") && JavaRevStorage.reset()) {
+      activeQuizQuestions = []; answeredQuestions = []; quizInputs = {}; currentEditorChallenge = null;
+      setupTheme();
       updateStats();
       renderSidebar();
       renderResumeChapters();
@@ -1448,6 +1621,19 @@ function setupEventListeners() {
   if (mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
   const codeToggle = document.getElementById('mobile-code-toggle');
   if (codeToggle) codeToggle.addEventListener('click', toggleMobileCode);
+  window.addEventListener('resize', syncDrawerVisibility);
+  document.addEventListener('keydown', event => {
+    if (!isMobileView() || !document.querySelector('.app-container').classList.contains('drawer-open')) return;
+    if (event.key === 'Escape') { event.preventDefault(); closeDrawer(); }
+    if (event.key === 'Tab') {
+      const focusable = [...document.querySelectorAll('.sidebar button, .sidebar input, .sidebar a[href]')]
+        .filter(el => !el.disabled && getComputedStyle(el).display !== 'none');
+      const index = focusable.indexOf(document.activeElement);
+      if (!focusable.length) return;
+      if (event.shiftKey && index <= 0) { event.preventDefault(); focusable[focusable.length - 1].focus(); }
+      else if (!event.shiftKey && (index < 0 || index === focusable.length - 1)) { event.preventDefault(); focusable[0].focus(); }
+    }
+  });
 }
 
 // ==========================================================================
@@ -1613,9 +1799,10 @@ function updateStats() {
   document.getElementById('quiz-taken-val').innerText = history.length;
   
   // Average Score
-  if (history.length > 0) {
-    const totalScore = history.reduce((sum, h) => sum + h.percentage, 0);
-    const avgScore = Math.round(totalScore / history.length);
+  const scoredHistory = history.filter(h => !h.imported && h.total > 0);
+  if (scoredHistory.length > 0) {
+    const totalScore = scoredHistory.reduce((sum, h) => sum + h.correct / h.total * 100, 0);
+    const avgScore = Math.round(totalScore / scoredHistory.length);
     document.getElementById('avg-score-val').innerText = `${avgScore}%`;
   } else {
     document.getElementById('avg-score-val').innerText = '0%';
@@ -2421,11 +2608,10 @@ function buildAnkiDeck(scope) {
 
 // ---- SRS storage + scheduling ---------------------------------------------
 function getAnkiState() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_ANKI_KEY)) || {}; }
-  catch (e) { return {}; }
+  return JavaRevStorage.read(STORAGE_ANKI_KEY);
 }
 function saveAnkiState(state) {
-  try { localStorage.setItem(STORAGE_ANKI_KEY, JSON.stringify(state)); } catch (e) {}
+  JavaRevStorage.write(STORAGE_ANKI_KEY, state);
 }
 
 const ANKI_DAY = 86400000;
@@ -2951,9 +3137,33 @@ function copyCodeSnippet() {
 // Quiz Gameplay Engine (Upgraded to SCQ, MCQ, Predict, and Conceptual Interview formats)
 // ==========================================================================
 
+function resetQuizSession() {
+  quizSessionId = globalThis.crypto?.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+  quizInputs = {};
+  quizCompleted = false;
+  quizReviewMode = false;
+}
+
+function confirmNewQuiz() {
+  if (!quizCompleted && resumableQuiz()) {
+    return confirm('Start a new quiz instead of the saved one? Unsubmitted inputs in that quiz will be replaced. Scored history stays saved; cancel to resume it first.');
+  }
+  return true;
+}
+
+function rememberQuizInput() {
+  if (!activeQuizQuestions[currentQuizQuestionIndex] || answeredQuestions[currentQuizQuestionIndex]) return;
+  quizInputs[currentQuizQuestionIndex] = {
+    option: selectedOptionIndex, options: selectedOptionIndices.slice(),
+    predict: currentPredictAnswer, interview: currentInterviewAnswer,
+    revealed: isInterviewCheckingModel, points: currentInterviewCheckedPoints.slice()
+  };
+  saveQuizProgress();
+}
+
 function startChapterQuiz(chapterName, subChapterName) {
   let questions = [];
-  currentQuizScope = {
+  const scope = {
     chapterName: chapterName,
     subChapterName: subChapterName || null
   };
@@ -3000,10 +3210,13 @@ function startChapterQuiz(chapterName, subChapterName) {
     return;
   }
   
+  if (!confirmNewQuiz()) return;
+  currentQuizScope = scope;
   activeQuizQuestions = questions;
   currentQuizQuestionIndex = 0;
   quizScore = 0;
   answeredQuestions = [];
+  resetQuizSession();
   
   document.getElementById('quiz-question-count').innerText = `${questions.length} Questions`;
   document.getElementById('quiz-est-time').innerText = `${Math.ceil(questions.length * 1.5)} Mins`;
@@ -3022,10 +3235,12 @@ function runActiveQuiz() {
   document.getElementById('quiz-active-container').style.display = 'block';
   
   renderQuizQuestion();
+  saveQuizProgress();
 }
 
 function renderQuizQuestion() {
   const question = activeQuizQuestions[currentQuizQuestionIndex];
+  quizReviewMode = Boolean(answeredQuestions[currentQuizQuestionIndex]);
 
   // No question means an empty quiz. Nothing can start one - every entry point refuses -
   // but returning is better than reading `.question` off undefined, and it is what keeps
@@ -3114,6 +3329,7 @@ function renderQuizQuestion() {
   inputContainer.style.display = 'none';
   document.getElementById('quiz-predict-input').value = '';
   document.getElementById('quiz-predict-input').disabled = false;
+  document.getElementById('quiz-predict-input').style.borderColor = '';
   interviewContainer.style.display = 'none';
   document.getElementById('quiz-interview-textarea').value = '';
   document.getElementById('quiz-interview-textarea').disabled = false;
@@ -3175,6 +3391,7 @@ function renderQuizQuestion() {
             }
             submitBtn.disabled = selectedOptionIndices.length === 0;
           }
+          rememberQuizInput();
         }
       });
       optionsContainer.appendChild(btn);
@@ -3191,8 +3408,9 @@ function renderQuizQuestion() {
     
     // Bind listeners
     predictInput.oninput = (e) => {
-      currentPredictAnswer = e.target.value.trim();
+      currentPredictAnswer = e.target.value;
       submitBtn.disabled = currentPredictAnswer.length === 0;
+      rememberQuizInput();
     };
   } else if (question.type === 'interview') {
     interviewContainer.style.display = 'block';
@@ -3200,9 +3418,26 @@ function renderQuizQuestion() {
     textarea.focus();
     
     textarea.oninput = (e) => {
-      currentInterviewAnswer = e.target.value.trim();
+      currentInterviewAnswer = e.target.value;
       submitBtn.disabled = currentInterviewAnswer.length === 0;
+      rememberQuizInput();
     };
+  }
+  const draft = quizInputs[currentQuizQuestionIndex];
+  if (draft) {
+    selectedOptionIndex = draft.option;
+    selectedOptionIndices = draft.options.slice();
+    currentPredictAnswer = draft.predict;
+    currentInterviewAnswer = draft.interview;
+    currentInterviewCheckedPoints = draft.points.slice();
+    document.querySelectorAll('#quiz-options-container .option-item').forEach((button, index) =>
+      button.classList.toggle('selected', question.type === 'scq' ? index === draft.option : draft.options.includes(index)));
+    document.getElementById('quiz-predict-input').value = draft.predict;
+    document.getElementById('quiz-interview-textarea').value = draft.interview;
+    submitBtn.disabled = question.type === 'scq' ? draft.option === null :
+      question.type === 'mcq' ? !draft.options.length :
+        question.type === 'interview' ? !draft.interview.length : !draft.predict.length;
+    if (question.type === 'interview' && draft.revealed) submitQuizAnswer();
   }
 }
 
@@ -3257,7 +3492,9 @@ function hideConceptReview() {
 
 function submitQuizAnswer() {
   const question = activeQuizQuestions[currentQuizQuestionIndex];
+  if (!question || answeredQuestions[currentQuizQuestionIndex]) return;
   const submitBtn = document.getElementById('btn-submit-answer');
+  if (submitBtn.disabled) return;
   const feedback = document.getElementById('quiz-feedback-text');
   const revisitScope = getQuestionScope(question);
   
@@ -3284,7 +3521,7 @@ function submitQuizAnswer() {
         `;
         
         item.addEventListener('click', (e) => {
-          if (e.target.tagName !== 'INPUT') {
+          if (e.target === item) {
             const cb = item.querySelector('.checklist-checkbox');
             cb.checked = !cb.checked;
             cb.dispatchEvent(new Event('change'));
@@ -3292,6 +3529,8 @@ function submitQuizAnswer() {
         });
         
         const cb = item.querySelector('.checklist-checkbox');
+        cb.checked = currentInterviewCheckedPoints.includes(idx);
+        item.classList.toggle('checked', cb.checked);
         cb.addEventListener('change', () => {
           if (cb.checked) {
             item.classList.add('checked');
@@ -3300,35 +3539,36 @@ function submitQuizAnswer() {
             item.classList.remove('checked');
             currentInterviewCheckedPoints = currentInterviewCheckedPoints.filter(i => i !== idx);
           }
+          rememberQuizInput();
         });
         checklist.appendChild(item);
       });
       
       submitBtn.innerText = 'Complete Self-Evaluation';
+      rememberQuizInput();
     } else {
       // Step 2: Finalize score based on checked boxes (requires >= 50% points to be marked correct)
       const checkedCount = currentInterviewCheckedPoints.length;
       const totalPoints = question.keyPoints.length;
       const isCorrect = checkedCount >= Math.ceil(totalPoints / 2);
       
-      if (isCorrect) {
-        quizScore++;
-      }
-      
-      answeredQuestions.push({
+      answeredQuestions[currentQuizQuestionIndex] = {
         question: question.question,
         selected: `Covered ${checkedCount}/${totalPoints} criteria points`,
         correct: `Covered >= ${Math.ceil(totalPoints / 2)} criteria points`,
         isCorrect,
+        kind: 'self-assessed',
+        interview: currentInterviewAnswer,
+        points: currentInterviewCheckedPoints.slice(),
         scope: revisitScope
-      });
+      };
       recordQuestionResult(question.qid, isCorrect);
       
       if (isCorrect) {
-        feedback.innerText = `✓ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Great explanation!`;
+        feedback.innerText = `Self-assessed: ${checkedCount}/${totalPoints} key points. Not included in scored evidence.`;
         feedback.className = "answer-feedback text-success";
       } else {
-        feedback.innerHTML = `✗ Evaluated: Covered ${checkedCount}/${totalPoints} key points. Try to include more core details. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+        feedback.innerHTML = `Self-assessed: ${checkedCount}/${totalPoints} key points. Not included in scored evidence. <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
         feedback.className = "answer-feedback text-danger";
         const revisitBtn = document.getElementById('btn-revisit-missed-topic');
         if (revisitBtn && revisitScope.chapterName) {
@@ -3360,13 +3600,13 @@ function submitQuizAnswer() {
         }
       });
       
-      answeredQuestions.push({
+      answeredQuestions[currentQuizQuestionIndex] = {
         question: question.question,
         selected: selectedOptionIndex,
         correct: question.answer,
         isCorrect,
         scope: revisitScope
-      });
+      };
       recordQuestionResult(question.qid, isCorrect);
     } else if (question.type === 'mcq') {
       const sortedCorrect = question.answer.slice().sort();
@@ -3385,19 +3625,18 @@ function submitQuizAnswer() {
         }
       });
       
-      answeredQuestions.push({
+      answeredQuestions[currentQuizQuestionIndex] = {
         question: question.question,
-        selected: selectedOptionIndices,
+        selected: selectedOptionIndices.slice(),
         correct: question.answer,
         isCorrect,
         scope: revisitScope
-      });
+      };
       recordQuestionResult(question.qid, isCorrect);
     } else if (question.type === 'predict' || question.type === 'codefill') {
       const predictInput = document.getElementById('quiz-predict-input');
       predictInput.disabled = true;
-      const userText = currentPredictAnswer.toLowerCase().replace(/\s+/g, '');
-      isCorrect = question.answer.some(ans => ans.trim().toLowerCase().replace(/\s+/g, '') === userText);
+      isCorrect = JavaRevScoring.grade(question, currentPredictAnswer);
       
       if (isCorrect) {
         predictInput.style.borderColor = 'var(--success)';
@@ -3405,13 +3644,13 @@ function submitQuizAnswer() {
         predictInput.style.borderColor = 'var(--danger)';
       }
       
-      answeredQuestions.push({
+      answeredQuestions[currentQuizQuestionIndex] = {
         question: question.question,
         selected: currentPredictAnswer,
         correct: question.answer[0],
         isCorrect,
         scope: revisitScope
-      });
+      };
       recordQuestionResult(question.qid, isCorrect);
     }
     
@@ -3439,7 +3678,7 @@ function submitQuizAnswer() {
       if (question.type === 'predict' || question.type === 'codefill') {
         correctAnsStr = ` Correct answer: "${question.answer[0]}".`;
       }
-      feedback.innerHTML = `✗ Incorrect.${correctAnsStr} ${question.explanation} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
+      feedback.innerHTML = `✗ Incorrect.${escapeHtml(correctAnsStr)} ${escapeHtml(question.explanation)} <button class="btn btn-outline btn-small" id="btn-revisit-missed-topic">Revisit Topic Again</button>`;
       feedback.className = "answer-feedback text-danger";
       if (whyMine) {
         const whyPara = document.createElement('div');
@@ -3460,6 +3699,14 @@ function submitQuizAnswer() {
     nextBtn.style.display = 'inline-flex';
     nextBtn.innerText = (currentQuizQuestionIndex === activeQuizQuestions.length - 1) ? "See Results" : "Next Question";
   }
+  if (answeredQuestions[currentQuizQuestionIndex]) {
+    const record = answeredQuestions[currentQuizQuestionIndex];
+    record.qid = question.qid;
+    record.contentVersion = question.contentVersion;
+    record.kind = question.type === 'interview' ? 'self-assessed' : 'objective';
+  }
+  quizScore = JavaRevScoring.totals(activeQuizQuestions, answeredQuestions).correct;
+  saveQuizProgress();
 }
 
 // ==========================================================================
@@ -3485,8 +3732,8 @@ function renderQuizReview(question, optionsContainer, inputContainer, interviewC
   if (question.type === 'scq' || question.type === 'mcq') {
     optionsContainer.style.display = 'flex';
     const chosen = new Set();
-    if (Array.isArray(question.answer)) question.answer.forEach(i => chosen.add(i));
-    else chosen.add(question.answer);
+    if (Array.isArray(record.selected)) record.selected.forEach(i => chosen.add(i));
+    else chosen.add(record.selected);
 
     question.options.forEach((opt, idx) => {
       const btn = document.createElement('button');
@@ -3494,6 +3741,9 @@ function renderQuizReview(question, optionsContainer, inputContainer, interviewC
       btn.disabled = true;
       // The right answer is marked so the review teaches something, not just replays.
       if (chosen.has(idx)) btn.classList.add('selected');
+      const correct = question.type === 'mcq' ? question.answer.includes(idx) : question.answer === idx;
+      if (correct) btn.classList.add('correct');
+      else if (chosen.has(idx)) btn.classList.add('incorrect');
       btn.innerHTML = `
         <span class="option-letter">${String.fromCharCode(65 + idx)}</span>
         <span class="option-text">${opt}</span>
@@ -3508,24 +3758,30 @@ function renderQuizReview(question, optionsContainer, inputContainer, interviewC
   } else if (question.type === 'interview') {
     interviewContainer.style.display = 'block';
     const textarea = document.getElementById('quiz-interview-textarea');
-    textarea.value = '';
+    textarea.value = record.interview || quizInputs[currentQuizQuestionIndex]?.interview || '';
     textarea.disabled = true;
     if (record && record.selected) {
       const wrapper = document.getElementById('quiz-interview-eval-wrapper');
       wrapper.style.display = 'block';
       document.getElementById('quiz-model-answer').innerText = question.modelAnswer || '';
+      document.getElementById('quiz-interview-checklist').replaceChildren();
+      (question.keyPoints || []).forEach((point, index) => {
+        const row = document.createElement('div');
+        row.textContent = `${(record.points || []).includes(index) ? '☑' : '☐'} ${point}`;
+        document.getElementById('quiz-interview-checklist').appendChild(row);
+      });
     }
   }
 
   feedback.className = 'answer-feedback';
   const verdict = document.createElement('div');
   verdict.className = record && record.isCorrect ? 'review-verdict correct' : 'review-verdict wrong';
-  verdict.textContent = record
+  verdict.textContent = question.type === 'interview' ? 'Self-assessment, excluded from objective scores.' : record
     ? (record.isCorrect ? 'You answered this correctly.' : 'You answered this incorrectly.')
     : 'You have not answered this question.';
   feedback.appendChild(verdict);
 
-  if (record && record.selected) {
+  if (record && record.selected !== undefined) {
     const given = document.createElement('div');
     given.className = 'review-answer-row';
     given.textContent = `Your answer: ${record.selected}`;
@@ -3544,10 +3800,12 @@ function renderQuizReview(question, optionsContainer, inputContainer, interviewC
 }
 
 function loadNextQuizQuestion() {
+  if (!answeredQuestions[currentQuizQuestionIndex]) return;
   if (currentQuizQuestionIndex < activeQuizQuestions.length - 1) {
     currentQuizQuestionIndex++;
     quizReviewMode = false;
     renderQuizQuestion();
+    saveQuizProgress();
   } else {
     showQuizResults();
   }
@@ -3566,11 +3824,13 @@ function loadNextQuizQuestion() {
 // ==========================================================================
 
 function saveQuizProgress() {
-  if (!activeQuizQuestions.length) return;
-  try {
-    localStorage.setItem(STORAGE_QUIZ_PROGRESS_KEY, JSON.stringify({
+  if (!activeQuizQuestions.length || quizCompleted) return;
+    JavaRevStorage.write(STORAGE_QUIZ_PROGRESS_KEY, {
+      sessionId: quizSessionId,
       label: (currentQuizScope && currentQuizScope.chapterName) || 'Quiz',
       questionIds: activeQuizQuestions.map(q => q.qid),
+      versions: activeQuizQuestions.map(q => q.contentVersion || null),
+      inputs: quizInputs,
       index: currentQuizQuestionIndex,
       score: quizScore,
       // Stored as-is: the records are already plain data, and they line up with the
@@ -3579,24 +3839,33 @@ function saveQuizProgress() {
       answered: answeredQuestions,
       originView: quizOriginView,
       savedAt: Date.now()
-    }));
-  } catch (e) { /* storage full or unavailable: closing still works, only resuming is lost */ }
+    });
 }
 
 function loadQuizProgress() {
   try {
-    const raw = localStorage.getItem(STORAGE_QUIZ_PROGRESS_KEY);
-    if (!raw) return null;
-    const saved = JSON.parse(raw);
+    const saved = JavaRevStorage.read(STORAGE_QUIZ_PROGRESS_KEY);
     if (!saved || !Array.isArray(saved.questionIds) || !saved.questionIds.length) return null;
 
     // Re-resolve the questions from the bank, so a stored copy cannot go stale.
     const { byId } = questionIndex();
-    const questions = saved.questionIds.map(id => byId.get(id)).filter(Boolean);
-    if (questions.length !== saved.questionIds.length) {
+    const aliases = new Map();
+    for (const question of byId.values()) for (const id of question.legacyQids || []) aliases.set(id, question);
+    const questions = saved.questionIds.map(id => byId.get(id) || aliases.get(id));
+    if (questions.some((q, index) => !q || (saved.versions?.[index] && q.contentVersion &&
+        saved.versions[index] !== q.contentVersion))) {
       // A question has gone from the bank since this was saved.
+      JavaRevStorage.warn('The saved quiz references changed or retired content and cannot resume. Its data is preserved in your export; start a new quiz for current evidence.');
       return { stale: true, saved };
     }
+    saved.answered = saved.answered.map((record, index) => record ? {
+      ...record, question: questions[index].question,
+      correct: questions[index].type === 'interview' ? 'Self-assessed checklist' :
+        questions[index].type === 'predict' || questions[index].type === 'codefill' ? questions[index].answer[0] : questions[index].answer,
+      kind: questions[index].type === 'interview' ? 'self-assessed' : 'objective',
+      isCorrect: questions[index].type === 'interview' ? record.isCorrect : JavaRevScoring.grade(questions[index], record.selected)
+    } : null);
+    saved.score = JavaRevScoring.totals(questions, saved.answered).correct;
     return { saved, questions };
   } catch (e) {
     return null;
@@ -3604,14 +3873,14 @@ function loadQuizProgress() {
 }
 
 function clearQuizProgress() {
-  try { localStorage.removeItem(STORAGE_QUIZ_PROGRESS_KEY); } catch (e) {}
+  JavaRevStorage.remove(STORAGE_QUIZ_PROGRESS_KEY);
 }
 
 // A quiz is only worth offering back if there is somewhere to come back to.
 function resumableQuiz() {
   const loaded = loadQuizProgress();
   if (!loaded) return null;
-  if (loaded.stale) { clearQuizProgress(); return null; }
+  if (loaded.stale) return null;
   const { saved, questions } = loaded;
   // Nothing left to answer means it was effectively finished.
   if (saved.index >= questions.length) { clearQuizProgress(); return null; }
@@ -3625,6 +3894,9 @@ function resumeQuiz() {
 
   currentQuizScope = { chapterName: saved.label, subChapterName: null };
   activeQuizQuestions = questions;
+  quizSessionId = saved.sessionId || `resumed-${saved.savedAt || Date.now()}`;
+  quizInputs = saved.inputs || {};
+  quizCompleted = false;
   currentQuizQuestionIndex = Math.min(saved.index || 0, questions.length - 1);
   quizScore = saved.score || 0;
   answeredQuestions = Array.isArray(saved.answered) ? saved.answered : [];
@@ -3644,9 +3916,7 @@ function resumeQuiz() {
 function closeQuiz() {
   saveQuizProgress();
   // A finished quiz has nothing to resume, so clear rather than keep a dead entry.
-  if (currentQuizQuestionIndex >= activeQuizQuestions.length - 1 && answeredQuestions.length >= activeQuizQuestions.length) {
-    clearQuizProgress();
-  }
+  if (quizCompleted) clearQuizProgress();
   quizReviewMode = false;
   renderResumeQuiz();
   showView(quizOriginView || 'dashboard-view');
@@ -3659,6 +3929,7 @@ function previousQuizQuestion() {
   currentQuizQuestionIndex--;
   quizReviewMode = true;
   renderQuizQuestion();
+  saveQuizProgress();
 }
 
 function renderResumeQuiz() {
@@ -3668,7 +3939,7 @@ function renderResumeQuiz() {
   if (!resumable) { host.innerHTML = ''; return; }
 
   const { saved, questions } = resumable;
-  const answered = (saved.answered || []).length;
+  const answered = (saved.answered || []).filter(Boolean).length;
   host.innerHTML = `
     <div class="resume-quiz-card">
       <div class="resume-quiz-body">
@@ -3684,26 +3955,35 @@ function renderResumeQuiz() {
 }
 
 function discardSavedQuiz() {
+  if (!confirm('Discard the saved quiz and its unsubmitted inputs? Scored history is retained.')) return;
+  activeQuizQuestions = [];
+  quizInputs = {};
   clearQuizProgress();
   renderResumeQuiz();
 }
 
 function showQuizResults() {
+  if (!activeQuizQuestions.length || activeQuizQuestions.some((q, index) => !answeredQuestions[index])) return;
+  quizCompleted = true;
   // The quiz is finished, so there is nothing left to resume.
   clearQuizProgress();
   document.getElementById('quiz-active-container').style.display = 'none';
   document.getElementById('quiz-result-container').style.display = 'block';
   
-  const total = activeQuizQuestions.length;
+  const totals = JavaRevScoring.totals(activeQuizQuestions, answeredQuestions);
+  const total = totals.total;
+  quizScore = totals.correct;
   // No questions cannot happen - every entry point refuses an empty quiz - but a guard
   // here means a future one cannot turn the score into "NaN%".
   const percentage = total > 0 ? Math.round((quizScore / total) * 100) : 0;
   
-  document.getElementById('result-score-text').textContent = `${percentage}%`;
+  document.getElementById('result-score-text').textContent = total ? `${percentage}%` : 'Self-check';
+  document.getElementById('result-score-note').textContent =
+    `${total} scored questions; ${totals.selfAssessed} self-assessed interviews excluded. Study feedback, not exam certification.`;
   document.getElementById('result-correct-count').textContent = quizScore;
   document.getElementById('result-incorrect-count').textContent = total - quizScore;
   
-  const chapterName = document.getElementById('quiz-start-title').innerText.replace(" Revision Quiz", "").replace(" Revision Quiz", "");
+  const chapterName = currentQuizScope.chapterName || 'Revision Quiz';
   document.getElementById('result-topic-name').textContent = chapterName;
   
   const circle = document.getElementById('result-radial-fill');
@@ -3718,6 +3998,7 @@ function showQuizResults() {
     const perChapter = new Map();
     answeredQuestions.forEach((ans, idx) => {
       const question = activeQuizQuestions[idx];
+      if (question.type === 'interview') return;
       const key = question && question.chapter ? question.chapter : 'General';
       if (!perChapter.has(key)) perChapter.set(key, { correct: 0, total: 0 });
       const entry = perChapter.get(key);
@@ -3752,7 +4033,7 @@ function showQuizResults() {
     const item = document.createElement('div');
     item.className = 'review-item';
     
-    const statusText = ans.isCorrect ? '<span class="text-success bold">Correct</span>' : '<span class="text-danger bold">Incorrect</span>';
+    const statusText = ans.kind === 'self-assessed' ? 'Self-assessed (excluded)' : ans.isCorrect ? '<span class="text-success bold">Correct</span>' : '<span class="text-danger bold">Incorrect</span>';
     
     let selectedText = "";
     let correctText = "";
@@ -3771,10 +4052,10 @@ function showQuizResults() {
     }
     
     item.innerHTML = `
-      <div class="review-question">Q${idx + 1}: ${ans.question} - ${statusText}</div>
+      <div class="review-question">Q${idx + 1}: ${escapeHtml(ans.question)} - ${statusText}</div>
       <div class="review-answer-row">
-        <div><span class="review-label">Your Response:</span><span class="review-value">${selectedText}</span></div>
-        <div><span class="review-label">Expected Output / Answer:</span><span class="review-value">${correctText}</span></div>
+        <div><span class="review-label">Your Response:</span><span class="review-value">${escapeHtml(selectedText)}</span></div>
+        <div><span class="review-label">Expected Output / Answer:</span><span class="review-value">${escapeHtml(correctText)}</span></div>
       </div>
       <div class="review-explanation">${q.explanation || ""}</div>
       ${(!ans.isCorrect && q.whyByOption) ? `<div class="why-note">${(q.type === 'mcq' ? (Array.isArray(ans.selected) ? ans.selected : []) : [ans.selected]).map(i => q.whyByOption[i]).filter(Boolean).join(' ')}</div>` : ''}
@@ -3794,6 +4075,7 @@ function retryQuiz() {
   currentQuizQuestionIndex = 0;
   quizScore = 0;
   answeredQuestions = [];
+  resetQuizSession();
   
   // Reshuffle questions to avoid memorization on retry!
   activeQuizQuestions = activeQuizQuestions.sort(() => 0.5 - Math.random());
@@ -3802,6 +4084,7 @@ function retryQuiz() {
   document.getElementById('quiz-active-container').style.display = 'block';
   
   renderQuizQuestion();
+  saveQuizProgress();
 }
 
 // ==========================================================================
@@ -3980,11 +4263,13 @@ function startSelectionQuiz(questions, label, maxQuestions) {
     alert('No questions match this selection yet. Try another filter.');
     return false;
   }
+  if (!confirmNewQuiz()) return false;
   currentQuizScope = { chapterName: label || 'Revision Bank', subChapterName: null };
   activeQuizQuestions = pickSmartQuestions(questions, maxQuestions || 20, 'all', 'all');
   currentQuizQuestionIndex = 0;
   quizScore = 0;
   answeredQuestions = [];
+  resetQuizSession();
 
   document.getElementById('quiz-question-count').innerText = `${activeQuizQuestions.length} Questions`;
   document.getElementById('quiz-est-time').innerText = `${Math.ceil(activeQuizQuestions.length * 1.5)} Mins`;
@@ -4690,19 +4975,42 @@ function setBankQuizSize(value) {
 // ==========================================================================
 
 function getPassedChallenges() {
-  const data = localStorage.getItem(STORAGE_PRACTICE_KEY);
-  return data ? JSON.parse(data) : {};
+  return JavaRevStorage.read(STORAGE_PRACTICE_KEY);
 }
 
-function saveChallengePassed(id) {
+function saveChallengePassed(id, kind = 'self-assessed') {
   const passed = getPassedChallenges();
-  passed[id] = true;
-  localStorage.setItem(STORAGE_PRACTICE_KEY, JSON.stringify(passed));
-  renderChallengesList();
+  passed[id] = { kind, savedAt: Date.now() };
+  JavaRevStorage.write(STORAGE_PRACTICE_KEY, passed);
+  if (currentPracticeTab === 'coding') renderChallengesList();
 }
 
+function saveEditorDraft() {
+  if (!currentEditorChallenge) return;
+  const drafts = JavaRevStorage.read('javarev_editor_drafts');
+  const code = document.getElementById('practice-code-textarea').value;
+  if (drafts[currentEditorChallenge.id]?.code === code) return;
+  JavaRevRuntime.cancel();
+  practiceRunId++;
+  drafts[currentEditorChallenge.id] = { code, contentVersion: currentEditorChallenge.contentVersion || null };
+  JavaRevStorage.write('javarev_editor_drafts', drafts);
+}
+
+function loadEditorDraft(challenge, template) {
+  saveEditorDraft();
+  JavaRevRuntime.cancel();
+  practiceRunId++;
+  currentEditorChallenge = challenge;
+  const draft = JavaRevStorage.read('javarev_editor_drafts')[challenge.id];
+  document.getElementById('practice-code-textarea').value = draft ? draft.code : template;
+  if (draft?.contentVersion && challenge.contentVersion && draft.contentVersion !== challenge.contentVersion) {
+    JavaRevStorage.warn(`The saved draft for ${challenge.title} was kept, but the challenge changed. Review its instructions before checking.`);
+  }
+  syncLineNumbers();
+}
 
 function switchPracticeTab(tab, btn) {
+  saveEditorDraft();
   currentPracticeTab = tab;
   document.querySelectorAll('.practice-tab').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
@@ -4751,9 +5059,11 @@ function renderDeepChallengesList() {
   });
 
   if (toShow.length > 0) selectDeepChallenge(toShow[0]);
+  else showEmptyPracticeScope();
 }
 
 function selectDeepChallenge(challenge) {
+  document.getElementById('practice-check-note').textContent = 'Self-assessed challenge. No automatic execution or Java compilation.';
   document.getElementById('practice-title').textContent = challenge.title;
   const diffBadge = document.getElementById('practice-difficulty');
   if (diffBadge) {
@@ -4820,8 +5130,7 @@ function selectDeepChallenge(challenge) {
 
   const codeArea = document.getElementById('practice-code-textarea');
   if (codeArea) {
-    codeArea.value = `// Deep Challenge: ${challenge.title}\n// Implement your solution here\n\npublic class Solution {\n    // Your code here\n}`;
-    syncLineNumbers();
+    loadEditorDraft(challenge, `// Deep Challenge: ${challenge.title}\n// Implement your solution here\n\npublic class Solution {\n    // Your code here\n}`);
   }
 
   const casesContainer = document.getElementById('test-cases-grid');
@@ -4851,6 +5160,7 @@ function initPracticeLab() {
   const textarea = document.getElementById('practice-code-textarea');
   if (textarea) {
     textarea.addEventListener('input', syncLineNumbers);
+    textarea.addEventListener('input', saveEditorDraft);
     textarea.addEventListener('scroll', () => {
       document.getElementById('editor-line-numbers').scrollTop = textarea.scrollTop;
     });
@@ -4859,12 +5169,14 @@ function initPracticeLab() {
   const resetBtn = document.getElementById('btn-reset-practice');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      const challenge = getScopedPracticeChallenges()[currentChallengeIndex];
+      const challenge = currentEditorChallenge;
       if (!challenge) {
         return;
       }
-      textarea.value = challenge.template;
+      if (!confirm('Reset this editor draft to its starting template?')) return;
+      textarea.value = challenge.template || `// Deep Challenge: ${challenge.title}\n// Implement your solution here\n\npublic class Solution {\n    // Your code here\n}`;
       syncLineNumbers();
+      saveEditorDraft();
       logToConsole("SYSTEM: Editor template reset successfully.");
     });
   }
@@ -5088,6 +5400,9 @@ function showPracticeLab(scope) {
   }
 
   currentChallengeIndex = 0;
+  currentPracticeTab = 'coding';
+  document.querySelectorAll('.practice-tab').forEach(button =>
+    button.classList.toggle('active', (button.getAttribute('onclick') || '').includes("'coding'")));
   showView('practice-view');
   renderChallengesList();
   selectChallenge(currentChallengeIndex);
@@ -5133,8 +5448,8 @@ function renderChallengesList() {
       <span class="challenge-item-title">${ch.title}</span>
       <div class="challenge-item-meta">
         <span class="difficulty-badge ${ch.difficulty.toLowerCase()}">${ch.difficulty}</span>
-        <span class="check-badge ${ch.selfCheck ? 'self' : 'auto'}">${ch.selfCheck ? 'Self-check' : 'Auto-checked'}</span>
-        <span class="challenge-item-status ${isPassed ? 'passed' : 'unresolved'}">${isPassed ? 'Passed' : 'Pending'}</span>
+        <span class="check-badge ${ch.selfCheck ? 'self' : 'auto'}">${ch.selfCheck ? 'Self-check' : 'JS heuristic'}</span>
+        <span class="challenge-item-status ${isPassed ? 'passed' : 'unresolved'}">${isPassed ? (isPassed.kind === 'heuristic-js' ? 'JS matched' : isPassed.kind === 'imported' ? 'Imported history' : 'Self-assessed') : 'Pending'}</span>
       </div>
     `;
     
@@ -5151,6 +5466,10 @@ function renderChallengesList() {
 // Explains an empty Practice Lab rather than showing a stale challenge. A chapter being
 // written has no challenges, because nothing is generated for it until it is finished.
 function showEmptyPracticeScope() {
+  saveEditorDraft();
+  currentEditorChallenge = null;
+  JavaRevRuntime.cancel();
+  practiceRunId++;
   const chapter = currentPracticeScope.chapterName || '';
   document.getElementById('practice-title').innerText = 'No practice challenge here yet';
   const diffBadge = document.getElementById('practice-difficulty');
@@ -5165,7 +5484,7 @@ function showEmptyPracticeScope() {
   if (checkNote) { checkNote.textContent = ''; checkNote.className = 'practice-check-note'; }
   const textarea = document.getElementById('practice-code-textarea');
   if (textarea) textarea.value = '';
-  const cases = document.getElementById('practice-testcases');
+  const cases = document.getElementById('test-cases-grid');
   if (cases) cases.innerHTML = '';
   const testCases = document.getElementById('practice-test-cases');
   if (testCases) testCases.innerHTML = '';
@@ -5194,13 +5513,13 @@ function selectChallenge(index) {
   if (checkNote) {
     checkNote.textContent = challenge.selfCheck
       ? 'Self-check: no automatic verification. Run it in your IDE and compare with the examples.'
-      : 'Auto-checked: your method is run against the expected values below.';
+      : 'Heuristic JavaScript checks only — not Java compilation or proof of Java correctness. Java typing, overflow, strings and division can differ. Verify in your Java IDE.';
+    const provenance = challenge.expectedProvenance || challenge.expectedSource || challenge.provenance;
+    if (provenance) checkNote.textContent += ` Expected-value source: ${typeof provenance === 'string' ? provenance : JSON.stringify(provenance)}.`;
     checkNote.className = `practice-check-note ${challenge.selfCheck ? 'self' : 'auto'}`;
   }
   
-  const textarea = document.getElementById('practice-code-textarea');
-  textarea.value = challenge.template;
-  syncLineNumbers();
+  loadEditorDraft(challenge, challenge.template);
   
   // Render test cases grid
   const casesContainer = document.getElementById('test-cases-grid');
@@ -5232,11 +5551,17 @@ function selectChallenge(index) {
         </div>
         <div class="test-case-status pending" id="test-case-status-${idx}"></div>
       `;
+      const provenance = tc.expectedProvenance || tc.expectedSource || tc.provenance;
+      if (provenance) {
+        const source = document.createElement('div');
+        source.textContent = `Expected-value source: ${typeof provenance === 'string' ? provenance : JSON.stringify(provenance)}`;
+        card.appendChild(source);
+      }
       casesContainer.appendChild(card);
     });
   }
   
-  logToConsole(`SYSTEM READY: Loaded challenge "${challenge.title}". Click Compile & Run to verify your solution.`);
+  logToConsole(`Loaded "${challenge.title}". Run heuristic checks for limited JavaScript feedback, then verify with Java in your IDE.`);
 }
 
 function logToConsole(message, type = "info") {
@@ -5264,7 +5589,7 @@ function syncLineNumbers() {
   }
 }
 
-function compileJavaCode(code, challengeId) {
+function checkJavaHeuristics(code, challengeId) {
   const errors = [];
   
   let curlyBraces = 0;
@@ -5387,83 +5712,53 @@ function extractMethodBody(code, methodName) {
   return code.substring(startIdx, endIdx - 1);
 }
 
-function runPracticeChallenge() {
+async function runPracticeChallenge() {
+  JavaRevRuntime.cancel();
+  practiceRunId++;
+  saveEditorDraft();
   const code = document.getElementById('practice-code-textarea').value;
-  const challenge = getScopedPracticeChallenges()[currentChallengeIndex];
+  const challenge = currentEditorChallenge;
   if (!challenge) {
     logToConsole("No practice challenge is available for the current scope.", "error");
     return;
   }
   
-  logToConsole("COMPILING PracticeWorkspace.java...", "clear");
-
-  // For self-check challenges, just compile and notify the user
-  if (challenge.selfCheck) {
-    const compileErrors = compileJavaCode(code, challenge.id);
-    if (compileErrors.length > 0) {
-      compileErrors.forEach(err => logToConsole(err, "error"));
-      logToConsole(`COMPILATION FAILED: ${compileErrors.length} error(s) found.`, "error");
-    } else {
-      logToConsole("COMPILATION SUCCESSFUL.");
-      logToConsole("This is a self-check challenge. Run your code in an IDE and verify the output, then click 'Mark as Completed'.");
-    }
+  logToConsole("Heuristic checks only. Java is NOT compiled or executed by this page.", "clear");
+  if (currentPracticeTab === 'deep' || challenge.selfCheck || !challenge.verifyFnStr) {
+    logToConsole("Self-check only: nothing was executed. Run Java in your IDE and compare the expected values before marking it self-assessed.");
     return;
   }
-
-  // 1. Run simulated compiler
-  const compileErrors = compileJavaCode(code, challenge.id);
-  if (compileErrors.length > 0) {
-    compileErrors.forEach(err => logToConsole(err, "error"));
-    logToConsole(`COMPILATION FAILED: ${compileErrors.length} error(s) found.`, "error");
-    
-    // Set all test case badges to fail
-    challenge.testCases.forEach((tc, idx) => {
-      const statusEl = document.getElementById(`test-case-status-${idx}`);
-      statusEl.className = 'test-case-status fail';
-    });
-    return;
-  }
-  
-  logToConsole("COMPILATION SUCCESSFUL. Executing test cases...");
-  
-  let allPassed = true;
-  let anyUnverified = false;
   challenge.testCases.forEach((tc, idx) => {
-    const statusEl = document.getElementById(`test-case-status-${idx}`);
-    try {
-      if (challenge.id === "statictracking" && idx === 0) {
-        challenge.accumulated = 0;
-      }
-      
-      const outcome = challenge.verify(code, tc);
-      if (outcome === null || outcome === undefined) {
-        // The checker could not run this code. That is not a wrong answer, so it
-        // must never be reported as one.
-        anyUnverified = true;
-        statusEl.className = 'test-case-status pending';
-        logToConsole(`Test Case ${idx + 1}: could not be checked automatically (unsupported syntax). Compare your result with the expected value by hand.`);
-      } else if (outcome) {
-        statusEl.className = 'test-case-status pass';
-        logToConsole(`Test Case ${idx + 1}: Passed.`);
-      } else {
-        statusEl.className = 'test-case-status fail';
-        allPassed = false;
-        logToConsole(`Test Case ${idx + 1}: Failed. Output mismatch.`, "error");
-      }
-    } catch (err) {
-      anyUnverified = true;
-      statusEl.className = 'test-case-status pending';
-      logToConsole(`Test Case ${idx + 1}: could not be checked automatically (${err.message}).`, "error");
-    }
+    const status = document.getElementById(`test-case-status-${idx}`);
+    if (status) { status.className = 'test-case-status pending'; status.textContent = 'Not checked'; }
   });
-  
-  if (allPassed && anyUnverified) {
-    logToConsole("\nSome test cases could not be checked automatically. Verify them by hand before marking this complete.");
-  } else if (allPassed) {
-    logToConsole("\n✓ SUCCESS: ALL TEST CASES PASSED!", "success");
-    logToConsole("Saving challenge completed status... Great job!");
-    saveChallengePassed(challenge.id);
-  } else {
-    logToConsole("\n✗ FAILURE: Some test cases did not pass. Debug your logic and try again.", "error");
+  const hints = checkJavaHeuristics(code, challenge.id);
+  if (hints.length) {
+    hints.forEach(hint => logToConsole(`Heuristic suggestion (not a compiler diagnostic): ${hint}`));
+    logToConsole('No cases were executed. Check these suggestions in your Java IDE; they may be false positives.');
+    return;
+  }
+  // Saving a changed editor invalidates prior runs too.
+  const currentRunId = practiceRunId;
+  logToConsole('Running a JavaScript approximation in an isolated worker (1.5 second limit)...');
+  const result = await JavaRevRuntime.run(challenge, code, {
+    javaDiv, javaReplaceAll, translateJavaCasts, prepareJavaBody, extractMethodBody
+  });
+  if (currentRunId !== practiceRunId || currentEditorChallenge?.id !== challenge.id) return;
+  if (result.unavailable) { logToConsole(result.unavailable); return; }
+  if (!Array.isArray(result.outcomes) || result.outcomes.length !== challenge.testCases.length) {
+    logToConsole('The worker returned no usable check results. Verify in your Java IDE.'); return;
+  }
+  result.outcomes.forEach((outcome, idx) => {
+    const statusEl = document.getElementById(`test-case-status-${idx}`);
+    if (statusEl) {
+      statusEl.className = `test-case-status ${outcome === 'match' ? 'pass' : outcome === 'mismatch' ? 'fail' : 'pending'}`;
+      statusEl.textContent = outcome === 'unsupported' ? 'Not checked' : `JS ${outcome}`;
+    }
+    logToConsole(`Case ${idx + 1}: ${outcome === 'unsupported' ? 'unsupported; no verdict' : `JavaScript ${outcome}`} — verify Java separately.`);
+  });
+  if (result.outcomes.length && result.outcomes.every(outcome => outcome === 'match')) {
+    logToConsole('All JavaScript approximation cases matched. This is not Java correctness evidence.');
+    saveChallengePassed(challenge.id, 'heuristic-js');
   }
 }

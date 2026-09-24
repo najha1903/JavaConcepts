@@ -29,6 +29,7 @@ for (const chapter of concepts || []) {
 }
 
 const seenQids = new Set();
+const aliases = new Map();
 let questionCount = 0;
 for (const [chapterName, chapterQuestions] of Object.entries(questions || {})) {
   for (const question of chapterQuestions || []) {
@@ -36,6 +37,13 @@ for (const [chapterName, chapterQuestions] of Object.entries(questions || {})) {
     if (!question.qid) failures.push(`${chapterName}: question is missing qid.`);
     if (seenQids.has(question.qid)) failures.push(`Duplicate qid: ${question.qid}`);
     seenQids.add(question.qid);
+    if (!Array.isArray(question.legacyQids) || question.legacyQids.some(id => typeof id !== 'string' || id === question.qid)) failures.push(`${question.qid}: invalid legacyQids migration metadata.`);
+    for (const alias of question.legacyQids || []) {
+      if (aliases.has(alias) && aliases.get(alias) !== question.qid) failures.push(`${question.qid}: legacy alias ${alias} belongs to two questions.`);
+      aliases.set(alias, question.qid);
+    }
+    if (!/^[a-f0-9]{64}$/.test(question.contentVersion || '')) failures.push(`${question.qid}: missing deterministic semantic contentVersion.`);
+    if (question.kind === 'true-false') failures.push(`${question.qid}: invalid generated topic-membership MCQ.`);
     const isGlobalQuestion = String(question.topic || '').startsWith('OCJP') ||
       String(question.topic || '').includes('Deep Challenge');
     if (!isGlobalQuestion && (!question.topicPath || !topicPaths.has(question.topicPath))) {
@@ -90,6 +98,8 @@ for (const [chapterName, chapterQuestions] of Object.entries(questions || {})) {
   }
 }
 
+for (const [alias, owner] of aliases) if (seenQids.has(alias)) failures.push(`${owner}: legacy alias ${alias} is still another live question ID.`);
+
 // The same question text in two chapters makes the Grand Quiz repeat itself, and
 // usually means one was written twice by accident.
 //
@@ -112,7 +122,7 @@ for (const [chapterName, chapterQuestions] of Object.entries(questions || {})) {
     const text = String(question.question || '').replace(/\s+/g, ' ').trim().toLowerCase();
     const code = String(question.code || '').replace(/\s+/g, ' ').trim().toLowerCase();
     if (!text || !code) continue;
-    const key = `${text}|||${code}`;
+    const key = `${text}|||${code}|||${JSON.stringify([...(question.options || [])].sort())}`;
     if (inThisChapter.has(key)) {
       failures.push(`${chapterName}: this exact question and code appear twice in the same chapter: ${String(question.question).slice(0, 60)}`);
     } else {
@@ -294,6 +304,9 @@ for (const challenge of [...(practice || []), ...(deep || [])]) {
 for (const challenge of practice || []) {
   const label = challenge.id || '(no id)';
   if (!challenge.chapter) failures.push(`Practice challenge "${label}" has no chapter, so it cannot be scoped or ordered.`);
+  if (!challenge.evidence || !['browser-approximate', 'self-check'].includes(challenge.evidence.execution)) {
+    failures.push(`Practice challenge "${label}" lacks honest execution evidence.`);
+  }
   if (!Array.isArray(challenge.concepts) || challenge.concepts.length === 0) {
     failures.push(`Practice challenge "${label}" has no concepts, so it would never appear in the weakest-first order or be reachable from Mastery.`);
   }

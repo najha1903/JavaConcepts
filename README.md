@@ -1,155 +1,222 @@
 # JavaConcepts
 
-Java learning notes, runnable examples, interview preparation, OCJP-style questions, coding challenges, and deep problems powered by an interactive revision dashboard.
+Java learning notes and runnable examples with a notes-first revision dashboard.
+The portal combines reading, revision questions, flashcards, practice, and study
+history; it is not an official exam or a complete Java execution environment.
 
-Live dashboard: https://najha1903.github.io/JavaConcepts/revision-dashboard/
+**Live dashboard:** https://najha1903.github.io/JavaConcepts/
 
-## Quick Start
+## Everyday workflow
 
-From the project root, run:
+From the project root:
 
-```bash
+```powershell
 npm run revise
 ```
 
-This command proposes the refresh, then opens it for review in your browser:
+**`npm run revise` is the single everyday entry point for future generation and
+review.** Its orchestration lives in `scripts\lib\revision-workflow.js`;
+`revise.js`, `generate.js`, and `approve.js` are adapters to that shared workflow.
+Validation profiles are declared once in `scripts\lib\checks.js`; the full and
+structural check entry points select from that registry rather than separate lists.
+New content/generation rules belong in the shared pipeline, not a one-off command
+or manual generated-file fix. This keeps command behavior aligned; it is not a
+promise that future changes cannot introduce bugs.
 
-1. Scans every Java file under `src/`.
-2. Extracts and organizes overview notes, inline explanations, code blocks, parameter notes, quizzes, and challenges.
-3. Clarifies a small set of shorthand and joins wrapped sentences without changing the technical meaning of the source notes.
-4. **Compares the result with the last approved version.** When notes, inline notes or `@quiz` markers changed, it writes a readable diff to `revision-dashboard/content-changes.md` and opens a review page in your browser that shows the same changes with **Apply** and **Discard** buttons. Nothing is written until you choose Apply; Discard leaves everything exactly as it was, so there is nothing to undo either way.
-5. Applies the changes, regenerates the dashboard data files, and runs the generated-data audit.
-6. Opens the dashboard in the browser.
+1. Read the source notes and existing authored content into an isolated candidate.
+2. Parse current notes before deriving code questions, then merge derived
+   questions/expectations and refresh the ledger and suggestions. Derivation uses
+   fresh staged notes, not the previous dashboard. The review page includes the
+   candidate ledger; the published ledger stays with the approved dataset until
+   Apply.
+3. For reviewable changes, open the local browser review. Inspect the changes and
+   choose **Apply** or **Discard**. Optional note insertions require selecting the
+   specific suggestions; general approval does not select them for you.
+4. Apply uses the same approval backend as `npm run approve`, validates the
+   candidate, then publishes it. You do not need an extra approval command after
+   clicking Apply.
 
-Nothing about your notes is ever changed without that review. A Java code edit on its own is applied straight away, so everyday practice is not interrupted.
+Proposal generation does not rewrite your notes. Discard removes the proposal,
+**not edits you made yourself**. Changed inputs or replaced proposals cause a
+conflict rather than silently approving a different version. Review fingerprints
+include consumed caches/baselines, and publication rechecks the input snapshot
+before completing. Publication is
+journaled and recoverable, not an atomic multi-file filesystem operation; recovery
+stops if it would overwrite a newer edit. The workflow never restores the live
+notes tree from its candidate snapshot. Uncommitted handwritten notes are allowed:
+approval checks the exact reviewed bytes, not whether you committed first.
+Repeating Apply for the same approved proposal does not publish it twice.
 
-When a change is waiting and you already know you want it, apply it directly:
+An interrupted publication is recovered on the next workflow command. This does
+not guarantee crash immunity or simultaneous visibility of every output file.
+If recovery reports newer edits, preserve the journal and reconcile the named
+paths before retrying.
 
-```bash
-npm run approve
+A code-only/no-review refresh can publish after structural checks. That is **not**
+the same as a full native validation run. Use `npm run check` to run the full
+candidate checks without publication.
+
+### Commands
+
+| Command | Behavior |
+| --- | --- |
+| `npm run revise` | Everyday candidate/review flow; opens review or the dashboard. |
+| `npm run revise:cli` | Same proposal with an optional terminal approval prompt; noninteractive use does not answer yes automatically. |
+| `npm run approve` | Explicitly approves through `scripts\approve.js` and the full shared validation/publication pipeline; does not open a browser. |
+| `npm run generate` | Proposal mode without launching the browser; not an unchecked force-publish command. |
+| `npm run check` | Full scratch candidate generation/validation; publishes no dashboard, source changes, or generated caches. |
+| `npm run audit` | Audits the currently generated dataset; does not regenerate it or prove all Java behavior. |
+
+`npm run revise -- --yes` is explicit noninteractive approval without optional
+note insertions. Use it only when you intend to approve the current content.
+Declining terminal approval leaves the candidate available for review.
+To approve one specific pending review by id, pass it positionally:
+
+```powershell
+npm run approve -- <proposalId>
 ```
 
-Open `revision-dashboard/index.html` directly when you only want to read the last generated version.
+The id is in `revision-dashboard\content-changes.json` (or on the review page).
+It is positional because npm consumes a space-separated `--proposal <id>` as its
+own configuration, so that form never reaches the script.
+Unknown or incomplete workflow flags fail rather than selecting a fallback mode.
+Generation aliases such as `generate:all`, `derive:code`, and `fill:practice` also
+use the shared staged engine, not raw workers. `npm run generate -- --force`
+refreshes both derived-code questions and practice-expectation caches through
+that same safe path.
+For targeted maintenance checks, inspect the scripts in `package.json`.
 
-### Adding New Content
+Local commands need Node.js/npm and the repository dependencies; native Java
+checks also need a compatible JDK (`java` and `javac`). They execute selected
+repository snippets/methods locally: use trusted content. A child process or a
+scratch directory is **not a security sandbox**.
 
-Write the file the way you write the rest of your notes and run `npm run revise`. Nothing regresses: every rule that shapes the notes lives in the parser, not in the generated files, so a file written next week is read with the same rules as one written today.
+## What is authored, generated, or checked?
 
-Three things behave differently in a brand-new file:
+The Java files under `src` are the author's notes. Existing authored question banks
+and supporting metadata live under `data`. The CLI extracts and assembles these
+inputs; **it does not autonomously research topics or call an AI author**.
+Ask Copilot explicitly to investigate a documented gap and prepare reviewable
+changes. Do not add filler to satisfy a question or chapter count.
 
-- A new **chapter's key points are generated automatically** from its own notes, so there is nothing to write. Add `@takeaway` and `@gotcha` lines only when you want a point phrased your way.
-- **Practice** only comes from files named `*Challenge*` or `*Problem*`.
-- A **`void` method** can only be auto-checked if you give it a `@testcase` line, because it has no return value to compare. Use `\n` when it prints several lines: `@testcase countdown(5) -> 5\n4\n3\n2\n1`.
+| Capability | What it means |
+| --- | --- |
+| Notes and Revision Bank | Source-backed reading, topic/chapter filters, code, tables, and linked revision questions. |
+| Quick Revision | Authored takeaways/gotchas and flashcards; missing material is not permission to invent a summary. |
+| Objective quizzes | Scoring against recorded answers. Answer quality still requires source review and applicable checks. |
+| Native Java validation | Selected supported snippets/cases compiled or executed locally; see check output for the actual scope and skipped/unsupported work. |
+| Browser Practice Lab | **Run heuristic checks** uses a limited Java-to-JavaScript approximation in a bounded Web Worker, not a Java compiler/JVM. A match is not native correctness proof. |
+| Self-check / interview answers | Learner assessment against an explanation or rubric, not objective execution evidence. |
+| Deep Problems | Larger deliberate-practice tasks; not every problem has an executable verifier. |
+| Mastery / Study confidence | At least three distinct eligible objective question IDs and 80% accuracy support a concept's confidence. Repeats cannot supply breadth; interview self-assessment and imported scores are excluded. |
+| Chapter PDF | Browser print/PDF export of chapter notes. |
 
-See [rules.md](rules.md#adding-new-content-tomorrow) for the detail.
+Expectations obtained by running the author's solution are regression examples,
+not independent evidence that the solution meets its specification. Independent
+cases need a separately reviewed expected result and appropriate native validation.
+Neither the browser lab nor GitHub Pages runs Selenium, Playwright, Cypress,
+REST Assured, or Karate.
 
-## Project Structure
+Browser checks stop after a bounded timeout; unavailable workers or unsupported
+code produce no execution result, with no main-page fallback. Verify Java in your
+IDE. Objective text answers preserve case and spaces; only CRLF/LF line endings
+and one final newline are normalized.
+
+For current counts, exclusions, authoring gaps, and verification categories, use
+the generated [published coverage ledger](https://najha1903.github.io/JavaConcepts/coverage.md)
+and [suggestions](revision-dashboard/suggestions.md). The local ledger is
+`revision-dashboard\coverage.md`; it is generated and gitignored, not a tracked
+repository document. Published reports reflect the latest deployment, not a
+pending local candidate. Counts are not hardcoded here.
+
+## Keep your study data
+
+Use **Local study data** on the dashboard:
+
+- **Export study backup** downloads project-specific versioned JSON, including
+  notes, quiz/flashcard history, resumable quiz state, and practice editor drafts.
+- Import validates a JavaConcepts version-2 backup and previews its contents.
+  **Confirm import and replace** replaces local state after making a local backup;
+  it is not a merge. Imported scores remain history, not new confidence evidence.
+- **Download previous backup** saves the local pre-import/reset backup.
+  **Reset all progress** clears study data, including notes and drafts, after
+  confirmation and a successful local backup.
+
+Browser storage is origin/profile-specific: local files, localhost, and Pages do
+not synchronize. Export files regularly; clearing browser data can remove both
+progress and its local backup. Visible warnings report unavailable/full storage
+or damaged data; in-memory changes can be lost when the tab closes. Compatible
+question history migrates by identity; changed/retired evidence is archived, not
+silently counted against new answers.
+
+## Adding or improving notes
+
+Keep the existing chapter/topic organization and the author's voice:
 
 ```text
-src/
-  Chapter_<N>_<TopicName>/
-    Sub_Chapter_<N>_<TopicName>/
-      ConceptOrChallenge.java
-revision-dashboard/
-  index.html              # Dashboard interface
-  app.js                  # Navigation, notes, quizzes, practice, and PDF printing
-  style.css               # Dashboard styling
-  data.js                 # Generated notes and source code
-  questions.js            # Generated quiz and Quick Revision data
-  practice.js             # Generated coding challenges
-  deep-challenges.js      # Generated deep problems
-  content-changes.md      # Generated review report of pending note changes
-  review.html             # Browser page for reviewing and applying those changes
-scripts/
-  parse-concepts.js       # Source-to-dashboard generator
-  revise.js               # Runs the proposal and opens the review
-  review-server.js        # Local server behind the review page
-  approve.js              # Generate, verify, and roll back if a check fails
-  verify.js               # Runs every check in order
-  audit-generated.js      # Generated-data and note-quality checks
-  check-practice.js       # Proves no practice verifier rejects a correct solution
-  check-questions.js      # Compiles and runs questions, compares real output
-  create-project.js       # Optional dashboard scaffolder
+src\
+  Chapter_<N>_<TopicName>\
+    Sub_Chapter_<N>_<TopicName>\
+      Concept.java
+      ExampleChallenge.java
 ```
 
-Generated files are disposable. Edit the Java source notes and then run `npm run revise`; do not edit generated dashboard files manually. Your source notes remain the core content: generation improves readability and adds supporting context without removing the original idea or examples.
+Put an overview before the declaration and implementation insights beside the
+relevant code. Explain what the concept does, important input constraints, expected
+behavior, and meaningful boundary cases. Preserve useful code examples and tables.
+Do not silently replace clear notes, invent parameter explanations, or create
+material for unstudied chapters. Draft chapters remain readable without revision
+content or readiness penalties. Reviewed status lives in
+`data\chapter-status.json`; `@draft` overrides it. Add explicit entries for new
+chapters rather than relying on the unlisted-chapter numbering fallback.
 
-## What The Portal Provides
+Optional authored markers include `@quiz`, `@answer`, `@code`, `@option`,
+`@explain`, `@why`, `@challenge`, `@desc`, `@hint`, `@testcase`, `@takeaway`,
+`@gotcha`, and `@snippet`. They are existing authoring formats, not a requirement
+to fill every topic with annotations. See [rules.md](rules.md) for examples,
+eligibility, review, identity, and verification rules.
 
-- **Notes:** Readable overview explanations, inline takeaways, tables, parameter notes, and visible Java code examples.
-- **Quick Revision:** Flashcards with mastery tracking, gotcha highlights, and comparison tables kept as real tables.
-- **Revision Quizzes:** A menu instead of a single quiz, with the Grand Java Quiz, an OCJP-only quiz, a Tricky-only quiz, and every chapter and sub-chapter. Each question shows the chapter it came from, and the results screen breaks your score down chapter by chapter.
-- **Quiz This Topic:** Starts a quiz for the single topic open in Notes.
-- **Revision Bank:** One place for everything you have written notes for. Filter by chapter, free text, level and question type, read the notes, then start a quiz from exactly that selection.
-- **Practice Lab:** Coding challenges with automatic checks where supported and self-check workflows for the rest. Every challenge is labelled **Auto-checked** or **Self-check**, and code the checker cannot run is reported as "could not be checked" rather than as a wrong answer.
-- **Deep Problems:** Larger OOP and algorithm problems for deliberate practice.
-- **Concept Review:** Relevant notes appear after an incorrect quiz answer.
-- **Chapter PDF:** Select a chapter in Notes and print a readable chapter-wise PDF from the browser print dialog.
+Question records carry stable `qid`, migration aliases in `legacyQids`, and a
+semantic `contentVersion`. For an authored question that must survive a move or
+rename, assign a permanent `@quiz [id:...]` identifier before the move and keep it.
+The pipeline maintains `data\question-identities.json`; do not manually renumber
+records or treat the registry as an expendable cache.
 
-## Adding Notes
+## Repository map
 
-Add a `.java` file below `src/Chapter_<N>_<TopicName>/`. Put the main explanation before the class declaration and place short implementation insights beside the relevant code.
+| Location | Ownership |
+| --- | --- |
+| `src` | Authored Java notes and examples. |
+| `data` | Authored banks/metadata plus explicitly generated caches/identity records. |
+| `scripts` | Parsing, generation, shared approval, validation, and maintenance tools. |
+| `revision-dashboard` | Static UI plus generated datasets, ledger, suggestions, and review artifacts. |
+| `revision-dashboard\revision-state.json` | Generated record of the approved profile, content identity, and authored-input fingerprint. Committed with the approved content; it is what tells `npm run revise` that nothing needs review. |
+| `.revision-work` | Ignored candidate workspaces, writer lock, and publication recovery journal. |
+| `revision-portal-plans` | Portable future-framework implementation plans. |
 
-Good notes answer:
+Do not hand-edit generated datasets, `coverage.md`, or `suggestions.md`; fix their
+source inputs or generators and refresh through the revision workflow.
 
-- What the concept is.
-- Why it matters.
-- How the code works.
-- What input or parameters mean.
-- What output or result to expect.
-- Which boundary cases, mistakes, or interview traps deserve attention.
+### GitHub Pages deployment
 
-Use complete sentences. Keep one idea per bullet. Include a small code example when the idea is easier to understand by seeing the syntax. The generator preserves code-like comment lines as code blocks and keeps tables as tables.
+The Pages workflow uses `npm run approve` to build and validate deployable
+artifacts from the checked-out commit, then uploads `revision-dashboard`.
+`npm run check` is deliberately scratch-only and cannot replace that publication
+step. Relevant triggers include source, authored `data`, scripts, dashboard files,
+package metadata/lockfile, and the workflow itself. This is CI validation of the
+checkout, not an autonomous review or authoring service.
 
-## Custom Quiz And Challenge Tags
+## Plans for other technologies
 
-A written question, answered in your own words:
+The [plans folder](revision-portal-plans/README.md) is the easy-access index:
 
-```java
-// @quiz (INTERVIEW) Why is StringBuilder useful inside a loop?
-// @answer StringBuilder changes one mutable buffer instead of creating a new String for every concatenation.
-// @answer This usually reduces temporary objects and improves performance for repeated text changes.
-```
+- [Selenium with Java](revision-portal-plans/SELENIUM-JAVA-REVISION-PORTAL-PLAN.md)
+- [REST Assured with Java](revision-portal-plans/REST-ASSURED-JAVA-REVISION-PORTAL-PLAN.md)
+- [Karate DSL](revision-portal-plans/KARATE-DSL-REVISION-PORTAL-PLAN.md)
+- [Cypress with JavaScript / TypeScript](revision-portal-plans/CYPRESS-JS-TS-REVISION-PORTAL-PLAN.md)
+- [Playwright with JavaScript / TypeScript](revision-portal-plans/PLAYWRIGHT-JS-TS-REVISION-PORTAL-PLAN.md)
 
-An exam-style question with real options, which is what the Certified exam looks like. Mark the right choice with `[correct]`, and use `@why` to say why each wrong option is wrong:
-
-```java
-// @quiz (OCJP, MEDIUM) What is printed by this code?
-// @code System.out.println("abc".substring(0, 0));
-// @option abc
-// @option An empty line            [correct]
-// @option StringIndexOutOfBoundsException
-// @option Compilation fails
-// @explain substring(0, 0) is legal: beginIndex equals endIndex, so the range has length 0 and an empty String is printed.
-// @why A: "abc" is the original String; substring cannot return more text than it was given.
-// @why C: StringIndexOutOfBoundsException needs beginIndex > endIndex, or an index greater than length().
-// @why D: it compiles, because substring(int, int) is a valid method.
-```
-
-A coding challenge:
-
-```java
-// @challenge Implement a queue using an array
-// @desc Support enqueue, dequeue, peek, and isEmpty operations.
-// @hint Track the front and rear positions carefully and define the empty-queue behavior.
-// @testcase enqueue(4), enqueue(7), dequeue() -> 4
-```
-
-Supported markers are `@quiz`, `@answer`, `@code`, `@option`, `@explain`, `@why`, `@challenge`, `@desc`, `@hint`, and `@testcase`. These markers are intentionally kept out of ordinary topic notes and placed in their relevant dashboard features.
-
-The tag in parentheses is optional, and so is a level. Write `(OCJP)`, `(INTERVIEW)`, `(INTERVIEW TRAP)`, or combine them as `(OCJP, HARD)`. The tag drives the quiz filter pills and the level drives the Easy, Medium and Hard pills. A question with no level is Medium, except a trap, which is Hard.
-
-## Useful Commands
-
-```bash
-npm run revise   # propose changes, open them for review, then apply or discard
-npm run revise:cli  # the same proposal with a yes/no question in the terminal
-npm run approve  # generate, run every check, roll back if any fails, open the dashboard
-npm run generate # regenerate generated files without the checks or the review
-npm run audit    # validate the current generated files
-npm run check    # generate and run every check, without opening the dashboard
-```
-
-You write the notes. `npm run approve` does the rest: it regenerates the dashboard, verifies that the practice lab still accepts your own solutions, and that every question about output really prints what it claims. If any of that fails, nothing is applied.
-
-See [rules.md](rules.md) for the complete authoring contract and [TEMPLATE.md](TEMPLATE.md) for the optional cross-technology dashboard template.
+These are **future blueprints, not implemented framework portals**. Each file
+works on its own when copied into its destination repository. Begin with discovery
+and reviewed implementation, not blind copying of Java data. The old copy-based
+scaffolder is retired; see [TEMPLATE.md](TEMPLATE.md) for the reuse boundary.

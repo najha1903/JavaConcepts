@@ -1,226 +1,92 @@
-// ============================================================================
-// A small local review server, so the approval step can happen in the browser.
-//
-// `npm run revise` proposes the changes and writes two files next to the
-// dashboard: content-changes.md for reading and content-changes.json for this
-// page. The server then serves review.html, which shows the same proposed
-// changes with Apply and Discard buttons.
-//
-// Apply runs the generator without --propose, which is exactly what
-// `npm run approve` does, so the two paths can never drift apart.
-//
-// The server listens on the loopback interface only, and it exists only while
-// the review is open. Closing this window, or pressing Ctrl+C, ends it. Nothing
-// about the notes is written until Apply is chosen.
-// ============================================================================
-
 const http = require('http');
-const vm = require('vm');
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const workflow = require('./lib/revision-workflow');
+const openPage = require('./lib/open-page');
 
 const root = path.resolve(__dirname, '..');
-const dashboardDir = path.join(root, 'revision-dashboard');
-const jsonFile = path.join(dashboardDir, 'content-changes.json');
-const mdFile = path.join(dashboardDir, 'content-changes.md');
+const dashboard = path.join(root, 'revision-dashboard');
 const port = Number(process.env.REVIEW_PORT || 4317);
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.md': 'text/markdown', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
+const origins = new Set([`http://localhost:${port}`, `http://127.0.0.1:${port}`]);
 
-const CONTENT_TYPES = {
-  '.html': 'text/html; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.svg': 'image/svg+xml',
-  '.md': 'text/markdown; charset=utf-8',
-  '.png': 'image/png',
-  '.ico': 'image/x-icon'
-};
-
-function sendJson(res, status, payload) {
-  const body = JSON.stringify(payload);
+function json(res, status, payload) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
-  res.end(body);
+  res.end(JSON.stringify(payload));
 }
 
-function readPending() {
-  if (!fs.existsSync(jsonFile)) return null;
-  try {
-    const parsed = JSON.parse(fs.readFileSync(jsonFile, 'utf8'));
-    return parsed && parsed.awaitingReview ? parsed : null;
-  } catch (error) {
-    return null;
-  }
-}
-
-// The suggestions the author can accept. Read from the file scripts/suggest.js
-// writes, so the review page and the Coverage view show the same list.
-function readSuggestions() {
-  const file = path.join(dashboardDir, 'suggestions-data.js');
-  if (!fs.existsSync(file)) return { items: [] };
-  try {
-    const context = {};
-    vm.runInNewContext(`${fs.readFileSync(file, 'utf8')}\nthis.__s = SUGGESTIONS;`, context, { filename: 'suggestions-data.js' });
-    return context.__s || { items: [] };
-  } catch (error) {
-    return { items: [] };
-  }
-}
-
-// A small request body reader. The accepted keys arrive as JSON, so the body has
-// to be buffered before it can be parsed.
-function readBody(req) {
-  return new Promise(resolve => {
+function body(req) {
+  return new Promise((resolve, reject) => {
     const chunks = [];
-    req.on('data', chunk => chunks.push(chunk));
-    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
-    req.on('error', () => resolve(''));
+    let size = 0;
+    req.on('data', chunk => {
+      size += chunk.length;
+      if (size > 1024 * 1024) reject(new Error('Review request is too large.'));
+      else chunks.push(chunk);
+    });
+    req.on('end', () => {
+      try { resolve(JSON.parse(Buffer.concat(chunks).toString('utf8'))); } catch (error) { reject(error); }
+    });
+    req.on('error', reject);
   });
-}
-
-function clearPending() {
-  for (const file of [jsonFile, mdFile]) {
-    if (fs.existsSync(file)) fs.unlinkSync(file);
-  }
-}
-
-function runNodeScript(script, scriptArgs) {
-  const result = spawnSync(process.execPath, [path.join(__dirname, script), ...(scriptArgs || [])], {
-    cwd: root,
-    encoding: 'utf8'
-  });
-  const output = [result.stdout, result.stderr].filter(Boolean).join('\n').trim();
-  return { ok: result.status === 0, output };
-}
-
-function serveFile(res, filePath) {
-  if (!fs.existsSync(filePath)) {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('Not found');
-    return;
-  }
-  res.writeHead(200, {
-    'Content-Type': CONTENT_TYPES[path.extname(filePath).toLowerCase()] || 'application/octet-stream',
-    'Cache-Control': 'no-store'
-  });
-  fs.createReadStream(filePath).pipe(res);
 }
 
 const server = http.createServer(async (req, res) => {
-  const url = new URL(req.url, `http://localhost:${port}`);
-  const route = url.pathname;
-
-  if (route === '/api/pending') {
-    const pending = readPending();
-    // Suggestions travel with the proposal, so the review page can offer them in
-    // the same gate. Accepting writes to the author's files, so it must happen
-    // here, where Apply is the only thing that writes.
-    const suggestions = readSuggestions();
-    if (!pending) {
-      sendJson(res, 200, { pending: false, suggestions });
+  try {
+    const route = new URL(req.url, `http://localhost:${port}`).pathname;
+    if (route === '/api/pending' && req.method === 'GET') {
+      const proposal = workflow.pending(root);
+      json(res, 200, proposal ? { ...proposal, pending: true, suggestions: { items: proposal.suggestions } } : { pending: false });
       return;
     }
-    sendJson(res, 200, { pending: true, generated: pending.generated, totals: pending.totals, changes: pending.changes, suggestions });
-    return;
-  }
-
-  if (route === '/api/apply' && req.method === 'POST') {
-    if (!readPending()) { sendJson(res, 409, { ok: false, output: 'There is nothing waiting for review.' }); return; }
-    // Read the accepted suggestion keys from the request body. Nothing is written
-    // unless the caller names them, and each is named separately.
-    let acceptedKeys = [];
-    try {
-      const body = await readBody(req);
-      if (body) {
-        const parsed = JSON.parse(body);
-        // Only strings are usable as keys. A caller that sends objects - which
-        // PowerShell does when a string carries its note properties - must not be
-        // able to write anything, so anything else is dropped rather than guessed
-        // at.
-        if (Array.isArray(parsed.acceptedKeys)) {
-          acceptedKeys = parsed.acceptedKeys
-            .map(key => (typeof key === 'string' ? key : (key && typeof key.value === 'string' ? key.value : null)))
-            .filter(Boolean);
-        }
+    if (route === '/api/apply' || route === '/api/discard') {
+      if (req.method !== 'POST') { json(res, 405, { ok: false, output: 'Use POST for review actions.' }); return; }
+      if (req.headers.origin && !origins.has(req.headers.origin)) { json(res, 403, { ok: false, output: 'Open the local review page to approve changes.' }); return; }
+      const request = await body(req);
+      if (!request || typeof request.proposalId !== 'string') {
+        json(res, 400, { ok: false, output: 'A reviewed proposal ID is required. Reload the review.' });
+        return;
       }
-    } catch (error) {
-      acceptedKeys = [];
+      if (route === '/api/discard') {
+        workflow.discard(root, request.proposalId);
+        json(res, 200, { ok: true });
+        return;
+      }
+      const keys = request.acceptedKeys || [];
+      if (!Array.isArray(keys) || keys.some(key => typeof key !== 'string') || new Set(keys).size !== keys.length) {
+        json(res, 400, { ok: false, output: 'Select each suggestion only once.' });
+        return;
+      }
+      const args = [path.join(__dirname, 'approve.js'), '--proposal', request.proposalId];
+      keys.forEach(key => args.push('--accept', key));
+      const result = spawnSync(process.execPath, args, { cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
+      const output = [result.stdout, result.stderr, result.error && result.error.message].filter(Boolean).join('\n');
+      json(res, result.status === 0 ? 200 : 409, { ok: result.status === 0, output });
+      return;
     }
-
-    const results = [];
-    let ok = true;
-
-    if (acceptedKeys.length) {
-      const accept = runNodeScript('accept-suggestions.js', acceptedKeys);
-      results.push(accept.output);
-      if (!accept.ok) ok = false;
+    if (req.method !== 'GET') { json(res, 405, { ok: false }); return; }
+    const relative = route === '/' ? 'review.html' : decodeURIComponent(route).replace(/^\/+/, '');
+    const file = path.resolve(dashboard, relative);
+    if (!file.startsWith(dashboard + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) {
+      res.writeHead(404); res.end('Not found'); return;
     }
-
-    if (ok) {
-      // approve.js generates, verifies, and rolls the generated files back if a
-      // check fails. It is the same script `npm run approve` runs, so approving
-      // here can never accept content that approving in the terminal would reject.
-      const applied = runNodeScript('approve.js');
-      results.push(applied.output);
-      if (!applied.ok) ok = false;
-    }
-
-    if (ok) clearPending();
-    sendJson(res, ok ? 200 : 500, { ok, output: results.filter(Boolean).join('\n\n').trim() });
-    return;
+    res.writeHead(200, { 'Content-Type': `${types[path.extname(file)] || 'application/octet-stream'}; charset=utf-8`, 'Cache-Control': 'no-store' });
+    const stream = fs.createReadStream(file);
+    stream.on('error', error => res.destroy(error));
+    stream.pipe(res);
+  } catch (error) {
+    if (!res.headersSent) json(res, 409, { ok: false, output: error.message });
+    else res.destroy(error);
   }
-
-  if (route === '/api/discard' && req.method === 'POST') {
-    clearPending();
-    sendJson(res, 200, { ok: true });
-    return;
-  }
-
-  if (route === '/' || route === '/review.html') {
-    serveFile(res, path.join(dashboardDir, 'review.html'));
-    return;
-  }
-
-  // Everything else is a dashboard file, so the page can link straight into it.
-  const requested = path.normalize(path.join(dashboardDir, route.replace(/^\/+/, '')));
-  if (!requested.startsWith(dashboardDir)) { res.writeHead(403); res.end('Forbidden'); return; }
-  serveFile(res, requested);
 });
 
 server.on('error', error => {
-  if (error.code === 'EADDRINUSE') {
-    console.error(`\n   Port ${port} is already in use. Close the earlier review window,`);
-    console.error(`   or set a different one:  REVIEW_PORT=4318 npm run revise\n`);
-  } else {
-    console.error(`\n   The review server could not start: ${error.message}\n`);
-  }
-  process.exit(1);
+  console.error(`Review server could not start: ${error.message}. Stop an earlier review with Ctrl+C, or set REVIEW_PORT.`);
+  process.exitCode = 1;
 });
-
 server.listen(port, '127.0.0.1', () => {
-  const pending = readPending();
   const url = `http://localhost:${port}/`;
-  console.log('');
-  console.log(pending ? '🖥️  Review open in your browser' : '🖥️  Review server started, but nothing is waiting');
-  console.log(`   ${url}`);
-  console.log('');
-  if (pending) {
-    console.log('   Choose Apply to accept the changes, or Discard to leave everything as it is.');
-    console.log('   Nothing is written until you choose Apply.');
-  } else {
-    console.log('   There are no content changes waiting, so there is nothing to approve.');
-  }
-  console.log('   Close this window, or press Ctrl+C, when you are finished.');
-  console.log('');
-
-  // Open the default browser. Failure here is harmless: the URL is printed above.
-  // REVIEW_NO_OPEN=1 suppresses it, which is what the automated checks use.
-  if (process.env.REVIEW_NO_OPEN === '1') return;
-  if (process.platform === 'win32') {
-    spawnSync(process.env.ComSpec || 'cmd.exe', ['/c', 'start', '', url], { stdio: 'ignore' });
-  } else if (process.platform === 'darwin') {
-    spawnSync('open', [url], { stdio: 'ignore' });
-  } else {
-    spawnSync('xdg-open', [url], { stdio: 'ignore' });
-  }
+  console.log(`\nReview: ${url}\nApply or Discard in the browser. Stop this local server with Ctrl+C in the terminal.`);
+  if (process.env.REVIEW_NO_OPEN !== '1') openPage(url);
 });

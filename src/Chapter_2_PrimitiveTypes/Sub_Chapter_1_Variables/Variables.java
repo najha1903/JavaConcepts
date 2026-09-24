@@ -37,7 +37,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 
 // @quiz (INTERVIEW) What are Java's 8 primitive types and their sizes?
 // @answer byte (8-bit), short (16-bit), int (32-bit), long (64-bit), char (16-bit Unicode), float (32-bit IEEE 754), double (64-bit IEEE 754), and boolean (true/false).
-// @answer Primitives store their actual raw values directly in stack memory, whereas reference types store object memory addresses.
+// @answer Primitive variables hold values; reference variables hold references to objects, not the objects themselves. Local variables belong to method frames, while instance fields belong to objects, so neither kind of variable always lives on the stack.
 
 // @quiz (INTERVIEW TRAP) Do local variables receive default values in Java?
 // @answer No. Instance and static fields get default values (0, false, null), but local variables do not.
@@ -151,4 +151,3 @@ public class Variables {
         System.out.println(myFirstNumber);
     }
 }
-

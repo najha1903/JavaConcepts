@@ -22,7 +22,6 @@ const QUESTIONS_BANK = {
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_0-what-is-the-difference-between-jvm-jre-a",
       "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -36,14 +35,16 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_0-what-is-the-difference-between-jvm-jre-a",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7c0700771f8d17e088e8d870373f3c0aae4758db1fd761db2f440fea19a1165d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_1-why-is-java-called-platform-independent",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -57,14 +58,16 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_1-why-is-java-called-platform-independent",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e8a0f0f4047eb7c302b31e4badd0cc8a16ca9e3b8aa7964b4714b49173b85726"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_2-the-class-below-compiles-successfully-wh",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -87,14 +90,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Compilation succeeds, because a non-static main is a legal method like any other. The launcher, however, looks for `public static void main(String[])`, does not find it, and reports that no main method could be found.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_2-the-class-below-compiles-successfully-wh",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2d1299b3f1356d29953455613275a3e5aefa1d2e4829ecab2486d526d23feb84"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_3-which-main-method-signatures-let-the-cla",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -116,14 +121,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Both forms are accepted, because `String...` is compiled to `String[]`, so the two are the same signature once compiled. Nothing else qualifies: the method must be public, static, void, and take exactly one String array.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_3-which-main-method-signatures-let-the-cla",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0fe44d0e8999d9615c1e75ade3a4746cca9fa196564112cfac74005f6158d625"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_4-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -146,14 +153,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "`+` is evaluated left to right. In `\"A\" + a + 5` the text comes first, so both numbers are joined: A105. In `a + 5 + \"B\"` the arithmetic comes first, so 10 + 5 is 15 and then the text is joined: 15B. The empty println only ends the line.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_4-what-is-printed-by-this-program",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f229264d8b969f02ba324f8bf4c3c0ae28ffef0b034516c2fd58635e812c774f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_5-two-files-are-created-in-the-same-folder",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -176,14 +185,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A source file may hold several classes, but only one of them may be public, and its name must match the file name. Two public classes in one file is a compile-time error.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_5-two-files-are-created-in-the-same-folder",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "67487e6ef70ca193ad885ca2f894d82ee08cd6ebc6512e9c0157e2753c0f7b8c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_6-a-file-is-saved-as-start-java-and-contai",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -205,14 +216,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A public class must live in a file of the same name, so `public class Startup` has to be in Startup.java. The compiler reports this before producing any bytecode.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_6-a-file-is-saved-as-start-java-and-contai",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6b846daa2842ef51435579da512720061d965c4abfb52c250a2e6f9ad5062730"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_7-which-statement-correctly-describes-how-",
       "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -234,14 +247,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The nesting is JDK > JRE > JVM. The JDK adds development tools such as javac on top of the JRE, and the JRE provides the libraries and the JVM that runs a program.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_7-which-statement-correctly-describes-how-",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "31c4dfd7657e94d5ac6804d0da84bb2d73e49c4c964f51c45716f2dc6592701d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_8-what-does-javac-produce-and-what-runs-it",
       "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -263,14 +278,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "javac turns source into bytecode, and the JVM translates that bytecode into the native instructions of whatever machine it is running on.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_8-what-does-javac-produce-and-what-runs-it",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0e41b36f494f17ee0558db66726f008d9824018e7c755185430e2383297ed2ae"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_9-why-must-the-main-method-be-static",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -292,14 +309,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A program needs an entry point before any object exists, so main must be callable without an instance. That is what static provides.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_9-why-must-the-main-method-be-static",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3d6aa9033854cde06326f87913fae154f338a00be25676b82a3ef54d96b35531"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_10-which-single-change-to-public-static-voi",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -321,14 +340,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The launcher requires a method named main that is public, static, and void, with one String[] parameter. Extra modifiers such as final are allowed, so the method is still a valid entry point.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_10-which-single-change-to-public-static-voi",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "15c833c8d0c2f876c73c4bb8cd2de5067c9b7a60c8f830ba473b241f38cf6953"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_11-what-does-the-string-args-parameter-of-m",
       "difficulty": "easy",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -350,14 +371,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "args carries the values typed after the class name, for example `java HelloWorld Navneet 25` gives args[0] = \"Navneet\" and args[1] = \"25\". They are Strings, not numbers.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_11-what-does-the-string-args-parameter-of-m",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d83a9f2d6593d6c5681c54a73c6e3f18f305308436dc04b8a94c2d4d035057b7"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_12-what-actually-makes-write-once-run-anywh",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -379,14 +402,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The portable artefact is the .class file. The JVM is platform-specific, and that is the piece that adapts the same bytecode to each operating system.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_12-what-actually-makes-write-once-run-anywh",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9833c399279e49fc3259608226ccc3c3188c3737082cb920a1c81a26ebfa4961"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_13-the-program-below-is-run-with-java-hello",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -409,14 +434,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "args receives the words typed after the class name, in order. Two words were supplied, so the length is 2, and args[0] is the first one, \"Java\".",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_13-the-program-below-is-run-with-java-hello",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8330f7a5b9cfc4a40e05f34f7cd96b9ddfeebfe231384f53daf6420d13798d9d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_14-this-source-is-saved-and-you-run-javac-h",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -439,14 +466,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Compilation is a separate stage that happens before anything runs. A syntax problem stops javac, so the bytecode is never created and there is nothing to execute.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_14-this-source-is-saved-and-you-run-javac-h",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "24980eee52db6839fa6e044e27ff9ad714817d4f846e1adce9e18fb5baed48c4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_15-a-colleague-s-machine-has-the-jre-instal",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -468,14 +497,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The JRE contains the core libraries and the JVM, which is everything needed to run a program. The development tools, including javac, live in the JDK, which is the larger set that contains the JRE.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_15-a-colleague-s-machine-has-the-jre-instal",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5a0c45d3480188d0f65352896dbffe3a26bb7b5a78344df8d501dcb556e6daa5"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_16-you-compile-a-program-on-windows-then-co",
       "difficulty": "medium",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -497,14 +528,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The compiled .class file is the portable part. It contains bytecode, not machine code, and each platform's JVM turns that bytecode into instructions its own processor understands.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_16-you-compile-a-program-on-windows-then-co",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "18ec8ce0d4f52f2328953d124e1c3eb5ea84ba44265d9ffda743bd2ba453edec"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_17-the-class-below-compiles-successfully-wh",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -527,14 +560,16 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static int method named main is a perfectly legal Java method, so the compiler accepts it. The launcher, however, looks for public static void main with a single String[] parameter, so it finds no entry point and refuses to start.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_17-the-class-below-compiles-successfully-wh",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "82fbf144325add7a666f25c17d7960a3211cb5db47c3c815f79fe61046384ae5"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_18-you-change-a-message-inside-helloworld-j",
       "difficulty": "hard",
       "chapter": "Chapter 1: Java Introduction",
       "topic": "Hello World",
@@ -556,9 +591,12 @@ const QUESTIONS_BANK = {
       },
       "explanation": "java runs compiled bytecode; it does not read your .java file. Until javac produces a new .class, the JVM keeps running the previous version, which is why changing source without recompiling appears to do nothing.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
+      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_18-you-change-a-message-inside-helloworld-j",
       "concepts": [
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7c415d8f814528f927ff93275dec8bcccfed10080b1b03700bcbc6fa76983e10"
     },
     {
       "type": "scq",
@@ -589,7 +627,9 @@ const QUESTIONS_BANK = {
         "3": "The method must be static. Without static there is no instance to call it on, so the JVM cannot invoke it."
       },
       "explanation": "The entry point must be public, static and void, and take a String array. `String[] args` and `String args[]` are the same signature; `String args` is not. Note that a class can hold several methods called main as long as their parameters differ, and only the one matching this signature is the entry point.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "e311407a7d1fd6e2e84a80c9974ee2f23d6df436e60a500a8e671226fb540972"
     },
     {
       "type": "scq",
@@ -620,7 +660,9 @@ const QUESTIONS_BANK = {
         "3": "The compiler never reaches the point of producing a class file. The file name rule is checked first."
       },
       "explanation": "A public class must live in a file whose name matches it exactly, including case. Removing `public` makes the same file legal, and then the class file is still named after the class, so Test.class is produced.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "495e17d3a9786fc6269cd1ce3db3f53633400f011835090b4a3bcf6e512dcf06"
     },
     {
       "type": "scq",
@@ -651,7 +693,9 @@ const QUESTIONS_BANK = {
         "3": "java runs a compiled class, not a source file. Passing the source name makes it look for a class called HelloWorld.java."
       },
       "explanation": "javac takes a file name and writes a class file. java takes a class name, which is the file name without the extension, and finds the class on the classpath. That is why `javac HelloWorld.java` is followed by `java HelloWorld`.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "df74a3972bdaf8f96c6d112a7b3bad09c4f6d058fe02b99aaff16391ba007960"
     },
     {
       "type": "scq",
@@ -682,14 +726,15 @@ const QUESTIONS_BANK = {
         "3": "Java allows any number of classes in one file. What it restricts is how many may be public."
       },
       "explanation": "A file may hold any number of classes, but at most one may be public, and that one must match the file name. javac compiles every class it finds, so one source file can produce several class files. This is how a file can hold a public class plus the small helper classes only it needs.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "cee8b5d3898c7a22c9b4e1cde4de431b80cea741480fca9c2c6230acb65234f9"
     }
   ],
   "Chapter 2: Primitive Types": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_0-is-string-a-primitive-type-or-an-object-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -704,16 +749,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_0-is-string-a-primitive-type-or-an-object-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2e5375b09fbe07bfde930912b6117f1980ce58d9fa4eeabb532ca05eed60798e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_1-why-is-string-immutable-in-java",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -728,16 +775,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_1-why-is-string-immutable-in-java",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c9688d25a4f8c8838c6d982c304f7ca96b5e7700f81c81137cd37c55328a6dc0"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_2-what-is-the-string-pool-and-what-is-the-",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -752,16 +801,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_2-what-is-the-string-pool-and-what-is-the-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "142f46d5a4b430e2401e5f5889b85488c15cdfe7833c1db43261f52bba2cf3b7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_3-why-is-stringbuilder-preferred-over-stri",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -776,16 +827,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_3-why-is-stringbuilder-preferred-over-stri",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5b5a8c2509833659020a8952033567d26e7c3e672c336db533197d17a5757fa5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_4-what-prints-here-string-s-a-b-string-t-a",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -801,16 +854,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_4-what-prints-here-string-s-a-b-string-t-a",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "64cdb2146e3ff8d39c9dfe81e2ec3874308dfca274b7c48ac307ccb88c030b9e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_5-what-prints-here-string-s-new-string-ab-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -826,16 +881,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_5-what-prints-here-string-s-new-string-ab-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e543631e1713b3ddd111b4543721bbcc7b864872169ea2fb16054b899442e914"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_6-what-does-it-mean-that-strings-are-immut",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -850,16 +907,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_6-what-does-it-mean-that-strings-are-immut",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c645b50e366594d75068e40ceec9b02c0583dfcec8c63f9195265180fb472b6a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_7-what-is-the-difference-between-a-char-an",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -873,16 +932,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_7-what-is-the-difference-between-a-char-an",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "14156c24d590fcdea04fb35b9e52e7e1aa9e17af9acc7bc92f5e9f7c033d85fa"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_8-when-should-you-use-stringbuilder-instea",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -896,16 +957,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_8-when-should-you-use-stringbuilder-instea",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "95269eb0e0eb319eae09bd92559e74c7050c33e5105aa2ba2f2cd0965388856b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_9-int-a-10-int-b-20-string-c-navneet-what-",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -922,16 +985,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_9-int-a-10-int-b-20-string-c-navneet-what-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "40e450f01f79e8ea53914311e27d055ab7ba3cf90b1ec90fa89344b2e4aad38f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_10-int-a-10-int-b-20-string-c-navneet-what-",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -948,16 +1013,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_10-int-a-10-int-b-20-string-c-navneet-what-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8313e608ba10e980886edec924cc5c54d7f06ac36171e7900abc2742f3b63496"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_11-what-is-the-output-of-system-out-println",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -974,16 +1041,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_11-what-is-the-output-of-system-out-println",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "550b1fcc93690043c61c2e0486c95b8b60cf808a863584c4089b7c2d0c7dccb0"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_12-what-is-the-output-of-system-out-println",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1000,16 +1069,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_12-what-is-the-output-of-system-out-println",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "431690545059574e90cb2cea0a8016393c402d493c1518c867591ae94bd41ab9"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_13-what-is-the-output-of-system-out-println",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1025,16 +1096,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_13-what-is-the-output-of-system-out-println",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8ac1119708c1d68b2cfc9c021dfa68ef4a1fd7ebf86196c16800ae26f19e90c5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_14-what-is-the-output-of-char-ch-a-system-o",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1051,16 +1124,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_14-what-is-the-output-of-char-ch-a-system-o",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7c3d2c3dff23b68c06ea29a9a86e5bd29a0ddc22d1c263df08bf41673a9a2ca6"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_15-how-do-you-find-the-length-of-a-string-w",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1076,16 +1151,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_15-how-do-you-find-the-length-of-a-string-w",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "31456fe7602a9adcc8675c7e9db0626d8043fabf9c539266d83ebce9ebf3f86c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_16-what-is-the-output-of-string-s-java-s-co",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1101,16 +1178,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_16-what-is-the-output-of-string-s-java-s-co",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6b8e6a04bb21a1e053627f08688a0bccf886460c2879e08fcfadaf44d3ca2386"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_17-int-a-5-what-is-the-output-of-system-out",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1127,16 +1206,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_17-int-a-5-what-is-the-output-of-system-out",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "fa74e6e05a1f49aa59ead6bee9334e4d0584195a0b809c79d123705ceadc6125"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_18-how-do-you-reverse-a-string-without-usin",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1152,16 +1233,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_18-how-do-you-reverse-a-string-without-usin",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e4d228294ccfeedaf9ed792b1fa1ac34903d0c438e39f10e43125ea845b713e5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_19-how-do-you-check-if-a-string-is-a-palind",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1177,16 +1260,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_19-how-do-you-check-if-a-string-is-a-palind",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6967090583f2521dc923fff12000e28423a6cd2a48f5bc90fb6a6fc174742497"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_20-how-do-you-count-occurrences-of-a-specif",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1201,16 +1286,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_20-how-do-you-count-occurrences-of-a-specif",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b45569eac0be31ff2bcdbf1ab5d28f82da9bb56751da3d0df37b7600ebb41755"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_21-how-do-you-check-if-a-string-contains-a-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1225,16 +1312,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_21-how-do-you-check-if-a-string-contains-a-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7c26d7f0c6a53439c4e252ef602b07900e32c669db35d193fd4187ddf1b85b71"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_22-how-do-you-convert-a-string-to-uppercase",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1249,16 +1338,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_22-how-do-you-convert-a-string-to-uppercase",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9cc4e773064ba48ac6eeebb0f088ee9f7037ed4c6b65fae09e87c5994fc8a116"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_23-how-do-you-count-vowels-in-a-string-with",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1273,16 +1364,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_23-how-do-you-count-vowels-in-a-string-with",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5355327abc48278f53b24ba9cc063e8911a7aae542ff2730b6956ee8d7735a6d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_24-how-do-you-check-if-two-strings-are-anag",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1298,16 +1391,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_24-how-do-you-check-if-two-strings-are-anag",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "481f7e2c535e392eaa41b96e946e7416e2ea9bea55cdebddd2c73e466194ea2b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_25-how-do-you-remove-all-spaces-from-a-stri",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1322,16 +1417,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_25-how-do-you-remove-all-spaces-from-a-stri",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5ffeed73fcc51630e856a11e97a12f9b9e986d59c7a55ee09769ada9fb42c02f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_26-how-do-you-count-words-in-a-string-witho",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1346,16 +1443,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_26-how-do-you-count-words-in-a-string-witho",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "315347e935647a7567da312645dee150c514bde80aedf5bd47f4507461a48e1e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_27-how-do-you-find-the-first-non-repeating-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1370,16 +1469,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_27-how-do-you-find-the-first-non-repeating-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "074a3531901b63283ba3ef807f477831be2b0324c32009f3cd5e79b5813efbf7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_28-how-do-you-remove-duplicate-characters-f",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1394,16 +1495,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_28-how-do-you-remove-duplicate-characters-f",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4aff5b21237e6551592a45a9f3231ade81b3114a87a9f1db553e799f1994957f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_29-how-do-you-check-if-a-string-is-numeric-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1418,16 +1521,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_29-how-do-you-check-if-a-string-is-numeric-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c580db6b6c43cb55176fcf1e14a828745f5524e89182227f852ec626f479d9ab"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_30-what-is-the-difference-between-and-equal",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1444,16 +1549,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_30-what-is-the-difference-between-and-equal",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e76b6000f23499c05d7081ce76aec984bcb0421b115a50f821ca8002a3aaae62"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_31-what-is-the-output-of-integer-a-127-inte",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1471,16 +1578,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_31-what-is-the-output-of-integer-a-127-inte",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ec28af759c4039a3c59c5c06bd7a5999e731b8a5f7e77c9e6903d54731cf1ba7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_32-if-s-concat-is-fun-receives-is-fun-as-it",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1495,16 +1604,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_32-if-s-concat-is-fun-receives-is-fun-as-it",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d82bc18f1f92616c766f47726408e71effa9b938a2761a1f76ed0dbc2960e0b2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_33-what-should-you-remember-about-the-args-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "String Example",
@@ -1519,51 +1630,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_custom_33-what-should-you-remember-about-the-args-",
       "concepts": [
         "wrappers",
         "strings",
         "string-pool"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-strings-stringexample-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "String Example",
-      "question": "Which of the following are TRUE about String Example? Select all that apply.",
-      "options": [
-        "A String is a sequence of characters of any length — from empty \"\" to thousands of characters long.",
-        "Variables declared inside the for loop init section are local to the loop only.",
-        "A variable is a named storage location in memory that holds a data value.",
-        "Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes (\"Hello\").",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Local Variables And Scope\", not of \"String Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Variables\", not of \"String Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about String Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Example.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "wrappers",
-        "strings",
-        "string-pool"
-      ]
+      "legacyQids": [],
+      "contentVersion": "2c7165d255f3a44c10af76fa0379bd28935dc393d38fcd382c74af2da250206d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_0-can-system-out-println-thirdvariable-use",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Local Variables And Scope",
@@ -1578,6 +1656,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_0-can-system-out-println-thirdvariable-use",
       "concepts": [
         "primitives",
         "literals",
@@ -1586,12 +1665,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ef9518173494d428b713b4d2b900e28043dea5e6f7a0c546a8ca159ced8ad0d3"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_1-what-must-the-parameter-inside-if-firstv",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Local Variables And Scope",
@@ -1606,6 +1686,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_custom_1-what-must-the-parameter-inside-if-firstv",
       "concepts": [
         "primitives",
         "literals",
@@ -1614,51 +1695,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-localvariablesandscope-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Local Variables And Scope",
-      "question": "Which of the following are TRUE about Local Variables And Scope? Select all that apply.",
-      "options": [
-        "Variables declared inside the for loop init section are local to the loop only.",
-        "In a switch, a variable declared in one case IS accessible to later cases (cases that come after), but NOT to earlier cases, and NOT outside the switch.",
-        "A variable is a named storage location in memory that holds a data value.",
-        "Variables declared inside an if block are NOT accessible in else or outside the if.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Variables\", not of \"Local Variables And Scope\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"String Example\", not of \"Local Variables And Scope\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Local Variables And Scope. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Local Variables And Scope.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/LocalVariablesAndScope.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "primitives",
-        "literals",
-        "wrappers",
-        "casting",
-        "strings",
-        "string-pool",
-        "var"
-      ]
+      "legacyQids": [],
+      "contentVersion": "a0b82309c228c6f6d1b6d40447b5653497eee81865d8950ebb9ebe4112c135ff"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_0-what-are-java-s-8-primitive-types-and-th",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1666,13 +1709,14 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "What are Java's 8 primitive types and their sizes?",
-      "modelAnswer": "byte (8-bit), short (16-bit), int (32-bit), long (64-bit), char (16-bit Unicode), float (32-bit IEEE 754), double (64-bit IEEE 754), and boolean (true/false). Primitives store their actual raw values directly in stack memory, whereas reference types store object memory addresses.",
+      "modelAnswer": "byte (8-bit), short (16-bit), int (32-bit), long (64-bit), char (16-bit Unicode), float (32-bit IEEE 754), double (64-bit IEEE 754), and boolean (true/false). Primitive variables hold values; reference variables hold references to objects, not the objects themselves. Local variables belong to method frames, while instance fields belong to objects, so neither kind of variable always lives on the stack.",
       "keyPoints": [
         "byte (8-bit), short (16-bit), int (32-bit), long (64-bit), char (16-bit Unicode), float (32-bit IEEE 754), double (64-bit IEEE 754), and boolean (true/false).",
-        "Primitives store their actual raw values directly in stack memory, whereas reference types store object memory addresses."
+        "Primitive variables hold values; reference variables hold references to objects, not the objects themselves. Local variables belong to method frames, while instance fields belong to objects, so neither kind of variable always lives on the stack."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_0-what-are-java-s-8-primitive-types-and-th",
       "concepts": [
         "primitives",
         "literals",
@@ -1681,12 +1725,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c5e2610c44aeb509f8f14fcf429cf0283525cc16cc4a97eff564495813732be3"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_1-do-local-variables-receive-default-value",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1702,6 +1747,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_1-do-local-variables-receive-default-value",
       "concepts": [
         "primitives",
         "literals",
@@ -1710,12 +1756,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "633a455a22c52381ccb16d7778ba8b3ed7c069d044c522709d18a99861e1d318"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_2-which-of-these-is-a-valid-java-variable-",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1737,6 +1784,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An identifier must begin with a letter, an underscore, or a dollar sign, may not be a keyword, and by convention uses camelCase.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_2-which-of-these-is-a-valid-java-variable-",
       "concepts": [
         "primitives",
         "literals",
@@ -1745,12 +1793,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9f1da9349fcf68117a87b62b12f41f0ac07486cb659cfe09278be86d6e6e581a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_3-is-int-x-1-000-000-valid-java-and-what-d",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1772,6 +1821,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Underscores exist purely to make long numbers easier for a human to read. The compiler strips them, so the value is unchanged.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_3-is-int-x-1-000-000-valid-java-and-what-d",
       "concepts": [
         "primitives",
         "literals",
@@ -1780,12 +1830,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "14b6b39689fddf894222884434bdccfbe0c3ae67b54db649ca270b3968de72c2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_4-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1808,6 +1859,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Local variables never receive a default value, unlike fields. Reading count before assigning it is a compile-time error.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_4-does-this-code-compile",
       "concepts": [
         "primitives",
         "literals",
@@ -1816,12 +1868,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f4039da43c63c586fd397580370ebef4f652f597f23692f766ddbd430565fca0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_5-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1844,6 +1897,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A name declared inside a block is a new variable that shadows the outer one for that block. After the closing brace the outer one is visible again.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_5-what-is-printed-by-this-code",
       "concepts": [
         "primitives",
         "literals",
@@ -1852,12 +1906,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "44934a020319294f978105ab83e0b27437a70cc17b58d93fc37dc70031400675"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_6-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1880,6 +1935,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "final means the variable is assigned exactly once. Once the declaration has given it a value, any further assignment is an error.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_6-does-this-code-compile",
       "concepts": [
         "primitives",
         "literals",
@@ -1888,12 +1944,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ae26993285899ad654821eeeb970237c33cce59985f7ef259c2a4e2e4d668430"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_7-which-of-these-variable-declarations-doe",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1915,6 +1972,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An identifier must begin with a letter, an underscore, or a dollar sign. It may not begin with a digit.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_7-which-of-these-variable-declarations-doe",
       "concepts": [
         "primitives",
         "literals",
@@ -1923,12 +1981,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ef2a57411f936eaf67a14ff1e2b766b6db7d1ed01256a00ce43d52c1a47d5a77"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_8-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1951,6 +2010,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A local variable is in scope from its declaration onwards. The println comes first, so at that point total is unknown.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_8-does-this-code-compile",
       "concepts": [
         "primitives",
         "literals",
@@ -1959,12 +2019,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f6ed1ba2e083468b879b96c23641b526607fde69e2425bad9b7f68badf75a47f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_9-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Variables",
@@ -1987,6 +2048,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java checks definite assignment at compile time. Assigning on both paths makes the later read legal, and flag is false so the else branch gives 2.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_9-what-is-printed-by-this-code",
       "concepts": [
         "primitives",
         "literals",
@@ -1995,51 +2057,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Variables",
-      "question": "Which of the following are TRUE about Variables? Select all that apply.",
-      "options": [
-        "Identifiers must begin with a letter, underscore (_), or dollar sign ($).",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "A variable is a named storage location in memory that holds a data value.",
-        "Variables declared inside the for loop init section are local to the loop only.",
-        "In Java, variables are strongly typed: every variable must be declared with a specific data type before it can be used."
       ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"String Example\", not of \"Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Local Variables And Scope\", not of \"Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Variables. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Variables.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "primitives",
-        "literals",
-        "wrappers",
-        "casting",
-        "strings",
-        "string-pool",
-        "var"
-      ]
+      "legacyQids": [],
+      "contentVersion": "666409650e84549ebbf401edfa55fb6a6ce75422f79e6ecb50ae6737e71fab4a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_0-why-is-if-highscore-50-not-the-right-par",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
@@ -2054,6 +2078,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_0-why-is-if-highscore-50-not-the-right-par",
       "concepts": [
         "primitives",
         "literals",
@@ -2062,12 +2087,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "dcb8a59e85a9b250001c19fb8d2330401fb8f43bde754a6c909689abccb76489"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_1-which-of-these-identifiers-is-a-reserved",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
@@ -2089,6 +2115,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A keyword has a fixed meaning in the language, so it can never be used for a class, method, or variable name.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_1-which-of-these-identifiers-is-a-reserved",
       "concepts": [
         "primitives",
         "literals",
@@ -2097,12 +2124,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "095bf658dfc39035f0e03e18c806c7e404c1fa977d712af5e53c6c32291f8198"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_2-in-the-statement-below-which-part-is-not",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
@@ -2125,6 +2153,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An expression is built from variables, literals, and operators. The type int says what kind of value is being declared.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_2-in-the-statement-below-which-part-is-not",
       "concepts": [
         "primitives",
         "literals",
@@ -2133,12 +2162,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3fa721b416b8986194bd6f3a34a7263d651d846386fbc25feae07244851e8177"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_3-which-line-does-not-compile",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
@@ -2160,6 +2190,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java is case-sensitive, so class is the keyword while Class is just an ordinary identifier. A keyword may never name a variable.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_3-which-line-does-not-compile",
       "concepts": [
         "primitives",
         "literals",
@@ -2168,12 +2199,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a1e727ff16bd50525734df797ff45081a97fb861ac9813e71c8d294b8d9c104d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_4-which-of-these-is-an-expression",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
@@ -2195,6 +2227,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An expression works out to a value. The comparison highScore == 50 produces a boolean, so it is an expression.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_4-which-of-these-is-an-expression",
       "concepts": [
         "primitives",
         "literals",
@@ -2203,12 +2236,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d38b6c9e8ffa3dbcc9795594b09dd33612f997baa85a4586f30e2eff645fdd03"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_5-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Key Words And Expressions In Java",
@@ -2231,6 +2265,7 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java tells upper and lower case apart in every identifier, so Total and total are two separate int variables. Adding them gives 30.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_custom_5-what-is-printed-by-this-code",
       "concepts": [
         "primitives",
         "literals",
@@ -2239,51 +2274,13 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-2-keywords-and-expressions-keywordsandexpressionsinjava-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Key Words And Expressions In Java",
-      "question": "Which of the following are TRUE about Key Words And Expressions In Java? Select all that apply.",
-      "options": [
-        "An expression in Java is any combination of variables, literals, operators, and method calls that evaluates to a single value.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.",
-        "Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.",
-        "Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.",
-        "Variables declared inside the for loop init section are local to the loop only."
       ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"String Example\", not of \"Key Words And Expressions In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Local Variables And Scope\", not of \"Key Words And Expressions In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Key Words And Expressions In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Key Words And Expressions In Java.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_2_KeyWords_And_Expressions/KeyWordsAndExpressionsInJava.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "primitives",
-        "literals",
-        "wrappers",
-        "casting",
-        "strings",
-        "string-pool",
-        "var"
-      ]
+      "legacyQids": [],
+      "contentVersion": "4763e55817f91541da0e1225449bc0dbc8dc74da60e5497240c5777ae37d15b8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_0-what-is-the-difference-between-widening-",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2298,16 +2295,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_0-what-is-the-difference-between-widening-",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "217a196158a7597fdadeef89f2b86e7a9c8ff05ce7698f5af391fd29252f4536"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_1-what-is-integer-overflow-in-java",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2322,16 +2321,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_1-what-is-integer-overflow-in-java",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1f865c02aa3d72fea205eb43487e51e0e0b194321bda4716b3657c0d07d7ef1b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_2-why-does-integer-division-drop-the-decim",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2346,16 +2347,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_2-why-does-integer-division-drop-the-decim",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2b5c5a70cc61d0db4ef508b8b733a3e2779f66630ef9181bdc469c4ccce031b4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_3-what-is-the-output-of-system-out-println",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2371,16 +2374,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_3-what-is-the-output-of-system-out-println",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6d9036679460b0e90ed220c466797c2b0320c540ea01fc4ce8e5e07d9bdcebec"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_4-what-happens-here-long-l-10-int-i-l",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2396,16 +2401,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_4-what-happens-here-long-l-10-int-i-l",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "cde79d27df0d41eb38e12f1d3d3fd63593c1686cafd13244ea4d3382bdf6421c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_5-what-are-the-default-values-of-java-prim",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2421,16 +2428,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_5-what-are-the-default-values-of-java-prim",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "44f87aa5fd8773aba9985a3442fdc28190ee882b84232ec86a3a74b218432093"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_6-what-happens-in-java-when-you-run-int-x-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2446,16 +2455,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_6-what-happens-in-java-when-you-run-int-x-",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2b737e1fe15991c23efc509823359677e9f8a4ec2d27622b008a3a7a811fccef"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_7-what-is-the-difference-between-widening-",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2471,16 +2482,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_7-what-is-the-difference-between-widening-",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "11f8d15dcbe298d5d38b65c10a99512c9724626f299cc53e88b1cfd81a93da16"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_8-is-this-valid-java-int-x-1-000-000-and-w",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2496,16 +2509,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_8-is-this-valid-java-int-x-1-000-000-and-w",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "40bdeff1d18fc48922e08ddfbba092db1530bb0e0bb2bf0f62d965077310ac5a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_9-which-statement-about-primitive-type-siz",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2527,16 +2542,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java has exactly 8 primitive types, and their ranges are asymmetric because one bit is used for the sign. The largest positive value is one less than the magnitude of the smallest negative value.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_9-which-statement-about-primitive-type-siz",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d0ce9484dcdf26659f41eb83af9c0b2a6d708aae0dbaf3c0a10bfd96b4c324b4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_10-what-is-the-difference-between-widening-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2556,18 +2573,20 @@ const QUESTIONS_BANK = {
         "1": "requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.",
         "2": "if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents."
       },
-      "explanation": "Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.",
+      "explanation": "Widening follows byte -> short -> int -> long -> float -> double, with char widening to int and onward. short does not widen to char. Narrowing generally needs an explicit cast because range or precision can be lost; widening to float or double can also lose precision.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_10-what-is-the-difference-between-widening-",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "90334e6a2eb137346fa0d79a45b473d890359018e86b6f223a29b05370b0e823"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_11-what-is-printed-by-these-two-statements",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2590,16 +2609,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "When both operands of / are integers, Java performs integer division and drops the fractional part. As soon as one operand is a floating-point value, floating-point division happens and the fraction is kept.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_11-what-is-printed-by-these-two-statements",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "75c32e61d09c5a23e33c180945e8b3ef068e4c61ddc03f796564493481acf20b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_12-what-is-the-value-of-x-after-this-code-r",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2622,16 +2643,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "int is a 32-bit signed two's-complement type. Incrementing the largest bit pattern carries over into the sign bit, which produces the smallest negative value. Java discards the carry bit and throws nothing.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_12-what-is-the-value-of-x-after-this-code-r",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "68fa29ba5e2d89074dd2fe7099946648c0b3d6235710ee0e85b0c0b31bccb2d5"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_13-which-statement-about-numeric-literal-su",
       "difficulty": "easy",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2653,16 +2676,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Whole-number literals are int unless L is added. Decimal literals are double by default, so float needs the f suffix. The d suffix is allowed but never required.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_13-which-statement-about-numeric-literal-su",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c8d7525738eeb61dfb05f588baf0d28ade1ce6a59a55bbee331c4559ff1b91b2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_14-which-statement-about-default-values-in-",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2684,16 +2709,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Fields are zeroed as part of creating the object or class. Local variables live only as long as the method call, so Java refuses to guess a value and reports a compile error if you read one before assigning it.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_14-which-statement-about-default-values-in-",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d71b3f99de9dce74b78e58178c4a875b7de139ea2cc6a322c5db998e538c0d29"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_15-which-statement-about-char-is-correct",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2715,16 +2742,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A char is a single 16-bit Unicode code unit written in single quotes. The Unicode escape is written in hexadecimal, so the escape for 0044 is 0x44, which is decimal 68, the letter D.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_15-which-statement-about-char-is-correct",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "70644be9fce5cb4d1669e13c0d50e3417fe3ab88b17d60ddb07b4bdada338bfd"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_16-what-is-the-value-of-n",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2747,16 +2776,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Narrowing a decimal to an int discards the fractional part; it does not round it. Use Math.round when rounding is what you actually want.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_16-what-is-the-value-of-n",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "50865d73a6e809ab9cecde2858154d706e9832646e0b3e433b3b1b154edb1f25"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_17-what-does-the-byte-parameter-like-target",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2771,16 +2802,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_17-what-does-the-byte-parameter-like-target",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c728c7274651ff850c00ed2448fd03664be9f9b21d8435c14252ddfa4b360245"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_18-why-choose-5f-instead-of-5-in-floatvalue",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2795,16 +2828,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_18-why-choose-5f-instead-of-5-in-floatvalue",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "663c377a8f5e5459ecda57e714b40b75f89d0982afb6774f0a8a66a326ad31a6"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_19-does-this-line-compile",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2827,16 +2862,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_19-does-this-line-compile",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6f331aad25e4bac5b02399876f1fd76417f2ddb5496ffea9ae11c5e8e90bd9af"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_20-what-is-printed-by-these-two-statements",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2859,16 +2896,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Integer division truncates towards zero, so -3.5 becomes -3. The remainder then has the same sign as the dividend, which makes -7 % 2 equal to -1.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_20-what-is-printed-by-these-two-statements",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d7fcca073bce0d2a41f06f76fa2b27170ed6eb161b5690c43d3f7004055a4a9a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_21-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2891,16 +2930,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "double is a binary floating-point type, and 0.1 and 0.2 cannot be stored exactly in binary. The tiny errors add up, so the sum is slightly more than 0.3 and the exact comparison fails. This is why BigDecimal is used for money.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_21-what-is-printed-by-this-code",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "319c119cdd44377e50767fb50e5bc1d471fb5b64fd330e2ed6181f8ef1015e05"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_22-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2923,16 +2964,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java promotes short and byte operands to int before arithmetic. The result of s + 1 is therefore an int, and narrowing it back to short needs an explicit cast such as s = (short)(s + 1).",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_22-does-this-code-compile",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "caf544fb56febccf0eadf77df71c1d00f607346b7d39c686e71cafcc68abea47"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_23-which-statement-about-boolean-in-java-is",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2954,16 +2997,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java keeps boolean completely separate from the numeric types. Unlike C, there is no conversion between true and 1, and a boolean is already the only thing an if condition needs.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_23-which-statement-about-boolean-in-java-is",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "25f9c56ef0c14a0edaa8f36a4dd025413b94fdbb370e9211749464df0096c62a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_24-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -2986,16 +3031,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "1 and 3 are int, so this is integer division. The 0 result is then widened to double, giving 0.0.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_24-what-is-printed-by-this-code",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6185681adb557d118b506559a23f1fe75fce4af9a160a85430fc07933cf9e18b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_25-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -3018,16 +3065,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A char is a number underneath, and 'A' is 65. Arithmetic promotes it to int, so c + 1 is the int 66.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_25-what-is-printed-by-this-code",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ef69c6e2b4bb416be83a570075e46c7de4e215918a087a6e599cc15ce32eb2c4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_26-does-this-line-compile",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -3050,16 +3099,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A whole-number literal is an int unless it has a suffix. This one is past Integer.MAX_VALUE, so it is rejected.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_26-does-this-line-compile",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "516462caae6aff93f27a663eee94e006428a91536ff25b883e7544d0bc1a47ac"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_27-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -3082,16 +3133,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A float keeps about 7 significant digits and a double about 15, and neither stores 0.1 exactly.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_27-what-is-printed-by-this-code",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c009fe21475d0f57a6d51512a51492a09414a0749a0410d4a6a7979433ccc82a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_28-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -3114,16 +3167,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A byte holds -128 to 127. The int 130 is bit pattern 1000 0010, which as a signed byte is 130 - 256 = -126.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_28-what-is-printed-by-this-code",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "818cbd8b54dac71c9a46f3e703c96b475e490e2e94b0edba7a1e06c6f565db74"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_29-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 2: Primitive Types",
       "topic": "Primitive Data Types",
@@ -3146,46 +3201,14 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Narrowing a floating-point value to int does not wrap. A value too large becomes Integer.MAX_VALUE.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
+      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_29-what-is-printed-by-this-code",
       "concepts": [
         "literals",
         "casting",
         "string-pool"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 2: Primitive Types",
-      "topic": "Primitive Data Types",
-      "question": "Which of the following are TRUE about Primitive Data Types? Select all that apply.",
-      "options": [
-        "Java has exactly 8 primitive data types — these are the most fundamental building blocks for storing data.",
-        "Variables declared inside the for loop init section are local to the loop only.",
-        "Unlike objects, primitive types are stored directly in memory (not as references), making them fast and memory-efficient.",
-        "These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.",
-        "String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment."
       ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Local Variables And Scope\", not of \"Primitive Data Types\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"String Example\", not of \"Primitive Data Types\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Primitive Data Types. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Primitive Data Types.",
-      "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "literals",
-        "casting",
-        "string-pool"
-      ]
+      "legacyQids": [],
+      "contentVersion": "ca6bed3cb3abafabdd39e4b626e38528a848d896ace9607b38549d3acf311645"
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-string-pool-1",
@@ -3210,7 +3233,9 @@ const QUESTIONS_BANK = {
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0b383e249891fa3fdc99cee0bd5991a652313142a7cb51795b184fab97abf94d"
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-string-pool-2",
@@ -3239,7 +3264,9 @@ const QUESTIONS_BANK = {
         "strings",
         "string-pool",
         "var"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "31785ea1b79bdb7f3e01956ff627ef11229d6bdc1f5b1908d28224938c39b32d"
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-string-concat-1",
@@ -3264,7 +3291,9 @@ const QUESTIONS_BANK = {
         "wrappers",
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a3b5e1784399fe89e996a466d1b3d3f2168b8759307d6aae92157dd897a592aa"
     },
     {
       "qid": "ocjp-chapter-2-primitive-types-int-cast-1",
@@ -3289,7 +3318,9 @@ const QUESTIONS_BANK = {
         "literals",
         "casting",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0ba7555f8c79f5c22bf4065ffc0675be64322410879500c88a6e90b64f88fd6d"
     },
     {
       "type": "predict",
@@ -3312,9 +3343,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "int max = Integer.MAX_VALUE;\nSystem.out.println(max + 1);",
       "answer": [
-        "-2147483648"
+        "-2147483648\n"
       ],
-      "explanation": "2147483648, which is Integer.MIN_VALUE — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "-2147483648\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"-2147483648\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "6670f6b1dc5ab7a68b5c62ca1abaf6b20e839986bbe795b44e81c3eb686639fd"
     },
     {
       "type": "predict",
@@ -3337,9 +3384,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "System.out.println(5 / 2);\nSystem.out.println(5 / 2.0);",
       "answer": [
-        "2\r\n2.5"
+        "2\n2.5\n"
       ],
-      "explanation": "2, because both operands are int — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "2\n2.5\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"2\\n2.5\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "d52529b07bc7d65a6712c518c3905aae4d3c8ccb6a033afa19e3dff5c2538975"
     },
     {
       "type": "predict",
@@ -3362,16 +3425,31 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "char c = 'A';\nSystem.out.println(c + 1);\nSystem.out.println((char) (c + 1));",
       "answer": [
-        "66\r\nB"
+        "66\nB\n"
       ],
-      "explanation": "66, because 'A' is 65 and c is promoted to int — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "66\nB\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"66\\nB\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "23de98526ac78f2e71b19de8a2ae1330bbbce71d75c3f0bafc8c38777c5e3fde"
     }
   ],
   "Chapter 3: Operators": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_0-what-is-the-output-of-system-out-println",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3387,16 +3465,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_0-what-is-the-output-of-system-out-println",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9a9f86ca70da68bce0e489d80a13e868ec386e4a2eca17a725f763de613abcc6"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_1-what-is-the-output-of-system-out-println",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3412,16 +3492,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_1-what-is-the-output-of-system-out-println",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ba07bca08735499ec0e773c2030ba78269af4059a2e1fd25083d1d61e17f86ac"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_2-what-is-the-output-of-system-out-println",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3438,16 +3520,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_2-what-is-the-output-of-system-out-println",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "72d4e0390b0b21d591b0595acaf458757da0662a656bda498472ead8d01cf8fb"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_3-what-is-the-golden-rule-for-the-operator",
       "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3462,16 +3546,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_3-what-is-the-golden-rule-for-the-operator",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f541341fd10d85e6e48b9bb8a22802f15ff8e4060999ac75a89aefd9dfbeaed1"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_4-what-is-wrong-with-writing-if-x-5-instea",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3488,16 +3574,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_4-what-is-wrong-with-writing-if-x-5-instea",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "fac5964c706707e60e3b661d4fbd780e9359011c86f9201dacaeecaa0f34f92a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_5-what-is-the-output-of-int-x-10-string-re",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3513,16 +3601,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_5-what-is-the-output-of-int-x-10-string-re",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "333061191aac545cf4c66537b7d8e2089fb63ad0c78b83405fcd56752b32a7d8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_6-why-does-byte-b-10-b-5-compile-but-b-b-5",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3538,16 +3628,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_6-why-does-byte-b-10-b-5-compile-but-b-b-5",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5445ad7d3b6fb706e779eed49d7bfd0d0e07ac85e3b72ffcd4222645129159d8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_7-what-is-the-difference-between-and-when-",
       "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3563,16 +3655,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_7-what-is-the-difference-between-and-when-",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "938b91a1efc2e916fd5847cadeed9e8c92b9be2b7aad60b2675d96a30264507a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_8-how-do-the-operands-you-choose-affect-th",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3587,16 +3681,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_8-how-do-the-operands-you-choose-affect-th",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "402f5e68da7770ed972d6b4afa9294d95fa0c517cd8b165b3f21434e9bdd265b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_9-what-is-important-about-the-right-hand-v",
       "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3611,16 +3707,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_9-what-is-important-about-the-right-hand-v",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "29c56f749845ceee0840bcdaec2fd4b72ce16458e292cb6fcfb8a0062a52d204"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_10-which-statement-correctly-defines-an-ope",
       "difficulty": "easy",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3642,16 +3740,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "In 15 + 12, the + is the operator and 15 and 12 are the operands. The whole thing is an expression, because it evaluates to a single value, 27.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_10-which-statement-correctly-defines-an-ope",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4a193d56098c9b08ff90cc14491998a96b49920bcccfb64a69c5e91a60338559"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_11-reading-strictly-left-to-right-what-is-p",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3675,16 +3775,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java evaluates + strictly from left to right. 10 + 20 are both int, so that is arithmetic and gives 30. Then 30 + \"Java\" involves a String, so it becomes concatenation and produces 30Java.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_11-reading-strictly-left-to-right-what-is-p",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bdc30b454057a5e616f44904dc898b0ec864be354fe3e08576de43b2cc0aa52d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_12-what-is-printed-when-the-string-operand-",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3708,16 +3810,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Once the left operand is a String, every following + is concatenation. \"Java\" + 10 gives \"Java10\", and \"Java10\" + 20 gives \"Java1020\".",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_12-what-is-printed-when-the-string-operand-",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ef59d7421883997dd82623df1e12305ccead6ac72e11966167bf494e643d4a44"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_13-why-does-byte-b-10-b-5-compile-while-b-b",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3739,16 +3843,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A compound assignment such as += is defined to perform the arithmetic and then cast the result back to the type of the left-hand variable. A plain addition promotes byte to int, and Java will not narrow back automatically.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_13-why-does-byte-b-10-b-5-compile-while-b-b",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1a2322321c39c56ae1eca9efcdc1ef996e32b595a66e42390dfdb170af872ede"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_14-what-is-the-difference-between-and-for-b",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3770,16 +3876,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Short-circuiting is what makes a guard such as obj != null && obj.isReady() safe. With &, the right side would still run and could throw a NullPointerException.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_14-what-is-the-difference-between-and-for-b",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "dc0967d42f67408e258df65b633a9f96cbb217e26161e8af97c83055dd8b3872"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_15-what-are-the-results-of-10-3-and-10-3",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3801,16 +3909,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "With two int operands, / is integer division and discards the remainder, so 10 / 3 is 3. The % operator returns that remainder, which is 1.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_15-what-are-the-results-of-10-3-and-10-3",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "320cc9228110fff50a7eb3e22a50cd8bb4e44f6cfb9e2713f380f8bcf4e8d75f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_16-what-happens-with-int-x-5-if-x-5",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3832,16 +3942,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "= assigns a value, while == compares. The assignment x = 5 has the type int, and a Java if requires a boolean, so the compiler rejects it. This is why the mistake is caught rather than silently misbehaving.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_16-what-happens-with-int-x-5-if-x-5",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c5ac5cdeaa57916cf08a740a2e7a913821965429c531a1149599845da3bc9381"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_17-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3864,16 +3976,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java applies operator precedence: multiplication binds more tightly than addition. So 3 * 4 is worked out first, giving 12, and then 2 is added.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_17-what-is-printed-by-this-statement",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d9badb3d99e80059ef023148096130bc6636f92a129743708d01e65959dca251"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_18-does-this-condition-compile",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3896,16 +4010,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The > operator produces a boolean. The second > then tries to compare that boolean with the int c, and Java allows only numeric operands there. The intent has to be written as a > b && b > c.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_18-does-this-condition-compile",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ef7dcb728d952db51295bebc1aa0b6e5325f8c9d8ad2a75bdbf4716ef5f0b6b1"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_19-does-this-line-compile",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3928,16 +4044,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The ternary operator produces one value, so both branches must have a compatible type. 1 is an int and \"one\" is a String, which means there is no common type for the result.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_19-does-this-line-compile",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8587b0844abb251a07099cfc717fd4f2fc3b86339e76c47f4ba4fc0b58ed3c2a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_20-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3960,16 +4078,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The right-hand side is evaluated first. Both 10 and 20 are int, so that part is arithmetic and gives 30. Only then is 30 appended to the String, which is why the result is Total: 30.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_20-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "975201d08fa11c668fb93903dbe63cb94c3dd17e5e30fd36d3e398e52e48f015"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_21-what-does-the-operator-do-and-what-is-pr",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -3992,16 +4112,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "! is the logical NOT operator. It turns true into false and false into true, and it works only on boolean expressions.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_21-what-does-the-operator-do-and-what-is-pr",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "629cd044959aa6cf776a40c202ede48b2883043dfe60ae2249c6697194642862"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_22-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -4024,16 +4146,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "i++ uses the current value and then increases it, so the first print shows 5 and i becomes 6. ++i increases first, so the second print shows 7.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_22-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "84f7b3d967629e8ce299d2949a0016e4676542085a72987b0862cfa5fb767c15"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_23-this-program-compiles-what-happens-when-",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -4056,16 +4180,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Integer division by zero is undefined, so the JVM throws ArithmeticException. Dividing by the double 0.0 would give Infinity instead.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_23-this-program-compiles-what-happens-when-",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "79d8cc788b8269a466658c1495019e14b6fccc3bce096a070f5288aed7cf476c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_24-what-is-printed-by-these-two-statements",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -4088,16 +4214,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The % operator returns the remainder after division that truncates towards zero. -10 / 3 is -3, leaving -1, and 10 / -3 is -3, leaving 1.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_24-what-is-printed-by-these-two-statements",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6b5117a4b487e9226ce3d8cbb62df77163c4199ff4b4981c1cd1e651e7c98e12"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_25-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -4120,16 +4248,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "&& short-circuits: when the left operand is false the result must be false, so the right operand is never evaluated. That is why ++x never runs.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_25-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b27dcdf2baabaad6eced7c684f29b93391a15525e4b3b3b274432b13f9e66f65"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_26-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -4152,16 +4282,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The int 0 is widened to 0.0, so this is double division. In IEEE 754 that gives Infinity rather than an exception.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_26-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c13cd4610bf5ced23c0a4a81e707654908c1d0bfbefb9adc1b5cf4dfc11e2749"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_27-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 3: Operators",
       "topic": "Operators Operands Expressions",
@@ -4184,11 +4316,14 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A compound assignment evaluates its right-hand side completely and then applies the operator to the variable. This is x = x * (3 + 1), which is 2 * 4.",
       "topicPath": "src/Chapter_3_Operators/Sub_Chapter_1_Operators_Operands_And_Expressions/OperatorsOperandsExpressions.java",
+      "qid": "chapter-3-operators_src-chapter-3-operators-sub-chapter-1-operators-operands-and-expressions-operatorsoperandsexpressions-java_custom_27-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e4780d2fa387cd9b902cb51ee709fe8d2f8ac8b3e52d7a52dce3077db27365ff"
     },
     {
       "qid": "ocjp-chapter-3-operators-prefix-postfix-1",
@@ -4213,7 +4348,9 @@ const QUESTIONS_BANK = {
         "casting",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "275b633dbd2c2fe21182a5bfc7d18f099319c0d2ce703dcc40162dd0284468b7"
     },
     {
       "qid": "ocjp-chapter-3-operators-short-circuit-1",
@@ -4238,7 +4375,9 @@ const QUESTIONS_BANK = {
         "operators",
         "casting",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3d1a7b777d0267658cd0edc970c665a1842ce03c31deeedcef6c54fbc31fe708"
     },
     {
       "type": "predict",
@@ -4261,9 +4400,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "System.out.println(2 + 3 * 4);\nSystem.out.println((2 + 3) * 4);",
       "answer": [
-        "14\r\n20"
+        "14\n20\n"
       ],
-      "explanation": "14, because * binds tighter than + — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "14\n20\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"14\\n20\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "5c16908d95f22dce1e9b4bd23698c8d4f3a52e4f7c6224b15a0cf9f0cbe3173b"
     },
     {
       "type": "predict",
@@ -4286,9 +4441,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "int i = 5;\nSystem.out.println(i++);\nSystem.out.println(++i);",
       "answer": [
-        "5\r\n7"
+        "5\n7\n"
       ],
-      "explanation": "5, then i becomes 6. Use the value, then increment. — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "5\n7\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"5\\n7\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "cb69797ea8370f793987ec55a709304e34a96dbb339e1f264f4b105c860439d5"
     },
     {
       "type": "predict",
@@ -4311,9 +4482,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "System.out.println(10 / 3);\nSystem.out.println(10 % 3);\nSystem.out.println(-10 % 3);",
       "answer": [
-        "3\r\n1\r\n-1"
+        "3\n1\n-1\n"
       ],
-      "explanation": "3, not 3.33 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "3\n1\n-1\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"3\\n1\\n-1\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "b358e3ff456677f4f39b78a2f52375564d8c9707cf02283030584facbb3487fb"
     },
     {
       "type": "predict",
@@ -4336,9 +4523,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "System.out.println(10 + 20 + \"Java\");\nSystem.out.println(\"Java\" + 10 + 20);\nSystem.out.println(\"Java\" + (10 + 20));",
       "answer": [
-        "30Java\r\nJava1020\r\nJava30"
+        "30Java\nJava1020\nJava30\n"
       ],
-      "explanation": "30Java — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "30Java\nJava1020\nJava30\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"30Java\\nJava1020\\nJava30\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "0c7900a1b5f98091147a50bb97eef20aed4e8962a927663737be7ca35f619d8e"
     },
     {
       "type": "predict",
@@ -4361,16 +4564,31 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "double first = 20.00d;\ndouble second = 80.00d;\ndouble total = (first + second) * 100.00d;\nSystem.out.println(\"Total = \" + total);",
       "answer": [
-        "Total = 10000.0"
+        "Total = 10000.0\n"
       ],
-      "explanation": "Total = 10000.0 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "Total = 10000.0\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"Total = 10000.0\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "32a5c4a43e0c8e4f9d1dcfe790a217c6cbc7626729be1c7d7f1ef66ad4e93549"
     }
   ],
   "Chapter 4: Statements And Indentations": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_0-what-is-the-difference-between-a-stateme",
       "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4385,15 +4603,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_0-what-is-the-difference-between-a-stateme",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7523d46e39cd2bb31acb094fa3adcfa96fbeb28fbdc7f9654e1337f00361bf39"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_1-do-whitespace-and-indentation-affect-jav",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4408,15 +4628,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_1-do-whitespace-and-indentation-affect-jav",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a3dc943c4fe7bca84d4fd79d1021a3a0adc9b470eca557c16eb64f0f22f48116"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_2-can-one-statement-span-multiple-lines-or",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4431,15 +4653,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_2-can-one-statement-span-multiple-lines-or",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2294ce86102dbb6bcf6473fd053c4b4ac5af153cc8e7644ee81ef4d2a41bf782"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_3-is-int-x-5-a-statement-or-an-expression",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4455,15 +4679,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_3-is-int-x-5-a-statement-or-an-expression",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7f0cff02d05ed6138b4f794a8fd47ac1036e6da38c6c53015e075a4eb91dd4bc"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_4-does-indentation-change-the-parameter-pa",
       "difficulty": "hard",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4478,15 +4704,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_4-does-indentation-change-the-parameter-pa",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b0c5660703329b7e0d5997b4fcb4bfb71041112a61cd8aa8888947044719c455"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_5-what-tells-java-where-the-println-statem",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4501,15 +4729,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_5-what-tells-java-where-the-println-statem",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "df8aad10f0fbc5b7fdfe3a0a0a28319fc6538b95ec214314faf7c72859e7d217"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_6-what-is-the-difference-between-a-stateme",
       "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4531,15 +4761,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An expression evaluates to something. A statement is the complete unit of execution that the compiler acts on, and most statements end in a semicolon.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_6-what-is-the-difference-between-a-stateme",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1a3b2e9872d0fbd88364369e6375747b364578d9bd6e4ed24eb108ed1b30cc1c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_7-do-whitespace-and-indentation-affect-whe",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4561,15 +4793,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Whitespace between tokens is discarded by the compiler. Indentation exists for humans, and it shows the nesting of code blocks.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_7-do-whitespace-and-indentation-affect-whe",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "22e44ac73e784a6fe1ac13dce5d148c733461fab885e20adc875cd2e4d058283"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_8-can-a-single-statement-be-spread-over-se",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4591,15 +4825,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java does not treat a newline as a terminator. A concatenation or method call may be split over many lines and still be one statement, as long as it ends with a semicolon.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_8-can-a-single-statement-be-spread-over-se",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3dd686db36b2d95ad8674a31355496600b7ec61c5ee78b4202c4134856a63cdb"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_9-what-decides-where-a-println-statement-a",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4621,15 +4857,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A method call is one statement that runs until the semicolon. Line breaks inside the parentheses are ignored, so a long concatenation can be formatted over several lines.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_9-what-decides-where-a-println-statement-a",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "114a73162bac18263803bf3e0b0c622da32ee6743618db49593a016e301df381"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_10-which-of-these-is-not-one-of-the-common-",
       "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4651,15 +4889,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A bare comparison is an expression, not a complete statement, so the compiler rejects it. The other three are the everyday statement forms.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_10-which-of-these-is-not-one-of-the-common-",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b68176be0fe0aa2cb46b2d5f12056938c02303fe3497e2790cae21038f64473c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_11-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4682,15 +4922,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A semicolon, not a line break, ends most statements. Without it the compiler cannot tell where the declaration stops, so it reports an error at that line.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_11-does-this-code-compile",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e6cc22d2504dab465974b12ba675102cfac2da7ab4668356191596ff8f55752a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_12-what-is-the-effect-of-the-semicolon-in-t",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4713,15 +4955,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A lone semicolon is a complete, empty statement. Java allows it, which is why a stray semicolon after an if condition is legal and silently changes the meaning of the code.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_12-what-is-the-effect-of-the-semicolon-in-t",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b48e4bbaa7203bca76420dfab2aa425f1268952d282bed780b0f1a23cc866858"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_13-which-of-these-is-a-single-valid-stateme",
       "difficulty": "easy",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4743,15 +4987,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A statement is a complete instruction. A declaration with a semicolon qualifies. The others are expressions, which produce a value, and on their own they are not complete instructions.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_13-which-of-these-is-a-single-valid-stateme",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "015f69a48fed53554d89a327f4f41066c895cba8b36464214ce73621ebf2f271"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_14-where-can-the-variable-declared-here-be-",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4774,15 +5020,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A variable declared inside a block exists only inside that block. Once the closing brace is reached, inner no longer exists, so the println cannot refer to it.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_14-where-can-the-variable-declared-here-be-",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b54be1e5998a18bbd186c69c6851c1f44dc5cac89efbb6fa8e24cee9bacf1edc"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_15-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4805,15 +5053,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "`if (x > 10);` ends the if at the semicolon, which is a legal empty statement. The braces that follow are then just a plain block.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_15-what-is-printed-by-this-code",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0bab0213fcf9b214d0892d0a309a5b170733b8901c5643800a4f84f88a483483"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_16-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4836,15 +5086,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Braces decide the body of an if, not indentation. Without braces only the next statement is controlled, so the second println always runs.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_16-what-is-printed-by-this-code",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2c98f79d4e77782b7f3debefd890736e5e4378d4c586b413f702239f37b60571"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_17-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4867,15 +5119,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The semicolon, not the line break, ends a statement, so three statements on one line behave exactly as if they were on three lines.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_17-what-is-printed-by-this-code",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c9049f1c89bd7449b8eadd8f6f88d9f6ae5ba5763358bb40ba31943f8a7423c5"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_18-does-this-code-compile-and-what-is-print",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4898,15 +5152,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Scope runs outwards. A variable declared in an enclosing block stays visible inside a nested block, so both names are usable there.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_18-does-this-code-compile-and-what-is-print",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3f6505529e2ffba4a49afded9aeb29e733f1d466f2f5ec8b4d89a0108ea56b19"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_19-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4929,15 +5185,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A statement runs until its semicolon. The compiler ignores line breaks between tokens, so a call may be spread over several lines.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_19-does-this-code-compile",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f63373503afe5aa23f91f2d0f9014c6e55021d9a83bf1b7625572621280dae86"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_20-which-of-these-is-not-terminated-by-a-se",
       "difficulty": "medium",
       "chapter": "Chapter 4: Statements And Indentations",
       "topic": "Statements White Space And Indentation",
@@ -4959,10 +5217,13 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A block is a group of statements inside braces and takes no semicolon of its own, just like a class body or a method body.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
+      "qid": "chapter-4-statements-and-indentations_src-chapter-4-statements-and-indentations-statementswhitespaceandindentation-java_custom_20-which-of-these-is-not-terminated-by-a-se",
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "965c7178821d9bc2c940cec3e90bcaa3cd055258c43fa2ae6bfe6aa3c0fbf4c7"
     },
     {
       "qid": "ocjp-chapter-4-statements-and-indentations-switch-fallthrough-1",
@@ -4986,7 +5247,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "93f9fdd3fc6a482ad7099831782e9947a64d9a1f65a138b3e075c43f9671ed49"
     },
     {
       "type": "predict",
@@ -5008,9 +5271,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "String message = \"Hello\"\n    + \" World\"\n    + \"!\";\nSystem.out.println(message);",
       "answer": [
-        "Hello World!"
+        "Hello World!\n"
       ],
-      "explanation": "Hello World! — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "Hello World!\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"Hello World!\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "16acad61c30e4d6b5568e7da78457e9adbc656cd6983e5a114f36c1368a05e52"
     },
     {
       "type": "predict",
@@ -5032,9 +5311,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "int a = 1; int b = 2; System.out.println(a + b);",
       "answer": [
-        "3"
+        "3\n"
       ],
-      "explanation": "3 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "3\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"3\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "8d87fc66b1f180f314de7bdd46982629e4aeda35668f80328f91d2173463657f"
     },
     {
       "type": "predict",
@@ -5056,16 +5351,31 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "int c=5     ;\nint     d =    10;\nSystem.out.println(c + d);",
       "answer": [
-        "15"
+        "15\n"
       ],
-      "explanation": "15 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "15\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"15\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "820e4a07b8be9a2b3b77b1d5ce5af020acad3c5fae5af83a47d5f54367f85eda"
     }
   ],
   "Chapter 5: If Else Statements": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_0-what-is-the-dangling-else-problem-in-jav",
       "difficulty": "easy",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5080,16 +5390,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_0-what-is-the-dangling-else-problem-in-jav",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9dcd8bf1501693a9892fe6a164e327b2998e36e818399ffc12cd0ce0a8a5bdac"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_1-can-an-if-condition-use-non-boolean-type",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5104,16 +5416,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_1-can-an-if-condition-use-non-boolean-type",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b90779d4c92ba4252484ebb4c4f9bf65eb7dedf8290eb32bb5042d2a59acda08"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_2-when-should-you-use-the-ternary-operator",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5128,16 +5442,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_2-when-should-you-use-the-ternary-operator",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "130020658d55bed3d84af5cf2e2d8ae42ea5c25556fb8b46e35af7bc6d7ddb0a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_3-why-are-braces-recommended-even-for-a-si",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5152,16 +5468,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_3-why-are-braces-recommended-even-for-a-si",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "78d6925f08ee589dee691e653d4cc0d7118a542e05a060c38feb8cd77cf9c472"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_4-what-happens-here-int-x-5-if-x-5-system-",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5177,16 +5495,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_4-what-happens-here-int-x-5-if-x-5-system-",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d5419914e113c933c42c33f858d723b9df0420063af9ea10cccceae97bdbb354"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_5-how-many-statements-does-if-control-here",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5202,16 +5522,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_5-how-many-statements-does-if-control-here",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c10e7dd80522656f449421f95b81cf42a40caa339b7cd94adbde91f0a2d79a3f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_6-in-main-string-args-what-does-the-args-p",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5225,16 +5547,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_6-in-main-string-args-what-does-the-args-p",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5f4c6f919033dda909c7e1be373de5d2a32b3eef2332b18b20d58fc35f5e3bc9"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_7-what-parameter-value-does-system-out-pri",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5249,16 +5573,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_7-what-parameter-value-does-system-out-pri",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bd89cb5c3ad193eef68d04082ebea7cef18416444935f9f04871255abdd474c2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_8-in-condition-a-b-what-do-the-second-and-",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5273,16 +5599,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_8-in-condition-a-b-what-do-the-second-and-",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "adafa1ab48aa4be305023bc4f39c2a66862d56f8452deb04e58c86db3ff29a53"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_9-what-does-this-code-print",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5305,16 +5633,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The semicolon straight after the condition ends the if statement, creating an empty body. The braced block that follows is then a separate statement that always runs. This is why a semicolon must never be placed after if (condition).",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_9-what-does-this-code-print",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c120a77c29428cd4f8d46c75b11c6e2a02cb32f1e56f39e4a13e5173139ebc9a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_10-why-is-it-recommended-to-always-use-brac",
       "difficulty": "easy",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5336,16 +5666,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Without braces, only the single next statement belongs to the if. A later edit that adds a line is easy to get wrong, and the second line silently falls outside the condition.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_10-why-is-it-recommended-to-always-use-brac",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e766fb541af885f3cd066d29b01d4ce47f76f488018cac2fdb17992cdf8b7eb3"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_11-in-the-ternary-expression-condition-a-b-",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5367,16 +5699,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The ternary operator is a compact if-else that produces a value. The condition must be boolean, and the two result expressions should be of compatible types.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_11-in-the-ternary-expression-condition-a-b-",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b151af83d67e0b3b23235c320e956896b654d8f35ac6fdca474126149c08fc9f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_12-with-braces-omitted-which-if-does-an-els",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5399,16 +5733,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "This is the dangling else problem. Java resolves it by binding else to the closest if that does not already have one, which is the inner if here. Braces remove the doubt.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_12-with-braces-omitted-which-if-does-an-els",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "19d127b0c89e42a06ed89008cc0ea7aaad1cb10fba45a9bc55b9576d603b0b9a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_13-can-a-java-if-condition-use-a-number-or-",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5430,16 +5766,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java is strict here. Something like if (1) is a compile-time error, and it must be written as a real comparison such as if (x != 0).",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_13-can-a-java-if-condition-use-a-number-or-",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f12b7dc162a6acb66ccadddba197a629e0b6d7017147a98e2573218969688101"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_14-how-many-statements-does-the-if-control-",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5462,16 +5800,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Without braces, an if controls exactly one statement, the one immediately after it. Everything after that is outside the condition.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_14-how-many-statements-does-the-if-control-",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9aa500bb8df389b0ef5b82587ea59ff82422bccddf1191bbf9af86d5e53d1b02"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_15-what-is-the-difference-between-and-in-a-",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5493,16 +5833,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "They are the logical AND and OR operators. Both also short-circuit, so the right side is skipped once the answer is already known.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_15-what-is-the-difference-between-and-in-a-",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c47b7fc5c2c8c68caed4683554d136fbb80947b2d0a89e012dd5678acfe642ae"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_16-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5525,16 +5867,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An else-if chain is checked from the top and stops at the first true condition. 75 fails the >= 90 test and passes >= 70, so B is printed and the remaining branches are never reached.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_16-what-is-printed-by-this-code",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2cf54363864e446e83146b1fca0f73297ddf640aba7cc30df67cccb845d43169"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_17-why-is-this-condition-safe-even-when-nam",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5557,16 +5901,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Short-circuit evaluation stops as soon as the answer is known. When name is null the left side is false, so the length() call is never made and the exception cannot happen.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_17-why-is-this-condition-safe-even-when-nam",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a54bb5eb8781480a009a11a009f2fa8043dad0603737cc34b9254f3f8a1e53c3"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_18-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5589,16 +5935,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The == operator on object references asks whether both point to the same object. new String always creates a fresh object, so the references differ even though the characters match. Use equals for content.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_18-what-is-printed-by-this-code",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5753fbb2a1b47deaa0f27defc88ca836df422e3090068b54aca6ea7b2b3ea30c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_19-what-does-this-code-print",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5621,16 +5969,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The semicolon right after the condition ends the if statement, giving it an empty body. The braced block is then a separate statement that always runs, so the condition no longer controls it.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_19-what-does-this-code-print",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1f75f1d3215d338a13dd23fe89901c9a4b2af80e21b80556c2804693163e1005"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_20-what-is-the-value-of-result",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5653,16 +6003,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The ternary evaluates only the branch it needs. 10 > 5 is true, so the value is the first branch, 1. The expression 2 + 3 on the other side is never evaluated.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_20-what-is-the-value-of-result",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4b8b9b6f766cf3fa0dbb777b4837deeab2d750f155defb812f643e2a54b87037"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_21-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5685,16 +6037,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An assignment produces the assigned int, and an if needs a boolean, so the compiler rejects it.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_21-does-this-code-compile",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "cc0ec83bc2cc1e608f6142c1e582e03e53ba121da5ff7927e5f93032ceecd33a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_22-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5717,16 +6071,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "if (flag); is already a complete if with an empty body, so the else has no if to belong to.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_22-does-this-code-compile",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "22c8da1dc537c154420126d32a0bfd0b185ef202973435a8c3455bc339bfbb2d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_23-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5749,16 +6105,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Doubles are binary fractions, so 0.1 + 0.2 is 0.30000000000000004 and never equal to 0.3.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_23-what-is-printed-by-this-code",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2a87d2d55f83d0255389b4d15ee8f66edecfeaba1ba652db07fe039c107628fb"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_24-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5781,16 +6139,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "x > 5 is false, so the negated test is true and A runs; B runs because it is outside the if.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_24-what-is-printed-by-this-code",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3b921422d41b68b9b3eab5a2942235b526f6e84879b1883dd2fa3ee3adbb2942"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_25-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5813,16 +6173,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The chain stops at the first true test, and 3 < 10 is true, so the narrower test is skipped.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_25-what-is-printed-by-this-code",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6a7f136d373a72ba824ab236d873c9db51f9eadf5f505ecefccd507f3d293b7f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_26-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "If Example",
@@ -5845,16 +6207,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The int branch is boxed and both branches share Object as a supertype; only the true one is used.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-1-if-then-else-control-statement-ifexample-java_custom_26-what-is-printed-by-this-code",
       "concepts": [
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "64ce0bf1343532f57c49ba8c40cd9bc86c7b814669f4b7b33ab3d7ed607be168"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_0-in-an-if-else-if-chain-with-parameter-li",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -5869,16 +6233,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_0-in-an-if-else-if-chain-with-parameter-li",
       "concepts": [
         "if-else",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "381c75d02754bce03eaf494c4b2a88f54342d0d1f9a3a9354c7fed703727a8b1"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_1-how-should-a-caller-choose-values-for-st",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -5893,16 +6259,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_1-how-should-a-caller-choose-values-for-st",
       "concepts": [
         "if-else",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "67d681da20d95f88506238b0ee0fd2e4bc7e2fbee79fcf249cb09d5882f3ae85"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_2-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -5924,16 +6292,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "5000 < 5000 is false and 5000 < 1000 is false, so the else branch is the only one left.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_2-what-is-printed-by-this-code",
       "concepts": [
         "if-else",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "455de15e779f42b968f9c0a7f5f393d28ca1bc679e8f684ca46a2612ac5d787d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_3-with-score-5000-levelcompleted-5-and-bon",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -5956,16 +6326,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The parentheses are evaluated first, giving 5 * 100 = 500, and the addition then gives 5500.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_3-with-score-5000-levelcompleted-5-and-bon",
       "concepts": [
         "if-else",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7a8000ef6d46bba30f43eab6c15dab7b1a4cd3c24112c3e0d0367840bc09a036"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_4-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -5988,16 +6360,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A local variable lives only inside the block that declares it, so the name is gone after the brace.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_4-does-this-code-compile",
       "concepts": [
         "if-else",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5e96a06a4628d1a3db3832c5856a0ab45924fa4f793c5c3e4797186a8eaf418b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_5-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -6020,16 +6394,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The two blocks are separate scopes, so each block declares and prints its own n.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_5-does-this-code-compile",
       "concepts": [
         "if-else",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7c08cff743ecd3a3a61c804ca22c46b4bceb19003f3dcee5f6f4645b7b052745"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_6-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 5: If Else Statements",
       "topic": "Code Blocks If Then Else",
@@ -6052,11 +6428,14 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Only fields may be hidden this way; a local variable may not shadow another local variable.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
+      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_6-does-this-code-compile",
       "concepts": [
         "if-else",
         "operators",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "005957e68955b600932437fa47dd81306b2a124064ed257a55ce240935c60f72"
     },
     {
       "qid": "ocjp-chapter-5-if-else-statements-switch-fallthrough-1",
@@ -6081,14 +6460,15 @@ const QUESTIONS_BANK = {
         "operators",
         "statements",
         "if-else"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "93f9fdd3fc6a482ad7099831782e9947a64d9a1f65a138b3e075c43f9671ed49"
     }
   ],
   "Chapter 6: Methods In Java": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_0-is-java-pass-by-value-or-pass-by-referen",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6105,15 +6485,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_0-is-java-pass-by-value-or-pass-by-referen",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8ae23c0254286fd5edd63902878417f329f71057aed96568ad9ca119818b684c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_1-how-does-java-choose-between-overloaded-",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6129,15 +6511,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_1-how-does-java-choose-between-overloaded-",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "62c36d42625715c9bd356aa922b76ca9e2918f6e5329b2ca142fcef6018329ab"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_2-what-is-the-difference-between-a-void-me",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6153,15 +6537,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_2-what-is-the-difference-between-a-void-me",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "cabc7a2b653b7c9f83f8a7ab438fb9c31e8fd309c560b52983c7f320ee8d2861"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_3-what-is-the-difference-between-a-static-",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6177,15 +6563,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_3-what-is-the-difference-between-a-static-",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d425c5588f07458f4847953b010c8499bf4c70bb7bb8104a3813eb032e4b622e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_4-how-should-a-caller-choose-levelcomplete",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6199,15 +6587,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_4-how-should-a-caller-choose-levelcomplete",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8566699e01fd1c80ea6a58b8c97c9a3c781589d4c5f3c69ead7522024004f4e6"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_5-does-calculatescore-gameover-score-level",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6222,15 +6612,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_5-does-calculatescore-gameover-score-level",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "84bfea82a47f1393fdb65226120ed276c38940a5a96166632dfe80160c6e111e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_6-which-overload-is-called-by-calculatesco",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6245,15 +6637,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_6-which-overload-is-called-by-calculatesco",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "aff6d8b1ce863a60b104a6ea350c2b1d67aaf78fcd894cadde7fa11d4da12181"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_7-which-statement-about-method-parameters-",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6275,15 +6669,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Parameters are local variables that exist only for the duration of a call. They are initialised with copies of the argument values, which is why Java is described as pass-by-value.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_7-which-statement-about-method-parameters-",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1a699d121656dff8981f8438af0b3348f6d33614700b7528a4a5d335fe9ab982"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_8-a-method-is-declared-as-public-static-in",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6305,15 +6701,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A non-void return type is a promise that the method sends back a value of that declared type on every path that finishes normally. Here the promise is kept by returning finalScore, or -1 as the sentinel when no score is valid.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_8-a-method-is-declared-as-public-static-in",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "44bd316b6e19b3906bed85d7dabebcb9fe3782206f828345eeabe324d10ca2ee"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_9-given-the-overloads-print-int-x-and-prin",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6335,15 +6733,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Overload resolution happens at compile time and picks the most specific applicable method. The argument is exactly an int, so print(int) is a better match than print(double).",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_9-given-the-overloads-print-int-x-and-prin",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a21988be939c65927148bdc1b94a439fdc0a48e438df995398110c89d8719359"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_10-a-classic-swap-int-a-int-b-method-exchan",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6366,15 +6766,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java passes arguments by value, so a and b are copies. Swapping the copies leaves the caller's variables exactly as they were, which is the classic Java trap.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_10-a-classic-swap-int-a-int-b-method-exchan",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8acb853ff6c8166c4cbcedcdaf67d9d853cc6c9cb8c0e407c0bcbeeb2990d33a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_11-which-statement-about-a-void-method-is-c",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6396,15 +6798,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "void means the method sends no value back to the caller. The call is therefore an action rather than an expression, so it cannot be used where a value is expected.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_11-which-statement-about-a-void-method-is-c",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "49349b4ada27e32acb6ee2aa65e83875445f00998c97c2d791fb560fee50a6ae"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_12-which-statement-correctly-compares-a-sta",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6426,15 +6830,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static method belongs to the class itself and is called through the class name, such as Math.max(). It has no current object, so instance fields are out of reach, whereas an instance method has a current object and can use both kinds of member.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_12-which-statement-correctly-compares-a-sta",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d5a70cb71f860b3e18b23d692b420783f05f05b28a5c3b4d6396803b005bb5da"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_13-what-is-the-value-of-result-after-this-c",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6457,15 +6863,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The whole calculation sits inside if(gameOver), so passing false skips it. Execution then reaches the final return -1, which is the documented sentinel meaning no valid score.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_13-what-is-the-value-of-result-after-this-c",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "18dba126c08d147b22841fb21aa8723a4acf3f6024052d1053e3bb14a707bc4f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_14-why-can-the-first-version-of-calculatesc",
       "difficulty": "easy",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6487,15 +6895,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A no-argument method declares no parameters, so it must supply its own values inside the body. That is exactly why the caller of this version has no way to change gameOver, score, levelCompleted or bonus.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_14-why-can-the-first-version-of-calculatesc",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "acd623efe22ea7437e1e4f0beb3a26b8966489eb0b00d4cd1c19ec2d8cf12fcb"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_15-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6518,15 +6928,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Java is always pass-by-value, but for an object the value being copied is the reference. Both the caller and the parameter point at the same array, so writing data[0] is visible through nums.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_15-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e41d89ad26844ab6acfe7a73cecea53d1eeb2734b79a64f51345675abb43a683"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_16-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6549,15 +6961,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The parameter holds a copy of the reference. Pointing that copy at a new array does not change which array the caller's variable refers to, so nums still holds the original.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_16-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "71f99bb576f0a2670847220989cd9c5065fe18994fef5c15c7c1b4221d451f31"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_17-does-this-method-compile",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6580,15 +6994,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The compiler checks every path through the method. When n is not positive the if body is skipped and the method reaches its closing brace without returning, which is an error rather than a default.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_17-does-this-method-compile",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b903e037f3349cdfb062ee20a76d356e4a3f5c46425c1f1a2ee6519a26e042cd"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_18-does-this-line-compile",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6611,15 +7027,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "void means the method hands back nothing at all, so it cannot be used where a value is expected, such as the right-hand side of an assignment.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_18-does-this-line-compile",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b3d21b93075d8a043e0e9b435463aab5c4698bf4786ea0d34677e03ddb22e023"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_19-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6643,15 +7061,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Parameters receive copies of the argument values. Swapping the copies has no effect on x and y, which is the classic demonstration of pass-by-value.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_19-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f505efa44f448d515c7fb06f01a3791a453817adf72f3c5435d76c301fd48f0c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_20-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6674,15 +7094,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The parameter is a copy, so x is untouched; the new value reaches the caller only through return.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_20-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2d215e38e3a4846f215faa57e69204b1be64aca429f54c9abf5c0d3fd72aa5c4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_21-does-this-class-compile",
       "difficulty": "medium",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6705,15 +7127,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static method has no current object, so it cannot call an instance method without one.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_21-does-this-class-compile",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1d0ce2c03268ee0f90c40f58772869af6e91822e0c59dc623e0866dc49409f25"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_22-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6736,15 +7160,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The copied reference still points at the same object, so the append is visible through text.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_22-what-is-printed-by-this-code",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d6cf54abbd0382959ac5be9a9c2bab4c7e9341d06f2f9bbe87320cd6e77c24ab"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_23-does-this-method-compile",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6767,15 +7193,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "After return, control has left the method, so the next statement can never be reached.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_23-does-this-method-compile",
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "59a430262150cac9f885bf79614b86455585f54c9f61d4c0e2fcec0b69190e45"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_24-given-these-overloads-what-does-the-call",
       "difficulty": "hard",
       "chapter": "Chapter 6: Methods In Java",
       "topic": "Methods In Java",
@@ -6798,499 +7226,13 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Both overloads fit, and long is more specific than double, so show(long) is the one chosen.",
       "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_custom_24-given-these-overloads-what-does-the-call",
       "concepts": [
         "casting",
         "overloading"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-1-methods-in-java-methodsinjava-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Methods In Java",
-      "question": "Which of the following are TRUE about Methods In Java? Select all that apply.",
-      "options": [
-        "Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "This challenge practices boolean logic with two inputs: whether barking is happening and what hour it is.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing."
       ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Methods In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Barking Dog Coding Challenge\", not of \"Methods In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Methods In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Methods In Java.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "casting",
-        "overloading"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-areacalculatorcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Area Calculator Coding Challenge",
-      "question": "Which of the following are TRUE about Area Calculator Coding Challenge? Select all that apply.",
-      "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "area(double radius) calculates the area of a circle with Math.PI * radius * radius.",
-        "area(double x, double y) calculates the area of a rectangle with x * y.",
-        "This challenge practices boolean logic with two inputs: whether barking is happening and what hour it is.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
-      ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Barking Dog Coding Challenge\", not of \"Area Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Methods In Java\", not of \"Area Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Area Calculator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Area Calculator Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/AreaCalculatorCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-barkingdogcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Barking Dog Coding Challenge",
-      "question": "Which of the following are TRUE about Barking Dog Coding Challenge? Select all that apply.",
-      "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "This challenge practices boolean logic with two inputs: whether barking is happening and what hour it is.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "The valid hour range is 0 through 23; any value outside that range returns false because the input itself is invalid.",
-        "shouldWakeUp(boolean barking, int hourOfDay) returns true only when barking is true and the time is before 8 or after 22."
-      ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Barking Dog Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Methods In Java\", not of \"Barking Dog Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Barking Dog Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Barking Dog Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-decimalcomparatorcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Decimal Comparator Coding Challenge",
-      "question": "Which of the following are TRUE about Decimal Comparator Coding Challenge? Select all that apply.",
-      "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "This challenge compares two double values only up to three decimal places.",
-        "Casting the shifted double to int truncates the remaining decimal portion instead of rounding it.",
-        "Multiplying by 1000 shifts the first three decimal places into the whole-number part of the value."
-      ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Decimal Comparator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Methods In Java\", not of \"Decimal Comparator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Decimal Comparator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Decimal Comparator Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/DecimalComparatorCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-equalityprintercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Equality Printer Coding Challenge",
-      "question": "Which of the following are TRUE about Equality Printer Coding Challenge? Select all that apply.",
-      "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "Any negative input is invalid and must print \"Invalid Value\" before any equality checks.",
-        "printEqual(int firstNumber, int secondNumber, int thirdNumber) is a void method because the visible output is the printed text.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "This challenge classifies the relationship between three int values and prints one exact message."
-      ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Methods In Java\", not of \"Equality Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Equality Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Equality Printer Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Equality Printer Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualityPrinterCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-equalsumcheckercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Equal Sum Checker Coding Challenge",
-      "question": "Which of the following are TRUE about Equal Sum Checker Coding Challenge? Select all that apply.",
-      "options": [
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "hasEqualSum(int firstNumber, int secondNumber, int sum) checks whether firstNumber + secondNumber equals sum.",
-        "This challenge practices returning a boolean expression directly from a method.",
-        "The method should return true for matching totals and false for all other totals."
-      ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Equal Sum Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Methods In Java\", not of \"Equal Sum Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Equal Sum Checker Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Equal Sum Checker Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/EqualSumCheckerCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-leapyearcalculatorcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Leap Year Calculator Coding Challenge",
-      "question": "Which of the following are TRUE about Leap Year Calculator Coding Challenge? Select all that apply.",
-      "options": [
-        "A valid year is a leap year when it is divisible by 4, except century years must also be divisible by 400.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "isLeapYear(int year) first validates that the year is between 1 and 9999, inclusive.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "This challenge implements the leap-year rule as a clean boolean method."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Leap Year Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Methods In Java\", not of \"Leap Year Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Leap Year Calculator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Leap Year Calculator Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/LeapYearCalculatorCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-megabytesconvertercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Mega Bytes Converter Coding Challenge",
-      "question": "Which of the following are TRUE about Mega Bytes Converter Coding Challenge? Select all that apply.",
-      "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "printMegaBytesAndKiloBytes(int kiloBytes) is a void method because its job is to print a formatted result, not return one.",
-        "This challenge converts a whole number of kilobytes into megabytes plus leftover kilobytes.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "Integer division gives the whole megabytes: 2500 / 1024 is 2."
-      ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Methods In Java\", not of \"Mega Bytes Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Mega Bytes Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Mega Bytes Converter Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Mega Bytes Converter Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MegaBytesConverterCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-methodschallengeproblem-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Methods Challenge Problem",
-      "question": "Which of the following are TRUE about Methods Challenge Problem? Select all that apply.",
-      "options": [
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "Scores of 1000 or more get position 1, scores of 500 to 999 get position 2, scores of 100 to 499 get position 3, and all lower scores get position 4.",
-        "calculateHighScorePosition(int score) converts a player's score into a ranking position.",
-        "This challenge separates calculation from display so each method has one clear responsibility."
-      ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Methods In Java\", not of \"Methods Challenge Problem\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Methods Challenge Problem\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Methods Challenge Problem. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Methods Challenge Problem.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MethodsChallengeProblem.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-minutestoyearsanddayscalculatorcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Minutes To Years And Days Calculator Coding Challenge",
-      "question": "Which of the following are TRUE about Minutes To Years And Days Calculator Coding Challenge? Select all that apply.",
-      "options": [
-        "printYearsAndDays(long minutes) is a void method because it prints the formatted answer directly.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "The conversion uses fixed calendar assumptions: 60 minutes per hour, 24 hours per day, and 365 days per year.",
-        "This challenge converts a long minute count into full years plus leftover days."
-      ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Methods In Java\", not of \"Minutes To Years And Days Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Minutes To Years And Days Calculator Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Minutes To Years And Days Calculator Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Minutes To Years And Days Calculator Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MinutesToYearsAndDaysCalculatorCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-playingcatcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Playing Cat Coding Challenge",
-      "question": "Which of the following are TRUE about Playing Cat Coding Challenge? Select all that apply.",
-      "options": [
-        "This challenge models a temperature rule that changes when the season changes.",
-        "isCatPlaying(boolean isSummer, int temperature) returns true when the temperature is in the allowed range.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "In normal weather, the allowed range is 25 through 35, inclusive.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
-      ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Playing Cat Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Methods In Java\", not of \"Playing Cat Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Playing Cat Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Playing Cat Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-positivenegativezerocodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Positive Negative Zero Coding Challenge",
-      "question": "Which of the following are TRUE about Positive Negative Zero Coding Challenge? Select all that apply.",
-      "options": [
-        "checkNumber(int number) classifies one integer and prints the matching label.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "A value greater than 0 prints \"positive\", a value less than 0 prints \"negative\", and 0 prints \"zero\".",
-        "This challenge practices simple branching with a void method.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed."
-      ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Positive Negative Zero Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Methods In Java\", not of \"Positive Negative Zero Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Positive Negative Zero Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Positive Negative Zero Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PositiveNegativeZeroCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-speedconvertercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Speed Converter Coding Challenge",
-      "question": "Which of the following are TRUE about Speed Converter Coding Challenge? Select all that apply.",
-      "options": [
-        "This challenge converts speed from kilometers per hour to miles per hour using small, reusable static methods.",
-        "toMilesPerHour(double kilometersPerHour) validates the input, converts kilometers to miles, rounds the answer, and returns it as a long.",
-        "A negative speed is invalid, so the method returns -1 as a sentinel value instead of a real conversion.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "This challenge uses method overloading to give the same method name two related meanings."
-      ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Methods In Java\", not of \"Speed Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Speed Converter Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Speed Converter Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Speed Converter Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/SpeedConverterCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-6-methods-in-java_src-chapter-6-methods-in-java-sub-chapter-2-methods-coding-challenge-teennumbercheckercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 6: Methods In Java",
-      "topic": "Teen Number Checker Coding Challenge",
-      "question": "Which of the following are TRUE about Teen Number Checker Coding Challenge? Select all that apply.",
-      "options": [
-        "This challenge breaks a repeated age-range check into a helper method.",
-        "A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.",
-        "This challenge uses method overloading to give the same method name two related meanings.",
-        "hasTeen(int firstNumber, int secondNumber, int thirdNumber) returns true when at least one of its three arguments is a teen number.",
-        "isTeen(int number) returns true when number is between 13 and 19, inclusive."
-      ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Methods In Java\", not of \"Teen Number Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Area Calculator Coding Challenge\", not of \"Teen Number Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Teen Number Checker Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Teen Number Checker Coding Challenge.",
-      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "overloading",
-        "statements",
-        "casting"
-      ]
+      "legacyQids": [],
+      "contentVersion": "492cbd69ccacc77a97ea3c42a7834ce6194ff81c34830a6c7d91c04a62b96515"
     },
     {
       "qid": "ocjp-chapter-6-methods-in-java-pass-by-value-1",
@@ -7314,7 +7256,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e4cff69103fdaba6143c53f488185162e49a52561693037b2009f4023734c429"
     },
     {
       "qid": "ocjp-chapter-6-methods-in-java-overload-resolution-1",
@@ -7340,7 +7284,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "casting",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "369572bcf01e031735e788c5d64b62bab0efef1a91d7096c1821a5992b7f5aac"
     },
     {
       "type": "scq",
@@ -7375,14 +7321,175 @@ const QUESTIONS_BANK = {
         "3": "The two overloads are not equally good. Overload resolution works in phases, and the phase that allows widening succeeds, so there is no ambiguity to report."
       },
       "explanation": "Overload resolution runs in phases. Phase 1 allows widening but not boxing, so `int` to `long` is applicable and `show(long)` is chosen. Boxing is only tried in phase 2, so `show(Integer)` never gets a look. This is a favourite exam trap because the boxing overload often looks like the better match.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "787997b685ecfa1d46d1bf4fe2b9597e9178721deab7752fadbe46f4f27ad3dc"
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "q-1fd174961a8e938febddf7a5",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "overloading"
+      ],
+      "question": "What does this code print?",
+      "code": "static void tryToChange(int n) { n = 99; }\nint x = 5;\ntryToChange(x);\nSystem.out.println(x);",
+      "answer": [
+        "5\n"
+      ],
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "5\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"5\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "1db4e63586f57be22fd3c0a8d30eb3ddaa701c61de459e08607e757cc56f21f7"
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "q-aec4edde13f599376acfadb4",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "overloading"
+      ],
+      "question": "What does this code print?",
+      "code": "static void swap(int a, int b) { int t = a; a = b; b = t; }\nint x = 1, y = 2;\nswap(x, y);\nSystem.out.println(x + \" \" + y);",
+      "answer": [
+        "1 2\n"
+      ],
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "1 2\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"1 2\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "f691dd2895c650cc4d9de03c7396b23814d87099d05fe8320a6069de759069fc"
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "q-2d6a37048cda76655637302f",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "overloading"
+      ],
+      "question": "What does this code print?",
+      "code": "static void update(int[] data) { data[0] = 99; }\nint[] nums = {1, 2, 3};\nupdate(nums);\nSystem.out.println(nums[0]);",
+      "answer": [
+        "99\n"
+      ],
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "99\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"99\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "2a22e0a2ab9435f16ad226ac3853e606d4832119374e3bac82e83ff7e57ed7af"
+    },
+    {
+      "type": "predict",
+      "kind": "derived",
+      "qid": "q-ee668f332043cc419e581257",
+      "difficulty": "medium",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods In Java",
+      "topicPath": "src/Chapter_6_Methods_In_Java/Sub_Chapter_1_Methods_In_Java/MethodsInJava.java",
+      "tags": [
+        "predict",
+        "ocjp",
+        "code"
+      ],
+      "concepts": [
+        "casting",
+        "overloading"
+      ],
+      "question": "What does this code print?",
+      "code": "static void reset(int[] data) { data = new int[]{0, 0, 0}; }\nint[] nums = {1, 2, 3};\nreset(nums);\nSystem.out.println(nums[0]);",
+      "answer": [
+        "1\n"
+      ],
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "1\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"1\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "e7eee13e7d4290d5dd36c20b3d3cb4b787084ddc4218f9c82bb5b25b4aabd0e2"
     }
   ],
   "Chapter 7: Switch Statements": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_0-what-data-types-can-be-used-in-a-traditi",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7397,16 +7504,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_0-what-data-types-can-be-used-in-a-traditi",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "91c5b08abd2c3751b13d46c2d5285a60490c2580ecd0587f7c5ce8f3fc668817"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_1-what-is-fall-through-in-a-switch-stateme",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7421,16 +7530,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_1-what-is-fall-through-in-a-switch-stateme",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "315cb79ea00ff300192827acbe46278dec513281942d21a694fc206dec99c86c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_2-what-is-the-default-case-in-a-switch-sta",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7445,16 +7556,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_2-what-is-the-default-case-in-a-switch-sta",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "11ac3044ae5b165d03999e5959acead76f1ee89597f76395d07debef4de60b88"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_3-when-is-switch-usually-preferred-over-a-",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7469,16 +7582,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_3-when-is-switch-usually-preferred-over-a-",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "984c95be14c2bc3860a9f01382663c4519ce7e20b452b4390c7c1ce8fc40e523"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_4-what-prints-here-int-x-2-switch-x-case-1",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7494,16 +7609,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_4-what-prints-here-int-x-2-switch-x-case-1",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0d1d69efc6419b0d1385a9e6718085d44d745799f8a64b113a9342a19ce5ca71"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_5-can-a-traditional-switch-use-long-or-boo",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7519,16 +7636,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_5-can-a-traditional-switch-use-long-or-boo",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3f75c2b92aa47081a125d55f312e3782f09d59e5009bc7dde7c0b24eec918947"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_6-what-values-should-be-passed-to-getquart",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7542,16 +7661,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_6-what-values-should-be-passed-to-getquart",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "dd4688215d6e9c6e5fca1c441644e76eaf73c9ce07d92ab44bf88b839cc00040"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_7-what-is-dangerous-about-the-value-parame",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7566,16 +7687,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_7-what-is-dangerous-about-the-value-parame",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2b0f0e7f697128f516f270380385752d4989f982511513a3c22d72ad8b6868cf"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_8-which-types-can-be-used-as-the-selector-",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7597,16 +7720,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A traditional switch accepts the smaller integral types byte, short, char and int, their wrapper classes, String from Java 7 onwards, and enum types. Nothing larger than int is allowed, and unrelated object types are not allowed either.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_8-which-types-can-be-used-as-the-selector-",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3961cec3582c8592a8b0c0ed78a3181c5c66b03d4b98cd9eb24fd6473507b915"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_9-what-does-this-code-print-when-x-is-2",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7629,16 +7754,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The matching label is case 2, so B is printed. With no break there, execution falls through into the next case and prints C, and the break in case 3 then leaves the switch. default is never reached because a case did match.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_9-what-does-this-code-print-when-x-is-2",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "beeb16a260fa669cfe285418b837fcf72a113381901e98ac122216082145328a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_10-which-statement-about-the-default-label-",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7660,16 +7787,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "default is the switch equivalent of the final else: it is chosen only when the selector matches none of the case labels. Java lets you leave it out, but including it handles unexpected values.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_10-which-statement-about-the-default-label-",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bdc2dbc7007d9b439ccffe81d98700929a1c0fce8fd1923fa5e968819dc13fb9"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_11-which-of-these-types-cannot-be-used-as-t",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7691,16 +7820,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A traditional switch accepts byte, short, char, int and their wrapper types, plus String and enum types. long is not in that list, so a switch on a long would not compile, and the same is true of float, double and boolean.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_11-which-of-these-types-cannot-be-used-as-t",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0183b7251bd441b71db433b6f9078d73162f7c74791ec33fd7d3920659a889cd"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_12-given-getquarter-string-month-what-does-",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7723,16 +7854,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "String matching in a switch is exact and case-sensitive, so lowercase \"november\" matches none of the uppercase labels. Execution falls past every case to the final return, which supplies the text \"INVALID MONTH\".",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_12-given-getquarter-string-month-what-does-",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "27340a82143229eac75893396efec33f4b06e2397d887332ebf1d8c2e111583f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_13-what-happens-when-a-return-statement-is-",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7754,16 +7887,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "return leaves the method altogether, so control never comes back to the switch. That is why getQuarter can return from each group of cases without writing any break.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_13-what-happens-when-a-return-statement-is-",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c2a7b68b5b6353e88763ad9cab8c148726c69535179a0d6cc9233b8c5c7a564b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_14-in-switchcasemultiplecasestogether-what-",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7785,16 +7920,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Labels written one after another share the single block that follows them, so any of 3, 4 or 5 starts the same message. The shared block ends with a break, so there is no fall-through beyond it.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_14-in-switchcasemultiplecasestogether-what-",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b34d463e984092e68516cf2fe0505255399d418f866ade6899da49350eba5b22"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_15-what-does-switchcasewithoutusingbreak-4-",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7816,16 +7953,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "With no break anywhere, execution starts at the matching label and then falls through every following label. Starting at the grouped case 3/4/5, it prints that message and then falls into default.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_15-what-does-switchcasewithoutusingbreak-4-",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "43c0ad310130df6794fadb8924e9d769d8f5bdc8257ea74631ab9a3316b5bfce"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_16-does-this-switch-compile",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7848,16 +7987,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The case labels of one switch must be distinct constants. Two case 1 labels cannot both be reached, so the compiler rejects the file before anything can run.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_16-does-this-switch-compile",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3fc14b829278f9c90bf5f540b46d3629f43b9a2418dc07bee25722aed9ba61d2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_17-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7880,16 +8021,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A switch on a String compares with equals, which is case-sensitive. Since \"monday\" differs from \"Monday\", no label matches and the default branch runs.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_17-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "35b5cbfc38b1c2f80766d2855f59a6142f8b5a502dcc36228090709112e57e34"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_18-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7912,16 +8055,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Labels with no statements between them share the block that follows. Execution starts at case 3, prints low, and the break stops it before default is reached.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_18-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "32c04865ccb8466791fd8dafa2382bdee38c677dabc2d9581748fb3c7dffa7b4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_19-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7944,16 +8089,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "return inside a switch leaves the entire method, not just the switch. So the line after the switch is skipped for the matching case.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_19-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c35ea652f11f13178953316f378c96908e9256bd5d69a949b260fd7475fa1d19"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_20-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -7976,16 +8123,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "default is only a fallback and does not have to be written last, but execution still begins at the matching label. case 2 matches, so B is printed and the end of the switch is reached.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_20-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "224abb6699a99d9f25fd01fad56bcf55a4b3039e5149985ad2eb41e80295aa34"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_21-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -8008,16 +8157,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Cases 1 and 2 share one body printing A with no break, so flow falls into case 3 and prints B.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_21-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ec6e264eb0329fec431234187a252f18d415638d774096dbc22397fabaefa02d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_22-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -8040,16 +8191,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "4 matches no label, so default runs, and with no break the flow continues into case 1 and case 2.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_22-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ff6ecfee9fb7262bc555833d5dda11435d24b76eb86ef979f85050eb3ec06c6a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_23-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -8072,16 +8225,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "long is not a valid selector type; float, double and boolean are rejected in the same way.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_23-does-this-code-compile",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d14f62d297d56f084d85ae1156b9b8883e7203daaeaeed29f93d4fb5bf3e2ed0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_24-does-this-switch-compile",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -8104,16 +8259,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The char literal 'a' has the value 97, so the two labels are duplicates and the file does not compile.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_24-does-this-switch-compile",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "15dba6fed42f4a9ab9ce50c51d389cb7182bbb7ff7616eed1dd5974db15c0206"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_25-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Switch Statement In Java",
@@ -8136,51 +8293,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "String labels are compared with equals, so the case-sensitive \"ONE\" takes default and returns \"?\".",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_custom_25-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-1-switch-statement-switchstatementinjava-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Switch Statement In Java",
-      "question": "Which of the following are TRUE about Switch Statement In Java? Select all that apply.",
-      "options": [
-        "switch can be used with: byte, short, char, int (primitives), and String (since Java 7), as well as enum types.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "Switch is cleaner and more readable than nested if-else when you have many possible values to test.",
-        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999."
       ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Enhanced Switch Statement In Java\", not of \"Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Number Of Days In A Month Coding Challenge\", not of \"Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Switch Statement In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Switch Statement In Java.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_1_Switch_Statement/SwitchStatementInJava.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "switch",
-        "break-continue",
-        "statements"
-      ]
+      "legacyQids": [],
+      "contentVersion": "b08f4225ea9cf6119110b1513ae20904e0d128e6a978960686167edf65acd54a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_0-what-is-the-difference-between-a-traditi",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8195,16 +8319,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_0-what-is-the-difference-between-a-traditi",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9e135feb2242eba3229b2dbfa8e059205a84c9ef280f8896494f4257c18f0630"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_1-can-an-enhanced-switch-return-a-value",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8219,16 +8345,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_1-can-an-enhanced-switch-return-a-value",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a2cb8ee85611ca60b431e9b88f1e65dce498312cb40af9091290b6061150d360"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_2-what-is-the-purpose-of-yield-in-an-enhan",
       "difficulty": "easy",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8243,16 +8371,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_2-what-is-the-purpose-of-yield-in-an-enhan",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "63bcccb453c672c2e9d1127bd60d7d2689f34e3a4cecd238390436ada69a2934"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_3-does-an-enhanced-switch-fall-through-her",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8268,16 +8398,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_3-does-an-enhanced-switch-fall-through-her",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1c570a442f3f9b6641ef848b20aaad0936b75e144dfcbebecff020c25327c739"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_4-how-should-the-month-parameter-be-chosen",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8291,16 +8423,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_4-how-should-the-month-parameter-be-chosen",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "36b528b9d75854a651ea79274510b198db799d5ae273f1e02354bee75fb9b7fd"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_5-why-is-equals-invalid-month-case-sensiti",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8315,16 +8449,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_5-why-is-equals-invalid-month-case-sensiti",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "09679767c4689ab3b269c5549c3c11449fc48e488135d928b171a9f3e848beb2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_6-what-parameter-like-value-does-switch-mo",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8339,16 +8475,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_6-what-parameter-like-value-does-switch-mo",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ebf8109d3874db445c4eae55e65ac9de368e5a0e16499f4578530936af4af04d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_7-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8371,16 +8509,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Arrow arms never fall through, so case 3 and default never run after case 2 matches.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_7-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3d30023abe2d619a3565f7792a78c3077783e82ae1c7fba188ea706154eb233d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_8-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8403,16 +8543,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "13 matches no comma-listed value, so the default block runs and yields the value assigned to quarter.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_8-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "22abd62580f420ec09daa9c69a1a3e06a955529ce980aa9dbea02e0315615f0c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_9-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8435,16 +8577,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A switch expression must produce a value for every input, so a default arm is required here.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_9-does-this-code-compile",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "890041be8a11e2b847825a6a64e550368ecf8c1694f283f10546afba9d9629a3"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_10-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8467,16 +8611,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A switch statement need not produce a value, so default is optional and 9 matches nothing here.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_10-what-is-printed-by-this-code",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c94feb1fd89fbff9ef714a4c0f2d5f247b8265deb502a6187980c142ed64275b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_11-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 7: Switch Statements",
       "topic": "Enhanced Switch Statement In Java",
@@ -8499,116 +8645,14 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A switch block must use one style throughout: colon labels with break, or arrow arms, never both.",
       "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
+      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_custom_11-does-this-code-compile",
       "concepts": [
         "switch",
         "break-continue",
         "statements"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-2-enhanced-switch-statement-enhancedswitchstatementinjava-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Enhanced Switch Statement In Java",
-      "question": "Which of the following are TRUE about Enhanced Switch Statement In Java? Select all that apply.",
-      "options": [
-        "The enhanced switch can be used as an EXPRESSION — it can return a value directly. This makes code concise and readable.",
-        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "It uses the arrow (->) syntax instead of colon (:), eliminating fall-through by design — no 'break' needed.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
       ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Number Of Days In A Month Coding Challenge\", not of \"Enhanced Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Switch Statement In Java\", not of \"Enhanced Switch Statement In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Enhanced Switch Statement In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Enhanced Switch Statement In Java.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_2_Enhanced_Switch_Statement/EnhancedSwitchStatementInJava.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "switch",
-        "break-continue",
-        "statements"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-3-codingchallenge-numberofdaysinamonthcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Number Of Days In A Month Coding Challenge",
-      "question": "Which of the following are TRUE about Number Of Days In A Month Coding Challenge? Select all that apply.",
-      "options": [
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "The parameter needs to be greater than or equal to 1 and less than or equal to 9999.",
-        "Otherwise, if it is in the valid range, calculate if the year is a leap year and return true if it is, otherwise return false.",
-        "If the parameter is not in that range return false."
-      ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Enhanced Switch Statement In Java\", not of \"Number Of Days In A Month Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Switch Statement In Java\", not of \"Number Of Days In A Month Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Number Of Days In A Month Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Number Of Days In A Month Coding Challenge.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/NumberOfDaysInAMonthCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "switch",
-        "break-continue",
-        "statements"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-7-switch-statements_src-chapter-7-switch-statements-sub-chapter-3-codingchallenge-switchstatementnatochallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 7: Switch Statements",
-      "topic": "Switch Statement N A T O Challenge",
-      "question": "Which of the following are TRUE about Switch Statement N A T O Challenge? Select all that apply.",
-      "options": [
-        "2) Create cases for the characters, A, B, C, D, and E. Display a message in each case block,with the letter and the NATO word, then break.",
-        "1) Create a new char variable. Use the traditional switch statement (with a colon in case labels) that tests the value in the variable from Step 1.",
-        "The switch statement is an alternative to a long if-else if chain when you need to test a single variable against multiple fixed values.",
-        "In this challenge, we'll be using the NATO alphabet to replace a character or letter,with NATO's standardized word for that letter.",
-        "The enhanced (modern) switch statement was introduced as a preview in Java 12 and became standard in Java 14."
-      ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Switch Statement In Java\", not of \"Switch Statement N A T O Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Enhanced Switch Statement In Java\", not of \"Switch Statement N A T O Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Switch Statement N A T O Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Switch Statement N A T O Challenge.",
-      "topicPath": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/SwitchStatementNATOChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "switch",
-        "break-continue",
-        "statements"
-      ]
+      "legacyQids": [],
+      "contentVersion": "f217b8e93836313b795a9d8258304aa53b20e6306ae457fc15bc49ad167c6715"
     },
     {
       "qid": "ocjp-chapter-7-switch-statements-switch-fallthrough-1",
@@ -8633,14 +8677,15 @@ const QUESTIONS_BANK = {
         "switch",
         "break-continue",
         "statements"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "93f9fdd3fc6a482ad7099831782e9947a64d9a1f65a138b3e075c43f9671ed49"
     }
   ],
   "Chapter 8: Java Looping Concepts": [
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_0-in-what-order-does-java-execute-the-thre",
       "difficulty": "easy",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8662,15 +8707,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The header reads for(initialisation; condition; update). The initialisation runs a single time, the condition is re-tested before every iteration, and the update runs after the body of each iteration.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_0-in-what-order-does-java-execute-the-thre",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "16ca7919a187d74c41dbe5e3801ec3ec24d3ae0aa782b579cfbf98a09f69a99f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_1-what-is-the-result-of-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8693,15 +8740,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A variable declared in for(int i = ...) is scoped to the loop, so i no longer exists at the println after the closing brace. The value would have been 3 if the name were still in scope.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_1-what-is-the-result-of-this-code",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "41427909c5f86a30816181913a458aa97f65000f32df8d375e572d3467be81f7"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_2-what-does-this-loop-print",
       "difficulty": "hard",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8724,15 +8773,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The body increments the loop variable as well as the update does, so the printed values are 1 and then 3, and the loop ends when i reaches 4. Modifying the loop variable inside the body is legal, but it changes the loop flow and is easy to get wrong.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_2-what-does-this-loop-print",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e0ff5e1db7ae88fb9dc19348362ba7368fb294674ac056b7b71149967a36185e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_3-what-does-for-do-in-java",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8754,15 +8805,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Leaving the initialisation, condition and update empty gives a header that is always true, so the loop repeats until something inside it ends it. This is a deliberate way of writing \"loop until done\".",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_3-what-does-for-do-in-java",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f580bc28ecffaaf283ddcfc6cbc64e1d12db797585e622a25e6d1eac4e8e3ecf"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_4-in-which-situation-is-the-enhanced-for-l",
       "difficulty": "easy",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8784,15 +8837,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The enhanced for loop hides the index and always walks forward, so it cannot give you positions or move backwards, and it is not suitable when the structure is modified during iteration. A counted for loop is used for those tasks.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_4-in-which-situation-is-the-enhanced-for-l",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e523b26585463c0cbcda290e79f84eca88e60f25215a0c5ad740a129043f3e6f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_5-which-of-these-for-headers-is-valid-java",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8814,15 +8869,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The initialiser may declare several variables as long as they share the single declared type, and the update section may hold several comma-separated expressions. Here both i and j are int, and the loop runs while i is less than j.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_5-which-of-these-for-headers-is-valid-java",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b8e7968f270ca0ecd94e80700706b7e37c683cd6c096e4c04509785cc9e274af"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_6-why-should-a-caller-pass-7-5-rather-than",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8844,15 +8901,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "calculateInterest computes amount * (interestRate / 100), so the parameter is a percent value. Passing 0.075 would divide twice and give a rate far too small.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_6-why-should-a-caller-pass-7-5-rather-than",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "644a72e450365aed491990407f942cdb101c3ac9549c7d4df95a2aaa4cd0b37d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_7-this-loop-breaks-as-soon-as-the-interest",
       "difficulty": "hard",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8875,15 +8934,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "calculateInterest(100, rate) is just rate, so the interest amount equals the rate. 8.5 is not greater than 8.5, so it is printed, and the next rate of 8.75 triggers the break.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_7-this-loop-breaks-as-soon-as-the-interest",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f6bc10fe2189567c0ecb578efd3ba083422fa88e4d54bfef8c47eac781cd7ae1"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_8-what-is-printed-by-this-loop",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8906,15 +8967,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "continue skips the rest of the current iteration only. When number reaches 25 or 50 the print is skipped, but the loop itself carries on.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_8-what-is-printed-by-this-loop",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ca0f20df0da2baae1f086e14c7d87b2aa0871c1c1cd8178e494eb1718c6d25ae"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_9-how-many-numbers-does-this-loop-print",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8937,15 +9000,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "i starts at 0 and the condition is i <= 5, so the last accepted value is 5. Counting 0, 1, 2, 3, 4, 5 gives six prints.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_9-how-many-numbers-does-this-loop-print",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5501fffaa84c20c4a3d4597221e96b7f99ddeb4eed573f41788105c3136f911d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_10-what-does-this-loop-do",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8968,15 +9033,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "All three parts of a for header are optional. An empty condition means true, so the loop repeats until something such as break or return stops it.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_10-what-does-this-loop-do",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "32530a2b4672ac36c497e0b53b14420857ac22427d4d2d51d1c90fe8e6f1be26"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_11-what-is-the-difference-between-break-and",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -8998,15 +9065,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "break leaves the loop entirely, so no further iterations run. continue abandons only the current pass and lets the loop continue with the next one.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_11-what-is-the-difference-between-break-and",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "16adce6e8540c4902a7b95afb4890887da3a102653ae3cf6e1b9f77c234af9d5"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_12-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -9029,15 +9098,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A variable declared in the initialisation of a for header lives only inside that loop. After the closing brace the name no longer exists, so the println cannot refer to it.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_12-does-this-code-compile",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "fcba93d6429d09ed0f28a77ca8910f869e93548ecec2e4c97468f1ead2e87529"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_13-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -9060,15 +9131,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The continue skips the print for even i, but the update i++ still runs, so only 1 and 3 print.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_13-what-is-printed-by-this-program",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "37d0754475359ea2c1e2d4510f2e9779f3f50325bf697aafadc28cbb833cc2e3"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_14-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -9091,15 +9164,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The label outer names the first for loop, so break outer leaves both loops at once.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_14-what-is-printed-by-this-program",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c89ba5213543926d1481e383ece75779ed0a96520bd5c75ac8015a9d728a6f8d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_15-how-many-times-is-the-body-of-the-inner-",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -9122,15 +9197,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The loops are nested, so the iteration counts multiply: 3 outer passes times 4 inner passes is 12.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_15-how-many-times-is-the-body-of-the-inner-",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "642f65b78ae951c98782ed7ef5289fad8f322d3b5a43e541c5e06e2a5a882954"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_16-what-happens-when-this-code-runs",
       "difficulty": "hard",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -9153,15 +9230,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The update is optional, so this compiles. Nothing changes i, so the condition stays true.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_16-what-happens-when-this-code-runs",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "940107659f58c809160e7a7a8e8f5b509592a0ab7ec032fb9b63d17cc857b43f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_17-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -9184,15 +9263,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The update i-- counts down and the test stops at 0, so the values printed are 5 down to 1.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_17-what-is-printed-by-this-program",
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2e1d8ea0a42cfe07aad9456e13dffc27bde9ce210104caa28f61f1abfd0208b6"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_18-how-many-times-does-the-body-of-this-loo",
       "difficulty": "medium",
       "chapter": "Chapter 8: Java Looping Concepts",
       "topic": "For Statement",
@@ -9215,146 +9296,13 @@ const QUESTIONS_BANK = {
       },
       "explanation": "i takes the values 0, 3, 6 and 9, then becomes 12 and fails i <= 10, so four passes run.",
       "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
+      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_custom_18-how-many-times-does-the-body-of-this-loo",
       "concepts": [
         "loops",
         "break-continue"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-1-for-statement-forstatement-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 8: Java Looping Concepts",
-      "topic": "For Statement",
-      "question": "Which of the following are TRUE about For Statement? Select all that apply.",
-      "options": [
-        "for --> best when you are iterating over a known range or set of values.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Loops let us execute the same block of code multiple times without writing that code again and again.",
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
-        "while --> runs until a specified condition becomes false."
       ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"For Loop Sum3and5 Challenge\", not of \"For Statement\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"For Loop Prime Number Challenge\", not of \"For Statement\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about For Statement. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about For Statement.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-2-for-loop-coding-challenge-forloopprimenumberchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 8: Java Looping Concepts",
-      "topic": "For Loop Prime Number Challenge",
-      "question": "Which of the following are TRUE about For Loop Prime Number Challenge? Select all that apply.",
-      "options": [
-        "Loops let us execute the same block of code multiple times without writing that code again and again.",
-        "This challenge practices: for loops, a helper method (isPrime), the break statement, and prime number logic.",
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
-        "If it's a prime number, print it out, and increment a count of the number of prime numbers found. if you get to the stage where 3 or more prime numbers are found, end the loop. In other words, you'll be iterating through the loop, but you've found three prime numbers before the range is fully processed.",
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5."
-      ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"For Statement\", not of \"For Loop Prime Number Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"For Loop Sum3and5 Challenge\", not of \"For Loop Prime Number Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about For Loop Prime Number Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about For Loop Prime Number Challenge.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-2-for-loop-coding-challenge-forloopsum3and5challenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 8: Java Looping Concepts",
-      "topic": "For Loop Sum3and5 Challenge",
-      "question": "Which of the following are TRUE about For Loop Sum3and5 Challenge? Select all that apply.",
-      "options": [
-        "This is the sum 3 and 5 challenge. So the challenge is to create a for statement, using a range of numbers, from 1 to 1,000 inclusive. You want to sum all the numbers, when you're looping through, that can be divided with both the number 3, and also with 5.",
-        "Loops let us execute the same block of code multiple times without writing that code again and again.",
-        "And for those numbers, that meet the above conditions, in other words, that are found to be divisible by both 3, and also divisible by 5, you want to print out that number.",
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
-        "You also want to break out of the loop, once you find five numbers, that meet those above conditions."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"For Statement\", not of \"For Loop Sum3and5 Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"For Loop Prime Number Challenge\", not of \"For Loop Sum3and5 Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about For Loop Sum3and5 Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about For Loop Sum3and5 Challenge.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopSum3and5Challenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-8-java-looping-concepts_src-chapter-8-java-looping-concepts-sub-chapter-2-for-loop-coding-challenge-sumoddchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 8: Java Looping Concepts",
-      "topic": "Sum Odd Challenge",
-      "question": "Which of the following are TRUE about Sum Odd Challenge? Select all that apply.",
-      "options": [
-        "For each number in the range: Check to see if it's a prime number using the isPrime method. If the number is prime, print it out and increment the prime number counter variable. Once the prime number counter equals three, exit the loop (Hint, use the break statement to exit). Your challenge is to create a for statement, using any range of numbers, to determine if the numbers, are prime numbers.",
-        "Check that number is > 0, if it is not return false.",
-        "Loops let us execute the same block of code multiple times without writing that code again and again.",
-        "If number is odd return true, otherwise return false.",
-        "The method should use a for loop to sum all odd numbers in that range including the end and return the sum."
-      ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"For Loop Prime Number Challenge\", not of \"Sum Odd Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"For Statement\", not of \"Sum Odd Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Sum Odd Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Sum Odd Challenge.",
-      "topicPath": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/SumOddChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue"
-      ]
+      "legacyQids": [],
+      "contentVersion": "279bc56c784cb291604b517c6315e57fc2d336259e287ec1e3c3c2bbd63d5cd8"
     },
     {
       "qid": "ocjp-chapter-8-java-looping-concepts-for-scope-1",
@@ -9380,7 +9328,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "loops",
         "break-continue"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "47500dfc8e4eaf07a727473f41b71e2cf58a2335b3f476d518aa289901341e98"
     },
     {
       "type": "predict",
@@ -9402,9 +9352,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "for (int i = 0; i < 5; i++) { System.out.print(i + \" \"); }\nfor (int i = 0; i <= 5; i++) { System.out.print(i + \" \"); }",
       "answer": [
-        "0 1 2 3 4 0 1 2 3 4 5"
+        "0 1 2 3 4 0 1 2 3 4 5 "
       ],
-      "explanation": "0 1 2 3 4 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "0 1 2 3 4 0 1 2 3 4 5 ",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"0 1 2 3 4 0 1 2 3 4 5 \". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "ca8836fa6e84645f0099d5d88db1d4171ac134e6886fbd6808a1c48fa08daf4d"
     },
     {
       "type": "predict",
@@ -9426,16 +9392,31 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "for (int i = 1; i <= 5; i++) {\n    if (i == 3) { continue; }\n    System.out.print(i + \" \");\n}",
       "answer": [
-        "1 2 4 5"
+        "1 2 4 5 "
       ],
-      "explanation": "1 2 4 5 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "1 2 4 5 ",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"1 2 4 5 \". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "2a51b16d3275c8c9593ce998f6df4b7aeb08f85ea2c1afc2494c759a20f41016"
     }
   ],
   "Chapter 9: While And Do While Looping Concepts": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_0-what-is-the-difference-between-while-and",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9450,16 +9431,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_0-what-is-the-difference-between-while-and",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "02d493e370909395b371231de98f36377fbc5758458d502a6eda7bbe0d7aba6e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_1-what-is-an-infinite-loop-and-how-do-you-",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9474,16 +9457,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_1-what-is-an-infinite-loop-and-how-do-you-",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "22abb851b6a691daf2433e7bc509388ee0108dbdc6427bda6bc79f9d349573ab"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_2-when-would-you-prefer-while-over-for",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9498,16 +9483,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_2-when-would-you-prefer-while-over-for",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5023f1db1297c4c5e2830285d49d79cd75cb8279214d67b27831a98de12ea393"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_3-what-do-break-and-continue-do-inside-a-w",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9522,16 +9509,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_3-what-do-break-and-continue-do-inside-a-w",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9df21934674ed0003f662566da1fcefc767d6f98ab6dc3ac3a60eeb3f64b51e6"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_4-what-prints-here-int-x-0-do-x-while-x-0-",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9547,16 +9536,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_4-what-prints-here-int-x-0-do-x-while-x-0-",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e4e228c5845b4e925d59dc36605973b8fce92e38b0ec20991e2e95ce2e95c863"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_5-which-is-usually-clearer-while-condition",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9572,16 +9563,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_5-which-is-usually-clearer-while-condition",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "45eafb5c0050f0acd6d58158191e41ac0df881af0e0e354cd5a449fa5a5764b7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_6-what-parameter-like-value-controls-when-",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9595,16 +9588,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_6-what-parameter-like-value-controls-when-",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bfcd6bba5d96c9a5a558310afc1e7615e7aa40f925800e6e9ecba2f670482450"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_7-in-if-number-5-is-5-skipped-or-printed",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9619,16 +9614,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_7-in-if-number-5-is-5-skipped-or-printed",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "baa1b651d19dd271262500024a06ebf89481c79f71563eae42dbd5209bc514c8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_8-what-is-passed-to-println-in-system-out-",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9643,16 +9640,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_8-what-is-passed-to-println-in-system-out-",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d676fce8841160929cc30293797ea854ce5142d50ee9443c03147e8dac61363b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_9-where-do-the-declaration-and-the-update-",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9674,16 +9673,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A while header holds only a boolean condition, so unlike a for loop it has no initialisation or update section. The counter must be prepared before the loop and changed inside the body, otherwise the condition never becomes false.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_9-where-do-the-declaration-and-the-update-",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "86f171b8823b2b9f181c55b53b4cfbba4475dbae26f8db356078752ca93398ca"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_10-how-many-times-does-the-body-of-this-loo",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9706,16 +9707,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A while loop tests its condition first, so when the condition is false from the start the body is skipped entirely and control continues after the loop. This is the \"never-executing loop\" case.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_10-how-many-times-does-the-body-of-this-loo",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d0906ee1dd9289b84155073d44a0e7f3b07d9c58ffe814fda7f868485bb53cc0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_11-which-statement-about-while-true-is-corr",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9737,16 +9740,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "while (true) is a deliberate infinite loop whose condition never becomes false. It is a common \"loop until done\" pattern, and the exit has to come from inside the body.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_11-which-statement-about-while-true-is-corr",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "cee812cc460c7c430e24779dcdc2856a762ac36c1c86ff2262b35d68c3b7500e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_12-in-this-file-s-loop-is-the-value-5-print",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9769,16 +9774,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The test number <= 5 is inclusive, so 1 through 5 all take the continue branch and print the Skipping message instead of the bare number. The first bare number printed is 6.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_12-in-this-file-s-loop-is-the-value-5-print",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ff7c04ac38a2a04462bb986488f86cf2f4874ccb4556b2a8210ca9c133236ddf"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_13-when-is-a-while-loop-usually-a-better-ch",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9800,16 +9807,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A while loop keeps only the condition in its declaration, which suits sentinel-controlled and input-reading loops where the count is unknown. A for loop is preferred when the count is known up front.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_13-when-is-a-while-loop-usually-a-better-ch",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6dfddcffb6ffc20dd67b3be8e442bda8ce30bfa409690719e3304ea5bec3f091"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_14-in-this-loop-which-values-reach-the-fina",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9832,16 +9841,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Values 1 to 5 are caught by the first test, print the Skipping message and continue, and 10 is caught by the second test and breaks. Only 6, 7, 8 and 9 fall through both tests to the plain println.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_14-in-this-loop-which-values-reach-the-fina",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "89eafe4b8b2902be7fde3656f2ab6c77d3c0cce85413ff59434368aff0057a19"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_15-which-loop-always-executes-its-body-at-l",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9863,16 +9874,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A do-while loop checks its condition after the body has run, so the body executes once even when the condition is false from the start. while and for test before the body and may run it zero times.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_15-which-loop-always-executes-its-body-at-l",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7509807b51606ab5faffbef94ac7de187ab7b776627be044f1fd341b342c5e09"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_16-what-happens-when-this-code-runs",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9895,16 +9908,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The body never changes j, so j stays 1 and j <= 5 remains true for ever. Every while loop depends on the body updating its counter.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_16-what-happens-when-this-code-runs",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4da60d589a5d852b816b89b194f1f47d6e10f53950d33f0cab6c4799d02d7bed"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_17-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9927,16 +9942,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A do-while runs its body first and tests the condition afterwards. Even though j < 5 is false from the start, the body has already executed once.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_17-what-is-printed-by-this-code",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2c089c0889dfa475a87c97ae1afb859c3d4d159f5c1796da5441928037dc0f4e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_18-what-is-wrong-with-this-loop",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9959,16 +9976,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A while header has no update step, so the body must change the counter. Since j stays 1, the condition remains true and the loop never stops.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_18-what-is-wrong-with-this-loop",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1393707ce7fb7360d1e87b3b85611043933410964ff8d34b46bf6db84010c035"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_19-what-is-the-effect-of-this-loop",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -9992,16 +10011,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "When j becomes 2 the continue jumps straight back to the condition, so the j++ below it is never reached. j stays 2 and the loop never ends.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_19-what-is-the-effect-of-this-loop",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9dfe2065408e4eca7026f99fb58129472b50b0a282dd417fb06cc6cece20cbab"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_20-how-many-times-does-this-loop-run",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -10024,16 +10045,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "j goes 1, then 3, each time passing j <= 4, and then becomes 5 which fails the test. That is two passes.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_20-how-many-times-does-this-loop-run",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a6c4f6a3f14f3fb25f1af1f7586d9b14048ac0bcd4683275d7473c63f40d4ee8"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_21-when-should-you-prefer-a-do-while-over-a",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -10055,16 +10078,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "do-while tests after the body, so the body always executes at least once. That suits prompts and menus, where something must be shown before the response can be tested.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_21-when-should-you-prefer-a-do-while-over-a",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4e308525e9cdb92982906750b9f7f4188db5e16d3c7b9ca6b1f9966d7d080cd2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_22-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -10087,16 +10112,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A while loop tests first, so i < 5 is already false, the body is skipped and done still prints.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_22-what-is-printed-by-this-code",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a2ad589d179d291de6487f5443c91e3cb03180fdfb61596a692304b50c0c6cf3"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_23-what-happens-when-this-code-runs",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -10119,16 +10146,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The semicolon after while (i < 3) is the loop body, so i never changes and it spins forever.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_23-what-happens-when-this-code-runs",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3cefeec6db594eb720aae07c92ec2f5d835c6131e617fd5f935377371499e5f1"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_24-what-does-this-loop-print",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -10151,16 +10180,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "n % 10 gives the last digit and n / 10 drops it, so 1234 comes out as 4, 3, 2, 1.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_24-what-does-this-loop-print",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2492c4f1d27c47bc6c42559977d83a72ac2dbe81d4ff97963a111dafdd707c48"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_25-what-happens-when-this-loop-runs",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -10183,16 +10214,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "At count 0 the test is true, so continue jumps back before the increment and count never moves.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_25-what-happens-when-this-loop-runs",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "34488f41b986176fb313ec9732cb11d80dac77c4b6927c447050459189ae9327"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_26-what-does-this-loop-print",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "While Loops",
@@ -10215,51 +10248,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "break exits at once, and the test comes before the print, so 4 is never printed.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_custom_26-what-does-this-loop-print",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-1-while-loop-whileloops-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "While Loops",
-      "question": "Which of the following are TRUE about While Loops? Select all that apply.",
-      "options": [
-        "Unlike the for loop, the while loop does NOT have a built-in initialisation or update step in its declaration.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "You must declare and initialise any counter variables BEFORE the loop, and update them INSIDE the loop body.",
-        "The method needs to return a boolean.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
       ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Check Number Palindrome Coding Challenge\", not of \"While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Do While Loops\", not of \"While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about While Loops. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about While Loops.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_1_While_Loop/WhileLoops.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
+      "legacyQids": [],
+      "contentVersion": "d7427c723bb0289e2cf9a1a21438ba0e324e55d5c867ed9f90496023b036ba1f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_0-what-does-the-isready-value-control-in-d",
       "difficulty": "easy",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10273,16 +10273,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_0-what-does-the-isready-value-control-in-d",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "38de60509695268c28df255e95daa8c2d1702ea372e507f832c5a8a609a122f7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_1-if-isready-is-false-before-a-do-while-st",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10297,16 +10299,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_1-if-isready-is-false-before-a-do-while-st",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "989f36ae39e3ebc142ca7918b9fddd3418301aa4303602d36bd82bc7aba3872d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_2-in-if-j-5-does-the-loop-break-when-j-is-",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10321,16 +10325,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_2-in-if-j-5-does-the-loop-break-when-j-is-",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "24b945a1ceca3b47cc27adf3aaf8c0717492cf8a96d3450e5e9c6758a37dcb22"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_3-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10353,16 +10359,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A do-while runs the body first, so one pass happens before n < 5 is found false.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_3-what-is-printed-by-this-code",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4363fb54383de4671b10c2c9dd92c1b41cad4e3162e30f444323b486d004ad60"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_4-what-happens-with-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10385,16 +10393,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The semicolon ends the do-while statement, so without it the compiler reports a missing ';'.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_4-what-happens-with-this-statement",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "565d671cc36b12caec4a1a329c22f0a9cef110aef54d0444bb182ae46c6d633a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_5-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10417,16 +10427,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The while loop tests first and skips its body; the do-while prints once before testing.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_5-what-is-printed-by-this-code",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c6aa933844f0ad50f987be6294d332b49f5fb52730891e4973b63b879d759474"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_6-what-does-this-do-while-print",
       "difficulty": "hard",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10449,16 +10461,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "continue jumps to the condition, so 2, 4 and 6 are skipped, and break stops it at i = 7.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_6-what-does-this-do-while-print",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "92e753ef2c82c81c42e317c121cbcff8326908ad03053b1c254ca4f777ab985a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_7-which-loop-fits-ask-at-least-once-then-r",
       "difficulty": "medium",
       "chapter": "Chapter 9: While And Do While Looping Concepts",
       "topic": "Do While Loops",
@@ -10480,438 +10494,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The prompt must appear once, so the test cannot come first; a do-while reads, then repeats.",
       "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
+      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_custom_7-which-loop-fits-ask-at-least-once-then-r",
       "concepts": [
         "loops",
         "break-continue",
         "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-2-do-while-loop-dowhileloops-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Do While Loops",
-      "question": "Which of the following are TRUE about Do While Loops? Select all that apply.",
-      "options": [
-        "This makes do-while ideal for situations like \"ask the user for input at least once, then keep asking if the input is invalid.\"",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The method needs to return a boolean.",
-        "In a regular while loop, if the condition is false from the start, the body NEVER runs. In a do-while, the body runs first, THEN the condition is checked."
       ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"While Loops\", not of \"Do While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Check Number Palindrome Coding Challenge\", not of \"Do While Loops\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Do While Loops. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Do While Loops.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_2_Do_While_Loop/DoWhileLoops.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-checknumberpalindromecodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Check Number Palindrome Coding Challenge",
-      "question": "Which of the following are TRUE about Check Number Palindrome Coding Challenge? Select all that apply.",
-      "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "It should return true if the number is a palindrome number otherwise it should return false.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "Check the tips below for more info about palindromes.",
-        "The method needs to return a boolean."
-      ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Do While Loops\", not of \"Check Number Palindrome Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"While Loops\", not of \"Check Number Palindrome Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Check Number Palindrome Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Check Number Palindrome Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/CheckNumberPalindromeCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-digitsumcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Digit Sum Coding Challenge",
-      "question": "Which of the following are TRUE about Digit Sum Coding Challenge? Select all that apply.",
-      "options": [
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "In this challenge, your task is to write a method with the name sumDigits that has a single parameter named number, of type int, and it should return an int.",
-        "If a negative number is passed, it should return -1, meaning, an invalid value was passed.",
-        "The method should only take a number that is a positive number.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once."
-      ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"While Loops\", not of \"Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Do While Loops\", not of \"Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Digit Sum Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Digit Sum Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/DigitSumCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-evendigitsumcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Even Digit Sum Coding Challenge",
-      "question": "Which of the following are TRUE about Even Digit Sum Coding Challenge? Select all that apply.",
-      "options": [
-        "If the number is negative, the method should return -1 to indicate an invalid value.",
-        "The method should return the sum of the even digits within the number.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "getEvenDigitSum(123456789); → should return 20 since 2 + 4 + 6 + 8 = 20",
-        "The while loop repeatedly executes its body as long as a condition remains true."
-      ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Do While Loops\", not of \"Even Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"While Loops\", not of \"Even Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Even Digit Sum Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Even Digit Sum Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/EvenDigitSumCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-factorprintercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Factor Printer Coding Challenge",
-      "question": "Which of the following are TRUE about Factor Printer Coding Challenge? Select all that apply.",
-      "options": [
-        "Factor Printer Challenge: A factor of a number N is any integer that divides N with no remainder.",
-        "The approach uses a while loop counting from 1 to N, checking if number % counter == 0 (i.e., divisible with no remainder).",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "For example, the factors of 32 are: 1, 2, 4, 8, 16, 32 — each divides 32 evenly.",
-        "The while loop repeatedly executes its body as long as a condition remains true."
-      ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Do While Loops\", not of \"Factor Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"While Loops\", not of \"Factor Printer Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Factor Printer Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Factor Printer Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FactorPrinterCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-firstandlastdigitsumcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "First And Last Digit Sum Coding Challenge",
-      "question": "Which of the following are TRUE about First And Last Digit Sum Coding Challenge? Select all that apply.",
-      "options": [
-        "If the number is negative then the method needs to return -1 to indicate an invalid value.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method needs to find the first and the last digit of the parameter number passed to the method, using a loop and return the sum of the first and the last digit of that number.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "sumFirstAndLastDigit(257); → should return 9, the first digit is 2 and the last is 7 which gives us 2+7 and the sum is 9."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Do While Loops\", not of \"First And Last Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"While Loops\", not of \"First And Last Digit Sum Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about First And Last Digit Sum Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about First And Last Digit Sum Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FirstAndLastDigitSumCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-floorpackproblemcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Floor Pack Problem Coding Challenge",
-      "question": "Which of the following are TRUE about Floor Pack Problem Coding Challenge? Select all that apply.",
-      "options": [
-        "The parameter goal represents the goal amount of kilos of flour needed to assemble a package.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The parameter smallCount represents the count of small flour bags (1 kilo each).",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The parameter bigCount represents the count of big flour bags (5 kilos each)."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"While Loops\", not of \"Floor Pack Problem Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Do While Loops\", not of \"Floor Pack Problem Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Floor Pack Problem Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Floor Pack Problem Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-greatestcommondivisorcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Greatest Common Divisor Coding Challenge",
-      "question": "Which of the following are TRUE about Greatest Common Divisor Coding Challenge? Select all that apply.",
-      "options": [
-        "Greatest Common Divisor (GCD) Challenge: the GCD of two numbers is the largest integer that divides both without a remainder.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method iterates over all divisors of the smaller number and checks which ones also divide the larger number — the last common divisor found is the GCD.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "For example, GCD(81, 153) = 27, since 27 is the largest number that divides both 81 and 153 evenly."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Do While Loops\", not of \"Greatest Common Divisor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"While Loops\", not of \"Greatest Common Divisor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Greatest Common Divisor Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Greatest Common Divisor Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/GreatestCommonDivisorCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-largestprimefactorcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Largest Prime Factor Coding Challenge",
-      "question": "Which of the following are TRUE about Largest Prime Factor Coding Challenge? Select all that apply.",
-      "options": [
-        "The method should calculate the largest prime factor of a given number and return it.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "If the number is negative or does not have any prime numbers, the method should return -1 to indicate an invalid value.",
-        "getLargestPrime (21); should return 7 since 7 is the largest prime (3 * 7 = 21)"
-      ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"While Loops\", not of \"Largest Prime Factor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Do While Loops\", not of \"Largest Prime Factor Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Largest Prime Factor Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Largest Prime Factor Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LargestPrimeFactorCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-lastdigitcheckercodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Last Digit Checker Coding Challenge",
-      "question": "Which of the following are TRUE about Last Digit Checker Coding Challenge? Select all that apply.",
-      "options": [
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The method should return true if at least two of the numbers share the same rightmost digit; otherwise, it should return false.",
-        "hasSameLastDigit (41, 22, 71); → should return true since 1 is the rightmost digit in numbers 41 and 71",
-        "Each number should be within the range of 10 (inclusive) - 1000 (inclusive). If one of the numbers is not within the range, the method should return false.",
-        "The while loop repeatedly executes its body as long as a condition remains true."
-      ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Do While Loops\", not of \"Last Digit Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"While Loops\", not of \"Last Digit Checker Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Last Digit Checker Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Last Digit Checker Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LastDigitCheckerCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-shareddigitcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "Shared Digit Coding Challenge",
-      "question": "Which of the following are TRUE about Shared Digit Coding Challenge? Select all that apply.",
-      "options": [
-        "hasSharedDigit(12, 23); → should return true since the digit 2 appears in both numbers",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "Each number should be within the range of 10 (inclusive) - 99 (inclusive). If one of the numbers is not within the range, the method should return false.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The method should return true if there is a digit that appears in both numbers, such as 2 in 12 and 23; otherwise, the method should return false."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Do While Loops\", not of \"Shared Digit Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"While Loops\", not of \"Shared Digit Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Shared Digit Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Shared Digit Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-9-while-and-do-while-looping-concepts_src-chapter-9-whileanddowhileloopingconcepts-sub-chapter-3-while-do-while-loop-codingchallenge-whileloopcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 9: While And Do While Looping Concepts",
-      "topic": "While Loop Coding Challenge",
-      "question": "Which of the following are TRUE about While Loop Coding Challenge? Select all that apply.",
-      "options": [
-        "If it's an even number, return true, otherwise, return false.",
-        "This challenge practices: writing a boolean-returning helper method, using a while loop with a counter, and using continue to skip iterations.",
-        "The do-while loop is like a while loop, but with one key difference: the body ALWAYS executes at least once.",
-        "The while loop repeatedly executes its body as long as a condition remains true.",
-        "The purpose of the method is to determine whether the argument that's been passed to the method, the int, in other words, is an even number or not."
-      ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Do While Loops\", not of \"While Loop Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"While Loops\", not of \"While Loop Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about While Loop Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about While Loop Coding Challenge.",
-      "topicPath": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "loops",
-        "break-continue",
-        "operators"
-      ]
+      "legacyQids": [],
+      "contentVersion": "bc9d9c8cf3fe80df665ee4918564b27372e152340467e701bfec258aa276a1b0"
     }
   ],
   "Chapter 10: Class Object Static And Instance Fields": [
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_0-what-is-the-difference-between-a-class-a",
       "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -10933,16 +10529,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The class describes the data and behaviour; the object is the real thing in memory, created from that description. There is no limit on how many objects one class can produce.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_0-what-is-the-difference-between-a-class-a",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e98dec8703dd94375d543cd5b8cf6b02edc4dc8d4e1ab96eb7ece0c8b1dcc567"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_1-how-is-an-object-created-from-a-class",
       "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -10964,16 +10562,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "new performs the class instance creation expression. It allocates the object and gives you a reference to it. Declaring the variable only reserves a name; no object exists until new runs.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_1-how-is-an-object-created-from-a-class",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4bc80a56b0425e34ddf32904c1ff97ed48ae33eeeedcf009df83c44cbaab6af8"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_2-how-do-instance-fields-behave-across-sev",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -10995,16 +10595,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An instance field belongs to the object. Two Car objects can have different colours at the same time, because each holds its own copy.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_2-how-do-instance-fields-behave-across-sev",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "572dd3f6b62eec8e25452d723805b3cbf658706f37a392ff56729713b1b57e9e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_3-what-is-the-difference-between-a-static-",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11026,16 +10628,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static field has one value for the whole class, so every object sees the same value. An instance field gives each object its own storage.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_3-what-is-the-difference-between-a-static-",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "fd0cf380ff249372d0aff4fdbb386234a296edb35c61c16d5b2f7392aedb7e51"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_4-how-do-system-out-println-null-and-calli",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11058,16 +10662,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "println is built to accept a null argument and prints the word null. The danger is elsewhere: any instance method called on a null reference fails, because there is no object to run it on.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_4-how-do-system-out-println-null-and-calli",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "33108d880235bf890fae387dd4059266100e6db36bcba4faf81b9eded6736073"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_5-how-does-new-string-hello-differ-from-wr",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11089,16 +10695,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "new always allocates a fresh object. A literal is looked up in the String pool and reused, which is why two identical literals usually share one object.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_5-how-does-new-string-hello-differ-from-wr",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "855d06c8ccf0d9c5de0aa2c0887767282d66b05e23bd945c7814eb833ebe6869"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_6-is-system-out-println-null-the-same-risk",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11113,16 +10721,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_6-is-system-out-println-null-the-same-risk",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "924fce7f51c8961b08b9d44e927e6699743d743fb55fef2819507c69b3d8c18e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_7-what-is-the-difference-between-a-class-a",
       "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11137,16 +10747,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_7-what-is-the-difference-between-a-class-a",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "58f8739c8e7220529d4b2090b02dafbb7d1a515e70ce8b8fd489d28b217dec02"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_8-what-is-the-difference-between-static-fi",
       "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11161,16 +10773,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_8-what-is-the-difference-between-static-fi",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "51795bd47aec7c3210d2e4eb18257281e357e229ca434e9a8145b85e054d4df4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_9-what-are-the-default-values-of-instance-",
       "difficulty": "easy",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11185,16 +10799,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_9-what-are-the-default-values-of-instance-",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c4c68bc77cd8d8cc25fd0ed82f3ef18683cc00549ad277c6d84232573c0cf882"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_10-when-would-you-make-a-field-static",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11209,16 +10825,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_10-when-would-you-make-a-field-static",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4bd073bed142d524786159792add0d7b53a6b4c8a2c75a2e43d347d026489e4b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_11-what-prints-here-class-counter-static-in",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11234,16 +10852,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_11-what-prints-here-class-counter-static-in",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0186e798ddfab46545ae5e40d186693d8db1b1ca9793e26efe23e8adc8d7e3e9"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_12-can-a-static-method-directly-access-an-i",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11259,16 +10879,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_12-can-a-static-method-directly-access-an-i",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "68b6b3353f0183c5d767bf874d5cebadf03ef17d42a9dc48c86d21e75a9160a0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_13-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11291,16 +10913,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static field belongs to the class, so all three objects share the same total. Each constructor call adds one, giving 3.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_13-what-is-printed-by-this-code",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "37fe1ab4323f98ff3f34c9c85fca09094332d816f674d00fdddd8505537d5720"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_14-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11323,16 +10947,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "name is an instance field, so each object has its own storage. Setting one does not affect the other, and the two values coexist.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_14-what-is-printed-by-this-code",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "35c51e843cc7e919c871366f1dc568a6c4560c22667150fe7e75d642cfbe96f1"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_15-does-this-class-compile",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11355,16 +10981,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static method belongs to the class and may run with no object in existence. The instance field count needs an object, so the reference is rejected at compile time.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_15-does-this-class-compile",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ea19233ac325fee3964f6197f4602a32f960c917609f31525fbb5a6ced539ef7"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_16-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11387,16 +11015,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Assigning one reference to another copies the reference, not the object. first and second now name the same Box, so a change through either is visible through both.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_16-what-is-printed-by-this-code",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "48cc53f3ef32039ee1e5491ea55f35b0e2652b2ebe457050a3d1b31a335de2ab"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_17-what-happens-when-this-code-runs",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Class Example",
@@ -11420,16 +11050,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The compiler cannot know that p will be null, so the code compiles. At runtime, reaching a field through a reference that points at nothing fails immediately with NullPointerException.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_1_Class/ClassExample.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-1-class-classexample-java_custom_17-what-happens-when-this-code-runs",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e77410759f9b8d4bfb62b3a92e2b449d174135a1f3c34235022422e129d75a12"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_0-why-does-new-createfieldonclasses-not-ne",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Create Field On Classes",
@@ -11443,16 +11075,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_0-why-does-new-createfieldonclasses-not-ne",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3f90e71d68346d379dd8c1bc09c1611d334556c8c294a3205c2be27bc6009902"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_1-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Create Field On Classes",
@@ -11475,16 +11109,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "`total` is static, so there is one copy for the whole class and all three tick calls land on it, giving 3. `mine` is an instance field, so each object keeps its own count: a was ticked twice and b once.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_1-what-is-printed-by-this-program",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "79c44e48f026eaf780401d1459cc254ac2740e49a845f736cde14a8c26b06d25"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_2-which-line-does-not-compile",
       "difficulty": "hard",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Create Field On Classes",
@@ -11507,16 +11143,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static method runs without any object, so there may be no `value` for it to read. The compiler refuses the reference rather than leaving it to fail later. Writing `static int value = 5;` or making show() non-static would both compile.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_2-which-line-does-not-compile",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5fcdbc67390625e8befd954235540dc5c799f61d1279655daae30a0f49d63412"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_3-what-is-printed-here",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Create Field On Classes",
@@ -11539,16 +11177,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The parameter `count` hides the field `count`, so `this.count` is needed to reach the field. Without `this`, the assignment would give the parameter its own value and the field would stay 1.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_3-what-is-printed-here",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c287ca2695f49e4c1673e87080d0f9a73a5d8f3a87b225e11efe680692fc7406"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_4-which-statement-about-a-static-field-is-",
       "difficulty": "medium",
       "chapter": "Chapter 10: Class Object Static And Instance Fields",
       "topic": "Create Field On Classes",
@@ -11570,11 +11210,14 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static field belongs to the class rather than to any object, so it is created once and shared. Being shared is exactly why it suits a counter or a constant, and why one object changing it affects every other.",
       "topicPath": "src/Chapter_10_Class_Object_Static_And_Instance_Fields/Sub_Chapter_2_Create_Field_On_Classes/CreateFieldOnClasses.java",
+      "qid": "chapter-10-class-object-static-and-instance-fields_src-chapter-10-class-object-static-and-instance-fields-sub-chapter-2-create-field-on-classes-createfieldonclasses-java_custom_4-which-statement-about-a-static-field-is-",
       "concepts": [
         "classes",
         "static",
         "encapsulation"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7530e42da98e27efb1dab7ccb834d8c1e368dccb49f0aa0194ecfb681baa80eb"
     },
     {
       "type": "scq",
@@ -11607,7 +11250,9 @@ const QUESTIONS_BANK = {
         "3": "Reaching a static field through the class name is the recommended way to do it, so this compiles."
       },
       "explanation": "A static field belongs to the class, not to any object. There is exactly one copy, so every constructor call increments the same variable. Making count a plain instance field instead would give each object its own copy, and printing one object's count would give 1.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "87cf1798f075a25a0762e0f58be1b8784ee7ed5ade3d96f8e5de3f9ae86c861f"
     },
     {
       "type": "scq",
@@ -11640,7 +11285,9 @@ const QUESTIONS_BANK = {
         "3": "Static fields and static blocks run in the order they are written in the source, and instance fields are initialised before the constructor body, not after."
       },
       "explanation": "Class loading runs the static fields and static blocks once, in source order, before anything else - before main is entered. Then main runs. Each `new` then runs the instance field initialisers, in source order, before the constructor body. The two rules are worth holding separately: static parts once per class load, instance parts once per object.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "5396a56cd0c2bb570ae8b99d297baa9beb78682d0240f0d1481ba2548c201b7e"
     },
     {
       "type": "scq",
@@ -11671,14 +11318,15 @@ const QUESTIONS_BANK = {
         "3": "The access modifier affects who can see the field, not how it is stored. The memory used is identical."
       },
       "explanation": "The private field plus the two accessors is encapsulation: the class decides what a valid value is, and every change goes through that decision. A public field would let any caller set a negative balance, and the check in setBalance would mean nothing because it could be skipped.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "f91fe9cfc6dbd6513bf68a43160f12dba2f759e4ef0a90846e124e2682e66837"
     }
   ],
   "Chapter 11: Parsing Values Reading Input": [
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_0-what-does-integer-parseint-do-and-what-c",
       "difficulty": "easy",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11700,16 +11348,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "parseInt is a conversion from text to a number. It only accepts valid integer text, so a decimal point, letters, or a blank string cause NumberFormatException at runtime.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_0-what-does-integer-parseint-do-and-what-c",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "28ef4769db255877a4ec1e2a71fd8d33e67a2b668b4d207613be1dd70a54c234"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_1-what-happens-when-integer-parseint-22-5-",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11731,16 +11381,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "parseInt expects whole-number text. The decimal point makes the input invalid, so the method throws rather than guessing what you meant.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_1-what-happens-when-integer-parseint-22-5-",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ad05968e4b29beff87bb5053e9b1fd94dc370daa7e0978ba24e2969ca4622619"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_2-in-integer-parseint-1010-2-what-does-the",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11762,16 +11414,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The radix selects the number base used to interpret the text. Base 2 means binary, so the digits 1010 represent 8 + 0 + 2 + 0, which is 10.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_2-in-integer-parseint-1010-2-what-does-the",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "92f50a2126782ca7808e65234e52a221a666f8fecec8053908b373fb4d5c3577"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_3-why-is-mixing-scanner-nextint-and-scanne",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11794,16 +11448,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Token methods such as nextInt read up to the number and stop. The line break is still waiting, so the following nextLine call sees an empty line. Reading one extra line first clears it.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_3-why-is-mixing-scanner-nextint-and-scanne",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0c9c96e0ccd0c0c6ff42dbc5e2f57dba0790cf738b07b143bcfa294ff7afea4d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_4-when-is-double-parsedouble-the-right-cho",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11825,16 +11481,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Choose the parse method that matches the text you expect. Any input can still fail with NumberFormatException, so letters remain a problem for both methods.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_4-when-is-double-parsedouble-the-right-cho",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "29425bb082be3140e3d5320cd639b7d5b68353acddc4d153ab9f0633b8883627"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_5-why-does-100-50-give-10050-rather-than-1",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11856,16 +11514,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The + operator is defined for text as concatenation. The type of the operands decides the meaning, so two Strings produce one longer String. To add them you must parse them first.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_5-why-does-100-50-give-10050-rather-than-1",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e64710e78b93bef55eaeb11aa60ca84c235b8c3d062bc06416ec8da4143372b0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_6-why-can-system-console-be-a-problem-in-s",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11887,16 +11547,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Console is a convenient way to read a line and show a prompt, but it is not always available. When the JVM is not connected to a terminal, console() returns null and calling a method on it would throw.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_6-why-can-system-console-be-a-problem-in-s",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d02b2d6fffdd014ad9b6728b562d1c92ab61fc2fa4fe12a1930621365c54095e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_7-what-must-be-true-about-the-string-passe",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11910,16 +11572,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_7-what-must-be-true-about-the-string-passe",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6e3bca5f1e54729383c079e53037fd73a3e5fc536aaf0d41f27a636ae80c9928"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_8-what-happens-if-integer-parseint-22-5-is",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11934,16 +11598,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_8-what-happens-if-integer-parseint-22-5-is",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "43814433c513e4e0c0f82ffe60fa371c4b30aae44c7f62cc8a532d4d6760b494"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_9-when-would-you-choose-double-parsedouble",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11957,16 +11623,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_9-when-would-you-choose-double-parsedouble",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7fc0ca0155324831a87b1a7b76e59a2a7b2fdae7a671d9eab011cdf0c8d93cdb"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_10-in-checkvaliddob-currentyear-yearofbirth",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -11980,16 +11648,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_10-in-checkvaliddob-currentyear-yearofbirth",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "24b27699785682c3a52a2aa49ab1b0d5aeaf77a288effc50270c1091bdd51a84"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_11-why-should-the-catch-parameter-often-be-",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12004,16 +11674,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_11-why-should-the-catch-parameter-often-be-",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "459fece96c90b1c3fa265a9877b49c03774868f2ba7d4ce31aa77635bb759b5c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_12-in-integer-parseint-1010-2-what-does-the",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12028,16 +11700,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_12-in-integer-parseint-1010-2-what-does-the",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b943fd98b087d3855621b08d918938387523ba32326ce61bf33c11079496ea19"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_13-what-does-integer-parseint-do-and-what-e",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12052,16 +11726,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_13-what-does-integer-parseint-do-and-what-e",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4fddbdda48a40d64915ac19c24a71bb1efdf8e836ba8432e7135ac82427c03ee"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_14-what-is-the-difference-between-integer-p",
       "difficulty": "easy",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12076,16 +11752,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_14-what-is-the-difference-between-integer-p",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "32ea64161670f5720996db35d761fa842b16cb2266349ad90ddcbd074261b5b6"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_15-what-is-scanner-and-how-does-it-read-inp",
       "difficulty": "easy",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12100,16 +11778,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_15-what-is-scanner-and-how-does-it-read-inp",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a50d11534281cdcbd2ef964d6d5fcc715a3d61ebe761b37c43c6643464f718db"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_16-why-do-java-programs-often-need-parsing-",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12124,16 +11804,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_16-why-do-java-programs-often-need-parsing-",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f0b04667cbfc0d673b59cc744ff45f9f6b3a60aae159d7cc8059e41c0116218a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_17-what-happens-with-integer-parseint-3-5",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12149,16 +11831,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_17-what-happens-with-integer-parseint-3-5",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "25b22caa749a508e98b2f44b887000a822462559688c217f27dd043806148915"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_18-why-can-nextline-appear-to-skip-input-af",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12174,16 +11858,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_18-why-can-nextline-appear-to-skip-input-af",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ffb17cffcfd17c5bb5992c1c8f3d9dd89750aa5bcc54b7e9e96c0d9309f42d4c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_19-what-does-integer-parseint-ff-16-return",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12205,16 +11891,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The radix decides the number base used to read the text. In base 16 the letters A to F are valid digits, so \"FF\" means 15 times 16 plus 15, which is 255.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_19-what-does-integer-parseint-ff-16-return",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "dc9cecccd2ecbe7713ff2af9963ab252d2604be65c655d33f8438708a237016d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_20-what-happens-when-integer-parseint-42-ru",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12236,16 +11924,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "parseInt accepts only the digits and an optional leading sign. Any other character, including a space, makes the whole text invalid, so the method throws rather than trimming it for you.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_20-what-happens-when-integer-parseint-42-ru",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e8961fb251c8f0d1c48f97169ef3f3517e99054931830227c643b820d564c768"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_21-what-happens-when-integer-parseint-null-",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12267,16 +11957,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "parseInt validates the text rather than the reference, so a null argument is reported as invalid text and produces NumberFormatException. This is worth remembering, because it is easy to expect NullPointerException and catch the wrong type.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_21-what-happens-when-integer-parseint-null-",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "dc3acc5dbb02240ddf14feea5281c8fb4efec903883a409378516e694f48612e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_22-what-is-printed-by-this-code-when-the-us",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12299,16 +11991,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "parseInt converts each String to an int before any arithmetic, so the sum is 170 and the average is 85. Integer division still applies, which is why the result has no decimal part.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_22-what-is-printed-by-this-code-when-the-us",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "25d57389a4df278e5066fdffc81864720f6c0e128c99695925b586daa896f7dd"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_23-what-does-this-code-print-when-the-user-",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12331,16 +12025,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "parseInt cannot read \"hello\" as an integer, so it throws. The matching catch block handles the exception, and the code after the try never runs for that input.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_23-what-does-this-code-print-when-the-user-",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b7e251685b9b633da71f2f3d454418b9bfd603476e3ec85eb90ca28aef2333ce"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_24-which-of-these-declarations-compile",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12363,16 +12059,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "parseInt returns an int, parseDouble a double, but Math.round(double) returns a long.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_24-which-of-these-declarations-compile",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f9555ac66301f5372e8324afd69dbcdf16cf8296e0c7973b2c1f8f82ad588e7e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_25-what-happens-when-this-code-runs",
       "difficulty": "hard",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12395,16 +12093,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "It is a runtime NumberFormatException, not a compile error, and \" 42 \" needs trim().",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_25-what-happens-when-this-code-runs",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a983d09a6fd6715738ad78f99de515d6230ecbb987088113669a230b75169c13"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_26-what-is-the-result-of-compiling-and-runn",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12427,16 +12127,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "+ joins the two Strings into \"10050\", but - has no String version, so javac rejects the file.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_26-what-is-the-result-of-compiling-and-runn",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4f45bb98dfc7643da6a30d45b7cc7e8186122fa0f2cae296fdd310a159c1f93d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_27-the-user-types-5-and-presses-enter-what-",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12459,16 +12161,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "nextInt stops before the newline, so the next nextLine() returns that empty leftover line.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_27-the-user-types-5-and-presses-enter-what-",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a037ce765d07e188c4e52fff425cd7abf172f727370f0c705e229ad35051a0b2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_28-why-does-code-calling-system-console-rea",
       "difficulty": "medium",
       "chapter": "Chapter 11: Parsing Values Reading Input",
       "topic": "Parsing Values Reading Input",
@@ -12490,186 +12194,14 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An IDE has no terminal, so console() returns null and calling it throws NullPointerException.",
       "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
+      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_custom_28-why-does-code-calling-system-console-rea",
       "concepts": [
         "wrappers",
         "strings",
         "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-1-parsing-values-and-reading-input-parsingvaluesreadinginput-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Parsing Values Reading Input",
-      "question": "Which of the following are TRUE about Parsing Values Reading Input? Select all that apply.",
-      "options": [
-        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "You cannot do arithmetic on Strings — \"100\" - \"50\" is a compile error because - is not defined for Strings.",
-        "When you read data from the user (keyboard input) or from a file, it arrives as a String. But you often need to use it as a number.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
       ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Input Calculator Challenge\", not of \"Parsing Values Reading Input\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Min Max Coding Challenge\", not of \"Parsing Values Reading Input\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Parsing Values Reading Input. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Parsing Values Reading Input.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_1_Parsing_Values_And_Reading_input/ParsingValuesReadingInput.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "wrappers",
-        "strings",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-inputcalculatorchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Input Calculator Challenge",
-      "question": "Which of the following are TRUE about Input Calculator Challenge? Select all that apply.",
-      "options": [
-        "When the user enters something that is not an int then it needs to print a message in the format \"SUM = XX AVG = YY\".",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered.",
-        "XX represents the sum of all entered numbers of type int."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Parsing Values Reading Input\", not of \"Input Calculator Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Min Max Coding Challenge\", not of \"Input Calculator Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Input Calculator Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Input Calculator Challenge.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/InputCalculatorChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "wrappers",
-        "strings",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-minmaxcodingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Min Max Coding Challenge",
-      "question": "Which of the following are TRUE about Min Max Coding Challenge? Select all that apply.",
-      "options": [
-        "If the user has previously entered a set of numbers (or even just one), display the minimum and maximum number that the user entered. So, you'll want to create a loop that continues to process until the user enters non-numeric data. You'll prompt the user to enter a number or type a character to quit each iteration. After the user enters some data, you'll read the input as a string, and then test if it can be parsed to a number.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "You can decide if you want the user to enter integers or decimal numbers.",
-        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "You'll be using an endless loop which: Prompts the user to enter a number or any character to quit. Validates if the user-entered data really is a number. You can choose either an integer or double validation method. If the user-entered data is not a number, quit the loop. Keep track of the minimum number entered. Keep track of the maximum number entered."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Parsing Values Reading Input\", not of \"Min Max Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Input Calculator Challenge\", not of \"Min Max Coding Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Min Max Coding Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Min Max Coding Challenge.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/MinMaxCodingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "wrappers",
-        "strings",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-paintjobchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Paint Job Challenge",
-      "question": "Which of the following are TRUE about Paint Job Challenge? Select all that apply.",
-      "options": [
-        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value.",
-        "The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).",
-        "Math.ceil() is used to round up — you always need whole buckets, never a fraction.",
-        "Paint Job Challenge: calculates how many paint buckets are required to cover a wall area."
-      ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Input Calculator Challenge\", not of \"Paint Job Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Parsing Values Reading Input\", not of \"Paint Job Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Paint Job Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Paint Job Challenge.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "wrappers",
-        "strings",
-        "casting"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-11-parsing-values-reading-input_src-chapter-11-parsing-values-reading-input-sub-chapter-2-parsing-values-coding-challenge-readinguserinputchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 11: Parsing Values Reading Input",
-      "topic": "Reading User Input Challenge",
-      "question": "Which of the following are TRUE about Reading User Input Challenge? Select all that apply.",
-      "options": [
-        "Reading User Input Challenge.",
-        "\"Invalid number\" to the console, but continue looping until you do have 5 valid numbers.",
-        "The method should not return anything (void) and it needs to keep reading int numbers from the keyboard.",
-        "In this challenge, you'll read 5 valid numbers from the console entered by the user and print the sum of those five numbers. By valid numbers, I mean you need to check that the numbers entered are valid integers. If they are not, print out the message",
-        "When we read data in from either a file or from user input, it's common for the data to be initially stored as a String, which we'll need to convert to a numeric value."
-      ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Input Calculator Challenge\", not of \"Reading User Input Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Parsing Values Reading Input\", not of \"Reading User Input Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Reading User Input Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Reading User Input Challenge.",
-      "topicPath": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/ReadingUserInputChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "wrappers",
-        "strings",
-        "casting"
-      ]
+      "legacyQids": [],
+      "contentVersion": "04481f7ffb29569413c91c36e152f6acf6369dd3f7928aa3f99f4bd4f76abd0c"
     },
     {
       "type": "predict",
@@ -12692,9 +12224,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "int a = Integer.parseInt(\"42\");\nInteger b = Integer.valueOf(\"42\");\nSystem.out.println(a + \" / \" + b);",
       "answer": [
-        "42 / 42"
+        "42 / 42\n"
       ],
-      "explanation": "42 / 42 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "42 / 42\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"42 / 42\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "57a61b76ab4ae1148e100c146f9e49bf2727fe09dd5a7f090a094f21918c640d"
     },
     {
       "type": "predict",
@@ -12717,16 +12265,31 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "System.out.println(\"100\" + \"50\");\nint sum = Integer.parseInt(\"100\") + Integer.parseInt(\"50\");\nSystem.out.println(sum);",
       "answer": [
-        "10050\r\n150"
+        "10050\n150\n"
       ],
-      "explanation": "10050, because + joins text — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "10050\n150\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"10050\\n150\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "1ec9342edb3c193e59d2e4cc64ea10edc11facef00c617caaaec71dce6bb75fd"
     }
   ],
   "Chapter 12: Exception Handling": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_0-what-is-the-difference-between-checked-a",
       "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12741,15 +12304,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_0-what-is-the-difference-between-checked-a",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6c4734e82594b5f121231bfe5b19f5ba6e0b6668ec157764ad077a51160d8f20"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_1-does-a-finally-block-execute-if-the-try-",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12764,15 +12329,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_1-does-a-finally-block-execute-if-the-try-",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "eccc0302a2e1439e83e40a5e11438c6fec7c9d35b1a85488cb4906b20b9cb3a3"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_2-does-a-finally-block-always-execute-in-j",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12789,15 +12356,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_2-does-a-finally-block-always-execute-in-j",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3963f709e2d7052e46f6825ab0be3e677645d0260bbfc2d6d378ee52ff3ed625"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_3-what-is-the-difference-between-checked-a",
       "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12813,15 +12382,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_3-what-is-the-difference-between-checked-a",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7ca09410703cf2dc6efb1e525dae0c0a2a7051959c8d48aa7e173f5bd5fafc14"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_4-what-is-the-basic-exception-hierarchy-in",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12838,15 +12409,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_4-what-is-the-basic-exception-hierarchy-in",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f67361c1d6a94f806da15605719b2628b4be647df3eda790788c8ddc26ea877e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_5-what-is-multi-catch-in-java",
       "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12862,15 +12435,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_5-what-is-multi-catch-in-java",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "becbd651c5588d94f0fe02d9fcee6469044f3d7298db563c4cbbcd50eabd28b1"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_6-what-is-the-difference-between-throw-and",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12886,15 +12461,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_6-what-is-the-difference-between-throw-and",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5114a527d3420ecf9dfe6483510b497e67867e6daf6b7e44ca69e51a31f56ea3"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_7-what-is-a-nullpointerexception-and-when-",
       "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12910,15 +12487,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_7-what-is-a-nullpointerexception-and-when-",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "89b85dd40d1fc778caa7a865760bbfa7029b118a6023a6ff92223b9ce00692f8"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_8-what-is-the-basic-structure-of-the-excep",
       "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12940,15 +12519,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Everything throwable descends from Throwable. Error covers serious JVM-level problems such as OutOfMemoryError. Exception covers the conditions your code is expected to handle.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_8-what-is-the-basic-structure-of-the-excep",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b99afa78923ddd0061df6c597aa2a9e0482a06aad9fe59ab492e6b92307afb41"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_9-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -12972,15 +12553,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A finally block runs before control leaves the try statement, including when a return is on its way out. The return value is settled after finally completes.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_9-what-is-printed-by-this-code",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5ef7d183a99bee1989922707b4b78a171a3a4491c5f5035160bde9b23e9cf8fd"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_10-what-is-the-difference-between-throw-and",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13002,15 +12585,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Think of throw as the action and throws as the declaration. throw new IllegalArgumentException(\"bad\") creates and passes an exception now; throws warns the caller that a checked exception may arrive.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_10-what-is-the-difference-between-throw-and",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "96e34d6ffe0fc7b6889e7c54028750c47243e5d495edd1bba153a1256ea5479e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_11-when-does-a-nullpointerexception-occur",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13032,15 +12617,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Assigning null is harmless. The failure comes later, when you try to use the reference as though it pointed at a real object, and there is nothing there to run the method on.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_11-when-does-a-nullpointerexception-occur",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9c478df45eb9580c6d6590621bcb971985ee223255b1fc2204ccaf19e93cef7b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_12-why-is-a-broad-catch-exception-e-usually",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13063,15 +12650,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A broad catch treats every failure as the one you anticipated, which hides the problems you did not. Catching the specific type keeps the handler honest about what it can actually deal with.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_12-why-is-a-broad-catch-exception-e-usually",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3086c190bdd4c46e187d80fc4b62d921f74518751515a62b251da9f4eddc58d8"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_13-what-do-getmessage-and-printstacktrace-d",
       "difficulty": "easy",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13093,15 +12682,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "These are the two diagnostic tools you reach for first. The message explains what went wrong, and the trace shows where it happened by listing the call chain.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_13-what-do-getmessage-and-printstacktrace-d",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b2a9974eb69d2f4614518e08fe64beb60927f6d655d27585cb61f0944d5c4e2d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_14-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13124,15 +12715,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Catch blocks are tested in the order written. Since NumberFormatException is a kind of Exception, the first block would already handle it, which makes the second block unreachable and therefore a compile error.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_14-does-this-code-compile",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0c8f5570dd9a65df8cf3f3356f38225ab6b27e768a3b39ab2cf5c068b720cd2f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_15-what-happens-when-this-code-runs",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13155,15 +12748,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Division by zero is legal to write, because 0 is a perfectly valid int. The failure happens when the division is actually performed, so the exception appears at runtime rather than at compile time.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_15-what-happens-when-this-code-runs",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "69116a9b741d8a2ad5f5fdd7468c9d7f00b39dce0c9a2cf8ca8962f1e64b213d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_16-what-is-thrown-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13186,15 +12781,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A three-element array has indexes 0, 1 and 2. Asking for index 3 is past the end, so the runtime rejects the access. Both this and NullPointerException are unchecked exceptions.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_16-what-is-thrown-by-this-code",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "94a4881e9c4a08b0ed9ddac660c56630ce553b19bf275c38447a5b0cde4f6f94"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_17-what-does-this-method-return",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13218,15 +12815,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The finally block runs before the method actually returns, so its return statement replaces the value that was on its way out. Returning from finally is legal but usually a mistake, because it silently discards the original result.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_17-what-does-this-method-return",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f36705a7409dd4a27da402768315f5495d22b6158074aab686597a163f3dab3c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_18-which-exception-type-is-not-required-to-",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13248,15 +12847,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Unchecked exceptions extend RuntimeException, and the compiler does not force handling for them. The other three listed types extend Exception directly, which makes them checked, so they must be caught or declared with throws.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_18-which-exception-type-is-not-required-to-",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "686226b17b467a3dc5f0bdbbf1cbc5b6a6df60fe5c9312df420a531fa9a33eda"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_19-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13279,15 +12880,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A is printed, then the division throws and skips the rest of the try block, so B never runs. C is printed by the matching catch, D by the finally, and E continues after the whole structure.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_19-what-is-printed-by-this-program",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "db11c1506a75acf01ceb3dc60a24de625679bcecd122b8672b67c3d5257a8dd1"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_20-what-does-this-method-return",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13310,15 +12913,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A `return` in a finally block discards the value the try block was returning, and the method exits from the finally instead. The code compiles, which is what makes the mistake so easy to ship. Only one path out of a method ever runs. Writing a return inside finally has no warning at all, so it is best avoided.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_20-what-does-this-method-return",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "160339d1efa30dcb1cec31e7a400735a5bd9da7b63351f74904e39f97cfc9da0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_21-which-exception-is-unchecked",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13340,15 +12945,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "NumberFormatException extends IllegalArgumentException, which extends RuntimeException, so the compiler does not require it to be caught or declared. The other three are checked exceptions, so a method that can throw one must catch it or declare it with throws.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_21-which-exception-is-unchecked",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c87c17c4efb92352541140686204e175d14d5277edbb4ecbe29d63c501036af9"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_22-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13371,15 +12978,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A more general catch placed above a more specific one makes the specific one unreachable, and Java reports that while compiling. The order has to be the other way round: narrow first, then broad.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_22-what-is-printed-by-this-program",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ec59cde107c4e71eec3b0b95c343382a719657a763c8b7697a6e84837cd8c358"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_23-which-statement-about-finally-is-correct",
       "difficulty": "medium",
       "chapter": "Chapter 12: Exception Handling",
       "topic": "Exception Handling In Java",
@@ -13401,10 +13010,13 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The finally block is the one place that runs on every path out of the try structure, which is what makes it the right place to close a file or a connection. The single exception is when the JVM itself stops, such as through System.exit.",
       "topicPath": "src/Chapter_12_Exception_Handling/ExceptionHandlingInJava.java",
+      "qid": "chapter-12-exception-handling_src-chapter-12-exception-handling-exceptionhandlinginjava-java_custom_23-which-statement-about-finally-is-correct",
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7faaf31016633ff841408fe4bbff4857b10fdc13d29db4e1b8ee9c6a485f0a9e"
     },
     {
       "qid": "ocjp-chapter-12-exception-handling-finally-1",
@@ -13428,7 +13040,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "checked-unchecked",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bb0ccc4e5554a275703c88e9c85ad0be1834208388fcf8ded3f75fdaf2d97055"
     },
     {
       "qid": "ocjp-chapter-12-exception-handling-checked-unchecked-1",
@@ -13456,7 +13070,9 @@ const QUESTIONS_BANK = {
         "checked-unchecked",
         "throw-throws",
         "multi-catch"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "54de7e6e0e1e5aa099bc6c556d41d93b3fbf320e8a1d64aa6f40ec1f557e4320"
     },
     {
       "type": "scq",
@@ -13491,7 +13107,9 @@ const QUESTIONS_BANK = {
         "3": "It never compiles, so nothing is printed. If the catches were reordered it would print Exception, because the first matching catch wins."
       },
       "explanation": "A catch block is unreachable when a previous catch block already handles that type or a supertype of it. RuntimeException is a subclass of Exception, so the second catch can never run and the compiler rejects it. The rule is: catch from the most specific type to the most general.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "e69f81efa1f72d10a3596965cfe79ea01f4ebc7507fd92e2d206e52ff9e09187"
     },
     {
       "type": "scq",
@@ -13522,14 +13140,15 @@ const QUESTIONS_BANK = {
         "2": "The try return is evaluated first, but it is held while the finally block runs. The finally block then returns 2, and that is what the caller receives."
       },
       "explanation": "finally always runs, including when the try block is returning. A return in finally replaces the pending return, so the caller sees 2 and the 1 is discarded with no warning. This is why a return inside finally is treated as a defect: it hides the real result and makes the method hard to reason about.",
-      "source": "ocjp-bank"
+      "source": "ocjp-bank",
+      "legacyQids": [],
+      "contentVersion": "39d33479dbd30ca52a54f399714b9f632d9e93b27d42e51d4e736a71345e31b7"
     }
   ],
   "Chapter 13: OOP Concepts": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_0-what-is-the-difference-between-an-abstra",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13546,18 +13165,20 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_0-what-is-the-difference-between-an-abstra",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "acbdf1aae272ae0bfd414ebc7ef700b11dd0f41dbe7d7e3d5b9625acb936e0b1"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_1-what-are-the-three-common-uses-of-the-fi",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13573,18 +13194,20 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_1-what-are-the-three-common-uses-of-the-fi",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bb909b4137ff7099e301296db67ff74819ca7c83419465528362055fa6345582"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_2-what-is-the-order-of-java-access-modifie",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13602,18 +13225,20 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_2-what-is-the-order-of-java-access-modifie",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ebef1b7f5eb6a9826c9fadf5aa2b1a1290734e8ab658853ef1d31b39573d0881"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_3-what-is-the-difference-between-this-and-",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13629,18 +13254,20 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_3-what-is-the-difference-between-this-and-",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "42d77d447f9d30a51f32b069fbc64adb0b2d96fdb97553a1f7adae0bb8b6a3a9"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_4-what-is-polymorphism-in-java-and-what-is",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13656,18 +13283,20 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_4-what-is-polymorphism-in-java-and-what-is",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4dc47d1a309762e26ccc0483d769180b0f1b003760b1f2d72258793a47db3ded"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_5-when-a-constructor-parameter-has-the-sam",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13681,18 +13310,20 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_5-when-a-constructor-parameter-has-the-sam",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ad8ca9cab40269e941c7c2e36ba39f0157e990dcc6043ec5ea9129fa801e8826"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_6-how-does-java-choose-between-overloaded-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13707,18 +13338,20 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_6-how-does-java-choose-between-overloaded-",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d1f1f55e4d78ad96494fddf981243ad178b83429897bc128f89db84eb02d4a72"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_7-what-are-the-four-pillars-of-object-orie",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13740,18 +13373,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The four pillars describe the design principles of OOP. Classes, objects, methods and fields are the building blocks you use to apply them, not the pillars themselves.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_7-what-are-the-four-pillars-of-object-orie",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6d7c0c203dff2a1dfc20e6639fa2e52804b87e436728588586bc35146a7d943c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_8-what-are-the-members-of-a-class",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13773,18 +13408,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A class describes the data it holds and what it can do. Fields store the state, methods provide the behaviour, and together they are called class members.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_8-what-are-the-members-of-a-class",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bce7aef2992a7230ad0d6c0b51403160dcd5e9e6afd93da433435a92c2496fe5"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_9-how-does-a-static-field-differ-from-an-i",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13806,18 +13443,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Static means it belongs to the class itself, so every object sees the same value. Instance fields belong to the object, so different objects can hold different values at the same time.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_9-how-does-a-static-field-differ-from-an-i",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ea1a1fbba8226d93c009c69bc9d933770ef3cf8d02675b7e10d8ec6be0209c2d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_10-why-can-a-static-method-not-use-instance",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13839,18 +13478,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static method is called on the class, so it has no object to take state from. That is why it cannot reference instance fields directly, while an instance method can use both static and instance data.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_10-why-can-a-static-method-not-use-instance",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e9b414e41d60b6016a93eb25480ff13b4e6ff1711f097973be8ada4e28e9104a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_11-what-access-modifiers-may-a-top-level-cl",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13872,18 +13513,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A top-level class can be public or package-private. protected and private describe access relative to a class, so they make sense for members, not for the top-level class itself.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_11-what-access-modifiers-may-a-top-level-cl",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1ea3d73a0a9d6d9aef4637fa760fb2f1983eca777330cc81df80f1046e154082"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_12-two-classes-are-declared-in-the-same-pac",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13905,18 +13548,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Leaving the modifier off gives package-private access. That is more open than private and narrower than public: everything inside the package can see it, and nothing outside can.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_12-two-classes-are-declared-in-the-same-pac",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "27741ddf9e9eae678dd9c27df94d6f3e2524e8cc6927d5f78d1e690ad161bfd4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_13-does-this-class-compile",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13939,18 +13584,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An instance field belongs to an object, and a static method can run with no object in existence. The compiler therefore refuses the reference, which is why static methods cannot use instance data.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_13-does-this-class-compile",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "97c5c531360de2cb2789edcd2e777cb73a8d3129f3608991199736a3149ae4ea"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_14-a-subclass-inherits-from-a-parent-which-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -13972,18 +13619,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Inheriting a member means the subclass can use it. private members are not inherited, because they belong to the parent alone. public and protected members are, and package-private members are inherited when both classes share a package.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_14-a-subclass-inherits-from-a-parent-which-",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7714b98f695328c0dbc8cc91becce8ff3a43bae38012b743dee84ec2e2ede45d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_15-what-is-a-class-member-in-java",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -14005,18 +13654,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Members are the things a class declares: fields that hold state and methods that provide behaviour, along with nested types and initialisers. The objects created from the class are instances, not members.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_15-what-is-a-class-member-in-java",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b2be69b3bf0d2f1750818f3bb32248248d47d267b7120e0278c2a3763bedf9f7"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_16-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -14039,18 +13690,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A field gets a default of 0, but a local variable gets none, so reading local is a compile error.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_16-what-is-printed-by-this-program",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f4b9977b0bc2422cb6201f61c09b234d61df7a9cc36af6e507a8726064c1c709"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_17-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -14073,18 +13726,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "== asks whether the references point at one object; they do not. equals compares content, so true.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_17-what-is-printed-by-this-program",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "26b9044b9823cf877bd4e8f7be4cd700454fb77aa0c8cafcf7b09ab631a73cc7"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_18-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -14107,18 +13762,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "private means the declaring class only, so secret is not visible in Child and cannot be found.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_18-does-this-code-compile",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "39d271e64808a62b7cb299d87cf41751fe4eb66bcf592f5dbd95cdda6665924b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_19-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -14141,18 +13798,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Constructors are not inherited, so the inserted super() finds no no-argument parent constructor.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_19-does-this-code-compile",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "db5795877e53a2a7507c18a54c9be46741a1620a0e92e423f4c8e17ed36483c2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_20-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Classes And Inheritance",
@@ -14175,55 +13834,20 @@ const QUESTIONS_BANK = {
       },
       "explanation": "protected is relative to an enclosing class. A top-level class has none, so use public or none.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_custom_20-does-this-code-compile",
       "concepts": [
         "static",
         "constructors",
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-1-classes-and-inheritance-classesandinheritance-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Classes And Inheritance",
-      "question": "Which of the following are TRUE about Classes And Inheritance? Select all that apply.",
-      "options": [
-        "OOP is sometimes called class-based programming. Class-based programming starts with classes which, become the blueprints for objects",
-        "Modelling real-world objects, as software objects is a fundamental part of Object-Oriented Programming.",
-        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Main\", not of \"Classes And Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Car\", not of \"Classes And Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Classes And Inheritance. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Classes And Inheritance.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_1_Classes_And_Inheritance/ClassesAndInheritance.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "static",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading"
-      ]
+      "legacyQids": [],
+      "contentVersion": "5f42cbbeaf4bd504932f3b0307c83bd8dcc7cce15dd1983a40438eecc0a34c08"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_0-what-should-you-pass-to-setmake-string-m",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Car",
@@ -14237,6 +13861,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_0-what-should-you-pass-to-setmake-string-m",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14248,12 +13873,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "06bcbc98f2bff46e9a4c387923238ac6632387e531057748355b9d97dad57a0d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_1-why-does-setdoors-int-doors-need-a-sensi",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Car",
@@ -14268,6 +13894,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_1-why-does-setdoors-int-doors-need-a-sensi",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14279,12 +13906,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a40f5ad2c8d5e7995334c98c4918da4a29abc65efb5b36bb6f183408b560bf10"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_2-in-this-convertible-convertible-which-si",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Car",
@@ -14299,6 +13927,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_custom_2-in-this-convertible-convertible-which-si",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14310,54 +13939,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-car-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Car",
-      "question": "Which of the following are TRUE about Car? Select all that apply.",
-      "options": [
-        "If no access modifier is declared explicitly, Java declares the default one (package private), implicitly.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "When writing methods that use non-static fields, your method can't be declared static.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods."
       ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Car\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Main\", not of \"Car\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Car. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Car.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "e4e615687eaf89f10f198027042841d7bc4107fbaf3a046d4b3c5436af15519a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_0-why-will-car-setmodel-carrera-fail-here-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Getters Encapsulation Object Access)",
@@ -14372,6 +13960,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_0-why-will-car-setmodel-carrera-fail-here-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14383,12 +13972,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "82b3b6d37f7fd1a8f4080cfb18e96aa40d2a68888449d1cd90a12e631e7d3f0c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_1-what-does-the-argument-true-mean-in-car-",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Getters Encapsulation Object Access)",
@@ -14402,6 +13992,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_custom_1-what-does-the-argument-true-mean-in-car-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14413,54 +14004,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-2-getters-encapsulation-object-access-main-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Getters Encapsulation Object Access)",
-      "question": "Which of the following are TRUE about Main (Getters Encapsulation Object Access)? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Car car = null; — the variable car exists, but points to nothing. Calling car.describeCar() here causes a NullPointerException.",
-        "Private fields CANNOT be accessed directly from outside the class (e.g., car.make = \"Porsche\" would be a compile error).",
-        "This class demonstrates the use of a Car object created using the Car class with private fields and getter/setter methods.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Main (Getters Encapsulation Object Access)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Car\", not of \"Main (Getters Encapsulation Object Access)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Main (Getters Encapsulation Object Access). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Getters Encapsulation Object Access).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Main.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "f30d9d41dce74c2e9fd9733854d2a967f888f3badce3e2feef7ba1dcef74d81c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_0-why-is-passing-a-negative-depositamount-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bank Account",
@@ -14475,6 +14025,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_0-why-is-passing-a-negative-depositamount-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14486,12 +14037,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c24ad21397a30b8b59fa9b37821ca2a47654b35187cbc61e18d29a5c468fbf81"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_1-in-setcustomername-string-customername-w",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bank Account",
@@ -14506,6 +14058,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_custom_1-in-setcustomername-string-customername-w",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14517,54 +14070,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-bankaccount-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Bank Account",
-      "question": "Which of the following are TRUE about Bank Account? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "account number. account balance. customer name. email. and phone number.",
-        "one for depositing funds into the account. and one for withdrawing funds from the account.",
-        "A customer should not be allowed to withdraw funds if that withdrawal takes their balance negative."
       ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Bank Account\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Car\", not of \"Bank Account\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Bank Account. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Bank Account.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/BankAccount.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "0291e375a7ce70980876876ba04520bd53c9b3ef4eb20be65f2071d70fa1f9b1"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_0-what-does-the-argument-1000-0-mean-in-ba",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Classes Challenge)",
@@ -14578,6 +14090,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_0-what-does-the-argument-1000-0-mean-in-ba",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14589,12 +14102,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0381e04f34413753f957fdccd38feb0a557c308a5031ae4a8065256e64402289"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_1-why-should-callers-avoid-passing-negativ",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Classes Challenge)",
@@ -14609,6 +14123,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_1-why-should-callers-avoid-passing-negativ",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14620,12 +14135,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "641ff4cedebaa2da106ca43dea1bbc2b6824c2b84264dfe54262bf0a02818c6a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_2-does-new-bankaccount-pass-any-constructo",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Classes Challenge)",
@@ -14640,6 +14156,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-bankaccountchallenge-main-java_custom_2-does-new-bankaccount-pass-any-constructo",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14651,96 +14168,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-methodoverloadingchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Method Over Loading Challenge",
-      "question": "Which of the following are TRUE about Method Over Loading Challenge? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "The first method has one parameter of type int, which represents the entire height in inches.",
-        "This method will convert feet and inches to just inches, then call the first method, to get the number of centimeters, also returning the value as a double. Both methods should return a real number or decimal value for total height in centimeters. Call both methods, and print out the results.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "You'll convert inches to centimeters, in this method, and pass back the number of centimeters, as a double. The second method has two parameters of type int, one to represent height in feet, and one to represent the remaining height in inches. So if a person is 5 foot, 8 inches, the values 5 for feet and 8 for inches would be passed to this method."
       ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Over Loading Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"Method Over Loading Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Method Over Loading Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Over Loading Challenge.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverLoadingChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-methodoverloadingsecondandminuteschallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Method Overloading Second And Minutes Challenge",
-      "question": "Which of the following are TRUE about Method Overloading Second And Minutes Challenge? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "You should validate that the first parameter minutes is >= 0.",
-        "You should validate that the 2nd parameter seconds is >= 0 and <= 59.",
-        "The method should return Invalid value if either of the above are not true."
-      ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Overloading Second And Minutes Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Car\", not of \"Method Overloading Second And Minutes Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Method Overloading Second And Minutes Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Overloading Second And Minutes Challenge.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/MethodOverloadingSecondAndMinutesChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "01ec0665acff0b8dac368072e1f453a595c224dc76d1c3171ec3c0e56f6c610e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_0-what-values-should-be-passed-to-setage-i",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Person Age Validation",
@@ -14754,6 +14188,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_0-what-values-should-be-passed-to-setage-i",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14765,12 +14200,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "223a0ada0ec5ac5f94be1275672f38472c2fc6375bbd21de1f87914f503313df"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_1-why-is-passing-null-to-setfirstname-stri",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Person Age Validation",
@@ -14785,6 +14221,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_1-why-is-passing-null-to-setfirstname-stri",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14796,12 +14233,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4057c0387a09cd6108a92c4922d671002ea9af4924ad488ec1c0201a34779515"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_2-in-this-age-age-what-does-the-age-on-the",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Person Age Validation",
@@ -14816,6 +14254,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_custom_2-in-this-age-age-what-does-the-age-on-the",
       "concepts": [
         "classes",
         "encapsulation",
@@ -14827,96 +14266,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-personagevalidation-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Person Age Validation",
-      "question": "Which of the following are TRUE about Person Age Validation? Select all that apply.",
-      "options": [
-        "Method named getLastName without any parameters, it needs to return the value of the lastName field.",
-        "Method named getFirstName without any parameters, it needs to return the value of the firstName field.",
-        "Method named getAge without any parameters, it needs to return the value of the age field.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Person Age Validation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Car\", not of \"Person Age Validation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Person Age Validation. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Person Age Validation.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/PersonAgeValidation.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-3-classes-challenge-sumcalculatorimplementationchallenge-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Sum Calculator Implementation Challenge",
-      "question": "Which of the following are TRUE about Sum Calculator Implementation Challenge? Select all that apply.",
-      "options": [
-        "Method named getSecondNumber without any parameters, it needs to return the value of secondNumber field.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Method named getFirstNumber without any parameters, it needs to return the value of firstNumber field.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Method named setFirstNumber with one parameter of type double, it needs to set the value of the firstNumber field."
-      ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Classes And Inheritance\", not of \"Sum Calculator Implementation Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"Sum Calculator Implementation Challenge\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Sum Calculator Implementation Challenge. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Sum Calculator Implementation Challenge.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/SumCalculatorImplementationChallenge.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "164fdd1542693beeca4e015d3b7a9611604cf0ce31a90cc5a1f82369b5e8c619"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_0-what-does-the-accountbalance-argument-re",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -14930,16 +14286,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_0-what-does-the-accountbalance-argument-re",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "87ab9b7222b3c8cdeb531b46aa97c8c1809f3f564cc5c227d8e485de71ee05b9"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_1-why-can-swapping-email-and-phonenumber-a",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -14954,16 +14312,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_1-why-can-swapping-email-and-phonenumber-a",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6b4ef3e937e3fcb0407d8bb1de502476eadfce710d7ab3f4e1bfd6da12af061b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_2-where-must-the-this-accountnumber-100-00",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -14978,16 +14338,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_2-where-must-the-this-accountnumber-100-00",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b1f9f66ad509680066796d154bf5502fd2932254c9a0254f504e152613e66d11"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_3-a-class-declares-only-this-constructor-w",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -15010,16 +14372,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The implicit no-argument constructor exists only if the class declares no constructor at all.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_3-a-class-declares-only-this-constructor-w",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "361508f24b07449c098614145130faf6d3d3dc5ad11bebb4809bf2d81fb37333"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_4-does-this-class-compile-and-what-is-void",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -15042,16 +14406,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Writing void gives the declaration a return type, so it is a method named Demo, not a constructor.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_4-does-this-class-compile-and-what-is-void",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a7486f943f9175e88c40f0c0cd03c87e01686f220b439f1f74d0448ff306b683"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_5-does-this-constructor-compile",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -15074,16 +14440,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A constructor may delegate only through this(...), and that call must be the very first statement.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_5-does-this-constructor-compile",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4917c49842f18f82cdcd5c99229999b599b1f4424435b738c307c5c9c29bdd84"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_6-which-pair-of-constructors-is-a-valid-ov",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -15105,16 +14473,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Overloading depends on the parameter list: its number, types and order. Names are not part of it.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_6-which-pair-of-constructors-is-a-valid-ov",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a9d5351db3710c2c551a3fc20f8079b741519e9e7813183fc94a15a0ece34fe4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_7-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Constructor Concept",
@@ -15137,51 +14507,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "this(5) runs first, and control returns to the no-argument constructor, which prints its own line.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_custom_7-what-is-printed-by-this-program",
       "concepts": [
         "encapsulation",
         "constructors",
         "overloading"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-1-constructorconcept-constructorconcept-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Constructor Concept",
-      "question": "Which of the following are TRUE about Constructor Concept? Select all that apply.",
-      "options": [
-        "It is a special type of code block that has a specific name and parameters, much like a method.",
-        "It has the same name as the class itself, and it doesn't return any values.",
-        "A constructor is used in the creation of an object.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Constructor Concept\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Car\", not of \"Constructor Concept\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Constructor Concept. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Constructor Concept.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "encapsulation",
-        "constructors",
-        "overloading"
-      ]
+      "legacyQids": [],
+      "contentVersion": "4879638a68b07494e65c1a29302e6fc97c87d1f96db659a389da56fe62938f7a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_0-what-does-super-printmethod-pass-as-argu",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Super Keyword Use Example",
@@ -15195,6 +14532,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_0-what-does-super-printmethod-pass-as-argu",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15206,12 +14544,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "80bbe2ab072e47f07a16d1e0528652137cb181d3a5e1faedca62a547e971b9cc"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_1-why-is-super-important-in-the-overriding",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Super Keyword Use Example",
@@ -15226,6 +14565,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_1-why-is-super-important-in-the-overriding",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15237,12 +14577,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a464d42109971cb10a8ad369725e00f346926ce6042e6961362a1abbbe2260f0"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_2-what-is-stored-in-the-args-parameter-of-",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Super Keyword Use Example",
@@ -15257,6 +14598,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/SuperKeywordUseExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-superkeyworduseexample-java_custom_2-what-is-stored-in-the-args-parameter-of-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15268,12 +14610,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ae0316342a76f3cd7a8226da284b389ba7d900d31fba7711c3fbe7644e9acd32"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_0-what-is-the-difference-between-passing-a",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This And Super",
@@ -15287,15 +14630,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_0-what-is-the-difference-between-passing-a",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2da9c9000e347c8785c259c39fce3040dd216ef4f587bc89a0eddb3efa462c6e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_1-why-can-t-a-constructor-call-both-this-a",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This And Super",
@@ -15310,15 +14655,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_1-why-can-t-a-constructor-call-both-this-a",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0970670cfaf40ac896ef03bb843a4e47a1f505b78cec616a8c244e45f12a45fa"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_2-are-this-args-and-super-args-available-i",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This And Super",
@@ -15333,49 +14680,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_custom_2-are-this-args-and-super-args-available-i",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thisandsuper-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "This And Super",
-      "question": "Which of the following are TRUE about This And Super? Select all that apply.",
-      "options": [
-        "1) The keyword this, is used to call the current class members (both variables and methods).",
-        "1) The keyword super is used to access or call the parent class members (both variables and methods).",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "2) this keyword is required when we have a parameter with the same name as an instance variable or field."
       ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Classes And Inheritance\", not of \"This And Super\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"This And Super\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about This And Super. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about This And Super.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisAndSuper.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "constructors",
-        "inheritance"
-      ]
+      "legacyQids": [],
+      "contentVersion": "19781391067158808eef80fda49d7c8c09c2df45c085a16f3c60f3f7f6920446"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_0-why-is-this-color-needed-in-this-color-c",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This Key Word Use Example",
@@ -15390,6 +14705,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_0-why-is-this-color-needed-in-this-color-c",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15401,12 +14717,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e1621dba35c52f98545e1c1ec98f2f7d85d0c23b3ac35d0d09dbeba709595b2b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_1-does-getcolor-need-a-parameter-to-return",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "This Key Word Use Example",
@@ -15421,6 +14738,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_2_This_And_Super/ThisKeyWordUseExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-2-this-and-super-thiskeyworduseexample-java_custom_1-does-getcolor-need-a-parameter-to-return",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15432,12 +14750,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "49dd1617f7640e25429fab5700663c3f903521ec8eb2d4c56b7f078d0f1754eb"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_0-what-do-the-x-and-y-arguments-passed-to-",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Good Constructor Super Call Example",
@@ -15451,15 +14770,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_0-what-do-the-x-and-y-arguments-passed-to-",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4d81f8b2d6aa87cd15a846a6eebbb55a5b76815715a6e649106c12e20fe46e28"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_1-why-is-swapping-width-and-height-easy-to",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Good Constructor Super Call Example",
@@ -15474,15 +14795,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_1-why-is-swapping-width-and-height-easy-to",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "eb66f79ccb44a2338eab61939bc6b4f42ff9fc5c0cd5875f9b8679bf23d3dac3"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_2-where-must-super-x-y-appear-in-the-child",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Good Constructor Super Call Example",
@@ -15497,49 +14820,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_custom_2-where-must-super-x-y-appear-in-the-child",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-super-call-example-goodconstructorsupercallexample-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Good Constructor Super Call Example",
-      "question": "Which of the following are TRUE about Good Constructor Super Call Example? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The 2nd constructor calls the parent constructor with parameters x and y.",
-        "The parent constructor will initialize the x and y variables, while the 2nd Rectangle constructor will initialize the width and height variables. Here, as you can see in this code, Both the super() and this() calls are made, but in different constructors.",
-        "The 1st constructor is calling the 2nd constructor.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
-      "answer": [
-        1,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Car\", not of \"Good Constructor Super Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Classes And Inheritance\", not of \"Good Constructor Super Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Good Constructor Super Call Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Good Constructor Super Call Example.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/Super_Call_Example/GoodConstructorSuperCallExample.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "constructors",
-        "inheritance"
-      ]
+      "legacyQids": [],
+      "contentVersion": "80dd4d10b046c5fe9c612f8f87cb77230f0f6783b3ad4043a46dc5f9ed648689"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_0-what-do-width-and-height-mean-in-badcons",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bad Constructor This Call Example",
@@ -15553,6 +14844,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_0-what-do-width-and-height-mean-in-badcons",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15564,12 +14856,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8ea83ea3aac8a36933cc25bb8b9d9ecd3286d62faa6739f4d6b9121e444b4281"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_1-why-is-parameter-order-especially-import",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bad Constructor This Call Example",
@@ -15584,6 +14877,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_1-why-is-parameter-order-especially-import",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15595,12 +14889,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "22cd7bf2e7b5cb83a1356e4c2b8c5f7b7241c5d5c1302c368d1e513f2b3b21af"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_2-what-constructor-call-could-reduce-dupli",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Bad Constructor This Call Example",
@@ -15615,6 +14910,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_custom_2-what-constructor-call-could-reduce-dupli",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15626,54 +14922,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-badconstructorthiscallexample-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Bad Constructor This Call Example",
-      "question": "Which of the following are TRUE about Bad Constructor This Call Example? Select all that apply.",
-      "options": [
-        "Here, there are three constructors.",
-        "This is a bad way to write constructors like this.",
-        "All three constructors initialize variables. But There's repeated code in each constructor, The variables are initialized in each constructor with some default values.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Bad Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Car\", not of \"Bad Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Bad Constructor This Call Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Bad Constructor This Call Example.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/BadConstructorThisCallExample.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "ca31efc92f823cda29e1279c68ec3eab09df01f95ab8294b24941aa516ebafa1"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_0-in-this-0-0-width-height-which-arguments",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Good Constructor This Call Example",
@@ -15687,6 +14942,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_0-in-this-0-0-width-height-which-arguments",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15698,12 +14954,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "37d8476080c672036a56d8e25ad176eb97b8ca18b5fee7e9044b4fd94f87b86f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_1-why-must-callers-be-careful-with-the-4-i",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Good Constructor This Call Example",
@@ -15718,6 +14975,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_1-why-must-callers-be-careful-with-the-4-i",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15729,12 +14987,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f902fa1c7c4bc5f8843c01fe500a889c656b06d72c38d56f0c357e14dad3ae6e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_2-where-must-this-0-0-appear-in-the-no-arg",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Good Constructor This Call Example",
@@ -15749,6 +15008,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_custom_2-where-must-this-0-0-appear-in-the-no-arg",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15760,54 +15020,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-4-constructors-sub-chapter-3-constructor-good-practices-this-call-example-goodconstructorthiscallexample-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Good Constructor This Call Example",
-      "question": "Which of the following are TRUE about Good Constructor This Call Example? Select all that apply.",
-      "options": [
-        "In other words, The 3rd constructor does all the work.",
-        "Here, the 1st constructor calls the 2nd constructor, the 2nd constructor calls the 3rd constructor, and then the 3rd constructor actually initializes the instance variables.",
-        "The variables will always be initialized in the 3rd constructor, and only there.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
-      "answer": [
-        0,
-        1,
-        2
-      ],
-      "whyByOption": {
-        "3": "This statement is true of \"Car\", not of \"Good Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Classes And Inheritance\", not of \"Good Constructor This Call Example\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Good Constructor This Call Example. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Good Constructor This Call Example.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_3_Constructor_Good_Practices/This_Call_Example/GoodConstructorThisCallExample.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "581000e68d6e3d020c4c581a1a6311225ee1fec23c94b11d9a18bc79b9aa3d82"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_0-in-customer-string-name-double-creditlim",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Customer",
@@ -15821,6 +15040,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_0-in-customer-string-name-double-creditlim",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15832,12 +15052,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2b60ae52b4b761b99e7e6039d9770d3c9d91f9daac3a67226c0a2c11e4cd57df"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_1-what-is-the-important-effect-of-customer",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Customer",
@@ -15852,6 +15073,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_1-what-is-the-important-effect-of-customer",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15863,12 +15085,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6507227c46c302da68d55e25327446144f27632a77a07617e8846b5530ed4ae7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_2-why-does-this-name-name-use-this-name-on",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Customer",
@@ -15883,6 +15106,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_2-why-does-this-name-name-use-this-name-on",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15894,12 +15118,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9e2121d002dbe5297a7e7ed9332b59cbee772f76107ebe767129dd88a34745ef"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_3-how-should-a-caller-choose-the-creditlim",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Customer",
@@ -15913,6 +15138,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_5_Constructors_Challenge/Customer.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-5-constructors-challenge-customer-java_custom_3-how-should-a-caller-choose-the-creditlim",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15924,12 +15150,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "564304b0ba65a393c4af1902a0d41e961a7863cc57d0dd35bf493130a2b5b043"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_0-if-two-references-point-to-the-same-hous",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "House",
@@ -15944,6 +15171,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_0-if-two-references-point-to-the-same-hous",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15955,12 +15183,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0b144b61d86ea75238e333edaf78f90823ed52a254203f04e3b7be1a5caf3562"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_1-in-this-color-color-which-color-is-the-f",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "House",
@@ -15975,6 +15204,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-house-java_custom_1-in-this-color-color-which-color-is-the-f",
       "concepts": [
         "classes",
         "encapsulation",
@@ -15986,12 +15216,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "66db5f1738bd867df1f60d692b135768bbd87c6ee2d7d685779d79a3a767ef03"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_0-in-house-bluehouse-new-house-blue-what-d",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Reference Object Instance)",
@@ -16005,6 +15236,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_0-in-house-bluehouse-new-house-blue-what-d",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16016,12 +15248,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5c20bc2e83ef6bf686cdc3c8def00b2c2baf8b322b696f12c629454707542f93"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_1-why-does-anotherhouse-setcolor-red-affec",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Reference Object Instance)",
@@ -16036,6 +15269,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_1-why-does-anotherhouse-setcolor-red-affec",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16047,12 +15281,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b54d015a413935528fc7c6d1b5397cad087abb23ff840b1b479cec1526684ef3"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_2-after-anotherhouse-greenhouse-does-passi",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Reference Object Instance)",
@@ -16067,6 +15302,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-example-main-java_custom_2-after-anotherhouse-greenhouse-does-passi",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16078,12 +15314,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8d2965ee3cf62ecad2386a367523b86d57838fa51618ba6d0959e5c4d6fad737"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_0-what-does-the-beige-argument-do-in-house",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Reference Objects Instance Class",
@@ -16097,6 +15334,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_0-what-does-the-beige-argument-do-in-house",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16108,12 +15346,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a424b089c6b5ff64848245b9b71f1cc43ff64947603c7c9edeb55006e2619d2c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_1-what-is-the-pitfall-of-calling-new-house",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Reference Objects Instance Class",
@@ -16128,6 +15367,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_1-what-is-the-pitfall-of-calling-new-house",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16139,12 +15379,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6aa88e57fcf31b76ed75d1f33d7e58b3910ff2eee348a34af01c2a22e5a0fedf"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_2-are-the-two-calls-new-house-red-guarante",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Reference Objects Instance Class",
@@ -16159,6 +15400,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_custom_2-are-the-two-calls-new-house-red-guarante",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16170,54 +15412,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-6-reference-object-instance-referenceobjectsinstanceclass-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Reference Objects Instance Class",
-      "question": "Which of the following are TRUE about Reference Objects Instance Class? Select all that apply.",
-      "options": [
-        "Using blueprint, we can create as many objects that we want",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "This object can also be known as an instance.",
-        "A Class is like a blueprint",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Car\", not of \"Reference Objects Instance Class\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Classes And Inheritance\", not of \"Reference Objects Instance Class\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Reference Objects Instance Class. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Reference Objects Instance Class.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/ReferenceObjectsInstanceClass.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "5b974fbbf04401d0f5026930d058b521b30115a3c8f38ee27651cd47bed302ca"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_0-what-do-a-and-b-mean-in-printsum-int-a-i",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Methods",
@@ -16231,6 +15432,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_0-what-do-a-and-b-mean-in-printsum-int-a-i",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16242,12 +15444,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1e959d833702244343244c5eb15c259b7cca5ddd05569b0d1f2526766b7e2d4d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_1-does-printname-string-name-become-static",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Methods",
@@ -16262,6 +15465,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_1-does-printname-string-name-become-static",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16273,12 +15477,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6ec702a6a9190c9c09c9ca1c605671114f81fc56e3dcbb48cd6808a00a8ca48b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_2-in-printsum-2-3-which-parameter-receives",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Methods",
@@ -16293,6 +15498,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_custom_2-in-printsum-2-3-which-parameter-receives",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16304,54 +15510,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-7-static-and-instance-methods-staticandinstancemethods-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Static And Instance Methods",
-      "question": "Which of the following are TRUE about Static And Instance Methods? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "2) Static methods can't access instance methods and instance variables directly.",
-        "3) They're usually used for operations that don't require any data from an instance of the class (from this)",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "1) Static methods are declared using a static modifier and they belong to Class"
       ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Car\", not of \"Static And Instance Methods\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Static And Instance Methods\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Static And Instance Methods. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Static And Instance Methods.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_7_Static_And_Instance_Methods/StaticAndInstanceMethods.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "c84c0c3f839f179ed34ddd67f038414993b7eb64a8e38345f326593d5926f8b8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_0-in-a-typical-pojo-constructor-with-one-p",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Plain Old Java Object",
@@ -16365,6 +15530,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_0-in-a-typical-pojo-constructor-with-one-p",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16376,12 +15542,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2d47155fbfab4cf9f5cbfc7856b45c7e1bd608025f93e0d5baee951b80e055d4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_1-if-a-pojo-setter-has-no-validation-what-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Plain Old Java Object",
@@ -16396,6 +15563,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_1-if-a-pojo-setter-has-no-validation-what-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16407,12 +15575,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b9e1e7a35751774a3bde02b51d615cc933cb8e0f0fd59f29c4375f75babb24c7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_2-why-does-a-pojo-getter-usually-take-no-p",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Plain Old Java Object",
@@ -16427,6 +15596,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_custom_2-why-does-a-pojo-getter-usually-take-no-p",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16438,54 +15608,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-plainoldjavaobject-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Plain Old Java Object",
-      "question": "Which of the following are TRUE about Plain Old Java Object? Select all that apply.",
-      "options": [
-        "iii) It usually has no other, or very few methods, other than getters and setters for the instance fields.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "i) A plain old Java object acronym POJO is a class that has boilerplate codes for instance fields, getters, setters, and constructors to get, update, set data",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "ii) It's used to house data and pass data between functional classes."
       ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Classes And Inheritance\", not of \"Plain Old Java Object\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"Plain Old Java Object\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Plain Old Java Object. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Plain Old Java Object.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/PlainOldJavaObject.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "2cd669b0e5537a758cf736a77c3220055d6f809b6152fa949a9ea49eff6dd7f7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_0-in-new-student-1-navneet-19-03-1994-java",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Plain Old Java Objects)",
@@ -16499,6 +15628,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_0-in-new-student-1-navneet-19-03-1994-java",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16510,12 +15640,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a1b940401975456d50bf2bcda2d0c0c8a5fb710caf635171165cc0c56c907dcf"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_1-why-is-argument-order-important-when-cre",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Plain Old Java Objects)",
@@ -16530,6 +15661,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_1-why-is-argument-order-important-when-cre",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16541,12 +15673,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a79892466e58a2b362d70e48135a9fe75c992fd2d8864c94fbe9d6b6be93d5d3"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_2-what-parameter-would-setclasslist-receiv",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Plain Old Java Objects)",
@@ -16561,6 +15694,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-main-java_custom_2-what-parameter-would-setclasslist-receiv",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16572,12 +15706,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a939b6c2d9043ef95ddbe850155b131df91abd282917326acab8ff9eccff7188"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_0-what-are-the-four-constructor-parameters",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student",
@@ -16591,6 +15726,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_0-what-are-the-four-constructor-parameters",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16602,12 +15738,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ae3c4c2e20fc0576485dd6bfb410b81c3cdebeb7eea1955724d07187e9b6a09f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_1-what-is-the-warning-when-calling-setclas",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student",
@@ -16622,6 +15759,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_1-what-is-the-warning-when-calling-setclas",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16633,12 +15771,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "cdd5441a2f67056bc452a5161d4b2aa04e81965d7d882ec552f4334d613c8c8a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_2-why-is-this-id-required-in-this-id-id",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student",
@@ -16653,6 +15792,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_2-why-is-this-id-required-in-this-id-id",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16664,12 +15804,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d3c174b55e981156c1745c837f55a28b61b001f5539dc0c3d8acd779c0d6b41c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_3-how-should-a-caller-choose-the-dateofbir",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student",
@@ -16683,6 +15824,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_custom_3-how-should-a-caller-choose-the-dateofbir",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16694,54 +15836,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-plain-old-java-objects-pojoexample-student-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Student",
-      "question": "Which of the following are TRUE about Student? Select all that apply.",
-      "options": [
-        "The method called toString() will print out all the attributes(instance variables) of the instances(objects) in the class in a formatted way.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "The toString() method is a special method in Java.",
-        "The toString() method can be implemented in any class, and doing this helps to print out the current state of the object."
       ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Car\", not of \"Student\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Classes And Inheritance\", not of \"Student\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Student. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Student.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Plain_Old_Java_Objects/POJOExample/Student.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "f78a48eabd7add6b1310d799bb7702f625530ed6ab6c3d062e36fa217bf187c4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_0-what-is-the-difference-between-the-name-",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Variables",
@@ -16755,6 +15856,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_0-what-is-the-difference-between-the-name-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16766,12 +15868,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b2f3f640ca46dfa575c64c62c4e57384192fb1d98ec27e8dfed78fffed1b9d29"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_1-what-is-the-pitfall-of-calling-new-stati",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Variables",
@@ -16786,6 +15889,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_1-what-is-the-pitfall-of-calling-new-stati",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16797,12 +15901,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "671b21b16f5615798585645642cbf50c87b5a3cc5bf6de297ffc4d97c1311531"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_2-in-new-staticandinstancevariables-rex-4-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Static And Instance Variables",
@@ -16817,6 +15922,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_custom_2-in-new-staticandinstancevariables-rex-4-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -16828,54 +15934,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-8-static-and-instance-variables-staticandinstancevariables-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Static And Instance Variables",
-      "question": "Which of the following are TRUE about Static And Instance Variables? Select all that apply.",
-      "options": [
-        "3) Every instance of the class shares the same static variable.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "1) A static variable is Declared by using the keyword static.",
-        "2) Static variables are also known as static member variables. They belong to the class, not the instance"
       ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Car\", not of \"Static And Instance Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Classes And Inheritance\", not of \"Static And Instance Variables\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Static And Instance Variables. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Static And Instance Variables.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_8_Static_And_Instance_Variables/StaticAndInstanceVariables.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "67b74dcf34e2a6019d49e0b7f45de6a67075da31405665a1057fd100bc622fc9"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_0-in-record-studentrecord-string-id-string",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student Record",
@@ -16890,15 +15955,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_0-in-record-studentrecord-string-id-string",
       "concepts": [
         "encapsulation",
         "object-class"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "297f15cfe1251f1149c0fa210a20df14d547773d11a7d9a7913f4515584a42c4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_1-how-should-a-caller-choose-the-classlist",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student Record",
@@ -16912,15 +15979,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_1-how-should-a-caller-choose-the-classlist",
       "concepts": [
         "encapsulation",
         "object-class"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f0c479a3a3bb9ddf24b23730c8e9f46e07b02d182213692ce930a7f6c39ed635"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_2-why-is-swapping-name-and-dateofbirth-a-d",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student Record",
@@ -16935,15 +16004,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_2-why-is-swapping-name-and-dateofbirth-a-d",
       "concepts": [
         "encapsulation",
         "object-class"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "694965999ee5c9be893eec7b2764c91a8325cf5d76920c825cc248f071d54a49"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_3-what-is-the-accessor-method-for-the-name",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Student Record",
@@ -16958,49 +16029,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_custom_3-what-is-the-accessor-method-for-the-name",
       "concepts": [
         "encapsulation",
         "object-class"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-9-javarecords-studentrecord-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Student Record",
-      "question": "Which of the following are TRUE about Student Record? Select all that apply.",
-      "options": [
-        "1) The record was introduced in JDK 14 and became officially part of Java in JDK 16.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Java calls them \"plain data carriers\".",
-        "2) It's purpose is to replace the boilerplate code of the POJO but to be more restrictive.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Car\", not of \"Student Record\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Classes And Inheritance\", not of \"Student Record\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Student Record. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Student Record.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "encapsulation",
-        "object-class"
-      ]
+      "legacyQids": [],
+      "contentVersion": "bc6334f4939db3581babc2e4576eb9bed1ededf13646cc4b8fc760669fd34272"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_0-in-pointclassdistancecalculation-int-x-i",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Point Class Distance Calculation",
@@ -17014,6 +16053,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_0-in-pointclassdistancecalculation-int-x-i",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17025,12 +16065,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0e659eaf5190dc45ee4345034fc2fdd32b46862f08581c828489491439a03322"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_1-what-is-the-pitfall-in-calling-distance-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Point Class Distance Calculation",
@@ -17045,6 +16086,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_1-what-is-the-pitfall-in-calling-distance-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17056,12 +16098,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e919f5b92a4c16b9c0eb6c77ab54c8bc85f668960796fca3307e1d14dda5736f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_2-in-distance-int-a-int-b-why-is-parameter",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Point Class Distance Calculation",
@@ -17076,6 +16119,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_custom_2-in-distance-int-a-int-b-why-is-parameter",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17087,54 +16131,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-pointclassdistancecalculation-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Point Class Distance Calculation",
-      "question": "Which of the following are TRUE about Point Class Distance Calculation? Select all that apply.",
-      "options": [
-        "Method named getX without any parameters, it needs to return the value of x field.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "You have to represent a point in 2D space. Write a class with the name Point. The class needs two fields (instance variables) with name x and y of type int.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The class needs to have two constructors. The first constructor does not have any parameters (no-arg constructor). The second constructor has parameters x and y of type int and it needs to initialize the fields."
       ],
-      "answer": [
-        0,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Classes And Inheritance\", not of \"Point Class Distance Calculation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"Point Class Distance Calculation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Point Class Distance Calculation. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Point Class Distance Calculation.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/PointClassDistanceCalculation.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "252dce91895a322e96bde9fe39924e3764ec1da35589839ee94941fccd2c938a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_0-what-do-width-and-height-mean-in-wallare",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Wall Area Computation",
@@ -17148,6 +16151,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_0-what-do-width-and-height-mean-in-wallare",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17159,12 +16163,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "484fe6f73f76908cd6adb7b91bf6b2fcad386d7728a1be77ee3d9aef7da59a66"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_1-what-happens-if-setwidth-double-width-re",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Wall Area Computation",
@@ -17179,6 +16184,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_1-what-happens-if-setwidth-double-width-re",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17190,12 +16196,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1eabb6db1d27dcfe48a7679d6a40737e04fabff6014469517058ad2e1dd7646e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_2-why-does-getarea-not-need-width-and-heig",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Wall Area Computation",
@@ -17210,6 +16217,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_custom_2-why-does-getarea-not-need-width-and-heig",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17221,54 +16229,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-10-constructors-coding-challenge-wallareacomputation-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Wall Area Computation",
-      "question": "Which of the following are TRUE about Wall Area Computation? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "The second constructor has parameters width and height of type double and it needs to initialize the fields.",
-        "The first constructor does not have any parameters (no-args constructor).",
-        "In case the width parameter is less than 0 it needs to set the width field value to 0."
       ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Wall Area Computation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Car\", not of \"Wall Area Computation\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Wall Area Computation. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Wall Area Computation.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_10_Constructors_Coding_Challenge/WallAreaComputation.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "fcdaadbe9f73fbc1647b453303e67887c37f571aeba18edfe6003713192cde95"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_custom_0-in-animal-string-type-string-size-double",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Animal",
@@ -17282,6 +16249,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_custom_0-in-animal-string-type-string-size-double",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17293,12 +16261,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "df443c64ff3b82ab5788c849644d736e791359e596a9992eaa27b7d8850f6dcb"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_custom_1-what-important-detail-should-you-remembe",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Animal",
@@ -17313,6 +16282,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_custom_1-what-important-detail-should-you-remembe",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17324,54 +16294,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-animal-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Animal",
-      "question": "Which of the following are TRUE about Animal? Select all that apply.",
-      "options": [
-        "Overriding a method is when you create a method on a subclass, which has the same signature as a method on a super class.",
-        "This is a super class, aka top parent class. This class will contain all the attributes that all types of animal has.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Also, the super class will have all the behaviour that animals have in common."
       ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"Classes And Inheritance\", not of \"Animal\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"Animal\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Animal. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Animal.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Animal.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "90fc3cd35dbc911e377734b26c39f36e528bedbf4cd0bb642e1f42755639cb2b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_0-in-dog-string-type-double-weight-string-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Inheritance)",
@@ -17385,15 +16314,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_0-in-dog-string-type-double-weight-string-",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f110603b91e2031e2f8eae15a6e31e8b677576e7ba5181842d271816c8a8c1dc"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_1-what-is-the-pitfall-of-dog-string-type-d",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Inheritance)",
@@ -17408,15 +16339,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_1-what-is-the-pitfall-of-dog-string-type-d",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4745bcb44ea62696ade818dfbaa0aaeedfdd239dfefab8e4a029aabb138dfe03"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_2-why-must-super-or-this-be-the-first-stat",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Inheritance)",
@@ -17431,15 +16364,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_2-why-must-super-or-this-be-the-first-stat",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ee02022070665d17a5cb84f93242db80b75bff23109dec279074dbadbf4664e8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_3-what-is-special-about-passing-slow-to-mo",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Inheritance)",
@@ -17454,49 +16389,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_custom_3-what-is-special-about-passing-slow-to-mo",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-dog-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Dog (Inheritance)",
-      "question": "Which of the following are TRUE about Dog (Inheritance)? Select all that apply.",
-      "options": [
-        "Dog \"IS A\" a type of Animal",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Dog is a subclass or child class of Animal",
-        "Animal is a parent or super class of Dog"
       ],
-      "answer": [
-        0,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Car\", not of \"Dog (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Classes And Inheritance\", not of \"Dog (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Dog (Inheritance). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Dog (Inheritance).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Dog.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "constructors",
-        "inheritance"
-      ]
+      "legacyQids": [],
+      "contentVersion": "f659af9cbe83c737a57fd4d253ce085f2f5815d06d9f71aa1b50ffc0ccc24ea2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_0-in-fish-string-type-double-weight-int-gi",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Fish",
@@ -17510,6 +16413,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_0-in-fish-string-type-double-weight-int-gi",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17521,12 +16425,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "061f02ae99bcf99884233c5b1f5648e75d80f204c254786f8d98f874b3128209"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_1-how-should-callers-choose-gills-and-fins",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Fish",
@@ -17540,6 +16445,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_1-how-should-callers-choose-gills-and-fins",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17551,12 +16457,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e6bba3913a6faae555d1b067ef0c07cd5756514637a163bd7e6fe609addcdec0"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_2-what-is-the-warning-about-move-string-sp",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Fish",
@@ -17571,6 +16478,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Fish.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-fish-java_custom_2-what-is-the-warning-about-move-string-sp",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17582,12 +16490,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b4a863ba9f465e37b86a48528863456aa838b0ae9049dc847a179c8b79b87ae4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_0-in-doanimalstuff-animal-animal-string-sp",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Inheritance",
@@ -17601,16 +16510,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_0-in-doanimalstuff-animal-animal-string-sp",
       "concepts": [
         "constructors",
         "inheritance",
         "polymorphism"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "891ceda029565c51b8b4bf14f1c6e162b43d30d05e059a2ef78c02e08ac77139"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_1-what-do-the-arguments-in-new-fish-goldfi",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Inheritance",
@@ -17624,16 +16535,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_1-what-do-the-arguments-in-new-fish-goldfi",
       "concepts": [
         "constructors",
         "inheritance",
         "polymorphism"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "73134b4cf0d4476811d31e6f9213a29325ea207815465f2a1bbee7816000b710"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_2-what-is-the-pitfall-of-passing-null-as-t",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Inheritance",
@@ -17648,51 +16561,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_custom_2-what-is-the-pitfall-of-passing-null-as-t",
       "concepts": [
         "constructors",
         "inheritance",
         "polymorphism"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-inheritance-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Inheritance",
-      "question": "Which of the following are TRUE about Inheritance? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "The most generic, or base class, starts at the top of the hierarchy.",
-        "Inheritance is basically a form of code reuse. It's a way to organize classes into a parent-child hierarchy, which lets the child inherit (in other words reuse), fields and methods from its parent.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Each box on this diagram represents a Class"
       ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"Inheritance\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Inheritance. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Inheritance.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/Inheritance.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "constructors",
-        "inheritance",
-        "polymorphism"
-      ]
+      "legacyQids": [],
+      "contentVersion": "d350ea261e1da01cfd77b8c4b5af53ccf32ee38427903e255ee78ef93ed738f7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_0-in-primaryschoolstudent-string-name-int-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance)",
@@ -17706,15 +16586,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_0-in-primaryschoolstudent-string-name-int-",
       "concepts": [
         "inheritance",
         "object-class"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "96684d8d51fda980b2d824693a7cb5a8a5e71319e704258a8995004494179349"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_1-what-should-callers-avoid-when-choosing-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance)",
@@ -17729,15 +16611,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_1-what-should-callers-avoid-when-choosing-",
       "concepts": [
         "inheritance",
         "object-class"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d2b618554907928533f1c75423fc8598738ab671e67f9c2969b3f0a5eae811c6"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_2-what-does-main-string-args-receive",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance)",
@@ -17752,49 +16636,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_custom_2-what-does-main-string-args-receive",
       "concepts": [
         "inheritance",
         "object-class"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-11-inheritance-animalinheritanceexample-objectclass-main-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Inheritance)",
-      "question": "Which of the following are TRUE about Main (Inheritance)? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Every class created in Java extends a special Java class.",
-        "Class Object is the root of the class hierarchy.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "That class is named Object, and it's in the java.lang package."
       ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Car\", not of \"Main (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Main (Inheritance)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Main (Inheritance). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Inheritance).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_11_Inheritance/AnimalInheritanceExample/ObjectClass/Main.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "inheritance",
-        "object-class"
-      ]
+      "legacyQids": [],
+      "contentVersion": "2f04cf51aa469a3aec8c3aa5641c0639a1b46afe7825a38b1fee7819dd0887e1"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_0-in-employee-string-name-string-birthdate",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Employee",
@@ -17808,6 +16660,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_0-in-employee-string-name-string-birthdate",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17819,12 +16672,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a7cd21bfaae22006a7e8dee264f6f30fba08f43ec7bcc1b832a8bc195f63ad95"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_1-why-is-birthdate-format-important-when-c",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Employee",
@@ -17839,6 +16693,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_1-why-is-birthdate-format-important-when-c",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17850,12 +16705,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6f37cfd35af1ce5a0f6884515b6b23afe8705e36bd5f4cc7fa7c0152fd10a4cc"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_2-is-employeeid-chosen-by-the-employee-con",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Employee",
@@ -17870,6 +16726,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Employee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-employee-java_custom_2-is-employeeid-chosen-by-the-employee-con",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17881,12 +16738,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1b715c557f156b630cc8d76aa8608da3bbd54a955205f701457c4252bcd5aed4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_0-in-hourlyemployee-string-name-string-bir",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Hourly Employee",
@@ -17900,6 +16758,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_0-in-hourlyemployee-string-name-string-bir",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17911,12 +16770,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8a774f1115ef2a070f4d6c0a8b637d164080b1af8ced38a29602a3113b601232"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_1-what-happens-to-name-birthdate-and-hired",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Hourly Employee",
@@ -17930,6 +16790,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_1-what-happens-to-name-birthdate-and-hired",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17941,12 +16802,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d8a45d7c8f4cd6d65f40e944210f40f5707f610a97741b301d9a93be957dc822"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_2-why-should-callers-avoid-a-negative-hour",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Hourly Employee",
@@ -17961,6 +16823,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/HourlyEmployee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-hourlyemployee-java_custom_2-why-should-callers-avoid-a-negative-hour",
       "concepts": [
         "classes",
         "encapsulation",
@@ -17972,12 +16835,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1125f6c42202a0f50268a351db875bc7894ef712f312521abb438608a3074830"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_0-what-do-the-four-arguments-in-new-salari",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance Coding Challenge)",
@@ -17991,15 +16855,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_0-what-do-the-four-arguments-in-new-salari",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e3b1922bd55991254e4ac76b0f81561c20900586f6f9baf0f7ce4bb97c34d8d8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_1-how-does-new-hourlyemployee-mary-05-05-1",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance Coding Challenge)",
@@ -18013,15 +16879,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_1-how-does-new-hourlyemployee-mary-05-05-1",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4197fcc40f585f4d1dad561a048b57f2c8c89c0d75550e0c13e03d616f7770fb"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_2-why-is-the-birthdate-argument-format-a-c",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Main (Inheritance Coding Challenge)",
@@ -18036,49 +16904,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_custom_2-why-is-the-birthdate-argument-format-a-c",
       "concepts": [
         "constructors",
         "inheritance"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-main-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Main (Inheritance Coding Challenge)",
-      "question": "Which of the following are TRUE about Main (Inheritance Coding Challenge)? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "This is the Inheritance Coding Challenge demo: a Worker → Employee → SalariedEmployee/HourlyEmployee hierarchy.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Each subclass overrides the collectPay() method to compute pay differently: salaried divides annual salary by 26, hourly multiplies rate by 40 hours.",
-        "Worker is the base class. Employee extends Worker, adding employeeId and hireDate. SalariedEmployee and HourlyEmployee extend Employee."
       ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Car\", not of \"Main (Inheritance Coding Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Classes And Inheritance\", not of \"Main (Inheritance Coding Challenge)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Main (Inheritance Coding Challenge). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Main (Inheritance Coding Challenge).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Main.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "constructors",
-        "inheritance"
-      ]
+      "legacyQids": [],
+      "contentVersion": "15f07c74b5e4e4aa401111b0f85989f1ff08ec09093fe2d2cf50c53c1bbf78ef"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_0-in-salariedemployee-string-name-string-b",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Salaried Employee",
@@ -18092,6 +16928,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_0-in-salariedemployee-string-name-string-b",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18103,12 +16940,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "adeeee298f67e745c6ce71b0843847c0e9edb38590429254577f40aaf37e3b1d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_1-what-do-the-arguments-in-super-name-birt",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Salaried Employee",
@@ -18122,6 +16960,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_1-what-do-the-arguments-in-super-name-birt",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18133,12 +16972,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d01c27a566daa6625afa89629b1388549c4825c4f057210623a6630b5c590e49"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_2-what-does-the-12-12-2025-argument-in-ter",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Salaried Employee",
@@ -18153,6 +16993,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/SalariedEmployee.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-salariedemployee-java_custom_2-what-does-the-12-12-2025-argument-in-ter",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18164,12 +17005,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7db8dcbcc2fc6c9be195e5bc5e1ec6c23cb4ccf0f0649db4f8b3b49decfd1886"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_0-in-worker-string-name-string-birthdate-h",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Worker",
@@ -18183,15 +17025,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_0-in-worker-string-name-string-birthdate-h",
       "concepts": [
         "inheritance",
         "object-class"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f40c2811e613d41dbccfbcd0b983521c91129c4a9c0d72fb2a5a725a87c1c437"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_1-what-is-the-pitfall-of-passing-birthdate",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Worker",
@@ -18206,15 +17050,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_1-what-is-the-pitfall-of-passing-birthdate",
       "concepts": [
         "inheritance",
         "object-class"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e975de9f473673f7807a9b0bf92e8d0668b2559b941c8a0ab77b107fc5117855"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_2-what-does-terminate-string-enddate-do-wi",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Worker",
@@ -18229,49 +17075,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_custom_2-what-does-terminate-string-enddate-do-wi",
       "concepts": [
         "inheritance",
         "object-class"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-12-inheritance-coding-challenge-worker-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Worker",
-      "question": "Which of the following are TRUE about Worker? Select all that apply.",
-      "options": [
-        "hourlyPayRate : double getDoublePay()",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "intGetAge() double collectPay() terminate(String endDate)",
-        "Below the Worker Class, introduce another Class named Employee which extends the Worker Class",
-        "Unlike local variables, class variables should have some type of access modifier declared for it."
       ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Classes And Inheritance\", not of \"Worker\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Car\", not of \"Worker\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Worker. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Worker.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_12_Inheritance_Coding_Challenge/Worker.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "inheritance",
-        "object-class"
-      ]
+      "legacyQids": [],
+      "contentVersion": "a315430f02527d9e10763bed53281cc984420f3d257c0a28c88d175853e399cc"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_0-why-are-bark-and-bark-int-number-overloa",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Method Over Loading In Java)",
@@ -18285,6 +17099,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_0-why-are-bark-and-bark-int-number-overloa",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18296,12 +17111,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7bfa3b7dd55d5c1c02f03d3a694fab07e634898f805aa1b9669024c67892e4fb"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_1-would-bark-int-number-and-int-bark-int-n",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Method Over Loading In Java)",
@@ -18316,6 +17132,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_custom_1-would-bark-int-number-and-int-bark-int-n",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18327,54 +17144,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadingexample-dog-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Dog (Method Over Loading In Java)",
-      "question": "Which of the following are TRUE about Dog (Method Over Loading In Java)? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "careful: adding a different return type to bark(int number) would not create another overload; the parameter list must differ.",
-        "important: bark() and bark(int number) are OVERLOADS because the parameter COUNT is different.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "If a child class wanted to override bark(int number), it would need the identical int parameter list."
       ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Car\", not of \"Dog (Method Over Loading In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Classes And Inheritance\", not of \"Dog (Method Over Loading In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Dog (Method Over Loading In Java). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Dog (Method Over Loading In Java).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingExample/Dog.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "4def8d429650f446c5e7f272e62a3370c892471c2843cba9ed8aae2718f5f547"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_0-which-calculatescore-overload-is-called-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18388,15 +17164,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_0-which-calculatescore-overload-is-called-",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5f12299c73d6fe419505b076d4221b6c12efac7ddac8babe89af474f06059df4"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_1-which-calculatescore-overload-is-called-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18410,15 +17188,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_1-which-calculatescore-overload-is-called-",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "65ff080b9102118ba86533271d5c4e2ec9a63cc01fd48a014dd4040d4f351d8e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_2-why-does-sum-1-2-call-sum-int-a-long-b-i",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18433,15 +17213,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_2-why-does-sum-1-2-call-sum-int-a-long-b-i",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "20e1b151449c934683ffc6e1bad794133dc172abc0f66a96abe9b1bc73eb7815"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_3-why-is-performingsum-1-3-ambiguous-here",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18456,15 +17238,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_3-why-is-performingsum-1-3-ambiguous-here",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "27f8f2fe8111ad557a479e137c567c968ff2f9c75581f6b69e6f1e15d808d467"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_4-if-performingsumagain-20-20-is-called-wh",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18479,15 +17263,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_4-if-performingsumagain-20-20-is-called-wh",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e38a400b23667338a4281c9e8480bb717f13a1c89ff509c32213eb43f427814b"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_5-can-changing-only-the-return-type-create",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18502,15 +17288,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_5-can-changing-only-the-return-type-create",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "942e116a59d58b4e7fe7e3e8f0a222e25288dee851cdfb0b68f79a3c838fe295"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_6-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18533,15 +17321,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Overload resolution looks for a match without conversion first, and print(int) matches 5 exactly.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_6-what-is-printed-by-this-program",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a085eca0a6f747f853a4de51b384e8f74c6ba724b457991da8833771cefef809"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_7-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18564,15 +17354,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An overload needs a different parameter list, and the return type is not part of the signature.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_7-does-this-code-compile",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "afe1c4ee856d5d02aa739e4a17cb16f0253dd35121db189bae850a47ba605ab2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_8-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18595,15 +17387,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "With no exact match, widening is applied and the most specific method wins: show(long).",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_8-what-is-printed-by-this-program",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1cbe6e98f04f7e1a16a69387679a652326c8c20d23aaa220dd07ab2fe49a8852"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_9-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18626,15 +17420,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Different parameter lists make these overloads, so the compiler picks from the reference type.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_9-what-is-printed-by-this-program",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "87790016d9a1facc93a745d7ca6894ebac20e51fc5e2d0c9826725075dc218d1"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_10-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overloading In Java",
@@ -18657,49 +17453,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The first phase allows no boxing, so go(int) matches exactly and go(Integer) is considered later.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_custom_10-what-is-printed-by-this-program",
       "concepts": [
         "inheritance",
         "overloading"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-13-method-overloading-in-java-methodoverloadinginjava-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Method Overloading In Java",
-      "question": "Which of the following are TRUE about Method Overloading In Java? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "sum(int a, long b): a and b are the two numbers to add; an int second argument can widen to long when no exact sum(int, int) exists.",
-        "important: calculateScore(String, int) and calculateScore(int) are OVERLOADS because their parameter counts and types differ.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "sum(int a, int b, int c): a, b, and c are the three numbers to add; this overload is chosen by parameter COUNT."
       ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Overloading In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"Car\", not of \"Method Overloading In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Method Overloading In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Overloading In Java.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_13_Method_OverLoading_In_Java/MethodOverloadingInJava.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "inheritance",
-        "overloading"
-      ]
+      "legacyQids": [],
+      "contentVersion": "41f1e64dd4fed282f675949a7c91b072ae233a0e81bff0248dddf37b47e0df58"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_0-what-do-the-name-and-birthdate-parameter",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Covariant Return Type",
@@ -18713,6 +17477,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_0-what-do-the-name-and-birthdate-parameter",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18724,12 +17489,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9af2a1557e546c84f3364b369ee1825a3eba59c5279f0d088916527769df22dc"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_1-can-person-string-name-string-birthdate-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Covariant Return Type",
@@ -18744,6 +17510,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_1-can-person-string-name-string-birthdate-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18755,12 +17522,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "811d85551a9af8a757db3b53c73eaddbe517e8804030626ef3cf3142c55c73c5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_2-why-is-public-person-clone-a-valid-overr",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Covariant Return Type",
@@ -18775,6 +17543,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_2-why-is-public-person-clone-a-valid-overr",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18786,12 +17555,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "20f28f5d6866b009f42af6aa2d05247b3cfee306fccbb0006b93da74613ab7ad"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_3-would-clone-string-name-override-object-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Covariant Return Type",
@@ -18806,6 +17576,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_custom_3-would-clone-string-name-override-object-",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18817,54 +17588,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-covariantreturntype-covariantreturntype-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Covariant Return Type",
-      "question": "Which of the following are TRUE about Covariant Return Type? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "The term, covariant return type, can include types such as interfaces and generic types",
-        "The return type of an overriden method can be the same type as the parent method's declaration, but it can also be a subclass.",
-        "All classes ultimately have Object as a baseclass, so every class can be said to be a covariant of Object"
       ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Car\", not of \"Covariant Return Type\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Classes And Inheritance\", not of \"Covariant Return Type\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Covariant Return Type. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Covariant Return Type.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/CovariantReturnType/CovariantReturnType.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "e8b13dd79ebd06e6a73e060f8bb02c2eb1ced5b81ecafd161f124dd524425891"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_0-why-does-germanshepherd-bark-override-do",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Method Overriding In Java)",
@@ -18878,6 +17608,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_0-why-does-germanshepherd-bark-override-do",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18889,12 +17620,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5cb4b32bbde8adc40929cb2655f1b192bc327e03916dd3f3e7c7e755d1be5da5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_1-what-would-germanshepherd-bark-int-numbe",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Method Overriding In Java)",
@@ -18909,6 +17641,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_1-what-would-germanshepherd-bark-int-numbe",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18920,12 +17653,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0f6222d0b1a5953be2fe9c7c094e028586386c1f2b80e17d24120a4762701d19"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_2-what-parameter-list-must-an-overriding-b",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Dog (Method Overriding In Java)",
@@ -18940,6 +17674,7 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_custom_2-what-parameter-list-must-an-overriding-b",
       "concepts": [
         "classes",
         "encapsulation",
@@ -18951,54 +17686,13 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridingexample-dog-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Dog (Method Overriding In Java)",
-      "question": "Which of the following are TRUE about Dog (Method Overriding In Java)? Select all that apply.",
-      "options": [
-        "trap: if GermanShepherd used bark(int number), it would be overloading, not overriding, because the parameter count changed.",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Overloading depends on different parameter types/counts/order; overriding depends on the same parameter list.",
-        "important: this is OVERRIDING because the child method keeps the same name and identical parameter list as the parent method.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code"
       ],
-      "answer": [
-        0,
-        2,
-        3
-      ],
-      "whyByOption": {
-        "1": "This statement is true of \"Car\", not of \"Dog (Method Overriding In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"Classes And Inheritance\", not of \"Dog (Method Overriding In Java)\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Dog (Method Overriding In Java). Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Dog (Method Overriding In Java).",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingExample/Dog.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "classes",
-        "encapsulation",
-        "constructors",
-        "inheritance",
-        "polymorphism",
-        "overloading",
-        "abstract",
-        "object-class",
-        "static",
-        "records-enums"
-      ]
+      "legacyQids": [],
+      "contentVersion": "eab143343b7fd2ecf8784b18dd8480b325498d195f1a62ab2a66c58ed14362a2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_0-what-is-method-overriding-in-java",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19014,16 +17708,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_0-what-is-method-overriding-in-java",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "6f357f425c807271a8e826e33f280c410eb9f3c84aa872a1da103b9827d9b68a"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_1-what-is-the-difference-between-method-ov",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19039,16 +17735,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_1-what-is-the-difference-between-method-ov",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4d17ee18d4814d9f5d93b93e7712e592a833253451dd8279ae47842baf00f514"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_2-what-are-the-rules-for-method-overriding",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19068,16 +17766,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_2-what-are-the-rules-for-method-overriding",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8c85edd4c11733ad60cae65db420d230399872c1124d1f81f6a0ff4c359f356e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_3-what-is-the-output-class-animal-void-spe",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19095,16 +17795,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_3-what-is-the-output-class-animal-void-spe",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a72fbb72e73110ba2e6099f6c2b53eafd7470d14d2cdf49053cf237d51de2e2e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_4-can-you-override-a-static-method-in-java",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19122,16 +17824,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_4-can-you-override-a-static-method-in-java",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e557ad22027d6e1b3dfd0b500ea70fb0202eae70b53ded8ce6ca0aecf71689a2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_5-what-is-the-output-class-parent-string-n",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19150,16 +17854,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_5-what-is-the-output-class-parent-string-n",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "fdf452caced544f915f40852526749b31ac7270c585a83c08d9f044c64735e89"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_6-what-is-covariant-return-type-in-method-",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19175,16 +17881,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_6-what-is-covariant-return-type-in-method-",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "32b734f1e12af650d4f9b6ba06e1d08c85d502ed81d6d270d7ce3743c805ca52"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_7-what-is-the-purpose-of-the-override-anno",
       "difficulty": "easy",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19200,16 +17908,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_7-what-is-the-purpose-of-the-override-anno",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0dac6edd19c46068bf4afffca24ac3fbc4f7aae2d25a61a8d2e4376db98a744e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_8-can-a-private-method-be-overridden",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19224,16 +17934,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_8-can-a-private-method-be-overridden",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "25e5d9082642bb6c42d46eb11fdad493150e1b52a96e8a49b600e35dee075ec2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_9-what-happens-when-you-call-super-methodn",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19248,16 +17960,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_9-what-happens-when-you-call-super-methodn",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1271afa0aacafc20dcf37b794bd8396f35dd1e9da843f1349312fefcc1091a37"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_10-can-a-constructor-be-overridden",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19272,16 +17986,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_10-can-a-constructor-be-overridden",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e2b18e12dd19947b8fa6618ec10b99cd3dab1506f8dd96612dd223f3020c79fe"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_11-for-a-child-method-to-override-a-parent-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19295,16 +18011,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_11-for-a-child-method-to-override-a-parent-",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "4fe2d742b9f013099d2ba204e65b309b09a13a4ac7a838934a8d020e033d692f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_12-does-processpayment-int-amount-override-",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19319,16 +18037,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_12-does-processpayment-int-amount-override-",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d2e26da0945699123bdd2abf403e56dc4a1380870d864c95a528ca13418049ba"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_13-when-is-an-overloaded-method-selected-ve",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19343,16 +18063,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_13-when-is-an-overloaded-method-selected-ve",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "29a94615e120f675bf520f95fb72b09bf71a8348567107c57187f43f8b515c1c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_14-can-override-catch-a-parameter-list-mism",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19367,16 +18089,18 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_14-can-override-catch-a-parameter-list-mism",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d5a78715cfb8b23793fa56f475aabb1c78683698c335f34e13dcfa3ab35fb8ce"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_15-what-is-method-overriding-and-when-is-th",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19398,16 +18122,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Overriding is runtime polymorphism, also called dynamic method dispatch. The JVM looks at the actual object, not the declared type of the reference, when deciding which version to run.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_15-what-is-method-overriding-and-when-is-th",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "63a688c5b88358a8b895de7d006f3f1ef87fcbd2e0f2dd514e8ee481091d850b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_16-what-is-the-key-difference-between-overl",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19429,16 +18155,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The distinction interviewers look for is which one the compiler decides and which one the JVM decides. Changing the parameters means a new overload; keeping them identical means an override.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_16-what-is-the-key-difference-between-overl",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2a042c74743e1d491d86d3ee16245a4836bc5a5c0e7fc178fc8109026b388d27"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_17-a-parent-method-is-declared-protected-wh",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19460,16 +18188,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An override may widen access but never narrow it. protected can become public, but it cannot become private, because callers that could reach the parent's method would suddenly be locked out.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_17-a-parent-method-is-declared-protected-wh",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b3d37f63a0d105e77858e178f720c8e223c68057f4cb2850c9506c0971d52717"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_18-what-is-printed",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19492,16 +18222,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "This is the heart of runtime polymorphism. The reference type only decides what you are allowed to call; the object type decides which version actually runs. Assigning a Dog to an Animal reference is legal because a Dog is an Animal.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_18-what-is-printed",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "30b1425d9beae2528f0354660d566bc731b395678a8081b59fb54076bdedbf40"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_19-which-methods-can-not-be-overridden",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19523,16 +18255,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "static methods are hidden rather than overridden, private methods are not inherited at all, final methods are locked down by the compiler, and constructors are not inherited methods. A method must be inheritable before it can be overridden.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_19-which-methods-can-not-be-overridden",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ab5e1f169217f3a94e714c4f117bbedb0d508252dbce8e63609e65b868d2ea4c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_20-why-is-override-recommended-even-though-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19554,16 +18288,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The annotation is a promise to the compiler. If the signature does not match a parent method, the compiler reports an error instead of silently creating a new method that never gets called.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_20-why-is-override-recommended-even-though-",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a6a411f856380a849c80255b82c8ff3c7aee801521863555447194ab144d7dd1"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_21-what-is-a-covariant-return-type-in-an-ov",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19585,16 +18321,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Covariance lets an override narrow the return type, which is more specific and therefore safe. If the parent returns Animal, the child may return Dog, because a Dog is an Animal.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_21-what-is-a-covariant-return-type-in-an-ov",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "02d762ac941fd8607812d030dad1ae3c0ff2c562c8c251d4899d374746915f39"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_22-does-this-code-compile",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19617,16 +18355,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Static methods belong to the class, so a same-name static method in a subclass hides the parent's version rather than overriding it. @Override promises an override, and the compiler reports the mismatch.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_22-does-this-code-compile",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9119750940143ff8e6677ebf04f6260b5a31a8ac4a42b6c53d5d2f5eba6cac29"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_23-what-is-printed-by-this-code",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19649,16 +18389,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A private method is not inherited, so Child's greet() is a new method that happens to share the name. Parent.hello() calls the greet() it can see, which is its own private one.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_23-what-is-printed-by-this-code",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b061d49b36dcb8dafc09a86fa6ade0b6d395976ff1617f2c12b97d2bb27f871c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_24-what-does-super-tostring-do-inside-an-ov",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19680,16 +18422,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "super.methodName() reaches the parent implementation of that method. It is the usual way to reuse the parent's text and append the subclass's own fields, rather than rewriting the whole thing.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_24-what-does-super-tostring-do-inside-an-ov",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1ebf8fee82b8ce20dbc76baa452af7dc817a2f657ef9d1c4176af240b6528c7c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_25-a-parent-declares-a-method-as-protected-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19711,16 +18455,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An override cannot take access away from callers who already had it. protected can become public, and it can stay protected, but it cannot become private or package-private.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_25-a-parent-declares-a-method-as-protected-",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "16a59320a3c3d433329a03618e83938272f10b578f7fc74b1b65ff469d7cca6b"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_26-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19743,16 +18489,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The reference type only says which methods you may call. The object, a Dog, decides the body.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_26-what-is-printed-by-this-program",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c4c2cf4fc171b5b7aa59f3dd72f8f04a6e3c2277575e8ce6504b952f12dc797a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_27-does-this-code-compile",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19775,16 +18523,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The compiler allows only methods the reference type declares, and Parent has no fetch().",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_27-does-this-code-compile",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c72c7e42003ae3b64670756add4bbd204ca54c962d3d0bfb9961178dac29669e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_28-what-happens-when-this-code-is-compiled",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19807,16 +18557,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An override must keep the same parameter list, so print(long) is an overload @Override rejects.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_28-what-happens-when-this-code-is-compiled",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c3f102e39b6b08fde8715fb88c1f4d8497ce627a8015a8fdc8b5e88e1d29a0f0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_29-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19839,16 +18591,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A static method is hidden, not overridden, so the call is bound from the reference type, Parent.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_29-what-is-printed-by-this-program",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ec339e694834cade4625b42ed2f26a1913ebb54902925b350ee72fb8eeb50c5c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_30-a-child-class-overrides-a-public-method-",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Overriding In Java",
@@ -19870,51 +18624,18 @@ const QUESTIONS_BANK = {
       },
       "explanation": "An override may narrow the return type to a subtype, but access may be widened, never reduced.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_custom_30-a-child-class-overrides-a-public-method-",
       "concepts": [
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-14-method-overriding-in-java-methodoverridinginjava-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Method Overriding In Java",
-      "question": "Which of the following are TRUE about Method Overriding In Java? Select all that apply.",
-      "options": [
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "Method overriding is also known as Runtime Polymorphism or Dynamic Method Dispatch because the method that is going to be called is decided at runtime by the Java virtual machine.",
-        "By extending the parent class, the child class gets all the methods defined in the parent class. Those methods are also known as derived methods.",
-        "Method overriding, means defining a method in a child class that already exists in the parent class, with the same signature (In other words, the same name, and same parameters)."
       ],
-      "answer": [
-        2,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Classes And Inheritance\", not of \"Method Overriding In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "1": "This statement is true of \"Car\", not of \"Method Overriding In Java\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Method Overriding In Java. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Overriding In Java.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_14_Method_Overriding_In_Java/MethodOverridingInJava.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "inheritance",
-        "polymorphism",
-        "overloading"
-      ]
+      "legacyQids": [],
+      "contentVersion": "ac3a07f07488daf4b5cccda9c31abee6b4f44a4b474ea44a91085a7c6b125ae9"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_0-what-parameter-list-changes-can-create-m",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Over Loading Vs Method Overriding Difference",
@@ -19928,15 +18649,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_0-what-parameter-list-changes-can-create-m",
       "concepts": [
         "inheritance",
         "polymorphism"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5d6e96d047029beaa92826768316773870cc83bd4ce6d5ccc82df67ba9be2737"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_1-can-return-type-alone-distinguish-overlo",
       "difficulty": "hard",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Over Loading Vs Method Overriding Difference",
@@ -19951,15 +18674,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_1-can-return-type-alone-distinguish-overlo",
       "concepts": [
         "inheritance",
         "polymorphism"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f8e5ba96a19b1a85f7e4974960252c403a4ba70cd174511e67d5711c7d2fe344"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_2-what-must-happen-to-the-parameter-list-d",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Over Loading Vs Method Overriding Difference",
@@ -19974,15 +18699,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_2-what-must-happen-to-the-parameter-list-d",
       "concepts": [
         "inheritance",
         "polymorphism"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0f84dfcd5061dff6ef2d41f3e0cf5adf9d097b994ff2d718f240cf2413b27d85"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_3-how-do-parameter-lists-affect-compile-ti",
       "difficulty": "medium",
       "chapter": "Chapter 13: OOP Concepts",
       "topic": "Method Over Loading Vs Method Overriding Difference",
@@ -19996,44 +18723,13 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
+      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_custom_3-how-do-parameter-lists-affect-compile-ti",
       "concepts": [
         "inheritance",
         "polymorphism"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-13-oop-concepts_src-chapter-13-oopsconcepts-sub-chapter-15-method-overloading-vs-method-overriding-methodoverloadingvsmethodoverridingdifference-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 13: OOP Concepts",
-      "topic": "Method Over Loading Vs Method Overriding Difference",
-      "question": "Which of the following are TRUE about Method Over Loading Vs Method Overriding Difference? Select all that apply.",
-      "options": [
-        "Unlike local variables, class variables should have some type of access modifier declared for it.",
-        "pitfall: a child method with a different parameter list is an overload even if its name matches the parent method.",
-        "Object-oriented programming is a way to model real world objects as software objects which contain both data and code",
-        "important: return type, access modifier, and thrown exceptions do not by themselves create overloaded methods; the parameter list must differ.",
-        "Method overriding keeps the parent parameter list identical so polymorphism can replace inherited behavior safely."
       ],
-      "answer": [
-        1,
-        3,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"Car\", not of \"Method Over Loading Vs Method Overriding Difference\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "2": "This statement is true of \"Classes And Inheritance\", not of \"Method Over Loading Vs Method Overriding Difference\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about Method Over Loading Vs Method Overriding Difference. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about Method Over Loading Vs Method Overriding Difference.",
-      "topicPath": "src/Chapter_13_OOPSConcepts/Sub_Chapter_15_Method_Overloading_Vs_Method_Overriding/MethodOverLoadingVsMethodOverridingDifference.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "inheritance",
-        "polymorphism"
-      ]
+      "legacyQids": [],
+      "contentVersion": "f6801cca44ee890a01af507f91c018e882518afe879447dd4294e93d9acc1822"
     },
     {
       "qid": "ocjp-chapter-13-oop-concepts-polymorphism-1",
@@ -20065,7 +18761,9 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3982f9dcdc43017bc078fe28507564ac8e2b40a534cbc52e0338b04bbc554f7d"
     },
     {
       "qid": "ocjp-chapter-13-oop-concepts-constructor-chain-1",
@@ -20090,7 +18788,9 @@ const QUESTIONS_BANK = {
         "encapsulation",
         "constructors",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8a15836e5bd922de158aa5264f9a3d8f1666fd9c9f9eb6a4d45fbabd101c0d2e"
     },
     {
       "qid": "ocjp-chapter-13-oop-concepts-override-overload-1",
@@ -20116,7 +18816,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "inheritance",
         "polymorphism"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a0783f442c4ad93a125a407c8532a5d60c7eeef2dc225349654e10448fecc428"
     },
     {
       "qid": "ocjp-chapter-13-oop-concepts-final-keyword-1",
@@ -20145,7 +18847,9 @@ const QUESTIONS_BANK = {
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8c496be6c538d3f50a24539903aa09049fb0c1c838328a5851284263fb6db21f"
     },
     {
       "qid": "ocjp-chapter-13-oop-concepts-static-hiding-1",
@@ -20174,7 +18878,9 @@ const QUESTIONS_BANK = {
         "inheritance",
         "polymorphism",
         "overloading"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "19aee23c52e81593989ec3820e40c082115835dadc9e532ddeb0ec1d738b2026"
     },
     {
       "qid": "ocjp-chapter-13-oop-concepts-covariant-return-1",
@@ -20201,7 +18907,9 @@ const QUESTIONS_BANK = {
         "constructors",
         "inheritance",
         "polymorphism"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "868d13af979b1fcb19d57dd9ab22beba3686db965676bb59b0e1a5b1eb6670a3"
     },
     {
       "qid": "ocjp-chapter-13-oop-concepts-access-modifier-override-1",
@@ -20235,14 +18943,15 @@ const QUESTIONS_BANK = {
         "object-class",
         "static",
         "records-enums"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bd055ae2776277f77a143cbc4f1d4040e69b1c039c933662654fe8b70aafa0b4"
     }
   ],
   "Chapter 14: Strings": [
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_0-in-system-out-printf-age-d-age-what-does",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20256,17 +18965,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_0-in-system-out-printf-age-d-age-what-does",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5bf7b61556f00a606488c4e8df50d2270b864aa110317961a8e5346ef74b7fb7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_1-what-happens-if-printf-uses-f-but-the-ma",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20281,17 +18992,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_1-what-happens-if-printf-uses-f-but-the-ma",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b53c2166d1de90f8f4c524772d2d4403975f52a8d87d781a51a30214f92ae457"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_2-in-6d-what-does-the-6-parameter-like-val",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20305,17 +19018,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_2-in-6d-what-does-the-6-parameter-like-val",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "89f135fbb4dd284f274138b55c53d90fcf189ace77d6420dd618e5db71ab7999"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_3-how-do-string-format-hi-s-name-parameter",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20329,17 +19044,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_3-how-do-string-format-hi-s-name-parameter",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2ec31dd53fab968e9a435dbff07ca8d35f177aa83afc8720f1edd6cae88f0345"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_4-what-is-a-text-block-in-java-and-which-j",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20354,17 +19071,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_4-what-is-a-text-block-in-java-and-which-j",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "be5e31846a8104660cc077b3234e9510b5ae0c4ece8f69c5f5aa5b15f73c3e73"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_5-what-do-common-printf-format-specifiers-",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20379,17 +19098,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_5-what-do-common-printf-format-specifiers-",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "56abecf910d453f4e05700b2c7742a723e2c0405995296148fd370632f877789"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_6-what-is-the-difference-between-string-fo",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20404,17 +19125,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_6-what-is-the-difference-between-string-fo",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9ae8fbde02dcfa78e176cf89ea5c12aba586094f560ca8d739ccafe33c3c0892"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_7-why-are-text-blocks-useful-compared-with",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20429,17 +19152,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_7-why-are-text-blocks-useful-compared-with",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c286bb1da1461cae0f4a6e5aa1d7252630aaaec5bfe8a41eaadc1e728f3cdad5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_8-what-happens-with-system-out-printf-f-10",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20455,17 +19180,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_8-what-happens-with-system-out-printf-f-10",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "929e4d8f50c316d3fa9ba62d83df62eb00d056c86d0fd1d17de82177251e0b5c"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_9-in-a-text-block-like-string-s-n-hi-n-wha",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20481,17 +19208,19 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_9-in-a-text-block-like-string-s-n-hi-n-wha",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8ec24e40a36386da60672fd59536e5b3b4fa000986af86e4f47014f31ee21f22"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_10-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20514,17 +19243,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "%s calls toString() on whatever it is given, so an int is perfectly acceptable. That is different from %f, which insists on a floating-point value and throws for an int.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_10-what-is-printed-by-this-code",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a62a1424f6378c7b16ca9d52fbb364859ce5c0b3e8a9bbdae7b20b70e273fa98"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_11-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20547,17 +19278,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The percent sign starts a format specifier, so a literal percent has to be written twice. The pair %% is replaced by a single % in the output.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_11-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3e5259dbb9553691ae4b723128535190aedcbd811d7857321834db8f8f117384"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_12-what-does-the-5-do-in-this-statement",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20580,17 +19313,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The width sets the minimum field size and the minus flag pads on the right instead of the left. So 42 becomes 42 followed by three spaces inside the brackets.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_12-what-does-the-5-do-in-this-statement",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "568ebd204a286790e35f52612a7972278284c048eba68905314f689ff0fbc43d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_13-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20613,17 +19348,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "String.format returns the formatted text without printing, so it is stored in s and printed later.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_13-what-is-printed-by-this-program",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "35d19fc01e833ebf49671b7fbf7df152d69776ad589ba84d3a5912308f61dee9"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_14-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20646,17 +19383,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The .2 sets two digits after the decimal point and rounds, so 3.14159 becomes 3.14.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_14-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "61756067bed7c90155d68b4a02a7fbb69f6f88ea63a465bde53f71cf7fa63345"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_15-what-happens-when-this-statement-runs",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20679,17 +19418,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "%d accepts only an integral argument, so a String does not match and the call fails while it runs.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_15-what-happens-when-this-statement-runs",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d386b7882de12aae46d7bcf44a4f7d3f0a8f2fa69476869f2534f7260cedaf37"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_16-what-is-printed-by-this-statement",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20712,17 +19453,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The 5 is a minimum width, so a wider value is printed in full and is never truncated.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_16-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "54575a6698aaf68007e0e283a3959150c65e772cd735447a6c6d4c97b2fe6c5d"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_17-what-happens-when-this-declaration-is-co",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20745,17 +19488,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A text block must have three double quotes followed by a line terminator, so content cannot start on that same line.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_17-what-happens-when-this-declaration-is-co",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "995c166e3c0cf8eeea18bba05d1368908f5309cd98a4a18c84d2d35c31c771c3"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_18-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "Text Block And Advanced Output Formatting",
@@ -20778,17 +19523,19 @@ const QUESTIONS_BANK = {
       },
       "explanation": "%n is a format specifier, so it is converted only by printf or format. println does not format, so it prints literally.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_1_Text_Block_And_Advanced_Formatting/TextBlockAndAdvancedOutputFormatting.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-1-text-block-and-advanced-formatting-textblockandadvancedoutputformatting-java_custom_18-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool",
         "text-blocks",
         "arrays"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c7d644644fb972199baa19f6d07f2edfcfd631fee143383c100233119905e433"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_0-what-range-is-valid-for-the-index-parame",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20802,15 +19549,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_0-what-range-is-valid-for-the-index-parame",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "de8d86e563059bb1ecae57ce01c9df0e2a90b1e5cd1a50177e549ba183986aea"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_1-in-text-indexof-l-3-what-does-the-3-para",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20824,15 +19573,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_1-in-text-indexof-l-3-what-does-the-3-para",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "61eb07a34d215cbc86072ace0a0c027561d8641236fad6762a430d833dafd981"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_2-in-substring-3-5-which-index-is-included",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20847,15 +19598,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_2-in-substring-3-5-which-index-is-included",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "fc10c1de568f9418f3332561a465c45a5a5ac808f8dec19de50e48489a8a5a92"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_3-what-does-hello-substring-5-return",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20870,15 +19623,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_3-what-does-hello-substring-5-return",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d9cd105a2c5c668086b316e46d983c0e9e74529f735dae78c09d0cef9d1e4577"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_4-does-abc-substring-0-0-throw-an-exceptio",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20893,15 +19648,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_4-does-abc-substring-0-0-throw-an-exceptio",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a6c9d4621fbc714a87f9b8dce0b01452ddbbea94500636be631b26c4fa3602d5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_5-what-is-the-output-of-string-s-123-456-s",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20916,15 +19673,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_5-what-is-the-output-of-string-s-123-456-s",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "74660f5321b1fee7ec2435929af4152b29590859d93d0b2c99b1db53e1eb07ec"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_6-what-happens-when-abc-repeat-1-is-called",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20939,15 +19698,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_6-what-happens-when-abc-repeat-1-is-called",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ee0d39090269ef92f3f71d6a2308ecf808a4d25e1e562565a74448ca906c6fb7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_7-what-happens-when-hello-concat-null-is-c",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20962,15 +19723,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_7-what-happens-when-hello-concat-null-is-c",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b8e64279b5bb8a1671b3f0e765b816e2a66bde81e60e8d064810491d1ac9fae8"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_8-what-is-the-difference-between-isempty-a",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -20984,15 +19747,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_8-what-is-the-difference-between-isempty-a",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "06fea8c66b5d11468d93e161b53aa54f2973a0dbf198367d2c8bb4f716c9b49e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_9-how-does-strip-differ-from-trim",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21006,15 +19771,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_9-how-does-strip-differ-from-trim",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ca1f9e1f280bcc41177c1ddf37a90ce9a491e75424265732c443f8d6c6f98e01"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_10-what-is-the-difference-between-equals-an",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21028,15 +19795,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_10-what-is-the-difference-between-equals-an",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "352170f94ed153ec9d178ef47f516382bc6fdc392edb07b851abba095ade409f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_11-when-should-replace-be-used-instead-of-r",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21050,15 +19819,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_11-when-should-replace-be-used-instead-of-r",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1e33831849be0ab4f0ae7d2c79e8247efa4a3488e7381766ed05cad6497f4cda"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_12-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21081,15 +19852,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "concat returns a brand new String and never edits the one it is called on, so s still holds Java.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_12-what-is-printed-by-this-program",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ea7af9c2ec1ce0b29dfa975e8febe850ee6a9755d59da36b65d4df3a1bcebe27"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_13-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21112,15 +19885,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "substring(begin, end) includes begin but excludes end, so indexes 0, 1 and 2 are copied.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_13-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "efabb386623ece16cc58320a9f97bbd9b040e45b74a6076cf63c88f24615b5f2"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_14-what-happens-when-this-statement-runs",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21143,15 +19918,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Both indexes are in range, but beginIndex 2 is greater than endIndex 1, so the reversed range throws.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_14-what-happens-when-this-statement-runs",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "bfb4f1a8af82c3d9b140889607c569b9cb57f79aabfd67e7e1b1a6dc291d9aaa"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_15-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21174,15 +19951,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "+ works left to right, so \"Java\" + 10 joins first, and joining 20 to a String gives Java1020.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_15-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "11f9c722835b9da94f6408afe0fc99e3177421157af00bde6ff9aa4bdcf235f4"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_16-what-is-printed-by-this-statement",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21205,15 +19984,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "In replaceAll the first argument is regex, so \".\" matches any character and all five are replaced.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_16-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "868af5923c4e884348ade6afa02b2cdf279c46ae5440fbcd8a73be69d6c2cb99"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_17-what-is-printed-by-this-statement",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Method And Best Practices",
@@ -21236,49 +20017,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A char is numeric, so 'A' + 1 uses the code point 65 and adds 1, and the int result prints as 66.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_custom_17-what-is-printed-by-this-statement",
       "concepts": [
         "strings",
         "string-pool"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-2-string-methods-and-best-practices-stringmethodandbestpractices-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 14: Strings",
-      "topic": "String Method And Best Practices",
-      "question": "Which of the following are TRUE about String Method And Best Practices? Select all that apply.",
-      "options": [
-        "String is a sequence of characters, which means its characters are ordered and indexed.",
-        "---- Important points to remember ----",
-        "ii) Pass no arguments at all",
-        "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
-        "String indexing is 0 - based, so the first character is at index 0 and the last one is at length() - 1."
       ],
-      "answer": [
-        0,
-        1,
-        4
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"String Builder Concepts\", not of \"String Method And Best Practices\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"String Vs String Buffer Vs String Builder\", not of \"String Method And Best Practices\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about String Method And Best Practices. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Method And Best Practices.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_2_String_Methods_And_Best_Practices/StringMethodAndBestPractices.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "strings",
-        "string-pool"
-      ]
+      "legacyQids": [],
+      "contentVersion": "55ff0e9d6a84796e7e333302d49e63095e3d33acdb5113857d2e6dfda8b1e252"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_0-what-is-the-core-difference-between-stri",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21293,15 +20042,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_0-what-is-the-core-difference-between-stri",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7b5728f088bee15e13f896f43f4194a087c6033b51094df5ccb8cd977a638e71"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_1-when-should-you-prefer-stringbuilder-ove",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21316,15 +20067,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_1-when-should-you-prefer-stringbuilder-ove",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "5dd944aafc7689da1b7e31c11641ba0064aa91ccd691dfe01b3200592fa58d0d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_2-what-is-the-difference-between-stringbui",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21339,15 +20092,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_2-what-is-the-difference-between-stringbui",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "010a270a129b9c0e89d76274efaac764d322e978118be6f1085c82d1c04f30dc"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_3-why-can-you-chain-calls-like-sb-append-a",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21361,15 +20116,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_3-why-can-you-chain-calls-like-sb-append-a",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0d8b45260bbae0fbff2f8357642348fa0671c9cd564ba34355ad00c7259b2c0d"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_4-what-does-new-stringbuilder-20-create",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21385,15 +20142,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_4-what-does-new-stringbuilder-20-create",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f1f7f67fc5392c800ec7cc267e72d9d13629319b8e4b00aaf13ef08b1f198306"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_5-what-does-sb1-equals-sb2-compare-for-two",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21409,15 +20168,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_5-what-does-sb1-equals-sb2-compare-for-two",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "ba0eaed08ab3f9fab970df72f9ca532048ea305e20c851a7443a8caf319c51e5"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_6-what-is-the-default-capacity-of-new-stri",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21433,15 +20194,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_6-what-is-the-default-capacity-of-new-stri",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "7759bdbeb46f0e4aa95acb0795e4c080358fa07545210ee244ff3063c9b26c69"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_7-what-is-the-capacity-of-new-stringbuilde",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21457,15 +20220,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_7-what-is-the-capacity-of-new-stringbuilde",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f68adf4048aa60fee80b266782dcae8b687bb898133853de92c06b354a14d4a2"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_8-for-new-stringbuilder-then-append-a-repe",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21481,15 +20246,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_8-for-new-stringbuilder-then-append-a-repe",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "82abc8390c9ea0b9d4c121ef1d755dc23a7999ab45b5b731ec2580a7b989bd9f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_9-for-new-stringbuilder-32-then-append-a-r",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21505,15 +20272,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_9-for-new-stringbuilder-32-then-append-a-r",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "d5bfd8cca97f6fcd023065ebfcec983c646bb5b3ac2c8075451dd0b81f6dd32f"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_10-how-do-you-repeat-text-with-a-stringbuil",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21529,15 +20298,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_10-how-do-you-repeat-text-with-a-stringbuil",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "75555a7748a94937f0448dc19726448b0800606f8373fcdc17fcc005f900a3e7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_11-for-sb-new-stringbuilder-hello-what-does",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21553,15 +20324,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_11-for-sb-new-stringbuilder-hello-what-does",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "8a9e852fef23ae17c51115cb2219aa2b02afda8b40bdf8927ba453e83d6445cd"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_12-what-is-the-difference-between-delete-st",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21576,15 +20349,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_12-what-is-the-difference-between-delete-st",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "c7bb8499c1e97c42e42d574aada12741dd1c3684813daadab28768bd707dab51"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_13-what-does-setlength-do-when-the-new-leng",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21600,15 +20375,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_13-what-does-setlength-do-when-the-new-leng",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "087ffd51de4c690a180e9b967c8e3e6c311dd011e9e7fbc3f25499e6e0fbfdd7"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_14-does-insert-offset-x-allow-offset-to-equ",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21623,15 +20400,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_14-does-insert-offset-x-allow-offset-to-equ",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1d4e89078cfc74d2342c58952be11ab43f366be1599fea6c26a790c541b0a35e"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_15-in-delete-start-end-what-do-start-and-en",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21647,15 +20426,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_15-in-delete-start-end-what-do-start-and-en",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "701ba3ac3c2e690d946713ec4ee205400d1a202d34ad44eb42da5a38d7239f95"
     },
     {
       "type": "interview",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_16-what-does-the-int-argument-to-the-constr",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21670,15 +20451,17 @@ const QUESTIONS_BANK = {
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_16-what-does-the-int-argument-to-the-constr",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2458c0361d8c6677d3c3e1918c13f20eececccb0b5dae60b2cc6eb09f84ccf40"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_17-what-is-the-key-difference-between-strin",
       "difficulty": "easy",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21700,15 +20483,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "String never changes once created. StringBuilder edits one internal buffer, which is why repeated appends are far cheaper than building the same text with +.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_17-what-is-the-key-difference-between-strin",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2c177c98da634271966ec3b6870261c4591e9e2862564e91b80f53390a95ac1f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_18-what-is-the-difference-between-length-an",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21730,15 +20515,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Capacity is the size of the internal storage and length is what is actually used. A new StringBuilder() has length 0 but capacity 16, because the buffer is already reserved.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_18-what-is-the-difference-between-length-an",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e70afb8e4c5d9f957d35fa40411b3e3677797f91cc2e46d8c334e4f854ce4658"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_19-what-does-this-code-print",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21761,15 +20548,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "reverse() mutates the buffer and returns the same instance, which is why sb and same refer to one object and the identity check prints true.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_19-what-does-this-code-print",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0ad5db71ef066f1f99732eeac9c95ee8bc6161cf6125e40bdadb5fb37e2c908e"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_20-why-does-sb1-equals-sb2-return-false-for",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21791,15 +20580,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Without an override, equals() falls back to the version inherited from Object, which compares identity. Two different objects are therefore unequal even when they hold identical characters.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_20-why-does-sb1-equals-sb2-return-false-for",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "cc1afdb53d5d473d40546ba240883858d1cb771a867fdbb6b5e151afb244a13f"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_21-when-a-stringbuilder-buffer-overflows-ho",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21821,15 +20612,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The growth rule doubles the old capacity and adds 2. Knowing this is why presizing with new StringBuilder(int) is worthwhile when the final size is known.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_21-when-a-stringbuilder-buffer-overflows-ho",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b1bebccc5843bdc4d3be63ee6511ec95b31aa611c3adc661e00c55b7b2bb386a"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_22-what-does-delete-0-1-remove-from-a-strin",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21852,15 +20645,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The range is half-open: start is included and end is excluded. So delete(0, 1) affects index 0 only, while delete(0, sb.length()) clears the whole buffer.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_22-what-does-delete-0-1-remove-from-a-strin",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "9713372825ade5887011b2dc8fa3a4cc299caec641ce485bf105e8cf0a5d1116"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_23-what-does-setlength-0-do-and-how-does-it",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21882,15 +20677,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "A smaller length truncates the buffer, and 0 therefore clears it. This is a common way to reuse a StringBuilder without allocating a new one. Its void return means it cannot be chained.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_23-what-does-setlength-0-do-and-how-does-it",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2e3bd4513b66202ee891ce2ef164fb43c3331cf78bcca6a6bd797067a4d91732"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_24-why-can-calls-like-sb-append-a-append-b-",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21912,15 +20709,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "Returning the same instance is what makes chaining work. Because it is the same object, every call writes into one buffer. Call toString() when you finally need an immutable String.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_24-why-can-calls-like-sb-append-a-append-b-",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "3de5d527b996c7ed19a0246808af205a81b5f412385aecf7a6e8f640531c4f92"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_25-what-does-this-code-print",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21943,15 +20742,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The valid offset range is 0 up to and including length(). Using exactly length() places the text after the last character, which is the same effect as append.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_25-what-does-this-code-print",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "2169ac914ef62bb7c9c52a9e6bdf3175dd0827d75f2662e297f10aeacdfeccce"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_26-what-is-the-result-of-this-call",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -21974,15 +20775,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "The end index is exclusive, so delete(1, 4) removes the characters at indexes 1, 2 and 3. That is b, c and d, leaving a, e and f.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_26-what-is-the-result-of-this-call",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "429e31de02eb8b85fd629f29bec5c3c833057f52eeded9ad5a84feb167cbbdff"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_27-what-is-printed-by-this-code",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -22005,15 +20808,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "toString() returns an immutable String holding the characters as they were at that instant. Later changes to the StringBuilder cannot affect it, because String never changes.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_27-what-is-printed-by-this-code",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "e83b5a4e355b9af0a91524588a976a31773452ed1dbd8a340deadbc2021920db"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_28-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -22036,15 +20841,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "append changes the same builder and returns it, so calls can be chained and the buffer ends up ABC.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_28-what-is-printed-by-this-program",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "1d1c63d8bfe33d8d9552063ce9054377f537d4d09eea9510ea62db9caf137549"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_29-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -22067,15 +20874,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "StringBuilder does not override equals, so it compares references, and a builder can never equal a String.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_29-what-is-printed-by-this-program",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b7e3bdf3a4a52cec6c600c1850cb60b17fb53e60c7aa4f3040d30334caa52ea8"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_30-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -22098,15 +20907,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "toString builds a new immutable String from the text held then, so later appends cannot affect it.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_30-what-is-printed-by-this-program",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "f70d5c8a1a5568e8701419f4c3d92a23038e6b3e0a28a37f77cf6b5cab0ed63c"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_31-what-is-printed-by-this-program",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -22129,15 +20940,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "This constructor sets capacity to the text length plus the default 16, so 5 + 16 gives 21.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_31-what-is-printed-by-this-program",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "b59d9801cd59b867299dcbf38a63a2eb0d2670389b06df27b19480f427679658"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_32-which-statement-about-stringbuilder-and-",
       "difficulty": "hard",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -22159,15 +20972,17 @@ const QUESTIONS_BANK = {
       },
       "explanation": "StringBuffer is the older type and its methods are synchronised, which is safe for shared threads but slower.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_32-which-statement-about-stringbuilder-and-",
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "46e85052b248500252b9f6036c0c3d7d652edd914e4ebd213f4ff44197d8f2a0"
     },
     {
       "type": "scq",
       "kind": "custom",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_33-what-is-printed-by-this-program",
       "difficulty": "medium",
       "chapter": "Chapter 14: Strings",
       "topic": "String Builder Concepts",
@@ -22190,78 +21005,13 @@ const QUESTIONS_BANK = {
       },
       "explanation": "toUpperCase returns a new String and the unassigned result is discarded, so s still holds Hello.",
       "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
+      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_custom_33-what-is-printed-by-this-program",
       "concepts": [
         "strings",
         "string-pool"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringbuilderconcepts-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 14: Strings",
-      "topic": "String Builder Concepts",
-      "question": "Which of the following are TRUE about String Builder Concepts? Select all that apply.",
-      "options": [
-        "iii) Pass an integer initial capacity",
-        "iv) Pass another CharSequence (like a StringBuilder)",
-        "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
-        "ii) Pass no arguments at all",
-        "String is a sequence of characters, which means its characters are ordered and indexed."
       ],
-      "answer": [
-        0,
-        1,
-        3
-      ],
-      "whyByOption": {
-        "2": "This statement is true of \"String Vs String Buffer Vs String Builder\", not of \"String Builder Concepts\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "4": "This statement is true of \"String Method And Best Practices\", not of \"String Builder Concepts\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about String Builder Concepts. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Builder Concepts.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringBuilderConcepts.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "strings",
-        "string-pool"
-      ]
-    },
-    {
-      "type": "mcq",
-      "kind": "true-false",
-      "qid": "chapter-14-strings_src-chapter-14-strings-sub-chapter-3-stringbuilder-stringvsstringbuffervsstringbuilder-java_true-false-mcq_5",
-      "difficulty": "medium",
-      "chapter": "Chapter 14: Strings",
-      "topic": "String Vs String Buffer Vs String Builder",
-      "question": "Which of the following are TRUE about String Vs String Buffer Vs String Builder? Select all that apply.",
-      "options": [
-        "ii) Pass no arguments at all",
-        "String, StringBuilder, and StringBuffer all represent text, but they are designed for different situations.",
-        "String is immutable. Once a String object has been created, its character contents cannot be changed. An operation such as concat() creates and returns a new String; it does not change the original String. If the result is not assigned to a variable, the original value remains unchanged.",
-        "String is a sequence of characters, which means its characters are ordered and indexed.",
-        "StringBuilder is mutable. Its append(), insert(), delete(), and replace() methods update the same character buffer and return the same builder object, which makes method chaining possible. This avoids creating a new String for every intermediate change and is usually the best choice for text built by one thread, especially inside a loop."
-      ],
-      "answer": [
-        1,
-        2,
-        4
-      ],
-      "whyByOption": {
-        "0": "This statement is true of \"String Builder Concepts\", not of \"String Vs String Buffer Vs String Builder\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic.",
-        "3": "This statement is true of \"String Method And Best Practices\", not of \"String Vs String Buffer Vs String Builder\". It is a real statement taken from another topic, which is exactly what makes it the wrong choice here — the question asks what your notes say about this topic."
-      },
-      "explanation": "A statement belongs here only if your notes make it about String Vs String Buffer Vs String Builder. Every wrong option is a true statement about a different topic, so this tests whether you know which topic a fact belongs to — not whether the fact is true. 3 of the 5 statements are about String Vs String Buffer Vs String Builder.",
-      "topicPath": "src/Chapter_14_Strings/Sub_Chapter_3_StringBuilder/StringVsStringBufferVsStringBuilder.java",
-      "tags": [
-        "concept"
-      ],
-      "concepts": [
-        "strings",
-        "string-pool"
-      ]
+      "legacyQids": [],
+      "contentVersion": "147795da94af4bc9ab3a0df32b67ce86707356e2054bdfa62af09fb783f31857"
     },
     {
       "qid": "ocjp-chapter-14-strings-string-pool-1",
@@ -22285,7 +21035,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0b383e249891fa3fdc99cee0bd5991a652313142a7cb51795b184fab97abf94d"
     },
     {
       "qid": "ocjp-chapter-14-strings-string-pool-2",
@@ -22309,7 +21061,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "31785ea1b79bdb7f3e01956ff627ef11229d6bdc1f5b1908d28224938c39b32d"
     },
     {
       "qid": "ocjp-chapter-14-strings-string-concat-1",
@@ -22333,7 +21087,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "a3b5e1784399fe89e996a466d1b3d3f2168b8759307d6aae92157dd897a592aa"
     },
     {
       "qid": "ocjp-chapter-14-strings-int-cast-1",
@@ -22357,7 +21113,9 @@ const QUESTIONS_BANK = {
       "concepts": [
         "strings",
         "string-pool"
-      ]
+      ],
+      "legacyQids": [],
+      "contentVersion": "0ba7555f8c79f5c22bf4065ffc0675be64322410879500c88a6e90b64f88fd6d"
     },
     {
       "type": "predict",
@@ -22381,9 +21139,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "System.out.printf(\"Age = %d%n\", 42);\nString line = String.format(\"Age = %d\", 42);\nSystem.out.println(line);",
       "answer": [
-        "Age = 42\r\nAge = 42"
+        "Age = 42\nAge = 42\n"
       ],
-      "explanation": "Age = 42 and moves to a new line — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "Age = 42\nAge = 42\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"Age = 42\\nAge = 42\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "cf185814bc12e932d3259ded7f578ea1e32f3021b13bac1b8ca395e11d176827"
     },
     {
       "type": "predict",
@@ -22407,9 +21181,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "System.out.printf(\"Hello %n\");\nSystem.out.println(\"Hello %n\");",
       "answer": [
-        "Hello \r\nHello %n"
+        "Hello \nHello %n\n"
       ],
-      "explanation": "Hello and moves to a new line — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "Hello \nHello %n\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"Hello \\nHello %n\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "0ad81fd8a285a9ca8773d4d663f152f3cdca668387e4139f12275e8590754ffc"
     },
     {
       "type": "predict",
@@ -22431,9 +21221,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "String s = \"Java\";\ns.concat(\" is fun\");\nSystem.out.println(s);\nString t = s.concat(\" is fun\");\nSystem.out.println(t);",
       "answer": [
-        "Java\r\nJava is fun"
+        "Java\nJava is fun\n"
       ],
-      "explanation": "Java, s never changed — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "Java\nJava is fun\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"Java\\nJava is fun\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "5a8e4526a7a31fd8dedb761393d106423ee273c87e34da7705235eb7fe1a1d55"
     },
     {
       "type": "predict",
@@ -22455,9 +21261,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "String a = \"hello\";\nString b = \"hello\";\nString c = new String(\"hello\");\nSystem.out.println(a == b);\nSystem.out.println(a == c);\nSystem.out.println(a.equals(c));",
       "answer": [
-        "true\r\nfalse\r\ntrue"
+        "true\nfalse\ntrue\n"
       ],
-      "explanation": "true, both literals come from the string pool — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "true\nfalse\ntrue\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"true\\nfalse\\ntrue\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "d387f8a0aedc3d9e8f7460174598468d47fda6058238038297c2394c89d64c7d"
     },
     {
       "type": "predict",
@@ -22479,9 +21301,25 @@ const QUESTIONS_BANK = {
       "question": "What does this code print?",
       "code": "String result = \"\";\nfor (int i = 0; i < 5; i++) { result = result + i; }\n\nStringBuilder builder = new StringBuilder();\nfor (int i = 0; i < 5; i++) { builder.append(i); }\nSystem.out.println(builder.toString());",
       "answer": [
-        "01234"
+        "01234\n"
       ],
-      "explanation": "01234 — your own note beside this code. The real output is above, and it was produced by running the code rather than by reading it."
+      "outputExpectation": {
+        "kind": "exact-output",
+        "value": "01234\n",
+        "provenance": "native-derived-smoke"
+      },
+      "nativeValidation": {
+        "release": 21,
+        "preview": false,
+        "compilerVersion": "javac 25.0.4.1",
+        "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
+        "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
+        "validator": "scripts/derive-code-questions.js",
+        "validatorFingerprint": "bc3fe498815c03ff8f811f180b21e5828013d00117bff60fc7434b066e307a0c"
+      },
+      "explanation": "Running this block produces \"01234\\n\". That value is the real output of the code, recorded by executing it, so compare your answer with what the program actually printed rather than with a reading of the code.",
+      "legacyQids": [],
+      "contentVersion": "867ceba16646dd6fd68c1e3cc66e65b5c2de141b8ffd214032cb095d0469f12f"
     }
   ],
   "Chapter 15: Composition": []
@@ -22609,7 +21447,7 @@ const QUICK_REVISION_BANK = {
         "rows": [
           [
             "boolean",
-            "1 bit",
+            "Not specified by Java",
             "Only two values: true or false"
           ],
           [
@@ -23478,7 +22316,7 @@ const QUICK_REVISION_BANK = {
       },
       {
         "say": "`%n` only means a newline inside a format string; `println(\"Hello %n\")` prints it literally.",
-        "code": "String.format(\"Hello %n\")     // Hello"
+        "code": "String.format(\"Hello %n\")     // \"Hello \\n\""
       },
       {
         "say": "`\"Java\" + 10 + 20` gives `Java1020`, because `+` starts joining as soon as one side is text.",

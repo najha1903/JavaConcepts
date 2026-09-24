@@ -5,7 +5,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // The 8 Primitive Types:
 // Type     | Width  | Range / Notes
 // ---------|--------|--------------------------------------------------------------
-// boolean  | 1 bit  | Only two values: true or false
+// boolean  | Not specified by Java | Only two values: true or false
 // byte     | 8 bits | -128 to 127
 // short    | 16 bits| -32,768 to 32,767
 // char     | 16 bits| A single Unicode character — written in single quotes: 'A'
@@ -21,7 +21,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)
 //
 // Casting: Converting from one type to another.
-// Widening (automatic) — smaller type to larger: byte -> short -> char -> int -> long -> float -> double
+// Widening (automatic): byte -> short -> int -> long -> float -> double; char -> int -> long -> float -> double
 // Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte
 // Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.
 //
@@ -160,7 +160,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // @option Widening requires a cast because the larger type needs more memory.
 // @option Both directions are automatic, and Java truncates silently when needed.
 // @option Narrowing never loses information because Java rounds the value.
-// @explain Widening follows the chain byte -> short -> char -> int -> long -> float -> double and is applied for you. Narrowing converts back down and needs the cast to be written, because range or precision can be lost.
+// @explain Widening follows byte -> short -> int -> long -> float -> double, with char widening to int and onward. short does not widen to char. Narrowing generally needs an explicit cast because range or precision can be lost; widening to float or double can also lose precision.
 // @why B: requiring a cast has nothing to do with memory size. Widening is automatic precisely because nothing is lost.
 // @why C: if both were automatic, Java could silently corrupt values, which is exactly what the compiler prevents.
 // @why D: narrowing can lose information. A cast truncates rather than rounds, so 9.8 becomes 9, not 10.
