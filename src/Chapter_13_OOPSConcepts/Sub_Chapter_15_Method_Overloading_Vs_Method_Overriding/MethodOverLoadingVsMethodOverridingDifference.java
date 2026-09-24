@@ -6,6 +6,25 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_15_Method_Overloading_Vs_Method_Over
 // pitfall: a child method with a different parameter list is an overload even if its name matches the parent method.
 // warning: overloaded calls are resolved at compile time, while overridden calls are dispatched at runtime.
 
+// The difference, in code :-
+//
+// class Printer {
+//     void print(int n) { }                        // overload 1
+//     void print(String s) { }                     // overload 2: same name, different parameter
+// }
+//
+// class Animal {
+//     void speak() { System.out.println("sound"); }
+// }
+//
+// class Dog extends Animal {
+//     @Override
+//     void speak() { System.out.println("woof"); }  // override: the parameter list is identical
+// }
+//
+// Note :- a changed parameter list is an overload even when the name matches, so returning a
+// different type alone never creates an overload.
+
 // @quiz (INTERVIEW) What parameter-list changes can create method overloading?
 // @answer Different parameter count, different parameter types, or different parameter order can create overloads.
 // @quiz (INTERVIEW TRAP) Can return type alone distinguish overloaded methods?

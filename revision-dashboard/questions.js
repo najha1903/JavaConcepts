@@ -23387,7 +23387,7 @@ const QUICK_REVISION_BANK = {
         "code": ""
       }
     ],
-    "syntax": "class Counter {\n    static int shared = 0;      // ONE copy for the whole class\n    int mine = 0;               // one copy in every object\n\n    void tick() { shared++; mine++; }\n\n    static void resetShared() { shared = 0; }   // fine, shared belongs to the class\n    static void bad() { mine = 0; }   // Compile Error :- mine is not static\n}\nCounter a = new Counter();\nCounter b = new Counter();\na.tick(); a.tick(); b.tick();\nSystem.out.println(Counter.shared);           // prints 3, all three ticks landed on the one shared copy\nSystem.out.println(a.mine + \" \" + b.mine);    // prints 2 1, each object kept its own count",
+    "syntax": "class Parent {\n    private int x;\n    Parent(int x) {\n        this.x = x;                 // 'this' tells the field apart from the parameter\n    }\n}\n\nclass Child extends Parent {\n    private int y;\n    Child() {\n        this(0);                    // this() chains to the constructor below, in the SAME class\n    }\n    Child(int y) {\n        super(y);                   // super() calls the parent constructor, and must be first\n        this.y = y;\n    }\n}",
     "badges": [
       "class",
       "new",

@@ -313,6 +313,20 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
 // @why C: the default is package-private, written by leaving the modifier off, not by protected.
 // @why D: public is allowed but not required. A class with no modifier is also valid.
 
+// The rules above, shown in code :-
+//
+// class Counter {
+//     static int total = 0;          // ONE copy for the whole class, shared by every object
+//     int own = 0;                   // one copy per object
+//
+//     static void bump() {
+//         total++;                   // allowed: a static method may touch static state
+//         // own++;                  // compile error: no object, so no instance field
+//     }
+// }
+//
+// class Helper { }                   // no modifier: package-private, visible in this package only
+
 
 public class ClassesAndInheritance {
 

@@ -8,6 +8,21 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_An
 // 'super()' — calls the parent class constructor. Must be the FIRST statement in the constructor. Java inserts a no-arg super() call automatically if you don't write one.
 // You can use EITHER this() OR super() in a constructor, but NEVER BOTH — each must be the first statement, and there can only be one first statement.
 // Neither this() nor super() can be used inside static methods — they require an object instance.
+
+// The two constructor calls, side by side :-
+//
+// class Parent {
+//     Parent(int x) { }
+// }
+//
+// class Child extends Parent {
+//     Child() {
+//         super(5);                   // super() = the parent's constructor, first statement
+//     }
+//     Child(int y) {
+//         this();                     // this()  = another constructor in the SAME class
+//     }
+// }
 /*
 * super keyword :-
 *
@@ -43,6 +58,29 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_4_Constructors.Sub_Chapter_2_This_An
 // @answer Each constructor call must be the first statement, and only one statement can be first.
 // @quiz (INTERVIEW TRAP) Are this(args) and super(args) available inside static methods?
 // @answer No. They require constructor/object context and cannot be used from static methods.
+
+// The rules above, shown in code :-
+//
+// class Parent {
+//     private int x;
+//     Parent(int x) {
+//         this.x = x;                 // 'this' tells the field apart from the parameter
+//     }
+// }
+//
+// class Child extends Parent {
+//     private int y;
+//     Child() {
+//         this(0);                    // this() chains to the constructor below, in the SAME class
+//     }
+//     Child(int y) {
+//         super(y);                   // super() calls the parent constructor, and must be first
+//         this.y = y;
+//     }
+// }
+//
+// Note :- a constructor may call this() or super(), never both, because each has to be the
+// first statement and there is only one first statement.
 
 public class ThisAndSuper {
 }

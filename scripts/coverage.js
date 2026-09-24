@@ -106,6 +106,27 @@ const RULE_PATTERN = /\b(must|cannot|can't|never|always|only|throws?|does not co
 // what was being reported was quiz text, not the author's notes.
 const MARKER_LINE = /^(?:\/\/|\*)?\s*@(quiz|option|answer|explain|why|code|takeaway|gotcha|snippet|testcase|desc|hint|section|challenge|draft|noexample)\b/i;
 
+// Does the file's own Java contain a method or a constructor body?
+//
+// This is the difference between "no example" and "no example IN THE NOTES". The detector
+// looked only for a code block inside the notes, and 82 of the 102 rules it flagged were in
+// files whose own code - a class with constructors and a main - is displayed beside those
+// notes in the Study view. The rule is illustrated; the example is just not duplicated into
+// the prose.
+//
+// WHAT THIS DELIBERATELY DOES NOT DO. It does not judge whether the file's code illustrates
+// THIS rule. A file with a constructor demonstrates its constructor rules, but it does not
+// demonstrate "a top-level class may only be public or have no modifier". Telling those apart
+// needs a judgement about meaning, and keyword matching for that has failed repeatedly in this
+// project. So the structural fact is reported - the file has code, or it does not - and the
+// limit is stated rather than papered over.
+function topicHasRealCode(topic) {
+  const stripped = String(topic.code || '')
+    .replace(/\/\*[\s\S]*?\*\//g, ' ')
+    .replace(/\/\/.*$/gm, ' ');
+  return /\b\w+\s*\([^)]*\)\s*\{/.test(stripped);
+}
+
 function ruleCoverage(topic) {
   // An exercise file is skipped. Its lines describe a task - "Deep Problem: Multi-Domain Unit
   // Converter - Implement a conversion utility that handles distance, weight..." - and a task
@@ -132,7 +153,9 @@ function ruleCoverage(topic) {
       // A rule that quotes its own code in the same line already has its example.
       if (hasInlineExample(line)) continue;
       rules++;
-      if (hasExample) withExample++;
+      // A code block in the notes, or the file's own code beside them, both count as the
+      // example being there. See topicHasRealCode for what this does and does not judge.
+      if (hasExample || topicHasRealCode(topic)) withExample++;
       else withoutExample.push(String(line).trim());
     }
   });

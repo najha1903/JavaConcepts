@@ -368,6 +368,22 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
 // @why C: private is the most restrictive choice of all, so it is forbidden for the same reason.
 // @why D: a static method hides the parent's method instead of overriding it, so it is not an override.
 
+// The rules above, shown in code :-
+//
+// class Animal {
+//     public void speak() { System.out.println("some sound"); }
+//     private void secret() { }
+// }
+//
+// class Dog extends Animal {
+//     @Override
+//     public void speak() { System.out.println("woof"); }    // same name, same parameters
+// }
+//
+// Note :- a child may WIDEN access (protected to public) but never narrow it, and private,
+// final and static methods and constructors cannot be overridden at all. A static method in a
+// child hides the parent's rather than overriding it, so @Override on it is a compile error.
+
 
 public class MethodOverridingInJava {
 }
