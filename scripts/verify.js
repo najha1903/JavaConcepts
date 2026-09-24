@@ -40,6 +40,7 @@ const CHECKS = [
   { script: 'check-quality.js', label: 'Question quality' },
   { script: 'check-cram.js', label: 'Cram points' },
   { script: 'check-ui.js', label: 'Interface' },
+  { script: 'check-dashboard.js', label: 'Dashboard behaviour' },
   { script: 'fix-encoding.js', label: 'Text encoding' },
   { script: 'check-in-progress.js', label: 'In-progress chapter' },
   { script: 'coverage.js', label: 'Coverage', args: ['--check'] }

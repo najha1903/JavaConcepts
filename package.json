@@ -12,6 +12,7 @@
     "check:quality": "node scripts/check-quality.js",
     "check:cram": "node scripts/check-cram.js",
     "check:ui": "node scripts/check-ui.js",
+    "check:dashboard": "node scripts/check-dashboard.js",
     "check:encoding": "node scripts/fix-encoding.js",
     "check:in-progress": "node scripts/check-in-progress.js",
     "check:structure": "node scripts/check-structure.js",
@@ -24,5 +25,8 @@
   },
   "dependencies": {
     "wd": "^1.14.0"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1"
   }
 }
