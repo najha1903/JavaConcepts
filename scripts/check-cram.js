@@ -301,8 +301,14 @@ function verifySnippet(work, index, item) {
   // "5 / 2 // 2" followed by "5 / 2.0 // 2.5" is two claims, not a two-line program.
   const allClaims = lines.every(line => /\/\/\s*\S/.test(line));
   if (allClaims) {
-    lines.forEach((line, n) => verifyClaim(work, `${index}_${n}`, item, line));
-    return;
+    const resolved = lines.map((line, n) => verifyClaim(work, `${index}_${n}`, item, line));
+    // Falling through matters. verifyClaim returns false in three ordinary situations - the
+    // comment is prose rather than a value, the claim will not compile, or the run failed -
+    // and in all three the snippet has NOT been checked as Java at all. Without this, a
+    // one-line snippet that carries a comment is counted as "valid Java" without ever being
+    // compiled: `this is not java at all; // some comment` passed, and was reported as
+    // checked. Verified by sabotage, and it is why the summary line is trustworthy now.
+    if (resolved.every(Boolean)) return;
   }
 
   const body = lines.join('\n');
