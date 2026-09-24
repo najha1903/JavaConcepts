@@ -227,11 +227,19 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_1_Classes_And_Inheritance;
 
  // @takeaway A class is a template listing fields and methods; an object is a copy of it, and the copy holds the values.
  // @takeaway `static` is one copy shared by the class; an instance member is one copy per object.
+ // @snippet static int total;
+ // @snippet int mine;
  // @takeaway A static method has no object, so it cannot read or change instance fields, and the compiler refuses it.
+ // @snippet static int total; static void reset() { total = 0; }
  // @takeaway `extends` reuses a parent's fields and methods, and models IS-A: a Dog IS-A Animal.
+ // @snippet class Base { Base(int n) { } }
+ // @snippet class Child extends Base { Child() { super(1); } }
  // @takeaway `private` is the class, nothing written means package, `protected` adds subclasses, `public` is everyone.
+ // @snippet private int secret; protected int shared; public int open;
  // @gotcha `extends` does not copy constructors, so the child must call `super(...)`, and it is compulsory when the parent has no no-arg constructor.
+ // @snippet class Base { Base(int n) { } } class Child extends Base { }      // compile error
  // @gotcha A `private` field is invisible to a child class even though it inherits it, so it has to go through the parent's methods.
+ // @snippet class Base { private int n; } class Child extends Base { int get() { return n; } }      // compile error
  // @gotcha A top-level class can be `public` or have no modifier; `protected` and `private` are not valid on it.
  // @gotcha A static method called through an object reference works the same, which makes it look like an instance method.
 

@@ -82,11 +82,19 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_1_While_Loop;
   Pitfall :- in a while loop, `continue` jumps straight back to the condition without running the update, so a counter that is only incremented at the end of the body never advances.
 
  @takeaway A `while` tests before every pass, so if the condition is false to begin with the body never runs.
+ @snippet int i = 0;
+ @snippet while (i > 0) { System.out.println(i); }
  @takeaway Nothing is built into a `while` header: you set the counter up before it and change it inside the body.
+ @snippet int i = 0;
+ @snippet while (i < 3) { System.out.println(i); i++; }
  @takeaway Three shapes cover most `while` loops: count to a limit, wait for a sentinel, and keep asking until the input is valid.
  @takeaway `n % 10` is the last digit and `n / 10` removes it, which is the basis of digit sum and palindrome checks.
+ @snippet 1234 % 10          // 4
+ @snippet 1234 / 10          // 123
  @gotcha A `while` whose body never changes the condition runs forever.
  @gotcha `while (condition);` with a stray semicolon gives the loop an empty body and spins forever.
+ @snippet int i = 0;
+ @snippet while (i < 3);          // spins forever
  @gotcha `continue` in a `while` jumps to the condition without the update, so the counter never moves.
 */
 

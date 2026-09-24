@@ -78,13 +78,20 @@ package Chapter_7_Switch_Statements.Sub_Chapter_1_Switch_Statement;
 
 // @takeaway `switch` compares one value against fixed constants; use `if-else` when the conditions are ranges or combinations.
 // @takeaway The selector can be `byte short char int`, their wrappers, a `String` or an `enum`; `long`, `float`, `double` and `boolean` are rejected.
+// @snippet switch ("monday") { case "monday": System.out.println("Mon"); break; default: System.out.println("other"); }
 // @takeaway `break` stops a case running into the next one; without it execution falls straight through.
+// @snippet switch (2) { case 2: System.out.println("two");
+// @snippet              case 3: System.out.println("three"); }
 // @takeaway Stacking `case 1: case 2: case 3:` makes all three share one body, and only the last label needs a `break`.
+// @snippet switch (2) { case 1: case 2: case 3: System.out.println("low");
+// @snippet              default: System.out.println("other"); }
 // @takeaway `default` runs when nothing else matched, and it is matched rather than ordered, so its position only changes what falls into it.
 // @gotcha A missing `break` still compiles, so the bug shows up as extra output rather than as an error.
 // @gotcha Two case labels holding the same value do not compile.
+// @snippet switch (2) { case 2: break; case 2: break; }      // compile error
 // @gotcha A `return` inside a case leaves the whole method, so anything written after the switch never runs.
 // @gotcha A `String` selector matches by content and is case-sensitive, so `"monday"` quietly takes the `default` branch.
+// @snippet switch ("MONDAY") { case "monday": System.out.println("matched"); break; default: System.out.println("default"); }
 
 // @quiz (INTERVIEW) What data types can be used in a traditional Java switch statement?
 // @answer switch supports byte, short, char, int, their wrapper types, enum types, and String.

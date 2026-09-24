@@ -33,8 +33,12 @@ package Chapter_9_WhileAndDoWhileLoopingConcepts.Sub_Chapter_2_Do_While_Loop;
 // Pitfall :- a do-while always runs its body once, even when the condition is false from the start. That is a feature here, but it is a surprise if you meant to guard the work with the condition.
 
 // @takeaway A `do-while` runs its body first and tests the condition afterwards, so it always runs at least once.
+// @snippet int i = 5;
+// @snippet do { System.out.println(i); } while (i < 3);
 // @takeaway A `do-while` suits work that must happen once before it can be tested, such as asking for input.
 // @takeaway The semicolon after `while (condition);` is part of the statement; leaving it out is a syntax error.
+// @snippet int i = 0;
+// @snippet do { i++; } while (i < 3);
 // @gotcha A `do-while` always runs its body once, even when the condition is false from the very start.
 // @gotcha The `while (condition)` that ends a `do-while` needs a semicolon, unlike the one that starts a loop.
 // @gotcha `continue` in a `do-while` jumps to the condition test, not to the top of the body.

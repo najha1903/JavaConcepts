@@ -49,12 +49,20 @@ package Chapter_4_Statements_And_Indentations;
 // Pitfall :- a lone semicolon is a legal empty statement. That is why `if (x > 5);` compiles: the semicolon becomes the body of the if, and the block written after it runs no matter what the condition was.
 //
 // @takeaway A statement is one complete instruction, and it is the semicolon that ends it, not the line break.
+// @snippet int x = 5;
 // @takeaway An expression works out to a value; a statement is the whole instruction built around it.
+// @snippet 2 + 3          // 5
 // @takeaway Spaces, tabs and line breaks mean nothing to the compiler; indentation is for the reader.
+// @snippet int     c     =     5;
 // @takeaway One statement can span several lines and several can share one, so write one per line because that is what makes a mistake visible.
+// @snippet int a = 1; int b = 2;
 // @takeaway A lone semicolon is a legal empty statement, which is what makes `if (x > 5);` so dangerous.
 // @gotcha A semicolon straight after `if (condition)` ends the if, so its block runs whatever the condition said. It still compiles.
+// @snippet int x = 1;
+// @snippet if (x > 5);
+// @snippet { System.out.println("always runs"); }
 // @gotcha A variable declared inside a block disappears at the closing brace, and using it afterwards gives "cannot resolve symbol".
+// @snippet { int n = 1; } System.out.println(n);      // compile error
 // @gotcha A class body, a method body and the headers of `if` and `for` all end in a brace, and none of them takes a semicolon.
 
 // @quiz (INTERVIEW) What is the difference between a statement and an expression in Java?

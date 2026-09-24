@@ -151,11 +151,18 @@ package Chapter_10_Class_Object_Static_And_Instance_Fields.Sub_Chapter_1_Class;
  @takeaway A class is a blueprint of fields and methods; an object is one filled-in copy, created with `new`.
  @takeaway Every object gets its own copy of the instance fields; a field you never assign keeps its default.
  @takeaway Assigning one object variable to another copies the reference, so both then point at the same object.
+ @snippet int[] a = { 1, 2 };
+ @snippet int[] b = a;
+ @snippet b[0] = 99;              // a[0] is now 99 too
  @takeaway `new` runs a constructor and hands back a reference; Java reclaims the object once nothing points at it.
  @takeaway `==` on two object variables asks whether they point at the same object, not whether the fields match.
+ @snippet new String("ab") == new String("ab")     // false
+ @snippet "ab" == "ab"                             // true
  @gotcha A field you never assign holds the type's default, so a String field is null and calling a method on it throws.
+ @snippet static String s;        // null
  @gotcha An object variable with no object holds null, and using it throws `NullPointerException`.
  @gotcha A local has no default at all, so reading one before assigning it is a compile error, unlike a field.
+ @snippet int n; System.out.println(n);      // compile error
 *
 *
 *

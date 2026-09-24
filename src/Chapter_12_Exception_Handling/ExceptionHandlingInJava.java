@@ -84,12 +84,19 @@ package Chapter_12_Exception_Handling;
 
 // @takeaway An exception interrupts the normal flow; unhandled, the program stops and prints a stack trace.
 // @takeaway `try` holds the risky code, `catch` handles one type of failure, and `finally` runs whatever happened.
+// @snippet try { Integer.parseInt("x"); }
+// @snippet catch (NumberFormatException e) { System.out.println("bad input"); }
+// @snippet finally { System.out.println("done"); }
 // @takeaway Checked exceptions such as `IOException` must be handled; unchecked ones such as `NullPointerException` are usually bugs.
+// @snippet java.io.FileReader r = new java.io.FileReader("x");      // compile error
 // @takeaway `throw` raises an exception; `throws` in the signature warns callers that this method may pass one on.
+// @snippet void risky() throws java.io.IOException { throw new java.io.IOException("boom"); }
 // @takeaway List the most specific catch first, because a broader one above it makes the narrower one unreachable and the file will not compile.
+// @snippet try { } catch (Exception e) { } catch (RuntimeException e) { }      // compile error
 // @gotcha A `catch (Exception e)` around everything treats a programming bug and a recoverable problem the same way.
 // @gotcha An empty catch block makes the failure disappear silently.
 // @gotcha `finally` still runs when the `try` block returns, which is why resources are closed there.
+// @snippet try { return; } finally { System.out.println("still runs"); }
 // @gotcha `Error` and its subclasses such as `OutOfMemoryError` signal a JVM-level failure, not something your code can recover from.
 // @gotcha `e.getMessage()` can be null, so the stack trace is what actually shows where the problem happened.
 

@@ -271,13 +271,18 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_14_Method_Overriding_In_Java;
 // Note :- this single distinction explains why `@Override` reports an error when you accidentally change a parameter type: the method has quietly become an overload instead of an override.
 
 // @takeaway Overriding is a child's own version of a parent method, with the same name and the same parameter list.
+// @snippet class Base { void show() { } } class Child extends Base { void show() { } }
 // @takeaway Which override runs is decided at runtime from the actual object type, which is why it is called runtime polymorphism.
 // @takeaway Which overload runs is decided at compile time from the argument types, so overloading is not polymorphism.
 // @takeaway An override cannot narrow access: a `public` parent method cannot become `protected` or `private` in the child.
+// @snippet class Base { public void show() { } } class Child extends Base { protected void show() { } }      // compile error
 // @takeaway `static`, `private`, `final` methods and constructors cannot be overridden; `@Override` makes the compiler check that.
+// @snippet class Base { void show() { } } class Child extends Base { @Override void show() { } }
 // @gotcha Changing the parameter list silently turns an override into an overload, and `@Override` is what catches it.
+// @snippet class Base { void show() { } } class Child extends Base { @Override void show(int n) { } }      // compile error
 // @gotcha A `private` parent method cannot be overridden, because the child cannot see it, so a same-named method is unrelated.
 // @gotcha Through a parent reference you can only call the methods the parent declares, so a child-only method needs a cast.
+// @snippet class Base { } class Child extends Base { void extra() { } } Base b = new Child(); b.extra();      // compile error
 
 
 // @quiz (OCJP, MEDIUM) What is printed by this program?

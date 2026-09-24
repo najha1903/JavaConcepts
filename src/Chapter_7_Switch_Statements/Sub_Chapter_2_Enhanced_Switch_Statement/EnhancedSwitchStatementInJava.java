@@ -57,10 +57,15 @@ package Chapter_7_Switch_Statements.Sub_Chapter_2_Enhanced_Switch_Statement;
 // Pitfall :- `yield` is only allowed inside a switch expression. Writing it in an ordinary method is a compile error.
 
 // @takeaway The enhanced switch uses `->`, and each arm ends where its statement ends, so there is no fall-through and no `break` to forget.
+// @snippet switch (2) { case 2 -> System.out.println("two"); default -> System.out.println("other"); }
 // @takeaway A comma-separated list groups values into one arm, so `case 1, 2, 3 ->` replaces three stacked labels.
+// @snippet switch (2) { case 1, 2, 3 -> System.out.println("low"); default -> System.out.println("high"); }
 // @takeaway An enhanced switch can be an expression: the chosen arm's value becomes the value of the whole switch.
+// @snippet int label = switch (2) { case 2 -> 20; default -> 0; };
 // @gotcha A switch expression needs a `default` arm, because it has to produce a value for every possible input.
+// @snippet int label = switch (2) { case 2 -> 20; };     // compile error
 // @gotcha `yield` returns the value from an arm that needs more than one statement, and is valid only inside a switch expression.
+// @snippet int n = switch (2) { case 2 -> { int x = 20; yield x; } default -> 0; };
 
 // @quiz (INTERVIEW) What is the difference between a traditional switch statement and an enhanced switch expression?
 // @answer Traditional switch uses colon syntax and can fall through, while enhanced switch uses arrow syntax and does not fall through.
