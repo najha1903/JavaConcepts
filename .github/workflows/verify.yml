@@ -1,0 +1,72 @@
+name: Verify Pull Request
+
+# WHY THIS EXISTS
+#
+# pages.yml validates a push to main and then deploys it. So a broken change is
+# caught only after it is already on the branch that publishes, and the only way
+# to find out whether a change is sound was to push it.
+#
+# This workflow runs the same validation on a pull request instead, before merge.
+# It deliberately does NOT deploy: `npm run check` builds and validates a candidate
+# in scratch space and publishes nothing, so no artifact, no dashboard and no note
+# is produced here. Deployment stays in pages.yml, on push to main.
+#
+# The two workflows share `npm run check`/`npm run approve`, so they cannot
+# disagree about what valid means.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'revision-dashboard/**'
+      - 'src/**'
+      - 'scripts/**'
+      - 'data/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+# Read-only. A pull request from a fork must never be able to write to the
+# repository or to Pages.
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # jsdom drives the dashboard check, and pdfmake/pdfjs-dist drive the export
+      # check. `npm ci` also fails if package.json and the lockfile have drifted
+      # apart, which is a check in itself.
+      - name: Install dependencies
+        run: npm ci
+
+      # The mobile layout check drives a real browser, because jsdom has no
+      # viewport and cannot see overflow.
+      - name: Install Chromium for the layout check
+        run: npx playwright install --with-deps chromium
+
+      # The native checks compile and run Java snippets, methods and questions.
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      # Full validation profile in scratch space: nothing is published, and no
+      # source file is modified.
+      - name: Validate candidate
+        run: npm run check

@@ -2,31 +2,40 @@
   "schemaVersion": 1,
   "rules": [
     {
-      "id": "constructor-arguments",
-      "title": "Explain arguments to another constructor",
+      "id": "derived-getter",
+      "title": "Name what a derived getter returns",
       "category": "clarification",
-      "before": "The this() keyword can be parameterised or non - parameterised.",
-      "after": "Use this() to call another constructor without arguments, or this(value1, value2) to pass arguments. Java selects the matching constructor.",
-      "reason": "Distinguish a constructor call from the keyword and explain what the arguments do.",
+      "before": "There could be getter methods for fields that are not really declared on your class but that are derived in some way.",
+      "after": "A getter can also return a value that is not a stored field at all. For example, a getTotal() method could return quantity * price, working the value out each time instead of storing it.",
+      "reason": "\"Derived in some way\" does not say what is derived or from what. Naming the calculation makes the point usable.",
+      "context": "getter"
+    },
+    {
+      "id": "stack-overflow",
+      "title": "Correct the result of unbounded recursion",
+      "category": "accuracy",
+      "before": "What that means is that the method would call itself forever, or until memory is fully used, crashing the program. That's why we need the super keyword - so that we can call a method with the same name from a parent class.",
+      "after": "What that means is that the method would call itself forever, until the call stack runs out of space and Java throws StackOverflowError. That's why we need the super keyword - so that we can call a method with the same name from a parent class.",
+      "reason": "\"Memory is fully used\" describes running out of heap, not the stack. Unbounded recursion exhausts the call stack and throws StackOverflowError.",
+      "context": "super"
+    },
+    {
+      "id": "single-initialization",
+      "title": "Name the benefit of one initialization constructor",
+      "category": "clarification",
+      "before": "That's a good way of doing things, and it often leads to good coding because it avoids",
+      "after": "Keeping the initialization in one constructor is better because it avoids",
+      "reason": "\"A good way of doing things\" names neither the practice nor the benefit. The sentence continues on the next line, so the replacement joins it grammatically.",
       "context": "constructor"
     },
     {
-      "id": "shared-initialization",
-      "title": "Name the shared initialization constructor",
+      "id": "javabean-conventions",
+      "title": "Name the JavaBean conventions",
       "category": "clarification",
-      "before": "All other constructors can call that major constructor, passing default values or null references as arguments.",
-      "after": "Other constructors can call the constructor that performs shared initialization, supplying appropriate default values for arguments the caller did not provide.",
-      "reason": "Major constructor is not a Java term, and null is not an appropriate default for every field.",
-      "context": "constructor"
-    },
-    {
-      "id": "reference-copy",
-      "title": "Explain copying a reference",
-      "category": "clarification",
-      "before": "We can copy that reference, as many times as we like, but there is still just one object that it might point / refer to.",
-      "after": "Copying a reference does not copy the object. Immediately after House second = first;, both variables refer to the same object.",
-      "reason": "Replace an uncertain relationship with a concrete assignment example.",
-      "context": "House"
+      "before": "ii)  A JavaBean is just a POJO with some extra rules applied to it.",
+      "after": "ii)  A JavaBean is a POJO with extra conventions: private fields, a public no-argument constructor, and public getter and setter methods for its properties.",
+      "reason": "\"Some extra rules\" names nothing. Listing the conventions makes the distinction from a plain POJO usable.",
+      "context": "JavaBean"
     }
   ],
   "drafts": []

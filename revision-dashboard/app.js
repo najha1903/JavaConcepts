@@ -659,54 +659,9 @@ function saveTopicNote(filePath, text) {
 
 
 // ==========================================================================
-// Syntax Highlighting Engine (Regex based, 100% offline & fast)
+// Syntax highlighting lives in highlight.js, which index.html loads first.
+// It is a pure function with no page state, so it does not belong in this file.
 // ==========================================================================
-function highlightJava(code) {
-  let html = code
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-    
-  const comments = [];
-  html = html.replace(/\/\*[\s\S]*?\*\//g, (match) => {
-    const id = `__BLOCK_COMMENT_${comments.length}__`;
-    comments.push({ id, text: `<span class="code-comment">${match}</span>` });
-    return id;
-  });
-  
-  html = html.replace(/\/\/.*/g, (match) => {
-    const id = `__LINE_COMMENT_${comments.length}__`;
-    comments.push({ id, text: `<span class="code-comment">${match}</span>` });
-    return id;
-  });
-  
-  const strings = [];
-  html = html.replace(/"(\\.|[^"\\])*"/g, (match) => {
-    const id = `__STRING_${strings.length}__`;
-    strings.push({ id, text: `<span class="code-string">${match}</span>` });
-    return id;
-  });
-  
-  const keywords = /\b(public|protected|private|static|final|class|interface|record|enum|extends|implements|package|import|new|return|if|else|for|while|do|switch|case|default|break|continue|try|catch|throw|throws|finally|this|super|instanceof)\b/g;
-  html = html.replace(keywords, '<span class="code-keyword">$1</span>');
-  
-  const types = /\b(int|double|float|long|short|byte|boolean|char|void|String|Object|System|Exception|NullPointerException|BankAccount|Customer|Animal|Dog|Fish|Worker|Employee|SalariedEmployee|HourlyEmployee|Wall|Point|House|Car|Student|StudentRecord)\b/g;
-  html = html.replace(types, '<span class="code-type">$1</span>');
-  
-  html = html.replace(/\b(\d+(\.\d+)?[dfL]?)\b/g, '<span class="code-number">$1</span>');
-  
-  // Annotations MUST come after keywords/types so 'class' inside generated span attributes is not re-processed
-  html = html.replace(/@\w+/g, '<span class="code-annotation">$&</span>');
-  
-  strings.forEach(item => {
-    html = html.replace(item.id, item.text);
-  });
-  comments.forEach(item => {
-    html = html.replace(item.id, item.text);
-  });
-  
-  return html;
-}
 
 // ==========================================================================
 // Dashboard Logic & Event Handlers
