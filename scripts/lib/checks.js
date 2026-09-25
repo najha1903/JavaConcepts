@@ -8,6 +8,7 @@ const CHECKS = [
   { script: 'fix-encoding.js', label: 'Text encoding', structural: true },
   { script: 'check-ui.js', label: 'Interface rules', structural: true },
   { script: 'check-dashboard.js', label: 'Dashboard behaviour', structural: true },
+  { script: 'check-review-page.js', label: 'Review page wording', structural: true },
   { script: 'check-storage.js', label: 'Cross-tab storage safety', structural: true },
   { script: 'check-export.js', label: 'Chapter export and print', structural: true },
   { script: 'check-mobile.js', label: 'Mobile layout in a real browser' },

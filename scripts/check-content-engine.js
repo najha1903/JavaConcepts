@@ -110,6 +110,33 @@ async function main() {
         check((result === null) === shouldPass, `native regression ${i}: ${result}`);
       }
     }
+    // ---- An editorial rule must not depend on how the checkout stored newlines ----
+    // The catalogue is built from text read with CRLF normalized away, while the file
+    // on disk may use CRLF. Comparing the two representations directly rejected every
+    // valid proposal with "Enhancement source changed" on a Windows checkout.
+    const { validateReplacement, sourceFingerprint, lineEndingOf } = require('./lib/note-enhancements.js');
+    const lfNote = 'public class Sample {\n    // The this() keyword can be parameterised or non - parameterised.\n}\n';
+    const crlfNote = lfNote.replace(/\n/g, '\r\n');
+    check(sourceFingerprint(lfNote) === sourceFingerprint(crlfNote), 'line endings do not change a note fingerprint');
+    check(lineEndingOf(crlfNote) === '\r\n' && lineEndingOf(lfNote) === '\n', 'line ending detection');
+    const ruleBefore = 'The this() keyword can be parameterised or non - parameterised.';
+    const ruleAfter = 'Use this() to call another constructor with arguments.';
+    const crlfResult = validateReplacement(crlfNote, ruleBefore, ruleAfter);
+    check(crlfResult.includes(ruleAfter), 'an LF rule applies to a CRLF file');
+    check(crlfResult.includes('\r\n') && !/[^\r]\n/.test(crlfResult), 'applying a rule preserves the file line ending');
+    check(!validateReplacement(lfNote, ruleBefore, ruleAfter).includes('\r'), 'an LF file stays LF');
+    // The real multi-line rule (single-initialization) spans two lines inside a block
+    // comment. That shape could never match a CRLF file before this fix.
+    const blockNote = "/*\nThat's a good way of doing things, and it often leads to good coding because it avoids\nhaving to duplicate code by duplicating initialization in more than one place.\n*/\npublic class Sample {}\n";
+    const blockCrlf = blockNote.replace(/\n/g, '\r\n');
+    const multiLine = validateReplacement(blockCrlf,
+      "That's a good way of doing things, and it often leads to good coding because it avoids\nhaving to duplicate code by duplicating initialization in more than one place.",
+      'Keeping the initialization in one constructor is better because it avoids');
+    check(multiLine.includes('Keeping the initialization in one constructor'), 'a multi-line rule matches a CRLF file');
+    check(!/[^\r]\n/.test(multiLine), 'a multi-line replacement preserves CRLF');
+    assert.throws(() => validateReplacement(crlfNote, 'text that is not present', 'x'), /exactly once/); assertions++;
+    assert.throws(() => validateReplacement(crlfNote, 'public class Sample', 'x'), /comments only/); assertions++;
+
     console.log(`Content-engine regressions: ${assertions} passed${process.argv.includes('--native') ? ', including native execution failure/mismatch probes' : ' (native probes not requested)'}.`);
   } finally { fs.rmSync(fixture, { recursive: true, force: true }); }
 }

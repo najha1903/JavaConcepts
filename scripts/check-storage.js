@@ -190,6 +190,40 @@ function runVMChecks(check) {
     assert.equal(shared.data.has(KEY), false);
     assert.equal(createVMTab(shared).store.read(NOTES).project, 'durable without cache');
   });
+  check('repeated saves bound the recovery journal instead of filling storage', () => {
+    const { shared, a } = pair();
+    // Each save journals the full before and after text, so an unbounded journal grows
+    // by roughly 32 KB per edit on a large note. That is the measurement that filled a
+    // 5 MiB budget after about 158 edits and then stopped saving durably.
+    const note = 'x'.repeat(8000);
+    let base = a.store.readText(NOTES);
+    for (let i = 0; i < 200; i++) {
+      const result = a.store.saveText(base, `${note}${i}`);
+      if (result.snapshot) base = result.snapshot;
+    }
+    const journalKeys = [...shared.data.keys()].filter(key => key.startsWith(JOURNAL));
+    const bytes = journalKeys.reduce((total, key) => total + shared.data.get(key).length, 0);
+    assert.ok(journalKeys.length < 200, `journal kept ${journalKeys.length} of 200 records`);
+    assert.ok(bytes <= 1500000, `journal holds ${bytes} bytes, over its budget`);
+    // Bounding the history must never cost the current value.
+    assert.equal(createVMTab(shared).store.read(NOTES).project, `${note}199`);
+  });
+  check('a conflicted version survives journal pruning', () => {
+    const { shared, a, b } = pair();
+    const note = 'y'.repeat(8000);
+    // Both tabs edit the same field from the same base, so the second save conflicts.
+    const left = a.store.readText(NOTES), right = b.store.readText(NOTES);
+    a.store.saveText(left, `${note}first`);
+    const conflicted = b.store.saveText(right, `${note}second`);
+    assert.equal(conflicted.conflict, true, 'the second save is recorded as a conflict');
+    const conflictedKey = JOURNAL + conflicted.id;
+    let base = a.store.readText(NOTES);
+    for (let i = 0; i < 200; i++) {
+      const result = a.store.saveText(base, `${note}${i}`);
+      if (result.snapshot) base = result.snapshot;
+    }
+    assert.ok(shared.data.has(conflictedKey), 'a conflicted record is never pruned');
+  });
   check('quota failure keeps pending text exportable and never claims success', () => {
     const { shared, a } = pair();
     const base = a.store.readText(NOTES);
@@ -269,6 +303,10 @@ function runDOMChecks(check) {
     const input = (win, id, value) => {
       const el = win.document.getElementById(id);
       el.value = value; el.dispatchEvent(new win.Event('input'));
+      // Notes are saved after a pause in typing, not on every keystroke, so the test
+      // has to let the pending save run before asserting on storage. This is exactly
+      // what a blur or a hidden page does.
+      win.eval('flushNoteSaves()');
     };
     try {
       a.eval('showView("notes-view")'); b.eval('showView("notes-view")');

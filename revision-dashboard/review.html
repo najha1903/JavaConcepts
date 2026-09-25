@@ -169,6 +169,19 @@
       return `<div class="section-title">${title}</div>${diffBlock(lines)}`;
     }
 
+    function renderSuggestionBody(item) {
+      // An editorial proposal REPLACES an existing sentence. Rendering it in the same
+      // green used for an insertion told the author that nothing was being removed, so
+      // the current wording is now shown above the replacement.
+      if (item.kind === 'editorial') {
+        return `<span class="diff">
+            <span class="diff-line del">${escapeHtml(item.before)}</span>
+            <span class="diff-line add">${escapeHtml(item.after)}</span>
+          </span>`;
+      }
+      return `<span class="diff"><span class="diff-line add">${[`// ${item.what} :- ${item.why}`, ...(item.draft || []).slice(1).map(line => `// ${line}`)].map(escapeHtml).join('</span><span class="diff-line add">')}</span></span>`;
+    }
+
     function renderSuggestions(data) {
       const items = (data && data.items) || [];
       if (!items.length) { suggestionsBox.innerHTML = ''; return; }
@@ -177,10 +190,15 @@
         if (!byChapter.has(item.chapter)) byChapter.set(item.chapter, []);
         byChapter.get(item.chapter).push(item);
       });
+      const editorialCount = items.filter(item => item.kind === 'editorial').length;
+      const heading = editorialCount ? 'Suggested changes' : 'Suggested additions';
+      const intro = editorialCount
+        ? `Some of these rewrite an existing sentence rather than add one. Each shows the current wording above the replacement. Every one is applied on its own, and nothing is written to your notes until you press Apply.`
+        : 'Things your code uses that your notes do not explain. Tick the ones you want and press Apply. Each is inserted on its own, and nothing else in the file changes.';
       suggestionsBox.innerHTML = `
         <div class="chapter-block">
-          <h2>Suggested additions</h2>
-          <p class="code-note">Things your code uses that your notes do not explain. Tick the ones you want and press Apply. Each is inserted on its own, and nothing else in the file changes.</p>
+          <h2>${heading}</h2>
+          <p class="code-note">${intro}</p>
           ${[...byChapter.entries()].map(([chapter, list]) => `
             <div class="topic-card">
               <h3>${escapeHtml(chapter)}</h3>
@@ -190,7 +208,7 @@
                   <span>
                     <strong>${escapeHtml(item.topic)}</strong> &mdash; ${escapeHtml(item.what)}
                     <span class="code-note">${escapeHtml(item.why)}</span>
-                    <span class="diff"><span class="diff-line add">${[`// ${item.what} :- ${item.why}`, ...(item.draft || []).slice(1).map(line => `// ${line}`)].map(escapeHtml).join('</span><span class="diff-line add">')}</span></span>
+                    ${renderSuggestionBody(item)}
                   </span>
                 </label>`).join('')}
             </div>`).join('')}

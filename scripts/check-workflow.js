@@ -10,6 +10,13 @@ let passed = 0;
 function fixture(name) {
   const root = path.join(temp, name);
   for (const dir of ['src', 'scripts', 'data', 'revision-dashboard']) fs.mkdirSync(path.join(root, dir), { recursive: true });
+  // The stub generator computes an editorial fingerprint with the real helper, so the
+  // staged tree needs the real module - which is the point: the test must exercise the
+  // same normalization the production path uses, not a copy of it.
+  fs.mkdirSync(path.join(root, 'scripts', 'lib'), { recursive: true });
+  for (const module of ['note-enhancements.js', 'content-identity.js', 'note-rules.js']) {
+    fs.copyFileSync(path.join(__dirname, 'lib', module), path.join(root, 'scripts', 'lib', module));
+  }
   fs.writeFileSync(path.join(root, 'src', 'Lesson.java'), '// Original note\npublic class Lesson {}\n');
   const producer = `
 const fs = require('fs');
@@ -38,6 +45,14 @@ if (name === 'coverage.js') {
 }
 if (name === 'suggest.js') {
   const items = ['one','two'].map(key => ({key,file:'src/Lesson.java',what:key,why:'Additional explanation',draft:['Title','Example '+key]}));
+  // An editorial proposal, whose fingerprint is built exactly the way the real
+  // catalogue builds it: from text with CRLF normalized away. The workflow must
+  // compare it the same way, or every proposal fails on a Windows checkout.
+  const { sourceFingerprint } = require(path.join(root, 'scripts', 'lib', 'note-enhancements.js'));
+  items.push({ key: 'editorial|src/Lesson.java|stub-rule', kind: 'editorial', file: 'src/Lesson.java',
+    what: 'Clarify the note', why: 'The wording is vague', category: 'clarification',
+    before: '// Original note', after: '// Clarified note',
+    sourceFingerprint: sourceFingerprint(source) });
   fs.writeFileSync(path.join(root,'revision-dashboard','suggestions-data.js'),'const SUGGESTIONS = '+JSON.stringify({items})+';');
   fs.writeFileSync(path.join(root,'revision-dashboard','suggestions.md'),'# Suggestions\\n');
 }
@@ -178,6 +193,23 @@ try {
     const before = workflow.fingerprint(workflow.capture(root));
     assert.equal(workflow.execute({ root, mode: 'approve', proposalId: result.proposalId }).alreadyApplied, true);
     assert.equal(workflow.fingerprint(workflow.capture(root)), before);
+  });
+  test('an editorial proposal applies to a CRLF note and preserves its line endings', () => {
+    // CRLF is what git restores on a Windows checkout, where core.autocrlf is true.
+    // The catalogue fingerprint is built from LF-normalized text, so comparing it
+    // against raw bytes rejected every proposal with "Enhancement source changed".
+    const root = fixture('crlf-editorial');
+    const source = path.join(root, 'src', 'Lesson.java');
+    fs.writeFileSync(source, '// Original note\r\npublic class Lesson {}\r\n');
+    const result = workflow.execute({ root, mode: 'propose' });
+    const proposal = workflow.pending(root);
+    const editorial = proposal.suggestions.find(item => item.kind === 'editorial');
+    assert.ok(editorial, 'the stub produced an editorial suggestion');
+    workflow.execute({ root, mode: 'approve', proposalId: result.proposalId, acceptedKeys: [editorial.key] });
+    const after = fs.readFileSync(source, 'utf8');
+    assert.match(after, /\/\/ Clarified note/, 'the replacement was applied');
+    assert.ok(after.includes('\r\n'), 'the file keeps its CRLF line endings');
+    assert.ok(!/[^\r]\n/.test(after), 'no bare LF was introduced');
   });
   test('a repeated apply never inserts the same suggestion twice', () => {
     const root = fixture('repeat');

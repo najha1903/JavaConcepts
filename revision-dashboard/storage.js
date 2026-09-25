@@ -161,11 +161,13 @@
   /* KEY is a materialized cache, not an atomic read/modify/write lock. Every save
      first appends a uniquely named, immutable journal record. Refresh replays any
      records a racing cache writer omitted, checking each field's base revision.
-     Journals are intentionally not pruned: even rejected attempts and overwritten
-     cache versions remain recoverable. Storage quota/eviction, disabled storage,
-     or clients predating this protocol cannot be made lossless by localStorage.
-     History and metadata grow; export regularly. No cross-tab ordering is promised
-     for simultaneous edits of the same field; the rejected version is preserved. */
+     Journals are bounded by size rather than kept forever: the newest recoverable
+     versions and every conflicted record survive, and older ones are dropped once the
+     journal passes its budget. Rejected attempts and overwritten cache versions stay
+     recoverable while they are inside that window. Storage quota/eviction, disabled
+     storage, or clients predating this protocol cannot be made lossless by
+     localStorage. No cross-tab ordering is promised for simultaneous edits of the same
+     field; the rejected version is preserved. */
   function refresh() {
     load();
     try {
@@ -285,6 +287,40 @@
     if (value && typeof value === 'object') snapshots.set(value, base);
     return value;
   }
+  /* The journal is the recovery mechanism, and it used to be unbounded: every save
+     appended a permanent key, so ordinary typing could exhaust the quota. Measured, an
+     8000-character note filled a 5 MiB budget after about 158 edits, and changes after
+     that were no longer durably saved. The bound is by SIZE rather than by count,
+     because a record holds the full before and after text and one note can be forty
+     times larger than another. Conflicted records are always kept: those are the ones a
+     person may need to recover by hand. */
+  const JOURNAL_BYTE_BUDGET = 1500000;
+  function pruneJournal() {
+    let total = 0;
+    const sizes = new Map();
+    for (let i = 0; i < root.localStorage.length; i++) {
+      const key = root.localStorage.key(i);
+      if (!key?.startsWith(JOURNAL)) continue;
+      const size = (root.localStorage.getItem(key) || '').length;
+      sizes.set(key, size);
+      total += size;
+    }
+    if (total <= JOURNAL_BYTE_BUDGET) return;
+    const conflicted = new Set(metadata.conflicts || []);
+    // records is sorted oldest first, so the oldest recoverable versions go first.
+    for (const record of [...records]) {
+      if (total <= JOURNAL_BYTE_BUDGET) break;
+      if (conflicted.has(record.id)) continue;
+      const key = JOURNAL + record.id;
+      const size = sizes.get(key);
+      if (size === undefined) continue;
+      try {
+        root.localStorage.removeItem(key);
+        total -= size;
+        records = records.filter(item => item.id !== record.id);
+      } catch (_) { /* a failed removal is not worth a warning; the next save retries */ }
+    }
+  }
   function commit(record, allowRepair = false) {
     record.id = `${writer}:${++sequence}`;
     record.clock = ++clock;
@@ -304,6 +340,7 @@
     if (durable) {
       if (allowRepair) protectedRaw = false;
       if (!persist()) warn('The recovery journal saved this change, but the main storage cache could not be updated. Export a backup.');
+      pruneJournal();
     }
     return { id: record.id, ok: durable && !metadata.conflicts.includes(record.id), recoverable: durable,
       conflict: metadata.conflicts.includes(record.id) };

@@ -234,9 +234,14 @@ function suggestionPatches(stage, items, keys) {
     const current = patches.has(relative) ? patches.get(relative) : original;
     const text = current.toString('utf8');
     if (item.kind === 'editorial') {
-      const { hash } = require('./content-identity');
-      const { validateReplacement } = require('./note-enhancements');
-      if (hash(original.toString('utf8')) !== item.sourceFingerprint) throw new Error(`Enhancement source changed: ${relative}`);
+      const { validateReplacement, sourceFingerprint } = require('./note-enhancements');
+      // Both sides of this comparison must normalize line endings identically. The
+      // fingerprint was built from text that was read with CRLF normalized away, so
+      // hashing the raw bytes here rejected every valid proposal on a Windows
+      // checkout, where git restores CRLF.
+      if (sourceFingerprint(original.toString('utf8')) !== item.sourceFingerprint) {
+        throw new Error(`Enhancement source changed: ${relative}`);
+      }
       patches.set(relative, Buffer.from(validateReplacement(text, item.before, item.after)));
       continue;
     }

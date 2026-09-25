@@ -687,9 +687,9 @@ function initApp() {
   JavaRevStorage.refreshWarnings();
   restoreViewFromHash();
   window.addEventListener('hashchange', restoreViewFromHash);
-  window.addEventListener('pagehide', () => { saveQuizProgress(); saveEditorDraft(); });
+  window.addEventListener('pagehide', () => { flushNoteSaves(); saveQuizProgress(); saveEditorDraft(); });
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') { saveQuizProgress(); saveEditorDraft(); }
+    if (document.visibilityState === 'hidden') { flushNoteSaves(); saveQuizProgress(); saveEditorDraft(); }
   });
 }
 
@@ -1928,6 +1928,36 @@ function populateNotesChapterExport() {
   select.value = String(currentChapterIndex || 0);
 }
 
+// ==========================================================================
+// Deferred note saving
+//
+// Notes used to be saved on every keystroke, and every save appends a recovery record
+// holding the full before and after text. Measured, an 8000-character note filled a
+// 5 MiB storage budget after about 158 edits, and changes after that were no longer
+// durably saved. Typing now waits for a pause, and the pending save is flushed when
+// the field loses focus or the page is hidden, so nothing is lost by waiting.
+// ==========================================================================
+const NOTE_SAVE_DELAY_MS = 500;
+const pendingNoteSaves = new Map();
+
+function scheduleNoteSave(key, save, report) {
+  const previous = pendingNoteSaves.get(key);
+  if (previous) clearTimeout(previous.timer);
+  const timer = setTimeout(() => {
+    pendingNoteSaves.delete(key);
+    report(save());
+  }, NOTE_SAVE_DELAY_MS);
+  pendingNoteSaves.set(key, { timer, save, report });
+}
+
+function flushNoteSaves() {
+  for (const [key, entry] of [...pendingNoteSaves]) {
+    clearTimeout(entry.timer);
+    pendingNoteSaves.delete(key);
+    entry.report(entry.save());
+  }
+}
+
 function renderNotesView() {
   const projectTextarea = document.getElementById('project-notes-textarea');
   const topicTextarea = document.getElementById('topic-notes-textarea');
@@ -1938,10 +1968,13 @@ function renderNotesView() {
   if (projectTextarea) {
     projectTextarea.value = noteEdit(null).value;
     projectTextarea.oninput = (e) => {
-      const result = saveProjectNotes(e.target.value);
-      if (projectMeta) projectMeta.innerText = result.ok ? `Last updated ${new Date().toLocaleTimeString()}` :
-        result.recoverable ? 'Conflict: your version is in recovery downloads' : 'Not saved: download recovery versions before leaving';
+      const value = e.target.value;
+      scheduleNoteSave('project', () => saveProjectNotes(value), result => {
+        if (projectMeta) projectMeta.innerText = result.ok ? `Last updated ${new Date().toLocaleTimeString()}` :
+          result.recoverable ? 'Conflict: your version is in recovery downloads' : 'Not saved: download recovery versions before leaving';
+      });
     };
+    projectTextarea.onblur = flushNoteSaves;
     if (projectMeta) projectMeta.innerText = noteEdit(null).result?.ok === false ? 'Review the storage warning before leaving' : 'Autosaved locally';
   }
 
@@ -1957,11 +1990,14 @@ function renderNotesView() {
     topicTextarea.disabled = !topicInfo;
     topicTextarea.oninput = (e) => {
       if (!topicInfo) return;
-      const result = saveTopicNote(topicInfo.topic.filePath, e.target.value);
-      if (topicMeta) topicMeta.innerText = result.ok ? `Autosaved ${new Date().toLocaleTimeString()}` :
-        result.recoverable ? 'Conflict: your version is in recovery downloads' : 'Not saved: download recovery versions before leaving';
-      renderNotesTopicList();
+      const value = e.target.value;
+      scheduleNoteSave(`topic:${topicInfo.topic.filePath}`, () => saveTopicNote(topicInfo.topic.filePath, value), result => {
+        if (topicMeta) topicMeta.innerText = result.ok ? `Autosaved ${new Date().toLocaleTimeString()}` :
+          result.recoverable ? 'Conflict: your version is in recovery downloads' : 'Not saved: download recovery versions before leaving';
+        renderNotesTopicList();
+      });
     };
+    topicTextarea.onblur = flushNoteSaves;
   }
 
   if (topicMeta) {
