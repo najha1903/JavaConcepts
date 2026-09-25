@@ -224,6 +224,37 @@ function runVMChecks(check) {
     }
     assert.ok(shared.data.has(conflictedKey), 'a conflicted record is never pruned');
   });
+  check('pruning never breaks recovery when the cache write fails', () => {
+    const { shared, a } = pair();
+    const note = 'z'.repeat(4000);
+    // Every cache write fails, so the journal is the only copy of these changes and the
+    // revision chain in the cache never advances. Removing the oldest records would
+    // break the chain that recovery replays.
+    shared.beforeSet = (_, key) => { if (key === KEY) throw new Error('cache full'); };
+    let base = a.store.readText(NOTES);
+    for (let i = 0; i < 200; i++) {
+      const result = a.store.saveText(base, `${note}${i}`);
+      if (result.snapshot) base = result.snapshot;
+    }
+    assert.equal(createVMTab(shared).store.read(NOTES).project, `${note}199`,
+      'the newest value must survive a reload even when the cache never updated');
+  });
+  check('pruning with overlapping saves from two tabs keeps the newest and the conflict', () => {
+    const { shared, a, b } = pair();
+    const note = 'w'.repeat(4000);
+    // B takes its base before A works, so its later save is genuinely stale.
+    const staleBase = b.store.readText(NOTES);
+    let base = a.store.readText(NOTES);
+    for (let i = 0; i < 200; i++) {
+      const result = a.store.saveText(base, `${note}${i}`);
+      if (result.snapshot) base = result.snapshot;
+    }
+    const conflicted = b.store.saveText(staleBase, `${note}stale`);
+    assert.equal(conflicted.conflict, true, 'the stale save is recorded as a conflict');
+    const reloaded = createVMTab(shared);
+    assert.equal(reloaded.store.read(NOTES).project, `${note}199`, 'the newest value survives a reload');
+    assert.ok(reloaded.store.recoveryText().includes('stale'), 'the conflicting text stays recoverable');
+  });
   check('quota failure keeps pending text exportable and never claims success', () => {
     const { shared, a } = pair();
     const base = a.store.readText(NOTES);

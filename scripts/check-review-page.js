@@ -105,6 +105,14 @@ async function main() {
     assert.doesNotMatch(intro.textContent, /nothing else in the file changes/);
     assert.match(intro.textContent, /applied on its own/);
   });
+  check('selecting a replacement does not call it an insertion', () => {
+    const box = editorial.querySelector('input');
+    box.checked = true;
+    box.dispatchEvent(new dom.window.Event('change'));
+    const note = doc.getElementById('action-note');
+    assert.doesNotMatch(note.textContent, /inserted/);
+    assert.match(note.textContent, /applied/);
+  });
 
   const failed = results.filter(result => !result.ok);
   for (const result of results) {

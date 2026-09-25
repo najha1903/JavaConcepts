@@ -339,8 +339,14 @@
     if (metadata.conflicts.includes(record.id)) conflict();
     if (durable) {
       if (allowRepair) protectedRaw = false;
-      if (!persist()) warn('The recovery journal saved this change, but the main storage cache could not be updated. Export a backup.');
-      pruneJournal();
+      // Only prune once the cache is a faithful checkpoint of everything applied so far.
+      // If the cache write fails, the journal is the ONLY copy of these changes, and
+      // removing records breaks the revision chain that recovery replays: each surviving
+      // record's expected revision no longer matches, every replay is rejected, and the
+      // state silently reverts to an older value even though every save reported success.
+      const checkpointed = persist();
+      if (!checkpointed) warn('The recovery journal saved this change, but the main storage cache could not be updated. Export a backup.');
+      if (checkpointed) pruneJournal();
     }
     return { id: record.id, ok: durable && !metadata.conflicts.includes(record.id), recoverable: durable,
       conflict: metadata.conflicts.includes(record.id) };
