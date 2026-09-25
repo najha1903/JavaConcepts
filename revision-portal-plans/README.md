@@ -17,5 +17,21 @@ reviewable; installed revision commands do not perform autonomous AI research.
 Do not copy Java datasets or assume browser approximations can run a framework.
 Native exercises require dedicated local fixtures and verified execution controls.
 
+## Lessons each plan ends with
+
+Every plan closes with a section on **verification and wording lessons from the
+reference**. Each item exists because something failed in this repository first:
+
+- **Wording improvements are proposals from an authored catalogue.** The tool scans
+  every topic but can only propose sentences that have a rule. It cannot discover
+  vague prose by itself, and it must never invent a method or example a file does not
+  contain.
+- **Layout and journeys need a real browser.** A DOM-only harness has no viewport, so
+  it cannot see content pushed off a phone screen.
+- **Validate on pull requests, separately from deployment**, with read-only
+  permissions.
+- **Keep one validator list**, with profile entry points as thin adapters, so a check
+  cannot be added to one list and silently missing from the other.
+
 For this repository's implemented behavior, see the [root README](../README.md)
 and [authoring rules](../rules.md), not the target capabilities in these plans.

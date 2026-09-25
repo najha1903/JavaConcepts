@@ -304,3 +304,65 @@ wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout"))).click();
 - Resolve compatible dependency/browser versions from destination discovery and official release documentation; do not invent a “latest” version in generated guidance.
 - Handoff includes configuration mapping, authored/reviewed content, actual validation evidence, exact recovery/backup/setup instructions, and a clear list of blocked or unimplemented capabilities.
 - Write the destination README and authoring rules from the implemented command flow: ordinary notes, `npm run revise`, review/Apply if needed, then study. Keep the ledger and capability descriptions current rather than copying reference counts or timings.
+
+
+## 17. Verification and wording lessons from the reference
+
+The reference portal reached a working state and then needed these additions. Each
+one exists because something failed first. Adopt them deliberately rather than
+rediscovering the gap.
+
+### Wording improvements are proposals from an authored catalogue
+
+Do not let the tool rewrite prose on its own judgement. That is how fabricated
+content entered the reference notes, and it could not be removed afterwards,
+because content written into the author's files is no longer generated content.
+
+- A separate catalogue holds rules. Each rule is an exact `before` line, an `after`
+  replacement, a reason, and a category.
+- A rule applies only when its `before` matches one note line exactly, occurs exactly
+  once in the file, and its replacement cannot change executable code.
+- Every finished topic is scanned on every run, but only sentences that have a rule
+  can be *proposed*. The tool cannot discover vague prose by itself: keyword matching
+  cannot tell what a line is about from what it merely mentions.
+- Each proposal is accepted or rejected on its own. An accepted proposal stops
+  matching, so the list shrinks as the author works through it.
+- Derive the proposal key from the `before` text, so correcting the replacement
+  wording later does not disturb a previous rejection.
+- Never invent a method, field or example the destination file does not have. A
+  helpful-looking example from a different domain is worse than no example.
+- "0 proposals" means the catalogue is empty or stale, not that the notes are
+  perfect. Report that distinction honestly, and never pad the catalogue to look
+  thorough.
+
+### Layout and journeys need a real browser
+
+A DOM-only harness has no viewport and no box model. It can prove that a view
+renders without throwing while the same view pushes content off a phone screen. The
+reference shipped a practice editor that overflowed on mobile, and no DOM check
+could see it.
+
+- Add a real-browser check at phone and tablet widths: no view may make the document
+  wider than the viewport, the code editor must stay inside it, and the closed drawer
+  must be off-screen.
+- Add a journey check. A first run with empty storage must offer a starting point and
+  render every view. A returning run must show that progress survived a reload, that
+  the mastery view reflects it, and that a next action is offered.
+- Seed progress through the application's own API rather than by writing storage by
+  hand, so the check cannot pass against a format the application would never produce.
+- Serve the page over http, never `file://`. An opaque origin changes how browser
+  storage behaves, so the check would be testing a different page.
+- Missing browser tooling fails the check. A skipped check is not a passing check.
+
+### Validate on pull requests, separately from deployment
+
+Deploying on push to the main branch catches a broken change only after it has landed
+on the publishing branch. Add a read-only verification workflow on pull requests that
+runs the full check and publishes nothing. Keep deployment in its own workflow, and
+never give a pull-request workflow write access to the repository or to Pages.
+
+### Keep one validator list
+
+Declare every check once, together with the profiles it belongs to, and make the
+profile entry points thin adapters over that list. Two hand-maintained lists drift,
+and the check added to one but not the other is the one that silently stops running.
