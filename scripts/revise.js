@@ -5,9 +5,11 @@ const openPage = require('./lib/open-page');
 
 async function main() {
   const args = process.argv.slice(2);
-  if (args.some(arg => !['--cli', '--yes', '--no-open'].includes(arg))) throw new Error('Supported options: --cli, --yes, --no-open.');
+  if (args.some(arg => !['--cli', '--yes', '--no-open', '--suggestions'].includes(arg))) {
+    throw new Error('Supported options: --cli, --yes, --no-open, --suggestions.');
+  }
   if (args.includes('--no-open')) process.env.REVISION_NO_OPEN = '1';
-  let result = execute({ mode: 'propose' });
+  let result = execute({ mode: 'propose', reviewSuggestions: args.includes('--suggestions') });
   if (result.pending && (args.includes('--cli') || args.includes('--yes'))) {
     let accepted = args.includes('--yes');
     if (!accepted && process.stdin.isTTY) {

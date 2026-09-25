@@ -13,6 +13,7 @@ const CHECKS = [
   { script: 'check-export.js', label: 'Chapter export and print', structural: true },
   { script: 'check-mobile.js', label: 'Mobile layout in a real browser' },
   { script: 'check-journey.js', label: 'Beginner and returning-reader journeys' },
+  { script: 'check-browser-storage.js', label: 'Two-tab storage in a real browser' },
   { script: 'coverage.js', label: 'Coverage', structural: true, args: ['--check'] },
   { script: 'check-workflow.js', label: 'Revision transaction workflow' },
   { script: 'check-practice-contracts.js', label: 'Independent Java practice contracts' },

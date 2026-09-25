@@ -255,6 +255,42 @@ function runVMChecks(check) {
     assert.equal(reloaded.store.read(NOTES).project, `${note}199`, 'the newest value survives a reload');
     assert.ok(reloaded.store.recoveryText().includes('stale'), 'the conflicting text stays recoverable');
   });
+  check('a tab whose saves all conflict keeps its text recoverable and says so', () => {
+    const { shared, a, b } = pair();
+    const note = 'p'.repeat(3000);
+    const staleBase = b.store.readText(NOTES);
+    // B writes first from the shared original, so every later write from A's equally
+    // old base is rejected. That is the conflict model, not a pruning fault: replaying
+    // A's records on reload rejects them for exactly the same reason.
+    b.store.saveText(staleBase, `${note}B`);
+    let base = a.store.readText(NOTES);
+    let succeeded = 0;
+    for (let i = 0; i < 20; i++) {
+      const result = a.store.saveText(staleBase, `${note}A${i}`);
+      if (result.ok) succeeded++;
+      if (result.snapshot) base = result.snapshot;
+    }
+    assert.equal(succeeded, 0, 'a write from a stale base must report failure, never success');
+    const reloaded = createVMTab(shared);
+    assert.equal(reloaded.store.read(NOTES).project, `${note}B`, 'the applied write is the one that holds the field');
+    assert.ok(reloaded.store.recoveryText().includes(`${note}A19`), 'the rejected text is still recoverable');
+  });
+  check('a successful write survives a stale overlapping write from another tab', () => {
+    const { shared, a, b } = pair();
+    const note = 'q'.repeat(3000);
+    const staleBase = b.store.readText(NOTES);
+    let base = a.store.readText(NOTES);
+    let succeeded = 0;
+    for (let i = 0; i < 120; i++) {
+      const result = a.store.saveText(base, `${note}A${i}`);
+      if (result.ok) { succeeded++; base = result.snapshot; }
+    }
+    assert.equal(succeeded, 120, 'every A write should succeed');
+    const stale = b.store.saveText(staleBase, `${note}B`);
+    assert.equal(stale.ok, false, 'the stale write must be refused, not applied');
+    assert.equal(createVMTab(shared).store.read(NOTES).project, `${note}A119`,
+      'the last successful write is what a reload restores');
+  });
   check('quota failure keeps pending text exportable and never claims success', () => {
     const { shared, a } = pair();
     const base = a.store.readText(NOTES);
@@ -385,7 +421,11 @@ async function runTwoTabBrowserChecks(browser, url) {
     const a = await context.newPage(), b = await context.newPage();
     await Promise.all([a.goto(url), b.goto(url)]);
     await Promise.all([a, b].map(page => page.waitForFunction(() => window.JavaRevStorage && typeof showView === 'function')));
-    await Promise.all([a, b].map(page => page.evaluate(() => showView('notes-view'))));
+    // showView only toggles the section. The editor's input handler, and the edit
+    // baseline it compares against, are installed by renderNotesView. Without this the
+    // textarea has no handler, fill() saves nothing, and the suite silently tests
+    // nothing while still reporting success.
+    await Promise.all([a, b].map(page => page.evaluate(() => { showView('notes-view'); renderNotesView(); })));
     const warnings = await b.locator('#storage-warnings').textContent();
     await a.evaluate(() => JavaRevStorage.write('javarev_theme', 'light'));
     await b.waitForFunction(() => document.documentElement.getAttribute('data-theme') === 'light');

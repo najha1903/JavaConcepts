@@ -375,7 +375,14 @@ function execute(options = {}) {
       const changedAuthoring = !previousState || previousState.authoringFingerprint !== authoringFingerprint(baseline);
       const oldSuggestions = baseline.has('revision-dashboard/suggestions-data.js') ? readSuggestions(root) : [];
       const suggestionChange = JSON.stringify(oldSuggestions) !== JSON.stringify(candidate.suggestions);
-      if ((candidate.review && candidate.review.awaitingReview) || changedAuthoring || (suggestionChange && candidate.suggestions.length)) {
+      // A review opens when the authored content changed, when the suggestion list
+      // changed, or when the author explicitly asks for the outstanding suggestions.
+      // Without that last case there was no way back to a suggestion that was still
+      // waiting: it was visible in the dashboard, but nothing could apply it, because
+      // applying one requires a pending review.
+      const reopenSuggestions = options.reviewSuggestions && candidate.suggestions.length > 0;
+      if ((candidate.review && candidate.review.awaitingReview) || changedAuthoring ||
+          (suggestionChange && candidate.suggestions.length) || reopenSuggestions) {
         const review = {
           totals: {}, changes: [], ...(candidate.review || {}),
           schemaVersion: 1, proposalId: crypto.randomUUID(),

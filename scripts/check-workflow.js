@@ -17,7 +17,7 @@ function fixture(name) {
   for (const module of ['note-enhancements.js', 'content-identity.js', 'note-rules.js']) {
     fs.copyFileSync(path.join(__dirname, 'lib', module), path.join(root, 'scripts', 'lib', module));
   }
-  fs.writeFileSync(path.join(root, 'src', 'Lesson.java'), '// Original note\npublic class Lesson {}\n');
+  fs.writeFileSync(path.join(root, 'src', 'Lesson.java'), '// Original note\n// authored\npublic class Lesson {}\n');
   const producer = `
 const fs = require('fs');
 const path = require('path');
@@ -32,7 +32,7 @@ if (name === 'derive-code-questions.js') {
 if (name === 'fill-practice-expectations.js' && process.argv.includes('--force')) {
   fs.writeFileSync(path.join(root, 'data', 'practice-expectations.js'), 'forced practice refresh');
 }
-if (name === 'parse-concepts.js' && process.argv.includes('--propose')) {
+if (name === 'parse-concepts.js' && process.argv.includes('--propose') && source.includes('// authored')) {
   fs.writeFileSync(path.join(root, 'revision-dashboard', 'content-changes.json'), JSON.stringify({awaitingReview:true,totals:{},changes:[]}));
   fs.writeFileSync(path.join(root, 'revision-dashboard', 'content-changes.md'), '# Candidate\\n');
 }
@@ -200,7 +200,7 @@ try {
     // against raw bytes rejected every proposal with "Enhancement source changed".
     const root = fixture('crlf-editorial');
     const source = path.join(root, 'src', 'Lesson.java');
-    fs.writeFileSync(source, '// Original note\r\npublic class Lesson {}\r\n');
+    fs.writeFileSync(source, '// Original note\r\n// authored\r\npublic class Lesson {}\r\n');
     const result = workflow.execute({ root, mode: 'propose' });
     const proposal = workflow.pending(root);
     const editorial = proposal.suggestions.find(item => item.kind === 'editorial');
@@ -210,6 +210,21 @@ try {
     assert.match(after, /\/\/ Clarified note/, 'the replacement was applied');
     assert.ok(after.includes('\r\n'), 'the file keeps its CRLF line endings');
     assert.ok(!/[^\r]\n/.test(after), 'no bare LF was introduced');
+  });
+  test('outstanding suggestions can be reopened for approval on request', () => {
+    const root = fixture('reopen');
+    // Clear the marker that makes the stub report an authored change, before anything is
+    // generated, so the suggestion list is stable across runs.
+    fs.writeFileSync(path.join(root, 'src', 'Lesson.java'), '// Original note\npublic class Lesson {}\n');
+    const first = workflow.execute({ root, mode: 'propose' });
+    workflow.execute({ root, mode: 'approve', proposalId: first.proposalId });
+    // An ordinary run raises no review. The suggestions are still visible in the
+    // dashboard, but applying one needs a pending review, so there was no way back.
+    assert.equal(workflow.execute({ root, mode: 'propose' }).pending, false,
+      'an unchanged suggestion list does not raise a review');
+    const reopened = workflow.execute({ root, mode: 'propose', reviewSuggestions: true });
+    assert.equal(reopened.pending, true, 'an explicit request reopens outstanding suggestions');
+    assert.ok((workflow.pending(root).suggestions || []).length > 0, 'the reopened review carries them');
   });
   test('a repeated apply never inserts the same suggestion twice', () => {
     const root = fixture('repeat');

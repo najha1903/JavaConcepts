@@ -4,7 +4,7 @@ package Chapter_11_Parsing_Values_Reading_Input.Sub_Chapter_2_Parsing_Values_Cod
 // The wall area is calculated as width * height. Each bucket covers a fixed area (areaPerBucket).
 // Math.ceil() is used to round up — you always need whole buckets, never a fraction.
 // The method is overloaded with 3 versions: (area, areaPerBucket), (width, height, areaPerBucket), and (width, height, areaPerBucket, extraBuckets) to handle different input scenarios.
-// If any parameter is invalid (negative or zero), the method returns -1.
+// If width, height or areaOfBucket is zero or negative, or extraBuckets is negative, the method returns -1.
 
 public class PaintJobChallenge {
 
