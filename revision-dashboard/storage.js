@@ -15,6 +15,12 @@
   const snapshots = new WeakMap();
   const listeners = new Set();
   let records = [];
+  // The exact cache text this tab last read. persist() compares it before writing, so a
+  // save that was suspended while another tab committed cannot overwrite newer state.
+  let cacheRaw = null;
+  // False until this tab has built its state from storage once. Only that first pass
+  // recovers from the journal; later refreshes are ordinary syncs.
+  let established = false;
   const defaults = {
     javarev_revised_topics: {}, javarev_quiz_history: [], javarev_practice_status: {},
     javarev_notes: { project: '', topics: {} }, javarev_question_history: {},
@@ -135,7 +141,7 @@
   function conflict() {
     warn('Changes from another tab conflict with a save. Your text has not been replaced. Recoverable versions are in Download recovery versions; review them before saving again.');
   }
-  function applyRecord(record) {
+  function applyRecord(record, options = {}) {
     if (metadata.applied.includes(record.id)) return;
     let rejected = false;
     if (record.replace) {
@@ -149,6 +155,16 @@
       for (const patch of record.patches) {
         if (revision(patch.path) !== patch.expected) {
           if (!equal(at(state, patch.path), patch.value)) rejected = true;
+          // During recovery the journal is append-only history, so the later write wins
+          // and the record is still listed as a conflict. Live saves keep the strict
+          // check, because there the point is to notice the clash and warn rather than
+          // to choose silently. Without this, a cache written by a tab whose save was
+          // suspended discarded every newer record: the cache's revision map no longer
+          // matched, so replay rejected all of them and an older note came back.
+          if (options.recovery) {
+            assign(patch.path, patch.value);
+            metadata.revisions[JSON.stringify(patch.path)] = record.id;
+          }
           continue;
         }
         assign(patch.path, patch.value);
@@ -170,8 +186,14 @@
      field; the rejected version is preserved. */
   function refresh() {
     load();
+    // Recovery semantics apply only while establishing this tab's state from storage,
+    // which is the first refresh. Later refreshes are syncs before a save, and there the
+    // strict revision check is what turns a clash into a warning instead of a silent
+    // choice between two versions.
+    const recovering = !established;
     try {
       const raw = root.localStorage.getItem(KEY);
+      cacheRaw = raw;
       if (raw) {
         const parsed = parseEnvelope(raw);
         const meta = parsed.storage;
@@ -194,8 +216,9 @@
         } catch (_) { warn('A recovery journal entry is damaged. The original is preserved; download recovery versions.'); }
       }
       records = found.sort((a, b) => a.clock - b.clock || a.id.localeCompare(b.id));
-      for (const record of records) { clock = Math.max(clock, record.clock); applyRecord(record); }
-      for (const record of pending) applyRecord(record);
+      for (const record of records) { clock = Math.max(clock, record.clock); applyRecord(record, { recovery: recovering }); }
+      for (const record of pending) applyRecord(record, { recovery: recovering });
+      established = true;
       if (metadata.conflicts.length) conflict();
       return true;
     } catch (_) {
@@ -226,7 +249,14 @@
       return false;
     }
     try {
+      // A save can be suspended while another tab commits. If the cache changed since
+      // this tab read it, the state in memory is older than theirs, and writing it
+      // would silently revert their work - measured, one paused save discarded 120
+      // successful ones. Rebuild from the newer cache plus the journal first, so this
+      // write carries both.
+      if (root.localStorage.getItem(KEY) !== cacheRaw) refresh();
       root.localStorage.setItem(KEY, JSON.stringify({ ...envelope(state), storage: metadata }));
+      cacheRaw = root.localStorage.getItem(KEY);
       return true;
     } catch (error) {
       warn('The main storage cache could not be saved. Export study data and recovery versions before leaving.');

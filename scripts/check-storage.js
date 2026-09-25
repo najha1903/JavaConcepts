@@ -291,6 +291,29 @@ function runVMChecks(check) {
     assert.equal(createVMTab(shared).store.read(NOTES).project, `${note}A119`,
       'the last successful write is what a reload restores');
   });
+  check('a paused save from another tab cannot lose the newest note', () => {
+    const { shared, a, b } = pair();
+    const note = 'n'.repeat(3000);
+    const staleBase = b.store.readText(NOTES);
+    let base = a.store.readText(NOTES);
+    // B's save is suspended at the moment it writes the main cache, after its own patch
+    // has been applied. While it is suspended, A completes 120 successful saves and
+    // writes its own cache. B then resumes and finishes.
+    let resumed = false;
+    shared.beforeSet = (client, key) => {
+      if (resumed || key !== KEY) return;
+      resumed = true;
+      for (let i = 0; i < 120; i++) {
+        const result = a.store.saveText(base, `${note}A${i}`);
+        if (result.ok) base = result.snapshot;
+      }
+    };
+    b.store.saveText(staleBase, `${note}B`);
+    shared.beforeSet = null;
+    const reloaded = createVMTab(shared);
+    assert.equal(reloaded.store.read(NOTES).project, `${note}A119`,
+      'the last successful write must survive a reload');
+  });
   check('quota failure keeps pending text exportable and never claims success', () => {
     const { shared, a } = pair();
     const base = a.store.readText(NOTES);
