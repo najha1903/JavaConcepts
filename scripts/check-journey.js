@@ -30,8 +30,6 @@ const { serveDashboard, closeServer } = require('./lib/static-server');
 
 const root = path.resolve(__dirname, '..');
 const dashboardDir = path.join(root, 'revision-dashboard');
-const PORT = Number(process.env.JOURNEY_CHECK_PORT || 4400);
-const URL_BASE = `http://127.0.0.1:${PORT}/index.html`;
 
 let chromium;
 try {
@@ -65,18 +63,18 @@ function visibleLabels(page) {
   });
 }
 
-async function openDashboard(browser) {
+async function openDashboard(browser, origin) {
   const context = await browser.newContext();
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  await page.goto(URL_BASE, { waitUntil: 'load' });
+  await page.goto(origin, { waitUntil: 'load' });
   await page.waitForFunction(() => typeof showView === 'function');
   return { context, page, errors };
 }
 
-async function firstRun(browser) {
-  const { context, page, errors } = await openDashboard(browser);
+async function firstRun(browser, origin) {
+  const { context, page, errors } = await openDashboard(browser, origin);
   try {
     // Nothing is stored, so this really is a first visit.
     const empty = await page.evaluate(() => Object.keys(localStorage).length === 0);
@@ -114,8 +112,8 @@ async function firstRun(browser) {
   }
 }
 
-async function returningUser(browser) {
-  const { context, page, errors } = await openDashboard(browser);
+async function returningUser(browser, origin) {
+  const { context, page, errors } = await openDashboard(browser, origin);
   try {
     // Seed real objective evidence through the app's own API rather than by
     // hand-writing storage, so the check cannot pass against a format the app
@@ -186,11 +184,12 @@ async function returningUser(browser) {
 }
 
 async function main() {
-  const server = await serveDashboard(dashboardDir, PORT);
+  const server = await serveDashboard(dashboardDir);
+  const origin = `http://127.0.0.1:${server.port}/index.html`;
   const browser = await chromium.launch();
   try {
-    await firstRun(browser);
-    await returningUser(browser);
+    await firstRun(browser, origin);
+    await returningUser(browser, origin);
   } finally {
     await browser.close();
     await closeServer(server);

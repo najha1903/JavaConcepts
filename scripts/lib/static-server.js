@@ -28,7 +28,7 @@ const TYPES = {
   '.woff2': 'font/woff2'
 };
 
-function serveDashboard(dashboardDir, port) {
+function serveDashboard(dashboardDir, port = 0) {
   const root = path.resolve(dashboardDir);
   const server = http.createServer((req, res) => {
     const relative = decodeURIComponent(new URL(req.url, 'http://localhost').pathname).replace(/^\/+/, '') || 'index.html';
@@ -45,7 +45,13 @@ function serveDashboard(dashboardDir, port) {
   });
   return new Promise((resolve, reject) => {
     server.on('error', reject);
-    server.listen(port, '127.0.0.1', () => resolve(server));
+    // Port 0 asks the OS for a free port. A fixed port makes a check fail whenever an
+    // earlier run, a parallel run, or an unrelated process happens to hold it, which
+    // looks exactly like a real failure.
+    server.listen(port, '127.0.0.1', () => {
+      server.port = server.address().port;
+      resolve(server);
+    });
   });
 }
 

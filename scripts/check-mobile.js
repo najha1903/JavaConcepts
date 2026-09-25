@@ -36,7 +36,6 @@ const { serveDashboard, closeServer } = require('./lib/static-server');
 
 const root = path.resolve(__dirname, '..');
 const dashboardDir = path.join(root, 'revision-dashboard');
-const PORT = Number(process.env.MOBILE_CHECK_PORT || 4399);
 
 // The widths that matter: the narrowest phone still in use, a common phone, and
 // the point where the desktop layout usually takes over.
@@ -71,7 +70,8 @@ function record(name, ok, detail) {
 }
 
 async function main() {
-  const server = await serveDashboard(dashboardDir, PORT);
+  const server = await serveDashboard(dashboardDir);
+  const origin = `http://127.0.0.1:${server.port}/index.html`;
   const browser = await chromium.launch();
 
   try {
@@ -80,7 +80,7 @@ async function main() {
       const runtimeErrors = [];
       page.on('pageerror', error => runtimeErrors.push(error.message));
 
-      await page.goto(`http://127.0.0.1:${PORT}/index.html`, { waitUntil: 'load' });
+      await page.goto(origin, { waitUntil: 'load' });
       await page.waitForFunction(() => typeof showView === 'function');
 
       // ---- Every view fits the viewport -----------------------------------
