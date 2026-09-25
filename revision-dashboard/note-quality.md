@@ -3,7 +3,20 @@
 Generated from the current notes. Proposals are optional, preserve executable Java, and require individual approval.
 This is a conservative scan, not a guarantee that every sentence is clear or correct. Unrecognized wording needs editorial review.
 
-Topics scanned: 134. Wording proposals: 4. Review findings: 5.
+Topics scanned: 134. Wording proposals: 6. Review findings: 5.
+
+## Chapter 6: Methods In Java: Methods Challenge Problem
+
+clarification: "Much better way" does not say what is better. The improvement is the default set once and the single exit point.
+
+Before:
+```text
+Alternative and much better way to return position value
+```
+After:
+```text
+Alternative: set the default position once and let each condition override it, so the method has a single return at the end.
+```
 
 ## Chapter 13: OOP Concepts: Car
 
@@ -55,6 +68,19 @@ ii)  A JavaBean is just a POJO with some extra rules applied to it.
 After:
 ```text
 ii)  A JavaBean is a POJO with extra conventions: private fields, a public no-argument constructor, and public getter and setter methods for its properties.
+```
+
+## Chapter 13: OOP Concepts: Student Record
+
+clarification: "Any kind of" is filler that carries no meaning, and the sentence continues on the next line so the replacement has to join it.
+
+Before:
+```text
+This method has the same name and type of the component, but it doesn't have any kind of special
+```
+After:
+```text
+This method has the same name and type as the component, and it has no special
 ```
 
 - Chapter 9: While And Do While Looping Concepts / Number To Words Coding Challenge (explanation): Code-only topic Review whether the parent lesson explains this supporting class; add a local explanation only if needed.

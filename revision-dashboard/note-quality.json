@@ -5,6 +5,26 @@
   "evidence": "conservative-rules-and-authored-drafts-not-a-semantic-proof",
   "proposals": [
     {
+      "key": "editorial|src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MethodsChallengeProblem.java|single-return-position|502c963454fd",
+      "kind": "editorial",
+      "chapter": "Chapter 6: Methods In Java",
+      "topic": "Methods Challenge Problem",
+      "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/MethodsChallengeProblem.java",
+      "line": 35,
+      "what": "Say what makes the alternative better",
+      "why": "\"Much better way\" does not say what is better. The improvement is the default set once and the single exit point.",
+      "category": "clarification",
+      "before": "Alternative and much better way to return position value",
+      "after": "Alternative: set the default position once and let each condition override it, so the method has a single return at the end.",
+      "sourceFingerprint": "db3421f15033fcf00274b33807b0ec41aa160bd51ad1392d69b9c1e4a01df8b9",
+      "contentVersion": "2089ed91c4808b9024a5109c061760a6b6e734e6cd3ed28d32c44dcaa74118a4",
+      "evidence": "review-required",
+      "draft": [
+        "Say what makes the alternative better",
+        "Alternative: set the default position once and let each condition override it, so the method has a single return at the end."
+      ]
+    },
+    {
       "key": "editorial|src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java|derived-getter|751ec3d01a94",
       "kind": "editorial",
       "chapter": "Chapter 13: OOP Concepts",
@@ -82,6 +102,26 @@
       "draft": [
         "Name the JavaBean conventions",
         "ii)  A JavaBean is a POJO with extra conventions: private fields, a public no-argument constructor, and public getter and setter methods for its properties."
+      ]
+    },
+    {
+      "key": "editorial|src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java|record-accessor-prefix|35385ac2a189",
+      "kind": "editorial",
+      "chapter": "Chapter 13: OOP Concepts",
+      "topic": "Student Record",
+      "file": "src/Chapter_13_OOPSConcepts/Sub_Chapter_9_JavaRecords/StudentRecord.java",
+      "line": 46,
+      "what": "Remove filler from the accessor description",
+      "why": "\"Any kind of\" is filler that carries no meaning, and the sentence continues on the next line so the replacement has to join it.",
+      "category": "clarification",
+      "before": "This method has the same name and type of the component, but it doesn't have any kind of special",
+      "after": "This method has the same name and type as the component, and it has no special",
+      "sourceFingerprint": "00a0ce39d11d6e253b0c0959fd92913b445f588681f8f4fd920e7e04d8426584",
+      "contentVersion": "ec138d703b988744d345ec91e0481e900b94a257031e2abf54573c0be9c92619",
+      "evidence": "review-required",
+      "draft": [
+        "Remove filler from the accessor description",
+        "This method has the same name and type as the component, and it has no special"
       ]
     }
   ],

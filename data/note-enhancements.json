@@ -36,6 +36,24 @@
       "after": "ii)  A JavaBean is a POJO with extra conventions: private fields, a public no-argument constructor, and public getter and setter methods for its properties.",
       "reason": "\"Some extra rules\" names nothing. Listing the conventions makes the distinction from a plain POJO usable.",
       "context": "JavaBean"
+    },
+    {
+      "id": "single-return-position",
+      "title": "Say what makes the alternative better",
+      "category": "clarification",
+      "before": "Alternative and much better way to return position value",
+      "after": "Alternative: set the default position once and let each condition override it, so the method has a single return at the end.",
+      "reason": "\"Much better way\" does not say what is better. The improvement is the default set once and the single exit point.",
+      "context": "position"
+    },
+    {
+      "id": "record-accessor-prefix",
+      "title": "Remove filler from the accessor description",
+      "category": "clarification",
+      "before": "This method has the same name and type of the component, but it doesn't have any kind of special",
+      "after": "This method has the same name and type as the component, and it has no special",
+      "reason": "\"Any kind of\" is filler that carries no meaning, and the sentence continues on the next line so the replacement has to join it.",
+      "context": "accessor"
     }
   ],
   "drafts": []
