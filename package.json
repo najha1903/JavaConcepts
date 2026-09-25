@@ -24,10 +24,9 @@
     "check:workflow": "node scripts/check-workflow.js",
     "check": "node scripts/generate.js --check"
   },
-  "dependencies": {
-    "wd": "^1.14.0"
-  },
   "devDependencies": {
-    "jsdom": "^29.1.1"
+    "jsdom": "^29.1.1",
+    "pdfjs-dist": "6.3.289",
+    "pdfmake": "0.3.11"
   }
 }

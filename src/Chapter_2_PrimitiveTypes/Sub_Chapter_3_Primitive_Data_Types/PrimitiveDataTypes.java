@@ -8,7 +8,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // boolean  | Not specified by Java | Only two values: true or false
 // byte     | 8 bits | -128 to 127
 // short    | 16 bits| -32,768 to 32,767
-// char     | 16 bits| A single Unicode character — written in single quotes: 'A'
+// char     | 16 bits| One UTF-16 code unit, 0 to 65535; written in single quotes: 'A'
 // int      | 32 bits| -2,147,483,648 to 2,147,483,647 (default for whole numbers)
 // long     | 64 bits| Very large whole numbers — add 'L' suffix: 100L
 // float    | 32 bits| Single-precision decimal — add 'f' suffix: 3.14f (NOT for precise math)
@@ -17,11 +17,15 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // Wrapper Classes: Java provides a wrapper class for each primitive (e.g., int -> Integer, double -> Double).
 // These wrapper classes offer utility methods and constants like Integer.MAX_VALUE and Integer.MIN_VALUE.
 //
-// Overflow and Underflow: If you exceed the maximum value of a type, it wraps around to the minimum (overflow); if you go below the minimum, it wraps back to the maximum (underflow).
+// Integer overflow: int and long arithmetic wrap when the result exceeds their range; they do not throw automatically.
+// Floating-point overflow can produce infinity; underflow can produce a subnormal value or zero, not wrap-around.
+// Float.MIN_VALUE and Double.MIN_VALUE are the smallest positive nonzero values, not the most negative values.
+// The most negative finite values are -Float.MAX_VALUE and -Double.MAX_VALUE.
 // Example: int max = Integer.MAX_VALUE; then max + 1 = Integer.MIN_VALUE (it wraps around!)
 //
 // Casting: Converting from one type to another.
 // Widening (automatic): byte -> short -> int -> long -> float -> double; char -> int -> long -> float -> double
+// Widening can still lose precision: int to float, long to float, and long to double may round the value.
 // Narrowing (manual, requires cast) — larger type to smaller: double -> ... -> byte
 // Example: byte b = (byte)(someIntValue / 2);  — the (byte) cast tells Java to treat the int result as a byte.
 //
@@ -33,7 +37,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // 5d/3d = 1.6666666666666667 (15+ significant digits)
 // For currency or financial calculations, use BigDecimal instead of float/double.
 //
-// char and Unicode: char holds a single character, uses single quotes: char c = 'D';
+// char and Unicode: char holds one UTF-16 code unit, using single quotes: char c = 'D'; some characters require two units in a String.
 // You can also use Unicode escape sequences: char d = '\u0044'; (both give 'D')
 // Unicode is an international encoding standard — every character in every language has a unique code point.
 // Reference: https://unicode-table.com/en/
@@ -89,7 +93,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // Note :- whole-number literals are int, and decimal literals are double, unless a suffix says otherwise.
 
 // @takeaway Eight primitive types: `byte short int long float double boolean char`. Everything else is an object, `String` included.
-// @takeaway Default to `int` for whole numbers and `double` for decimals; `long` with an `L` only past 2.1 billion, and `BigDecimal` for money.
+// @takeaway Use `int` for typical whole numbers, `long` for a wider range, and `double` for approximate decimals; exact decimals need another representation.
 // @takeaway A declaration is three parts: the type, the name, and the initialiser that gives the first value.
 // @takeaway A whole-number literal is an `int` and a decimal literal is a `double`; the `L` and `f` suffixes are how you say otherwise.
 // @snippet long big = 3000000000L;
@@ -137,7 +141,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // @answer Java does not throw an exception for primitive integer overflow; the extra carry bit is discarded.
 
 // @quiz (INTERVIEW) What is the difference between widening and narrowing primitive conversions in Java?
-// @answer Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.
+// @answer Widening is implicit for compatible types, such as int to long. Some widening conversions to float or double can lose precision.
 // @answer Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.
 // @answer Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.
 
@@ -242,9 +246,9 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_3_Primitive_Data_Types;
 // @option Yes, and b holds 128.
 // @option Yes, and b wraps around to -128.
 // @option Yes, but only because 128 fits in a nibble.
-// @explain A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.
+// @explain A byte holds -128 to 127. An out-of-range int constant needs an explicit narrowing cast; that cast discards high bits even in a constant expression.
 // @why B: 128 is one past the maximum, so the value does not fit.
-// @why C: the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.
+// @why C: byte b = (byte) 128; would give -128, but this declaration has no cast, so it is rejected.
 // @why D: the range is fixed by the type, and 127 is the largest byte.
 
 // @quiz (OCJP, HARD) What is printed by these two statements?

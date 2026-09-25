@@ -29,7 +29,10 @@ public class PaintJobChallenge {
 
             int totalBucketCount = (int) Math.ceil(areaOfWall / areaOfBucket);
 
-            totalNofBucketsRequired = totalBucketCount - extraBuckets;
+            // A negative bucket count is not a meaningful answer for valid input, and -1
+            // is already the invalid-input signal this method returns above, so having
+            // more buckets than needed floors the result at 0 instead of colliding.
+            totalNofBucketsRequired = Math.max(0, totalBucketCount - extraBuckets);
 
         }
 

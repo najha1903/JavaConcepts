@@ -33,7 +33,7 @@ package Chapter_13_OOPSConcepts.Sub_Chapter_9_JavaRecords;
   3) The part that's in parentheses, is called the record header.
   4) Similar to a constructor, we can set up some parameters within those parentheses.
   5) After setting up the required necessary parameters within the parentheses of the Record type class, we don't have to do anything.
-     Everything else is handled internally.
+     For the components in the record header, Java generates the fields, the accessor methods and toString() for us. Point 6 lists them.
   6) The part that's in parentheses, is called the record header.
      i)   The record header consists of record components, a comma-delimited list of components.
      ii)  For each component in the header, Java generates: A field with the same name and declared type

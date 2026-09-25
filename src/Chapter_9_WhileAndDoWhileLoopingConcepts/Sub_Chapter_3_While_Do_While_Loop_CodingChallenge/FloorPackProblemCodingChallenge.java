@@ -44,8 +44,14 @@ public class FloorPackProblemCodingChallenge {
 
     public static boolean canPack(int bigCount, int smallCount, int goal){
 
-        if(bigCount < 0 || smallCount < 0){
+        if(bigCount < 0 || smallCount < 0 || goal < 0){
             return false;
+        }
+
+        // Zero kilos needs no bags at all, so it is always achievable. Without this the
+        // loops below never run and the method returns false for a goal of 0.
+        if(goal == 0){
+            return true;
         }
 
         int totalRemainingWeight = goal;
@@ -53,10 +59,6 @@ public class FloorPackProblemCodingChallenge {
         int bigSumCounter = 0;
 
         int smallSumCounter = 0;
-
-        if(goal < (bigCount * 5) && smallCount == 0){
-            return false;
-        }
 
         while(bigSumCounter < bigCount){
 

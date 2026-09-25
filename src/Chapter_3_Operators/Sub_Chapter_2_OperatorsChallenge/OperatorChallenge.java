@@ -20,10 +20,10 @@ OPERATOR CHALLENGE
 */
 
 // What the challenge practises :-
-// 1) Order of operations without parentheses :-
+// 1) Order of operations with parentheses :-
 // double first = 20.00d;
 // double second = 80.00d;
-// double total = (first + second) * 100.00d;   // 100.00 is forced first by the parentheses
+// double total = (first + second) * 100.00d;   // the sum, 100.00, is calculated before multiplication
 // System.out.println("Total = " + total);      // prints Total = 10000.0
 // Note :- without the parentheses, 20.00 + 80.00 * 100.00 would be 8020.0, because * binds tighter than +.
 //
@@ -46,7 +46,7 @@ OPERATOR CHALLENGE
 // Pitfall :- comparing two double values with `==` is risky in general, because 0.1 + 0.2 is not exactly 0.3. It is safe here only because 40.00 divides 10000.0 exactly and no rounding is involved.
 //
 // Parameter notes :-
-// - first and second (the two double operands): represent the values being combined, so choose numbers whose sum is exactly divisible by the third value when you want the remainder branch to be skipped.
+// - first and second (the two double operands): the sum is multiplied by 100 before taking the remainder; that product must be divisible by 40 to skip the message.
 // - divisor (the value on the right of the remainder operator): choose a non-zero divisor. A double divisor of 0.0 gives NaN instead of throwing, so the boolean test would silently become false.
 
 public class OperatorChallenge {

@@ -1,12 +1,13 @@
 package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 // Keywords are reserved words in Java that have predefined meanings. They cannot be used as variable names, class names, or any other identifier.
-// Java has over 50 reserved keywords. Common examples: class, public, static, void, int, double, if, else, for, while, return, new, this, super, true, false, null.
-// Reference: https://en.wikipedia.org/wiki/List_of_Java_keywords
+// Common reserved keywords: class, public, static, void, int, double, if, else, for, while, return, new, this, super.
+// true, false and null are literals, not keywords, but they cannot be used as identifiers either.
+// Reference: https://docs.oracle.com/javase/specs/jls/se17/html/jls-3.html#jls-3.9
 // An expression in Java is any combination of variables, literals, operators, and method calls that evaluates to a single value.
-// The data type declaration (e.g., 'int') is NOT part of the expression. In 'int x = 5 + 3', the expression is 'x = 5 + 3'.
-// Control flow keywords like 'if', 'for', 'while' and their surrounding parentheses are NOT part of the expression — only the content inside the parentheses forms the expression.
+// In 'int x = 5 + 3;', '5 + 3' is the initializer expression. After declaration, 'x = 5 + 3' can be an assignment expression.
+// An if or while header contains a condition expression. A for header has separate initialization, condition and update sections.
 // For example: if(highScore == 50) — the keyword 'if' and the brackets are not part of the expression. The expression is 'highScore == 50'.
-// Understanding what forms an expression vs a statement is important — a statement is a complete unit of execution (ends with ;), while an expression is the part that produces a value.
+// A statement is a complete unit of execution; many end with ;, while blocks use braces. Expressions usually produce values; a void method call is an expression with no value.
 // @quiz (INTERVIEW TRAP) Why is if(highScore = 50) not the right parameter for checking equality?
 // @answer = is assignment, not comparison. Use == when the condition should test whether highScore already equals 50.
 //
@@ -27,7 +28,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 // @option 5 + 3, because a value on its own is never an expression.
 // @option x, because a variable name only becomes an expression when it is printed.
 // @explain An expression is built from variables, literals, and operators. The type int says what kind of value is being declared.
-// @why B: = is an operator, so x = 5 + 3 is an assignment expression.
+// @why B: = introduces the initializer here, not a standalone statement. After declaration, x = 5 + 3 can be an assignment expression.
 // @why C: 5 + 3 is an expression, and it works out to 8.
 // @why D: x is a variable, which is the simplest kind of expression there is.
 
@@ -66,15 +67,15 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_2_KeyWords_And_Expressions;
 
 public class KeyWordsAndExpressionsInJava {
 
-    // Link For Java Keywords :- https://en.wikipedia.org/wiki/List_of_Java_keywords
+    // Link For Java Keywords :- https://docs.oracle.com/javase/specs/jls/se17/html/jls-3.html#jls-3.9
 
     // Expression consists of variables, values and operators.
 
     public static void main(String[] args) {
 
-        double kilometers = (100 * 1.609344); // The data type doesn't form the part of expression, but everything else on the line forms the part of expression.  kilometers = (100 * 1.609344); forms the part of expression.
+        double kilometers = (100 * 1.609344); // The initializer expression is (100 * 1.609344); the whole line declares kilometers.
 
-        int highScore = 0; // highScore = 0; is part of the expression.
+        int highScore = 0; // 0 is the initializer expression in this declaration statement.
 
         if(highScore == 50){ // Keyword if, and brackets do not form the part of expression, whatever component is inside the brackets, they are part of expression. highScore == 50 forms the part of expression.
             System.out.println("You got the high score!"); // You got the highscore! is a part of expression.

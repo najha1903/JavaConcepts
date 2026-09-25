@@ -9,6 +9,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 //
 // Naming Rules & Conventions:
 // - Identifiers must begin with a letter, underscore (_), or dollar sign ($).
+//   A lone _ cannot be used as a variable name in Java 9+; names such as _count remain valid.
 // - By convention, variable names follow camelCase (e.g. myFirstNumber, totalAccountBalance).
 // - Keywords (such as int, double, class, public) cannot be used as variable identifiers.
 //
@@ -84,14 +85,14 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 // @code     System.out.println(x);
 // @code }
 // @code System.out.println(x);
-// @option 2 and then 1, because the inner x hides the outer one only inside its block. [correct]
-// @option It does not compile, because x is declared twice.
+// @option 2 and then 1, because the inner x hides the outer one only inside its block.
+// @option It does not compile, because x is declared twice in overlapping local scopes. [correct]
 // @option 2 and then 2, because the second declaration changes the first variable.
 // @option 1 and then 1, because the inner declaration is ignored.
-// @explain A name declared inside a block is a new variable that shadows the outer one for that block. After the closing brace the outer one is visible again.
-// @why B: redeclaring a name in a nested block is legal. It is an error only within the same block.
-// @why C: the inner x is a separate variable that disappears at the closing brace.
-// @why D: the inner declaration is a real declaration, so the first print sees 2.
+// @explain A nested block cannot redeclare a local variable from its enclosing scope. A local can shadow a field, but that is not this example.
+// @why A: the nested declaration is rejected, so neither print executes.
+// @why C: a declaration does not reassign the outer variable, and this declaration is illegal.
+// @why D: the compiler reports the duplicate local name rather than ignoring it.
 
 // @quiz (INTERVIEW, MEDIUM) Does this code compile?
 // @code final int limit = 5;

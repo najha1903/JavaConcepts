@@ -3,6 +3,8 @@
 // Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so
 // generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.
 // Note :- watch the boundary where count is 0 or negative, which is why the method returns an empty array.
+// Parameter limits :- at most 93 terms (F0 through F92) fit in long. Use target <= 7540113804746346429L
+// for membership checks; larger targets can overflow the loop's addition and prevent a reliable result or termination.
 package Chapter_1_Java_Introduction.Sub_Chapter_3_DeepProblems;
 
 public class FibonacciDeepProblem {

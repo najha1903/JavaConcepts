@@ -5,7 +5,8 @@ package Chapter_1_Java_Introduction.Sub_Chapter_2_Java_Intro_CodingChallenge;
  * Print the result in the format: "25°C is 77.0°F".
  *
  * Practises :- variables, arithmetic with `double`, and printing a formatted result.
- * Note :- integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.
+ * Note :- celsius is double, so (celsius * 9 / 5) uses floating-point arithmetic throughout.
+ * Writing celsius * (9 / 5) would instead evaluate the integer division first, giving an incorrect factor of 1.
  * Expected output for 25 :- 25°C is 77.0°F
  */
 public class TemperatureConverterChallenge {

@@ -112,7 +112,11 @@ function isProbablyText(file) {
 
 function walk(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === '.revision-work') continue;
+    // Third-party vendored code is excluded for the same reason as node_modules: it is
+    // not ours to repair. A minified library legitimately contains byte sequences that
+    // look like Windows-1252 damage, and running the repair on it would corrupt the
+    // library rather than fix anything.
+    if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === '.revision-work' || entry.name === 'vendor') continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(full, out);
     else if (isProbablyText(full)) out.push(full);

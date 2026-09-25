@@ -5,6 +5,9 @@ import java.util.function.DoubleUnaryOperator;
 
 public class UnitConverterDeepProblem {
 
+    // Each input is an amount in the unit named by its parameter; results use the target unit.
+    // The factors are rounded approximations. Gallons here means US liquid gallons, not imperial gallons.
+    // These helpers do no range validation; temperature may legitimately be negative.
     // @testcase kilometersToMiles(1) -> 0.621371
     // @testcase kilometersToMiles(10) -> 6.21371
     // @testcase kilometersToMiles(0) -> 0

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "rules": [
+    {
+      "id": "constructor-arguments",
+      "title": "Explain arguments to another constructor",
+      "category": "clarification",
+      "before": "The this() keyword can be parameterised or non - parameterised.",
+      "after": "Use this() to call another constructor without arguments, or this(value1, value2) to pass arguments. Java selects the matching constructor.",
+      "reason": "Distinguish a constructor call from the keyword and explain what the arguments do.",
+      "context": "constructor"
+    },
+    {
+      "id": "shared-initialization",
+      "title": "Name the shared initialization constructor",
+      "category": "clarification",
+      "before": "All other constructors can call that major constructor, passing default values or null references as arguments.",
+      "after": "Other constructors can call the constructor that performs shared initialization, supplying appropriate default values for arguments the caller did not provide.",
+      "reason": "Major constructor is not a Java term, and null is not an appropriate default for every field.",
+      "context": "constructor"
+    },
+    {
+      "id": "reference-copy",
+      "title": "Explain copying a reference",
+      "category": "clarification",
+      "before": "We can copy that reference, as many times as we like, but there is still just one object that it might point / refer to.",
+      "after": "Copying a reference does not copy the object. Immediately after House second = first;, both variables refer to the same object.",
+      "reason": "Replace an uncertain relationship with a concrete assignment example.",
+      "context": "House"
+    }
+  ],
+  "drafts": []
+}

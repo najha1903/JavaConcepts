@@ -55,9 +55,8 @@ The special statement this() is used to execute another constructor,
 passing it arguments if required. And this() must be the first executable
 statement if it's used from another constructor.
 
-The this() keyword can be parameterised or non - parameterised.
-The this()keyword calls which constructor, is determined
-by the arguments passed inside this().
+Use this() to call another constructor with no arguments, or this(value1, value2) to pass arguments.
+Which constructor this() calls is determined by the arguments passed inside it.
 
 The type and number of arguments passed inside the this() keyword must match one of the defined constructors.
 
@@ -65,7 +64,7 @@ Once we start adding more complex code, it's good to create multiple constructor
 
 And in that situation, initialization of the instance variables can happen in the one
 constructor.
-All other constructors can call that major constructor, passing default values or null references as arguments.
+All other constructors can call that one constructor, passing default values or null references as arguments.
 
 That's a good way of doing things, and it often leads to good coding because it avoids
 having to duplicate code by duplicating initialization in more than one place.

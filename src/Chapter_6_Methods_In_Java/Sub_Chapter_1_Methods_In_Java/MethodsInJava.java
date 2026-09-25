@@ -3,7 +3,7 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.
 // Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }
 // The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.
-// If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.
+// A non-void method cannot reach its closing brace normally: it must return a compatible value, throw, or keep running.
 // Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.
 // You can call a method with literal values: calculateScore(true, 800, 5, 100)
 // Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.
@@ -58,11 +58,12 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_1_Methods_In_Java;
 // 7) void means the call produces no value :-
 // static void printScore(int score) { System.out.println(score); }
 // int result = printScore(10);      // Compile Error :- void cannot be converted to int
-// Note :- the method still runs and prints, but there is no value to store.
+// Note :- this assignment does not compile, so nothing runs. Calling printScore(10); on its own would print without returning a value.
 //
 // Parameter notes :-
-// - score, levelCompleted and bonus (the three int values passed to calculateScore): score is the starting points, levelCompleted is how many levels were finished, and bonus is the points per level. The method adds score to levelCompleted * bonus, so a zero or negative bonus would reduce the score.
-// - gameOver (the boolean passed to calculateScore): it decides whether the score is reported, so pass true for a finished game and false to keep playing.
+// - score is the starting points, levelCompleted is the number of completed levels, and bonus is points per level; the result is score + levelCompleted * bonus + 1000.
+// - With non-negative levelCompleted, a zero bonus adds no level points; a negative bonus subtracts them. These int inputs are not validated and can overflow.
+// - gameOver: true calculates the final score; false returns -1 as this exercise's "no final score" sentinel. The caller decides whether to print it.
 
 // @takeaway A method is a named block you run by name, so the logic is written once instead of copied around.
 // @takeaway Parameters are locals created fresh for each call, holding copies of what you passed, and they disappear on return.
@@ -386,6 +387,6 @@ public class MethodsInJava {
             return -1;
         }*/
 
-        return -1; // In programming terms, negative value indicates programming error.
+        return -1; // This method's sentinel for gameOver == false; negative results do not universally mean an error.
     }
 }

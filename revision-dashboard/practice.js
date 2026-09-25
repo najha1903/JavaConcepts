@@ -354,26 +354,82 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "chapter": "Chapter 1: Java Introduction",
     "sourceFile": "src/Chapter_1_Java_Introduction/Sub_Chapter_2_Java_Intro_CodingChallenge/TemperatureConverterChallenge.java",
     "evidence": {
-      "execution": "self-check",
-      "expectation": "none",
-      "contractId": null
+      "execution": "browser-approximate",
+      "expectation": "independent-contract",
+      "contractId": "celsius-to-fahrenheit"
     },
     "concepts": [
       "statements"
     ],
     "conceptsSource": "chapter",
-    "description": "<p>Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.</p><p>Print the result in the format: \"25°C is 77.0°F\".</p><p>Practises :- variables, arithmetic with `double`, and printing a formatted result.</p><p>Note :- integer division in (celsius * 9 / 5) drops the fraction, so use 9.0 / 5 to keep the decimals.</p><p>Expected output for 25 :- 25°C is 77.0°F</p>",
+    "description": "<p>Challenge: Given a hardcoded Celsius temperature, calculate Fahrenheit using F = (C * 9/5) + 32.</p><p>Print the result in the format: \"25°C is 77.0°F\".</p><p>Practises :- variables, arithmetic with `double`, and printing a formatted result.</p><p>Note :- celsius is double, so (celsius * 9 / 5) uses floating-point arithmetic throughout.</p><p>Writing celsius * (9 / 5) would instead evaluate the integer division first, giving an incorrect factor of 1.</p><p>Expected output for 25 :- 25°C is 77.0°F</p>",
     "template": "public class PracticeWorkspace {\n    public static double toFahrenheit(double celsius) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
-        "args": [],
-        "expected": null
+        "category": "normal",
+        "args": [
+          12.5
+        ],
+        "expected": 54.5,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
+      },
+      {
+        "category": "normal",
+        "args": [
+          -10
+        ],
+        "expected": 14,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
+      },
+      {
+        "category": "boundary",
+        "args": [
+          0
+        ],
+        "expected": 32,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
+      },
+      {
+        "category": "boundary",
+        "args": [
+          100
+        ],
+        "expected": 212,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
+      },
+      {
+        "category": "boundary",
+        "args": [
+          -40
+        ],
+        "expected": -40,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        },
+        "tolerance": 1e-12
       }
     ],
-    "selfCheck": true,
+    "selfCheck": false,
     "methodName": "toFahrenheit",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toFahrenheit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"celsius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toFahrenheit\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"celsius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "fibonaccideepproblem",
@@ -383,31 +439,127 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "sourceFile": "src/Chapter_1_Java_Introduction/Sub_Chapter_3_DeepProblems/FibonacciDeepProblem.java",
     "evidence": {
       "execution": "browser-approximate",
-      "expectation": "authored-note",
-      "contractId": null
+      "expectation": "independent-contract",
+      "contractId": "fibonacci-sequence"
     },
     "concepts": [
       "statements"
     ],
     "conceptsSource": "chapter",
-    "description": "<p>Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.</p><p>Practises :- loops, building and returning a long[], and testing membership of a sequence.</p><p>Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.</p><p>Note :- watch the boundary where count is 0 or negative, which is why the method returns an empty array.</p>",
+    "description": "<p>Deep Problem: Fibonacci Analysis — Generate the first N Fibonacci numbers using iteration and build a detector that determines whether a given number belongs to the Fibonacci sequence. The solution should be efficient, easy to trace, and demonstrate both sequence generation and membership checking.</p><p>Practises :- loops, building and returning a long[], and testing membership of a sequence.</p><p>Note :- the sequence starts 0, 1, and each later term is the sum of the two before it, so generateFibonacci(6) gives 0, 1, 1, 2, 3, 5.</p><p>Note :- watch the boundary where count is 0 or negative, which is why the method returns an empty array.</p><p>Parameter limits :- at most 93 terms (F0 through F92) fit in long. Use target <= 7540113804746346429L for membership checks; larger targets can overflow the loop's addition and prevent a reliable result or termination.</p>",
     "template": "public class PracticeWorkspace {\n    public static long[] generateFibonacci(int count) {\n        // Write your code here\n        return null;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
           6
         ],
-        "expected": 0,
+        "expected": [
+          0,
+          1,
+          1,
+          2,
+          3,
+          5
+        ],
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_1_Java_Introduction/Sub_Chapter_3_DeepProblems/FibonacciDeepProblem.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          12
+        ],
+        "expected": [
+          0,
+          1,
+          1,
+          2,
+          3,
+          5,
+          8,
+          13,
+          21,
+          34,
+          55,
+          89
+        ],
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          0
+        ],
+        "expected": [],
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          1
+        ],
+        "expected": [
+          0
+        ],
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2
+        ],
+        "expected": [
+          0,
+          1
+        ],
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          3
+        ],
+        "expected": [
+          0,
+          1,
+          1
+        ],
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          -1
+        ],
+        "expected": [],
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       }
     ],
     "selfCheck": false,
     "methodName": "generateFibonacci",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"generateFibonacci\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"count\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"generateFibonacci\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"count\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "bitwiseoperationsdeepproblem",
@@ -477,7 +629,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isOdd",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "expressionevaluatordeepproblem",
@@ -508,8 +660,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
         "provenance": {
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_3_Operators/Sub_Chapter_3_DeepProblems/ExpressionEvaluatorDeepProblem.java",
-          "sourceHash": "17733f7f9c4e6925e196bb8c5cee9d1fbedefc16af56e4613cfe1dc3f309677e",
-          "frameworkFingerprint": "4357908b",
+          "sourceHash": "098d71aaab7f3c84689eb75c09960315feba2f7dde5702663604c348bd74d36e",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -518,7 +670,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -526,7 +678,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "power",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"power\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"base\", \"exponent\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"power\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"base\", \"exponent\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "unitconverterdeepproblem",
@@ -581,7 +733,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "kilometersToMiles",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"kilometersToMiles\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometers\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"kilometersToMiles\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometers\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "gradeclassifierdeepproblem",
@@ -647,7 +799,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "classify",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"classify\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"score\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"classify\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"score\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodsinjava",
@@ -665,7 +817,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
       "overloading"
     ],
     "conceptsSource": "topic",
-    "description": "<p>A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.</p><p>Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.</p><p>Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }</p><p>The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.</p><p>If a method has a non-void return type, it MUST have a 'return statement' that returns a value of that type.</p><p>Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.</p><p>You can call a method with literal values: calculateScore(true, 800, 5, 100)</p><p>Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.</p><p>Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.</p><p>A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.</p><p>This file evolves ONE method, calculateScore, through three stages, defined further down in this same file in this order:</p><p>Stage 1 — calculateScore() with no parameters: void, hard-coded values, only prints (see the method with empty parentheses).</p><p>Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a block to show the in-between step — it never compiles or runs.</p><p>Stage 3 — calculateScore(boolean, int, int, int): the final, real overload; same parameters as stage 2, but now returns an int so the caller can capture and reuse the result.</p><p>How a method call actually works :-</p><p>1) Parameters receive copies of the argument values :-</p><p>Note :- Java is always pass-by-value. For a primitive, the copy is the number itself, so changing the parameter inside the method can never change the caller's variable.</p><p>2) The classic swap that does nothing :-</p><p>Note :- only the copies a and b are swapped. swap only works if the values come back through a return value, or if they are objects whose fields you swap.</p><p>3) For an object, the copy is the reference :-</p><p>Note :- the parameter holds a copy of the reference, and both copies point at the same array, so writing through it is visible to the caller.</p><p>4) Reassigning the reference is not visible :-</p><p>Note :- comparing 3 and 4 is the whole of the pass-by-value trap. Changing the object is visible, pointing the parameter at a new object is not.</p><p>5) A non-void method must return on every path :-</p><p>Note :- when n is 0 or less the method would finish without a value, so the compiler refuses the file.</p><p>6) An overload is chosen by the argument types :-</p><p>Note :- Java decides at compile time and prefers the most specific match, so an int argument takes the int version rather than widening to double.</p><p>7) void means the call produces no value :-</p><p>Note :- the method still runs and prints, but there is no value to store.</p><p>Parameter notes :-</p><p>- score, levelCompleted and bonus (the three int values passed to calculateScore): score is the starting points, levelCompleted is how many levels were finished, and bonus is the points per level. The method adds score to levelCompleted * bonus, so a zero or negative bonus would reduce the score.</p><p>- gameOver (the boolean passed to calculateScore): it decides whether the score is reported, so pass true for a finished game and false to keep playing.</p>",
+    "description": "<p>A method is a named, reusable block of code that performs a specific task. Instead of writing the same logic multiple times, define it once in a method and call it wherever needed.</p><p>Methods are the foundation of the DRY principle — Don't Repeat Yourself. They make code organized, readable, and maintainable.</p><p>Method syntax: accessModifier static returnType methodName(paramType paramName, ...) { ... }</p><p>The return type declares what type of value the method sends back to the caller. Use 'void' if the method returns nothing.</p><p>A non-void method cannot reach its closing brace normally: it must return a compatible value, throw, or keep running.</p><p>Parameters are local variables automatically created when the method is called, holding the values (arguments) passed in. They are destroyed when the method returns.</p><p>You can call a method with literal values: calculateScore(true, 800, 5, 100)</p><p>Or with variables: calculateScore(gameOver, score, levelCompleted, bonus) — the VALUES of those variables are passed.</p><p>Method overloading: you can have multiple methods with the SAME name but DIFFERENT parameter lists (different number or types of parameters). Java picks the correct version based on the arguments you pass.</p><p>A negative return value (like -1) is a common programming convention to signal that something went wrong or the input was invalid.</p><p>This file evolves ONE method, calculateScore, through three stages, defined further down in this same file in this order:</p><p>Stage 1 — calculateScore() with no parameters: void, hard-coded values, only prints (see the method with empty parentheses).</p><p>Stage 2 — a commented-out calculateScore(boolean, int, int, int): still void, now WITH parameters; kept only as a block to show the in-between step — it never compiles or runs.</p><p>Stage 3 — calculateScore(boolean, int, int, int): the final, real overload; same parameters as stage 2, but now returns an int so the caller can capture and reuse the result.</p><p>How a method call actually works :-</p><p>1) Parameters receive copies of the argument values :-</p><p>Note :- Java is always pass-by-value. For a primitive, the copy is the number itself, so changing the parameter inside the method can never change the caller's variable.</p><p>2) The classic swap that does nothing :-</p><p>Note :- only the copies a and b are swapped. swap only works if the values come back through a return value, or if they are objects whose fields you swap.</p><p>3) For an object, the copy is the reference :-</p><p>Note :- the parameter holds a copy of the reference, and both copies point at the same array, so writing through it is visible to the caller.</p><p>4) Reassigning the reference is not visible :-</p><p>Note :- comparing 3 and 4 is the whole of the pass-by-value trap. Changing the object is visible, pointing the parameter at a new object is not.</p><p>5) A non-void method must return on every path :-</p><p>Note :- when n is 0 or less the method would finish without a value, so the compiler refuses the file.</p><p>6) An overload is chosen by the argument types :-</p><p>Note :- Java decides at compile time and prefers the most specific match, so an int argument takes the int version rather than widening to double.</p><p>7) void means the call produces no value :-</p><p>Note :- this assignment does not compile, so nothing runs. Calling printScore(10); on its own would print without returning a value.</p><p>Parameter notes :-</p><p>- score is the starting points, levelCompleted is the number of completed levels, and bonus is points per level; the result is score + levelCompleted * bonus + 1000.</p><p>- With non-negative levelCompleted, a zero bonus adds no level points; a negative bonus subtracts them. These int inputs are not validated and can overflow.</p><p>- gameOver: true calculates the final score; false returns -1 as this exercise's \"no final score\" sentinel. The caller decides whether to print it.</p>",
     "template": "public class PracticeWorkspace {\n    public static int calculateScore(boolean gameOver, int score, int levelCompleted, int bonus) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
@@ -676,7 +828,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calculateScore",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"gameOver\", \"score\", \"levelCompleted\", \"bonus\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"gameOver\", \"score\", \"levelCompleted\", \"bonus\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "areacalculatorcodingchallenge",
@@ -750,7 +902,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "area",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"area\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"radius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"area\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"radius\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "barkingdogcodingchallenge",
@@ -760,8 +912,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java",
     "evidence": {
       "execution": "browser-approximate",
-      "expectation": "authored-note",
-      "contractId": null
+      "expectation": "independent-contract",
+      "contractId": "barking-hours"
     },
     "concepts": [
       "overloading",
@@ -773,43 +925,142 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean shouldWakeUp(boolean barking, int hourOfDay) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
           true,
-          1
+          3
         ],
         "expected": true,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       },
       {
+        "category": "normal",
         "args": [
-          false,
-          2
+          true,
+          12
         ],
         "expected": false,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       },
       {
+        "category": "normal",
+        "args": [
+          false,
+          3
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          0
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          7
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
         "args": [
           true,
           8
         ],
         "expected": false,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/BarkingDogCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          22
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          23
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          false,
+          23
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          true,
+          -1
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          true,
+          24
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       }
     ],
     "selfCheck": false,
     "methodName": "shouldWakeUp",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"shouldWakeUp\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"barking\", \"hourOfDay\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"shouldWakeUp\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"barking\", \"hourOfDay\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "decimalcomparatorcodingchallenge",
@@ -828,7 +1079,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
       "casting"
     ],
     "conceptsSource": "chapter",
-    "description": "<p>This challenge compares two double values only up to three decimal places.</p><p>Multiplying by 1000 shifts the first three decimal places into the whole-number part of the value.</p><p>Casting the shifted double to int truncates the remaining decimal portion instead of rounding it.</p><p>If the two truncated int values are equal, the original numbers match to three decimal places.</p><p>Example results: -3.1756 and -3.175 match, 3.175 and 3.176 do not match, and -3.123 and 3.123 do not match.</p><p>Important: this exercise intentionally uses casting and truncation, so it is checking decimal-place equality rather than true mathematical closeness.</p>",
+    "description": "<p>This challenge compares two double values only up to three decimal places.</p><p>Multiplying by 1000 shifts the first three decimal places into the whole-number part of the value.</p><p>Casting the shifted double to int truncates the remaining decimal portion instead of rounding it.</p><p>Limits :- this compares truncated binary-double products. Near decimal boundaries rounding can matter; large products saturate at int limits and NaN casts to 0, so this is not a general decimal-equality test.</p><p>If the two truncated int values are equal, the original numbers match to three decimal places.</p><p>Example results: -3.1756 and -3.175 match, 3.175 and 3.176 do not match, and -3.123 and 3.123 do not match.</p><p>Important: this exercise intentionally uses casting and truncation, so it is checking decimal-place equality rather than true mathematical closeness.</p>",
     "template": "public class PracticeWorkspace {\n    public static boolean areEqualByThreeDecimalPlaces(double firstNumber, double secondNumber) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
@@ -868,7 +1119,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "areEqualByThreeDecimalPlaces",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"areEqualByThreeDecimalPlaces\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"areEqualByThreeDecimalPlaces\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "equalityprintercodingchallenge",
@@ -942,7 +1193,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "printEqual",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printEqual\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1], testCase.args[2]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printEqual\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1], testCase.args[2]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "equalsumcheckercodingchallenge",
@@ -1004,7 +1255,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "hasEqualSum",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasEqualSum\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"sum\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasEqualSum\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"sum\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "leapyearcalculatorcodingchallenge",
@@ -1129,7 +1380,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isLeapYear",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "megabytesconvertercodingchallenge",
@@ -1185,7 +1436,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "printMegaBytesAndKiloBytes",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printMegaBytesAndKiloBytes\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"kilobytes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printMegaBytesAndKiloBytes\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"kilobytes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodschallengeproblem",
@@ -1215,7 +1466,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "displayHighScorePosition",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"displayHighScorePosition\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"name\", \"position\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"displayHighScorePosition\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"name\", \"position\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "minutestoyearsanddayscalculatorcodingchallenge",
@@ -1234,7 +1485,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
       "casting"
     ],
     "conceptsSource": "chapter",
-    "description": "<p>This challenge converts a long minute count into full years plus leftover days.</p><p>printYearsAndDays(long minutes) is a void method because it prints the formatted answer directly.</p><p>The conversion uses fixed calendar assumptions: 60 minutes per hour, 24 hours per day, and 365 days per year.</p><p>Integer division gives the number of complete years, while the remainder operator gives the days left after those years.</p><p>Negative minutes are invalid and must print exactly \"Invalid Value\".</p><p>Example results: 525600 prints \"525600 min = 1 y and 0 d\", and 561600 prints \"561600 min = 1 y and 25 d\".</p><p>Important: exact spacing and capitalization matter because this kind of challenge often checks output text literally.</p>",
+    "description": "<p>This challenge converts a long minute count into full years plus leftover days.</p><p>printYearsAndDays(long minutes) is a void method because it prints the formatted answer directly.</p><p>The conversion uses fixed calendar assumptions: 60 minutes per hour, 24 hours per day, and 365 days per year.</p><p>Only full days are reported; leftover hours and minutes are discarded. Leap years are outside this exercise.</p><p>Implementation limit :- minutes / 60 is narrowed to int, so values above 128849018879L minutes can overflow the hour count.</p><p>Integer division gives the number of complete years, while the remainder operator gives the days left after those years.</p><p>Negative minutes are invalid and must print exactly \"Invalid Value\".</p><p>Example results: 525600 prints \"525600 min = 1 y and 0 d\", and 561600 prints \"561600 min = 1 y and 25 d\".</p><p>Important: exact spacing and capitalization matter because this kind of challenge often checks output text literally.</p>",
     "template": "public class PracticeWorkspace {\n    public static void printYearsAndDays(long minutes) {\n        // Write your code here\n    }\n}",
     "testCases": [
       {
@@ -1261,7 +1512,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "printYearsAndDays",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printYearsAndDays\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"minutes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printYearsAndDays\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"minutes\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "playingcatcodingchallenge",
@@ -1271,8 +1522,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java",
     "evidence": {
       "execution": "browser-approximate",
-      "expectation": "authored-note",
-      "contractId": null
+      "expectation": "independent-contract",
+      "contractId": "seasonal-playing-temperature"
     },
     "concepts": [
       "overloading",
@@ -1284,43 +1535,166 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean isCatPlaying(boolean isSummer, int temperature) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
-        "args": [
-          true,
-          10
-        ],
-        "expected": false,
-        "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java"
-        }
-      },
-      {
+        "category": "normal",
         "args": [
           false,
-          36
+          30
         ],
-        "expected": false,
+        "expected": true,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       },
       {
+        "category": "normal",
+        "args": [
+          true,
+          40
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          false,
+          -5
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          false,
+          24
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          false,
+          25
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
         "args": [
           false,
           35
         ],
         "expected": true,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/PlayingCatCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          false,
+          36
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          24
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          25
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          35
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          36
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          45
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          true,
+          46
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       }
     ],
     "selfCheck": false,
     "methodName": "isCatPlaying",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isCatPlaying\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"isSummer\", \"temperature\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isCatPlaying\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"isSummer\", \"temperature\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "positivenegativezerocodingchallenge",
@@ -1376,7 +1750,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "checkNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"checkNumber\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"checkNumber\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "speedconvertercodingchallenge",
@@ -1457,7 +1831,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "toMilesPerHour",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toMilesPerHour\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometersPerHour\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"toMilesPerHour\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"kilometersPerHour\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "teennumbercheckercodingchallenge",
@@ -1467,8 +1841,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "sourceFile": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java",
     "evidence": {
       "execution": "browser-approximate",
-      "expectation": "authored-note",
-      "contractId": null
+      "expectation": "independent-contract",
+      "contractId": "any-teen-range"
     },
     "concepts": [
       "overloading",
@@ -1480,46 +1854,179 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean hasTeen(int firstNumber, int secondNumber, int thirdNumber) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
-          9,
-          99,
+          16,
+          30,
+          40
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          30,
+          16,
+          40
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          30,
+          40,
+          16
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          14,
+          16,
+          18
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          -1,
+          16,
+          40
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          30,
+          40,
+          50
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          13,
+          12,
+          20
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          12,
+          13,
+          20
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          12,
+          20,
+          13
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          19,
+          12,
+          20
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          12,
+          19,
+          20
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          12,
+          20,
           19
         ],
         "expected": true,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       },
       {
+        "category": "boundary",
         "args": [
-          23,
-          15,
-          42
-        ],
-        "expected": true,
-        "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java"
-        }
-      },
-      {
-        "args": [
-          22,
-          23,
-          24
+          12,
+          20,
+          12
         ],
         "expected": false,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_6_Methods_In_Java/Sub_Chapter_2_Methods_Coding_Challenge/TeenNumberCheckerCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       }
     ],
     "selfCheck": false,
     "methodName": "hasTeen",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasTeen\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasTeen\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"firstNumber\", \"secondNumber\", \"thirdNumber\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "recursiondeepproblem",
@@ -1549,7 +2056,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "factorialRecursive",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"factorialRecursive\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"factorialRecursive\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementinjava",
@@ -1579,7 +2086,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "getQuarter",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "enhancedswitchstatementinjava",
@@ -1609,7 +2116,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "getQuarter",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getQuarter\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"month\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "numberofdaysinamonthcodingchallenge",
@@ -1675,7 +2182,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isLeapYear",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isLeapYear\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"year\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "printnumberinaworldcodingchallenge",
@@ -1706,7 +2213,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/PrintNumberInAWorldCodingChallenge.java",
           "sourceHash": "36f910b7e7193015bb88b72041cf6dc15eb1ff34459fdb30b9e2ca6c0791da8c",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -1715,7 +2222,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -1723,7 +2230,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "returnNumberInAWordUsingTraditionalSwitch",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"returnNumberInAWordUsingTraditionalSwitch\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"returnNumberInAWordUsingTraditionalSwitch\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementchallenge",
@@ -1753,7 +2260,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "switchStatementUsingChar",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"switchStatementUsingChar\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"switchStatementUsingChar\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementchallengereturndayoftheweek",
@@ -1783,7 +2290,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "printDayOfWeek",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printDayOfWeek\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"day\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printDayOfWeek\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"day\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "switchstatementnatochallenge",
@@ -1813,7 +2320,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "returnNatoStringForGivenCharacter",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"returnNatoStringForGivenCharacter\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"returnNatoStringForGivenCharacter\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"ch\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "menudrivencalculatordeepproblem",
@@ -1843,7 +2350,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calculate",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculate\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"first\", \"second\", \"operator\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculate\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"first\", \"second\", \"operator\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "forstatement",
@@ -1852,8 +2359,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "chapter": "Chapter 8: Java Looping Concepts",
     "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
     "evidence": {
-      "execution": "browser-approximate",
-      "expectation": "solution-derived-smoke",
+      "execution": "self-check",
+      "expectation": "none",
       "contractId": null
     },
     "concepts": [
@@ -1865,33 +2372,14 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static double calculateInterest(double amount, double interestRate) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
-        "args": [
-          2.5,
-          2.5
-        ],
-        "expected": 0.0625,
-        "provenance": {
-          "kind": "solution-derived-smoke",
-          "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
-          "sourceHash": "80e75dfcf2cb3749b46dbbd677f084dbca17ae3dad3d866ab8b3d8ba47506957",
-          "frameworkFingerprint": "4357908b",
-          "execution": "native-reference-and-browser-approximate",
-          "nativeValidation": {
-            "release": 21,
-            "preview": false,
-            "compilerVersion": "javac 25.0.4.1",
-            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
-            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
-            "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
-          }
-        }
+        "args": [],
+        "expected": null
       }
     ],
-    "selfCheck": false,
+    "selfCheck": true,
     "methodName": "calculateInterest",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateInterest\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"amount\", \"interestRate\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateInterest\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"amount\", \"interestRate\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "forloopprimenumberchallenge",
@@ -1921,7 +2409,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
           "sourceHash": "2ae08770bcf8400615e36fbaa4ceef81515ed8cf6ad3468a989d90e26e356720",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -1930,7 +2418,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -1938,7 +2426,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isPrime",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPrime\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPrime\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "sumoddchallenge",
@@ -2018,7 +2506,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isOdd",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isOdd\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "patternprinterdeepproblem",
@@ -2048,7 +2536,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_3_DeepProblems/PatternPrinterDeepProblem.java",
           "sourceHash": "a4c5e652a8d6d77d3f9c9c11d480201d02b1b14302f18bf2241b6647d5a78421",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2057,7 +2545,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2065,7 +2553,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "printRightTriangle",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printRightTriangle\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"size\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printRightTriangle\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"size\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "checknumberpalindromecodingchallenge",
@@ -2121,7 +2609,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "checkIfNumberIsPalindrome",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"checkIfNumberIsPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"checkIfNumberIsPalindrome\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "digitsumcodingchallenge",
@@ -2152,7 +2640,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/DigitSumCodingChallenge.java",
           "sourceHash": "1df13361482c8b98aaf36937915d9d2b789b05f21ef9e952572809df98396f13",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2161,7 +2649,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2169,7 +2657,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "sumDigits",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumDigits\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumDigits\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "evendigitsumcodingchallenge",
@@ -2261,7 +2749,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "getEvenDigitSum",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getEvenDigitSum\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getEvenDigitSum\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "factorprintercodingchallenge",
@@ -2292,7 +2780,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FactorPrinterCodingChallenge.java",
           "sourceHash": "528d64310f98c758268ffbecb94350832a9f516f65c81c64756f09460837616c",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2301,7 +2789,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2309,7 +2797,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "printFactors",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printFactors\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printFactors\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"number\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "firstandlastdigitsumcodingchallenge",
@@ -2375,7 +2863,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "sumFirstAndLastDigit",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumFirstAndLastDigit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"sumFirstAndLastDigit\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "floorpackproblemcodingchallenge",
@@ -2385,8 +2873,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
     "evidence": {
       "execution": "browser-approximate",
-      "expectation": "solution-derived-smoke",
-      "contractId": null
+      "expectation": "independent-contract",
+      "contractId": "whole-flour-bags"
     },
     "concepts": [
       "loops",
@@ -2398,34 +2886,179 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean canPack(int bigCount, int smallCount, int goal) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
-          1,
-          1,
-          1
+          2,
+          2,
+          11
         ],
         "expected": true,
         "provenance": {
-          "kind": "solution-derived-smoke",
-          "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
-          "sourceHash": "7f9f6bf146fe3c541aee64f3e861a000811d459e33fd69bded169a5312353cb9",
-          "frameworkFingerprint": "4357908b",
-          "execution": "native-reference-and-browser-approximate",
-          "nativeValidation": {
-            "release": 21,
-            "preview": false,
-            "compilerVersion": "javac 25.0.4.1",
-            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
-            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
-            "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
-          }
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          1,
+          3,
+          9
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          0,
+          6,
+          4
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          0,
+          0,
+          0
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          0,
+          0
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          0,
+          5
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          0,
+          9
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          0,
+          10
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          1,
+          0,
+          4
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          0,
+          0,
+          1
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          -1,
+          5,
+          5
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          1,
+          -1,
+          5
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          1,
+          1,
+          -1
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       }
     ],
     "selfCheck": false,
     "methodName": "canPack",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"canPack\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"bigCount\", \"smallCount\", \"goal\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"canPack\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"bigCount\", \"smallCount\", \"goal\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "greatestcommondivisorcodingchallenge",
@@ -2535,7 +3168,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "getGreatestCommonDivisor",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getGreatestCommonDivisor\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getGreatestCommonDivisor\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "largestprimefactorcodingchallenge",
@@ -2566,7 +3199,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LargestPrimeFactorCodingChallenge.java",
           "sourceHash": "d5ab09fd1dd85c0a154ad0db26be52ab3fd88cefe0970d3518dc23df6f9f2919",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2575,7 +3208,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2583,7 +3216,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "getLargestPrime",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getLargestPrime\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getLargestPrime\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "lastdigitcheckercodingchallenge",
@@ -2639,7 +3272,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isValid",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValid\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValid\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "numbertowordscodingchallenge",
@@ -2670,7 +3303,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
           "sourceHash": "d7c70e6d1754aafcf54aca658d02753358866b5fbfad2bed2534d9e493d3b584",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2679,7 +3312,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2687,7 +3320,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "getDigitCount",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDigitCount\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDigitCount\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "perfectnumbercodingchallenge",
@@ -2718,7 +3351,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
           "sourceHash": "226cdd09003f21796ca71094e10ee78722db5d1dc04d0f8b41197e823463ef75",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2727,7 +3360,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2735,7 +3368,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isPerfectNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPerfectNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPerfectNumber\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "shareddigitcodingchallenge",
@@ -2745,8 +3378,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java",
     "evidence": {
       "execution": "browser-approximate",
-      "expectation": "authored-note",
-      "contractId": null
+      "expectation": "independent-contract",
+      "contractId": "two-digit-sharing"
     },
     "concepts": [
       "loops",
@@ -2758,43 +3391,154 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static boolean hasSharedDigit(int number1, int number2) {\n        // Write your code here\n        return false;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
           12,
           23
         ],
         "expected": true,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       },
       {
+        "category": "normal",
         "args": [
-          9,
+          23,
+          12
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          12,
+          34
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          12,
+          13
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          12,
+          32
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          10,
+          20
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          99,
+          19
+        ],
+        "expected": true,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          10,
           99
         ],
         "expected": false,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       },
       {
+        "category": "invalid",
         "args": [
-          15,
-          55
+          9,
+          19
         ],
-        "expected": true,
+        "expected": false,
         "provenance": {
-          "kind": "authored-note",
-          "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/SharedDigitCodingChallenge.java"
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          19,
+          9
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          100,
+          10
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          10,
+          100
+        ],
+        "expected": false,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       }
     ],
     "selfCheck": false,
     "methodName": "hasSharedDigit",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasSharedDigit\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"hasSharedDigit\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number1\", \"number2\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "whileloopcodingchallenge",
@@ -2825,7 +3569,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
           "sourceHash": "e5af60b58cf3d873bcc022d4e025ec6626ddc06ef3875c3bb242f04d6f015f05",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2834,7 +3578,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2842,7 +3586,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isEvenNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "whileloopcodingchallengepart2",
@@ -2873,7 +3617,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
           "kind": "solution-derived-smoke",
           "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallengePart2.java",
           "sourceHash": "2a721710830bf65eeb0c55b880a29a31093550f699b7b2cbaa85a2ae1126a21a",
-          "frameworkFingerprint": "4357908b",
+          "frameworkFingerprint": "61eba10",
           "execution": "native-reference-and-browser-approximate",
           "nativeValidation": {
             "release": 21,
@@ -2882,7 +3626,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
             "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
             "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
             "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+            "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
           }
         }
       }
@@ -2890,7 +3634,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isEvenNumber",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isEvenNumber\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"number\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "numberguesserdeepproblem",
@@ -2920,7 +3664,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "simulateGuessingGame",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"simulateGuessingGame\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"secret\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"simulateGuessingGame\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"secret\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "librarysystemdeepproblem",
@@ -3020,8 +3764,8 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
     "evidence": {
       "execution": "browser-approximate",
-      "expectation": "solution-derived-smoke",
-      "contractId": null
+      "expectation": "independent-contract",
+      "contractId": "paint-extra-buckets"
     },
     "concepts": [
       "wrappers",
@@ -3033,35 +3777,150 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "template": "public class PracticeWorkspace {\n    public static int getBucketCount(double width, double height, double areaOfBucket, int extraBuckets) {\n        // Write your code here\n        return 0;\n    }\n}",
     "testCases": [
       {
+        "category": "normal",
         "args": [
-          2.5,
-          2.5,
-          2.5,
+          3,
+          4,
+          5,
           1
         ],
         "expected": 2,
         "provenance": {
-          "kind": "solution-derived-smoke",
-          "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
-          "sourceHash": "e37cfeafd923a8e92ad80894e0241e45707b65409bdaf3b708f2c1a84366a77e",
-          "frameworkFingerprint": "4357908b",
-          "execution": "native-reference-and-browser-approximate",
-          "nativeValidation": {
-            "release": 21,
-            "preview": false,
-            "compilerVersion": "javac 25.0.4.1",
-            "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
-            "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
-            "validator": "scripts/fill-practice-expectations.js",
-            "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
-          }
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "normal",
+        "args": [
+          2.5,
+          4,
+          2,
+          3
+        ],
+        "expected": 2,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          3,
+          6,
+          0
+        ],
+        "expected": 1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          3.001,
+          6,
+          1
+        ],
+        "expected": 1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          3,
+          6,
+          1
+        ],
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "boundary",
+        "args": [
+          2,
+          3,
+          6,
+          2
+        ],
+        "expected": 0,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          0,
+          3,
+          6,
+          0
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          2,
+          0,
+          6,
+          0
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          2,
+          3,
+          0,
+          0
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
+        }
+      },
+      {
+        "category": "invalid",
+        "args": [
+          2,
+          3,
+          6,
+          -1
+        ],
+        "expected": -1,
+        "provenance": {
+          "kind": "independent-contract",
+          "file": "data/practice-contracts.js"
         }
       }
     ],
     "selfCheck": false,
     "methodName": "getBucketCount",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getBucketCount\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"width\", \"height\", \"areaOfBucket\", \"extraBuckets\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getBucketCount\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"width\", \"height\", \"areaOfBucket\", \"extraBuckets\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1], testCase.args[2], testCase.args[3]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "readinguserinputchallenge",
@@ -3120,7 +3979,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "isValidInt",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValidInt\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isValidInt\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"value\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "multicatchchallenge",
@@ -3151,7 +4010,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "demonstrateException",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"demonstrateException\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"scenario\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"demonstrateException\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"scenario\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "parseandhandlechallenge",
@@ -3182,7 +4041,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "parseAge",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"parseAge\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"input\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"parseAge\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"input\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "safedivisionchallenge",
@@ -3213,7 +4072,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "safeDivide",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"safeDivide\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"a\", \"b\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"safeDivide\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"a\", \"b\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodoverloadingchallenge",
@@ -3250,7 +4109,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calcFeetAndInchesToCentimeters",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"calcFeetAndInchesToCentimeters\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"feet\", \"inches\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"calcFeetAndInchesToCentimeters\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"feet\", \"inches\", prepared);\n          fn(__print, __printLn, testCase.args[0], testCase.args[1]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodoverloadingsecondandminuteschallenge",
@@ -3287,7 +4146,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "getDurationString",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDurationString\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"minutes\", \"seconds\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"getDurationString\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"minutes\", \"seconds\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "methodoverloadinginjava",
@@ -3316,7 +4175,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "calculateScore",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"playerName\", \"score\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"calculateScore\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"playerName\", \"score\", prepared);\n          const result = fn(testCase.args[0], testCase.args[1]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "shapehierarchydeepproblem",
@@ -3353,7 +4212,7 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": true,
     "methodName": "printShapeInfo",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printShapeInfo\");\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"shape\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          if (typeof prepareJavaBody !== \"function\") return null;\n          const body = extractMethodBody(userCode, \"printShapeInfo\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = prepareJavaBody(body, true);\n          const out = [];\n          const __print = (v) => { out.push(v === undefined ? \"\" : String(v)); };\n          const __printLn = (v) => { out.push((v === undefined ? \"\" : String(v)) + \"\\n\"); };\n          const fn = new Function(\"__print\", \"__printLn\", \"shape\", prepared);\n          fn(__print, __printLn, testCase.args[0]);\n          const actual = out.join(\"\").replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          const expected = String(testCase.expected).replace(/\\r\\n?/g, \"\\n\").replace(/\\n$/, \"\");\n          return actual === expected;\n        } catch(e) { return null; }\n      }"
   },
   {
     "id": "stringanalyzerdeepproblem",
@@ -3408,6 +4267,6 @@ const GENERATED_PRACTICE_CHALLENGES = [
     "selfCheck": false,
     "methodName": "isPalindrome",
     "hasVerify": true,
-    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPalindrome\");\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"text\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
+    "verifyFnStr": "function(userCode, testCase) {\n        try {\n          const body = extractMethodBody(userCode, \"isPalindrome\");\n          {\n            const flat = body.replace(/\\s+/g, ' ');\n            if (/\\*\\s*[^;{}]*\\/\\s*/.test(flat) || /Math\\.(?:ceil|round|floor)\\s*\\([^)]*\\//.test(flat)) return null;\n          }\n          const prepared = (typeof prepareJavaBody === \"function\") ? prepareJavaBody(body) : body;\n          const fn = new Function(\"text\", prepared);\n          const result = fn(testCase.args[0]);\n          const expected = testCase.expected;\n          // Floating point results are compared with a small tolerance, because a\n          // note such as \"returns about 78.53975\" is a rounded value.\n          if (typeof result === \"number\" && typeof expected === \"number\") {\n            const tolerance = testCase.tolerance === undefined\n              ? (Number.isInteger(expected) ? 0 : Math.max(1e-9, Math.abs(expected) * 1e-6))\n              : testCase.tolerance;\n            return Math.abs(result - expected) <= tolerance;\n          }\n          return result === expected;\n        } catch(e) { return null; }\n      }"
   }
 ];

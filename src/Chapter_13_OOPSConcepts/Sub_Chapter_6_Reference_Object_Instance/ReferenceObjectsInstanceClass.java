@@ -12,7 +12,7 @@ This object can also be known as an instance.
 
 For the majority of created objects, we require a reference that points to the object.
 
-We can copy that reference, as many times as we like, but there is still just one object that it might point / refer to.
+We can copy that reference as many times as we like, but every copy still refers to the same single object.
 In other words, we are just making the copy of the reference, not the object.
 
 We can pass references as parameters to constructors and methods.

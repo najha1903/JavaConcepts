@@ -1,11 +1,12 @@
 package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
 // A local variable is one declared inside a method, constructor, or block. It only exists (is "in scope") within that block.
-// Scope describes the region of code where a variable is accessible. 'In scope' = accessible. 'Out of scope' = the variable no longer exists and cannot be used.
+// Scope describes where a name can be used in source code. Being out of scope does not itself mean an object has been destroyed.
 // Best practice: Declare and initialise a variable in the same place if possible. Declare variables in the narrowest scope possible.
 // Rule: Inner (nested) blocks CAN access variables from their outer block. But outer blocks CANNOT access variables declared inside an inner block.
 // For loop scope: the counter variable declared in 'for(int i = ...)' is LOCAL to the loop — it does not exist outside the loop.
 // If statement scope: a variable declared inside an if block is NOT accessible in the else block or outside the if structure.
-// Switch scope is different: a variable declared in one case IS accessible in later cases (cases further down), but NOT in cases that come before it, and NOT outside the switch.
+// In a colon-style switch block, a local is in scope after its declaration through the rest of that block.
+// Scope is not definite assignment: jumping straight to a later case can skip its initializer. Case-local braces narrow the scope.
 
 /*
   LOCAL VARIABLE SCOPE EXAMPLES
@@ -54,7 +55,7 @@ package Chapter_2_PrimitiveTypes.Sub_Chapter_1_Variables;
       default:
         i = value;                // OK: i was declared in case 1 (before default)
         System.out.println(i);   // OK: accessible
-        System.out.println(j);   // OK: j was declared in case 3 (before default)
+        System.out.println(j);   // ERROR: j is in scope, but jumping to default skips its assignment
         break;
     }
     System.out.println(i);        // ERROR: i is out of scope outside the switch

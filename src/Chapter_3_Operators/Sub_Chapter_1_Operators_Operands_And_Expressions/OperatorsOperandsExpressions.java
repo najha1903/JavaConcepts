@@ -16,7 +16,7 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // Critical Gotchas & Precedence Rules:
 // - Left-to-right evaluation for `+`: As soon as a String operand is encountered, all subsequent `+` operations become String concatenation.
 // - Compound Assignment (`+=`, `-=`, `*=`, `/=`): Performs implicit narrowing cast back to the target variable's type.
-// - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference addresses; `=` assigns a new value.
+// - Equality (`==`) vs Assignment (`=`): `==` compares primitive values or reference identity (same object or both null); `=` assigns a value.
 //
 // Operator Categories (named by how many operands they take):
 // - Unary: one operand, such as `!flag`, `-5`, or `x++`
@@ -81,7 +81,7 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // System.out.println("Java" + (10 + 20));   // prints Java30, the parentheses force the addition first
 //
 // Parameter notes :-
-// - divisor (the value on the right of `/` and `%`): choose a non-zero divisor for int arithmetic, because integer division by zero throws ArithmeticException. For double, the result is Infinity instead.
+// - divisor (right operand of `/` or `%`): integer zero throws ArithmeticException. For double, 10.0 / 0.0 is Infinity, 0.0 / 0.0 and 10.0 % 0.0 are NaN.
 // - leftOperand (`10 + 20`, `"Score: " + 10`): the operand you read first decides the operation. If it is a String, every `+` after it concatenates; if it is numeric, `+` adds until a String appears.
 
 
@@ -267,7 +267,7 @@ package Chapter_3_Operators.Sub_Chapter_1_Operators_Operands_And_Expressions;
 // @snippet 9 / 2.0       // 4.5
 // @takeaway `b += 5` converts the result back to the type on the left, which is why it compiles where `b = b + 5` does not.
 // @takeaway Multiply and divide run before add and subtract, and `i++` uses the value before increasing it while `++i` increases first.
-// @gotcha Dividing an `int` by zero throws `ArithmeticException`, but dividing a `double` by zero gives `Infinity` and no error at all.
+// @gotcha Integer division by zero throws; `10.0 / 0.0` gives Infinity, while `0.0 / 0.0` gives NaN without throwing.
 // @gotcha `a > b > c` does not compile, because `a > b` is a boolean; write `a > b && b > c`.
 // @gotcha `=` assigns and `==` compares, so `if (x = 5)` is a compile error.
 // @gotcha A remainder keeps the sign of the left operand: `-10 % 3` is -1, not 1.

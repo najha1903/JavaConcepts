@@ -16,6 +16,19 @@
 // it has to be serialisable into practice.js.
 // ============================================================================
 
+// The translator rewrites "a / b" into javaDiv(a, b), which truncates. That is correct
+// only when Java would also perform integer division, and it is wrong whenever an
+// operand is floating point: "celsius * 9 / 5" regroups into "celsius * (9 / 5)", and
+// "Math.ceil(area / coverage)" truncates before the ceiling can round up. The translator
+// has no type information, so it cannot tell the two apart. Rather than return a verdict
+// that would mark the learner's own correct code wrong, these shapes report "could not
+// be checked".
+const UNSAFE_DIVISION = String.raw`
+          {
+            const flat = body.replace(/\s+/g, ' ');
+            if (/\*\s*[^;{}]*\/\s*/.test(flat) || /Math\.(?:ceil|round|floor)\s*\([^)]*\//.test(flat)) return null;
+          }`;
+
 // Builds the verifier for one challenge. `capturesOutput` is true for a void method,
 // whose only observable result is what it prints.
 function buildVerifySource({ methodName, paramNames, capturesOutput }) {
@@ -33,7 +46,7 @@ function buildVerifySource({ methodName, paramNames, capturesOutput }) {
     return `function(userCode, testCase) {
         try {
           if (typeof prepareJavaBody !== "function") return null;
-          const body = extractMethodBody(userCode, "${methodName}");
+          const body = extractMethodBody(userCode, "${methodName}");${UNSAFE_DIVISION}
           const prepared = prepareJavaBody(body, true);
           const out = [];
           const __print = (v) => { out.push(v === undefined ? "" : String(v)); };
@@ -49,7 +62,7 @@ function buildVerifySource({ methodName, paramNames, capturesOutput }) {
 
   return `function(userCode, testCase) {
         try {
-          const body = extractMethodBody(userCode, "${methodName}");
+          const body = extractMethodBody(userCode, "${methodName}");${UNSAFE_DIVISION}
           const prepared = (typeof prepareJavaBody === "function") ? prepareJavaBody(body) : body;
           const fn = new Function(${paramQuoted}, prepared);
           const result = fn(${argAccess});

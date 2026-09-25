@@ -3,6 +3,8 @@ package Chapter_3_Operators.Sub_Chapter_3_DeepProblems;
 
 public class ExpressionEvaluatorDeepProblem {
 
+    // exponent is a non-negative count of multiplications; exponent 0 returns 1, including base 0.
+    // Large results overflow long silently, so this helper is not arbitrary-precision arithmetic.
     public static long power(int base, int exponent) {
         if (exponent < 0) {
             throw new IllegalArgumentException("Exponent must be non-negative.");
@@ -15,6 +17,7 @@ public class ExpressionEvaluatorDeepProblem {
         return result;
     }
 
+    // Integer.MIN_VALUE has no positive int counterpart: this implementation returns it unchanged.
     public static int absolute(int value) {
         return value < 0 ? -value : value;
     }

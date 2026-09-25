@@ -1,9 +1,12 @@
 package Chapter_1_Java_Introduction;
 
 // Core Concepts: Java Architecture & Execution Flow
+// Version note :- these entry-point examples and quizzes use Java 17 without preview features.
+// Java 25 also supports instance main methods; the traditional signature here remains valid.
 // Java is both a compiled and interpreted language.
 // Source code (.java) is compiled by `javac` into intermediate bytecode (.class files),
-// which is then executed by the Java Virtual Machine (JVM) on any platform ("Write Once, Run Anywhere").
+// which is then executed by a compatible JVM with the required libraries on the target platform ("Write Once, Run Anywhere").
+// A JVM may interpret bytecode and compile frequently used code to native instructions at runtime (JIT).
 //
 // Those two steps, in order:
 // - javac HelloWorld.java :- writes HelloWorld.class, the bytecode
@@ -16,6 +19,7 @@ package Chapter_1_Java_Introduction;
 // Key Components of Java Ecosystem:
 // - JDK (Java Development Kit): Contains development tools (`javac`, `javadoc`, debugger) + JRE.
 // - JRE (Java Runtime Environment): Contains core libraries + JVM for running applications.
+// Note :- this is a conceptual breakdown; modern JDKs include a runtime without a separate jre folder.
 // - JVM (Java Virtual Machine): The execution engine that translates bytecode into native machine instructions.
 //
 // Main Method Signature Breakdown (`public static void main(String[] args)`):
@@ -93,7 +97,7 @@ package Chapter_1_Java_Introduction;
 // @why C: the second expression is arithmetic first, so 10 + 5 is 15 and not 105.
 // @why D: nothing here adds 155. The digits are 10 and 5, never 15 and 5.
 
-// @quiz (OCJP, HARD) Two files are created in the same folder. What happens when they are compiled?
+// @quiz (OCJP, HARD) These two public classes are declared together in One.java. What happens when it is compiled?
 // @code // File One.java
 // @code public class One { }
 // @code public class Two { }
@@ -141,7 +145,7 @@ package Chapter_1_Java_Introduction;
 // @option So that other classes are allowed to call it.
 // @option So that no subclass is able to override it.
 // @option So that the method is not allowed to return a value.
-// @explain A program needs an entry point before any object exists, so main must be callable without an instance. That is what static provides.
+// @explain In the Java 17 entry-point form, static lets the launcher call main without constructing an instance of its class.
 // @why B: being callable from other classes is the job of public, not static.
 // @why C: preventing overriding is the job of final, not static.
 // @why D: returning nothing is the job of void, not static.
@@ -255,13 +259,16 @@ package Chapter_1_Java_Introduction;
 // Getting a program to run, from the beginning :-
 // 1) Source, bytecode, then the JVM :-
 // HelloWorld.java   --javac-->   HelloWorld.class   --java-->   runs on the JVM
-// Note :- javac is the compiler and it produces bytecode, not machine code. java starts the JVM and runs that bytecode. The JVM never reads your .java file.
+// Note :- javac produces bytecode. Class-name launch runs that bytecode; source-file launch (`java HelloWorld.java`, Java 11+) compiles source in memory first.
 // Note :- this two-step arrangement is why Java is described as both compiled and interpreted: compiled to bytecode once, then the JVM runs that bytecode on whatever machine it is on.
 
 // 2) The two commands you actually type :-
 // javac HelloWorld.java      // compiles, and writes HelloWorld.class next to the source
 // java HelloWorld            // runs the class, with NO .java or .class on the end
 // Note :- `java HelloWorld.class` fails. The argument is a class name, not a file name.
+// These commands assume the package-free example below. For this repository file, run from the project root:
+// javac -d out src/Chapter_1_Java_Introduction/HelloWorld.java
+// java -cp out Chapter_1_Java_Introduction.HelloWorld
 //
 // 3) The smallest complete program :-
 // public class HelloWorld {
@@ -281,7 +288,7 @@ package Chapter_1_Java_Introduction;
 // - The file name must match the public class inside it, so this file is HelloWorld.java and it declares `public class HelloWorld`.
 // - Java is case-sensitive: `system.out.println` and `String` written as `string` are both wrong.
 // - One file may hold several classes, but only one of them may be public.
-// - The class holding `main` must not be private or protected, or java cannot start it.
+// - A top-level class cannot be private or protected; this is a declaration rule, independent of main.
 //
 // What you should be able to do after this chapter :-
 // - Write, compile and run a class that prints something, and explain what javac did and what java did.
@@ -290,7 +297,7 @@ package Chapter_1_Java_Introduction;
 
 // @takeaway `javac` compiles a file; `java` runs a class name, so `java HelloWorld.class` fails.
 
-// @takeaway Java is compiled once, then interpreted, which is what "write once, run anywhere" means.
+// @takeaway Java compiles to portable bytecode; a compatible JVM executes it using interpretation and/or native compilation.
 
 // @takeaway `main` is `public static void`: public so the launcher can call it, static so the JVM needs no object, void because it returns nothing.
 // @snippet public static void main(String[] args)

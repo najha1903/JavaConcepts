@@ -5,6 +5,16 @@
   const VERSION = 2;
   const KEY = 'javarev_state_v2';
   const BACKUP = 'javarev_backup_v2';
+  const JOURNAL = 'javarev_journal_v1:';
+  const writer = root.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;
+  let sequence = 0;
+  let clock = 0;
+  let metadata = { applied: [], revisions: {}, generation: 'initial', conflicts: [] };
+  const pending = [];
+  const reads = new Map();
+  const snapshots = new WeakMap();
+  const listeners = new Set();
+  let records = [];
   const defaults = {
     javarev_revised_topics: {}, javarev_quiz_history: [], javarev_practice_status: {},
     javarev_notes: { project: '', topics: {} }, javarev_question_history: {},
@@ -85,6 +95,114 @@
   function envelope(data) {
     return { project: PROJECT, version: VERSION, exportedAt: new Date().toISOString(), data };
   }
+  const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const at = (data, path) => path.reduce((value, key) => value?.[key], data) ?? null;
+  const revision = path => metadata.revisions[JSON.stringify(path)] ||
+    `${metadata.generation}:${JSON.stringify(at(state, path))}`;
+  function assign(path, value) {
+    let target = state;
+    for (const key of path.slice(0, -1)) target = target[key];
+    if (value === null && path.length > 1) delete target[path.at(-1)];
+    else target[path.at(-1)] = clone(value);
+  }
+  function validPath(path) {
+    if (!Array.isArray(path) || !path.every(p => typeof p === 'string' &&
+        !['__proto__', 'constructor', 'prototype'].includes(p))) return false;
+    if (path.length === 1) return Object.hasOwn(defaults, path[0]);
+    if (path[0] === 'javarev_notes') return (path.length === 2 && path[1] === 'project') ||
+      (path.length === 3 && path[1] === 'topics');
+    return path.length === 2 && Object.hasOwn(entryValidators, path[0]);
+  }
+  function validateRecord(record) {
+    safeTree(record);
+    if (!object(record) || typeof record.id !== 'string' || !count(record.clock)) throw new Error('Invalid journal');
+    if (record.replace) {
+      parseEnvelope(JSON.stringify(envelope(record.replace)));
+      if (typeof record.basis !== 'string') throw new Error('Invalid replacement');
+    } else {
+      if (!Array.isArray(record.patches)) throw new Error('Invalid patches');
+      for (const patch of record.patches) {
+        if (!validPath(patch.path) || typeof patch.expected !== 'string' || patch.value === undefined) throw new Error('Invalid patch');
+        const [key, field] = patch.path;
+        const valid = patch.path.length === 1 ? validValue(key, patch.value) :
+          key === 'javarev_notes' ? (typeof patch.value === 'string' || (field === 'topics' && patch.value === null)) :
+            patch.value === null || entryValidators[key](patch.value);
+        if (!valid) throw new Error('Invalid patch value');
+      }
+    }
+    return record;
+  }
+  function conflict() {
+    warn('Changes from another tab conflict with a save. Your text has not been replaced. Recoverable versions are in Download recovery versions; review them before saving again.');
+  }
+  function applyRecord(record) {
+    if (metadata.applied.includes(record.id)) return;
+    let rejected = false;
+    if (record.replace) {
+      if (record.basis !== JSON.stringify({ state, metadata })) rejected = true;
+      else {
+        state = clone(record.replace);
+        metadata.generation = record.id;
+        metadata.revisions = {};
+      }
+    } else {
+      for (const patch of record.patches) {
+        if (revision(patch.path) !== patch.expected) {
+          if (!equal(at(state, patch.path), patch.value)) rejected = true;
+          continue;
+        }
+        assign(patch.path, patch.value);
+        metadata.revisions[JSON.stringify(patch.path)] = record.id;
+      }
+    }
+    metadata.applied.push(record.id);
+    if (rejected) metadata.conflicts.push(record.id);
+  }
+  /* KEY is a materialized cache, not an atomic read/modify/write lock. Every save
+     first appends a uniquely named, immutable journal record. Refresh replays any
+     records a racing cache writer omitted, checking each field's base revision.
+     Journals are intentionally not pruned: even rejected attempts and overwritten
+     cache versions remain recoverable. Storage quota/eviction, disabled storage,
+     or clients predating this protocol cannot be made lossless by localStorage.
+     History and metadata grow; export regularly. No cross-tab ordering is promised
+     for simultaneous edits of the same field; the rejected version is preserved. */
+  function refresh() {
+    load();
+    try {
+      const raw = root.localStorage.getItem(KEY);
+      if (raw) {
+        const parsed = parseEnvelope(raw);
+        const meta = parsed.storage;
+        if (meta && (!Array.isArray(meta.applied) || !meta.applied.every(x => typeof x === 'string') ||
+            !object(meta.revisions) || !Object.values(meta.revisions).every(x => typeof x === 'string') ||
+            typeof meta.generation !== 'string' || !Array.isArray(meta.conflicts) ||
+            !meta.conflicts.every(x => typeof x === 'string'))) throw new Error('Invalid storage metadata');
+        state = parsed.data;
+        metadata = meta || { applied: [], revisions: {}, generation: 'initial', conflicts: [] };
+        protectedRaw = false;
+      }
+      const found = [];
+      for (let i = 0; i < root.localStorage.length; i++) {
+        const key = root.localStorage.key(i);
+        if (!key?.startsWith(JOURNAL)) continue;
+        try {
+          const record = validateRecord(JSON.parse(root.localStorage.getItem(key)));
+          if (key !== JOURNAL + record.id) throw new Error('Mismatched journal ID');
+          found.push(record);
+        } catch (_) { warn('A recovery journal entry is damaged. The original is preserved; download recovery versions.'); }
+      }
+      records = found.sort((a, b) => a.clock - b.clock || a.id.localeCompare(b.id));
+      for (const record of records) { clock = Math.max(clock, record.clock); applyRecord(record); }
+      for (const record of pending) applyRecord(record);
+      if (metadata.conflicts.length) conflict();
+      return true;
+    } catch (_) {
+      // A failed read must never authorize overwriting an unreadable envelope.
+      protectedRaw = true;
+      warn('Saved data cannot be read safely. The original is preserved; changes are in this tab only until a valid backup is imported or data is reset.');
+      return false;
+    }
+  }
   function parseEnvelope(text) {
     if (text.length > 20 * 1024 * 1024) throw new Error('Backup exceeds 20 MB.');
     const parsed = JSON.parse(text);
@@ -106,10 +224,10 @@
       return false;
     }
     try {
-      root.localStorage.setItem(KEY, JSON.stringify(envelope(state)));
+      root.localStorage.setItem(KEY, JSON.stringify({ ...envelope(state), storage: metadata }));
       return true;
     } catch (error) {
-      warn('Browser storage is unavailable or full. Changes remain only in this tab; export a backup before leaving.');
+      warn('The main storage cache could not be saved. Export study data and recovery versions before leaving.');
       return false;
     }
   }
@@ -160,20 +278,87 @@
     }
   }
   function read(key) {
-    load();
-    return clone(Object.hasOwn(state, key) ? state[key] : null);
+    refresh();
+    const value = clone(Object.hasOwn(state, key) ? state[key] : null);
+    const base = { value: clone(value), revisions: clone(metadata.revisions), generation: metadata.generation };
+    reads.set(key, base);
+    if (value && typeof value === 'object') snapshots.set(value, base);
+    return value;
+  }
+  function commit(record, allowRepair = false) {
+    record.id = `${writer}:${++sequence}`;
+    record.clock = ++clock;
+    validateRecord(record);
+    let durable = false;
+    try {
+      if (protectedRaw && !allowRepair) throw new Error('Protected original');
+      root.localStorage.setItem(JOURNAL + record.id, JSON.stringify(record));
+      durable = true;
+    } catch (_) {
+      pending.push(record);
+      warn('Browser storage is unavailable or full. This change is only in this tab; download recovery versions before leaving.');
+    }
+    if (durable && !allowRepair) refresh();
+    applyRecord(record);
+    if (metadata.conflicts.includes(record.id)) conflict();
+    if (durable) {
+      if (allowRepair) protectedRaw = false;
+      if (!persist()) warn('The recovery journal saved this change, but the main storage cache could not be updated. Export a backup.');
+    }
+    return { id: record.id, ok: durable && !metadata.conflicts.includes(record.id), recoverable: durable,
+      conflict: metadata.conflicts.includes(record.id) };
   }
   function write(key, value) {
-    load();
+    const base = (value && typeof value === 'object' && snapshots.get(value)) || reads.get(key);
+    refresh();
+    try { safeTree(value); } catch (_) { warn('Unsafe saved data was rejected.'); return false; }
     if (!validValue(key, value)) { warn(`Could not save invalid ${key} data. Existing history was kept.`); return false; }
-    state[key] = clone(value);
-    return persist();
+    const previous = base ? base.value : clone(state[key]);
+    const paths = key === 'javarev_notes' ? [[key, 'project'],
+      ...new Set([...Object.keys(previous.topics), ...Object.keys(value.topics)])].map(p =>
+        Array.isArray(p) ? p : [key, 'topics', p]) : entryValidators[key] ?
+        [...new Set([...Object.keys(previous), ...Object.keys(value)])].map(id => [key, id]) : [[key]];
+    const patches = paths.filter(path => !equal(at({ [key]: previous }, path), at({ [key]: value }, path)))
+      .map(path => ({ path, before: at({ [key]: previous }, path), value: at({ [key]: value }, path), expected: base ?
+        base.revisions[JSON.stringify(path)] || `${base.generation}:${JSON.stringify(at({ [key]: previous }, path))}` : revision(path) }));
+    if (!patches.length) return true;
+    const result = commit({ patches });
+    // Fresh direct writes may follow a previous read. Advance only this caller's
+    // successful base; storage events never advance an editor's explicit snapshot.
+    if (result.ok) {
+      reads.delete(key);
+      if (value && typeof value === 'object') snapshots.set(value, {
+        value: clone(value), revisions: clone(metadata.revisions), generation: metadata.generation
+      });
+    }
+    return result.ok;
+  }
+  function textPath(key, id) {
+    const path = key === 'javarev_notes' ? (id === null ? [key, 'project'] : [key, 'topics', id]) : [key, id];
+    safeTree(Object.fromEntries(path.map(p => [p, null])));
+    if (!['javarev_notes', 'javarev_editor_drafts'].includes(key) || !validPath(path)) throw new Error('Invalid text target');
+    return path;
+  }
+  function readText(key, id = null) {
+    refresh();
+    const path = textPath(key, id);
+    return { key, id, value: clone(at(state, path)), revision: revision(path) };
+  }
+  function saveText(base, value) {
+    refresh();
+    const path = textPath(base.key, base.id);
+    // Even a stale attempt is journaled. A UI must retain its original base after
+    // rejection, so another keystroke cannot silently turn into an overwrite.
+    const result = commit({ patches: [{ path, before: clone(base.value), value: clone(value), expected: base.revision }] });
+    return { ...result, snapshot: result.ok ? { ...base, value: clone(value), revision: revision(path) } : base };
   }
   function backup() {
-    load();
+    refresh();
     try {
       const original = root.localStorage.getItem(KEY);
-      root.localStorage.setItem(BACKUP, original || JSON.stringify(envelope(state)));
+      let text = original;
+      if (!protectedRaw && (!original || !equal(parseEnvelope(original).data, state))) text = exportText();
+      root.localStorage.setItem(BACKUP, text || exportText());
       return true;
     } catch (_) {
       warn('A local backup could not be saved. Export a file before replacing or resetting data.');
@@ -191,7 +376,8 @@
     };
   }
   function importData(text) {
-    const incoming = parseEnvelope(text).data;
+    const parsed = parseEnvelope(text);
+    const incoming = parsed.data;
     if (!backup()) return false;
     for (const h of Object.values(incoming.javarev_question_history)) h.imported = true;
     for (const h of incoming.javarev_quiz_history) h.imported = true;
@@ -203,28 +389,63 @@
       incoming.javarev_quiz_progress.score = 0;
       incoming.javarev_quiz_progress.sessionId = '';
     }
-    const previous = state;
-    state = incoming;
-    protectedRaw = false;
-    if (!persist()) { state = previous; return false; }
+    if (!replace(incoming, parsed.recovery)) return false;
     warn('Backup imported. Imported scores are retained as history only; answer questions here for new study evidence.');
     return true;
   }
   function reset() {
     if (!backup()) return false;
-    const previous = state;
-    state = clone(defaults);
-    protectedRaw = false;
-    if (!persist()) { state = previous; return false; }
+    if (!replace(clone(defaults))) return false;
     // Remove migrated keys only after the new reset state has been saved successfully.
     try { for (const key of Object.keys(defaults)) root.localStorage.removeItem(key); } catch (_) {}
     warn('All study data was reset. A pre-reset local backup is available below.');
     return true;
   }
+  function replace(incoming, recovery = []) {
+    refresh();
+    const previous = clone(state);
+    const previousMeta = clone(metadata);
+    const wasProtected = protectedRaw;
+    const result = commit({ replace: incoming, before: previous, recovery,
+      basis: JSON.stringify({ state, metadata }) }, wasProtected);
+    if (!result.ok) { state = previous; metadata = previousMeta; protectedRaw = wasProtected; return false; }
+    reads.clear();
+    for (const listener of listeners) listener({ localReplacement: true });
+    return true;
+  }
+  function recoveryData() {
+    const entries = [];
+    try {
+      for (let i = 0; i < root.localStorage.length; i++) {
+        const key = root.localStorage.key(i);
+        if (key?.startsWith(JOURNAL)) entries.push({ key, raw: root.localStorage.getItem(key) });
+      }
+    } catch (_) { warn('Recovery storage cannot be read. The export includes this tab\'s available versions.'); }
+    return { entries, pending: clone(pending) };
+  }
+  function exportText() {
+    refresh();
+    return JSON.stringify({ ...envelope(state), recovery: recoveryData() }, null, 2);
+  }
+  function notify() {
+    const previous = state && JSON.stringify(state);
+    refresh();
+    if (previous !== JSON.stringify(state)) {
+      for (const listener of listeners) listener();
+    }
+  }
+  if (root.addEventListener) {
+    root.addEventListener('storage', event => {
+      if (event.key === null || event.key === KEY || event.key?.startsWith(JOURNAL)) notify();
+    });
+    root.addEventListener('focus', notify);
+  }
   root.JavaRevStorage = {
-    read, write, warn, preview, importData, reset, backup,
+    read, write, readText, saveText, warn, preview, importData, reset, backup, refresh,
+    subscribe: listener => { listeners.add(listener); return () => listeners.delete(listener); },
+    recoveryText: () => { refresh(); return JSON.stringify({ project: PROJECT, recovery: recoveryData() }, null, 2); },
     remove: key => write(key, clone(defaults[key])),
-    exportText: () => { load(); return JSON.stringify(envelope(state), null, 2); },
+    exportText,
     backupText: () => {
       try { return root.localStorage.getItem(BACKUP); }
       catch (_) { warn('The local backup cannot be read.'); return null; }

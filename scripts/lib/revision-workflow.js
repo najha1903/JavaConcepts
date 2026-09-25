@@ -11,6 +11,7 @@ const OUTPUTS = [
   'revision-dashboard/practice.js', 'revision-dashboard/deep-challenges.js',
   'revision-dashboard/coverage-data.js', 'revision-dashboard/coverage.md',
   'revision-dashboard/suggestions-data.js', 'revision-dashboard/suggestions.md',
+  'revision-dashboard/note-quality.json', 'revision-dashboard/note-quality.md',
   'data/code-questions.js', 'data/practice-expectations.js',
   'data/question-identities.json'
 ];
@@ -18,7 +19,8 @@ const STATE = 'revision-dashboard/revision-state.json';
 const PROPOSAL = 'revision-dashboard/content-changes.json';
 const REPORT = 'revision-dashboard/content-changes.md';
 const LOG = 'data/accepted-suggestions.log';
-const GENERATED = new Set([...OUTPUTS, STATE, PROPOSAL, REPORT, LOG]);
+const HISTORY = 'data/notes-history.json';
+const GENERATED = new Set([...OUTPUTS, STATE, PROPOSAL, REPORT, LOG, HISTORY]);
 
 function read(file) {
   return fs.existsSync(file) ? fs.readFileSync(file) : null;
@@ -231,6 +233,13 @@ function suggestionPatches(stage, items, keys) {
     if (!original) throw new Error(`Suggestion source is missing: ${relative}`);
     const current = patches.has(relative) ? patches.get(relative) : original;
     const text = current.toString('utf8');
+    if (item.kind === 'editorial') {
+      const { hash } = require('./content-identity');
+      const { validateReplacement } = require('./note-enhancements');
+      if (hash(original.toString('utf8')) !== item.sourceFingerprint) throw new Error(`Enhancement source changed: ${relative}`);
+      patches.set(relative, Buffer.from(validateReplacement(text, item.before, item.after)));
+      continue;
+    }
     const newline = text.includes('\r\n') ? '\r\n' : '\n';
     const lines = text.split(/\r?\n/);
     let at = lines.findIndex(line => /^\s*(?:(?:public|final|abstract)\s+)*class\s+\w+/.test(line));
@@ -301,6 +310,13 @@ function savePublication(root, baseline, candidate, profile) {
     const previous = baseline.get(LOG) || Buffer.alloc(0);
     const record = `${new Date().toISOString()} Approved insertions: ${[...candidate.patches.keys()].join(', ')}\n`;
     updates.set(LOG, Buffer.concat([previous, Buffer.from(record)]));
+    const history = baseline.has(HISTORY) ? JSON.parse(baseline.get(HISTORY).toString('utf8')) : { schemaVersion: 1, revisions: [] };
+    if (history.schemaVersion !== 1 || !Array.isArray(history.revisions)) throw new Error('Unsupported notes history. Original notes were not changed.');
+    for (const [file, bytes] of candidate.patches) {
+      history.revisions.push({ file, before: baseline.get(file).toString('utf8'), after: bytes.toString('utf8'),
+        beforeHash: digest(baseline.get(file)), afterHash: digest(bytes) });
+    }
+    updates.set(HISTORY, Buffer.from(JSON.stringify(history, null, 2) + '\n'));
   }
   updates.set(STATE, Buffer.from(JSON.stringify({
     schemaVersion: 1,
@@ -363,6 +379,7 @@ function execute(options = {}) {
           suggestions: candidate.suggestions,
           authoringChanged: changedAuthoring,
           ledger: candidate.outputs.get('revision-dashboard/coverage.md').toString('utf8')
+          ,noteReview: candidate.outputs.get('revision-dashboard/note-quality.md')?.toString('utf8') || ''
         };
         const report = read(path.join(candidate.stage, REPORT)) || Buffer.from('# Revision candidate\n\nReviewed content/configuration or suggestions changed. Open `npm run revise` to review.\n');
         publish(root, baseline, new Map([[PROPOSAL, Buffer.from(JSON.stringify(review, null, 2) + '\n')], [REPORT, report]]));

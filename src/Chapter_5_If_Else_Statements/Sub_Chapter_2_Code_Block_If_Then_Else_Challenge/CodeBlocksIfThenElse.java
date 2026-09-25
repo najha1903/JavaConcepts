@@ -7,7 +7,7 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Chall
 // A variable declared inside an if block IS accessible by inner nested blocks, but NOT by the outer block or sibling else blocks.
 // Scope example: if(gameOver) { int finalScore = ...; } — finalScore is only accessible inside the if block.
 // Trying to use finalScore outside that if block would cause a compile error: "Cannot resolve symbol 'finalScore'".
-// Once a code block ends, Java removes the variables declared inside it from memory. This is why you can re-declare finalScore in a second if(gameOver) block — Java treats it as a fresh variable.
+// The two if blocks have separate local scopes, so each may declare finalScore. Scope is a source-code rule, not a promise that memory is erased at the brace.
 // Inner blocks CAN access variables from their containing outer block (e.g., score, levelCompleted, bonus are in the outer method block and accessible inside the if block).
 // The concept of where a variable is accessible is called its SCOPE. Narrowing scope is a best practice — declare variables as close to where they are used as possible.
 // @quiz (INTERVIEW TRAP) In an if/else-if chain with parameter-like conditions, what happens if two conditions could both be true?
@@ -54,7 +54,7 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_2_Code_Block_If_Then_Else_Chall
 // @why C: a variable that is out of scope is a compile error, not a zero.
 // @why D: block scope ends at the closing brace, not at the end of the method.
 
-// @quiz (OCJP, MEDIUM) Does this code compile?
+// @quiz (OCJP, MEDIUM) With boolean gameOver = true already declared, does this code compile?
 // @code if (gameOver) { int n = 1; System.out.println(n); }
 // @code if (gameOver) { int n = 2; System.out.println(n); }
 // @option Yes, and it prints 1 then 2, because each block has its own n. [correct]
@@ -102,7 +102,7 @@ public class CodeBlocksIfThenElse {
        // int myFinalScore = finalScore; // Since, finalScore variable is defined in the inner code block / inner scope, the outer code block cannot access inner scope variables. Hence, the error is shown.
 
         if(gameOver){
-            int finalScore = score + (levelCompleted * bonus); // As soon as the first inner scope code block finishes, the finalScore variable gets removed by Java, hence we again reuse finalScore variable inside the new code block.
+            int finalScore = score + (levelCompleted * bonus); // This separate block declares its own finalScore; the earlier local name is out of scope.
             System.out.println("Your final score was " + finalScore);
         }
 

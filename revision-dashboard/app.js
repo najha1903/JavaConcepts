@@ -98,8 +98,29 @@ function getNotesState() {
   return JavaRevStorage.read(STORAGE_NOTES_KEY);
 }
 
+const noteEdits = new Map();
+const editorEdits = new Map();
+let activeEditorEdit = null;
+
+function noteEdit(id) {
+  if (!noteEdits.has(id)) {
+    const base = JavaRevStorage.readText(STORAGE_NOTES_KEY, id);
+    noteEdits.set(id, { base, value: base.value || '', result: null });
+  }
+  return noteEdits.get(id);
+}
+
+function saveNoteEdit(id, text) {
+  const edit = noteEdit(id);
+  edit.value = text;
+  const result = JavaRevStorage.saveText(edit.base, text);
+  edit.result = result;
+  if (result.ok) edit.base = result.snapshot;
+  return result;
+}
+
 function saveNotesState(notes) {
-  JavaRevStorage.write(STORAGE_NOTES_KEY, notes);
+  return JavaRevStorage.write(STORAGE_NOTES_KEY, notes);
 }
 
 function getQuestionHistory() {
@@ -619,9 +640,7 @@ function getProjectNotes() {
 }
 
 function saveProjectNotes(text) {
-  const notes = getNotesState();
-  notes.project = text;
-  saveNotesState(notes);
+  return saveNoteEdit(null, text);
 }
 
 function getTopicNote(filePath) {
@@ -630,9 +649,7 @@ function getTopicNote(filePath) {
 }
 
 function saveTopicNote(filePath, text) {
-  const notes = getNotesState();
-  notes.topics[filePath] = text;
-  saveNotesState(notes);
+  return saveNoteEdit(filePath, text);
 }
 
 // ==========================================================================
@@ -812,6 +829,42 @@ function downloadStudyData(text, filename) {
 }
 
 function setupDataControls() {
+  const backupButton = document.getElementById('btn-export-backup');
+  const recoveryButton = document.createElement('button');
+  recoveryButton.id = 'btn-export-recovery';
+  recoveryButton.className = backupButton.className;
+  recoveryButton.textContent = 'Download recovery versions';
+  recoveryButton.onclick = () => downloadStudyData(JavaRevStorage.recoveryText(), 'JavaConcepts-recovery-versions.json');
+  backupButton.after(recoveryButton);
+  const reloadButton = document.createElement('button');
+  reloadButton.id = 'btn-reload-saved-text';
+  reloadButton.className = backupButton.className;
+  reloadButton.textContent = 'Reload saved text';
+  reloadButton.onclick = () => {
+    if (!confirm('Replace the open notes and code editor with saved text? Download recovery versions first to keep conflicting or unsaved edits.')) return;
+    noteEdits.clear(); editorEdits.clear(); activeEditorEdit = null;
+    renderNotesView();
+    if (currentEditorChallenge) loadEditorDraft(currentEditorChallenge, currentEditorChallenge.template || '');
+  };
+  recoveryButton.after(reloadButton);
+  JavaRevStorage.subscribe(event => {
+    if (event?.localReplacement) {
+      noteEdits.clear(); editorEdits.clear(); activeEditorEdit = null;
+    } else {
+      const edits = [...noteEdits.values(), ...(activeEditorEdit ? [activeEditorEdit] : [])];
+      for (const edit of edits) {
+        const saved = JavaRevStorage.readText(edit.base.key, edit.base.id);
+        if (saved.revision !== edit.base.revision && JSON.stringify(saved.value) !== JSON.stringify(edit.base.value)) {
+          JavaRevStorage.warn('An open note or code draft changed in another tab. Your editor text was kept. Download recovery versions to compare edits, or choose Reload saved text.');
+        }
+      }
+    }
+    const theme = JavaRevStorage.read('javarev_theme');
+    document.documentElement.setAttribute('data-theme', theme);
+    updateThemeIcons(theme);
+    updateStats(); updateSidebarCompletionStates(); renderResumeChapters();
+    renderNotesTopicList();
+  });
   document.getElementById('btn-export-data').onclick = () => {
     saveQuizProgress(); saveEditorDraft();
     downloadStudyData(JavaRevStorage.exportText(), 'JavaConcepts-study-backup.json');
@@ -1899,156 +1952,18 @@ function openNotesView(filePath) {
 }
 
 function escapePrintHtml(value) {
-  return String(value == null ? '' : value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function formatPrintInline(value) {
-  return escapePrintHtml(value).replace(/`([^`]+)`/g, '<code>$1</code>');
-}
-
-function renderPrintTopicNotes(topic) {
-  const blocks = topic.headerComments || [];
-  let html = '';
-  let listItems = [];
-
-  const flushList = () => {
-    if (!listItems.length) return;
-    html += `<ul>${listItems.map(item => `<li>${formatPrintInline(item.replace(/^[-*•]\s*/, ''))}</li>`).join('')}</ul>`;
-    listItems = [];
-  };
-
-  blocks.forEach(block => {
-    if (block.type === 'table') {
-      flushList();
-      html += '<div class="print-table-wrap"><table><thead><tr>';
-      (block.headers || []).forEach(header => { html += `<th>${formatPrintInline(header)}</th>`; });
-      html += '</tr></thead><tbody>';
-      (block.rows || []).forEach(row => {
-        html += '<tr>';
-        row.forEach(cell => { html += `<td>${formatPrintInline(cell)}</td>`; });
-        html += '</tr>';
-      });
-      html += '</tbody></table></div>';
-      return;
-    }
-
-    if (block.type === 'code' && block.code) {
-      flushList();
-      html += `<pre><code>${escapePrintHtml(block.code)}</code></pre>`;
-      return;
-    }
-
-    (block.lines || []).forEach(rawLine => {
-      const line = String(rawLine || '').trim();
-      if (!line) return;
-      const callout = line.match(/^(Warning|OCJP [Tt]rap|Interview [Tt]rap|Pitfall|Important|CAUTION|NOTE)\s*:\s*(.*)/i);
-      const heading = /^(Parameter notes|Key Takeaways|Core Concepts|Syntax|Rules|Exception Hierarchy|Method Overview|Good Practices)\b/i.test(line) ||
-        ((line.endsWith(':') || line.endsWith(':-')) && line.length < 80 && !line.startsWith('-'));
-
-      if (callout) {
-        flushList();
-        html += `<aside><strong>${formatPrintInline(callout[1])}</strong> ${formatPrintInline(callout[2])}</aside>`;
-      } else if (heading) {
-        flushList();
-        html += `<h4>${formatPrintInline(line.replace(/[:-]+$/, ''))}</h4>`;
-      } else {
-        listItems.push(line);
-      }
-    });
-  });
-  flushList();
-
-  if (!html && topic.inlineComments && topic.inlineComments.length) {
-    html = `<ul>${topic.inlineComments.map(item => `<li>${formatPrintInline(item)}</li>`).join('')}</ul>`;
-  }
-  return html || '<p class="muted">No generated overview notes are available for this topic.</p>';
-}
-
-function isCodeChallengeTopic(topic) {
-  return /(challenge|deep\s*problem|deepproblems)/i.test(`${topic.topicName || ''} ${topic.fileName || ''} ${topic.filePath || ''}`);
-}
-
-function getChallengeCode(topic) {
-  return String(topic.code || '// No solution code available.')
-    .replace(/^\s*package[^;]+;\s*/m, '')
-    .replace(/^\s*\/\*[\s\S]*?\*\/\s*/, '')
-    .trim();
+  return JavaRevChapterExport.escapeHtml(value);
 }
 
 function printChapterNotes(chapterIndex) {
   const chapter = CONCEPTS_DATA[Number(chapterIndex)];
   if (!chapter) return;
-
-  const printUrl = new URL(window.location.href);
-  printUrl.hash = 'chapter-print';
-  const printWindow = window.open(printUrl.href, '_blank');
-  if (!printWindow) {
-    window.alert('Please allow pop-ups to print chapter notes.');
-    return;
-  }
-
-  const topics = chapter.topics || [];
-  const topicHtml = topics.map((topic, index) => `
-    <article class="topic">
-      <div class="topic-kicker">Topic ${index + 1} of ${topics.length}</div>
-      <h2>${escapePrintHtml(topic.topicName)}</h2>
-      <section class="notes-content">${renderPrintTopicNotes(topic)}</section>
-      ${isCodeChallengeTopic(topic) && topic.code ? `<section class="challenge-code"><h3>Implementation</h3><pre><code>${escapePrintHtml(getChallengeCode(topic))}</code></pre></section>` : ''}
-    </article>`).join('');
-
-  const projectNote = getProjectNotes().trim();
-  const projectHtml = projectNote ? `
-    <section class="project-notes">
-      <h2>Project Notes</h2>
-      <div>${formatPrintInline(projectNote).replace(/\r?\n/g, '<br>')}</div>
-    </section>` : '';
-
-  printWindow.document.write(`<!doctype html><html><head><meta charset="utf-8"><title></title>
-    <style>
-      @page { size: A4; margin: 0; }
-      * { box-sizing: border-box; }
-      body { margin: 0; padding: 18mm 16mm; color: #172033; background: #fff; font-family: Arial, Helvetica, sans-serif; font-size: 11pt; line-height: 1.55; }
-      .cover { min-height: 261mm; display: flex; flex-direction: column; justify-content: center; border-bottom: 2px solid #d8dee9; page-break-after: always; }
-      .eyebrow, .topic-kicker { color: #52627a; text-transform: uppercase; letter-spacing: .08em; font-size: 9pt; font-weight: 700; }
-      h1 { margin: 10pt 0; color: #102a43; font-size: 28pt; line-height: 1.15; }
-      h2 { margin: 0 0 14pt; padding-bottom: 6pt; color: #102a43; font-size: 19pt; line-height: 1.2; border-bottom: 1px solid #cbd5e1; }
-      h3 { margin: 18pt 0 7pt; color: #1f4e79; font-size: 13pt; }
-      h4 { margin: 14pt 0 5pt; color: #1f4e79; font-size: 11.5pt; page-break-after: avoid; }
-      .cover p { color: #52627a; font-size: 12pt; }
-      .topic { page-break-before: always; break-inside: auto; }
-      .topic:first-of-type { page-break-before: auto; }
-      .topic-kicker { margin-bottom: 6pt; }
-      .notes-content p, .notes-content li, .project-notes div { orphans: 3; widows: 3; }
-      ul { margin: 6pt 0 12pt; padding-left: 20pt; }
-      li { margin: 3pt 0; }
-      code { font-family: Consolas, 'Courier New', monospace; }
-      :not(pre) > code { padding: 1pt 3pt; background: #eef2f7; border-radius: 3pt; }
-      pre { margin: 10pt 0 14pt; padding: 10pt 12pt; background: #f4f6f8; border: 1px solid #d5dce5; border-radius: 4pt; color: #18212f; font: 9pt/1.5 Consolas, 'Courier New', monospace; white-space: pre-wrap; overflow-wrap: anywhere; break-inside: auto; }
-      .notes-content > pre { break-inside: avoid; }
-      .challenge-code { margin-top: 18pt; }
-      .challenge-code h3 { border-bottom: 1px solid #d8dee9; padding-bottom: 4pt; page-break-after: avoid; break-after: avoid; }
-      aside { margin: 10pt 0; padding: 8pt 10pt; background: #fff8e6; border-left: 4px solid #d48a00; break-inside: avoid; }
-      aside strong { color: #8a5700; }
-      .print-table-wrap { margin: 10pt 0 14pt; overflow: visible; break-inside: auto; }
-      table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
-      th, td { padding: 6pt 7pt; border: 1px solid #cbd5e1; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
-      th { color: #102a43; background: #e8eef5; font-weight: 700; }
-      tr { break-inside: avoid; }
-      .project-notes { page-break-before: always; }
-      .muted { color: #64748b; font-style: italic; }
-      @media print { a { color: inherit; text-decoration: none; } }
-    </style></head><body>
-    <header class="cover"><div class="eyebrow">Java Concepts Revision Notes</div><h1>${escapePrintHtml(chapter.name)}</h1><p>${topics.length} topic${topics.length === 1 ? '' : 's'} in this chapter</p></header>
-    ${topicHtml}${projectHtml}
-    </body></html>`);
-  printWindow.document.close();
-  printWindow.focus();
-  printWindow.setTimeout(() => printWindow.print(), 350);
+  const topicNotes = Object.fromEntries(chapter.topics.map(topic => [
+    topic.filePath, getTopicNote(topic.filePath)
+  ]));
+  return JavaRevChapterExport.openChapter(chapter, {
+    projectNotes: getProjectNotes(), topicNotes
+  });
 }
 
 function populateNotesChapterExport() {
@@ -2066,11 +1981,13 @@ function renderNotesView() {
   const topicMeta = document.getElementById('topic-notes-meta');
 
   if (projectTextarea) {
-    projectTextarea.value = getProjectNotes();
+    projectTextarea.value = noteEdit(null).value;
     projectTextarea.oninput = (e) => {
-      saveProjectNotes(e.target.value);
-      if (projectMeta) projectMeta.innerText = `Last updated ${new Date().toLocaleTimeString()}`;
+      const result = saveProjectNotes(e.target.value);
+      if (projectMeta) projectMeta.innerText = result.ok ? `Last updated ${new Date().toLocaleTimeString()}` :
+        result.recoverable ? 'Conflict: your version is in recovery downloads' : 'Not saved: download recovery versions before leaving';
     };
+    if (projectMeta) projectMeta.innerText = noteEdit(null).result?.ok === false ? 'Review the storage warning before leaving' : 'Autosaved locally';
   }
 
   const topicInfo = currentNotesTopicPath ? findTopicByFilePath(currentNotesTopicPath) : null;
@@ -2081,18 +1998,20 @@ function renderNotesView() {
   }
 
   if (topicTextarea) {
-    topicTextarea.value = topicInfo ? getTopicNote(topicInfo.topic.filePath) : '';
+    topicTextarea.value = topicInfo ? noteEdit(topicInfo.topic.filePath).value : '';
     topicTextarea.disabled = !topicInfo;
     topicTextarea.oninput = (e) => {
       if (!topicInfo) return;
-      saveTopicNote(topicInfo.topic.filePath, e.target.value);
-      if (topicMeta) topicMeta.innerText = `Autosaved ${new Date().toLocaleTimeString()}`;
+      const result = saveTopicNote(topicInfo.topic.filePath, e.target.value);
+      if (topicMeta) topicMeta.innerText = result.ok ? `Autosaved ${new Date().toLocaleTimeString()}` :
+        result.recoverable ? 'Conflict: your version is in recovery downloads' : 'Not saved: download recovery versions before leaving';
       renderNotesTopicList();
     };
   }
 
   if (topicMeta) {
-    topicMeta.innerText = topicInfo ? 'Autosaved locally' : 'Select a topic to start writing';
+    topicMeta.innerText = topicInfo ? (noteEdit(topicInfo.topic.filePath).result?.ok === false ?
+      'Review the storage warning before leaving' : 'Autosaved locally') : 'Select a topic to start writing';
   }
 
   populateNotesChapterExport();
@@ -4986,14 +4905,16 @@ function saveChallengePassed(id, kind = 'self-assessed') {
 }
 
 function saveEditorDraft() {
-  if (!currentEditorChallenge) return;
-  const drafts = JavaRevStorage.read('javarev_editor_drafts');
+  if (!currentEditorChallenge || !activeEditorEdit) return;
   const code = document.getElementById('practice-code-textarea').value;
-  if (drafts[currentEditorChallenge.id]?.code === code) return;
+  const edit = activeEditorEdit;
+  if (edit.value === code && (!edit.result || edit.result.recoverable)) return;
+  edit.value = code;
   JavaRevRuntime.cancel();
   practiceRunId++;
-  drafts[currentEditorChallenge.id] = { code, contentVersion: currentEditorChallenge.contentVersion || null };
-  JavaRevStorage.write('javarev_editor_drafts', drafts);
+  edit.result = JavaRevStorage.saveText(edit.base, { code, contentVersion: currentEditorChallenge.contentVersion || null });
+  if (edit.result.ok) edit.base = edit.result.snapshot;
+  return edit.result;
 }
 
 function loadEditorDraft(challenge, template) {
@@ -5001,8 +4922,13 @@ function loadEditorDraft(challenge, template) {
   JavaRevRuntime.cancel();
   practiceRunId++;
   currentEditorChallenge = challenge;
-  const draft = JavaRevStorage.read('javarev_editor_drafts')[challenge.id];
-  document.getElementById('practice-code-textarea').value = draft ? draft.code : template;
+  if (!editorEdits.has(challenge.id)) {
+    const base = JavaRevStorage.readText('javarev_editor_drafts', challenge.id);
+    editorEdits.set(challenge.id, { base, value: base.value ? base.value.code : template, result: null });
+  }
+  activeEditorEdit = editorEdits.get(challenge.id);
+  const draft = activeEditorEdit.base.value;
+  document.getElementById('practice-code-textarea').value = activeEditorEdit.value;
   if (draft?.contentVersion && challenge.contentVersion && draft.contentVersion !== challenge.contentVersion) {
     JavaRevStorage.warn(`The saved draft for ${challenge.title} was kept, but the challenge changed. Review its instructions before checking.`);
   }

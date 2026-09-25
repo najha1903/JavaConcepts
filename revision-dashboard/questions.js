@@ -169,28 +169,28 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp"
       ],
-      "question": "Two files are created in the same folder. What happens when they are compiled?",
+      "question": "These two public classes are declared together in One.java. What happens when it is compiled?",
       "code": "// File One.java\npublic class One { }\npublic class Two { }",
       "options": [
-        "It compiles, and both classes are usable.",
+        "It compiles only if Two is also declared in its own file.",
         "It does not compile, because only one class in a file may be public.",
         "It compiles, and One.java is renamed to Two.java automatically.",
-        "It compiles only if Two is also declared in its own file."
+        "It compiles, and both classes are usable."
       ],
       "answer": 1,
       "whyByOption": {
-        "0": "the second public declaration is rejected before anything is produced.",
+        "0": "declaring Two in its own file is exactly the fix. It is not an additional condition on this file.",
         "2": "the compiler never renames files.",
-        "3": "declaring Two in its own file is exactly the fix. It is not an additional condition on this file."
+        "3": "the second public declaration is rejected before anything is produced."
       },
       "explanation": "A source file may hold several classes, but only one of them may be public, and its name must match the file name. Two public classes in one file is a compile-time error.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
-      "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_5-two-files-are-created-in-the-same-folder",
+      "qid": "q-c5ab7077c61ffb9a07e01bef",
       "concepts": [
         "statements"
       ],
       "legacyQids": [],
-      "contentVersion": "67487e6ef70ca193ad885ca2f894d82ee08cd6ebc6512e9c0157e2753c0f7b8c"
+      "contentVersion": "ba954ef78232d016648e67c844047eb5c49abd7d8c5dbbbbd352f34cb5248809"
     },
     {
       "type": "scq",
@@ -307,14 +307,14 @@ const QUESTIONS_BANK = {
         "1": "returning nothing is the job of void, not static.",
         "2": "being callable from other classes is the job of public, not static."
       },
-      "explanation": "A program needs an entry point before any object exists, so main must be callable without an instance. That is what static provides.",
+      "explanation": "In the Java 17 entry-point form, static lets the launcher call main without constructing an instance of its class.",
       "topicPath": "src/Chapter_1_Java_Introduction/HelloWorld.java",
       "qid": "chapter-1-java-introduction_src-chapter-1-java-introduction-helloworld-java_custom_9-why-must-the-main-method-be-static",
       "concepts": [
         "statements"
       ],
       "legacyQids": [],
-      "contentVersion": "3d6aa9033854cde06326f87913fae154f338a00be25676b82a3ef54d96b35531"
+      "contentVersion": "89aa9f7cb969a43fb85f7e1a43017f45729e224abafae71423e18a05a53dce74"
     },
     {
       "type": "scq",
@@ -900,10 +900,10 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "What does it mean that Strings are immutable in Java?",
-      "modelAnswer": "Once a String is created, its value cannot be changed. Any modification creates a new String object. The original String is discarded and becomes eligible for garbage collection.",
+      "modelAnswer": "Once a String is created, its value cannot be changed. Operations return a result and may reuse the original when unchanged. Reassignment changes one reference; the old object is collectible only when no live strong reference keeps it reachable.",
       "keyPoints": [
-        "Once a String is created, its value cannot be changed. Any modification creates a new String object.",
-        "The original String is discarded and becomes eligible for garbage collection."
+        "Once a String is created, its value cannot be changed. Operations return a result and may reuse the original when unchanged.",
+        "Reassignment changes one reference; the old object is collectible only when no live strong reference keeps it reachable."
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -914,7 +914,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "c645b50e366594d75068e40ceec9b02c0583dfcec8c63f9195265180fb472b6a"
+      "contentVersion": "5a948362391c9f6ba6e669f17a09aa76c6fd4747824d989230ad81f93cce2fd4"
     },
     {
       "type": "interview",
@@ -926,9 +926,9 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "What is the difference between a char and a String in Java?",
-      "modelAnswer": "char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\").",
+      "modelAnswer": "char holds one UTF-16 code unit and uses single quotes ('A'). String holds a sequence of these units and uses double quotes (\"Hello\").",
       "keyPoints": [
-        "char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes (\"Hello\")."
+        "char holds one UTF-16 code unit and uses single quotes ('A'). String holds a sequence of these units and uses double quotes (\"Hello\")."
       ],
       "explanation": "This question was authored directly in the source file using @quiz/@answer markers.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -939,7 +939,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "14156c24d590fcdea04fb35b9e52e7e1aa9e17af9acc7bc92f5e9f7c033d85fa"
+      "contentVersion": "b4b64157f2e221c6b3065640f8e1826dcd636c70e0d089d7ebb1a952efa9821b"
     },
     {
       "type": "interview",
@@ -1143,11 +1143,11 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you find the length of a String WITHOUT using the built-in .length() method?",
-      "modelAnswer": "Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length. Another approach: convert to char array and use array.length — but that internally calls length anyway. Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally.",
+      "modelAnswer": "Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length. Another approach is str.toCharArray().length, but it allocates and copies an array unnecessarily. This counts UTF-16 code units, just like String.length(), not necessarily whole Unicode characters. Direct length() avoids scanning or copying.",
       "keyPoints": [
         "Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length.",
-        "Another approach: convert to char array and use array.length — but that internally calls length anyway.",
-        "Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally."
+        "Another approach is str.toCharArray().length, but it allocates and copies an array unnecessarily.",
+        "This counts UTF-16 code units, just like String.length(), not necessarily whole Unicode characters. Direct length() avoids scanning or copying."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -1158,7 +1158,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "31456fe7602a9adcc8675c7e9db0626d8043fabf9c539266d83ebce9ebf3f86c"
+      "contentVersion": "53d9ec60f74a23aad847f60c6d8769a27d880cbbbdcaeab93ba8a5214ba1a70f"
     },
     {
       "type": "interview",
@@ -1225,11 +1225,12 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you REVERSE a String WITHOUT using StringBuilder.reverse() or any library?",
-      "modelAnswer": "Iterate from the last index to 0 and build a new String: String rev = \"\"; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); } Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr). Key insight: Strings are immutable so you can't modify in place — you must build a new result.",
+      "modelAnswer": "Iterate from the last index to 0 and build a new String: String rev = \"\"; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); } Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr). Key insight: Strings are immutable so you can't modify in place — you must build a new result. These char-by-char reversals assume single-unit characters; reversing surrogate halves can corrupt supplementary Unicode characters.",
       "keyPoints": [
         "Iterate from the last index to 0 and build a new String: String rev = \"\"; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }",
         "Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr).",
-        "Key insight: Strings are immutable so you can't modify in place — you must build a new result."
+        "Key insight: Strings are immutable so you can't modify in place — you must build a new result.",
+        "These char-by-char reversals assume single-unit characters; reversing surrogate halves can corrupt supplementary Unicode characters."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -1240,7 +1241,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "e4d228294ccfeedaf9ed792b1fa1ac34903d0c438e39f10e43125ea845b713e5"
+      "contentVersion": "83078f067cf38580d02199eb203d936f74d580ec04f82c838a36d73e6ef0dc0e"
     },
     {
       "type": "interview",
@@ -1305,9 +1306,9 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you check if a String CONTAINS a substring WITHOUT using contains() or indexOf()?",
-      "modelAnswer": "Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true. Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm.",
+      "modelAnswer": "Use a sliding window: for i from 0 through str.length() - sub.length(), check str.substring(i, i+sub.length()).equals(sub). This includes an empty substring and avoids out-of-range indexes. Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm.",
       "keyPoints": [
-        "Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true.",
+        "Use a sliding window: for i from 0 through str.length() - sub.length(), check str.substring(i, i+sub.length()).equals(sub). This includes an empty substring and avoids out-of-range indexes.",
         "Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
@@ -1319,7 +1320,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "7c26d7f0c6a53439c4e252ef602b07900e32c669db35d193fd4187ddf1b85b71"
+      "contentVersion": "6f8d1ab349cbd70766f2ddc42281d1f8930a205dc9c21640c7a3ab0779809a68"
     },
     {
       "type": "interview",
@@ -1331,10 +1332,11 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you convert a String to UPPERCASE WITHOUT using toUpperCase()?",
-      "modelAnswer": "Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32); Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }",
+      "modelAnswer": "Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32); Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); } This rule covers ASCII a-z only; it is not a general Unicode or locale-aware uppercase conversion.",
       "keyPoints": [
         "Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);",
-        "Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }"
+        "Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }",
+        "This rule covers ASCII a-z only; it is not a general Unicode or locale-aware uppercase conversion."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -1345,7 +1347,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "9cc4e773064ba48ac6eeebb0f088ee9f7037ed4c6b65fae09e87c5994fc8a116"
+      "contentVersion": "50f7d543802a391da87561beb5b4f2bb52cd75f8b386578992b06439ac4427ec"
     },
     {
       "type": "interview",
@@ -1383,11 +1385,12 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you check if two Strings are ANAGRAMS WITHOUT using sort()?",
-      "modelAnswer": "Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0. If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach. Example: \"listen\" and \"silent\" are anagrams — same characters, different order.",
+      "modelAnswer": "Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0. If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach. Example: \"listen\" and \"silent\" are anagrams — same characters, different order. The int[256] approach assumes every char is below 256. General Java char values need a larger table or a map; Unicode code points need separate handling.",
       "keyPoints": [
         "Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0.",
         "If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach.",
-        "Example: \"listen\" and \"silent\" are anagrams — same characters, different order."
+        "Example: \"listen\" and \"silent\" are anagrams — same characters, different order.",
+        "The int[256] approach assumes every char is below 256. General Java char values need a larger table or a map; Unicode code points need separate handling."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -1398,7 +1401,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "481f7e2c535e392eaa41b96e946e7416e2ea9bea55cdebddd2c73e466194ea2b"
+      "contentVersion": "a0aa8dedbd98d7ccce4c06f9fad1afe5cceb1088a179d2fd7f2d3f7f1d310e5d"
     },
     {
       "type": "interview",
@@ -1436,9 +1439,10 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you COUNT WORDS in a String WITHOUT using split()?",
-      "modelAnswer": "Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} } Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it.",
+      "modelAnswer": "Track transitions from space/start to non-space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} } This example treats only the ordinary space as a separator, not tabs or newlines. Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it.",
       "keyPoints": [
-        "Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }",
+        "Track transitions from space/start to non-space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }",
+        "This example treats only the ordinary space as a separator, not tabs or newlines.",
         "Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
@@ -1450,7 +1454,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "315347e935647a7567da312645dee150c514bde80aedf5bd47f4507461a48e1e"
+      "contentVersion": "56d992d51635d669397495ba3c475f7b5cec6b53b6ff604cc6c634dc94932897"
     },
     {
       "type": "interview",
@@ -1462,10 +1466,11 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you find the FIRST NON-REPEATING CHARACTER in a String WITHOUT library methods?",
-      "modelAnswer": "Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1. int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;",
+      "modelAnswer": "Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1. int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c; This array assumes char values below 256; define a no-match result and use a larger table or map for other input.",
       "keyPoints": [
         "Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1.",
-        "int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;"
+        "int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;",
+        "This array assumes char values below 256; define a no-match result and use a larger table or map for other input."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Strings/StringExample.java",
@@ -1476,7 +1481,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "074a3531901b63283ba3ef807f477831be2b0324c32009f3cd5e79b5813efbf7"
+      "contentVersion": "af052226ea23231feaae33a65901bebe6753f319e4eaf4e9bdcf5cdede36cee3"
     },
     {
       "type": "interview",
@@ -1488,9 +1493,10 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "How do you REMOVE DUPLICATE CHARACTERS from a String WITHOUT using Set or distinct()?",
-      "modelAnswer": "Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true. Example: \"programming\" → \"progamin\" (each character kept only on first occurrence).",
+      "modelAnswer": "Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true. The 256-entry array is valid only for char values below 256, not arbitrary Java text. Example: \"programming\" → \"progamin\" (each character kept only on first occurrence).",
       "keyPoints": [
         "Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true.",
+        "The 256-entry array is valid only for char values below 256, not arbitrary Java text.",
         "Example: \"programming\" → \"progamin\" (each character kept only on first occurrence)."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
@@ -1502,7 +1508,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "4aff5b21237e6551592a45a9f3231ade81b3114a87a9f1db553e799f1994957f"
+      "contentVersion": "f34bd5e42678e2154d7048daa5809f60016f172c75ec9048750eb3ad1d5d0edd"
     },
     {
       "type": "interview",
@@ -1540,11 +1546,11 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "What is the difference between == and .equals() when comparing Strings in Java?",
-      "modelAnswer": "== compares references, meaning whether both variables point to the exact same String object in memory. .equals() compares String content, so it checks whether the characters are the same. Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because both usually point to the same pooled literal object, but new String(\"hello\") compared with another new String(\"hello\") gives == as false because they are different heap objects. Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects.",
+      "modelAnswer": "== compares references, meaning whether both variables point to the exact same String object in memory. .equals() compares String content, so it checks whether the characters are the same. Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because identical literals are guaranteed to share an interned object. Two separate new String(\"hello\") expressions create distinct objects. Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects.",
       "keyPoints": [
         "== compares references, meaning whether both variables point to the exact same String object in memory.",
         ".equals() compares String content, so it checks whether the characters are the same.",
-        "Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because both usually point to the same pooled literal object, but new String(\"hello\") compared with another new String(\"hello\") gives == as false because they are different heap objects.",
+        "Example: String a = \"hello\"; String b = \"hello\"; gives a == b as true because identical literals are guaranteed to share an interned object. Two separate new String(\"hello\") expressions create distinct objects.",
         "Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW.",
@@ -1556,7 +1562,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "e76b6000f23499c05d7081ce76aec984bcb0421b115a50f821ca8002a3aaae62"
+      "contentVersion": "a13506d6ce50eefe99d33c09415938ca32d798b655ccfa4fdcb615b804e17ef1"
     },
     {
       "type": "interview",
@@ -1569,9 +1575,9 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "What is the output of: Integer a = 127; Integer b = 127; System.out.println(a == b); then Integer x = 128; Integer y = 128; System.out.println(x == y);",
-      "modelAnswer": "Output: true on the first line and false on the second line. Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference. 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false. Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.",
+      "modelAnswer": "The first line is guaranteed true; the second is typically false but may be true with an extended Integer cache. Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference. 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false. Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.",
       "keyPoints": [
-        "Output: true on the first line and false on the second line.",
+        "The first line is guaranteed true; the second is typically false but may be true with an extended Integer cache.",
         "Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.",
         "128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.",
         "Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality."
@@ -1585,7 +1591,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "ec28af759c4039a3c59c5c06bd7a5999e731b8a5f7e77c9e6903d54731cf1ba7"
+      "contentVersion": "17e35b718463902a0d3500d22c3d076831bad4589cbcb1a433108b8b0fb4ac7d"
     },
     {
       "type": "interview",
@@ -1886,18 +1892,18 @@ const QUESTIONS_BANK = {
       "options": [
         "2 and then 1, because the inner x hides the outer one only inside its block.",
         "2 and then 2, because the second declaration changes the first variable.",
-        "1 and then 1, because the inner declaration is ignored.",
-        "It does not compile, because x is declared twice."
+        "It does not compile, because x is declared twice in overlapping local scopes.",
+        "1 and then 1, because the inner declaration is ignored."
       ],
-      "answer": 0,
+      "answer": 2,
       "whyByOption": {
-        "1": "the inner x is a separate variable that disappears at the closing brace.",
-        "2": "the inner declaration is a real declaration, so the first print sees 2.",
-        "3": "redeclaring a name in a nested block is legal. It is an error only within the same block."
+        "0": "the nested declaration is rejected, so neither print executes.",
+        "1": "a declaration does not reassign the outer variable, and this declaration is illegal.",
+        "3": "the compiler reports the duplicate local name rather than ignoring it."
       },
-      "explanation": "A name declared inside a block is a new variable that shadows the outer one for that block. After the closing brace the outer one is visible again.",
+      "explanation": "A nested block cannot redeclare a local variable from its enclosing scope. A local can shadow a field, but that is not this example.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_1_Variables/Variables.java",
-      "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-1-variables-variables-java_custom_5-what-is-printed-by-this-code",
+      "qid": "q-6dad097cbe05acdaa18e6fcf",
       "concepts": [
         "primitives",
         "literals",
@@ -1908,7 +1914,7 @@ const QUESTIONS_BANK = {
         "var"
       ],
       "legacyQids": [],
-      "contentVersion": "44934a020319294f978105ab83e0b27437a70cc17b58d93fc37dc70031400675"
+      "contentVersion": "46a3c951e15b656a3d1d037d70d5b186a1f92ee712e06980392a8d3aeb256af7"
     },
     {
       "type": "scq",
@@ -2148,7 +2154,7 @@ const QUESTIONS_BANK = {
       "answer": 3,
       "whyByOption": {
         "0": "5 + 3 is an expression, and it works out to 8.",
-        "1": "= is an operator, so x = 5 + 3 is an assignment expression.",
+        "1": "= introduces the initializer here, not a standalone statement. After declaration, x = 5 + 3 can be an assignment expression.",
         "2": "x is a variable, which is the simplest kind of expression there is."
       },
       "explanation": "An expression is built from variables, literals, and operators. The type int says what kind of value is being declared.",
@@ -2164,7 +2170,7 @@ const QUESTIONS_BANK = {
         "var"
       ],
       "legacyQids": [],
-      "contentVersion": "3fa721b416b8986194bd6f3a34a7263d651d846386fbc25feae07244851e8177"
+      "contentVersion": "8f5dec7c118ae402b45bfe5a2d1ddcf3810ac9c703d425c83a1684d3aeb0902c"
     },
     {
       "type": "scq",
@@ -2474,9 +2480,9 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "What is the difference between widening and narrowing primitive conversions in Java?",
-      "modelAnswer": "Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost. Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost. Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.",
+      "modelAnswer": "Widening is implicit for compatible types, such as int to long. Some widening conversions to float or double can lose precision. Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost. Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated.",
       "keyPoints": [
-        "Widening means converting a smaller compatible type to a larger one, such as int to long. It is automatic because no information is lost.",
+        "Widening is implicit for compatible types, such as int to long. Some widening conversions to float or double can lose precision.",
         "Narrowing means converting a larger type to a smaller one, such as double to int. It requires an explicit cast because precision or range can be lost.",
         "Example: double d = 9.8; int n = (int) d; gives 9 because the fractional part is truncated."
       ],
@@ -2489,7 +2495,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "11f8d15dcbe298d5d38b65c10a99512c9724626f299cc53e88b1cfd81a93da16"
+      "contentVersion": "bf3df1bca5ad286cb8c9762d27ce68c3eb690ba35992f0bd48625d25fa76bb80"
     },
     {
       "type": "interview",
@@ -2856,11 +2862,11 @@ const QUESTIONS_BANK = {
       ],
       "answer": 0,
       "whyByOption": {
-        "1": "the wrap-around happens only for a computed value at runtime, such as byte b = (byte) 128;. Here the compiler stops first.",
+        "1": "byte b = (byte) 128; would give -128, but this declaration has no cast, so it is rejected.",
         "2": "the range is fixed by the type, and 127 is the largest byte.",
         "3": "128 is one past the maximum, so the value does not fit."
       },
-      "explanation": "A byte is 8 bits and holds -128 to 127. A literal outside that range cannot be assigned to a byte without a cast. Wrapping happens with arithmetic at run time, not when the compiler can see the value is out of range.",
+      "explanation": "A byte holds -128 to 127. An out-of-range int constant needs an explicit narrowing cast; that cast discards high bits even in a constant expression.",
       "topicPath": "src/Chapter_2_PrimitiveTypes/Sub_Chapter_3_Primitive_Data_Types/PrimitiveDataTypes.java",
       "qid": "chapter-2-primitive-types_src-chapter-2-primitivetypes-sub-chapter-3-primitive-data-types-primitivedatatypes-java_custom_19-does-this-line-compile",
       "concepts": [
@@ -2869,7 +2875,7 @@ const QUESTIONS_BANK = {
         "string-pool"
       ],
       "legacyQids": [],
-      "contentVersion": "6f331aad25e4bac5b02399876f1fd76417f2ddb5496ffea9ae11c5e8e90bd9af"
+      "contentVersion": "0979055977de1267d210d607aabc560dc76dc7761abadbf95ae40a34c4c22281"
     },
     {
       "type": "scq",
@@ -4672,10 +4678,10 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "Is int x = 5; a statement or an expression?",
-      "modelAnswer": "It is a declaration statement. The whole line is not just an expression, even though it contains the assignment expression x = 5.",
+      "modelAnswer": "It is a declaration statement. The whole line is a declaration, containing the initializer expression 5. A later x = 5 would be an assignment expression.",
       "keyPoints": [
         "It is a declaration statement.",
-        "The whole line is not just an expression, even though it contains the assignment expression x = 5."
+        "The whole line is a declaration, containing the initializer expression 5. A later x = 5 would be an assignment expression."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged OCJP.",
       "topicPath": "src/Chapter_4_Statements_And_Indentations/StatementsWhiteSpaceAndIndentation.java",
@@ -4685,7 +4691,7 @@ const QUESTIONS_BANK = {
         "if-else"
       ],
       "legacyQids": [],
-      "contentVersion": "7f0cff02d05ed6138b4f794a8fd47ac1036e6da38c6c53015e075a4eb91dd4bc"
+      "contentVersion": "11f994970551ba549c331a64535e9fedf07f420f38f2b8b6ad951b59730822d0"
     },
     {
       "type": "interview",
@@ -4755,7 +4761,7 @@ const QUESTIONS_BANK = {
       ],
       "answer": 1,
       "whyByOption": {
-        "0": "int x = 5; contains the expression x = 5, but the whole declaration is a statement, so the two are not the same.",
+        "0": "int x = 5; contains the initializer expression 5, but the whole declaration is a statement, so the two are not the same.",
         "2": "expressions can be fragments such as 2 + 3, and statements are the ones usually written as a line.",
         "3": "this is reversed. 2 + 3 yields a value, so it is an expression."
       },
@@ -4767,7 +4773,7 @@ const QUESTIONS_BANK = {
         "if-else"
       ],
       "legacyQids": [],
-      "contentVersion": "1a3b2e9872d0fbd88364369e6375747b364578d9bd6e4ed24eb108ed1b30cc1c"
+      "contentVersion": "cc11afedaebade8167691ce29b75138734c5c3aef3872a3e4531d8abf6af83c5"
     },
     {
       "type": "scq",
@@ -5567,9 +5573,9 @@ const QUESTIONS_BANK = {
         "interview"
       ],
       "question": "What parameter value does System.out.println(null) print?",
-      "modelAnswer": "It prints the literal text \"null\" followed by a newline; careful, it does not print an empty line.",
+      "modelAnswer": "It does not compile: println(String) and println(char[]) are both applicable, so the call is ambiguous. println((String) null) prints \"null\".",
       "keyPoints": [
-        "It prints the literal text \"null\" followed by a newline; careful, it does not print an empty line."
+        "It does not compile: println(String) and println(char[]) are both applicable, so the call is ambiguous. println((String) null) prints \"null\"."
       ],
       "explanation": "This question was authored directly in the source file with the @quiz marker, tagged INTERVIEW TRAP.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_1_If_Then_Else_Control_Statement/IfExample.java",
@@ -5580,7 +5586,7 @@ const QUESTIONS_BANK = {
         "if-else"
       ],
       "legacyQids": [],
-      "contentVersion": "bd89cb5c3ad193eef68d04082ebea7cef18416444935f9f04871255abdd474c2"
+      "contentVersion": "0cada8ba0ddbce533b0bf38467ec243b37cf397352401629454409551b7aacfb"
     },
     {
       "type": "interview",
@@ -6378,30 +6384,30 @@ const QUESTIONS_BANK = {
       "tags": [
         "ocjp"
       ],
-      "question": "Does this code compile?",
+      "question": "With boolean gameOver = true already declared, does this code compile?",
       "code": "if (gameOver) { int n = 1; System.out.println(n); }\nif (gameOver) { int n = 2; System.out.println(n); }",
       "options": [
+        "No, because n is declared twice in the same method.",
         "Yes, and it prints 1 then 2, because each block has its own n.",
-        "Yes, and it prints 2 both times, because the second declaration wins.",
         "No, because a local variable may be declared only once per class.",
-        "No, because n is declared twice in the same method."
+        "Yes, and it prints 2 both times, because the second declaration wins."
       ],
-      "answer": 0,
+      "answer": 1,
       "whyByOption": {
-        "1": "the first block prints its own n, which is still 1.",
+        "0": "the duplicate-name rule applies within one scope, and these two scopes differ.",
         "2": "local variables in separate blocks may share a name.",
-        "3": "the duplicate-name rule applies within one scope, and these two scopes differ."
+        "3": "the first block prints its own n, which is still 1."
       },
       "explanation": "The two blocks are separate scopes, so each block declares and prints its own n.",
       "topicPath": "src/Chapter_5_If_Else_Statements/Sub_Chapter_2_Code_Block_If_Then_Else_Challenge/CodeBlocksIfThenElse.java",
-      "qid": "chapter-5-if-else-statements_src-chapter-5-if-else-statements-sub-chapter-2-code-block-if-then-else-challenge-codeblocksifthenelse-java_custom_5-does-this-code-compile",
+      "qid": "q-f044128b5e4ed9243924789b",
       "concepts": [
         "if-else",
         "operators",
         "statements"
       ],
       "legacyQids": [],
-      "contentVersion": "7c08cff743ecd3a3a61c804ca22c46b4bceb19003f3dcee5f6f4645b7b052745"
+      "contentVersion": "5e4155725469aef7047c82e657bbcad75efa03a4c2e94510deb59da6c023171f"
     },
     {
       "type": "scq",
@@ -21333,7 +21339,7 @@ const QUICK_REVISION_BANK = {
         "code": ""
       },
       {
-        "say": "Java is compiled once, then interpreted, which is what \"write once, run anywhere\" means.",
+        "say": "Java compiles to portable bytecode; a compatible JVM executes it using interpretation and/or native compilation.",
         "code": ""
       },
       {
@@ -21391,7 +21397,7 @@ const QUICK_REVISION_BANK = {
         "code": ""
       },
       {
-        "say": "Default to `int` for whole numbers and `double` for decimals; `long` with an `L` only past 2.1 billion, and `BigDecimal` for money.",
+        "say": "Use `int` for typical whole numbers, `long` for a wider range, and `double` for approximate decimals; exact decimals need another representation.",
         "code": ""
       },
       {
@@ -21463,7 +21469,7 @@ const QUICK_REVISION_BANK = {
           [
             "char",
             "16 bits",
-            "A single Unicode character — written in single quotes: 'A'"
+            "One UTF-16 code unit, 0 to 65535; written in single quotes: 'A'"
           ],
           [
             "int",
@@ -21515,7 +21521,7 @@ const QUICK_REVISION_BANK = {
     ],
     "gotchas": [
       {
-        "say": "Dividing an `int` by zero throws `ArithmeticException`, but dividing a `double` by zero gives `Infinity` and no error at all.",
+        "say": "Integer division by zero throws; `10.0 / 0.0` gives Infinity, while `0.0 / 0.0` gives NaN without throwing.",
         "code": ""
       },
       {
@@ -21638,7 +21644,7 @@ const QUICK_REVISION_BANK = {
         "code": "2 + 3          // 5"
       },
       {
-        "say": "Spaces, tabs and line breaks mean nothing to the compiler; indentation is for the reader.",
+        "say": "Extra whitespace between tokens usually affects readability only; whitespace inside literals and after line comments can matter.",
         "code": "int     c     =     5;"
       },
       {
@@ -21660,7 +21666,7 @@ const QUICK_REVISION_BANK = {
         "code": "{ int n = 1; } System.out.println(n);      // compile error"
       },
       {
-        "say": "A class body, a method body and the headers of `if` and `for` all end in a brace, and none of them takes a semicolon.",
+        "say": "Braced bodies need no extra semicolon; `do { ... } while (condition);` does. An `if` or `for` body can also be one statement.",
         "code": ""
       }
     ],

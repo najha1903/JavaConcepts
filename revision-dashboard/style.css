@@ -2007,14 +2007,14 @@ button:disabled:active,
   .nav-menu .nav-divider { display: block; }
 
   /* --- Dashboard view: show mobile intro, hide everything else --- */
-  #dashboard-view > *:not(.mobile-intro):not(.dashboard-settings):not(.resume-quiz-panel) { display: none; }
+  #dashboard-view > .view-header, #dashboard-view > .stats-grid { display: none; }
   .mobile-intro {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 14px;
-    padding: 48px 18px 24px;
+    padding: 20px 16px 24px;
   }
   .mobile-intro-icon svg { width: 56px; height: 56px; color: var(--accent-primary); }
   .mobile-intro h1 { font-size: 24px; margin: 0; }
@@ -2027,7 +2027,8 @@ button:disabled:active,
     align-items: stretch;
     gap: 12px;
   }
-  .study-actions { display: none; }   /* hide quiz/practice buttons; keep the Detailed/Quick toggle */
+  .study-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .study-actions .btn { flex: 1 1 140px; white-space: normal; }
 
   .study-grid {
     grid-template-columns: 1fr;
@@ -2407,7 +2408,7 @@ button:disabled:active,
 /* Practice Workspace split */
 .practice-workspace {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 24px;
   height: 100%;
   min-height: 0;
@@ -2418,6 +2419,7 @@ button:disabled:active,
   gap: 20px;
   height: 100%;
   min-height: 0;
+  min-width: 0;
 }
 .instruction-card {
   height: 100%;
@@ -2849,11 +2851,11 @@ button:disabled:active,
 
 @media (max-width: 1024px) {
   .practice-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     height: auto;
   }
   .practice-workspace {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     height: auto;
   }
   .quick-revision-grid {
@@ -2987,6 +2989,7 @@ button:disabled:active,
    ========================================================================== */
 .practice-tab-bar {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
   border-bottom: 2px solid var(--border-color, #333);
@@ -4149,3 +4152,22 @@ samp,
   border-top: 1px solid var(--border-color);
 }
 .dashboard-settings-note { font-size: 13px; color: var(--text-muted); }
+
+/* Shrink grid children, not their content: code scrolls inside its own editor. */
+.practice-container > *, .practice-workspace .card, .practice-workspace .card-body,
+.editor-container, .terminal-body, .test-cases-grid { min-width: 0; max-width: 100%; }
+.practice-container .card-header { flex-wrap: wrap; gap: 12px; }
+.practice-container .card-header > *, .practice-scope-label, .editor-header-info { min-width: 0; overflow-wrap: anywhere; }
+.editor-actions { flex-wrap: wrap; }
+.code-textarea { min-width: 0; }
+.practice-container pre { max-width: 100%; overflow-x: auto; }
+.practice-container p, .challenge-item, .practice-container h2 { overflow-wrap: anywhere; }
+.practice-container .btn { white-space: normal; }
+@media (max-width: 600px) {
+  .practice-tab { flex: 1 1 120px; padding: 12px; }
+  .practice-workspace .editor-actions { width: 100%; }
+  .practice-workspace .editor-actions > button { flex: 1 1 130px; }
+  .study-mode-toggle { max-width: 100%; }
+  .mode-toggle-btn { min-width: 0; white-space: normal; }
+  .dashboard-settings input { max-width: 100%; }
+}

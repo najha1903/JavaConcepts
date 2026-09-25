@@ -12,7 +12,7 @@
 // Regenerate with: node scripts/derive-code-questions.js [--force]
 // ============================================================================
 
-const SOURCE_HASH = '780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac';
+const SOURCE_HASH = 'b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a';
 const NATIVE_VALIDATION = {
   "release": 21,
   "preview": false,
@@ -36,7 +36,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "5d8f8828dd3e5bb311d00bb2206c598a5144c843709b056af0320eed9c40aa63",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -60,7 +60,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "8df98f70d283dc1117fefd6db5be7b2b2fcdc250dd3956617838dbf91d49f032",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -84,7 +84,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "ed83dfd2329aa91b6d3489e0e5ed8de2b38322082cd51a315309304eb9975f3b",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -108,7 +108,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "7ba9f7f4bacd1eaf8a4faf261bbb5fdbf22ed9e68243470137132df1b6ddbe2b",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -132,7 +132,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "acb934206252412e0010ef0e41293deb188f9e6f35955df27232c9fe4d7f5525",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -156,7 +156,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "ed4f318c2ebc187699e7033e30da39e62086b0db6b795cb8f71cdd95a9ba6e4e",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -180,7 +180,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "7b9686a659bd06b5b03c9e030b965554b80ccbc481a007ea67ad137f7997d8e8",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -204,7 +204,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "f4727e8faeaf9a4357f063222b4b1f95d52b078fd6ea248b63cb549b5e46bc69",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -228,7 +228,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "78905f86fdbd48f0c74adb04cdacf4501c6db6a54fafe515508bb19c70d959ae",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -252,7 +252,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "2617a4d5885607a8131aa115d176dcac50f19a966eeefac9648f1f34926a7123",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -276,7 +276,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "a0c3bda3ea11f9e0b5eafa22e4eb76b3f8fa8db6cbc0314e3af210c7f9e092cf",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -300,7 +300,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "0fdd7bcd46928fab5ec1b80cc2a215c706c2e6d2ddf0b68bb22703f40aa002ac",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -324,7 +324,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "4a244aa9b63a0d643b88f69c65c72e641ae72405064d91324ada82da623298a4",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -348,7 +348,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "5340efbbbb8faf9bc245ae070a47f3dcbc97ec717770fdf8ba7411322455d095",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -372,7 +372,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "906ca02ed5f4bbcb8947c51df8c8f3a37dba43349e439f745c8df794eb74106f",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -396,7 +396,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "cc3dd615e9a257bd8b84ae7059ad34b720e53f604f28aa876b1f146114363624",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -420,7 +420,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "c6bf721edb31465f3432653d1de8eefb420c064e288f0a7736360c037e75abab",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -444,7 +444,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "6c7fda0015b7db90ce04d02db90e4c44835b38e431dccdde073c8b9d0c35e986",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -468,7 +468,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "49ced9acad4b456b30e09dee19e42388874fa92e5bbcbb352f7edbbb8f34ab02",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -492,7 +492,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "41d4a5e25fe5bbf27db5a1152015977e9fc8dfce7a237da386ab51a92cd56f0f",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -516,7 +516,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "2f0a240b90ba9f5cfe46da4584006605be0a78f681ebf4c17b015d1f69a03a37",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -540,7 +540,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "96e2444d3b685ebe463c98d42879fc664eb9636e57a2139adfa8443fdbb28fb5",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -564,7 +564,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "9d090cdab0e37b08b794ccf3214dfcda2e74228ff7bf52a839e9d491bdb06d6a",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,
@@ -588,7 +588,7 @@ const DERIVED_CODE_QUESTIONS = [
     "provenance": {
       "kind": "native-derived-smoke",
       "sourceHash": "fd093ecdf99ca2d781cdaa71745aedd9a4ecc93ff62d6776f0e5ecee36e09c91",
-      "frameworkFingerprint": "780ff72a27eae6de7f094a094f2dde5cfda9038902bfe11de3725aff0b4dbbac",
+      "frameworkFingerprint": "b02698baa7782bc5a9a9fa2d53ec35ed3aaaed926825358cbb8ae8954fa7378a",
       "nativeValidation": {
         "release": 21,
         "preview": false,

@@ -10,7 +10,9 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // The assignment operator (=) assigns a value. The equality operator (==) compares values. Never use = inside a condition — use == instead.
 // Ternary Operator: a compact if-else in a single expression. Syntax: condition ? valueIfTrue : valueIfFalse
 // Example from code below: boolean wasCar = isCar ? true : false; — if isCar is true, wasCar = true; else wasCar = false.
-// Reference for operator precedence: cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html
+// Reference for expressions: https://docs.oracle.com/javase/specs/jls/se17/html/jls-15.html
+// Note :- Boolean objects can be unboxed in conditions, but a null Boolean throws NullPointerException.
+// A boolean assignment such as if (flag = true) compiles and assigns true; it is usually a mistaken comparison.
 
 // Conditions in practice :-
 // 1) The condition must be a boolean :-
@@ -38,7 +40,7 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // 5) Short-circuiting makes a null guard safe :-
 // String name = null;
 // if (name != null && name.length() > 5) { System.out.println("long"); }
-// Note :- when name is null the left side is false, so `name.length()` is never called and no NullPointerException can happen. The single-pipe `&` would evaluate both sides and throw.
+// Note :- when name is null the left side is false, so `name.length()` is never called. The single-ampersand `&` would evaluate both sides and throw.
 //
 // 6) `==` on Strings compares references, not text :-
 // String a = "hello";
@@ -69,9 +71,9 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 
     int ageOfClient = 20;
 
-    boolean isEighteenOrOver = (ageOfClient == 20) ? true : false;
+    boolean isEighteenOrOver = (ageOfClient >= 18) ? true : false;
 
-    Operand one - ageOfClient == 20, in this case we are checking the condition. It will return either true or false.
+    Operand one - ageOfClient >= 18 checks whether the age is at least 18, producing true or false.
 
     Operand two - true, is the value to be assigned to the variable isEighteenOrOver if the condition above is true.
 
@@ -106,7 +108,7 @@ package Chapter_5_If_Else_Statements.Sub_Chapter_1_If_Then_Else_Control_Statemen
 // @answer It contains command-line arguments as a zero-based String array, in the same order the user supplied them when starting the program.
 //
 // @quiz (INTERVIEW TRAP) What parameter value does System.out.println(null) print?
-// @answer It prints the literal text "null" followed by a newline; careful, it does not print an empty line.
+// @answer It does not compile: println(String) and println(char[]) are both applicable, so the call is ambiguous. println((String) null) prints "null".
 //
 // @quiz (OCJP) In condition ? a : b, what do the second and third operands mean?
 // @answer The second operand is the value used when the condition is true, and the third operand is the value used when the condition is false.
@@ -359,7 +361,7 @@ public class IfExample {
         if(isCar == true){ // Ideally, we should have used equalsTo(==) operator in place of assignment(=) operator. In this case,
             System.out.println("This is not supposed to happen");
 
-            boolean wasCar = isCar ? true : false; //Here since isCar value is false, the condition is checked first, since the condition is false, so false value gets assigned to wasCar.
+            boolean wasCar = isCar ? true : false; // This block is skipped when isCar is false. If entered, the expression copies true into wasCar.
 
             if(wasCar){
                 System.out.println("wasCar is true");

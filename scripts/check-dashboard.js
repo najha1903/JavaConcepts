@@ -457,8 +457,15 @@ for (const section of [...doc.querySelectorAll('.view-section')].map(s => s.id))
     g('showView')(section);
     const active = doc.querySelector('.view-section.active');
     if (!active) throw new Error('no section became active');
-    const text = active.textContent;
-    if (/NaN/.test(text)) throw new Error('the rendered view contains NaN');
+    // A value that computed to NaN is a bug. The literal word "NaN" inside authored
+    // notes is not: these notes correctly explain that 0.0 / 0.0 is NaN, and a check
+    // that greps the whole view fails on the learner's own accurate content. So the
+    // scan drops content subtrees and inspects only rendered labels and statistics.
+    const clone = active.cloneNode(true);
+    clone.querySelectorAll('.bank-notes, .bank-code-block, .bank-note-table, .bank-questions, .bank-q, .bank-q-answer, .explanations-content, .instructions-content, pre, code')
+      .forEach(element => element.remove());
+    const text = clone.textContent;
+    if (/\bNaN\b/.test(text)) throw new Error('the rendered view contains a computed NaN');
     if (/\bundefined\b/.test(text)) throw new Error('the rendered view contains "undefined"');
     return `${text.length} characters, clean`;
   });

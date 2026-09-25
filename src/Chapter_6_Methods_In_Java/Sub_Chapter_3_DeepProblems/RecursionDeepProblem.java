@@ -3,6 +3,9 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_3_DeepProblems;
 
 public class RecursionDeepProblem {
 
+    // Parameter limits :- factorial fits in long only for 0..20; fibonacci fits for 0..92,
+    // but this recursive Fibonacci repeats work exponentially, so keep demonstrations small.
+    // Digit helpers cannot negate Integer.MIN_VALUE safely, and reverseNumber can overflow int.
     public static long factorialRecursive(int number) {
         if (number < 0) {
             throw new IllegalArgumentException("Factorial is undefined for negative numbers.");

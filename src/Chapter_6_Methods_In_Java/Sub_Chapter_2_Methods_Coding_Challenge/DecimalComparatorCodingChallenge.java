@@ -3,6 +3,8 @@ package Chapter_6_Methods_In_Java.Sub_Chapter_2_Methods_Coding_Challenge;
 // This challenge compares two double values only up to three decimal places.
 // Multiplying by 1000 shifts the first three decimal places into the whole-number part of the value.
 // Casting the shifted double to int truncates the remaining decimal portion instead of rounding it.
+// Limits :- this compares truncated binary-double products. Near decimal boundaries rounding can matter;
+// large products saturate at int limits and NaN casts to 0, so this is not a general decimal-equality test.
 // If the two truncated int values are equal, the original numbers match to three decimal places.
 // Example results: -3.1756 and -3.175 match, 3.175 and 3.176 do not match, and -3.123 and 3.123 do not match.
 

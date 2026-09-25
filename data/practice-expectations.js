@@ -14,7 +14,7 @@
 // Fingerprint of the inputs this was derived from: the source files, the challenge
 // list and the verifier template. When it still matches, the script skips the work
 // instead of compiling and running every method again.
-const SOURCE_FINGERPRINT = '4357908b';
+const SOURCE_FINGERPRINT = '61eba10';
 const NATIVE_VALIDATION = {
   "release": 21,
   "preview": false,
@@ -22,7 +22,7 @@ const NATIVE_VALIDATION = {
   "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
   "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
   "validator": "scripts/fill-practice-expectations.js",
-  "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+  "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
 };
 
 const PRACTICE_EXPECTATIONS = {
@@ -36,8 +36,8 @@ const PRACTICE_EXPECTATIONS = {
       "provenance": {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_3_Operators/Sub_Chapter_3_DeepProblems/ExpressionEvaluatorDeepProblem.java",
-        "sourceHash": "17733f7f9c4e6925e196bb8c5cee9d1fbedefc16af56e4613cfe1dc3f309677e",
-        "frameworkFingerprint": "4357908b",
+        "sourceHash": "098d71aaab7f3c84689eb75c09960315feba2f7dde5702663604c348bd74d36e",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -46,7 +46,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -61,7 +61,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_7_Switch_Statements/Sub_Chapter_3_CodingChallenge/PrintNumberInAWorldCodingChallenge.java",
         "sourceHash": "36f910b7e7193015bb88b72041cf6dc15eb1ff34459fdb30b9e2ca6c0791da8c",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -70,32 +70,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
-        }
-      }
-    }
-  ],
-  "forstatement": [
-    {
-      "args": [
-        2.5,
-        2.5
-      ],
-      "expected": 0.0625,
-      "provenance": {
-        "kind": "solution-derived-smoke",
-        "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_1_For_Statement/ForStatement.java",
-        "sourceHash": "80e75dfcf2cb3749b46dbbd677f084dbca17ae3dad3d866ab8b3d8ba47506957",
-        "frameworkFingerprint": "4357908b",
-        "execution": "native-reference-and-browser-approximate",
-        "nativeValidation": {
-          "release": 21,
-          "preview": false,
-          "compilerVersion": "javac 25.0.4.1",
-          "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
-          "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
-          "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -110,7 +85,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_2_For_Loop_Coding_Challenge/ForLoopPrimeNumberChallenge.java",
         "sourceHash": "2ae08770bcf8400615e36fbaa4ceef81515ed8cf6ad3468a989d90e26e356720",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -119,7 +94,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -134,7 +109,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_8_Java_Looping_Concepts/Sub_Chapter_3_DeepProblems/PatternPrinterDeepProblem.java",
         "sourceHash": "a4c5e652a8d6d77d3f9c9c11d480201d02b1b14302f18bf2241b6647d5a78421",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -143,7 +118,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -158,7 +133,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/DigitSumCodingChallenge.java",
         "sourceHash": "1df13361482c8b98aaf36937915d9d2b789b05f21ef9e952572809df98396f13",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -167,7 +142,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -182,7 +157,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FactorPrinterCodingChallenge.java",
         "sourceHash": "528d64310f98c758268ffbecb94350832a9f516f65c81c64756f09460837616c",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -191,33 +166,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
-        }
-      }
-    }
-  ],
-  "floorpackproblemcodingchallenge": [
-    {
-      "args": [
-        1,
-        1,
-        1
-      ],
-      "expected": true,
-      "provenance": {
-        "kind": "solution-derived-smoke",
-        "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/FloorPackProblemCodingChallenge.java",
-        "sourceHash": "7f9f6bf146fe3c541aee64f3e861a000811d459e33fd69bded169a5312353cb9",
-        "frameworkFingerprint": "4357908b",
-        "execution": "native-reference-and-browser-approximate",
-        "nativeValidation": {
-          "release": 21,
-          "preview": false,
-          "compilerVersion": "javac 25.0.4.1",
-          "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
-          "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
-          "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -232,7 +181,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/LargestPrimeFactorCodingChallenge.java",
         "sourceHash": "d5ab09fd1dd85c0a154ad0db26be52ab3fd88cefe0970d3518dc23df6f9f2919",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -241,7 +190,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -256,7 +205,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
         "sourceHash": "d7c70e6d1754aafcf54aca658d02753358866b5fbfad2bed2534d9e493d3b584",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -265,7 +214,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -280,7 +229,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
         "sourceHash": "226cdd09003f21796ca71094e10ee78722db5d1dc04d0f8b41197e823463ef75",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -289,7 +238,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -304,7 +253,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallenge.java",
         "sourceHash": "e5af60b58cf3d873bcc022d4e025ec6626ddc06ef3875c3bb242f04d6f015f05",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -313,7 +262,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }
@@ -328,7 +277,7 @@ const PRACTICE_EXPECTATIONS = {
         "kind": "solution-derived-smoke",
         "sourceFile": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/WhileLoopCodingChallengePart2.java",
         "sourceHash": "2a721710830bf65eeb0c55b880a29a31093550f699b7b2cbaa85a2ae1126a21a",
-        "frameworkFingerprint": "4357908b",
+        "frameworkFingerprint": "61eba10",
         "execution": "native-reference-and-browser-approximate",
         "nativeValidation": {
           "release": 21,
@@ -337,34 +286,7 @@ const PRACTICE_EXPECTATIONS = {
           "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
           "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
           "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
-        }
-      }
-    }
-  ],
-  "paintjobchallenge": [
-    {
-      "args": [
-        2.5,
-        2.5,
-        2.5,
-        1
-      ],
-      "expected": 2,
-      "provenance": {
-        "kind": "solution-derived-smoke",
-        "sourceFile": "src/Chapter_11_Parsing_Values_Reading_Input/Sub_Chapter_2_Parsing_Values_Coding_Challenge/PaintJobChallenge.java",
-        "sourceHash": "e37cfeafd923a8e92ad80894e0241e45707b65409bdaf3b708f2c1a84366a77e",
-        "frameworkFingerprint": "4357908b",
-        "execution": "native-reference-and-browser-approximate",
-        "nativeValidation": {
-          "release": 21,
-          "preview": false,
-          "compilerVersion": "javac 25.0.4.1",
-          "runtimeVersion": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS)\nOpenJDK 64-Bit Server VM Corretto-25.0.4.8.1 (build 25.0.4.1+8-LTS, mixed mode, sharing)",
-          "runtimeEvidence": "observed-on-recorded-runtime; --release constrains language/API, not runtime behavior",
-          "validator": "scripts/fill-practice-expectations.js",
-          "validatorFingerprint": "0d89a6cf292ceb06d970be0cd05f6d564e2857beab1dbb84930903131da4855e"
+          "validatorFingerprint": "ef0b9dd2bd1a46121ac959d3324128658dd3cd466405519f44fa53c60b48cd6a"
         }
       }
     }

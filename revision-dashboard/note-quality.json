@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "scope": "finished-chapters",
+  "reviewedTopics": 134,
+  "evidence": "conservative-rules-and-authored-drafts-not-a-semantic-proof",
+  "proposals": [],
+  "findings": [
+    {
+      "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/NumberToWordsCodingChallenge.java",
+      "topic": "Number To Words Coding Challenge",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "kind": "explanation",
+      "text": "Code-only topic",
+      "recommendation": "Review whether the parent lesson explains this supporting class; add a local explanation only if needed."
+    },
+    {
+      "file": "src/Chapter_9_WhileAndDoWhileLoopingConcepts/Sub_Chapter_3_While_Do_While_Loop_CodingChallenge/PerfectNumberCodingChallenge.java",
+      "topic": "Perfect Number Coding Challenge",
+      "chapter": "Chapter 9: While And Do While Looping Concepts",
+      "kind": "explanation",
+      "text": "Code-only topic",
+      "recommendation": "Review whether the parent lesson explains this supporting class; add a local explanation only if needed."
+    },
+    {
+      "file": "src/Chapter_13_OOPSConcepts/Sub_Chapter_3_Classes_Challenge/BankAccountChallenge/Main.java",
+      "topic": "Main",
+      "chapter": "Chapter 13: OOP Concepts",
+      "kind": "explanation",
+      "text": "Code-only topic",
+      "recommendation": "Review whether the parent lesson explains this supporting class; add a local explanation only if needed."
+    },
+    {
+      "file": "src/Chapter_13_OOPSConcepts/Sub_Chapter_4_Constructors/Sub_Chapter_1_ConstructorConcept/ConstructorConcept.java",
+      "topic": "Constructor Concept",
+      "chapter": "Chapter 13: OOP Concepts",
+      "kind": "clarity",
+      "text": "That's a good way of doing things, and it often leads to good coding because it avoids having to duplicate code by duplicating initialization in more than one place.",
+      "recommendation": "Name the behavior, conditions, and result explicitly. Check nearby notes before adding an example."
+    },
+    {
+      "file": "src/Chapter_13_OOPSConcepts/Sub_Chapter_6_Reference_Object_Instance/Example/House.java",
+      "topic": "House",
+      "chapter": "Chapter 13: OOP Concepts",
+      "kind": "explanation",
+      "text": "Code-only topic",
+      "recommendation": "Review whether the parent lesson explains this supporting class; add a local explanation only if needed."
+    }
+  ]
+}

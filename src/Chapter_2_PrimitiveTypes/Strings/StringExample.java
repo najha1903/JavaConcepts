@@ -1,10 +1,15 @@
 package Chapter_2_PrimitiveTypes.Strings;
 // String is a special class in Java — it is NOT a primitive type, but it is used so commonly that Java gives it special treatment.
 // A String is a sequence of characters of any length — from empty "" to thousands of characters long.
-// Contrast: a 'char' can hold only ONE character. A String can hold many. char uses single quotes ('A'), String uses double quotes ("Hello").
+// Contrast: a char holds one UTF-16 code unit. Some Unicode characters need two. char uses single quotes ('A'), String uses double quotes ("Hello").
 // String immutability: once a String object is created, its value CANNOT be changed.
-// When you "modify" a String (e.g., add to it), Java actually creates a brand NEW String object in memory.
-// The original String object is discarded — it becomes eligible for garbage collection.
+// String operations return a result without changing the original; some methods return the same object when no change is needed.
+// Runtime + concatenation produces a new String, while constant expressions such as "a" + "b" are folded and interned.
+// Reassigning one variable does not discard the old object. It is collectible only when no live strong reference keeps it reachable.
+// String original = new String("Java");
+// String alias = original;
+// original = original + " notes"; // alias still refers to "Java"; that object has not changed.
+// Collection timing is not guaranteed. Literal and interned String reachability also matters; reassignment alone says nothing about it.
 // Example: myString = myString + ", more text";  — this does NOT change the original String; it creates a new one and assigns the reference to myString.
 // The + operator is used to concatenate (join) String values. You can join any data type to a String using +:
 // Example: "Score: " + 100 -> "Score: 100" (the integer 100 is automatically converted to its String representation)
@@ -37,11 +42,11 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer new String("ab") creates a different object, so == is false, but the contents are equal.
 
 // @quiz What does it mean that Strings are immutable in Java?
-// @answer Once a String is created, its value cannot be changed. Any modification creates a new String object.
-// @answer The original String is discarded and becomes eligible for garbage collection.
+// @answer Once a String is created, its value cannot be changed. Operations return a result and may reuse the original when unchanged.
+// @answer Reassignment changes one reference; the old object is collectible only when no live strong reference keeps it reachable.
 
 // @quiz What is the difference between a char and a String in Java?
-// @answer char holds exactly ONE character and uses single quotes ('A'). String holds any number of characters and uses double quotes ("Hello").
+// @answer char holds one UTF-16 code unit and uses single quotes ('A'). String holds a sequence of these units and uses double quotes ("Hello").
 
 // @quiz When should you use StringBuilder instead of String concatenation?
 // @answer When performing many concatenations, especially inside a loop. String + String creates a new object each time, which is wasteful. StringBuilder modifies the same object in place.
@@ -77,8 +82,8 @@ package Chapter_2_PrimitiveTypes.Strings;
 
 // @quiz (INTERVIEW) How do you find the length of a String WITHOUT using the built-in .length() method?
 // @answer Use a for-each loop over toCharArray(): int count = 0; for (char ch : str.toCharArray()) { count++; } // count is the length.
-// @answer Another approach: convert to char array and use array.length — but that internally calls length anyway.
-// @answer Conceptually: iterate over each character and count. This is O(n) — which is what .length() avoids by caching the value internally.
+// @answer Another approach is str.toCharArray().length, but it allocates and copies an array unnecessarily.
+// @answer This counts UTF-16 code units, just like String.length(), not necessarily whole Unicode characters. Direct length() avoids scanning or copying.
 
 // @quiz (INTERVIEW) What is the output of: String s = "Java"; s.concat(" is fun"); System.out.println(s);
 // @answer Output: Java
@@ -96,6 +101,7 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer Iterate from the last index to 0 and build a new String: String rev = ""; for (int i = str.length()-1; i >= 0; i--) { rev += str.charAt(i); }
 // @answer Better for performance: use a char array — char[] arr = str.toCharArray(); then swap arr[0] with arr[n-1], arr[1] with arr[n-2], etc. Return new String(arr).
 // @answer Key insight: Strings are immutable so you can't modify in place — you must build a new result.
+// @answer These char-by-char reversals assume single-unit characters; reversing surrogate halves can corrupt supplementary Unicode characters.
 
 // @quiz (INTERVIEW) How do you check if a String is a PALINDROME without using any built-in reverse method?
 // @answer Use two pointers — one at the start, one at the end, move inward and compare: boolean isPalin = true; int l=0, r=str.length()-1; while(l<r){ if(str.charAt(l)!=str.charAt(r)){isPalin=false; break;} l++; r--; }
@@ -107,12 +113,13 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer Or with for-each: for (char ch : str.toCharArray()) { if (ch == target) count++; }
 
 // @quiz (INTERVIEW) How do you check if a String CONTAINS a substring WITHOUT using contains() or indexOf()?
-// @answer Use a sliding window: for each position i in str, check if str.substring(i, i+sub.length()).equals(sub). If any match, return true.
+// @answer Use a sliding window: for i from 0 through str.length() - sub.length(), check str.substring(i, i+sub.length()).equals(sub). This includes an empty substring and avoids out-of-range indexes.
 // @answer Manual char-by-char: for each i, compare str.charAt(i+j) with sub.charAt(j) for j=0 to sub.length()-1. This is the essence of the brute-force string search algorithm.
 
 // @quiz (INTERVIEW) How do you convert a String to UPPERCASE WITHOUT using toUpperCase()?
 // @answer Each lowercase letter 'a'-'z' has ASCII value 97-122. Uppercase 'A'-'Z' is 65-90. Difference is 32. So: if (ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);
 // @answer Loop through each char, apply the transformation, build result: StringBuilder sb = new StringBuilder(); for (char ch : str.toCharArray()) { if(ch>='a'&&ch<='z') sb.append((char)(ch-32)); else sb.append(ch); }
+// @answer This rule covers ASCII a-z only; it is not a general Unicode or locale-aware uppercase conversion.
 
 // @quiz (INTERVIEW) How do you COUNT VOWELS in a String WITHOUT using regex?
 // @answer Loop through each char and check if it's in the set {a,e,i,o,u,A,E,I,O,U}: int count=0; for(char ch: str.toCharArray()){ String v="aeiouAEIOU"; if(v.indexOf(ch)!=-1) count++; }
@@ -122,21 +129,25 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @answer Count character frequencies: int[] freq = new int[256]; for(char c: s1.toCharArray()) freq[c]++; for(char c: s2.toCharArray()) freq[c]--; Check all freq[i]==0.
 // @answer If any freq entry is non-zero, strings are NOT anagrams. This is O(n) vs O(n log n) for sort-based approach.
 // @answer Example: "listen" and "silent" are anagrams — same characters, different order.
+// @answer The int[256] approach assumes every char is below 256. General Java char values need a larger table or a map; Unicode code points need separate handling.
 
 // @quiz (INTERVIEW) How do you REMOVE ALL SPACES from a String WITHOUT using replace() or replaceAll()?
 // @answer Loop and skip spaces: StringBuilder sb = new StringBuilder(); for(char ch: str.toCharArray()){ if(ch!=' ') sb.append(ch); }
 // @answer This builds a new String containing only non-space characters.
 
 // @quiz (INTERVIEW) How do you COUNT WORDS in a String WITHOUT using split()?
-// @answer Track transitions from non-space to space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }
+// @answer Track transitions from space/start to non-space: int count=0; boolean inWord=false; for(char ch:str.toCharArray()){ if(ch!=' '&&!inWord){count++;inWord=true;}else if(ch==' '){inWord=false;} }
+// @answer This example treats only the ordinary space as a separator, not tabs or newlines.
 // @answer Key: count a word when you ENTER it (transition from space/start to non-space), not while you're in it.
 
 // @quiz (INTERVIEW) How do you find the FIRST NON-REPEATING CHARACTER in a String WITHOUT library methods?
 // @answer Two passes: first pass builds a frequency array (int[256]). Second pass returns the first char with frequency 1.
 // @answer int[] freq = new int[256]; for(char c:str.toCharArray()) freq[c]++; for(char c:str.toCharArray()) if(freq[c]==1) return c;
+// @answer This array assumes char values below 256; define a no-match result and use a larger table or map for other input.
 
 // @quiz (INTERVIEW) How do you REMOVE DUPLICATE CHARACTERS from a String WITHOUT using Set or distinct()?
 // @answer Use a boolean[] seen = new boolean[256]; Loop through chars — if not seen, append to result and mark seen[ch]=true.
+// @answer The 256-entry array is valid only for char values below 256, not arbitrary Java text.
 // @answer Example: "programming" → "progamin" (each character kept only on first occurrence).
 
 // @quiz (INTERVIEW) How do you check if a String is NUMERIC (all digits) WITHOUT using parseInt() or regex?
@@ -151,11 +162,11 @@ package Chapter_2_PrimitiveTypes.Strings;
 // @quiz (INTERVIEW) What is the difference between == and .equals() when comparing Strings in Java?
 // @answer == compares references, meaning whether both variables point to the exact same String object in memory.
 // @answer .equals() compares String content, so it checks whether the characters are the same.
-// @answer Example: String a = "hello"; String b = "hello"; gives a == b as true because both usually point to the same pooled literal object, but new String("hello") compared with another new String("hello") gives == as false because they are different heap objects.
+// @answer Example: String a = "hello"; String b = "hello"; gives a == b as true because identical literals are guaranteed to share an interned object. Two separate new String("hello") expressions create distinct objects.
 // @answer Interview rule: use .equals() when you want value comparison, because it works correctly whether Strings come from the pool or from new objects.
 
 // @quiz (INTERVIEW TRAP) What is the output of: Integer a = 127; Integer b = 127; System.out.println(a == b); then Integer x = 128; Integer y = 128; System.out.println(x == y);
-// @answer Output: true on the first line and false on the second line.
+// @answer The first line is guaranteed true; the second is typically false but may be true with an extended Integer cache.
 // @answer Java caches Integer objects in the range -128 to 127, so autoboxing 127 reuses the same object reference.
 // @answer 128 is outside the default cache range, so autoboxing typically creates different Integer objects and == becomes false.
 // @answer Use .equals() for Integer value comparison too, because == on wrapper objects checks references, not numeric equality.

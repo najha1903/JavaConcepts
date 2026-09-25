@@ -4,7 +4,7 @@ package Chapter_4_Statements_And_Indentations;
 // A single statement CAN span multiple lines — Java doesn't care about line breaks, only about the semicolon that ends the statement.
 // Example: String s = "Hello" + " World" + "!"; — this is one statement split across multiple lines. It's still valid.
 // Multiple statements CAN be placed on a single line, though it reduces readability.
-// Whitespace (spaces, tabs, blank lines) between tokens is completely ignored by the Java compiler. It is for human readability only.
+// Extra whitespace between already-separated tokens usually changes only readability. Required separators, literal contents and line-comment endings still matter.
 // Indentation is not required by Java — code will compile and run with any (or no) indentation. BUT proper indentation is essential for readability and shows the logical nesting of code blocks.
 // In IntelliJ IDEA: Code -> Reformat Code (Ctrl+Alt+L) will auto-indent and format your code.
 // Best practice: one statement per line, consistent indentation (usually 4 spaces or 1 tab per level).
@@ -12,13 +12,13 @@ package Chapter_4_Statements_And_Indentations;
 // What a statement is :-
 // - A statement is a complete unit of execution, and most statements end with a semicolon.
 // - The statement types you will write most often are a declaration (`int x = 5;`), an assignment (`x = 10;`), and a method call (`System.out.println(x);`).
-// - An expression produces a value, such as `2 + 3` or `x > 5`. A statement is the complete instruction. `int x = 5;` contains the expression `x = 5`, but the whole line is a declaration statement.
+// - An expression usually produces a value, such as `2 + 3` or `x > 5`. `int x = 5;` is a declaration statement with the initializer expression `5`.
 // - A bare expression on its own line is not a statement, so `x > 5` by itself does not compile unless it is used somewhere.
 //
 // Rules that surprise people :-
 // - A statement is ended by the semicolon, not by the line break.
 // - Several statements may share one line, and one statement may be spread over several lines. Both compile.
-// - These do NOT end with a semicolon: a class declaration, a method declaration, the header of an `if`, `for` or `while`, and a block `{ ... }`.
+// - Class and method bodies and blocks use braces. A method without a body (such as an abstract method) ends with a semicolon; do-while also needs its final semicolon.
 //
 // Worked examples :-
 // 1) One statement over several lines :-
@@ -52,7 +52,7 @@ package Chapter_4_Statements_And_Indentations;
 // @snippet int x = 5;
 // @takeaway An expression works out to a value; a statement is the whole instruction built around it.
 // @snippet 2 + 3          // 5
-// @takeaway Spaces, tabs and line breaks mean nothing to the compiler; indentation is for the reader.
+// @takeaway Extra whitespace between tokens usually affects readability only; whitespace inside literals and after line comments can matter.
 // @snippet int     c     =     5;
 // @takeaway One statement can span several lines and several can share one, so write one per line because that is what makes a mistake visible.
 // @snippet int a = 1; int b = 2;
@@ -63,7 +63,7 @@ package Chapter_4_Statements_And_Indentations;
 // @snippet { System.out.println("always runs"); }
 // @gotcha A variable declared inside a block disappears at the closing brace, and using it afterwards gives "cannot resolve symbol".
 // @snippet { int n = 1; } System.out.println(n);      // compile error
-// @gotcha A class body, a method body and the headers of `if` and `for` all end in a brace, and none of them takes a semicolon.
+// @gotcha Braced bodies need no extra semicolon; `do { ... } while (condition);` does. An `if` or `for` body can also be one statement.
 
 // @quiz (INTERVIEW) What is the difference between a statement and an expression in Java?
 // @answer An expression produces a value, such as 2 + 3 or x > 5.
@@ -79,7 +79,7 @@ package Chapter_4_Statements_And_Indentations;
 
 // @quiz (OCJP) Is int x = 5; a statement or an expression?
 // @answer It is a declaration statement.
-// @answer The whole line is not just an expression, even though it contains the assignment expression x = 5.
+// @answer The whole line is a declaration, containing the initializer expression 5. A later x = 5 would be an assignment expression.
 // @quiz (INTERVIEW TRAP) Does indentation change the parameter passed to println?
 // @answer No. Indentation and most whitespace are ignored by the compiler; the expression before the semicolon determines the parameter value.
 //
@@ -92,7 +92,7 @@ package Chapter_4_Statements_And_Indentations;
 // @option An expression is always a whole line, and a statement is always a fragment.
 // @explain An expression evaluates to something. A statement is the complete unit of execution that the compiler acts on, and most statements end in a semicolon.
 // @why B: this is reversed. 2 + 3 yields a value, so it is an expression.
-// @why C: int x = 5; contains the expression x = 5, but the whole declaration is a statement, so the two are not the same.
+// @why C: int x = 5; contains the initializer expression 5, but the whole declaration is a statement, so the two are not the same.
 // @why D: expressions can be fragments such as 2 + 3, and statements are the ones usually written as a line.
 
 // @quiz (INTERVIEW, MEDIUM) Do whitespace and indentation affect whether Java code compiles?
