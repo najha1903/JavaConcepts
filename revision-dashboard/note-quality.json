@@ -32,16 +32,16 @@
       "file": "src/Chapter_13_OOPSConcepts/Sub_Chapter_2_Getters_Encapsulation_Object_Access/Car.java",
       "line": 128,
       "what": "Name what a derived getter returns",
-      "why": "\"Derived in some way\" does not say what is derived or from what. Naming the calculation makes the point usable.",
+      "why": "\"Derived in some way\" does not say what is derived or from what. Naming the kinds of calculation makes the point usable without inventing a method this class does not have.",
       "category": "clarification",
       "before": "There could be getter methods for fields that are not really declared on your class but that are derived in some way.",
-      "after": "A getter can also return a value that is not a stored field at all. For example, a getTotal() method could return quantity * price, working the value out each time instead of storing it.",
+      "after": "A getter can also return a value that is not a stored field at all. It might combine two fields, or convert a stored value into another form, working the result out each time instead of storing it.",
       "sourceFingerprint": "ac13049e016e6335bae4c25410af90544c3665315f96dca40b978389fb7933c4",
-      "contentVersion": "0e5fa1f44c3ec380e9f6b693be2bfa3b7c9fc665ee220fe3ddc15dd866c5a065",
+      "contentVersion": "f3607917d1573b66b2b1fd71bd11467e76018c25671dd5135bd74fbc8a64c2f2",
       "evidence": "review-required",
       "draft": [
         "Name what a derived getter returns",
-        "A getter can also return a value that is not a stored field at all. For example, a getTotal() method could return quantity * price, working the value out each time instead of storing it."
+        "A getter can also return a value that is not a stored field at all. It might combine two fields, or convert a stored value into another form, working the result out each time instead of storing it."
       ]
     },
     {

@@ -23,7 +23,7 @@ Alternative: set the default position once and let each condition override it, s
 
 **Name what a derived getter returns** (clarification)
 
-"Derived in some way" does not say what is derived or from what. Naming the calculation makes the point usable.
+"Derived in some way" does not say what is derived or from what. Naming the kinds of calculation makes the point usable without inventing a method this class does not have.
 
 Before:
 ```text
@@ -31,7 +31,7 @@ There could be getter methods for fields that are not really declared on your cl
 ```
 After:
 ```text
-A getter can also return a value that is not a stored field at all. For example, a getTotal() method could return quantity * price, working the value out each time instead of storing it.
+A getter can also return a value that is not a stored field at all. It might combine two fields, or convert a stored value into another form, working the result out each time instead of storing it.
 ```
 
 ## Chapter 13: OOP Concepts: Constructor Concept
